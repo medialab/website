@@ -3,6 +3,14 @@ module.exports = {
     title: 'médialab website',
   },
   plugins: [
+    'gatsby-transformer-lowdb',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'data',
+        path: '../data/'
+      }
+    },
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-manifest',
@@ -14,4 +22,4 @@ module.exports = {
     },
     'gatsby-plugin-offline'
   ]
-}
+};

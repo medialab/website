@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-// import Layout from '../components/layout'
+import Layout from '../components/layout';
 
 const IndexPage = () => (
-  <div>
+  <Layout>
     <h1>médialab Static website</h1>
     <p>Hello World!</p>
-  </div>
-)
+  </Layout>
+);
 
-export default IndexPage
+export default IndexPage;

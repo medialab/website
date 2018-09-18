@@ -16,16 +16,7 @@ const history = createBrowserHistory()
 
 // Mount node
 const MOUNT_NODE = document.getElementById('app');
-// const store = createStore(
-//   connectRouter(history)(rootReducer), // new root reducer with router state
-//   initialState,
-//   compose(
-//     applyMiddleware(
-//       routerMiddleware(history), // for dispatching history actions
-//       // ... other middlewares ...
-//     ),
-//   ),
-// )
+
 // Creating redux store
 const STORE = createStore(
   connectRouter(history)(reducer),

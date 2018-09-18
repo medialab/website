@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "People",
+  "description": "Record representing a person in the database.",
+  "type": "object",
+  "properties": {
+    "firstName": {
+      "title": "First name",
+      "description": "First name of the person.",
+      "type": "string"
+    },
+    "lastName": {
+      "title": "Last name",
+      "description": "Last name of the person.",
+      "type": "string"
+    },
+    "bio": {
+      "title": "Biography",
+      "description": "Biography of the person.",
+      "type": "string",
+      "formType": "content"
+    },
+    "status": {
+      "title": "Status",
+      "description": "The person's status.",
+      "type": "string",
+      "enum": [
+        "associate",
+        "general secretary",
+        "member",
+        "scientific director",
+        "technical director"
+      ]
+    },
+    "endDate": {
+      "title": "End date",
+      "description": "End date of contract.",
+      "type": "string",
+      "formType": "date",
+      "format": "date"
+    }
+  },
+  "required": [
+    "firstName",
+    "lastName"
+  ]
+}

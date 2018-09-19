@@ -10,6 +10,8 @@ import Application from './components/Application';
 import reducer from './modules';
 
 // Requiring style
+import 'draft-js/dist/Draft.css';
+import 'draftail/dist/draftail.css';
 import '../style/main.scss';
 
 const history = createHashHistory()

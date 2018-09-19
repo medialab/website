@@ -1,13 +1,25 @@
 import React, {Component} from 'react';
+import {DraftailEditor, BLOCK_TYPE, INLINE_STYLE} from 'draftail';
 import {Link} from 'react-router-dom';
 import {push} from 'connected-react-router';
 import {connect} from 'react-redux';
 import uuid from 'uuid/v4';
 import omit from 'lodash/omit';
+import {convertFromRaw, convertToRaw} from 'draft-js';
+import {stateToHTML} from 'draft-js-export-html';
+import {stateFromHTML} from 'draft-js-import-html';
 
 import client from '../../client';
 
 const TO_OMIT = ['loading', 'new'];
+
+function extractData(scope) {
+  const data = omit(scope.state, TO_OMIT);
+
+  data.bio = stateToHTML(convertFromRaw(scope.editorContent));
+
+  return data;
+}
 
 function createHandler(scope, key) {
   return e => {
@@ -18,6 +30,8 @@ function createHandler(scope, key) {
 class PeopleForm extends Component {
   constructor(props, context) {
     super(props, context);
+
+    this.editorContent = null;
 
     if (props.people) {
       this.state = {
@@ -39,17 +53,25 @@ class PeopleForm extends Component {
     this.handleFirstName = createHandler(this, 'firstName');
     this.handleLastName = createHandler(this, 'lastName');
 
-    this.onSubmit = this.onSubmit.bind(this);
+    this.handleBio = this.handleBio.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     if (this.state.loading)
       client.get({params: {model: 'people', id: this.props.people}}, (err, data) => {
+        if (data.bio)
+          data.bio = convertToRaw(stateFromHTML(data.bio));
+
         this.setState({loading: false, ...data});
       });
   }
 
-  onSubmit() {
+  handleBio(content) {
+    this.editorContent = content;
+  }
+
+  handleSubmit() {
     const {push} = this.props;
 
     // TODO: validation here
@@ -59,7 +81,7 @@ class PeopleForm extends Component {
       // Creating the new item
       const payload = {
         params: {model: 'people'},
-        data: omit(this.state, TO_OMIT)
+        data: extractData(this)
       };
 
       client.post(payload, (err, result) => {
@@ -72,7 +94,7 @@ class PeopleForm extends Component {
       // Upating the item
       const payload = {
         params: {model: 'people', id: this.state.id},
-        data: omit(this.state, TO_OMIT)
+        data: extractData(this)
       };
 
       client.put(payload, (err, result) => {
@@ -82,9 +104,11 @@ class PeopleForm extends Component {
   }
 
   render() {
+
     const {
       loading,
       id,
+      bio,
       firstName,
       lastName
     } = this.state;
@@ -117,9 +141,21 @@ class PeopleForm extends Component {
                 placeholder="Last Name" />
             </div>
           </div>
+          <div className="field">
+            <label className="label">Biography</label>
+            <DraftailEditor
+              rawContentState={bio || null}
+              onSave={this.handleBio}
+              blockTypes={[
+                {type: BLOCK_TYPE.HEADER_ONE, label: 'H1'}
+              ]}
+              inlineStyles={[
+                {type: INLINE_STYLE.BOLD, label: 'B'}
+              ]} />
+          </div>
           <div className="field is-grouped">
             <div className="control">
-              <button className="button" onClick={this.onSubmit}>Submit</button>
+              <button className="button" onClick={this.handleSubmit}>Submit</button>
             </div>
             <div className="control">
               <Link to="/people" className="button is-text">Cancel</Link>
@@ -128,7 +164,11 @@ class PeopleForm extends Component {
         </div>
 
         <div className="column is-8">
-          {!this.state.new && <iframe src={`http://localhost:8000/people-${id}`} />}
+          {!this.state.new && (
+            <iframe
+              style={{border: '1px solid black', width: '100%', height: '100%'}}
+              src={`http://localhost:8000/people-${id}`} />
+          )}
         </div>
       </div>
     )

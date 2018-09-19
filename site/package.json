@@ -15,14 +15,16 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "gatsby": "^2.0.1",
+    "chokidar": "^2.0.4",
+    "gatsby": "^2.0.4",
     "gatsby-plugin-manifest": "^2.0.2",
     "gatsby-plugin-offline": "^2.0.5",
     "gatsby-plugin-react-helmet": "^3.0.0",
     "gatsby-source-filesystem": "^2.0.1",
     "gatsby-transformer-lowdb": "0.0.7",
-    "react": "^16.5.1",
-    "react-dom": "^16.5.1",
+    "lodash": "^4.17.11",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
     "react-helmet": "^5.2.0"
   }
 }

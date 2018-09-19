@@ -5,9 +5,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently --names api,admin -c blue,green \"npm run dev:api\" \"npm run dev:admin\"",
+    "dev": "concurrently --names api,admin,site -c blue,green,yellow \"npm run dev:api\" \"npm run dev:admin\" \"npm run dev:site\"",
     "dev:api": "nodemon api/server.js",
-    "dev:admin": "cd admin && npm run dev"
+    "dev:admin": "cd admin && npm run dev",
+    "dev:site": "cd site && npm run dev"
   },
   "contributors": [
     {

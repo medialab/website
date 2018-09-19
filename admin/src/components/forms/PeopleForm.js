@@ -63,7 +63,8 @@ class PeopleForm extends Component {
       };
 
       client.post(payload, (err, result) => {
-        push('/people');
+        push(`/people/${this.state.id}`);
+        this.setState({new: false});
       });
     }
     else {
@@ -75,7 +76,7 @@ class PeopleForm extends Component {
       };
 
       client.put(payload, (err, result) => {
-        push('/people');
+        // push('/people');
       });
     }
   }
@@ -83,6 +84,7 @@ class PeopleForm extends Component {
   render() {
     const {
       loading,
+      id,
       firstName,
       lastName
     } = this.state;
@@ -92,7 +94,7 @@ class PeopleForm extends Component {
 
     return (
       <div className="columns">
-        <div className="column is-6">
+        <div className="column is-4">
           <div className="field">
             <label className="label">First Name</label>
             <div className="control">
@@ -123,6 +125,10 @@ class PeopleForm extends Component {
               <Link to="/people" className="button is-text">Cancel</Link>
             </div>
           </div>
+        </div>
+
+        <div className="column is-8">
+          {!this.state.new && <iframe src={`http://localhost:8000/people-${id}`} />}
         </div>
       </div>
     )

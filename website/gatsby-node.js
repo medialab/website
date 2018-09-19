@@ -14,20 +14,6 @@ const POSTS_QUERY = `
   }
 `;
 
-// exports.onCreateNode = ({node, actions}) => {
-//   const {createNodeField} = actions;
-
-//   if (OWN_TYPES.has(node.internal.type)) {
-
-//     // NOTE: this is necessary because we can't query on id
-//     createNodeField({
-//       node,
-//       name: 'uuid',
-//       value: node.id
-//     });
-//   }
-// };
-
 exports.createPages = ({graphql, actions}) => {
   const {createPage} = actions;
 

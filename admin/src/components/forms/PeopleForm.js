@@ -16,7 +16,8 @@ const TO_OMIT = ['loading', 'new'];
 function extractData(scope) {
   const data = omit(scope.state, TO_OMIT);
 
-  data.bio = stateToHTML(convertFromRaw(scope.editorContent));
+  if (scope.editorContent)
+    data.bio = stateToHTML(convertFromRaw(scope.editorContent));
 
   return data;
 }

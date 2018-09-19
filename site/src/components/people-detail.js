@@ -6,9 +6,6 @@ export const queryFragment = graphql`
     firstName
     lastName
     bio
-    activities {
-      name
-    }
   }
 `;
 

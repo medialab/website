@@ -1,20 +1,13 @@
 import React from 'react';
 import {graphql} from 'gatsby';
+
 import Layout from '../components/layout';
+import PostDetail from '../components/post-detail';
 
 export const query = graphql`
-  query($identifier: String!) {
-    allPostsJson(filter: {identifier: {eq: $identifier}}) {
-      edges {
-        node {
-          title {
-            fr
-          }
-          content {
-            fr
-          }
-        }
-      }
+  query($id: String!) {
+    postsJson(id: {eq: $id}) {
+      ...PostDetail
     }
   }
 `;
@@ -22,9 +15,10 @@ export const query = graphql`
 export default ({data}) => {
 
   console.log(data)
+
   return (
     <Layout>
-      <div>This is a post!</div>
+      <PostDetail post={data.postsJson} />
     </Layout>
   );
 };

@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 import {createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
-import {createBrowserHistory} from 'history';
+import {createHashHistory} from 'history';
 import {connectRouter, routerMiddleware, ConnectedRouter} from 'connected-react-router';
 
 import Application from './components/Application';
@@ -12,7 +12,7 @@ import reducer from './modules';
 // Requiring style
 import '../style/main.scss';
 
-const history = createBrowserHistory()
+const history = createHashHistory()
 
 // Mount node
 const MOUNT_NODE = document.getElementById('app');

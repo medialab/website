@@ -29,7 +29,6 @@ module.exports = {
   },
   devServer: {
     port: 7000,
-    publicPath: '/build/',
-    historyApiFallback: true
+    publicPath: '/build/'
   }
 };

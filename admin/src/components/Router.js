@@ -9,7 +9,7 @@ import PeopleForm from './forms/PeopleForm';
 
 export default function Router() {
   return (
-    <div className="container is-fluid">
+    <div className="container">
       <div className="tabs">
         <ul>
           <Route path="/posts" children={({match}) => (
@@ -27,7 +27,7 @@ export default function Router() {
       <Switch>
         <Route exact path="/" render={() => (<div>Admin</div>)} />
         <Route path="/people/new" render={() => <PeopleForm />} />
-        <Route path="/people/:id" render={({match}) => (<div>People {match.params.id}</div>)} />
+        <Route path="/people/:id" render={({match}) => <PeopleForm people={match.params.id} />} />
         <Route path="/people" render={() => <PeopleList />} />
         <Route render={() => (<div>Miss!</div>)} />
       </Switch>

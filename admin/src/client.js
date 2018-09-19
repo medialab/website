@@ -16,7 +16,15 @@ const client = new Client({
   // Services
   services: {
     list: '/:model',
-    get: '/:model/:id'
+    get: '/:model/:id',
+    post: {
+      url: '/:model',
+      type: 'POST'
+    },
+    put: {
+      url: '/:model/:id',
+      type: 'PUT'
+    }
   }
 });
 

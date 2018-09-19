@@ -4,7 +4,7 @@ import Layout from '../components/layout';
 
 export const query = graphql`
   query($identifier: String!) {
-    allPagesJson(filter: {identifier: {eq: $identifier}}) {
+    allPostsJson(filter: {identifier: {eq: $identifier}}) {
       edges {
         node {
           title {
@@ -24,7 +24,7 @@ export default ({data}) => {
   console.log(data)
   return (
     <Layout>
-      <div>This is a page!</div>
+      <div>This is a post!</div>
     </Layout>
   );
 };

@@ -2,7 +2,7 @@ const path = require('path');
 
 const PAGES_QUERY = `
   {
-    allPagesJson {
+    allPostsJson {
       edges {
         node {
           identifier
@@ -18,16 +18,16 @@ exports.createPages = ({graphql, actions}) => {
   return graphql(PAGES_QUERY).then(result => {
 
     // Creating pages
-    result.data.allPagesJson.edges.forEach(edge => {
-      const page = edge.node;
+    result.data.allPostsJson.edges.forEach(edge => {
+      const post = edge.node;
 
-      const slug = `/page-${page.identifier}/`;
+      const slug = `/post-${post.identifier}/`;
 
       createPage({
         path: slug,
-        component: path.resolve('./src/templates/page.js'),
+        component: path.resolve('./src/templates/post.js'),
         context: {
-          identifier: page.identifier
+          identifier: post.identifier
         }
       });
     });

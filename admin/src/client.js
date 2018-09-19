@@ -19,13 +19,17 @@ const client = new Client({
     get: '/:model/:id',
     post: {
       url: '/:model',
+      contentType: 'application/json',
       type: 'POST'
     },
     put: {
       url: '/:model/:id',
+      contentType: 'application/json',
       type: 'PUT'
     }
   }
 });
+
+window.client = client;
 
 export default client;

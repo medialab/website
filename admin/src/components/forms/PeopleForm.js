@@ -64,6 +64,8 @@ class PeopleForm extends Component {
         if (data.bio)
           data.bio = convertToRaw(stateFromHTML(data.bio));
 
+        this.editorContent = data.bio;
+
         this.setState({loading: false, ...data});
       });
   }

@@ -14,24 +14,61 @@ const POSTS_QUERY = `
   }
 `;
 
+const PEOPLE_QUERY = `
+ {
+  allPeopleJson {
+    edges {
+      node {
+        id
+      }
+    }
+  }
+ }
+`;
+
 exports.createPages = ({graphql, actions}) => {
   const {createPage} = actions;
 
-  return graphql(POSTS_QUERY).then(result => {
+  const promises = [
 
-    // Creating pages
-    result.data.allPostsJson.edges.forEach(edge => {
-      const post = edge.node;
+    // People
+    graphql(PEOPLE_QUERY).then(result => {
 
-      const slug = `/post-${post.id}/`;
+      // Creating pages
+      result.data.allPeopleJson.edges.forEach(edge => {
+        const person = edge.node;
 
-      createPage({
-        path: slug,
-        component: path.resolve('./src/templates/post.js'),
-        context: {
-          id: post.id
-        }
+        const slug = `/people-${person.id}/`;
+
+        createPage({
+          path: slug,
+          component: path.resolve('./src/templates/people.js'),
+          context: {
+            id: person.id
+          }
+        });
       });
-    });
-  });
+    }),
+
+    // Posts
+    graphql(POSTS_QUERY).then(result => {
+
+      // Creating pages
+      result.data.allPostsJson.edges.forEach(edge => {
+        const post = edge.node;
+
+        const slug = `/post-${post.id}/`;
+
+        createPage({
+          path: slug,
+          component: path.resolve('./src/templates/post.js'),
+          context: {
+            id: post.id
+          }
+        });
+      });
+    })
+  ];
+
+  return Promise.all(promises);
 };

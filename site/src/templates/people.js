@@ -5,8 +5,8 @@ import Layout from '../components/layout';
 import PeopleDetail from '../components/people-detail';
 
 export const query = graphql`
-  query($id: String!) {
-    peopleJson(id: {eq: $id}) {
+  query($identifier: String!) {
+    peopleJson(identifier: {eq: $identifier}) {
       ...PeopleDetail
     }
   }

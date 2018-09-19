@@ -1,3 +1,5 @@
+// NOTE: when query
+
 const fs = require('fs');
 const crypto = require('crypto');
 const path = require('path');
@@ -13,7 +15,7 @@ const POSTS_QUERY = `
     allPostsJson {
       edges {
         node {
-          id
+          identifier
         }
       }
     }
@@ -25,7 +27,7 @@ const PEOPLE_QUERY = `
   allPeopleJson {
     edges {
       node {
-        id
+        identifier
       }
     }
   }
@@ -56,6 +58,7 @@ function readDatabase(createNode, deleteNode, getNode) {
 
     createNode({
       ...activity,
+      identifier: activity.id,
       internal: {
         type: 'ActivitiesJson',
         contentDigest: hash,
@@ -87,6 +90,7 @@ function readDatabase(createNode, deleteNode, getNode) {
 
     createNode({
       ...person,
+      identifier: person.id,
       internal: {
         type: 'PeopleJson',
         contentDigest: hash,
@@ -112,6 +116,7 @@ function readDatabase(createNode, deleteNode, getNode) {
 
     createNode({
       ...post,
+      identifier: post.id,
       internal: {
         type: 'PostsJson',
         contentDigest: hash,
@@ -150,14 +155,15 @@ exports.createPages = function({graphql, actions})  {
       // Creating pages
       result.data.allPeopleJson.edges.forEach(edge => {
         const person = edge.node;
-        console.log(person);
 
-        const slug = `/people-${person.id}/`;
+        const slug = `/people-${person.identifier}/`;
 
         createPage({
           path: slug,
           component: path.resolve('./src/templates/people.js'),
-          context: person
+          context: {
+            identifier: person.identifier
+          }
         });
       });
     }),
@@ -172,12 +178,14 @@ exports.createPages = function({graphql, actions})  {
       result.data.allPostsJson.edges.forEach(edge => {
         const post = edge.node;
 
-        const slug = `/post-${post.id}/`;
+        const slug = `/post-${post.identifier}/`;
 
         createPage({
           path: slug,
           component: path.resolve('./src/templates/post.js'),
-          context: post
+          context: {
+            identifier: post.identifier
+          }
         });
       });
     })

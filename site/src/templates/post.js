@@ -5,8 +5,8 @@ import Layout from '../components/layout';
 import PostDetail from '../components/post-detail';
 
 export const query = graphql`
-  query($id: String!) {
-    postsJson(id: {eq: $id}) {
+  query($identifier: String!) {
+    postsJson(identifier: {eq: $identifier}) {
       ...PostDetail
     }
   }

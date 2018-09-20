@@ -4,13 +4,13 @@ module.exports = {
   },
   plugins: [
     // 'gatsby-transformer-lowdb',
-    // {
-    //   resolve: 'gatsby-source-filesystem',
-    //   options: {
-    //     name: 'data',
-    //     path: '../data/assets'
-    //   }
-    // },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'assets',
+        path: '../data/assets'
+      }
+    },
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-manifest',

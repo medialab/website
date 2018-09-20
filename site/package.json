@@ -5,6 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "gatsby build",
+    "clean": "rm -rf .cache public",
     "dev": "gatsby develop"
   },
   "contributors": [
@@ -15,6 +17,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
     "chokidar": "^2.0.4",
     "gatsby": "^2.0.4",
     "gatsby-paginate": "^1.0.16",

@@ -3,6 +3,7 @@ const crypto = require('crypto');
 const path = require('path');
 const chokidar = require('chokidar');
 const createPaginatedPages = require('gatsby-paginate');
+const cheerio = require('cheerio');
 const _ = require('lodash');
 
 const DB_PATH = '../data/db.json';
@@ -27,11 +28,26 @@ const PEOPLE_QUERY = `
     edges {
       node {
         identifier
+        bio
       }
     }
   }
  }
 `;
+
+// Helper extracting asset paths from html
+function extractAssetsFromHtml(html) {
+  const $ = cheerio.load(html);
+
+
+  const assets = [];
+
+  $('img').each(function() {
+    assets.push($(this).attr('src'));
+  });
+
+  return assets;
+}
 
 // Reading data helper
 function readDatabase(createNode, deleteNode, getNode) {
@@ -64,8 +80,6 @@ function readDatabase(createNode, deleteNode, getNode) {
         mediaType: 'application/json'
       }
     });
-
-    // hashes[activity.id] = hash;
   });
 
   // People
@@ -77,6 +91,7 @@ function readDatabase(createNode, deleteNode, getNode) {
       deleteNode({node});
 
     // Solving relations
+    // TODO: solve by mapping if need to split the database in chunks?
     person = {
       ...person,
       activities: (person.activities || []).map(i => activitiesIndex[i])
@@ -96,8 +111,6 @@ function readDatabase(createNode, deleteNode, getNode) {
         mediaType: 'application/json'
       }
     });
-
-    // hashes[person.id] = hash;
   });
 
   // Posts
@@ -122,8 +135,6 @@ function readDatabase(createNode, deleteNode, getNode) {
         mediaType: 'application/json'
       }
     });
-
-    // hashes[post.id] = hash;
   });
 }
 
@@ -141,7 +152,7 @@ exports.sourceNodes = ({actions, getNode}) => {
     });
 };
 
-exports.createPages = function({graphql, actions})  {
+exports.createPages = function({graphql, actions, emitter})  {
   const {createPage, deletePage} = actions;
 
   const promises = [
@@ -166,12 +177,19 @@ exports.createPages = function({graphql, actions})  {
 
         const slug = `/people-${person.identifier}/`;
 
+        const context = {
+          assets: [],
+          identifier: person.identifier
+        };
+
+        // Processing HTML
+        if (person.bio)
+          context.assets = extractAssetsFromHtml(person.bio);
+
         createPage({
           path: slug,
           component: path.resolve('./src/templates/people.js'),
-          context: {
-            identifier: person.identifier
-          }
+          context
         });
       });
     }),

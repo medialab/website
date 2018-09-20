@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {DraftailEditor, BLOCK_TYPE, INLINE_STYLE} from 'draftail';
 import {Link} from 'react-router-dom';
 import {push} from 'connected-react-router';
 import {connect} from 'react-redux';
@@ -9,6 +8,7 @@ import {convertFromRaw, convertToRaw} from 'draft-js';
 import {stateToHTML} from 'draft-js-export-html';
 import {stateFromHTML} from 'draft-js-import-html';
 
+import Editor from '../Editor';
 import client from '../../client';
 
 const TO_OMIT = ['loading', 'new'];
@@ -146,15 +146,9 @@ class PeopleForm extends Component {
           </div>
           <div className="field">
             <label className="label">Biography</label>
-            <DraftailEditor
-              rawContentState={bio || null}
-              onSave={this.handleBio}
-              blockTypes={[
-                {type: BLOCK_TYPE.HEADER_ONE, label: 'H1'}
-              ]}
-              inlineStyles={[
-                {type: INLINE_STYLE.BOLD, label: 'B'}
-              ]} />
+            <Editor
+              rawContent={bio || null}
+              onSave={this.handleBio} />
           </div>
           <div className="field is-grouped">
             <div className="control">
@@ -169,7 +163,7 @@ class PeopleForm extends Component {
         <div className="column is-8">
           {!this.state.new && (
             <iframe
-              style={{border: '1px solid black', width: '100%', height: '100%'}}
+              style={{border: '1px solid #ccc', width: '100%', height: '100%'}}
               src={`http://localhost:8000/people-${id}`} />
           )}
         </div>

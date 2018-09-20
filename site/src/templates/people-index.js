@@ -1,9 +1,9 @@
 import React from 'react';
 // import Link from 'gatsby';
 
-export default function PeopleIndex({data, pathContext}) {
-  // const {group, index, first, last, pageCount} = pathContext;
+export default function PeopleIndex({data, pageContext}) {
+  // const {group, index, first, last, pageCount} = pageContext;
 
-  console.log(pathContext);
+  console.log(pageContext);
   return <div>People Pagination</div>;
 }

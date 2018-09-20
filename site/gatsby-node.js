@@ -149,6 +149,9 @@ exports.sourceNodes = ({actions, getNode}) => {
     .watch(DB_PATH)
     .on('change', (event, path) => {
       update();
+
+      // TODO: fix this hack. something is fishy here...
+      setTimeout(update, 100);
     });
 };
 

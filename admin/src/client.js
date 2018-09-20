@@ -30,6 +30,13 @@ const client = new Client({
   }
 });
 
+client.upload = function(data, callback) {
+  fetch('http://localhost:3000/upload', {
+    method: 'POST',
+    body: data
+  }).then(callback);
+};
+
 window.client = client;
 
 export default client;

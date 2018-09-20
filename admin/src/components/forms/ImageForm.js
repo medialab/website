@@ -2,39 +2,59 @@ import React, {Component} from 'react';
 import Dropzone from 'react-dropzone';
 import Cropper from 'react-image-crop';
 
+import client from '../../client';
+
 export default class ImageForm extends Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = {
-      blob: null,
+      file: null,
       crop: {x: 30, y: 30, height: 30, width: 30}
     };
 
     this.handleDrop = this.handleDrop.bind(this);
     this.handleCrop = this.handleCrop.bind(this);
+    this.handleUpload = this.handleUpload.bind(this);
   }
 
   handleDrop(acceptedFiles) {
     const file = acceptedFiles[0];
-    this.setState({blob: file.preview});
+    this.setState({file});
   }
 
   handleCrop(crop) {
     this.setState({crop});
   }
 
+  handleUpload() {
+    console.log(this.state.file);
+    const formData = new FormData();
+    formData.append('file', this.state.file);
+
+    client.upload(formData, result => {
+      console.log(result);
+    });
+  }
+
   render() {
-    const {blob, crop} = this.state;
+    const {file, crop} = this.state;
+
+    const blob = file ? file.preview : null;
 
     return (
       <div>
         <Dropzone onDrop={this.handleDrop} />
         {blob && (
-          <Cropper
-            src={blob}
-            crop={crop}
-            onChange={this.handleCrop} />
+          <div>
+            <Cropper
+              src={blob}
+              crop={crop}
+              onChange={this.handleCrop} />
+            <button type="button" className="button" onClick={this.handleUpload}>
+              Upload
+            </button>
+          </div>
         )}
       </div>
     );

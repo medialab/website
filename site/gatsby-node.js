@@ -1,9 +1,8 @@
-// NOTE: when query
-
 const fs = require('fs');
 const crypto = require('crypto');
 const path = require('path');
 const chokidar = require('chokidar');
+const createPaginatedPages = require('gatsby-paginate');
 const _ = require('lodash');
 
 const DB_PATH = '../data/db.json';
@@ -151,6 +150,15 @@ exports.createPages = function({graphql, actions})  {
     graphql(PEOPLE_QUERY).then(result => {
       if (!result.data)
         return;
+
+      // Pagination
+      createPaginatedPages({
+        edges: result.data.allPeopleJson.edges,
+        createPage,
+        pageTemplate: path.resolve('./src/templates/people-index.js'),
+        pageLength: 2,
+        pathPrefix: 'people',
+      });
 
       // Creating pages
       result.data.allPeopleJson.edges.forEach(edge => {

@@ -5,6 +5,8 @@ const fs = require('fs-extra');
 const jsonServer = require('json-server');
 const fileUpload = require('express-fileupload');
 
+const GatsbyProcess = require('./gatsby.js');
+
 const MODELS = require('../specs/models.json');
 
 // Constants
@@ -18,6 +20,8 @@ const ROUTERS = MODELS.map(model => {
     router: jsonServer.router(path.join(DATA_PATH, `${model}.json`))
   };
 });
+
+const gatsby = new GatsbyProcess('./site');
 
 // json-server init
 const server = jsonServer.create();
@@ -41,6 +45,13 @@ server.post('/upload', (req, res) => {
     return res.status(200).send('Ok');
   });
 });
+
+server.get('/reboot-gatsby', (req, res) => {
+  gatsby.restart(() => res.status(200).send('Ok'));
+});
+
+// Starting gatsby
+gatsby.start();
 
 // Serving
 console.log(`Listening on port ${PORT}...`);

@@ -9,6 +9,7 @@ import {stateToHTML} from 'draft-js-export-html';
 import {stateFromHTML} from 'draft-js-import-html';
 
 import Editor from '../Editor';
+import Button from '../misc/Button';
 import client from '../../client';
 
 const TO_OMIT = ['loading', 'new'];
@@ -88,8 +89,10 @@ class PeopleForm extends Component {
       };
 
       client.post(payload, (err, result) => {
-        push(`/people/${this.state.id}`);
-        this.setState({new: false});
+        client.rebootGatsby(() => {
+          push(`/people/${this.state.id}`);
+          this.setState({new: false});
+        });
       });
     }
     else {
@@ -152,7 +155,7 @@ class PeopleForm extends Component {
           </div>
           <div className="field is-grouped">
             <div className="control">
-              <button className="button" onClick={this.handleSubmit}>Submit</button>
+              <Button onClick={this.handleSubmit}>Submit</Button>
             </div>
             <div className="control">
               <Link to="/people" className="button is-text">Cancel</Link>

@@ -26,6 +26,9 @@ const client = new Client({
       url: '/:model/:model/:id',
       contentType: 'application/json',
       type: 'PUT'
+    },
+    rebootGatsby: {
+      url: '/reboot-gatsby'
     }
   }
 });

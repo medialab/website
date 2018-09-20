@@ -1,24 +1,26 @@
 import React, {Component} from 'react';
 import {AtomicBlockUtils} from 'draft-js';
 import {DraftailEditor, BLOCK_TYPE, INLINE_STYLE, ENTITY_TYPE} from 'draftail';
+import Modal from 'react-modal';
 
 import ImageSelector from './selectors/ImageSelector';
 
 // Sources
 class ImageSource extends Component {
-  componentDidMount() {
+  constructor(props, context) {
+    super(props, context);
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(option) {
     const {editorState, entityType, onComplete} = this.props;
-
-    const src = window.prompt('URL');
-
-    if (!src)
-      return onComplete(editorState);
 
     const content = editorState.getCurrentContent();
     const contentWithEntity = content.createEntity(
       entityType.type,
       'IMMUTABLE',
-      {src}
+      {src: option.value}
     );
 
     const entityKey = contentWithEntity.getLastCreatedEntityKey();
@@ -32,7 +34,13 @@ class ImageSource extends Component {
   }
 
   render() {
-    return null;
+    return (
+      <Modal
+        isOpen={true}
+        style={{content: {zIndex: 5}, overlay: {zIndex: 5}}}>
+        <ImageSelector onChange={this.handleChange} />
+      </Modal>
+    );
   }
 }
 

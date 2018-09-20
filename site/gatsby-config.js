@@ -3,7 +3,6 @@ module.exports = {
     title: 'médialab website',
   },
   plugins: [
-    // 'gatsby-transformer-lowdb',
     {
       resolve: 'gatsby-source-filesystem',
       options: {

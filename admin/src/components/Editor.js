@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {AtomicBlockUtils} from 'draft-js';
 import {DraftailEditor, BLOCK_TYPE, INLINE_STYLE, ENTITY_TYPE} from 'draftail';
 
+import ImageSelector from './selectors/ImageSelector';
+
 // Sources
 class ImageSource extends Component {
   componentDidMount() {
@@ -65,6 +67,7 @@ export default function Editor(props) {
   } = props;
 
   return (
+    <>
     <DraftailEditor
       rawContentState={rawContent || null}
       onSave={onSave}
@@ -77,5 +80,6 @@ export default function Editor(props) {
       inlineStyles={[
         {type: INLINE_STYLE.BOLD, label: 'B'}
       ]} />
+    </>
   );
 }

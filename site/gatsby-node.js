@@ -162,6 +162,9 @@ exports.sourceNodes = function({actions, getNode})  {
     .on('change', p => {
       const model = path.basename(p, '.json');
 
+      if (!(model in MODEL_READERS))
+        return;
+
       console.log(`Updating ${model}.json`);
       const update = MODEL_READERS[model].bind(null, createNode, deleteNode, getNode);
 

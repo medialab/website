@@ -6,7 +6,13 @@ const createPaginatedPages = require('gatsby-paginate');
 const cheerio = require('cheerio');
 const _ = require('lodash');
 
-const DB_PATH = '../data/db.json';
+const MODELS = require('../specs/models.json');
+const DB_PATH = '../data';
+const DB_GLOB = '../data/*.json';
+
+const MODELS_PATHS = {};
+
+MODELS.forEach(model => MODELS_PATHS[model] = path.join(DB_PATH, `${model}.json`));
 
 const OWN_TYPES = new Set(['PostsJson', 'PeopleJson', 'ActivitiesJson']);
 
@@ -49,105 +55,116 @@ function extractAssetsFromHtml(html) {
   return assets;
 }
 
-// Reading data helper
-function readDatabase(createNode, deleteNode, getNode) {
-  console.log('Updating from database...');
+const MODEL_READERS = {
+  activities: function(createNode, deleteNode, getNode) {
+    const rawData = fs.readFileSync(MODELS_PATHS.activities, 'utf-8');
+    const data = JSON.parse(rawData);
 
-  const rawData = fs.readFileSync(DB_PATH, 'utf-8');
-  const data = JSON.parse(rawData);
+    // Activities
+    data.activities.forEach(activity => {
 
-  const activitiesIndex = _.keyBy(data.activities, 'id');
+      const node = getNode(activity.id);
 
-  // Activities
-  data.activities.forEach(activity => {
+      if (node)
+        deleteNode({node});
 
-    const node = getNode(activity.id);
+      const hash = crypto
+        .createHash('md5')
+        .update(JSON.stringify(activity))
+        .digest('hex');
 
-    if (node)
-      deleteNode({node});
-
-    const hash = crypto
-      .createHash('md5')
-      .update(JSON.stringify(activity))
-      .digest('hex');
-
-    createNode({
-      ...activity,
-      identifier: activity.id,
-      internal: {
-        type: 'ActivitiesJson',
-        contentDigest: hash,
-        mediaType: 'application/json'
-      }
+      createNode({
+        ...activity,
+        identifier: activity.id,
+        internal: {
+          type: 'ActivitiesJson',
+          contentDigest: hash,
+          mediaType: 'application/json'
+        }
+      });
     });
-  });
+  },
 
-  // People
-  data.people.forEach(person => {
+  people: function(createNode, deleteNode, getNode) {
+    const rawData = fs.readFileSync(MODELS_PATHS.people, 'utf-8');
+    const data = JSON.parse(rawData);
 
-    const node = getNode(person.id);
+    // People
+    data.people.forEach(person => {
 
-    if (node)
-      deleteNode({node});
+      const node = getNode(person.id);
 
-    // Solving relations
-    // TODO: solve by mapping if need to split the database in chunks?
-    person = {
-      ...person,
-      activities: (person.activities || []).map(i => activitiesIndex[i])
-    };
+      if (node)
+        deleteNode({node});
 
-    const hash = crypto
-      .createHash('md5')
-      .update(JSON.stringify(person))
-      .digest('hex');
+      // Solving relations
+      // TODO: solve by mapping if need to split the database in chunks?
+      // person = {
+      //   ...person,
+      //   activities: (person.activities || []).map(i => activitiesIndex[i])
+      // };
 
-    createNode({
-      ...person,
-      identifier: person.id,
-      internal: {
-        type: 'PeopleJson',
-        contentDigest: hash,
-        mediaType: 'application/json'
-      }
+      const hash = crypto
+        .createHash('md5')
+        .update(JSON.stringify(person))
+        .digest('hex');
+
+      createNode({
+        ...person,
+        identifier: person.id,
+        internal: {
+          type: 'PeopleJson',
+          contentDigest: hash,
+          mediaType: 'application/json'
+        }
+      });
     });
-  });
+  },
 
-  // Posts
-  data.posts.forEach(post => {
+  posts: function(createNode, deleteNode, getNode) {
+    const rawData = fs.readFileSync(MODELS_PATHS.posts, 'utf-8');
+    const data = JSON.parse(rawData);
 
-    const node = getNode(post.id);
+    // Posts
+    data.posts.forEach(post => {
 
-    if (node)
-      deleteNode({node});
+      const node = getNode(post.id);
 
-    const hash = crypto
-      .createHash('md5')
-      .update(JSON.stringify(post))
-      .digest('hex');
+      if (node)
+        deleteNode({node});
 
-    createNode({
-      ...post,
-      identifier: post.id,
-      internal: {
-        type: 'PostsJson',
-        contentDigest: hash,
-        mediaType: 'application/json'
-      }
+      const hash = crypto
+        .createHash('md5')
+        .update(JSON.stringify(post))
+        .digest('hex');
+
+      createNode({
+        ...post,
+        identifier: post.id,
+        internal: {
+          type: 'PostsJson',
+          contentDigest: hash,
+          mediaType: 'application/json'
+        }
+      });
     });
-  });
-}
+  }
+};
 
-exports.sourceNodes = ({actions, getNode}) => {
+exports.sourceNodes = function({actions, getNode})  {
   const {createNode, deleteNode} = actions;
 
-  const update = readDatabase.bind(null, createNode, deleteNode, getNode);
-
-  update();
+  for (const model in MODEL_READERS)
+    MODEL_READERS[model](createNode, deleteNode, getNode);
 
   chokidar
-    .watch(DB_PATH)
-    .on('change', (event, path) => {
+    .watch(DB_GLOB)
+    .on('change', p => {
+      const model = path.basename(p, '.json');
+
+      console.log(`Updating ${model}.json`);
+      const update = MODEL_READERS[model].bind(null, createNode, deleteNode, getNode);
+
       update();
 
       // TODO: fix this hack. something is fishy here...

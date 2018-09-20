@@ -4,20 +4,27 @@ const config = require('config');
 const fs = require('fs-extra');
 const jsonServer = require('json-server');
 
+const MODELS = require('../specs/models.json');
+
 // Constants
 const PORT = config.get('port');
-const DB_PATH = path.join(config.get('data'), 'db.json');
-const ASSETS_PATH = path.join(config.get('data'), 'assets');
-fs.ensureFileSync(DB_PATH);
+const DATA_PATH = config.get('data');
+const ASSETS_PATH = path.join(DATA_PATH, 'assets');
+
+const ROUTERS = MODELS.map(model => {
+  return {
+    model,
+    router: jsonServer.router(path.join(DATA_PATH, `${model}.json`))
+  };
+});
 
 // json-server init
 const server = jsonServer.create();
-const router = jsonServer.router(DB_PATH);
 const middlewares = jsonServer.defaults();
 
 server.use(middlewares);
 server.use('/assets', express.static(ASSETS_PATH));
-server.use(router);
+ROUTERS.forEach(({model, router}) => server.use(`/${model}`, router));
 
 // Serving
 console.log(`Listening on port ${PORT}...`);

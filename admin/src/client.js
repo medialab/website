@@ -15,15 +15,15 @@ const client = new Client({
 
   // Services
   services: {
-    list: '/:model',
-    get: '/:model/:id',
+    list: '/:model/:model',
+    get: '/:model/:model/:id',
     post: {
-      url: '/:model',
+      url: '/:model/:model',
       contentType: 'application/json',
       type: 'POST'
     },
     put: {
-      url: '/:model/:id',
+      url: '/:model/:model/:id',
       contentType: 'application/json',
       type: 'PUT'
     }

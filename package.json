@@ -8,7 +8,11 @@
     "dev": "concurrently --names api,admin -c blue,green \"npm run dev:api\" \"npm run dev:admin\"",
     "dev:api": "nodemon api/server.js",
     "dev:admin": "cd admin && npm run dev",
-    "dev:site": "cd site && npm run dev"
+    "dev:site": "cd site && npm run dev",
+    "install:admin": "cd admin && npm i",
+    "install:site": "cd site && npm i",
+    "postinstall": "npm run install:admin && npm run install:site",
+    "reinstall": "rm -rf ./admin/node_modules && rm -rf ./site/node_modules && rm -rf ./node_modules && npm i"
   },
   "contributors": [
     {

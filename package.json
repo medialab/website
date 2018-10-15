@@ -19,10 +19,10 @@
   "license": "MIT",
   "dependencies": {
     "config": "^2.0.1",
-    "express": "^4.16.3",
+    "express": "^4.16.4",
     "express-fileupload": "^0.4.0",
     "fs-extra": "^7.0.0",
-    "gatsby-cli": "^2.4.1",
+    "gatsby-cli": "^2.4.3",
     "json-server": "^0.14.0",
     "uuid": "^3.3.2"
   },

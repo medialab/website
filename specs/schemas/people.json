@@ -1,43 +1,64 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "People",
-  "description": "Record representing a person in the database.",
+  "title": "Membres",
+  "description": "Les membres du médialab",
   "type": "object",
   "properties": {
     "firstName": {
-      "title": "First name",
-      "description": "First name of the person.",
+      "title": "Prénom",
+      "description": "pas de traduction",
       "type": "string"
     },
     "lastName": {
-      "title": "Last name",
-      "description": "Last name of the person.",
+      "title": "Nom de famille",
+      "description": "pas de traduction",
       "type": "string"
     },
-    "bio": {
+    "picture": {
+      "title": "photo de profile",
+      "description" : "",
+      "#ref": "media"
+    },
+    "bio_en": {
       "title": "Biography",
-      "description": "Biography of the person.",
+      "description": "Biography in english",
       "type": "string",
       "formType": "content"
     },
-    "status": {
-      "title": "Status",
-      "description": "The person's status.",
+    "bio_fr": {
+      "title": "Biographie",
+      "description": "Biographie en français",
+      "type": "string",
+      "formType": "content"
+    },
+    "contact" : {
+      "title": "Contact",
+      "description": "Information de contact (email, site perso)",
+      "type": "string"
+    },
+    "title_fr":{
+      "title": "Titre",
+      "description": "Comment la personne se définit-elle ?",
+      "type": "string"
+    },
+    "title_en":{
+      "title": "Title",
+      "description": "How does the person define him.ferself ?",
+      "type": "string"
+    },
+    "membership": {
+      "title": "Appartenance",
+      "description": "Type d'Appartenance au labo",
       "type": "string",
       "enum": [
-        "associate",
-        "general secretary",
-        "member",
-        "scientific director",
-        "technical director"
+        "Associé.e",
+        "Membre"
       ]
     },
-    "endDate": {
-      "title": "End date",
-      "description": "End date of contract.",
-      "type": "string",
-      "formType": "date",
-      "format": "date"
+    "active": {
+      "title": "Membre actif",
+      "description": "",
+      "type": "boolean"
     }
   },
   "required": [

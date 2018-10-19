@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Pages",
+  "description": "Les pages 'statiques' du site",
+  "type": "object",
+  "properties": {
+    "title_fr": {
+      "title": "Titre",
+      "description": "en français",
+      "type": "string"
+    },
+    "title_en": {
+      "title": "Title",
+      "description": "en anglais",
+      "type": "string"
+    },
+    "illustrations": {
+      "title": "Illustration",
+      "type":"array",
+      "description":"image et/ou vidéo utilisées pour illustré la publication",
+      "#ref": "media"
+    },
+    "documentation": {
+      "title": "Documents associés",
+      "type":"array",
+      "description":"liste de documents liés à la publication",    
+      "#ref": "media"
+    },
+    "content_en": {
+      "title": "Content",
+      "description": "in english",
+      "type": "string",
+      "formType": "content"
+    },
+    "content_fr": {
+      "title": "Contenu",
+      "description": "en français",
+      "type": "string",
+      "formType": "content"
+    },
+    "public": {
+      "title": "Publié ?",
+      "description": "",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "title_fr"
+  ]
+}

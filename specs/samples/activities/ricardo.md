@@ -9,7 +9,7 @@ illustrations:
  - vue pays
  - vue bilatérale
 documentation:
-	- [RICardo website](http://ricardo.medialab.sciences-po.fr)
+ - [RICardo website](http://ricardo.medialab.sciences-po.fr)
 startDate: 2014-09-01
 endDate:
 active : true

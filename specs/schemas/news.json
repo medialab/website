@@ -34,11 +34,6 @@
       "description": "lieux de l'événement",
       "type": "string"
     },
-    "bibtex": {
-      "title": "bibtex",
-      "description": "métadonnées de la publication, récupérée de SPIRE et utilsiée pour générer la citation complète",
-      "type": "string"
-    },
     "illustrations": {
       "title": "Illustration",
       "type":"array",

@@ -226,6 +226,13 @@ Grid : Juste pour l’utilisation des grilles
 
 Bloc: Hover rouge 
 
+https://www.ixdm.ch/
+
+http://fikrabiennial.com/
+
+http://monoide.eesab.fr/fonts/gerrit/
+
+
  
 
  

@@ -3,7 +3,9 @@ import {Route, Switch} from 'react-router';
 import {Link} from 'react-router-dom';
 import cls from 'classnames';
 
-import PeopleList from './lists/PeopleList';
+import listSpecs from '../../../specs/lists.js';
+
+import List from './List';
 
 import ImageForm from './forms/ImageForm';
 import PeopleForm from './forms/PeopleForm';
@@ -34,7 +36,7 @@ export default function Router() {
         <Route exact path="/" render={() => (<div>Admin</div>)} />
         <Route path="/people/new" render={() => <PeopleForm />} />
         <Route path="/people/:id" render={({match}) => <PeopleForm people={match.params.id} />} />
-        <Route path="/people" render={() => <PeopleList />} />
+        <Route path="/people" render={() => <List model="people" specs={listSpecs.people} />} />
         <Route path="/medias" render={() => <ImageForm />} />
         <Route render={() => (<div>Miss!</div>)} />
       </Switch>

@@ -14,19 +14,10 @@ const MODELS_PATHS = {};
 
 MODELS.forEach(model => MODELS_PATHS[model] = path.join(DB_PATH, `${model}.json`));
 
-const OWN_TYPES = new Set(['PostsJson', 'PeopleJson', 'ActivitiesJson']);
-
-const POSTS_QUERY = `
-  {
-    allPostsJson {
-      edges {
-        node {
-          identifier
-        }
-      }
-    }
-  }
-`;
+const OWN_TYPES = new Set([
+  'ActivitiesJson',
+  'PeopleJson'
+]);
 
 const PEOPLE_QUERY = `
  {
@@ -119,35 +110,6 @@ const MODEL_READERS = {
         }
       });
     });
-  },
-
-  posts: function(createNode, deleteNode, getNode) {
-    const rawData = fs.readFileSync(MODELS_PATHS.posts, 'utf-8');
-    const data = JSON.parse(rawData);
-
-    // Posts
-    data.posts.forEach(post => {
-
-      const node = getNode(post.id);
-
-      if (node)
-        deleteNode({node});
-
-      const hash = crypto
-        .createHash('md5')
-        .update(JSON.stringify(post))
-        .digest('hex');
-
-      createNode({
-        ...post,
-        identifier: post.id,
-        internal: {
-          type: 'PostsJson',
-          contentDigest: hash,
-          mediaType: 'application/json'
-        }
-      });
-    });
   }
 };
 
@@ -213,28 +175,6 @@ exports.createPages = function({graphql, actions, emitter})  {
           path: slug,
           component: path.resolve('./src/templates/people.js'),
           context
-        });
-      });
-    }),
-
-    // Posts
-    graphql(POSTS_QUERY).then(result => {
-
-      if (!result.data)
-        return;
-
-      // Creating pages
-      result.data.allPostsJson.edges.forEach(edge => {
-        const post = edge.node;
-
-        const slug = `/post-${post.identifier}/`;
-
-        createPage({
-          path: slug,
-          component: path.resolve('./src/templates/post.js'),
-          context: {
-            identifier: post.identifier
-          }
         });
       });
     })

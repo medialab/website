@@ -78,9 +78,14 @@ Premières idées :
 
 - Investir titre par la typographie
 
+- ASCII art ?
+
 Si la piste générative est confirmée, il faudra maitriser la compatibilité esthétique de celle-ci avec la politique institutionnelle de Science Po.
 
 Aussi, si cette piste est poursuivit, comment faire pour que les visuelles générés puissent être utiliser durant le partage de l'article sur Twitter ou la newsletter global de Science Po.
+
+Faire attention, pour être relayé sur le site de Sciences Po, il faut leur fournir une image
+
 
 ### Traduction
 
@@ -107,3 +112,17 @@ Comment distinguer ce que Medialab produit, de ce à quoi il participe ?
 ### Personnel
 
 Comment mettre en lien les personnes entre elles, les personnes et leurs projets et ce afin de faire émerger l'hétérogénéité du Medialab.
+
+
+### Autres
+
+dataveyes.com → c'est pas parce qu'on fait de la viz qu'on va dans cette direction
+
+
+3 flux sur la page
+- flux twitter
+- flux github (activité agrégée par projets)
+- flux d'actualité dans les lieux extérieurs
+
+Médialab a une réputation de mauvais élève en terme de suivi de règles et une réputation d'innovation, côté "cools kids à la marge"  
+Le suivi de l'identité graphique de Sciences Po n'est donc pas obligatoire

@@ -25,7 +25,9 @@ const PEOPLE_QUERY = `
     edges {
       node {
         identifier
-        bio
+        bio {
+          fr
+        }
       }
     }
   }
@@ -168,8 +170,8 @@ exports.createPages = function({graphql, actions, emitter})  {
         };
 
         // Processing HTML
-        if (person.bio)
-          context.assets = extractAssetsFromHtml(person.bio);
+        if (person.bio && person.bio.fr)
+          context.assets = extractAssetsFromHtml(person.bio.fr);
 
         createPage({
           path: slug,

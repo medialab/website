@@ -150,7 +150,7 @@ class PeopleForm extends Component {
           <div className="field">
             <label className="label">Biography</label>
             <Editor
-              rawContent={bio || null}
+              rawContent={(bio && bio.fr) || null}
               onSave={this.handleBio} />
           </div>
           <div className="field is-grouped">

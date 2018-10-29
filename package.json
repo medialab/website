@@ -9,6 +9,7 @@
     "dev:api": "nodemon api/server.js",
     "dev:admin": "cd admin && npm run dev",
     "dev:site": "cd site && npm run dev",
+    "hydrate:json": "rm -rf data && mkdir data data/assets && touch data/assets/dummy && cp specs/samples/json/*.json data",
     "install:admin": "cd admin && npm i",
     "install:site": "cd site && npm i",
     "postinstall": "npm run install:admin && npm run install:site",

@@ -15,16 +15,6 @@ export default function Router() {
     <div className="container">
       <div className="tabs">
         <ul>
-          <Route path="/posts" children={({match}) => (
-            <li className={cls(match && 'is-active')}>
-              <Link to="/posts">Posts</Link>
-            </li>
-          )} />
-          <Route path="/medias" children={({match}) => (
-            <li className={cls(match && 'is-active')}>
-              <Link to="/medias">Medias</Link>
-            </li>
-          )} />
           <Route path="/people" children={({match}) => (
             <li className={cls(match && 'is-active')}>
               <Link to="/people">People</Link>

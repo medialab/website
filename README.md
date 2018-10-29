@@ -15,3 +15,9 @@ Pour ré-installer toutes les dépendances de zéro:
 ```
 npm run reinstall
 ```
+
+Pour réinitialiser la base de données avec des données de test:
+
+```
+npm run hydrate:json
+```

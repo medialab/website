@@ -4,84 +4,68 @@
   "description": "Les projets menés au médialab",
   "type": "object",
   "properties": {
+    "id": {
+      "title": "Identifiant",
+      "type": "string"
+    },
     "name": {
-      "title": "Nom du projet",
-      "description": "Nom d'origine pas de traduction",
+      "title": "Nom",
       "type": "string"
     },
-    "excerpt_en": {
-      "title": "",
-      "description": "Name in anglais",
-      "type": "string"
-    },
-    "excerpt_fr": {
-      "title": "Biography",
-      "description": "Biography in english",
-      "type": "string",
-      "formType": "content"
+    "excerpt": {
+      "title": "Extrait",
+      "type": "object",
+      "properties": {
+        "en": {
+          "title": "English excerpt",
+          "type": "string"
+        },
+        "fr": {
+          "title": "Extrait français",
+          "type": "string"
+        }
+      }
     },
     "type": {
-      "title": "Type d'activité",
-      "description": "",
+      "title": "Type de l'activité",
       "type": "string",
       "enum": [
-        "Recherche",
-        "Enseignement",
-        "Méthode"
-      ]
+        "research",
+        "teaching"
+      ],
+      "enumId": "activitiyTypes"
     },
-    "illustrations": {
-      "title": "Illustration",
-      "type":"array",
-      "description":"image et/ou vidéo utilisées pour illustré l'activité",
-      "#ref": "media"
-    },
-    "documentation": {
-      "title": "Documents associés",
-      "type":"array",
-      "description":"liste de documents liés à l'activité",    
-      "#ref": "media"
-    },
-    "description_en": {
-      "title": "Biography",
-      "description": "Biography in english",
-      "type": "string",
-      "formType": "content"
-    },
-    "description_fr": {
-      "title": "Biographie",
-      "description": "Biographie en français",
-      "type": "string",
-      "formType": "content"
+    "description": {
+      "title": "Extrait",
+      "type": "object",
+      "properties": {
+        "en": {
+          "title": "English description",
+          "type": "string",
+          "formType": "content"
+        },
+        "fr": {
+          "title": "Description française",
+          "type": "string",
+          "formType": "content"
+        }
+      }
     },
     "people": {
-      "title": "Participant.es",
-      "description": "Personnes ayant participées",
+      "title": "Gens impliqués",
       "type": "array",
-      "#ref": "people"
-    },
-    "startDate": {
-      "title": "Date de début",
-      "description": "quand l'activité a commencé",
-      "type": "string",
-      "formType": "date",
-      "format": "date"
-    },
-    "endDate": {
-      "title": "Date de fin",
-      "description": "quand l'activité s'est arrêtée",
-      "type": "string",
-      "formType": "date",
-      "format": "date"
+      "items": {
+        "type": "string"
+      },
+      "formType": "ref",
+      "model": "people"
     },
     "active": {
-      "title": "Actif ?",
-      "description": "",
+      "title": "Actif?",
       "type": "boolean"
     },
-     "public": {
-      "title": "Publié ?",
-      "description": "",
+    "draft": {
+      "title": "Draft?",
       "type": "boolean"
     }
   },

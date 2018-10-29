@@ -1,0 +1,27 @@
+{
+  "news": [
+    {
+      "id": "c10d3935-abaa-4a6e-b581-adeef10e6d1e",
+      "title": {
+        "fr": "Séminaire de bouclage TOFLIT18"
+      },
+      "excerpt": {
+        "en": "A fine seminary to end the TOFLIT18 project.",
+        "fr": "Un vaillant séminaire pour clore le projet TOFLIT18."
+      },
+      "label": {
+        "fr": "Séminaire"
+      },
+      "content": {
+        "fr": "<p>Ce mardi prochain est organisé au laboratoire le séminaire de clôture du projet TOFLIT18.</p>"
+      },
+      "activities": [],
+      "people": [
+        "32fcbf11-d66d-4a41-bbe6-132021adc3e2"
+      ],
+      "publications": [],
+      "startDate": "2018-11-21",
+      "draft": false
+    }
+  ]
+}

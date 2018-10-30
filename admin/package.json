@@ -5,8 +5,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
-    "dev": "webpack-dev-server --colors --hot --hot-only"
+    "build": "webpack -p",
+    "dev": "webpack-dev-server --colors --hot --hot-only",
+    "start": "webpack-dev-server"
   },
   "contributors": [
     {

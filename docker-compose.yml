@@ -5,5 +5,13 @@ services:
     restart: unless-stopped
     ports:
       - "3000:3000"
-      - "7000:7000"
       - "8000:8000"
+    volumes:
+      - ./data:/website/data
+  admin:
+    build:
+      context: ./
+      dockerfile: ./admin/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "7000:7000"

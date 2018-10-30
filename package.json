@@ -12,7 +12,7 @@
     "docker:build": "docker-compose build",
     "docker:up": "docker-compose -p website up",
     "docker:down": "docker-compose -p website down",
-    "hydrate:json": "rm -rf data && mkdir data data/assets && touch data/assets/dummy && cp specs/samples/json/*.json data",
+    "hydrate:json": "rm -rf data/* && mkdir -p data/assets && touch data/assets/dummy && cp specs/samples/json/*.json data",
     "install:admin": "cd admin && npm i",
     "install:site": "cd site && npm i",
     "postinstall": "npm run install:admin && npm run install:site",

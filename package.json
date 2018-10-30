@@ -9,11 +9,15 @@
     "dev:api": "nodemon api/server.js",
     "dev:admin": "cd admin && npm run dev",
     "dev:site": "cd site && npm run dev",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose -p website up",
+    "docker:down": "docker-compose -p website down",
     "hydrate:json": "rm -rf data && mkdir data data/assets && touch data/assets/dummy && cp specs/samples/json/*.json data",
     "install:admin": "cd admin && npm i",
     "install:site": "cd site && npm i",
     "postinstall": "npm run install:admin && npm run install:site",
-    "reinstall": "rm -rf ./admin/node_modules && rm -rf ./site/node_modules && rm -rf ./node_modules && npm i"
+    "reinstall": "rm -rf ./admin/node_modules && rm -rf ./site/node_modules && rm -rf ./node_modules && npm i",
+    "start": "node api/server.js"
   },
   "contributors": [
     {

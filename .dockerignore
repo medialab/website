@@ -1,0 +1,11 @@
+*.md
+Dockerfile
+docker-compose.yml
+node_modules/
+admin/build
+admin/node_modules
+site/.cache
+site/public
+site/node_modules
+.git
+.gitignore

@@ -1,0 +1,9 @@
+version: "2"
+services:
+  api:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+      - "7000:7000"
+      - "8000:8000"

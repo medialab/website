@@ -15,3 +15,6 @@ services:
     restart: unless-stopped
     ports:
       - "7000:7000"
+    environment:
+      - API_URL=http://localhost:3000
+      - STATIC_URL=http://localhost:8000

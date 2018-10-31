@@ -46,6 +46,7 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
+    "config": "^2.0.1",
     "css-loader": "^1.0.0",
     "node-sass": "^4.9.4",
     "sass-loader": "^7.1.0",

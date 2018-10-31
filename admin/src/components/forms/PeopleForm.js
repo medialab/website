@@ -167,7 +167,7 @@ class PeopleForm extends Component {
           {!this.state.new && (
             <iframe
               style={{border: '1px solid #ccc', width: '100%', height: '100%'}}
-              src={`http://localhost:8000/people-${id}`} />
+              src={`${STATIC_URL}/people-${id}`} />
           )}
         </div>
       </div>

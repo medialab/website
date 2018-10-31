@@ -2,9 +2,8 @@ FROM nginx:stable-alpine
 
 ENV NODE_ENV production
 
-ENV HOST localhost
-ENV PORT 7000
-ENV URL_PREFIX http://localhost:3000
+ENV API_URL http://localhost:3000
+ENV STATIC_URL http://localhost:8000
 
 # NOTE: builds in parent folder to link specs
 ADD ./admin /admin

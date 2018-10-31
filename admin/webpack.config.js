@@ -1,4 +1,6 @@
-const path = require('path');
+const path = require('path'),
+      config = require('config'),
+      webpack = require('webpack');
 
 module.exports = {
   mode: 'development',
@@ -9,6 +11,12 @@ module.exports = {
     path: path.resolve(__dirname, 'build')
   },
   devtool: 'source-map',
+  plugins: [
+    new webpack.DefinePlugin({
+      API_URL: JSON.stringify(config.get('apiUrl')),
+      STATIC_URL: JSON.stringify(config.get('staticUrl'))
+    })
+  ],
   module: {
     rules: [
       {

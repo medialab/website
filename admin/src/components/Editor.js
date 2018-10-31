@@ -51,7 +51,7 @@ function ImageBlock(props) {
 
   // NOTE: can access mutators here
 
-  const url = `http://localhost:3000/assets/${src}`;
+  const url = `${API_URL}RM/assets/${src}`;
 
   return <img src={url} />;
 }

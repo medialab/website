@@ -7,7 +7,7 @@ function Option(props) {
     <div>
       <components.Option {...props} children={(
         <div>
-          <img style={{maxHeight: '50px'}} src={`http://localhost:3000/assets/${props.value}`} />
+          <img style={{maxHeight: '50px'}} src={`${API_URL}/assets/${props.value}`} />
           {props.value}
         </div>
       )} />

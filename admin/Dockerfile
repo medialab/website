@@ -2,8 +2,11 @@ FROM nginx:stable-alpine
 
 ENV NODE_ENV production
 
-ENV API_URL http://localhost:3000
-ENV STATIC_URL http://localhost:8000
+ARG API_URL=http://localhost:3000
+ARG STATIC_URL=http://localhost:8000
+
+ENV API_URL=${API_URL}
+ENV STATIC_URL=${STATIC_URL}
 
 # NOTE: builds in parent folder to link specs
 ADD ./admin /admin

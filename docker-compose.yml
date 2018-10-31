@@ -12,6 +12,9 @@ services:
     build:
       context: ./
       dockerfile: ./admin/Dockerfile
+      args:
+       - API_URL=http://localhost:7000/api/
+       - STATIC_URL=http://localhost:7000/static/
     restart: unless-stopped
     ports:
       - "7000:7000"
@@ -20,5 +23,3 @@ services:
       - API_PORT=3000
       - STATIC_HOST=api
       - STATIC_PORT=8000
-      - API_URL=http://localhost:3000
-      - STATIC_URL=http://localhost:8000

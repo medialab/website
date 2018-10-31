@@ -40,6 +40,7 @@
     "@yomguithereal/eslint-config": "^4.0.0",
     "concurrently": "^4.0.1",
     "eslint": "^5.8.0",
+    "eslint-plugin-react": "^7.11.1",
     "faker": "^4.1.0",
     "nodemon": "^1.18.5"
   },
@@ -51,6 +52,9 @@
     ]
   },
   "eslintConfig": {
-    "extends": "@yomguithereal/eslint-config/es6"
+    "extends": [
+      "@yomguithereal/eslint-config/es6",
+      "@yomguithereal/eslint-config/react"
+    ]
   }
 }

@@ -19,58 +19,44 @@
 - Aucune image n'est choisie, la hiérarchie typographique fait le travail.
 
 
-
-
-
-
-
-
-
-
-
-
-
 ## Cas concret et exemple visuel
 
 Sur la [Chaire Art & Science](http://chaire-arts-sciences.org/category/actions/), chaque article est illustré par un pictogramme abstrait, lié à sa catégorie
 
-![Screenshot_2018-10-31 Actions – chaire arts et sciences](src/Screenshot_2018-10-31 Actions – chaire arts et sciences.png)
-
+![Screenshot_2018-10-31 Actions – chaire arts et sciences](chaire_arts_et_sciences.png)
 
 
 Sur le site [Low Tech Magazine](https://solar.lowtechmagazine.com/), les images sont volontairement dégradé en Bitmap afin de réduire leurs poids et de soulager le cout énergétique d'une requête serveur (celui-ci fonctionne sur batterie grâce à deux panneaux solaires)
-![Screenshot_2018-10-31 LOW←TECH MAGAZINE](src/Screenshot_2018-10-31 LOW←TECH MAGAZINE.png)
-
+![Screenshot_2018-10-31 LOW←TECH MAGAZINE](LOWTECHMAGAZINE.png)
 
 
 Exemple mêlant Trame, Typographie et densité. Peut être intéressant d'introduire le mot comme une image.
 
-![NowisNew](src\NowisNew.jpg)
-
-
-
+![NowisNew](NowisNew.jpg)
 
 
 Clin œil à la nature textuel des images numérique, ce [site](http://mkweb.bcgsc.ca/asciiart/) regorge d'exemple Ascii Art. L'utilisation de cette méthode peut être envisagé au sens plus pragmatique (mettre en échec un copyright ) comme le plus abstrait (Une image "J'ai de la chance" est choisie et devient prétexte à l'isolation d'une suite de caractère )
 
-![ascii-art-example-gradient](src/ascii-art-example-gradient.png)
+![ascii-art-example-gradient](ascii-art-example-gradient.png)
 
-Le Medialab du Prado utilise un système approchant pour son identité. Celui-ci ne fait pas fit des image pour autant.  [Voir le projet en détail
 
-](https://www.behance.net/gallery/50727421/Medialab-Prado)![Prado](src/Prado.jpg)
+Le Medialab du Prado utilise un système approchant pour son identité. Celui-ci ne fait pas fit des image pour autant.  [Voir le projet en détail](https://www.behance.net/gallery/50727421/Medialab-Prado)
+
+![Prado](src/Prado.jpg)
+
 
 En 2006, l'institut Max Plank se dotait d'un logotype modulaire génératif avec un dégradé chromatique particulier. [Plus d'information](https://interaktivegestaltung.net/evolving-logo-2/)
 
-![evolvinglogo_michaelschmitz_02-1200x749](E:\WORK\Z.Fall 18\B.Medialab\doc\Image generative\src\evolvinglogo_michaelschmitz_02-1200x749.jpg)
+![evolvinglogo_michaelschmitz_02-1200x749](evolvinglogo_michaelschmitz_02-1200x749.jpg)
+
 
 Exemple plus abstrait. Ici des jeu avec les formes répétitives de la musiques.
 
-![Geometric-Jazz](src/Geometric-Jazz.jpg)
+![Geometric-Jazz](Geometric-Jazz.jpg)
 
-![Geometric-Warm](src/Geometric-Warm.jpg)
-
+![Geometric-Warm](Geometric-Warm.jpg)
 
 
 Totalement diffèrent, jouer du flou et de l'imbrication de forme coloré pour témoigner du caractère osmotique, transdisciplinaire du Medialab.
 
-![Osmose](src/Osmose.jpg)
+![Osmose](Osmose.jpg)

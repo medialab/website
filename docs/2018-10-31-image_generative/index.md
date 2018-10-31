@@ -23,7 +23,7 @@ Elle est généré une fois pour toute à la rédaction de l'article et est stoc
 
 - Aucune image n'est choisie, la hiérarchie typographique fait le travail.
 - Un ou plusieurs mots sont choisis par le redacteur de l'article afin d'être mis en image. *(image 3 & 4)* 
-
+ 
 
 ***
 

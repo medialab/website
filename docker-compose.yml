@@ -14,7 +14,7 @@ services:
       dockerfile: ./admin/Dockerfile
       args:
        - API_URL=http://localhost:7000/api/
-       - STATIC_URL=http://localhost:7000/static/
+       - STATIC_URL=http://localhost:7000/
     restart: unless-stopped
     ports:
       - "7000:7000"

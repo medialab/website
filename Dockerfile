@@ -4,6 +4,9 @@ ENV NODE_ENV production
 
 RUN apk add --no-cache su-exec util-linux
 
+ARG STATIC_URL="http://localhost:8000"
+ENV GATSBY_WEBPACK_PUBLICPATH=${STATIC_URL}
+
 ADD . /website
 WORKDIR /website
 

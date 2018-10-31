@@ -1,7 +1,11 @@
 version: "2"
 services:
   api:
-    build: .
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+       - STATIC_URL=http://localhost:7000/
     restart: unless-stopped
     ports:
       - "3000:3000"

@@ -1,3 +1,5 @@
+/* eslint no-console: 0 */
+
 const {spawn} = require('child_process');
 
 function log(data) {

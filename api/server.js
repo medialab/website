@@ -1,7 +1,8 @@
+/* eslint no-console: 0 */
+
 const path = require('path');
 const express = require('express');
 const config = require('config');
-const fs = require('fs-extra');
 const jsonServer = require('json-server');
 const fileUpload = require('express-fileupload');
 

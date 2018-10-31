@@ -16,5 +16,9 @@ services:
     ports:
       - "7000:7000"
     environment:
+      - API_HOST=api
+      - API_PORT=3000
+      - STATIC_HOST=api
+      - STATIC_PORT=8000
       - API_URL=http://localhost:3000
       - STATIC_URL=http://localhost:8000

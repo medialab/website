@@ -93,3 +93,9 @@ Exemple plus abstrait. Ici des jeux avec les formes répétitives de la musiques
 Totalement diffèrent, jouer du flou et de l'imbrication de forme coloré pour témoigner du caractère osmotique, transdisciplinaire du Medialab.
 
 ![Osmose](Osmose.jpg)
+
+##### Cellular automation
+*(image 10)* 
+Une facon de créer un motif particulier est la methode d'Automate Cellulaire. Le fonctionnement est un peu complexe a expliquer simplement. [Un article Wikipedia](https://fr.wikipedia.org/wiki/Automate_cellulaire) 
+
+![](https://pbs.twimg.com/media/DpySA2XV4AEJbab.jpg)

@@ -3,7 +3,9 @@ import {Route, Switch} from 'react-router';
 import {Link} from 'react-router-dom';
 import cls from 'classnames';
 
-import PeopleList from './lists/PeopleList';
+import listSpecs from '../../../specs/lists.js';
+
+import List from './List';
 
 import ImageForm from './forms/ImageForm';
 import PeopleForm from './forms/PeopleForm';
@@ -13,19 +15,24 @@ export default function Router() {
     <div className="container">
       <div className="tabs">
         <ul>
-          <Route path="/posts" children={({match}) => (
+          <Route path="/activities" children={({match}) => (
             <li className={cls(match && 'is-active')}>
-              <Link to="/posts">Posts</Link>
+              <Link to="/activities">Activities</Link>
             </li>
           )} />
-          <Route path="/medias" children={({match}) => (
+          <Route path="/news" children={({match}) => (
             <li className={cls(match && 'is-active')}>
-              <Link to="/medias">Medias</Link>
+              <Link to="/news">News</Link>
             </li>
           )} />
           <Route path="/people" children={({match}) => (
             <li className={cls(match && 'is-active')}>
               <Link to="/people">People</Link>
+            </li>
+          )} />
+          <Route path="/publications" children={({match}) => (
+            <li className={cls(match && 'is-active')}>
+              <Link to="/publications">Publications</Link>
             </li>
           )} />
         </ul>
@@ -34,8 +41,10 @@ export default function Router() {
         <Route exact path="/" render={() => (<div>Admin</div>)} />
         <Route path="/people/new" render={() => <PeopleForm />} />
         <Route path="/people/:id" render={({match}) => <PeopleForm people={match.params.id} />} />
-        <Route path="/people" render={() => <PeopleList />} />
-        <Route path="/medias" render={() => <ImageForm />} />
+        <Route path="/activities" render={() => <List key="activities" model="activities" specs={listSpecs.activities} />} />
+        <Route path="/news" render={() => <List key="news" model="news" specs={listSpecs.news} />} />
+        <Route path="/people" render={() => <List key="people" model="people" specs={listSpecs.people} />} />
+        <Route path="/publications" render={() => <List key="publications" model="publications" specs={listSpecs.publications} />} />
         <Route render={() => (<div>Miss!</div>)} />
       </Switch>
     </div>

@@ -4,7 +4,7 @@ const client = new Client({
 
   // Client's settings
   settings: {
-    baseUrl: 'http://localhost:3000'
+    baseUrl: API_URL
   },
 
   // Default call options
@@ -34,7 +34,7 @@ const client = new Client({
 });
 
 client.upload = function(data, callback) {
-  fetch('http://localhost:3000/upload', {
+  fetch(`${API_URL}/upload`, {
     method: 'POST',
     body: data
   }).then(callback);

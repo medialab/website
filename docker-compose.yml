@@ -1,0 +1,29 @@
+version: "2"
+services:
+  api:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+       - STATIC_URL=http://localhost:7000/
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+      - "8000:8000"
+    volumes:
+      - ./data:/website/data
+  admin:
+    build:
+      context: ./
+      dockerfile: ./admin/Dockerfile
+      args:
+       - API_URL=http://localhost:7000/api/
+       - STATIC_URL=http://localhost:7000/
+    restart: unless-stopped
+    ports:
+      - "7000:7000"
+    environment:
+      - API_HOST=api
+      - API_PORT=3000
+      - STATIC_HOST=api
+      - STATIC_PORT=8000

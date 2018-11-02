@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Actualités",
-  "description": "Les actualités du médialab",
+  "title": "Productions",
+  "description": "Les productions du médialab",
   "type": "object",
   "properties": {
     "id": {
@@ -22,35 +22,29 @@
         }
       }
     },
-    "excerpt": {
-      "title": "Extrait",
+    "abstract": {
+      "title": "Résumé",
       "type": "object",
       "properties": {
         "en": {
-          "title": "English excerpt",
+          "title": "English abstract",
           "type": "string"
         },
         "fr": {
-          "title": "Extrait français",
+          "title": "Résumé français",
           "type": "string"
         }
       }
     },
-    "label": {
-      "title": "Label",
-      "type": "object",
-      "properties": {
-        "en": {
-          "title": "English label",
-          "type": "string",
-          "formType": "suggest"
-        },
-        "fr": {
-          "title": "Label français",
-          "type": "string",
-          "formType": "suggest"
-        }
-      }
+    "type": {
+      "title": "Type de la publication",
+      "type": "string",
+      "enum": [
+        "conference",
+        "tool",
+        "web"
+      ],
+      "enumId": "publicationTypes"
     },
     "content": {
       "title": "Contenu",
@@ -95,13 +89,8 @@
       "formType": "ref",
       "model": "publications"
     },
-    "startDate": {
-      "title": "Date de début",
-      "type": "string",
-      "formType": "vardate"
-    },
-    "endDate": {
-      "title": "Date de fin",
+    "date": {
+      "title": "Date",
       "type": "string",
       "formType": "vardate"
     },
@@ -109,8 +98,5 @@
       "title": "Draft?",
       "type": "boolean"
     }
-  },
-  "required": [
-    "title"
-  ]
+  }
 }

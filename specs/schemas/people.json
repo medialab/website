@@ -4,60 +4,63 @@
   "description": "Les membres du médialab",
   "type": "object",
   "properties": {
+    "id": {
+      "title": "Identifiant",
+      "type": "string"
+    },
     "firstName": {
       "title": "Prénom",
-      "description": "pas de traduction",
       "type": "string"
     },
     "lastName": {
       "title": "Nom de famille",
-      "description": "pas de traduction",
       "type": "string"
     },
-    "picture": {
-      "title": "photo de profile",
-      "description" : "",
-      "#ref": "media"
-    },
-    "bio_en": {
-      "title": "Biography",
-      "description": "Biography in english",
-      "type": "string",
-      "formType": "content"
-    },
-    "bio_fr": {
-      "title": "Biographie",
-      "description": "Biographie en français",
-      "type": "string",
-      "formType": "content"
-    },
-    "contact" : {
-      "title": "Contact",
-      "description": "Information de contact (email, site perso)",
-      "type": "string"
-    },
-    "title_fr":{
+    "title": {
       "title": "Titre",
-      "description": "Comment la personne se définit-elle ?",
-      "type": "string"
+      "type": "object",
+      "properties": {
+        "en": {
+          "title": "English title",
+          "type": "string"
+        },
+        "fr": {
+          "title": "Titre français",
+          "type": "string"
+        }
+      }
     },
-    "title_en":{
-      "title": "Title",
-      "description": "How does the person define him.ferself ?",
-      "type": "string"
+    "bio": {
+      "title": "Biographie",
+      "type": "object",
+      "properties": {
+        "en": {
+          "title": "English bio",
+          "type": "string",
+          "formType": "content"
+        },
+        "fr": {
+          "title": "Bio français",
+          "type": "string",
+          "formType": "content"
+        }
+      }
     },
     "membership": {
-      "title": "Appartenance",
-      "description": "Type d'Appartenance au labo",
+      "title": "Type de membre",
       "type": "string",
       "enum": [
-        "Associé.e",
-        "Membre"
-      ]
+        "associate",
+        "member"
+      ],
+      "enumId": "membershipTypes"
     },
     "active": {
-      "title": "Membre actif",
-      "description": "",
+      "title": "Actif?",
+      "type": "boolean"
+    },
+    "draft": {
+      "title": "Draft?",
       "type": "boolean"
     }
   },

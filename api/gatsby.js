@@ -1,3 +1,5 @@
+/* eslint no-console: 0 */
+
 const {spawn} = require('child_process');
 
 function log(data) {
@@ -11,7 +13,19 @@ class GatsbyProcess {
   }
 
   start(callback) {
-    this.child = spawn('gatsby', ['develop'], {cwd: this.cwd});
+    const env = Object.assign({}, process.env);
+
+    // Forcing development env for gatsby
+    env.NODE_ENV = '';
+
+    this.child = spawn(
+      'gatsby',
+      ['develop', '--host', '0.0.0.0'],
+      {
+        cwd: this.cwd,
+        env
+      }
+    );
 
     const {stdout, stderr} = this.child;
 

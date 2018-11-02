@@ -1,0 +1,37 @@
+{
+  "activitiyTypes": {
+    "default": "research",
+    "fr": {
+      "research": "Recherche",
+      "teaching": "Enseignement"
+    },
+    "en": {
+      "research": "Research",
+      "teaching": "Teaching"
+    }
+  },
+  "membershipTypes": {
+    "default": "member",
+    "fr": {
+      "associate": "Associé.e",
+      "member": "Membre"
+    },
+    "en": {
+      "associate": "Associate",
+      "member": "Member"
+    }
+  },
+  "publicationTypes": {
+    "default": "conference",
+    "fr": {
+      "conference": "Conférence",
+      "tool": "Outil",
+      "web": "Site web"
+    },
+    "en": {
+      "conference": "Conference",
+      "tool": "Tool",
+      "web": "Website"
+    }
+  }
+}

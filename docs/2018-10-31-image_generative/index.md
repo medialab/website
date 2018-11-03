@@ -23,11 +23,13 @@
 **Aléatoire**
 
 Le caractère aléatoire peut être obtenu :
-  - par la definition de valeurs aleatoires (ex. Donne moi une nuage de rouge entre 0 et 100%) 
+  - par la definition de valeurs aleatoires (ex. Donne moi une nuage de rouge entre 0 et 100%), pose la question de la valeur d'entrée
   - par la combinaison de motifs visuels issue d'un répertoire restreint
 
 Une image abstraite unique est généré suivant des règles programatiques
 Elle est généré une fois pour toute à la rédaction de l'article et est stocké sous forme d'une image ou d'une valeur *(cf. corpus de donnés)*.
+
+
  
 **Typographie**
 
@@ -48,7 +50,7 @@ Sur la [Chaire Art & Science](http://chaire-arts-sciences.org/category/actions/)
 
 ##### Dégradation
 *(image 2)* 
-Sur le site [Low Tech Magazine](https://solar.lowtechmagazine.com/), les images sont volontairement dégradé en Bitmap afin de réduire leurs poids et de soulager le cout énergétique d'une requête serveur (celui-ci fonctionne sur batterie grâce à deux panneaux solaires)
+Sur le site [Low Tech Magazine](https://solar.lowtechmagazine.com/), les images sont volontairement dégradé en Bitmap afin de réduire leurs poids et de soulager le cout énergétique d'une requête serveur (celui-ci fonctionne sur batterie grâce à deux panneaux solaires)  
 ![Screenshot_2018-10-31 LOW←TECH MAGAZINE](LOWTECHMAGAZINE.png)
 
 ##### Trame
@@ -99,3 +101,74 @@ Totalement diffèrent, jouer du flou et de l'imbrication de forme coloré pour t
 Une facon de créer un motif particulier est la methode d'Automate Cellulaire. Le fonctionnement est un peu complexe a expliquer simplement. [Un article Wikipedia](https://fr.wikipedia.org/wiki/Automate_cellulaire) 
 
 ![](https://pbs.twimg.com/media/DpySA2XV4AEJbab.jpg)
+
+##### Croissance
+*(image 11)* 
+Lignes/cables qui poussent à partir d'un mot  
+voir site: [http://gt-zirkon.com/](http://gt-zirkon.com/)
+
+![](GT-zirkon.png)
+
+
+
+##### Pattern animé
+*(image 12)* 
+Un pattern est animé, les images peuvent être crées à partir de différentes captures d'écran de ce pattern et selon différents niveaux de zoom
+
+![Pattern animé](pattern-anime.gif)
+
+
+##### Ascii art animé
+*(image 13)* 
+Animation du ascii art qui vient dégrader certaines parties du site. Permet de mettre en avant la nature binaire du nuémrique et/ou rappelle les jeux de données sur lequel le médialab travaille.  
+Voir ce site : [https://ertdfgcvb.xyz/](https://ertdfgcvb.xyz/)
+
+![](ascii-art-anime-1.png)
+![](ascii-art-anime-2.png)
+
+##### Absence d'image signifiée (Border)
+*(image 15)* 
+Dans cette exemple d'identité, l'absence d'iamge est signifiée par un pttern de rayure.
+
+![](borger-1.jpg)
+
+![](borger-2.jpg)
+
+##### Absence d'image signifiée (Emma Geslot)
+*(image 16)* 
+Même absence d'image signifiée mais sur un site et avec une symbolique empruntée des logiciels de PAO.  
+Site: [http://emmageslot.com/](http://emmageslot.com/)
+
+![](emma-geslot.png)
+
+##### Ligne/courbe dont les points sont générés aléatoirement 
+*(image 17)* 
+Mélangée à du texte  
+Voir bandeau de ce site: [https://nucleartests.org/dominic](https://nucleartests.org/dominic)
+
+![](american-nuclear.png)
+
+##### Forme géométrique simple
+
+Utilisation d'une forme gééométrique simple avec laquelle on joue (pattern, mélange avec du texte, animation).  
+Sur ce site, un rond: [http://tecprize.org/](http://tecprize.org/)    
+Sur les cartes de visites suivantes, des rectangles:  
+![](le-chantier.jpg)
+
+
+##### Patterns générés en CSS
+
+Tuto: [https://css-doodle.com/](https://css-doodle.com/)  
+Possibilités: [https://twitter.com/yuanchuan23/status/1057447267269992449](https://twitter.com/yuanchuan23/status/1057447267269992449)
+
+![](css-patterns-1.png)  
+![](css-patterns-2.png)
+
+
+##### Texte x liquidité
+
+Des formes liquides viennent cacher/révéler un court texte (note: ces formes peuvent être en mouvement)
+
+![](liquidite-1.jpg)
+![](liquidite-2.jpg)
+

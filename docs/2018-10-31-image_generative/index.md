@@ -113,7 +113,7 @@ voir site: [http://gt-zirkon.com/](http://gt-zirkon.com/)
 
 ##### Pattern animé
 *(image 12)* 
-Un pattern est animé, les images peuvent être crées à partir de différentes captures d'écran de ce pattern et selon différents niveaux de zoom
+Un pattern est animé, les images peuvent être crées à partir de différentes captures d'écran de ce pattern et selon différents niveaux de zoom. (Edit: Nous pouvons jouer sur la durée, rythme de l'animation ) (Edit : Cela peut faire echo à la composition adaptative du labo en vue d'une multitude de but commun)
 
 ![Pattern animé](pattern-anime.gif)
 

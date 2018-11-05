@@ -39,7 +39,7 @@ build_api_staging:
   stage: build
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-    - docker build -t API_IMAGE_NAME --build-arg "STATIC_URL=$CI_ENVIRONMENT_URL" -f Dockerfile .
+    - docker build -t $API_IMAGE_NAME --build-arg "STATIC_URL=$CI_ENVIRONMENT_URL" -f Dockerfile .
     - docker push $API_IMAGE_NAME
   environment:
     name: staging

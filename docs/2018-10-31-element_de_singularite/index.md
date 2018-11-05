@@ -3,14 +3,15 @@
 ##### Comparé aux autres laboratoires de recherche en science sociale : 
 
 - Transdisciplinarité & multidisciplinarité (diversité des profils )
-- Diversité des productions (Logiciel, publication, ...)
-- Création / amélioration de méthodes profane toujours en fonction du contexte.
+- Intègre enjeux / methodes / outils issues de l'ingenieurie et du design
+- Diversité des productions (Outils, publication, ...)
+- Création / amélioration de méthodes profanes toujours en fonction du contexte.
 - Methodes plurielles et experimentalles
 - Sensibilité aux partages de outils (open source)
 - Prédominence de l'approche collaborative (entre les membres, **avec** l'extérieur )
 - Affinité pour la complexité
 
-##### Comparé au autre Medialab : 
+##### Comparé aux autres Medialab : 
 
 - Hétérogénéité mais osmose de l’ensemble des membres
 - Aucun membre de second rang. L’ensemble des membres sont publiant

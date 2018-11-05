@@ -15,10 +15,8 @@
   + Collage d'image plus ou moins detaillé
   + Répétition infini d'une infime partie de l'image
   
-  
-  
-  
 - Pour illustrer un article, un pictogramme est choisie aléatoirement depuis un répertoire restreint *(image 1)* 
+
 
 **Aléatoire**
 
@@ -35,9 +33,24 @@ Elle est généré une fois pour toute à la rédaction de l'article et est stoc
 
 - Aucune image n'est choisie, la hiérarchie typographique fait le travail.
 - Un ou plusieurs mots sont choisis par le redacteur de l'article afin d'être mis en image. *(image 3 & 4)* 
+- Une forme est imbriqué au texte, le texte est imbriqué à la forme ( image 11, image 20)
  
+ 
+**Sans images**
+
+- Le site en tant qu'espace est lui même le visuel principal (image 13, image 15)
+- L'image est signifié comme absente. Cette absence est un element signifiant ( image 16)
+
+
+**Animation**
+
+Valable pour la majorité des cas. L'image est générée par une action (hover, mouvement sourie, scroll, ...) 
+
+
+
 
 ***
+
 
 
 ## Cas concret et exemples visuels

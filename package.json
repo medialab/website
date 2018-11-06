@@ -32,7 +32,7 @@
     "express": "^4.16.4",
     "express-fileupload": "^1.0.0",
     "fs-extra": "^7.0.0",
-    "gatsby-cli": "^2.4.3",
+    "gatsby-cli": "^2.4.4",
     "json-server": "^0.14.0",
     "uuid": "^3.3.2"
   },
@@ -42,7 +42,7 @@
     "eslint": "^5.8.0",
     "eslint-plugin-react": "^7.11.1",
     "faker": "^4.1.0",
-    "nodemon": "^1.18.5"
+    "nodemon": "^1.18.6"
   },
   "nodemonConfig": {
     "ignore": [

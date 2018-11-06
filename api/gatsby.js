@@ -20,7 +20,7 @@ class GatsbyProcess {
 
     this.child = spawn(
       'gatsby',
-      ['develop', '--host', '0.0.0.0'],
+      ['develop', '--host', '0.0.0.0', '--verbose'],
       {
         cwd: this.cwd,
         env

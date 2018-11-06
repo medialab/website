@@ -22,4 +22,6 @@ VOLUME /website/data
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+RUN chown -R node:node /website
+
 ENTRYPOINT ["/entrypoint.sh"]

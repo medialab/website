@@ -9,7 +9,7 @@
 - Methodes plurielles et experimentalles
 - Sensibilité aux partages de outils (open source)
 - Prédominence de l'approche collaborative (entre les membres, **avec** l'extérieur )
-- Affinité pour la complexité
+- Affinité pour la complexité et l'instabilité
 
 ##### Comparé aux autres Medialab : 
 

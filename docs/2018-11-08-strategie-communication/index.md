@@ -65,4 +65,4 @@ Pour chaque type d'objet (projets, actus, etc) on pourrait imaginer un traitemen
 
 Pour les photos des membres, le seul traitement qui nous semble acceptable est un traitement colorimétrique classique (N&B, sépia) pour respecter la liberté de chacun de se mettre en public comme il le souhaite (à discuter). 
 
-<i>Amélie : Perso, j'ai plutot eu l'impression qu'aucun traitement n'était possible pour refléter la diversité de chacun</i>
+<i>Amélie : Perso, j'ai plutot eu l'impression qu'aucun traitement n'était possible pour conserver/refléter la diversité de chacun</i>

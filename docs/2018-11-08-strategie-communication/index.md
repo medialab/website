@@ -1,7 +1,7 @@
 # Discussion collective sur la stratégie de communication
 
 La veille à l'occasion de l'assemblée générale rassemblant un maximum de membres du médialab, nous avons demandé à chacun de lister par ordre de priorité les publics que nous devions cibler avec notre site.
-Le scan des propositions est dispo ici.
+Le scan des propositions est dispo [ici](combo-publics.pdf).
 
 # On ne comprend pas ce que vous faites
 

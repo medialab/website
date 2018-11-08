@@ -1,4 +1,4 @@
-Discussion collective sur des questions de fond
+# Discussion collective sur la stratégie de communication
 
 La veille à l'occasion de l'assemblée générale rassemblant un maximum de membre du médialab, nous avons demandé à chacun de lister par ordre de priorité les publics que nous devions cibler avec notre site.
 Exercice au format papier en cours de numérisation.

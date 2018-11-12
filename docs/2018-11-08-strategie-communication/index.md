@@ -28,7 +28,7 @@ L'enjeux de communication pour ce site se situe sur des questions identitaires e
 
 ## Ciblage de ces publics 
 - curieux => présenter en une/deux phrases le labo sur la home + une page 'à propos' particulièrement travaillée pour répondre à la question qu'est ce que le médialab ?
-- intéressés => importance des pages listings qui permettent de présenter plus nos activités à l'aide de textes brefs et travaillés comme des mini-vulgarisations. Le but étant de leur permettre de répondre à la question "ca porte sur quoi?" et de repérer des objets d'intérêt dans la masse.
+- intéressés => importance des pages listings qui permettent de présenter plus nos activités à l'aide de [textes brefs et travaillés comme des mini-vulgarisations](https://docs.google.com/document/d/17PrKSFKewsm2OqEM_oMHxPvU7okuq5G2mW8zt8EeHsE). Le but étant de leur permettre de répondre à la question "ca porte sur quoi?" et de repérer des objets d'intérêt dans la masse.
 NB: importance de la proximité / clusterisation des projets (réseaux, rapprochements sémantiques?)
 - pairs => importance des pages objets où le contenu peut révéler toute la complexité et importance également des moyens de circulation entre objets pour faire circuler ces visiteurs dans d'autres objets connexes à leur point d'entrée
 

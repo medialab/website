@@ -8,7 +8,7 @@ Le scan des propositions est dispo [ici](combo-publics.pdf).
 ## Qui fait cette remarque ?
 Des personnels de Sciences Po : secrétaires généraux des autres labos, directrice scientifique...
 
-## Pourquoi est-ce qu'on ne comprend pas' ? :
+## Pourquoi est-ce qu'on ne comprend pas ?
 - les contenus du site actuel sont au mieux mal écrits, au pire très datés (voire inexistants)
 - labo jeune
 - interdisciplinaire

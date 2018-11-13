@@ -2,7 +2,7 @@
   "name": "medialab-website",
   "private": true,
   "version": "1.0.0",
-  "description": "",
+  "description": "The website static sources.",
   "main": "index.js",
   "scripts": {
     "build": "gatsby build",

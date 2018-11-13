@@ -2,7 +2,7 @@
   "name": "medialab-website-api",
   "private": true,
   "version": "1.0.0",
-  "description": "",
+  "description": "The website's CMS API.",
   "main": "index.js",
   "scripts": {
     "dev": "concurrently --names api,admin -c blue,green \"npm run dev:api\" \"npm run dev:admin\"",

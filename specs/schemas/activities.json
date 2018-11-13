@@ -12,16 +12,30 @@
       "title": "Nom",
       "type": "string"
     },
-    "excerpt": {
-      "title": "Extrait",
+    "baseline": {
+      "title": "Accroche",
       "type": "object",
       "properties": {
         "en": {
-          "title": "English excerpt",
+          "title": "English baseline",
           "type": "string"
         },
         "fr": {
-          "title": "Extrait français",
+          "title": "Accroche française",
+          "type": "string"
+        }
+      }
+    },
+    "description": {
+      "title": "Description",
+      "type": "object",
+      "properties": {
+        "en": {
+          "title": "English description",
+          "type": "string"
+        },
+        "fr": {
+          "title": "Description française",
           "type": "string"
         }
       }
@@ -35,17 +49,17 @@
       ],
       "enumId": "activitiyTypes"
     },
-    "description": {
-      "title": "Extrait",
+    "content": {
+      "title": "Contenu",
       "type": "object",
       "properties": {
         "en": {
-          "title": "English description",
+          "title": "English content",
           "type": "string",
           "formType": "content"
         },
         "fr": {
-          "title": "Description française",
+          "title": "Contenu français",
           "type": "string",
           "formType": "content"
         }

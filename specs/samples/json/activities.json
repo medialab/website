@@ -3,12 +3,16 @@
     {
       "id": "beec8f47-80fa-4188-930b-7c20ce5ddcce",
       "name": "TOFLIT18",
-      "excerpt": {
+      "baseline": {
         "en": "A project about trade in the XVIIIth century.",
         "fr": "Un projet sur le commerce au XVIIIème siècle."
       },
-      "type": "research",
       "description": {
+        "en": "A very thorough project about trade in the XVIIIth century.",
+        "fr": "Un projet très complet sur le commerce au XVIIIème siècle."
+      },
+      "type": "research",
+      "content": {
         "en": "<p>This project gathering many researchers is about a lot of things.</p>",
         "fr": "<p>Ce project, rassemblant de nombreux chercheurs, parle de beaucoup de choses.</p>"
       },
@@ -22,12 +26,16 @@
     {
       "id": "4ca78423-c064-466f-9ce9-43b656ca083c",
       "name": "RICARDO",
-      "excerpt": {
+      "baseline": {
         "en": "A project about trade in the XIX-XXth century.",
         "fr": "Un projet sur le commerce au XIX-XXème siècle."
       },
-      "type": "research",
       "description": {
+        "en": "A very thorough project about trade in the XIX-XXth century.",
+        "fr": "Un projet très complet sur le commerce au XIX-XXème siècle."
+      },
+      "type": "research",
+      "content": {
         "en": "<p>This project gathering many researchers is about a lot of things.</p>",
         "fr": "<p>Ce project, rassemblant de nombreux chercheurs, parle de beaucoup de choses.</p>"
       },

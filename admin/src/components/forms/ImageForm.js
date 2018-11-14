@@ -12,22 +12,18 @@ export default class ImageForm extends Component {
       file: null,
       crop: {x: 30, y: 30, height: 30, width: 30}
     };
-
-    this.handleDrop = this.handleDrop.bind(this);
-    this.handleCrop = this.handleCrop.bind(this);
-    this.handleUpload = this.handleUpload.bind(this);
   }
 
-  handleDrop(acceptedFiles) {
+  handleDrop = (acceptedFiles) => {
     const file = acceptedFiles[0];
     this.setState({file});
-  }
+  };
 
-  handleCrop(crop) {
+  handleCrop = (crop) => {
     this.setState({crop});
-  }
+  };
 
-  handleUpload() {
+  handleUpload = () => {
     console.log(this.state.file);
     const formData = new FormData();
     formData.append('file', this.state.file);
@@ -35,7 +31,7 @@ export default class ImageForm extends Component {
     client.upload(formData, result => {
       console.log(result);
     });
-  }
+  };
 
   render() {
     const {file, crop} = this.state;

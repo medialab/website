@@ -23,8 +23,6 @@ export default class ImageSelector extends Component {
       value: null,
       options: []
     };
-
-    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -43,10 +41,10 @@ export default class ImageSelector extends Component {
     });
   }
 
-  handleChange(option) {
+  handleChange = (option) => {
     this.setState({value: option});
     this.props.onChange(option);
-  }
+  };
 
   render() {
     const {onChange} = this.props;

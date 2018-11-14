@@ -7,13 +7,7 @@ import ImageSelector from './selectors/ImageSelector';
 
 // Sources
 class ImageSource extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(option) {
+  handleChange = (option) => {
     const {editorState, entityType, onComplete} = this.props;
 
     const content = editorState.getCurrentContent();
@@ -31,7 +25,7 @@ class ImageSource extends Component {
     );
 
     return onComplete(nextState);
-  }
+  };
 
   render() {
     return (
@@ -51,7 +45,7 @@ function ImageBlock(props) {
 
   // NOTE: can access mutators here
 
-  const url = `${API_URL}RM/assets/${src}`;
+  const url = `${API_URL}/assets/${src}`;
 
   return <img src={url} />;
 }
@@ -68,24 +62,30 @@ const ENTITY_CONTROL = {
 };
 
 // TODO: decide to serialize here or not or expose handy helpers
-export default function Editor(props) {
-  const {
-    rawContent,
-    onSave
-  } = props;
+export default class Editor extends Component {
+  constructor(props, context) {
+    super(props, context);
+  }
 
-  return (
-    <DraftailEditor
-      rawContentState={rawContent || null}
-      onSave={onSave}
-      entityTypes={[
-        ENTITY_CONTROL.IMAGE
-      ]}
-      blockTypes={[
-        {type: BLOCK_TYPE.HEADER_ONE, label: 'H1'}
-      ]}
-      inlineStyles={[
-        {type: INLINE_STYLE.BOLD, label: 'B'}
-      ]} />
-  );
+  render() {
+    const {
+      rawContent,
+      onSave
+    } = this.props;
+
+    return (
+      <DraftailEditor
+        rawContentState={rawContent || null}
+        onSave={onSave}
+        entityTypes={[
+          ENTITY_CONTROL.IMAGE
+        ]}
+        blockTypes={[
+          {type: BLOCK_TYPE.HEADER_ONE, label: 'H1'}
+        ]}
+        inlineStyles={[
+          {type: INLINE_STYLE.BOLD, label: 'B'}
+        ]} />
+    );
+  }
 }

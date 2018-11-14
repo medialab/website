@@ -54,9 +54,6 @@ class PeopleForm extends Component {
     // Handlers
     this.handleFirstName = createHandler(this, 'firstName');
     this.handleLastName = createHandler(this, 'lastName');
-
-    this.handleBio = this.handleBio.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -71,11 +68,11 @@ class PeopleForm extends Component {
       });
   }
 
-  handleBio(content) {
+  handleBio = (content) => {
     this.editorContent = content;
-  }
+  };
 
-  handleSubmit() {
+  handleSubmit = () => {
     const {push} = this.props;
 
     // TODO: validation here
@@ -107,7 +104,7 @@ class PeopleForm extends Component {
         // push('/people');
       });
     }
-  }
+  };
 
   render() {
 

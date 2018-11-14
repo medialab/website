@@ -4,6 +4,7 @@ import {push} from 'connected-react-router';
 import {connect} from 'react-redux';
 import cloneDeep from 'lodash/cloneDeep';
 import set from 'lodash/fp/set';
+import get from 'lodash/get';
 import {rawToHtml, htmlToRaw} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
@@ -11,6 +12,7 @@ import initializers from '../../../../specs/initializers';
 import Editor from '../Editor';
 import Button from '../misc/Button';
 import EnumSelector from '../selectors/EnumSelector';
+import RelationSelector from '../selectors/RelationSelector';
 import client from '../../client';
 
 function extractData(scope) {
@@ -74,6 +76,22 @@ class ActivityForm extends Component {
 
   handleActive = e => {
     this.setState(set(['data', 'active'], e.target.checked, this.state));
+  };
+
+  handleAddPeople = id => {
+    const people = get(this.state.data, 'people', []);
+
+    people.push(id);
+
+    this.setState(set(['data', 'people'], people, this.state));
+  };
+
+  handleDropPeople = id => {
+    let people = get(this.state.data, 'people', []);
+
+    people = people.filter(p => p !== id);
+
+    this.setState(set(['data', 'people'], people, this.state));
   };
 
   handleSubmit = () => {
@@ -184,6 +202,17 @@ class ActivityForm extends Component {
                 onChange={this.handleFrenchBaseline}
                 placeholder="French Baseline"
                 rows={2} />
+            </div>
+          </div>
+
+           <div className="field">
+            <label className="label">Related People</label>
+            <div className="control">
+              <RelationSelector
+                model="people"
+                selected={data.people}
+                onAdd={this.handleAddPeople}
+                onDrop={this.handleDropPeople} />
             </div>
           </div>
 

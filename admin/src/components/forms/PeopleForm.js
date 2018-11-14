@@ -4,9 +4,7 @@ import {push} from 'connected-react-router';
 import {connect} from 'react-redux';
 import uuid from 'uuid/v4';
 import omit from 'lodash/omit';
-import {convertFromRaw, convertToRaw} from 'draft-js';
-import {stateToHTML} from 'draft-js-export-html';
-import {stateFromHTML} from 'draft-js-import-html';
+import {rawToHtml, htmlToRaw} from '../../utils';
 
 import Editor from '../Editor';
 import Button from '../misc/Button';
@@ -17,8 +15,8 @@ const TO_OMIT = ['loading', 'new'];
 function extractData(scope) {
   const data = omit(scope.state, TO_OMIT);
 
-  if (scope.editorContent)
-    data.bio = stateToHTML(convertFromRaw(scope.editorContent));
+  if (scope.frBioEditorContent)
+    data.bio.fr = rawToHtml(scope.frBioEditorContent);
 
   return data;
 }
@@ -33,7 +31,7 @@ class PeopleForm extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.editorContent = null;
+    this.frBioEditorContent = null;
 
     if (props.people) {
       this.state = {
@@ -59,17 +57,17 @@ class PeopleForm extends Component {
   componentDidMount() {
     if (this.state.loading)
       client.get({params: {model: 'people', id: this.props.people}}, (err, data) => {
-        if (data.bio)
-          data.bio = convertToRaw(stateFromHTML(data.bio));
-
-        this.editorContent = data.bio;
+        if (data.bio && data.bio.fr) {
+          data.bio.fr = htmlToRaw(data.bio.fr);
+          this.frBioEditorContent = data.bio.fr;
+        }
 
         this.setState({loading: false, ...data});
       });
   }
 
   handleBio = (content) => {
-    this.editorContent = content;
+    this.frBioEditorContent = content;
   };
 
   handleSubmit = () => {
@@ -145,7 +143,7 @@ class PeopleForm extends Component {
             </div>
           </div>
           <div className="field">
-            <label className="label">Biography</label>
+            <label className="label">French Biography</label>
             <Editor
               rawContent={(bio && bio.fr) || null}
               onSave={this.handleBio} />

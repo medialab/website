@@ -61,12 +61,7 @@ const ENTITY_CONTROL = {
   }
 };
 
-// TODO: decide to serialize here or not or expose handy helpers
 export default class Editor extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
-
   render() {
     const {
       rawContent,

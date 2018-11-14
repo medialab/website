@@ -2,18 +2,17 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {push} from 'connected-react-router';
 import {connect} from 'react-redux';
-import uuid from 'uuid/v4';
-import omit from 'lodash/omit';
+import cloneDeep from 'lodash/cloneDeep';
 import {rawToHtml, htmlToRaw} from '../../utils';
+
+import initializers from '../../../../specs/initializers';
 
 import Editor from '../Editor';
 import Button from '../misc/Button';
 import client from '../../client';
 
-const TO_OMIT = ['loading', 'new'];
-
 function extractData(scope) {
-  const data = omit(scope.state, TO_OMIT);
+  const data = cloneDeep(scope.state.people);
 
   if (!data.bio)
     data.bio = {};
@@ -26,7 +25,12 @@ function extractData(scope) {
 
 function createHandler(scope, key) {
   return e => {
-    scope.setState({[key]: e.target.value});
+    scope.setState({
+      people: {
+        ...scope.state.people,
+        [key]: e.target.value
+      }
+    });
   };
 }
 
@@ -36,9 +40,11 @@ class PeopleForm extends Component {
 
     this.frBioEditorContent = null;
 
-    if (props.people) {
+    if (props.id) {
       this.state = {
-        loading: true
+        new: false,
+        loading: true,
+        people: null
       };
     }
 
@@ -46,9 +52,7 @@ class PeopleForm extends Component {
       this.state = {
         new: true,
         loading: false,
-        id: uuid(),
-        firstName: '',
-        lastName: ''
+        people: initializers.people()
       };
     }
 
@@ -58,14 +62,15 @@ class PeopleForm extends Component {
   }
 
   componentDidMount() {
-    if (this.state.loading)
-      client.get({params: {model: 'people', id: this.props.people}}, (err, data) => {
+
+    if (!this.state.new)
+      client.get({params: {model: 'people', id: this.props.id}}, (err, data) => {
         if (data.bio && data.bio.fr) {
           data.bio.fr = htmlToRaw(data.bio.fr);
           this.frBioEditorContent = data.bio.fr;
         }
 
-        this.setState({loading: false, ...data});
+        this.setState({loading: false, people: data});
       });
   }
 
@@ -87,7 +92,7 @@ class PeopleForm extends Component {
       };
 
       client.post(payload, (err, result) => {
-        push(`/people/${this.state.id}`);
+        push(`/people/${this.props.id}`);
         this.setState({new: false});
       });
     }
@@ -95,7 +100,7 @@ class PeopleForm extends Component {
 
       // Upating the item
       const payload = {
-        params: {model: 'people', id: this.state.id},
+        params: {model: 'people', id: this.props.id},
         data: extractData(this)
       };
 
@@ -109,10 +114,7 @@ class PeopleForm extends Component {
 
     const {
       loading,
-      id,
-      bio,
-      firstName,
-      lastName
+      people
     } = this.state;
 
     if (loading)
@@ -127,7 +129,7 @@ class PeopleForm extends Component {
               <input
                 type="text"
                 className="input"
-                value={firstName}
+                value={people.firstName}
                 onChange={this.handleFirstName}
                 placeholder="First Name" />
             </div>
@@ -138,7 +140,7 @@ class PeopleForm extends Component {
               <input
                 type="text"
                 className="input"
-                value={lastName}
+                value={people.lastName}
                 onChange={this.handleLastName}
                 placeholder="Last Name" />
             </div>
@@ -146,7 +148,7 @@ class PeopleForm extends Component {
           <div className="field">
             <label className="label">French Biography</label>
             <Editor
-              rawContent={(bio && bio.fr) || null}
+              rawContent={(people.bio && people.bio.fr) || null}
               onSave={this.handleBio} />
           </div>
           <div className="field is-grouped">
@@ -163,7 +165,7 @@ class PeopleForm extends Component {
           {!this.state.new && (
             <iframe
               style={{border: '1px solid #ccc', width: '100%', height: '100%'}}
-              src={`${STATIC_URL}/people-${id}`} />
+              src={`${STATIC_URL}/people-${people.id}`} />
           )}
         </div>
       </div>

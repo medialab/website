@@ -40,7 +40,7 @@ export default function Router() {
       <Switch>
         <Route exact path="/" render={() => <Home />} />
         <Route path="/people/new" render={() => <PeopleForm />} />
-        <Route path="/people/:id" render={({match}) => <PeopleForm people={match.params.id} />} />
+        <Route path="/people/:id" render={({match}) => <PeopleForm id={match.params.id} />} />
         <Route path="/activities" render={() => <List key="activities" model="activities" specs={listSpecs.activities} />} />
         <Route path="/news" render={() => <List key="news" model="news" specs={listSpecs.news} />} />
         <Route path="/people" render={() => <List key="people" model="people" specs={listSpecs.people} />} />

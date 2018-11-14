@@ -19,6 +19,18 @@ const OWN_TYPES = new Set([
   'PeopleJson'
 ]);
 
+const ACTIVITIES_QUERY = `
+  {
+    allActivitiesJson {
+      edges {
+        node {
+          identifier
+        }
+      }
+    }
+  }
+`;
+
 const PEOPLE_QUERY = `
  {
   allPeopleJson {
@@ -143,6 +155,29 @@ exports.createPages = function({graphql, actions, emitter})  {
   const {createPage, deletePage} = actions;
 
   const promises = [
+
+    // Activities
+    graphql(ACTIVITIES_QUERY).then(result => {
+      if (!result.data)
+        return;
+
+      // Creating pages
+      result.data.allActivitiesJson.edges.forEach(edge => {
+        const activity = edge.node;
+
+        const slug = `/activity-${activity.identifier}/`;
+
+        const context = {
+          identifier: activity.identifier
+        };
+
+        createPage({
+          path: slug,
+          component: path.resolve('./src/templates/activity.js'),
+          context
+        });
+      });
+    }),
 
     // People
     graphql(PEOPLE_QUERY).then(result => {

@@ -6,20 +6,20 @@ export const queryFragment = graphql`
     firstName
     lastName
     bio {
-      en,
+      en
       fr
     }
   }
 `;
 
-export default function PeopleDetail({people}) {
-  console.log(people);
+export default function PeopleDetail({data}) {
+  console.log(data);
 
   return (
     <div>
-      <h1>{people.firstName} {people.lastName}</h1>
+      <h1>{data.firstName} {data.lastName}</h1>
       <hr />
-      <div dangerouslySetInnerHTML={{__html: people.bio.fr || people.bio.en}} />
+      <div dangerouslySetInnerHTML={{__html: data.bio.fr || data.bio.en}} />
     </div>
   );
 }

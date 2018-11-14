@@ -35,7 +35,7 @@ export default ({data, pageContext}) => {
 
   return (
     <Layout>
-      <PeopleDetail people={data.peopleJson} />
+      <PeopleDetail data={data.peopleJson} />
     </Layout>
   );
 };

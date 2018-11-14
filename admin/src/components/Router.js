@@ -16,7 +16,7 @@ export default function Router() {
     <div className="container">
       <div className="tabs">
         <ul>
-          <Route path="/" children={({match}) => console.log(match) || (
+          <Route path="/" children={({match}) => (
             <li className={cls(match && match.isExact && 'is-active')}>
               <Link to="/">
                 <HomeIcon />

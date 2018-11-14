@@ -15,12 +15,6 @@ import client from '../../client';
 function extractData(scope) {
   const data = cloneDeep(scope.state.data);
 
-  if (!data.bio)
-    data.bio = {};
-
-  if (scope.frBioEditorContent)
-    data.bio.fr = rawToHtml(scope.frBioEditorContent);
-
   return data;
 }
 
@@ -30,7 +24,7 @@ function createHandler(scope, key) {
   };
 }
 
-class PeopleForm extends Component {
+class ActivityForm extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -48,24 +42,18 @@ class PeopleForm extends Component {
       this.state = {
         new: true,
         loading: false,
-        data: initializers.people()
+        data: initializers.activity()
       };
     }
 
     // Handlers
-    this.handleFirstName = createHandler(this, ['data', 'firstName']);
-    this.handleLastName = createHandler(this, ['data', 'lastName']);
+    this.handleName = createHandler(this, ['data', 'name']);
   }
 
   componentDidMount() {
 
     if (!this.state.new)
-      client.get({params: {model: 'people', id: this.props.id}}, (err, data) => {
-        if (data.bio && data.bio.fr) {
-          data.bio.fr = htmlToRaw(data.bio.fr);
-          this.frBioEditorContent = data.bio.fr;
-        }
-
+      client.get({params: {model: 'activities', id: this.props.id}}, (err, data) => {
         this.setState({loading: false, data: data});
       });
   }
@@ -83,12 +71,12 @@ class PeopleForm extends Component {
 
       // Creating the new item
       const payload = {
-        params: {model: 'people'},
+        params: {model: 'activities'},
         data: extractData(this)
       };
 
       client.post(payload, (err, result) => {
-        push(`/people/${this.props.id}`);
+        push(`/activities/${this.props.id}`);
         this.setState({new: false});
       });
     }
@@ -96,12 +84,12 @@ class PeopleForm extends Component {
 
       // Upating the item
       const payload = {
-        params: {model: 'people', id: this.props.id},
+        params: {model: 'activities', id: this.props.id},
         data: extractData(this)
       };
 
       client.put(payload, (err, result) => {
-        // push('/people');
+        // push('/activities');
       });
     }
   };
@@ -120,32 +108,15 @@ class PeopleForm extends Component {
       <div className="columns">
         <div className="column is-4">
           <div className="field">
-            <label className="label">First Name</label>
+            <label className="label">Name</label>
             <div className="control">
               <input
                 type="text"
                 className="input"
-                value={data.firstName}
-                onChange={this.handleFirstName}
-                placeholder="First Name" />
+                value={data.name}
+                onChange={this.handleName}
+                placeholder="Name" />
             </div>
-          </div>
-          <div className="field">
-            <label className="label">Last Name</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={data.lastName}
-                onChange={this.handleLastName}
-                placeholder="Last Name" />
-            </div>
-          </div>
-          <div className="field">
-            <label className="label">French Biography</label>
-            <Editor
-              rawContent={(data.bio && data.bio.fr) || null}
-              onSave={this.handleBio} />
           </div>
 
           <div className="field is-grouped">
@@ -153,7 +124,7 @@ class PeopleForm extends Component {
               <Button onClick={this.handleSubmit}>Submit</Button>
             </div>
             <div className="control">
-              <Link to="/people" className="button is-text">Cancel</Link>
+              <Link to="/activities" className="button is-text">Cancel</Link>
             </div>
           </div>
         </div>
@@ -162,7 +133,7 @@ class PeopleForm extends Component {
           {!this.state.new && (
             <iframe
               style={{border: '1px solid #ccc', width: '100%', height: '100%'}}
-              src={`${STATIC_URL}/people-${data.id}`} />
+              src={`${STATIC_URL}/activity-${data.id}`} />
           )}
         </div>
       </div>
@@ -170,9 +141,9 @@ class PeopleForm extends Component {
   }
 }
 
-const ConnectedPeopleForm = connect(
+const ConnectedActivityForm = connect(
   null,
   {push}
-)(PeopleForm);
+)(ActivityForm);
 
-export default ConnectedPeopleForm;
+export default ConnectedActivityForm;

@@ -7,7 +7,7 @@ module.exports = {
     {
       label: 'Name',
       property: 'name',
-      link: false
+      link: true
     }
   ],
   news: [

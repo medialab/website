@@ -6,6 +6,7 @@ import cls from 'classnames';
 import listSpecs from '../../../specs/lists.js';
 
 import Home from './Home';
+import HomeIcon from './icons/HomeIcon';
 import List from './List';
 
 import PeopleForm from './forms/PeopleForm';
@@ -15,23 +16,30 @@ export default function Router() {
     <div className="container">
       <div className="tabs">
         <ul>
+          <Route path="/" children={({match}) => console.log(match) || (
+            <li className={cls(match && match.isExact && 'is-active')}>
+              <Link to="/">
+                <HomeIcon />
+              </Link>
+            </li>
+          )} />
           <Route path="/activities" children={({match}) => (
-            <li className={cls(match && 'is-active')}>
+            <li className={cls(match && match.isExact && 'is-active')}>
               <Link to="/activities">Activities</Link>
             </li>
           )} />
           <Route path="/news" children={({match}) => (
-            <li className={cls(match && 'is-active')}>
+            <li className={cls(match && match.isExact && 'is-active')}>
               <Link to="/news">News</Link>
             </li>
           )} />
           <Route path="/people" children={({match}) => (
-            <li className={cls(match && 'is-active')}>
+            <li className={cls(match && match.isExact && 'is-active')}>
               <Link to="/people">People</Link>
             </li>
           )} />
           <Route path="/publications" children={({match}) => (
-            <li className={cls(match && 'is-active')}>
+            <li className={cls(match && match.isExact && 'is-active')}>
               <Link to="/publications">Publications</Link>
             </li>
           )} />

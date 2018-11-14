@@ -7,7 +7,7 @@ module.exports = {
     {
       label: 'Name',
       property: 'name',
-      link: true
+      link: false
     }
   ],
   news: [
@@ -20,7 +20,7 @@ module.exports = {
       property: function(n) {
         return n.title.fr || n.title.en;
       },
-      link: true
+      link: false
     }
   ],
   people: [
@@ -46,7 +46,7 @@ module.exports = {
       property: function(p) {
         return p.title.fr || p.title.en;
       },
-      link: true
+      link: false
     }
   ],
 };

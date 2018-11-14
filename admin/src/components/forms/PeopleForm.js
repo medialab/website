@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {push} from 'connected-react-router';
 import {connect} from 'react-redux';
 import cloneDeep from 'lodash/cloneDeep';
+import set from 'lodash/fp/set';
 import {rawToHtml, htmlToRaw} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
@@ -25,12 +26,7 @@ function extractData(scope) {
 
 function createHandler(scope, key) {
   return e => {
-    scope.setState({
-      people: {
-        ...scope.state.people,
-        [key]: e.target.value
-      }
-    });
+    scope.setState(set(key, e.target.value, scope.state));
   };
 }
 
@@ -57,8 +53,8 @@ class PeopleForm extends Component {
     }
 
     // Handlers
-    this.handleFirstName = createHandler(this, 'firstName');
-    this.handleLastName = createHandler(this, 'lastName');
+    this.handleFirstName = createHandler(this, ['people', 'firstName']);
+    this.handleLastName = createHandler(this, ['people', 'lastName']);
   }
 
   componentDidMount() {

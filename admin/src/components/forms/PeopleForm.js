@@ -15,6 +15,9 @@ const TO_OMIT = ['loading', 'new'];
 function extractData(scope) {
   const data = omit(scope.state, TO_OMIT);
 
+  if (!data.bio)
+    data.bio = {};
+
   if (scope.frBioEditorContent)
     data.bio.fr = rawToHtml(scope.frBioEditorContent);
 
@@ -84,10 +87,8 @@ class PeopleForm extends Component {
       };
 
       client.post(payload, (err, result) => {
-        client.rebootGatsby(() => {
-          push(`/people/${this.state.id}`);
-          this.setState({new: false});
-        });
+        push(`/people/${this.state.id}`);
+        this.setState({new: false});
       });
     }
     else {

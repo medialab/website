@@ -4,11 +4,11 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import {createHashHistory} from 'history';
-import {connectRouter, routerMiddleware, ConnectedRouter} from 'connected-react-router';
+import {routerMiddleware, ConnectedRouter} from 'connected-react-router';
 import Modal from 'react-modal';
 
 import Application from './components/Application';
-import reducer from './modules';
+import createRootReducer from './modules';
 
 // Requiring style
 import 'draft-js/dist/Draft.css';
@@ -16,7 +16,7 @@ import 'draftail/dist/draftail.css';
 import 'react-image-crop/dist/ReactCrop.css';
 import '../style/main.scss';
 
-const history = createHashHistory()
+const history = createHashHistory();
 
 // Mount node
 const MOUNT_NODE = document.getElementById('app');
@@ -24,7 +24,8 @@ Modal.setAppElement('#app');
 
 // Creating redux store
 const STORE = createStore(
-  connectRouter(history)(reducer),
+  createRootReducer(history),
+  {},
   compose(
     applyMiddleware(routerMiddleware(history), thunk)
   )
@@ -58,7 +59,7 @@ if (module.hot) {
 
   // Reloading reducers
   module.hot.accept('./modules', () => {
-    const nextReducer = require('./modules').default;
-    STORE.replaceReducer(nextReducer);
+    const nextCreateRootReducer = require('./modules').default;
+    STORE.replaceReducer(nextCreateRootReducer(history));
   });
 }

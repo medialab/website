@@ -5,9 +5,9 @@ import cls from 'classnames';
 
 import listSpecs from '../../../specs/lists.js';
 
+import Home from './Home';
 import List from './List';
 
-import ImageForm from './forms/ImageForm';
 import PeopleForm from './forms/PeopleForm';
 
 export default function Router() {
@@ -38,7 +38,7 @@ export default function Router() {
         </ul>
       </div>
       <Switch>
-        <Route exact path="/" render={() => (<div>Admin</div>)} />
+        <Route exact path="/" render={() => <Home />} />
         <Route path="/people/new" render={() => <PeopleForm />} />
         <Route path="/people/:id" render={({match}) => <PeopleForm people={match.params.id} />} />
         <Route path="/activities" render={() => <List key="activities" model="activities" specs={listSpecs.activities} />} />

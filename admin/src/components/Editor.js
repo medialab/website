@@ -75,7 +75,6 @@ export default function Editor(props) {
   } = props;
 
   return (
-    <>
     <DraftailEditor
       rawContentState={rawContent || null}
       onSave={onSave}
@@ -88,6 +87,5 @@ export default function Editor(props) {
       inlineStyles={[
         {type: INLINE_STYLE.BOLD, label: 'B'}
       ]} />
-    </>
   );
 }

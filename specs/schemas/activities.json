@@ -8,6 +8,10 @@
       "title": "Identifiant",
       "type": "string"
     },
+    "lastUpdated": {
+      "title": "Timestamp of last update",
+      "type": "number"
+    },
     "name": {
       "title": "Nom",
       "type": "string"

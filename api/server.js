@@ -1,11 +1,11 @@
 /* eslint no-console: 0 */
-
 const path = require('path');
 const express = require('express');
 const config = require('config');
 const jsonServer = require('json-server');
 const fileUpload = require('express-fileupload');
 
+const middlewares = require('./middlewares.js');
 const GatsbyProcess = require('./gatsby.js');
 
 const MODELS = require('../specs/models.json');
@@ -26,13 +26,18 @@ const gatsby = new GatsbyProcess('./site');
 
 // json-server init
 const server = jsonServer.create();
-const middlewares = jsonServer.defaults();
+const jsonServerMiddlewares = jsonServer.defaults();
 
-server.use(middlewares);
+server.use(jsonServerMiddlewares);
+server.use(jsonServer.bodyParser);
 server.use(fileUpload());
 server.use('/assets', express.static(ASSETS_PATH));
-ROUTERS.forEach(({model, router}) => server.use(`/${model}`, router));
 
+ROUTERS.forEach(({model, router}) => {
+  server.use(`/${model}`, middlewares.lastUpdated, router);
+});
+
+// custom routes
 server.post('/upload', (req, res) => {
   const file = req.files.file;
 

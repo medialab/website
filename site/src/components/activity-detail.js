@@ -4,6 +4,7 @@ import {graphql} from 'gatsby';
 export const queryFragment = graphql`
   fragment ActivityDetail on ActivitiesJson {
     name
+    type
     baseline {
       en
       fr
@@ -32,10 +33,13 @@ export default function ActivityDetail({data}) {
       {data.draft && <p><em>This is a draft.</em></p>}
       {data.active && <p><em>This activity is active.</em></p>}
       <p>
-        <strong>EN baseline</strong>: {data.baseline.en}
+        <strong>Type</strong>: {data.type}
       </p>
       <p>
-        <strong>FR baseline</strong>: {data.baseline.fr}
+        <strong>EN baseline</strong>: {data.baseline && data.baseline.en}
+      </p>
+      <p>
+        <strong>FR baseline</strong>: {data.baseline && data.baseline.fr}
       </p>
     </div>
   );

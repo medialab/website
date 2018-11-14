@@ -10,6 +10,7 @@ import initializers from '../../../../specs/initializers';
 
 import Editor from '../Editor';
 import Button from '../misc/Button';
+import EnumSelector from '../selectors/EnumSelector';
 import client from '../../client';
 
 function extractData(scope) {
@@ -21,6 +22,12 @@ function extractData(scope) {
 function createHandler(scope, key) {
   return e => {
     scope.setState(set(key, e.target.value, scope.state));
+  };
+}
+
+function createRawHandler(scope, key) {
+  return v => {
+    scope.setState(set(key, v, scope.state));
   };
 }
 
@@ -50,6 +57,7 @@ class ActivityForm extends Component {
     this.handleName = createHandler(this, ['data', 'name']);
     this.handleEnglishBaseline = createHandler(this, ['data', 'baseline', 'en']);
     this.handleFrenchBaseline = createHandler(this, ['data', 'baseline', 'fr']);
+    this.handleType = createRawHandler(this, ['data', 'type']);
   }
 
   componentDidMount() {
@@ -122,6 +130,16 @@ class ActivityForm extends Component {
                 value={data.name}
                 onChange={this.handleName}
                 placeholder="Name" />
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">Type</label>
+            <div className="control">
+              <EnumSelector
+                enumType="activityTypes"
+                value={data.type}
+                onChange={this.handleType} />
             </div>
           </div>
 

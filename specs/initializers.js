@@ -4,14 +4,18 @@ module.exports = {
   activity: function() {
     return {
       id: uuid(),
-      name: ''
+      name: '',
+      draft: true,
+      active: true
     };
   },
   people: function() {
     return {
       id: uuid(),
       firstName: '',
-      lastName: ''
+      lastName: '',
+      draft: true,
+      active: true
     };
   }
 };

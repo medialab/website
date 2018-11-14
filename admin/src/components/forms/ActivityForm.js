@@ -48,6 +48,8 @@ class ActivityForm extends Component {
 
     // Handlers
     this.handleName = createHandler(this, ['data', 'name']);
+    this.handleEnglishBaseline = createHandler(this, ['data', 'baseline', 'en']);
+    this.handleFrenchBaseline = createHandler(this, ['data', 'baseline', 'fr']);
   }
 
   componentDidMount() {
@@ -58,8 +60,12 @@ class ActivityForm extends Component {
       });
   }
 
-  handleBio = (content) => {
-    this.frBioEditorContent = content;
+  handlePublished = e => {
+    this.setState(set(['data', 'draft'], !e.target.checked, this.state));
+  };
+
+  handleActive = e => {
+    this.setState(set(['data', 'active'], e.target.checked, this.state));
   };
 
   handleSubmit = () => {
@@ -116,6 +122,50 @@ class ActivityForm extends Component {
                 value={data.name}
                 onChange={this.handleName}
                 placeholder="Name" />
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">Published?</label>
+            <div className="control">
+              <input
+                type="checkbox"
+                checked={!data.draft}
+                onChange={this.handlePublished} />
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">Active?</label>
+            <div className="control">
+              <input
+                type="checkbox"
+                checked={data.active}
+                onChange={this.handleActive} />
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">English Baseline</label>
+            <div className="control">
+              <textarea
+                className="textarea"
+                value={(data.baseline && data.baseline.en) || ''}
+                onChange={this.handleEnglishBaseline}
+                placeholder="English Baseline"
+                rows={2} />
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">French Baseline</label>
+            <div className="control">
+              <textarea
+                className="textarea"
+                value={(data.baseline && data.baseline.fr) || ''}
+                onChange={this.handleFrenchBaseline}
+                placeholder="French Baseline"
+                rows={2} />
             </div>
           </div>
 

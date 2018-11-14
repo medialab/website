@@ -18,6 +18,8 @@ export const queryFragment = graphql`
       fr
     }
     people
+    active
+    draft
   }
 `;
 
@@ -27,6 +29,8 @@ export default function ActivityDetail({data}) {
   return (
     <div>
       <h1>Activité: {data.name}</h1>
+      {data.draft && <p><em>This is a draft.</em></p>}
+      {data.active && <p><em>This activity is active.</em></p>}
       <p>
         <strong>EN baseline</strong>: {data.baseline.en}
       </p>

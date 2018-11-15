@@ -2,8 +2,10 @@ const config = require('config'),
       path = require('path'),
       fs = require('fs-extra');
 
+const argv = process.argv;
+
 const DATA_PATH = config.get('data'),
-      DUMP_PATH = './dump';
+      DUMP_PATH = argv.length > 2 ? argv[2] : './dump';
 
 const models = require('../specs/models.json');
 

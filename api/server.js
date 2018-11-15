@@ -4,6 +4,7 @@ const express = require('express');
 const config = require('config');
 const jsonServer = require('json-server');
 const fileUpload = require('express-fileupload');
+const fs = require('fs-extra');
 
 const middlewares = require('./middlewares.js');
 const GatsbyProcess = require('./gatsby.js');
@@ -15,6 +16,21 @@ const PORT = config.get('port');
 const DATA_PATH = config.get('data');
 const ASSETS_PATH = path.join(DATA_PATH, 'assets');
 
+// Ensuring we have the minimal file architecture
+fs.ensureDirSync(DATA_PATH);
+fs.ensureDirSync(path.join(DATA_PATH, 'assets'));
+
+MODELS.forEach(model => {
+  const p = path.join(DATA_PATH, `${model}.json`);
+
+  if (!fs.existsSync(p))
+    fs.writeFileSync(
+      p,
+      JSON.stringify({[model]: []}, null, 2)
+    );
+});
+
+// Creating routers
 const ROUTERS = MODELS.map(model => {
   return {
     model,

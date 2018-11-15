@@ -18,8 +18,8 @@ function extractData(scope) {
   if (!data.bio)
     data.bio = {};
 
-  if (scope.frBioEditorContent)
-    data.bio.fr = rawToHtml(scope.frBioEditorContent);
+  if (scope.frenchBioEditorContent)
+    data.bio.fr = rawToHtml(scope.frenchBioEditorContent);
 
   return data;
 }
@@ -34,7 +34,7 @@ class PeopleForm extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.frBioEditorContent = null;
+    this.frenchBioEditorContent = null;
 
     if (props.id) {
       this.state = {
@@ -63,7 +63,7 @@ class PeopleForm extends Component {
       client.get({params: {model: 'people', id: this.props.id}}, (err, data) => {
         if (data.bio && data.bio.fr) {
           data.bio.fr = htmlToRaw(data.bio.fr);
-          this.frBioEditorContent = data.bio.fr;
+          this.frenchBioEditorContent = data.bio.fr;
         }
 
         this.setState({loading: false, data: data});
@@ -71,7 +71,7 @@ class PeopleForm extends Component {
   }
 
   handleBio = (content) => {
-    this.frBioEditorContent = content;
+    this.frenchBioEditorContent = content;
   };
 
   handleSubmit = () => {

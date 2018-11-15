@@ -60,6 +60,10 @@ export default function ActivityDetail({data}) {
           {(data.people || []).map(p => <li key={p.id}>{p.firstName} {p.lastName}</li>)}
         </ul>
       </div>
+      <hr />
+      {data.content && data.content.en && <div dangerouslySetInnerHTML={{__html: data.content.en}} />}
+      <hr />
+      {data.content && data.content.fr && <div dangerouslySetInnerHTML={{__html: data.content.fr}} />}
     </div>
   );
 }

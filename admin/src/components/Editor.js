@@ -73,12 +73,13 @@ export default class Editor extends Component {
         rawContentState={rawContent || null}
         onSave={onSave}
         entityTypes={[
-          ENTITY_CONTROL.IMAGE
+          // ENTITY_CONTROL.IMAGE
         ]}
         blockTypes={[
-          {type: BLOCK_TYPE.HEADER_ONE, label: 'H1'}
+          // {type: BLOCK_TYPE.HEADER_ONE, label: 'H1'}
         ]}
         inlineStyles={[
+          {type: INLINE_STYLE.ITALIC, label: 'I'},
           {type: INLINE_STYLE.BOLD, label: 'B'}
         ]} />
     );

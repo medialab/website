@@ -18,6 +18,15 @@ import client from '../../client';
 function extractData(scope) {
   const data = cloneDeep(scope.state.data);
 
+  if (!data.content)
+    data.content = {};
+
+  if (scope.englishEditorContent)
+    data.content.en = rawToHtml(scope.englishEditorContent);
+
+  if (scope.frenchEditorContent)
+    data.content.fr = rawToHtml(scope.frenchEditorContent);
+
   return data;
 }
 
@@ -37,7 +46,8 @@ class ActivityForm extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.frBioEditorContent = null;
+    this.frenchEditorContent = null;
+    this.englishEditorContent = null;
 
     if (props.id) {
       this.state = {
@@ -68,6 +78,16 @@ class ActivityForm extends Component {
 
     if (!this.state.new)
       client.get({params: {model: 'activities', id: this.props.id}}, (err, data) => {
+        if (data.content && data.content.en) {
+          data.content.en = htmlToRaw(data.content.en);
+          this.englishEditorContent = data.content.en;
+        }
+
+        if (data.content && data.content.fr) {
+          data.content.fr = htmlToRaw(data.content.fr);
+          this.frenchEditorContent = data.content.fr;
+        }
+
         this.setState({loading: false, data: data});
       });
   }
@@ -94,6 +114,14 @@ class ActivityForm extends Component {
     people = people.filter(p => p !== id);
 
     this.setState(set(['data', 'people'], people, this.state));
+  };
+
+  handleEnglishContent = content => {
+    this.englishEditorContent = content;
+  };
+
+  handleFrenchContent = content => {
+    this.frenchEditorContent = content;
   };
 
   handleSubmit = () => {
@@ -213,7 +241,7 @@ class ActivityForm extends Component {
                 value={(data.description && data.description.en) || ''}
                 onChange={this.handleEnglishDescription}
                 placeholder="English Description"
-                rows={2} />
+                rows={3} />
             </div>
           </div>
 
@@ -225,13 +253,25 @@ class ActivityForm extends Component {
                 value={(data.description && data.description.fr) || ''}
                 onChange={this.handleFrenchDescription}
                 placeholder="French Description"
-                rows={2} />
+                rows={3} />
             </div>
           </div>
 
+          <div className="field">
+            <label className="label">English Content</label>
+            <Editor
+              rawContent={(data.content && data.content.en) || null}
+              onSave={this.handleEnglishContent} />
+          </div>
 
+          <div className="field">
+            <label className="label">French Content</label>
+            <Editor
+              rawContent={(data.content && data.content.fr) || null}
+              onSave={this.handleFrenchContent} />
+          </div>
 
-           <div className="field">
+          <div className="field">
             <label className="label">Related People</label>
             <div className="control">
               <RelationSelector

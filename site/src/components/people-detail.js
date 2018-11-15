@@ -5,10 +5,17 @@ export const queryFragment = graphql`
   fragment PeopleDetail on PeopleJson {
     firstName
     lastName
+    title {
+      en
+      fr
+    }
     bio {
       en
       fr
     }
+    membership
+    active
+    draft
   }
 `;
 
@@ -17,9 +24,23 @@ export default function PeopleDetail({data}) {
 
   return (
     <div>
-      <h1>{data.firstName} {data.lastName}</h1>
+      <h1>People: {data.firstName} {data.lastName}</h1>
+      {data.draft && <p><em>This is a draft.</em></p>}
+      {data.active && <p><em>This activity is active.</em></p>}
+      <p>
+        <strong>Membership type</strong>: {data.membership}
+      </p>
       <hr />
-      <div dangerouslySetInnerHTML={{__html: data.bio.fr || data.bio.en}} />
+      <p>
+        <strong>EN title</strong>: {data.title && data.title.en}
+      </p>
+      <p>
+        <strong>FR title</strong>: {data.title && data.title.fr}
+      </p>
+      <hr />
+      {data.bio && data.bio.en && <div dangerouslySetInnerHTML={{__html: data.bio.en}} />}
+      <hr />
+      {data.bio && data.bio.fr && <div dangerouslySetInnerHTML={{__html: data.bio.fr}} />}
     </div>
   );
 }

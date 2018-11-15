@@ -10,6 +10,7 @@ import {rawToHtml, htmlToRaw} from '../../utils';
 import initializers from '../../../../specs/initializers';
 
 import Editor from '../Editor';
+import EnumSelector from '../selectors/EnumSelector';
 import Button from '../misc/Button';
 import client from '../../client';
 
@@ -19,8 +20,11 @@ function extractData(scope) {
   if (!data.bio)
     data.bio = {};
 
-  if (scope.frenchBioEditorContent)
-    data.bio.fr = rawToHtml(scope.frenchBioEditorContent);
+  if (scope.englishEditorContent)
+    data.bio.en = rawToHtml(scope.englishEditorContent);
+
+  if (scope.frenchEditorContent)
+    data.bio.fr = rawToHtml(scope.frenchEditorContent);
 
   return data;
 }
@@ -31,11 +35,18 @@ function createHandler(scope, key) {
   };
 }
 
+function createRawHandler(scope, key) {
+  return v => {
+    scope.setState(set(key, v, scope.state));
+  };
+}
+
 class PeopleForm extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.frenchBioEditorContent = null;
+    this.frenchEditorContent = null;
+    this.englishEditorContent = null;
 
     if (props.id) {
       this.state = {
@@ -56,23 +67,43 @@ class PeopleForm extends Component {
     // Handlers
     this.handleFirstName = createHandler(this, ['data', 'firstName']);
     this.handleLastName = createHandler(this, ['data', 'lastName']);
+    this.handleEnglishTitle = createHandler(this, ['data', 'title', 'en']);
+    this.handleFrenchTitle = createHandler(this, ['data', 'title', 'fr']);
+    this.handleMembership = createRawHandler(this, ['data', 'membership']);
   }
 
   componentDidMount() {
 
     if (!this.state.new)
       client.get({params: {model: 'people', id: this.props.id}}, (err, data) => {
+        if (data.bio && data.bio.en) {
+          data.bio.en = htmlToRaw(data.bio.en);
+          this.englishEditorContent = data.bio.en;
+        }
+
         if (data.bio && data.bio.fr) {
           data.bio.fr = htmlToRaw(data.bio.fr);
-          this.frenchBioEditorContent = data.bio.fr;
+          this.frenchEditorContent = data.bio.fr;
         }
 
         this.setState({loading: false, data: data});
       });
   }
 
-  handleBio = (content) => {
-    this.frenchBioEditorContent = content;
+  handlePublished = e => {
+    this.setState(set(['data', 'draft'], !e.target.checked, this.state));
+  };
+
+  handleActive = e => {
+    this.setState(set(['data', 'active'], e.target.checked, this.state));
+  };
+
+  handleEnglishContent = content => {
+    this.englishEditorContent = content;
+  };
+
+  handleFrenchContent = content => {
+    this.frenchEditorContent = content;
   };
 
   handleSubmit = () => {
@@ -142,11 +173,72 @@ class PeopleForm extends Component {
                 placeholder="Last Name" />
             </div>
           </div>
+
+          <div className="field">
+            <label className="label">Published?</label>
+            <div className="control">
+              <input
+                type="checkbox"
+                checked={!data.draft}
+                onChange={this.handlePublished} />
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">Active?</label>
+            <div className="control">
+              <input
+                type="checkbox"
+                checked={data.active}
+                onChange={this.handleActive} />
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">English Title</label>
+            <div className="control">
+              <input
+                type="text"
+                className="input"
+                value={data.title ? data.title.en : ''}
+                onChange={this.handleEnglishTitle}
+                placeholder="English Title" />
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">French Title</label>
+            <div className="control">
+              <input
+                type="text"
+                className="input"
+                value={data.title ? data.title.fr : ''}
+                onChange={this.handleFrenchTitle}
+                placeholder="French Title" />
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">Membership</label>
+            <div className="control">
+              <EnumSelector
+                enumType="membershipTypes"
+                value={data.membership}
+                onChange={this.handleMembership} />
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">English Biography</label>
+            <Editor
+              rawContent={(data.bio && data.bio.en) || null}
+              onSave={this.handleEnglishContent} />
+          </div>
           <div className="field">
             <label className="label">French Biography</label>
             <Editor
               rawContent={(data.bio && data.bio.fr) || null}
-              onSave={this.handleBio} />
+              onSave={this.handleFrenchContent} />
           </div>
 
           <div className="field is-grouped">

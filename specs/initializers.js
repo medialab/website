@@ -15,6 +15,7 @@ module.exports = {
       id: uuid(),
       firstName: '',
       lastName: '',
+      membership: enums.membershipTypes.default,
       draft: true,
       active: true
     };

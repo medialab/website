@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import cloneDeep from 'lodash/cloneDeep';
 import set from 'lodash/fp/set';
 import get from 'lodash/get';
+import uuid from 'uuid/v4';
 import {rawToHtml, htmlToRaw} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
@@ -61,7 +62,7 @@ class ActivityForm extends Component {
       this.state = {
         new: true,
         loading: false,
-        data: initializers.activity()
+        data: initializers.activity(uuid)
       };
     }
 
@@ -138,7 +139,7 @@ class ActivityForm extends Component {
       };
 
       client.post(payload, (err, result) => {
-        push(`/activities/${this.props.id}`);
+        push(`/activities/${this.state.data.id}`);
         this.setState({new: false});
       });
     }

@@ -4,6 +4,7 @@ import {push} from 'connected-react-router';
 import {connect} from 'react-redux';
 import cloneDeep from 'lodash/cloneDeep';
 import set from 'lodash/fp/set';
+import uuid from 'uuid/v4';
 import {rawToHtml, htmlToRaw} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
@@ -48,7 +49,7 @@ class PeopleForm extends Component {
       this.state = {
         new: true,
         loading: false,
-        data: initializers.people()
+        data: initializers.people(uuid)
       };
     }
 

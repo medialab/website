@@ -1,0 +1,44 @@
+.objet{
+	.container{
+		display: block;
+		height: calc(100vh - 120px);
+
+
+		&:nth-child(2) {
+			background-color: yellow;
+		}		
+
+		&:nth-child(3) {
+			background-color: pink;
+			margin-top: -50px;
+		}
+
+		&:nth-child(4) {
+			background-color: salmon;
+			margin-top: -150px;
+			display: none;
+		}
+
+
+		&.majeur{
+		
+		}
+
+		&.relation{
+			border-top: 1px black solid;
+
+			&.humain, &.publication{
+				
+
+			}
+		}
+		
+		.contenu{
+			position: -webkit-sticky;
+			position: sticky;
+
+			top: 120px;
+			height: auto;
+		}
+	}
+}

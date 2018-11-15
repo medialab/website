@@ -1,0 +1,75 @@
+#topbar{
+
+	height: 120px;
+	width: 100%;
+	position: relative;
+
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	grid-template-rows: 2rem auto 2rem;
+
+	color: #808080 !important;
+	
+
+	.logo{
+
+		grid-column: 1 / 2;
+		grid-row: 2 / 3;
+		align-self: end;
+
+		padding: 0 1rem;
+
+		img{
+			height: 70px;
+			opacity: .5;
+			transform: translateY(20%);
+			
+			svg{
+				/*fill: #888 !important;*/
+			}
+		}
+	}
+
+	.menu{
+
+		display: inline-block;
+
+		grid-row: 2 / 3;
+		align-self: end;
+
+
+		&.objet{
+			grid-column: 2 / 3;
+		}
+
+
+		&.humain{
+			grid-column: 3 / 4;
+		}
+
+
+		&.archive{
+			grid-column: 4 / 5;
+		}
+
+		&.langue{
+			grid-column: 6 / 7;
+			justify-self: end;
+			margin: 0 2rem;
+
+			span{
+				cursor: pointer;
+
+				&.hover{
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+	
+	p{
+		margin: 0;
+		padding: 0;
+	}
+
+}

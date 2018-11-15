@@ -1,3 +1,4 @@
+// TODO: handle media resources
 const stableJson = require('json-stable-stringify'),
       config = require('config'),
       path = require('path'),

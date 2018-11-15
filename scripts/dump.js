@@ -3,20 +3,25 @@ const stableJson = require('json-stable-stringify'),
       path = require('path'),
       fs = require('fs-extra');
 
-const DATA_PATH = config.get('data');
+const DATA_PATH = config.get('data'),
+      DUMP_PATH = './dump';
 
 const models = require('../specs/models.json');
 
-fs.ensureDirSync('./dump');
+fs.ensureDirSync(DUMP_PATH);
 
-fs.copySync(path.join(DATA_PATH, 'assets'), path.join('./dump', 'assets'));
+fs.copySync(path.join(DATA_PATH, 'assets'), path.join(DUMP_PATH, 'assets'));
+
+const settings = fs.readJsonSync(path.join(DATA_PATH, 'settings.json'));
+fs.writeFileSync(
+  path.join(DUMP_PATH, 'settings.json'),
+  stableJson(settings, {space: 2})
+);
 
 models.forEach(model => {
-  fs.ensureDirSync(path.join('./dump', model));
+  fs.ensureDirSync(path.join(DUMP_PATH, model));
 
-  const raw = fs.readFileSync(path.join(DATA_PATH, `${model}.json`), 'utf-8');
-
-  const data = JSON.parse(raw);
+  const data = fs.readJsonSync(path.join(DATA_PATH, `${model}.json`), 'utf-8');
 
   const list = data[model];
 
@@ -25,7 +30,7 @@ models.forEach(model => {
 
   list.forEach(item => {
     fs.writeFileSync(
-      path.join('./dump', model, `${item.id}.json`),
+      path.join(DUMP_PATH, model, `${item.id}.json`),
       stableJson(item, {space: 2})
     );
   });

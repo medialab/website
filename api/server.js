@@ -20,6 +20,15 @@ const ASSETS_PATH = path.join(DATA_PATH, 'assets');
 fs.ensureDirSync(DATA_PATH);
 fs.ensureDirSync(path.join(DATA_PATH, 'assets'));
 
+const settingsPath = path.join(DATA_PATH, 'settings.json');
+if (!fs.existsSync(settingsPath))
+  fs.writeFileSync(
+    settingsPath,
+    JSON.stringify({
+      home: {}
+    }, null, 2)
+  );
+
 MODELS.forEach(model => {
   const p = path.join(DATA_PATH, `${model}.json`);
 

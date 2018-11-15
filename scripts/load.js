@@ -2,16 +2,18 @@ const config = require('config'),
       path = require('path'),
       fs = require('fs-extra');
 
-const DATA_PATH = config.get('data');
+const DATA_PATH = config.get('data'),
+      DUMP_PATH = './dump';
 
 const models = require('../specs/models.json');
 
 fs.ensureDirSync(config.get('data'));
 
-fs.copySync(path.join('./dump', 'assets'), path.join(DATA_PATH, 'assets'));
+fs.copySync(path.join(DUMP_PATH, 'settings.json'), path.join(DATA_PATH, 'settings.json'));
+fs.copySync(path.join(DUMP_PATH, 'assets'), path.join(DATA_PATH, 'assets'));
 
 models.forEach(model => {
-  const p = path.join('./dump', model);
+  const p = path.join(DUMP_PATH, model);
 
   const items = [];
 

@@ -16,7 +16,8 @@
     "hydrate:json": "rm -rf data/* && mkdir -p data/assets && touch data/assets/dummy && cp specs/samples/json/*.json data",
     "install:admin": "cd admin && npm i",
     "install:site": "cd site && npm i",
-    "lint": "eslint api",
+    "lint": "eslint api scripts",
+    "load": "node ./scripts/load.js",
     "postinstall": "npm run install:admin && npm run install:site",
     "reinstall": "rm -rf ./admin/node_modules && rm -rf ./site/node_modules && rm -rf ./node_modules && npm i",
     "start": "node api/server.js"

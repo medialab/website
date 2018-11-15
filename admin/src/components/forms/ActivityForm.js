@@ -218,7 +218,7 @@ class ActivityForm extends Component {
 
           <div className="field is-grouped">
             <div className="control">
-              <Button onClick={this.handleSubmit}>Submit</Button>
+              <Button onClick={this.handleSubmit}>Save</Button>
             </div>
             <div className="control">
               <Link to="/activities" className="button is-text">Cancel</Link>

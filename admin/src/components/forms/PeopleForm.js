@@ -150,7 +150,7 @@ class PeopleForm extends Component {
 
           <div className="field is-grouped">
             <div className="control">
-              <Button onClick={this.handleSubmit}>Submit</Button>
+              <Button onClick={this.handleSubmit}>Save</Button>
             </div>
             <div className="control">
               <Link to="/people" className="button is-text">Cancel</Link>

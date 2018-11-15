@@ -3,6 +3,8 @@ import Select from 'react-select';
 import keyBy from 'lodash/keyBy';
 import client from '../../client';
 
+import labels from '../../../../specs/labels';
+
 const noOptionsMessage = () => 'No matching people';
 
 export default class RelationSelector extends Component {
@@ -24,9 +26,7 @@ export default class RelationSelector extends Component {
         .map(item => {
           return {
             value: item.id,
-
-            // TODO: generalize
-            label: item.firstName + ' ' + item.lastName
+            label: labels[this.props.model](item)
           };
         });
 

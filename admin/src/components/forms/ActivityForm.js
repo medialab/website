@@ -59,6 +59,8 @@ class ActivityForm extends Component {
     this.handleName = createHandler(this, ['data', 'name']);
     this.handleEnglishBaseline = createHandler(this, ['data', 'baseline', 'en']);
     this.handleFrenchBaseline = createHandler(this, ['data', 'baseline', 'fr']);
+    this.handleEnglishDescription = createHandler(this, ['data', 'description', 'en']);
+    this.handleFrenchDescription = createHandler(this, ['data', 'description', 'fr']);
     this.handleType = createRawHandler(this, ['data', 'type']);
   }
 
@@ -203,7 +205,31 @@ class ActivityForm extends Component {
                 placeholder="French Baseline"
                 rows={2} />
             </div>
+          </div><div className="field">
+            <label className="label">English Description</label>
+            <div className="control">
+              <textarea
+                className="textarea"
+                value={(data.description && data.description.en) || ''}
+                onChange={this.handleEnglishDescription}
+                placeholder="English Description"
+                rows={2} />
+            </div>
           </div>
+
+          <div className="field">
+            <label className="label">French Description</label>
+            <div className="control">
+              <textarea
+                className="textarea"
+                value={(data.description && data.description.fr) || ''}
+                onChange={this.handleFrenchDescription}
+                placeholder="French Description"
+                rows={2} />
+            </div>
+          </div>
+
+
 
            <div className="field">
             <label className="label">Related People</label>

@@ -39,12 +39,21 @@ export default function ActivityDetail({data}) {
       <p>
         <strong>Type</strong>: {data.type}
       </p>
+      <hr />
       <p>
         <strong>EN baseline</strong>: {data.baseline && data.baseline.en}
       </p>
       <p>
         <strong>FR baseline</strong>: {data.baseline && data.baseline.fr}
       </p>
+      <hr />
+      <p>
+        <strong>EN description</strong>: {data.description && data.description.en}
+      </p>
+      <p>
+        <strong>FR description</strong>: {data.description && data.description.fr}
+      </p>
+      <hr />
       <div>
         Related people:
         <ul>

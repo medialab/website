@@ -1,0 +1,3 @@
+﻿cd /mnt/b/_Software/UniServerZ/www/Medialab/website/interface/assets
+cd /mnt/e/WORK/Serveur/wamp-3/www/Medialab/website/interface/assets
+scss --load-path scss --watch scss:css-compiled

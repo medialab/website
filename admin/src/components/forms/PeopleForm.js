@@ -120,7 +120,7 @@ class PeopleForm extends Component {
       };
 
       client.post(payload, (err, result) => {
-        push(`/people/${this.props.id}`);
+        push(`/people/${this.state.data.id}`);
         this.setState({new: false});
       });
     }

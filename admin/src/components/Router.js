@@ -11,6 +11,7 @@ import List from './List';
 
 import ActivityForm from './forms/ActivityForm';
 import PeopleForm from './forms/PeopleForm';
+import PublicationForm from './forms/PublicationForm';
 
 export default function Router() {
   return (
@@ -55,6 +56,8 @@ export default function Router() {
         <Route path="/people/:id" render={({match}) => <PeopleForm id={match.params.id} />} />
         <Route path="/people" render={() => <List key="people" model="people" specs={listSpecs.people} />} />
         <Route path="/news" render={() => <List key="news" model="news" specs={listSpecs.news} />} />
+        <Route path="/publications/new" render={() => <PublicationForm />} />
+        <Route path="/publications/:id" render={({match}) => <PublicationForm id={match.params.id} />} />
         <Route path="/publications" render={() => <List key="publications" model="publications" specs={listSpecs.publications} />} />
         <Route render={() => (<div>Miss!</div>)} />
       </Switch>

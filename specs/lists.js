@@ -46,7 +46,7 @@ module.exports = {
       property: function(p) {
         return p.title.fr || p.title.en;
       },
-      link: false
+      link: true
     }
   ],
 };

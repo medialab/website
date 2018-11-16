@@ -14,11 +14,6 @@ const MODELS_PATHS = {};
 
 MODELS.forEach(model => MODELS_PATHS[model] = path.join(DB_PATH, `${model}.json`));
 
-const OWN_TYPES = new Set([
-  'ActivitiesJson',
-  'PeopleJson'
-]);
-
 const ACTIVITIES_QUERY = `
   {
     allActivitiesJson {
@@ -46,10 +41,33 @@ const PEOPLE_QUERY = `
  }
 `;
 
+const PUBLICATION_QUERY = `
+  {
+    allPublicationsJson {
+      edges {
+        node {
+          identifier
+        }
+      }
+    }
+  }
+`;
+
+const NEWS_QUERY = `
+  {
+    allNewsJson {
+      edges {
+        node {
+          identifier
+        }
+      }
+    }
+  }
+`;
+
 // Helper extracting asset paths from html
 function extractAssetsFromHtml(html) {
   const $ = cheerio.load(html);
-
 
   const assets = [];
 
@@ -102,13 +120,6 @@ const MODEL_READERS = {
       if (node)
         deleteNode({node});
 
-      // Solving relations
-      // TODO: solve by mapping if need to split the database in chunks?
-      // person = {
-      //   ...person,
-      //   activities: (person.activities || []).map(i => activitiesIndex[i])
-      // };
-
       const hash = crypto
         .createHash('md5')
         .update(JSON.stringify(person))
@@ -119,6 +130,64 @@ const MODEL_READERS = {
         identifier: person.id,
         internal: {
           type: 'PeopleJson',
+          contentDigest: hash,
+          mediaType: 'application/json'
+        }
+      });
+    });
+  },
+
+  publications: function(createNode, deleteNode, getNode) {
+    const rawData = fs.readFileSync(MODELS_PATHS.publications, 'utf-8');
+    const data = JSON.parse(rawData);
+
+    // Publications
+    data.publications.forEach(publication => {
+
+      const node = getNode(publication.id);
+
+      if (node)
+        deleteNode({node});
+
+      const hash = crypto
+        .createHash('md5')
+        .update(JSON.stringify(publication))
+        .digest('hex');
+
+      createNode({
+        ...publication,
+        identifier: publication.id,
+        internal: {
+          type: 'PublicationsJson',
+          contentDigest: hash,
+          mediaType: 'application/json'
+        }
+      });
+    });
+  },
+
+  news: function(createNode, deleteNode, getNode) {
+    const rawData = fs.readFileSync(MODELS_PATHS.news, 'utf-8');
+    const data = JSON.parse(rawData);
+
+    // News
+    data.news.forEach(news => {
+
+      const node = getNode(news.id);
+
+      if (node)
+        deleteNode({node});
+
+      const hash = crypto
+        .createHash('md5')
+        .update(JSON.stringify(news))
+        .digest('hex');
+
+      createNode({
+        ...news,
+        identifier: news.id,
+        internal: {
+          type: 'NewsJson',
           contentDigest: hash,
           mediaType: 'application/json'
         }
@@ -211,6 +280,52 @@ exports.createPages = function({graphql, actions, emitter})  {
         createPage({
           path: slug,
           component: path.resolve('./src/templates/people.js'),
+          context
+        });
+      });
+    }),
+
+    // Publications
+    graphql(PUBLICATION_QUERY).then(result => {
+      if (!result.data)
+        return;
+
+      // Creating pages
+      result.data.allPublicationsJson.edges.forEach(edge => {
+        const publication = edge.node;
+
+        const slug = `/publication-${publication.identifier}/`;
+
+        const context = {
+          identifier: publication.identifier
+        };
+
+        createPage({
+          path: slug,
+          component: path.resolve('./src/templates/publication.js'),
+          context
+        });
+      });
+    }),
+
+    // News
+    graphql(NEWS_QUERY).then(result => {
+      if (!result.data)
+        return;
+
+      // Creating pages
+      result.data.allNewsJson.edges.forEach(edge => {
+        const news = edge.node;
+
+        const slug = `/news-${news.identifier}/`;
+
+        const context = {
+          identifier: news.identifier
+        };
+
+        createPage({
+          path: slug,
+          component: path.resolve('./src/templates/news.js'),
           context
         });
       });

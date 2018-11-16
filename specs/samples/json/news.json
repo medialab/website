@@ -3,6 +3,7 @@
     {
       "id": "c10d3935-abaa-4a6e-b581-adeef10e6d1e",
       "title": {
+        "en": "TOFLIT18 end seminar",
         "fr": "Séminaire de bouclage TOFLIT18"
       },
       "excerpt": {
@@ -10,6 +11,7 @@
         "fr": "Un vaillant séminaire pour clore le projet TOFLIT18."
       },
       "label": {
+        "en": "Seminar",
         "fr": "Séminaire"
       },
       "content": {

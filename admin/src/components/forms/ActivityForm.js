@@ -234,7 +234,9 @@ class ActivityForm extends Component {
                 placeholder="French Baseline"
                 rows={2} />
             </div>
-          </div><div className="field">
+          </div>
+
+          <div className="field">
             <label className="label">English Description</label>
             <div className="control">
               <textarea

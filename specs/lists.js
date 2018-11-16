@@ -20,7 +20,7 @@ module.exports = {
       property: function(n) {
         return n.title.fr || n.title.en;
       },
-      link: false
+      link: true
     }
   ],
   people: [

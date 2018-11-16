@@ -164,6 +164,30 @@ class PublicationFrom extends Component {
         <div className="column is-4">
 
           <div className="field">
+            <label className="label">English Title</label>
+            <div className="control">
+              <input
+                type="text"
+                className="input"
+                value={data.title.en}
+                onChange={this.handleEnglishTitle}
+                placeholder="English Title" />
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">French Title</label>
+            <div className="control">
+              <input
+                type="text"
+                className="input"
+                value={data.title.fr}
+                onChange={this.handleFrenchTitle}
+                placeholder="French Title" />
+            </div>
+          </div>
+
+          <div className="field">
             <label className="label">Published?</label>
             <div className="control">
               <input
@@ -171,6 +195,19 @@ class PublicationFrom extends Component {
                 checked={!data.draft}
                 onChange={this.handlePublished} />
             </div>
+          </div>
+
+          <div className="field">
+            <label className="label">English Content</label>
+            <Editor
+              rawContent={(data.content && data.content.en) || null}
+              onSave={this.handleEnglishContent} />
+          </div>
+          <div className="field">
+            <label className="label">French Content</label>
+            <Editor
+              rawContent={(data.content && data.content.fr) || null}
+              onSave={this.handleFrenchContent} />
           </div>
 
           <div className="field is-grouped">

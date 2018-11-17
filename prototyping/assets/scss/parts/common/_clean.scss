@@ -1,0 +1,55 @@
+html {
+    box-sizing: border-box;
+}
+
+body, html{
+	width: 100vw;
+	top: 0px;
+	left: 0px;
+	margin: 0px;
+	padding: 0px;
+    // overflow-x: hidden;
+    // overflow-y: auto;
+}
+
+
+*, *:before, *:after {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    font-smooth: never;
+    -moz-font-smooth: never;
+    
+   }
+
+em { font-style: italic; }
+
+button {
+    border: none;    
+    outline: none;
+}
+
+a { 
+    text-decoration: none;
+    color: currentColor;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+ul {
+ list-style-type: none; 
+ list-style-position: inside;
+}
+
+*:focus{
+    outline: none;
+}

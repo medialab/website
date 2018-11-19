@@ -4,6 +4,7 @@ const express = require('express');
 const config = require('config');
 const jsonServer = require('json-server');
 const fileUpload = require('express-fileupload');
+const uuid = require('uuid/v4');
 const fs = require('fs-extra');
 
 const middlewares = require('./middlewares.js');
@@ -69,11 +70,13 @@ server.post('/upload', (req, res) => {
   if (!file)
     return res.status(400).send('No file.');
 
-  file.mv(path.join(ASSETS_PATH, file.name), err => {
+  const name = `${uuid()}_${file.name}`;
+
+  file.mv(path.join(ASSETS_PATH, name), err => {
     if (err)
       return res.status(500).send(err);
 
-    return res.status(200).send('Ok');
+    return res.status(200).json({name});
   });
 });
 

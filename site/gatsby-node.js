@@ -14,6 +14,19 @@ const MODELS_PATHS = {};
 
 MODELS.forEach(model => MODELS_PATHS[model] = path.join(DB_PATH, `${model}.json`));
 
+const FILE_QUERY = `
+  {
+    allFile(filter: {sourceInstanceName: {eq: "assets"}}) {
+      edges {
+        node {
+          base,
+          publicURL
+        }
+      }
+    }
+  }
+`;
+
 const ACTIVITIES_QUERY = `
   {
     allActivitiesJson {
@@ -66,17 +79,16 @@ const NEWS_QUERY = `
   }
 `;
 
-// Helper extracting asset paths from html
-function extractAssetsFromHtml(html) {
-  const $ = cheerio.load(html);
+// Helper replacing HTML assets
+function replaceHTMLAssetPaths(html, index) {
 
-  const assets = [];
+  // TODO: this approach may be too slow in the future!
+  for (const base in index) {
+    const publicURL = index[base].publicURL;
+    html = html.replace(base, publicURL);
+  }
 
-  $('img').each(function() {
-    assets.push($(this).attr('src'));
-  });
-
-  return assets;
+  return html;
 }
 
 const MODEL_READERS = {
@@ -224,7 +236,9 @@ exports.sourceNodes = function({actions, getNode})  {
 exports.createPages = function({graphql, actions, emitter})  {
   const {createPage, deletePage} = actions;
 
-  const promises = [
+  let FILES = null;
+
+  const promises = () => [
 
     // Activities
     graphql(ACTIVITIES_QUERY).then(result => {
@@ -270,16 +284,16 @@ exports.createPages = function({graphql, actions, emitter})  {
         const slug = `/people-${person.identifier}/`;
 
         const context = {
-          assets: [],
-          identifier: person.identifier
+          identifier: person.identifier,
+          bio: {}
         };
 
         // Processing HTML
-        if (person.bio && person.bio.fr)
-          context.assets = extractAssetsFromHtml(person.bio.fr);
-
         if (person.bio && person.bio.en)
-          context.assets = context.assets.concat(extractAssetsFromHtml(person.bio.en));
+          context.bio.en = replaceHTMLAssetPaths(person.bio.en, FILES);
+
+        if (person.bio && person.bio.fr)
+          context.bio.fr = replaceHTMLAssetPaths(person.bio.fr, FILES);
 
         createPage({
           path: slug,
@@ -336,5 +350,7 @@ exports.createPages = function({graphql, actions, emitter})  {
     })
   ];
 
-  return Promise.all(promises);
+  return graphql(FILE_QUERY).then(result => {
+    FILES = _.keyBy(result.data.allFile.edges.map(e => e.node), 'base');
+  }).then(() => Promise.all(promises()));
 };

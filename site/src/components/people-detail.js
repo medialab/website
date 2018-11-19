@@ -9,18 +9,14 @@ export const queryFragment = graphql`
       en
       fr
     }
-    bio {
-      en
-      fr
-    }
     membership
     active
     draft
   }
 `;
 
-export default function PeopleDetail({data}) {
-  console.log(data);
+export default function PeopleDetail({data, bio}) {
+  console.log(data, bio);
 
   return (
     <div>
@@ -38,9 +34,9 @@ export default function PeopleDetail({data}) {
         <strong>FR title</strong>: {data.title && data.title.fr}
       </p>
       <hr />
-      {data.bio && data.bio.en && <div dangerouslySetInnerHTML={{__html: data.bio.en}} />}
+      {bio && bio.en && <div dangerouslySetInnerHTML={{__html: bio.en}} />}
       <hr />
-      {data.bio && data.bio.fr && <div dangerouslySetInnerHTML={{__html: data.bio.fr}} />}
+      {bio && bio.fr && <div dangerouslySetInnerHTML={{__html: bio.fr}} />}
     </div>
   );
 }

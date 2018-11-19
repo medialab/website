@@ -15,7 +15,7 @@
     <style type="text/css">
 	    canvas{
 			position: absolute;
-			width: calc(90vh*1.5);
+			/*width: calc(90vh*1.5);*/
 			height: 90%;
 			top: 50%;
 			left:50%;
@@ -38,7 +38,7 @@
 
 </head>
 <body>
-	<canvas id="world" width ="300" height="auto"></canvas>
+	<canvas id="world" width ="1000" height="1333"></canvas>
 </body>
 
 <script type="text/javascript">
@@ -47,8 +47,8 @@
 	  "pessoa.jpg";
 	const c = document.getElementById('world');
 	const ctx = c.getContext('2d');
-	const w = c.width = 600;
-	const h = c.height = 400;
+	const w = c.width = 250;
+	const h = c.height = 325;
 
 	const bounds = c.getBoundingClientRect();
 	let mx = w/2;

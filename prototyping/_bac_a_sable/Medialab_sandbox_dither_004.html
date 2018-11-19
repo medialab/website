@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	
+    <title>Medialab - Proto</title>
+    <!-- styles -->
+    <style type="text/css"></style>
+    <link rel="stylesheet" href="assets/fonts/stylesheet.css">
+    <link rel='stylesheet' type='text/css' href='assets/css-compiled/theme.css'>
+
+    <link rel="preload" href="src/Dither/example/index.js" as="script">
+
+
+    <!-- scripts -->
+    <style type="text/css">
+
+
+		html,body {
+			box-sizing: border-box;
+			width: 100%;
+			height: 100%;
+			position: relative;
+
+			overflow: visible;
+			min-height: 100vh;
+		}
+
+		img{
+			width: 25vw;
+		}
+
+    </style>
+
+</head>
+<body>
+		<img src="pessoa.jpg" style="filter: url(#half-tone);">
+		<img src="pessoa.jpg" style="filter: url(#half-tone2);">
+		<img src="pessoa.jpg" style="filter: url(#half-tone3);">
+		<img src="pessoa.jpg" style="filter: url(#half-tone4);">
+		<img src="pessoa.jpg" style="filter: url(#half-tone5);">
+
+		Source <a href="https://stanko.github.io/react-image-filter/">https://stanko.github.io/react-image-filter/</a>
+</body>
+
+<svg class="ImageFilter-svg" style="display: block; height: 100%; width: 100%; overflow: hidden; left: 0px; position: absolute; top: 0px;">
+	<filter id="half-tone" color-interpolation-filters="sRGB">
+		<feColorMatrix type="matrix" values="0.9 -0.1 0 -0.1 0.1 -1 0 0.4 -1 0.2734375 -1 0 0 -1 0.78125 0 0 0 1 0"></feColorMatrix>
+	</filter>
+
+	<filter id="half-tone2" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="-1 -0.3 0 0 1.1 -1 -1 -1 -1 -1 0.1 0.1 -1 -1 -1 -1 -0.2 0.2 0.8 0.1"></feColorMatrix></filter>
+
+	<filter id="half-tone3" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="-1 2 -1 0 1.1 -1 -1 1.2 -1 -1 0.1 0.1 -1 -1 -1 -1 -0.2 0.2 0.7 0.1"></feColorMatrix></filter>
+
+	<filter id="half-tone4" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0.5 0.1 0.1 -0.1 0.1 -1 -0.5 -0.5 -1 -1 -0.5078125 -1 -0.2 -0.4 0.6 0 0 0.4 1 0"></feColorMatrix></filter>
+
+	<filter id="half-tone5" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0.703125 0 0 0 0.15625 -0.15625 0 0 0 0.2734375 -0.5078125 0 0 0 0.78125 0 0 0 1 0"></feColorMatrix></filter>
+</svg>
+
+
+<script type="text/javascript">
+
+</script>
+
+<!--<script src="src/Dither/example/index.js"></script>-->
+<script src="index.js"></script>
+</html>

@@ -7,6 +7,7 @@ import Preview from '../Preview';
 
 const actionBarStyle = {
   borderTop: '1px solid #dbdbdb',
+  boxShadow: '0px -5px 7px -5px #ddd',
   padding: '10px',
   position: 'fixed',
   bottom: '0px',

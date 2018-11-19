@@ -13,6 +13,7 @@ export default class Editor extends Component {
       <div className="content">
         <DraftailEditor
           rawContentState={rawContent || null}
+          stripPastedStyles={false}
           onSave={onSave}
           entityTypes={[
             IMAGE

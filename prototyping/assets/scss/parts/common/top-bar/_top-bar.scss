@@ -5,6 +5,7 @@
     color: $color-header-text; 
     width: 100%;
     @include typo-header();
+    background-color: $background-site;
 }
 
 #logo-medialab svg{

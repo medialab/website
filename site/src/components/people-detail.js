@@ -26,7 +26,7 @@ export default function PeopleDetail({data}) {
     <div>
       <h1>People: {data.firstName} {data.lastName}</h1>
       {data.draft && <p><em>This is a draft.</em></p>}
-      {data.active && <p><em>This activity is active.</em></p>}
+      {data.active && <p><em>This people is active.</em></p>}
       <p>
         <strong>Membership type</strong>: {data.membership}
       </p>

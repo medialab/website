@@ -27,10 +27,17 @@ export default ({data, pageContext}) => {
     data.allFile.edges.forEach(edge => {
       const {base, publicURL} = edge.node;
 
-      data.peopleJson.bio = data.peopleJson.bio.replace(
-        base,
-        publicURL
-      );
+      if (data.peopleJson.bio.en)
+        data.peopleJson.bio.en = data.peopleJson.bio.en.replace(
+          base,
+          publicURL
+        );
+
+      if (data.peopleJson.bio.fr)
+        data.peopleJson.bio.fr = data.peopleJson.bio.fr.replace(
+          base,
+          publicURL
+        );
     });
 
   return (

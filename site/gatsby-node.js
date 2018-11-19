@@ -33,6 +33,7 @@ const PEOPLE_QUERY = `
       node {
         identifier
         bio {
+          en
           fr
         }
       }
@@ -276,6 +277,9 @@ exports.createPages = function({graphql, actions, emitter})  {
         // Processing HTML
         if (person.bio && person.bio.fr)
           context.assets = extractAssetsFromHtml(person.bio.fr);
+
+        if (person.bio && person.bio.en)
+          context.assets = context.assets.concat(extractAssetsFromHtml(person.bio.en));
 
         createPage({
           path: slug,

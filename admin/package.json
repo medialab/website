@@ -17,6 +17,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "async": "^2.6.1",
     "bulma": "^0.7.2",
     "classnames": "^2.2.6",
     "connected-react-router": "^5.0.1",

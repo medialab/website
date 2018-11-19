@@ -26,7 +26,11 @@ if (!fs.existsSync(settingsPath))
   fs.writeFileSync(
     settingsPath,
     JSON.stringify({
-      home: {}
+      settings: {
+        home: {
+          editorialization: []
+        }
+      }
     }, null, 2)
   );
 
@@ -62,6 +66,7 @@ server.use('/assets', express.static(ASSETS_PATH));
 ROUTERS.forEach(({model, router}) => {
   server.use(`/${model}`, middlewares.lastUpdated, router);
 });
+server.use('/settings', jsonServer.router(path.join(DATA_PATH, 'settings.json')));
 
 // custom routes
 server.post('/upload', (req, res) => {

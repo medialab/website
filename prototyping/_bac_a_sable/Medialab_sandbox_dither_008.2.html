@@ -8,7 +8,6 @@
     <title>Medialab - Proto</title>
     <!-- styles -->
     <style type="text/css"></style>
-    <link rel="preload" href="src/dither.js/index.js" as="script">
 
 
     <!-- scripts -->
@@ -16,7 +15,6 @@
 	    img, canvas{
 			position: relative;
 			/*width: calc(90vh*1.5);*/
-			width: 50vw;
 			/*height: 70%;
 			top: 50%;
 			left: 50%;
@@ -30,18 +28,64 @@
 			overflow-x:hidden
 		}
 
+		.dithered img{
+			position: relative;
+
+		}
+
+		.hide {
+			display: none;
+		}
+
     </style>
 
 </head>
 <body>
-	 <input type="file" id="uploader">
-
-	 <script type="text/javascript">
+	<div class="container">
+		<img id="origin" width="400" height="532" src="pessoa_400x532.jpg">
+	</div>
+	
+	<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', start, false);
 
     // 3bitdither/
     // The filereader code was ripped unceremoniously from http://www.html5rocks.com/en/tutorials/file/dndfiles/
-    document.addEventListener('load', handleFileSelect, false )
-    const imgSrc = "pessoa.jpg";
+
+    function start(){
+    	const origin = document.getElementById('origin');
+		
+		var img = new Image();
+
+		img.onload = function(){
+		    var width = origin.width;
+		    var height = origin.height;
+
+		    var width = origin.width;
+		    var height = origin.height;
+
+		    var canvas = document.createElement('canvas');
+		    canvas.width = width;
+		    canvas.height = height;
+		    var ctx = canvas.getContext('2d');
+
+		    ctx.drawImage(img, 0, 0); // Reset
+		    drawDitherResult(canvas, ditherAtkinsons, 'Atkinson\'s');
+		    ctx.drawImage(img, 0, 0); // Reset
+		    drawDitherResult(canvas, ditherFloydSteinberg, 'Floyd-Steinberg');
+		    ctx.drawImage(img, 0, 0); // Reset
+		    drawDitherResult(canvas, ditherHalftone, 'Halftone');
+		    ctx.drawImage(img, 0, 0);
+		    drawDitherResult(canvas, ditherBayer, 'Bayer (ordered) - 1 bit');
+		    ctx.drawImage(img, 0, 0);
+		    drawDitherResult(canvas, dither8Bit, 'Google Maps 8-Bit');
+		}
+
+		img.src = origin.src;
+
+
+    };
+
+
 
     function drawDitherResult(canvas, ditherer, text) {
         var ctx = canvas.getContext('2d');
@@ -51,10 +95,15 @@
         var img = new Image();
         img.src = canvas.toDataURL("image/png");
         h2 = document.createElement('h2');
+        div = document.createElement('div');
+        div.className = "dithered";
         h2.innerText = text;
         document.body.appendChild(h2);
-        document.body.appendChild(img);
-    }
+        div.appendChild(img);
+        document.body.appendChild(div);
+    }    
+
+	/*
     function handleFileSelect(e) {
         //var file = e.target.files[0];
         var file = imgSrc;
@@ -87,12 +136,11 @@
                 drawDitherResult(canvas, dither8Bit, 'Google Maps 8-Bit');
             }
             img.src = e.target.result;
-            img.src = imgSrc;
-            alert(img.src);
         }
         reader.readAsDataURL(file);
         this.style.display = 'none';
     }
+    */
     function adjustPixelError(data, i, error, multiplier) {
         data[i] = data[i] + multiplier * error[0]; 
         data[i + 1] = data[i + 1] + multiplier * error[1]; 
@@ -286,15 +334,15 @@
             data = imageData.data;
         for (var y = 0; y < height; y++) {
             for (var x = 0; x < width; x++) {
-                i = 4 * (y * width + x);
-                old_r = data[i]
+                i = 7 * (y * width + x); // 4 
+                old_r = data[i + 100]
                 old_g = data[i + 1]
                 old_b = data[i + 2];
                 new_r = (old_r > 127) ? 0xff : 0;
                 new_g = (old_g > 127) ? 0xff : 0;
                 new_b = (old_b > 127) ? 0xff : 0;
-                data[i] = new_r;
-                data[i + 1] = new_g;
+                data[i + 100] = new_r; //0
+                data[i + 0] = new_g; //1
                 data[i + 2] = new_b;
                 err_r = old_r - new_r;
                 err_g = old_g - new_g;
@@ -308,7 +356,7 @@
                     adjustPixelError(data, right_i, [err_r, err_g, err_b], 7/16);
                     // The pixel that's down and to the right
                     if (y < height - 1) {
-                        next_right_i = right_i + (width * 4)
+                        next_right_i = right_i + (width * 400) //4
                         adjustPixelError(data, next_right_i, [err_r, err_g, err_b], 1/16);
                     }
                 }

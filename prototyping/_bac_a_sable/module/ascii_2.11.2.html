@@ -1,0 +1,245 @@
+<style type="text/css">
+ 
+		#controls {
+		  display: none;
+		  text-align: left;
+		  text-overflow: hidden;
+		  overflow: hidden;
+		  float: left;
+		  width: 150px;
+		  position: fixed;
+		  /*display: block;*/
+		  background-color: white;
+		}
+
+		.allgradient{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+
+		}
+		.gradient {
+			width: 10%;
+			height: 100%;
+			display: inline-block;
+			background: red;
+			opacity: .1;
+			cursor: pointer;
+		}
+ 	
+ 		#mother pre{
+ 			padding: 0;
+ 			margin: 0;
+ 		}
+    </style>
+
+<div id="mother">
+	<div id="controls">
+		Blocks: <input id="blocks" type="checkbox" checked="true" onclick="swapSets(this.checked)"></input></br>
+		Gamma</br><input id="gamma" oninput="main(image)" type="range" min="-255" max="255" step="1" value="-125"></br>
+		  </input>
+		Brightness</br><input id="bright" oninput="bright(this.value)" type="range" min="100" max="900" step="100"></input></br>
+		Rows</br><input id="rows" oninput="main(image)" type="range" min="25" max="600" step="1" value="25"></input></br>
+		Zoom</br><input id="zoom" oninput="main(image)" type="range" min="0.1" max="5" step="0.1" value="4.5"></input></br>
+	</div>
+
+	<h2 style="background: white;width: auto;z-index: 9999;position: absolute;padding: .2rem .5rem .2rem .5rem;display: inline-block; margin: 2rem 1rem;font-size: 2rem;bottom: 0; z-index: 999">Un titre d'actualité</h2>
+		
+	<div class="allgradient">
+		<div class="gradient g1" position="1" ></div>
+		<div class="gradient g2" position="2"></div>
+		<div class="gradient g3" position="3"></div>
+		<div class="gradient g4" position="4"></div>
+		<div class="gradient g5" position="5"></div>
+		<div class="gradient g6" position="6"></div>
+		<div class="gradient g7" position="7"></div>
+		<div class="gradient g8" position="8"></div>
+		<div class="gradient g9" position="9"></div>
+		<div class="gradient g10" position="10"></div>
+	</div>
+
+	<div id="Image">
+
+	</div>
+
+</div>
+
+<script type="text/javascript">
+	var ibmMode = false;
+	var complexBlocks = ["$", "@", "B", "%", "8", "&amp;", "W", "M", "#", "*", "o", "a", "h", "k", "b", "d", "p", "q", "w", "m", "Z", "O", "0", "Q", "L", "C", "J", "U", "Y", "X", "z", "c", "v", "u", "n", "x", "r", "j", "f", "t", "/", "\\", "|", "(", ")", "1", "{", "}", "[", "]", "?", "&ndash;", "_", "+", "&tilde;", "&lt;", "&gt;", "i", "!", "l", "I", ";", ":", ",", "&quot;", "&circ;", "`", "&apos;", ".", "&nbsp;"];
+	//var complexBlocks = ["J", "O", "S", "I", "A", "N", "N", "E", ".", " "];
+	var simpleBlocks = ["&nbsp;", "\u2591", "\u2592", "\u2593", "\u2588"].reverse()
+	var blocks = simpleBlocks;
+	var ascii = new Object();
+	ascii.charWidth = 9;   // Width/height of the blocks
+	ascii.charHeight = 16;
+	var canvas = document.createElement("canvas");
+	var ctx = canvas.getContext('2d');
+	var image = new Image();
+	var mono;
+	image.src = "_bac_a_sable/pessoa_400x532.jpg";
+	image.onload = function() {
+	  ratio = image.width/image.height;
+	  //ascii.width = document.getElementById("rows").value;
+	  ascii.width = 25;
+	  ascii.height = ascii.width*ascii.charWidth/ratio/ascii.charHeight;
+	  
+	  canvas.width = ascii.width;
+	  canvas.height = ascii.height;
+	  
+	  main(image);
+	}
+	var video = document.createElement("video");
+	video.onloadstart = function() {
+	  video.autoplay = true;
+	  video.loop = true;
+	}
+	video.addEventListener( "loadedmetadata", function (e) {
+	    this.width = document.getElementById("rows").value;
+	    this.height = (this.videoHeight/this.videoWidth)*this.width;
+	    playVideo();
+	}, false );
+ 
+	numOBT = blocks.length;
+	numRatio = 765/numOBT;
+	function convert2Blocks(pixels, px, gamma, dbmode) {
+	  if(pixels[px+3] == 0) {
+	    return blocks[blocks.length-1];
+	  }
+	  block = Math.floor((pixels[px] + pixels[px + 1] + pixels[px + 2] -gamma)/numRatio)-1;
+	  if(block > numOBT-1) {block = numOBT-1}
+	  if(block < 0) {block = 0}
+	  return dbmode ? block : blocks[block];
+	}
+
+
+	function main(source) {
+	var mother = document.getElementById("mother");
+	  factor = document.getElementById("zoom").value;
+	  ascii.width = document.getElementById("rows").value;
+	  ascii.height = Math.round(ascii.width*ascii.charWidth/ratio/ascii.charHeight);
+	  
+	  canvas.width = ascii.width;
+	  canvas.height = ascii.height;
+	  ctx.drawImage(source, 0, 0, ascii.width, ascii.height);
+	  if(typeof finalProduct == "object") {
+	    mother.removeChild(finalProduct);
+	  }
+	  finalProduct = document.createElement("div");
+	  finalProduct.id = "image";
+	  finalProduct.className = "image";
+	  mother.appendChild(finalProduct);
+	  gamma = document.getElementById("gamma").value;
+	  pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+	  mono = [];
+	  finalProduct.style.fontSize = (factor * 10) + "px";
+	  pixelCount = 0;
+	  for(var y = 0; y < ascii.height; y++) {
+	    mono[y] = [];
+	    for(var x = 0; x < ascii.width*4; x += 4) {
+	      mono[y].push(convert2Blocks(pixels, pixelCount, gamma));
+	      pixelCount += 4;
+	    }
+	    mono[y] = mono[y].join("");
+	    newLine = document.createElement("pre");
+	    newLine.innerHTML = mono[y];
+	   finalProduct.appendChild(newLine);
+	   //finalProduct.setAttribute('onmouseover', 'change()');
+
+	  }
+	}
+ 
+	function playVideo() {
+	  ratio = video.width/video.height;
+	  ascii.width = document.getElementById("rows").value;
+	  ascii.height = ascii.width*ascii.charWidth/ratio/ascii.charHeight;
+	  
+	  canvas.width = ascii.width;
+	  canvas.height = ascii.height;
+	  
+	  ctx.drawImage(video, 0, 0, ascii.width, ascii.height);
+	  main(video);
+	  window.requestAnimationFrame(playVideo);
+	}
+	function bright(b) {
+	  mother.style.fontWeight = b;
+	}
+	function swapSets(s) {
+	  if(s) {
+	    blocks = simpleBlocks;
+	  }
+	  else {
+	    blocks = complexBlocks;
+	  }
+	  numOBT = blocks.length;
+	  numRatio = 765/numOBT;
+	  main(image);
+	}
+
+	var s = 0;
+	function threeD() {
+	  if(s == 0) {
+	    mother.style.textShadow = "none";
+	    return;
+	  }
+	  mother.style.textShadow = `-${s}em -${s}em red, ${s}em ${s}em blue`;
+	}
+ 
+	/*
+	function change(element) {
+
+	    	var value = 4.5 ; 
+	    	var row = 25; 
+			
+			Interval= setInterval(
+				function(){
+					if(value < 1){
+						return
+					}
+					value = value - ((value/10) - 0.05);
+					document.getElementById("zoom").value =  value;
+
+					row = row + 5;
+					document.getElementById("rows").value = row;
+
+					console.log(value, row);
+					main(image);
+					console.log('la fonction fonctionne');
+			    }, 100);
+
+	  	};
+
+ 	    function unchange(element) { 
+ 	    	clearTimeout(Interval);
+			document.getElementById("zoom").value = 4.5;
+			document.getElementById("rows").value = 25;
+			main(image);
+	  	};
+*/
+
+
+		var g = document.getElementsByClassName('gradient');
+		var i = 0
+		for (var i = 0; i < g.length; i++) {
+		    g[i].addEventListener("mouseover",
+			  	function gradient(element) {
+
+			  		var position = this.getAttribute('position');
+			  		console.log(position);
+			    	var value = 4.5 - (0.2 * position) ;
+
+				    	if( position > 1){
+				    		var row = 25 + (5 * position); 
+				    	}else{
+				    		var row = 25;
+				    	}
+
+					document.getElementById("zoom").value =  value;
+					document.getElementById("rows").value = row;
+
+					console.log("zoom " + value,"row " +  row);
+					main(image);
+					console.log('la fonction fonctionne');
+			  	});
+			};
+</script>

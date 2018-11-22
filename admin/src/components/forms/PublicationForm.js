@@ -10,9 +10,10 @@ import {rawToHtml, htmlToRaw} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
 
+import FormLayout from './FormLayout';
 import Editor from '../Editor';
 import Button from '../misc/Button';
-import EnumSelector from '../selectors/EnumSelector';
+import BooleanSelector from '../selectors/BooleanSelector';
 import RelationSelector from '../selectors/RelationSelector';
 import client from '../../client';
 
@@ -89,8 +90,8 @@ class PublicationFrom extends Component {
       });
   }
 
-  handlePublished = e => {
-    this.setState(set(['data', 'draft'], !e.target.checked, this.state));
+  handlePublished = value => {
+    this.setState(set(['data', 'draft'], !value, this.state));
   };
 
   handleAddPeople = id => {
@@ -160,74 +161,75 @@ class PublicationFrom extends Component {
       return <div>Loading...</div>;
 
     return (
-      <div className="columns">
-        <div className="column is-4">
+      <FormLayout
+        id={data.id}
+        new={this.state.new}
+        model="publications"
+        onSubmit={this.handleSubmit}>
+        <div className="container">
 
-          <div className="field">
-            <label className="label">English Title</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={data.title.en}
-                onChange={this.handleEnglishTitle}
-                placeholder="English Title" />
+          <div className="columns">
+            <div className="column is-3">
+              <div className="field">
+                <label className="label">English Title</label>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    value={data.title.en}
+                    onChange={this.handleEnglishTitle}
+                    placeholder="English Title" />
+                </div>
+              </div>
+            </div>
+
+            <div className="column is-3">
+              <div className="field">
+                <label className="label">French Title</label>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    value={data.title.fr}
+                    onChange={this.handleFrenchTitle}
+                    placeholder="French Title" />
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="field">
-            <label className="label">French Title</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={data.title.fr}
-                onChange={this.handleFrenchTitle}
-                placeholder="French Title" />
-            </div>
-          </div>
 
           <div className="field">
             <label className="label">Published?</label>
             <div className="control">
-              <input
-                type="checkbox"
-                checked={!data.draft}
+              <BooleanSelector
+                value={!data.draft}
                 onChange={this.handlePublished} />
             </div>
           </div>
 
-          <div className="field">
-            <label className="label">English Content</label>
-            <Editor
-              rawContent={(data.content && data.content.en) || null}
-              onSave={this.handleEnglishContent} />
-          </div>
-          <div className="field">
-            <label className="label">French Content</label>
-            <Editor
-              rawContent={(data.content && data.content.fr) || null}
-              onSave={this.handleFrenchContent} />
-          </div>
-
-          <div className="field is-grouped">
-            <div className="control">
-              <Button onClick={this.handleSubmit}>Save</Button>
+          <div className="columns">
+            <div className="column is-6">
+              <div className="field">
+                <label className="label">English Content</label>
+                <Editor
+                  rawContent={(data.content && data.content.en) || null}
+                  onSave={this.handleEnglishContent} />
+              </div>
             </div>
-            <div className="control">
-              <Link to="/publications" className="button is-text">Cancel</Link>
+
+            <div className="column is-6">
+              <div className="field">
+                <label className="label">French Content</label>
+                <Editor
+                  rawContent={(data.content && data.content.fr) || null}
+                  onSave={this.handleFrenchContent} />
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="column is-8">
-          {!this.state.new && (
-            <iframe
-              style={{border: '1px solid #ccc', width: '100%', height: '100%'}}
-              src={`${STATIC_URL}/publication-${data.id}`} />
-          )}
         </div>
-      </div>
+      </FormLayout>
     )
   }
 }

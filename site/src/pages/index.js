@@ -62,7 +62,7 @@ const IndexPage = ({data}) => {
       <ul>
         {activities.map(a => (
           <li key={a.id}>
-            <Link to={`/activity-${a.id}`}>{a.name}</Link>
+            <Link to={`/activities-${a.id}`}>{a.name}</Link>
           </li>
         ))}
       </ul>
@@ -80,7 +80,7 @@ const IndexPage = ({data}) => {
       <ul>
         {publications.map(p => (
           <li key={p.id}>
-            <Link to={`/publication-${p.id}`}>{p.title.fr || p.title.en}</Link>
+            <Link to={`/publications-${p.id}`}>{p.title.fr || p.title.en}</Link>
           </li>
         ))}
       </ul>

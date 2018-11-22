@@ -249,7 +249,7 @@ exports.createPages = function({graphql, actions, emitter})  {
       result.data.allActivitiesJson.edges.forEach(edge => {
         const activity = edge.node;
 
-        const slug = `/activity-${activity.identifier}/`;
+        const slug = `/activities-${activity.identifier}/`;
 
         const context = {
           identifier: activity.identifier
@@ -312,7 +312,7 @@ exports.createPages = function({graphql, actions, emitter})  {
       result.data.allPublicationsJson.edges.forEach(edge => {
         const publication = edge.node;
 
-        const slug = `/publication-${publication.identifier}/`;
+        const slug = `/publications-${publication.identifier}/`;
 
         const context = {
           identifier: publication.identifier

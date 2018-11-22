@@ -51,20 +51,24 @@ export default class RelationSelector extends Component {
 
     return (
       <div>
-        {!loading &&
-          <ul>
-            {selected.map(id => {
-              return (
-                <li key={id}>
-                  <span className="tag is-medium" style={{marginBottom: 3}}>
-                    {this.optionsIndex[id].label}
-                    &nbsp;<button className="delete is-small" onClick={() => onDrop(id)} />
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
-        }
+        {!loading && (
+            selected.length ? (
+                <ul>
+                  {selected.map(id => {
+                    return (
+                      <li key={id}>
+                        <span className="tag is-medium" style={{marginBottom: 3}}>
+                          {this.optionsIndex[id].label}
+                          &nbsp;<button className="delete is-small" onClick={() => onDrop(id)} />
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
+             ) : (
+              <p><em>No items yet...</em></p>
+            )
+        )}
         <br />
         <Select
           value={null}
@@ -73,7 +77,8 @@ export default class RelationSelector extends Component {
           isLoading={loading}
           menuPlacement="top"
           placeholder="Add..."
-          noOptionsMessage={noOptionsMessage} />
+          noOptionsMessage={noOptionsMessage}
+          styles={{menu: provided => ({...provided, zIndex: 1000})}} />
       </div>
     );
   }

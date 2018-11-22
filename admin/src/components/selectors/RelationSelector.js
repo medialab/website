@@ -5,7 +5,11 @@ import client from '../../client';
 
 import labels from '../../../../specs/labels';
 
-const noOptionsMessage = () => 'No matching people';
+const noOptionsMessages = {
+  activities: () => 'No matching activity',
+  people: () => 'No matching people',
+  publications: () => 'No matching publication'
+};
 
 export default class RelationSelector extends Component {
   constructor(props, context) {
@@ -45,9 +49,14 @@ export default class RelationSelector extends Component {
   render() {
     const {options, loading} = this.state;
 
-    const {onDrop, selected = []} = this.props;
+    const {self, model, onDrop, selected = []} = this.props;
 
     const selectedSet = new Set(selected);
+
+    let filteredOptions = options;
+
+    if (self)
+      filteredOptions = options.filter(o => o.value !== self);
 
     return (
       <div>
@@ -73,11 +82,11 @@ export default class RelationSelector extends Component {
         <Select
           value={null}
           onChange={this.handleChange}
-          options={options.filter(o => !selectedSet.has(o.value))}
+          options={filteredOptions.filter(o => !selectedSet.has(o.value))}
           isLoading={loading}
           menuPlacement="top"
           placeholder="Add..."
-          noOptionsMessage={noOptionsMessage}
+          noOptionsMessage={noOptionsMessages[model]}
           styles={{menu: provided => ({...provided, zIndex: 1000})}} />
       </div>
     );

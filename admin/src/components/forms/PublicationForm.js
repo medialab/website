@@ -99,6 +99,8 @@ class PublicationFrom extends Component {
     this.handleDropActivity = createDropRelationHandler(this, 'activities');
     this.handleAddPeople = createAddRelationHandler(this, 'people');
     this.handleDropPeople = createDropRelationHandler(this, 'people');
+    this.handleAddPublication = createAddRelationHandler(this, 'publications');
+    this.handleDropPublication = createDropRelationHandler(this, 'publications');
   }
 
   componentDidMount() {
@@ -234,6 +236,21 @@ class PublicationFrom extends Component {
           <div className="columns">
             <div className="column is-3">
               <div className="field">
+                <label className="label">Related Activities</label>
+                <div className="control">
+                  <RelationSelector
+                    model="activities"
+                    selected={data.activities}
+                    onAdd={this.handleAddActivity}
+                    onDrop={this.handleDropActivity} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="columns">
+            <div className="column is-3">
+              <div className="field">
                 <label className="label">Related People</label>
                 <div className="control">
                   <RelationSelector
@@ -249,13 +266,14 @@ class PublicationFrom extends Component {
           <div className="columns">
             <div className="column is-3">
               <div className="field">
-                <label className="label">Related Activities</label>
+                <label className="label">Related Publications</label>
                 <div className="control">
                   <RelationSelector
-                    model="activities"
-                    selected={data.activities}
-                    onAdd={this.handleAddActivity}
-                    onDrop={this.handleDropActivity} />
+                    model="publications"
+                    self={data.id}
+                    selected={data.publications}
+                    onAdd={this.handleAddPublication}
+                    onDrop={this.handleDropPublication} />
                 </div>
               </div>
             </div>

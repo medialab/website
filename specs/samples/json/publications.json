@@ -25,6 +25,33 @@
       "publications": [],
       "date": "2016-07-21",
       "draft": false
+    },
+    {
+      "id": "05140bf5-1118-4992-9b67-8b5ac495b3b0",
+      "title": {
+        "fr": "Datascape Ricardo",
+        "en": "Ricardo Datascape"
+      },
+      "abstract": {
+        "fr": "Présentation du datascape du projet Ricardo",
+        "en": "Presenting the Ricardo project's datascape."
+      },
+      "type": "web",
+      "content": {
+        "en": "<p>A super datascape <b>so</b> good!</p>",
+        "fr": "<p>Un super datascape <b>trop</b> bien!</p>"
+      },
+      "activities": [
+        "4ca78423-c064-466f-9ce9-43b656ca083c"
+      ],
+      "people": [
+        "9f735836-44ea-40f4-8e95-9b8a7416d9a7"
+      ],
+      "publications": [
+        "137a9796-a16d-4251-9721-aaaebcc8c620"
+      ],
+      "date": "2016-07-21",
+      "draft": false
     }
   ]
 }

@@ -13,7 +13,7 @@ const actionBarStyle = {
   position: 'fixed',
   bottom: '0px',
   backgroundColor: 'white',
-  zIndex: 1000
+  zIndex: 500
 };
 
 export default class Form extends Component {

@@ -14,6 +14,7 @@ import FormLayout from './FormLayout';
 import Editor from '../Editor';
 import Button from '../misc/Button';
 import BooleanSelector from '../selectors/BooleanSelector';
+import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector from '../selectors/RelationSelector';
 import client from '../../client';
 
@@ -44,6 +45,26 @@ function createRawHandler(scope, key) {
   };
 }
 
+function createAddRelationHandler(scope, key) {
+  return id => {
+    const data = get(scope.state.data, key, []);
+
+    data.push(id);
+
+    scope.setState(set(['data', key], data, scope.state));
+  };
+}
+
+function createDropRelationHandler(scope, key) {
+  return id => {
+    let data = get(scope.state.data, key, []);
+
+    data = data.filter(i => i !== id);
+
+    scope.setState(set(['data', key], data, scope.state));
+  };
+}
+
 class PublicationFrom extends Component {
   constructor(props, context) {
     super(props, context);
@@ -70,6 +91,14 @@ class PublicationFrom extends Component {
     // Handlers
     this.handleEnglishTitle = createHandler(this, ['data', 'title', 'en']);
     this.handleFrenchTitle = createHandler(this, ['data', 'title', 'fr']);
+    this.handleEnglishAbstract = createHandler(this, ['data', 'abstract', 'en']);
+    this.handleFrenchAbstract = createHandler(this, ['data', 'abstract', 'fr']);
+    this.handleType = createRawHandler(this, ['data', 'type']);
+
+    this.handleAddActivity = createAddRelationHandler(this, 'activities');
+    this.handleDropActivity = createDropRelationHandler(this, 'activities');
+    this.handleAddPeople = createAddRelationHandler(this, 'people');
+    this.handleDropPeople = createDropRelationHandler(this, 'people');
   }
 
   componentDidMount() {
@@ -92,22 +121,6 @@ class PublicationFrom extends Component {
 
   handlePublished = value => {
     this.setState(set(['data', 'draft'], !value, this.state));
-  };
-
-  handleAddPeople = id => {
-    const people = get(this.state.data, 'people', []);
-
-    people.push(id);
-
-    this.setState(set(['data', 'people'], people, this.state));
-  };
-
-  handleDropPeople = id => {
-    let people = get(this.state.data, 'people', []);
-
-    people = people.filter(p => p !== id);
-
-    this.setState(set(['data', 'people'], people, this.state));
   };
 
   handleEnglishContent = content => {
@@ -205,6 +218,76 @@ class PublicationFrom extends Component {
               <BooleanSelector
                 value={!data.draft}
                 onChange={this.handlePublished} />
+            </div>
+          </div>
+
+          <div className="field">
+            <label className="label">Type?</label>
+            <div className="control">
+              <EnumSelector
+                enumType="publicationTypes"
+                value={data.type}
+                onChange={this.handleType} />
+            </div>
+          </div>
+
+          <div className="columns">
+            <div className="column is-3">
+              <div className="field">
+                <label className="label">Related People</label>
+                <div className="control">
+                  <RelationSelector
+                    model="people"
+                    selected={data.people}
+                    onAdd={this.handleAddPeople}
+                    onDrop={this.handleDropPeople} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="columns">
+            <div className="column is-3">
+              <div className="field">
+                <label className="label">Related Activities</label>
+                <div className="control">
+                  <RelationSelector
+                    model="activities"
+                    selected={data.activities}
+                    onAdd={this.handleAddActivity}
+                    onDrop={this.handleDropActivity} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="columns">
+            <div className="column is-6">
+              <div className="field">
+                <label className="label">English Abstract</label>
+                <div className="control">
+                  <textarea
+                    className="textarea"
+                    value={(data.abstract && data.abstract.en) || ''}
+                    onChange={this.handleEnglishAbstract}
+                    placeholder="English Abstract"
+                    rows={2} />
+                </div>
+              </div>
+            </div>
+
+            <div className="column is-6">
+              <div className="field">
+                <label className="label">French Abstract</label>
+                <div className="control">
+                  <textarea
+                    className="textarea"
+                    value={(data.abstract && data.abstract.fr) || ''}
+                    onChange={this.handleFrenchAbstract}
+                    placeholder="French Abstract"
+                    rows={2} />
+                </div>
+              </div>
             </div>
           </div>
 

@@ -22,6 +22,9 @@ module.exports = {
     'gatsby-plugin-offline'
   ],
   mapping: {
-    'ActivitiesJson.people': 'PeopleJson'
+    'ActivitiesJson.people': 'PeopleJson',
+    'PublicationsJson.activities': 'ActivitiesJson',
+    'PublicationsJson.people': 'PeopleJson',
+    'PublicationsJson.publications': 'PublicationsJson'
   }
 };

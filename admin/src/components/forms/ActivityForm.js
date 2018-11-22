@@ -177,14 +177,6 @@ class ActivityForm extends Component {
         onSubmit={this.handleSubmit}>
         <div className="container">
 
-          {/*
-          <div className="columns">
-            <div className="column is-3">
-
-            </div>
-          </div>
-        */}
-
           <div className="columns">
             <div className="column is-3">
               <div className="field">

@@ -213,7 +213,6 @@ class PublicationFrom extends Component {
             </div>
           </div>
 
-
           <div className="field">
             <label className="label">Published?</label>
             <div className="control">

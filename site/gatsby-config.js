@@ -25,6 +25,9 @@ module.exports = {
     'ActivitiesJson.people': 'PeopleJson',
     'PublicationsJson.activities': 'ActivitiesJson',
     'PublicationsJson.people': 'PeopleJson',
-    'PublicationsJson.publications': 'PublicationsJson'
+    'PublicationsJson.publications': 'PublicationsJson',
+    'NewsJson.activities': 'ActivitiesJson',
+    'NewsJson.people': 'PeopleJson',
+    'NewsJson.publications': 'PublicationsJson'
   }
 };

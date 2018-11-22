@@ -15,13 +15,18 @@
         "fr": "Séminaire"
       },
       "content": {
+        "en": "<p>This next tuesday is organized in the lab a closing seminary for the TOFLIT18 project.</p>",
         "fr": "<p>Ce mardi prochain est organisé au laboratoire le séminaire de clôture du projet TOFLIT18.</p>"
       },
-      "activities": [],
+      "activities": [
+        "beec8f47-80fa-4188-930b-7c20ce5ddcce"
+      ],
       "people": [
         "32fcbf11-d66d-4a41-bbe6-132021adc3e2"
       ],
-      "publications": [],
+      "publications": [
+        "137a9796-a16d-4251-9721-aaaebcc8c620"
+      ],
       "startDate": "2018-11-21",
       "draft": false
     }

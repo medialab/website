@@ -45,6 +45,26 @@ function createRawHandler(scope, key) {
   };
 }
 
+function createAddRelationHandler(scope, key) {
+  return id => {
+    const data = get(scope.state.data, key, []);
+
+    data.push(id);
+
+    scope.setState(set(['data', key], data, scope.state));
+  };
+}
+
+function createDropRelationHandler(scope, key) {
+  return id => {
+    let data = get(scope.state.data, key, []);
+
+    data = data.filter(i => i !== id);
+
+    scope.setState(set(['data', key], data, scope.state));
+  };
+}
+
 class NewsForm extends Component {
   constructor(props, context) {
     super(props, context);
@@ -71,6 +91,17 @@ class NewsForm extends Component {
     // Handlers
     this.handleEnglishTitle = createHandler(this, ['data', 'title', 'en']);
     this.handleFrenchTitle = createHandler(this, ['data', 'title', 'fr']);
+    this.handleEnglishExcerpt = createHandler(this, ['date', 'excerpt', 'en']);
+    this.handleFrenchExcerpt = createHandler(this, ['date', 'excerpt', 'fr']);
+    this.handleEnglishLabel = createHandler(this, ['date', 'label', 'en']);
+    this.handleFrenchLabel = createHandler(this, ['date', 'label', 'fr']);
+
+    this.handleAddActivity = createAddRelationHandler(this, 'activities');
+    this.handleDropActivity = createDropRelationHandler(this, 'activities');
+    this.handleAddPeople = createAddRelationHandler(this, 'people');
+    this.handleDropPeople = createDropRelationHandler(this, 'people');
+    this.handleAddPublication = createAddRelationHandler(this, 'publications');
+    this.handleDropPublication = createDropRelationHandler(this, 'publications');
   }
 
   componentDidMount() {
@@ -93,22 +124,6 @@ class NewsForm extends Component {
 
   handlePublished = value => {
     this.setState(set(['data', 'draft'], !value, this.state));
-  };
-
-  handleAddPeople = id => {
-    const people = get(this.state.data, 'people', []);
-
-    people.push(id);
-
-    this.setState(set(['data', 'people'], people, this.state));
-  };
-
-  handleDropPeople = id => {
-    let people = get(this.state.data, 'people', []);
-
-    people = people.filter(p => p !== id);
-
-    this.setState(set(['data', 'people'], people, this.state));
   };
 
   handleEnglishContent = content => {
@@ -169,12 +184,167 @@ class NewsForm extends Component {
         onSubmit={this.handleSubmit}>
         <div className="container">
 
+          <div className="columns">
+            <div className="column is-3">
+              <div className="field">
+                <label className="label">English Title</label>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    value={data.title.en}
+                    onChange={this.handleEnglishTitle}
+                    placeholder="English Title" />
+                </div>
+              </div>
+            </div>
+
+            <div className="column is-3">
+              <div className="field">
+                <label className="label">French Title</label>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    value={data.title.fr}
+                    onChange={this.handleFrenchTitle}
+                    placeholder="French Title" />
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="field">
             <label className="label">Published?</label>
             <div className="control">
               <BooleanSelector
                 value={!data.draft}
                 onChange={this.handlePublished} />
+            </div>
+          </div>
+
+          <div className="columns">
+            <div className="column is-3">
+              <div className="field">
+                <label className="label">Related Activities</label>
+                <div className="control">
+                  <RelationSelector
+                    model="activities"
+                    selected={data.activities}
+                    onAdd={this.handleAddActivity}
+                    onDrop={this.handleDropActivity} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="columns">
+            <div className="column is-3">
+              <div className="field">
+                <label className="label">Related People</label>
+                <div className="control">
+                  <RelationSelector
+                    model="people"
+                    selected={data.people}
+                    onAdd={this.handleAddPeople}
+                    onDrop={this.handleDropPeople} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="columns">
+            <div className="column is-3">
+              <div className="field">
+                <label className="label">Related Publications</label>
+                <div className="control">
+                  <RelationSelector
+                    model="publications"
+                    selected={data.publications}
+                    onAdd={this.handleAddPublication}
+                    onDrop={this.handleDropPublication} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="columns">
+            <div className="column is-3">
+              <div className="field">
+                <label className="label">English Label</label>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    value={data.label.en}
+                    onChange={this.handleEnglishLabel}
+                    placeholder="English Label" />
+                </div>
+              </div>
+            </div>
+
+            <div className="column is-3">
+              <div className="field">
+                <label className="label">French Label</label>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    value={data.label.fr}
+                    onChange={this.handleFrenchLabel}
+                    placeholder="French Label" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="columns">
+            <div className="column is-6">
+              <div className="field">
+                <label className="label">English Excerpt</label>
+                <div className="control">
+                  <textarea
+                    className="textarea"
+                    value={(data.excerpt && data.excerpt.en) || ''}
+                    onChange={this.handleEnglishExcerpt}
+                    placeholder="English Excerpt"
+                    rows={2} />
+                </div>
+              </div>
+            </div>
+
+            <div className="column is-6">
+              <div className="field">
+                <label className="label">French Excerpt</label>
+                <div className="control">
+                  <textarea
+                    className="textarea"
+                    value={(data.excerpt && data.excerpt.fr) || ''}
+                    onChange={this.handleFrenchExcerpt}
+                    placeholder="French Excerpt"
+                    rows={2} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="columns">
+            <div className="column is-6">
+              <div className="field">
+                <label className="label">English Content</label>
+                <Editor
+                  rawContent={(data.content && data.content.en) || null}
+                  onSave={this.handleEnglishContent} />
+              </div>
+            </div>
+
+            <div className="column is-6">
+              <div className="field">
+                <label className="label">French Content</label>
+                <Editor
+                  rawContent={(data.content && data.content.fr) || null}
+                  onSave={this.handleFrenchContent} />
+              </div>
             </div>
           </div>
 

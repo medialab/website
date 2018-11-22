@@ -77,6 +77,10 @@ export default function PublicationDetail({data}) {
           {(data.publications || []).map(p => <li key={p.id}>{p.id}</li>)}
         </ul>
       </div>
+      <hr />
+      {data.content && data.content.en && <div dangerouslySetInnerHTML={{__html: data.content.en}} />}
+      <hr />
+      {data.content && data.content.fr && <div dangerouslySetInnerHTML={{__html: data.content.fr}} />}
     </div>
   );
 }

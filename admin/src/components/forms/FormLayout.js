@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import TimeAgo from 'react-timeago';
 import {Link} from 'react-router-dom';
 import cls from 'classnames';
 
@@ -20,6 +21,9 @@ export default class Form extends Component {
     super(props, context);
 
     this.state = {
+      saving: false,
+      signaling: false,
+      time: null,
       view: 'edit'
     };
   }
@@ -38,10 +42,21 @@ export default class Form extends Component {
     this.setState({view: 'preview'});
   };
 
-  render() {
-    const {view} = this.state;
+  handleSubmit = () => {
+    this.setState({saving: true});
+    this.props.onSubmit();
 
-    const {id, children, model, onSubmit} = this.props;
+    setTimeout(() => {
+      this.setState({saving: false, signaling: true});
+
+      setTimeout(() => this.setState({signaling: false, time: Date.now()}), 1500);
+    }, 1000);
+  };
+
+  render() {
+    const {saving, signaling, time, view} = this.state;
+
+    const {id, children, model} = this.props;
 
     return (
       <div>
@@ -72,11 +87,22 @@ export default class Form extends Component {
                     <div className="level-left">
                       <div className="field is-grouped">
                         <div className="control">
-                          <Button onClick={onSubmit}>Save</Button>
+                          <Button
+                            kind={signaling ? 'success' : 'raw'}
+                            loading={saving}
+                            onClick={!signaling ? this.handleSubmit : Function.prototype}>
+                            {signaling ? 'Saved!' : 'Save'}
+                          </Button>
                         </div>
                         <div className="control">
                           <Link to={`/${model}`} className="button is-text">Cancel</Link>
                         </div>
+
+                        {time && (
+                          <div className="level-item">
+                            <small><em>Last saved <TimeAgo date={time} minPeriod={10} /></em></small>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>

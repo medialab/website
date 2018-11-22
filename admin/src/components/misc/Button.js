@@ -4,14 +4,18 @@ import cls from 'classnames';
 export default function Button(props) {
   const {
     children,
+    kind = 'raw',
     loading = false,
     disabled = false,
+    rounded = false,
     onClick
   } = props;
 
   const className = cls(
     'button',
-    loading && 'is-loading'
+    loading && 'is-loading',
+    rounded && 'is-rounded',
+    kind !== 'raw' && `is-${kind}`
   );
 
   return (

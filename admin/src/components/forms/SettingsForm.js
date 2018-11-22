@@ -26,12 +26,17 @@ export default class SettingsForm extends Component {
 
     return (
       <div>
-        <h2 className="title is-4">Home Page</h2>
-        <EditorializationSelector
-          model="people"
-          selected={settings.home.editorialization} />
-        <br />
-        <Button>Save</Button>
+
+        <div className="columns">
+          <div className="column is-4">
+            <h2 className="title is-4">Home Page</h2>
+            <EditorializationSelector
+              model="people"
+              selected={settings.home.editorialization} />
+            <br />
+            <Button>Save</Button>
+          </div>
+        </div>
       </div>
     );
   }

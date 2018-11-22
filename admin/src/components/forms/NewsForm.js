@@ -10,8 +10,10 @@ import {rawToHtml, htmlToRaw} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
 
+import FormLayout from './FormLayout';
 import Editor from '../Editor';
 import Button from '../misc/Button';
+import BooleanSelector from '../selectors/BooleanSelector';
 import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector from '../selectors/RelationSelector';
 import client from '../../client';
@@ -89,8 +91,8 @@ class NewsForm extends Component {
       });
   }
 
-  handlePublished = e => {
-    this.setState(set(['data', 'draft'], !e.target.checked, this.state));
+  handlePublished = value => {
+    this.setState(set(['data', 'draft'], !value, this.state));
   };
 
   handleAddPeople = id => {
@@ -160,37 +162,24 @@ class NewsForm extends Component {
       return <div>Loading...</div>;
 
     return (
-      <div className="columns">
-        <div className="column is-4">
+      <FormLayout
+        id={data.id}
+        new={this.state.new}
+        model="news"
+        onSubmit={this.handleSubmit}>
+        <div className="container">
 
           <div className="field">
             <label className="label">Published?</label>
             <div className="control">
-              <input
-                type="checkbox"
-                checked={!data.draft}
+              <BooleanSelector
+                value={!data.draft}
                 onChange={this.handlePublished} />
             </div>
           </div>
 
-          <div className="field is-grouped">
-            <div className="control">
-              <Button onClick={this.handleSubmit}>Save</Button>
-            </div>
-            <div className="control">
-              <Link to="/news" className="button is-text">Cancel</Link>
-            </div>
-          </div>
         </div>
-
-        <div className="column is-8">
-          {!this.state.new && (
-            <iframe
-              style={{border: '1px solid #ccc', width: '100%', height: '100%'}}
-              src={`${STATIC_URL}/news-${data.id}`} />
-          )}
-        </div>
-      </div>
+      </FormLayout>
     )
   }
 }

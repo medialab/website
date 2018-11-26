@@ -12,6 +12,7 @@ export const queryFragment = graphql`
     membership
     active
     draft
+    lastUpdated
   }
 `;
 
@@ -37,6 +38,8 @@ export default function PeopleDetail({data, bio}) {
       {bio && bio.en && <div dangerouslySetInnerHTML={{__html: bio.en}} />}
       <hr />
       {bio && bio.fr && <div dangerouslySetInnerHTML={{__html: bio.fr}} />}
+      <div>dernière mise à jour : {data.lastUpdated ? new Date(data.lastUpdated).toLocaleString() : 'jamais modifié !'}</div>
     </div>
+    
   );
 }

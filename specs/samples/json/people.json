@@ -28,7 +28,8 @@
       },
       "membership": "member",
       "active": true,
-      "draft": false
+      "draft": false,
+      "lastUpdated": 1543239519907
     },
     {
       "id": "a83a3035-aba7-4157-a5da-df076157c5ac",

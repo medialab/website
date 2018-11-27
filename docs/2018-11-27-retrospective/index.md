@@ -92,7 +92,10 @@ Oui carrément.
 - prochaine session UX du CMS le 6 décembre
 
 # Actions notées
-- communiquer un accès VPN à Thomas
+
+(les actions exhaustives ont été saisies dans la [colonne TODO du projet GitHub](https://github.com/medialab/website/projects/4#column-3881534))
+
+- communiquer un accès VPN à Thomas, Benjamin et Amélie
 - prévoir des points UX
 - définir un déploiement en production en « semi »
 - transposer le Google Doc des contenus sur le CMS

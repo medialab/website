@@ -2,6 +2,7 @@
   "publications": [
     {
       "id": "137a9796-a16d-4251-9721-aaaebcc8c620",
+      "lastUpdated": 1543332209050,
       "title": {
         "fr": "Datascape TOFLIT18",
         "en": "TOFLIT18 Datascape"
@@ -28,6 +29,7 @@
     },
     {
       "id": "05140bf5-1118-4992-9b67-8b5ac495b3b0",
+      "lastUpdated": 1543332209050,
       "title": {
         "fr": "Datascape Ricardo",
         "en": "Ricardo Datascape"

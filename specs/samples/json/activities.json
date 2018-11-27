@@ -2,6 +2,7 @@
   "activities": [
     {
       "id": "beec8f47-80fa-4188-930b-7c20ce5ddcce",
+      "lastUpdated": 1543332209050,
       "name": "TOFLIT18",
       "baseline": {
         "en": "A project about trade in the XVIIIth century.",
@@ -25,6 +26,7 @@
     },
     {
       "id": "4ca78423-c064-466f-9ce9-43b656ca083c",
+      "lastUpdated": 1543332209050,
       "name": "RICARDO",
       "baseline": {
         "en": "A project about trade in the XIX-XXth century.",

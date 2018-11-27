@@ -37,6 +37,10 @@ Est-ce qu'il y a des questions avant qu'on passe à la première étape ?
 - les pitchs projet (Amélie) • https://docs.google.com/document/d/17PrKSFKewsm2OqEM_oMHxPvU7okuq5G2mW8zt8EeHsE/edit?ts=5bec2338#heading=h.hen36rvjdllk
 - les images (Amélie + Donato) • Amélie prépare un dossier et on verra en dehors
 
+![Aperçu du front-end](frontend.png)
+
+![Aperçu du CMS](backend.png)
+
 
 # Suivi des actions
 

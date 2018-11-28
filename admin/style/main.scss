@@ -13,3 +13,11 @@ html, body, #app {
 .modal {
   z-index: 10000;
 }
+
+.tags-container{
+  display: flex;
+
+  > li{
+    margin-right: 1rem;
+  }
+}

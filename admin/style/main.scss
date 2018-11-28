@@ -21,3 +21,12 @@ html, body, #app {
     margin-right: 1rem;
   }
 }
+
+.form-group{
+  margin-bottom: 4rem;
+
+  &.is-important{
+    background: $white-ter;// rgba(0,0,0,0.1);
+    padding: 1rem;
+  }
+}

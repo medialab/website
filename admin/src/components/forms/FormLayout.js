@@ -65,13 +65,13 @@ export default class Form extends Component {
             <li
               className={cls(view === 'edit' && 'is-active')}
               onClick={this.toggleEdit}>
-              <a>Edit</a>
+              <a>Edit {model}</a>
             </li>
             {!this.props.new && (
               <li
                 className={cls(view === 'preview' && 'is-active')}
                 onClick={this.togglePreview}>
-                <a>Preview</a>
+                <a>Preview {model} page</a>
               </li>
             )}
           </ul>
@@ -91,7 +91,7 @@ export default class Form extends Component {
                             kind={signaling ? 'success' : 'raw'}
                             loading={saving}
                             onClick={!signaling ? this.handleSubmit : Function.prototype}>
-                            {signaling ? 'Saved!' : 'Save'}
+                            {signaling ? `${model} saved!` : `Save this ${model}`}
                           </Button>
                         </div>
                         <div className="control">

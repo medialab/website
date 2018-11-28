@@ -197,7 +197,7 @@ class PeopleForm extends Component {
             <div className="columns">
               <div className="column is-6">
                 <div className="field">
-                  <label className="label">The person works presently with médialab</label>
+                  <label className="label">History of the relation</label>
                   <div className="control">
                     <BooleanSelector
                       value={data.active}

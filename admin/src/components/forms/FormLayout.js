@@ -26,6 +26,20 @@ export default class Form extends Component {
       time: null,
       view: 'edit'
     };
+
+    this.el = React.createRef();
+  }
+
+  componentDidMount = () => {
+    setTimeout(() => {
+        if (this.el) {
+          const inputs = this.el.current.getElementsByTagName('input');
+          const input = inputs.length && inputs[0];
+          if (input) {
+            input.focus();
+          }
+        }
+    }, 200)
   }
 
   toggleEdit = () => {
@@ -59,7 +73,7 @@ export default class Form extends Component {
     const {id, children, model} = this.props;
 
     return (
-      <div>
+      <div ref={this.el}>
         <div className="tabs is-boxed">
           <ul>
             <li

@@ -107,11 +107,11 @@ export default class Form extends Component {
                             kind={signaling ? 'success' : 'raw'}
                             loading={saving}
                             onClick={!signaling ? this.handleSubmit : Function.prototype}>
-                            {signaling ? `${model} saved!` : `Save this ${model}`}
+                            {signaling ? `${pageLabel} saved!` : `Save this ${pageLabel}`}
                           </Button>
                         </div>
                         <div className="control">
-                          <Link to={`/${model}`} className="button is-text">Cancel</Link>
+                          <Link to={`/${pageLabel}`} className="button is-text">Cancel</Link>
                         </div>
 
                         {time && (

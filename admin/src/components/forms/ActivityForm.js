@@ -174,7 +174,7 @@ class ActivityForm extends Component {
         id={data.id}
         new={this.state.new}
         model="activities"
-        label="publication"
+        label="activity"
         onSubmit={this.handleSubmit}>
         <div className="container">
 

@@ -155,6 +155,7 @@ class PeopleForm extends Component {
         id={data.id}
         new={this.state.new}
         model="people"
+        label="person"
         onSubmit={this.handleSubmit}>
         <div className="container">
           

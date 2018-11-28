@@ -70,7 +70,9 @@ export default class Form extends Component {
   render() {
     const {saving, signaling, time, view} = this.state;
 
-    const {id, children, model} = this.props;
+    const {id, children, model, label} = this.props;
+
+    const pageLabel = label || model;
 
     return (
       <div ref={this.el}>
@@ -79,13 +81,13 @@ export default class Form extends Component {
             <li
               className={cls(view === 'edit' && 'is-active')}
               onClick={this.toggleEdit}>
-              <a>Edit {model}</a>
+              <a>Edit {pageLabel}</a>
             </li>
             {!this.props.new && (
               <li
                 className={cls(view === 'preview' && 'is-active')}
                 onClick={this.togglePreview}>
-                <a>Preview {model} page</a>
+                <a>Preview {pageLabel} page</a>
               </li>
             )}
           </ul>

@@ -4,6 +4,7 @@ const path = require('path');
 const chokidar = require('chokidar');
 const createPaginatedPages = require('gatsby-paginate');
 const cheerio = require('cheerio');
+const GraphQLTypes = require('gatsby/graphql');
 const _ = require('lodash');
 
 const MODELS = require('../specs/models.json');
@@ -353,4 +354,17 @@ exports.createPages = function({graphql, actions, emitter})  {
   return graphql(FILE_QUERY).then(result => {
     FILES = _.keyBy(result.data.allFile.edges.map(e => e.node), 'base');
   }).then(() => Promise.all(promises()));
+};
+
+exports.setFieldsOnGraphQLNodeType = ({type}) => {
+
+  if (type.name === 'PeopleJson') {
+    return {
+      lastUpdated: {
+        type: GraphQLTypes.GraphQLString
+      }
+    };
+  }
+
+  return {};
 };

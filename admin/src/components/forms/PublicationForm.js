@@ -45,7 +45,27 @@ function createRawHandler(scope, key) {
   };
 }
 
-class ActivityForm extends Component {
+function createAddRelationHandler(scope, key) {
+  return id => {
+    const data = get(scope.state.data, key, []);
+
+    data.push(id);
+
+    scope.setState(set(['data', key], data, scope.state));
+  };
+}
+
+function createDropRelationHandler(scope, key) {
+  return id => {
+    let data = get(scope.state.data, key, []);
+
+    data = data.filter(i => i !== id);
+
+    scope.setState(set(['data', key], data, scope.state));
+  };
+}
+
+class PublicationFrom extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -69,18 +89,24 @@ class ActivityForm extends Component {
     }
 
     // Handlers
-    this.handleName = createHandler(this, ['data', 'name']);
-    this.handleEnglishBaseline = createHandler(this, ['data', 'baseline', 'en']);
-    this.handleFrenchBaseline = createHandler(this, ['data', 'baseline', 'fr']);
-    this.handleEnglishDescription = createHandler(this, ['data', 'description', 'en']);
-    this.handleFrenchDescription = createHandler(this, ['data', 'description', 'fr']);
+    this.handleEnglishTitle = createHandler(this, ['data', 'title', 'en']);
+    this.handleFrenchTitle = createHandler(this, ['data', 'title', 'fr']);
+    this.handleEnglishAbstract = createHandler(this, ['data', 'abstract', 'en']);
+    this.handleFrenchAbstract = createHandler(this, ['data', 'abstract', 'fr']);
     this.handleType = createRawHandler(this, ['data', 'type']);
+
+    this.handleAddActivity = createAddRelationHandler(this, 'activities');
+    this.handleDropActivity = createDropRelationHandler(this, 'activities');
+    this.handleAddPeople = createAddRelationHandler(this, 'people');
+    this.handleDropPeople = createDropRelationHandler(this, 'people');
+    this.handleAddPublication = createAddRelationHandler(this, 'publications');
+    this.handleDropPublication = createDropRelationHandler(this, 'publications');
   }
 
   componentDidMount() {
 
     if (!this.state.new)
-      client.get({params: {model: 'activities', id: this.props.id}}, (err, data) => {
+      client.get({params: {model: 'publications', id: this.props.id}}, (err, data) => {
         if (data.content && data.content.en) {
           data.content.en = htmlToRaw(data.content.en);
           this.englishEditorContent = data.content.en;
@@ -97,26 +123,6 @@ class ActivityForm extends Component {
 
   handlePublished = value => {
     this.setState(set(['data', 'draft'], !value, this.state));
-  };
-
-  handleActive = value => {
-    this.setState(set(['data', 'active'], value, this.state));
-  };
-
-  handleAddPeople = id => {
-    const people = get(this.state.data, 'people', []);
-
-    people.push(id);
-
-    this.setState(set(['data', 'people'], people, this.state));
-  };
-
-  handleDropPeople = id => {
-    let people = get(this.state.data, 'people', []);
-
-    people = people.filter(p => p !== id);
-
-    this.setState(set(['data', 'people'], people, this.state));
   };
 
   handleEnglishContent = content => {
@@ -136,12 +142,12 @@ class ActivityForm extends Component {
 
       // Creating the new item
       const payload = {
-        params: {model: 'activities'},
+        params: {model: 'publications'},
         data: extractData(this)
       };
 
       client.post(payload, (err, result) => {
-        push(`/activities/${this.state.data.id}`);
+        push(`/publications/${this.state.data.id}`);
         this.setState({new: false});
       });
     }
@@ -149,12 +155,12 @@ class ActivityForm extends Component {
 
       // Upating the item
       const payload = {
-        params: {model: 'activities', id: this.props.id},
+        params: {model: 'publications', id: this.props.id},
         data: extractData(this)
       };
 
       client.put(payload, (err, result) => {
-        // push('/activities');
+        // push('/publications');
       });
     }
   };
@@ -173,33 +179,37 @@ class ActivityForm extends Component {
       <FormLayout
         id={data.id}
         new={this.state.new}
-        model="activities"
+        model="publications"
         onSubmit={this.handleSubmit}>
         <div className="container">
 
           <div className="columns">
             <div className="column is-3">
               <div className="field">
-                <label className="label">Name</label>
+                <label className="label">English Title</label>
                 <div className="control">
                   <input
                     type="text"
                     className="input"
-                    value={data.name}
-                    onChange={this.handleName}
-                    placeholder="Name" />
+                    value={data.title.en}
+                    onChange={this.handleEnglishTitle}
+                    placeholder="English Title" />
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="field">
-            <label className="label">Type</label>
-            <div className="control">
-              <EnumSelector
-                enumType="activityTypes"
-                value={data.type}
-                onChange={this.handleType} />
+            <div className="column is-3">
+              <div className="field">
+                <label className="label">French Title</label>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    value={data.title.fr}
+                    onChange={this.handleFrenchTitle}
+                    placeholder="French Title" />
+                </div>
+              </div>
             </div>
           </div>
 
@@ -213,11 +223,27 @@ class ActivityForm extends Component {
           </div>
 
           <div className="field">
-            <label className="label">Active?</label>
+            <label className="label">Type?</label>
             <div className="control">
-              <BooleanSelector
-                value={data.active}
-                onChange={this.handleActive} />
+              <EnumSelector
+                enumType="publicationTypes"
+                value={data.type}
+                onChange={this.handleType} />
+            </div>
+          </div>
+
+          <div className="columns">
+            <div className="column is-3">
+              <div className="field">
+                <label className="label">Related Activities</label>
+                <div className="control">
+                  <RelationSelector
+                    model="activities"
+                    selected={data.activities}
+                    onAdd={this.handleAddActivity}
+                    onDrop={this.handleDropActivity} />
+                </div>
+              </div>
             </div>
           </div>
 
@@ -237,30 +263,16 @@ class ActivityForm extends Component {
           </div>
 
           <div className="columns">
-            <div className="column is-6">
+            <div className="column is-3">
               <div className="field">
-                <label className="label">English Baseline</label>
+                <label className="label">Related Publications</label>
                 <div className="control">
-                  <textarea
-                    className="textarea"
-                    value={(data.baseline && data.baseline.en) || ''}
-                    onChange={this.handleEnglishBaseline}
-                    placeholder="English Baseline"
-                    rows={2} />
-                </div>
-              </div>
-            </div>
-
-            <div className="column is-6">
-              <div className="field">
-                <label className="label">French Baseline</label>
-                <div className="control">
-                  <textarea
-                    className="textarea"
-                    value={(data.baseline && data.baseline.fr) || ''}
-                    onChange={this.handleFrenchBaseline}
-                    placeholder="French Baseline"
-                    rows={2} />
+                  <RelationSelector
+                    model="publications"
+                    self={data.id}
+                    selected={data.publications}
+                    onAdd={this.handleAddPublication}
+                    onDrop={this.handleDropPublication} />
                 </div>
               </div>
             </div>
@@ -269,28 +281,28 @@ class ActivityForm extends Component {
           <div className="columns">
             <div className="column is-6">
               <div className="field">
-                <label className="label">English Description</label>
+                <label className="label">English Abstract</label>
                 <div className="control">
                   <textarea
                     className="textarea"
-                    value={(data.description && data.description.en) || ''}
-                    onChange={this.handleEnglishDescription}
-                    placeholder="English Description"
-                    rows={4} />
+                    value={(data.abstract && data.abstract.en) || ''}
+                    onChange={this.handleEnglishAbstract}
+                    placeholder="English Abstract"
+                    rows={2} />
                 </div>
               </div>
             </div>
 
             <div className="column is-6">
               <div className="field">
-                <label className="label">French Description</label>
+                <label className="label">French Abstract</label>
                 <div className="control">
                   <textarea
                     className="textarea"
-                    value={(data.description && data.description.fr) || ''}
-                    onChange={this.handleFrenchDescription}
-                    placeholder="French Description"
-                    rows={4} />
+                    value={(data.abstract && data.abstract.fr) || ''}
+                    onChange={this.handleFrenchAbstract}
+                    placeholder="French Abstract"
+                    rows={2} />
                 </div>
               </div>
             </div>
@@ -322,9 +334,9 @@ class ActivityForm extends Component {
   }
 }
 
-const ConnectedActivityForm = connect(
+const ConnectedPublicationFrom = connect(
   null,
   {push}
-)(ActivityForm);
+)(PublicationFrom);
 
-export default ConnectedActivityForm;
+export default ConnectedPublicationFrom;

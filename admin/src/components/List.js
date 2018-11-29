@@ -32,12 +32,14 @@ export default class List extends Component {
         <table className="table">
           <thead>
             <tr>
+              <th>#</th>
               {specs.map(({label}) => <th key={label}>{label}</th>)}
             </tr>
           </thead>
           <tbody>
-            {data.map(d => (
+            {data.map((d, i) => (
               <tr key={d.id}>
+                <td>{i + 1}.</td>
                 {specs.map((item, i) => {
                   const value = typeof item.property === 'function' ?
                     item.property(d) :

@@ -2,12 +2,12 @@ import React from 'react';
 import {graphql} from 'gatsby';
 
 import Layout from '../components/layout';
-import PeopleDetail from '../components/people-detail';
+import NewsDetail from '../components/news-detail';
 
 export const query = graphql`
   query($identifier: String!) {
-    peopleJson(identifier: {eq: $identifier}) {
-      ...PeopleDetail
+    newsJson(identifier: {eq: $identifier}) {
+      ...NewsDetail
     }
   }
 `;
@@ -17,7 +17,7 @@ export default ({data, pageContext}) => {
 
   return (
     <Layout>
-      <PeopleDetail data={data.peopleJson} bio={pageContext.bio} />
+      <NewsDetail data={data.newsJson} />
     </Layout>
   );
 };

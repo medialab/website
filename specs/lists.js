@@ -1,10 +1,6 @@
 module.exports = {
   activities: [
     {
-      label: 'ID',
-      property: 'id'
-    },
-    {
       label: 'Name',
       property: 'name',
       link: true
@@ -12,22 +8,14 @@ module.exports = {
   ],
   news: [
     {
-      label: 'ID',
-      property: 'id'
-    },
-    {
       label: 'Title',
       property: function(n) {
         return n.title.fr || n.title.en;
       },
-      link: false
+      link: true
     }
   ],
   people: [
-    {
-      label: 'ID',
-      property: 'id'
-    },
     {
       label: 'Full Name',
       property: function(p) {
@@ -38,15 +26,11 @@ module.exports = {
   ],
   publications: [
     {
-      label: 'ID',
-      property: 'id'
-    },
-    {
       label: 'Title',
       property: function(p) {
         return p.title.fr || p.title.en;
       },
-      link: false
+      link: true
     }
   ],
 };

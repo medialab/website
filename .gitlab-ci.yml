@@ -1,8 +1,8 @@
 image: docker:stable
 
 stages:
-- build
-- deploy
+  - build
+  - deploy
 
 variables:
   STAGING_BASEURL: http://website-pprd.medialab.sciences-po.fr
@@ -10,7 +10,7 @@ variables:
   WEB_IMAGE_NAME: $CI_REGISTRY_IMAGE/website_web:$CI_COMMIT_REF_SLUG
   API_IMAGE_NAME: $CI_REGISTRY_IMAGE/website_api:$CI_COMMIT_REF_SLUG
   GIT_SUBMODULE_STRATEGY: recursive
-  
+
 build_web_staging:
   stage: build
   script:
@@ -22,7 +22,7 @@ build_web_staging:
     url: $STAGING_BASEURL
   only:
     - staging
-   
+
 build_web_prod:
   stage: build
   script:
@@ -55,7 +55,7 @@ build_api_prod:
     - docker push $API_IMAGE_NAME
   environment:
     name: production
-    url: $PROD_BASEURL    
+    url: $PROD_BASEURL
   only:
     - production
 
@@ -70,7 +70,6 @@ deploy_staging:
     url: $STAGING_BASEURL
   only:
     - staging
-  
 
 deploy_production:
   stage: deploy

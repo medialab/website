@@ -21,3 +21,9 @@ Pour réinitialiser la base de données avec des données de test:
 ```
 npm run hydrate:json
 ```
+
+Pour dumper les données de la base afin de les versionner:
+
+```
+npm run dump
+```

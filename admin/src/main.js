@@ -5,7 +5,6 @@ import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 import {createHashHistory} from 'history';
 import {routerMiddleware, ConnectedRouter} from 'connected-react-router';
-import Modal from 'react-modal';
 
 import Application from './components/Application';
 import createRootReducer from './modules';
@@ -20,7 +19,6 @@ const history = createHashHistory();
 
 // Mount node
 const MOUNT_NODE = document.getElementById('app');
-Modal.setAppElement('#app');
 
 // Creating redux store
 const STORE = createStore(

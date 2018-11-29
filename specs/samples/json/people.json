@@ -2,6 +2,7 @@
   "people": [
     {
       "id": "32fcbf11-d66d-4a41-bbe6-132021adc3e2",
+      "lastUpdated": 1543332209050,
       "firstName": "Guillaume",
       "lastName": "Plique",
       "title": {
@@ -17,6 +18,7 @@
     },
     {
       "id": "9f735836-44ea-40f4-8e95-9b8a7416d9a7",
+      "lastUpdated": 1543332209050,
       "firstName": "Paul",
       "lastName": "Girard",
       "title": {
@@ -28,10 +30,12 @@
       },
       "membership": "member",
       "active": true,
-      "draft": false
+      "draft": false,
+      "lastUpdated": 1543239519907
     },
     {
       "id": "a83a3035-aba7-4157-a5da-df076157c5ac",
+      "lastUpdated": 1543332209050,
       "firstName": "Benjamin",
       "lastName": "Ooghe-Tabanou",
       "title": {

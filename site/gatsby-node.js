@@ -1,9 +1,9 @@
+/* eslint no-console: 0 */
 const fs = require('fs');
 const crypto = require('crypto');
 const path = require('path');
 const chokidar = require('chokidar');
 const createPaginatedPages = require('gatsby-paginate');
-const cheerio = require('cheerio');
 const GraphQLTypes = require('gatsby/graphql');
 const _ = require('lodash');
 
@@ -88,7 +88,7 @@ const NEWS_QUERY = `
 function replaceHTMLAssetPaths(html, index) {
 
   // TODO: this approach may be too slow in the future!
-  for (const base in index) {
+  for (const base in index) {
     const publicURL = index[base].publicURL;
     html = html.replace(base, publicURL);
   }
@@ -97,7 +97,7 @@ function replaceHTMLAssetPaths(html, index) {
 }
 
 const MODEL_READERS = {
-  activities: function(createNode, deleteNode, getNode) {
+  activities(createNode, deleteNode, getNode) {
     const rawData = fs.readFileSync(MODELS_PATHS.activities, 'utf-8');
     const data = JSON.parse(rawData);
 
@@ -126,7 +126,7 @@ const MODEL_READERS = {
     });
   },
 
-  people: function(createNode, deleteNode, getNode) {
+  people(createNode, deleteNode, getNode) {
     const rawData = fs.readFileSync(MODELS_PATHS.people, 'utf-8');
     const data = JSON.parse(rawData);
 
@@ -155,7 +155,7 @@ const MODEL_READERS = {
     });
   },
 
-  publications: function(createNode, deleteNode, getNode) {
+  publications(createNode, deleteNode, getNode) {
     const rawData = fs.readFileSync(MODELS_PATHS.publications, 'utf-8');
     const data = JSON.parse(rawData);
 
@@ -184,7 +184,7 @@ const MODEL_READERS = {
     });
   },
 
-  news: function(createNode, deleteNode, getNode) {
+  news(createNode, deleteNode, getNode) {
     const rawData = fs.readFileSync(MODELS_PATHS.news, 'utf-8');
     const data = JSON.parse(rawData);
 
@@ -214,7 +214,7 @@ const MODEL_READERS = {
   }
 };
 
-exports.sourceNodes = function({actions, getNode})  {
+exports.sourceNodes = function({actions, getNode}) {
   const {createNode, deleteNode} = actions;
 
   for (const model in MODEL_READERS)
@@ -238,8 +238,8 @@ exports.sourceNodes = function({actions, getNode})  {
     });
 };
 
-exports.createPages = function({graphql, actions, emitter})  {
-  const {createPage, deletePage} = actions;
+exports.createPages = function({graphql, actions}) {
+  const {createPage} = actions;
 
   let FILES = null;
 
@@ -385,7 +385,7 @@ function recurseIntoSchema(model, meta) {
   }
 
   if (meta.type === 'array') {
-    const type = new GraphQLTypes.GraphQLList(GraphQL.GraphQLString);
+    const type = new GraphQLTypes.GraphQLList(GraphQLTypes.GraphQLString);
 
     return {type};
   }

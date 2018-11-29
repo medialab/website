@@ -58,6 +58,9 @@
     "extends": [
       "@yomguithereal/eslint-config/es6",
       "@yomguithereal/eslint-config/react"
-    ]
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2018
+    }
   }
 }

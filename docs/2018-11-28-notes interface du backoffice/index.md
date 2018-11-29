@@ -3,15 +3,17 @@
 
 Quelques notes en prévision du RDV du 6 Décembre sur l'interface du backoffice.
 
-# Remarque sur tous les formulaire
+# Remarque sur tous les formulaires
 
-Créer des groupes d'inputs en enveloppant les .columns dans des .level pour définir des grappes visuels moins hétérogènes. Éventuellement rajouter un titre à certains groupes d'inputs (e.g. "Linked elements" pour les inputs de "related people" & co.)
+Créer des groupes d'inputs en enveloppant les .columns dans des éléments conteneurs avec une importante marge en bas pour définir des grappes visuels moins hétérogènes. Éventuellement rajouter un titre à certains groupes d'inputs (e.g. "Linked elements" pour les inputs de "related people" & co.)
 
 Partout, mettre "published" en fin de formulaire, seul, peut-être avec un arrière-plan différent (gris léger), pour insister sur la dimension critique de ce point.
 
 related publications, related people et "related" en général ==> mettre sur deux colonnes (select sur la colonne de gauche, valeurs sur la colonne de droite)
 
 tags --> prevoir les cas de valeurs longues (un algo de shortening + title/tooltip avec la valeur complète)
+
+faire du "smart default" : "published" doit être à false par défaut, 
 
 ## Wording
 

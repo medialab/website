@@ -174,69 +174,27 @@ class ActivityForm extends Component {
         id={data.id}
         new={this.state.new}
         model="activities"
+        label="activity"
         onSubmit={this.handleSubmit}>
         <div className="container">
 
-          <div className="columns">
-            <div className="column is-3">
-              <div className="field">
-                <label className="label">Name</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    value={data.name}
-                    onChange={this.handleName}
-                    placeholder="Name" />
+          <div className="form-group">
+            <div className="columns">
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">Name</label>
+                  <div className="control">
+                    <input
+                      type="text"
+                      className="input"
+                      value={data.name}
+                      onChange={this.handleName}
+                      placeholder="Name" />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div className="field">
-            <label className="label">Type</label>
-            <div className="control">
-              <EnumSelector
-                enumType="activityTypes"
-                value={data.type}
-                onChange={this.handleType} />
-            </div>
-          </div>
-
-          <div className="field">
-            <label className="label">Published?</label>
-            <div className="control">
-              <BooleanSelector
-                value={!data.draft}
-                onChange={this.handlePublished} />
-            </div>
-          </div>
-
-          <div className="field">
-            <label className="label">Active?</label>
-            <div className="control">
-              <BooleanSelector
-                value={data.active}
-                onChange={this.handleActive} />
-            </div>
-          </div>
-
-          <div className="columns">
-            <div className="column is-3">
-              <div className="field">
-                <label className="label">Related People</label>
-                <div className="control">
-                  <RelationSelector
-                    model="people"
-                    selected={data.people}
-                    onAdd={this.handleAddPeople}
-                    onDrop={this.handleDropPeople} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="columns">
+            <div className="columns">
             <div className="column is-6">
               <div className="field">
                 <label className="label">English Baseline</label>
@@ -265,53 +223,117 @@ class ActivityForm extends Component {
               </div>
             </div>
           </div>
+          </div>
+                
 
-          <div className="columns">
-            <div className="column is-6">
-              <div className="field">
-                <label className="label">English Description</label>
-                <div className="control">
-                  <textarea
-                    className="textarea"
-                    value={(data.description && data.description.en) || ''}
-                    onChange={this.handleEnglishDescription}
-                    placeholder="English Description"
-                    rows={4} />
+          <div className="form-group">
+            <h4 className="title is-4">
+              Activity presentation
+            </h4>
+
+            <div className="columns">
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">English Description</label>
+                  <div className="control">
+                    <textarea
+                      className="textarea"
+                      value={(data.description && data.description.en) || ''}
+                      onChange={this.handleEnglishDescription}
+                      placeholder="English Description"
+                      rows={4} />
+                  </div>
+                </div>
+              </div>
+
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">French Description</label>
+                  <div className="control">
+                    <textarea
+                      className="textarea"
+                      value={(data.description && data.description.fr) || ''}
+                      onChange={this.handleFrenchDescription}
+                      placeholder="French Description"
+                      rows={4} />
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="column is-6">
-              <div className="field">
-                <label className="label">French Description</label>
-                <div className="control">
-                  <textarea
-                    className="textarea"
-                    value={(data.description && data.description.fr) || ''}
-                    onChange={this.handleFrenchDescription}
-                    placeholder="French Description"
-                    rows={4} />
+            <div className="columns">
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">English Content</label>
+                  <Editor
+                    rawContent={(data.content && data.content.en) || null}
+                    onSave={this.handleEnglishContent} />
+                </div>
+              </div>
+
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">French Content</label>
+                  <Editor
+                    rawContent={(data.content && data.content.fr) || null}
+                    onSave={this.handleFrenchContent} />
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="columns">
-            <div className="column is-6">
-              <div className="field">
-                <label className="label">English Content</label>
-                <Editor
-                  rawContent={(data.content && data.content.en) || null}
-                  onSave={this.handleEnglishContent} />
+          <div className="form-group">
+            <h4 className="title is-4">
+              Activity classification
+            </h4>
+            <div className="columns">
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">Type of activity</label>
+                  <div className="control">
+                    <EnumSelector
+                      enumType="activityTypes"
+                      value={data.type}
+                      onChange={this.handleType} />
+                  </div>
+                </div>
+              </div>
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">Is the activity still ongoing ?</label>
+                  <div className="control">
+                    <BooleanSelector
+                      value={data.active}
+                      labels={['activity is ongoing', 'activity is past/paused']}
+                      onChange={this.handleActive} />
+                  </div>
+                </div>
               </div>
             </div>
+            <div className="columns">
+              <div className="column is-12">
+                <div className="field">
+                  <label className="label">Related People</label>
+                  <div className="control">
+                    <RelationSelector
+                      model="people"
+                      selected={data.people}
+                      onAdd={this.handleAddPeople}
+                      onDrop={this.handleDropPeople} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-            <div className="column is-6">
-              <div className="field">
-                <label className="label">French Content</label>
-                <Editor
-                  rawContent={(data.content && data.content.fr) || null}
-                  onSave={this.handleFrenchContent} />
+          <div className="form-group is-important">
+            <div className="field">
+              <label className="label title is-4">{data.name || 'Activity'} page's publication status</label>
+              <div className="control">
+                <BooleanSelector
+                  value={!data.draft}
+                  labels={['published', 'draft']}
+                  onChange={this.handlePublished} />
               </div>
             </div>
           </div>

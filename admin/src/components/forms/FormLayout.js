@@ -26,6 +26,20 @@ export default class Form extends Component {
       time: null,
       view: 'edit'
     };
+
+    this.el = React.createRef();
+  }
+
+  componentDidMount = () => {
+    setTimeout(() => {
+        if (this.el) {
+          const inputs = this.el.current.getElementsByTagName('input');
+          const input = inputs.length && inputs[0];
+          if (input) {
+            input.focus();
+          }
+        }
+    }, 200)
   }
 
   toggleEdit = () => {
@@ -56,22 +70,24 @@ export default class Form extends Component {
   render() {
     const {saving, signaling, time, view} = this.state;
 
-    const {id, children, model} = this.props;
+    const {id, children, model, label} = this.props;
+
+    const pageLabel = label || model;
 
     return (
-      <div>
+      <div ref={this.el}>
         <div className="tabs is-boxed">
           <ul>
             <li
               className={cls(view === 'edit' && 'is-active')}
               onClick={this.toggleEdit}>
-              <a>Edit</a>
+              <a>Edit {pageLabel}</a>
             </li>
             {!this.props.new && (
               <li
                 className={cls(view === 'preview' && 'is-active')}
                 onClick={this.togglePreview}>
-                <a>Preview</a>
+                <a>Preview {pageLabel} page</a>
               </li>
             )}
           </ul>
@@ -91,11 +107,11 @@ export default class Form extends Component {
                             kind={signaling ? 'success' : 'raw'}
                             loading={saving}
                             onClick={!signaling ? this.handleSubmit : Function.prototype}>
-                            {signaling ? 'Saved!' : 'Save'}
+                            {signaling ? `${pageLabel} saved!` : `Save this ${pageLabel}`}
                           </Button>
                         </div>
                         <div className="control">
-                          <Link to={`/${model}`} className="button is-text">Cancel</Link>
+                          <Link to={`/${pageLabel}`} className="button is-text">Cancel</Link>
                         </div>
 
                         {time && (

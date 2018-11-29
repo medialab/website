@@ -180,150 +180,171 @@ class PublicationFrom extends Component {
         id={data.id}
         new={this.state.new}
         model="publications"
+        label="publication"
         onSubmit={this.handleSubmit}>
         <div className="container">
+          
+          <div className="form-group">
+            <div className="columns">
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">English Title</label>
+                  <div className="control">
+                    <input
+                      type="text"
+                      className="input"
+                      value={data.title.en}
+                      onChange={this.handleEnglishTitle}
+                      placeholder="English Title" />
+                  </div>
+                </div>
+              </div>
 
-          <div className="columns">
-            <div className="column is-3">
-              <div className="field">
-                <label className="label">English Title</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    value={data.title.en}
-                    onChange={this.handleEnglishTitle}
-                    placeholder="English Title" />
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">French Title</label>
+                  <div className="control">
+                    <input
+                      type="text"
+                      className="input"
+                      value={data.title.fr}
+                      onChange={this.handleFrenchTitle}
+                      placeholder="French Title" />
+                  </div>
                 </div>
               </div>
             </div>
-
-            <div className="column is-3">
-              <div className="field">
-                <label className="label">French Title</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    value={data.title.fr}
-                    onChange={this.handleFrenchTitle}
-                    placeholder="French Title" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="field">
-            <label className="label">Published?</label>
-            <div className="control">
-              <BooleanSelector
-                value={!data.draft}
-                onChange={this.handlePublished} />
-            </div>
-          </div>
-
-          <div className="field">
-            <label className="label">Type?</label>
-            <div className="control">
-              <EnumSelector
-                enumType="publicationTypes"
-                value={data.type}
-                onChange={this.handleType} />
-            </div>
-          </div>
-
-          <div className="columns">
-            <div className="column is-3">
-              <div className="field">
-                <label className="label">Related Activities</label>
-                <div className="control">
-                  <RelationSelector
-                    model="activities"
-                    selected={data.activities}
-                    onAdd={this.handleAddActivity}
-                    onDrop={this.handleDropActivity} />
+            <div className="columns">
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">Type of publication</label>
+                  <div className="control">
+                    <EnumSelector
+                      enumType="publicationTypes"
+                      value={data.type}
+                      onChange={this.handleType} />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="columns">
-            <div className="column is-3">
-              <div className="field">
-                <label className="label">Related People</label>
-                <div className="control">
-                  <RelationSelector
-                    model="people"
-                    selected={data.people}
-                    onAdd={this.handleAddPeople}
-                    onDrop={this.handleDropPeople} />
+          <div className="form-group">
+            <h4 className="title is-4">
+              Publication presentation
+            </h4>
+            <div className="columns">
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">English Abstract</label>
+                  <div className="control">
+                    <textarea
+                      className="textarea"
+                      value={(data.abstract && data.abstract.en) || ''}
+                      onChange={this.handleEnglishAbstract}
+                      placeholder="English Abstract"
+                      rows={2} />
+                  </div>
+                </div>
+              </div>
+
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">French Abstract</label>
+                  <div className="control">
+                    <textarea
+                      className="textarea"
+                      value={(data.abstract && data.abstract.fr) || ''}
+                      onChange={this.handleFrenchAbstract}
+                      placeholder="French Abstract"
+                      rows={2} />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="columns">
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">English Content</label>
+                  <Editor
+                    rawContent={(data.content && data.content.en) || null}
+                    onSave={this.handleEnglishContent} />
+                </div>
+              </div>
+
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">French Content</label>
+                  <Editor
+                    rawContent={(data.content && data.content.fr) || null}
+                    onSave={this.handleFrenchContent} />
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="columns">
-            <div className="column is-3">
-              <div className="field">
-                <label className="label">Related Publications</label>
-                <div className="control">
-                  <RelationSelector
-                    model="publications"
-                    self={data.id}
-                    selected={data.publications}
-                    onAdd={this.handleAddPublication}
-                    onDrop={this.handleDropPublication} />
+          <div className="form-group">
+            <h4 className="title is-4">
+              Publication's related objects
+            </h4>
+
+            <div className="columns">
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">Related Activities</label>
+                  <div className="control">
+                    <RelationSelector
+                      model="activities"
+                      selected={data.activities}
+                      onAdd={this.handleAddActivity}
+                      onDrop={this.handleDropActivity} />
+                  </div>
                 </div>
               </div>
             </div>
+
+            <div className="columns">
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">Related People</label>
+                  <div className="control">
+                    <RelationSelector
+                      model="people"
+                      selected={data.people}
+                      onAdd={this.handleAddPeople}
+                      onDrop={this.handleDropPeople} />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="columns">
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">Related Publications</label>
+                  <div className="control">
+                    <RelationSelector
+                      model="publications"
+                      self={data.id}
+                      selected={data.publications}
+                      onAdd={this.handleAddPublication}
+                      onDrop={this.handleDropPublication} />
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
 
-          <div className="columns">
-            <div className="column is-6">
-              <div className="field">
-                <label className="label">English Abstract</label>
-                <div className="control">
-                  <textarea
-                    className="textarea"
-                    value={(data.abstract && data.abstract.en) || ''}
-                    onChange={this.handleEnglishAbstract}
-                    placeholder="English Abstract"
-                    rows={2} />
-                </div>
-              </div>
-            </div>
-
-            <div className="column is-6">
-              <div className="field">
-                <label className="label">French Abstract</label>
-                <div className="control">
-                  <textarea
-                    className="textarea"
-                    value={(data.abstract && data.abstract.fr) || ''}
-                    onChange={this.handleFrenchAbstract}
-                    placeholder="French Abstract"
-                    rows={2} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="columns">
-            <div className="column is-6">
-              <div className="field">
-                <label className="label">English Content</label>
-                <Editor
-                  rawContent={(data.content && data.content.en) || null}
-                  onSave={this.handleEnglishContent} />
-              </div>
-            </div>
-
-            <div className="column is-6">
-              <div className="field">
-                <label className="label">French Content</label>
-                <Editor
-                  rawContent={(data.content && data.content.fr) || null}
-                  onSave={this.handleFrenchContent} />
+          <div className="form-group is-important">
+            <div className="field">
+              <label className="label title is-4">{'"' + data.title.en + '"' || 'Publication'} page's publication status</label>
+              <div className="control">
+                <BooleanSelector
+                  value={!data.draft}
+                  labels={['published', 'draft']}
+                  onChange={this.handlePublished} />
               </div>
             </div>
           </div>

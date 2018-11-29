@@ -12,8 +12,12 @@ const DB_PATH = '../data';
 const DB_GLOB = '../data/*.json';
 
 const MODELS_PATHS = {};
+const SCHEMAS = {};
 
-MODELS.forEach(model => MODELS_PATHS[model] = path.join(DB_PATH, `${model}.json`));
+MODELS.forEach(model => {
+  MODELS_PATHS[model] = path.join(DB_PATH, `${model}.json`);
+  SCHEMAS[model] = require(`../specs/schemas/${model}.json`);
+});
 
 const FILE_QUERY = `
   {
@@ -356,14 +360,54 @@ exports.createPages = function({graphql, actions, emitter})  {
   }).then(() => Promise.all(promises()));
 };
 
+function recurseIntoSchema(meta) {
+  if (meta.type === 'string')
+    return {type: GraphQLTypes.GraphQLString};
+
+  if (meta.type === 'number')
+    return {type: GraphQLTypes.GraphQLInt};
+
+  if (meta.type === 'boolean')
+    return {type: GraphQLTypes.GraphQLBoolean};
+}
+
+function graphQLSchemaAdditionFromJsonSchema(schema) {
+  const item = {};
+
+  for (const k in schema.properties) {
+    if (k === 'id')
+      continue;
+
+    const meta = schema.properties[k];
+    const addition = recurseIntoSchema(meta);
+
+    if (addition)
+      item[k] = addition;
+  }
+
+  return item;
+}
+
 exports.setFieldsOnGraphQLNodeType = ({type}) => {
 
-  if (type.name === 'PeopleJson') {
-    return {
-      lastUpdated: {
-        type: GraphQLTypes.GraphQLString
-      }
-    };
+  if (type.name === 'ActivitiesJson') {
+    const schema = SCHEMAS.activities;
+    return graphQLSchemaAdditionFromJsonSchema(schema);
+  }
+
+  else if (type.name === 'PeopleJson') {
+    const schema = SCHEMAS.people;
+    return graphQLSchemaAdditionFromJsonSchema(schema);
+  }
+
+  else if (type.name === 'PublicationsJson') {
+    const schema = SCHEMAS.publications;
+    return graphQLSchemaAdditionFromJsonSchema(schema);
+  }
+
+  else if (type.name === 'NewsJson') {
+    const schema = SCHEMAS.news;
+    return graphQLSchemaAdditionFromJsonSchema(schema);
   }
 
   return {};

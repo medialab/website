@@ -361,11 +361,12 @@ exports.createPages = function({graphql, actions}) {
 };
 
 function recurseIntoSchema(model, meta) {
+
   if (meta.type === 'string')
     return {type: GraphQLTypes.GraphQLString};
 
   if (meta.type === 'number')
-    return {type: GraphQLTypes.GraphQLInt};
+    return {type: GraphQLTypes.GraphQLFloat};
 
   if (meta.type === 'boolean')
     return {type: GraphQLTypes.GraphQLBoolean};
@@ -378,20 +379,14 @@ function recurseIntoSchema(model, meta) {
 
     return {
       type: new GraphQLTypes.GraphQLObjectType({
-        name: model + '__' + meta.title,
+        name: model + '__' + _.deburr(meta.title),
         fields
       })
     };
   }
-
-  if (meta.type === 'array') {
-    const type = new GraphQLTypes.GraphQLList(GraphQLTypes.GraphQLString);
-
-    return {type};
-  }
 }
 
-function graphQLSchemaAdditionFromJsonSchema(schema) {
+function graphQLSchemaAdditionFromJsonSchema(model, schema) {
   const item = {};
 
   for (const k in schema.properties) {
@@ -399,7 +394,7 @@ function graphQLSchemaAdditionFromJsonSchema(schema) {
       continue;
 
     const meta = schema.properties[k];
-    const addition = recurseIntoSchema(meta);
+    const addition = recurseIntoSchema(model, meta);
 
     if (addition)
       item[k] = addition;

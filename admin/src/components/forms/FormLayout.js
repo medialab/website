@@ -111,7 +111,7 @@ export default class Form extends Component {
                           </Button>
                         </div>
                         <div className="control">
-                          <Link to={`/${pageLabel}`} className="button is-text">Cancel</Link>
+                          <Link to={`/${model}`} className="button is-text">Cancel</Link>
                         </div>
 
                         {time && (

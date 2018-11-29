@@ -360,7 +360,7 @@ exports.createPages = function({graphql, actions, emitter})  {
   }).then(() => Promise.all(promises()));
 };
 
-function recurseIntoSchema(meta) {
+function recurseIntoSchema(model, meta) {
   if (meta.type === 'string')
     return {type: GraphQLTypes.GraphQLString};
 
@@ -369,6 +369,26 @@ function recurseIntoSchema(meta) {
 
   if (meta.type === 'boolean')
     return {type: GraphQLTypes.GraphQLBoolean};
+
+  if (meta.type === 'object') {
+    const fields = {};
+
+    for (const k in meta.properties)
+      fields[k] = recurseIntoSchema(model, meta.properties[k]);
+
+    return {
+      type: new GraphQLTypes.GraphQLObjectType({
+        name: model + '__' + meta.title,
+        fields
+      })
+    };
+  }
+
+  if (meta.type === 'array') {
+    const type = new GraphQLTypes.GraphQLList(GraphQL.GraphQLString);
+
+    return {type};
+  }
 }
 
 function graphQLSchemaAdditionFromJsonSchema(schema) {
@@ -392,22 +412,22 @@ exports.setFieldsOnGraphQLNodeType = ({type}) => {
 
   if (type.name === 'ActivitiesJson') {
     const schema = SCHEMAS.activities;
-    return graphQLSchemaAdditionFromJsonSchema(schema);
+    return graphQLSchemaAdditionFromJsonSchema('activities', schema);
   }
 
   else if (type.name === 'PeopleJson') {
     const schema = SCHEMAS.people;
-    return graphQLSchemaAdditionFromJsonSchema(schema);
+    return graphQLSchemaAdditionFromJsonSchema('people', schema);
   }
 
   else if (type.name === 'PublicationsJson') {
     const schema = SCHEMAS.publications;
-    return graphQLSchemaAdditionFromJsonSchema(schema);
+    return graphQLSchemaAdditionFromJsonSchema('publications', schema);
   }
 
   else if (type.name === 'NewsJson') {
     const schema = SCHEMAS.news;
-    return graphQLSchemaAdditionFromJsonSchema(schema);
+    return graphQLSchemaAdditionFromJsonSchema('news', schema);
   }
 
   return {};

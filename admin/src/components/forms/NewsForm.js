@@ -39,12 +39,6 @@ function createHandler(scope, key) {
   };
 }
 
-function createRawHandler(scope, key) {
-  return v => {
-    scope.setState(set(key, v, scope.state));
-  };
-}
-
 function createAddRelationHandler(scope, key) {
   return id => {
     const data = get(scope.state.data, key, []);
@@ -183,7 +177,7 @@ class NewsForm extends Component {
         model="news"
         onSubmit={this.handleSubmit}>
         <div className="container">
-          
+
           <div className="form-group">
             <div className="columns">
               <div className="column is-6">
@@ -301,7 +295,7 @@ class NewsForm extends Component {
               </div>
           </div>
 
-          
+
           <div className="form-group">
             <h4 className="title is-4">
               Related objects

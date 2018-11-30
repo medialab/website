@@ -1,10 +1,18 @@
 import React, {Component} from 'react';
 import Select from 'react-select';
 import keyBy from 'lodash/keyBy';
+import flatten from 'lodash/flatten';
 import parallel from 'async/parallel';
 import client from '../../client';
 
 import labels from '../../../../specs/labels';
+
+const TITLES = {
+  activities: 'Activity',
+  people: 'Person',
+  publications: 'Publication',
+  news: 'News'
+};
 
 const noOptionsMessage = () => 'No matching item';
 
@@ -50,17 +58,16 @@ export default class EditorializationSelector extends Component {
         .concat(createOptions('publications', data.publications))
         .concat(createOptions('news', data.news));
 
-      this.optionsIndex = keyBy(options, 'value');
+      this.optionsIndex = keyBy(flatten(options.map(g => g.options)), 'value');
       this.setState({options, loading: false});
     });
   }
 
   handleChange = (option) => {
-    console.log(option)
     if (!option || !option.value)
       return;
 
-    this.props.onAdd(option.value);
+    this.props.onAdd(option);
   };
 
   render() {
@@ -68,17 +75,24 @@ export default class EditorializationSelector extends Component {
 
     const {onDrop, selected = []} = this.props;
 
-    const selectedSet = new Set(selected);
+    const selectedSet = new Set(selected.map(item => item[1]));
+
+    const filteredOptions = options.map(group => {
+      return {
+        ...group,
+        options: group.options.filter(o => !selectedSet.has(o.value))
+      };
+    });
 
     return (
       <div>
         {!loading &&
           <ul>
-            {selected.map(id => {
+            {selected.map(item => {
               return (
-                <li key={id}>
+                <li key={item[1]}>
                   <span className="tag is-medium" style={{marginBottom: 3}}>
-                    {this.optionsIndex[id].label}
+                    {TITLES[item[0]]} - {this.optionsIndex[item[1]].label}
                     &nbsp;<button className="delete is-small" onClick={() => onDrop(id)} />
                   </span>
                 </li>
@@ -90,7 +104,7 @@ export default class EditorializationSelector extends Component {
         <Select
           value={null}
           onChange={this.handleChange}
-          options={options.filter(o => !selectedSet.has(o.value))}
+          options={filteredOptions}
           isLoading={loading}
           menuPlacement="top"
           placeholder="Add..."

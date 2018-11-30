@@ -89,10 +89,12 @@ export default class EditorializationSelector extends Component {
         {!loading &&
           <ul>
             {selected.map(item => {
+              const [model, id] = item;
+
               return (
-                <li key={item[1]}>
+                <li key={id}>
                   <span className="tag is-medium" style={{marginBottom: 3}}>
-                    {TITLES[item[0]]} - {this.optionsIndex[item[1]].label}
+                    {TITLES[model]} - {this.optionsIndex[id].label}
                     &nbsp;<button className="delete is-small" onClick={() => onDrop(id)} />
                   </span>
                 </li>

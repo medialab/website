@@ -28,6 +28,19 @@ export default class SettingsForm extends Component {
     this.setState(set(['settings', 'home', 'editorialization'], currentList, this.state));
   };
 
+  handleDropHomeItem = id => {
+    let currentList = get(['settings', 'home', 'editorialization'], this.state);
+    currentList = currentList.filter(o => o[1] !== id);
+
+    this.setState(set(['settings', 'home', 'editorialization'], currentList, this.state));
+  };
+
+  handleSubmit = () => {
+    client.post({params: {model: 'settings'}, data: this.state.settings}, () => {
+      console.log('Saved!');
+    });
+  };
+
   render() {
     const {settings} = this.state;
 
@@ -42,9 +55,10 @@ export default class SettingsForm extends Component {
             <EditorializationSelector
               model="people"
               selected={settings.home.editorialization}
-              onAdd={this.handleAddHomeItem} />
+              onAdd={this.handleAddHomeItem}
+              onDrop={this.handleDropHomeItem} />
             <br />
-            <Button>Save</Button>
+            <Button onClick={this.handleSubmit}>Save</Button>
           </div>
         </div>
       </div>

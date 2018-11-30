@@ -44,15 +44,21 @@ export const query = graphql`
         }
       }
     }
+    settingsJson {
+      home {
+        editorialization
+      }
+    }
   }
 `;
 
 const IndexPage = ({data}) => {
-
   const people = data.allPeopleJson.edges.map(e => e.node),
         activities = data.allActivitiesJson.edges.map(e => e.node),
         publications = data.allPublicationsJson.edges.map(e => e.node),
         news = data.allNewsJson.edges.map(e => e.node);
+
+  const editorializationList = data.settingsJson.home.editorialization;
 
   return (
     <Layout>
@@ -90,6 +96,15 @@ const IndexPage = ({data}) => {
         {news.map(n => (
           <li key={n.id}>
             <Link to={`/news-${n.id}`}>{n.title.fr || n.title.en}</Link>
+          </li>
+        ))}
+      </ul>
+
+      <h2>Editorialized List</h2>
+      <ul>
+        {editorializationList.map(([model, id]) => (
+          <li key={id}>
+            {model} - {id}
           </li>
         ))}
       </ul>

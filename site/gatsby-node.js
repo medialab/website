@@ -19,6 +19,8 @@ MODELS.forEach(model => {
   SCHEMAS[model] = require(`../specs/schemas/${model}.json`);
 });
 
+MODELS_PATHS.settings = path.join(DB_PATH, 'settings.json');
+
 const FILE_QUERY = `
   {
     allFile(filter: {sourceInstanceName: {eq: "assets"}}) {
@@ -84,6 +86,15 @@ const NEWS_QUERY = `
   }
 `;
 
+// Helper hashing a node's data
+function hashNode(data) {
+
+  return crypto
+    .createHash('md5')
+    .update(JSON.stringify(data))
+    .digest('hex');
+}
+
 // Helper replacing HTML assets
 function replaceHTMLAssetPaths(html, index) {
 
@@ -109,10 +120,7 @@ const MODEL_READERS = {
       if (node)
         deleteNode({node});
 
-      const hash = crypto
-        .createHash('md5')
-        .update(JSON.stringify(activity))
-        .digest('hex');
+      const hash = hashNode(activity);
 
       createNode({
         ...activity,
@@ -138,10 +146,7 @@ const MODEL_READERS = {
       if (node)
         deleteNode({node});
 
-      const hash = crypto
-        .createHash('md5')
-        .update(JSON.stringify(person))
-        .digest('hex');
+      const hash = hashNode(person);
 
       createNode({
         ...person,
@@ -167,10 +172,7 @@ const MODEL_READERS = {
       if (node)
         deleteNode({node});
 
-      const hash = crypto
-        .createHash('md5')
-        .update(JSON.stringify(publication))
-        .digest('hex');
+      const hash = hashNode(publication);
 
       createNode({
         ...publication,
@@ -196,10 +198,7 @@ const MODEL_READERS = {
       if (node)
         deleteNode({node});
 
-      const hash = crypto
-        .createHash('md5')
-        .update(JSON.stringify(news))
-        .digest('hex');
+      const hash = hashNode(news);
 
       createNode({
         ...news,
@@ -210,6 +209,28 @@ const MODEL_READERS = {
           mediaType: 'application/json'
         }
       });
+    });
+  },
+
+  settings(createdNode, deleteNode, getNode) {
+    const rawData = fs.readFileSync(MODELS_PATHS.settings, 'utf-8');
+    const data = JSON.parse(rawData);
+
+    const node = getNode('site-settings-node');
+
+    if (node)
+      deleteNode({node});
+
+    const hash = hashNode(data.settings);
+
+    createdNode({
+      ...data.settings,
+      id: 'site-settings-node',
+      internal: {
+        type: 'SettingsJson',
+        contentDigest: hash,
+        mediaType: 'application/json'
+      }
     });
   }
 };

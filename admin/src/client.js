@@ -1,3 +1,4 @@
+/* global API_URL */
 import Client from 'djax-client';
 
 const client = new Client({

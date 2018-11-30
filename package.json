@@ -16,7 +16,7 @@
     "hydrate:json": "rm -rf data/* && mkdir -p data/assets && touch data/assets/dummy && cp specs/samples/json/*.json data",
     "install:admin": "cd admin && npm i",
     "install:site": "cd site && npm i",
-    "lint": "eslint api scripts site/*.js site/src",
+    "lint": "eslint api scripts site/*.js site/src admin/src",
     "load": "node ./scripts/load.js",
     "postinstall": "npm run install:admin && npm run install:site",
     "reinstall": "rm -rf ./admin/node_modules && rm -rf ./site/node_modules && rm -rf ./node_modules && npm i",
@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "@yomguithereal/eslint-config": "^4.0.0",
+    "babel-eslint": "^10.0.1",
     "concurrently": "^4.1.0",
     "eslint": "^5.9.0",
     "eslint-plugin-react": "^7.11.1",
@@ -56,15 +57,15 @@
   },
   "eslintConfig": {
     "extends": [
-      "@yomguithereal/eslint-config/es6",
+      "@yomguithereal/eslint-config/es7",
       "@yomguithereal/eslint-config/react"
     ],
-    "parserOptions": {
-      "ecmaVersion": 2018
-    },
     "rules": {
       "react/jsx-no-bind": 0,
-      "react/no-danger": 0
+      "react/no-danger": 0,
+      "react/no-set-state": 0,
+      "react/prefer-stateless-function": 0,
+      "react/require-optimization": 0
     }
   }
 }

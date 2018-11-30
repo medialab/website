@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {push} from 'connected-react-router';
+import {push as pushAction} from 'connected-react-router';
 import {connect} from 'react-redux';
 import cloneDeep from 'lodash/cloneDeep';
 import set from 'lodash/fp/set';
@@ -13,7 +12,6 @@ import FormLayout from './FormLayout';
 import Editor from '../Editor';
 import EnumSelector from '../selectors/EnumSelector';
 import BooleanSelector from '../selectors/BooleanSelector';
-import Button from '../misc/Button';
 import client from '../../client';
 
 function extractData(scope) {
@@ -88,7 +86,7 @@ class PeopleForm extends Component {
           this.frenchEditorContent = data.bio.fr;
         }
 
-        this.setState({loading: false, data: data});
+        this.setState({loading: false, data});
       });
   }
 
@@ -121,7 +119,7 @@ class PeopleForm extends Component {
         data: extractData(this)
       };
 
-      client.post(payload, (err, result) => {
+      client.post(payload, () => {
         push(`/people/${this.state.data.id}`);
         this.setState({new: false});
       });
@@ -134,7 +132,7 @@ class PeopleForm extends Component {
         data: extractData(this)
       };
 
-      client.put(payload, (err, result) => {
+      client.put(payload, () => {
         // push('/people');
       });
     }
@@ -158,7 +156,7 @@ class PeopleForm extends Component {
         label="person"
         onSubmit={this.handleSubmit}>
         <div className="container">
-          
+
           <div className="form-group">
             <div className="columns">
               <div className="column is-6">
@@ -189,7 +187,7 @@ class PeopleForm extends Component {
               </div>
             </div>
           </div>
-          
+
           <div className="form-group">
             <h4 className="title is-4">
               Relation to médialab
@@ -277,7 +275,7 @@ class PeopleForm extends Component {
 
           <div className="form-group is-important">
             <div className="field">
-              <label className="label title is-4">{data.firstName ? `${data.firstName} ${data.lastName}`: 'People'} page's publication status</label>
+              <label className="label title is-4">{data.firstName ? `${data.firstName} ${data.lastName}` : 'People'} page's publication status</label>
               <div className="control">
                 <BooleanSelector
                   value={!data.draft}
@@ -289,13 +287,13 @@ class PeopleForm extends Component {
 
         </div>
       </FormLayout>
-    )
+    );
   }
 }
 
 const ConnectedPeopleForm = connect(
   null,
-  {push}
+  {push: pushAction}
 )(PeopleForm);
 
 export default ConnectedPeopleForm;

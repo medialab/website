@@ -122,7 +122,7 @@ export default class EditorializationSelector extends Component {
           <SortableList
             items={selected}
             index={this.optionsIndex}
-            useDragHandle={true}
+            useDragHandle
             onDrop={onDrop}
             onSortEnd={onSortEnd} />
         }

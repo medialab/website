@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {push} from 'connected-react-router';
+import {pushAction} from 'connected-react-router';
 import {connect} from 'react-redux';
 import cloneDeep from 'lodash/cloneDeep';
 import set from 'lodash/fp/set';
@@ -12,7 +11,6 @@ import initializers from '../../../../specs/initializers';
 
 import FormLayout from './FormLayout';
 import Editor from '../Editor';
-import Button from '../misc/Button';
 import BooleanSelector from '../selectors/BooleanSelector';
 import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector from '../selectors/RelationSelector';
@@ -91,7 +89,7 @@ class ActivityForm extends Component {
           this.frenchEditorContent = data.content.fr;
         }
 
-        this.setState({loading: false, data: data});
+        this.setState({loading: false, data});
       });
   }
 
@@ -140,7 +138,7 @@ class ActivityForm extends Component {
         data: extractData(this)
       };
 
-      client.post(payload, (err, result) => {
+      client.post(payload, () => {
         push(`/activities/${this.state.data.id}`);
         this.setState({new: false});
       });
@@ -153,7 +151,7 @@ class ActivityForm extends Component {
         data: extractData(this)
       };
 
-      client.put(payload, (err, result) => {
+      client.put(payload, () => {
         // push('/activities');
       });
     }
@@ -195,36 +193,36 @@ class ActivityForm extends Component {
               </div>
             </div>
             <div className="columns">
-            <div className="column is-6">
-              <div className="field">
-                <label className="label">English Baseline</label>
-                <div className="control">
-                  <textarea
-                    className="textarea"
-                    value={(data.baseline && data.baseline.en) || ''}
-                    onChange={this.handleEnglishBaseline}
-                    placeholder="English Baseline"
-                    rows={2} />
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">English Baseline</label>
+                  <div className="control">
+                    <textarea
+                      className="textarea"
+                      value={(data.baseline && data.baseline.en) || ''}
+                      onChange={this.handleEnglishBaseline}
+                      placeholder="English Baseline"
+                      rows={2} />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="column is-6">
-              <div className="field">
-                <label className="label">French Baseline</label>
-                <div className="control">
-                  <textarea
-                    className="textarea"
-                    value={(data.baseline && data.baseline.fr) || ''}
-                    onChange={this.handleFrenchBaseline}
-                    placeholder="French Baseline"
-                    rows={2} />
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">French Baseline</label>
+                  <div className="control">
+                    <textarea
+                      className="textarea"
+                      value={(data.baseline && data.baseline.fr) || ''}
+                      onChange={this.handleFrenchBaseline}
+                      placeholder="French Baseline"
+                      rows={2} />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          </div>
-                
+
 
           <div className="form-group">
             <h4 className="title is-4">
@@ -340,13 +338,13 @@ class ActivityForm extends Component {
 
         </div>
       </FormLayout>
-    )
+    );
   }
 }
 
 const ConnectedActivityForm = connect(
   null,
-  {push}
+  {push: pushAction}
 )(ActivityForm);
 
 export default ConnectedActivityForm;

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {push} from 'connected-react-router';
+import {push as pushAction} from 'connected-react-router';
 import {connect} from 'react-redux';
 import cloneDeep from 'lodash/cloneDeep';
 import set from 'lodash/fp/set';
@@ -12,9 +11,7 @@ import initializers from '../../../../specs/initializers';
 
 import FormLayout from './FormLayout';
 import Editor from '../Editor';
-import Button from '../misc/Button';
 import BooleanSelector from '../selectors/BooleanSelector';
-import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector from '../selectors/RelationSelector';
 import client from '../../client';
 
@@ -112,7 +109,7 @@ class NewsForm extends Component {
           this.frenchEditorContent = data.content.fr;
         }
 
-        this.setState({loading: false, data: data});
+        this.setState({loading: false, data});
       });
   }
 
@@ -141,7 +138,7 @@ class NewsForm extends Component {
         data: extractData(this)
       };
 
-      client.post(payload, (err, result) => {
+      client.post(payload, () => {
         push(`/news/${this.state.data.id}`);
         this.setState({new: false});
       });
@@ -154,7 +151,7 @@ class NewsForm extends Component {
         data: extractData(this)
       };
 
-      client.put(payload, (err, result) => {
+      client.put(payload, () => {
         // push('/news');
       });
     }
@@ -275,24 +272,24 @@ class NewsForm extends Component {
               News contents
             </h4>
             <div className="columns">
-                <div className="column is-6">
-                  <div className="field">
-                    <label className="label">English Content</label>
-                    <Editor
-                      rawContent={(data.content && data.content.en) || null}
-                      onSave={this.handleEnglishContent} />
-                  </div>
-                </div>
-
-                <div className="column is-6">
-                  <div className="field">
-                    <label className="label">French Content</label>
-                    <Editor
-                      rawContent={(data.content && data.content.fr) || null}
-                      onSave={this.handleFrenchContent} />
-                  </div>
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">English Content</label>
+                  <Editor
+                    rawContent={(data.content && data.content.en) || null}
+                    onSave={this.handleEnglishContent} />
                 </div>
               </div>
+
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">French Content</label>
+                  <Editor
+                    rawContent={(data.content && data.content.fr) || null}
+                    onSave={this.handleFrenchContent} />
+                </div>
+              </div>
+            </div>
           </div>
 
 
@@ -361,13 +358,13 @@ class NewsForm extends Component {
 
         </div>
       </FormLayout>
-    )
+    );
   }
 }
 
 const ConnectedNewsForm = connect(
   null,
-  {push}
+  {push: pushAction}
 )(NewsForm);
 
 export default ConnectedNewsForm;

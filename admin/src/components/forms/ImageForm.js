@@ -8,7 +8,7 @@ export default class ImageForm extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = {
+    this.state = {
       file: null,
       crop: {x: 30, y: 30, height: 30, width: 30}
     };
@@ -24,7 +24,6 @@ export default class ImageForm extends Component {
   };
 
   handleUpload = () => {
-    console.log(this.state.file);
     const formData = new FormData();
     formData.append('file', this.state.file);
 

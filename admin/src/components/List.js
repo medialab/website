@@ -16,7 +16,7 @@ export default class List extends Component {
 
     // Fetching model list
     client.list({params: {model}}, (err, data) => {
-      this.setState({data: data});
+      this.setState({data});
     });
   }
 
@@ -40,14 +40,14 @@ export default class List extends Component {
             {data.map((d, i) => (
               <tr key={d.id}>
                 <td>{i + 1}.</td>
-                {specs.map((item, i) => {
+                {specs.map((item, j) => {
                   const value = typeof item.property === 'function' ?
                     item.property(d) :
                     d[item.property];
 
                   if (item.link) {
                     return (
-                      <td key={i}>
+                      <td key={j}>
                         <Link to={`${model}/${d.id}`}>
                           {value}
                         </Link>
@@ -55,7 +55,7 @@ export default class List extends Component {
                     );
                   }
                   else {
-                    return <td key={i}>{value}</td>;
+                    return <td key={j}>{value}</td>;
                   }
                 })}
               </tr>

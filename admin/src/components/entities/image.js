@@ -1,3 +1,4 @@
+/* global API_URL */
 import React, {Component} from 'react';
 import {AtomicBlockUtils} from 'draft-js';
 import {ENTITY_TYPE} from 'draftail';
@@ -71,7 +72,7 @@ class ImageSource extends Component {
         <p>Importing an image:</p>
         {
           !file ?
-          <Dropzone onDrop={this.handleDrop} /> :
+            <Dropzone onDrop={this.handleDrop} /> :
           (
             <div>
               <img src={URL.createObjectURL(file)} style={{height: '200px'}} />

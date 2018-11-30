@@ -60,8 +60,8 @@ export default class RelationSelector extends Component {
       filteredOptions = options.filter(o => o.value !== self);
 
     return (
-      <div className="columns"> 
-        <div className={`column is-4`}>       
+      <div className="columns">
+        <div className={'column is-4'}>
           <Select
             value={null}
             onChange={this.handleChange}
@@ -75,8 +75,8 @@ export default class RelationSelector extends Component {
         <div className="column is-8">
           {!loading && (
             selected.length ? (
-                <ul className="tags-container">
-                  {selected.map(id => {
+              <ul className="tags-container">
+                {selected.map(id => {
                     const title = this.optionsIndex[id].label;
                     return (
                       <li key={id}>
@@ -87,9 +87,9 @@ export default class RelationSelector extends Component {
                       </li>
                     );
                   })}
-                </ul>
+              </ul>
              ) : (
-              <p><em>No items yet...</em></p>
+               <p><em>No items yet...</em></p>
             )
         )}
         </div>

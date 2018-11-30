@@ -39,7 +39,7 @@ export default class Form extends Component {
             input.focus();
           }
         }
-    }, 200)
+    }, 200);
   }
 
   toggleEdit = () => {
@@ -125,7 +125,7 @@ export default class Form extends Component {
                 </div>
               </div>
             ) :
-            <Preview url={`${model}-${id}`} />
+              <Preview url={`${model}-${id}`} />
         }
       </div>
     );

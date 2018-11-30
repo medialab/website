@@ -110,6 +110,6 @@ const IndexPage = ({data}) => {
       </ul>
     </Layout>
   );
-}
+};
 
 export default IndexPage;

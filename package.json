@@ -16,7 +16,7 @@
     "hydrate:json": "rm -rf data/* && mkdir -p data/assets && touch data/assets/dummy && cp specs/samples/json/*.json data",
     "install:admin": "cd admin && npm i",
     "install:site": "cd site && npm i",
-    "lint": "eslint api scripts",
+    "lint": "eslint api scripts site/*.js site/src",
     "load": "node ./scripts/load.js",
     "postinstall": "npm run install:admin && npm run install:site",
     "reinstall": "rm -rf ./admin/node_modules && rm -rf ./site/node_modules && rm -rf ./node_modules && npm i",
@@ -61,6 +61,10 @@
     ],
     "parserOptions": {
       "ecmaVersion": 2018
+    },
+    "rules": {
+      "react/jsx-no-bind": 0,
+      "react/no-danger": 0
     }
   }
 }

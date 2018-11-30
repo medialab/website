@@ -4,6 +4,6 @@ import React from 'react';
 export default function PeopleIndex({data, pageContext}) {
   // const {group, index, first, last, pageCount} = pageContext;
 
-  console.log(pageContext);
+  console.log(data, pageContext);
   return <div>People Pagination</div>;
 }

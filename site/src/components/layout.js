@@ -23,8 +23,7 @@ const Layout = ({children}) => (
           meta={[
             {name: 'description', content: 'Sample'},
             {name: 'keywords', content: 'sample, something'}
-          ]}
-        >
+          ]}>
           <html lang="en" />
         </Helmet>
         <div
@@ -33,17 +32,15 @@ const Layout = ({children}) => (
             maxWidth: 960,
             padding: '0px 1.0875rem 1.45rem',
             paddingTop: 0
-          }}
-        >
+          }}>
           {children}
         </div>
       </>
-    )}
-  />
-)
+    )} />
+);
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired
-}
+};
 
-export default Layout
+export default Layout;

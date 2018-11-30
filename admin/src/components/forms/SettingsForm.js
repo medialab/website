@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {arrayMove} from 'react-sortable-hoc';
 import get from 'lodash/fp/get';
 import set from 'lodash/fp/set';
 
@@ -35,6 +36,13 @@ export default class SettingsForm extends Component {
     this.setState(set(['settings', 'home', 'editorialization'], currentList, this.state));
   };
 
+  handleHomeSortEnd = ({oldIndex, newIndex}) => {
+    let currentList = get(['settings', 'home', 'editorialization'], this.state);
+    currentList = arrayMove(currentList, oldIndex, newIndex);
+
+    this.setState(set(['settings', 'home', 'editorialization'], currentList, this.state));
+  };
+
   handleSubmit = () => {
     client.post({params: {model: 'settings'}, data: this.state.settings}, () => {
       console.log('Saved!');
@@ -56,7 +64,8 @@ export default class SettingsForm extends Component {
               model="people"
               selected={settings.home.editorialization}
               onAdd={this.handleAddHomeItem}
-              onDrop={this.handleDropHomeItem} />
+              onDrop={this.handleDropHomeItem}
+              onSortEnd={this.handleHomeSortEnd} />
             <br />
             <Button onClick={this.handleSubmit}>Save</Button>
           </div>

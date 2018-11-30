@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import Select from 'react-select';
+import {SortableContainer, SortableElement, SortableHandle} from 'react-sortable-hoc';
 import keyBy from 'lodash/keyBy';
 import flatten from 'lodash/flatten';
 import parallel from 'async/parallel';
+import ReorderIcon from '../icons/ReorderIcon';
 import client from '../../client';
 
 import labels from '../../../../specs/labels';
@@ -24,6 +26,36 @@ const createOptions = (model, items) => ({
     model
   }))
 });
+
+const DragHandle = SortableHandle(() => (
+  <span className="handle" style={{marginTop: '5px', marginRight: '5px'}}>
+    <ReorderIcon />
+  </span>
+));
+
+const SortableItem = SortableElement(({id, label, model, onDrop}) => (
+  <li key={id}>
+    <span className="tag is-medium" style={{marginBottom: 3}}>
+      <DragHandle />
+      <small><em>{TITLES[model]}</em></small>&nbsp;- {label}
+      &nbsp;<button className="delete is-small" onClick={onDrop} />
+    </span>
+  </li>
+));
+
+const SortableList = SortableContainer(({items, index, onDrop}) => (
+  <ul className="sortable">
+    {items.map(([model, id], i) => (
+      <SortableItem
+        key={id}
+        index={i}
+        id={id}
+        model={model}
+        label={index[id].label}
+        onDrop={() => onDrop(id)} />
+    ))}
+  </ul>
+));
 
 export default class EditorializationSelector extends Component {
   constructor(props, context) {
@@ -73,7 +105,7 @@ export default class EditorializationSelector extends Component {
   render() {
     const {options, loading} = this.state;
 
-    const {onDrop, selected = []} = this.props;
+    const {onDrop, onSortEnd, selected = []} = this.props;
 
     const selectedSet = new Set(selected.map(item => item[1]));
 
@@ -87,20 +119,12 @@ export default class EditorializationSelector extends Component {
     return (
       <div>
         {!loading &&
-          <ul>
-            {selected.map(item => {
-              const [model, id] = item;
-
-              return (
-                <li key={id}>
-                  <span className="tag is-medium" style={{marginBottom: 3}}>
-                    {TITLES[model]} - {this.optionsIndex[id].label}
-                    &nbsp;<button className="delete is-small" onClick={() => onDrop(id)} />
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
+          <SortableList
+            items={selected}
+            index={this.optionsIndex}
+            useDragHandle={true}
+            onDrop={onDrop}
+            onSortEnd={onSortEnd} />
         }
         <br />
         <Select

@@ -10,6 +10,14 @@ html, body, #app {
   height: 100%;
 }
 
+li {
+  list-style-type: none;
+}
+
+.handle {
+  cursor: pointer;
+}
+
 .modal {
   z-index: 10000;
 }

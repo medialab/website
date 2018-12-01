@@ -33,7 +33,7 @@ class GatsbyProcess {
       data = String(data);
 
       if (data.includes('___graphql')) {
-        stdout.off('data', handler);
+        stdout.removeListener('data', handler);
 
         if (callback)
           callback();

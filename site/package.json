@@ -24,8 +24,10 @@
     "gatsby-plugin-manifest": "^2.0.9",
     "gatsby-plugin-offline": "^2.0.13",
     "gatsby-plugin-react-helmet": "^3.0.2",
+    "gatsby-plugin-sass": "^2.0.4",
     "gatsby-source-filesystem": "^2.0.8",
     "lodash": "^4.17.11",
+    "node-sass": "^4.10.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-helmet": "^5.2.0"

@@ -3,6 +3,7 @@ module.exports = {
     title: 'médialab website',
   },
   plugins: [
+    'gatsby-plugin-sass',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -21,7 +22,13 @@ module.exports = {
     },
     'gatsby-plugin-offline'
   ],
-  // mapping: {
-  //   'PeopleJson.activities': 'ActivitiesJson'
-  // }
+  mapping: {
+    'ActivitiesJson.people': 'PeopleJson',
+    'PublicationsJson.activities': 'ActivitiesJson',
+    'PublicationsJson.people': 'PeopleJson',
+    'PublicationsJson.publications': 'PublicationsJson',
+    'NewsJson.activities': 'ActivitiesJson',
+    'NewsJson.people': 'PeopleJson',
+    'NewsJson.publications': 'PublicationsJson'
+  }
 };

@@ -1,0 +1,40 @@
+.container{
+
+    .introduction{
+
+        p{
+            font-size: $font-size*5;
+            line-height: $baseline*5;
+            font-weight: 100;
+            padding: 6rem 0;
+        }
+    }
+
+    .actualites{
+
+            .item{
+                height: 100%;
+                width: auto;
+
+                border: 1px grey solid;
+
+            }
+    }
+
+    .flux{
+
+    }
+}
+
+
+#topbar #topbar-content #logo-medialab {
+    width: 25%;
+    max-width: 400px;
+    vertical-align: bottom;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    align-self: end;
+    position: absolute;
+    margin: 0 0 0 .5rem;
+
+}

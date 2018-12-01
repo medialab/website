@@ -14,10 +14,18 @@ const MODELS_PATHS = {};
 
 MODELS.forEach(model => MODELS_PATHS[model] = path.join(DB_PATH, `${model}.json`));
 
-const OWN_TYPES = new Set([
-  'ActivitiesJson',
-  'PeopleJson'
-]);
+const FILE_QUERY = `
+  {
+    allFile(filter: {sourceInstanceName: {eq: "assets"}}) {
+      edges {
+        node {
+          base,
+          publicURL
+        }
+      }
+    }
+  }
+`;
 
 const ACTIVITIES_QUERY = `
   {
@@ -38,6 +46,7 @@ const PEOPLE_QUERY = `
       node {
         identifier
         bio {
+          en
           fr
         }
       }
@@ -46,18 +55,40 @@ const PEOPLE_QUERY = `
  }
 `;
 
-// Helper extracting asset paths from html
-function extractAssetsFromHtml(html) {
-  const $ = cheerio.load(html);
+const PUBLICATION_QUERY = `
+  {
+    allPublicationsJson {
+      edges {
+        node {
+          identifier
+        }
+      }
+    }
+  }
+`;
 
+const NEWS_QUERY = `
+  {
+    allNewsJson {
+      edges {
+        node {
+          identifier
+        }
+      }
+    }
+  }
+`;
 
-  const assets = [];
+// Helper replacing HTML assets
+function replaceHTMLAssetPaths(html, index) {
 
-  $('img').each(function() {
-    assets.push($(this).attr('src'));
-  });
+  // TODO: this approach may be too slow in the future!
+  for (const base in index) {
+    const publicURL = index[base].publicURL;
+    html = html.replace(base, publicURL);
+  }
 
-  return assets;
+  return html;
 }
 
 const MODEL_READERS = {
@@ -102,13 +133,6 @@ const MODEL_READERS = {
       if (node)
         deleteNode({node});
 
-      // Solving relations
-      // TODO: solve by mapping if need to split the database in chunks?
-      // person = {
-      //   ...person,
-      //   activities: (person.activities || []).map(i => activitiesIndex[i])
-      // };
-
       const hash = crypto
         .createHash('md5')
         .update(JSON.stringify(person))
@@ -119,6 +143,64 @@ const MODEL_READERS = {
         identifier: person.id,
         internal: {
           type: 'PeopleJson',
+          contentDigest: hash,
+          mediaType: 'application/json'
+        }
+      });
+    });
+  },
+
+  publications: function(createNode, deleteNode, getNode) {
+    const rawData = fs.readFileSync(MODELS_PATHS.publications, 'utf-8');
+    const data = JSON.parse(rawData);
+
+    // Publications
+    data.publications.forEach(publication => {
+
+      const node = getNode(publication.id);
+
+      if (node)
+        deleteNode({node});
+
+      const hash = crypto
+        .createHash('md5')
+        .update(JSON.stringify(publication))
+        .digest('hex');
+
+      createNode({
+        ...publication,
+        identifier: publication.id,
+        internal: {
+          type: 'PublicationsJson',
+          contentDigest: hash,
+          mediaType: 'application/json'
+        }
+      });
+    });
+  },
+
+  news: function(createNode, deleteNode, getNode) {
+    const rawData = fs.readFileSync(MODELS_PATHS.news, 'utf-8');
+    const data = JSON.parse(rawData);
+
+    // News
+    data.news.forEach(news => {
+
+      const node = getNode(news.id);
+
+      if (node)
+        deleteNode({node});
+
+      const hash = crypto
+        .createHash('md5')
+        .update(JSON.stringify(news))
+        .digest('hex');
+
+      createNode({
+        ...news,
+        identifier: news.id,
+        internal: {
+          type: 'NewsJson',
           contentDigest: hash,
           mediaType: 'application/json'
         }
@@ -154,7 +236,9 @@ exports.sourceNodes = function({actions, getNode})  {
 exports.createPages = function({graphql, actions, emitter})  {
   const {createPage, deletePage} = actions;
 
-  const promises = [
+  let FILES = null;
+
+  const promises = () => [
 
     // Activities
     graphql(ACTIVITIES_QUERY).then(result => {
@@ -165,7 +249,7 @@ exports.createPages = function({graphql, actions, emitter})  {
       result.data.allActivitiesJson.edges.forEach(edge => {
         const activity = edge.node;
 
-        const slug = `/activity-${activity.identifier}/`;
+        const slug = `/activities-${activity.identifier}/`;
 
         const context = {
           identifier: activity.identifier
@@ -200,13 +284,16 @@ exports.createPages = function({graphql, actions, emitter})  {
         const slug = `/people-${person.identifier}/`;
 
         const context = {
-          assets: [],
-          identifier: person.identifier
+          identifier: person.identifier,
+          bio: {}
         };
 
         // Processing HTML
+        if (person.bio && person.bio.en)
+          context.bio.en = replaceHTMLAssetPaths(person.bio.en, FILES);
+
         if (person.bio && person.bio.fr)
-          context.assets = extractAssetsFromHtml(person.bio.fr);
+          context.bio.fr = replaceHTMLAssetPaths(person.bio.fr, FILES);
 
         createPage({
           path: slug,
@@ -214,8 +301,56 @@ exports.createPages = function({graphql, actions, emitter})  {
           context
         });
       });
+    }),
+
+    // Publications
+    graphql(PUBLICATION_QUERY).then(result => {
+      if (!result.data)
+        return;
+
+      // Creating pages
+      result.data.allPublicationsJson.edges.forEach(edge => {
+        const publication = edge.node;
+
+        const slug = `/publications-${publication.identifier}/`;
+
+        const context = {
+          identifier: publication.identifier
+        };
+
+        createPage({
+          path: slug,
+          component: path.resolve('./src/templates/publication.js'),
+          context
+        });
+      });
+    }),
+
+    // News
+    graphql(NEWS_QUERY).then(result => {
+      if (!result.data)
+        return;
+
+      // Creating pages
+      result.data.allNewsJson.edges.forEach(edge => {
+        const news = edge.node;
+
+        const slug = `/news-${news.identifier}/`;
+
+        const context = {
+          identifier: news.identifier
+        };
+
+        createPage({
+          path: slug,
+          component: path.resolve('./src/templates/news.js'),
+          context
+        });
+      });
     })
   ];
 
-  return Promise.all(promises);
+  return graphql(FILE_QUERY).then(result => {
+    FILES = _.keyBy(result.data.allFile.edges.map(e => e.node), 'base');
+  }).then(() => Promise.all(promises()));
 };

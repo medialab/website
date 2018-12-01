@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	
+    <title>Medialab - Proto</title>
+    <!-- styles -->
+    <style type="text/css">
+	    canvas{
+			position: absolute;
+			width: calc(90vh*1.5);
+			height: 90%;
+			top: 50%;
+			left:50%;
+			transform: translate(-50%, -50%);
+			box-sizing: border-box;
+			image-rendering: pixelated;
+		}
+
+		html,body {
+			box-sizing: border-box;
+			width: 100%;
+			height: 100%;
+			position: fixed;
+
+			overflow:hidden;
+			height: 100vh;
+		}
+
+    </style>
+
+</head>
+<body>
+	<canvas width="200" height="200">
+		<img src="pessoa.jpg" width="200" height="200">
+	</canvas>
+</body>
+
+<svg class="svg" x="0" y="0" width="1024" height="576" viewBox="0 0 #{image_width} #{image_height}">
+  <defs>
+    <circle id="two" cx="5" cy="5" r="0.5"></circle>
+    <circle id="three" cx="1" cy="1" r="1"></circle>
+    <circle id="four" cx="1" cy="1" r="1.5"></circle>
+    <circle id="five" cx="1" cy="1" r="2"></circle>
+    <circle id="six" cx="1" cy="1" r="2.5"></circle>
+    <circle id="seven" cx="1" cy="1" r="3"></circle>
+    <circle id="eight" cx="1" cy="1" r="4"></circle>
+    <filter id="half-tone" x="0%" y="0%" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feImage width="3" height="3" xlink:href="#two"></feImage>
+      <feTile result="2dot"></feTile>
+      <feImage width="3" height="3" xlink:href="#three"></feImage>
+      <feTile result="3dot"></feTile>
+      <feImage width="3" height="3" xlink:href="#four"></feImage>
+      <feTile result="4dot"></feTile>
+      <feImage width="3" height="3" xlink:href="#five"></feImage>
+      <feTile result="5dot"></feTile>
+      <feImage width="3" height="3" xlink:href="#six"></feImage>
+      <feTile result="6dot"></feTile>
+      <feImage width="3" height="3" xlink:href="#seven"></feImage>
+      <feTile result="7dot"></feTile>
+      <feImage width="3" height="3" xlink:href="#eight"></feImage>
+      <feTile result="8dot"></feTile>
+      <feColorMatrix in="SourceGraphic" type="luminanceToAlpha" result="neg-lum-map" width="100%" height="100%"></feColorMatrix>
+      <feComponentTransfer result="lum-map">
+        <feFuncA type="table" tableValues="1 0"></feFuncA>
+        <feFuncR id="r" type="table" tableValues="0.125 0"></feFuncR>
+        <feFuncG id="g" type="table" tableValues="0.078125 0"></feFuncG>
+        <feFuncB id="b" type="table" tableValues="0.32421875 0"></feFuncB>
+      </feComponentTransfer>
+      <feComponentTransfer in="lum-map" result="2r-thresh">
+        <feFuncA type="discrete" tableValues="0 1 0 0 0 0 0 0"></feFuncA>
+      </feComponentTransfer>
+      <feComponentTransfer in="lum-map" result="3r-thresh">
+        <feFuncA type="discrete" tableValues="0 0 1 0 0 0 0 0"></feFuncA>
+      </feComponentTransfer>
+      <feComponentTransfer in="lum-map" result="4r-thresh">
+        <feFuncA type="discrete" tableValues="0 0 0 1 0 0 0 0"></feFuncA>
+      </feComponentTransfer>
+      <feComponentTransfer in="lum-map" result="5r-thresh">
+        <feFuncA type="discrete" tableValues="0 0 0 0 1 0 0 0"></feFuncA>
+      </feComponentTransfer>
+      <feComponentTransfer in="lum-map" result="6r-thresh">
+        <feFuncA type="discrete" tableValues="0 0 0 0 0 1 0 0"></feFuncA>
+      </feComponentTransfer>
+      <feComponentTransfer in="lum-map" result="7r-thresh">
+        <feFuncA type="discrete" tableValues="0 0 0 0 0 0 1 0"></feFuncA>
+      </feComponentTransfer>
+      <feComponentTransfer in="lum-map" result="8r-thresh">
+        <feFuncA type="discrete" tableValues="0 0 0 0 0 0 0 1"></feFuncA>
+      </feComponentTransfer>
+      <feComposite operator="in" in="2r-thresh" in2="2dot" result="lev2"></feComposite>
+      <feComposite operator="in" in="3r-thresh" in2="3dot" result="lev3"></feComposite>
+      <feComposite operator="in" in="4r-thresh" in2="4dot" result="lev4"></feComposite>
+      <feComposite operator="in" in="5r-thresh" in2="5dot" result="lev5"></feComposite>
+      <feComposite operator="in" in="6r-thresh" in2="6dot" result="lev6"></feComposite>
+      <feComposite operator="in" in="7r-thresh" in2="7dot" result="lev7"></feComposite>
+      <feComposite operator="in" in="8r-thresh" in2="8dot" result="lev8"></feComposite>
+      <feMerge>
+        <feMergeNode in="lev8"></feMergeNode>
+        <feMergeNode in="lev7"></feMergeNode>
+        <feMergeNode in="lev6"></feMergeNode>
+        <feMergeNode in="lev5"></feMergeNode>
+        <feMergeNode in="lev4"></feMergeNode>
+        <feMergeNode in="lev3"></feMergeNode>
+        <feMergeNode in="lev2"></feMergeNode>
+      </feMerge>
+      <feComposite operator="in" in2="SourceGraphic"></feComposite>
+    </filter>
+  </defs>
+	<image xlink:href="pessoa.jpg" width="1000" height="1000"  id="img" filter="url(#half-tone)"></image>
+
+</svg>
+
+</html>

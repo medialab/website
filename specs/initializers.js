@@ -1,8 +1,7 @@
-const uuid = require('uuid/v4'),
-      enums = require('./enums.json');
+const enums = require('./enums.json');
 
 module.exports = {
-  activity: function() {
+  activity: function(uuid) {
     return {
       id: uuid(),
       name: '',
@@ -11,11 +10,12 @@ module.exports = {
       active: true
     };
   },
-  people: function() {
+  people: function(uuid) {
     return {
       id: uuid(),
       firstName: '',
       lastName: '',
+      membership: enums.membershipTypes.default,
       draft: true,
       active: true
     };

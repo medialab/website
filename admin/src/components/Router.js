@@ -11,6 +11,9 @@ import List from './List';
 
 import ActivityForm from './forms/ActivityForm';
 import PeopleForm from './forms/PeopleForm';
+import PublicationForm from './forms/PublicationForm';
+import NewsForm from './forms/NewsForm';
+import SettingsForm from './forms/SettingsForm';
 
 export default function Router() {
   return (
@@ -44,6 +47,11 @@ export default function Router() {
               <Link to="/publications">Publications</Link>
             </li>
           )} />
+          <Route path="/settings" children={({match}) => (
+            <li className={cls(match && 'is-active')}>
+              <Link to="/settings">Settings</Link>
+            </li>
+          )} />
         </ul>
       </div>
       <Switch>
@@ -54,8 +62,13 @@ export default function Router() {
         <Route path="/people/new" render={() => <PeopleForm />} />
         <Route path="/people/:id" render={({match}) => <PeopleForm id={match.params.id} />} />
         <Route path="/people" render={() => <List key="people" model="people" specs={listSpecs.people} />} />
+        <Route path="/news/new" render={() => <NewsForm />} />
+        <Route path="/news/:id" render={({match}) => <NewsForm id={match.params.id} />} />
         <Route path="/news" render={() => <List key="news" model="news" specs={listSpecs.news} />} />
+        <Route path="/publications/new" render={() => <PublicationForm />} />
+        <Route path="/publications/:id" render={({match}) => <PublicationForm id={match.params.id} />} />
         <Route path="/publications" render={() => <List key="publications" model="publications" specs={listSpecs.publications} />} />
+        <Route path="/settings" render={() => <SettingsForm key="settings" />} />
         <Route render={() => (<div>Miss!</div>)} />
       </Switch>
     </div>

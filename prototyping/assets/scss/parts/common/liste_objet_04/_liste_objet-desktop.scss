@@ -1,0 +1,283 @@
+/* assets/scss/common/_liste_objet-desktop.scss */
+
+@supports(display: grid) {
+
+    #menu_objet{
+
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-gap: 2rem;
+
+
+        position: absolute;
+        overflow: hidden;
+        //min-height: 300px;
+        //height: calc(80vh - var(--height-topbar));
+        width: calc(100vw - 2rem);
+        top: var(--height-topbar);
+        padding: 3rem $margins-desktop 1rem $margins-desktop;
+
+        background: white;
+        z-index: 999;
+
+        /**/
+        left: calc(-16.6vw - 2rem);
+
+        #filtre_objet{
+            
+            grid-column: 1 / 2;
+            margin: 0 2rem;
+            margin-top: calc(var(--font-size)*2);
+
+            ul{
+                max-width: 75px;
+
+
+
+                li{           
+                    height: var(--caseheight);
+                    display: -ms-flexbox;
+                    display: -webkit-flex;
+                    display: flex;
+                    -ms-flex-align: center;
+                    -webkit-align-items: center;
+                    -webkit-box-align: center;
+                    align-items: center;
+
+                    border-bottom: $bordersize solid $bordercolor;
+
+                                   
+                    p{
+                        margin: auto;
+                        position: absolute;
+
+                        font-size: $font-size * 2;
+
+                    }
+
+                }
+
+                li:nth-of-type(1){
+                    min-height: 4rem;
+                    border-top: $bordersize solid $bordercolor;
+                }
+            }
+        }
+
+        #liste_objet{
+
+           grid-column: 2 / 4; 
+
+            nav{
+
+                ul{ // S'applique aux troix catégories
+                    
+
+                    li{ // S'applique aux items des troix catégorie
+                        border-bottom: $bordersize solid $bordercolor;
+                        //padding: 3rem 0;
+                        height: var(--caseheight);
+                        display: -ms-flexbox;
+                        display: -webkit-flex;
+                        display: flex;
+                        -ms-flex-align: center;
+                        -webkit-align-items: center;
+                        -webkit-box-align: center;
+                        align-items: center;
+
+                        &:hover{
+                            transition: .25s ease;
+                            background-color: #f9f9f9;
+                        }
+                        h4{
+                            //font-size: $font-size * 2;
+                            @include typo-list_title();
+                        }
+                        p{
+
+                        }
+                    }
+                }
+
+                &#liste_publication{
+
+                }
+                &#liste_activite{
+
+            
+                }
+                &#liste_actualite{
+              
+                }           
+            }
+        }
+
+        #intro_objet{
+
+            grid-column: 4 / 7;
+            //border-top: $bordersize solid $bordercolor;
+
+
+            p{
+                font-size: $font-size * 4;
+            }
+        }
+
+    }
+
+} 
+
+
+//Cette partie devrait etre dans la topbar.scss ? Je ne sais. A voir plus tard
+#nav-objet{
+
+    input{
+
+        display: none !important;
+
+        &:checked + label{
+            text-decoration: underline;
+        }
+    }
+
+    label{
+        transition: 0.25s ease;
+        padding: 10px 10px 10px 0;
+        cursor: pointer;
+    }
+
+    /////////////////////////
+    ////////// Deployer le menu liste /////////
+    /////////////////////////
+
+    #actualites:checked ~ #menu_objet,
+    #publications:checked ~ #menu_objet, 
+    #activites:checked ~ #menu_objet {
+
+        height: calc(80vh - var(--height-topbar));
+        transition: .2s ease-in;
+        transition-property: height;
+        padding: 3rem $margins-desktop 1rem $margins-desktop;
+
+
+
+    }
+
+    // Afficher les bouttons de sortie (Clear)
+    #actualites:checked ~ #clearzone + label,
+    #publications:checked ~ #clearzone + label,
+    #activites:checked ~ #clearzone + label,
+    #actualites:checked ~ #clear + label,
+    #publications:checked ~ #clear + label,
+    #activites:checked ~ #clear + label,
+    {
+        display: block;
+    }
+
+    /////////////////////////
+    ////// Afficher la bonne liste en fonction de la catégorie choisie /////
+    ////////////////////
+
+    #liste_actualite,
+    #liste_publication,
+    #liste_activite, {
+        display: none;
+    }
+
+    #actualites:checked ~ #menu_objet #liste_actualite,
+    #publications:checked ~ #menu_objet #liste_publication,
+    #activites:checked ~ #menu_objet #liste_activite, {
+        display: block;
+    }
+
+    /////////////////////////
+    ////// Comportement des buttons Clear  //// 
+    /////////////////////////
+
+   #clear:checked ~ #clearzone + label,
+    #clearzone:checked, #clearzone:checked + label{
+        display: none !important;
+    }
+
+
+    #clear + label{
+    position: absolute;
+    width: calc(100vw - 2rem);
+    left: calc(-16.6vw - 2rem);
+    top: calc(var(--height-topbar) - 20px);
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    }
+    
+    #clear:checked ~ #menu_objet,
+    #clearzone:checked ~ #menu_objet, #menu_objet{
+        height: 0px;
+        min-height: 0;
+        padding: 0;
+    }
+
+    #clear, #clear + label, #clearzone, #clearzone + label{
+        display:none;
+    }
+
+    #clearzone + label{
+        position: absolute;
+        width: calc(100vw - 2rem);
+        left: calc(-16.6vw - 2rem);
+        top: 80vh;
+        height: 20vh;
+
+        /* Temporaire */
+        mix-blend-mod: multiply;
+        background: repeating-linear-gradient(
+          -55deg,
+          #fff0,
+          #fff0, 10px,
+          red 10px,
+          red 20px
+        );
+        opacity:.2;
+
+    }
+}
+
+
+#liste_objet{
+
+    nav{
+        li{
+            .item_accroche{
+                display: none;
+                position: absolute;
+                left: 33vw;
+                /*top: var(--height-topbar);
+                top: calc(var(--caseheight) * (-1));
+                top: calc(var(--height-topbar) + 12rem);*/
+                max-width: 50vw;
+                font-size: 5rem;
+                line-height: 5rem;
+                       
+            }
+
+            &:hover .item_accroche{
+                display: block;
+            }
+
+        }
+
+        li{/*
+            &:nth-of-type(1) .item_accroche{
+                top: calc((var(--caseheight) + (var(--baseline)*4)) * (-1)));
+            }
+            &:nth-of-type(2)  .item_accroche{
+                top: calc(((var(--caseheight) + (var(--baseline)*4)) * (-1)));
+            }
+
+            &:nth-of-type(3)  .item_accroche{
+                top: calc(((var(--caseheight) + (var(--baseline)*4)) * (-2)));
+            }*/
+        }
+    }
+}

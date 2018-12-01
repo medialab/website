@@ -12,10 +12,12 @@
     "docker:build": "docker-compose build",
     "docker:up": "docker-compose -p website up",
     "docker:down": "docker-compose -p website down",
+    "dump": "node ./scripts/dump.js",
     "hydrate:json": "rm -rf data/* && mkdir -p data/assets && touch data/assets/dummy && cp specs/samples/json/*.json data",
     "install:admin": "cd admin && npm i",
     "install:site": "cd site && npm i",
-    "lint": "eslint api",
+    "lint": "eslint api scripts",
+    "load": "node ./scripts/load.js",
     "postinstall": "npm run install:admin && npm run install:site",
     "reinstall": "rm -rf ./admin/node_modules && rm -rf ./site/node_modules && rm -rf ./node_modules && npm i",
     "start": "node api/server.js"
@@ -28,21 +30,22 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "config": "^2.0.1",
+    "config": "^3.0.0",
     "express": "^4.16.4",
     "express-fileupload": "^1.0.0",
     "fs-extra": "^7.0.1",
     "gatsby-cli": "^2.4.5",
     "json-server": "^0.14.0",
+    "json-stable-stringify": "^1.0.1",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@yomguithereal/eslint-config": "^4.0.0",
-    "concurrently": "^4.0.1",
+    "concurrently": "^4.1.0",
     "eslint": "^5.9.0",
     "eslint-plugin-react": "^7.11.1",
     "faker": "^4.1.0",
-    "nodemon": "^1.18.6"
+    "nodemon": "^1.18.7"
   },
   "nodemonConfig": {
     "ignore": [

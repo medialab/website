@@ -1,0 +1,12 @@
+/* assets/parts/common/_liste_objet.scss*/
+$bordersize: 1px;
+$bordercolor: black;
+
+:root{
+	--caseheight: 80px; //determine la hauteur de chaque case
+}
+
+/* imports */
+@import 'liste_objet-mobile';
+@import 'liste_objet-desktop';
+

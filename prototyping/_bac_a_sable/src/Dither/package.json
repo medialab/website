@@ -1,0 +1,47 @@
+{
+  "name": "@thewhodidthis/dither",
+  "version": "0.0.1",
+  "description": "Helps produce ordered and spatial dithering patterns",
+  "main": "index",
+  "module": "index.mjs",
+  "homepage": "https://github.com/thewhodidthis/dither#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thewhodidthis/dither.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thewhodidthis/dither/issues"
+  },
+  "scripts": {
+    "pretest": "eslint test.js",
+    "test": "node test.js",
+    "prestart": "eslint index.mjs",
+    "start": "rollup -f cjs index.mjs > index.js",
+    "preexample": "eslint example/index.js",
+    "example": "rollup -f umd -n dither index.mjs > example/dither.js"
+  },
+  "eslintConfig": {
+    "extends": "@thewhodidthis"
+  },
+  "engines": {
+    "node": ">=6.11.0",
+    "npm": ">=3.10.10"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@thewhodidthis/eslint-config": "latest",
+    "eslint": "latest",
+    "rollup": "latest",
+    "tapeless": "latest"
+  },
+  "keywords": [
+    "pixels",
+    "bayer",
+    "floyd-steinberg",
+    "dithering",
+    "graphics",
+    "canvas"
+  ],
+  "author": "sChzs BkgNns <sotirios.bakagiannis@gmail.com> (https://www.thewhodidthis.com)",
+  "license": "Unlicense"
+}

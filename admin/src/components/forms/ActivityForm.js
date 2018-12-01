@@ -5,18 +5,30 @@ import {connect} from 'react-redux';
 import cloneDeep from 'lodash/cloneDeep';
 import set from 'lodash/fp/set';
 import get from 'lodash/get';
+import uuid from 'uuid/v4';
 import {rawToHtml, htmlToRaw} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
 
+import FormLayout from './FormLayout';
 import Editor from '../Editor';
 import Button from '../misc/Button';
+import BooleanSelector from '../selectors/BooleanSelector';
 import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector from '../selectors/RelationSelector';
 import client from '../../client';
 
 function extractData(scope) {
   const data = cloneDeep(scope.state.data);
+
+  if (!data.content)
+    data.content = {};
+
+  if (scope.englishEditorContent)
+    data.content.en = rawToHtml(scope.englishEditorContent);
+
+  if (scope.frenchEditorContent)
+    data.content.fr = rawToHtml(scope.frenchEditorContent);
 
   return data;
 }
@@ -37,7 +49,8 @@ class ActivityForm extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.frBioEditorContent = null;
+    this.frenchEditorContent = null;
+    this.englishEditorContent = null;
 
     if (props.id) {
       this.state = {
@@ -51,7 +64,7 @@ class ActivityForm extends Component {
       this.state = {
         new: true,
         loading: false,
-        data: initializers.activity()
+        data: initializers.activity(uuid)
       };
     }
 
@@ -59,6 +72,8 @@ class ActivityForm extends Component {
     this.handleName = createHandler(this, ['data', 'name']);
     this.handleEnglishBaseline = createHandler(this, ['data', 'baseline', 'en']);
     this.handleFrenchBaseline = createHandler(this, ['data', 'baseline', 'fr']);
+    this.handleEnglishDescription = createHandler(this, ['data', 'description', 'en']);
+    this.handleFrenchDescription = createHandler(this, ['data', 'description', 'fr']);
     this.handleType = createRawHandler(this, ['data', 'type']);
   }
 
@@ -66,16 +81,26 @@ class ActivityForm extends Component {
 
     if (!this.state.new)
       client.get({params: {model: 'activities', id: this.props.id}}, (err, data) => {
+        if (data.content && data.content.en) {
+          data.content.en = htmlToRaw(data.content.en);
+          this.englishEditorContent = data.content.en;
+        }
+
+        if (data.content && data.content.fr) {
+          data.content.fr = htmlToRaw(data.content.fr);
+          this.frenchEditorContent = data.content.fr;
+        }
+
         this.setState({loading: false, data: data});
       });
   }
 
-  handlePublished = e => {
-    this.setState(set(['data', 'draft'], !e.target.checked, this.state));
+  handlePublished = value => {
+    this.setState(set(['data', 'draft'], !value, this.state));
   };
 
-  handleActive = e => {
-    this.setState(set(['data', 'active'], e.target.checked, this.state));
+  handleActive = value => {
+    this.setState(set(['data', 'active'], value, this.state));
   };
 
   handleAddPeople = id => {
@@ -94,6 +119,14 @@ class ActivityForm extends Component {
     this.setState(set(['data', 'people'], people, this.state));
   };
 
+  handleEnglishContent = content => {
+    this.englishEditorContent = content;
+  };
+
+  handleFrenchContent = content => {
+    this.frenchEditorContent = content;
+  };
+
   handleSubmit = () => {
     const {push} = this.props;
 
@@ -108,7 +141,7 @@ class ActivityForm extends Component {
       };
 
       client.post(payload, (err, result) => {
-        push(`/activities/${this.props.id}`);
+        push(`/activities/${this.state.data.id}`);
         this.setState({new: false});
       });
     }
@@ -137,17 +170,26 @@ class ActivityForm extends Component {
       return <div>Loading...</div>;
 
     return (
-      <div className="columns">
-        <div className="column is-4">
-          <div className="field">
-            <label className="label">Name</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={data.name}
-                onChange={this.handleName}
-                placeholder="Name" />
+      <FormLayout
+        id={data.id}
+        new={this.state.new}
+        model="activities"
+        onSubmit={this.handleSubmit}>
+        <div className="container">
+
+          <div className="columns">
+            <div className="column is-3">
+              <div className="field">
+                <label className="label">Name</label>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    value={data.name}
+                    onChange={this.handleName}
+                    placeholder="Name" />
+                </div>
+              </div>
             </div>
           </div>
 
@@ -164,9 +206,8 @@ class ActivityForm extends Component {
           <div className="field">
             <label className="label">Published?</label>
             <div className="control">
-              <input
-                type="checkbox"
-                checked={!data.draft}
+              <BooleanSelector
+                value={!data.draft}
                 onChange={this.handlePublished} />
             </div>
           </div>
@@ -174,66 +215,109 @@ class ActivityForm extends Component {
           <div className="field">
             <label className="label">Active?</label>
             <div className="control">
-              <input
-                type="checkbox"
-                checked={data.active}
+              <BooleanSelector
+                value={data.active}
                 onChange={this.handleActive} />
             </div>
           </div>
 
-          <div className="field">
-            <label className="label">English Baseline</label>
-            <div className="control">
-              <textarea
-                className="textarea"
-                value={(data.baseline && data.baseline.en) || ''}
-                onChange={this.handleEnglishBaseline}
-                placeholder="English Baseline"
-                rows={2} />
+          <div className="columns">
+            <div className="column is-3">
+              <div className="field">
+                <label className="label">Related People</label>
+                <div className="control">
+                  <RelationSelector
+                    model="people"
+                    selected={data.people}
+                    onAdd={this.handleAddPeople}
+                    onDrop={this.handleDropPeople} />
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="field">
-            <label className="label">French Baseline</label>
-            <div className="control">
-              <textarea
-                className="textarea"
-                value={(data.baseline && data.baseline.fr) || ''}
-                onChange={this.handleFrenchBaseline}
-                placeholder="French Baseline"
-                rows={2} />
+          <div className="columns">
+            <div className="column is-6">
+              <div className="field">
+                <label className="label">English Baseline</label>
+                <div className="control">
+                  <textarea
+                    className="textarea"
+                    value={(data.baseline && data.baseline.en) || ''}
+                    onChange={this.handleEnglishBaseline}
+                    placeholder="English Baseline"
+                    rows={2} />
+                </div>
+              </div>
+            </div>
+
+            <div className="column is-6">
+              <div className="field">
+                <label className="label">French Baseline</label>
+                <div className="control">
+                  <textarea
+                    className="textarea"
+                    value={(data.baseline && data.baseline.fr) || ''}
+                    onChange={this.handleFrenchBaseline}
+                    placeholder="French Baseline"
+                    rows={2} />
+                </div>
+              </div>
             </div>
           </div>
 
-           <div className="field">
-            <label className="label">Related People</label>
-            <div className="control">
-              <RelationSelector
-                model="people"
-                selected={data.people}
-                onAdd={this.handleAddPeople}
-                onDrop={this.handleDropPeople} />
+          <div className="columns">
+            <div className="column is-6">
+              <div className="field">
+                <label className="label">English Description</label>
+                <div className="control">
+                  <textarea
+                    className="textarea"
+                    value={(data.description && data.description.en) || ''}
+                    onChange={this.handleEnglishDescription}
+                    placeholder="English Description"
+                    rows={4} />
+                </div>
+              </div>
+            </div>
+
+            <div className="column is-6">
+              <div className="field">
+                <label className="label">French Description</label>
+                <div className="control">
+                  <textarea
+                    className="textarea"
+                    value={(data.description && data.description.fr) || ''}
+                    onChange={this.handleFrenchDescription}
+                    placeholder="French Description"
+                    rows={4} />
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="field is-grouped">
-            <div className="control">
-              <Button onClick={this.handleSubmit}>Submit</Button>
+          <div className="columns">
+            <div className="column is-6">
+              <div className="field">
+                <label className="label">English Content</label>
+                <Editor
+                  rawContent={(data.content && data.content.en) || null}
+                  onSave={this.handleEnglishContent} />
+              </div>
             </div>
-            <div className="control">
-              <Link to="/activities" className="button is-text">Cancel</Link>
+
+            <div className="column is-6">
+              <div className="field">
+                <label className="label">French Content</label>
+                <Editor
+                  rawContent={(data.content && data.content.fr) || null}
+                  onSave={this.handleFrenchContent} />
+              </div>
             </div>
           </div>
+
         </div>
-
-        <div className="column is-8">
-          {!this.state.new && (
-            <iframe
-              style={{border: '1px solid #ccc', width: '100%', height: '100%'}}
-              src={`${STATIC_URL}/activity-${data.id}`} />
-          )}
-        </div>
-      </div>
+      </FormLayout>
     )
   }
 }

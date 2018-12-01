@@ -1,4 +1,4 @@
-FROM nginx:stable-alpine
+FROM nginx:1.13-alpine
 
 ENV NODE_ENV production
 

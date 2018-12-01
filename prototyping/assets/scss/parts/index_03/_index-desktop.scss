@@ -25,11 +25,15 @@
     }
 }
 
-/*
-input ~ .content{
-display:none;
+
+#topbar #topbar-content #logo-medialab {
+    width: 25%;
+    max-width: 400px;
+    vertical-align: bottom;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    align-self: end;
+    position: absolute;
+    margin: 0 0 0 .5rem;
+
 }
-input#_1:checked ~ .content1, input#_2:checked ~ .content2, input#_3:checked ~ .content3{
-display:block;
-}
-*/

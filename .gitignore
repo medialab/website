@@ -4,3 +4,5 @@ data
 dump
 *.log
 css-compiled
+.sass-cache
+prototyping/assets/.sass-cache

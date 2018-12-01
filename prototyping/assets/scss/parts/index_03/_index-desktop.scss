@@ -1,0 +1,35 @@
+.container{
+
+    .introduction{
+
+        p{
+            font-size: $font-size*5;
+            line-height: $baseline*5;
+            padding: 6rem 0;
+        }
+    }
+
+    .actualites{
+
+            .item{
+                height: 100%;
+                width: auto;
+
+                border: 1px grey solid;
+
+            }
+    }
+
+    .flux{
+
+    }
+}
+
+/*
+input ~ .content{
+display:none;
+}
+input#_1:checked ~ .content1, input#_2:checked ~ .content2, input#_3:checked ~ .content3{
+display:block;
+}
+*/

@@ -3,7 +3,7 @@ html {
 }
 
 body, html{
-	width: 100vw;
+	max-width: 100vw; // Le problème de scroll barre horizontal venait de là. Changement width en max-width.
 	top: 0px;
 	left: 0px;
 	margin: 0px;

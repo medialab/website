@@ -27,7 +27,7 @@
 
 		<div class="actualites">
 
-			<div class="item-xxl" style="width: 48vw; height: 60vh; border: 1px solid grey; position: relative; overflow: hidden" >
+			<div class="item-xxl" style="width: 48vw; height: 60vh; border: 1px solid grey; position: relative; overflow: hidden; line-height: inherit;" >
 				<?php include('_bac_a_sable/module/ascii_2.9.html'); ?>
 			</div>
 

@@ -43,7 +43,7 @@
 
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            grid-template-rows: 33vh auto 10vh;
+            grid-template-rows: auto auto 10vh;
             grid-gap: 2rem;
 
         }

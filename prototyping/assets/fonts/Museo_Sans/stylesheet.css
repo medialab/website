@@ -9,9 +9,9 @@
 
 @font-face{
 	font-family:'MuseosSans';
-	src:url(""MuseoSans_100Italic.otf"") format("otf");
-	src:url("mMusesSans_100Italic.-webfontowoff") format("woff");
-	src:url("mMusesSans_100Italic.-webfontowoff2") format("woff2");
+	src:url("MuseoSans_100Italic.otf") format("otf");
+	src:url("museosans_100Italic-webfont.woff") format("woff");
+	src:url("museosans_100Italic-webfont.woff2") format("woff2");
 	font-weight:100;
 	font-style:italic;
 }

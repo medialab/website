@@ -37,8 +37,12 @@
 
 		<main id="objet_majeur">
 			<header>
-				<h1>How not to be a bad trader.</h1>
-				<h2>Marchés financiers : que sont les “bonnes” relations sociales d’échange ?</h2>
+				<h1>Exploring XIX Century International Trade.</h1>
+				<h2>We present the RICardo data visualization application designed to explore a XIXth century international trade statistics database.</h2>
+
+				<date>11/11/2016</date>
+				<type>Conference</type>
+				
 			</header>
 
 			<section>
@@ -98,7 +102,13 @@
 				<header>
 					<h2>Personnes en lien </h2>
 				</header>
-				<p>That’s why many people are seeing a promising alternative in Compressed Air Energy Storage (CAES), another form of mechanical energy storage. In these systems, electricity is used to compress air, which is stored in an underground cavern. To make use of the stored energy, the air is decompressed and converted back to electricity.</p>
+				<ul>
+					<li>Paul Girard</li>
+					<li>Donato Ricci</li>
+					<li>Benjamin Ooghe Tabanou</li>
+					<li>Mathieu Jacomy</li>
+					<li>Guillaume Plique</li>
+					<li>Gregory Tible</li>
 			</div>
 		</section>
 

@@ -30,7 +30,7 @@ article{
 		}
 
 		h3{
-			margin: 4rem 0 2rem 0;
+			@include article_h3();
 		}
 	}
 

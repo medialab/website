@@ -1,5 +1,9 @@
 {
   "data": "DATA_FOLDER",
+  "dump": {
+    "path": "DUMP_FOLDER",
+    "repository": "DUMP_REPO"
+  },
   "port": {
     "__name": "PORT",
     "__format": "json"

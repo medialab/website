@@ -6,7 +6,73 @@ $bordercolor: black;
 	--caseheight: 80px; //determine la hauteur de chaque case
 }
 
+#menu_objet{
+
+	background: white;
+	z-index: 999;
+
+	#filtre_objet{
+
+	}
+
+
+	#liste_objet{
+
+		nav{
+
+			ul{ // S'applique aux troix catégories
+				
+
+				[data-item]{ // S'applique aux items des troix catégorie
+					border-bottom: $border-1;
+					//padding: 3rem 0;
+					min-height: $caseheight;
+					padding-top: $baseline;
+					padding-bottom: $baseline;
+					display: -ms-flexbox;
+					display: -webkit-flex;
+					display: flex;
+					-ms-flex-align: center;
+					-webkit-align-items: center;
+					-webkit-box-align: center;
+					align-items: center;
+				
+
+					&:hover{
+						transition: .25s ease;
+						background-color: #f9f9f9;
+					}
+					h1{
+						@include typo-list_title();
+					}
+					p{
+
+					}
+				}
+
+			  
+			}
+
+			&#liste_publication{
+
+			}
+			&#liste_activite{
+
+		
+			}
+			&#liste_actualite{
+		  
+			}           
+		}
+
+	}
+
+}
+
 /* imports */
 @import 'liste_objet-mobile';
 @import 'liste_objet-desktop';
+
+
+
 

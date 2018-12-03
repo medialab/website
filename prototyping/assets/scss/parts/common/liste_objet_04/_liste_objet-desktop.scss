@@ -8,20 +8,13 @@
         grid-template-columns: repeat(6, 1fr);
         grid-gap: 2rem;
 
-
         position: absolute;
         overflow: hidden;
-        //min-height: 300px;
-        //height: calc(80vh - var(--height-topbar));
         width: calc(100vw - 2rem);
         top: var(--height-topbar);
-        padding: 3rem $margins-desktop 1rem $margins-desktop;
-
-        background: white;
-        z-index: 999;
-
-        /**/
         left: calc(-16.6vw - 2rem);
+        padding: 3rem $margins-desktop 1rem $margins-desktop;
+        
 
         #filtre_objet{
             
@@ -32,10 +25,8 @@
             ul{
                 max-width: 75px;
 
-
-
                 li{           
-                    height: var(--caseheight);
+                    height: $caseheight;
                     display: -ms-flexbox;
                     display: -webkit-flex;
                     display: flex;
@@ -43,89 +34,55 @@
                     -webkit-align-items: center;
                     -webkit-box-align: center;
                     align-items: center;
-
-                    border-bottom: $bordersize solid $bordercolor;
+                    border-bottom: $border-1;
 
                                    
                     p{
                         margin: auto;
                         position: absolute;
-
                         font-size: $font-size * 2;
-
                     }
 
                 }
 
                 li:nth-of-type(1){
                     min-height: 4rem;
-                    border-top: $bordersize solid $bordercolor;
+                    border-top: $border-1;
                 }
             }
         }
 
         #liste_objet{
-
-           grid-column: 2 / 4; 
-
-            nav{
-
-                ul{ // S'applique aux troix catégories
-                    
-
-                    li{ // S'applique aux items des troix catégorie
-                        border-bottom: $bordersize solid $bordercolor;
-                        //padding: 3rem 0;
-                        height: var(--caseheight);
-                        display: -ms-flexbox;
-                        display: -webkit-flex;
-                        display: flex;
-                        -ms-flex-align: center;
-                        -webkit-align-items: center;
-                        -webkit-box-align: center;
-                        align-items: center;
-
-                        &:hover{
-                            transition: .25s ease;
-                            background-color: #f9f9f9;
-                        }
-                        h4{
-                            //font-size: $font-size * 2;
-                            @include typo-list_title();
-                        }
-                        p{
-
-                        }
-                    }
-                }
-
-                &#liste_publication{
-
-                }
-                &#liste_activite{
-
-            
-                }
-                &#liste_actualite{
-              
-                }           
-            }
+            grid-column: 2 / 4;
         }
 
-        #intro_objet{
-
-            grid-column: 4 / 7;
-            //border-top: $bordersize solid $bordercolor;
-
-
-            p{
-                font-size: $font-size * 4;
-            }
-        }
 
     }
 
+     // faire apparaître les accroches
+    [data-item] ~ [data-item-accroche]{ display: none; }
+
+    .accroche-titre{ display: block; }
+
+    @for $i from 1 through 100 {
+        [data-item="#{$i}"]:hover ~ [data-item-accroche="#{$i}"]{ display:block; }
+        [data-item="#{$i}"]:hover ~ .accroche-titre{ display:none; }
+    }
+
+    // style desktop accroches 
+    .item_accroche{
+        position: absolute;
+        top: 0;
+        left: 33vw;
+        @include menu-object-accroche-desktop();
+        width: 40vw;
+        margin-left: 6rem;
+    }
+
 } 
+
+
+
 
 
 //Cette partie devrait etre dans la topbar.scss ? Je ne sais. A voir plus tard
@@ -251,9 +208,10 @@
     nav{
         li{
             .item_accroche{
-                display: none;
-                position: absolute;
-                left: 33vw;
+                display: block;
+                // position: absolute;
+                // left: 33vw;
+                // top: 0;
                 /*top: var(--height-topbar);
                 top: calc(var(--caseheight) * (-1));
                 top: calc(var(--height-topbar) + 12rem);*/
@@ -265,6 +223,7 @@
 
             &:hover .item_accroche{
                 display: block;
+                color: red;
             }
 
         }
@@ -283,3 +242,4 @@
         }
     }
 }
+

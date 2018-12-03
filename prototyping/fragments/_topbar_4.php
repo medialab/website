@@ -33,7 +33,7 @@
 					<input id="clearzone" type="radio" name="n1"> 
 	              	<label id="clearzone_label" class="collapse" for="clearzone">✖</label>
 
-				<?php include('fragments/_liste_objet_3.php'); ?>
+				<?php include('fragments/_liste_objet_4.php'); ?>
 
 			</ul>
 			<ul id="nav-institution">

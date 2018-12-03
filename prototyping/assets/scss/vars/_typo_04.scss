@@ -30,8 +30,16 @@ html{
     font-size: $font-size*2;
     font-weight: normal;
     line-height: $baseline;
-    line-height: $baseline*2;
+    line-height: $baseline*1.8;
 }
+
+@mixin menu-object-accroche-desktop() {
+    font-size: $font-size * 4;
+    font-weight: 100;
+    line-height: $baseline*3;
+}
+
+
 
 @mixin typo-labeur() {
     font-size: $font-size*1.8;

@@ -1,11 +1,14 @@
 
 #aside{
 width: 30%;
-background-color: red;
+// background-color: red;
+background-color: $background-site;
 height: calc(100vh - var(--height-topbar));
 position: fixed;
 top: $height-top-bar;
 right: 0;
+padding-right: 30px;
+border-right: solid 2px black;
 }
 
 main{
@@ -21,9 +24,11 @@ padding-left: $margins-desktop;
 .collapse{
 cursor: pointer;
 display: block;
-background: #cdf; 
+// background: #cdf; 
 display: inline-block;
-width: 33%;    
+width: 33%; 
+font-size: $font-size*1.5;   
+
 }
 input{
 display: none; /* hide the checkboxes */

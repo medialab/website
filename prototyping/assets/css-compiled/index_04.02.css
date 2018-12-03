@@ -602,101 +602,138 @@ ul {
                 top: calc(((var(--caseheight) + (var(--baseline)*4)) * (-2)));
             }*/ }
 
-article {
-  --tabsize: 60px; }
-  article > #boussole {
-    font-size: 13px;
-    font-weight: 300;
-    line-height: 15px;
-    line-height: 19.5px; }
-    article > #boussole ul {
-      max-width: 75px; }
-      article > #boussole ul li {
-        border-bottom: 1px solid black; }
-        article > #boussole ul li:nth-of-type(1) {
-          min-height: 4rem;
-          border-top: 1px solid black; }
-  article > main p, article > section p {
-    font-size: 18px;
-    line-height: 27px;
-    font-weight: 100; }
-  article > main h3, article > section h3 {
-    font-size: 18px;
-    line-height: 27px;
+/* imports */
+.container p {
+  font-size: 18px;
+  line-height: 27px;
+  font-weight: 100; }
+.container #enavant article {
+  border-bottom: 1px solid grey;
+  padding: 1rem 0 2rem 0;
+  margin: 0 0 3rem 0; }
+  .container #enavant article .img {
+    border: 0px solid grey;
+    max-width: calc(58vw/3);
+    max-height: 25vh;
+    margin: 1rem 0 3rem 0;
+    overflow: hidden; }
+    .container #enavant article .img span {
+      display: block;
+      font-size: 30px;
+      overflow: hidden; }
+  .container #enavant article h3 {
+    font-size: 12px;
+    line-height: 18px;
     font-weight: 500;
-    padding: 1rem 0 2rem 0; }
-  article main h1 {
-    font-size: 60px;
-    line-height: 82.5px;
+    letter-spacing: -1px; }
+  .container #enavant article h4 {
+    font-size: 40px;
+    line-height: 52.5px;
     font-weight: 100;
     letter-spacing: -1px;
-    padding: 2rem 0 4rem 0; }
-  article main h2 {
-    font-size: 30px;
-    line-height: 45px;
-    font-weight: 100; }
+    padding: 1rem 0 1rem 0; }
+  .container #enavant article h5 {
+    font-size: 20px;
+    line-height: 22.5px;
+    font-weight: 100;
+    letter-spacing: -1px;
+    padding: 2rem 0 22.5px 0; }
+.container #flux h3 {
+  font-size: 40px;
+  line-height: 52.5px;
+  font-weight: 100;
+  letter-spacing: -1px;
+  padding: 1rem 0 1rem 0; }
+.container #flux .date {
+  font-style: italic;
+  font-weight: 500; }
+.container #flux .name {
+  font-weight: 500; }
+
+#topbar #topbar-content #logo-medialab {
+  width: 25%;
+  max-width: 400px;
+  vertical-align: bottom;
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  align-self: end;
+  position: absolute;
+  margin: 0 0 0 .5rem; }
+
+.i0 {
+  z-index: 999999999; }
+  .i0 input#i0_input {
+    display: none !important; }
+    .i0 input#i0_input:checked + label {
+      height: 0;
+      transition: 0.5s ease-in-out;
+      padding-top: 0; }
+      .i0 input#i0_input:checked + label #logo-medialab-intro {
+        opacity: 0;
+        transition-duration: 0s;
+        transition-delay: 0.25s; }
+  .i0 label {
+    margin: 0 2rem;
+    padding: 10vh 33% 0 0;
+    overflow: hidden;
+    cursor: pointer;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: white;
+    font-size: 50px;
+    line-height: 67.5px;
+    font-weight: 300; }
+  .i0 #logo-medialab-intro {
+    max-width: 70px;
+    width: calc( 20vw - 5rem );
+    position: absolute;
+    bottom: 2rem;
+    opacity: .5;
+    transform: translateY(20%); }
+
+.separate {
+  grid-column: 1/7;
+  display-row: 3/3;
+  margin: 4rem 0;
+  overflow: hidden; }
+  .separate .in div {
+    font-size: 5vw;
+    line-height: calc(5vw + 5px); }
 
 @supports (display: grid) {
-  article {
-    --tabsize: 60px;
-    width: 100%;
-    padding: 1rem 2rem; }
-    article > #boussole {
-      bottom: 0;
-      position: fixed;
-      padding: 2rem 0;
-      z-index: 99;
-      font-size: 13px;
-      font-weight: 300;
-      line-height: 15px;
-      line-height: 19.5px; }
-      article > #boussole ul li {
-        height: var(--caseheight);
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        -webkit-box-align: center;
-        align-items: center; }
-        article > #boussole ul li:nth-of-type(1) {
-          min-height: 4rem;
-          border-top: 1px solid black; }
-    article > main, article > section {
+  .container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 7rem auto 10vh auto auto auto auto;
+    padding: 0 2rem;
+    width: calc( 100vw - 2rem); }
+    .container #enavant {
+      grid-column: 1 / 5;
+      grid-row: 2 / 3;
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      grid-template-rows: auto auto 10vh;
-      grid-gap: 2rem; }
-    article > section {
-      min-height: 100vh !important; }
-    article main header {
-      grid-column: 2 / 5;
-      grid-row: 1/ 2;
-      align-self: center; }
-    article main section {
-      grid-column: 2 / 5;
-      grid-row: 2; }
-      article main section img {
-        max-width: 100%;
-        width: 50vh;
-        margin: 2rem 0; }
-    article #rel_personnes {
-      min-height: 50vh; }
-      article #rel_personnes header {
-        grid-column: 2 / 5;
-        grid-row: 1/ 2;
-        align-self: center; }
-      article #rel_personnes > div {
-        grid-column: 2 / 5; }
-    article #rel_publications {
-      position: sticky;
-      background: white;
-      min-height: 50vh; }
-      article #rel_publications header {
-        grid-column: 2 / 6;
-        grid-row: 1/ 2;
-        align-self: center; }
-      article #rel_publications > div {
-        grid-column: 2 / 6; } }
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 2.5rem; }
+    .container #flux {
+      position: fixed;
+      width: 33vw;
+      right: 0;
+      height: auto;
+      border-bottom: 1px solid grey;
+      padding: 1rem 0 2rem 0;
+      margin: 0 0 3rem 0; }
+      .container #flux h3 {
+        font-size: 40px;
+        line-height: 52.5px;
+        font-weight: 100;
+        letter-spacing: -1px;
+        padding: 1rem 0 1rem 0; }
+      .container #flux .date {
+        font-style: italic;
+        font-weight: 500; }
+      .container #flux .name {
+        font-weight: 500; } }
 
-/*# sourceMappingURL=page_objet_03.css.map */
+/*# sourceMappingURL=index_04.02.css.map */

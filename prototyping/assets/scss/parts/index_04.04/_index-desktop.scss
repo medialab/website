@@ -1,0 +1,281 @@
+html{
+    //background: #f7323fe6 !important;  
+    //mix-blend-mode: multiply;
+}
+
+:selection{
+ 
+}
+
+.container{
+
+    p{
+        @include typo-labeur();
+    }
+
+    #enavant, #ensecond{
+
+        article{
+            border-bottom: 1px solid grey;
+            padding: 10vh 0 10vh 0;
+
+            cursor: pointer;
+            text-align: center;
+
+/*
+            &:hover{
+                background-image: url(../../_bac_a_sable/capture/ascii_001.0bis.png);
+                transition: all 0.5s linear;
+            }**/
+
+            &:before{
+                content: "";
+                background-image: url(../../_bac_a_sable/capture/ascii_001.0bis.png);
+                background-repeat: no-repeat;
+                background-position: center;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                opacity: 0;
+                transition: opacity 0s ease-in-out  0s;
+            }
+
+            &:hover:before,
+            &:focus:before {
+              opacity: 1;
+            }
+
+
+
+            .img{
+                border: 0px solid grey;
+
+                //max-width: 30.5vw;
+                max-width: calc(58vw/3);
+                max-height: 25vh;
+
+                margin: 1rem 0 3rem 0;
+                overflow: hidden;
+
+
+                span{
+                    display: block;
+                    font-size: 30px;
+                    overflow: hidden;
+                }
+            }
+
+            h3{
+                font-size: $font-size*1.8;
+                line-height: $baseline*1.8;
+                font-weight: 100;
+                text-transform: uppercase;
+
+            }
+
+            h4{
+                font-size: $font-size*5;
+                line-height: $baseline*5;
+                font-weight: 100;
+                letter-spacing: -1px;
+
+                padding: 1rem 0 1rem 0;
+                max-width: 80%;
+                margin: auto;
+
+            }
+
+            h5{
+                font-size: $font-size*2;
+                line-height: $baseline*1.5;
+                font-weight: 100;
+                
+                display: inline-block;
+
+                padding: 2rem 0 $baseline*1.5 0;
+            }
+
+            h5 + h5:before{
+                padding-left: 3rem; 
+            }
+
+            p{
+                display: none;
+            }
+
+        }
+    }
+
+    #ensecond{
+
+        h4{
+            font-size: $font-size*3.5;
+            line-height: $baseline*3.5;
+            font-weight: 100;
+            letter-spacing: -1px;
+
+            padding: 1rem 0 1rem 0;
+            max-width: 80%;
+            margin: 0 5%;
+
+        }
+    }
+}
+
+.transition{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 2rem;
+    padding: 0rem;
+    height: 75vh;
+    text-align:center;
+    
+    font-size: 1vw;
+    transition: .5s linear;
+
+    overflow: hidden;
+    //specific
+    grid-row-start: 5;
+
+    img{
+       width: calc( 100vw - 2rem);
+    }
+
+
+    &:hover{
+       // font-size:1vw;
+    }
+}
+
+#agenda{
+    border-bottom: 1px solid grey;
+    padding: 10vh 0 10vh 0;
+
+    grid-column: 1 /7;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2rem;
+    grid-template-rows: 4rem auto;
+
+    h3{
+        grid-row: 1/2;
+
+    }
+    .day{
+        grid-row: 2/3;
+    }
+}
+
+
+#topbar #topbar-content #logo-medialab {
+    width: 25%;
+    max-width: 400px;
+    vertical-align: bottom;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    align-self: end;
+    position: absolute;
+    margin: 0 0 0 .5rem;
+
+}
+
+
+.i0{
+    z-index: 999999999;
+
+    input#i0_input{
+
+        display: none !important;
+
+        &:checked + label{
+            height:0;
+            transition: 0.5s ease-in-out;
+            padding-top:0;
+
+
+            #logo-medialab-intro{
+                opacity: 0;
+                transition-duration: 0s;
+                transition-delay: 0.25s;
+            }
+        }
+    }
+ 
+
+    label{
+        margin: 0 2rem;
+        padding: 10vh 33% 0 0;
+        overflow: hidden;
+        cursor: pointer;
+
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+
+        position: fixed;
+        background-color: white;
+
+        font-size: $font-size*5;
+        line-height: $baseline*4.5;
+        font-weight: 300;
+
+    }
+
+    #logo-medialab-intro{
+        max-width: 70px;
+        width: calc( 20vw - 5rem );
+        position: absolute;
+        bottom: 2rem;
+        opacity: .5;
+        transform: translateY(20%);
+    }
+}
+
+.i1{
+    overflow: hidden;
+    height: 25vh;
+    top: 3rem;
+
+
+    p:nth-of-type(1){
+        background-color:  white;
+        font-size: 4vh;
+        line-height: 4vh;
+        max-width: 90vw;
+        padding: 1rem 2rem;
+        z-index: 9;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    p:nth-of-type(2){
+        word-break: break-all;
+        font-size: 4vh;
+        line-height: 4.1vh;
+        height: 25vh;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+    }
+}
+
+.separate{
+
+    grid-column: 1/7;
+
+    margin: 4rem 0;
+    overflow: hidden;
+
+    .in{
+
+        div{
+            font-size: 5vw;
+            line-height: calc(5vw + 5px);
+        }
+    }
+
+}

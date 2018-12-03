@@ -536,11 +536,13 @@ ul {
 #nav-objet #actualites:checked ~ #clear + label,
 #nav-objet #publications:checked ~ #clear + label,
 #nav-objet #activites:checked ~ #clear + label {
-  display: block; }
+  display: block;
+  background-color: white; }
 #nav-objet #liste_actualite,
 #nav-objet #liste_publication,
 #nav-objet #liste_activite {
-  display: none; }
+  display: none;
+  background-color: none; }
 #nav-objet #actualites:checked ~ #menu_objet #liste_actualite,
 #nav-objet #publications:checked ~ #menu_objet #liste_publication,
 #nav-objet #activites:checked ~ #menu_objet #liste_activite {

@@ -132,7 +132,7 @@
 #nav-objet{
 
     input{
-
+ 
         display: none !important;
 
         &:checked + label{
@@ -172,6 +172,7 @@
     #activites:checked ~ #clear + label,
     {
         display: block;
+        background-color: $backgroundsite;
     }
 
     /////////////////////////
@@ -182,6 +183,7 @@
     #liste_publication,
     #liste_activite, {
         display: none;
+        background-color: none;
     }
 
     #actualites:checked ~ #menu_objet #liste_actualite,

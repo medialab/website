@@ -392,6 +392,9 @@ function recurseIntoSchema(model, meta) {
   if (meta.type === 'boolean')
     return {type: GraphQLTypes.GraphQLBoolean};
 
+  // if (meta.type === 'array')
+  //   return {type: new GraphQLTypes.GraphQLList(GraphQLTypes.GraphQLString)};
+
   if (meta.type === 'object') {
     const fields = {};
 
@@ -424,9 +427,30 @@ function graphQLSchemaAdditionFromJsonSchema(model, schema) {
   return item;
 }
 
-exports.setFieldsOnGraphQLNodeType = ({type}) => {
+function getSettingsSchema() {
+  return {
+    home: {
+      type: new GraphQLTypes.GraphQLObjectType({
+        name: 'settings__home',
+        fields: {
+          editorialization: {
+            type: new GraphQLTypes.GraphQLList(
+              new GraphQLTypes.GraphQLList(GraphQLTypes.GraphQLString)
+            )
+          }
+        }
+      })
+    }
+  };
+}
 
-  if (type.name === 'ActivitiesJson') {
+exports.setFieldsOnGraphQLNodeType = function({type}) {
+
+  if (type.name === 'SettingsJson') {
+    return getSettingsSchema();
+  }
+
+  else if (type.name === 'ActivitiesJson') {
     const schema = SCHEMAS.activities;
     return graphQLSchemaAdditionFromJsonSchema('activities', schema);
   }

@@ -6,6 +6,7 @@ const DATA_PATH = config.get('data');
 
 const models = require('../specs/models.json');
 
+// TODO: make async
 module.exports = function load(inputDir) {
   fs.ensureDirSync(config.get('data'));
 

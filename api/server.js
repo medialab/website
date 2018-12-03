@@ -1,6 +1,7 @@
 /* eslint no-console: 0 */
 const http = require('http');
 const path = require('path');
+const async = require('async');
 const express = require('express');
 const config = require('config');
 const jsonServer = require('json-server');
@@ -124,48 +125,46 @@ ws.on('connection', socket => {
   });
 
   // When triggering deploy
-  // TODO: async not to block!
   socket.on('deploy', () => {
-    changeDeployStatus('cleaning');
 
-    // 1) Cleanup
-    MODELS.forEach(model => rimraf.sync(path.join(DUMP_CONF.path, model, '*.json')));
-    rimraf.sync(path.join(DUMP_CONF.path, 'assets', '*'));
-    rimraf.sync(path.join(DUMP_CONF.path, 'settings.json'));
-    changeDeployStatus('dumping');
+    const git = simpleGit(DUMP_CONF.path);
 
-    // 2) Dumping the files
-    dump(DUMP_CONF.path);
-    changeDeployStatus('committing');
+    async.series({
 
-    // 3) Committing
-    // const git = simpleGit(DUMP_CONF.path);
+      // 1) Cleanup
+      cleanup(next) {
+        changeDeployStatus('cleaning');
 
-    // git.checkIsRepo((err, isRepo) => {
-    //   let chain = git;
+        rimraf(path.join(DUMP_CONF.path), next);
+      },
 
-    //   if (!isRepo)
-    //     chain = chain
-    //       .init()
-    //       .addRemote('origin', DUMP_CONF.repository)
+      // 2) Dumping the files
+      dump(next) {
+        changeDeployStatus('dumping');
+        dump(DUMP_CONF.path);
 
-    //   chain = chain
-    //     .pull()
-    //     .add
-    // });
+        process.nextTick(next);
+      },
 
-    // git
-    //   .init()
-    //   .addRemote('origin', DUMP_CONF.repository)
-    //   .pull()
-    //   .add('./*')
-    //   .commit('New dump')
-    //   .push(['origin', 'master'], (err) => {
-    //     if (err)
-    //       console.error(err);
+      // 3) Committing the dump
+      commit(next) {
+        changeDeployStatus('committing');
 
-    //       setTimeout(() => changeDeployStatus('free'), 1000);
-    //   });
+        git
+          .init()
+          .addRemote('origin', DUMP_CONF.repository)
+          .pull('origin', 'master')
+          .add('./*')
+          .commit('New dump')
+          .push('origin', 'master', next);
+      }
+
+    }, err => {
+      if (err)
+        console.error(err);
+
+      setTimeout(() => changeDeployStatus('free'), 1000);
+    });
   });
 });
 

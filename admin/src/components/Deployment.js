@@ -3,6 +3,12 @@ import React, {Component} from 'react';
 import io from 'socket.io-client';
 import Button from './misc/Button';
 
+const STEPS = {
+  cleaning: 'Cleaning old files...',
+  dumping: 'Dumping the database...',
+  committin: 'Committing to the git repository...'
+};
+
 function DeploymentProgressBar() {
   return (
     <progress
@@ -57,7 +63,7 @@ export default class Deployment extends Component {
               <DeploymentProgressBar />
             </div>,
             <div key="indicator" className="level-item">
-              <em>0% - Dumping the files...</em>
+              <em>{STEPS[status]}</em>
             </div>
           ]}
         </div>

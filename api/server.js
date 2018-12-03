@@ -6,6 +6,8 @@ const config = require('config');
 const jsonServer = require('json-server');
 const fileUpload = require('express-fileupload');
 const uuid = require('uuid/v4');
+const rimraf = require('rimraf');
+const simpleGit = require('simple-git');
 const fs = require('fs-extra');
 const io = require('socket.io');
 
@@ -18,11 +20,13 @@ const MODELS = require('../specs/models.json');
 // Constants
 const PORT = config.get('port');
 const DATA_PATH = config.get('data');
+const DUMP_CONF = config.get('dump');
 const ASSETS_PATH = path.join(DATA_PATH, 'assets');
 
 // Ensuring we have the minimal file architecture
 fs.ensureDirSync(DATA_PATH);
 fs.ensureDirSync(path.join(DATA_PATH, 'assets'));
+fs.ensureDirSync(DUMP_CONF.path);
 
 const settingsPath = path.join(DATA_PATH, 'settings.json');
 if (!fs.existsSync(settingsPath))
@@ -120,13 +124,48 @@ ws.on('connection', socket => {
   });
 
   // When triggering deploy
+  // TODO: async not to block!
   socket.on('deploy', () => {
+    changeDeployStatus('cleaning');
+
+    // 1) Cleanup
+    MODELS.forEach(model => rimraf.sync(path.join(DUMP_CONF.path, model, '*.json')));
+    rimraf.sync(path.join(DUMP_CONF.path, 'assets', '*'));
+    rimraf.sync(path.join(DUMP_CONF.path, 'settings.json'));
     changeDeployStatus('dumping');
 
-    // 1) Dumping the files
-    fs.removeSync('./dump');
-    dump('./dump');
-    setTimeout(() => changeDeployStatus('free'), 1000);
+    // 2) Dumping the files
+    dump(DUMP_CONF.path);
+    changeDeployStatus('committing');
+
+    // 3) Committing
+    // const git = simpleGit(DUMP_CONF.path);
+
+    // git.checkIsRepo((err, isRepo) => {
+    //   let chain = git;
+
+    //   if (!isRepo)
+    //     chain = chain
+    //       .init()
+    //       .addRemote('origin', DUMP_CONF.repository)
+
+    //   chain = chain
+    //     .pull()
+    //     .add
+    // });
+
+    // git
+    //   .init()
+    //   .addRemote('origin', DUMP_CONF.repository)
+    //   .pull()
+    //   .add('./*')
+    //   .commit('New dump')
+    //   .push(['origin', 'master'], (err) => {
+    //     if (err)
+    //       console.error(err);
+
+    //       setTimeout(() => changeDeployStatus('free'), 1000);
+    //   });
   });
 });
 

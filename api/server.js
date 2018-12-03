@@ -1,4 +1,5 @@
 /* eslint no-console: 0 */
+const http = require('http');
 const path = require('path');
 const express = require('express');
 const config = require('config');
@@ -6,6 +7,7 @@ const jsonServer = require('json-server');
 const fileUpload = require('express-fileupload');
 const uuid = require('uuid/v4');
 const fs = require('fs-extra');
+const io = require('socket.io');
 
 const middlewares = require('./middlewares.js');
 const GatsbyProcess = require('./gatsby.js');
@@ -55,21 +57,21 @@ const ROUTERS = MODELS.map(model => {
 const gatsby = new GatsbyProcess('./site');
 
 // json-server init
-const server = jsonServer.create();
+const app = jsonServer.create();
 const jsonServerMiddlewares = jsonServer.defaults();
 
-server.use(jsonServerMiddlewares);
-server.use(jsonServer.bodyParser);
-server.use(fileUpload());
-server.use('/assets', express.static(ASSETS_PATH));
+app.use(jsonServerMiddlewares);
+app.use(jsonServer.bodyParser);
+app.use(fileUpload());
+app.use('/assets', express.static(ASSETS_PATH));
 
 ROUTERS.forEach(({model, router}) => {
-  server.use(`/${model}`, middlewares.lastUpdated, router);
+  app.use(`/${model}`, middlewares.lastUpdated, router);
 });
-server.use('/settings', jsonServer.router(path.join(DATA_PATH, 'settings.json')));
+app.use('/settings', jsonServer.router(path.join(DATA_PATH, 'settings.json')));
 
 // custom routes
-server.post('/upload', (req, res) => {
+app.post('/upload', (req, res) => {
   const file = req.files.file;
 
   if (!file)
@@ -85,13 +87,31 @@ server.post('/upload', (req, res) => {
   });
 });
 
-server.get('/reboot-gatsby', (req, res) => {
+app.get('/reboot-gatsby', (req, res) => {
   gatsby.restart(() => res.status(200).send('Ok'));
 });
 
 // Starting gatsby
 gatsby.start();
 
-// Serving
+// Creating server
+const server = http.Server(app);
+
+// Serving websockets
+const ws = io(server);
+
+const LOCKS = {
+  productionStatus: 'free'
+};
+
+ws.on('connection', socket => {
+
+  // When triggering a deploy
+  socket.on('deploy', (data, callback) => {
+    callback(null, {status: LOCKS.productionStatus});
+  });
+});
+
+// Listening
 console.log(`Listening on port ${PORT}...`);
 server.listen(PORT);

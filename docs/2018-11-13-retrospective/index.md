@@ -27,6 +27,8 @@ C'est l'occasion d'orienter cette rétrospective sur les apprentissages et les f
 
 Est-ce qu'il y a des questions avant qu'on passe à la première étape ?
 
+![Point de vue de la salle de réunion](meeting-room.jpg)
+
 
 # Agenda
 
@@ -48,6 +50,8 @@ Est-ce qu'il y a des questions avant qu'on passe à la première étape ?
 - j'ai appris qu'on peut avancer plus vite que j'imaginais sur un projet « institutionnel »
 - j'ai appris ce qu'était le public du site, et pourquoi on ne comprend pas ce que fait le Médialab
 - j'ai appris
+
+![Aperçu du CMS](backend.png)
 
 # Est-ce qu'il y a quelque chose dont tu es fièr·e ou qui t'as vraiment plu au court de cette itération ?
 

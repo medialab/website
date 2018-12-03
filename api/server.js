@@ -9,6 +9,7 @@ const uuid = require('uuid/v4');
 const fs = require('fs-extra');
 const io = require('socket.io');
 
+const dump = require('./dump.js');
 const middlewares = require('./middlewares.js');
 const GatsbyProcess = require('./gatsby.js');
 
@@ -56,6 +57,8 @@ const ROUTERS = MODELS.map(model => {
 
 const gatsby = new GatsbyProcess('./site');
 
+process.on('exit', () => gatsby.kill());
+
 // json-server init
 const app = jsonServer.create();
 const jsonServerMiddlewares = jsonServer.defaults();
@@ -101,14 +104,29 @@ const server = http.Server(app);
 const ws = io(server);
 
 const LOCKS = {
-  productionStatus: 'free'
+  deployStatus: 'free'
+};
+
+const changeDeployStatus = (newStatus) => {
+  LOCKS.deployStatus = newStatus;
+  ws.emit('deployStatusChanged', newStatus);
 };
 
 ws.on('connection', socket => {
 
-  // When triggering a deploy
-  socket.on('deploy', (data, callback) => {
-    callback(null, {status: LOCKS.productionStatus});
+  // When retrieving deploy status
+  socket.on('getDeployStatus', (data, callback) => {
+    callback(null, {status: LOCKS.deployStatus});
+  });
+
+  // When triggering deploy
+  socket.on('deploy', () => {
+    changeDeployStatus('dumping');
+
+    // 1) Dumping the files
+    fs.removeSync('./dump');
+    dump('./dump');
+    setTimeout(() => changeDeployStatus('free'), 1000);
   });
 });
 

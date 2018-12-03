@@ -11,9 +11,9 @@ export default function Home() {
         </a>
       </p>
       <hr />
-      <p>
+      <div>
         <Deployment />
-      </p>
+      </div>
     </div>
   );
 }

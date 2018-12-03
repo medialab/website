@@ -3,6 +3,13 @@ import React, {Component} from 'react';
 import io from 'socket.io-client';
 import Button from './misc/Button';
 
+function DeploymentProgressBar() {
+  return (
+    <progress
+      className="progress is-dark" max={100} value={10} />
+  );
+}
+
 export default class Deployment extends Component {
   state = {
     status: null
@@ -12,9 +19,11 @@ export default class Deployment extends Component {
 
     // Connecting to socket
     this.socket = io(API_URL);
-    this.socket.emit('deploy', null, (err, data) => {
+    this.socket.emit('getDeployStatus', null, (err, data) => {
       this.setState({status: data.status});
     });
+
+    this.socket.on('deployStatusChanged', status => this.setState({status}));
   }
 
   componentWillUnmount() {
@@ -24,14 +33,35 @@ export default class Deployment extends Component {
   }
 
   handleDeploy = () => {
+    if (this.state.status !== 'free')
+      return;
 
+    this.socket.emit('deploy');
   };
 
   render() {
     const {status} = this.state;
 
     return (
-      <Button disabled={status === null || status === 'free'}>Deploy</Button>
+      <div className="level">
+        <div className="level-left">
+          <div className="level-item">
+            <Button
+              disabled={status === null || status !== 'free'}
+              onClick={this.handleDeploy}>
+              Deploy
+            </Button>
+          </div>
+          {status !== 'free' && [
+            <div key="progress" className="level-item" style={{width: '200px'}}>
+              <DeploymentProgressBar />
+            </div>,
+            <div key="indicator" className="level-item">
+              <em>0% - Dumping the files...</em>
+            </div>
+          ]}
+        </div>
+      </div>
     );
   }
 }

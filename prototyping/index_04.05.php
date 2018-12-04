@@ -9,14 +9,16 @@
     <!-- styles -->
     <style type="text/css"></style>
     <link rel="stylesheet" href="assets/fonts/Museo_Sans/stylesheet.css">
-    <link rel='stylesheet' type='text/css' href='assets/css-compiled/index_04.04.css'>
+    <link rel='stylesheet' type='text/css' href='assets/css-compiled/index_04.05.css'>
 
 
 
 </head>
 
 <body>
-	<?php include('fragments/_topbar_4.04.php'); ?>
+	<?php include('fragments/_topbar_4.05.php'); ?>
+	<?php include('fragments/_flux_1.php'); ?>
+
 
 		<div class="i0">
 			<input id="i0_input" type="radio" name="n0"> 

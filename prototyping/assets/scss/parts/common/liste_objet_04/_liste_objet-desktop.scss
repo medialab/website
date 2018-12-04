@@ -1,7 +1,7 @@
 /* assets/scss/common/_liste_objet-desktop.scss */
 
 @supports(display: grid) {
-
+ 
     #menu_objet{
 
         display: grid;
@@ -17,7 +17,7 @@
         
 
         #filtre_objet{
-            
+             
             grid-column: 1 / 2;
             margin: 0 2rem;
             margin-top: calc(var(--font-size)*2);

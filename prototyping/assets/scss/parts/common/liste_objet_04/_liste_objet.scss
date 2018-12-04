@@ -1,3 +1,5 @@
+@import 'vars/divers';
+
 /* assets/parts/common/_liste_objet.scss*/
 $bordersize: 1px;
 $bordercolor: black;
@@ -7,7 +9,7 @@ $bordercolor: black;
 }
 
 #menu_objet{
-
+ 
 	background: white;
 	z-index: 999;
 

@@ -21,13 +21,13 @@ const MODELS = require('../specs/models.json');
 // Constants
 const PORT = config.get('port');
 const DATA_PATH = config.get('data');
-const DUMP_CONF = config.get('dump');
+const BUILD_CONF = config.get('build');
+const DUMP_PATH = path.join(BUILD_CONF.path, 'dump');
 const ASSETS_PATH = path.join(DATA_PATH, 'assets');
 
 // Ensuring we have the minimal file architecture
 fs.ensureDirSync(DATA_PATH);
 fs.ensureDirSync(path.join(DATA_PATH, 'assets'));
-fs.ensureDirSync(DUMP_CONF.path);
 
 const settingsPath = path.join(DATA_PATH, 'settings.json');
 if (!fs.existsSync(settingsPath))
@@ -127,7 +127,12 @@ ws.on('connection', socket => {
   // When triggering deploy
   socket.on('deploy', () => {
 
-    const git = simpleGit(DUMP_CONF.path);
+    // Ensuring the necessary folders exist
+    fs.ensureDirSync(BUILD_CONF.path);
+    fs.ensureDirSync(DUMP_PATH);
+
+    // Git handle
+    const git = simpleGit(DUMP_PATH);
 
     async.series({
 
@@ -135,13 +140,13 @@ ws.on('connection', socket => {
       cleanup(next) {
         changeDeployStatus('cleaning');
 
-        rimraf(path.join(DUMP_CONF.path), next);
+        rimraf(DUMP_PATH, next);
       },
 
       // 2) Dumping the files
       dump(next) {
         changeDeployStatus('dumping');
-        dump(DUMP_CONF.path);
+        dump(DUMP_PATH);
 
         process.nextTick(next);
       },
@@ -152,7 +157,7 @@ ws.on('connection', socket => {
 
         git
           .init()
-          .addRemote('origin', DUMP_CONF.repository)
+          .addRemote('origin', BUILD_CONF.repository)
           .pull('origin', 'master')
           .add('./*')
           .commit('New dump')

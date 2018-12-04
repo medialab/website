@@ -101,8 +101,8 @@ $height-top-bar: 120px;
         ul#fil{
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            grid-gap: 1rem;
-            grid-auto-rows: 15vh;
+            grid-gap: 0rem;
+            //grid-auto-rows: 15vh;
 
             padding: 2rem;
 
@@ -110,16 +110,18 @@ $height-top-bar: 120px;
 
                 grid-column: 1/7;
                 display: grid;
-                grid-template-columns: repeat(6, 1fr);
+                grid-template-columns: repeat(5, 1fr);
                 grid-template-rows: 20px auto 20px;
-                grid-gap: 1rem;
+                grid-gap: 2rem 1rem;
 
+                margin: 2rem 0 0 0;
                 border-top: 1px solid #0003;
 
                 .emblem{
                     grid-column: 1/2; 
                     grid-row: 1/4;
                     align-self: center;
+                    justify-self: center;
 
                     font-size: 10vh;
                     font-weight: 100;
@@ -133,7 +135,7 @@ $height-top-bar: 120px;
                     align-self: center;
                     justify-self: center;
 
-                    font-size: 10vh;
+                    font-size: 7vh;
                     font-weight: 100;
                     font-family: monospace;
                     line-height: 10vh;
@@ -153,17 +155,62 @@ $height-top-bar: 120px;
                     //-webkit-text-stroke: .4vh white;
                 }
                 .text_action{
-                    grid-column: 2/6;
+                    grid-column: 2/5;
                     grid-row-start: 1;
                     font-size: .85vw;
                     font-weight: 300;
+                    text-align: center;
+                }
+
+                .text_target{
+                    grid-column: 2/5;
+                    grid-row-start: 3;
+                    font-size: .85vw;
+                    font-weight: 300;
+                    text-align: center;
                 }
 
                 .text_content{
-                    grid-column: 2/6;
+                    grid-column: 2/5;
                     grid-row-start: 2;
                     font-size: .85vw;
                     font-weight: 100;
+                    max-height: calc(1vw * 4);
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    line-height: 1vw;
+                }
+
+
+                &.S{
+
+                    max-height: 75px;
+                    overflow: hidden;
+                    grid-template-columns: 20% 20% 10% 20% 20%;
+                    grid-template-rows: 20px 40px 20px !important;
+                    grid-gap: 2.5%;
+
+                    .emblem, .emblem_target{
+                        font-size: 5vh;
+                        -webkit-text-stroke: inherit;
+                        justify-self: center;
+                    }
+
+                    .text_action {
+                        grid-column: 2/5;
+                        grid-row-start: 2;
+                    }
+                    .emblem_action{
+                        grid-column: 3/4;
+                        grid-row: 1/4;
+
+                        font-size: 5vh;
+                        line-height: 5vh;
+                    }
+                    .text_target {
+                        grid-column: 4/5;
+                        grid-row-start: 2;
+                    }
                 }
             }
         }

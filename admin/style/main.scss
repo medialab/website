@@ -1,6 +1,40 @@
+// Variables override
+$modal-background-background-color: rgba(black, 0.4);
+
+// Importing Bulma
 @import '~bulma';
 
+// Generic rules
 html, body, #app {
   width: 100%;
   height: 100%;
+}
+
+li {
+  list-style-type: none;
+}
+
+.handle {
+  cursor: pointer;
+}
+
+.modal {
+  z-index: 10000;
+}
+
+.tags-container{
+  display: flex;
+
+  > li{
+    margin-right: 1rem;
+  }
+}
+
+.form-group{
+  margin-bottom: 4rem;
+
+  &.is-important{
+    background: $white-ter;// rgba(0,0,0,0.1);
+    padding: 1rem;
+  }
 }

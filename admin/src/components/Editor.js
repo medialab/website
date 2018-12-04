@@ -1,93 +1,31 @@
 import React, {Component} from 'react';
-import {AtomicBlockUtils} from 'draft-js';
-import {DraftailEditor, BLOCK_TYPE, INLINE_STYLE, ENTITY_TYPE} from 'draftail';
-import Modal from 'react-modal';
+import {DraftailEditor, BLOCK_TYPE, INLINE_STYLE} from 'draftail';
+import IMAGE from './entities/image';
 
-import ImageSelector from './selectors/ImageSelector';
-
-// Sources
-class ImageSource extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(option) {
-    const {editorState, entityType, onComplete} = this.props;
-
-    const content = editorState.getCurrentContent();
-    const contentWithEntity = content.createEntity(
-      entityType.type,
-      'IMMUTABLE',
-      {src: option.value}
-    );
-
-    const entityKey = contentWithEntity.getLastCreatedEntityKey();
-    const nextState = AtomicBlockUtils.insertAtomicBlock(
-      editorState,
-      entityKey,
-      ' '
-    );
-
-    return onComplete(nextState);
-  }
-
+export default class Editor extends Component {
   render() {
+    const {
+      rawContent,
+      onSave
+    } = this.props;
+
     return (
-      <Modal
-        isOpen={true}
-        style={{content: {zIndex: 5}, overlay: {zIndex: 5}}}>
-        <ImageSelector onChange={this.handleChange} />
-      </Modal>
+      <div className="content">
+        <DraftailEditor
+          rawContentState={rawContent || null}
+          stripPastedStyles={false}
+          onSave={onSave}
+          entityTypes={[
+            IMAGE
+          ]}
+          blockTypes={[
+            {type: BLOCK_TYPE.HEADER_ONE, label: 'H1'}
+          ]}
+          inlineStyles={[
+            {type: INLINE_STYLE.ITALIC, label: 'I'},
+            {type: INLINE_STYLE.BOLD, label: 'B'}
+          ]} />
+      </div>
     );
   }
-}
-
-// Blocks
-function ImageBlock(props) {
-  const blockProps = props.blockProps;
-  const {src} = blockProps.entity.getData();
-
-  // NOTE: can access mutators here
-
-  const url = `${API_URL}RM/assets/${src}`;
-
-  return <img src={url} />;
-}
-
-// Entities
-const ENTITY_CONTROL = {
-  IMAGE: {
-    type: ENTITY_TYPE.IMAGE,
-    label: 'image',
-    source: ImageSource,
-    block: ImageBlock,
-    attributes: ['src']
-  }
-};
-
-// TODO: decide to serialize here or not or expose handy helpers
-export default function Editor(props) {
-  const {
-    rawContent,
-    onSave
-  } = props;
-
-  return (
-    <>
-    <DraftailEditor
-      rawContentState={rawContent || null}
-      onSave={onSave}
-      entityTypes={[
-        ENTITY_CONTROL.IMAGE
-      ]}
-      blockTypes={[
-        {type: BLOCK_TYPE.HEADER_ONE, label: 'H1'}
-      ]}
-      inlineStyles={[
-        {type: INLINE_STYLE.BOLD, label: 'B'}
-      ]} />
-    </>
-  );
 }

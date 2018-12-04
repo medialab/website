@@ -13,9 +13,9 @@ La discussion commence par l'exemple du MIT medialab. Lab qui regroupe plusieurs
 
 Débat sur le parti pris rédactionnel à adopter. Nécessiter de penser en détail la stratégie éditoriale, sous peine de cahoter par la suite
 
-### Stratégie éditorial 
+### Stratégie éditoriale 
 
-Nous partons d'un premier constat. La Home  du MIT Lab est ouvertement grand public (effort d'imagerie et article intelligible avec effort mais sans bagage spécialisé) 
+Nous partons d'un premier constat. La Home du MIT Lab est ouvertement grand public (effort d'imagerie et article intelligible avec effort mais sans bagage spécialisé) 
 
 Médialab: 2 type de lecteurs :
 
@@ -42,13 +42,13 @@ Question de la fidélisation du public. Sans concurrencer Konbini, comment faire
 
 *Chercheur : Potentiellement régulier*
 
-Nous nous sommes attardés sur la nécessité de rentrer dans le moule institutionnel (Image institutionnelle mais aussi cadre de la charte graphique Science Po). Paradoxalement, le Medialab est *vendu* comme "geek, innovant, borderline" par Science Po
+Nous nous sommes attardés sur la nécessité de rentrer dans le moule institutionnel (Image institutionnelle mais aussi cadre de la charte graphique Science Po). Paradoxalement, le Medialab est *vendu* comme "geek, innovant, borderline" par Science Po ("enfant terrible")
 
 ### Page d'acceuil
 
 Doit il y avoir une distinction en fonction du type de billet publié (Actualité, Evènement, Publication). Laquelle ? 
 
-Pensant à l'intégration du flux de tweet sur la Home page, la possibilité d'une redite entre les actualités publiées et leurs évocations sur Twitter se pose.  La fréquence de cette redite est à maitriser. En d'autre mot, si le flux Twitter est riche de contenu connexe ou externe (RT) , ce problème sera marginal.
+Pensant à l'intégration du flux de tweet sur la Home page, la possibilité d'une redite entre les actualités publiées et leurs évocations sur Twitter se pose. La fréquence de cette redite est à maitriser. En d'autre mot, si le flux Twitter est riche de contenu connexe ou externe (RT) , ce problème sera marginal.
 
 Tout ces remarques concourent à mettre les pied dans le plat de la politique éditoriale.
 
@@ -68,9 +68,9 @@ Premières idées :
 
 - Collage à partir d'image google
 
-- 1 mot défini par l'auteur qui prendrai la place du visuelle
+- 1 mot défini par l'auteur qui prendrait la place du visuel
 
-- Visuelle abstrait vectoriel ( motif issue de [texture.js](http://riccardoscalco.github.io/textures/))
+- Visuel abstrait vectoriel ( motif issue de [texture.js](http://riccardoscalco.github.io/textures/))
 
   *Alternative*
 
@@ -78,9 +78,14 @@ Premières idées :
 
 - Investir titre par la typographie
 
+- ASCII art ?
+
 Si la piste générative est confirmée, il faudra maitriser la compatibilité esthétique de celle-ci avec la politique institutionnelle de Science Po.
 
 Aussi, si cette piste est poursuivit, comment faire pour que les visuelles générés puissent être utiliser durant le partage de l'article sur Twitter ou la newsletter global de Science Po.
+
+Faire attention, pour être relayé sur le site de Sciences Po, il faut leur fournir une image
+
 
 ### Traduction
 
@@ -107,3 +112,17 @@ Comment distinguer ce que Medialab produit, de ce à quoi il participe ?
 ### Personnel
 
 Comment mettre en lien les personnes entre elles, les personnes et leurs projets et ce afin de faire émerger l'hétérogénéité du Medialab.
+
+
+### Autres
+
+dataveyes.com → c'est pas parce qu'on fait de la viz qu'on va dans cette direction
+
+
+3 flux sur la page
+- flux twitter
+- flux github (activité agrégée par projets)
+- flux d'actualité dans les lieux extérieurs
+
+Médialab a une réputation de mauvais élève en terme de suivi de règles et une réputation d'innovation, côté "cools kids à la marge"  
+Le suivi de l'identité graphique de Sciences Po n'est donc pas obligatoire

@@ -1,20 +1,12 @@
 module.exports = {
   activities: [
     {
-      label: 'ID',
-      property: 'id'
-    },
-    {
       label: 'Name',
       property: 'name',
       link: true
     }
   ],
   news: [
-    {
-      label: 'ID',
-      property: 'id'
-    },
     {
       label: 'Title',
       property: function(n) {
@@ -25,10 +17,6 @@ module.exports = {
   ],
   people: [
     {
-      label: 'ID',
-      property: 'id'
-    },
-    {
       label: 'Full Name',
       property: function(p) {
         return p.firstName + ' ' + p.lastName;
@@ -37,10 +25,6 @@ module.exports = {
     }
   ],
   publications: [
-    {
-      label: 'ID',
-      property: 'id'
-    },
     {
       label: 'Title',
       property: function(p) {

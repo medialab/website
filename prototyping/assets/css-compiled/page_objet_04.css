@@ -2,13 +2,13 @@
 /* julie: node-sass --watch page_objet_02.scss ../css-compiled/page_objet_02.css */
 /* header */
 :root {
-  --redlab: $medialab-red; }
+  --redlab: #f7323f; }
 
 :root {
-  --font-size: $font-size;
-  --baseline: $baseline;
-  --font-main: $font-main;
-  --font-mono: $font-mono; }
+  --font-size: 10px;
+  --baseline: 15px;
+  --font-main: "MuseosSans";
+  --font-mono: monospace; }
 
 html {
   font-family: "MuseosSans";
@@ -402,10 +402,10 @@ ul {
       grid-gap: 2rem; }
       #topbar #topbar-content #logo-medialab {
         /*width: 25%;
-                max-width: 400px;
-                vertical-align: bottom; 
-                margin-left: $margins-desktop;
-                margin-right: $margins-desktop;*/
+        max-width: 400px;
+        vertical-align: bottom; 
+        margin-left: $margins-desktop;
+        margin-right: $margins-desktop;*/
         grid-column: 1 / 2;
         grid-row: 2 / 3;
         align-self: end;
@@ -447,7 +447,6 @@ ul {
         justify-self: end;
         grid-row: 2/3;
         align-self: end; } }
-
 /* assets/parts/common/_liste_objet.scss*/
 :root {
   --caseheight: 80px; }
@@ -515,410 +514,613 @@ ul {
           border-top: 1px solid #333; }
     #menu_objet #liste_objet {
       grid-column: 2 / 4; }
+
   [data-item] ~ [data-item-accroche] {
     display: none; }
+
   .accroche-titre {
     display: block; }
+
   [data-item="1"]:hover ~ [data-item-accroche="1"] {
     display: block; }
+
   [data-item="1"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="2"]:hover ~ [data-item-accroche="2"] {
     display: block; }
+
   [data-item="2"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="3"]:hover ~ [data-item-accroche="3"] {
     display: block; }
+
   [data-item="3"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="4"]:hover ~ [data-item-accroche="4"] {
     display: block; }
+
   [data-item="4"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="5"]:hover ~ [data-item-accroche="5"] {
     display: block; }
+
   [data-item="5"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="6"]:hover ~ [data-item-accroche="6"] {
     display: block; }
+
   [data-item="6"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="7"]:hover ~ [data-item-accroche="7"] {
     display: block; }
+
   [data-item="7"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="8"]:hover ~ [data-item-accroche="8"] {
     display: block; }
+
   [data-item="8"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="9"]:hover ~ [data-item-accroche="9"] {
     display: block; }
+
   [data-item="9"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="10"]:hover ~ [data-item-accroche="10"] {
     display: block; }
+
   [data-item="10"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="11"]:hover ~ [data-item-accroche="11"] {
     display: block; }
+
   [data-item="11"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="12"]:hover ~ [data-item-accroche="12"] {
     display: block; }
+
   [data-item="12"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="13"]:hover ~ [data-item-accroche="13"] {
     display: block; }
+
   [data-item="13"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="14"]:hover ~ [data-item-accroche="14"] {
     display: block; }
+
   [data-item="14"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="15"]:hover ~ [data-item-accroche="15"] {
     display: block; }
+
   [data-item="15"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="16"]:hover ~ [data-item-accroche="16"] {
     display: block; }
+
   [data-item="16"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="17"]:hover ~ [data-item-accroche="17"] {
     display: block; }
+
   [data-item="17"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="18"]:hover ~ [data-item-accroche="18"] {
     display: block; }
+
   [data-item="18"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="19"]:hover ~ [data-item-accroche="19"] {
     display: block; }
+
   [data-item="19"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="20"]:hover ~ [data-item-accroche="20"] {
     display: block; }
+
   [data-item="20"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="21"]:hover ~ [data-item-accroche="21"] {
     display: block; }
+
   [data-item="21"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="22"]:hover ~ [data-item-accroche="22"] {
     display: block; }
+
   [data-item="22"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="23"]:hover ~ [data-item-accroche="23"] {
     display: block; }
+
   [data-item="23"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="24"]:hover ~ [data-item-accroche="24"] {
     display: block; }
+
   [data-item="24"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="25"]:hover ~ [data-item-accroche="25"] {
     display: block; }
+
   [data-item="25"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="26"]:hover ~ [data-item-accroche="26"] {
     display: block; }
+
   [data-item="26"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="27"]:hover ~ [data-item-accroche="27"] {
     display: block; }
+
   [data-item="27"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="28"]:hover ~ [data-item-accroche="28"] {
     display: block; }
+
   [data-item="28"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="29"]:hover ~ [data-item-accroche="29"] {
     display: block; }
+
   [data-item="29"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="30"]:hover ~ [data-item-accroche="30"] {
     display: block; }
+
   [data-item="30"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="31"]:hover ~ [data-item-accroche="31"] {
     display: block; }
+
   [data-item="31"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="32"]:hover ~ [data-item-accroche="32"] {
     display: block; }
+
   [data-item="32"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="33"]:hover ~ [data-item-accroche="33"] {
     display: block; }
+
   [data-item="33"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="34"]:hover ~ [data-item-accroche="34"] {
     display: block; }
+
   [data-item="34"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="35"]:hover ~ [data-item-accroche="35"] {
     display: block; }
+
   [data-item="35"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="36"]:hover ~ [data-item-accroche="36"] {
     display: block; }
+
   [data-item="36"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="37"]:hover ~ [data-item-accroche="37"] {
     display: block; }
+
   [data-item="37"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="38"]:hover ~ [data-item-accroche="38"] {
     display: block; }
+
   [data-item="38"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="39"]:hover ~ [data-item-accroche="39"] {
     display: block; }
+
   [data-item="39"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="40"]:hover ~ [data-item-accroche="40"] {
     display: block; }
+
   [data-item="40"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="41"]:hover ~ [data-item-accroche="41"] {
     display: block; }
+
   [data-item="41"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="42"]:hover ~ [data-item-accroche="42"] {
     display: block; }
+
   [data-item="42"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="43"]:hover ~ [data-item-accroche="43"] {
     display: block; }
+
   [data-item="43"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="44"]:hover ~ [data-item-accroche="44"] {
     display: block; }
+
   [data-item="44"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="45"]:hover ~ [data-item-accroche="45"] {
     display: block; }
+
   [data-item="45"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="46"]:hover ~ [data-item-accroche="46"] {
     display: block; }
+
   [data-item="46"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="47"]:hover ~ [data-item-accroche="47"] {
     display: block; }
+
   [data-item="47"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="48"]:hover ~ [data-item-accroche="48"] {
     display: block; }
+
   [data-item="48"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="49"]:hover ~ [data-item-accroche="49"] {
     display: block; }
+
   [data-item="49"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="50"]:hover ~ [data-item-accroche="50"] {
     display: block; }
+
   [data-item="50"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="51"]:hover ~ [data-item-accroche="51"] {
     display: block; }
+
   [data-item="51"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="52"]:hover ~ [data-item-accroche="52"] {
     display: block; }
+
   [data-item="52"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="53"]:hover ~ [data-item-accroche="53"] {
     display: block; }
+
   [data-item="53"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="54"]:hover ~ [data-item-accroche="54"] {
     display: block; }
+
   [data-item="54"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="55"]:hover ~ [data-item-accroche="55"] {
     display: block; }
+
   [data-item="55"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="56"]:hover ~ [data-item-accroche="56"] {
     display: block; }
+
   [data-item="56"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="57"]:hover ~ [data-item-accroche="57"] {
     display: block; }
+
   [data-item="57"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="58"]:hover ~ [data-item-accroche="58"] {
     display: block; }
+
   [data-item="58"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="59"]:hover ~ [data-item-accroche="59"] {
     display: block; }
+
   [data-item="59"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="60"]:hover ~ [data-item-accroche="60"] {
     display: block; }
+
   [data-item="60"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="61"]:hover ~ [data-item-accroche="61"] {
     display: block; }
+
   [data-item="61"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="62"]:hover ~ [data-item-accroche="62"] {
     display: block; }
+
   [data-item="62"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="63"]:hover ~ [data-item-accroche="63"] {
     display: block; }
+
   [data-item="63"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="64"]:hover ~ [data-item-accroche="64"] {
     display: block; }
+
   [data-item="64"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="65"]:hover ~ [data-item-accroche="65"] {
     display: block; }
+
   [data-item="65"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="66"]:hover ~ [data-item-accroche="66"] {
     display: block; }
+
   [data-item="66"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="67"]:hover ~ [data-item-accroche="67"] {
     display: block; }
+
   [data-item="67"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="68"]:hover ~ [data-item-accroche="68"] {
     display: block; }
+
   [data-item="68"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="69"]:hover ~ [data-item-accroche="69"] {
     display: block; }
+
   [data-item="69"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="70"]:hover ~ [data-item-accroche="70"] {
     display: block; }
+
   [data-item="70"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="71"]:hover ~ [data-item-accroche="71"] {
     display: block; }
+
   [data-item="71"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="72"]:hover ~ [data-item-accroche="72"] {
     display: block; }
+
   [data-item="72"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="73"]:hover ~ [data-item-accroche="73"] {
     display: block; }
+
   [data-item="73"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="74"]:hover ~ [data-item-accroche="74"] {
     display: block; }
+
   [data-item="74"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="75"]:hover ~ [data-item-accroche="75"] {
     display: block; }
+
   [data-item="75"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="76"]:hover ~ [data-item-accroche="76"] {
     display: block; }
+
   [data-item="76"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="77"]:hover ~ [data-item-accroche="77"] {
     display: block; }
+
   [data-item="77"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="78"]:hover ~ [data-item-accroche="78"] {
     display: block; }
+
   [data-item="78"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="79"]:hover ~ [data-item-accroche="79"] {
     display: block; }
+
   [data-item="79"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="80"]:hover ~ [data-item-accroche="80"] {
     display: block; }
+
   [data-item="80"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="81"]:hover ~ [data-item-accroche="81"] {
     display: block; }
+
   [data-item="81"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="82"]:hover ~ [data-item-accroche="82"] {
     display: block; }
+
   [data-item="82"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="83"]:hover ~ [data-item-accroche="83"] {
     display: block; }
+
   [data-item="83"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="84"]:hover ~ [data-item-accroche="84"] {
     display: block; }
+
   [data-item="84"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="85"]:hover ~ [data-item-accroche="85"] {
     display: block; }
+
   [data-item="85"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="86"]:hover ~ [data-item-accroche="86"] {
     display: block; }
+
   [data-item="86"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="87"]:hover ~ [data-item-accroche="87"] {
     display: block; }
+
   [data-item="87"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="88"]:hover ~ [data-item-accroche="88"] {
     display: block; }
+
   [data-item="88"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="89"]:hover ~ [data-item-accroche="89"] {
     display: block; }
+
   [data-item="89"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="90"]:hover ~ [data-item-accroche="90"] {
     display: block; }
+
   [data-item="90"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="91"]:hover ~ [data-item-accroche="91"] {
     display: block; }
+
   [data-item="91"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="92"]:hover ~ [data-item-accroche="92"] {
     display: block; }
+
   [data-item="92"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="93"]:hover ~ [data-item-accroche="93"] {
     display: block; }
+
   [data-item="93"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="94"]:hover ~ [data-item-accroche="94"] {
     display: block; }
+
   [data-item="94"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="95"]:hover ~ [data-item-accroche="95"] {
     display: block; }
+
   [data-item="95"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="96"]:hover ~ [data-item-accroche="96"] {
     display: block; }
+
   [data-item="96"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="97"]:hover ~ [data-item-accroche="97"] {
     display: block; }
+
   [data-item="97"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="98"]:hover ~ [data-item-accroche="98"] {
     display: block; }
+
   [data-item="98"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="99"]:hover ~ [data-item-accroche="99"] {
     display: block; }
+
   [data-item="99"]:hover ~ .accroche-titre {
     display: none; }
+
   [data-item="100"]:hover ~ [data-item-accroche="100"] {
     display: block; }
+
   [data-item="100"]:hover ~ .accroche-titre {
     display: none; }
+
   .item_accroche {
     position: absolute;
     top: 0;
@@ -928,17 +1130,14 @@ ul {
     line-height: 45px;
     width: 40vw;
     margin-left: 6rem; } }
-
 #nav-objet input {
   display: none !important; }
   #nav-objet input:checked + label {
     text-decoration: underline; }
-
 #nav-objet label {
   transition: 0.25s ease;
   padding: 10px 10px 10px 0;
   cursor: pointer; }
-
 #nav-objet #actualites:checked ~ #menu_objet,
 #nav-objet #publications:checked ~ #menu_objet,
 #nav-objet #activites:checked ~ #menu_objet {
@@ -946,29 +1145,26 @@ ul {
   transition: .2s ease-in;
   transition-property: height;
   padding: 3rem 2rem 1rem 2rem; }
-
 #nav-objet #actualites:checked ~ #clearzone + label,
 #nav-objet #publications:checked ~ #clearzone + label,
 #nav-objet #activites:checked ~ #clearzone + label,
 #nav-objet #actualites:checked ~ #clear + label,
 #nav-objet #publications:checked ~ #clear + label,
 #nav-objet #activites:checked ~ #clear + label {
-  display: block; }
-
+  display: block;
+  background-color: white; }
 #nav-objet #liste_actualite,
 #nav-objet #liste_publication,
 #nav-objet #liste_activite {
-  display: none; }
-
+  display: none;
+  background-color: none; }
 #nav-objet #actualites:checked ~ #menu_objet #liste_actualite,
 #nav-objet #publications:checked ~ #menu_objet #liste_publication,
 #nav-objet #activites:checked ~ #menu_objet #liste_activite {
   display: block; }
-
 #nav-objet #clear:checked ~ #clearzone + label,
 #nav-objet #clearzone:checked, #nav-objet #clearzone:checked + label {
   display: none !important; }
-
 #nav-objet #clear + label {
   position: absolute;
   width: calc(100vw - 2rem);
@@ -978,16 +1174,13 @@ ul {
   margin: 0;
   padding: 0;
   text-align: center; }
-
 #nav-objet #clear:checked ~ #menu_objet,
 #nav-objet #clearzone:checked ~ #menu_objet, #nav-objet #menu_objet {
   height: 0px;
   min-height: 0;
   padding: 0; }
-
 #nav-objet #clear, #nav-objet #clear + label, #nav-objet #clearzone, #nav-objet #clearzone + label {
   display: none; }
-
 #nav-objet #clearzone + label {
   position: absolute;
   width: calc(100vw - 2rem);
@@ -1002,18 +1195,16 @@ ul {
 #liste_objet nav li .item_accroche {
   display: block;
   /*top: var(--height-topbar);
-                top: calc(var(--caseheight) * (-1));
-                top: calc(var(--height-topbar) + 12rem);*/
+  top: calc(var(--caseheight) * (-1));
+  top: calc(var(--height-topbar) + 12rem);*/
   max-width: 50vw;
   font-size: 5rem;
   line-height: 5rem; }
-
 #liste_objet nav li:hover .item_accroche {
   display: block;
   color: red; }
-
 #liste_objet nav li {
-  /*
+           /*
             &:nth-of-type(1) .item_accroche{
                 top: calc((var(--caseheight) + (var(--baseline)*4)) * (-1)));
             }
@@ -1121,3 +1312,5 @@ article {
         align-self: center; }
       article #rel_publications > div {
         grid-column: 2 / 6; } }
+
+/*# sourceMappingURL=page_objet_04.css.map */

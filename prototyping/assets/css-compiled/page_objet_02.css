@@ -368,7 +368,8 @@ ul {
   font-size: 21px;
   font-weight: normal;
   line-height: 18px;
-  line-height: 27px; }
+  line-height: 27px;
+  background-color: white; }
 
 #logo-medialab svg {
   fill: #f7323f; }
@@ -423,11 +424,13 @@ ul {
           text-align: right; } } }
 #aside {
   width: 30%;
-  background-color: red;
+  background-color: white;
   height: calc(100vh - var(--height-topbar));
   position: fixed;
   top: 180px;
-  right: 0; }
+  right: 0;
+  padding-right: 30px;
+  border-right: solid 2px black; }
 
 main {
   font-size: 24pt;
@@ -438,9 +441,9 @@ main {
 .collapse {
   cursor: pointer;
   display: block;
-  background: #cdf;
   display: inline-block;
-  width: 33%; }
+  width: 33%;
+  font-size: 21px; }
 
 input {
   display: none;

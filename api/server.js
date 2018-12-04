@@ -129,10 +129,9 @@ ws.on('connection', socket => {
 
     // Ensuring the necessary folders exist
     fs.ensureDirSync(BUILD_CONF.path);
-    fs.ensureDirSync(DUMP_PATH);
 
     // Git handle
-    const git = simpleGit(DUMP_PATH);
+    let git;
 
     async.series({
 
@@ -140,25 +139,47 @@ ws.on('connection', socket => {
       cleanup(next) {
         changeDeployStatus('cleaning');
 
-        rimraf(DUMP_PATH, next);
+        rimraf(BUILD_CONF.path, next);
       },
 
-      // 2) Dumping the files
+      // 2) Pulling
+      pull(next) {
+        changeDeployStatus('pulling');
+
+        fs.ensureDirSync(DUMP_PATH);
+
+        git = simpleGit(DUMP_PATH);
+
+        git
+          .init()
+          .addRemote('origin', BUILD_CONF.repository)
+          .pull('origin', 'master', next);
+      },
+
+      // 3) Wiping files
+      wiping(next) {
+        const toDelete = MODELS.map(m => path.join(DUMP_PATH, m, '*.json'));
+
+        toDelete.push(path.join(DUMP_PATH, 'assets', '*'));
+        toDelete.push(path.join(DUMP_PATH, 'settings.json'));
+
+        async.each(toDelete, rimraf, next);
+      },
+
+      // 4) Dumping the files
       dump(next) {
+
         changeDeployStatus('dumping');
         dump(DUMP_PATH);
 
         process.nextTick(next);
       },
 
-      // 3) Committing the dump
+      // 5) Committing the dump
       commit(next) {
         changeDeployStatus('committing');
 
         git
-          .init()
-          .addRemote('origin', BUILD_CONF.repository)
-          .pull('origin', 'master')
           .add('./*')
           .commit('New dump')
           .push('origin', 'master', next);

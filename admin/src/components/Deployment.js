@@ -4,15 +4,28 @@ import io from 'socket.io-client';
 import Button from './misc/Button';
 
 const STEPS = {
-  cleaning: 'Cleaning old files...',
-  dumping: 'Dumping the database...',
-  committin: 'Committing to the git repository...'
+  cleaning: {
+    label: 'Cleaning old files...',
+    completion: 10
+  },
+  pulling: {
+    label: 'Pulling current dump...',
+    completion: 30
+  },
+  dumping: {
+    label: 'Dumping the database...',
+    completion: 40
+  },
+  committing: {
+    label: 'Committing to the git repository...',
+    completion: 70
+  }
 };
 
-function DeploymentProgressBar() {
+function DeploymentProgressBar({value}) {
   return (
     <progress
-      className="progress is-dark" max={100} value={10} />
+      className="progress is-dark" max={100} value={value} />
   );
 }
 
@@ -48,6 +61,8 @@ export default class Deployment extends Component {
   render() {
     const {status} = this.state;
 
+    const step = STEPS[status];
+
     return (
       <div className="level">
         <div className="level-left">
@@ -58,12 +73,12 @@ export default class Deployment extends Component {
               Deploy
             </Button>
           </div>
-          {status !== 'free' && [
+          {status && status !== 'free' && [
             <div key="progress" className="level-item" style={{width: '200px'}}>
-              <DeploymentProgressBar />
+              <DeploymentProgressBar value={step.completion} />
             </div>,
             <div key="indicator" className="level-item">
-              <em>{STEPS[status]}</em>
+              <em>{step.label}</em>
             </div>
           ]}
         </div>

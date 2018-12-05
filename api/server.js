@@ -151,6 +151,7 @@ ws.on('connection', socket => {
         git = simpleGit(DUMP_PATH);
 
         git
+          .cwd(DUMP_PATH)
           .init()
           .addRemote('origin', BUILD_CONF.repository)
           .pull('origin', 'master', next);
@@ -180,6 +181,7 @@ ws.on('connection', socket => {
         changeDeployStatus('committing');
 
         git
+          .cwd(DUMP_PATH)
           .add('./*')
           .commit('New dump')
           .push('origin', 'master', next);

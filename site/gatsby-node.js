@@ -49,20 +49,20 @@ const ACTIVITIES_QUERY = `
 `;
 
 const PEOPLE_QUERY = `
- {
-  allPeopleJson {
-    edges {
-      node {
-        identifier
-        slugs
-        bio {
-          en
-          fr
+  {
+    allPeopleJson {
+      edges {
+        node {
+          identifier
+          slugs
+          bio {
+            en
+            fr
+          }
         }
       }
     }
   }
- }
 `;
 
 const PUBLICATION_QUERY = `

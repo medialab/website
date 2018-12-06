@@ -8,6 +8,13 @@
       "title": "Identifiant",
       "type": "string"
     },
+    "slugs": {
+      "title": "Slugs",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "lastUpdated": {
       "title": "Timestamp of last update",
       "type": "number"

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import Select from 'react-select';
 import keyBy from 'lodash/keyBy';
+import truncate from 'lodash/truncate';
 import client from '../../client';
-import {shortenStr} from '../../utils';
 
 import labels from '../../../../specs/labels';
 
@@ -81,7 +81,7 @@ export default class RelationSelector extends Component {
                     return (
                       <li key={id}>
                         <span title={title} className="tag is-medium" style={{marginBottom: 3}}>
-                          {shortenStr(title)}
+                          {truncate(title, {length: 30, omission: '...'})}
                           &nbsp;<button className="delete is-small" onClick={() => onDrop(id)} />
                         </span>
                       </li>

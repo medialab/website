@@ -160,7 +160,7 @@ class NewsForm extends Component {
 
     return (
       <FormLayout
-        id={data.id}
+        data={data}
         new={this.state.new}
         model="news"
         onSubmit={this.handleSubmit}>

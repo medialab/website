@@ -72,7 +72,7 @@ export default class Form extends Component {
   render() {
     const {saving, signaling, time, view} = this.state;
 
-    const {id, children, model, label} = this.props;
+    const {data, children, model, label} = this.props;
 
     const pageLabel = label || model;
 
@@ -131,7 +131,7 @@ export default class Form extends Component {
                 </div>
               </div>
             ) :
-              <Preview url={`${model}-${id}`} />
+              <Preview url={`${model}/${data.slugs[data.slugs.length - 1]}`} />
         }
       </div>
     );

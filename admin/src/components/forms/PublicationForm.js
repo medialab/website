@@ -161,7 +161,7 @@ class PublicationFrom extends Component {
 
     return (
       <FormLayout
-        id={data.id}
+        data={data}
         new={this.state.new}
         model="publications"
         label="publication"

@@ -280,16 +280,16 @@ exports.createPages = function({graphql, actions}) {
       result.data.allActivitiesJson.edges.forEach(edge => {
         const activity = edge.node;
 
-        const slug = `/activities-${activity.identifier}/`;
-
         const context = {
           identifier: activity.identifier
         };
 
-        createPage({
-          path: slug,
-          component: path.resolve('./src/templates/activity.js'),
-          context
+        activity.slugs.forEach(slug => {
+          createPage({
+            path: `/activities/${slug}`,
+            component: path.resolve('./src/templates/activity.js'),
+            context
+          });
         });
       });
     }),
@@ -303,8 +303,6 @@ exports.createPages = function({graphql, actions}) {
       result.data.allPeopleJson.edges.forEach(edge => {
         const person = edge.node;
 
-        const slug = `/people-${person.identifier}/`;
-
         const context = {
           identifier: person.identifier,
           bio: {}
@@ -317,10 +315,12 @@ exports.createPages = function({graphql, actions}) {
         if (person.bio && person.bio.fr)
           context.bio.fr = replaceHTMLAssetPaths(person.bio.fr, FILES);
 
-        createPage({
-          path: slug,
-          component: path.resolve('./src/templates/people.js'),
-          context
+        person.slugs.forEach(slug => {
+          createPage({
+            path: `/people/${slug}`,
+            component: path.resolve('./src/templates/people.js'),
+            context
+          });
         });
       });
     }),
@@ -334,16 +334,16 @@ exports.createPages = function({graphql, actions}) {
       result.data.allPublicationsJson.edges.forEach(edge => {
         const publication = edge.node;
 
-        const slug = `/publications-${publication.identifier}/`;
-
         const context = {
           identifier: publication.identifier
         };
 
-        createPage({
-          path: slug,
-          component: path.resolve('./src/templates/publication.js'),
-          context
+        publication.slugs.forEach(slug => {
+          createPage({
+            path: `/publications/${slug}`,
+            component: path.resolve('./src/templates/publication.js'),
+            context
+          });
         });
       });
     }),
@@ -357,17 +357,18 @@ exports.createPages = function({graphql, actions}) {
       result.data.allNewsJson.edges.forEach(edge => {
         const news = edge.node;
 
-        const slug = `/news-${news.identifier}/`;
-
         const context = {
           identifier: news.identifier
         };
 
-        createPage({
-          path: slug,
-          component: path.resolve('./src/templates/news.js'),
-          context
+        news.slugs.forEach(slug => {
+          createPage({
+            path: `/news/${slug}`,
+            component: path.resolve('./src/templates/news.js'),
+            context
+          });
         });
+
       });
     })
   ];

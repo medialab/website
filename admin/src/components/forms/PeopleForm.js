@@ -152,7 +152,7 @@ class PeopleForm extends Component {
 
     return (
       <FormLayout
-        id={data.id}
+        data={data}
         new={this.state.new}
         model="people"
         label="person"

@@ -9,6 +9,7 @@ export const query = graphql`
       edges {
         node {
           id
+          slugs
           firstName
           lastName
         }
@@ -18,6 +19,7 @@ export const query = graphql`
       edges {
         node {
           id
+          slugs
           name
         }
       }
@@ -26,6 +28,7 @@ export const query = graphql`
       edges {
         node {
           id
+          slugs
           title {
             en
             fr
@@ -37,6 +40,7 @@ export const query = graphql`
       edges {
         node {
           id
+          slugs
           title {
             en
             fr
@@ -68,7 +72,7 @@ const IndexPage = ({data}) => {
       <ul>
         {activities.map(a => (
           <li key={a.id}>
-            <Link to={`/activities-${a.id}`}>{a.name}</Link>
+            <Link to={`/activities/${a.slugs[a.slugs.length - 1]}`}>{a.name}</Link>
           </li>
         ))}
       </ul>
@@ -77,7 +81,7 @@ const IndexPage = ({data}) => {
       <ul>
         {people.map(p => (
           <li key={p.id}>
-            <Link to={`/people-${p.id}`}>{p.firstName} {p.lastName}</Link>
+            <Link to={`/people/${p.slugs[p.slugs.length - 1]}`}>{p.firstName} {p.lastName}</Link>
           </li>
         ))}
       </ul>
@@ -86,7 +90,7 @@ const IndexPage = ({data}) => {
       <ul>
         {publications.map(p => (
           <li key={p.id}>
-            <Link to={`/publications-${p.id}`}>{p.title.fr || p.title.en}</Link>
+            <Link to={`/publications/${p.slugs[p.slugs.length - 1]}`}>{p.title.fr || p.title.en}</Link>
           </li>
         ))}
       </ul>
@@ -95,7 +99,7 @@ const IndexPage = ({data}) => {
       <ul>
         {news.map(n => (
           <li key={n.id}>
-            <Link to={`/news-${n.id}`}>{n.title.fr || n.title.en}</Link>
+            <Link to={`/news/${n.slugs[n.slugs.length - 1]}`}>{n.title.fr || n.title.en}</Link>
           </li>
         ))}
       </ul>

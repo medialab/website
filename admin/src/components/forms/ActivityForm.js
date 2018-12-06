@@ -161,7 +161,7 @@ class ActivityForm extends Component {
 
     return (
       <FormLayout
-        id={data.id}
+        data={data}
         new={this.state.new}
         model="activities"
         label="activity"

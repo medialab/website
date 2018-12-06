@@ -3,7 +3,6 @@ const fs = require('fs');
 const crypto = require('crypto');
 const path = require('path');
 const chokidar = require('chokidar');
-const createPaginatedPages = require('gatsby-paginate');
 const GraphQLTypes = require('gatsby/graphql');
 const _ = require('lodash');
 
@@ -42,6 +41,7 @@ const ACTIVITIES_QUERY = `
       edges {
         node {
           identifier
+          slugs
         }
       }
     }
@@ -54,6 +54,7 @@ const PEOPLE_QUERY = `
     edges {
       node {
         identifier
+        slugs
         bio {
           en
           fr
@@ -70,6 +71,7 @@ const PUBLICATION_QUERY = `
       edges {
         node {
           identifier
+          slugs
         }
       }
     }
@@ -82,6 +84,7 @@ const NEWS_QUERY = `
       edges {
         node {
           identifier
+          slugs
         }
       }
     }
@@ -295,15 +298,6 @@ exports.createPages = function({graphql, actions}) {
     graphql(PEOPLE_QUERY).then(result => {
       if (!result.data)
         return;
-
-      // Pagination
-      createPaginatedPages({
-        edges: result.data.allPeopleJson.edges,
-        createPage,
-        pageTemplate: path.resolve('./src/templates/people-index.js'),
-        pageLength: 2,
-        pathPrefix: 'people',
-      });
 
       // Creating pages
       result.data.allPeopleJson.edges.forEach(edge => {

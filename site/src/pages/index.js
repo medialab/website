@@ -101,6 +101,7 @@ const IndexPage = ({data}) => {
       </ul>
 
       <h2>Editorialized List</h2>
+      {editorializationList.length === 0 && <p>Empty...</p>}
       <ul>
         {editorializationList.map(([model, id]) => (
           <li key={id}>

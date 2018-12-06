@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: 'médialab website',
+    siteUrl: 'https://medialab.sciencespo.fr'
   },
   plugins: [
     'gatsby-plugin-sass',
@@ -20,7 +21,8 @@ module.exports = {
         start_url: '/'
       }
     },
-    'gatsby-plugin-offline'
+    'gatsby-plugin-offline',
+    'gatsby-plugin-sitemap'
   ],
   mapping: {
     'ActivitiesJson.people': 'PeopleJson',

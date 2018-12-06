@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import cloneDeep from 'lodash/cloneDeep';
 import set from 'lodash/fp/set';
 import uuid from 'uuid/v4';
-import {rawToHtml, htmlToRaw} from '../../utils';
+import {rawToHtml, htmlToRaw, slugify} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
 
@@ -19,8 +19,17 @@ import {
 } from './utils';
 import client from '../../client';
 
+function slugForModel(data) {
+  return slugify(data.id, data.title ? (data.title.fr || '') : '');
+}
+
 function extractData(scope) {
   const data = cloneDeep(scope.state.data);
+
+  if (scope.state.new) {
+    data.slugs = [slugForModel(data)];
+    scope.setState(set(['data', 'slugs'], data.slugs, scope.state));
+  }
 
   if (!data.content)
     data.content = {};
@@ -145,6 +154,10 @@ class NewsForm extends Component {
     if (loading)
       return <div>Loading...</div>;
 
+    const slugValue = this.state.new ?
+      slugForModel(data) :
+      data.slugs[data.slugs.length - 1];
+
     return (
       <FormLayout
         id={data.id}
@@ -162,7 +175,7 @@ class NewsForm extends Component {
                     <input
                       type="text"
                       className="input"
-                      value={data.title.en}
+                      value={(data.title && data.title.en) || ''}
                       onChange={this.handleEnglishTitle}
                       placeholder="English Title" />
                   </div>
@@ -176,9 +189,25 @@ class NewsForm extends Component {
                     <input
                       type="text"
                       className="input"
-                      value={data.title.fr}
+                      value={(data.title && data.title.fr) || ''}
                       onChange={this.handleFrenchTitle}
                       placeholder="French Title" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="columns">
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">Slug</label>
+                  <div className="control">
+                    <input
+                      type="text"
+                      className="input"
+                      value={slugValue}
+                      disabled
+                      placeholder="Slug" />
                   </div>
                 </div>
               </div>
@@ -222,7 +251,7 @@ class NewsForm extends Component {
                     <input
                       type="text"
                       className="input"
-                      value={data.label.en}
+                      value={(data.label && data.label.en) || ''}
                       onChange={this.handleEnglishLabel}
                       placeholder="English Label" />
                   </div>
@@ -236,7 +265,7 @@ class NewsForm extends Component {
                     <input
                       type="text"
                       className="input"
-                      value={data.label.fr}
+                      value={(data.label && data.label.fr) || ''}
                       onChange={this.handleFrenchLabel}
                       placeholder="French Label" />
                   </div>

@@ -28,6 +28,8 @@ export default class Form extends Component {
     };
 
     this.el = React.createRef();
+
+    // TODO: store timeout => cleanup on will unmount
   }
 
   componentDidMount = () => {

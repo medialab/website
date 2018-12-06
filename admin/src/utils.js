@@ -11,6 +11,11 @@ export function rawToHtml(rawContentState) {
   return stateToHTML(convertFromRaw(rawContentState));
 }
 
+const DEFAULT_MAX_SLUG_TOKENS = 6;
 export function slugify(id, str) {
-  return `${slug(str, {lower: true})}-${id.split('-')[0]}`;
+  let s = slug(str, {lower: true});
+
+  s = s.split('-').slice(0, DEFAULT_MAX_SLUG_TOKENS).join('-');
+
+  return `${s}-${id.split('-')[0]}`;
 }

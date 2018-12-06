@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import cloneDeep from 'lodash/cloneDeep';
 import set from 'lodash/fp/set';
 import uuid from 'uuid/v4';
-import {rawToHtml, htmlToRaw} from '../../utils';
+import {rawToHtml, htmlToRaw, slugify} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
 
@@ -15,8 +15,17 @@ import BooleanSelector from '../selectors/BooleanSelector';
 import {createHandler, createRawHandler} from './utils';
 import client from '../../client';
 
+function slugForModel(data) {
+  return slugify(data.id, `${data.firstName} ${data.lastName}`);
+}
+
 function extractData(scope) {
   const data = cloneDeep(scope.state.data);
+
+  if (scope.state.new) {
+    data.slugs = [slugForModel(data)];
+    scope.setState(set(['data', 'slugs'], data.slugs, scope.state));
+  }
 
   if (!data.bio)
     data.bio = {};
@@ -137,6 +146,10 @@ class PeopleForm extends Component {
     if (loading)
       return <div>Loading...</div>;
 
+    const slugValue = this.state.new ?
+      slugForModel(data) :
+      data.slugs[data.slugs.length - 1];
+
     return (
       <FormLayout
         id={data.id}
@@ -171,6 +184,22 @@ class PeopleForm extends Component {
                       value={data.lastName}
                       onChange={this.handleLastName}
                       placeholder="Last Name" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="columns">
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">Slug</label>
+                  <div className="control">
+                    <input
+                      type="text"
+                      className="input"
+                      value={slugValue}
+                      disabled
+                      placeholder="Slug" />
                   </div>
                 </div>
               </div>

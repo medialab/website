@@ -112,6 +112,39 @@ function replaceHTMLAssetPaths(html, index) {
   return html;
 }
 
+// Helper creating an internationalized page
+function createI18nPage(createPage, page) {
+
+  // Default page
+  createPage({
+    ...page,
+    context: {
+      ...page.context,
+      lang: 'fr'
+    }
+  });
+
+  // French page
+  createPage({
+    ...page,
+    path: '/fr' + page.path,
+    context: {
+      ...page.context,
+      lang: 'fr'
+    }
+  });
+
+  // English page
+  createPage({
+    ...page,
+    path: '/en' + page.path,
+    context: {
+      ...page.context,
+      lang: 'en'
+    }
+  });
+}
+
 const MODEL_READERS = {
   activities(createNode, deleteNode, getNode) {
     const rawData = fs.readFileSync(MODELS_PATHS.activities, 'utf-8');
@@ -285,7 +318,7 @@ exports.createPages = function({graphql, actions}) {
         };
 
         activity.slugs.forEach(slug => {
-          createPage({
+          createI18nPage(createPage, {
             path: `/activities/${slug}`,
             component: path.resolve('./src/templates/activity.js'),
             context
@@ -316,7 +349,7 @@ exports.createPages = function({graphql, actions}) {
           context.bio.fr = replaceHTMLAssetPaths(person.bio.fr, FILES);
 
         person.slugs.forEach(slug => {
-          createPage({
+          createI18nPage(createPage, {
             path: `/people/${slug}`,
             component: path.resolve('./src/templates/people.js'),
             context
@@ -339,7 +372,7 @@ exports.createPages = function({graphql, actions}) {
         };
 
         publication.slugs.forEach(slug => {
-          createPage({
+          createI18nPage(createPage, {
             path: `/publications/${slug}`,
             component: path.resolve('./src/templates/publication.js'),
             context
@@ -362,7 +395,7 @@ exports.createPages = function({graphql, actions}) {
         };
 
         news.slugs.forEach(slug => {
-          createPage({
+          createI18nPage(createPage, {
             path: `/news/${slug}`,
             component: path.resolve('./src/templates/news.js'),
             context

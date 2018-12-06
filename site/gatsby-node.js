@@ -7,16 +7,18 @@ const createPaginatedPages = require('gatsby-paginate');
 const GraphQLTypes = require('gatsby/graphql');
 const _ = require('lodash');
 
-const MODELS = require('../specs/models.json');
-const DB_PATH = '../data';
-const DB_GLOB = '../data/*.json';
+const ROOT_PATH = process.env.ROOT_PATH || '..';
+
+const MODELS = require(path.join(ROOT_PATH, 'specs', 'models.json'));
+const DB_PATH = path.join(ROOT_PATH, 'data');
+const DB_GLOB = path.join(ROOT_PATH, 'data', '*.json');
 
 const MODELS_PATHS = {};
 const SCHEMAS = {};
 
 MODELS.forEach(model => {
   MODELS_PATHS[model] = path.join(DB_PATH, `${model}.json`);
-  SCHEMAS[model] = require(`../specs/schemas/${model}.json`);
+  SCHEMAS[model] = require(path.join(ROOT_PATH, 'specs', 'schemas', `${model}.json`));
 });
 
 MODELS_PATHS.settings = path.join(DB_PATH, 'settings.json');

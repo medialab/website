@@ -18,7 +18,11 @@ const STEPS = {
   },
   committing: {
     label: 'Committing to the git repository...',
-    completion: 70
+    completion: 60
+  },
+  building: {
+    label: 'Building the static site...',
+    completion: 80
   }
 };
 

@@ -1,3 +1,7 @@
+const path = require('path');
+
+const ROOT_PATH = process.env.ROOT_PATH || '..';
+
 module.exports = {
   siteMetadata: {
     title: 'médialab website',
@@ -9,7 +13,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'assets',
-        path: '../data/assets'
+        path: path.join(ROOT_PATH, 'data', 'assets')
       }
     },
     'gatsby-plugin-react-helmet',

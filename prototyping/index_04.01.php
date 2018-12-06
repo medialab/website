@@ -23,7 +23,7 @@
 	        <label class="" for="i0_input">Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et sociales
 
 	        <div id="logo-medialab-intro">
-				<?php include('assets/images/Medialab_Embleme_RVB.svg'); ?>
+				<img src='assets/images/Medialab_Embleme_RVB.svg' />
 			</div>
 
 		</label>

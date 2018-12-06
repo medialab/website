@@ -23,7 +23,7 @@
   <section>
 
 <div id="nav-item-menu" class="nav-item-bottom">
-  <p><a href="#topbar"><?php include('assets/images/Medialab_Embleme_RVB.svg'); ?></a></p>
+  <p><a href="#topbar"><img src='assets/images/Medialab_Embleme_RVB.svg' /></a></p>
 </div>
 <div id="nav-item-bottom-1" class="nav-item-bottom">
 	<a href="#item-1"><p class="item-1">Publication</p></a>

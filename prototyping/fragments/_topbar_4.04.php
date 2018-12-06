@@ -2,7 +2,7 @@
 	<div id="topbar-content">
 		<div id="logo-medialab">
 			<a href="#">
-				<?php include('assets/images/Medialab_Embleme_RVB.svg'); ?>
+				<img src='assets/images/Medialab_Embleme_RVB.svg' />
 			</a>
 		</div>
 		<nav id="nav-option">

@@ -1,7 +1,7 @@
 <header id="topbar">
 	<div id="topbar-content">
 		<div id="logo-medialab">
-			<?php include('assets/images/Medialab_Embleme_RVB.svg'); ?>
+			<img src='assets/images/Medialab_Embleme_RVB.svg' />
 		</div>
 		
 		<nav id="nav-option">

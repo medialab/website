@@ -74,6 +74,10 @@ export default class Form extends Component {
 
     const pageLabel = label || model;
 
+    const saveLabel = this.props.new ?
+      `Create this ${pageLabel}` :
+      `Save this ${pageLabel}`;
+
     return (
       <div ref={this.el}>
         <div className="tabs is-boxed">
@@ -107,7 +111,7 @@ export default class Form extends Component {
                             kind={signaling ? 'success' : 'raw'}
                             loading={saving}
                             onClick={!signaling ? this.handleSubmit : Function.prototype}>
-                            {signaling ? `${pageLabel} saved!` : `Save this ${pageLabel}`}
+                            {signaling ? `${pageLabel} saved!` : saveLabel}
                           </Button>
                         </div>
                         <div className="control">

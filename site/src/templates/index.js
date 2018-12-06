@@ -3,6 +3,8 @@ import {Link, graphql} from 'gatsby';
 
 import Layout from '../components/layout';
 
+// NOTE: Helmet can be used in each page!
+
 export const query = graphql`
   {
     allPeopleJson {
@@ -56,11 +58,13 @@ export const query = graphql`
   }
 `;
 
-const IndexPage = ({data}) => {
+const IndexPage = ({data, pageContext}) => {
   const people = data.allPeopleJson.edges.map(e => e.node),
         activities = data.allActivitiesJson.edges.map(e => e.node),
         publications = data.allPublicationsJson.edges.map(e => e.node),
         news = data.allNewsJson.edges.map(e => e.node);
+
+  console.log(pageContext);
 
   const editorializationList = data.settingsJson.home.editorialization;
 

@@ -302,6 +302,14 @@ exports.createPages = function({graphql, actions}) {
 
   let FILES = null;
 
+  // Creating basic pages
+  createI18nPage(createPage, {
+    path: '/',
+    component: path.resolve('./src/templates/index.js'),
+    context: {}
+  });
+
+  // Chaining promises
   const promises = () => [
 
     // Activities

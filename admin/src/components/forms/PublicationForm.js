@@ -3,7 +3,6 @@ import {push as pushAction} from 'connected-react-router';
 import {connect} from 'react-redux';
 import cloneDeep from 'lodash/cloneDeep';
 import set from 'lodash/fp/set';
-import get from 'lodash/get';
 import uuid from 'uuid/v4';
 import {rawToHtml, htmlToRaw} from '../../utils';
 
@@ -14,6 +13,12 @@ import Editor from '../Editor';
 import BooleanSelector from '../selectors/BooleanSelector';
 import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector from '../selectors/RelationSelector';
+import {
+  createHandler,
+  createRawHandler,
+  createAddRelationHandler,
+  createDropRelationHandler
+} from './utils';
 import client from '../../client';
 
 function extractData(scope) {
@@ -29,38 +34,6 @@ function extractData(scope) {
     data.content.fr = rawToHtml(scope.frenchEditorContent);
 
   return data;
-}
-
-function createHandler(scope, key) {
-  return e => {
-    scope.setState(set(key, e.target.value, scope.state));
-  };
-}
-
-function createRawHandler(scope, key) {
-  return v => {
-    scope.setState(set(key, v, scope.state));
-  };
-}
-
-function createAddRelationHandler(scope, key) {
-  return id => {
-    const data = get(scope.state.data, key, []);
-
-    data.push(id);
-
-    scope.setState(set(['data', key], data, scope.state));
-  };
-}
-
-function createDropRelationHandler(scope, key) {
-  return id => {
-    let data = get(scope.state.data, key, []);
-
-    data = data.filter(i => i !== id);
-
-    scope.setState(set(['data', key], data, scope.state));
-  };
 }
 
 class PublicationFrom extends Component {

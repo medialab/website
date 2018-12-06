@@ -12,6 +12,7 @@ import FormLayout from './FormLayout';
 import Editor from '../Editor';
 import EnumSelector from '../selectors/EnumSelector';
 import BooleanSelector from '../selectors/BooleanSelector';
+import {createHandler, createRawHandler} from './utils';
 import client from '../../client';
 
 function extractData(scope) {
@@ -27,18 +28,6 @@ function extractData(scope) {
     data.bio.fr = rawToHtml(scope.frenchEditorContent);
 
   return data;
-}
-
-function createHandler(scope, key) {
-  return e => {
-    scope.setState(set(key, e.target.value, scope.state));
-  };
-}
-
-function createRawHandler(scope, key) {
-  return v => {
-    scope.setState(set(key, v, scope.state));
-  };
 }
 
 class PeopleForm extends Component {

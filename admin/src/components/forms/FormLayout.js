@@ -1,7 +1,7 @@
 /* eslint no-nested-ternary: 0 */
 import React, {Component} from 'react';
 import TimeAgo from 'react-timeago';
-import {Link} from 'react-router-dom';
+import {Link, Prompt} from 'react-router-dom';
 import cls from 'classnames';
 
 import Button from '../misc/Button';
@@ -17,6 +17,8 @@ const actionBarStyle = {
   backgroundColor: 'white',
   zIndex: 500
 };
+
+const navigationPromptMessage = () => 'You have unsaved modifications. Sure you want to move?';
 
 export default class Form extends Component {
   constructor(props, context) {
@@ -143,6 +145,9 @@ export default class Form extends Component {
 
     return (
       <div>
+        <Prompt
+          when={dirty}
+          message={navigationPromptMessage} />
         <div className="tabs is-boxed">
           <ul>
             <li

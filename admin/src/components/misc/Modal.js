@@ -12,7 +12,7 @@ export default function Modal(props) {
   const body = (
     <div className="modal is-active">
       <div className="modal-background" onClick={onBackgroundClick} />
-      <div className="modal-content">
+      <div className="modal-card animated fadeIn zoomIn fastest">
         <div className="modal-card-body">
           {children}
         </div>

@@ -1,3 +1,4 @@
+/* eslint no-nested-ternary: 0 */
 import React, {Component} from 'react';
 import TimeAgo from 'react-timeago';
 import {Link} from 'react-router-dom';
@@ -93,7 +94,7 @@ export default class Form extends Component {
     if (signaling)
       buttonText = `${pageLabel} saved!`;
     else if (!dirty)
-      buttonText = `Nothing yet to save`;
+      buttonText = 'Nothing yet to save';
 
     let body = null;
 

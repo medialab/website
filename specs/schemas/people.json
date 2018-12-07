@@ -27,6 +27,12 @@
       "title": "Nom de famille",
       "type": "string"
     },
+    "gender":{
+      "title": "Genre",
+      "type": "enum",
+      "enum": ["male","female"],
+      "enumId": "genders"
+    },
     "title": {
       "title": "Titre",
       "type": "object",

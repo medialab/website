@@ -124,11 +124,11 @@ export default class Form extends Component {
     }
 
     else if (view === 'preview-fr') {
-      body = <Preview url={`fr/${model}/${data.slugs[data.slugs.length - 1]}`} />
+      body = <Preview url={`fr/${model}/${data.slugs[data.slugs.length - 1]}`} />;
     }
 
     else {
-      body = <Preview url={`en/${model}/${data.slugs[data.slugs.length - 1]}`} />
+      body = <Preview url={`en/${model}/${data.slugs[data.slugs.length - 1]}`} />;
     }
 
     return (

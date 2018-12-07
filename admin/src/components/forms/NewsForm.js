@@ -12,10 +12,12 @@ import FormLayout from './FormLayout';
 import Editor from '../Editor';
 import BooleanSelector from '../selectors/BooleanSelector';
 import RelationSelector from '../selectors/RelationSelector';
+import SuggestionSelector from '../selectors/SuggestionSelector';
 import {
   createHandler,
   createAddRelationHandler,
-  createDropRelationHandler
+  createDropRelationHandler,
+  createRawHandler
 } from './utils';
 import client from '../../client';
 
@@ -69,10 +71,10 @@ class NewsForm extends Component {
     // Handlers
     this.handleEnglishTitle = createHandler(this, ['data', 'title', 'en']);
     this.handleFrenchTitle = createHandler(this, ['data', 'title', 'fr']);
-    this.handleEnglishExcerpt = createHandler(this, ['date', 'excerpt', 'en']);
-    this.handleFrenchExcerpt = createHandler(this, ['date', 'excerpt', 'fr']);
-    this.handleEnglishLabel = createHandler(this, ['date', 'label', 'en']);
-    this.handleFrenchLabel = createHandler(this, ['date', 'label', 'fr']);
+    this.handleEnglishExcerpt = createHandler(this, ['data', 'excerpt', 'en']);
+    this.handleFrenchExcerpt = createHandler(this, ['data', 'excerpt', 'fr']);
+    this.handleEnglishLabel = createRawHandler(this, ['data', 'label', 'en']);
+    this.handleFrenchLabel = createRawHandler(this, ['data', 'label', 'fr']);
 
     this.handleAddActivity = createAddRelationHandler(this, 'activities');
     this.handleDropActivity = createDropRelationHandler(this, 'activities');
@@ -247,28 +249,24 @@ class NewsForm extends Component {
               <div className="column is-6">
                 <div className="field">
                   <label className="label">English Label</label>
-                  <div className="control">
-                    <input
-                      type="text"
-                      className="input"
-                      value={(data.label && data.label.en) || ''}
-                      onChange={this.handleEnglishLabel}
-                      placeholder="English Label" />
-                  </div>
+                  <SuggestionSelector
+                    model="news"
+                    property={['label', 'en']}
+                    placeholder="English label..."
+                    onChange={this.handleEnglishLabel}
+                    value={(data.label && data.label.en) || null} />
                 </div>
               </div>
 
               <div className="column is-6">
                 <div className="field">
                   <label className="label">French Label</label>
-                  <div className="control">
-                    <input
-                      type="text"
-                      className="input"
-                      value={(data.label && data.label.fr) || ''}
-                      onChange={this.handleFrenchLabel}
-                      placeholder="French Label" />
-                  </div>
+                  <SuggestionSelector
+                    model="news"
+                    property={['label', 'fr']}
+                    placeholder="French label..."
+                    onChange={this.handleFrenchLabel}
+                    value={(data.label && data.label.fr) || null} />
                 </div>
               </div>
             </div>

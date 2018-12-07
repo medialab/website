@@ -177,6 +177,7 @@ class ActivityForm extends Component {
                     <input
                       type="text"
                       className="input"
+                      autoFocus
                       value={data.name}
                       onChange={this.handleName}
                       placeholder="Name" />

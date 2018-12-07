@@ -27,21 +27,7 @@ export default class Form extends Component {
       view: 'edit'
     };
 
-    this.el = React.createRef();
-
     // TODO: store timeout => cleanup on will unmount
-  }
-
-  componentDidMount = () => {
-    setTimeout(() => {
-        if (this.el) {
-          const inputs = this.el.current.getElementsByTagName('input');
-          const input = inputs.length && inputs[0];
-          if (input) {
-            input.focus();
-          }
-        }
-    }, 200);
   }
 
   toggleEdit = () => {
@@ -132,7 +118,7 @@ export default class Form extends Component {
     }
 
     return (
-      <div ref={this.el}>
+      <div>
         <div className="tabs is-boxed">
           <ul>
             <li

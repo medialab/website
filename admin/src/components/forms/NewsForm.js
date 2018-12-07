@@ -177,6 +177,7 @@ class NewsForm extends Component {
                     <input
                       type="text"
                       className="input"
+                      autoFocus
                       value={(data.title && data.title.en) || ''}
                       onChange={this.handleEnglishTitle}
                       placeholder="English Title" />

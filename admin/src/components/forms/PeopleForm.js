@@ -168,6 +168,7 @@ class PeopleForm extends Component {
                     <input
                       type="text"
                       className="input"
+                      autoFocus
                       value={data.firstName}
                       onChange={this.handleFirstName}
                       placeholder="First Name" />

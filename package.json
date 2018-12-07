@@ -55,8 +55,8 @@
   "nodemonConfig": {
     "ignore": [
       "admin/*",
+      "build/*",
       "data/*",
-      "dump/*",
       "site/*"
     ]
   },

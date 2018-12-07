@@ -3,9 +3,8 @@ import {push as pushAction} from 'connected-react-router';
 import {connect} from 'react-redux';
 import cloneDeep from 'lodash/cloneDeep';
 import set from 'lodash/fp/set';
-import get from 'lodash/get';
 import uuid from 'uuid/v4';
-import {rawToHtml, htmlToRaw} from '../../utils';
+import {rawToHtml, htmlToRaw, slugify} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
 
@@ -13,10 +12,26 @@ import FormLayout from './FormLayout';
 import Editor from '../Editor';
 import BooleanSelector from '../selectors/BooleanSelector';
 import RelationSelector from '../selectors/RelationSelector';
+import SuggestionSelector from '../selectors/SuggestionSelector';
+import {
+  createHandler,
+  createAddRelationHandler,
+  createDropRelationHandler,
+  createRawHandler
+} from './utils';
 import client from '../../client';
+
+function slugForModel(data) {
+  return slugify(data.id, data.title ? (data.title.fr || '') : '');
+}
 
 function extractData(scope) {
   const data = cloneDeep(scope.state.data);
+
+  if (scope.state.new) {
+    data.slugs = [slugForModel(data)];
+    scope.setState(set(['data', 'slugs'], data.slugs, scope.state));
+  }
 
   if (!data.content)
     data.content = {};
@@ -28,32 +43,6 @@ function extractData(scope) {
     data.content.fr = rawToHtml(scope.frenchEditorContent);
 
   return data;
-}
-
-function createHandler(scope, key) {
-  return e => {
-    scope.setState(set(key, e.target.value, scope.state));
-  };
-}
-
-function createAddRelationHandler(scope, key) {
-  return id => {
-    const data = get(scope.state.data, key, []);
-
-    data.push(id);
-
-    scope.setState(set(['data', key], data, scope.state));
-  };
-}
-
-function createDropRelationHandler(scope, key) {
-  return id => {
-    let data = get(scope.state.data, key, []);
-
-    data = data.filter(i => i !== id);
-
-    scope.setState(set(['data', key], data, scope.state));
-  };
 }
 
 class NewsForm extends Component {
@@ -82,10 +71,10 @@ class NewsForm extends Component {
     // Handlers
     this.handleEnglishTitle = createHandler(this, ['data', 'title', 'en']);
     this.handleFrenchTitle = createHandler(this, ['data', 'title', 'fr']);
-    this.handleEnglishExcerpt = createHandler(this, ['date', 'excerpt', 'en']);
-    this.handleFrenchExcerpt = createHandler(this, ['date', 'excerpt', 'fr']);
-    this.handleEnglishLabel = createHandler(this, ['date', 'label', 'en']);
-    this.handleFrenchLabel = createHandler(this, ['date', 'label', 'fr']);
+    this.handleEnglishExcerpt = createHandler(this, ['data', 'excerpt', 'en']);
+    this.handleFrenchExcerpt = createHandler(this, ['data', 'excerpt', 'fr']);
+    this.handleEnglishLabel = createRawHandler(this, ['data', 'label', 'en']);
+    this.handleFrenchLabel = createRawHandler(this, ['data', 'label', 'fr']);
 
     this.handleAddActivity = createAddRelationHandler(this, 'activities');
     this.handleDropActivity = createDropRelationHandler(this, 'activities');
@@ -167,9 +156,13 @@ class NewsForm extends Component {
     if (loading)
       return <div>Loading...</div>;
 
+    const slugValue = this.state.new ?
+      slugForModel(data) :
+      data.slugs[data.slugs.length - 1];
+
     return (
       <FormLayout
-        id={data.id}
+        data={data}
         new={this.state.new}
         model="news"
         onSubmit={this.handleSubmit}>
@@ -184,7 +177,7 @@ class NewsForm extends Component {
                     <input
                       type="text"
                       className="input"
-                      value={data.title.en}
+                      value={(data.title && data.title.en) || ''}
                       onChange={this.handleEnglishTitle}
                       placeholder="English Title" />
                   </div>
@@ -198,9 +191,25 @@ class NewsForm extends Component {
                     <input
                       type="text"
                       className="input"
-                      value={data.title.fr}
+                      value={(data.title && data.title.fr) || ''}
                       onChange={this.handleFrenchTitle}
                       placeholder="French Title" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="columns">
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">Slug</label>
+                  <div className="control">
+                    <input
+                      type="text"
+                      className="input"
+                      value={slugValue}
+                      disabled
+                      placeholder="Slug" />
                   </div>
                 </div>
               </div>
@@ -240,28 +249,24 @@ class NewsForm extends Component {
               <div className="column is-6">
                 <div className="field">
                   <label className="label">English Label</label>
-                  <div className="control">
-                    <input
-                      type="text"
-                      className="input"
-                      value={data.label.en}
-                      onChange={this.handleEnglishLabel}
-                      placeholder="English Label" />
-                  </div>
+                  <SuggestionSelector
+                    model="news"
+                    field={['label', 'en']}
+                    placeholder="English label..."
+                    onChange={this.handleEnglishLabel}
+                    value={(data.label && data.label.en) || null} />
                 </div>
               </div>
 
               <div className="column is-6">
                 <div className="field">
                   <label className="label">French Label</label>
-                  <div className="control">
-                    <input
-                      type="text"
-                      className="input"
-                      value={data.label.fr}
-                      onChange={this.handleFrenchLabel}
-                      placeholder="French Label" />
-                  </div>
+                  <SuggestionSelector
+                    model="news"
+                    field={['label', 'fr']}
+                    placeholder="French label..."
+                    onChange={this.handleFrenchLabel}
+                    value={(data.label && data.label.fr) || null} />
                 </div>
               </div>
             </div>

@@ -1,7 +1,7 @@
 {
   "data": "./data",
-  "dump": {
-    "path": "./dump",
+  "build": {
+    "path": "./build",
     "repository": "git@repo"
   },
   "port": 3000

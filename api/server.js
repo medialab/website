@@ -4,6 +4,7 @@ const path = require('path');
 const async = require('async');
 const express = require('express');
 const config = require('config');
+const exec = require('child_process').exec;
 const jsonServer = require('json-server');
 const fileUpload = require('express-fileupload');
 const uuid = require('uuid/v4');
@@ -21,13 +22,21 @@ const MODELS = require('../specs/models.json');
 // Constants
 const PORT = config.get('port');
 const DATA_PATH = config.get('data');
-const DUMP_CONF = config.get('dump');
+const BUILD_CONF = config.get('build');
+const DUMP_PATH = path.join(BUILD_CONF.path, 'dump');
+const SITE_PATH = path.join(BUILD_CONF.path, 'site');
 const ASSETS_PATH = path.join(DATA_PATH, 'assets');
 
 // Ensuring we have the minimal file architecture
 fs.ensureDirSync(DATA_PATH);
 fs.ensureDirSync(path.join(DATA_PATH, 'assets'));
-fs.ensureDirSync(DUMP_CONF.path);
+fs.ensureDirSync(BUILD_CONF.path);
+
+if (!fs.pathExistsSync(SITE_PATH))
+  fs.copySync(path.join(__dirname, '..', 'site'), SITE_PATH);
+
+rimraf.sync(path.join(SITE_PATH, '.cache'));
+rimraf.sync(path.join(SITE_PATH, 'public'));
 
 const settingsPath = path.join(DATA_PATH, 'settings.json');
 if (!fs.existsSync(settingsPath))
@@ -127,7 +136,8 @@ ws.on('connection', socket => {
   // When triggering deploy
   socket.on('deploy', () => {
 
-    const git = simpleGit(DUMP_CONF.path);
+    // Git handle
+    let git;
 
     async.series({
 
@@ -135,30 +145,74 @@ ws.on('connection', socket => {
       cleanup(next) {
         changeDeployStatus('cleaning');
 
-        rimraf(path.join(DUMP_CONF.path), next);
+        rimraf(DUMP_PATH, next);
       },
 
-      // 2) Dumping the files
+      // 2) Pulling
+      pull(next) {
+        changeDeployStatus('pulling');
+
+        fs.ensureDirSync(DUMP_PATH);
+
+        git = simpleGit(DUMP_PATH);
+
+        git
+          .cwd(DUMP_PATH)
+          .init()
+          .addRemote('origin', BUILD_CONF.repository)
+          .pull('origin', 'master', next);
+      },
+
+      // 3) Wiping files
+      wiping(next) {
+        const toDelete = MODELS.map(m => path.join(DUMP_PATH, m, '*.json'));
+
+        toDelete.push(path.join(DUMP_PATH, 'assets', '*'));
+        toDelete.push(path.join(DUMP_PATH, 'settings.json'));
+
+        async.each(toDelete, rimraf, next);
+      },
+
+      // 4) Dumping the files
       dump(next) {
+
         changeDeployStatus('dumping');
-        dump(DUMP_CONF.path);
+        dump(DUMP_PATH);
 
         process.nextTick(next);
       },
 
-      // 3) Committing the dump
+      // 5) Committing the dump
       commit(next) {
         changeDeployStatus('committing');
 
         git
-          .init()
-          .addRemote('origin', DUMP_CONF.repository)
-          .pull('origin', 'master')
+          .cwd(DUMP_PATH)
           .add('./*')
           .commit('New dump')
           .push('origin', 'master', next);
-      }
+      },
 
+      // 6) Dropping last build
+      droppingLastBuild(next) {
+        return rimraf(path.join(SITE_PATH, 'public'), next);
+      },
+
+      // 7) Building static site
+      building(next) {
+        changeDeployStatus('building');
+
+        const env = Object.assign({}, process.env);
+
+        env.ROOT_PATH = path.resolve(__dirname, '..');
+
+        return exec('gatsby build', {cwd: SITE_PATH, env}, err => {
+          if (err)
+            return next(err);
+
+          return next();
+        });
+      }
     }, err => {
       if (err)
         console.error(err);

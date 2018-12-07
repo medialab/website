@@ -3,20 +3,21 @@ const fs = require('fs');
 const crypto = require('crypto');
 const path = require('path');
 const chokidar = require('chokidar');
-const createPaginatedPages = require('gatsby-paginate');
 const GraphQLTypes = require('gatsby/graphql');
 const _ = require('lodash');
 
-const MODELS = require('../specs/models.json');
-const DB_PATH = '../data';
-const DB_GLOB = '../data/*.json';
+const ROOT_PATH = process.env.ROOT_PATH || '..';
+
+const MODELS = require(path.join(ROOT_PATH, 'specs', 'models.json'));
+const DB_PATH = path.join(ROOT_PATH, 'data');
+const DB_GLOB = path.join(ROOT_PATH, 'data', '*.json');
 
 const MODELS_PATHS = {};
 const SCHEMAS = {};
 
 MODELS.forEach(model => {
   MODELS_PATHS[model] = path.join(DB_PATH, `${model}.json`);
-  SCHEMAS[model] = require(`../specs/schemas/${model}.json`);
+  SCHEMAS[model] = require(path.join(ROOT_PATH, 'specs', 'schemas', `${model}.json`));
 });
 
 MODELS_PATHS.settings = path.join(DB_PATH, 'settings.json');
@@ -40,6 +41,7 @@ const ACTIVITIES_QUERY = `
       edges {
         node {
           identifier
+          slugs
         }
       }
     }
@@ -47,19 +49,20 @@ const ACTIVITIES_QUERY = `
 `;
 
 const PEOPLE_QUERY = `
- {
-  allPeopleJson {
-    edges {
-      node {
-        identifier
-        bio {
-          en
-          fr
+  {
+    allPeopleJson {
+      edges {
+        node {
+          identifier
+          slugs
+          bio {
+            en
+            fr
+          }
         }
       }
     }
   }
- }
 `;
 
 const PUBLICATION_QUERY = `
@@ -68,6 +71,7 @@ const PUBLICATION_QUERY = `
       edges {
         node {
           identifier
+          slugs
         }
       }
     }
@@ -80,6 +84,7 @@ const NEWS_QUERY = `
       edges {
         node {
           identifier
+          slugs
         }
       }
     }
@@ -105,6 +110,39 @@ function replaceHTMLAssetPaths(html, index) {
   }
 
   return html;
+}
+
+// Helper creating an internationalized page
+function createI18nPage(createPage, page) {
+
+  // Default page
+  createPage({
+    ...page,
+    context: {
+      ...page.context,
+      lang: 'fr'
+    }
+  });
+
+  // French page
+  createPage({
+    ...page,
+    path: '/fr' + page.path,
+    context: {
+      ...page.context,
+      lang: 'fr'
+    }
+  });
+
+  // English page
+  createPage({
+    ...page,
+    path: '/en' + page.path,
+    context: {
+      ...page.context,
+      lang: 'en'
+    }
+  });
 }
 
 const MODEL_READERS = {
@@ -264,6 +302,14 @@ exports.createPages = function({graphql, actions}) {
 
   let FILES = null;
 
+  // Creating basic pages
+  createI18nPage(createPage, {
+    path: '/',
+    component: path.resolve('./src/templates/index.js'),
+    context: {}
+  });
+
+  // Chaining promises
   const promises = () => [
 
     // Activities
@@ -275,16 +321,16 @@ exports.createPages = function({graphql, actions}) {
       result.data.allActivitiesJson.edges.forEach(edge => {
         const activity = edge.node;
 
-        const slug = `/activities-${activity.identifier}/`;
-
         const context = {
           identifier: activity.identifier
         };
 
-        createPage({
-          path: slug,
-          component: path.resolve('./src/templates/activity.js'),
-          context
+        activity.slugs.forEach(slug => {
+          createI18nPage(createPage, {
+            path: `/activities/${slug}`,
+            component: path.resolve('./src/templates/activity.js'),
+            context
+          });
         });
       });
     }),
@@ -294,20 +340,9 @@ exports.createPages = function({graphql, actions}) {
       if (!result.data)
         return;
 
-      // Pagination
-      createPaginatedPages({
-        edges: result.data.allPeopleJson.edges,
-        createPage,
-        pageTemplate: path.resolve('./src/templates/people-index.js'),
-        pageLength: 2,
-        pathPrefix: 'people',
-      });
-
       // Creating pages
       result.data.allPeopleJson.edges.forEach(edge => {
         const person = edge.node;
-
-        const slug = `/people-${person.identifier}/`;
 
         const context = {
           identifier: person.identifier,
@@ -321,10 +356,12 @@ exports.createPages = function({graphql, actions}) {
         if (person.bio && person.bio.fr)
           context.bio.fr = replaceHTMLAssetPaths(person.bio.fr, FILES);
 
-        createPage({
-          path: slug,
-          component: path.resolve('./src/templates/people.js'),
-          context
+        person.slugs.forEach(slug => {
+          createI18nPage(createPage, {
+            path: `/people/${slug}`,
+            component: path.resolve('./src/templates/people.js'),
+            context
+          });
         });
       });
     }),
@@ -338,16 +375,16 @@ exports.createPages = function({graphql, actions}) {
       result.data.allPublicationsJson.edges.forEach(edge => {
         const publication = edge.node;
 
-        const slug = `/publications-${publication.identifier}/`;
-
         const context = {
           identifier: publication.identifier
         };
 
-        createPage({
-          path: slug,
-          component: path.resolve('./src/templates/publication.js'),
-          context
+        publication.slugs.forEach(slug => {
+          createI18nPage(createPage, {
+            path: `/publications/${slug}`,
+            component: path.resolve('./src/templates/publication.js'),
+            context
+          });
         });
       });
     }),
@@ -361,17 +398,18 @@ exports.createPages = function({graphql, actions}) {
       result.data.allNewsJson.edges.forEach(edge => {
         const news = edge.node;
 
-        const slug = `/news-${news.identifier}/`;
-
         const context = {
           identifier: news.identifier
         };
 
-        createPage({
-          path: slug,
-          component: path.resolve('./src/templates/news.js'),
-          context
+        news.slugs.forEach(slug => {
+          createI18nPage(createPage, {
+            path: `/news/${slug}`,
+            component: path.resolve('./src/templates/news.js'),
+            context
+          });
         });
+
       });
     })
   ];

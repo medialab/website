@@ -3,9 +3,8 @@ import {pushAction} from 'connected-react-router';
 import {connect} from 'react-redux';
 import cloneDeep from 'lodash/cloneDeep';
 import set from 'lodash/fp/set';
-import get from 'lodash/get';
 import uuid from 'uuid/v4';
-import {rawToHtml, htmlToRaw} from '../../utils';
+import {rawToHtml, htmlToRaw, slugify} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
 
@@ -14,10 +13,25 @@ import Editor from '../Editor';
 import BooleanSelector from '../selectors/BooleanSelector';
 import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector from '../selectors/RelationSelector';
+import {
+  createHandler,
+  createRawHandler,
+  createAddRelationHandler,
+  createDropRelationHandler
+} from './utils';
 import client from '../../client';
+
+function slugForModel(data) {
+  return slugify(data.id, data.name);
+}
 
 function extractData(scope) {
   const data = cloneDeep(scope.state.data);
+
+  if (scope.state.new) {
+    data.slugs = [slugForModel(data)];
+    scope.setState(set(['data', 'slugs'], data.slugs, scope.state));
+  }
 
   if (!data.content)
     data.content = {};
@@ -29,18 +43,6 @@ function extractData(scope) {
     data.content.fr = rawToHtml(scope.frenchEditorContent);
 
   return data;
-}
-
-function createHandler(scope, key) {
-  return e => {
-    scope.setState(set(key, e.target.value, scope.state));
-  };
-}
-
-function createRawHandler(scope, key) {
-  return v => {
-    scope.setState(set(key, v, scope.state));
-  };
 }
 
 class ActivityForm extends Component {
@@ -73,6 +75,8 @@ class ActivityForm extends Component {
     this.handleEnglishDescription = createHandler(this, ['data', 'description', 'en']);
     this.handleFrenchDescription = createHandler(this, ['data', 'description', 'fr']);
     this.handleType = createRawHandler(this, ['data', 'type']);
+    this.handleAddPeople = createAddRelationHandler(this, 'people');
+    this.handleDropPeople = createDropRelationHandler(this, 'people');
   }
 
   componentDidMount() {
@@ -99,22 +103,6 @@ class ActivityForm extends Component {
 
   handleActive = value => {
     this.setState(set(['data', 'active'], value, this.state));
-  };
-
-  handleAddPeople = id => {
-    const people = get(this.state.data, 'people', []);
-
-    people.push(id);
-
-    this.setState(set(['data', 'people'], people, this.state));
-  };
-
-  handleDropPeople = id => {
-    let people = get(this.state.data, 'people', []);
-
-    people = people.filter(p => p !== id);
-
-    this.setState(set(['data', 'people'], people, this.state));
   };
 
   handleEnglishContent = content => {
@@ -167,9 +155,13 @@ class ActivityForm extends Component {
     if (loading)
       return <div>Loading...</div>;
 
+    const slugValue = this.state.new ?
+      slugForModel(data) :
+      data.slugs[data.slugs.length - 1];
+
     return (
       <FormLayout
-        id={data.id}
+        data={data}
         new={this.state.new}
         model="activities"
         label="activity"
@@ -192,6 +184,23 @@ class ActivityForm extends Component {
                 </div>
               </div>
             </div>
+
+            <div className="columns">
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">Slug</label>
+                  <div className="control">
+                    <input
+                      type="text"
+                      className="input"
+                      value={slugValue}
+                      disabled
+                      placeholder="Slug" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="columns">
               <div className="column is-6">
                 <div className="field">

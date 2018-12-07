@@ -5,7 +5,7 @@ date: 2018-12-07
 Description de chaque page listing
 
 # Actualités
-Présente l'ensemble des actualités avec un affichage par défaut par ordre antéchronologique (de la plus récente à la plus ancienne).
+Présente l'ensemble des actualités avec un affichage par ordre antéchronologique (de la plus récente à la plus ancienne).
 
 ## Colonnes/champs à afficher
 - Date,
@@ -36,7 +36,7 @@ Présente l'ensemble des publications avec un affichage par défaut par ordre an
 - Auteur : Ordre alphabétique des noms
 
 # Equipe
-Présente l'ensemble des people avec un affichage aléatoire mais regroupement en fonction des activités communes.
+Présente l'ensemble des people avec un affichage aléatoire ; le regroupement de proximité se fait en fonction des activités communes (non visible par l'utilisateur).
 
 ## Colonnes/champs à afficher
 - FirstName

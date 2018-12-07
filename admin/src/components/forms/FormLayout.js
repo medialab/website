@@ -5,6 +5,7 @@ import cls from 'classnames';
 
 import Button from '../misc/Button';
 import Preview from '../Preview';
+import {hash} from './utils';
 
 const actionBarStyle = {
   borderTop: '1px solid #dbdbdb',
@@ -21,6 +22,7 @@ export default class Form extends Component {
     super(props, context);
 
     this.state = {
+      lastHash: hash(props.data),
       saving: false,
       signaling: false,
       time: null,
@@ -52,7 +54,7 @@ export default class Form extends Component {
   };
 
   handleSubmit = () => {
-    this.setState({saving: true});
+    this.setState({lastHash: hash(this.props.data), saving: true});
     this.props.onSubmit();
 
     setTimeout(() => {
@@ -63,15 +65,35 @@ export default class Form extends Component {
   };
 
   render() {
-    const {saving, signaling, time, view} = this.state;
+    const {
+      lastHash,
+      saving,
+      signaling,
+      time,
+      view
+    } = this.state;
 
-    const {data, children, model, label} = this.props;
+    const {
+      data,
+      children,
+      model,
+      label
+    } = this.props;
 
     const pageLabel = label || model;
 
     const saveLabel = this.props.new ?
       `Create this ${pageLabel}` :
       `Save this ${pageLabel}`;
+
+    const dirty = hash(data) !== lastHash;
+
+    let buttonText = saveLabel;
+
+    if (signaling)
+      buttonText = `${pageLabel} saved!`;
+    else if (!dirty)
+      buttonText = `Nothing yet to save`;
 
     let body = null;
 
@@ -86,10 +108,11 @@ export default class Form extends Component {
                 <div className="field is-grouped">
                   <div className="control">
                     <Button
-                      kind={signaling ? 'success' : 'raw'}
+                      kind={signaling ? 'success' : (dirty ? 'raw' : 'white')}
+                      disabled={!dirty}
                       loading={saving}
                       onClick={!signaling ? this.handleSubmit : Function.prototype}>
-                      {signaling ? `${pageLabel} saved!` : saveLabel}
+                      {buttonText}
                     </Button>
                   </div>
                   <div className="control">

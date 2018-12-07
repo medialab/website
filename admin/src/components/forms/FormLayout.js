@@ -44,7 +44,7 @@ export default class Form extends Component {
       }
     };
 
-    // TODO: store timeout => cleanup on will unmount
+    this.timeout = null;
   }
 
   componentDidMount() {
@@ -53,6 +53,9 @@ export default class Form extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('beforeunload', this.beforeunloadListener);
+
+    if (this.timeout)
+      clearTimeout(this.timeout);
   }
 
   toggleEdit = () => {
@@ -80,10 +83,10 @@ export default class Form extends Component {
     this.setState({lastHash: hash(this.props.data), saving: true});
     this.props.onSubmit();
 
-    setTimeout(() => {
+    this.timeout = setTimeout(() => {
       this.setState({saving: false, signaling: true});
 
-      setTimeout(() => this.setState({signaling: false, time: Date.now()}), 1500);
+      this.timeout = setTimeout(() => this.setState({signaling: false, time: Date.now()}), 1500);
     }, 1000);
   };
 

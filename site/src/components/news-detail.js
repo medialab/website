@@ -1,5 +1,5 @@
 import React from 'react';
-import {graphql} from 'gatsby';
+import {graphql} from 'gatsby';
 
 export const queryFragment = graphql`
   fragment NewsDetail on NewsJson {

@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {push} from 'connected-react-router';
+import {push as pushAction} from 'connected-react-router';
 import {connect} from 'react-redux';
 import cloneDeep from 'lodash/cloneDeep';
 import set from 'lodash/fp/set';
 import uuid from 'uuid/v4';
-import {rawToHtml, htmlToRaw} from '../../utils';
+import {rawToHtml, htmlToRaw, slugify} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
 
@@ -13,11 +12,20 @@ import FormLayout from './FormLayout';
 import Editor from '../Editor';
 import EnumSelector from '../selectors/EnumSelector';
 import BooleanSelector from '../selectors/BooleanSelector';
-import Button from '../misc/Button';
+import {createHandler, createRawHandler} from './utils';
 import client from '../../client';
+
+function slugForModel(data) {
+  return slugify(data.id, `${data.firstName} ${data.lastName}`);
+}
 
 function extractData(scope) {
   const data = cloneDeep(scope.state.data);
+
+  if (scope.state.new) {
+    data.slugs = [slugForModel(data)];
+    scope.setState(set(['data', 'slugs'], data.slugs, scope.state));
+  }
 
   if (!data.bio)
     data.bio = {};
@@ -29,18 +37,6 @@ function extractData(scope) {
     data.bio.fr = rawToHtml(scope.frenchEditorContent);
 
   return data;
-}
-
-function createHandler(scope, key) {
-  return e => {
-    scope.setState(set(key, e.target.value, scope.state));
-  };
-}
-
-function createRawHandler(scope, key) {
-  return v => {
-    scope.setState(set(key, v, scope.state));
-  };
 }
 
 class PeopleForm extends Component {
@@ -88,7 +84,7 @@ class PeopleForm extends Component {
           this.frenchEditorContent = data.bio.fr;
         }
 
-        this.setState({loading: false, data: data});
+        this.setState({loading: false, data});
       });
   }
 
@@ -121,7 +117,7 @@ class PeopleForm extends Component {
         data: extractData(this)
       };
 
-      client.post(payload, (err, result) => {
+      client.post(payload, () => {
         push(`/people/${this.state.data.id}`);
         this.setState({new: false});
       });
@@ -134,7 +130,7 @@ class PeopleForm extends Component {
         data: extractData(this)
       };
 
-      client.put(payload, (err, result) => {
+      client.put(payload, () => {
         // push('/people');
       });
     }
@@ -150,146 +146,172 @@ class PeopleForm extends Component {
     if (loading)
       return <div>Loading...</div>;
 
+    const slugValue = this.state.new ?
+      slugForModel(data) :
+      data.slugs[data.slugs.length - 1];
+
     return (
       <FormLayout
-        id={data.id}
+        data={data}
         new={this.state.new}
         model="people"
+        label="person"
         onSubmit={this.handleSubmit}>
         <div className="container">
 
-          <div className="columns">
-            <div className="column is-3">
-              <div className="field">
-                <label className="label">First Name</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    value={data.firstName}
-                    onChange={this.handleFirstName}
-                    placeholder="First Name" />
+          <div className="form-group">
+            <div className="columns">
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">First Name</label>
+                  <div className="control">
+                    <input
+                      type="text"
+                      className="input"
+                      value={data.firstName}
+                      onChange={this.handleFirstName}
+                      placeholder="First Name" />
+                  </div>
+                </div>
+              </div>
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">Last Name</label>
+                  <div className="control">
+                    <input
+                      type="text"
+                      className="input"
+                      value={data.lastName}
+                      onChange={this.handleLastName}
+                      placeholder="Last Name" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="columns">
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">Slug</label>
+                  <div className="control">
+                    <input
+                      type="text"
+                      className="input"
+                      value={slugValue}
+                      disabled
+                      placeholder="Slug" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="columns">
-            <div className="column is-3">
-              <div className="field">
-                <label className="label">Last Name</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    value={data.lastName}
-                    onChange={this.handleLastName}
-                    placeholder="Last Name" />
+          <div className="form-group">
+            <h4 className="title is-4">
+              Relation to médialab
+            </h4>
+            <div className="columns">
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">History of the relation</label>
+                  <div className="control">
+                    <BooleanSelector
+                      value={data.active}
+                      labels={['presently working', 'worked in the past']}
+                      onChange={this.handleActive} />
+                  </div>
+                </div>
+              </div>
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">Membership</label>
+                  <div className="control">
+                    <EnumSelector
+                      enumType="membershipTypes"
+                      value={data.membership}
+                      onChange={this.handleMembership} />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="columns">
-            <div className="column is-2">
-              <div className="field">
-                <label className="label">Published?</label>
-                <div className="control">
-                  <BooleanSelector
-                    value={!data.draft}
-                    onChange={this.handlePublished} />
+          <div className="form-group">
+            <h4 className="title is-4">
+              Presentation
+            </h4>
+            <div className="columns">
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">English Title</label>
+                  <div className="control">
+                    <input
+                      type="text"
+                      className="input"
+                      value={data.title ? data.title.en : ''}
+                      onChange={this.handleEnglishTitle}
+                      placeholder="English Title" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">French Title</label>
+                  <div className="control">
+                    <input
+                      type="text"
+                      className="input"
+                      value={data.title ? data.title.fr : ''}
+                      onChange={this.handleFrenchTitle}
+                      placeholder="French Title" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="columns">
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">English Biography</label>
+                  <Editor
+                    rawContent={(data.bio && data.bio.en) || null}
+                    onSave={this.handleEnglishContent} />
+                </div>
+              </div>
+
+              <div className="column is-6">
+                <div className="field">
+                  <label className="label">French Biography</label>
+                  <Editor
+                    rawContent={(data.bio && data.bio.fr) || null}
+                    onSave={this.handleFrenchContent} />
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="columns">
-            <div className="column is-2">
-              <div className="field">
-                <label className="label">Active?</label>
-                <div className="control">
-                  <BooleanSelector
-                    value={data.active}
-                    onChange={this.handleActive} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="columns">
-            <div className="column is-3">
-              <div className="field">
-                <label className="label">Membership</label>
-                <div className="control">
-                  <EnumSelector
-                    enumType="membershipTypes"
-                    value={data.membership}
-                    onChange={this.handleMembership} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="columns">
-
-            <div className="column is-6">
-              <div className="field">
-                <label className="label">English Title</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    value={data.title ? data.title.en : ''}
-                    onChange={this.handleEnglishTitle}
-                    placeholder="English Title" />
-                </div>
-              </div>
-            </div>
-
-            <div className="column is-6">
-              <div className="field">
-                <label className="label">French Title</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    value={data.title ? data.title.fr : ''}
-                    onChange={this.handleFrenchTitle}
-                    placeholder="French Title" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="columns">
-            <div className="column is-6">
-              <div className="field">
-                <label className="label">English Biography</label>
-                <Editor
-                  rawContent={(data.bio && data.bio.en) || null}
-                  onSave={this.handleEnglishContent} />
-              </div>
-            </div>
-
-            <div className="column is-6">
-              <div className="field">
-                <label className="label">French Biography</label>
-                <Editor
-                  rawContent={(data.bio && data.bio.fr) || null}
-                  onSave={this.handleFrenchContent} />
+          <div className="form-group is-important">
+            <div className="field">
+              <label className="label title is-4">{data.firstName ? `${data.firstName} ${data.lastName}` : 'People'} page's publication status</label>
+              <div className="control">
+                <BooleanSelector
+                  value={!data.draft}
+                  labels={['published', 'draft']}
+                  onChange={this.handlePublished} />
               </div>
             </div>
           </div>
 
         </div>
       </FormLayout>
-    )
+    );
   }
 }
 
 const ConnectedPeopleForm = connect(
   null,
-  {push}
+  {push: pushAction}
 )(PeopleForm);
 
 export default ConnectedPeopleForm;

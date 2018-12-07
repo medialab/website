@@ -1,5 +1,5 @@
 import React from 'react';
-import {graphql} from 'gatsby';
+import {graphql} from 'gatsby';
 
 export const queryFragment = graphql`
   fragment PublicationDetail on PublicationsJson {
@@ -43,7 +43,7 @@ export default function PublicationDetail({data}) {
       <p>
         <strong>Type</strong>: {data.type}
       </p>
-      <hr/>
+      <hr />
       <p>
         <strong>EN title</strong>: {data.title && data.title.en}
       </p>

@@ -16,7 +16,7 @@
     "hydrate:json": "rm -rf data/* && mkdir -p data/assets && touch data/assets/dummy && cp specs/samples/json/*.json data",
     "install:admin": "cd admin && npm i",
     "install:site": "cd site && npm i",
-    "lint": "eslint api scripts",
+    "lint": "eslint api scripts site/*.js site/src admin/src",
     "load": "node ./scripts/load.js",
     "postinstall": "npm run install:admin && npm run install:site",
     "reinstall": "rm -rf ./admin/node_modules && rm -rf ./site/node_modules && rm -rf ./node_modules && npm i",
@@ -30,17 +30,22 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "async": "^2.6.1",
     "config": "^3.0.0",
     "express": "^4.16.4",
     "express-fileupload": "^1.0.0",
     "fs-extra": "^7.0.1",
-    "gatsby-cli": "^2.4.5",
+    "gatsby-cli": "^2.4.6",
     "json-server": "^0.14.0",
     "json-stable-stringify": "^1.0.1",
+    "rimraf": "^2.6.2",
+    "simple-git": "^1.107.0",
+    "socket.io": "^2.2.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@yomguithereal/eslint-config": "^4.0.0",
+    "babel-eslint": "^10.0.1",
     "concurrently": "^4.1.0",
     "eslint": "^5.9.0",
     "eslint-plugin-react": "^7.11.1",
@@ -50,14 +55,22 @@
   "nodemonConfig": {
     "ignore": [
       "admin/*",
+      "build/*",
       "data/*",
       "site/*"
     ]
   },
   "eslintConfig": {
     "extends": [
-      "@yomguithereal/eslint-config/es6",
+      "@yomguithereal/eslint-config/es7",
       "@yomguithereal/eslint-config/react"
-    ]
+    ],
+    "rules": {
+      "react/jsx-no-bind": 0,
+      "react/no-danger": 0,
+      "react/no-set-state": 0,
+      "react/prefer-stateless-function": 0,
+      "react/require-optimization": 0
+    }
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {graphql} from 'gatsby';
+import {graphql} from 'gatsby';
 
 export const queryFragment = graphql`
   fragment PeopleDetail on PeopleJson {
@@ -40,6 +40,6 @@ export default function PeopleDetail({data, bio}) {
       {bio && bio.fr && <div dangerouslySetInnerHTML={{__html: bio.fr}} />}
       <div>dernière mise à jour : {data.lastUpdated ? new Date(data.lastUpdated).toLocaleString() : 'jamais modifié !'}</div>
     </div>
-    
+
   );
 }

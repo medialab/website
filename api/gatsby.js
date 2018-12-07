@@ -53,6 +53,10 @@ class GatsbyProcess {
     });
     this.child.kill();
   }
+
+  kill() {
+    this.child.kill();
+  }
 }
 
 module.exports = GatsbyProcess;

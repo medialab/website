@@ -251,7 +251,7 @@ class NewsForm extends Component {
                   <label className="label">English Label</label>
                   <SuggestionSelector
                     model="news"
-                    property={['label', 'en']}
+                    field={['label', 'en']}
                     placeholder="English label..."
                     onChange={this.handleEnglishLabel}
                     value={(data.label && data.label.en) || null} />
@@ -263,7 +263,7 @@ class NewsForm extends Component {
                   <label className="label">French Label</label>
                   <SuggestionSelector
                     model="news"
-                    property={['label', 'fr']}
+                    field={['label', 'fr']}
                     placeholder="French label..."
                     onChange={this.handleFrenchLabel}
                     value={(data.label && data.label.fr) || null} />

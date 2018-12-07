@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import Fuse from 'fuse.js';
 import client from '../client';
 
 export default class List extends Component {
@@ -7,8 +8,12 @@ export default class List extends Component {
     super(props, context);
 
     this.state = {
-      data: null
+      data: null,
+      filteredData: null,
+      query: ''
     };
+
+    this.index = null;
   }
 
   componentDidMount() {
@@ -16,15 +21,39 @@ export default class List extends Component {
 
     // Fetching model list
     client.list({params: {model}}, (err, data) => {
-      this.setState({data});
+
+      this.index = new Fuse(data, {
+        shouldSort: false,
+        keys: this.props.specs.search,
+        distance: 5,
+        threshold: 0.2
+      });
+
+      this.setState({data, filteredData: data});
     });
   }
 
+  filter = query => {
+    if (query.length < 1)
+      return this.state.data;
+
+    const filteredData = this.index.search(query);
+
+    return filteredData;
+  };
+
+  handleQuery = e => {
+    const query = e.target.value,
+          filteredData = this.filter(query);
+
+    this.setState({query, filteredData});
+  };
+
   render() {
-    const {data} = this.state;
+    const {filteredData, query} = this.state;
     const {model, specs} = this.props;
 
-    if (!data)
+    if (!filteredData)
       return <div>Loading...</div>;
 
     return (
@@ -34,6 +63,8 @@ export default class List extends Component {
             <input
               className="input is-small"
               type="text"
+              value={query}
+              onChange={this.handleQuery}
               placeholder="Search..." />
           </div>
         </div>
@@ -41,14 +72,14 @@ export default class List extends Component {
           <thead>
             <tr>
               <th>#</th>
-              {specs.map(({label}) => <th key={label}>{label}</th>)}
+              {specs.fields.map(({label}) => <th key={label}>{label}</th>)}
             </tr>
           </thead>
           <tbody>
-            {data.map((d, i) => (
+            {filteredData.map((d, i) => (
               <tr key={d.id}>
                 <td>{i + 1}.</td>
-                {specs.map((item, j) => {
+                {specs.fields.map((item, j) => {
                   const value = typeof item.property === 'function' ?
                     item.property(d) :
                     d[item.property];

@@ -19,7 +19,7 @@ export default class SuggestionSelector extends Component {
       const options = data
         .map(item => {
 
-          const value = get(this.props.property, item);
+          const value = get(this.props.field, item);
 
           return {
             value,

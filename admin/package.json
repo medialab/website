@@ -26,6 +26,7 @@
     "draft-js-export-html": "^1.2.0",
     "draft-js-import-html": "^1.2.1",
     "draftail": "^1.0.0",
+    "fuse.js": "^3.3.0",
     "history": "^4.7.2",
     "lodash": "^4.17.11",
     "react": "^16.6.3",

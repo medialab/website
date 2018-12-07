@@ -29,6 +29,14 @@ export default class List extends Component {
 
     return (
       <div>
+        <div className="columns">
+          <div className="column is-3">
+            <input
+              className="input is-small"
+              type="text"
+              placeholder="Search..." />
+          </div>
+        </div>
         <table className="table">
           <thead>
             <tr>

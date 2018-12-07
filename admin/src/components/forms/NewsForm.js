@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {push as pushAction} from 'connected-react-router';
 import {connect} from 'react-redux';
-import cloneDeep from 'lodash/cloneDeep';
 import set from 'lodash/fp/set';
 import uuid from 'uuid/v4';
-import {rawToHtml, htmlToRaw, slugify} from '../../utils';
+import {slugify} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
 
@@ -24,21 +23,6 @@ import client from '../../client';
 
 function slugForModel(data) {
   return slugify(data.id, data.title ? (data.title.fr || '') : '');
-}
-
-function extractData(scope) {
-  const data = cloneDeep(scope.state.data);
-
-  if (!data.content)
-    data.content = {};
-
-  if (scope.englishEditorContent)
-    data.content.en = rawToHtml(scope.englishEditorContent);
-
-  if (scope.frenchEditorContent)
-    data.content.fr = rawToHtml(scope.frenchEditorContent);
-
-  return data;
 }
 
 class NewsForm extends Component {
@@ -78,21 +62,20 @@ class NewsForm extends Component {
     this.handleDropPeople = createDropRelationHandler(this, 'people');
     this.handleAddPublication = createAddRelationHandler(this, 'publications');
     this.handleDropPublication = createDropRelationHandler(this, 'publications');
+
+    this.handleFrenchContent = createRawHandler(this, ['data', 'content', 'fr']);
+    this.handleEnglishContent = createRawHandler(this, ['data', 'content', 'en']);
   }
 
   componentDidMount() {
 
     if (!this.state.new)
       client.get({params: {model: 'news', id: this.props.id}}, (err, data) => {
-        if (data.content && data.content.en) {
-          data.content.en = htmlToRaw(data.content.en);
+        if (data.content && data.content.en)
           this.englishEditorContent = data.content.en;
-        }
 
-        if (data.content && data.content.fr) {
-          data.content.fr = htmlToRaw(data.content.fr);
+        if (data.content && data.content.fr)
           this.frenchEditorContent = data.content.fr;
-        }
 
         this.setState({loading: false, data});
       });
@@ -100,14 +83,6 @@ class NewsForm extends Component {
 
   handlePublished = value => {
     this.setState(set(['data', 'draft'], !value, this.state));
-  };
-
-  handleEnglishContent = content => {
-    this.englishEditorContent = content;
-  };
-
-  handleFrenchContent = content => {
-    this.frenchEditorContent = content;
   };
 
   handleSubmit = () => {
@@ -120,7 +95,7 @@ class NewsForm extends Component {
       // Creating the new item
       const payload = {
         params: {model: 'news'},
-        data: extractData(this)
+        data: this.state.data
       };
 
       client.post(payload, () => {
@@ -133,7 +108,7 @@ class NewsForm extends Component {
       // Upating the item
       const payload = {
         params: {model: 'news', id: this.props.id},
-        data: extractData(this)
+        data: this.state.data
       };
 
       client.put(payload, () => {
@@ -278,7 +253,7 @@ class NewsForm extends Component {
                 <div className="field">
                   <label className="label">English Content</label>
                   <Editor
-                    rawContent={(data.content && data.content.en) || null}
+                    content={this.englishEditorContent}
                     onSave={this.handleEnglishContent} />
                 </div>
               </div>
@@ -287,7 +262,7 @@ class NewsForm extends Component {
                 <div className="field">
                   <label className="label">French Content</label>
                   <Editor
-                    rawContent={(data.content && data.content.fr) || null}
+                    content={this.frenchEditorContent}
                     onSave={this.handleFrenchContent} />
                 </div>
               </div>

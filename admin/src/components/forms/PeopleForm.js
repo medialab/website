@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {push as pushAction} from 'connected-react-router';
 import {connect} from 'react-redux';
-import cloneDeep from 'lodash/cloneDeep';
 import set from 'lodash/fp/set';
 import uuid from 'uuid/v4';
-import {rawToHtml, htmlToRaw, slugify} from '../../utils';
+import {slugify} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
 
@@ -21,21 +20,6 @@ import client from '../../client';
 
 function slugForModel(data) {
   return slugify(data.id, `${data.firstName} ${data.lastName}`);
-}
-
-function extractData(scope) {
-  const data = cloneDeep(scope.state.data);
-
-  if (!data.bio)
-    data.bio = {};
-
-  if (scope.englishEditorContent)
-    data.bio.en = rawToHtml(scope.englishEditorContent);
-
-  if (scope.frenchEditorContent)
-    data.bio.fr = rawToHtml(scope.frenchEditorContent);
-
-  return data;
 }
 
 class PeopleForm extends Component {
@@ -67,21 +51,20 @@ class PeopleForm extends Component {
     this.handleEnglishTitle = createHandler(this, ['data', 'title', 'en']);
     this.handleFrenchTitle = createHandler(this, ['data', 'title', 'fr']);
     this.handleMembership = createRawHandler(this, ['data', 'membership']);
+
+    this.handleFrenchContent = createRawHandler(this, ['data', 'bio', 'fr']);
+    this.handleEnglishContent = createRawHandler(this, ['data', 'bio', 'en']);
   }
 
   componentDidMount() {
 
     if (!this.state.new)
       client.get({params: {model: 'people', id: this.props.id}}, (err, data) => {
-        if (data.bio && data.bio.en) {
-          data.bio.en = htmlToRaw(data.bio.en);
+        if (data.bio && data.bio.en)
           this.englishEditorContent = data.bio.en;
-        }
 
-        if (data.bio && data.bio.fr) {
-          data.bio.fr = htmlToRaw(data.bio.fr);
+        if (data.bio && data.bio.fr)
           this.frenchEditorContent = data.bio.fr;
-        }
 
         this.setState({loading: false, data});
       });
@@ -95,14 +78,6 @@ class PeopleForm extends Component {
     this.setState(set(['data', 'active'], value, this.state));
   };
 
-  handleEnglishContent = content => {
-    this.englishEditorContent = content;
-  };
-
-  handleFrenchContent = content => {
-    this.frenchEditorContent = content;
-  };
-
   handleSubmit = () => {
     const {push} = this.props;
 
@@ -113,7 +88,7 @@ class PeopleForm extends Component {
       // Creating the new item
       const payload = {
         params: {model: 'people'},
-        data: extractData(this)
+        data: this.state.data
       };
 
       client.post(payload, () => {
@@ -126,7 +101,7 @@ class PeopleForm extends Component {
       // Upating the item
       const payload = {
         params: {model: 'people', id: this.props.id},
-        data: extractData(this)
+        data: this.state.data
       };
 
       client.put(payload, () => {
@@ -275,7 +250,7 @@ class PeopleForm extends Component {
                 <div className="field">
                   <label className="label">English Biography</label>
                   <Editor
-                    rawContent={(data.bio && data.bio.en) || null}
+                    content={this.englishEditorContent}
                     onSave={this.handleEnglishContent} />
                 </div>
               </div>
@@ -284,7 +259,7 @@ class PeopleForm extends Component {
                 <div className="field">
                   <label className="label">French Biography</label>
                   <Editor
-                    rawContent={(data.bio && data.bio.fr) || null}
+                    content={this.frenchEditorContent}
                     onSave={this.handleFrenchContent} />
                 </div>
               </div>

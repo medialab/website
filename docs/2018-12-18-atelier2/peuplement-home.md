@@ -10,12 +10,12 @@ Bloc 1 - priorité très important
 Bloc 2 - priorité moyenne
 
 ## quoi ?
-Faire connaître les rendez-vous où l'on peut rencontrer les membres du médialab ; on affiche tous les événements à venir par ordre chronologique (du plus proche au plus lointain) ; si rien à venir, afficher une phrase « pas d’événement à venir»
+Faire connaître les rendez-vous où l'on peut rencontrer les membres du médialab ; on affiche tous les événements à venir par ordre chronologique (du plus proche au plus lointain) tant qu'ils ne sont pas finis (Ex.: un RV sur plusieurs jours) ; si rien à venir, afficher une phrase « pas d’événement à venir»
 
 ## Objets et champs à afficher
 
 Actualités de type 'rendez-vous'
-- startDate (et endDate si il y a ?)
+- startDate et endDate (si il y a)
 - title (avec lien vers la fiche de l'actualité/RV)
 - label
 - place
@@ -38,35 +38,33 @@ Objet Actualité (tout type) :
 - title
 - description
 - label
-- date (?) - date si type = rendez-vous ?
+- date si type = rendez-vous
 
 ### ligne 4 colonnes
 
 *Si objet de type actualité :*
-- title
-- label
-- (date ?) - date si type = rendez-vous ?
+- title (gros)
+- label (moyen - haut)
+- date si type = rendez-vous (petit - bas)
 
 *Si activité :*
-- name
-- baseline
-- type
+- name (moyen - haut)
+- baseline (gros)
+- type (petit - bas)
 
 *Si membre :*
-- firstName lastName
-- title
-- « membre de l’équipe » si membership = membre « associé.e au médialab » sinon
+- firstName lastName (gros)
+- title (moyen-haut)
+- « membre de l’équipe » si membership = membre, « associé.e au médialab » sinon (petit - bas)
 
 ps Paul: j'ai du mal à imaginer qu'on mette qqun sur la home sans passer par une actualité ?
+-> eventuellement si recrutement ou personne liée à un projet
 
 *si publication :*
 
-- title
-- type
-- date ?
-- authors ?
-
-_Remarque_ : il manque un 3ème champs pour les productions, est-ce gênant ou peut on envisager ce déséquilibre?
+- title (gros)
+- type (moyen - haut)
+- authors (petit - bas)
 
 # liste des derniers posts
 Bloc 4 - priorité moindre

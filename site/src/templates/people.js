@@ -16,7 +16,7 @@ export default ({data, pageContext}) => {
   console.log(data, pageContext);
 
   return (
-    <Layout>
+    <Layout lang={pageContext.lang}>
       <PeopleDetail data={data.peopleJson} bio={pageContext.bio} />
     </Layout>
   );

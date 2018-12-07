@@ -139,6 +139,8 @@ ws.on('connection', socket => {
     // Git handle
     let git;
 
+    // NOTE: we could do some things in parallel to gain some time
+
     async.series({
 
       // 1) Cleanup

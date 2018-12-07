@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import {pushAction} from 'connected-react-router';
+import {push as pushAction} from 'connected-react-router';
 import {connect} from 'react-redux';
-import cloneDeep from 'lodash/cloneDeep';
 import set from 'lodash/fp/set';
 import uuid from 'uuid/v4';
-import {rawToHtml, htmlToRaw, slugify} from '../../utils';
+import {slugify} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
 
@@ -15,6 +14,7 @@ import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector from '../selectors/RelationSelector';
 import {
   createHandler,
+  createSlugRelatedHandler,
   createRawHandler,
   createAddRelationHandler,
   createDropRelationHandler
@@ -23,26 +23,6 @@ import client from '../../client';
 
 function slugForModel(data) {
   return slugify(data.id, data.name);
-}
-
-function extractData(scope) {
-  const data = cloneDeep(scope.state.data);
-
-  if (scope.state.new) {
-    data.slugs = [slugForModel(data)];
-    scope.setState(set(['data', 'slugs'], data.slugs, scope.state));
-  }
-
-  if (!data.content)
-    data.content = {};
-
-  if (scope.englishEditorContent)
-    data.content.en = rawToHtml(scope.englishEditorContent);
-
-  if (scope.frenchEditorContent)
-    data.content.fr = rawToHtml(scope.frenchEditorContent);
-
-  return data;
 }
 
 class ActivityForm extends Component {
@@ -69,7 +49,7 @@ class ActivityForm extends Component {
     }
 
     // Handlers
-    this.handleName = createHandler(this, ['data', 'name']);
+    this.handleName = createSlugRelatedHandler(this, ['data', 'name'], slugForModel);
     this.handleEnglishBaseline = createHandler(this, ['data', 'baseline', 'en']);
     this.handleFrenchBaseline = createHandler(this, ['data', 'baseline', 'fr']);
     this.handleEnglishDescription = createHandler(this, ['data', 'description', 'en']);
@@ -77,21 +57,20 @@ class ActivityForm extends Component {
     this.handleType = createRawHandler(this, ['data', 'type']);
     this.handleAddPeople = createAddRelationHandler(this, 'people');
     this.handleDropPeople = createDropRelationHandler(this, 'people');
+
+    this.handleFrenchContent = createRawHandler(this, ['data', 'content', 'fr']);
+    this.handleEnglishContent = createRawHandler(this, ['data', 'content', 'en']);
   }
 
   componentDidMount() {
 
     if (!this.state.new)
       client.get({params: {model: 'activities', id: this.props.id}}, (err, data) => {
-        if (data.content && data.content.en) {
-          data.content.en = htmlToRaw(data.content.en);
+        if (data.content && data.content.en)
           this.englishEditorContent = data.content.en;
-        }
 
-        if (data.content && data.content.fr) {
-          data.content.fr = htmlToRaw(data.content.fr);
+        if (data.content && data.content.fr)
           this.frenchEditorContent = data.content.fr;
-        }
 
         this.setState({loading: false, data});
       });
@@ -105,14 +84,6 @@ class ActivityForm extends Component {
     this.setState(set(['data', 'active'], value, this.state));
   };
 
-  handleEnglishContent = content => {
-    this.englishEditorContent = content;
-  };
-
-  handleFrenchContent = content => {
-    this.frenchEditorContent = content;
-  };
-
   handleSubmit = () => {
     const {push} = this.props;
 
@@ -123,7 +94,7 @@ class ActivityForm extends Component {
       // Creating the new item
       const payload = {
         params: {model: 'activities'},
-        data: extractData(this)
+        data: this.state.data
       };
 
       client.post(payload, () => {
@@ -136,7 +107,7 @@ class ActivityForm extends Component {
       // Upating the item
       const payload = {
         params: {model: 'activities', id: this.props.id},
-        data: extractData(this)
+        data: this.state.data
       };
 
       client.put(payload, () => {
@@ -177,6 +148,7 @@ class ActivityForm extends Component {
                     <input
                       type="text"
                       className="input"
+                      autoFocus
                       value={data.name}
                       onChange={this.handleName}
                       placeholder="Name" />
@@ -273,7 +245,7 @@ class ActivityForm extends Component {
                 <div className="field">
                   <label className="label">English Content</label>
                   <Editor
-                    rawContent={(data.content && data.content.en) || null}
+                    content={this.englishEditorContent}
                     onSave={this.handleEnglishContent} />
                 </div>
               </div>
@@ -282,7 +254,7 @@ class ActivityForm extends Component {
                 <div className="field">
                   <label className="label">French Content</label>
                   <Editor
-                    rawContent={(data.content && data.content.fr) || null}
+                    content={this.frenchEditorContent}
                     onSave={this.handleFrenchContent} />
                 </div>
               </div>

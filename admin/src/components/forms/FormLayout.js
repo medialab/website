@@ -1,10 +1,14 @@
+/* eslint no-nested-ternary: 0 */
+/* eslint no-alert: 0 */
 import React, {Component} from 'react';
 import TimeAgo from 'react-timeago';
-import {Link} from 'react-router-dom';
+import {Link, Prompt} from 'react-router-dom';
 import cls from 'classnames';
 
 import Button from '../misc/Button';
+import CardModal from '../misc/CardModal';
 import Preview from '../Preview';
+import {hash} from './utils';
 
 const actionBarStyle = {
   borderTop: '1px solid #dbdbdb',
@@ -16,32 +20,45 @@ const actionBarStyle = {
   zIndex: 500
 };
 
+const navigationPromptMessage = () => 'You have unsaved modifications. Sure you want to move?';
+
 export default class Form extends Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = {
+      lastHash: hash(props.data),
+      confirming: false,
       saving: false,
       signaling: false,
       time: null,
       view: 'edit'
     };
 
-    this.el = React.createRef();
+    this.beforeunloadListener = e => {
+      if (hash(this.props.data) === this.state.lastHash)
+        return;
 
-    // TODO: store timeout => cleanup on will unmount
+      const result = window.confirm(navigationPromptMessage());
+
+      if (!result) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    };
+
+    this.timeout = null;
   }
 
-  componentDidMount = () => {
-    setTimeout(() => {
-        if (this.el) {
-          const inputs = this.el.current.getElementsByTagName('input');
-          const input = inputs.length && inputs[0];
-          if (input) {
-            input.focus();
-          }
-        }
-    }, 200);
+  componentDidMount() {
+    window.addEventListener('beforeunload', this.beforeunloadListener);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('beforeunload', this.beforeunloadListener);
+
+    if (this.timeout)
+      clearTimeout(this.timeout);
   }
 
   toggleEdit = () => {
@@ -65,27 +82,55 @@ export default class Form extends Component {
     this.setState({view: 'preview-en'});
   };
 
+  handleConfirmationModalClose = () => {
+    this.setState({confirming: false});
+  };
+
   handleSubmit = () => {
-    this.setState({saving: true});
+    if (this.props.new && !this.state.confirming)
+      return this.setState({confirming: true});
+
+    this.setState({lastHash: hash(this.props.data), saving: true});
     this.props.onSubmit();
 
-    setTimeout(() => {
+    this.timeout = setTimeout(() => {
       this.setState({saving: false, signaling: true});
 
-      setTimeout(() => this.setState({signaling: false, time: Date.now()}), 1500);
+      this.timeout = setTimeout(() => this.setState({signaling: false, time: Date.now()}), 1500);
     }, 1000);
   };
 
   render() {
-    const {saving, signaling, time, view} = this.state;
+    const {
+      lastHash,
+      confirming,
+      saving,
+      signaling,
+      time,
+      view
+    } = this.state;
 
-    const {data, children, model, label} = this.props;
+    const {
+      data,
+      children,
+      model,
+      label
+    } = this.props;
 
     const pageLabel = label || model;
 
     const saveLabel = this.props.new ?
       `Create this ${pageLabel}` :
       `Save this ${pageLabel}`;
+
+    const dirty = hash(data) !== lastHash;
+
+    let buttonText = saveLabel;
+
+    if (signaling)
+      buttonText = `${pageLabel} saved!`;
+    else if (!dirty)
+      buttonText = 'Nothing yet to save';
 
     let body = null;
 
@@ -100,10 +145,11 @@ export default class Form extends Component {
                 <div className="field is-grouped">
                   <div className="control">
                     <Button
-                      kind={signaling ? 'success' : 'raw'}
+                      kind={signaling ? 'success' : (dirty ? 'raw' : 'white')}
+                      disabled={!dirty}
                       loading={saving}
                       onClick={!signaling ? this.handleSubmit : Function.prototype}>
-                      {signaling ? `${pageLabel} saved!` : saveLabel}
+                      {buttonText}
                     </Button>
                   </div>
                   <div className="control">
@@ -132,7 +178,50 @@ export default class Form extends Component {
     }
 
     return (
-      <div ref={this.el}>
+      <div>
+        {confirming && (
+          <CardModal onClose={this.handleConfirmationModalClose}>
+            {
+              [
+                'Confirmation',
+                (
+                  <div key="body" className="content">
+                    <p>
+                      You are going to create an item with the following slug:
+                    </p>
+                    <div>
+                      <input
+                        type="text"
+                        className="input"
+                        disabled
+                        value={data.slugs[data.slugs.length - 1]} />
+                    </div>
+                  </div>
+                ),
+                close => (
+                  <div key="footer">
+                    <Button
+                      kind="success"
+                      onClick={() => {
+                        this.handleSubmit();
+                        close();
+                      }}>
+                      Yes, this slug is ok
+                    </Button>
+                    <Button
+                      kind="danger"
+                      onClick={close}>
+                      Good lord! I messed up
+                    </Button>
+                  </div>
+                )
+              ]
+            }
+          </CardModal>
+        )}
+        <Prompt
+          when={dirty}
+          message={navigationPromptMessage} />
         <div className="tabs is-boxed">
           <ul>
             <li

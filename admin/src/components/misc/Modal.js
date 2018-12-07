@@ -1,24 +1,49 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {createPortal} from 'react-dom';
+import cls from 'classnames';
 
-export default function Modal(props) {
-  const {
-    children,
-    onBackgroundClick = Function.prototype
-  } = props;
+export default class Modal extends Component {
+  state = {
+    leave: false
+  };
 
-  const container = document.body;
+  handleClose = () => {
+    this.setState({leave: true});
 
-  const body = (
-    <div className="modal is-active">
-      <div className="modal-background" onClick={onBackgroundClick} />
-      <div className="modal-card animated fadeIn zoomIn fastest">
-        <div className="modal-card-body">
-          {children}
+    setTimeout(this.props.onBackgroundClick, 200);
+  };
+
+  render() {
+    const {
+      children,
+      onBackgroundClick = Function.prototype
+    } = this.props;
+
+    const {
+      leave
+    } = this.state;
+
+    const container = document.body;
+
+    const className = cls(
+      'modal-card',
+      'animated',
+      'fastest',
+      leave ? 'fadeOut' : 'fadeIn',
+      leave ? 'zoomOut' : 'zoomIn'
+    );
+
+    const body = (
+      <div className="modal is-active">
+        <div className="modal-background" onClick={this.handleClose} />
+        <div className={className}>
+          <div className="modal-card-body">
+            {children}
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
 
-  return createPortal(body, container);
+    return createPortal(body, container);
+  }
 }

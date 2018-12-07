@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {pushAction} from 'connected-react-router';
+import {push as pushAction} from 'connected-react-router';
 import {connect} from 'react-redux';
 import cloneDeep from 'lodash/cloneDeep';
 import set from 'lodash/fp/set';
@@ -15,6 +15,7 @@ import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector from '../selectors/RelationSelector';
 import {
   createHandler,
+  createSlugRelatedHandler,
   createRawHandler,
   createAddRelationHandler,
   createDropRelationHandler
@@ -27,11 +28,6 @@ function slugForModel(data) {
 
 function extractData(scope) {
   const data = cloneDeep(scope.state.data);
-
-  if (scope.state.new) {
-    data.slugs = [slugForModel(data)];
-    scope.setState(set(['data', 'slugs'], data.slugs, scope.state));
-  }
 
   if (!data.content)
     data.content = {};
@@ -69,7 +65,7 @@ class ActivityForm extends Component {
     }
 
     // Handlers
-    this.handleName = createHandler(this, ['data', 'name']);
+    this.handleName = createSlugRelatedHandler(this, ['data', 'name'], slugForModel);
     this.handleEnglishBaseline = createHandler(this, ['data', 'baseline', 'en']);
     this.handleFrenchBaseline = createHandler(this, ['data', 'baseline', 'fr']);
     this.handleEnglishDescription = createHandler(this, ['data', 'description', 'en']);

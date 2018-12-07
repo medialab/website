@@ -12,7 +12,11 @@ import FormLayout from './FormLayout';
 import Editor from '../Editor';
 import EnumSelector from '../selectors/EnumSelector';
 import BooleanSelector from '../selectors/BooleanSelector';
-import {createHandler, createRawHandler} from './utils';
+import {
+  createHandler,
+  createRawHandler,
+  createSlugRelatedHandler
+} from './utils';
 import client from '../../client';
 
 function slugForModel(data) {
@@ -21,11 +25,6 @@ function slugForModel(data) {
 
 function extractData(scope) {
   const data = cloneDeep(scope.state.data);
-
-  if (scope.state.new) {
-    data.slugs = [slugForModel(data)];
-    scope.setState(set(['data', 'slugs'], data.slugs, scope.state));
-  }
 
   if (!data.bio)
     data.bio = {};
@@ -63,8 +62,8 @@ class PeopleForm extends Component {
     }
 
     // Handlers
-    this.handleFirstName = createHandler(this, ['data', 'firstName']);
-    this.handleLastName = createHandler(this, ['data', 'lastName']);
+    this.handleFirstName = createSlugRelatedHandler(this, ['data', 'firstName'], slugForModel);
+    this.handleLastName = createSlugRelatedHandler(this, ['data', 'lastName'], slugForModel);
     this.handleEnglishTitle = createHandler(this, ['data', 'title', 'en']);
     this.handleFrenchTitle = createHandler(this, ['data', 'title', 'fr']);
     this.handleMembership = createRawHandler(this, ['data', 'membership']);

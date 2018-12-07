@@ -15,6 +15,7 @@ import RelationSelector from '../selectors/RelationSelector';
 import SuggestionSelector from '../selectors/SuggestionSelector';
 import {
   createHandler,
+  createSlugRelatedHandler,
   createAddRelationHandler,
   createDropRelationHandler,
   createRawHandler
@@ -27,11 +28,6 @@ function slugForModel(data) {
 
 function extractData(scope) {
   const data = cloneDeep(scope.state.data);
-
-  if (scope.state.new) {
-    data.slugs = [slugForModel(data)];
-    scope.setState(set(['data', 'slugs'], data.slugs, scope.state));
-  }
 
   if (!data.content)
     data.content = {};
@@ -70,7 +66,7 @@ class NewsForm extends Component {
 
     // Handlers
     this.handleEnglishTitle = createHandler(this, ['data', 'title', 'en']);
-    this.handleFrenchTitle = createHandler(this, ['data', 'title', 'fr']);
+    this.handleFrenchTitle = createSlugRelatedHandler(this, ['data', 'title', 'fr'], slugForModel);
     this.handleEnglishExcerpt = createHandler(this, ['data', 'excerpt', 'en']);
     this.handleFrenchExcerpt = createHandler(this, ['data', 'excerpt', 'fr']);
     this.handleEnglishLabel = createRawHandler(this, ['data', 'label', 'en']);

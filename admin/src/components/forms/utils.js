@@ -8,6 +8,17 @@ export function createHandler(scope, key) {
   };
 }
 
+export function createSlugRelatedHandler(scope, key, slug) {
+  return e => {
+    let newState = set(key, e.target.value, scope.state);
+
+    if (scope.state.new)
+      newState = set(['data', 'slugs'], [slug(newState.data)], newState);
+
+    scope.setState(newState);
+  };
+}
+
 export function createRawHandler(scope, key) {
   return v => {
     scope.setState(set(key, v, scope.state));

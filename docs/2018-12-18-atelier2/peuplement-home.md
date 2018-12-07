@@ -12,11 +12,13 @@ Bloc 2 - priorité moyenne
 ## quoi ?
 Faire connaître les rendez-vous où l'on peut rencontrer les membres du médialab ; on affiche tous les événements à venir par ordre chronologique (du plus proche au plus lointain) ; si rien à venir, afficher une phrase « pas d’événement à venir»
 
-## champs à afficher
-- Date,
-- titre (avec lien vers la fiche de l'actualité/RV),
-- type,
-- lieu
+## Objets et champs à afficher
+
+Actualités de type 'rendez-vous'
+- startDate (et endDate si il y a ?)
+- title (avec lien vers la fiche de l'actualité/RV)
+- label
+- place
 
 _Question_ : faut-il différencier graphiquement les événements organisés par le médialab des autres (majoritairement participation dans des conf)? Il existe la mention du type d'événement mais faut il le marquer plus fortement?
 -> Prévoir une proposition avec cette distinction.
@@ -27,37 +29,42 @@ Bloc 3 - priorité importante
 
 ## quoi ?
 Mettre en avant l'actualité chaude (hors agenda) du laboratoire avec un contenu (actualité) *en hero* et jusqu’à 4 contenus additionnels (tout type) - idéalement pour contextualiser-.
+Il s'agit donc d'un bloc à deux lignes : une ligne HERO (une seule colonne pleine largeur) et une ligne autre (4 colonnes).
 
-## champs à afficher
-### hero
-- Titre,
-- description,
-- type,
-- date (?)
+## Objets et champs à afficher
 
-### contenus additionnels
-*Si post :*
+### ligne hero
+Objet Actualité (tout type) :
+- title
+- description
+- label
+- date (?) - date si type = rendez-vous ?
 
-- Titre,
-- type,
-- (date ?)
+### ligne 4 colonnes
+
+*Si objet de type actualité :*
+- title
+- label
+- (date ?) - date si type = rendez-vous ?
 
 *Si activité :*
-
-- Titre,
-- baseline,
+- name
+- baseline
 - type
 
 *Si membre :*
+- firstName lastName
+- title
+- « membre de l’équipe » si membership = membre « associé.e au médialab » sinon
 
-- Nom, prénom,
-- fonction ,
-- type objet (ie « membre de l’équipe »)
+ps Paul: j'ai du mal à imaginer qu'on mette qqun sur la home sans passer par une actualité ?
 
-*si production :*
+*si publication :*
 
-- titre,
-- type.
+- title
+- type
+- date ?
+- authors ?
 
 _Remarque_ : il manque un 3ème champs pour les productions, est-ce gênant ou peut on envisager ce déséquilibre?
 
@@ -65,13 +72,13 @@ _Remarque_ : il manque un 3ème champs pour les productions, est-ce gênant ou p
 Bloc 4 - priorité moindre
 
 ## quoi ?
-Donner un aperçu de l'activité générale du médialab avec les 10 dernières actualités passées (attention au dédoublonnage avec le focus).
+Donner un aperçu de l'activité générale du médialab avec les 10 dernières actualités passées qui ne sont pas mentionnées dans la partie Focus.
 
 ## champs à afficher
-
-- Date,
-- type,
-- titre (à couper en fonction du nombre de caractères)
+Actualités
+- date
+- type
+- title (à couper en fonction du nombre de caractères)
 
 
 # Flux

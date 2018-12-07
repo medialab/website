@@ -19,6 +19,12 @@
       "title": "Timestamp of last update",
       "type": "number"
     },
+    "type":{
+      "title": "Type",
+      "type": "enum",
+      "enum": ["event","post","notice"],
+      "enumId": "newsTypes"
+    },
     "title": {
       "title": "Titre",
       "type": "object",
@@ -33,19 +39,23 @@
         }
       }
     },
-    "excerpt": {
-      "title": "Extrait",
+    "description": {
+      "title": "Description",
       "type": "object",
       "properties": {
         "en": {
-          "title": "English excerpt",
+          "title": "English description",
           "type": "string"
         },
         "fr": {
-          "title": "Extrait français",
+          "title": "Description en français",
           "type": "string"
         }
       }
+    },
+    "place": {
+      "title": "Lieux",
+      "type": "string"
     },
     "label": {
       "title": "Label",
@@ -116,6 +126,10 @@
       "type": "string",
       "formType": "vardate"
     },
+    "internal": {
+      "title": "Interne ?",
+      "type": "boolean"
+    }
     "draft": {
       "title": "Draft?",
       "type": "boolean"

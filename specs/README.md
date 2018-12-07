@@ -82,7 +82,38 @@ Liens sélectionnés :
 
 On aimerait pouvoir mette en avant certains objets liés dans les activités et les publications. Sélectionner des 5 (?) plus importants par l'utilisateur pour les cas où il y a une longue liste.
 
-## Actualité
+## News
+
+Label : 
+- fr : Actualités
+- en : News
+
+Les actualités sont des contenus relatant la vie du labo. Ils indiquent les événements publics organisés par le labo ou où auxquels participent des membres du labo (rendez-vous); des recrutements, prix, nouveaux projets (annonces); des textes plus longs qui relatent un événement, une éxpérimentation menées au labo (chronique-billet-article).
+
+champs :
+
+- **type** : rendez-vous (event), chronique (post), annonce (notice)
+- **title** *fr/en* : titre en une courte phrase
+- **label** *fr/en* : qqs mots pour qualifier l'actualité, vocabulaire non contrôlé mais réutilisation fréquente des mêmes labels (auto-complétion dans le CMS).
+- **place** : lieux en qqs mots
+- **startDate** : date de début
+- **endDate** : date de fin
+- **description** *fr:en* : court paragraphe présentant l'actualité
+- **content** *fr/en*: contenu markdown
+- **internal** : boolean qui définit si le rendez-vous est organisé par nous ou pas
+- **illustration** : image d'illustration + sa version traité par le filtre graphique
+- **documentation** : annexes, liste de média associés (document PDF, site web annexe, )
+
+
+Liens :
+
+- **Actualités -> Activités** : Activités en lien avec l'actualité  
+*En moyenne 1, max 2-3, très souvent 0*
+- **Actualités -> Publications** : publications en lien   
+*En moyenne 1, max 2-3, très souvent 0*
+- **Actualités -> People** : actualités à propos de cette personne.  
+*en moyenne 2-3, max 5, régulièrement 0*
+
 
 ## Publication
 

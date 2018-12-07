@@ -85,6 +85,15 @@
       "formType": "ref",
       "model": "people"
     },
+    "activities": {
+      "title": "Activités liées",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "formType": "ref",
+      "model": "activities"
+    },
     "important": {
       "title": "Structurant?",
       "type": "boolean"

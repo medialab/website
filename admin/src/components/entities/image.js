@@ -76,9 +76,9 @@ class ImageSource extends Component {
 
           // Body
           !file ?
-            <Dropzone onDrop={this.handleDrop} /> :
+            <Dropzone key="body" onDrop={this.handleDrop} /> :
             (
-              <div>
+              <div key="body">
                 <img src={URL.createObjectURL(file)} style={{height: '200px'}} />
               </div>
             ),
@@ -86,6 +86,7 @@ class ImageSource extends Component {
           // Footer
           (
             <Button
+              key="footer"
               disabled={!file}
               loading={loading}
               onClick={this.handleSubmit}>

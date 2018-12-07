@@ -32,7 +32,27 @@ export default class Form extends Component {
       view: 'edit'
     };
 
+    this.beforeunloadListener = e => {
+      if (hash(this.props.data) === this.state.lastHash)
+        return;
+
+      const result = window.confirm(navigationPromptMessage());
+
+      if (!result) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    };
+
     // TODO: store timeout => cleanup on will unmount
+  }
+
+  componentDidMount() {
+    window.addEventListener('beforeunload', this.beforeunloadListener);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('beforeunload', this.beforeunloadListener);
   }
 
   toggleEdit = () => {

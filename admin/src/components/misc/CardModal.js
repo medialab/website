@@ -3,6 +3,10 @@ import {createPortal} from 'react-dom';
 import cls from 'classnames';
 
 export default class CardModal extends Component {
+  static defaultProps = {
+    onBackgroundClick: Function.prototype
+  };
+
   state = {
     leave: false
   };
@@ -15,8 +19,7 @@ export default class CardModal extends Component {
 
   render() {
     const {
-      children,
-      onBackgroundClick = Function.prototype
+      children
     } = this.props;
 
     const {

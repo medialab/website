@@ -6,7 +6,7 @@ import Dropzone from 'react-dropzone';
 
 import client from '../../client';
 import Button from '../misc/Button';
-import Modal from '../misc/Modal';
+import CardModal from '../misc/CardModal';
 
 // Source
 class ImageSource extends Component {
@@ -68,24 +68,33 @@ class ImageSource extends Component {
     } = this.state;
 
     return (
-      <Modal onBackgroundClick={this.handleCancel}>
-        <p>Importing an image:</p>
-        {
+      <CardModal onBackgroundClick={this.handleCancel}>
+        {[
+
+          // Title
+          'Importing an image',
+
+          // Body
           !file ?
             <Dropzone onDrop={this.handleDrop} /> :
+            (
+              <div>
+                <img src={URL.createObjectURL(file)} style={{height: '200px'}} />
+              </div>
+            ),
+
+          // Footer
           (
-            <div>
-              <img src={URL.createObjectURL(file)} style={{height: '200px'}} />
-            </div>
+            <Button
+              disabled={!file}
+              loading={loading}
+              onClick={this.handleSubmit}>
+              Upload & Insert
+            </Button>
           )
-        }
-        <Button
-          disabled={!file}
-          loading={loading}
-          onClick={this.handleSubmit}>
-          Upload & Insert
-        </Button>
-      </Modal>
+        ]}
+
+      </CardModal>
     );
   }
 }

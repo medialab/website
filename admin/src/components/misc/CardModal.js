@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {createPortal} from 'react-dom';
 import cls from 'classnames';
 
-export default class Modal extends Component {
+export default class CardModal extends Component {
   state = {
     leave: false
   };
@@ -37,9 +37,16 @@ export default class Modal extends Component {
       <div className="modal is-active">
         <div className="modal-background" onClick={this.handleClose} />
         <div className={className}>
-          <div className="modal-card-body">
-            {children}
-          </div>
+          <header className="modal-card-head">
+            <p className="modal-card-title">{children[0]}</p>
+            <button className="delete" aria-label="close" onClick={this.handleClose} />
+          </header>
+          <section className="modal-card-body">
+            {children[1]}
+          </section>
+          <footer className="modal-card-foot">
+            {children[2]}
+          </footer>
         </div>
       </div>
     );

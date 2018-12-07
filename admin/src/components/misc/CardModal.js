@@ -4,7 +4,7 @@ import cls from 'classnames';
 
 export default class CardModal extends Component {
   static defaultProps = {
-    onBackgroundClick: Function.prototype
+    onClose: Function.prototype
   };
 
   state = {
@@ -14,7 +14,7 @@ export default class CardModal extends Component {
   handleClose = () => {
     this.setState({leave: true});
 
-    setTimeout(this.props.onBackgroundClick, 200);
+    setTimeout(this.props.onClose, 200);
   };
 
   render() {
@@ -48,7 +48,7 @@ export default class CardModal extends Component {
             {children[1]}
           </section>
           <footer className="modal-card-foot">
-            {children[2]}
+            {typeof children[2] === 'function' ? children[2](this.handleClose) : children[2]}
           </footer>
         </div>
       </div>

@@ -1,10 +1,12 @@
 /* eslint no-nested-ternary: 0 */
+/* eslint no-alert: 0 */
 import React, {Component} from 'react';
 import TimeAgo from 'react-timeago';
 import {Link, Prompt} from 'react-router-dom';
 import cls from 'classnames';
 
 import Button from '../misc/Button';
+import CardModal from '../misc/CardModal';
 import Preview from '../Preview';
 import {hash} from './utils';
 
@@ -26,6 +28,7 @@ export default class Form extends Component {
 
     this.state = {
       lastHash: hash(props.data),
+      confirming: false,
       saving: false,
       signaling: false,
       time: null,
@@ -79,7 +82,14 @@ export default class Form extends Component {
     this.setState({view: 'preview-en'});
   };
 
+  handleConfirmationModalClose = () => {
+    this.setState({confirming: false});
+  };
+
   handleSubmit = () => {
+    if (this.props.new && !this.state.confirming)
+      return this.setState({confirming: true});
+
     this.setState({lastHash: hash(this.props.data), saving: true});
     this.props.onSubmit();
 
@@ -93,6 +103,7 @@ export default class Form extends Component {
   render() {
     const {
       lastHash,
+      confirming,
       saving,
       signaling,
       time,
@@ -168,6 +179,46 @@ export default class Form extends Component {
 
     return (
       <div>
+        {confirming && (
+          <CardModal onClose={this.handleConfirmationModalClose}>
+            {
+              [
+                'Confirmation',
+                (
+                  <div key="body" className="content">
+                    <p>
+                      You are going to create an item with the following slug:
+                    </p>
+                    <div>
+                      <input
+                        type="text"
+                        className="input"
+                        disabled
+                        value={data.slugs[data.slugs.length - 1]} />
+                    </div>
+                  </div>
+                ),
+                close => (
+                  <div key="footer">
+                    <Button
+                      kind="success"
+                      onClick={() => {
+                        this.handleSubmit();
+                        close();
+                      }}>
+                      Yes, this slug is ok
+                    </Button>
+                    <Button
+                      kind="danger"
+                      onClick={close}>
+                      Good lord! I messed up
+                    </Button>
+                  </div>
+                )
+              ]
+            }
+          </CardModal>
+        )}
         <Prompt
           when={dirty}
           message={navigationPromptMessage} />

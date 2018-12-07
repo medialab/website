@@ -68,7 +68,7 @@ class ImageSource extends Component {
     } = this.state;
 
     return (
-      <CardModal onBackgroundClick={this.handleCancel}>
+      <CardModal onClose={this.handleCancel}>
         {[
 
           // Title

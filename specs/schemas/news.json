@@ -129,7 +129,7 @@
     "internal": {
       "title": "Interne ?",
       "type": "boolean"
-    }
+    },
     "draft": {
       "title": "Draft?",
       "type": "boolean"

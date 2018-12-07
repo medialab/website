@@ -4,13 +4,14 @@ date: 2018-12-07
 ---
 
 # Phrase de présentation courte du laboratoire
-Bloc 1 / priorité très important
+Bloc 1 - priorité très important
 
 # Agenda
-Bloc 2 / priorité moyenne
+Bloc 2 - priorité moyenne
 
 ## quoi ?
-	Faire connaître les rendez-vous où l'on peut rencontrer les membres du médialab ; on affiche tous les événements à venir par ordre chronologique (du plus proche au plus lointain) ; si rien à venir, afficher une phrase « pas d’événement à venir»
+Faire connaître les rendez-vous où l'on peut rencontrer les membres du médialab ; on affiche tous les événements à venir par ordre chronologique (du plus proche au plus lointain) ; si rien à venir, afficher une phrase « pas d’événement à venir»
+
 ## champs à afficher
 - Date,
 - titre (avec lien vers la fiche de l'actualité/RV),
@@ -22,10 +23,10 @@ _Question_ : faut-il différencier graphiquement les événements organisés par
 
 
 # Focus
-Bloc 3 / priorité importante
+Bloc 3 - priorité importante
 
 ## quoi ?
-	Mettre en avant l'actualité chaude (hors agenda) du laboratoire avec un contenu (actualité) *en hero* et jusqu’à 4 contenus additionnels (tout type) - idéalement pour contextualiser-.
+Mettre en avant l'actualité chaude (hors agenda) du laboratoire avec un contenu (actualité) *en hero* et jusqu’à 4 contenus additionnels (tout type) - idéalement pour contextualiser-.
 
 ## champs à afficher
 ### hero
@@ -61,16 +62,16 @@ Bloc 3 / priorité importante
 _Remarque_ : il manque un 3ème champs pour les productions, est-ce gênant ou peut on envisager ce déséquilibre?
 
 # liste des derniers posts
-Bloc 4 / priorité moindre
+Bloc 4 - priorité moindre
 
 ## quoi ?
-	Donner un aperçu de l'activité générale du médialab avec les 10 dernières actualités passées (attention au dédoublonnage avec le focus).
+Donner un aperçu de l'activité générale du médialab avec les 10 dernières actualités passées (attention au dédoublonnage avec le focus).
 
 ## champs à afficher
 
-	- Date,
-	- type,
-	- titre (à couper en fonction du nombre de caractères)
+- Date,
+- type,
+- titre (à couper en fonction du nombre de caractères)
 
 
 # Flux

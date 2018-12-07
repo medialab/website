@@ -16,7 +16,7 @@ export default ({data, pageContext}) => {
   console.log(data, pageContext);
 
   return (
-    <Layout>
+    <Layout lang={pageContext.lang}>
       <NewsDetail data={data.newsJson} />
     </Layout>
   );

@@ -13,6 +13,7 @@ import createRootReducer from './modules';
 import 'draft-js/dist/Draft.css';
 import 'draftail/dist/draftail.css';
 import 'react-image-crop/dist/ReactCrop.css';
+import '../style/animate.css';
 import '../style/main.scss';
 
 const history = createHashHistory();

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Select from 'react-select';
 import keyBy from 'lodash/keyBy';
+import truncate from 'lodash/truncate';
 import client from '../../client';
 
 import labels from '../../../../specs/labels';
@@ -59,35 +60,39 @@ export default class RelationSelector extends Component {
       filteredOptions = options.filter(o => o.value !== self);
 
     return (
-      <div>
-        {!loading && (
+      <div className="columns">
+        <div className={'column is-4'}>
+          <Select
+            value={null}
+            onChange={this.handleChange}
+            options={filteredOptions.filter(o => !selectedSet.has(o.value))}
+            isLoading={loading}
+            menuPlacement="top"
+            placeholder="Add..."
+            noOptionsMessage={noOptionsMessages[model]}
+            styles={{menu: provided => ({...provided, zIndex: 1000})}} />
+        </div>
+        <div className="column is-8">
+          {!loading && (
             selected.length ? (
-                <ul>
-                  {selected.map(id => {
+              <ul className="tags-container">
+                {selected.map(id => {
+                    const title = this.optionsIndex[id].label;
                     return (
                       <li key={id}>
-                        <span className="tag is-medium" style={{marginBottom: 3}}>
-                          {this.optionsIndex[id].label}
+                        <span title={title} className="tag is-medium" style={{marginBottom: 3}}>
+                          {truncate(title, {length: 30, omission: '...'})}
                           &nbsp;<button className="delete is-small" onClick={() => onDrop(id)} />
                         </span>
                       </li>
                     );
                   })}
-                </ul>
+              </ul>
              ) : (
-              <p><em>No items yet...</em></p>
+               <p><em>No items yet...</em></p>
             )
         )}
-        <br />
-        <Select
-          value={null}
-          onChange={this.handleChange}
-          options={filteredOptions.filter(o => !selectedSet.has(o.value))}
-          isLoading={loading}
-          menuPlacement="top"
-          placeholder="Add..."
-          noOptionsMessage={noOptionsMessages[model]}
-          styles={{menu: provided => ({...provided, zIndex: 1000})}} />
+        </div>
       </div>
     );
   }

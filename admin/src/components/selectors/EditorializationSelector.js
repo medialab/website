@@ -1,10 +1,20 @@
 import React, {Component} from 'react';
 import Select from 'react-select';
+import {SortableContainer, SortableElement, SortableHandle} from 'react-sortable-hoc';
 import keyBy from 'lodash/keyBy';
+import flatten from 'lodash/flatten';
 import parallel from 'async/parallel';
+import ReorderIcon from '../icons/ReorderIcon';
 import client from '../../client';
 
 import labels from '../../../../specs/labels';
+
+const TITLES = {
+  activities: 'Activity',
+  people: 'Person',
+  publications: 'Publication',
+  news: 'News'
+};
 
 const noOptionsMessage = () => 'No matching item';
 
@@ -16,6 +26,36 @@ const createOptions = (model, items) => ({
     model
   }))
 });
+
+const DragHandle = SortableHandle(() => (
+  <span className="handle" style={{marginTop: '5px', marginRight: '5px'}}>
+    <ReorderIcon />
+  </span>
+));
+
+const SortableItem = SortableElement(({id, label, model, onDrop}) => (
+  <li key={id}>
+    <span className="tag is-medium" style={{marginBottom: 3}}>
+      <DragHandle />
+      <small><em>{TITLES[model]}</em></small>&nbsp;- {label}
+      &nbsp;<button className="delete is-small" onClick={onDrop} />
+    </span>
+  </li>
+));
+
+const SortableList = SortableContainer(({items, index, onDrop}) => (
+  <ul className="sortable">
+    {items.map(([model, id], i) => (
+      <SortableItem
+        key={id}
+        index={i}
+        id={id}
+        model={model}
+        label={index[id].label}
+        onDrop={() => onDrop(id)} />
+    ))}
+  </ul>
+));
 
 export default class EditorializationSelector extends Component {
   constructor(props, context) {
@@ -50,47 +90,47 @@ export default class EditorializationSelector extends Component {
         .concat(createOptions('publications', data.publications))
         .concat(createOptions('news', data.news));
 
-      this.optionsIndex = keyBy(options, 'value');
+      this.optionsIndex = keyBy(flatten(options.map(g => g.options)), 'value');
       this.setState({options, loading: false});
     });
   }
 
   handleChange = (option) => {
-    console.log(option)
     if (!option || !option.value)
       return;
 
-    this.props.onAdd(option.value);
+    this.props.onAdd(option);
   };
 
   render() {
     const {options, loading} = this.state;
 
-    const {onDrop, selected = []} = this.props;
+    const {onDrop, onSortEnd, selected = []} = this.props;
 
-    const selectedSet = new Set(selected);
+    const selectedSet = new Set(selected.map(item => item[1]));
+
+    const filteredOptions = options.map(group => {
+      return {
+        ...group,
+        options: group.options.filter(o => !selectedSet.has(o.value))
+      };
+    });
 
     return (
       <div>
         {!loading &&
-          <ul>
-            {selected.map(id => {
-              return (
-                <li key={id}>
-                  <span className="tag is-medium" style={{marginBottom: 3}}>
-                    {this.optionsIndex[id].label}
-                    &nbsp;<button className="delete is-small" onClick={() => onDrop(id)} />
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
+          <SortableList
+            items={selected}
+            index={this.optionsIndex}
+            useDragHandle
+            onDrop={onDrop}
+            onSortEnd={onSortEnd} />
         }
         <br />
         <Select
           value={null}
           onChange={this.handleChange}
-          options={options.filter(o => !selectedSet.has(o.value))}
+          options={filteredOptions}
           isLoading={loading}
           menuPlacement="top"
           placeholder="Add..."

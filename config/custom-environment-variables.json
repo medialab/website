@@ -1,5 +1,9 @@
 {
   "data": "DATA_FOLDER",
+  "build": {
+    "path": "BUILD_FOLDER",
+    "repository": "BUILD_REPO"
+  },
   "port": {
     "__name": "PORT",
     "__format": "json"

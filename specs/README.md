@@ -21,15 +21,12 @@ Champs :
 - **documentation** : annexes, liste de média associés (document PDF, site web annexe, )
 - **important** : boolean qui indique si l'activité est structurante. Ces activités sont par défaut mises en haut de liste. 
 - **active** : boolean qui indique si l'activité est active ou passée
----
-## /!\ A discuter
+- **startDate** : date indiquée dans la page activité
+- **endDate** : date indiquée dans la page activité 
 
-- **documents** : documents associés ?
-- dates ?
----
 Liens :
 
-- **Activités -> People** : membres de l'équipe fortement impliquée dans l'activité. on ne liste pas toutes les personnes participants ponctuellement.  
+- **Activités -> People** : membres de l'équipe fortement impliquée dans l'activité. On ne liste pas toutes les personnes participants ponctuellement.  
 *En moyenne 2-3, minimum 1, max 10 personnes*
 - **Activités -> Activités** : activités qui sont proches, prolongation d'un projet par un autre, proximité thématique ou méthodo forte...  
 *En moyenne 2, max 4, souvent 0*
@@ -53,22 +50,16 @@ Les membres du médialab présents et passés. Toutes les personnes travaillant 
 Champs :
 - **FirstName** *mandatory*
 - **LastName** *mandatory*
-- **gender** : male, female.  
-Pour faire des générations de nom prenant en compte l'info notamment pour associé.e
 - **membership** : associate, member
 Distinction entre membre et associé.
 - **title** *fr/en*: titre académique/poste occupé
+- **description** : champs ouvert paragraphe
+- **domaine** : champs fermé
 - **contact** : information de contact, site perso, email... (on détecte les liens dans le template ?)
 - **bio** *fr/en*: contenu markdown
 - **active** : boolean indiquant si la personne est présentemment dans l'équipe
 - **picture** : photo (non traitée graphiquement ? en N&B)
 
----
-## /!\ A discuter
-
-- **documentation** : documents associés genre pour un CV perso, site perso... ?
-- **picture** : pourquoi ne pas utiliser **illustration** ?
----
 
 Liens :
 
@@ -77,7 +68,7 @@ Liens :
 - **Publications -> People** : publications de la personne.  
 *En moyenne 8, max 30, minimum 0 possible*
 - **Actualités -> People** : actualités à propos de cette personne.  
-*en moyenne 3-4, max 20, régulièrement 0*
+*en moyenne 3-4, max 12, régulièrement 0*
 
 Liens sélectionnés :
 
@@ -125,10 +116,10 @@ Label :
 
 Champs : 
 
-- **type** *enum* : article/article, conférence/conference, livre/book, application web/web application, logiciel/software, exposition/exhibition, manuscript/working paper, corpus/dataset
+- **type** *enum* : article/article, conférence/conference, livre/book, web/web, logiciel/software, exposition/exhibition, manuscript/working paper, corpus/dataset
 - **title** *fr/en*, *mandatory* : titre de la publication
 - **description** *fr/en* : présentation courte en une phrase ou deux rédigée par l'équipe éditoriale
-- **content** *fr/en* : contenu en markdown qui ne contient en général pas le contenu de la plublication en entier
+- **content** *fr/en* : contenu en markdown qui ne contient en général pas le contenu de la publication en entier mais son abstract
 - **date** : date de publication
 - **bibtex** : métadonnées complètes de la publication
 

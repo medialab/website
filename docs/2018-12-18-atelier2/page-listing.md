@@ -27,7 +27,7 @@ Présente l'ensemble des publications avec un affichage par défaut par ordre an
 - Date,
 - type,
 - Titre,
-- auteur,
+- Auteurs (avec lien vers les pages people des membres du labo),
 - description (au survol?)
 
 ## Filtres
@@ -35,7 +35,6 @@ Présente l'ensemble des publications avec un affichage par défaut par ordre an
 
 ## Tri
 - Date
-- Auteur : Ordre alphabétique des noms
 
 # Equipe
 Présente l'ensemble des people avec un affichage aléatoire ; le regroupement de proximité se fait en fonction des activités communes (non visible par l'utilisateur).

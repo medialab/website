@@ -109,6 +109,11 @@
       "type": "string",
       "formType": "vardate"
     },
+    "bibtex": {
+      "title": "Bibtex",
+      "type": "string",
+      "formType": "vardate"
+    },
     "draft": {
       "title": "Draft?",
       "type": "boolean"

@@ -42,17 +42,18 @@ Présente l'ensemble des people avec un affichage aléatoire ; le regroupement d
 ## Colonnes/champs à afficher
 - FirstName
 - LastName
-- Fonction
+- Fonction (champs fermés -> typologie)
 - Picture
-- Activités liées (au survol?)
+- Description courte (au survol?)
 
 ## Filtres
+- Fonction
 - Actif / passé
 - membership
 
 ## Tri
 - Name : Ordre alphabétique
-- Fonction : Ordre alphabétique
+
 
 _Remarque : nécessité d'harmoniser a minima les fonctions pour que ce soit utile_
 

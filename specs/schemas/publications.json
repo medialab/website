@@ -33,16 +33,16 @@
         }
       }
     },
-    "abstract": {
-      "title": "Résumé",
+    "description": {
+      "title": "Description",
       "type": "object",
       "properties": {
         "en": {
-          "title": "English abstract",
+          "title": "Description in english",
           "type": "string"
         },
         "fr": {
-          "title": "Résumé français",
+          "title": "Description en français",
           "type": "string"
         }
       }
@@ -51,9 +51,13 @@
       "title": "Type de la publication",
       "type": "string",
       "enum": [
+        "article",
+        "livre",
         "conference",
-        "tool",
-        "web"
+        "logiciel",
+        "web",
+        "manuscript",
+        "corpus"
       ],
       "enumId": "publicationTypes"
     },

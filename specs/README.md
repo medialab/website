@@ -117,5 +117,27 @@ Liens :
 
 ## Publication
 
-papers and tools 
-publis et outils
+Label :
+
+- en : papers and tools 
+- fr : publis et outils
+
+Champs : 
+
+- **type** *enum* : article/article, conférence/conference, livre/book, application web/web application, logiciel/software, exposition/exhibition, manuscript/working paper, corpus/dataset
+- **title** *fr/en*, *mandatory* : titre de la publication
+- **description** *fr/en* : présentation courte en une phrase ou deux rédigée par l'équipe éditoriale
+- **content** *fr/en* : contenu en markdown qui ne contient en général pas le contenu de la plublication en entier
+- **date** : date de publication
+- **bibtex** : métadonnées complètes de la publication
+
+Liens : 
+
+- **Publications -> people** : les membres du médialab auteurs de la publi  
+*minimum 1, max 6, moyenne 1.5*
+- **Publications -> activities** : les activités du médialab qui sont liées à cette publi
+*en moyenne 1.5, max 4,  peut être 0 mais très rare*
+- **Publications -> publications** : liens vers d'autres publications liées
+*en général 0, max 5*
+- **News -> publication** : les actualités qui ont mentionnées cette publi
+*en général 0, max 2* 

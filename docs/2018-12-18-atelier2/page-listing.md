@@ -37,28 +37,27 @@ Présente l'ensemble des publications avec un affichage par défaut par ordre an
 - Date
 
 # Equipe
-Présente l'ensemble des people avec un affichage aléatoire ; le regroupement de proximité se fait en fonction des activités communes (non visible par l'utilisateur).
+Présente l'ensemble des people avec un affichage aléatoire, il existe une délimitation entre les actifs et inactifs.
 
 ## Colonnes/champs à afficher
 - FirstName
 - LastName
 - Fonction (champs fermés -> typologie)
 - Picture
-- Description courte (au survol?)
+- Description courte _précise les activités actuelles_ (au survol)
 
 ## Filtres
-- Fonction
+- Domaines (Académique, technique, design, pédagogie, administratif)
 - Actif / passé
 - membership
 
 ## Tri
 - Name : Ordre alphabétique
 
-
 _Remarque : nécessité d'harmoniser a minima les fonctions pour que ce soit utile_
 
 # Activités
-Présente l'ensemble des activités ; l'affichage se fait en fonction du type (recherche/enseignement) et l'ordonnancement se fait en fonction du booléen "important".
+Présente l'ensemble des activités ; l'affichage se fait en fonction du type (recherche/enseignement/méthodes) et l'ordonnancement se fait en fonction du booléen "important".
 Par défaut, les activités passées ne sont pas affichées, un filtre permet de les faire apparaitre.
 
 ## Colonnes/champs à afficher

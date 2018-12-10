@@ -14,8 +14,10 @@ Présente l'ensemble des actualités avec un affichage par ordre antéchronologi
 - description (au survol?)
 
 ## Filtres
-- Date,
-- Type.
+- Type
+
+## Tri
+- Date
 
 
 # Publications

@@ -67,6 +67,7 @@ Distinction entre membre et associé.
 ## /!\ A discuter
 
 - **documentation** : documents associés genre pour un CV perso, site perso... ?
+- **picture** : pourquoi ne pas utiliser **illustration** ?
 ---
 
 Liens :

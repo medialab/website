@@ -25,6 +25,11 @@ function slugForModel(data) {
   return slugify(data.id, data.name);
 }
 
+function validate(data) {
+  if (!data.name)
+    return 'Need at least a name';
+}
+
 class ActivityForm extends Component {
   constructor(props, context) {
     super(props, context);
@@ -136,6 +141,7 @@ class ActivityForm extends Component {
         new={this.state.new}
         model="activities"
         label="activity"
+        validate={validate}
         onSubmit={this.handleSubmit}>
         <div className="container">
 

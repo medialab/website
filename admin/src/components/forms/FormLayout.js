@@ -114,7 +114,8 @@ export default class Form extends Component {
       data,
       children,
       model,
-      label
+      label,
+      validate = Function.prototype
     } = this.props;
 
     const pageLabel = label || model;
@@ -126,11 +127,24 @@ export default class Form extends Component {
     const dirty = hash(data) !== lastHash;
 
     let buttonText = saveLabel;
+    let buttonKind = 'white';
 
-    if (signaling)
+    const validationError = validate(data);
+
+    if (signaling) {
       buttonText = `${pageLabel} saved!`;
-    else if (!dirty)
+      buttonKind = 'success';
+    }
+    else if (!dirty) {
       buttonText = 'Nothing yet to save';
+    }
+    else if (validationError) {
+      buttonText = validationError;
+    }
+
+    if (dirty && !validationError) {
+      buttonKind = 'raw';
+    }
 
     let body = null;
 
@@ -145,8 +159,8 @@ export default class Form extends Component {
                 <div className="field is-grouped">
                   <div className="control">
                     <Button
-                      kind={signaling ? 'success' : (dirty ? 'raw' : 'white')}
-                      disabled={!dirty}
+                      kind={buttonKind}
+                      disabled={!dirty || validationError}
                       loading={saving}
                       onClick={!signaling ? this.handleSubmit : Function.prototype}>
                       {buttonText}

@@ -25,6 +25,11 @@ function slugForModel(data) {
   return slugify(data.id, data.title ? (data.title.fr || '') : '');
 }
 
+function validate(data) {
+  if (!data.title || !data.title.fr)
+    return 'Need at least a French title';
+}
+
 class NewsForm extends Component {
   constructor(props, context) {
     super(props, context);
@@ -136,6 +141,7 @@ class NewsForm extends Component {
         data={data}
         new={this.state.new}
         model="news"
+        validate={validate}
         onSubmit={this.handleSubmit}>
         <div className="container">
 

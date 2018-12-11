@@ -22,6 +22,11 @@ function slugForModel(data) {
   return slugify(data.id, `${data.firstName} ${data.lastName}`);
 }
 
+function validate(data) {
+  if (!data.firstName || !data.lastName)
+    return 'Need at least a first name & a last name';
+}
+
 class PeopleForm extends Component {
   constructor(props, context) {
     super(props, context);
@@ -130,6 +135,7 @@ class PeopleForm extends Component {
         new={this.state.new}
         model="people"
         label="person"
+        validate={validate}
         onSubmit={this.handleSubmit}>
         <div className="container">
 

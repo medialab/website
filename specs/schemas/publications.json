@@ -52,12 +52,12 @@
       "type": "string",
       "enum": [
         "article",
-        "livre",
+        "book",
         "conference",
-        "logiciel",
+        "software",
         "web",
-        "manuscript",
-        "corpus"
+        "workingPaper",
+        "dataset"
       ],
       "enumId": "publicationTypes"
     },
@@ -109,14 +109,34 @@
       "type": "string",
       "formType": "vardate"
     },
-    "bibtex": {
+    "spireJson": {
       "title": "Bibtex",
       "type": "string",
       "formType": "vardate"
     },
+    "authors": {
+      "title": "Auteurs",
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "biblioRef": {
+      "title": "Référence biblio",
+      "type": "string",
+      "formType": "content"
+    },
+    "fullTextURL": {
+      "title": "Lien vers le texte plein",
+      "type": "string"
+    },
     "draft": {
       "title": "Draft?",
       "type": "boolean"
+    },
+    "idSpire": {
+      "title": "id Spire",
+      "type" : "string"
     }
   }
 }

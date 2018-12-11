@@ -12,7 +12,7 @@ Il y a trois types d'activités : recherche, méthode et pédagogique.
 
 Champs : 
 
-- **type** *mandatory* : trois valeurs possibles : recherche, méthode, pédagogie
+- **type** *mandatory* : trois valeurs possibles : recherche, pédagogie
 - **name** *fr/en*, *mandatory* : nom au sens de acronyme, nom officiel...
 - **baseline** *fr/en*, *mandatory* : phrase courte ou question posant le but de l'activité
 - **description** *fr/en*, *mandatory*: court paragraphe présentant l'activité 
@@ -21,14 +21,14 @@ Champs :
 - **documentation** : annexes, liste de média associés (document PDF, site web annexe, )
 - **important** : boolean qui indique si l'activité est structurante. Ces activités sont par défaut mises en haut de liste. 
 - **active** : boolean qui indique si l'activité est active ou passée
-- **startDate** : date indiquée dans la page activité
-- **endDate** : date indiquée dans la page activité 
+- **startDate** : date précise au mois uniquement indiquée dans la page activité
+- **endDate** : date précise au mois indiquée dans la page activité 
 
 Liens :
 
-- **Activités -> People** : membres de l'équipe fortement impliquée dans l'activité. On ne liste pas toutes les personnes participants ponctuellement.  
-*En moyenne 2-3, minimum 1, max 10 personnes*
-- **Activités -> Activités** : activités qui sont proches, prolongation d'un projet par un autre, proximité thématique ou méthodo forte...  
+- **Activités -> People** : membres de l'équipe fortement impliquée dans l'activité. On ne liste pas toutes les personnes participant ponctuellement. Distinguer les liens vers des personnes actives des personnes parties. 
+*En moyenne 2-3, minimum 1, max 10 personnes actives (le double en comptant les personnes parties)*
+- **Activités -> Activités** : activités qui sont proches, prolongation d'un projet par un autre, proximité thématique ou méthodo forte... Distinguer les activités actives et passives (ne change pas la cardinalité)  
 *En moyenne 2, max 4, souvent 0*
 - **Publication -> Activités** : activités qui ont suscité cette publication.  
 *En moyenne 1 ou 2, max 10, souvent 0*
@@ -53,9 +53,9 @@ Champs :
 - **membership** : associate, member
 Distinction entre membre et associé.
 - **title** *fr/en*: titre académique/poste occupé
-- **description** : champs ouvert paragraphe
-- **domaine** : champs fermé
-- **contact** : information de contact, site perso, email... (on détecte les liens dans le template ?)
+- **currentStatus** : champs ouvert une ou deux phrases décrivant les sujets de travail actuel
+- **domain** : academic, technic, design, pedagogy, administrative. Utilisé uniquemnt pour du filtrage.
+- **contact** : information de contact, site perso, email... sous la forme de clef/valeur librement défini et pouvant contenir des liens ou emails (dans valeur)
 - **bio** *fr/en*: contenu markdown
 - **active** : boolean indiquant si la personne est présentemment dans l'équipe
 - **picture** : photo (non traitée graphiquement ? en N&B)
@@ -63,8 +63,8 @@ Distinction entre membre et associé.
 
 Liens :
 
-- **Activités -> People** : Activités de la personne.  
-*En moyenne 3-4, minimum 1, max 10 activités*
+- **Activités -> People** : Activités de la personne. Attention les activités pouvant être non-active, il faudrait les distinguer dans les liens. 
+*En moyenne 3-4, minimum 1, max 10 activités actives*
 - **Publications -> People** : publications de la personne.  
 *En moyenne 8, max 30, minimum 0 possible*
 - **Actualités -> People** : actualités à propos de cette personne.  
@@ -73,6 +73,11 @@ Liens :
 Liens sélectionnés :
 
 On aimerait pouvoir mette en avant certains objets liés dans les activités et les publications. Sélectionner des 5 (?) plus importants par l'utilisateur pour les cas où il y a une longue liste.
+
+- **People -> Activités principales** : Sélection des max 5 principales activités de la personne. Pas de disticntion actif/passé car sélectionné par l'utilisateur.  
+*En moyenne 2, minimum 1, max 5 activités*
+- **People -> Publications principales** : Sélectiondes max 5 principales publications de la personne.  
+*En moyenne 2, max 5, minimum 0 possible*
 
 ## News
 
@@ -99,11 +104,11 @@ champs :
 
 Liens :
 
-- **Actualités -> Activités** : Activités en lien avec l'actualité  
+- **Actualités -> Activités** : Activités en lien avec l'actualité. Ne pas distinguer actif/passé.  
 *En moyenne 1, max 2-3, très souvent 0*
 - **Actualités -> Publications** : publications en lien   
 *En moyenne 1, max 2-3, très souvent 0*
-- **Actualités -> People** : actualités à propos de cette personne.  
+- **Actualités -> People** : actualités à propos de cette personne. Ne pas distinguer actif/passé. 
 *en moyenne 2-3, max 5, régulièrement 0*
 
 
@@ -121,15 +126,18 @@ Champs :
 - **description** *fr/en* : présentation courte en une phrase ou deux rédigée par l'équipe éditoriale
 - **content** *fr/en* : contenu en markdown qui ne contient en général pas le contenu de la publication en entier mais son abstract
 - **date** : date de publication
-- **bibtex** : métadonnées complètes de la publication
+- **spireJson** : métadonnées complètes de la publication provenant de la plateforme biblio de Science Po
+- **authors** : liste des auteurs (rempli automatiquement si publi récupérée dans Spire)
+- **biblioRef** : référence biblio pour citer cette publication (rempli automatiquement si publi récupérée dans Spire)
+- **fullTextURL** : URL vers le plein texte, site de l'éditeur ou SPIRE... (rempli automatiquement si publi récupérée dans Spire)
 
 Liens : 
 
-- **Publications -> people** : les membres du médialab auteurs de la publi  
+- **Publications -> people** : les membres du médialab auteurs de la publi. ne pas distinguer actif/passé.  
 *minimum 1, max 6, moyenne 1.5*
-- **Publications -> activities** : les activités du médialab qui sont liées à cette publi
+- **Publications -> activities** : les activités du médialab qui sont liées à cette publi. Ne pas distinguer actif/passé.
 *en moyenne 1.5, max 4,  peut être 0 mais très rare*
-- **Publications -> publications** : liens vers d'autres publications liées
+- **Publications -> publications** : liens vers d'autres publications liées. 
 *en général 0, max 5*
 - **News -> publication** : les actualités qui ont mentionnées cette publi
 *en général 0, max 2* 

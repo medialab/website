@@ -56,9 +56,10 @@
       "type": "string",
       "enum": [
         "research",
-        "teaching"
+        "teaching",
+        "method"
       ],
-      "enumId": "activitiyTypes"
+      "enumId": "activityTypes"
     },
     "content": {
       "title": "Contenu",
@@ -101,6 +102,16 @@
     "active": {
       "title": "Actif?",
       "type": "boolean"
+    },
+    "startDate": {
+      "title": "Date de début",
+      "type": "string",
+      "formType": "vardate"
+    },
+    "endDate": {
+      "title": "Date de fin",
+      "type": "string",
+      "formType": "vardate"
     },
     "draft": {
       "title": "Draft?",

@@ -3,11 +3,29 @@
     "default": "research",
     "fr": {
       "research": "Recherche",
-      "teaching": "Enseignement"
+      "teaching": "Enseignement",
+      "method": "Méthode" 
     },
     "en": {
       "research": "Research",
-      "teaching": "Teaching"
+      "teaching": "Teaching",
+      "method": "Method"
+    }
+  },
+  "domains":{
+    "fr":{
+      "academic": "académique",
+      "technic": "technique",
+      "design": "design",
+      "pedagogic": "pédagogique",
+      "administrative": "vie du labo" 
+    },
+    "en":{
+      "academic": "academic",
+      "technic": "technic",
+      "design": "design",
+      "pedagogic": "pedagogy",
+      "administrative": "lab's life" 
     }
   },
   "membershipTypes": {
@@ -21,17 +39,38 @@
       "member": "Member"
     }
   },
+  "newsTypes": {
+    "default": "event",
+    "fr": {
+      "event": "Rendez-vous",
+      "post": "Chronique",
+      "notice": "Annonce"
+    },
+    "en": {
+      "event": "Event",
+      "post": "Post",
+      "notice": "Notice"
+    }
+  },
   "publicationTypes": {
     "default": "conference",
     "fr": {
+      "article": "Article",
       "conference": "Conférence",
-      "tool": "Outil",
-      "web": "Site web"
+      "book": "Livre",
+      "software": "Logiciel",
+      "web": "Site web",
+      "workingPaper": "Manuscrit",
+      "dataset": "Corpus"
     },
     "en": {
+      "article": "Article",
       "conference": "Conference",
-      "tool": "Tool",
-      "web": "Website"
+      "book": "Book",
+      "software": "Software",
+      "web": "Website",
+      "workingPaper": "Working paper",
+      "dataset": "Dataset"
     }
   }
 }

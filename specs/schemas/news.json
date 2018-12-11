@@ -21,7 +21,7 @@
     },
     "type":{
       "title": "Type",
-      "type": "enum",
+      "type": "string",
       "enum": ["event","post","notice"],
       "enumId": "newsTypes"
     },
@@ -55,7 +55,8 @@
     },
     "place": {
       "title": "Lieux",
-      "type": "string"
+      "type": "string",
+      "formType": "suggest"
     },
     "label": {
       "title": "Label",

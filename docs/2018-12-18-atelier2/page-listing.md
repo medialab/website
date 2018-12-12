@@ -20,8 +20,8 @@ Présente l'ensemble des actualités avec un affichage par ordre antéchronologi
 - Date
 
 
-# Publications
-Présente l'ensemble des publications avec un affichage par défaut par ordre antéchronologique (de la plus récente à la plus ancienne).
+# Productions
+Présente l'ensemble des productions avec un affichage par défaut par ordre antéchronologique (de la plus récente à la plus ancienne).
 
 ## Colonnes/champs à afficher
 - Date,
@@ -42,19 +42,17 @@ Présente l'ensemble des people avec un affichage aléatoire, il existe une dél
 ## Colonnes/champs à afficher
 - FirstName
 - LastName
-- Fonction (champs fermés -> typologie)
+- Title (champs suggéré ;  valeurs possibles : Directeur scientifique - Chercheur.e, Directeur technique - Ingénieur.e de recherche, Directeur de FORCCAST, Designer.e de recherche, Ingénieur.e de recherche, Ingénieur.e pédagogique, Chercheur.e, Chargé.e de communication, Secrétaire général.e, Assistant.e de recherche)
 - Picture
-- Description courte _précise les activités actuelles_ (au survol)
+- Current Status _précise les activités actuelles_ (au survol)
 
 ## Filtres
 - Domaines (Académique, technique, design, pédagogie, administratif)
 - Actif / passé
-- membership
+- membership : member/associate
 
 ## Tri
 - Name : Ordre alphabétique
-
-_Remarque : nécessité d'harmoniser a minima les fonctions pour que ce soit utile_
 
 # Activités
 Présente l'ensemble des activités ; l'affichage se fait en fonction du type (recherche/enseignement/méthodes) et l'ordonnancement se fait en fonction du booléen "important".

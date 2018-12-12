@@ -260,7 +260,7 @@ def scrape_publication(s, publication):
 def scrape_blog(s, blog):
     blog_url = blog['href']
     blog_id = int(''.join(list(filter(str.isdigit, blog_url))))
-    blog_name = "blog_" + str(blog_id)
+    blog_name = "BLOG_" + str(blog_id)
     blog_soup = BeautifulSoup(s.get(blog_url).text, 'html.parser')
 
     # SCRAPING TEXT
@@ -383,7 +383,7 @@ def scrape_blog(s, blog):
     json_result["tools"] = tools
     json_result["projets"] = projets
 
-    directory = os.path.join("data", "blog")
+    directory = os.path.join("data", "blogs")
     if not os.path.exists(directory):
         os.makedirs(directory)
 
@@ -394,7 +394,7 @@ def scrape_blog(s, blog):
 def scrape_people(s, people):
     people_url = people['href']
     people_id = int(''.join(list(filter(str.isdigit, people_url))))
-    people_name = "people_" + str(people_id)
+    people_name = "PEOPLE_" + str(people_id)
     people_soup = BeautifulSoup(s.get(people_url).text, 'html.parser')
 
     # SCRAPING TEXT

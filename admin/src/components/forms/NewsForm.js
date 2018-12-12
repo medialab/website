@@ -39,6 +39,7 @@ class NewsForm extends Component {
 
     if (props.id) {
       this.state = {
+        existingSlugs: null,
         new: false,
         loading: true,
         data: null
@@ -84,25 +85,36 @@ class NewsForm extends Component {
 
         this.setState({loading: false, data});
       });
+
+    client.suggest({params: {model: 'news', field: 'slugs'}}, (err, data) => {
+      this.setState({existingSlugs: new Set(data)});
+    });
   }
 
   handlePublished = value => {
     this.setState(set(['data', 'draft'], !value, this.state));
   };
 
-  handleSubmit = () => {
+  handleSubmit = newSlug => {
     const {push} = this.props;
 
-    if (this.state.new) {
+    let state = this.state;
+
+    if (newSlug) {
+      state = set(['data', 'slugs'], [newSlug], state);
+      this.setState(state);
+    }
+
+    if (state.new) {
 
       // Creating the new item
       const payload = {
         params: {model: 'news'},
-        data: this.state.data
+        data: state.data
       };
 
       client.post(payload, () => {
-        push(`/news/${this.state.data.id}`);
+        push(`/news/${state.data.id}`);
         this.setState({new: false});
       });
     }
@@ -111,7 +123,7 @@ class NewsForm extends Component {
       // Upating the item
       const payload = {
         params: {model: 'news', id: this.props.id},
-        data: this.state.data
+        data: state.data
       };
 
       client.put(payload, () => {
@@ -123,6 +135,7 @@ class NewsForm extends Component {
   render() {
 
     const {
+      existingSlugs,
       loading,
       data
     } = this.state;
@@ -134,11 +147,19 @@ class NewsForm extends Component {
       slugForModel(data) :
       data.slugs[data.slugs.length - 1];
 
+    const collidingSlug = (
+      this.state.new &&
+      existingSlugs &&
+      existingSlugs.has(slugValue)
+    );
+
     return (
       <FormLayout
         data={data}
         new={this.state.new}
         model="news"
+        collidingSlug={collidingSlug}
+        existingSlugs={existingSlugs}
         validate={validate}
         onSubmit={this.handleSubmit}>
         <div className="container">
@@ -182,11 +203,12 @@ class NewsForm extends Component {
                   <div className="control">
                     <input
                       type="text"
-                      className="input"
+                      className={collidingSlug ? 'input is-danger' : 'input'}
                       value={slugValue}
                       disabled
                       placeholder="..." />
                   </div>
+                  {collidingSlug && <p className="help is-danger">This slug already exists!</p>}
                 </div>
               </div>
             </div>

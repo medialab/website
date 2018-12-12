@@ -93,8 +93,6 @@ class NewsForm extends Component {
   handleSubmit = () => {
     const {push} = this.props;
 
-    // TODO: validation here
-
     if (this.state.new) {
 
       // Creating the new item
@@ -187,7 +185,7 @@ class NewsForm extends Component {
                       className="input"
                       value={slugValue}
                       disabled
-                      placeholder="Slug" />
+                      placeholder="..." />
                   </div>
                 </div>
               </div>

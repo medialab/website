@@ -2,7 +2,7 @@
   "people": [
     {
       "id": "32fcbf11-d66d-4a41-bbe6-132021adc3e2",
-      "slugs": ["guillaume-plique-32fcbf11"],
+      "slugs": ["guillaume-plique"],
       "lastUpdated": 1543332209050,
       "firstName": "Guillaume",
       "lastName": "Plique",
@@ -19,7 +19,7 @@
     },
     {
       "id": "9f735836-44ea-40f4-8e95-9b8a7416d9a7",
-      "slugs": ["paul-girard-9f735836"],
+      "slugs": ["paul-girard"],
       "lastUpdated": 1543332209050,
       "firstName": "Paul",
       "lastName": "Girard",
@@ -32,12 +32,11 @@
       },
       "membership": "member",
       "active": true,
-      "draft": false,
-      "lastUpdated": 1543239519907
+      "draft": false
     },
     {
       "id": "a83a3035-aba7-4157-a5da-df076157c5ac",
-      "slugs": ["benjamin-ooghe-tabanou-a83a3035"],
+      "slugs": ["benjamin-ooghe-tabanou"],
       "lastUpdated": 1543332209050,
       "firstName": "Benjamin",
       "lastName": "Ooghe-Tabanou",

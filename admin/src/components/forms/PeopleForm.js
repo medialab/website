@@ -36,6 +36,7 @@ class PeopleForm extends Component {
 
     if (props.id) {
       this.state = {
+        existingSlugs: null,
         new: false,
         loading: true,
         data: null
@@ -73,6 +74,10 @@ class PeopleForm extends Component {
 
         this.setState({loading: false, data});
       });
+
+    client.suggest({params: {model: 'people', field: 'slugs'}}, (err, data) => {
+      this.setState({existingSlugs: new Set(data)});
+    });
   }
 
   handlePublished = value => {
@@ -83,21 +88,26 @@ class PeopleForm extends Component {
     this.setState(set(['data', 'active'], value, this.state));
   };
 
-  handleSubmit = () => {
+  handleSubmit = newSlug => {
     const {push} = this.props;
 
-    // TODO: validation here
+    let state = this.state;
 
-    if (this.state.new) {
+    if (newSlug) {
+      state = set(['data', 'slugs'], [newSlug], state);
+      this.setState(state);
+    }
+
+    if (state.new) {
 
       // Creating the new item
       const payload = {
         params: {model: 'people'},
-        data: this.state.data
+        data: state.data
       };
 
       client.post(payload, () => {
-        push(`/people/${this.state.data.id}`);
+        push(`/people/${state.data.id}`);
         this.setState({new: false});
       });
     }
@@ -106,7 +116,7 @@ class PeopleForm extends Component {
       // Upating the item
       const payload = {
         params: {model: 'people', id: this.props.id},
-        data: this.state.data
+        data: state.data
       };
 
       client.put(payload, () => {
@@ -118,6 +128,7 @@ class PeopleForm extends Component {
   render() {
 
     const {
+      existingSlugs,
       loading,
       data
     } = this.state;
@@ -129,12 +140,20 @@ class PeopleForm extends Component {
       slugForModel(data) :
       data.slugs[data.slugs.length - 1];
 
+    const collidingSlug = (
+      this.state.new &&
+      existingSlugs &&
+      existingSlugs.has(slugValue)
+    );
+
     return (
       <FormLayout
         data={data}
         new={this.state.new}
         model="people"
         label="person"
+        collidingSlug={collidingSlug}
+        existingSlugs={existingSlugs}
         validate={validate}
         onSubmit={this.handleSubmit}>
         <div className="container">
@@ -177,11 +196,12 @@ class PeopleForm extends Component {
                   <div className="control">
                     <input
                       type="text"
-                      className="input"
+                      className={collidingSlug ? 'input is-danger' : 'input'}
                       value={slugValue}
                       disabled
-                      placeholder="Slug" />
+                      placeholder="..." />
                   </div>
+                  {collidingSlug && <p className="help is-danger">This slug already exists!</p>}
                 </div>
               </div>
             </div>

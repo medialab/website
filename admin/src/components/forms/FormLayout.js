@@ -3,6 +3,7 @@
 import React, {Component} from 'react';
 import TimeAgo from 'react-timeago';
 import {Link, Prompt} from 'react-router-dom';
+import set from 'lodash/fp/set';
 import cls from 'classnames';
 
 import Button from '../misc/Button';
@@ -21,6 +22,73 @@ const actionBarStyle = {
 };
 
 const navigationPromptMessage = () => 'You have unsaved modifications. Sure you want to move?';
+
+class SlugConfirm extends Component {
+  state = {
+    slug: this.props.slug
+  };
+
+  handleSlug = e => {
+    this.setState({slug: e.target.value});
+  };
+
+  render() {
+    const {
+      existingSlugs,
+      onClose,
+      onSubmit
+    } = this.props;
+
+    const {
+      slug
+    } = this.state;
+
+    const collision = existingSlugs.has(slug);
+
+    return (
+      <CardModal onClose={onClose}>
+        {
+          [
+            'Confirmation',
+            (
+              <div key="body" className="content">
+                <p>
+                  You are going to create an item with the following slug:
+                </p>
+                <div className="control">
+                  <input
+                    type="text"
+                    className={collision ? 'input is-danger' : 'input'}
+                    onChange={this.handleSlug}
+                    value={slug} />
+                </div>
+                {collision && <p className="help is-danger">This slug already exists!</p>}
+              </div>
+            ),
+            close => (
+              <div key="footer">
+                <Button
+                  kind={collision ? 'white' : 'success'}
+                  disabled={collision}
+                  onClick={() => {
+                    onSubmit(slug);
+                    close();
+                  }}>
+                  {!collision ? 'Create with this slug' : 'Cannot create with this slug'}
+                </Button>
+                <Button
+                  kind="danger"
+                  onClick={close}>
+                  Cancel
+                </Button>
+              </div>
+            )
+          ]
+        }
+      </CardModal>
+    );
+  }
+}
 
 export default class Form extends Component {
   constructor(props, context) {
@@ -86,12 +154,25 @@ export default class Form extends Component {
     this.setState({confirming: false});
   };
 
-  handleSubmit = () => {
-    if (this.props.new && !this.state.confirming)
+  handleRawSubmit = () => {
+    this.handleSubmit();
+  };
+
+  handleSubmit = newSlug => {
+    if (
+      this.props.new &&
+      !this.state.confirming &&
+      this.props.collidingSlug
+    )
       return this.setState({confirming: true});
 
-    this.setState({lastHash: hash(this.props.data), saving: true});
-    this.props.onSubmit();
+    let currentData = this.props.data;
+
+    if (newSlug)
+      currentData = set('slugs', [newSlug], currentData);
+
+    this.setState({lastHash: hash(currentData), saving: true});
+    this.props.onSubmit(newSlug);
 
     this.timeout = setTimeout(() => {
       this.setState({saving: false, signaling: true});
@@ -111,7 +192,9 @@ export default class Form extends Component {
     } = this.state;
 
     const {
+      collidingSlug,
       data,
+      existingSlugs,
       children,
       model,
       label,
@@ -121,7 +204,7 @@ export default class Form extends Component {
     const pageLabel = label || model;
 
     const saveLabel = this.props.new ?
-      `Create this ${pageLabel}` :
+      (`Create this ${pageLabel}` + (collidingSlug ? ' and edit the slug' : '')) :
       `Save this ${pageLabel}`;
 
     const dirty = hash(data) !== lastHash;
@@ -162,7 +245,7 @@ export default class Form extends Component {
                       kind={buttonKind}
                       disabled={!dirty || validationError}
                       loading={saving}
-                      onClick={!signaling ? this.handleSubmit : Function.prototype}>
+                      onClick={!signaling ? this.handleRawSubmit : Function.prototype}>
                       {buttonText}
                     </Button>
                   </div>
@@ -194,47 +277,14 @@ export default class Form extends Component {
     return (
       <div>
         {confirming && (
-          <CardModal onClose={this.handleConfirmationModalClose}>
-            {
-              [
-                'Confirmation',
-                (
-                  <div key="body" className="content">
-                    <p>
-                      You are going to create an item with the following slug:
-                    </p>
-                    <div>
-                      <input
-                        type="text"
-                        className="input"
-                        disabled
-                        value={data.slugs[data.slugs.length - 1]} />
-                    </div>
-                  </div>
-                ),
-                close => (
-                  <div key="footer">
-                    <Button
-                      kind="success"
-                      onClick={() => {
-                        this.handleSubmit();
-                        close();
-                      }}>
-                      Yes, this slug is ok
-                    </Button>
-                    <Button
-                      kind="danger"
-                      onClick={close}>
-                      Good lord! I messed up
-                    </Button>
-                  </div>
-                )
-              ]
-            }
-          </CardModal>
+          <SlugConfirm
+            slug={data.slugs[data.slugs.length - 1]}
+            existingSlugs={existingSlugs}
+            onClose={this.handleConfirmationModalClose}
+            onSubmit={this.handleSubmit} />
         )}
         <Prompt
-          when={dirty}
+          when={!saving && dirty}
           message={navigationPromptMessage} />
         <div className="tabs is-boxed">
           <ul>

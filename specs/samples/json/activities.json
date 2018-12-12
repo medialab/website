@@ -2,7 +2,7 @@
   "activities": [
     {
       "id": "beec8f47-80fa-4188-930b-7c20ce5ddcce",
-      "slugs": ["toflit18-beec8f47"],
+      "slugs": ["toflit18"],
       "lastUpdated": 1543332209050,
       "name": "TOFLIT18",
       "baseline": {
@@ -27,7 +27,7 @@
     },
     {
       "id": "4ca78423-c064-466f-9ce9-43b656ca083c",
-      "slugs": ["ricardo-4ca78423"],
+      "slugs": ["ricardo"],
       "lastUpdated": 1543332209050,
       "name": "RICARDO",
       "baseline": {

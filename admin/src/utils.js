@@ -17,5 +17,6 @@ export function slugify(id, str) {
 
   s = s.split('-').slice(0, DEFAULT_MAX_SLUG_TOKENS).join('-');
 
-  return `${s}-${id.split('-')[0]}`;
+  // return `${s}-${id.split('-')[0]}`;
+  return s;
 }

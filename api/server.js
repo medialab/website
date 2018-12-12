@@ -115,11 +115,15 @@ ROUTERS.forEach(({model, router}) => {
     if (query._suggest) {
       const field = query._suggest;
 
-      data = data.map(item => {
-        return get(field, item);
+      const values = new Set();
+
+      data.forEach(item => {
+        const value = get(field, item);
+
+        [].concat(value).forEach(v => values.add(v));
       });
 
-      data = Array.from(new Set(data));
+      data = Array.from(values);
     }
 
     return res.json(data);

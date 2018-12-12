@@ -5,7 +5,8 @@ const client = new Client({
 
   // Client's settings
   settings: {
-    baseUrl: API_URL
+    baseUrl: API_URL,
+    solver: /\:([^/:\?]+)/g
   },
 
   // Default call options
@@ -27,6 +28,9 @@ const client = new Client({
       url: '/:model/:model/:id',
       contentType: 'application/json',
       type: 'PUT'
+    },
+    suggest: {
+      url: '/:model/:model?_suggest=:field'
     },
     rebootGatsby: {
       url: '/reboot-gatsby'

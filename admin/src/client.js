@@ -5,8 +5,7 @@ const client = new Client({
 
   // Client's settings
   settings: {
-    baseUrl: API_URL,
-    solver: /\:([^/:\?]+)/g
+    baseUrl: API_URL
   },
 
   // Default call options

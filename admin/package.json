@@ -21,7 +21,7 @@
     "bulma": "^0.7.2",
     "classnames": "^2.2.6",
     "connected-react-router": "^5.0.1",
-    "djax-client": "^0.2.1",
+    "djax-client": "^0.2.3",
     "draft-js": "^0.10.5",
     "draft-js-export-html": "^1.2.0",
     "draft-js-import-html": "^1.2.1",

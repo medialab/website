@@ -7,7 +7,7 @@ import {slugify} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
 
-import FormLayout from './FormLayout';
+import Form from './Form';
 import Editor from '../Editor';
 import BooleanSelector from '../selectors/BooleanSelector';
 import RelationSelector from '../selectors/RelationSelector';
@@ -154,7 +154,7 @@ class NewsForm extends Component {
     );
 
     return (
-      <FormLayout
+      <Form
         data={data}
         new={this.state.new}
         model="news"
@@ -360,7 +360,7 @@ class NewsForm extends Component {
           </div>
 
         </div>
-      </FormLayout>
+      </Form>
     );
   }
 }

@@ -7,7 +7,7 @@ import {slugify} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
 
-import FormLayout from './FormLayout';
+import Form from './Form';
 import Editor from '../Editor';
 import BooleanSelector from '../selectors/BooleanSelector';
 import EnumSelector from '../selectors/EnumSelector';
@@ -153,7 +153,7 @@ class ActivityForm extends Component {
     );
 
     return (
-      <FormLayout
+      <Form
         data={data}
         new={this.state.new}
         model="activities"
@@ -344,7 +344,7 @@ class ActivityForm extends Component {
           </div>
 
         </div>
-      </FormLayout>
+      </Form>
     );
   }
 }

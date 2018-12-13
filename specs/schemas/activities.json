@@ -15,6 +15,10 @@
         "type": "string"
       }
     },
+    "oldSlug": {
+      "title": "Slug de l'ancien site",
+      "type": "string"
+    },
     "lastUpdated": {
       "title": "Timestamp of last update",
       "type": "number"
@@ -78,7 +82,7 @@
       }
     },
     "people": {
-      "title": "Gens impliqués",
+      "title": "Membres impliqués",
       "type": "array",
       "items": {
         "type": "string"

@@ -7,13 +7,15 @@ module.exports = {
       name: '',
       type: enums.activityTypes.default,
       draft: true,
-      active: true
+      active: true,
+      important: false
     };
   },
   news: function(uuid) {
     return {
       id: uuid(),
-      draft: true
+      draft: true,
+      internal: true
     };
   },
   people: function(uuid) {

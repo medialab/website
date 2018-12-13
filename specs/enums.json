@@ -56,21 +56,31 @@
     "default": "conference",
     "fr": {
       "article": "Article",
-      "conference": "Conférence",
+      "communication": "Communication",
       "book": "Livre",
+      "workingPaper": "Working paper",
+      "datascape": "Datascape",
+      "website": "Site web",
       "software": "Logiciel",
-      "web": "Site web",
-      "workingPaper": "Manuscrit",
-      "dataset": "Corpus"
+      "code": "Code",
+      "exhibition": "Exposition",
+      "workshop": "Atelier",
+      "simulation": "Simulation",
+      "conference": "Conférence"
     },
     "en": {
       "article": "Article",
-      "conference": "Conference",
+      "communication": "Communication",
       "book": "Book",
-      "software": "Software",
-      "web": "Website",
       "workingPaper": "Working paper",
-      "dataset": "Dataset"
+      "datascape": "Datascape",
+      "website": "Website",
+      "software": "Software",
+      "code": "Code",
+      "exhibition": "Exhibition",
+      "workshop": "Workshop",
+      "simulation": "Simulation",
+      "conference": "Conference"
     }
   }
 }

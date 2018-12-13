@@ -15,6 +15,10 @@
         "type": "string"
       }
     },
+    "oldSlug": {
+      "title": "Slug de l'ancien site",
+      "type": "string"
+    },
     "lastUpdated": {
       "title": "Timestamp of last update",
       "type": "number"
@@ -53,11 +57,16 @@
       "enum": [
         "article",
         "book",
-        "conference",
-        "software",
-        "web",
+        "communication",
         "workingPaper",
-        "dataset"
+        "datascape",
+        "website",
+        "software",
+        "code",
+        "exhibition",
+        "simulation",
+        "workshop",
+        "conference"
       ],
       "enumId": "publicationTypes"
     },
@@ -86,14 +95,9 @@
       "formType": "ref",
       "model": "activities"
     },
-    "people": {
-      "title": "Gens impliqués",
-      "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "formType": "ref",
-      "model": "people"
+    "authors": {
+      "title": "Auteurs",
+      "type": "string"
     },
     "publications": {
       "title": "Publications liées",
@@ -114,24 +118,30 @@
       "type": "string",
       "formType": "vardate"
     },
-    "authors": {
-      "title": "Auteurs",
+    "people": {
+      "title": "Membres du labo",
       "type": "array",
       "items": {
-        "type": "object"
-      }
+        "type": "string"
+      },
+      "formType": "ref",
+      "model": "people"
     },
     "biblioRef": {
       "title": "Référence biblio",
       "type": "string",
       "formType": "content"
     },
-    "fullTextURL": {
-      "title": "Lien vers le texte plein",
+    "URL": {
+      "title": "Lien externe",
       "type": "string"
     },
     "draft": {
       "title": "Draft?",
+      "type": "boolean"
+    },
+    "active": {
+      "title": "Actif?",
       "type": "boolean"
     },
     "idSpire": {

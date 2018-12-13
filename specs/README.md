@@ -12,7 +12,7 @@ Il y a trois types d'activités : recherche, méthode et pédagogique.
 
 Champs : 
 
-- **type** *mandatory* : trois valeurs possibles : recherche, pédagogie
+- **type** *mandatory* : trois valeurs possibles : recherche, pédagogie, méthode
 - **name** *fr/en*, *mandatory* : nom au sens de acronyme, nom officiel...
 - **baseline** *fr/en*, *mandatory* : phrase courte ou question posant le but de l'activité
 - **description** *fr/en*, *mandatory*: court paragraphe présentant l'activité 
@@ -52,7 +52,7 @@ Champs :
 - **LastName** *mandatory*
 - **membership** : associate, member
 Distinction entre membre et associé.
-- **title** *fr/en*: titre académique/poste occupé
+- **function** *fr/en*: fonction occupée au format libre mais fortement suggéré, convergents vers des appelations communes : Directeur scientifique - Chercheur.e, Directeur technique - Ingénieur.e de recherche, Directeur de FORCCAST, Designer.e de recherche,     Ingénieur.e de recherche, Ingénieur.e pédagogique, Chercheur.e, Chargé.e de communication, Secrétaire général.e,     Assistant.e de recherche
 - **currentStatus** : champs ouvert une ou deux phrases décrivant les sujets de travail actuel
 - **domain** : academic, technic, design, pedagogy, administrative. Utilisé uniquemnt pour du filtrage.
 - **contact** : information de contact, site perso, email... sous la forme de clef/valeur librement défini et pouvant contenir des liens ou emails (dans valeur)
@@ -112,24 +112,26 @@ Liens :
 *en moyenne 2-3, max 5, régulièrement 0*
 
 
-## Publication
+## Production
 
 Label :
 
-- en : papers and tools 
-- fr : publis et outils
+- en : Productions 
+- fr : Productions
 
 Champs : 
 
-- **type** *enum* : article/article, conférence/conference, livre/book, web/web, logiciel/software, exposition/exhibition, manuscript/working paper, corpus/dataset
-- **title** *fr/en*, *mandatory* : titre de la publication
+- **type** *enum* : article/article, communication/communication, livre/book, working paper/working paper, datascape/datascape, site web/website, logiciel/software, code/code, exposition/exhibition, atelier/workshop, simulation/simulation, conférence/conference
+- **title** *fr/en*, *mandatory* : titre de la production
 - **description** *fr/en* : présentation courte en une phrase ou deux rédigée par l'équipe éditoriale
 - **content** *fr/en* : contenu en markdown qui ne contient en général pas le contenu de la publication en entier mais son abstract
 - **date** : date de publication
+- **URL** : URL vers le plein texte, le site, l'outil, github, site de l'éditeur ou SPIRE... (rempli automatiquement si publi récupérée dans Spire)
 - **spireJson** : métadonnées complètes de la publication provenant de la plateforme biblio de Science Po
-- **authors** : liste des auteurs (rempli automatiquement si publi récupérée dans Spire)
-- **biblioRef** : référence biblio pour citer cette publication (rempli automatiquement si publi récupérée dans Spire)
-- **fullTextURL** : URL vers le plein texte, site de l'éditeur ou SPIRE... (rempli automatiquement si publi récupérée dans Spire)
+- **authors** : liste des auteurs au format texte (rempli automatiquement si publi récupérée dans Spire)
+- **biblioRef** : référence biblio pour citer cette publication (rempli automatiquement si publi récupérée dans Spire, sera régulièrement vide pour les productions hors publi)
+- **illustration** : assurée pour les cas datascape, siteweb, logiciel, exposition, atelier, simulation mais plutôt pas pour les autres.
+- **active** : certains outils sont dépréciés ce serait important d'indiquer cela.
 
 Liens : 
 

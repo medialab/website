@@ -1,0 +1,22 @@
+/* page objet */
+/* julie: node-sass --watch page_objet_02.scss ../css-compiled/page_objet_02.css */
+
+// variables and mixins
+@import 'vars_listing/colors';
+@import 'vars_listing/queries';
+@import 'vars_listing/typo_04';
+@import 'vars_listing/z-index';
+@import 'vars_listing/divers';
+
+// common
+@import 'parts/common/body';
+@import 'parts/common/normalize';
+@import 'parts/common/clean';
+@import 'parts/common/top-bar_listing/top-bar';
+@import 'parts/common/liste_objet_listing/liste_objet';
+
+//Parts
+@import 'parts/page_objet_listing/page_objet.scss';
+@import 'parts/page_objet_listing/grid';
+@import 'parts/page_objet_listing/sticky-menu';
+

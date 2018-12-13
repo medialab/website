@@ -1,0 +1,17 @@
+$font-main: 'MuseosSans';
+$font-mono: monospace;
+$font-size: 14px;
+$baseline: 18px;
+
+html{
+    font-family: $font-main;
+    font-size: $font-size;
+}
+
+
+@mixin typo-header() {
+    font-size: $font-size*1.5;
+    font-weight: normal;
+    line-height: $baseline;
+    line-height: $baseline*1.5;
+}

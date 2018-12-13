@@ -25,6 +25,8 @@ export default class RelationSelector extends Component {
   }
 
   componentDidMount() {
+
+    // TODO: use _fields to limit bandwidth
     client.list({params: {model: this.props.model}}, (err, data) => {
 
       const options = data

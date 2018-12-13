@@ -28,6 +28,9 @@ const client = new Client({
       contentType: 'application/json',
       type: 'PUT'
     },
+    suggest: {
+      url: '/:model/:model?_suggest=:field'
+    },
     rebootGatsby: {
       url: '/reboot-gatsby'
     }

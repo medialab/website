@@ -1,20 +1,27 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import {DraftailEditor, BLOCK_TYPE, INLINE_STYLE} from 'draftail';
+import {htmlToRaw, rawToHtml} from '../utils';
 import IMAGE from './entities/image';
 
-export default class Editor extends Component {
+export default class Editor extends PureComponent {
+
+  handleOnSave = content => {
+    const html = content ? rawToHtml(content) : '';
+
+    this.props.onSave(html);
+  };
+
   render() {
     const {
-      rawContent,
-      onSave
+      content
     } = this.props;
 
     return (
       <div className="content">
         <DraftailEditor
-          rawContentState={rawContent || null}
+          rawContentState={content ? htmlToRaw(content) : null}
           stripPastedStyles={false}
-          onSave={onSave}
+          onSave={this.handleOnSave}
           entityTypes={[
             IMAGE
           ]}

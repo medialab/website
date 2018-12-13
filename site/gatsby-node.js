@@ -8,6 +8,7 @@ const _ = require('lodash');
 
 const ROOT_PATH = process.env.ROOT_PATH || '..';
 
+const QUERIES = require('./queries.js');
 const MODELS = require(path.join(ROOT_PATH, 'specs', 'models.json'));
 const DB_PATH = path.join(ROOT_PATH, 'data');
 const DB_GLOB = path.join(ROOT_PATH, 'data', '*.json');
@@ -21,75 +22,6 @@ MODELS.forEach(model => {
 });
 
 MODELS_PATHS.settings = path.join(DB_PATH, 'settings.json');
-
-const FILE_QUERY = `
-  {
-    allFile(filter: {sourceInstanceName: {eq: "assets"}}) {
-      edges {
-        node {
-          base,
-          publicURL
-        }
-      }
-    }
-  }
-`;
-
-const ACTIVITIES_QUERY = `
-  {
-    allActivitiesJson {
-      edges {
-        node {
-          identifier
-          slugs
-        }
-      }
-    }
-  }
-`;
-
-const PEOPLE_QUERY = `
-  {
-    allPeopleJson {
-      edges {
-        node {
-          identifier
-          slugs
-          bio {
-            en
-            fr
-          }
-        }
-      }
-    }
-  }
-`;
-
-const PUBLICATION_QUERY = `
-  {
-    allPublicationsJson {
-      edges {
-        node {
-          identifier
-          slugs
-        }
-      }
-    }
-  }
-`;
-
-const NEWS_QUERY = `
-  {
-    allNewsJson {
-      edges {
-        node {
-          identifier
-          slugs
-        }
-      }
-    }
-  }
-`;
 
 // Helper hashing a node's data
 function hashNode(data) {
@@ -313,7 +245,7 @@ exports.createPages = function({graphql, actions}) {
   const promises = () => [
 
     // Activities
-    graphql(ACTIVITIES_QUERY).then(result => {
+    graphql(QUERIES.ACTIVITIES).then(result => {
       if (!result.data)
         return;
 
@@ -336,7 +268,7 @@ exports.createPages = function({graphql, actions}) {
     }),
 
     // People
-    graphql(PEOPLE_QUERY).then(result => {
+    graphql(QUERIES.PEOPLE).then(result => {
       if (!result.data)
         return;
 
@@ -367,7 +299,7 @@ exports.createPages = function({graphql, actions}) {
     }),
 
     // Publications
-    graphql(PUBLICATION_QUERY).then(result => {
+    graphql(QUERIES.PUBLICATION).then(result => {
       if (!result.data)
         return;
 
@@ -390,7 +322,7 @@ exports.createPages = function({graphql, actions}) {
     }),
 
     // News
-    graphql(NEWS_QUERY).then(result => {
+    graphql(QUERIES.NEWS).then(result => {
       if (!result.data)
         return;
 
@@ -414,7 +346,7 @@ exports.createPages = function({graphql, actions}) {
     })
   ];
 
-  return graphql(FILE_QUERY).then(result => {
+  return graphql(QUERIES.FILE).then(result => {
     FILES = _.keyBy(result.data.allFile.edges.map(e => e.node), 'base');
   }).then(() => Promise.all(promises()));
 };

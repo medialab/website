@@ -1,5 +1,6 @@
 /* eslint no-nested-ternary: 0 */
 /* eslint no-alert: 0 */
+/* eslint react/forbid-prop-types: 0 */
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {push as pushAction} from 'connected-react-router';

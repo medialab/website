@@ -38,13 +38,13 @@ const HANDLERS = {
     type: 'raw',
     field: 'membership'
   },
-  frenchContent: {
-    type: 'raw',
-    field: ['bio', 'fr']
-  },
   englishContent: {
     type: 'raw',
     field: ['bio', 'en']
+  },
+  frenchContent: {
+    type: 'raw',
+    field: ['bio', 'fr']
   },
   active: {
     type: 'boolean',

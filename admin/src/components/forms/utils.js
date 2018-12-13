@@ -33,21 +33,21 @@ export function createNegativeHandler(scope, key) {
 
 export function createAddRelationHandler(scope, key) {
   return id => {
-    const data = get(key, scope.state.data) || [];
+    let data = get(key, scope.state) || [];
 
-    data.push(id);
+    data = data.concat(id);
 
-    scope.setState(set(['data', key], data, scope.state));
+    scope.setState(set(key, data, scope.state));
   };
 }
 
 export function createDropRelationHandler(scope, key) {
   return id => {
-    let data = get(key, scope.state.data) || [];
+    let data = get(key, scope.state) || [];
 
     data = data.filter(i => i !== id);
 
-    scope.setState(set(['data', key], data, scope.state));
+    scope.setState(set(key, data, scope.state));
   };
 }
 
@@ -68,6 +68,11 @@ export function createHandlers(scope, specs) {
       handler = createRawHandler(scope, field);
     else if (spec.type === 'negative')
       handler = createNegativeHandler(scope, field);
+    else if (spec.type === 'relation')
+      handler = {
+        add: createAddRelationHandler(scope, field),
+        drop: createDropRelationHandler(scope, field)
+      };
     else
       handler = createHandler(scope, field);
 

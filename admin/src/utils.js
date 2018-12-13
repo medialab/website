@@ -13,7 +13,7 @@ export function rawToHtml(rawContentState) {
 
 const DEFAULT_MAX_SLUG_TOKENS = 6;
 export function slugify(str) {
-  let s = slug(str, {lower: true});
+  const s = slug(str, {lower: true});
 
   return s.split('-').slice(0, DEFAULT_MAX_SLUG_TOKENS).join('-');
 }

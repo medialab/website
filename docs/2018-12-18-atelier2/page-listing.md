@@ -27,13 +27,31 @@ Présente l'ensemble des productions avec un affichage par défaut par ordre ant
 - Date,
 - type,
 - Titre,
-- Auteurs (avec lien vers les pages people des membres du labo),
-- description (au survol?)
-- image
+- Auteurs,
+- description (au survol)
+- image (au survol)
 
 ## Filtres
-- Type
-- Metarubrique sur les tytpes : "publications", "corpus", "tools" et "events"
+- A deux niveaux : d'abord sur une Metarubrique sur les types : "publications", "corpus", "tools" et "situations", puis sur le type de la production.
+
+Structure du filtrage :
+
+- publication:
+	- article
+	- livre
+	- communication
+	- working paper
+- web
+    - datascape
+	- site web
+- outils	
+    - logiciel
+	- code
+- situation
+    - atelier
+	- exposition
+	- simulation
+	- conférence
 
 ## Tri
 - Date
@@ -44,7 +62,7 @@ Présente l'ensemble des people avec un affichage aléatoire, il existe une dél
 ## Colonnes/champs à afficher
 - FirstName
 - LastName
-- Title (champs suggéré ;  valeurs possibles : Directeur scientifique - Chercheur.e, Directeur technique - Ingénieur.e de recherche, Directeur de FORCCAST, Designer.e de recherche, Ingénieur.e de recherche, Ingénieur.e pédagogique, Chercheur.e, Chargé.e de communication, Secrétaire général.e, Assistant.e de recherche)
+- Fonction (champs suggéré ;  valeurs possibles : Directeur scientifique - Chercheur.e, Directeur technique - Ingénieur.e de recherche, Directeur de FORCCAST, Designer.e de recherche, Ingénieur.e de recherche, Ingénieur.e pédagogique, Chercheur.e, Chargé.e de communication, Secrétaire général.e, Assistant.e de recherche)
 - Picture
 - Current Status _précise les activités actuelles_ (au survol)
 

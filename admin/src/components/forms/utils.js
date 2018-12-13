@@ -8,12 +8,12 @@ export function createHandler(scope, key) {
   };
 }
 
-export function createSlugRelatedHandler(scope, key, slug) {
+export function createSlugRelatedHandler(scope, key, slugify) {
   return e => {
     let newState = set(key, e.target.value, scope.state);
 
-    if (scope.state.new)
-      newState = set(['data', 'slugs'], [slug(newState.data)], newState);
+    if (scope.state.isNew)
+      newState = set(['data', 'slugs'], [slugify(newState.data)], newState);
 
     scope.setState(newState);
   };
@@ -63,7 +63,7 @@ export function createHandlers(scope, specs) {
     if (spec.type === 'raw')
       handler = createRawHandler(scope, field);
     else if (spec.type === 'slug')
-      handler = createSlugRelatedHandler(scope, field);
+      handler = createSlugRelatedHandler(scope, field, spec.slugify);
     else if (spec.type === 'boolean')
       handler = createRawHandler(scope, field);
     else if (spec.type === 'negative')

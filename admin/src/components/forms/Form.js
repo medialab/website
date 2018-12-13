@@ -151,7 +151,7 @@ class Form extends Component {
 
     // Listener not to lose work when closing page
     this.beforeunloadListener = e => {
-      if (hash(this.props.data) === this.state.lastHash)
+      if (hash(this.state.data) === this.state.lastHash)
         return;
 
       const result = window.confirm(navigationPromptMessage());
@@ -242,7 +242,8 @@ class Form extends Component {
     } = this.state;
 
     const {
-      model
+      model,
+      push
     } = this.props;
 
     // If the item is new and the slug is colliding, we trigger a confirm
@@ -411,7 +412,7 @@ class Form extends Component {
       <div>
         {confirming && (
           <SlugConfirm
-            slug={data.slugs[data.slugs.length - 1]}
+            slug={slug}
             existingSlugs={existingSlugs}
             onClose={this.handleConfirmationModalClose}
             onSubmit={this.handleSubmit} />

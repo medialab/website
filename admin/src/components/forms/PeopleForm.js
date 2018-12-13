@@ -9,7 +9,7 @@ import EnumSelector from '../selectors/EnumSelector';
 import BooleanSelector from '../selectors/BooleanSelector';
 
 function slugifyPeople(data) {
-  return slugify(data.id, `${data.firstName} ${data.lastName}`);
+  return slugify(`${data.firstName} ${data.lastName}`);
 }
 
 function validate(data) {
@@ -20,11 +20,13 @@ function validate(data) {
 const HANDLERS = {
   firstName: {
     type: 'slug',
-    field: 'firstName'
+    field: 'firstName',
+    slugify: slugifyPeople
   },
   lastName: {
     type: 'slug',
-    field: 'lastName'
+    field: 'lastName',
+    slugify: slugifyPeople
   },
   englishTitle: {
     field: ['title', 'en']

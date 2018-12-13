@@ -6,7 +6,9 @@ import IMAGE from './entities/image';
 export default class Editor extends PureComponent {
 
   handleOnSave = content => {
-    this.props.onSave(rawToHtml(content));
+    const html = content ? rawToHtml(content) : '';
+
+    this.props.onSave(html);
   };
 
   render() {
@@ -17,7 +19,7 @@ export default class Editor extends PureComponent {
     return (
       <div className="content">
         <DraftailEditor
-          rawContentState={content ? htmlToRaw(content) : ''}
+          rawContentState={content ? htmlToRaw(content) : null}
           stripPastedStyles={false}
           onSave={this.handleOnSave}
           entityTypes={[

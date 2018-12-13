@@ -20,15 +20,15 @@
 	<?php include('fragments/_flux_1.php'); ?>
 
 
-	<div class="i1">
+	<div class="i1" style="display: none;">
 		<p>
 			Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et sociales
 		</p>
 		<p>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</p>
 	</div>
 
-	<div class="container">
-		<section class="transition" id="transition_focus">
+	<!--<div class="container">
+		<section class="transition" id="focus">
 			<div>
 				<?php include('assets/images/sample_txt/shinrai_1.html'); ?>
 			</div>
@@ -46,92 +46,172 @@
 				</header>
 			</article>
 		</section>
+	</div>-->
+
+	<div class="slideshow">
+		<input type="radio" name="ss1" id="ss1-item-1" class="slideshow--bullet" checked="checked" />
+		<div class="slideshow--item">
+				<section class="transition" id="focus">
+					<div>
+						<?php include('assets/images/sample_txt/shinrai_1.html'); ?>
+					</div>
+					<article>
+						<header>
+							<p>Focus sur</p>
+							<h3>EDGE</h3>
+							<h4>Environmental Diplomacy and Geopolitics</h4>
+
+							<h5 class="type">Séminaire</h5>
+
+							<p>Lauréat de <a href="http://www.horizon2020.gouv.fr/cid86662/l-appel-a-projet-twinning-ouvert-jusqu-en-mai-2015.html">l’appel à projet Twinning</a> de la Commission européenne, le programme EDGE (Environmental Diplomacy and Geopolitics) vise à faciliter les échanges d'étudiants entre trois universités (Université d'économie de Bratislava, Sciences Po et l'Université de Liège) pour leur permettre d'acquérir des connaissances en diplomatie environnementale et géopolitique de l'environnement.
+							En parallèle, EDGE organise chaque année une Summer School pour stimuler les rencontres scientifiques et promouvoir les travaux menés dans le cadre du programme.
+							</p>					
+						</header>
+					</article>
+				</section>
+			<label for="ss1-item-3" class="slideshow--nav slideshow--nav-previous">Go to slide 3</label>
+			<label for="ss1-item-2" class="slideshow--nav slideshow--nav-next">Go to slide 2</label>
+		</div>
+	
+		<input type="radio" name="ss1" id="ss1-item-2" class="slideshow--bullet" />
+		<div class="slideshow--item">
+				<section class="transition" id="focus">
+					<div>
+						<?php include('assets/images/sample_txt/naturpradi_s.html'); ?>
+					</div>
+					<article>
+						<header>
+							<p>Lauréat de <a href="http://www.horizon2020.gouv.fr/cid86662/l-appel-a-projet-twinning-ouvert-jusqu-en-mai-2015.html">l’appel à projet Twinning</a> de la Commission européenne, le programme EDGE (Environmental Diplomacy and Geopolitics) vise à faciliter les échanges d'étudiants entre trois universités (Université d'économie de Bratislava, Sciences Po et l'Université de Liège) pour leur permettre d'acquérir des connaissances en diplomatie environnementale et géopolitique de l'environnement.
+							En parallèle, EDGE organise chaque année une Summer School pour stimuler les rencontres scientifiques et promouvoir les travaux menés dans le cadre du programme.
+							</p>					
+						</header>
+					</article>
+				</section>
+			<label for="ss1-item-1" class="slideshow--nav slideshow--nav-previous">Go to slide 1</label>
+			<label for="ss1-item-3" class="slideshow--nav slideshow--nav-next">Go to slide 3</label>
+		</div>
+	
+		<input type="radio" name="ss1" id="ss1-item-3" class="slideshow--bullet" />
+		<div class="slideshow--item">
+				<section class="transition" id="focus">
+					<div>
+						<?php include('assets/images/sample_txt/fabrique_loi_s.html'); ?>
+					</div>
+					<article>
+						<header>
+							<p>Focus sur</p>
+							<h3>3</h3>
+							<h4>Environmental Diplomacy and Geopolitics</h4>
+
+							<h5 class="type">Séminaire</h5>
+
+							<p>Lauréat de <a href="http://www.horizon2020.gouv.fr/cid86662/l-appel-a-projet-twinning-ouvert-jusqu-en-mai-2015.html">l’appel à projet Twinning</a> de la Commission européenne, le programme EDGE (Environmental Diplomacy and Geopolitics) vise à faciliter les échanges d'étudiants entre trois universités (Université d'économie de Bratislava, Sciences Po et l'Université de Liège) pour leur permettre d'acquérir des connaissances en diplomatie environnementale et géopolitique de l'environnement.
+							En parallèle, EDGE organise chaque année une Summer School pour stimuler les rencontres scientifiques et promouvoir les travaux menés dans le cadre du programme.
+							</p>					
+						</header>
+					</article>
+				</section>
+			<label for="ss1-item-2" class="slideshow--nav slideshow--nav-previous">Go to slide 2</label>
+			<label for="ss1-item-4" class="slideshow--nav slideshow--nav-next">Go to slide 4</label>
+		</div>
 	</div>
-
+ 
 	<div class="container">
-		<section id="enavant">
-				<article>
-				<header>
-					<h3>Séminaire de bouclage TOFLIT18</h3>
-					<h4>Un vaillant séminaire pour clore le projet TOFLIT18</h4>
+		<section id="ensecond">
+			<h2>Quoi de neuf au labo</h2>
 
-					<h5>Séminaire</h5>
+			<header class="actualite">
+				<h4>Recrute Professeur – STS et environnement </h4>
+				<div class="nomenclature">
+					<p class="type">Annonce</p>
+					<p class="date">2019-07-02</p>
+				</div>
+			</header>
 
-					<p>Ce mardi prochain est organisé au laboratoire le séminaire de clôture du projet TOFLIT18.</p>
+			<header class="actualite">
+				<h4>Une publication est parue</h4>
+				<div class="nomenclature">
+					<p class="type">Publication </p>
+					<p class="date">2019-07-08</p>
+				</div>
+			</header>
 
-					
-				</header>
-			</article>	
-			<article>
-				<header>
-					<h3>Séminaire de bouclage TOFLIT18</h3>
-					<h4>Un vaillant séminaire pour clore le projet TOFLIT18</h4>
+			<header class="actualite">
+				<h4>Le système de crédit social en Chine</h4>
+				<div class="nomenclature">
+					<p class="type">Séminaire </p>
+					<p class="date">2019-07-08</p>
+				</div>
+			</header>
 
-					<h5>Séminaire   </h5>
-					<h5>12.12.19</h5>
+			<header class="actualite">
+				<h4>Recrute Professeur – STS et environnement </h4>
+				<div class="nomenclature">
+					<p class="type">Annonce</p>
+					<p class="date">2019-07-02</p>
+				</div>
+			</header>
 
-					<p>Ce mardi prochain est organisé au laboratoire le séminaire de clôture du projet TOFLIT18.</p>
+			<header class="actualite">
+				<h4>Une publication est parue</h4>
+				<div class="nomenclature">
+					<p class="type">Publication </p>
+					<p class="date">2019-07-08</p>
+				</div>
+			</header>
 
-					
-				</header>
-			</article>
-			
-			<article>
-				<header>
-					<h3>Explorer la complexité du commerce mondial au XIXème siècle</h3>
-					<h4>Communication à la conférence Digital Humanities 2016</h4>
+			<header class="actualite">
+				<h4>Le système de crédit social en Chine</h4>
+				<!-- Image ??? -->
+				<div class="nomenclature">
+					<p class="type">Séminaire </p>
+					<p class="date">2019-07-08</p>
+				</div>
+			</header>
 
-					<h5>Conférence</h5>
+			<header class="actualite">
+				<h4>Le système de crédit social en Chine</h4>
+				<div class="nomenclature">
+					<p class="type">Séminaire </p>
+					<p class="date">2019-07-08</p>
+				</div>
+			</header>
 
-					<p>Ce mardi prochain est organisé au laboratoire le séminaire de clôture du projet TOFLIT18.</p>
+			<header class="actualite">
+				<h4>Recrute Professeur – STS et environnement </h4>
+				<div class="nomenclature">
+					<p class="type">Annonce</p>
+					<p class="date">2019-07-02</p>
+				</div>
+			</header>
 
-					
-				</header>
-			</article>
+			<header class="actualite">
+				<h4>Une publication est parue</h4>
+				<div class="nomenclature">
+					<p class="type">Publication </p>
+					<p class="date">2019-07-08</p>
+				</div>
+			</header>
 
-			<article>
-				<header>
-					<h3>Séminaire de bouclage TOFLIT18</h3>
-					<h4>Un vaillant séminaire pour clore le projet TOFLIT18</h4>
-
-					<h5>Séminaire</h5>
-
-					<p>Ce mardi prochain est organisé au laboratoire le séminaire de clôture du projet TOFLIT18.</p>
-
-					
-				</header>
-			</article>
-			<article>
-				<header>
-					<h3>Explorer la complexité du commerce mondial au XIXème siècle</h3>
-					<h4>Communication à la conférence Digital Humanities 2016</h4>
-
-					<h5>Conférence</h5>
-
-					<p>Ce mardi prochain est organisé au laboratoire le séminaire de clôture du projet TOFLIT18.</p>
-
-					
-				</header>
-			</article>
-			
-			<article>
-				<header>
-					<h3>Séminaire de bouclage TOFLIT18</h3>
-					<h4>Un vaillant séminaire pour clore le projet TOFLIT18</h4>
-
-					<h5>Séminaire</h5>
-
-					<p>Ce mardi prochain est organisé au laboratoire le séminaire de clôture du projet TOFLIT18.</p>
-
-					
-				</header>
-			</article>
+			<header class="actualite">
+				<h4>Le système de crédit social en Chine</h4>
+				<!-- Image ??? -->
+				<div class="nomenclature">
+					<p class="type">Séminaire </p>
+					<p class="date">2019-07-08</p>
+				</div>
+			</header>
 		</section>
 	</div>
 
-	<div class="container">
+	<div class="container agenda">
+		<h3>Les rendez-vous du Labo</h3>
+
+		<div class="moving_left">
+			→
+		</div>
+		
 		<section id="agenda">
-			<h3>Les rendez-vous du Labo</h3>
 			<div class="day">
 				<h6>12/01</h6>
 				<h4>How not to be a bad designer</h4>
@@ -167,63 +247,24 @@
 				<h5 class="lieu">Paris</h5>
 			</div>
 
+			<div class="day">
+				<h6>17/11</h6>
+				<h4>How not to be or not to be</h4>
+				<h5 class="type">Séminaire</h5>
+				<h5 class="lieu">London</h5>
+			</div>
+
+			<div class="day">
+				<h6>22/11</h6>
+				<h4>How not</h4>
+				<h5 class="type">Séminaire</h5>
+				<h5 class="lieu">Paris</h5>
+			</div>
 		</section>
+
+
 	</div>
 
-	<div class="container">
-		<section id="ensecond">
-			<article>
-				<header>
-					<h3>Explorer la complexité du commerce mondial au XIXème siècle</h3>
-					<h4>Communication à la conférence Digital Humanities 2016</h4>
-
-					<h5>Conférence</h5>
-
-					<p>Ce mardi prochain est organisé au laboratoire le séminaire de clôture du projet TOFLIT18.</p>
-
-					
-				</header>
-			</article>
-			<article>
-				<header>
-					<h3>Séminaire de bouclage TOFLIT18</h3>
-					<h4>Un vaillant séminaire pour clore le projet TOFLIT18</h4>
-
-					<h5>Séminaire</h5>
-
-					<p>Ce mardi prochain est organisé au laboratoire le séminaire de clôture du projet TOFLIT18.</p>
-
-					
-				</header>
-			</article>
-			
-			<article>
-				<header>
-					<h3>Explorer la complexité du commerce mondial au XIXème siècle</h3>
-					<h4>Communication à la conférence Digital Humanities 2016</h4>
-
-					<h5>Conférence</h5>
-
-					<p>Ce mardi prochain est organisé au laboratoire le séminaire de clôture du projet TOFLIT18.</p>
-
-					
-				</header>
-			</article>
-
-			<article>
-				<header>
-					<h3>Séminaire de bouclage TOFLIT18</h3>
-					<h4>Un vaillant séminaire pour clore le projet TOFLIT18</h4>
-
-					<h5>Séminaire</h5>
-
-					<p>Ce mardi prochain est organisé au laboratoire le séminaire de clôture du projet TOFLIT18.</p>
-
-					
-				</header>
-			</article>
-		</section>
-	</div>
 
 	<!--<div class="separate">
 		<div class="in">

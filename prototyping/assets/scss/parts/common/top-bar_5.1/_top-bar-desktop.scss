@@ -13,7 +13,6 @@ $height-top-bar: 120px;
         position: relative;
         top: 0;
         left: 0;
-        padding: 1rem $margins-desktop;
 
         z-index: $topbar-desktop;
   
@@ -28,6 +27,8 @@ $height-top-bar: 120px;
             grid-template-columns: repeat(6, 1fr);
             grid-template-rows: 2rem auto 2rem;
             grid-gap: 2rem;
+
+            padding: 0 $margins-desktop;
 
             background-color: $backgroundsite;
 

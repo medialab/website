@@ -8,11 +8,12 @@
 :root {
   --font-size: 10px;
   --baseline: 15px;
-  --font-main: "MuseosSans";
-  --font-mono: monospace; }
+  --font-main: sans-serif;
+  --font-mono: monospace;
+  color: #333; }
 
 html {
-  font-family: "MuseosSans";
+  font-family: sans-serif;
   font-size: 10px; }
 
 /* assets/scss/common/body.scss */
@@ -737,6 +738,9 @@ ul {
 body {
   overflow-x: hidden; }
 
+.container h3:first-of-type {
+  padding: 4rem 0; }
+
 .slideshow {
   border-top: 1px solid black;
   border-bottom: 1px solid black; }
@@ -808,9 +812,9 @@ body {
   font-size: 18px;
   line-height: 27px;
   font-weight: 100; }
-.container #ensecond header {
-  border-bottom: 1px solid grey;
-  padding: 1rem 0 1rem 0;
+.container #enavant header, .container #ensecond header {
+  border-bottom: 1px solid #0003;
+  padding: 2rem 0 1rem 0;
   cursor: pointer;
             /*
             .img{
@@ -831,7 +835,7 @@ body {
                 }
             }
             */ }
-  .container #ensecond header:before {
+  .container #enavant header:before, .container #ensecond header:before {
     content: "";
     background-repeat: no-repeat;
     background-position: center;
@@ -842,67 +846,88 @@ body {
     right: 0;
     opacity: 0;
     transition: opacity 0s ease-in-out  0s; }
-  .container #ensecond header:hover:before, .container #ensecond header:focus:before {
+  .container #enavant header:hover:before, .container #enavant header:focus:before, .container #ensecond header:hover:before, .container #ensecond header:focus:before {
     opacity: 1; }
-  .container #ensecond header h4 {
+  .container #enavant header h4, .container #ensecond header h4 {
     font-size: 24px;
     line-height: 36px;
     font-weight: 300;
     letter-spacing: -.05px;
     padding: 0; }
-  .container #ensecond header .nomenclature p {
+  .container #enavant header .nomenclature p, .container #ensecond header .nomenclature p {
     font-size: 15px;
     line-height: 22.5px;
     font-weight: 100;
     letter-spacing: -.05px;
+    color: #808080;
     width: 50%; }
+    .container #enavant header .nomenclature p.type::before, .container #ensecond header .nomenclature p.type::before {
+      content: "⊸";
+      padding: 0 5px 0 0; }
+.container #enavant .tweet, .container #ensecond .tweet {
+  overflow: hidden;
+  text-overflow: ellipse; }
+  .container #enavant .tweet::after, .container #ensecond .tweet::after {
+    content: "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒";
+    position: absolute;
+    bottom: -3vw;
+    font-size: 4vw; }
+  .container #enavant .tweet p.emblem, .container #ensecond .tweet p.emblem {
+    font-size: 6vw;
+    line-height: 6vw;
+    -webkit-text-stroke: .15vw white; }
 
-.container.agenda h3 {
-  padding: 0 0 5vh 0;
+.container h3 {
   font-size: 30px;
   line-height: 45px;
   font-weight: 300;
   text-align: center; }
-.container.agenda #agenda {
+.container #agenda {
+  width: calc(140vw - 3rem);
   border-bottom: 1px solid grey;
-  min-height: 25vh;
-  padding: 5vh 0 10vh 0;
+  padding: 0 0 10vh 0;
   transition: .75s ease-in-out; }
-  .container.agenda #agenda .day {
+  .container #agenda .day {
+    min-height: 25vh;
     border-left: 1px solid #0003;
-    padding: 0 0 0 3rem; }
-    .container.agenda #agenda .day h6 {
+    padding: 0 1vw 0 1vw;
+    transition: .75s ease-in-out; }
+    .container #agenda .day:hover [data-attribute="agenda"] {
+      background: blue; }
+    .container #agenda .day:nth-of-type(6):hover [data-attribute="day"], .container #agenda .day:nth-of-type(7):hover [data-attribute="day"] {
+      transform: translateX(-40vw); }
+    .container #agenda .day h6 {
       font-size: 70px;
       line-height: 105px;
       font-weight: 100;
       font-feature-settings: "frac"; }
-    .container.agenda #agenda .day h5.type, .container.agenda #agenda .day h5.lieu {
+    .container #agenda .day h5.type, .container #agenda .day h5.lieu {
       font-size: 20px;
       line-height: 22.5px;
       font-weight: 100; }
-    .container.agenda #agenda .day h5.type:before {
-      content: "⋄";
-      margin: 0 1.25rem;
+    .container #agenda .day h5.type:before {
+      content: "▤";
+      margin: 0 0.8rem;
       font-family: monospace; }
-    .container.agenda #agenda .day h5.lieu:before {
-      content: "↘";
+    .container #agenda .day h5.lieu:before {
+      content: "⁙";
       margin: 0 1rem;
       font-family: monospace; }
-    .container.agenda #agenda .day h4 {
+    .container #agenda .day h4 {
       font-size: 30px;
       line-height: 37.5px;
       font-weight: 100;
       text-transform: uppercase;
       padding: 30px 0; }
-.container.agenda .moving_left {
+.container #agenda_moving_left {
   position: absolute;
   width: 5%;
   height: 100%;
-  right: 39vw;
+  right: 0;
   z-index: 999;
   cursor: pointer; }
-.container.agenda .moving_left:hover + #agenda {
-  transform: translateX(-29%); }
+.container #agenda_moving_left:hover + #agenda .day {
+  transform: translateX(-40vw); }
 
 #topbar #topbar-content #logo-medialab {
   width: 70%;
@@ -947,54 +972,62 @@ body {
     grid-gap: 2rem;
     padding: 0 2rem;
     width: calc( 100vw - 2rem); }
+    .container h3 {
+      grid-row: 1/2;
+      grid-column: 1/7;
+      justify-self: center; }
     .container section#liste_item {
       grid-column: 1/5;
       grid-row-start: 1; }
     .container section#flux {
       grid-column: 5/7; }
     .container #enavant {
-      grid-row: 2 / 3;
       grid-column: 1/7;
       display: grid;
       grid-template-columns: repeat(1, 1fr);
       grid-gap: 2rem; }
     .container #ensecond {
-      grid-row: 4 / 4;
       grid-column: 1/7;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      grid-gap: 2rem;
-      grid-template-rows: 120px 120px; }
+      grid-gap: 15px; }
+      .container #ensecond h3 {
+        grid-column: 1/5; }
       .container #ensecond header {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
-        grid-gap: 15px;
-        grid-template-rows: 60px 30px; }
+        grid-gap: 15px; }
         .container #ensecond header h4 {
           grid-column: 1/7;
           grid-rows: 1/2; }
+        .container #ensecond header .description {
+          display: none; }
         .container #ensecond header .nomenclature {
           grid-column: 1/7;
           display: flex;
-          align-self: end; } }
-.container.agenda {
-  padding: 4rem 0 0 0;
-  width: calc(140vw - 3rem);
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: 20px auto; }
-
-h3 {
-  grid-row: 1/2;
-  grid-column: 1/6;
-  justify-self: center; }
-
-#agenda {
-  grid-column: 1 / 8;
+          align-self: end; }
+        .container #ensecond header.actualite {
+          grid-template-rows: 60px 30px; }
+        .container #ensecond header.tweet, .container #ensecond header.important {
+          grid-row: auto / span 2; }
+          .container #ensecond header.tweet .description, .container #ensecond header.important .description {
+            display: inherit;
+            grid-column: 1/7; }
+        .container #ensecond header.tweet p.emblem {
+          grid-column: 1/2; }
+        .container #ensecond header.tweet p.emblem:nth-of-type(2) {
+          grid-column: 1/2; }
+        .container #ensecond header.tweet p.action {
+          grid-column: 2/6;
+          align-self: center; }
+        .container #ensecond header.tweet p.tweet_content {
+          grid-column: 1/7; } }
+.container #agenda {
+  grid-column: 1/7;
+  grid-rows: 2/3;
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-gap: 2rem;
-  grid-template-rows: 4rem auto; }
-  #agenda .day {
+  grid-template-columns: repeat(7, 1fr); }
+  .container #agenda .day {
     grid-row: 2/3; }
 
-/*# sourceMappingURL=index_5.1.css.map */
+/*# sourceMappingURL=index_5.2.css.map */

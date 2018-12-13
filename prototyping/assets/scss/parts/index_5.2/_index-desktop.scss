@@ -1,0 +1,395 @@
+html{
+    //background: #f7323fe6 !important;  
+    //mix-blend-mode: multiply;
+}
+
+::selection, ::-moz-selection{
+    background: var(--redlab);
+    color: white;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+.container h3:first-of-type{
+    padding: 4rem 0;
+}
+
+///////////////////////
+/////////// Focus
+///////////////////////
+ 
+.slideshow{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+#focus{
+    grid-column: 1/7;
+
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 2rem;
+
+    width: 100% ;
+    height: calc(100vh - 120px);
+    height: 100%;
+    max-height: 960px;
+
+    padding: 0rem;
+    margin: 0 0 0 0;
+
+    //transition: .5s linear;
+    text-align:center;
+
+
+    overflow: hidden;
+    //specific
+    grid-row-start: 1;
+
+    div{
+        width: 100vw;
+        overflow: hidden;
+        border: none;
+        top: -50%;
+        height: 200%;
+        font-size: 3.25vw;
+
+        &:hover{
+        //font-size:1.25vw;
+        //transition: .25s linear;
+       }
+
+    }
+
+    .container{ // Specific Slideshow
+        height: 100%;
+    }
+
+    article{
+        position: absolute;
+        width: 50vw;
+        height: calc( 100% - 10rem );        
+        background: white;
+
+        margin: 5rem;
+        z-index: 90;
+
+        header{
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+            grid-gap: 2rem;
+            height: 100%;
+
+            p{
+                grid-column: 2/6;
+                font-size: $font-size*1.4;
+                line-height: $baseline*1.4;
+
+            }
+
+            h3{
+                grid-column: 1/7;
+                grid-row: 2;
+                font-size: $font-size*7;
+                font-weight: 100;
+
+                text-transform: uppercase;
+            }
+
+            h4{
+                grid-column: 1/7;
+                grid-row:3;
+                font-size: $font-size*1.4;
+                line-height: $baseline*1.4;
+                font-weight: 100;            
+            }
+
+            h5.type{
+            grid-column: 1/7;
+            grid-row:4;
+
+            font-size: $font-size*2;
+            line-height: $baseline*1.5;
+            font-weight: 100;
+
+            content:"⋄";
+
+            }
+        }
+    }
+}
+
+.slideshow--item:nth-of-type(2n){
+    article{
+        right: 0;
+    }
+}
+
+
+
+///////////////////////
+/////////// Dernier Articles
+///////////////////////
+
+.container{ 
+
+    p{
+        @include typo-labeur();
+    }
+
+    #enavant, #ensecond{
+        
+        
+        header{
+            border-bottom: 1px solid #0003;
+            padding: 2rem 0 1rem 0;
+
+            cursor: pointer;
+ 
+
+            &:before{
+                content: "";
+                //background-image: url(../../_bac_a_sable/capture/ascii_001.0bis.png);
+                background-repeat: no-repeat;
+                background-position: center;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                opacity: 0;
+                transition: opacity 0s ease-in-out  0s;
+            }
+
+            &:hover:before,
+            &:focus:before {
+              opacity: 1;
+            }
+            /*
+            .img{
+                border: 0px solid grey;
+
+                //max-width: 30.5vw;
+                max-width: calc(58vw/3);
+                max-height: 25vh;
+
+                margin: 1rem 0 3rem 0;
+                overflow: hidden;
+
+
+                span{
+                    display: block;
+                    font-size: 30px;
+                    overflow: hidden;
+                }
+            }
+            */
+
+
+            h4{
+                font-size: $font-size*2.4;
+                line-height: $baseline*2.4;
+                font-weight: 300;
+                letter-spacing: -.05px;
+
+                padding: 0;
+
+
+            }
+            .nomenclature {
+                p{
+
+                    font-size: $font-size*1.5;
+                    line-height: $baseline*1.5;
+                    font-weight: 100;
+                    letter-spacing: -.05px;
+
+                    color: $color-header-text;
+                    width: 50%;
+
+                    &.type::before {
+                        content: "⊸";
+                        padding: 0 5px 0 0;
+                    }
+                }
+            }
+        }
+        .tweet{
+
+            overflow: hidden;
+            text-overflow: ellipse;
+
+                &::after {
+                content: "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒";
+                position: absolute;
+                bottom: -3vw;
+                font-size: 4vw;
+            }
+
+            p{
+                &.emblem{
+                    font-size: 6vw;
+                    line-height: 6vw;
+                    -webkit-text-stroke: .15vw white;
+                }
+            }
+        }
+    }
+}
+
+/////////////////////
+//////// Agenda
+/////////////////////
+.container{
+
+    h3{
+
+        font-size: $font-size*3;
+        line-height: $baseline*3;
+        font-weight: 300;
+        text-align: center;
+    }
+
+    #agenda{
+        width: calc(140vw - 3rem);
+
+        border-bottom: 1px solid grey;
+        padding: 0 0 10vh 0;
+        transition: .75s ease-in-out;
+
+        .day{
+            min-height: 25vh;
+            border-left: 1px solid #0003;
+            padding: 0 1vw 0 1vw;            
+            transition: .75s ease-in-out;
+
+            &:hover [data-attribute="agenda"]{
+                background: blue;
+            }
+
+            &:nth-of-type(6):hover [data-attribute="day"], &:nth-of-type(7):hover [data-attribute="day"]{
+                transform: translateX(-40vw);
+            } 
+
+            h6{
+                font-size: $font-size*7;
+                line-height: $baseline*7;
+                font-weight: 100;
+
+                font-feature-settings: "frac";
+
+            }
+
+            h5.type,h5.lieu{
+                font-size: $font-size*2;
+                line-height: $baseline*1.5;
+                font-weight: 100;
+            }
+
+            h5.type{
+
+                &:before {
+                    content:"▤";
+                    margin: 0 0.8rem;
+                    font-family: monospace;
+
+                }
+            }
+
+            h5.lieu{
+
+                &:before {
+                    content:"⁙";
+                    margin: 0 1rem;
+                    font-family: monospace;
+
+                }
+            }
+
+            h4{
+                font-size: $font-size*3;
+                line-height: $baseline*2.5;
+                font-weight: 100;
+                text-transform: uppercase;
+                padding: $baseline*2 0;
+            }
+
+        }
+    }
+
+
+    #agenda_moving_left{
+        position: absolute;
+        width: 5%;
+        height: 100%;
+        right: 0;
+
+        z-index: 999;
+        cursor: pointer;
+    }
+
+    #agenda_moving_left:hover + #agenda .day{ //~
+        transform: translateX(-40vw);
+
+    }
+
+
+}
+
+
+#topbar #topbar-content #logo-medialab {
+    width: 70%;
+    max-width: 150px;
+    vertical-align: bottom;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    align-self: end;
+    position: absolute;
+    margin: 0;
+    top: 1rem;
+    opacity: .5;
+
+}
+
+/////////////////
+//// Introduction
+/////////////////
+
+.i1{
+    overflow: hidden;
+    height: 25vh;
+    top: 3rem;
+    width: 100%;
+
+
+
+    p:nth-of-type(1){
+        background-color:  white;
+        font-size: 4vh;
+        line-height: 4vh;
+        max-width: 90vw;
+        padding: 1rem 2rem;
+        z-index: 9;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    p:nth-of-type(2){
+        word-break: break-all;
+        font-size: 4vh;
+        line-height: 4.1vh;
+        height: 25vh;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+    }
+}
+
+
+////////////////////
+////////  Flux
+/////////////////////

@@ -68,13 +68,15 @@
 
 .slideshow--nav:after {
 	display: block;
-	content: '\25B6';
-	font-size: 2em;
-	color: #fff;
+	content: '▷';
+	font-size: 1vw;
+	color: black;
 	position: absolute;
 	top: 50%;
 	right: 10px;
 	margin-top: -.5em;
+	background: white;
+	padding: 2.5vh .5vh;
 }
 
 .slideshow--nav-previous {

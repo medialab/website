@@ -29,9 +29,11 @@ Présente l'ensemble des productions avec un affichage par défaut par ordre ant
 - Titre,
 - Auteurs (avec lien vers les pages people des membres du labo),
 - description (au survol?)
+- image
 
 ## Filtres
 - Type
+- Metarubrique sur les tytpes : "publications", "corpus", "tools" et "events"
 
 ## Tri
 - Date

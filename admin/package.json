@@ -30,6 +30,7 @@
     "hash.js": "^1.1.7",
     "history": "^4.7.2",
     "lodash": "^4.17.11",
+    "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-dropzone": "^7.0.1",

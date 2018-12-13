@@ -12,11 +12,8 @@ export function rawToHtml(rawContentState) {
 }
 
 const DEFAULT_MAX_SLUG_TOKENS = 6;
-export function slugify(id, str) {
-  let s = slug(str, {lower: true});
+export function slugify(str) {
+  const s = slug(str, {lower: true});
 
-  s = s.split('-').slice(0, DEFAULT_MAX_SLUG_TOKENS).join('-');
-
-  // return `${s}-${id.split('-')[0]}`;
-  return s;
+  return s.split('-').slice(0, DEFAULT_MAX_SLUG_TOKENS).join('-');
 }

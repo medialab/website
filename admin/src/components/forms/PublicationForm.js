@@ -1,28 +1,16 @@
-import React, {Component} from 'react';
-import {push as pushAction} from 'connected-react-router';
-import {connect} from 'react-redux';
-import set from 'lodash/fp/set';
-import uuid from 'uuid/v4';
+import React from 'react';
 import {slugify} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
 
-import FormLayout from './FormLayout';
+import Form from './Form';
 import Editor from '../Editor';
 import BooleanSelector from '../selectors/BooleanSelector';
 import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector from '../selectors/RelationSelector';
-import {
-  createHandler,
-  createSlugRelatedHandler,
-  createRawHandler,
-  createAddRelationHandler,
-  createDropRelationHandler
-} from './utils';
-import client from '../../client';
 
-function slugForModel(data) {
-  return slugify(data.id, data.title ? (data.title.fr || '') : '');
+function slugifyPublication(data) {
+  return slugify(data.title ? (data.title.fr || '') : '');
 }
 
 function validate(data) {
@@ -30,333 +18,264 @@ function validate(data) {
     return 'Need at least a French title';
 }
 
-class PublicationFrom extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.frenchEditorContent = null;
-    this.englishEditorContent = null;
-
-    if (props.id) {
-      this.state = {
-        existingSlugs: null,
-        new: false,
-        loading: true,
-        data: null
-      };
-    }
-
-    else {
-      this.state = {
-        new: true,
-        loading: false,
-        data: initializers.activity(uuid)
-      };
-    }
-
-    // Handlers
-    this.handleEnglishTitle = createHandler(this, ['data', 'title', 'en']);
-    this.handleFrenchTitle = createSlugRelatedHandler(this, ['data', 'title', 'fr'], slugForModel);
-    this.handleEnglishAbstract = createHandler(this, ['data', 'abstract', 'en']);
-    this.handleFrenchAbstract = createHandler(this, ['data', 'abstract', 'fr']);
-    this.handleType = createRawHandler(this, ['data', 'type']);
-
-    this.handleAddActivity = createAddRelationHandler(this, 'activities');
-    this.handleDropActivity = createDropRelationHandler(this, 'activities');
-    this.handleAddPeople = createAddRelationHandler(this, 'people');
-    this.handleDropPeople = createDropRelationHandler(this, 'people');
-    this.handleAddPublication = createAddRelationHandler(this, 'publications');
-    this.handleDropPublication = createDropRelationHandler(this, 'publications');
-
-    this.handleFrenchContent = createRawHandler(this, ['data', 'content', 'fr']);
-    this.handleEnglishContent = createRawHandler(this, ['data', 'content', 'en']);
+const HANDLERS = {
+  englishTitle: {
+    field: ['title', 'en']
+  },
+  frenchTitle: {
+    type: 'slug',
+    field: ['title', 'fr'],
+    slugify: slugifyPublication
+  },
+  englishAbstract: {
+    field: ['abstract', 'en']
+  },
+  frenchAbstract: {
+    field: ['abstract', 'fr']
+  },
+  type: {
+    type: 'raw',
+    field: 'type'
+  },
+  activities: {
+    type: 'relation',
+    field: 'activities'
+  },
+  people: {
+    type: 'relation',
+    field: 'people'
+  },
+  publications: {
+    type: 'relation',
+    field: 'publications'
+  },
+  frenchContent: {
+    type: 'raw',
+    field: ['content', 'fr']
+  },
+  englishContent: {
+    type: 'raw',
+    field: ['content', 'en']
+  },
+  published: {
+    type: 'negative',
+    field: ['draft']
   }
+};
 
-  componentDidMount() {
+function renderPublicationForm(props) {
+  const {
+    data,
+    handlers,
+    slug,
+    hasCollidingSlug,
+    englishEditorContent,
+    frenchEditorContent
+  } = props;
 
-    if (!this.state.new)
-      client.get({params: {model: 'publications', id: this.props.id}}, (err, data) => {
-        if (data.content && data.content.en)
-          this.englishEditorContent = data.content.en;
+  return (
+    <div className="container">
 
-        if (data.content && data.content.fr)
-          this.frenchEditorContent = data.content.fr;
-
-        this.setState({loading: false, data});
-      });
-
-    client.suggest({params: {model: 'publications', field: 'slugs'}}, (err, data) => {
-      this.setState({existingSlugs: new Set(data)});
-    });
-  }
-
-  handlePublished = value => {
-    this.setState(set(['data', 'draft'], !value, this.state));
-  };
-
-  handleSubmit = newSlug => {
-    const {push} = this.props;
-
-    let state = this.state;
-
-    if (newSlug) {
-      state = set(['data', 'slugs'], [newSlug], state);
-      this.setState(state);
-    }
-
-    if (state.new) {
-
-      // Creating the new item
-      const payload = {
-        params: {model: 'publications'},
-        data: state.data
-      };
-
-      client.post(payload, () => {
-        push(`/publications/${state.data.id}`);
-        this.setState({new: false});
-      });
-    }
-    else {
-
-      // Upating the item
-      const payload = {
-        params: {model: 'publications', id: this.props.id},
-        data: state.data
-      };
-
-      client.put(payload, () => {
-        // push('/publications');
-      });
-    }
-  };
-
-  render() {
-
-    const {
-      existingSlugs,
-      loading,
-      data
-    } = this.state;
-
-    if (loading)
-      return <div>Loading...</div>;
-
-    const slugValue = this.state.new ?
-      slugForModel(data) :
-      data.slugs[data.slugs.length - 1];
-
-    const collidingSlug = (
-      this.state.new &&
-      existingSlugs &&
-      existingSlugs.has(slugValue)
-    );
-
-    return (
-      <FormLayout
-        data={data}
-        new={this.state.new}
-        model="publications"
-        label="publication"
-        collidingSlug={collidingSlug}
-        existingSlugs={existingSlugs}
-        validate={validate}
-        onSubmit={this.handleSubmit}>
-        <div className="container">
-
-          <div className="form-group">
-            <div className="columns">
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">English Title</label>
-                  <div className="control">
-                    <input
-                      type="text"
-                      className="input"
-                      autoFocus
-                      value={(data.title && data.title.en) || ''}
-                      onChange={this.handleEnglishTitle}
-                      placeholder="English Title" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">French Title</label>
-                  <div className="control">
-                    <input
-                      type="text"
-                      className="input"
-                      value={(data.title && data.title.fr) || ''}
-                      onChange={this.handleFrenchTitle}
-                      placeholder="French Title" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="columns">
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">Slug</label>
-                  <div className="control">
-                    <input
-                      type="text"
-                      className={collidingSlug ? 'input is-danger' : 'input'}
-                      value={slugValue}
-                      disabled
-                      placeholder="..." />
-                  </div>
-                  {collidingSlug && <p className="help is-danger">This slug already exists!</p>}
-                </div>
-              </div>
-            </div>
-
-            <div className="columns">
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">Type of publication</label>
-                  <div className="control">
-                    <EnumSelector
-                      enumType="publicationTypes"
-                      value={data.type}
-                      onChange={this.handleType} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="form-group">
-            <h4 className="title is-4">
-              Publication presentation
-            </h4>
-            <div className="columns">
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">English Abstract</label>
-                  <div className="control">
-                    <textarea
-                      className="textarea"
-                      value={(data.abstract && data.abstract.en) || ''}
-                      onChange={this.handleEnglishAbstract}
-                      placeholder="English Abstract"
-                      rows={2} />
-                  </div>
-                </div>
-              </div>
-
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">French Abstract</label>
-                  <div className="control">
-                    <textarea
-                      className="textarea"
-                      value={(data.abstract && data.abstract.fr) || ''}
-                      onChange={this.handleFrenchAbstract}
-                      placeholder="French Abstract"
-                      rows={2} />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="columns">
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">English Content</label>
-                  <Editor
-                    content={this.englishEditorContent}
-                    onSave={this.handleEnglishContent} />
-                </div>
-              </div>
-
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">French Content</label>
-                  <Editor
-                    content={this.frenchEditorContent}
-                    onSave={this.handleFrenchContent} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="form-group">
-            <h4 className="title is-4">
-              Publication's related objects
-            </h4>
-
-            <div className="columns">
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">Related Activities</label>
-                  <div className="control">
-                    <RelationSelector
-                      model="activities"
-                      selected={data.activities}
-                      onAdd={this.handleAddActivity}
-                      onDrop={this.handleDropActivity} />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="columns">
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">Related People</label>
-                  <div className="control">
-                    <RelationSelector
-                      model="people"
-                      selected={data.people}
-                      onAdd={this.handleAddPeople}
-                      onDrop={this.handleDropPeople} />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="columns">
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">Related Publications</label>
-                  <div className="control">
-                    <RelationSelector
-                      model="publications"
-                      self={data.id}
-                      selected={data.publications}
-                      onAdd={this.handleAddPublication}
-                      onDrop={this.handleDropPublication} />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div className="form-group is-important">
+      <div className="form-group">
+        <div className="columns">
+          <div className="column is-6">
             <div className="field">
-              <label className="label title is-4">{'"' + (data.title && data.title.en || '') + '"' || 'Publication'} page's publication status</label>
+              <label className="label">English Title</label>
               <div className="control">
-                <BooleanSelector
-                  value={!data.draft}
-                  labels={['published', 'draft']}
-                  onChange={this.handlePublished} />
+                <input
+                  type="text"
+                  className="input"
+                  autoFocus
+                  value={(data.title && data.title.en) || ''}
+                  onChange={handlers.englishTitle}
+                  placeholder="English Title" />
               </div>
             </div>
           </div>
 
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">French Title</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  value={(data.title && data.title.fr) || ''}
+                  onChange={handlers.frenchTitle}
+                  placeholder="French Title" />
+              </div>
+            </div>
+          </div>
         </div>
-      </FormLayout>
-    );
-  }
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Slug</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className={hasCollidingSlug ? 'input is-danger' : 'input'}
+                  value={slug}
+                  disabled
+                  placeholder="..." />
+              </div>
+              {hasCollidingSlug && <p className="help is-danger">This slug already exists!</p>}
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Type of publication</label>
+              <div className="control">
+                <EnumSelector
+                  enumType="publicationTypes"
+                  value={data.type}
+                  onChange={handlers.type} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="form-group">
+        <h4 className="title is-4">
+          Publication presentation
+        </h4>
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Abstract</label>
+              <div className="control">
+                <textarea
+                  className="textarea"
+                  value={(data.abstract && data.abstract.en) || ''}
+                  onChange={handlers.englishAbstract}
+                  placeholder="English Abstract"
+                  rows={2} />
+              </div>
+            </div>
+          </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">French Abstract</label>
+              <div className="control">
+                <textarea
+                  className="textarea"
+                  value={(data.abstract && data.abstract.fr) || ''}
+                  onChange={handlers.frenchAbstract}
+                  placeholder="French Abstract"
+                  rows={2} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Content</label>
+              <Editor
+                content={englishEditorContent}
+                onSave={handlers.englishContent} />
+            </div>
+          </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">French Content</label>
+              <Editor
+                content={frenchEditorContent}
+                onSave={handlers.frenchContent} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="form-group">
+        <h4 className="title is-4">
+          Publication's related objects
+        </h4>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Related Activities</label>
+              <div className="control">
+                <RelationSelector
+                  model="activities"
+                  selected={data.activities}
+                  onAdd={handlers.activities.add}
+                  onDrop={handlers.activities.drop} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Related People</label>
+              <div className="control">
+                <RelationSelector
+                  model="people"
+                  selected={data.people}
+                  onAdd={handlers.people.add}
+                  onDrop={handlers.people.drop} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Related Publications</label>
+              <div className="control">
+                <RelationSelector
+                  model="publications"
+                  self={data.id}
+                  selected={data.publications}
+                  onAdd={handlers.publications.add}
+                  onDrop={handlers.publications.drop} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div className="form-group is-important">
+        <div className="field">
+          <label className="label title is-4">{'"' + (data.title && data.title.en || '') + '"' || 'Publication'} page's publication status</label>
+          <div className="control">
+            <BooleanSelector
+              value={!data.draft}
+              labels={['published', 'draft']}
+              onChange={handlers.published} />
+          </div>
+        </div>
+      </div>
+
+    </div>
+  );
 }
 
-const ConnectedPublicationFrom = connect(
-  null,
-  {push: pushAction}
-)(PublicationFrom);
-
-export default ConnectedPublicationFrom;
+export default function PublicationForm({id}) {
+  return (
+    <Form
+      id={id}
+      initializer={initializers.publication}
+      handlers={HANDLERS}
+      contentField="content"
+      model="publications"
+      label="publication"
+      slugify={slugifyPublication}
+      validate={validate}>
+      {renderPublicationForm}
+    </Form>
+  );
+}

@@ -6,7 +6,9 @@ import IMAGE from './entities/image';
 export default class Editor extends PureComponent {
 
   handleOnSave = content => {
-    this.props.onSave(rawToHtml(content));
+    const html = content ? rawToHtml(content) : '';
+
+    this.props.onSave(html);
   };
 
   render() {

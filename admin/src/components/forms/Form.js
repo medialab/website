@@ -1,15 +1,22 @@
 /* eslint no-nested-ternary: 0 */
 /* eslint no-alert: 0 */
+/* eslint react/forbid-prop-types: 0 */
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {push as pushAction} from 'connected-react-router';
+import {connect} from 'react-redux';
 import TimeAgo from 'react-timeago';
 import {Link, Prompt} from 'react-router-dom';
+import uuid from 'uuid/v4';
+import get from 'lodash/fp/get';
 import set from 'lodash/fp/set';
 import cls from 'classnames';
 
+import client from '../../client';
 import Button from '../misc/Button';
 import CardModal from '../misc/CardModal';
 import Preview from '../Preview';
-import {hash} from './utils';
+import {hash, createHandlers} from './utils';
 
 const actionBarStyle = {
   borderTop: '1px solid #dbdbdb',
@@ -90,21 +97,62 @@ class SlugConfirm extends Component {
   }
 }
 
-export default class Form extends Component {
+class Form extends Component {
+  static propTypes = {
+    id: PropTypes.string,
+    children: PropTypes.func.isRequired,
+    contentField: PropTypes.string.isRequired,
+    handlers: PropTypes.object.isRequired,
+    initializer: PropTypes.func.isRequired,
+    label: PropTypes.string.isRequired,
+    model: PropTypes.string.isRequired,
+    slugify: PropTypes.func.isRequired,
+    validate: PropTypes.func.isRequired
+  };
+
   constructor(props, context) {
     super(props, context);
 
+    // Storing the rich editor's initial content
+    this.frenchEditorContent = null;
+    this.englishEditorContent = null;
+
+    // State
+    const isNew = !props.id;
+
+    let newData;
+
+    if (isNew)
+      newData = props.initializer(uuid);
+
     this.state = {
-      lastHash: hash(props.data),
+
+      // Important
+      isNew,
+
+      // Data
+      existingSlugs: null,
+      data: isNew ? newData : null,
+
+      // UI state
       confirming: false,
+      loading: !isNew,
       saving: false,
       signaling: false,
+
+      // Keeping last relevant hash to detect whether the form is dirty
+      lastHash: isNew ? hash(newData) : null,
+
+      // Time of last save
       time: null,
+
+      // Current view, "edit" or "preview-french" or "preview-english"
       view: 'edit'
     };
 
+    // Listener not to lose work when closing page
     this.beforeunloadListener = e => {
-      if (hash(this.props.data) === this.state.lastHash)
+      if (hash(this.state.data) === this.state.lastHash)
         return;
 
       const result = window.confirm(navigationPromptMessage());
@@ -115,11 +163,38 @@ export default class Form extends Component {
       }
     };
 
+    // Keeping track of animation timeouts to cleanup on unmount
     this.timeout = null;
+
+    // Creating underlying handlers only once for performance reasons
+    this.handlers = createHandlers(this, props.handlers);
   }
 
   componentDidMount() {
+    const {
+      id,
+      model,
+      contentField
+    } = this.props;
+
+    // Window event listeners
     window.addEventListener('beforeunload', this.beforeunloadListener);
+
+    // Loading necessary data through API
+    if (!this.state.isNew)
+      client.get({params: {model, id}}, (err, data) => {
+        const englishContent = get([contentField, 'en'], data) || null,
+              frenchContent = get([contentField, 'fr'], data) || null;
+
+        this.englishEditorContent = englishContent;
+        this.frenchEditorContent = frenchContent;
+
+        this.setState({loading: false, data, lastHash: hash(data)});
+      });
+
+    client.suggest({params: {model, field: 'slugs'}}, (err, data) => {
+      this.setState({existingSlugs: new Set(data)});
+    });
   }
 
   componentWillUnmount() {
@@ -159,21 +234,57 @@ export default class Form extends Component {
   };
 
   handleSubmit = newSlug => {
+
+    const {
+      data,
+      isNew,
+      confirming,
+      existingSlugs
+    } = this.state;
+
+    const {
+      model,
+      push
+    } = this.props;
+
+    // If the item is new and the slug is colliding, we trigger a confirm
     if (
-      this.props.new &&
-      !this.state.confirming &&
-      this.props.collidingSlug
+      isNew &&
+      !confirming &&
+      existingSlugs.has(data.slugs[0])
     )
       return this.setState({confirming: true});
 
-    let currentData = this.props.data;
+    // Do we need to update current slug?
+    let currentData = data;
 
     if (newSlug)
       currentData = set('slugs', [newSlug], currentData);
 
-    this.setState({lastHash: hash(currentData), saving: true});
-    this.props.onSubmit(newSlug);
+    this.setState({data: currentData, lastHash: hash(currentData), saving: true});
 
+    // Persisting
+    if (isNew) {
+      const payload = {
+        params: {model},
+        data: currentData
+      };
+
+      client.post(payload, () => {
+        push(`/${model}/${currentData.id}`);
+        this.setState({isNew: false});
+      });
+    }
+    else {
+      const payload = {
+        params: {model, id: currentData.id},
+        data: currentData
+      };
+
+      client.put(payload, Function.prototype);
+    }
+
+    // Animating the save button
     this.timeout = setTimeout(() => {
       this.setState({saving: false, signaling: true});
 
@@ -183,8 +294,12 @@ export default class Form extends Component {
 
   render() {
     const {
+      isNew,
       lastHash,
+      loading,
       confirming,
+      data,
+      existingSlugs,
       saving,
       signaling,
       time,
@@ -192,19 +307,30 @@ export default class Form extends Component {
     } = this.state;
 
     const {
-      collidingSlug,
-      data,
-      existingSlugs,
       children,
       model,
       label,
-      validate = Function.prototype
+      slugify,
+      validate
     } = this.props;
+
+    if (loading)
+      return <div>Loading...</div>;
+
+    const slug = isNew ?
+      slugify(data) :
+      data.slugs[data.slugs.length - 1];
+
+    const hasCollidingSlug = (
+      isNew &&
+      existingSlugs &&
+      existingSlugs.has(slug)
+    );
 
     const pageLabel = label || model;
 
-    const saveLabel = this.props.new ?
-      (`Create this ${pageLabel}` + (collidingSlug ? ' and edit the slug' : '')) :
+    const saveLabel = isNew ?
+      (`Create this ${pageLabel}` + (hasCollidingSlug ? ' and edit the slug' : '')) :
       `Save this ${pageLabel}`;
 
     const dirty = hash(data) !== lastHash;
@@ -232,9 +358,18 @@ export default class Form extends Component {
     let body = null;
 
     if (view === 'edit') {
+      const renderedForm = children({
+        handlers: this.handlers,
+        englishEditorContent: this.englishEditorContent,
+        frenchEditorContent: this.frenchEditorContent,
+        hasCollidingSlug,
+        slug,
+        data
+      });
+
       body = (
         <div>
-          {children}
+          {renderedForm}
           <p style={{height: '70px'}} />
           <div style={actionBarStyle} className="container">
             <div className="level">
@@ -278,7 +413,7 @@ export default class Form extends Component {
       <div>
         {confirming && (
           <SlugConfirm
-            slug={data.slugs[data.slugs.length - 1]}
+            slug={slug}
             existingSlugs={existingSlugs}
             onClose={this.handleConfirmationModalClose}
             onSubmit={this.handleSubmit} />
@@ -293,14 +428,14 @@ export default class Form extends Component {
               onClick={this.toggleEdit}>
               <a>Edit {pageLabel}</a>
             </li>
-            {!this.props.new && (
+            {!isNew && (
               <li
                 className={cls(view === 'preview-fr' && 'is-active')}
                 onClick={this.toggleFrenchPreview}>
                 <a>Preview French {pageLabel} page</a>
               </li>
             )}
-            {!this.props.new && (
+            {!isNew && (
               <li
                 className={cls(view === 'preview-en' && 'is-active')}
                 onClick={this.toggleEnglishPreview}>
@@ -314,3 +449,10 @@ export default class Form extends Component {
     );
   }
 }
+
+const ConnectedForm = connect(
+  null,
+  {push: pushAction}
+)(Form);
+
+export default ConnectedForm;

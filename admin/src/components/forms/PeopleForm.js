@@ -17,7 +17,7 @@ function validate(data) {
     return 'Need at least a first name & a last name';
 }
 
-// TODO: domain, status, contact, mainActivities, mainProductions
+// TODO: domain, contact, mainActivities, mainProductions
 const HANDLERS = {
   firstName: {
     type: 'slug',
@@ -38,6 +38,12 @@ const HANDLERS = {
   membership: {
     type: 'raw',
     field: 'membership'
+  },
+  englishStatus: {
+    field: ['status', 'en']
+  },
+  frenchStatus: {
+    field: ['status', 'fr']
   },
   englishContent: {
     type: 'raw',
@@ -178,6 +184,36 @@ function renderPeopleForm(props) {
                   value={data.role ? data.role.fr : ''}
                   onChange={handlers.frenchRole}
                   placeholder="French Role" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Status</label>
+              <div className="control">
+                <textarea
+                  className="textarea"
+                  value={(data.status && data.status.en) || ''}
+                  onChange={handlers.englishStatus}
+                  placeholder="English Status"
+                  rows={2} />
+              </div>
+            </div>
+          </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">French Status</label>
+              <div className="control">
+                <textarea
+                  className="textarea"
+                  value={(data.status && data.status.fr) || ''}
+                  onChange={handlers.frenchStatus}
+                  placeholder="French Status"
+                  rows={2} />
               </div>
             </div>
           </div>

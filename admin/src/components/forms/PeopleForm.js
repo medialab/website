@@ -17,7 +17,7 @@ function validate(data) {
     return 'Need at least a first name & a last name';
 }
 
-// TODO: domain, contact, mainActivities, mainProductions
+// TODO: contact, mainActivities, mainProductions
 const HANDLERS = {
   firstName: {
     type: 'slug',
@@ -38,6 +38,10 @@ const HANDLERS = {
   membership: {
     type: 'raw',
     field: 'membership'
+  },
+  domain: {
+    type: 'raw',
+    field: 'domain'
   },
   englishStatus: {
     field: ['status', 'en']
@@ -159,6 +163,21 @@ function renderPeopleForm(props) {
         <h4 className="title is-4">
           Presentation
         </h4>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Domain</label>
+              <div className="control">
+                <EnumSelector
+                  enumType="domains"
+                  value={data.domain}
+                  onChange={handlers.domain} />
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="columns">
           <div className="column is-6">
             <div className="field">

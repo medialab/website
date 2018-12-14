@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Select from 'react-select';
+import CreatableSelect from 'react-select/lib/Creatable';
 import range from 'lodash/range';
 
 import Button from '../misc/Button';
@@ -14,6 +15,7 @@ const YEAR_OPTIONS = YEARS.map(year => {
     label: '' + year
   };
 });
+
 
 const MONTH_OPTIONS = [
   {label: 'January', value: '01'},
@@ -62,6 +64,10 @@ const customStyles = {
   }
 };
 
+function isYear(string) {
+  return string.length === 4 && !isNaN(+string);
+}
+
 function validate(precision, year, month, day) {
   if (!year && !month && !day)
     return null;
@@ -100,14 +106,23 @@ export default class DateSelector extends Component {
       month: MONTH_OPTIONS.find(o => o.value === month) || null,
       day: DAY_OPTIONS.find(o => o.value === day) || null
     };
+
+    this.monthRef = React.createRef();
+    this.dayRef = React.createRef();
   }
 
   handleYear = o => {
     this.setState({year: o}, this.handleChange);
+
+    if (!this.state.month)
+      this.monthRef.current.focus();
   };
 
   handleMonth = o => {
     this.setState({month: o}, this.handleChange);
+
+    if (!this.state.day)
+      this.dayRef.current.focus();
   };
 
   handleDay = o => {
@@ -153,10 +168,11 @@ export default class DateSelector extends Component {
         <div className="level">
           <div className="level-left">
             <div className="level-item">
-              <Select
+              <CreatableSelect
                 isClearable={!month}
                 placeholder="Year"
                 menuPlacement="top"
+                isValidNewOption={isYear}
                 value={year}
                 onChange={this.handleYear}
                 styles={customStyles.year}
@@ -171,7 +187,8 @@ export default class DateSelector extends Component {
                 value={month}
                 onChange={this.handleMonth}
                 styles={customStyles.month}
-                options={MONTH_OPTIONS} />
+                options={MONTH_OPTIONS}
+                ref={this.monthRef} />
             </div>
             <div className="level-item">
               <Select
@@ -182,7 +199,8 @@ export default class DateSelector extends Component {
                 value={day}
                 onChange={this.handleDay}
                 styles={customStyles.day}
-                options={DAY_OPTIONS} />
+                options={DAY_OPTIONS}
+                ref={this.dayRef} />
             </div>
             <div className="level-item">
               {year && <Button kind="text" onClick={this.handleErase}>Erase</Button>}

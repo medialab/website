@@ -117,11 +117,22 @@ ROUTERS.forEach(({model, router}) => {
 
       const values = new Set();
 
-      data.forEach(item => {
-        const value = get(field, item);
+      // TODO: we can do better...
+      if (field === 'contact.label') {
+        data.forEach(item => {
+          if (!item.contact)
+            return;
 
-        [].concat(value).forEach(v => values.add(v));
-      });
+          item.contact.forEach(contact => values.add(contact.label));
+        });
+      }
+      else {
+        data.forEach(item => {
+          const value = get(field, item);
+
+          [].concat(value).forEach(v => values.add(v));
+        });
+      }
 
       data = Array.from(values);
     }

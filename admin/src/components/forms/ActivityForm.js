@@ -6,6 +6,7 @@ import initializers from '../../../../specs/initializers';
 import Form from './Form';
 import Editor from '../Editor';
 import EnumSelector from '../selectors/EnumSelector';
+import DateSelector from '../selectors/DateSelector';
 import BooleanSelector from '../selectors/BooleanSelector';
 import RelationSelector from '../selectors/RelationSelector';
 
@@ -18,7 +19,6 @@ function validate(data) {
     return 'Need at least a name';
 }
 
-// TODO: startDate, endDate
 const HANDLERS = {
   name: {
     type: 'slug',
@@ -64,6 +64,14 @@ const HANDLERS = {
   important: {
     type: 'boolean',
     field: ['important']
+  },
+  startDate: {
+    type: 'raw',
+    field: 'startDate'
+  },
+  endDate: {
+    type: 'raw',
+    field: 'endDate'
   }
 };
 
@@ -141,6 +149,28 @@ function renderActivityForm(props) {
                   placeholder="French Baseline"
                   rows={2} />
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <label className="label">Start Date</label>
+            <div className="control">
+              <DateSelector
+                precision="month"
+                value={data.startDate}
+                onChange={handlers.startDate} />
+            </div>
+          </div>
+
+          <div className="column is-6">
+            <label className="label">End Date</label>
+            <div className="control">
+              <DateSelector
+                precision="month"
+                value={data.endDate}
+                onChange={handlers.endDate} />
             </div>
           </div>
         </div>

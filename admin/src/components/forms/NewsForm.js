@@ -20,7 +20,6 @@ function validate(data) {
     return 'Need at least a French title';
 }
 
-// TODO: startDate, endDate
 const HANDLERS = {
   englishTitle: {
     field: ['title', 'en']

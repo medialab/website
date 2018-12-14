@@ -720,7 +720,8 @@ ul {
   appearance: none;
   background: #ccc;
   border-radius: 1em;
-  transition: .3s ease-out background, .3s ease-out transform; }
+  transition: .3s ease-out background, .3s ease-out transform;
+  display: none !important; }
 
 .slideshow--bullet:checked {
   background: #999;
@@ -772,6 +773,7 @@ hr {
   #focus article {
     position: absolute;
     width: 50vw;
+    min-width: 600px;
     height: calc(92vh - 100px );
     background: white;
     margin: 4vh;
@@ -782,13 +784,17 @@ hr {
       grid-template-columns: repeat(3, 1fr);
       grid-gap: 15px;
       height: calc(66% - 2rem);
-      grid-template-rows: 2rem 50% calc( 50% - 2rem); }
+      grid-template-rows: 2rem calc( 50% - 2rem) calc( 50% - 4rem);
+      grid-template-rows: 2rem auto auto; }
       #focus article header h1 {
         grid-column: 1/4;
         grid-row: 2;
         font-size: 50px;
         line-height: 75px;
         font-size: 5vw;
+        line-height: 5vw;
+        padding: 0 0 1vw 0;
+        letter-spacing: -1px;
         font-weight: 100;
         align-self: center; }
       #focus article header h2 {
@@ -844,6 +850,7 @@ hr {
           #focus article nav.related ul li h4 {
             width: auto;
             flex-grow: 1;
+            white-space: nowrap;
             margin: 0 .5rem 0 0;
             font-size: 16px;
             font-weight: normal; }
@@ -851,13 +858,19 @@ hr {
             flex-grow: 1;
             font-size: 16px;
             font-weight: normal;
-            font-style: italic; }
+            font-style: italic;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden; }
           #focus article nav.related ul li .nomenclature {
             display: flex;
             align-items: center;
             justify-content: stretch;
             flex-grow: 2;
-            max-width: 33%; }
+            max-width: 33%;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden; }
             #focus article nav.related ul li .nomenclature p {
               width: auto;
               font-size: 14px;
@@ -1050,8 +1063,8 @@ hr {
     .container #ensecond {
       grid-column: 1/7;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-gap: 15px; }
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 15px 4vw; }
       .container #ensecond h3 {
         grid-column: 1/5; }
       .container #ensecond header {

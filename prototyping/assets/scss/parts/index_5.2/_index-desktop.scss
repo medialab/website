@@ -81,6 +81,7 @@ hr{
     article{
         position: absolute;
         width: 50vw;
+        min-width: 600px;
         height: calc(92vh - #{$height-top-bar} );        
         background: white;
 
@@ -93,7 +94,9 @@ hr{
             grid-template-columns: repeat(3, 1fr);
             grid-gap: $baseline;
             height: calc(66% - 2rem);
-            grid-template-rows: 2rem 50% calc( 50% - 2rem);
+            grid-template-rows: 2rem calc( 50% - 2rem) calc( 50% - 4rem);
+            grid-template-rows: 2rem auto auto;
+
 
 
             h1{
@@ -102,6 +105,10 @@ hr{
                 font-size: $font-size*5;
                 line-height: $baseline*5;
                 font-size: 5vw;
+                line-height: 5vw;
+                padding: 0 0 1vw 0;
+                letter-spacing: -1px;
+                
                 font-weight: 100;
 
                 align-self: center;
@@ -182,6 +189,7 @@ hr{
                     h4{
                         width: auto;
                         flex-grow: 1;
+                        white-space: nowrap;
                         margin: 0 .5rem 0 0;
 
                         font-size: 16px;
@@ -194,6 +202,10 @@ hr{
                         font-size: $font-size*1.6;
                         font-weight: normal;
                         font-style: italic;
+
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
                     }
 
                     .nomenclature{
@@ -202,6 +214,11 @@ hr{
                         justify-content: stretch;
                         flex-grow: 2;
                         max-width: 33%;
+
+
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
 
                         p{
                             width: auto;

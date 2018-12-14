@@ -7,3 +7,6 @@ dump
 *.log
 .sass-cache
 prototyping/assets/.sass-cache
+admin/package-lock.json
+package-lock.json
+site/package-lock.json

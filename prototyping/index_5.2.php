@@ -36,15 +36,122 @@
 						</div>
 						<article>
 							<header>
-								<h1>EDGE</h1>
-								<h2>Environmental Diplomacy and Geopolitics</h2>
+								<h1>SHINRAI</h1>
+								<h2>Comment décider dans un contexte de controverse scientifique?</h2>
 
 								<div class="nomenclature">
-									<p class="type">Séminaire</p>
+									<p class="type">Article</p>
 									<p class="auteur">3 contributeurs</p>
 								</div>
 
-								<p class="description">Lauréat de <a href="http://www.horizon2020.gouv.fr/cid86662/l-appel-a-projet-twinning-ouvert-jusqu-en-mai-2015.html">l’appel à projet Twinning</a> de la Commission européenne, le programme EDGE (Environmental Diplomacy and Geopolitics) vise à faciliter les échanges d'étudiants entre trois universités (Université d'économie de Bratislava, Sciences Po et l'Université de Liège) pour leur permettre d'acquérir des connaissances en diplomatie environnementale et géopolitique de l'environnement.</p>					
+								<p class="description">La catastrophe de Fukushima a provoqué une crise politique et sociétale majeure au Japon. SHINRAI analyse la gestion faite par les autorités japonaises et sa réception par les populations.</p>					
+							</header>
+
+							<nav class="related">
+								<h3>En lien</h3>
+								<ul>
+									<li>	
+										<h4>RICardo Project</h4>
+										<h5>Exploring XIX Century International Trade</h5>
+										<div class="nomenclature">
+											<p class="type">Publication</p>
+											<p class="auteur" data-attribute="John Doe, Michel Doe, Jeanine Doubs">3 contributeurs</p>
+										</div>
+									</li>
+									<li>	
+										<h4>Communication à la conférence ABC</h4>
+										<div class="nomenclature">
+											<p class="type">Publication</p>
+											<p class="date"> 2018-06-09</p>
+										</div>
+									</li>
+									<li>	
+										<h4>Refléxion sur notre atelier XYZ</h4>
+										<div class="nomenclature">
+											<p class="type">chronique</p>
+										</div>
+									</li>
+									<li>	
+										<h4>John Doe rejoint l'équipe du Medialab </h4>
+										<div class="nomenclature">
+											<p class="type">Annonce</p>
+										</div>
+									</li>
+								</ul>
+							</nav>
+						</article>
+					</section>
+				<label for="ss1-item-3" class="slideshow--nav slideshow--nav-previous">Go to slide 3</label>
+				<label for="ss1-item-2" class="slideshow--nav slideshow--nav-next">Go to slide 2</label>
+			</div>
+		
+			<input type="radio" name="ss1" id="ss1-item-2" class="slideshow--bullet" />
+			<div class="slideshow--item">
+					<section class="transition" id="focus">
+						<div>
+							<?php include('assets/images/sample_txt/naturpradi_m.html'); ?>
+						</div>
+												<article>
+							<header>
+								<h1>How not to be a bad trader.</h1>
+								<h2>Marchés financiers : que sont les “bonnes” relations sociales d’échange?</h2>
+
+								<div class="nomenclature">
+									<p class="type">Séminaire</p>
+									<p class="auteur">2 contributeurs</p>
+								</div>
+
+								<p class="description">Le cas de la Rules 10b-5 de la Securities and Exchange Commission : une exploration de l’histoire tumultueuse des interprétations de ce texte de régulation boursière par juristes et économistes, et du débat sur le “bon” comportement sur les marché financiers.</p>					
+							</header>
+
+							<nav class="related">
+								<h3>En lien</h3>
+								<ul>
+									<li>	
+										<h4>Another Publication</h4>
+										<div class="nomenclature">
+											<p class="type">Publication</p>
+											<p class="auteur" data-attribute="John Doe, Michel Doe, Jeanine Doubs">3 contributeurs</p>
+										</div>
+									</li>
+									<li>	
+										<h4>Frank Michael rejoint l'équipe du Medialab </h4>
+										<div class="nomenclature">
+											<p class="type">Annonce</p>
+										</div>
+									</li>
+									<li>	
+										<h4>Refléxion sur notre atelier XYZ</h4>
+										<div class="nomenclature">
+											<p class="type">chronique</p>
+										</div>
+									</li>
+
+								</ul>
+							</nav>
+						</article>
+					</section>
+				<label for="ss1-item-1" class="slideshow--nav slideshow--nav-previous">Go to slide 1</label>
+				<label for="ss1-item-3" class="slideshow--nav slideshow--nav-next">Go to slide 3</label>
+			</div>
+		
+			<input type="radio" name="ss1" id="ss1-item-3" class="slideshow--bullet" />
+			<div class="slideshow--item">
+					<section class="transition" id="focus">
+						<div>
+							<?php include('assets/images/sample_txt/fabrique_loi_xl.html'); ?>
+						</div>
+												<article>
+							<header>
+								<h1>La fabrique de la loi</h1>
+								<h2>Les parlementaires font-ils la loi ?</h2>
+
+								<div class="nomenclature">
+									<p class="type">Article</p>
+									<p class="auteur">3 contributeurs</p>
+								</div>
+
+								<p class="description">Ouvrir la boîte noire de la procédure législative en France grâce à l’exploration des données parlementaires. A destination des chercheurs, ce dispositif est également accessible à tous les citoyens et démocratise la compréhension des différentes étapes de fabrique de la loi.</p>					
 							</header>
 
 							<nav class="related">
@@ -79,48 +186,6 @@
 									</li>
 								</ul>
 							</nav>
-						</article>
-					</section>
-				<label for="ss1-item-3" class="slideshow--nav slideshow--nav-previous">Go to slide 3</label>
-				<label for="ss1-item-2" class="slideshow--nav slideshow--nav-next">Go to slide 2</label>
-			</div>
-		
-			<input type="radio" name="ss1" id="ss1-item-2" class="slideshow--bullet" />
-			<div class="slideshow--item">
-					<section class="transition" id="focus">
-						<div>
-							<?php include('assets/images/sample_txt/naturpradi_s.html'); ?>
-						</div>
-						<article>
-							<header>
-								<p>Lauréat de <a href="http://www.horizon2020.gouv.fr/cid86662/l-appel-a-projet-twinning-ouvert-jusqu-en-mai-2015.html">l’appel à projet Twinning</a> de la Commission européenne, le programme EDGE (Environmental Diplomacy and Geopolitics) vise à faciliter les échanges d'étudiants entre trois universités (Université d'économie de Bratislava, Sciences Po et l'Université de Liège) pour leur permettre d'acquérir des connaissances en diplomatie environnementale et géopolitique de l'environnement.
-								En parallèle, EDGE organise chaque année une Summer School pour stimuler les rencontres scientifiques et promouvoir les travaux menés dans le cadre du programme.
-								</p>					
-							</header>
-						</article>
-					</section>
-				<label for="ss1-item-1" class="slideshow--nav slideshow--nav-previous">Go to slide 1</label>
-				<label for="ss1-item-3" class="slideshow--nav slideshow--nav-next">Go to slide 3</label>
-			</div>
-		
-			<input type="radio" name="ss1" id="ss1-item-3" class="slideshow--bullet" />
-			<div class="slideshow--item">
-					<section class="transition" id="focus">
-						<div>
-							<?php include('assets/images/sample_txt/fabrique_loi_s.html'); ?>
-						</div>
-						<article>
-							<header>
-								<p>Focus sur</p>
-								<h3>3</h3>
-								<h4>Environmental Diplomacy and Geopolitics</h4>
-
-								<h5 class="type">Séminaire</h5>
-
-								<p>Lauréat de <a href="http://www.horizon2020.gouv.fr/cid86662/l-appel-a-projet-twinning-ouvert-jusqu-en-mai-2015.html">l’appel à projet Twinning</a> de la Commission européenne, le programme EDGE (Environmental Diplomacy and Geopolitics) vise à faciliter les échanges d'étudiants entre trois universités (Université d'économie de Bratislava, Sciences Po et l'Université de Liège) pour leur permettre d'acquérir des connaissances en diplomatie environnementale et géopolitique de l'environnement.
-								En parallèle, EDGE organise chaque année une Summer School pour stimuler les rencontres scientifiques et promouvoir les travaux menés dans le cadre du programme.
-								</p>					
-							</header>
 						</article>
 					</section>
 				<label for="ss1-item-2" class="slideshow--nav slideshow--nav-previous">Go to slide 2</label>

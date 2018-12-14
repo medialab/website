@@ -719,7 +719,8 @@ ul {
   appearance: none;
   background: #ccc;
   border-radius: 1em;
-  transition: .3s ease-out background, .3s ease-out transform; }
+  transition: .3s ease-out background, .3s ease-out transform;
+  display: none !important; }
 
 .slideshow--bullet:checked {
   background: #999;

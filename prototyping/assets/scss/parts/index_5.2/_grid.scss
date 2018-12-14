@@ -37,9 +37,10 @@
         #ensecond{
             grid-column: 1/7;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-gap: $baseline;
+            //grid-template-columns: repeat(4, 1fr);
             //grid-template-rows: auto $baseline*8 $baseline*8;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: $baseline 4vw;
 
             h3{
                 grid-column: 1/5; 

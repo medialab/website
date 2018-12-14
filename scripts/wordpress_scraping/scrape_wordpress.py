@@ -16,6 +16,61 @@ BLOG_URL = ADMIN_URL + "?post_type=blog"
 PEOPLE_URL = ADMIN_URL + "?post_type=people"
 
 
+def scrape_slug_page(s, url):
+    slugs = {}
+    slugs_soup = BeautifulSoup(
+        s.get(url).text, 'html.parser')
+
+    nb_slugs = int(re.findall(r'\d+', slugs_soup.find(
+        'span', attrs={"class": "displaying-num"}).get_text())[0])
+    nb_pages = math.ceil(nb_slugs/20)
+    for page in range(1, nb_pages + 1):
+        slug_page = BeautifulSoup(
+            s.get(url + "&paged=" + str(page)).text, 'html.parser')
+        for row in slug_page.select('tr[id^=tag]'):
+            key = row.find_all('a', attrs={
+                "class": "row-title"})[0].get_text()
+            value = row.find_all(
+                'td', attrs={"class": "slug column-slug"})[0].get_text()
+            slugs[key] = value
+    return slugs
+
+
+def scrape_slugs(s):
+    directory = os.path.join("data", "slugs")
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+        PEOPLE_TOOLS_SLUGS_URL = ' http://medialab-dev.sciences-po.fr/wp-admin/edit-tags.php' + \
+            '?taxonomy=tools&post_type=people'
+        tools_slugs = scrape_slug_page(s, PEOPLE_TOOLS_SLUGS_URL)
+
+        PEOPLE_PROJETS_SLUGS_URL = ' http://medialab-dev.sciences-po.fr/wp-admin/edit-tags.php' + \
+            '?taxonomy=projets&post_type=people'
+        projets_slugs = scrape_slug_page(s, PEOPLE_PROJETS_SLUGS_URL)
+
+        with open(os.path.join(directory, 'tools_slugs.json'), 'w') as outfile:
+            json.dump(tools_slugs, outfile, ensure_ascii=False, indent=2)
+        with open(os.path.join(directory, 'projets_slugs.json'), 'w') as outfile:
+            json.dump(projets_slugs, outfile, ensure_ascii=False, indent=2)
+
+
+def name_to_slug(s, name, type):
+    scrape_slugs(s)
+    directory = os.path.join("data", "slugs")
+    if not name:
+        return None
+    elif type == 'tool':
+        with open(os.path.join(directory, 'tools_slugs.json'), 'r') as dict_file:
+            slug_dict = json.load(dict_file)
+    elif type == 'projet':
+        with open(os.path.join(directory, 'projets_slugs.json'), 'r') as dict_file:
+            slug_dict = json.load(dict_file)
+    else:
+        print("ERROR:", "'type' should be either 'tool' or 'projet'")
+    return slug_dict[name]
+
+
 def scrape_projet(s, projet):
     projet_url = projet['href']
     projet_id = int(''.join(list(filter(str.isdigit, projet_url))))
@@ -95,12 +150,6 @@ def scrape_projet(s, projet):
     date = projet_soup.select(
         "#timestamp > b")[0].get_text()
 
-    # for div in projet_soup.select(
-    #         "#side-sortables > div"):
-    #     print(div.get('id'))
-
-    # for category in projet_soup.select("#categorychecklist > li"):
-    #     print(category.get_text())
     try:
         image = projet_soup.select(".thickbox > img")[0].get('src')
     except:
@@ -118,7 +167,9 @@ def scrape_projet(s, projet):
     json_result["permalink"] = permalink
     json_result["excerpt_en"] = excerpt_en
     json_result["excerpt_fr"] = excerpt_fr
-    json_result["custom_fields"] = custom_fields
+    for field in custom_fields:
+        key, value = next(iter(field.items()))
+        json_result[key] = value
     json_result["image"] = image
 
     directory = os.path.join("data", "projets")
@@ -242,7 +293,9 @@ def scrape_publication(s, publication):
     json_result["permalink"] = permalink
     json_result["excerpt_en"] = excerpt_en
     json_result["excerpt_fr"] = excerpt_fr
-    json_result["custom_fields"] = custom_fields
+    for field in custom_fields:
+        key, value = next(iter(field.items()))
+        json_result[key] = value
     json_result["image"] = image
     json_result["people"] = people
     json_result["publication_types"] = publication_types
@@ -375,7 +428,9 @@ def scrape_blog(s, blog):
     json_result["permalink"] = permalink
     json_result["excerpt_en"] = excerpt_en
     json_result["excerpt_fr"] = excerpt_fr
-    json_result["custom_fields"] = custom_fields
+    for field in custom_fields:
+        key, value = next(iter(field.items()))
+        json_result[key] = value
     json_result["image"] = image
     json_result["categories"] = categories
     json_result["people"] = people
@@ -474,6 +529,18 @@ def scrape_people(s, people):
     date = people_soup.select(
         "#timestamp > b")[0].get_text()
 
+    tools = [tool.strip() for tool in people_soup.select(
+        "#tools textarea")[0].get_text().split(',')]
+    if tools[0]:
+        tools_slugs = [name_to_slug(s, x, 'tool') for x in tools]
+    else:
+        tools_slugs = []
+    projets = [projet.strip() for projet in people_soup.select(
+        "#projets textarea")[0].get_text().split(',')]
+    if projets[0]:
+        projets_slugs = [name_to_slug(s, x, 'projet') for x in projets]
+    else:
+        projets_slugs = []
     try:
         image = people_soup.select(".thickbox > img")[0].get('src')
     except:
@@ -491,7 +558,11 @@ def scrape_people(s, people):
     json_result["permalink"] = permalink
     json_result["excerpt_en"] = excerpt_en
     json_result["excerpt_fr"] = excerpt_fr
-    json_result["custom_fields"] = custom_fields
+    for field in custom_fields:
+        key, value = next(iter(field.items()))
+        json_result[key] = value
+    json_result["tools"] = tools_slugs
+    json_result["projets"] = projets_slugs
     json_result["image"] = image
 
     directory = os.path.join("data", "people")
@@ -512,7 +583,7 @@ def scrape_all():
         blog_soup = BeautifulSoup(s.get(BLOG_URL).text, 'html.parser')
         people_soup = BeautifulSoup(s.get(PEOPLE_URL).text, 'html.parser')
 
-        # SCRAPE PROJETS
+        # SCRAPING PROJETS
         nb_projets = int(projets_soup.find(
             'span', attrs={"class": "count"}).get_text()[1:-1])
         nb_pages = math.ceil(nb_projets/20)
@@ -523,7 +594,7 @@ def scrape_all():
                 print("Scraping projet", projet['href'])
                 scrape_projet(s, projet)
 
-        # SCRAPE PUBLICATIONS
+        # SCRAPING PUBLICATIONS
         nb_publications = int(publications_soup.find(
             'span', attrs={"class": "count"}).get_text()[1:-1])
         nb_pages = math.ceil(nb_publications/20)
@@ -534,7 +605,7 @@ def scrape_all():
                 print("Scraping publication", publication['href'])
                 scrape_publication(s, publication)
 
-        # SCRAPE PEOPLE
+        # SCRAPING PEOPLE
         nb_people = int(people_soup.find(
             'span', attrs={"class": "count"}).get_text()[1:-1])
         nb_pages = math.ceil(nb_people/20)
@@ -545,7 +616,7 @@ def scrape_all():
                 print("Scraping people", people['href'])
                 scrape_people(s, people)
 
-        # SCRAPE BLOGS
+        # SCRAPING BLOGS
         nb_blogs = int(blog_soup.find(
             'span', attrs={"class": "count"}).get_text()[1:-1])
         nb_pages = math.ceil(nb_blogs/20)

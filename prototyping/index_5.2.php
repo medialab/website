@@ -205,8 +205,8 @@
 					<h5 class="lieu">Paris</h5>
 				</div>
 			</div>
-			<hr>
 		</div>
+		<hr>
 
 		<div class="container">
 			

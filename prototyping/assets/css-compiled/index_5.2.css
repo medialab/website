@@ -17,7 +17,7 @@ html {
   font-size: 10px; }
 
 :root {
-  --height-topbar: 100px; }
+  --height-top-bar: 100px; }
 
 /* assets/scss/common/body.scss */
 body {
@@ -478,9 +478,6 @@ ul {
 /* imports */
 /* assets/scss/common/_top-bar-mobile.scss */
 /* assets/scss/common/_top-bar-desktop.scss */
-:root {
-  --height-topbar: 120px; }
-
 @media (min-width: 700px) {
   #flux_container {
     top: 0;
@@ -627,7 +624,7 @@ ul {
             grid-row-start: 2; } }
 .slideshow {
   width: 100%;
-  height: calc(100vh - var(--height-topbar) - 2rem);
+  height: calc(100vh - 100px - 2rem);
   position: relative;
   text-align: center;
   padding-bottom: 30px; }
@@ -756,7 +753,7 @@ hr {
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 2rem;
   width: 100%;
-  height: calc(100vh - $height-top-bar);
+  height: calc(100vh -  100px );
   height: 100%;
   max-height: 960px;
   padding: 0rem;
@@ -768,32 +765,32 @@ hr {
     width: 100vw;
     overflow: hidden;
     border: none;
-    top: -50%;
     height: 200%;
-    font-size: 3.25vw; }
+    font-size: 1.5vw; }
   #focus .container {
     height: 100%; }
   #focus article {
     position: absolute;
     width: 50vw;
-    height: calc(92vh - $height-top-bar);
+    height: calc(92vh - 100px );
     background: white;
     margin: 4vh;
-    z-index: 90; }
+    z-index: 90;
+    padding: 2vw 2vw; }
     #focus article header {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-gap: 15px;
-      height: calc(66% + 2rem);
-      grid-template-rows: 2rem 33% calc(33% - 2rem);
-      padding: 1rem; }
+      height: calc(66% - 2rem);
+      grid-template-rows: 2rem 50% calc( 50% - 2rem); }
       #focus article header h1 {
         grid-column: 1/4;
         grid-row: 2;
         font-size: 50px;
         line-height: 75px;
+        font-size: 5vw;
         font-weight: 100;
-        align-self: start; }
+        align-self: center; }
       #focus article header h2 {
         grid-column: 1/4;
         grid-row: 2;
@@ -824,34 +821,49 @@ hr {
         line-height: 21px; }
     #focus article nav.related {
       height: calc(33% - 1rem);
-      width: 100%;
-      padding: 0 1rem 1rem 1rem; }
+      width: 100%; }
       #focus article nav.related h3 {
-        font-size: 15px;
-        line-height: 22.5px;
+        font-size: 18px;
+        line-height: 27px;
         font-weight: bold;
         text-align: left; }
-      #focus article nav.related li {
+      #focus article nav.related ul {
         display: flex;
-        flex-wrap: nowrap;
-        border-bottom: 1px solid #808080;
-        justify-content: flex-start;
-        text-align: left;
-        align-items: flex-start;
-        height: 3rem; }
-        #focus article nav.related li h4 {
-          width: auto;
-          flex-grow: 2; }
-        #focus article nav.related li .nomenclature {
+        flex-flow: row wrap;
+        height: calc( 100% - 1rem ); }
+        #focus article nav.related ul li {
           display: flex;
-          align-content: stretch;
-          justify-content: flex-end;
-          flex-grow: 1;
-          max-width: 50%; }
-          #focus article nav.related li .nomenclature p {
+          flex-wrap: nowrap;
+          border-bottom: 1px solid #808080;
+          justify-content: flex-start;
+          text-align: left;
+          align-items: flex-start;
+          height: 25%;
+          width: 100%;
+          align-items: center; }
+          #focus article nav.related ul li h4 {
             width: auto;
-            font-size: 12px;
-            line-height: 18px; }
+            flex-grow: 1;
+            margin: 0 .5rem 0 0;
+            font-size: 16px;
+            font-weight: normal; }
+          #focus article nav.related ul li h5 {
+            flex-grow: 1;
+            font-size: 16px;
+            font-weight: normal;
+            font-style: italic; }
+          #focus article nav.related ul li .nomenclature {
+            display: flex;
+            align-items: center;
+            justify-content: stretch;
+            flex-grow: 2;
+            max-width: 33%; }
+            #focus article nav.related ul li .nomenclature p {
+              width: auto;
+              font-size: 14px;
+              line-height: 21px;
+              margin: 0 0 0 2rem;
+              color: #808080; }
 
 .slideshow--item:nth-of-type(2n) article {
   right: 0; }
@@ -1013,7 +1025,7 @@ hr {
     top: 0; }
 
 :root {
-  --height-topbar: 100px; }
+  --height-top-bar: 100px; }
 
 @supports (display: grid) {
   .container {

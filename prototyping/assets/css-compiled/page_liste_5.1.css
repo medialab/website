@@ -15,7 +15,7 @@ html {
   font-size: 10px; }
 
 :root {
-  --height-topbar: 100px; }
+  --height-top-bar: 100px; }
 
 /* assets/scss/common/body.scss */
 body {

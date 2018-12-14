@@ -1,9 +1,8 @@
 /* assets/scss/common/_top-bar-desktop.scss */
 
 
-$height-top-bar: 120px;
-
-:root{ --height-topbar: 120px; }
+//$height-top-bar: 100px;
+//:root{ --height-topbar: 120px; }
 
 @include for-size(desktop) {
 

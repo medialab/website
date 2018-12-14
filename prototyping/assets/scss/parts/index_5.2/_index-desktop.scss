@@ -42,7 +42,7 @@ hr{
     grid-gap: 2rem;
 
     width: 100% ;
-    height: calc(100vh - $height-top-bar);
+    height: calc(100vh -  #{$height-top-bar} );
     height: 100%;
     max-height: 960px;
 
@@ -61,9 +61,11 @@ hr{
         width: 100vw;
         overflow: hidden;
         border: none;
-        top: -50%;
+        //top: -50%;
+        //transform: translate(-50%);
+        //left: 50%;        
         height: 200%;
-        font-size: 3.25vw;
+        font-size: 1.5vw;
 
         &:hover{
         //font-size:1.25vw;
@@ -79,19 +81,19 @@ hr{
     article{
         position: absolute;
         width: 50vw;
-        height: calc(92vh - $height-top-bar);        
+        height: calc(92vh - #{$height-top-bar} );        
         background: white;
 
         margin: 4vh;
         z-index: 90;
+        padding: 2vw 2vw;
 
         header{
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-gap: $baseline;
-            height: calc(66% + 2rem);
-            grid-template-rows: 2rem 33% calc(33% - 2rem);
-            padding: 1rem;
+            height: calc(66% - 2rem);
+            grid-template-rows: 2rem 50% calc( 50% - 2rem);
 
 
             h1{
@@ -99,9 +101,10 @@ hr{
                 grid-row: 2;
                 font-size: $font-size*5;
                 line-height: $baseline*5;
+                font-size: 5vw;
                 font-weight: 100;
 
-                align-self: start;
+                align-self: center;
             }
 
             h2{
@@ -149,43 +152,64 @@ hr{
         nav.related{
             height: calc(33% - 1rem);
             width: 100%;
-            padding: 0 1rem 1rem 1rem;
-
-
 
             h3{
 
-                font-size: $font-size*1.5;
-                line-height: $baseline*1.5;
+                font-size: $font-size*1.8;
+                line-height: $baseline*1.8;
                 font-weight: bold;
                 text-align: left;
             }
 
-            li{
+            ul{
+
                 display: flex;
-                flex-wrap: nowrap;
-                border-bottom: 1px solid $color-header-text;
-                justify-content: flex-start;
-                text-align: left;
-                align-items: flex-start;
-                height: 3rem;
+                flex-flow: row wrap;
+                height: calc( 100% - 1rem );
 
-                h4{
-                    width: auto;
-                    flex-grow: 2;
-                }
-
-                .nomenclature{
+                li{
                     display: flex;
-                    align-content: stretch;
-                    justify-content: flex-end;
-                    flex-grow: 1;
-                    max-width: 50%;
+                    flex-wrap: nowrap;
+                    border-bottom: 1px solid $color-header-text;
+                    justify-content: flex-start;
+                    text-align: left;
+                    align-items: flex-start;
 
-                    p{
+                    height: 25%;
+                    width: 100%;
+                    align-items: center;
+
+                    h4{
                         width: auto;
-                        font-size: $font-size*1.2;
-                        line-height: $baseline*1.2;
+                        flex-grow: 1;
+                        margin: 0 .5rem 0 0;
+
+                        font-size: 16px;
+                        font-weight: normal;
+                    }
+
+                    h5{
+                        flex-grow: 1;
+
+                        font-size: $font-size*1.6;
+                        font-weight: normal;
+                        font-style: italic;
+                    }
+
+                    .nomenclature{
+                        display: flex;
+                        align-items: center;
+                        justify-content: stretch;
+                        flex-grow: 2;
+                        max-width: 33%;
+
+                        p{
+                            width: auto;
+                            font-size: $font-size*1.4;
+                            line-height: $baseline*1.4;
+                            margin: 0 0 0 2rem;
+                            color: $color-header-text;
+                        }
                     }
                 }
             }

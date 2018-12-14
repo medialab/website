@@ -15,6 +15,9 @@ html {
   font-family: "MuseosSans";
   font-size: 10px; }
 
+:root {
+  --height-top-bar: 100px; }
+
 /* assets/scss/common/body.scss */
 body {
   margin: 0 auto; }
@@ -383,12 +386,9 @@ ul {
 /* imports */
 /* assets/scss/common/_top-bar-mobile.scss */
 /* assets/scss/common/_top-bar-desktop.scss */
-:root {
-  --height-topbar: 120px; }
-
 @media (min-width: 700px) {
   #topbar {
-    height: 120px;
+    height: 100px;
     position: relative;
     top: 0;
     left: 0;

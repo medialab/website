@@ -3,3 +3,9 @@ $border-2: 2px solid $black-color;
 
 $caseheight: $baseline * 5;
 $margin-desktop: 20px;
+
+$height-top-bar: 100px;
+
+:root{ 
+	--height-top-bar: 100px; 
+}

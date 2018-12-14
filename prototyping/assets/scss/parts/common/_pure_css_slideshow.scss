@@ -1,6 +1,6 @@
 .slideshow {
 	width: 100%;
-	height: calc(100vh - var(--height-topbar) - 2rem);
+	height: calc(100vh - #{$height-top-bar} - 2rem);
 
 	position: relative;
 	text-align: center;

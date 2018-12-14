@@ -6,6 +6,7 @@ import initializers from '../../../../specs/initializers';
 import Form from './Form';
 import Editor from '../Editor';
 import BooleanSelector from '../selectors/BooleanSelector';
+import DateSelector from '../selectors/DateSelector';
 import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector from '../selectors/RelationSelector';
 import SuggestionSelector from '../selectors/SuggestionSelector';
@@ -78,6 +79,14 @@ const HANDLERS = {
   internal: {
     type: 'boolean',
     field: 'internal'
+  },
+  startDate: {
+    type: 'raw',
+    field: 'startDate'
+  },
+  endDate: {
+    type: 'raw',
+    field: 'endDate'
   }
 };
 
@@ -139,6 +148,28 @@ function renderNewsForm(props) {
                   placeholder="..." />
               </div>
               {hasCollidingSlug && <p className="help is-danger">This slug already exists!</p>}
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <label className="label">Start Date</label>
+            <div className="control">
+              <DateSelector
+                precision="day"
+                value={data.startDate}
+                onChange={handlers.startDate} />
+            </div>
+          </div>
+
+          <div className="column is-6">
+            <label className="label">End Date</label>
+            <div className="control">
+              <DateSelector
+                precision="day"
+                value={data.endDate}
+                onChange={handlers.endDate} />
             </div>
           </div>
         </div>

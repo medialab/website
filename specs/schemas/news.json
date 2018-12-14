@@ -129,13 +129,13 @@
       "title": "Date de début",
       "type": "string",
       "formType": "vardate",
-      "minPrecision": "day"
+      "precision": "day"
     },
     "endDate": {
       "title": "Date de fin",
       "type": "string",
       "formType": "vardate",
-      "minPrecision": "day"
+      "precision": "day"
     },
     "internal": {
       "title": "Interne ?",

@@ -8,6 +8,7 @@ export default function Button(props) {
     loading = false,
     disabled = false,
     rounded = false,
+    style = {},
     onClick
   } = props;
 
@@ -23,6 +24,7 @@ export default function Button(props) {
       type="button"
       disabled={disabled}
       className={className}
+      style={style}
       onClick={onClick}>
       {children}
     </button>

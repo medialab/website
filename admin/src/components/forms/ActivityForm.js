@@ -18,6 +18,7 @@ function validate(data) {
     return 'Need at least a name';
 }
 
+// TODO: important/structurant, startDate, endDate
 const HANDLERS = {
   name: {
     type: 'slug',

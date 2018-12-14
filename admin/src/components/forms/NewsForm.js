@@ -18,6 +18,7 @@ function validate(data) {
     return 'Need at least a French title';
 }
 
+// TODO: type, place, startDate, endDate, internal
 const HANDLERS = {
   englishTitle: {
     field: ['title', 'en']
@@ -27,11 +28,11 @@ const HANDLERS = {
     field: ['title', 'fr'],
     slugify: slugifyNews
   },
-  englishExcerpt: {
-    field: ['excerpt', 'en']
+  englishDescription: {
+    field: ['description', 'en']
   },
-  frenchExcerpt: {
-    field: ['excerpt', 'fr']
+  frenchDescription: {
+    field: ['description', 'fr']
   },
   englishLabel: {
     type: 'raw',
@@ -132,13 +133,13 @@ function renderNewsForm(props) {
         <div className="columns">
           <div className="column is-6">
             <div className="field">
-              <label className="label">English Excerpt</label>
+              <label className="label">English Description</label>
               <div className="control">
                 <textarea
                   className="textarea"
-                  value={(data.excerpt && data.excerpt.en) || ''}
-                  onChange={handlers.englishExcerpt}
-                  placeholder="English Excerpt"
+                  value={(data.description && data.description.en) || ''}
+                  onChange={handlers.englishDescription}
+                  placeholder="English Description"
                   rows={2} />
               </div>
             </div>
@@ -146,13 +147,13 @@ function renderNewsForm(props) {
 
           <div className="column is-6">
             <div className="field">
-              <label className="label">French Excerpt</label>
+              <label className="label">French Description</label>
               <div className="control">
                 <textarea
                   className="textarea"
-                  value={(data.excerpt && data.excerpt.fr) || ''}
-                  onChange={handlers.frenchExcerpt}
-                  placeholder="French Excerpt"
+                  value={(data.description && data.description.fr) || ''}
+                  onChange={handlers.frenchDescription}
+                  placeholder="French Description"
                   rows={2} />
               </div>
             </div>

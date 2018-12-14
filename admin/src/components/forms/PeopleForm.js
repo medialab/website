@@ -17,6 +17,7 @@ function validate(data) {
     return 'Need at least a first name & a last name';
 }
 
+// TODO: domain, status, contact, mainActivities, mainProductions
 const HANDLERS = {
   firstName: {
     type: 'slug',
@@ -28,11 +29,11 @@ const HANDLERS = {
     field: 'lastName',
     slugify: slugifyPeople
   },
-  englishTitle: {
-    field: ['title', 'en']
+  englishRole: {
+    field: ['role', 'en']
   },
-  frenchTitle: {
-    field: ['title', 'fr']
+  frenchRole: {
+    field: ['role', 'fr']
   },
   membership: {
     type: 'raw',
@@ -155,28 +156,28 @@ function renderPeopleForm(props) {
         <div className="columns">
           <div className="column is-6">
             <div className="field">
-              <label className="label">English Title</label>
+              <label className="label">English Role</label>
               <div className="control">
                 <input
                   type="text"
                   className="input"
-                  value={data.title ? data.title.en : ''}
-                  onChange={handlers.englishTitle}
-                  placeholder="English Title" />
+                  value={data.role ? data.role.en : ''}
+                  onChange={handlers.englishRole}
+                  placeholder="English Role" />
               </div>
             </div>
           </div>
 
           <div className="column is-6">
             <div className="field">
-              <label className="label">French Title</label>
+              <label className="label">French Role</label>
               <div className="control">
                 <input
                   type="text"
                   className="input"
-                  value={data.title ? data.title.fr : ''}
-                  onChange={handlers.frenchTitle}
-                  placeholder="French Title" />
+                  value={data.role ? data.role.fr : ''}
+                  onChange={handlers.frenchRole}
+                  placeholder="French Role" />
               </div>
             </div>
           </div>

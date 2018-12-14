@@ -6,6 +6,7 @@ import initializers from '../../../../specs/initializers';
 import Form from './Form';
 import Editor from '../Editor';
 import BooleanSelector from '../selectors/BooleanSelector';
+import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector from '../selectors/RelationSelector';
 import SuggestionSelector from '../selectors/SuggestionSelector';
 
@@ -18,7 +19,7 @@ function validate(data) {
     return 'Need at least a French title';
 }
 
-// TODO: type, place, startDate, endDate, internal
+// TODO: startDate, endDate
 const HANDLERS = {
   englishTitle: {
     field: ['title', 'en']
@@ -46,6 +47,10 @@ const HANDLERS = {
     type: 'relation',
     field: 'activities'
   },
+  type: {
+    type: 'raw',
+    field: 'type'
+  },
   people: {
     type: 'relation',
     field: 'people'
@@ -62,9 +67,17 @@ const HANDLERS = {
     type: 'raw',
     field: ['content', 'en']
   },
+  place: {
+    type: 'raw',
+    field: 'place'
+  },
   published: {
     type: 'negative',
     field: ['draft']
+  },
+  internal: {
+    type: 'boolean',
+    field: 'internal'
   }
 };
 
@@ -212,6 +225,52 @@ function renderNewsForm(props) {
         </div>
       </div>
 
+      <div className="form-group">
+        <h4 className="title is-4">
+          News classification
+        </h4>
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Type of news</label>
+              <div className="control">
+                <EnumSelector
+                  enumType="newsTypes"
+                  value={data.type}
+                  onChange={handlers.type} />
+              </div>
+            </div>
+          </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Internal?</label>
+              <div className="control">
+                <BooleanSelector
+                  labels={['internal', 'external']}
+                  value={data.internal}
+                  onChange={handlers.internal} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Location</label>
+              <div className="control">
+                <SuggestionSelector
+                  model="news"
+                  field="place"
+                  placeholder="Location..."
+                  value={data.place}
+                  onChange={handlers.place} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div className="form-group">
         <h4 className="title is-4">

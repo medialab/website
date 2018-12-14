@@ -6,6 +6,7 @@ import initializers from '../../../../specs/initializers';
 import Form from './Form';
 import Editor from '../Editor';
 import BooleanSelector from '../selectors/BooleanSelector';
+import DateSelector from '../selectors/DateSelector';
 import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector from '../selectors/RelationSelector';
 
@@ -18,7 +19,7 @@ function validate(data) {
     return 'Need at least a French title';
 }
 
-// TODO: authors, date, ref, url
+// TODO: authors, ref, url
 const HANDLERS = {
   englishTitle: {
     field: ['title', 'en']
@@ -61,6 +62,10 @@ const HANDLERS = {
   published: {
     type: 'negative',
     field: ['draft']
+  },
+  date: {
+    type: 'raw',
+    field: 'date'
   }
 };
 
@@ -136,6 +141,18 @@ function renderProductionForm(props) {
                   value={data.type}
                   onChange={handlers.type} />
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <label className="label">Date</label>
+            <div className="control">
+              <DateSelector
+                precision="year"
+                value={data.date}
+                onChange={handlers.date} />
             </div>
           </div>
         </div>

@@ -144,7 +144,7 @@ export default class DateSelector extends Component {
 
     if (!validationError) {
       if (year)
-        this.props.onChange(format(year.value, month.value, day.value));
+        this.props.onChange(format(year.value, month && month.value, day && day.value));
       else
         this.props.onChange();
     }

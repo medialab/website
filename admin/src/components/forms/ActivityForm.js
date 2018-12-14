@@ -18,7 +18,7 @@ function validate(data) {
     return 'Need at least a name';
 }
 
-// TODO: important/structurant, startDate, endDate
+// TODO: startDate, endDate
 const HANDLERS = {
   name: {
     type: 'slug',
@@ -60,6 +60,10 @@ const HANDLERS = {
   published: {
     type: 'negative',
     field: ['draft']
+  },
+  important: {
+    type: 'boolean',
+    field: ['important']
   }
 };
 
@@ -227,6 +231,21 @@ function renderActivityForm(props) {
             </div>
           </div>
         </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Importance</label>
+              <div className="control">
+                <BooleanSelector
+                  value={data.important}
+                  labels={['activity is important', 'activity is secondary']}
+                  onChange={handlers.important} />
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="columns">
           <div className="column is-12">
             <div className="field">

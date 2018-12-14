@@ -4,7 +4,7 @@
     "fr": {
       "research": "Recherche",
       "teaching": "Enseignement",
-      "method": "Méthode" 
+      "method": "Méthode"
     },
     "en": {
       "research": "Research",
@@ -12,20 +12,20 @@
       "method": "Method"
     }
   },
-  "domains":{
-    "fr":{
+  "domains": {
+    "fr": {
       "academic": "académique",
-      "technic": "technique",
+      "tech": "technique",
       "design": "design",
-      "pedagogic": "pédagogique",
-      "administrative": "vie du labo" 
+      "pedagogy": "pédagogique",
+      "admin": "vie du labo"
     },
-    "en":{
+    "en": {
       "academic": "academic",
-      "technic": "technic",
+      "tech": "technic",
       "design": "design",
-      "pedagogic": "pedagogy",
-      "administrative": "lab's life" 
+      "pedagogy": "pedagogy",
+      "admin": "lab's life"
     }
   },
   "membershipTypes": {

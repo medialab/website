@@ -113,11 +113,6 @@
       "type": "string",
       "formType": "vardate"
     },
-    "spireJson": {
-      "title": "Bibtex",
-      "type": "string",
-      "formType": "vardate"
-    },
     "people": {
       "title": "Membres du labo",
       "type": "array",
@@ -127,12 +122,11 @@
       "formType": "ref",
       "model": "people"
     },
-    "biblioRef": {
+    "ref": {
       "title": "Référence biblio",
-      "type": "string",
-      "formType": "content"
+      "type": "string"
     },
-    "URL": {
+    "url": {
       "title": "Lien externe",
       "type": "string"
     },
@@ -144,9 +138,19 @@
       "title": "Actif?",
       "type": "boolean"
     },
-    "idSpire": {
-      "title": "id Spire",
-      "type" : "string"
+    "spire": {
+      "title": "Information SPIRE",
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Identifiant SPIRE",
+          "type": "string"
+        },
+        "meta": {
+          "title": "Metadonnées SPIRE",
+          "type": "object"
+        }
+      }
     }
   }
 }

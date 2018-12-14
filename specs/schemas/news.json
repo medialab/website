@@ -23,10 +23,14 @@
       "title": "Timestamp of last update",
       "type": "number"
     },
-    "type":{
+    "type": {
       "title": "Type",
       "type": "string",
-      "enum": ["event","post","notice"],
+      "enum": [
+        "event",
+        "post",
+        "notice"
+      ],
       "enumId": "newsTypes"
     },
     "title": {

@@ -31,16 +31,16 @@
       "title": "Nom de famille",
       "type": "string"
     },
-    "function": {
+    "role": {
       "title": "Fonction",
       "type": "object",
       "properties": {
         "en": {
-          "title": "English title",
+          "title": "English function",
           "type": "string"
         },
         "fr": {
-          "title": "Titre français",
+          "title": "Fonction en français",
           "type": "string"
         }
       },
@@ -49,10 +49,16 @@
     "domain": {
       "title": "Domaine",
       "type": "string",
-      "enum": ["academic", "technic", "design", "pedagogic", "administrative"],
+      "enum": [
+        "academic",
+        "tech",
+        "design",
+        "pedagogy",
+        "admin"
+      ],
       "enumId" : "domains"
     },
-    "currentStatus": {
+    "status": {
       "title": "Occupation actuelle",
       "type": "object",
       "properties": {
@@ -124,12 +130,18 @@
       "title": "Draft?",
       "type": "boolean"
     },
-    "idSpire":{
-      "title": "id Spire",
-      "type": "string"
+    "spire": {
+      "title": "Informations SPIRE",
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Identifiant SPIRE",
+          "type": "string"
+        }
+      }
     },
-    "idLdap":{
-      "title": "Identifiant ldap",
+    "ldap":{
+      "title": "Identifiant LDAP",
       "type": "string"
     }
   },

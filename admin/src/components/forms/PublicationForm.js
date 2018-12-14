@@ -45,9 +45,9 @@ const HANDLERS = {
     type: 'relation',
     field: 'people'
   },
-  publications: {
+  productions: {
     type: 'relation',
-    field: 'publications'
+    field: 'productions'
   },
   frenchContent: {
     type: 'raw',
@@ -128,10 +128,10 @@ function renderPublicationForm(props) {
         <div className="columns">
           <div className="column is-6">
             <div className="field">
-              <label className="label">Type of publication</label>
+              <label className="label">Type of production</label>
               <div className="control">
                 <EnumSelector
-                  enumType="publicationTypes"
+                  enumType="productionTypes"
                   value={data.type}
                   onChange={handlers.type} />
               </div>
@@ -233,14 +233,14 @@ function renderPublicationForm(props) {
         <div className="columns">
           <div className="column is-6">
             <div className="field">
-              <label className="label">Related Publications</label>
+              <label className="label">Related Productions</label>
               <div className="control">
                 <RelationSelector
-                  model="publications"
+                  model="productions"
                   self={data.id}
-                  selected={data.publications}
-                  onAdd={handlers.publications.add}
-                  onDrop={handlers.publications.drop} />
+                  selected={data.productions}
+                  onAdd={handlers.productions.add}
+                  onDrop={handlers.productions.drop} />
               </div>
             </div>
           </div>
@@ -250,7 +250,7 @@ function renderPublicationForm(props) {
 
       <div className="form-group is-important">
         <div className="field">
-          <label className="label title is-4">{'"' + (data.title && data.title.en || '') + '"' || 'Publication'} page's publication status</label>
+          <label className="label title is-4">{'"' + (data.title && data.title.en || '') + '"' || 'Publication'} page's production status</label>
           <div className="control">
             <BooleanSelector
               value={!data.draft}
@@ -268,11 +268,11 @@ export default function PublicationForm({id}) {
   return (
     <Form
       id={id}
-      initializer={initializers.publication}
+      initializer={initializers.production}
       handlers={HANDLERS}
       contentField="content"
-      model="publications"
-      label="publication"
+      model="productions"
+      label="production"
       slugify={slugifyPublication}
       validate={validate}>
       {renderPublicationForm}

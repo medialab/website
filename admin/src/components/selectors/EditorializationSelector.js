@@ -12,7 +12,7 @@ import labels from '../../../../specs/labels';
 const TITLES = {
   activities: 'Activity',
   people: 'Person',
-  publications: 'Publication',
+  productions: 'Publication',
   news: 'News'
 };
 
@@ -77,8 +77,8 @@ export default class EditorializationSelector extends Component {
       people(next) {
         return client.list({params: {model: 'people'}}, next);
       },
-      publications(next) {
-        return client.list({params: {model: 'publications'}}, next);
+      productions(next) {
+        return client.list({params: {model: 'productions'}}, next);
       },
       news(next) {
         return client.list({params: {model: 'news'}}, next);
@@ -87,7 +87,7 @@ export default class EditorializationSelector extends Component {
       const options = []
         .concat(createOptions('activities', data.activities))
         .concat(createOptions('people', data.people))
-        .concat(createOptions('publications', data.publications))
+        .concat(createOptions('productions', data.productions))
         .concat(createOptions('news', data.news));
 
       this.optionsIndex = keyBy(flatten(options.map(g => g.options)), 'value');

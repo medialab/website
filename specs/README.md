@@ -65,7 +65,7 @@ Liens :
 
 - **Activités -> People** : Activités de la personne. Attention les activités pouvant être non-active, il faudrait les distinguer dans les liens. 
 *En moyenne 3-4, minimum 1, max 10 activités actives*
-- **Publications -> People** : publications de la personne.  
+- **Productions -> People** : publications de la personne.  
 *En moyenne 8, max 30, minimum 0 possible*
 - **Actualités -> People** : actualités à propos de cette personne.  
 *en moyenne 3-4, max 12, régulièrement 0*
@@ -76,7 +76,7 @@ On aimerait pouvoir mette en avant certains objets liés dans les activités et 
 
 - **People -> Activités principales** : Sélection des max 5 principales activités de la personne. Pas de disticntion actif/passé car sélectionné par l'utilisateur.  
 *En moyenne 2, minimum 1, max 5 activités*
-- **People -> Publications principales** : Sélectiondes max 5 principales publications de la personne.  
+- **People -> Productions principales** : Sélectiondes max 5 principales publications de la personne.  
 *En moyenne 2, max 5, minimum 0 possible*
 
 ## News
@@ -106,7 +106,7 @@ Liens :
 
 - **Actualités -> Activités** : Activités en lien avec l'actualité. Ne pas distinguer actif/passé.  
 *En moyenne 1, max 2-3, très souvent 0*
-- **Actualités -> Publications** : publications en lien   
+- **Actualités -> Productions** : publications en lien   
 *En moyenne 1, max 2-3, très souvent 0*
 - **Actualités -> People** : actualités à propos de cette personne. Ne pas distinguer actif/passé. 
 *en moyenne 2-3, max 5, régulièrement 0*
@@ -135,11 +135,11 @@ Champs :
 
 Liens : 
 
-- **Publications -> people** : les membres du médialab auteurs de la publi. ne pas distinguer actif/passé.  
+- **Productions -> people** : les membres du médialab auteurs de la publi. ne pas distinguer actif/passé.  
 *minimum 1, max 6, moyenne 1.5*
-- **Publications -> activities** : les activités du médialab qui sont liées à cette publi. Ne pas distinguer actif/passé.
+- **Productions -> activities** : les activités du médialab qui sont liées à cette publi. Ne pas distinguer actif/passé.
 *en moyenne 1.5, max 4,  peut être 0 mais très rare*
-- **Publications -> publications** : liens vers d'autres publications liées. 
+- **Productions -> publications** : liens vers d'autres publications liées. 
 *en général 0, max 5*
 - **News -> publication** : les actualités qui ont mentionnées cette publi
 *en général 0, max 2* 

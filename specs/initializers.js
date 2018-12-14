@@ -28,7 +28,7 @@ module.exports = {
       active: true
     };
   },
-  publication: function(uuid) {
+  production: function(uuid) {
     return {
       id: uuid(),
       draft: true,

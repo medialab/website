@@ -205,7 +205,7 @@ function renderPeopleForm(props) {
 
       <div className="form-group is-important">
         <div className="field">
-          <label className="label title is-4">{data.firstName ? `${data.firstName} ${data.lastName}` : 'People'} page's publication status</label>
+          <label className="label title is-4">{data.firstName ? `${data.firstName} ${data.lastName}` : 'People'} page's production status</label>
           <div className="control">
             <BooleanSelector
               value={!data.draft}

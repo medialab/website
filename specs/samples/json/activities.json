@@ -22,6 +22,12 @@
         "32fcbf11-d66d-4a41-bbe6-132021adc3e2",
         "9f735836-44ea-40f4-8e95-9b8a7416d9a7"
       ],
+      "activities": [
+        "4ca78423-c064-466f-9ce9-43b656ca083c"
+      ],
+      "startDate": "2015-12",
+      "endDate": "2017-12",
+      "important": true,
       "active": false,
       "draft": false
     },
@@ -46,6 +52,8 @@
       "people": [
         "9f735836-44ea-40f4-8e95-9b8a7416d9a7"
       ],
+      "startDate": "2014-12",
+      "important": true,
       "active": true,
       "draft": false
     }

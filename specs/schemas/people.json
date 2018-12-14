@@ -92,7 +92,15 @@
       "title": "Contact",
       "type": "array",
       "items": {
-        "type": "object"
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
       }
     },
     "membership": {
@@ -113,14 +121,14 @@
       "formType": "ref",
       "model": "activities"
     },
-    "mainPublications": {
-      "title": "Publications principales",
+    "mainProductions": {
+      "title": "Productions principales",
       "type": "array",
       "items": {
         "type": "string"
       },
       "formType": "ref",
-      "model": "publications"
+      "model": "productions"
     },
     "active": {
       "title": "Actif?",

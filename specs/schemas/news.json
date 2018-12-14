@@ -116,24 +116,26 @@
       "formType": "ref",
       "model": "people"
     },
-    "publications": {
-      "title": "Publications liées",
+    "productions": {
+      "title": "Productions liées",
       "type": "array",
       "items": {
         "type": "string"
       },
       "formType": "ref",
-      "model": "publications"
+      "model": "productions"
     },
     "startDate": {
       "title": "Date de début",
       "type": "string",
-      "formType": "vardate"
+      "formType": "vardate",
+      "minPrecision": "day"
     },
     "endDate": {
       "title": "Date de fin",
       "type": "string",
-      "formType": "vardate"
+      "formType": "vardate",
+      "minPrecision": "day"
     },
     "internal": {
       "title": "Interne ?",

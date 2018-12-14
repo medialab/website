@@ -5,7 +5,7 @@ module.exports = {
   people: function(p) {
     return p.firstName + ' ' + p.lastName;
   },
-  publications: function(p) {
+  productions: function(p) {
     return p.title.en || p.title.fr;
   },
   news: function(n) {

@@ -43,7 +43,7 @@ exports.PEOPLE = `
 
 exports.PUBLICATION = `
   {
-    allPublicationsJson {
+    allProductionsJson {
       edges {
         node {
           identifier

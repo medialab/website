@@ -52,7 +52,7 @@
       }
     },
     "type": {
-      "title": "Type de la publication",
+      "title": "Type de la production",
       "type": "string",
       "enum": [
         "article",
@@ -68,7 +68,7 @@
         "workshop",
         "conference"
       ],
-      "enumId": "publicationTypes"
+      "enumId": "productionTypes"
     },
     "content": {
       "title": "Contenu",
@@ -86,6 +86,10 @@
         }
       }
     },
+    "authors": {
+      "title": "Auteurs",
+      "type": "string"
+    },
     "activities": {
       "title": "Activités liées",
       "type": "array",
@@ -95,23 +99,14 @@
       "formType": "ref",
       "model": "activities"
     },
-    "authors": {
-      "title": "Auteurs",
-      "type": "string"
-    },
-    "publications": {
-      "title": "Publications liées",
+    "productions": {
+      "title": "Productions liées",
       "type": "array",
       "items": {
         "type": "string"
       },
       "formType": "ref",
-      "model": "publications"
-    },
-    "date": {
-      "title": "Date",
-      "type": "string",
-      "formType": "vardate"
+      "model": "productions"
     },
     "people": {
       "title": "Membres du labo",
@@ -121,6 +116,12 @@
       },
       "formType": "ref",
       "model": "people"
+    },
+    "date": {
+      "title": "Date",
+      "type": "string",
+      "formType": "vardate",
+      "minPrecision": "year"
     },
     "ref": {
       "title": "Référence biblio",

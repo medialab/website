@@ -49,9 +49,9 @@ const HANDLERS = {
     type: 'relation',
     field: 'people'
   },
-  publications: {
+  productions: {
     type: 'relation',
-    field: 'publications'
+    field: 'productions'
   },
   frenchContent: {
     type: 'raw',
@@ -249,13 +249,13 @@ function renderNewsForm(props) {
         <div className="columns">
           <div className="column is-12">
             <div className="field">
-              <label className="label">Related Publications</label>
+              <label className="label">Related Productions</label>
               <div className="control">
                 <RelationSelector
-                  model="publications"
-                  selected={data.publications}
-                  onAdd={handlers.publications.add}
-                  onDrop={handlers.publications.drop} />
+                  model="productions"
+                  selected={data.productions}
+                  onAdd={handlers.productions.add}
+                  onDrop={handlers.productions.drop} />
               </div>
             </div>
           </div>
@@ -265,7 +265,7 @@ function renderNewsForm(props) {
 
       <div className="form-group is-important">
         <div className="field">
-          <label className="label title is-4">News publication status</label>
+          <label className="label title is-4">News production status</label>
           <div className="control">
             <BooleanSelector
               value={!data.draft}

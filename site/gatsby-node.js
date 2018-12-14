@@ -85,25 +85,25 @@ const MODEL_READERS = {
     });
   },
 
-  publications(createNode, deleteNode, getNode) {
-    const rawData = fs.readFileSync(MODELS_PATHS.publications, 'utf-8');
+  productions(createNode, deleteNode, getNode) {
+    const rawData = fs.readFileSync(MODELS_PATHS.productions, 'utf-8');
     const data = JSON.parse(rawData);
 
-    // Publications
-    data.publications.forEach(publication => {
+    // Productions
+    data.productions.forEach(production => {
 
-      const node = getNode(publication.id);
+      const node = getNode(production.id);
 
       if (node)
         deleteNode({node});
 
-      const hash = hashNode(publication);
+      const hash = hashNode(production);
 
       createNode({
-        ...publication,
-        identifier: publication.id,
+        ...production,
+        identifier: production.id,
         internal: {
-          type: 'PublicationsJson',
+          type: 'ProductionsJson',
           contentDigest: hash,
           mediaType: 'application/json'
         }
@@ -253,23 +253,23 @@ exports.createPages = function({graphql, actions}) {
       });
     }),
 
-    // Publications
+    // Productions
     graphql(QUERIES.PUBLICATION).then(result => {
       if (!result.data)
         return;
 
       // Creating pages
-      result.data.allPublicationsJson.edges.forEach(edge => {
-        const publication = edge.node;
+      result.data.allProductionsJson.edges.forEach(edge => {
+        const production = edge.node;
 
         const context = {
-          identifier: publication.identifier
+          identifier: production.identifier
         };
 
-        publication.slugs.forEach(slug => {
+        production.slugs.forEach(slug => {
           createI18nPage(createPage, {
-            path: `/publications/${slug}`,
-            component: path.resolve('./src/templates/publication.js'),
+            path: `/productions/${slug}`,
+            component: path.resolve('./src/templates/production.js'),
             context
           });
         });
@@ -322,9 +322,9 @@ exports.setFieldsOnGraphQLNodeType = function({type}) {
     return graphQLSchemaAdditionFromJsonSchema('people', schema);
   }
 
-  else if (type.name === 'PublicationsJson') {
-    const schema = SCHEMAS.publications;
-    return graphQLSchemaAdditionFromJsonSchema('publications', schema);
+  else if (type.name === 'ProductionsJson') {
+    const schema = SCHEMAS.productions;
+    return graphQLSchemaAdditionFromJsonSchema('productions', schema);
   }
 
   else if (type.name === 'NewsJson') {

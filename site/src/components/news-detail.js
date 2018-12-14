@@ -28,7 +28,7 @@ export const queryFragment = graphql`
       firstName
       lastName
     }
-    publications {
+    productions {
       id
     }
     draft
@@ -71,9 +71,9 @@ export default function NewsDetail({data}) {
         </ul>
       </div>
       <div>
-        Related publications:
+        Related productions:
         <ul>
-          {(data.publications || []).map(p => <li key={p.id}>{p.id}</li>)}
+          {(data.productions || []).map(p => <li key={p.id}>{p.id}</li>)}
         </ul>
       </div>
       <hr />

@@ -110,12 +110,14 @@
     "startDate": {
       "title": "Date de début",
       "type": "string",
-      "formType": "vardate"
+      "formType": "vardate",
+      "minPrecision": "month"
     },
     "endDate": {
       "title": "Date de fin",
       "type": "string",
-      "formType": "vardate"
+      "formType": "vardate",
+      "minPrecision": "month"
     },
     "draft": {
       "title": "Draft?",

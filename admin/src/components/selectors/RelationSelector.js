@@ -9,7 +9,7 @@ import labels from '../../../../specs/labels';
 const noOptionsMessages = {
   activities: () => 'No matching activity',
   people: () => 'No matching people',
-  publications: () => 'No matching publication'
+  productions: () => 'No matching production'
 };
 
 export default class RelationSelector extends Component {

@@ -6,14 +6,29 @@
       "lastUpdated": 1543332209050,
       "firstName": "Guillaume",
       "lastName": "Plique",
-      "title": {
+      "role": {
         "fr": "Ingénieur de recherche",
         "en": "Research engineer"
       },
+      "domain": "tech",
       "bio": {
         "fr": "<p>Guillaume Plique est ingénieur de recherche au labo depuis longtemps.</p>"
       },
+      "status": {
+        "fr": "Je travaille sur des trucs.",
+        "en": "Workin' on stuff"
+      },
+      "contact": [
+        {"label": "GitHub", "url": "https://github.com/Yomguithereal"}
+      ],
+      "mainActivities": [
+        "beec8f47-80fa-4188-930b-7c20ce5ddcce"
+      ],
+      "mainProductions": [
+        "137a9796-a16d-4251-9721-aaaebcc8c620"
+      ],
       "membership": "member",
+      "ldap": "guillaume.plique",
       "active": true,
       "draft": false
     },
@@ -23,14 +38,32 @@
       "lastUpdated": 1543332209050,
       "firstName": "Paul",
       "lastName": "Girard",
-      "title": {
+      "role": {
         "fr": "Directeur technique",
         "en": "CTO"
       },
+      "domain": "tech",
       "bio": {
         "en": "<p>Paul Girard has always been the lab's technical director.</p>"
       },
+      "status": {
+        "fr": "Je travaille sur des trucs.",
+        "en": "Workin' on stuff"
+      },
+      "contact": [
+        {"label": "GitHub", "url": "https://github.com/paulgirard"}
+      ],
+      "mainActivities": [
+        "4ca78423-c064-466f-9ce9-43b656ca083c"
+      ],
+      "mainProductions": [
+        "05140bf5-1118-4992-9b67-8b5ac495b3b0"
+      ],
       "membership": "member",
+      "ldap": "paul.girard",
+      "spire": {
+        "id": "53r60a8s3kup1vc9kf4jmc1o2"
+      },
       "active": true,
       "draft": false
     },
@@ -40,13 +73,21 @@
       "lastUpdated": 1543332209050,
       "firstName": "Benjamin",
       "lastName": "Ooghe-Tabanou",
-      "title": {
+      "role": {
         "fr": "Ingénieur de recherche",
         "en": "Research engineer"
       },
+      "domain": "tech",
       "bio": {
         "fr": "<p>Benjamin Ooghe-Tabanou est ingénieur de recherche au labo depuis longtemps.</p>"
       },
+      "status": {
+        "fr": "Je travaille sur des trucs.",
+        "en": "Workin' on stuff"
+      },
+      "contact": [
+        {"label": "GitHub", "url": "https://github.com/boogheta"}
+      ],
       "membership": "member",
       "active": true,
       "draft": true

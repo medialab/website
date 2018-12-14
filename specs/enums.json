@@ -52,7 +52,7 @@
       "notice": "Notice"
     }
   },
-  "publicationTypes": {
+  "productionTypes": {
     "default": "conference",
     "fr": {
       "article": "Article",

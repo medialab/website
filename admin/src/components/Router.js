@@ -47,9 +47,9 @@ export default function Router() {
               </li>
           )} />
           <Route
-            path="/publications" children={({match}) => (
+            path="/productions" children={({match}) => (
               <li className={cls(match && 'is-active')}>
-                <Link to="/publications">Publications</Link>
+                <Link to="/productions">Productions</Link>
               </li>
           )} />
           <Route
@@ -71,9 +71,9 @@ export default function Router() {
         <Route path="/news/new" render={() => <NewsForm />} />
         <Route path="/news/:id" render={({match}) => <NewsForm id={match.params.id} />} />
         <Route path="/news" render={() => <List key="news" model="news" specs={listSpecs.news} />} />
-        <Route path="/publications/new" render={() => <PublicationForm />} />
-        <Route path="/publications/:id" render={({match}) => <PublicationForm id={match.params.id} />} />
-        <Route path="/publications" render={() => <List key="publications" model="publications" specs={listSpecs.publications} />} />
+        <Route path="/productions/new" render={() => <PublicationForm />} />
+        <Route path="/productions/:id" render={({match}) => <PublicationForm id={match.params.id} />} />
+        <Route path="/productions" render={() => <List key="productions" model="productions" specs={listSpecs.productions} />} />
         <Route path="/settings" render={() => <SettingsForm key="settings" />} />
         <Route render={() => (<div>Miss!</div>)} />
       </Switch>

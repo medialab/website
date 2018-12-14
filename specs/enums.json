@@ -3,11 +3,29 @@
     "default": "research",
     "fr": {
       "research": "Recherche",
-      "teaching": "Enseignement"
+      "teaching": "Enseignement",
+      "method": "Méthode"
     },
     "en": {
       "research": "Research",
-      "teaching": "Teaching"
+      "teaching": "Teaching",
+      "method": "Method"
+    }
+  },
+  "domains": {
+    "fr": {
+      "academic": "académique",
+      "tech": "technique",
+      "design": "design",
+      "pedagogy": "pédagogique",
+      "admin": "vie du labo"
+    },
+    "en": {
+      "academic": "academic",
+      "tech": "technic",
+      "design": "design",
+      "pedagogy": "pedagogy",
+      "admin": "lab's life"
     }
   },
   "membershipTypes": {
@@ -21,17 +39,48 @@
       "member": "Member"
     }
   },
+  "newsTypes": {
+    "default": "event",
+    "fr": {
+      "event": "Rendez-vous",
+      "post": "Chronique",
+      "notice": "Annonce"
+    },
+    "en": {
+      "event": "Event",
+      "post": "Post",
+      "notice": "Notice"
+    }
+  },
   "publicationTypes": {
     "default": "conference",
     "fr": {
-      "conference": "Conférence",
-      "tool": "Outil",
-      "web": "Site web"
+      "article": "Article",
+      "communication": "Communication",
+      "book": "Livre",
+      "workingPaper": "Working paper",
+      "datascape": "Datascape",
+      "website": "Site web",
+      "software": "Logiciel",
+      "code": "Code",
+      "exhibition": "Exposition",
+      "workshop": "Atelier",
+      "simulation": "Simulation",
+      "conference": "Conférence"
     },
     "en": {
-      "conference": "Conference",
-      "tool": "Tool",
-      "web": "Website"
+      "article": "Article",
+      "communication": "Communication",
+      "book": "Book",
+      "workingPaper": "Working paper",
+      "datascape": "Datascape",
+      "website": "Website",
+      "software": "Software",
+      "code": "Code",
+      "exhibition": "Exhibition",
+      "workshop": "Workshop",
+      "simulation": "Simulation",
+      "conference": "Conference"
     }
   }
 }

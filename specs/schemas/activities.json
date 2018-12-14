@@ -15,6 +15,10 @@
         "type": "string"
       }
     },
+    "oldSlug": {
+      "title": "Slug de l'ancien site",
+      "type": "string"
+    },
     "lastUpdated": {
       "title": "Timestamp of last update",
       "type": "number"
@@ -56,9 +60,10 @@
       "type": "string",
       "enum": [
         "research",
-        "teaching"
+        "teaching",
+        "method"
       ],
-      "enumId": "activitiyTypes"
+      "enumId": "activityTypes"
     },
     "content": {
       "title": "Contenu",
@@ -77,7 +82,7 @@
       }
     },
     "people": {
-      "title": "Gens impliqués",
+      "title": "Membres impliqués",
       "type": "array",
       "items": {
         "type": "string"
@@ -85,9 +90,32 @@
       "formType": "ref",
       "model": "people"
     },
+    "activities": {
+      "title": "Activités liées",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "formType": "ref",
+      "model": "activities"
+    },
+    "important": {
+      "title": "Structurant?",
+      "type": "boolean"
+    },
     "active": {
       "title": "Actif?",
       "type": "boolean"
+    },
+    "startDate": {
+      "title": "Date de début",
+      "type": "string",
+      "formType": "vardate"
+    },
+    "endDate": {
+      "title": "Date de fin",
+      "type": "string",
+      "formType": "vardate"
     },
     "draft": {
       "title": "Draft?",

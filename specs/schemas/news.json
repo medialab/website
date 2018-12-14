@@ -15,9 +15,23 @@
         "type": "string"
       }
     },
+    "oldSlug": {
+      "title": "Slug de l'ancien site",
+      "type": "string"
+    },
     "lastUpdated": {
       "title": "Timestamp of last update",
       "type": "number"
+    },
+    "type": {
+      "title": "Type",
+      "type": "string",
+      "enum": [
+        "event",
+        "post",
+        "notice"
+      ],
+      "enumId": "newsTypes"
     },
     "title": {
       "title": "Titre",
@@ -33,19 +47,24 @@
         }
       }
     },
-    "excerpt": {
-      "title": "Extrait",
+    "description": {
+      "title": "Description",
       "type": "object",
       "properties": {
         "en": {
-          "title": "English excerpt",
+          "title": "English description",
           "type": "string"
         },
         "fr": {
-          "title": "Extrait français",
+          "title": "Description en français",
           "type": "string"
         }
       }
+    },
+    "place": {
+      "title": "Lieux",
+      "type": "string",
+      "formType": "suggest"
     },
     "label": {
       "title": "Label",
@@ -115,6 +134,10 @@
       "title": "Date de fin",
       "type": "string",
       "formType": "vardate"
+    },
+    "internal": {
+      "title": "Interne ?",
+      "type": "boolean"
     },
     "draft": {
       "title": "Draft?",

@@ -23,7 +23,7 @@ function recurseIntoSchema(model, meta) {
 
     return {
       type: new GraphQLTypes.GraphQLObjectType({
-        name: model + '__' + _.deburr(meta.title),
+        name: model + '__' + _.deburr(meta.title.replace(/ /g, '_')),
         fields
       })
     };

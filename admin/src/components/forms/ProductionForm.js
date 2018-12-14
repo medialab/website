@@ -9,7 +9,7 @@ import BooleanSelector from '../selectors/BooleanSelector';
 import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector from '../selectors/RelationSelector';
 
-function slugifyPublication(data) {
+function slugifyProduction(data) {
   return slugify(data.title ? (data.title.fr || '') : '');
 }
 
@@ -18,6 +18,7 @@ function validate(data) {
     return 'Need at least a French title';
 }
 
+// TODO: authors, date, ref, url
 const HANDLERS = {
   englishTitle: {
     field: ['title', 'en']
@@ -25,13 +26,13 @@ const HANDLERS = {
   frenchTitle: {
     type: 'slug',
     field: ['title', 'fr'],
-    slugify: slugifyPublication
+    slugify: slugifyProduction
   },
-  englishAbstract: {
-    field: ['abstract', 'en']
+  englishDescription: {
+    field: ['description', 'en']
   },
-  frenchAbstract: {
-    field: ['abstract', 'fr']
+  frenchDescription: {
+    field: ['description', 'fr']
   },
   type: {
     type: 'raw',
@@ -63,7 +64,7 @@ const HANDLERS = {
   }
 };
 
-function renderPublicationForm(props) {
+function renderProductionForm(props) {
   const {
     data,
     handlers,
@@ -147,13 +148,13 @@ function renderPublicationForm(props) {
         <div className="columns">
           <div className="column is-6">
             <div className="field">
-              <label className="label">English Abstract</label>
+              <label className="label">English Description</label>
               <div className="control">
                 <textarea
                   className="textarea"
-                  value={(data.abstract && data.abstract.en) || ''}
-                  onChange={handlers.englishAbstract}
-                  placeholder="English Abstract"
+                  value={(data.description && data.description.en) || ''}
+                  onChange={handlers.englishDescription}
+                  placeholder="English Description"
                   rows={2} />
               </div>
             </div>
@@ -161,13 +162,13 @@ function renderPublicationForm(props) {
 
           <div className="column is-6">
             <div className="field">
-              <label className="label">French Abstract</label>
+              <label className="label">French Description</label>
               <div className="control">
                 <textarea
                   className="textarea"
-                  value={(data.abstract && data.abstract.fr) || ''}
-                  onChange={handlers.frenchAbstract}
-                  placeholder="French Abstract"
+                  value={(data.description && data.description.fr) || ''}
+                  onChange={handlers.frenchDescription}
+                  placeholder="French Description"
                   rows={2} />
               </div>
             </div>
@@ -264,7 +265,7 @@ function renderPublicationForm(props) {
   );
 }
 
-export default function PublicationForm({id}) {
+export default function ProductionForm({id}) {
   return (
     <Form
       id={id}
@@ -273,9 +274,9 @@ export default function PublicationForm({id}) {
       contentField="content"
       model="productions"
       label="production"
-      slugify={slugifyPublication}
+      slugify={slugifyProduction}
       validate={validate}>
-      {renderPublicationForm}
+      {renderProductionForm}
     </Form>
   );
 }

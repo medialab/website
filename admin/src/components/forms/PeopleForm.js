@@ -17,6 +17,7 @@ function validate(data) {
     return 'Need at least a first name & a last name';
 }
 
+// TODO: contact, mainActivities, mainProductions
 const HANDLERS = {
   firstName: {
     type: 'slug',
@@ -28,15 +29,25 @@ const HANDLERS = {
     field: 'lastName',
     slugify: slugifyPeople
   },
-  englishTitle: {
-    field: ['title', 'en']
+  englishRole: {
+    field: ['role', 'en']
   },
-  frenchTitle: {
-    field: ['title', 'fr']
+  frenchRole: {
+    field: ['role', 'fr']
   },
   membership: {
     type: 'raw',
     field: 'membership'
+  },
+  domain: {
+    type: 'raw',
+    field: 'domain'
+  },
+  englishStatus: {
+    field: ['status', 'en']
+  },
+  frenchStatus: {
+    field: ['status', 'fr']
   },
   englishContent: {
     type: 'raw',
@@ -152,31 +163,76 @@ function renderPeopleForm(props) {
         <h4 className="title is-4">
           Presentation
         </h4>
+
         <div className="columns">
           <div className="column is-6">
             <div className="field">
-              <label className="label">English Title</label>
+              <label className="label">Domain</label>
+              <div className="control">
+                <EnumSelector
+                  enumType="domains"
+                  value={data.domain}
+                  onChange={handlers.domain} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Role</label>
               <div className="control">
                 <input
                   type="text"
                   className="input"
-                  value={data.title ? data.title.en : ''}
-                  onChange={handlers.englishTitle}
-                  placeholder="English Title" />
+                  value={data.role ? data.role.en : ''}
+                  onChange={handlers.englishRole}
+                  placeholder="English Role" />
               </div>
             </div>
           </div>
 
           <div className="column is-6">
             <div className="field">
-              <label className="label">French Title</label>
+              <label className="label">French Role</label>
               <div className="control">
                 <input
                   type="text"
                   className="input"
-                  value={data.title ? data.title.fr : ''}
-                  onChange={handlers.frenchTitle}
-                  placeholder="French Title" />
+                  value={data.role ? data.role.fr : ''}
+                  onChange={handlers.frenchRole}
+                  placeholder="French Role" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Status</label>
+              <div className="control">
+                <textarea
+                  className="textarea"
+                  value={(data.status && data.status.en) || ''}
+                  onChange={handlers.englishStatus}
+                  placeholder="English Status"
+                  rows={2} />
+              </div>
+            </div>
+          </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">French Status</label>
+              <div className="control">
+                <textarea
+                  className="textarea"
+                  value={(data.status && data.status.fr) || ''}
+                  onChange={handlers.frenchStatus}
+                  placeholder="French Status"
+                  rows={2} />
               </div>
             </div>
           </div>

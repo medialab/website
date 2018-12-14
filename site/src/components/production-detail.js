@@ -2,13 +2,13 @@ import React from 'react';
 import {graphql} from 'gatsby';
 
 export const queryFragment = graphql`
-  fragment PublicationDetail on ProductionsJson {
+  fragment ProductionDetail on ProductionsJson {
     title {
       en
       fr
     }
     type
-    abstract {
+    description {
       en
       fr
     }
@@ -32,7 +32,7 @@ export const queryFragment = graphql`
   }
 `;
 
-export default function PublicationDetail({data}) {
+export default function ProductionDetail({data}) {
   console.log(data);
 
   return (

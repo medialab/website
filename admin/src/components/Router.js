@@ -11,7 +11,7 @@ import List from './List';
 
 import ActivityForm from './forms/ActivityForm';
 import PeopleForm from './forms/PeopleForm';
-import PublicationForm from './forms/PublicationForm';
+import ProductionForm from './forms/ProductionForm';
 import NewsForm from './forms/NewsForm';
 import SettingsForm from './forms/SettingsForm';
 
@@ -71,8 +71,8 @@ export default function Router() {
         <Route path="/news/new" render={() => <NewsForm />} />
         <Route path="/news/:id" render={({match}) => <NewsForm id={match.params.id} />} />
         <Route path="/news" render={() => <List key="news" model="news" specs={listSpecs.news} />} />
-        <Route path="/productions/new" render={() => <PublicationForm />} />
-        <Route path="/productions/:id" render={({match}) => <PublicationForm id={match.params.id} />} />
+        <Route path="/productions/new" render={() => <ProductionForm />} />
+        <Route path="/productions/:id" render={({match}) => <ProductionForm id={match.params.id} />} />
         <Route path="/productions" render={() => <List key="productions" model="productions" specs={listSpecs.productions} />} />
         <Route path="/settings" render={() => <SettingsForm key="settings" />} />
         <Route render={() => (<div>Miss!</div>)} />

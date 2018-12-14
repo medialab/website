@@ -65,7 +65,7 @@ const customStyles = {
 };
 
 function isYear(string) {
-  return string.length === 4 && !isNaN(+string);
+  return string.length === 4 && !isNaN(+string) && +string;
 }
 
 function validate(precision, year, month, day) {
@@ -112,17 +112,21 @@ export default class DateSelector extends Component {
   }
 
   handleYear = o => {
-    this.setState({year: o}, this.handleChange);
+    this.setState({year: o}, () => {
+      this.handleChange();
 
-    if (!this.state.month)
-      this.monthRef.current.focus();
+      if (!this.state.month)
+        this.monthRef.current.focus();
+    });
   };
 
   handleMonth = o => {
-    this.setState({month: o}, this.handleChange);
+    this.setState({month: o}, () => {
+      this.handleChange();
 
-    if (!this.state.day)
-      this.dayRef.current.focus();
+      if (!this.state.day)
+        this.dayRef.current.focus();
+    });
   };
 
   handleDay = o => {

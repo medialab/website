@@ -9,7 +9,7 @@ import BooleanSelector from '../selectors/BooleanSelector';
 import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector from '../selectors/RelationSelector';
 
-function slugifyPublication(data) {
+function slugifyProduction(data) {
   return slugify(data.title ? (data.title.fr || '') : '');
 }
 
@@ -25,7 +25,7 @@ const HANDLERS = {
   frenchTitle: {
     type: 'slug',
     field: ['title', 'fr'],
-    slugify: slugifyPublication
+    slugify: slugifyProduction
   },
   englishAbstract: {
     field: ['abstract', 'en']
@@ -63,7 +63,7 @@ const HANDLERS = {
   }
 };
 
-function renderPublicationForm(props) {
+function renderProductionForm(props) {
   const {
     data,
     handlers,
@@ -264,7 +264,7 @@ function renderPublicationForm(props) {
   );
 }
 
-export default function PublicationForm({id}) {
+export default function ProductionForm({id}) {
   return (
     <Form
       id={id}
@@ -273,9 +273,9 @@ export default function PublicationForm({id}) {
       contentField="content"
       model="productions"
       label="production"
-      slugify={slugifyPublication}
+      slugify={slugifyProduction}
       validate={validate}>
-      {renderPublicationForm}
+      {renderProductionForm}
     </Form>
   );
 }

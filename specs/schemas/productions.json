@@ -149,7 +149,12 @@
         },
         "meta": {
           "title": "Metadonnées SPIRE",
-          "type": "object"
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            }
+          }
         }
       }
     }

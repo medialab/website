@@ -7,7 +7,7 @@ export const queryFragment = graphql`
       en
       fr
     }
-    excerpt {
+    description {
       en
       fr
     }
@@ -44,10 +44,10 @@ export default function NewsDetail({data}) {
       {data.draft && <p><em>This is a draft.</em></p>}
       <hr />
       <p>
-        <strong>EN excerpt</strong>: {data.excerpt && data.excerpt.en}
+        <strong>EN description</strong>: {data.description && data.description.en}
       </p>
       <p>
-        <strong>FR excerpt</strong>: {data.excerpt && data.excerpt.fr}
+        <strong>FR description</strong>: {data.description && data.description.fr}
       </p>
       <hr />
       <p>

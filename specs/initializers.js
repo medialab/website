@@ -14,7 +14,8 @@ module.exports = {
   news: function(uuid) {
     return {
       id: uuid(),
-      draft: true
+      draft: true,
+      internal: false
     };
   },
   people: function(uuid) {

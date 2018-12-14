@@ -14,6 +14,9 @@ html {
   font-family: "MuseosSans";
   font-size: 10px; }
 
+:root {
+  --height-topbar: 100px; }
+
 /* assets/scss/common/body.scss */
 body {
   margin: 0 auto; }
@@ -382,12 +385,9 @@ ul {
 /* imports */
 /* assets/scss/common/_top-bar-mobile.scss */
 /* assets/scss/common/_top-bar-desktop.scss */
-:root {
-  --height-topbar: 120px; }
-
 @media (min-width: 700px) {
   #topbar {
-    height: 120px;
+    height: 100px;
     position: relative;
     top: 0;
     left: 0;
@@ -397,8 +397,8 @@ ul {
     #topbar #topbar-content {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      grid-template-rows: 2rem auto 2rem;
-      grid-gap: 2rem;
+      grid-template-rows: 20px 60px 20px;
+      grid-gap: 0 2rem;
       padding: 0 2rem;
       background-color: white; }
       #topbar #topbar-content #logo-medialab {

@@ -1,6 +1,6 @@
 .slideshow {
 	width: 100%;
-	height: calc(100vh - 120px);
+	height: calc(100vh - var(--height-topbar) - 2rem);
 
 	position: relative;
 	text-align: center;
@@ -73,10 +73,12 @@
 	color: black;
 	position: absolute;
 	top: 50%;
-	right: 10px;
+	right: 0px;
 	margin-top: -.5em;
 	background: white;
-	padding: 2.5vh .5vh;
+	padding: 2.0vh .75vh;
+	transform-origin: center;
+	transform: translateY(2vh);
 }
 
 .slideshow--nav-previous {
@@ -89,7 +91,7 @@
 	-moz-transform: scaleX(-1);
 	transform: scaleX(-1);
 	right: auto;
-	left: 10px;
+	left: 0px;
 }
 
 .slideshow--nav-next {

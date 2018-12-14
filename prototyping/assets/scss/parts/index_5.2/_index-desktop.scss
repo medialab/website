@@ -16,13 +16,22 @@ body{
     padding: 4rem 0;
 }
 
+main{
+    padding: 0 2rem;
+}
+
+hr{
+    border: none;
+    border-bottom: 1px solid $color-header-text;
+}
+
 ///////////////////////
 /////////// Focus
 ///////////////////////
  
 .slideshow{
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    //border-top: 1px solid black;
+    //border-bottom: 1px solid black;
 }
 
 #focus{
@@ -33,7 +42,7 @@ body{
     grid-gap: 2rem;
 
     width: 100% ;
-    height: calc(100vh - 120px);
+    height: calc(100vh - $height-top-bar);
     height: 100%;
     max-height: 960px;
 
@@ -70,53 +79,115 @@ body{
     article{
         position: absolute;
         width: 50vw;
-        height: calc( 100% - 10rem );        
+        height: calc(92vh - $height-top-bar);        
         background: white;
 
-        margin: 5rem;
+        margin: 4vh;
         z-index: 90;
 
         header{
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            grid-template-rows: repeat(8, 1fr);
-            grid-gap: 2rem;
-            height: 100%;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: $baseline;
+            height: calc(66% + 2rem);
+            grid-template-rows: 2rem 33% calc(33% - 2rem);
+            padding: 1rem;
 
-            p{
-                grid-column: 2/6;
-                font-size: $font-size*1.4;
-                line-height: $baseline*1.4;
 
-            }
-
-            h3{
-                grid-column: 1/7;
+            h1{
+                grid-column: 1/4;
                 grid-row: 2;
-                font-size: $font-size*7;
+                font-size: $font-size*5;
+                line-height: $baseline*5;
                 font-weight: 100;
 
-                text-transform: uppercase;
+                align-self: start;
             }
 
-            h4{
-                grid-column: 1/7;
-                grid-row:3;
+            h2{
+                grid-column: 1/4;
+                grid-row:2;
+                font-size: $font-size*1.2;
+                line-height: $baseline*1.2;
+                font-weight: 100;
+                font-style: italic;
+
+                align-self: end;
+
+            }
+
+            .nomenclature{
+                grid-column: 1/4;
+                grid-row: 1/2;
+                display: flex;
+                font-size: $font-size*1.2;
+                line-height: $baseline*1.2;
+                color: $color-header-text;
+                justify-content: space-between;
+                width: 100%;
+                height: auto;
+                top: 0;
+
+                p{
+                    width: auto;
+
+                }    
+            }
+
+
+            .description{
+                grid-column: 1/4;
+                grid-row: 3/4;
+                overflow: hidden;
+                width: 100%;
                 font-size: $font-size*1.4;
                 line-height: $baseline*1.4;
-                font-weight: 100;            
+
+            }
+        }
+
+        nav.related{
+            height: calc(33% - 1rem);
+            width: 100%;
+            padding: 0 1rem 1rem 1rem;
+
+
+
+            h3{
+
+                font-size: $font-size*1.5;
+                line-height: $baseline*1.5;
+                font-weight: bold;
+                text-align: left;
             }
 
-            h5.type{
-            grid-column: 1/7;
-            grid-row:4;
+            li{
+                display: flex;
+                flex-wrap: nowrap;
+                border-bottom: 1px solid $color-header-text;
+                justify-content: flex-start;
+                text-align: left;
+                align-items: flex-start;
+                height: 3rem;
 
-            font-size: $font-size*2;
-            line-height: $baseline*1.5;
-            font-weight: 100;
+                h4{
+                    width: auto;
+                    flex-grow: 2;
+                }
 
-            content:"⋄";
+                .nomenclature{
+                    display: flex;
+                    align-content: stretch;
+                    justify-content: flex-end;
+                    flex-grow: 1;
+                    max-width: 50%;
 
+                    p{
+                        width: auto;
+                        font-size: $font-size*1.2;
+                        line-height: $baseline*1.2;
+                    }
+                }
             }
         }
     }
@@ -256,7 +327,6 @@ body{
     #agenda{
         width: calc(140vw - 3rem);
 
-        border-bottom: 1px solid grey;
         padding: 0 0 10vh 0;
         transition: .75s ease-in-out;
 

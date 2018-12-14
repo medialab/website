@@ -5,9 +5,8 @@
         grid-template-columns: repeat(6, 1fr);
         grid-gap: 2rem;
         
-        padding: 0 2rem;
-        width: calc( 100vw - 2rem);
-
+        //width: calc( 100vw - 2rem);
+        width: 100%;
 
         h3{
             grid-row: 1/2;

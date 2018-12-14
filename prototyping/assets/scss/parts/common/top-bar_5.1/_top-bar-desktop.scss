@@ -1,10 +1,5 @@
 /* assets/scss/common/_top-bar-desktop.scss */
 
-
-$height-top-bar: 120px;
-
-:root{ --height-topbar: 120px; }
-
 @include for-size(desktop) {
 
 
@@ -25,8 +20,10 @@ $height-top-bar: 120px;
 
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            grid-template-rows: 2rem auto 2rem;
-            grid-gap: 2rem;
+            //grid-template-rows: 2rem auto 2rem;
+            grid-template-rows: 20px 60px 20px;
+
+            grid-gap: 0 2rem;
 
             padding: 0 $margins-desktop;
 

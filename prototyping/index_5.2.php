@@ -26,321 +26,308 @@
 		</p>
 		<p>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</p>
 	</div>
+	<main>
+		<div class="slideshow">
+			<input type="radio" name="ss1" id="ss1-item-1" class="slideshow--bullet" checked="checked" />
+			<div class="slideshow--item">
+					<section class="transition" id="focus">
+						<div>
+							<?php include('assets/images/sample_txt/shinrai_1.html'); ?>
+						</div>
+						<article>
+							<header>
+								<h1>EDGE</h1>
+								<h2>Environmental Diplomacy and Geopolitics</h2>
 
-	<!--<div class="container">
-		<section class="transition" id="focus">
-			<div>
-				<?php include('assets/images/sample_txt/shinrai_1.html'); ?>
+								<div class="nomenclature">
+									<p class="type">Séminaire</p>
+									<p class="auteur">3 contributeurs</p>
+								</div>
+
+								<p class="description">Lauréat de <a href="http://www.horizon2020.gouv.fr/cid86662/l-appel-a-projet-twinning-ouvert-jusqu-en-mai-2015.html">l’appel à projet Twinning</a> de la Commission européenne, le programme EDGE (Environmental Diplomacy and Geopolitics) vise à faciliter les échanges d'étudiants entre trois universités (Université d'économie de Bratislava, Sciences Po et l'Université de Liège) pour leur permettre d'acquérir des connaissances en diplomatie environnementale et géopolitique de l'environnement.</p>					
+							</header>
+
+							<nav class="related">
+								<h3>En lien</h3>
+								<ul>
+									<li>	
+										<h4>RICardo Project</h4>
+										<h5>Exploring XIX Century International Trade</h5>
+										<div class="nomenclature">
+											<p class="type">Publication</p>
+											<p class="auteur">3 contributeurs</p>
+										</div>
+									</li>
+									<li>	
+										<h4>Communication à la conférence ABC</h4>
+										<div class="nomenclature">
+											<p class="type">Publication</p>
+											<p class="date"> 2018-06-09</p>
+										</div>
+									</li>
+									<li>	
+										<h4>Refléxion sur notre atelier XYZ</h4>
+										<div class="nomenclature">
+											<p class="type">chronique</p>
+										</div>
+									</li>
+									<li>	
+										<h4>John Doe rejoint l'équipe du Medialab </h4>
+										<div class="nomenclature">
+											<p class="type">Annonce</p>
+										</div>
+									</li>
+								</ul>
+							</nav>
+						</article>
+					</section>
+				<label for="ss1-item-3" class="slideshow--nav slideshow--nav-previous">Go to slide 3</label>
+				<label for="ss1-item-2" class="slideshow--nav slideshow--nav-next">Go to slide 2</label>
 			</div>
-			<article>
-				<header>
-					<p>Focus sur</p>
-					<h3>EDGE</h3>
-					<h4>Environmental Diplomacy and Geopolitics</h4>
-
-					<h5 class="type">Séminaire</h5>
-
-					<p>Lauréat de <a href="http://www.horizon2020.gouv.fr/cid86662/l-appel-a-projet-twinning-ouvert-jusqu-en-mai-2015.html">l’appel à projet Twinning</a> de la Commission européenne, le programme EDGE (Environmental Diplomacy and Geopolitics) vise à faciliter les échanges d'étudiants entre trois universités (Université d'économie de Bratislava, Sciences Po et l'Université de Liège) pour leur permettre d'acquérir des connaissances en diplomatie environnementale et géopolitique de l'environnement.
-					En parallèle, EDGE organise chaque année une Summer School pour stimuler les rencontres scientifiques et promouvoir les travaux menés dans le cadre du programme.
-					</p>					
-				</header>
-			</article>
-		</section>
-	</div>-->
-
-	<div class="slideshow">
-		<input type="radio" name="ss1" id="ss1-item-1" class="slideshow--bullet" checked="checked" />
-		<div class="slideshow--item">
-				<section class="transition" id="focus">
-					<div>
-						<?php include('assets/images/sample_txt/shinrai_1.html'); ?>
-					</div>
-					<article>
-						<header>
-							<p>Focus sur</p>
-							<h3>EDGE</h3>
-							<h4>Environmental Diplomacy and Geopolitics</h4>
-
-							<h5 class="type">Séminaire</h5>
-
-							<p>Lauréat de <a href="http://www.horizon2020.gouv.fr/cid86662/l-appel-a-projet-twinning-ouvert-jusqu-en-mai-2015.html">l’appel à projet Twinning</a> de la Commission européenne, le programme EDGE (Environmental Diplomacy and Geopolitics) vise à faciliter les échanges d'étudiants entre trois universités (Université d'économie de Bratislava, Sciences Po et l'Université de Liège) pour leur permettre d'acquérir des connaissances en diplomatie environnementale et géopolitique de l'environnement.
-							En parallèle, EDGE organise chaque année une Summer School pour stimuler les rencontres scientifiques et promouvoir les travaux menés dans le cadre du programme.
-							</p>					
-						</header>
-					</article>
-				</section>
-			<label for="ss1-item-3" class="slideshow--nav slideshow--nav-previous">Go to slide 3</label>
-			<label for="ss1-item-2" class="slideshow--nav slideshow--nav-next">Go to slide 2</label>
-		</div>
-	
-		<input type="radio" name="ss1" id="ss1-item-2" class="slideshow--bullet" />
-		<div class="slideshow--item">
-				<section class="transition" id="focus">
-					<div>
-						<?php include('assets/images/sample_txt/naturpradi_s.html'); ?>
-					</div>
-					<article>
-						<header>
-							<p>Lauréat de <a href="http://www.horizon2020.gouv.fr/cid86662/l-appel-a-projet-twinning-ouvert-jusqu-en-mai-2015.html">l’appel à projet Twinning</a> de la Commission européenne, le programme EDGE (Environmental Diplomacy and Geopolitics) vise à faciliter les échanges d'étudiants entre trois universités (Université d'économie de Bratislava, Sciences Po et l'Université de Liège) pour leur permettre d'acquérir des connaissances en diplomatie environnementale et géopolitique de l'environnement.
-							En parallèle, EDGE organise chaque année une Summer School pour stimuler les rencontres scientifiques et promouvoir les travaux menés dans le cadre du programme.
-							</p>					
-						</header>
-					</article>
-				</section>
-			<label for="ss1-item-1" class="slideshow--nav slideshow--nav-previous">Go to slide 1</label>
-			<label for="ss1-item-3" class="slideshow--nav slideshow--nav-next">Go to slide 3</label>
-		</div>
-	
-		<input type="radio" name="ss1" id="ss1-item-3" class="slideshow--bullet" />
-		<div class="slideshow--item">
-				<section class="transition" id="focus">
-					<div>
-						<?php include('assets/images/sample_txt/fabrique_loi_s.html'); ?>
-					</div>
-					<article>
-						<header>
-							<p>Focus sur</p>
-							<h3>3</h3>
-							<h4>Environmental Diplomacy and Geopolitics</h4>
-
-							<h5 class="type">Séminaire</h5>
-
-							<p>Lauréat de <a href="http://www.horizon2020.gouv.fr/cid86662/l-appel-a-projet-twinning-ouvert-jusqu-en-mai-2015.html">l’appel à projet Twinning</a> de la Commission européenne, le programme EDGE (Environmental Diplomacy and Geopolitics) vise à faciliter les échanges d'étudiants entre trois universités (Université d'économie de Bratislava, Sciences Po et l'Université de Liège) pour leur permettre d'acquérir des connaissances en diplomatie environnementale et géopolitique de l'environnement.
-							En parallèle, EDGE organise chaque année une Summer School pour stimuler les rencontres scientifiques et promouvoir les travaux menés dans le cadre du programme.
-							</p>					
-						</header>
-					</article>
-				</section>
-			<label for="ss1-item-2" class="slideshow--nav slideshow--nav-previous">Go to slide 2</label>
-			<label for="ss1-item-4" class="slideshow--nav slideshow--nav-next">Go to slide 4</label>
-		</div>
-	</div>
- 
-	<div class="container">
 		
-		<h3>Hot stuff 💥</h3>
+			<input type="radio" name="ss1" id="ss1-item-2" class="slideshow--bullet" />
+			<div class="slideshow--item">
+					<section class="transition" id="focus">
+						<div>
+							<?php include('assets/images/sample_txt/naturpradi_s.html'); ?>
+						</div>
+						<article>
+							<header>
+								<p>Lauréat de <a href="http://www.horizon2020.gouv.fr/cid86662/l-appel-a-projet-twinning-ouvert-jusqu-en-mai-2015.html">l’appel à projet Twinning</a> de la Commission européenne, le programme EDGE (Environmental Diplomacy and Geopolitics) vise à faciliter les échanges d'étudiants entre trois universités (Université d'économie de Bratislava, Sciences Po et l'Université de Liège) pour leur permettre d'acquérir des connaissances en diplomatie environnementale et géopolitique de l'environnement.
+								En parallèle, EDGE organise chaque année une Summer School pour stimuler les rencontres scientifiques et promouvoir les travaux menés dans le cadre du programme.
+								</p>					
+							</header>
+						</article>
+					</section>
+				<label for="ss1-item-1" class="slideshow--nav slideshow--nav-previous">Go to slide 1</label>
+				<label for="ss1-item-3" class="slideshow--nav slideshow--nav-next">Go to slide 3</label>
+			</div>
 		
-		<section id="enavant">
+			<input type="radio" name="ss1" id="ss1-item-3" class="slideshow--bullet" />
+			<div class="slideshow--item">
+					<section class="transition" id="focus">
+						<div>
+							<?php include('assets/images/sample_txt/fabrique_loi_s.html'); ?>
+						</div>
+						<article>
+							<header>
+								<p>Focus sur</p>
+								<h3>3</h3>
+								<h4>Environmental Diplomacy and Geopolitics</h4>
 
-			<header class="actualite">
-				<h4>Recrute Professeur – STS et environnement </h4>
-				<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
-				<div class="nomenclature">
-					<p class="type">Annonce</p>
-					<p class="date">2019-07-02</p>
-				</div>
-			</header>
+								<h5 class="type">Séminaire</h5>
 
-		</section>
-	</div>
-
-	<div class="container">
-
-		<h3>Les rendez-vous du Labo</h3>
-
-		<div id="agenda_moving_left">
-			→
-		</div>
-
-		<div id="agenda" data-attribute="agenda">
-
-			<div class="day" data-attribute="day">
-				<h6>12/01</h6>
-				<h4>How not to be a bad designer</h4>
-				<h5 class="type">Séminaire</h5>
-				<h5 class="lieu">Paris</h5>
-			</div>
-
-			<div class="day" data-attribute="day">
-				<h6>24/02</h6>
-				<h4>How not to be a bad designer</h4>
-				<h5 class="type">Rencontre</h5>
-				<h5 class="lieu">Copenhague</h5>
-			</div>
-
-			<div class="day" data-attribute="day">
-				<h6>02/08</h6>
-				<h4>How not to be a bad badder </h4>
-				<h5 class="type">Séminaire</h5>
-				<h5 class="lieu">Tourcoing</h5>
-			</div>
-
-			<div class="day" data-attribute="day">
-				<h6>17/11</h6>
-				<h4>How not to be or not to be</h4>
-				<h5 class="type">Séminaire</h5>
-				<h5 class="lieu">London</h5>
-			</div>
-
-			<div class="day" data-attribute="day">
-				<h6>22/11</h6>
-				<h4>How not</h4>
-				<h5 class="type">Séminaire</h5>
-				<h5 class="lieu">Paris</h5>
-			</div>
-
-			<div class="day" data-attribute="day">
-				<h6>17/11</h6>
-				<h4>How not to be or not to be</h4>
-				<h5 class="type">Séminaire</h5>
-				<h5 class="lieu">London</h5>
-			</div>
-
-			<div class="day" data-attribute="day">
-				<h6>22/11</h6>
-				<h4>How not</h4>
-				<h5 class="type">Séminaire</h5>
-				<h5 class="lieu">Paris</h5>
+								<p>Lauréat de <a href="http://www.horizon2020.gouv.fr/cid86662/l-appel-a-projet-twinning-ouvert-jusqu-en-mai-2015.html">l’appel à projet Twinning</a> de la Commission européenne, le programme EDGE (Environmental Diplomacy and Geopolitics) vise à faciliter les échanges d'étudiants entre trois universités (Université d'économie de Bratislava, Sciences Po et l'Université de Liège) pour leur permettre d'acquérir des connaissances en diplomatie environnementale et géopolitique de l'environnement.
+								En parallèle, EDGE organise chaque année une Summer School pour stimuler les rencontres scientifiques et promouvoir les travaux menés dans le cadre du programme.
+								</p>					
+							</header>
+						</article>
+					</section>
+				<label for="ss1-item-2" class="slideshow--nav slideshow--nav-previous">Go to slide 2</label>
+				<label for="ss1-item-4" class="slideshow--nav slideshow--nav-next">Go to slide 4</label>
 			</div>
 		</div>
-	</div>
-
-	<div class="container">
-		
-		<h3>Quoi de neuf au labo</h3>
-		
-		<section id="ensecond">
-
-			<header class="actualite">
-				<h4>Recrute Professeur – STS et environnement </h4>
-				<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
-				<div class="nomenclature">
-					<p class="type">Annonce</p>
-					<p class="date">2019-07-02</p>
-				</div>
-			</header>
-
-			<header class="actualite important">
-				<h4>Une publication est parue</h4>
-				<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
-				<div class="nomenclature">
-					<p class="type">Publication </p>
-					<p class="date">2019-07-08</p>
-				</div>
-			</header>
-
-			<header class="actualite">
-				<h4>Le système de crédit social en Chine</h4>
-				<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
-				<div class="nomenclature">
-					<p class="type">Séminaire </p>
-					<p class="date">2019-07-08</p>
-				</div>
-			</header>
-
-			<header class="actualite">
-				<h4>Recrute Professeur – STS et environnement </h4>
-				<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
-				<div class="nomenclature">
-					<p class="type">Annonce</p>
-					<p class="date">2019-07-02</p>
-				</div>
-			</header>
-
-			<header class="actualite important">
-				<h4>Une publication est parue</h4>
-				<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
-				<div class="nomenclature">
-					<p class="type">Publication </p>
-					<p class="date">2019-07-08</p>
-				</div>
-			</header>
-
-			<header class="actualite">
-				<h4>Le système de crédit social en Chine</h4>
-				<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
-				<!-- Image ??? -->
-				<div class="nomenclature">
-					<p class="type">Séminaire </p>
-					<p class="date">2019-07-08</p>
-				</div>
-			</header>
-
-			<header class="actualite">
-				<h4>Le système de crédit social en Chine</h4>
-				<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
-				<div class="nomenclature">
-					<p class="type">Séminaire </p>
-					<p class="date">2019-07-08</p>
-				</div>
-			</header>
-
-			<header class="actualite">
-				<h4>Recrute Professeur – STS et environnement </h4>
-				<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
-				<div class="nomenclature">
-					<p class="type">Annonce</p>
-					<p class="date">2019-07-02</p>
-				</div>
-			</header>
-
-			<header class="tweet">
-				<p class="emblem">◍</p>
-				<p class="action"><a href="">Medialab</a> suit désormais <a href="">Noortje Marres</a></p>
-				<p class="emblem">⬚</p>
-				<div class="nomenclature">
-					<p class="date">2019-07-08</p>
-				</div>
-			</header>
-
-			<header class="actualite">
-				<h4>Une publication est parue</h4>
-				<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
-				<div class="nomenclature">
-					<p class="type">Publication </p>
-					<p class="date">2019-07-08</p>
-				</div>
-			</header>
-
-			<header class="actualite">
-				<h4>Le système de crédit social en Chine</h4>
-				<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
-				<!-- Image ??? -->
-				<div class="nomenclature">
-					<p class="type">Séminaire </p>
-					<p class="date">2019-07-08</p>
-				</div>
-			</header>
-
-			<header class="tweet">
-				<p class="emblem">◍</p>
-				<p class="action">Medialab tweet</p>
-				<p class="tweet_content">Médialab's contributions in Cogito n°5 are available in english ; let's read: - #Digital readings of the Bible, by @jphcoi - History of #internationaltrade in #data by @paulanomalie</p>
-				<div class="nomenclature">
-					<p class="date">2019-07-08</p>
-				</div>
-			</header>
-
-
-		</section>
-	</div>
-	<!--<div class="separate">
-		<div class="in">
-			<div>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</div>
-			<div>▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒</div>
-			<div>▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓</div>
-			<div>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</div>
-			<div>▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒</div>
-			<div>▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓</div>
-			<div>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</div>
-			<div>▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒</div>
-			<div>▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓</div>
-
-		</div>
-	</div>	
-	<div class="separate">
-		<div class="in">
-			<div>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</div>
+	 
+		<div class="container">
 			
+			<h3>Hot stuff 💥</h3>
+			
+			<section id="enavant">
+
+				<header class="actualite">
+					<h4>Recrute Professeur – STS et environnement </h4>
+					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
+					<div class="nomenclature">
+						<p class="type">Annonce</p>
+						<p class="date">2019-07-02</p>
+					</div>
+				</header>
+
+			</section>
 		</div>
-	</div>	
-	<div class="separate">
-		<div class="in">
-			<div style="font-size: 3vw; line-height: calc(2vw + 5px);">⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘</div>
-			<div style="font-size: 3vw; line-height: calc(2vw + 5px);">⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘</div>
-			<div style="font-size: 3vw; line-height: calc(2vw + 5px);">⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘⁘</div>
+
+		<div class="container">
+
+			<h3>Les rendez-vous du Labo</h3>
+
+			<div id="agenda_moving_left">
+				→
+			</div>
+
+			<div id="agenda" data-attribute="agenda">
+
+				<div class="day" data-attribute="day">
+					<h6>12/01</h6>
+					<h4>How not to be a bad designer</h4>
+					<h5 class="type">Séminaire</h5>
+					<h5 class="lieu">Paris</h5>
+				</div>
+
+				<div class="day" data-attribute="day">
+					<h6>24/02</h6>
+					<h4>How not to be a bad designer</h4>
+					<h5 class="type">Rencontre</h5>
+					<h5 class="lieu">Copenhague</h5>
+				</div>
+
+				<div class="day" data-attribute="day">
+					<h6>02/08</h6>
+					<h4>How not to be a bad badder </h4>
+					<h5 class="type">Séminaire</h5>
+					<h5 class="lieu">Tourcoing</h5>
+				</div>
+
+				<div class="day" data-attribute="day">
+					<h6>17/11</h6>
+					<h4>How not to be or not to be</h4>
+					<h5 class="type">Séminaire</h5>
+					<h5 class="lieu">London</h5>
+				</div>
+
+				<div class="day" data-attribute="day">
+					<h6>22/11</h6>
+					<h4>How not</h4>
+					<h5 class="type">Séminaire</h5>
+					<h5 class="lieu">Paris</h5>
+				</div>
+
+				<div class="day" data-attribute="day">
+					<h6>17/11</h6>
+					<h4>How not to be or not to be</h4>
+					<h5 class="type">Séminaire</h5>
+					<h5 class="lieu">London</h5>
+				</div>
+
+				<div class="day" data-attribute="day">
+					<h6>22/11</h6>
+					<h4>How not</h4>
+					<h5 class="type">Séminaire</h5>
+					<h5 class="lieu">Paris</h5>
+				</div>
+			</div>
+			<hr>
 		</div>
-	</div>	-->
+
+		<div class="container">
+			
+			<h3>Quoi de neuf au labo</h3>
+			
+			<section id="ensecond">
+
+				<header class="actualite">
+					<h4>Recrute Professeur – STS et environnement </h4>
+					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
+					<div class="nomenclature">
+						<p class="type">Annonce</p>
+						<p class="date">2019-07-02</p>
+					</div>
+				</header>
+
+				<header class="actualite important">
+					<h4>Une publication est parue</h4>
+					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
+					<div class="nomenclature">
+						<p class="type">Publication </p>
+						<p class="date">2019-07-08</p>
+					</div>
+				</header>
+
+				<header class="actualite">
+					<h4>Le système de crédit social en Chine</h4>
+					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
+					<div class="nomenclature">
+						<p class="type">Séminaire </p>
+						<p class="date">2019-07-08</p>
+					</div>
+				</header>
+
+				<header class="actualite">
+					<h4>Recrute Professeur – STS et environnement </h4>
+					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
+					<div class="nomenclature">
+						<p class="type">Annonce</p>
+						<p class="date">2019-07-02</p>
+					</div>
+				</header>
+
+				<header class="actualite important">
+					<h4>Une publication est parue</h4>
+					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
+					<div class="nomenclature">
+						<p class="type">Publication </p>
+						<p class="date">2019-07-08</p>
+					</div>
+				</header>
+
+				<header class="actualite">
+					<h4>Le système de crédit social en Chine</h4>
+					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
+					<!-- Image ??? -->
+					<div class="nomenclature">
+						<p class="type">Séminaire </p>
+						<p class="date">2019-07-08</p>
+					</div>
+				</header>
+
+				<header class="actualite">
+					<h4>Le système de crédit social en Chine</h4>
+					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
+					<div class="nomenclature">
+						<p class="type">Séminaire </p>
+						<p class="date">2019-07-08</p>
+					</div>
+				</header>
+
+				<header class="actualite">
+					<h4>Recrute Professeur – STS et environnement </h4>
+					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
+					<div class="nomenclature">
+						<p class="type">Annonce</p>
+						<p class="date">2019-07-02</p>
+					</div>
+				</header>
+
+				<header class="tweet">
+					<p class="emblem">◍</p>
+					<p class="action"><a href="">Medialab</a> suit désormais <a href="">Noortje Marres</a></p>
+					<p class="emblem">⬚</p>
+					<div class="nomenclature">
+						<p class="date">2019-07-08</p>
+					</div>
+				</header>
+
+				<header class="actualite">
+					<h4>Une publication est parue</h4>
+					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
+					<div class="nomenclature">
+						<p class="type">Publication </p>
+						<p class="date">2019-07-08</p>
+					</div>
+				</header>
+
+				<header class="actualite">
+					<h4>Le système de crédit social en Chine</h4>
+					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
+					<!-- Image ??? -->
+					<div class="nomenclature">
+						<p class="type">Séminaire </p>
+						<p class="date">2019-07-08</p>
+					</div>
+				</header>
+
+				<header class="tweet">
+					<p class="emblem">◍</p>
+					<p class="action">Medialab tweet</p>
+					<p class="tweet_content">Médialab's contributions in Cogito n°5 are available in english ; let's read: - #Digital readings of the Bible, by @jphcoi - History of #internationaltrade in #data by @paulanomalie</p>
+					<div class="nomenclature">
+						<p class="date">2019-07-08</p>
+					</div>
+				</header>
+
+
+			</section>
+		</div>
+	</main>
 
 
 </body>

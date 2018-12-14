@@ -16,6 +16,9 @@ html {
   font-family: sans-serif;
   font-size: 10px; }
 
+:root {
+  --height-topbar: 100px; }
+
 /* assets/scss/common/body.scss */
 body {
   margin: 0 auto; }
@@ -384,12 +387,9 @@ ul {
 /* imports */
 /* assets/scss/common/_top-bar-mobile.scss */
 /* assets/scss/common/_top-bar-desktop.scss */
-:root {
-  --height-topbar: 120px; }
-
 @media (min-width: 700px) {
   #topbar {
-    height: 120px;
+    height: 100px;
     position: relative;
     top: 0;
     left: 0;
@@ -399,8 +399,8 @@ ul {
     #topbar #topbar-content {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      grid-template-rows: 2rem auto 2rem;
-      grid-gap: 2rem;
+      grid-template-rows: 20px 60px 20px;
+      grid-gap: 0 2rem;
       padding: 0 2rem;
       background-color: white; }
       #topbar #topbar-content #logo-medialab {
@@ -627,7 +627,7 @@ ul {
             grid-row-start: 2; } }
 .slideshow {
   width: 100%;
-  height: calc(100vh - 120px);
+  height: calc(100vh - var(--height-topbar) - 2rem);
   position: relative;
   text-align: center;
   padding-bottom: 30px; }
@@ -688,10 +688,12 @@ ul {
   color: black;
   position: absolute;
   top: 50%;
-  right: 10px;
+  right: 0px;
   margin-top: -.5em;
   background: white;
-  padding: 2.5vh .5vh; }
+  padding: 2.0vh .75vh;
+  transform-origin: center;
+  transform: translateY(2vh); }
 
 .slideshow--nav-previous {
   left: 0;
@@ -702,7 +704,7 @@ ul {
   -moz-transform: scaleX(-1);
   transform: scaleX(-1);
   right: auto;
-  left: 10px; }
+  left: 0px; }
 
 .slideshow--nav-next {
   left: 50%;
@@ -741,9 +743,12 @@ body {
 .container h3:first-of-type {
   padding: 4rem 0; }
 
-.slideshow {
-  border-top: 1px solid black;
-  border-bottom: 1px solid black; }
+main {
+  padding: 0 2rem; }
+
+hr {
+  border: none;
+  border-bottom: 1px solid #808080; }
 
 #focus {
   grid-column: 1/7;
@@ -751,7 +756,7 @@ body {
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 2rem;
   width: 100%;
-  height: calc(100vh - 120px);
+  height: calc(100vh - $height-top-bar);
   height: 100%;
   max-height: 960px;
   padding: 0rem;
@@ -771,39 +776,82 @@ body {
   #focus article {
     position: absolute;
     width: 50vw;
-    height: calc( 100% - 10rem );
+    height: calc(92vh - $height-top-bar);
     background: white;
-    margin: 5rem;
+    margin: 4vh;
     z-index: 90; }
     #focus article header {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      grid-template-rows: repeat(8, 1fr);
-      grid-gap: 2rem;
-      height: 100%; }
-      #focus article header p {
-        grid-column: 2/6;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 15px;
+      height: calc(66% + 2rem);
+      grid-template-rows: 2rem 33% calc(33% - 2rem);
+      padding: 1rem; }
+      #focus article header h1 {
+        grid-column: 1/4;
+        grid-row: 2;
+        font-size: 50px;
+        line-height: 75px;
+        font-weight: 100;
+        align-self: start; }
+      #focus article header h2 {
+        grid-column: 1/4;
+        grid-row: 2;
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: 100;
+        font-style: italic;
+        align-self: end; }
+      #focus article header .nomenclature {
+        grid-column: 1/4;
+        grid-row: 1/2;
+        display: flex;
+        font-size: 12px;
+        line-height: 18px;
+        color: #808080;
+        justify-content: space-between;
+        width: 100%;
+        height: auto;
+        top: 0; }
+        #focus article header .nomenclature p {
+          width: auto; }
+      #focus article header .description {
+        grid-column: 1/4;
+        grid-row: 3/4;
+        overflow: hidden;
+        width: 100%;
         font-size: 14px;
         line-height: 21px; }
-      #focus article header h3 {
-        grid-column: 1/7;
-        grid-row: 2;
-        font-size: 70px;
-        font-weight: 100;
-        text-transform: uppercase; }
-      #focus article header h4 {
-        grid-column: 1/7;
-        grid-row: 3;
-        font-size: 14px;
-        line-height: 21px;
-        font-weight: 100; }
-      #focus article header h5.type {
-        grid-column: 1/7;
-        grid-row: 4;
-        font-size: 20px;
+    #focus article nav.related {
+      height: calc(33% - 1rem);
+      width: 100%;
+      padding: 0 1rem 1rem 1rem; }
+      #focus article nav.related h3 {
+        font-size: 15px;
         line-height: 22.5px;
-        font-weight: 100;
-        content: "⋄"; }
+        font-weight: bold;
+        text-align: left; }
+      #focus article nav.related li {
+        display: flex;
+        flex-wrap: nowrap;
+        border-bottom: 1px solid #808080;
+        justify-content: flex-start;
+        text-align: left;
+        align-items: flex-start;
+        height: 3rem; }
+        #focus article nav.related li h4 {
+          width: auto;
+          flex-grow: 2; }
+        #focus article nav.related li .nomenclature {
+          display: flex;
+          align-content: stretch;
+          justify-content: flex-end;
+          flex-grow: 1;
+          max-width: 50%; }
+          #focus article nav.related li .nomenclature p {
+            width: auto;
+            font-size: 12px;
+            line-height: 18px; }
 
 .slideshow--item:nth-of-type(2n) article {
   right: 0; }
@@ -884,7 +932,6 @@ body {
   text-align: center; }
 .container #agenda {
   width: calc(140vw - 3rem);
-  border-bottom: 1px solid grey;
   padding: 0 0 10vh 0;
   transition: .75s ease-in-out; }
   .container #agenda .day {
@@ -965,13 +1012,15 @@ body {
     position: absolute;
     top: 0; }
 
+:root {
+  --height-topbar: 100px; }
+
 @supports (display: grid) {
   .container {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 2rem;
-    padding: 0 2rem;
-    width: calc( 100vw - 2rem); }
+    width: 100%; }
     .container h3 {
       grid-row: 1/2;
       grid-column: 1/7;

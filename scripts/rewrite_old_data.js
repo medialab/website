@@ -6,7 +6,7 @@ const uuid = require('uuid/v4');
 const domains = require('./wordpress_scraping/domains.json');
 
 // utils
-// we might want to keep not only the slug but the path ? 
+// we might want to keep not only the slug but the path ?
 const oldSlug = o => o.permalink.split('/')[o.permalink.split('/').length - 2];
 const associated = status => status.indexOf('associ') !== -1;
 const active = (o) => {
@@ -16,19 +16,24 @@ const active = (o) => {
     // simplified version of active counting anything which finish after january 2019
     return +y >= 19;
 };
-const formatDate = date => '20'+date.split('/').reverse().join('-')
+const formatDate = date => {
+    let [y, m, d] = date.split('/').reverse();
+    if (y.length === 2)
+        y = '20' + y;
+    return `${y}-${m}-${d}`;
+};
 
 
 const translations = {
     activities: o => {
-        const name = o.title_fr.length > 0 ? o.title_fr : o.title_en; 
+        const name = o.title_fr.length > 0 ? o.title_fr : o.title_en;
         const newProject = {
             id: uuid(),
             latUpdated: new Date(Date.parse(o.date)).getTime(),
             slugs: [oldSlug(o)],
             oldSlug: oldSlug(o),
             name,
-            description:{
+            description: {
                 en: o.excerpt_en,
                 fr: o.excerpt_fr
             },
@@ -43,10 +48,10 @@ const translations = {
             active: active(o),
             draft: true
         };
-        const dateDebut = o.custom_fields.filter(e => e.date_debut).reduce((acc, e) => e.date_debut, null)
-    
+        const dateDebut = o.custom_fields.filter(e => e.date_debut).reduce((acc, e) => e.date_debut, null);
+
         if (o.sstitre_projet_fr)
-            newProject.baseline = {fr:o.sstitre_projet_fr}
+            newProject.baseline = {fr: o.sstitre_projet_fr};
         if (o.sstitre_projet_en)
             Object.assign(newProject.baseline, {en: o.sstitre_projet_en});
         if (dateDebut)
@@ -54,7 +59,7 @@ const translations = {
         return newProject;
     },
     people: people => {
-        const name = people.title_fr.length > 0 ? people.title_fr : people.title_en; 
+        const name = people.title_fr.length > 0 ? people.title_fr : people.title_en;
         const newPeople = {
             id: uuid(),
             latUpdated: new Date(Date.parse(people.date)).getTime(),
@@ -86,13 +91,12 @@ const translations = {
 };
 
 
-const modelsToProcess = [{new:'people', old:'people'},{new:'activities', old:'projets'}];
+const modelsToProcess = [{new: 'people', old: 'people'}, {new: 'activities', old: 'projets'}];
 
 async.all(modelsToProcess,
     (models) => {
     const oldModel = models.old;
     const newModel = models.new;
-    
     const inPath = `./wordpress_scraping/data/${oldModel}/`;
     const outPath = `./wordpress_scraping/data/new/${newModel}`;
     fs.removeSync(outPath);

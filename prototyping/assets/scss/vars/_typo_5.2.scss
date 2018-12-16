@@ -34,6 +34,7 @@ html{
     line-height: $baseline*1.8;
 }
 
+
 @mixin menu-object-accroche-desktop() {
     font-size: $font-size * 4;
     font-weight: 100;
@@ -70,4 +71,34 @@ html{
 
     padding: 1rem 0 2rem 0;
 }
-  
+
+
+// Home
+
+@mixin typo-home-titre-container{
+        font-size: $font-size*2.7;
+        line-height: $baseline*2.7;
+        font-weight: 300;
+        text-align: center;
+}
+
+@mixin typo-home-article-title() {
+    font-size: $font-size*2;
+    font-weight: normal;
+    line-height: $baseline;
+    line-height: $baseline*1.8;
+    letter-spacing: -.05px;
+}
+
+@mixin typo-home-nomenclature(){
+    font-size: $font-size*1.2;
+    line-height: $baseline*1.2;
+    font-weight: 100;
+    letter-spacing: -.05px;
+    //color: $color-header-text;
+}
+
+@mixin typo-agenda-labeur{
+    font-size: $font-size*1.4;
+    line-height:  $baseline*1.4;
+}

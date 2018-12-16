@@ -2,16 +2,24 @@
 
 	<div id="filtre_objet">
 		<ul >
-			<li><p>A-Z</p></li>
-			<li><p>Type</p></li>
-			<li><p>Date</p></li>
+			<li>
+				<form>
+				    <select name="type" size="1">
+				    	<option value="" selected disabled hidden>Type</option>
+				    	<option value="publication">Publication</option>
+				    	<option value="web">Web</option>
+				    	<option value="outils">Outlis</option>
+				    	<option value="situation">Situation</option>
+				    </select>
+			    </form>
+			</li>
 		</ul>
 	</div>
 
 	<div id="liste_objet">
 		<nav id="liste_publication" >
 			<ul id="">
-				<h3>Publications</h3>
+				<h3>Productions</h3>
 				<li data-item="1">
 					<a href="#">
 						<h1>Le numérique change-t-il les formes de nature urbaine ?</h1>

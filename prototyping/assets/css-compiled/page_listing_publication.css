@@ -10,7 +10,7 @@
   --baseline: 15px;
   --font-main: sans-serif;
   --font-mono: monospace;
-  color: #333; }
+  color: #666; }
 
 html {
   font-family: sans-serif;
@@ -382,7 +382,7 @@ ul {
   line-height: 19.5px; }
 
 #logo-medialab svg {
-  fill: #333; }
+  fill: #666; }
 
 /* imports */
 /* assets/scss/common/_top-bar-mobile.scss */
@@ -477,14 +477,14 @@ ul {
           -webkit-align-items: center;
           -webkit-box-align: center;
           align-items: center;
-          border-bottom: 1px solid #333; }
+          border-bottom: 1px solid #666; }
           #menu_objet #filtre_objet ul li p {
             margin: auto;
             position: absolute;
             font-size: 20px; }
         #menu_objet #filtre_objet ul li:nth-of-type(1) {
           min-height: 4rem;
-          border-top: 1px solid #333; }
+          border-top: 1px solid #666; }
     #menu_objet #liste_objet {
       grid-column: 2 / 4; }
 
@@ -1210,8 +1210,16 @@ ul {
 #menu_objet {
   background: white;
   z-index: 90; }
+  #menu_objet #filtre_objet ul li select {
+    font-size: 20px;
+    border: none;
+    -moz-appearance: none;
+    /* Firefox */
+    -webkit-appearance: none;
+    /* Safari and Chrome */
+    appearance: none; }
   #menu_objet #liste_objet nav ul [data-item] {
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #666;
     min-height: 75px;
     padding-top: 15px;
     padding-bottom: 15px;

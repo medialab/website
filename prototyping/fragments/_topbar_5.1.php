@@ -8,11 +8,11 @@
 		<nav id="nav-option">
 			<ul id="nav-objet">
 
-	              	<li><a href="page_liste_5.1.php">Actualités</a></li>
+	              	<li><a href="page_listing_publication.php">Actualités</a></li>
 
-	              	<li><a href="page_liste_5.1.php">Publications</a></li>
+	              	<li><a href="page_listing_publication.php">Productions</a></li>
 
-	              	<li><a href="page_liste_5.1.php">Activités</a></li>
+	              	<li><a href="page_listing_publication.php">Activités</a></li>
 
 			</ul>
 			<ul id="nav-institution">

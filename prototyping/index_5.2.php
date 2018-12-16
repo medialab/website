@@ -195,13 +195,53 @@
 	 
 		<div class="container">
 			
-			<h3>Hot stuff 💥</h3>
+			<h3>Actualité chaude</h3>
 			
 			<section id="enavant">
 
 				<header class="actualite">
 					<h4>Recrute Professeur – STS et environnement </h4>
 					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
+					<div class="image">
+						<?php include('assets/images/sample_txt/naturpradi_s.html'); ?>
+					</div>
+					<div class="nomenclature">
+						<p class="type">Annonce</p>
+						<p class="date">2019-07-02</p>
+					</div>
+				</header>
+
+				<header class="actualite">
+					<h4>Recrute Professeur – STS et environnement </h4>
+					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
+					<div class="image">
+						<?php include('assets/images/sample_txt/naturpradi_s.html'); ?>
+					</div>
+					<div class="nomenclature">
+						<p class="type">Annonce</p>
+						<p class="date">2019-07-02</p>
+					</div>
+				</header>
+
+				<header class="actualite">
+					<h4>Recrute Professeur – STS et environnement </h4>
+					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
+					<div class="image">
+						<?php include('assets/images/sample_txt/naturpradi_s.html'); ?>
+					</div>
+					<div class="nomenclature">
+						<p class="type">Annonce</p>
+						<p class="date">2019-07-02</p>
+					</div>
+				</header>
+
+
+				<header class="actualite">
+					<h4>Recrute Professeur – STS et environnement </h4>
+					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
+					<div class="image">
+						<?php include('assets/images/sample_txt/naturpradi_s.html'); ?>
+					</div>
 					<div class="nomenclature">
 						<p class="type">Annonce</p>
 						<p class="date">2019-07-02</p>
@@ -222,52 +262,106 @@
 			<div id="agenda" data-attribute="agenda">
 
 				<div class="day" data-attribute="day">
-					<h6>12/01</h6>
 					<h4>How not to be a bad designer</h4>
-					<h5 class="type">Séminaire</h5>
-					<h5 class="lieu">Paris</h5>
+
+					<p class="date start"><span>Mardi</span> 12 Janvier</p>
+					<p class="horaire start">10:00</p>
+					<div class="agenda_end_container">
+						<p class="date end"><span>Jeudi</span> 14 Janvier</p>
+						<p class="horaire end">18:00</p>
+					</div>
+					<p class="hote" title="Organisé par le Medialab" data-attribute="host_medialab">M</p>
+
+					<p class="type" data-attribute="seminaire">Séminaire</p>
+					<p class="lieu">Paris, France</p>
 				</div>
 
 				<div class="day" data-attribute="day">
-					<h6>24/02</h6>
+					<h4>Privacy by design</h4>
+
+					<p class="date start"><span>Jeudi</span> 19 Mars</p>
+					<p class="horaire start">10:00</p>
+					<div class="agenda_end_container">
+						<p class="horaire end">18:00</p>
+					</div>
+					<p class="hote" title="Organisé par un tiers" data-attribute="host_other">Chez le voisin</p>
+					
+					<p class="type" data-attribute="seminaire">Séminaire</p>
+					<p class="lieu">Nice, France</p>
+				</div>
+
+				<div class="day" data-attribute="day">
+					<h4>Protocoles et data-carotte</h4>
+
+					<p class="date start"><span>Lundi</span> 14 Juin</p>
+					<p class="horaire start">08:30</p>
+					<div class="agenda_end_container">
+						<p class="date end"><span>Jeudi</span> 18 Juin</p>
+						<p class="horaire end">18:00</p>
+					</div>
+					<p class="hote" title="Organisé par le Medialab" data-attribute="host_medialab">M</p>
+
+					<p class="type" data-attribute="conference">Conférence</p>
+					<p class="lieu">Paris, France</p>
+				</div>
+
+				<div class="day" data-attribute="day">
 					<h4>How not to be a bad designer</h4>
-					<h5 class="type">Rencontre</h5>
-					<h5 class="lieu">Copenhague</h5>
+
+					<p class="date start"><span>Mardi</span> 12 Janvier</p>
+					<p class="horaire start">10:00</p>
+					<div class="agenda_end_container">
+						<p class="date end"><span>Jeudi</span> 14 Janvier</p>
+						<p class="horaire end">18:00</p>
+					</div>
+					<p class="hote" title="Organisé par le Medialab" data-attribute="host_medialab">M</p>
+
+					<p class="type" data-attribute="seminaire">Séminaire</p>
+					<p class="lieu">Paris, France</p>
 				</div>
 
 				<div class="day" data-attribute="day">
-					<h6>02/08</h6>
-					<h4>How not to be a bad badder </h4>
-					<h5 class="type">Séminaire</h5>
-					<h5 class="lieu">Tourcoing</h5>
+					<h4>Privacy by design</h4>
+
+					<p class="date start"><span>Jeudi</span> 19 Mars</p>
+					<p class="horaire start">10:00</p>
+					<div class="agenda_end_container">
+						<p class="horaire end">18:00</p>
+					</div>
+					<p class="hote" title="Organisé par un tiers" data-attribute="host_other">Chez le voisin</p>
+					
+					<p class="type" data-attribute="seminaire">Séminaire</p>
+					<p class="lieu">Nice, France</p>
 				</div>
 
 				<div class="day" data-attribute="day">
-					<h6>17/11</h6>
-					<h4>How not to be or not to be</h4>
-					<h5 class="type">Séminaire</h5>
-					<h5 class="lieu">London</h5>
+					<h4>Protocoles et data-carotte</h4>
+
+					<p class="date start"><span>Lundi</span> 14 Juin</p>
+					<p class="horaire start">08:30</p>
+					<div class="agenda_end_container">
+						<p class="date end"><span>Jeudi</span> 18 Juin</p>
+						<p class="horaire end">18:00</p>
+					</div>
+					<p class="hote" title="Organisé par le Medialab" data-attribute="host_medialab">M</p>
+
+					<p class="type" data-attribute="conference">Conférence</p>
+					<p class="lieu">Paris, France</p>
 				</div>
 
 				<div class="day" data-attribute="day">
-					<h6>22/11</h6>
-					<h4>How not</h4>
-					<h5 class="type">Séminaire</h5>
-					<h5 class="lieu">Paris</h5>
-				</div>
+					<h4>How not to be a bad designer</h4>
 
-				<div class="day" data-attribute="day">
-					<h6>17/11</h6>
-					<h4>How not to be or not to be</h4>
-					<h5 class="type">Séminaire</h5>
-					<h5 class="lieu">London</h5>
-				</div>
+					<p class="date start"><span>Mardi</span> 12 Janvier</p>
+					<p class="horaire start">10:00</p>
+					<div class="agenda_end_container">
+						<p class="date end"><span>Jeudi</span> 14 Janvier</p>
+						<p class="horaire end">18:00</p>
+					</div>
+					<p class="hote" title="Organisé par le Medialab" data-attribute="host_medialab">M</p>
 
-				<div class="day" data-attribute="day">
-					<h6>22/11</h6>
-					<h4>How not</h4>
-					<h5 class="type">Séminaire</h5>
-					<h5 class="lieu">Paris</h5>
+					<p class="type" data-attribute="seminaire">Séminaire</p>
+					<p class="lieu">Paris, France</p>
 				</div>
 			</div>
 		</div>
@@ -279,116 +373,89 @@
 			
 			<section id="ensecond">
 
-				<header class="actualite">
+				<header class="actualite" data-attribute="blog">
+					<div class="image">
+						<?php include('assets/images/sample_txt/naturpradi_s.html'); ?>
+					</div>
+
 					<h4>Recrute Professeur – STS et environnement </h4>
-					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
+					<p class="description">Nous recrutons quelqu'un pour terminer cette phrase</p>
 					<div class="nomenclature">
 						<p class="type">Annonce</p>
+						<p class="date">2019-02-02</p>
+					</div>
+				</header>
+
+				<header class="actualite" data-attribute="blog">
+					<div class="image">
+						<?php include('assets/images/sample_txt/naturpradi_s.html'); ?>
+					</div>
+
+					<h4>Le systeme de crédit en Chine</h4>
+					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
+
+					<div class="nomenclature">
+						<p class="type">Chronique</p>
+						<p class="date">2019-06-08</p>
+					</div>
+				</header>
+
+				<header class="actualite" data-attribute="rendez-vous">
+					<h4>Rencontre avec George Micheal</h4>
+					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
+					<div class="agenda_container">
+						<p class="date start"><span>Mardi</span> 12 Janvier</p>
+						<p class="date end"><span>Lundi</span> 12 Janvier</p>
+					</div>
+
+					<div class="nomenclature">
+						<p class="type">Rendez-vous</p>
 						<p class="date">2019-07-02</p>
 					</div>
 				</header>
 
-				<header class="actualite important">
-					<h4>Une publication est parue</h4>
-					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
-					<div class="nomenclature">
-						<p class="type">Publication </p>
-						<p class="date">2019-07-08</p>
+				<header class="actualite" data-attribute="publication">
+					<div class="image">
+						<?php include('assets/images/sample_txt/naturpradi_s.html'); ?>
 					</div>
-				</header>
+					<h4>Publication du diaporama XYZ</h4>
+					<p class="description">A l'occasion de la conférence de Charlie, voici les slides</p>
 
-				<header class="actualite">
-					<h4>Le système de crédit social en Chine</h4>
-					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
 					<div class="nomenclature">
-						<p class="type">Séminaire </p>
-						<p class="date">2019-07-08</p>
-					</div>
-				</header>
-
-				<header class="actualite">
-					<h4>Recrute Professeur – STS et environnement </h4>
-					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
-					<div class="nomenclature">
-						<p class="type">Annonce</p>
+						<p class="type">Publication</p>
 						<p class="date">2019-07-02</p>
 					</div>
 				</header>
 
-				<header class="actualite important">
-					<h4>Une publication est parue</h4>
-					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
-					<div class="nomenclature">
-						<p class="type">Publication </p>
-						<p class="date">2019-07-08</p>
-					</div>
-				</header>
-
-				<header class="actualite">
-					<h4>Le système de crédit social en Chine</h4>
-					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
-					<!-- Image ??? -->
-					<div class="nomenclature">
-						<p class="type">Séminaire </p>
-						<p class="date">2019-07-08</p>
-					</div>
-				</header>
-
-				<header class="actualite">
-					<h4>Le système de crédit social en Chine</h4>
-					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
-					<div class="nomenclature">
-						<p class="type">Séminaire </p>
-						<p class="date">2019-07-08</p>
-					</div>
-				</header>
-
-				<header class="actualite">
-					<h4>Recrute Professeur – STS et environnement </h4>
-					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
-					<div class="nomenclature">
-						<p class="type">Annonce</p>
-						<p class="date">2019-07-02</p>
-					</div>
-				</header>
-
-				<header class="tweet">
+				<header class="tweet" data-attribute="follow">
 					<p class="emblem">◍</p>
 					<p class="action"><a href="">Medialab</a> suit désormais <a href="">Noortje Marres</a></p>
-					<p class="emblem">⬚</p>
+					<p class="emblem cible">⬚</p>
 					<div class="nomenclature">
+						<p class="type">Twitter</p>
 						<p class="date">2019-07-08</p>
 					</div>
 				</header>
 
-				<header class="actualite">
-					<h4>Une publication est parue</h4>
-					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
-					<div class="nomenclature">
-						<p class="type">Publication </p>
-						<p class="date">2019-07-08</p>
-					</div>
-				</header>
-
-				<header class="actualite">
-					<h4>Le système de crédit social en Chine</h4>
-					<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
-					<!-- Image ??? -->
-					<div class="nomenclature">
-						<p class="type">Séminaire </p>
-						<p class="date">2019-07-08</p>
-					</div>
-				</header>
-
-				<header class="tweet">
+				<header class="tweet" data-attribute="tweet">
 					<p class="emblem">◍</p>
 					<p class="action">Medialab tweet</p>
 					<p class="tweet_content">Médialab's contributions in Cogito n°5 are available in english ; let's read: - #Digital readings of the Bible, by @jphcoi - History of #internationaltrade in #data by @paulanomalie</p>
 					<div class="nomenclature">
+						<p class="type">Tweet</p>
 						<p class="date">2019-07-08</p>
 					</div>
 				</header>
 
+				<header class="git" data-attribute="git">
+					<h4 class="nom_repo">Project A</h4>
+					<p class="description">Outils composé de 0 ou de 1, de $ ou de <> </p>
+				
+					<div class="nomenclature">
+						<p class="type">Git</p>
+						<p class="date">2019-07-08</p>
+					</div>
+				</header>
 
 			</section>
 		</div>

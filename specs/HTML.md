@@ -2,6 +2,16 @@
 
 L'éditeur formalise les champs de contenu riche de la manière suivante:
 
+## Assets
+
+Les assets doivent avoir un nom de fichier obéissant à ce format:
+
+```
+name_uuidv4.ext
+```
+
+Le nom est avant l'uuid pour garder l'avantage de l'ordre des fichiers.
+
 ## 1. Wrapper tous les paragraphes
 
 ```

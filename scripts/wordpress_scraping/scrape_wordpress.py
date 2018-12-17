@@ -266,15 +266,20 @@ def scrape_publication(s, publication):
 
     people = [name.strip() for name in publication_soup.select(
         "#people textarea")[0].get_text().split(',')]
-
+    if not people[0]:
+        people = []
     publication_types = [p_type.strip() for p_type in publication_soup.select(
         "#publications_types textarea")[0].get_text().split(',')]
-
+    if not publication_types[0]:
+        publication_types = []
     tools = [tool.strip() for tool in publication_soup.select(
         "#tools textarea")[0].get_text().split(',')]
-
+    if not tools[0]:
+        tools = []
     projets = [projet.strip() for projet in publication_soup.select(
         "#projets textarea")[0].get_text().split(',')]
+    if not projets[0]:
+        projets = []
 
     try:
         image = publication_soup.select(".thickbox > img")[0].get('src')
@@ -401,15 +406,20 @@ def scrape_blog(s, blog):
 
     people = [name.strip() for name in blog_soup.select(
         "#people textarea")[0].get_text().split(',')]
-
+    if not people[0]:
+        people = []
     publications = [p_type.strip() for p_type in blog_soup.select(
         "#publications textarea")[0].get_text().split(',')]
-
+    if not publications[0]:
+        publications = []
     tools = [tool.strip() for tool in blog_soup.select(
         "#tools textarea")[0].get_text().split(',')]
-
+    if not tools[0]:
+        tools = []
     projets = [projet.strip() for projet in blog_soup.select(
         "#projets textarea")[0].get_text().split(',')]
+    if not projets[0]:
+        projets = []
 
     try:
         image = blog_soup.select(".thickbox > img")[0].get('src')

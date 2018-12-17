@@ -98,3 +98,33 @@ Est à rendre de la manière suivante:
   <code>&lt;/p&gt;</code>
 </pre>
 ```
+
+## Example de HTML généré
+
+```html
+<h2>This is some level 2 title</h2>
+<p>This is some <strong>bold</strong> text.</p>
+<p>This is some <em>italic</em> text.</p>
+<ul>
+  <li>Very interesting list</li>
+  <li>with only two items</li>
+</ul>
+<pre>
+  <code>&lt;p&gt;</code>
+</pre>
+<pre>
+  <code>&nbsp;&nbsp;Custom HTML</code>
+</pre>
+<pre>
+  <code>&lt;/p&gt;</code>
+</pre>
+<p>This is some <a href=\"https://www.google.fr/maps\">link</a>.</p>
+<p>An image:</p>
+<figure>
+  <img src=\"a5bd2915-9702-4ac2-81b1-72a46cbf1c63_Yomguithereal2.jpeg\"/>
+</figure>
+<p>An iframe:</p>
+<figure>
+  <iframe src=\"test\">&nbsp;</iframe>
+</figure>
+```

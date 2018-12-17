@@ -259,6 +259,16 @@ function renderPeopleForm(props) {
         </div>
       </div>
 
+      <div className="form-group">
+        <h4 className="title is-4">Featured items</h4>
+
+        <div className="columns">
+          <div className="column is-12">
+            TODO
+          </div>
+        </div>
+      </div>
+
       <div className="form-group is-important">
         <div className="field">
           <label className="label title is-4">{data.firstName ? `${data.firstName} ${data.lastName}` : 'People'} page's production status</label>

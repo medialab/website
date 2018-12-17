@@ -8,9 +8,6 @@ html{
     color: white;
 }
 
-body{
-    overflow-x: hidden;
-}
 
 .container h3:first-of-type{
     padding: 4rem 0;
@@ -51,36 +48,27 @@ hr{
 
 #focus{
     grid-column: 1/7;
-
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 2rem;
-
-    width: 100% ;
-    height: calc(100vh -  #{$height-top-bar} );
-    height: 100%;
-    max-height: 960px;
-
+    width: 100%;
+    height: 200vh;
     padding: 0rem;
     margin: 0 0 0 0;
-
-    //transition: .5s linear;
-    text-align:center;
-
-
-    overflow: hidden;
-    //specific
+    text-align: center;
+    overflow: inherit;
     grid-row-start: 1;
+    position: relative;
 
     div{
-        width: 100vw;
+        width: 50vw;
         overflow: hidden;
         border: none;
-        //top: -50%;
-        //transform: translate(-50%);
-        //left: 50%;        
         height: 200%;
-        font-size: 1.5vw;
+        font-size: 2.5vw;
+        position: absolute;
+        z-index: -1;
+        right: 0;
 
         &:hover{
         //font-size:1.25vw;
@@ -94,15 +82,21 @@ hr{
     }
 
     article{
-        position: absolute;
+       /* position: absolute;
         width: 50vw;
-        min-width: 600px;
+        min-width: 600px; 
         height: calc(92vh - #{$height-top-bar} );        
-        background: white;
+        background: white;*/
 
-        margin: 4vh;
-        z-index: 90;
-        padding: 2vw 2vw;
+        width: 50vw;
+        height: 100vh;
+        background: white;
+        margin: 0;
+        z-index: 9999;
+        padding: 10vh;
+        left: 0;
+        top: 0;
+        position: sticky;
 
         header{
             display: grid;
@@ -203,7 +197,7 @@ hr{
 
                     h4{
                         width: auto;
-                        flex-grow: 1;
+                        //flex-grow: 1;
                         white-space: nowrap;
                         margin: 0 .5rem 0 0;
 

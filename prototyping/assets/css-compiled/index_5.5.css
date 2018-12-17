@@ -735,9 +735,6 @@ ul {
   background: var(--redlab);
   color: white; }
 
-body {
-  overflow-x: hidden; }
-
 .container h3:first-of-type {
   padding: 4rem 0; }
 
@@ -766,31 +763,39 @@ hr {
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 2rem;
   width: 100%;
-  height: calc(100vh -  100px );
-  height: 100%;
-  max-height: 960px;
+  height: 200vh;
   padding: 0rem;
   margin: 0 0 0 0;
   text-align: center;
-  overflow: hidden;
-  grid-row-start: 1; }
+  overflow: inherit;
+  grid-row-start: 1;
+  position: relative; }
   #focus div {
-    width: 100vw;
+    width: 50vw;
     overflow: hidden;
     border: none;
     height: 200%;
-    font-size: 1.5vw; }
+    font-size: 2.5vw;
+    position: absolute;
+    z-index: -1;
+    right: 0; }
   #focus .container {
     height: 100%; }
   #focus article {
-    position: absolute;
+    /* position: absolute;
+     width: 50vw;
+     min-width: 600px; 
+     height: calc(92vh - 100px );        
+     background: white;*/
     width: 50vw;
-    min-width: 600px;
-    height: calc(92vh - 100px );
+    height: 100vh;
     background: white;
-    margin: 4vh;
-    z-index: 90;
-    padding: 2vw 2vw; }
+    margin: 0;
+    z-index: 9999;
+    padding: 10vh;
+    left: 0;
+    top: 0;
+    position: sticky; }
     #focus article header {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -862,7 +867,6 @@ hr {
           align-items: center; }
           #focus article nav.related ul li h4 {
             width: auto;
-            flex-grow: 1;
             white-space: nowrap;
             margin: 0 .5rem 0 0;
             font-size: 16px;
@@ -918,6 +922,8 @@ hr {
       letter-spacing: -.05px;
       width: 50%; }
 
+.container#agenda_container {
+  overflow-x: hidden; }
 .container h3 {
   font-size: 27px;
   line-height: 40.5px;

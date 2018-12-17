@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import {DraftailEditor, BLOCK_TYPE, INLINE_STYLE} from 'draftail';
 import {htmlToRaw, rawToHtml} from '../utils';
 import IMAGE from './entities/image';
+import LINK from './entities/link';
 
 export default class Editor extends PureComponent {
 
@@ -23,7 +24,8 @@ export default class Editor extends PureComponent {
           stripPastedStyles={false}
           onSave={this.handleOnSave}
           entityTypes={[
-            IMAGE
+            IMAGE,
+            LINK
           ]}
           blockTypes={[
             {type: BLOCK_TYPE.HEADER_ONE, label: 'H1'},

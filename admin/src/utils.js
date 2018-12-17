@@ -47,11 +47,16 @@ function customInlineFn(element, {Entity}) {
 }
 
 export function htmlToRaw(html) {
-  return convertToRaw(stateFromHTML(html, {customInlineFn}));
+  return convertToRaw(stateFromHTML(html, {
+    customInlineFn
+  }));
 }
 
 export function rawToHtml(rawContentState) {
-  return stateToHTML(convertFromRaw(rawContentState), {entityStyleFn});
+  return stateToHTML(convertFromRaw(rawContentState), {
+    defaultBlockTag: null,
+    entityStyleFn
+  });
 }
 
 const DEFAULT_MAX_SLUG_TOKENS = 6;

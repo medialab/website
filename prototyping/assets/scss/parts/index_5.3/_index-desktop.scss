@@ -506,36 +506,58 @@ hr{
 //// Introduction
 /////////////////
 
-.i1{
-    overflow: hidden;
-    height: 25vh;
-    top: 3rem;
-    width: 100%;
-
-
-
-    p:nth-of-type(1){
-        background-color:  white;
-        font-size: 4vh;
-        line-height: 4vh;
-        max-width: 90vw;
-        padding: 1rem 2rem;
-        z-index: 9;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
+    // legacy
+    #topbar{
+        //top: calc(100vh - 100px) !important;
     }
-
-    p:nth-of-type(2){
-        word-break: break-all;
-        font-size: 4vh;
-        line-height: 4.1vh;
-        height: 25vh;
+    
+    .i1{
         overflow: hidden;
-        position: absolute;
-        top: 0;
+        height: 25vh;
+        top: $height-top-bar*(-1);
+        width: 100%;
+        height: calc(100vh - 100px);
+        padding: 0 10% 0 2rem;
+        z-index: 999999999;
     }
-}
+
+    input#i1_input{
+
+        visibility: hidden;
+        position: relative;
+        height: calc(100vh - 100px);
+
+        &:checked + label.i1{
+            height:0;
+            transition: 0.5s ease-in-out;
+            padding-top: 0;
+        }
+
+        &:checked{
+            height: 0;
+            visibility: collapse;
+        }
+    }
+ 
+    label.i1{
+        margin: 0 2rem;
+        padding: 10vh 33% 0 0;
+        overflow: hidden;
+        cursor: pointer;
+
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+
+        font-size: $font-size*5;
+        line-height: $baseline*4.5;
+        font-weight: 300;
+
+    }
+
+
 
 
 ////////////////////

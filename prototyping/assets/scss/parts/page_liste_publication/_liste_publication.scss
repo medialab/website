@@ -11,6 +11,20 @@ $bordercolor: black;
 	--caseheight: 80px; //determine la hauteur de chaque case
 }
 
+/////// Top Bar relative
+#topbar #topbar-content #logo-medialab {
+    width: 70%;
+    max-width: 150px;
+    vertical-align: bottom;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    align-self: end;
+    position: absolute;
+    margin: 0;
+    bottom: 0rem;
+    opacity: .5;
+}
+
 #menu_objet{
 
 	background: $background-site;
@@ -35,6 +49,39 @@ $bordercolor: black;
 			}
 		}
 
+	}
+
+	.sort {
+	    display: flex;
+	    padding: .5rem 0;
+
+	    button{
+	    	background: none;
+	    	cursor: pointer;
+	    
+    		transition: .5s ease-in-out;
+    		width: 1rem;
+	    }
+	    	#sort_publication_AZ{
+	    		
+	    		width: 85%;
+	    		text-align: left;
+
+	    		&:hover p:after{
+	    			content: "sort by AZ";
+	    			padding-left: .5rem;
+	    		}
+	    	}
+	    	#sort_publication_date{
+
+	    		width: 15%;
+	    		text-align: left;
+
+	    		&:hover p:after{
+	    			content: "sort by date";
+	    			padding-left: .5rem;
+	    		}
+	    	}	  	    
 	}
 
 

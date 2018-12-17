@@ -11,7 +11,8 @@
         h3{
             grid-row: 1/2;
             grid-column: 1/7;
-            justify-self: center
+            @include typo-home-titre-container_2();
+            justify-self: left;
         }
 
         article{
@@ -61,15 +62,80 @@
             }
         }
 
-        #ensecond{
+        #enpresentation{
             grid-column: 1/7;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            /*display: grid;
+            grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(12, 10vh);
-            grid-gap: $baseline*2 2vw;
+            grid-gap: $baseline*2 2vw;*/
+
+            display: flex;
+            padding-bottom: 10vh;
 
             h3{
                 grid-column: 1/5; 
+            }
+
+            .explicatif_1{
+                //grid-column: 1/2;
+                width: 60%;
+
+
+                p{
+                    font-size: $font-size*4;
+                    line-height: $baseline*3;
+                }
+            }
+
+            #post{
+                //grid-column-start: 2;
+                width: 50%;
+            }
+        }
+        &#actu_container{
+            h3{
+                grid-column: 1/ span 2;
+                position: sticky;
+                top: 0; 
+            }    
+        }
+
+        #ensecond{
+            grid-column: 1/7;
+            /*display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(12, 10vh);
+            grid-gap: $baseline*2 2vw;*/
+
+            display: flex;
+
+            .explicatif_2{
+                //grid-column: 1/2;
+                width: 40%;
+                position: sticky;
+                top: 20vh;
+                height: 400px;
+
+                padding: 0 5vw 0 0;
+                z-index: 9;
+                background-color: white;
+
+                p{
+                    font-size: $font-size*4;
+                    line-height: $baseline*3;
+                }
+            }
+
+            #post{
+                //grid-column-start: 2;
+                width: 60%;
+
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(12, 10vh);
+                grid-gap: $baseline*2 2vw;
+
+                padding-bottom: 50vh;
             }
 
             header{
@@ -77,6 +143,10 @@
                 display: grid;
                 grid-template-columns: repeat(4, 1fr);
                 grid-gap: 0 $baseline;
+
+                //padding: 0 0 5rem 0;
+
+                
 
                 .nomenclature{
                     grid-row: 1;

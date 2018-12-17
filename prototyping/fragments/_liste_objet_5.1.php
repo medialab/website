@@ -20,6 +20,12 @@
 		<nav id="liste_publication" >
 			<ul id="">
 				<h3>Productions</h3>
+
+				<div class="sort">
+					<button id="sort_publication_AZ"><p>▽</p></button>
+					<button id="sort_publication_date"><p>▽</p></button>
+				</div>
+
 				<li data-item="1">
 					<a href="#">
 						<h1>Le numérique change-t-il les formes de nature urbaine ?</h1>

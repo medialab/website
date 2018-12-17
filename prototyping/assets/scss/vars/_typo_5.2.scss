@@ -82,6 +82,13 @@ html{
         text-align: center;
 }
 
+@mixin typo-home-titre-container_2{
+        font-size: $font-size*6;
+        line-height: $baseline*4.5;
+        font-weight: 300;
+        text-align: left;
+}
+
 @mixin typo-home-article-title() {
     font-size: $font-size*2;
     font-weight: normal;

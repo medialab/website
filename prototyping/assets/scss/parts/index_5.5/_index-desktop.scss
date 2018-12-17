@@ -300,6 +300,10 @@ hr{
 /////////////////////
 .container{
 
+    &#agenda_container{
+        overflow-x: hidden;
+    }
+    
     h3{
 
         @include typo-home-titre-container();

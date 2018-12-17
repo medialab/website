@@ -9,23 +9,21 @@
     <!-- styles -->
     <style type="text/css"></style>
     <link rel="stylesheet" href="assets/fonts/Museo_Sans/stylesheet.css">
-    <link rel='stylesheet' type='text/css' href='assets/css-compiled/index_5.2.css'>
+    <link rel='stylesheet' type='text/css' href='assets/css-compiled/index_5.3.css'>
 
 
 
 </head>
 
 <body>
+
+
+	<input class="i1" id="i1_input" type="radio" name="n0"> 
+    <label class="i1" for="i1_input">Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et sociales</label>
+    
 	<?php include('fragments/_topbar_5.1.php'); ?>
-	<?php include('fragments/_flux_1.php'); ?>
 
 
-	<div class="i1" style="display: none;">
-		<p>
-			Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et sociales
-		</p>
-		<p>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</p>
-	</div>
 	<main>
 		<div class="slideshow">
 			<input type="radio" name="ss1" id="ss1-item-1" class="slideshow--bullet" checked="checked" />

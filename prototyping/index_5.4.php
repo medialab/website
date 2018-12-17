@@ -9,7 +9,7 @@
     <!-- styles -->
     <style type="text/css"></style>
     <link rel="stylesheet" href="assets/fonts/Museo_Sans/stylesheet.css">
-    <link rel='stylesheet' type='text/css' href='assets/css-compiled/index_5.2.css'>
+    <link rel='stylesheet' type='text/css' href='assets/css-compiled/index_5.4.css'>
 
 
 
@@ -17,15 +17,7 @@
 
 <body>
 	<?php include('fragments/_topbar_5.1.php'); ?>
-	<?php include('fragments/_flux_1.php'); ?>
 
-
-	<div class="i1" style="display: none;">
-		<p>
-			Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et sociales
-		</p>
-		<p>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</p>
-	</div>
 	<main>
 		<div class="slideshow">
 			<input type="radio" name="ss1" id="ss1-item-1" class="slideshow--bullet" checked="checked" />
@@ -193,7 +185,7 @@
 			</div>
 		</div>
 	 
-		<div class="container">
+		<div class="container" style="display:none">
 			
 			<h3>Actualité chaude</h3>
 			
@@ -252,6 +244,210 @@
 		</div>
 
 		<div class="container">
+			
+			<h3>Le labo</h3>
+			
+			<section id="enpresentation">
+
+				<div class="explicatif_1">
+					<p>
+						Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et sociales
+					</p>
+				</div>
+
+				<div id="post">
+				</div>
+
+			</section>
+		</div>
+
+		<div class="container" id="actu_container">
+			
+			<h3>Quoi de neuf au labo</h3>
+			
+			<section id="ensecond">
+
+				<div class="explicatif_2">
+					<p>
+						En ce moment, nous travaillons sur un projet <a href>rouge</a>, un projet <a href>vert</a>. Demain nous travaillerons sur un projet <a href>jaune</a>
+					</p>
+				</div>
+
+				<div id="post">
+					<header class="actualite" data-attribute="annonce">
+						<div class="title">
+							<h4>Recrute Professeur – STS et environnement </h4>
+							<p class="description">Nous recrutons quelqu'un pour terminer cette phrase</p>
+						</div>
+						<div class="nomenclature">
+							<p class="type">Annonce</p>
+							<p class="date">2019-02-02</p>
+						</div>
+					</header>
+
+					<header class="actualite" data-attribute="blog">
+						<div class="image">
+							<?php include('assets/images/sample_txt/naturpradi_s.html'); ?>
+						</div>
+						<div class="title">
+							<h4>Le systeme de crédit en Chine</h4>
+							<p class="description"> Le système de crédit social est un projet politique du gouvernement chinois qui entend répondre aux dysfonctionnements chroniques de l’application des lois et des règlements. </p>
+						</div>
+						<div class="nomenclature">
+							<p class="type">Chronique</p>
+							<p class="date">2019-06-08</p>
+						</div>
+					</header>
+
+					<header class="actualite" data-attribute="rendez-vous">
+						<div class="title">
+							<h4>Rencontre avec George Micheal</h4>
+							<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
+						</div>
+						<div class="agenda_container">
+							<p class="date start"><span>Mardi</span> 12 Janvier</p>
+							<p class="date end"><span>Lundi</span> 12 Janvier</p>
+						</div>
+
+						<div class="nomenclature">
+							<p class="type">Rendez-vous</p>
+							<p class="date">2019-07-02</p>
+						</div>
+					</header>
+
+					<header class="actualite" data-attribute="publication">
+						<div class="image">
+							<?php include('assets/images/sample_txt/naturpradi_s.html'); ?>
+						</div>
+						<div class="title">
+							<h4>Publication du diaporama XYZ</h4>
+							<p class="description">A l'occasion de la conférence de Charlie, voici les slides</p>
+						</div>
+						<div class="nomenclature">
+							<p class="type">Publication</p>
+							<p class="date">2019-07-02</p>
+						</div>
+					</header>
+
+					<header class="tweet" data-attribute="follow">
+						<p class="emblem">◍</p>
+						<p class="action"><a href="">Medialab</a> suit désormais <a href="">Noortje Marres</a></p>
+						<p class="emblem cible">⬚</p>
+						<div class="nomenclature">
+							<p class="type">Twitter</p>
+							<p class="date">2019-07-08</p>
+						</div>
+					</header>
+
+					<header class="tweet" data-attribute="tweet">
+						<p class="emblem">◍</p>
+						<p class="action">Medialab tweet</p>
+						<p class="tweet_content">Médialab's contributions in Cogito n°5 are available in english ; let's read: - <span class="hashtag">#Digital</span> readings of the Bible, by <a class="tweet_account" href="">@jphcoi</a> - History of #internationaltrade in <span class="hashtag">#data</span> by <a class="tweet_account" href="">@paulanomalie</a></p>
+						<div class="nomenclature">
+							<p class="type">Tweet</p>
+							<p class="date">2019-07-08</p>
+						</div>
+					</header>
+
+					<header class="git" data-attribute="git">
+						<h4 class="nom_repo">Project A</h4>
+						<p class="description">Outils composé de 0 ou de 1, de $ ou de <> </p>
+						<p class="emblem">A</p>
+						<div class="nomenclature">
+							<p class="type">Git</p>
+							<p class="date">2019-07-08</p>
+						</div>
+					</header>
+
+					<header class="actualite" data-attribute="annonce">
+						<div class="title">
+							<h4>Recrute Professeur – STS et environnement </h4>
+							<p class="description">Nous recrutons quelqu'un pour terminer cette phrase</p>
+						</div>
+						<div class="nomenclature">
+							<p class="type">Annonce</p>
+							<p class="date">2019-02-02</p>
+						</div>
+					</header>
+
+					<header class="actualite" data-attribute="blog">
+						<div class="image">
+							<?php include('assets/images/sample_txt/naturpradi_s.html'); ?>
+						</div>
+						<div class="title">
+							<h4>Le systeme de crédit en Chine</h4>
+							<p class="description"> Le système de crédit social est un projet politique du gouvernement chinois qui entend répondre aux dysfonctionnements chroniques de l’application des lois et des règlements. </p>
+						</div>
+						<div class="nomenclature">
+							<p class="type">Chronique</p>
+							<p class="date">2019-06-08</p>
+						</div>
+					</header>
+
+					<header class="actualite" data-attribute="rendez-vous">
+						<div class="title">
+							<h4>Rencontre avec George Micheal</h4>
+							<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
+						</div>
+						<div class="agenda_container">
+							<p class="date start"><span>Mardi</span> 12 Janvier</p>
+							<p class="date end"><span>Lundi</span> 12 Janvier</p>
+						</div>
+
+						<div class="nomenclature">
+							<p class="type">Rendez-vous</p>
+							<p class="date">2019-07-02</p>
+						</div>
+					</header>
+
+					<header class="actualite" data-attribute="publication">
+						<div class="image">
+							<?php include('assets/images/sample_txt/naturpradi_s.html'); ?>
+						</div>
+						<div class="title">
+							<h4>Publication du diaporama XYZ</h4>
+							<p class="description">A l'occasion de la conférence de Charlie, voici les slides</p>
+						</div>
+						<div class="nomenclature">
+							<p class="type">Publication</p>
+							<p class="date">2019-07-02</p>
+						</div>
+					</header>
+
+					<header class="tweet" data-attribute="follow">
+						<p class="emblem">◍</p>
+						<p class="action"><a href="">Medialab</a> suit désormais <a href="">Noortje Marres</a></p>
+						<p class="emblem cible">⬚</p>
+						<div class="nomenclature">
+							<p class="type">Twitter</p>
+							<p class="date">2019-07-08</p>
+						</div>
+					</header>
+
+					<header class="tweet" data-attribute="tweet">
+						<p class="emblem">◍</p>
+						<p class="action">Medialab tweet</p>
+						<p class="tweet_content">Médialab's contributions in Cogito n°5 are available in english ; let's read: - <span class="hashtag">#Digital</span> readings of the Bible, by <a class="tweet_account" href="">@jphcoi</a> - History of #internationaltrade in <span class="hashtag">#data</span> by <a class="tweet_account" href="">@paulanomalie</a></p>
+						<div class="nomenclature">
+							<p class="type">Tweet</p>
+							<p class="date">2019-07-08</p>
+						</div>
+					</header>
+
+					<header class="git" data-attribute="git">
+						<h4 class="nom_repo">Project B</h4>
+						<p class="description">Outils composé de 0 ou de 1, de $ ou de <> </p>
+						<p class="emblem">B</p>
+						<div class="nomenclature">
+							<p class="type">Git</p>
+							<p class="date">2019-07-08</p>
+						</div>
+					</header>				
+				</div>
+			</section>
+		</div>
+
+		<div class="container" id="agenda_container">
 
 			<h3>Les rendez-vous du Labo</h3>
 
@@ -366,185 +562,6 @@
 			</div>
 		</div>
 		<hr>
-
-		<div class="container">
-			
-			<h3>Quoi de neuf au labo</h3>
-			
-			<section id="ensecond">
-
-				<header class="actualite" data-attribute="annonce">
-					<div class="title">
-						<h4>Recrute Professeur – STS et environnement </h4>
-						<p class="description">Nous recrutons quelqu'un pour terminer cette phrase</p>
-					</div>
-					<div class="nomenclature">
-						<p class="type">Annonce</p>
-						<p class="date">2019-02-02</p>
-					</div>
-				</header>
-
-				<header class="actualite" data-attribute="blog">
-					<div class="image">
-						<?php include('assets/images/sample_txt/naturpradi_s.html'); ?>
-					</div>
-					<div class="title">
-						<h4>Le systeme de crédit en Chine</h4>
-						<p class="description"> Le système de crédit social est un projet politique du gouvernement chinois qui entend répondre aux dysfonctionnements chroniques de l’application des lois et des règlements. </p>
-					</div>
-					<div class="nomenclature">
-						<p class="type">Chronique</p>
-						<p class="date">2019-06-08</p>
-					</div>
-				</header>
-
-				<header class="actualite" data-attribute="rendez-vous">
-					<div class="title">
-						<h4>Rencontre avec George Micheal</h4>
-						<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
-					</div>
-					<div class="agenda_container">
-						<p class="date start"><span>Mardi</span> 12 Janvier</p>
-						<p class="date end"><span>Lundi</span> 12 Janvier</p>
-					</div>
-
-					<div class="nomenclature">
-						<p class="type">Rendez-vous</p>
-						<p class="date">2019-07-02</p>
-					</div>
-				</header>
-
-				<header class="actualite" data-attribute="publication">
-					<div class="image">
-						<?php include('assets/images/sample_txt/naturpradi_s.html'); ?>
-					</div>
-					<div class="title">
-						<h4>Publication du diaporama XYZ</h4>
-						<p class="description">A l'occasion de la conférence de Charlie, voici les slides</p>
-					</div>
-					<div class="nomenclature">
-						<p class="type">Publication</p>
-						<p class="date">2019-07-02</p>
-					</div>
-				</header>
-
-				<header class="tweet" data-attribute="follow">
-					<p class="emblem">◍</p>
-					<p class="action"><a href="">Medialab</a> suit désormais <a href="">Noortje Marres</a></p>
-					<p class="emblem cible">⬚</p>
-					<div class="nomenclature">
-						<p class="type">Twitter</p>
-						<p class="date">2019-07-08</p>
-					</div>
-				</header>
-
-				<header class="tweet" data-attribute="tweet">
-					<p class="emblem">◍</p>
-					<p class="action">Medialab tweet</p>
-					<p class="tweet_content">Médialab's contributions in Cogito n°5 are available in english ; let's read: - <span class="hashtag">#Digital</span> readings of the Bible, by <a class="tweet_account" href="">@jphcoi</a> - History of #internationaltrade in <span class="hashtag">#data</span> by <a class="tweet_account" href="">@paulanomalie</a></p>
-					<div class="nomenclature">
-						<p class="type">Tweet</p>
-						<p class="date">2019-07-08</p>
-					</div>
-				</header>
-
-				<header class="git" data-attribute="git">
-					<h4 class="nom_repo">Project A</h4>
-					<p class="description">Outils composé de 0 ou de 1, de $ ou de <> </p>
-					<p class="emblem">A</p>
-					<div class="nomenclature">
-						<p class="type">Git</p>
-						<p class="date">2019-07-08</p>
-					</div>
-				</header>
-
-				<header class="actualite" data-attribute="annonce">
-					<div class="title">
-						<h4>Recrute Professeur – STS et environnement </h4>
-						<p class="description">Nous recrutons quelqu'un pour terminer cette phrase</p>
-					</div>
-					<div class="nomenclature">
-						<p class="type">Annonce</p>
-						<p class="date">2019-02-02</p>
-					</div>
-				</header>
-
-				<header class="actualite" data-attribute="blog">
-					<div class="image">
-						<?php include('assets/images/sample_txt/naturpradi_s.html'); ?>
-					</div>
-					<div class="title">
-						<h4>Le systeme de crédit en Chine</h4>
-						<p class="description"> Le système de crédit social est un projet politique du gouvernement chinois qui entend répondre aux dysfonctionnements chroniques de l’application des lois et des règlements. </p>
-					</div>
-					<div class="nomenclature">
-						<p class="type">Chronique</p>
-						<p class="date">2019-06-08</p>
-					</div>
-				</header>
-
-				<header class="actualite" data-attribute="rendez-vous">
-					<div class="title">
-						<h4>Rencontre avec George Micheal</h4>
-						<p class="description"> Bien que les projets ont une description mais peu d'entre eux l'affiche.</p>
-					</div>
-					<div class="agenda_container">
-						<p class="date start"><span>Mardi</span> 12 Janvier</p>
-						<p class="date end"><span>Lundi</span> 12 Janvier</p>
-					</div>
-
-					<div class="nomenclature">
-						<p class="type">Rendez-vous</p>
-						<p class="date">2019-07-02</p>
-					</div>
-				</header>
-
-				<header class="actualite" data-attribute="publication">
-					<div class="image">
-						<?php include('assets/images/sample_txt/naturpradi_s.html'); ?>
-					</div>
-					<div class="title">
-						<h4>Publication du diaporama XYZ</h4>
-						<p class="description">A l'occasion de la conférence de Charlie, voici les slides</p>
-					</div>
-					<div class="nomenclature">
-						<p class="type">Publication</p>
-						<p class="date">2019-07-02</p>
-					</div>
-				</header>
-
-				<header class="tweet" data-attribute="follow">
-					<p class="emblem">◍</p>
-					<p class="action"><a href="">Medialab</a> suit désormais <a href="">Noortje Marres</a></p>
-					<p class="emblem cible">⬚</p>
-					<div class="nomenclature">
-						<p class="type">Twitter</p>
-						<p class="date">2019-07-08</p>
-					</div>
-				</header>
-
-				<header class="tweet" data-attribute="tweet">
-					<p class="emblem">◍</p>
-					<p class="action">Medialab tweet</p>
-					<p class="tweet_content">Médialab's contributions in Cogito n°5 are available in english ; let's read: - <span class="hashtag">#Digital</span> readings of the Bible, by <a class="tweet_account" href="">@jphcoi</a> - History of #internationaltrade in <span class="hashtag">#data</span> by <a class="tweet_account" href="">@paulanomalie</a></p>
-					<div class="nomenclature">
-						<p class="type">Tweet</p>
-						<p class="date">2019-07-08</p>
-					</div>
-				</header>
-
-				<header class="git" data-attribute="git">
-					<h4 class="nom_repo">Project B</h4>
-					<p class="description">Outils composé de 0 ou de 1, de $ ou de <> </p>
-					<p class="emblem">B</p>
-					<div class="nomenclature">
-						<p class="type">Git</p>
-						<p class="date">2019-07-08</p>
-					</div>
-				</header>				
-
-			</section>
-		</div>
 	</main>
 
 

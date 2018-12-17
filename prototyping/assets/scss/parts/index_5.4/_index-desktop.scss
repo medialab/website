@@ -8,9 +8,6 @@ html{
     color: white;
 }
 
-body{
-    overflow-x: hidden;
-}
 
 .container h3:first-of-type{
     padding: 4rem 0;
@@ -39,6 +36,8 @@ hr{
     bottom: 0rem;
     opacity: .5;
 }
+
+
 
 ///////////////////////
 /////////// Focus
@@ -300,9 +299,13 @@ hr{
 /////////////////////
 .container{
 
+    &#agenda_container{
+        overflow-x: hidden;
+    }
+
     h3{
 
-        @include typo-home-titre-container();
+
 
     }
 
@@ -488,56 +491,10 @@ hr{
 }
 
 
-#topbar #topbar-content #logo-medialab {
-    width: 70%;
-    max-width: 150px;
-    vertical-align: bottom;
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
-    align-self: end;
-    position: absolute;
-    margin: 0;
-    top: 1rem;
-    opacity: .5;
-
-}
-
 /////////////////
 //// Introduction
 /////////////////
-
-.i1{
-    overflow: hidden;
-    height: 25vh;
-    top: 3rem;
-    width: 100%;
-
-
-
-    p:nth-of-type(1){
-        background-color:  white;
-        font-size: 4vh;
-        line-height: 4vh;
-        max-width: 90vw;
-        padding: 1rem 2rem;
-        z-index: 9;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    p:nth-of-type(2){
-        word-break: break-all;
-        font-size: 4vh;
-        line-height: 4.1vh;
-        height: 25vh;
-        overflow: hidden;
-        position: absolute;
-        top: 0;
-    }
-}
-
-
+  
 ////////////////////
 ////////  Flux
 /////////////////////

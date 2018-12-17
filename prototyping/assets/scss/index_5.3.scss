@@ -1,10 +1,10 @@
 /* page objet */
-/* julie: node-sass --watch page_objet_03.scss ../css-compiled/page_objet_02.css */
+/* julie: node-sass --watch page_objet_02.scss ../css-compiled/page_objet_02.css */
 
 // variables and mixins
 @import 'vars/colors';
 @import 'vars/queries';
-@import 'vars/typo_5.1';
+@import 'vars/typo_5.2';
 @import 'vars/z-index';
 @import 'vars/divers';
 
@@ -13,7 +13,9 @@
 @import 'parts/common/normalize';
 @import 'parts/common/clean';
 @import 'parts/common/top-bar_5.1/top-bar';
+@import 'parts/common/flux_01/flux';
+@import 'parts/common/_pure_css_slideshow.scss';
 
 //Parts
-@import 'parts/page_objet_03/page_objet.scss';
-@import 'parts/page_objet_03/grid';
+@import 'parts/index_5.3/index.scss';
+@import 'parts/index_5.3/grid';

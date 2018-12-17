@@ -71,6 +71,20 @@ def name_to_slug(s, name, type):
     return slug_dict[name]
 
 
+def scrape_tools(s):
+    directory = os.path.join("data", "tools")
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    TOOLS_URL = 'http://tools.medialab.sciences-po.fr/'
+    with open(os.path.join("data", "slugs", "tools_slugs.json"), 'r') as f:
+        tools_list = json.load(f)
+    for key in tools_list:
+        tool_url = TOOLS_URL + key + '/meta.json'
+        r = requests.get(tool_url)
+        with open(os.path.join(directory, key + '.json'), 'wb') as outfile:
+            outfile.write(r.content)
+
+
 def scrape_projet(s, projet):
     projet_url = projet['href']
     projet_id = int(''.join(list(filter(str.isdigit, projet_url))))
@@ -592,6 +606,11 @@ def scrape_all():
             s.get(PUBLICATIONS_URL).text, 'html.parser')
         blog_soup = BeautifulSoup(s.get(BLOG_URL).text, 'html.parser')
         people_soup = BeautifulSoup(s.get(PEOPLE_URL).text, 'html.parser')
+
+        scrape_slugs(s)
+
+        # SCRAPING TOOLS
+        scrape_tools(s)
 
         # SCRAPING PROJETS
         nb_projets = int(projets_soup.find(

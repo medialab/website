@@ -121,7 +121,7 @@
       "title": "Date",
       "type": "string",
       "formType": "vardate",
-      "minPrecision": "year"
+      "precision": "year"
     },
     "ref": {
       "title": "Référence biblio",

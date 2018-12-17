@@ -6,8 +6,10 @@ import initializers from '../../../../specs/initializers';
 import Form from './Form';
 import Editor from '../Editor';
 import BooleanSelector from '../selectors/BooleanSelector';
+import DateSelector from '../selectors/DateSelector';
 import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector from '../selectors/RelationSelector';
+import UrlInput from '../selectors/UrlInput';
 
 function slugifyProduction(data) {
   return slugify(data.title ? (data.title.fr || '') : '');
@@ -18,7 +20,7 @@ function validate(data) {
     return 'Need at least a French title';
 }
 
-// TODO: authors, date, ref, url
+// TODO: authors, ref
 const HANDLERS = {
   englishTitle: {
     field: ['title', 'en']
@@ -61,6 +63,13 @@ const HANDLERS = {
   published: {
     type: 'negative',
     field: ['draft']
+  },
+  date: {
+    type: 'raw',
+    field: 'date'
+  },
+  url: {
+    field: 'url'
   }
 };
 
@@ -139,12 +148,36 @@ function renderProductionForm(props) {
             </div>
           </div>
         </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <label className="label">Date</label>
+            <div className="control">
+              <DateSelector
+                precision="year"
+                value={data.date}
+                onChange={handlers.date} />
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="form-group">
         <h4 className="title is-4">
           Publication presentation
         </h4>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Url</label>
+              <div className="control">
+                <UrlInput value={data.url} onChange={handlers.url} />
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="columns">
           <div className="column is-6">
             <div className="field">

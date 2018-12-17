@@ -111,13 +111,13 @@
       "title": "Date de début",
       "type": "string",
       "formType": "vardate",
-      "minPrecision": "month"
+      "precision": "month"
     },
     "endDate": {
       "title": "Date de fin",
       "type": "string",
       "formType": "vardate",
-      "minPrecision": "month"
+      "precision": "month"
     },
     "draft": {
       "title": "Draft?",

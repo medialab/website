@@ -2,6 +2,7 @@ import get from 'lodash/fp/get';
 import set from 'lodash/fp/set';
 import sha1 from 'hash.js/lib/hash/sha/1';
 
+// TODO: delete property when empty
 export function createHandler(scope, key) {
   return e => {
     scope.setState(set(key, e.target.value, scope.state));

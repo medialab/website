@@ -18,9 +18,11 @@ const active = (o) => {
 };
 const formatDate = date => {
     let [y, m, d] = date.split('/').reverse();
+    let ny = y
     if (y.length === 2)
-        y = '20' + y;
-    return `${y}-${m}-${d}`;
+        ny = '20' + y;
+    console.log(y, ny);
+    return `${ny}-${m}-${d}`;
 };
 
 

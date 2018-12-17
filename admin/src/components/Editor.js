@@ -4,6 +4,26 @@ import {htmlToRaw, rawToHtml} from '../utils';
 import IMAGE from './entities/image';
 import LINK from './entities/link';
 
+import BoldIcon from './icons/BoldIcon';
+import ItalicIcon from './icons/ItalicIcon';
+import NotesIcon from './icons/NotesIcon';
+import OrderedListIcon from './icons/OrderedListIcon';
+import UnorderedListIcon from './icons/UnorderedListIcon';
+
+function FalseIcon({children}) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24">
+      <text fontSize={14} stroke="black" fill="black" x={0} y={20}>
+        {children}
+      </text>
+    </svg>
+  );
+}
+
 export default class Editor extends PureComponent {
 
   handleOnSave = content => {
@@ -28,19 +48,19 @@ export default class Editor extends PureComponent {
             LINK
           ]}
           blockTypes={[
-            {type: BLOCK_TYPE.HEADER_ONE, label: 'H1'},
-            {type: BLOCK_TYPE.HEADER_TWO, label: 'H2'},
-            {type: BLOCK_TYPE.HEADER_THREE, label: 'H3'},
-            {type: BLOCK_TYPE.HEADER_FOUR, label: 'H4'},
-            {type: BLOCK_TYPE.HEADER_FIVE, label: 'H5'},
-            {type: BLOCK_TYPE.HEADER_SIX, label: 'H6'},
-            {type: BLOCK_TYPE.UNORDERED_LIST_ITEM, label: 'ul'},
-            {type: BLOCK_TYPE.ORDERED_LIST_ITEM, label: 'ol'},
-            {type: BLOCK_TYPE.CODE, label: 'html'}
+            {type: BLOCK_TYPE.HEADER_ONE, icon: <FalseIcon>h1</FalseIcon>},
+            {type: BLOCK_TYPE.HEADER_TWO, icon: <FalseIcon>h2</FalseIcon>},
+            {type: BLOCK_TYPE.HEADER_THREE, icon: <FalseIcon>h3</FalseIcon>},
+            // {type: BLOCK_TYPE.HEADER_FOUR, icon: <FalseIcon>h4</FalseIcon>},
+            // {type: BLOCK_TYPE.HEADER_FIVE, icon: <FalseIcon>h5</FalseIcon>},
+            // {type: BLOCK_TYPE.HEADER_SIX, icon: <FalseIcon>h6</FalseIcon>},
+            {type: BLOCK_TYPE.UNORDERED_LIST_ITEM, icon: <UnorderedListIcon />},
+            {type: BLOCK_TYPE.ORDERED_LIST_ITEM, icon: <OrderedListIcon />},
+            {type: BLOCK_TYPE.CODE, icon: <NotesIcon />}
           ]}
           inlineStyles={[
-            {type: INLINE_STYLE.ITALIC, label: 'I'},
-            {type: INLINE_STYLE.BOLD, label: 'B'}
+            {type: INLINE_STYLE.ITALIC, icon: <ItalicIcon />},
+            {type: INLINE_STYLE.BOLD, icon: <BoldIcon />}
           ]} />
       </div>
     );

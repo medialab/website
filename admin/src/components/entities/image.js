@@ -7,6 +7,7 @@ import Dropzone from 'react-dropzone';
 import client from '../../client';
 import Button from '../misc/Button';
 import CardModal from '../misc/CardModal';
+import ImageIcon from '../icons/ImageIcon';
 
 // Source
 class ImageSource extends Component {
@@ -115,7 +116,7 @@ function ImageBlock(props) {
 // Entity
 const IMAGE = {
   type: ENTITY_TYPE.IMAGE,
-  label: 'image',
+  icon: <ImageIcon />,
   source: ImageSource,
   block: ImageBlock,
   attributes: ['src']

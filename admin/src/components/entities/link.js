@@ -1,10 +1,10 @@
-/* global API_URL */
 import React, {Component} from 'react';
 import {RichUtils} from 'draft-js';
 import {ENTITY_TYPE} from 'draftail';
 
 import Button from '../misc/Button';
 import CardModal from '../misc/CardModal';
+import LinkIcon from '../icons/LinkIcon';
 
 // Source
 class LinkSource extends Component {
@@ -109,7 +109,7 @@ function LinkDecorator(props) {
 // Entity
 const LINK = {
   type: ENTITY_TYPE.LINK,
-  label: 'a',
+  icon: <LinkIcon />,
   source: LinkSource,
   decorator: LinkDecorator,
   attributes: ['href']

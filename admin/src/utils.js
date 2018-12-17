@@ -16,11 +16,33 @@ function entityStyleFn(entity) {
       }
     };
   }
+
+  if (type === 'LINK') {
+    const data = entity.getData();
+
+    const attributes = {
+      href: data.href
+    };
+
+    if (data.internal)
+      attributes['data-internal'] = 'true';
+
+    return {
+      element: 'a',
+      attributes
+    };
+  }
 }
 
 function customInlineFn(element, {Entity}) {
   if (element.tagName === 'IFRAME') {
     return Entity('IFRAME', {src: element.getAttribute('src')});
+  }
+
+  if (element.tagName === 'A') {
+    const internal = element.getAttribute('data-internal');
+
+    return Entity('LINK', {href: element.getAttribute('href'), 'internal': !!internal});
   }
 }
 

@@ -43,7 +43,6 @@ export default class Editor extends PureComponent {
         <DraftailEditor
           rawContentState={content ? htmlToRaw(content) : null}
           stripPastedStyles={false}
-          enableLineBreak
           onSave={this.handleOnSave}
           entityTypes={[
             LINK,

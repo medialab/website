@@ -23,7 +23,7 @@ class LinkSource extends Component {
     const contentWithEntity = content.createEntity(
       entityType.type,
       'MUTABLE',
-      {href: option.href}
+      {href: option.href, internal: true}
     );
 
     const entityKey = contentWithEntity.getLastCreatedEntityKey();

@@ -33,7 +33,8 @@ export default class Editor extends PureComponent {
             {type: BLOCK_TYPE.HEADER_FIVE, label: 'H5'},
             {type: BLOCK_TYPE.HEADER_SIX, label: 'H6'},
             {type: BLOCK_TYPE.UNORDERED_LIST_ITEM, label: 'ul'},
-            {type: BLOCK_TYPE.ORDERED_LIST_ITEM, label: 'ol'}
+            {type: BLOCK_TYPE.ORDERED_LIST_ITEM, label: 'ol'},
+            {type: BLOCK_TYPE.CODE, label: 'html'}
           ]}
           inlineStyles={[
             {type: INLINE_STYLE.ITALIC, label: 'I'},

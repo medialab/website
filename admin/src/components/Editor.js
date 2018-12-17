@@ -41,6 +41,7 @@ export default class Editor extends PureComponent {
     return (
       <div className="content">
         <DraftailEditor
+          placeholder='Type something...'
           rawContentState={content ? htmlToRaw(content) : null}
           stripPastedStyles={false}
           onSave={this.handleOnSave}

@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 const config = require('config'),
       path = require('path'),
       fs = require('fs-extra'),
@@ -27,7 +28,7 @@ module.exports = function load(inputDir) {
     const items = [];
 
     fs.readdirSync(p).forEach(f => {
-      const item =JSON.parse(fs.readFileSync(path.join(p, f), 'utf-8'));
+      const item = JSON.parse(fs.readFileSync(path.join(p, f), 'utf-8'));
 
       if (!VALIDATORS[model](item)) {
         console.error(VALIDATORS[model].errors);

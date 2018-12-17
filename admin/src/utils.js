@@ -42,7 +42,7 @@ function customInlineFn(element, {Entity}) {
   if (element.tagName === 'A') {
     const internal = element.getAttribute('data-internal');
 
-    return Entity('LINK', {href: element.getAttribute('href'), 'internal': !!internal});
+    return Entity('LINK', {href: element.getAttribute('href'), internal: !!internal});
   }
 }
 

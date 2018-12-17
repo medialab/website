@@ -1,6 +1,8 @@
 import React from 'react';
 import {graphql} from 'gatsby';
 
+import RawHtml from './RawHtml';
+
 export const queryFragment = graphql`
   fragment NewsDetail on NewsJson {
     title {
@@ -77,9 +79,9 @@ export default function NewsDetail({data}) {
         </ul>
       </div>
       <hr />
-      {data.content && data.content.en && <div dangerouslySetInnerHTML={{__html: data.content.en}} />}
+      {data.content && data.content.en && <RawHtml html={data.content.en} />}
       <hr />
-      {data.content && data.content.fr && <div dangerouslySetInnerHTML={{__html: data.content.fr}} />}
+      {data.content && data.content.fr && <RawHtml html={data.content.fr} />}
     </div>
   );
 }

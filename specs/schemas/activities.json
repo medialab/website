@@ -2,6 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Activités",
   "description": "Les projets menés au médialab",
+  "additionalProperties": false,
   "type": "object",
   "properties": {
     "id": {

@@ -158,7 +158,7 @@ const LINK = {
   icon: <LinkIcon />,
   source: LinkSource,
   decorator: LinkDecorator,
-  attributes: ['href']
+  attributes: ['href', 'internal']
 };
 
 export default LINK;

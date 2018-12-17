@@ -1,7 +1,9 @@
 /* global API_URL */
 import React, {Component} from 'react';
 import {AtomicBlockUtils} from 'draft-js';
+import Dropzone from 'react-dropzone';
 
+import client from '../../client';
 import Button from '../misc/Button';
 import CardModal from '../misc/CardModal';
 import DocumentIcon from '../icons/DocumentIcon';
@@ -9,6 +11,8 @@ import DocumentIcon from '../icons/DocumentIcon';
 // Source
 class IframeSource extends Component {
   state = {
+    loading: false,
+    file: null,
     src: ''
   };
 
@@ -19,7 +23,7 @@ class IframeSource extends Component {
     const contentWithEntity = content.createEntity(
       entityType.type,
       'IMMUTABLE',
-      {src: option.src}
+      option
     );
 
     const entityKey = contentWithEntity.getLastCreatedEntityKey();
@@ -36,8 +40,25 @@ class IframeSource extends Component {
     this.setState({src: e.target.value});
   };
 
+  handleDrop = acceptedFiles => {
+    this.setState({file: acceptedFiles[0]});
+  };
+
   handleSubmit = () => {
-    this.addEntity({src: this.state.src});
+    if (!this.state.file && !this.state.src)
+      return;
+
+    // Using a link
+    if (this.state.src)
+      return this.addEntity({src: this.state.src, internal: false});
+
+    // Using a file
+    this.setState({loading: true});
+
+    client.upload(this.state.file, result => {
+      this.setState({loading: false});
+      this.addEntity({src: result.name, internal: true});
+    });
   };
 
   handleCancel = () => {
@@ -48,8 +69,15 @@ class IframeSource extends Component {
 
   render() {
     const {
-      src
+      src,
+      file
     } = this.state;
+
+    const buttonLabel = file ?
+      'Upload & insert attachment' :
+      'Insert link';
+
+    // TODO: UX toggle one side over the other when selecting
 
     return (
       <CardModal onClose={this.handleCancel}>
@@ -61,15 +89,33 @@ class IframeSource extends Component {
           // Body
           (
             <div key="body">
-              <div className="field">
-                <label className="label">Url</label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    value={src}
-                    onChange={this.handleSrc} />
+              <div className="columns">
+
+                <div className="column is-7">
+                  <div className="field">
+                    <label className="label">Using an external url:</label>
+                    <div className="control">
+                      <input
+                        type="text"
+                        className="input"
+                        disabled={!!file}
+                        value={src}
+                        onChange={this.handleSrc} />
+                    </div>
+                  </div>
                 </div>
+
+                <div className="column is-5">
+                  <div className="field">
+                    <label className="label">Uploading an attachment:</label>
+                    <div className="control">
+                      {file ?
+                        <div>{file.name}</div> :
+                        <Dropzone disabled={!!src} onDrop={this.handleDrop} />}
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           ),
@@ -78,9 +124,9 @@ class IframeSource extends Component {
           (
             <Button
               key="footer"
-              disabled={!src}
+              disabled={!src && !file}
               onClick={this.handleSubmit}>
-              Insert
+              {buttonLabel}
             </Button>
           )
         ]}
@@ -93,11 +139,14 @@ class IframeSource extends Component {
 // Block
 function IframeBlock(props) {
   const blockProps = props.blockProps;
-  const {src} = blockProps.entity.getData();
+  const {src, internal} = blockProps.entity.getData();
 
   // NOTE: can access mutators here
+  const realSrc = internal ?
+    `${API_URL}/assets/${src}` :
+    src;
 
-  return <iframe src={src} />;
+  return <iframe src={realSrc} />;
 }
 
 // Entity
@@ -106,7 +155,7 @@ const IFRAME = {
   icon: <DocumentIcon />,
   source: IframeSource,
   block: IframeBlock,
-  attributes: ['src']
+  attributes: ['src', 'internal']
 };
 
 export default IFRAME;

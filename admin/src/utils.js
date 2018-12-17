@@ -9,11 +9,16 @@ function entityStyleFn(entity) {
   if (type === 'IFRAME') {
     const data = entity.getData();
 
+    const attributes = {
+      src: data.src
+    };
+
+    if (data.internal)
+      attributes['data-internal'] = 'true';
+
     return {
       element: 'iframe',
-      attributes: {
-        src: data.src
-      }
+      attributes
     };
   }
 
@@ -36,7 +41,9 @@ function entityStyleFn(entity) {
 
 function customInlineFn(element, {Entity}) {
   if (element.tagName === 'IFRAME') {
-    return Entity('IFRAME', {src: element.getAttribute('src')});
+    const internal = element.getAttribute('data-internal');
+
+    return Entity('IFRAME', {src: element.getAttribute('src'), internal: !!internal});
   }
 
   if (element.tagName === 'A') {

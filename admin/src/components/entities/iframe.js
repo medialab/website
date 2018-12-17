@@ -1,19 +1,15 @@
 /* global API_URL */
 import React, {Component} from 'react';
 import {AtomicBlockUtils} from 'draft-js';
-import {ENTITY_TYPE} from 'draftail';
-import Dropzone from 'react-dropzone';
 
-import client from '../../client';
 import Button from '../misc/Button';
 import CardModal from '../misc/CardModal';
-import ImageIcon from '../icons/ImageIcon';
+import DocumentIcon from '../icons/DocumentIcon';
 
 // Source
-class ImageSource extends Component {
+class IframeSource extends Component {
   state = {
-    loading: false,
-    file: null
+    src: ''
   };
 
   addEntity = (option) => {
@@ -36,20 +32,12 @@ class ImageSource extends Component {
     return onComplete(nextState);
   };
 
-  handleDrop = acceptedFiles => {
-    this.setState({file: acceptedFiles[0]});
+  handleSrc = e => {
+    this.setState({src: e.target.value});
   };
 
   handleSubmit = () => {
-    if (!this.state.file)
-      return;
-
-    this.setState({loading: true});
-
-    client.upload(this.state.file, result => {
-      this.setState({loading: false});
-      this.addEntity({src: result.name});
-    });
+    this.addEntity({src: this.state.src});
   };
 
   handleCancel = () => {
@@ -60,8 +48,7 @@ class ImageSource extends Component {
 
   render() {
     const {
-      loading,
-      file
+      src
     } = this.state;
 
     return (
@@ -69,25 +56,31 @@ class ImageSource extends Component {
         {[
 
           // Title
-          'Importing an image',
+          'Inserting an iframe',
 
           // Body
-          !file ?
-            <Dropzone key="body" onDrop={this.handleDrop} /> :
-            (
-              <div key="body">
-                <img src={URL.createObjectURL(file)} style={{height: '200px'}} />
+          (
+            <div key="body">
+              <div className="field">
+                <label className="label">Url</label>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    value={src}
+                    onChange={this.handleSrc} />
+                </div>
               </div>
-            ),
+            </div>
+          ),
 
           // Footer
           (
             <Button
               key="footer"
-              disabled={!file}
-              loading={loading}
+              disabled={!src}
               onClick={this.handleSubmit}>
-              Upload & Insert
+              Insert
             </Button>
           )
         ]}
@@ -98,24 +91,22 @@ class ImageSource extends Component {
 }
 
 // Block
-function ImageBlock(props) {
+function IframeBlock(props) {
   const blockProps = props.blockProps;
   const {src} = blockProps.entity.getData();
 
   // NOTE: can access mutators here
 
-  const url = `${API_URL}/assets/${src}`;
-
-  return <img src={url} />;
+  return <iframe src={src} />;
 }
 
 // Entity
-const IMAGE = {
-  type: ENTITY_TYPE.IMAGE,
-  icon: <ImageIcon />,
-  source: ImageSource,
-  block: ImageBlock,
+const IFRAME = {
+  type: 'IFRAME',
+  icon: <DocumentIcon />,
+  source: IframeSource,
+  block: IframeBlock,
   attributes: ['src']
 };
 
-export default IMAGE;
+export default IFRAME;

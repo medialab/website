@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import {DraftailEditor, BLOCK_TYPE, INLINE_STYLE} from 'draftail';
 import {htmlToRaw, rawToHtml} from '../utils';
+import IFRAME from './entities/iframe';
 import IMAGE from './entities/image';
 import LINK from './entities/link';
 
@@ -44,8 +45,9 @@ export default class Editor extends PureComponent {
           stripPastedStyles={false}
           onSave={this.handleOnSave}
           entityTypes={[
+            LINK,
             IMAGE,
-            LINK
+            IFRAME
           ]}
           blockTypes={[
             {type: BLOCK_TYPE.HEADER_ONE, icon: <FalseIcon>h1</FalseIcon>},

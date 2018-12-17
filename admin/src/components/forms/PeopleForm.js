@@ -7,6 +7,7 @@ import Form from './Form';
 import Editor from '../Editor';
 import EnumSelector from '../selectors/EnumSelector';
 import BooleanSelector from '../selectors/BooleanSelector';
+import RelationSelector from '../selectors/RelationSelector';
 
 function slugifyPeople(data) {
   return slugify(`${data.firstName} ${data.lastName}`);
@@ -17,7 +18,7 @@ function validate(data) {
     return 'Need at least a first name & a last name';
 }
 
-// TODO: contact, mainActivities, mainProductions
+// TODO: contact, sortable relations
 const HANDLERS = {
   firstName: {
     type: 'slug',
@@ -56,6 +57,14 @@ const HANDLERS = {
   frenchContent: {
     type: 'raw',
     field: ['bio', 'fr']
+  },
+  mainActivities: {
+    type: 'relation',
+    field: 'mainActivities'
+  },
+  mainProductions: {
+    type: 'relation',
+    field: 'mainProductions'
   },
   active: {
     type: 'boolean',
@@ -260,13 +269,42 @@ function renderPeopleForm(props) {
       </div>
 
       <div className="form-group">
-        <h4 className="title is-4">Featured items</h4>
+        <h4 className="title is-4">
+          Featured items
+        </h4>
 
         <div className="columns">
-          <div className="column is-12">
-            TODO
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Activities</label>
+              <div className="control">
+                <RelationSelector
+                  model="activities"
+                  max={5}
+                  selected={data.mainActivities}
+                  onAdd={handlers.mainActivities.add}
+                  onDrop={handlers.mainActivities.drop} />
+              </div>
+            </div>
           </div>
         </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Productions</label>
+              <div className="control">
+                <RelationSelector
+                  model="productions"
+                  max={5}
+                  selected={data.mainProductions}
+                  onAdd={handlers.mainProductions.add}
+                  onDrop={handlers.mainProductions.drop} />
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <div className="form-group is-important">

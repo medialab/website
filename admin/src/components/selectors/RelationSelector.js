@@ -12,6 +12,7 @@ const noOptionsMessages = {
   productions: () => 'No matching production'
 };
 
+// TODO: UX inform user about max if one
 export default class RelationSelector extends Component {
   constructor(props, context) {
     super(props, context);

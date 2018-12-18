@@ -1,6 +1,7 @@
 import get from 'lodash/fp/get';
 import set from 'lodash/fp/set';
 import sha1 from 'hash.js/lib/hash/sha/1';
+import {arrayMove} from 'react-sortable-hoc';
 
 // TODO: delete property when empty
 export function createHandler(scope, key) {
@@ -49,6 +50,15 @@ export function createDropRelationHandler(scope, key) {
     data = data.filter(i => i !== id);
 
     scope.setState(set(key, data, scope.state));
+  };
+}
+
+export function createArrayMoveHandler(scope, key) {
+  return ({oldIndex, newIndex}) => {
+    let currentList = get(key, scope.state);
+    currentList = arrayMove(currentList, oldIndex, newIndex);
+
+    scope.setState(set(key, currentList, scope.state));
   };
 }
 

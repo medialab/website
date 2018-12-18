@@ -1,6 +1,6 @@
 import React from 'react';
 
-// https://material.io/tools/icons/?search=home&icon=reorder&style=baseline
+// https://material.io/tools/icons/?icon=reorder&style=baseline
 export default function ReorderIcon() {
   return (
     <svg

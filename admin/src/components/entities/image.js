@@ -7,17 +7,14 @@ import Dropzone from 'react-dropzone';
 import client from '../../client';
 import Button from '../misc/Button';
 import CardModal from '../misc/CardModal';
+import ImageIcon from '../icons/ImageIcon';
 
 // Source
 class ImageSource extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      loading: false,
-      file: null
-    };
-  }
+  state = {
+    loading: false,
+    file: null
+  };
 
   addEntity = (option) => {
     const {editorState, entityType, onComplete} = this.props;
@@ -115,7 +112,7 @@ function ImageBlock(props) {
 // Entity
 const IMAGE = {
   type: ENTITY_TYPE.IMAGE,
-  label: 'image',
+  icon: <ImageIcon />,
   source: ImageSource,
   block: ImageBlock,
   attributes: ['src']

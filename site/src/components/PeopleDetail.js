@@ -1,6 +1,8 @@
 import React from 'react';
 import {graphql} from 'gatsby';
 
+import RawHtml from './RawHtml';
+
 export const queryFragment = graphql`
   fragment PeopleDetail on PeopleJson {
     firstName
@@ -35,9 +37,9 @@ export default function PeopleDetail({data, bio}) {
         <strong>FR title</strong>: {data.title && data.title.fr}
       </p>
       <hr />
-      {bio && bio.en && <div dangerouslySetInnerHTML={{__html: bio.en}} />}
+      {bio && bio.en && <RawHtml html={bio.en} />}
       <hr />
-      {bio && bio.fr && <div dangerouslySetInnerHTML={{__html: bio.fr}} />}
+      {bio && bio.fr && <RawHtml html={bio.fr} />}
       <div>dernière mise à jour : {data.lastUpdated ? new Date(data.lastUpdated).toLocaleString() : 'jamais modifié !'}</div>
     </div>
 

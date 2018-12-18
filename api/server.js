@@ -151,7 +151,10 @@ app.post('/upload', (req, res) => {
   if (!file)
     return res.status(400).send('No file.');
 
-  const name = `${uuid()}_${file.name}`;
+  const ext = path.extname(file.name),
+        filename = path.basename(file.name, ext);
+
+  const name = `${filename}_${uuid()}${ext}`;
 
   file.mv(path.join(ASSETS_PATH, name), err => {
     if (err)

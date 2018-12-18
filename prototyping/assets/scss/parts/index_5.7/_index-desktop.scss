@@ -71,7 +71,7 @@ hr{
     overflow: hidden;
     //specific
     grid-row-start: 1;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid $color-header-text;
 
     div{
         width: 100vw;
@@ -545,47 +545,36 @@ hr{
 /////////////////
 
 .i1{
-    overflow: hidden;
-    height: 5rem;
+    height: 30vh;
     width: 100%;
-    border-bottom: 1px solid black;
-    border-top: 1px solid black;
-
-
+    border-bottom: 1px solid $color-header-text;
+    margin: auto;
 
     p:nth-of-type(1){
-        background-color:  white;
-        font-size: 4vh;
-        line-height: 4vh;
-        max-width: 500vw;
-        padding: 1rem 2rem;
+        font-size: 20px;
+        line-height: 30px;
+        max-width: 610px;
         z-index: 9;
-        white-space: nowrap;
-        position: absolute;
+        text-align: center;
+        margin: 5vh auto;
+        padding: 2rem 0px;
+        font-style: italic;
 
-        animation: defilement 30s infinite alternate linear;
 
-    }
+        .emblem{
+            display: block;
+            font-size: 5rem;
+            padding: 0 0 2rem 0;
+        }
 
-    @keyframes defilement {
-      0%{
+        .signature{
+            display: block;
+            padding: 1rem 0;
+            font-size: 12px;
+            font-style: normal;
+            text-transform: uppercase;
+        }
 
-        transform: translateX(100vw);
-      }
-      100% {
-
-        transform: translateX(-400vh);
-      }
-    }
-
-    p:nth-of-type(2){
-        word-break: break-all;
-        font-size: 4vh;
-        line-height: 4.1vh;
-        height: 25vh;
-        overflow: hidden;
-        position: absolute;
-        top: 0;
     }
 }
 

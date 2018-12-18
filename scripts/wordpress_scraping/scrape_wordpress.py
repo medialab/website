@@ -37,26 +37,42 @@ def scrape_slug_page(s, url):
 
 
 def scrape_slugs(s):
+    print("Scraping slugs...")
     directory = os.path.join("data", "slugs")
     if not os.path.exists(directory):
         os.makedirs(directory)
 
-        PEOPLE_TOOLS_SLUGS_URL = ' http://medialab-dev.sciences-po.fr/wp-admin/edit-tags.php' + \
-            '?taxonomy=tools&post_type=people'
-        tools_slugs = scrape_slug_page(s, PEOPLE_TOOLS_SLUGS_URL)
+    TOOLS_SLUGS_URL = ' http://medialab-dev.sciences-po.fr/wp-admin/edit-tags.php' + \
+        '?taxonomy=tools&post_type=people'
+    tools_slugs = scrape_slug_page(s, TOOLS_SLUGS_URL)
 
-        PEOPLE_PROJETS_SLUGS_URL = ' http://medialab-dev.sciences-po.fr/wp-admin/edit-tags.php' + \
-            '?taxonomy=projets&post_type=people'
-        projets_slugs = scrape_slug_page(s, PEOPLE_PROJETS_SLUGS_URL)
+    PROJETS_SLUGS_URL = ' http://medialab-dev.sciences-po.fr/wp-admin/edit-tags.php' + \
+        '?taxonomy=projets&post_type=people'
+    projets_slugs = scrape_slug_page(s, PROJETS_SLUGS_URL)
 
-        with open(os.path.join(directory, 'tools_slugs.json'), 'w') as outfile:
-            json.dump(tools_slugs, outfile, ensure_ascii=False, indent=2)
-        with open(os.path.join(directory, 'projets_slugs.json'), 'w') as outfile:
-            json.dump(projets_slugs, outfile, ensure_ascii=False, indent=2)
+    PEOPLE_SLUGS_URL = 'http://medialab-dev.sciences-po.fr/wp-admin/edit-tags.php?taxonomy=people&post_type=blog'
+    people_slugs = scrape_slug_page(s, PEOPLE_SLUGS_URL)
+
+    CATEGORIES_SLUGS_URL = 'http://medialab-dev.sciences-po.fr/wp-admin/edit-tags.php?taxonomy=category&post_type=blog'
+    categories_slugs = scrape_slug_page(s, CATEGORIES_SLUGS_URL)
+
+    PUBLICATIONS_SLUGS_URL = 'http://medialab-dev.sciences-po.fr/wp-admin/edit-tags.php?taxonomy=publications&post_type=blog'
+    publications_slugs = scrape_slug_page(s, PUBLICATIONS_SLUGS_URL)
+
+    with open(os.path.join(directory, 'tools_slugs.json'), 'w') as outfile:
+        json.dump(tools_slugs, outfile, ensure_ascii=False, indent=2)
+    with open(os.path.join(directory, 'projets_slugs.json'), 'w') as outfile:
+        json.dump(projets_slugs, outfile, ensure_ascii=False, indent=2)
+    with open(os.path.join(directory, 'people_slugs.json'), 'w') as outfile:
+        json.dump(people_slugs, outfile, ensure_ascii=False, indent=2)
+    with open(os.path.join(directory, 'categories_slugs.json'), 'w') as outfile:
+        json.dump(categories_slugs, outfile, ensure_ascii=False, indent=2)
+    with open(os.path.join(directory, 'publications_slugs.json'), 'w') as outfile:
+        json.dump(publications_slugs, outfile,
+                  ensure_ascii=False, indent=2)
 
 
 def name_to_slug(s, name, type):
-    scrape_slugs(s)
     directory = os.path.join("data", "slugs")
     if not name:
         return None
@@ -66,8 +82,20 @@ def name_to_slug(s, name, type):
     elif type == 'projet':
         with open(os.path.join(directory, 'projets_slugs.json'), 'r') as dict_file:
             slug_dict = json.load(dict_file)
+    elif type == 'people':
+        # this guy doesn't have the same name in English & in French
+        if name == 'François Gemenne' or name == 'François Gemmene':
+            return 'francois-gemenne'
+        with open(os.path.join(directory, 'people_slugs.json'), 'r') as dict_file:
+            slug_dict = json.load(dict_file)
+    elif type == 'category':
+        with open(os.path.join(directory, 'categories_slugs.json'), 'r') as dict_file:
+            slug_dict = json.load(dict_file)
+    elif type == 'publication':
+        with open(os.path.join(directory, 'publications_slugs.json'), 'r') as dict_file:
+            slug_dict = json.load(dict_file)
     else:
-        print("ERROR:", "'type' should be either 'tool' or 'projet'")
+        print("ERROR:", "'type' should be either 'tool', 'people', 'category', 'publication' or 'projet'")
     return slug_dict[name]
 
 
@@ -316,10 +344,10 @@ def scrape_publication(s, publication):
         key, value = next(iter(field.items()))
         json_result[key] = value
     json_result["image"] = image
-    json_result["people"] = people
+    json_result["people"] = [name_to_slug(s, x, 'people') for x in people]
     json_result["publication_types"] = publication_types
-    json_result["tools"] = tools
-    json_result["projets"] = projets
+    json_result["tools"] = [name_to_slug(s, x, 'tool') for x in tools]
+    json_result["projets"] = [name_to_slug(s, x, 'projet') for x in projets]
 
     directory = os.path.join("data", "publications")
     if not os.path.exists(directory):
@@ -456,11 +484,14 @@ def scrape_blog(s, blog):
         key, value = next(iter(field.items()))
         json_result[key] = value
     json_result["image"] = image
-    json_result["categories"] = categories
-    json_result["people"] = people
-    json_result["publications"] = publications
-    json_result["tools"] = tools
-    json_result["projets"] = projets
+    json_result["categories"] = [name_to_slug(
+        s, x, 'category') for x in categories]
+    json_result["people"] = [name_to_slug(
+        s, x, 'people') for x in people]
+    json_result["publications"] = [
+        name_to_slug(s, x, 'publication') for x in publications]
+    json_result["tools"] = [name_to_slug(s, x, 'tool') for x in tools]
+    json_result["projets"] = [name_to_slug(s, x, 'projet') for x in projets]
 
     directory = os.path.join("data", "blogs")
     if not os.path.exists(directory):

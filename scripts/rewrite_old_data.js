@@ -58,7 +58,7 @@ const mois = {
 };
 
 const translations = {
-    activities: o => {
+    activities: (o, indices, reverseLinks) => {
         const name = o.title_fr.length > 0 ? o.title_fr : o.title_en;
         const newProject = {
             id: uuid(),
@@ -94,7 +94,11 @@ const translations = {
         //slug
         newProject.slug = [slugifyActivity(newProject)];
 
-        return newProject;
+        // links from people
+        if (reverseLinks['activities->people'][newProject.oldSlug])
+            newProject.people = reverseLinks['activities->people'][newProject.oldSlug];
+
+        return {newO: newProject, reverseLinks: {}};
     },
     people: people => {
         const name = people.title_fr.length > 0 ? people.title_fr : people.title_en;
@@ -126,9 +130,9 @@ const translations = {
 
         newPeople.slugs = [slugifyPeople(newPeople)];
 
-        return newPeople;
+        return {newO: newPeople, reverseLinks: {activities: people.projets, productions: people.tools}};
     },
-    news: o => {
+    news: (o, indeces, reverseLinks) => {
         const name = o.title_fr.length > 0 ? o.title_fr : o.title_en;
         const newNews = {
             id: uuid(),
@@ -188,29 +192,64 @@ const translations = {
             Object.assign(newNews.label, {en: o.sstitre_projet_en});
 
         newNews.slugs = [slugifyNews(newNews)];
-
-        return newNews;
+        
+        // links
+        newNews.people = o.people.map(p => indeces.people[p]);
+        newNews.people = o.projets.map(p => indeces.activities[p]);
+        //newNews.productions = o.tools.map(p => indeces.productions[p]);
+        return {newO: newNews, reverseLinks: {}};
     },
 };
 
 
 const modelsToProcess = [{new: 'people', old: 'people'}, {new: 'activities', old: 'projets'}, {new: 'news', old: 'blogs'}];
 
-async.all(modelsToProcess,
-    (models) => {
-    const oldModel = models.old;
-    const newModel = models.new;
-    const inPath = `./wordpress_scraping/data/${oldModel}/`;
-    const outPath = `./wordpress_scraping/data/new/${newModel}`;
-    fs.removeSync(outPath);
-    fs.ensureDirSync(outPath);
+function processObjects(oldModel, newModel, indices, olinks, done) {
+        const inPath = `./wordpress_scraping/data/${oldModel}/`;
+        const outPath = `./wordpress_scraping/data/new/${newModel}`;
+        fs.removeSync(outPath);
+        fs.ensureDirSync(outPath);
+        const index = {};
+        const newLinks = [];
+        async.each(fs.readdirSync(inPath), (f, localDone) => {
+            const o = fs.readJsonSync(path.join(inPath, f), 'utf8');
+            const {newO, reverseLinks} = translations[newModel](o, indices, olinks);
+            index[newO.oldSlug] = newO.id;
+            for (const sourceModel in reverseLinks) {
+                if (!newLinks[`${sourceModel}->${newModel}`])
+                    newLinks[`${sourceModel}->${newModel}`] = {};
+                reverseLinks[sourceModel].forEach(slugO => {
+                    if (!newLinks[`${sourceModel}->${newModel}`][slugO])
+                        newLinks[`${sourceModel}->${newModel}`][slugO] = [];
+                    newLinks[`${sourceModel}->${newModel}`][slugO].push(newO.id);
+                });
+            }
+            if (o._id !== 1063) {
+               // writting
+                fs.writeJsonSync(path.join(outPath, `${newO.id}.json`), newO, {spaces: 2, encoding: 'utf8'});
+            }
+            localDone(null);
+        }, (err) => {
+            console.log(`done with ${newModel}`)
+            if (err) throw err;
+            indices[newModel] = index;
+            done(null, indices, newLinks);
+        });
+}
 
-    async.all(fs.readdirSync(inPath), f => {
-        console.log(f);
-        const o = fs.readJsonSync(path.join(inPath, f), 'utf8');
-        if (o._id !== 1063) {
-            const newO = translations[newModel](o);
-            fs.writeJsonSync(path.join(outPath, `${newO.id}.json`), newO, {spaces: 2, encoding: 'utf8'});
-        }
-    });
-});
+
+async.waterfall([
+    // first people
+    (done) => {
+        processObjects('people', 'people', {}, {}, done);
+    },
+    //activity
+    (indeces, links, done) => {
+        processObjects('projets', 'activities', indeces, links, done);
+    },
+    //news
+    (indeces, links, done) => {
+        processObjects('blogs', 'news', indeces, links, done);
+    },
+
+]);

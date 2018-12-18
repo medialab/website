@@ -1,4 +1,4 @@
-/* page listing publication */
+/* page objet */
 /* julie: node-sass --watch page_objet_02.scss ../css-compiled/page_objet_02.css */
 
 // variables and mixins
@@ -13,8 +13,9 @@
 @import 'parts/common/normalize';
 @import 'parts/common/clean';
 @import 'parts/common/top-bar_5.1/top-bar';
+@import 'parts/common/flux_01/flux';
+@import 'parts/common/_pure_css_slideshow.scss';
 
 //Parts
-@import 'parts/page_liste_5.2/_liste_publication.scss';
-
-  
+@import 'parts/index_5.6/index.scss';
+@import 'parts/index_5.6/grid'; 

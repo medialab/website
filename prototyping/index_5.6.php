@@ -9,8 +9,8 @@
     <!-- styles -->
     <style type="text/css"></style>
     <link rel="stylesheet" href="assets/fonts/Museo_Sans/stylesheet.css">
-    <link rel='stylesheet' type='text/css' href='assets/css-compiled/index_5.5.css'>
-
+    <link rel='stylesheet' type='text/css' href='assets/css-compiled/index_5.6.css'>
+ 
 
 
 </head>
@@ -20,159 +20,177 @@
 	<?php include('fragments/_flux_1.php'); ?>
 
 
-	<div class="i1">
+	<div class="i1" >
 		<p>
 			Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et sociales
 		</p>
 	</div>
 	<main>
-<section class="transition" id="focus">
-	<div>
-		<?php include('assets/images/sample_txt/shinrai_1.html'); ?>
-	</div>
-	<article>
-		<header>
-			<h1>SHINRAI</h1>
-			<h2>Comment décider dans un contexte de controverse scientifique?</h2>
+		<div class="slideshow">
+			<input type="radio" name="ss1" id="ss1-item-1" class="slideshow--bullet" checked="checked" />
+			<div class="slideshow--item">
+					<section class="transition" id="focus">
+						<div>
+							<?php include('assets/images/sample_txt/shinrai_1.html'); ?>
+						</div>
+						<article>
+							<header>
+								<h1>SHINRAI</h1>
+								<h2>Comment décider dans un contexte de controverse scientifique?</h2>
 
-			<div class="nomenclature">
-				<p class="type">Article</p>
-				<p class="auteur">3 contributeurs</p>
+								<div class="nomenclature">
+									<p class="type">Article</p>
+									<p class="auteur">3 contributeurs</p>
+								</div>
+
+								<p class="description">La catastrophe de Fukushima a provoqué une crise politique et sociétale majeure au Japon. SHINRAI analyse la gestion faite par les autorités japonaises et sa réception par les populations.</p>					
+							</header>
+
+							<nav class="related">
+								<h3>En lien</h3>
+								<ul>
+									<li>	
+										<h4>RICardo Project</h4>
+										<h5>Exploring XIX Century International Trade</h5>
+										<div class="nomenclature">
+											<p class="type">Publication</p>
+											<p class="auteur" data-attribute="John Doe, Michel Doe, Jeanine Doubs">3 contributeurs</p>
+										</div>
+									</li>
+									<li>	
+										<h4>Communication à la conférence ABC</h4>
+										<div class="nomenclature">
+											<p class="type">Publication</p>
+											<p class="date"> 2018-06-09</p>
+										</div>
+									</li>
+									<li>	
+										<h4>Refléxion sur notre atelier XYZ</h4>
+										<div class="nomenclature">
+											<p class="type">chronique</p>
+										</div>
+									</li>
+									<li>	
+										<h4>John Doe rejoint l'équipe du Medialab </h4>
+										<div class="nomenclature">
+											<p class="type">Annonce</p>
+										</div>
+									</li>
+								</ul>
+							</nav>
+						</article>
+					</section>
+				<label for="ss1-item-3" class="slideshow--nav slideshow--nav-previous">Go to slide 3</label>
+				<label for="ss1-item-2" class="slideshow--nav slideshow--nav-next">Go to slide 2</label>
 			</div>
-
-			<p class="description">La catastrophe de Fukushima a provoqué une crise politique et sociétale majeure au Japon. SHINRAI analyse la gestion faite par les autorités japonaises et sa réception par les populations.</p>					
-		</header>
-
-		<nav class="related">
-			<h3>En lien</h3>
-			<ul>
-				<li>	
-					<h4>RICardo Project</h4>
-					<h5>Exploring XIX Century International Trade</h5>
-					<div class="nomenclature">
-						<p class="type">Publication</p>
-						<p class="auteur" data-attribute="John Doe, Michel Doe, Jeanine Doubs">3 contributeurs</p>
-					</div>
-				</li>
-				<li>	
-					<h4>Communication à la conférence ABC</h4>
-					<div class="nomenclature">
-						<p class="type">Publication</p>
-						<p class="date"> 2018-06-09</p>
-					</div>
-				</li>
-				<li>	
-					<h4>Refléxion sur notre atelier XYZ</h4>
-					<div class="nomenclature">
-						<p class="type">chronique</p>
-					</div>
-				</li>
-				<li>	
-					<h4>John Doe rejoint l'équipe du Medialab </h4>
-					<div class="nomenclature">
-						<p class="type">Annonce</p>
-					</div>
-				</li>
-			</ul>
-		</nav>
-	</article>
-</section>
-<section class="transition" id="focus">
-	<div>
-		<?php include('assets/images/sample_txt/naturpradi_m.html'); ?>
-	</div>
-							<article>
-		<header>
-			<h1>How not to be a bad trader.</h1>
-			<h2>Marchés financiers : que sont les “bonnes” relations sociales d’échange?</h2>
-
-			<div class="nomenclature">
-				<p class="type">Séminaire</p>
-				<p class="auteur">2 contributeurs</p>
-			</div>
-
-			<p class="description">Le cas de la Rules 10b-5 de la Securities and Exchange Commission : une exploration de l’histoire tumultueuse des interprétations de ce texte de régulation boursière par juristes et économistes, et du débat sur le “bon” comportement sur les marché financiers.</p>					
-		</header>
-
-		<nav class="related">
-			<h3>En lien</h3>
-			<ul>
-				<li>	
-					<h4>Another Publication</h4>
-					<div class="nomenclature">
-						<p class="type">Publication</p>
-						<p class="auteur" data-attribute="John Doe, Michel Doe, Jeanine Doubs">3 contributeurs</p>
-					</div>
-				</li>
-				<li>	
-					<h4>Frank Michael rejoint l'équipe du Medialab </h4>
-					<div class="nomenclature">
-						<p class="type">Annonce</p>
-					</div>
-				</li>
-				<li>	
-					<h4>Refléxion sur notre atelier XYZ</h4>
-					<div class="nomenclature">
-						<p class="type">chronique</p>
-					</div>
-				</li>
-
-			</ul>
-		</nav>
-	</article>
-</section>
 		
-<section class="transition" id="focus">
-	<div>
-		<?php include('assets/images/sample_txt/fabrique_loi_xl.html'); ?>
-	</div>
-							<article>
-		<header>
-			<h1>La fabrique de la loi</h1>
-			<h2>Les parlementaires font-ils la loi ?</h2>
+			<input type="radio" name="ss1" id="ss1-item-2" class="slideshow--bullet" />
+			<div class="slideshow--item">
+					<section class="transition" id="focus">
+						<div>
+							<?php include('assets/images/sample_txt/naturpradi_m.html'); ?>
+						</div>
+												<article>
+							<header>
+								<h1>How not to be a bad trader.</h1>
+								<h2>Marchés financiers : que sont les “bonnes” relations sociales d’échange?</h2>
 
-			<div class="nomenclature">
-				<p class="type">Article</p>
-				<p class="auteur">3 contributeurs</p>
+								<div class="nomenclature">
+									<p class="type">Séminaire</p>
+									<p class="auteur">2 contributeurs</p>
+								</div>
+
+								<p class="description">Le cas de la Rules 10b-5 de la Securities and Exchange Commission : une exploration de l’histoire tumultueuse des interprétations de ce texte de régulation boursière par juristes et économistes, et du débat sur le “bon” comportement sur les marché financiers.</p>					
+							</header>
+
+							<nav class="related">
+								<h3>En lien</h3>
+								<ul>
+									<li>	
+										<h4>Another Publication</h4>
+										<div class="nomenclature">
+											<p class="type">Publication</p>
+											<p class="auteur" data-attribute="John Doe, Michel Doe, Jeanine Doubs">3 contributeurs</p>
+										</div>
+									</li>
+									<li>	
+										<h4>Frank Michael rejoint l'équipe du Medialab </h4>
+										<div class="nomenclature">
+											<p class="type">Annonce</p>
+										</div>
+									</li>
+									<li>	
+										<h4>Refléxion sur notre atelier XYZ</h4>
+										<div class="nomenclature">
+											<p class="type">chronique</p>
+										</div>
+									</li>
+
+								</ul>
+							</nav>
+						</article>
+					</section>
+				<label for="ss1-item-1" class="slideshow--nav slideshow--nav-previous">Go to slide 1</label>
+				<label for="ss1-item-3" class="slideshow--nav slideshow--nav-next">Go to slide 3</label>
 			</div>
+		
+			<input type="radio" name="ss1" id="ss1-item-3" class="slideshow--bullet" />
+			<div class="slideshow--item">
+					<section class="transition" id="focus">
+						<div>
+							<?php include('assets/images/sample_txt/fabrique_loi_xl.html'); ?>
+						</div>
+												<article>
+							<header>
+								<h1>La fabrique de la loi</h1>
+								<h2>Les parlementaires font-ils la loi ?</h2>
 
-			<p class="description">Ouvrir la boîte noire de la procédure législative en France grâce à l’exploration des données parlementaires. A destination des chercheurs, ce dispositif est également accessible à tous les citoyens et démocratise la compréhension des différentes étapes de fabrique de la loi.</p>					
-		</header>
+								<div class="nomenclature">
+									<p class="type">Article</p>
+									<p class="auteur">3 contributeurs</p>
+								</div>
 
-		<nav class="related">
-			<h3>En lien</h3>
-			<ul>
-				<li>	
-					<h4>RICardo Project</h4>
-					<h5>Exploring XIX Century International Trade</h5>
-					<div class="nomenclature">
-						<p class="type">Publication</p>
-						<p class="auteur">3 contributeurs</p>
-					</div>
-				</li>
-				<li>	
-					<h4>Communication à la conférence ABC</h4>
-					<div class="nomenclature">
-						<p class="type">Publication</p>
-						<p class="date"> 2018-06-09</p>
-					</div>
-				</li>
-				<li>	
-					<h4>Refléxion sur notre atelier XYZ</h4>
-					<div class="nomenclature">
-						<p class="type">chronique</p>
-					</div>
-				</li>
-				<li>	
-					<h4>John Doe rejoint l'équipe du Medialab </h4>
-					<div class="nomenclature">
-						<p class="type">Annonce</p>
-					</div>
-				</li>
-			</ul>
-		</nav>
-	</article>
-	</section>
+								<p class="description">Ouvrir la boîte noire de la procédure législative en France grâce à l’exploration des données parlementaires. A destination des chercheurs, ce dispositif est également accessible à tous les citoyens et démocratise la compréhension des différentes étapes de fabrique de la loi.</p>					
+							</header>
+
+							<nav class="related">
+								<h3>En lien</h3>
+								<ul>
+									<li>	
+										<h4>RICardo Project</h4>
+										<h5>Exploring XIX Century International Trade</h5>
+										<div class="nomenclature">
+											<p class="type">Publication</p>
+											<p class="auteur">3 contributeurs</p>
+										</div>
+									</li>
+									<li>	
+										<h4>Communication à la conférence ABC</h4>
+										<div class="nomenclature">
+											<p class="type">Publication</p>
+											<p class="date"> 2018-06-09</p>
+										</div>
+									</li>
+									<li>	
+										<h4>Refléxion sur notre atelier XYZ</h4>
+										<div class="nomenclature">
+											<p class="type">chronique</p>
+										</div>
+									</li>
+									<li>	
+										<h4>John Doe rejoint l'équipe du Medialab </h4>
+										<div class="nomenclature">
+											<p class="type">Annonce</p>
+										</div>
+									</li>
+								</ul>
+							</nav>
+						</article>
+					</section>
+				<label for="ss1-item-2" class="slideshow--nav slideshow--nav-previous">Go to slide 2</label>
+				<label for="ss1-item-4" class="slideshow--nav slideshow--nav-next">Go to slide 4</label>
+			</div>
+		</div>
 	 
 		<div class="container">
 			
@@ -232,7 +250,7 @@
 			</section>
 		</div>
 
-		<div class="container" id="agenda_container">
+		<div class="container">
 
 			<h3>Les rendez-vous du Labo</h3>
 
@@ -246,8 +264,8 @@
 					<h4>How not to be a bad designer</h4>
 
 					<p class="date start"><span>Mardi</span> 12 Janvier</p>
-					<p class="horaire start">10:00</p>
-					<div class="agenda_end_container">
+					<div class="agenda_detail_container">
+						<p class="horaire start">10:00</p>
 						<p class="date end"><span>Jeudi</span> 14 Janvier</p>
 						<p class="horaire end">18:00</p>
 					</div>
@@ -261,8 +279,8 @@
 					<h4>Privacy by design</h4>
 
 					<p class="date start"><span>Jeudi</span> 19 Mars</p>
-					<p class="horaire start">10:00</p>
-					<div class="agenda_end_container">
+					<div class="agenda_detail_container">
+						<p class="horaire start">10:00</p>
 						<p class="horaire end">18:00</p>
 					</div>
 					<p class="hote" title="Organisé par un tiers" data-attribute="host_other">Chez le voisin</p>
@@ -275,8 +293,8 @@
 					<h4>Protocoles et data-carotte</h4>
 
 					<p class="date start"><span>Lundi</span> 14 Juin</p>
-					<p class="horaire start">08:30</p>
-					<div class="agenda_end_container">
+					<div class="agenda_detail_container">
+						<p class="horaire start">10:00</p>
 						<p class="date end"><span>Jeudi</span> 18 Juin</p>
 						<p class="horaire end">18:00</p>
 					</div>
@@ -290,8 +308,8 @@
 					<h4>How not to be a bad designer</h4>
 
 					<p class="date start"><span>Mardi</span> 12 Janvier</p>
-					<p class="horaire start">10:00</p>
-					<div class="agenda_end_container">
+					<div class="agenda_detail_container">
+						<p class="horaire start">10:00</p>
 						<p class="date end"><span>Jeudi</span> 14 Janvier</p>
 						<p class="horaire end">18:00</p>
 					</div>
@@ -305,8 +323,8 @@
 					<h4>Privacy by design</h4>
 
 					<p class="date start"><span>Jeudi</span> 19 Mars</p>
-					<p class="horaire start">10:00</p>
-					<div class="agenda_end_container">
+					<div class="agenda_detail_container">
+						<p class="horaire start">10:00</p>
 						<p class="horaire end">18:00</p>
 					</div>
 					<p class="hote" title="Organisé par un tiers" data-attribute="host_other">Chez le voisin</p>
@@ -319,8 +337,8 @@
 					<h4>Protocoles et data-carotte</h4>
 
 					<p class="date start"><span>Lundi</span> 14 Juin</p>
-					<p class="horaire start">08:30</p>
-					<div class="agenda_end_container">
+					<div class="agenda_detail_container">
+						<p class="horaire start">10:00</p>
 						<p class="date end"><span>Jeudi</span> 18 Juin</p>
 						<p class="horaire end">18:00</p>
 					</div>
@@ -334,8 +352,8 @@
 					<h4>How not to be a bad designer</h4>
 
 					<p class="date start"><span>Mardi</span> 12 Janvier</p>
-					<p class="horaire start">10:00</p>
-					<div class="agenda_end_container">
+					<div class="agenda_detail_container">
+						<p class="horaire start">10:00</p>
 						<p class="date end"><span>Jeudi</span> 14 Janvier</p>
 						<p class="horaire end">18:00</p>
 					</div>

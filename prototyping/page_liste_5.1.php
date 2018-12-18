@@ -9,7 +9,7 @@
     <!-- styles -->
     <style type="text/css"></style>
     <link rel="stylesheet" href="assets/fonts/Museo_Sans/stylesheet.css">
-    <link rel='stylesheet' type='text/css' href='assets/css-compiled/page_liste_5.1.css'>
+    <link rel='stylesheet' type='text/css' href='assets/css-compiled/page_liste_5.2.css'>
 
 
 

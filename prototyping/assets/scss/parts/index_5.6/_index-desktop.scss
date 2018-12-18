@@ -8,6 +8,9 @@ html{
     color: white;
 }
 
+body{
+    overflow-x: hidden;
+}
 
 .container h3:first-of-type{
     padding: 4rem 0;
@@ -17,7 +20,7 @@ main{
     padding: 0 2rem;
 }
 
-hr{
+hr{ 
     border: none;
     border-bottom: 1px solid $color-header-text;
 }
@@ -48,27 +51,37 @@ hr{
 
 #focus{
     grid-column: 1/7;
+
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 2rem;
-    width: 100%;
-    height: 200vh;
+
+    width: 100% ;
+    height: calc(100vh -  #{$height-top-bar} );
+    height: 100%;
+    max-height: 960px;
+
     padding: 0rem;
     margin: 0 0 0 0;
-    text-align: center;
-    overflow: inherit;
+
+    //transition: .5s linear;
+    text-align:center;
+
+
+    overflow: hidden;
+    //specific
     grid-row-start: 1;
-    position: relative;
+    border-bottom: 1px solid black;
 
     div{
-        width: 50vw;
+        width: 100vw;
         overflow: hidden;
         border: none;
+        //top: -50%;
+        //transform: translate(-50%);
+        //left: 50%;        
         height: 200%;
-        font-size: 2.5vw;
-        position: absolute;
-        z-index: -1;
-        right: 0;
+        font-size: 1.5vw;
 
         &:hover{
         //font-size:1.25vw;
@@ -82,21 +95,15 @@ hr{
     }
 
     article{
-       /* position: absolute;
+        position: absolute;
         width: 50vw;
-        min-width: 600px; 
+        min-width: 600px;
         height: calc(92vh - #{$height-top-bar} );        
-        background: white;*/
-
-        width: 50vw;
-        height: 100vh;
         background: white;
-        margin: 0;
-        z-index: 9999;
-        padding: 10vh;
-        left: 0;
-        top: 0;
-        position: sticky;
+
+        margin: 4vh;
+        z-index: 90;
+        padding: 2vw 2vw;
 
         header{
             display: grid;
@@ -197,7 +204,7 @@ hr{
 
                     h4{
                         width: auto;
-                        //flex-grow: 1;
+                        flex-grow: 1;
                         white-space: nowrap;
                         margin: 0 .5rem 0 0;
 
@@ -294,10 +301,6 @@ hr{
 /////////////////////
 .container{
 
-    &#agenda_container{
-        overflow-x: hidden;
-    }
-    
     h3{
 
         @include typo-home-titre-container();
@@ -385,25 +388,38 @@ hr{
                 }
             }
 
-            .agenda_end_container{
+            .agenda_detail_container{
                     grid-row: 4;
                     grid-column: 1/3;
                     display: flex;
                     align-content: flex-start;
 
-                    &::before {
-                        content: "⇥";
-                        margin: 4px .5rem 0 0;
+                .date.end{
+                    //flex-grow: 2;
+                    @include typo-agenda-labeur();
+
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+
+                    & + .horaire.end:before{
+                        content: ", ";
+                        padding-right: 2px;
                     }
+
+                }
 
                 .horaire.end{
                     flex-grow: 1;
                     @include typo-agenda-labeur();
                 } 
-                .date.end{
-                    flex-grow: 2;
-                    @include typo-agenda-labeur();
 
+                .horaire.start + .horaire.end, .horaire.start + .date.end {
+
+                    &::before {
+                        content: "⇥";
+                        margin: 4px .5rem 0 .5rem;
+                    }
                 }
             }
 
@@ -506,21 +522,36 @@ hr{
 
 .i1{
     overflow: hidden;
-    height: calc(100vh - 100px);
-    top: 3rem;
+    height: 5rem;
     width: 100%;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
 
 
 
     p:nth-of-type(1){
         background-color:  white;
-        font-size: 6vh;
-        line-height: 6vh;
-        max-width: 85vw;
+        font-size: 4vh;
+        line-height: 4vh;
+        max-width: 500vw;
+        padding: 1rem 2rem;
         z-index: 9;
-        left: 2rem;
-        top: 30%;
-        transform: translateY(-50%);
+        white-space: nowrap;
+        position: absolute;
+
+        animation: defilement 30s infinite alternate linear;
+
+    }
+
+    @keyframes defilement {
+      0%{
+
+        transform: translateX(100vw);
+      }
+      100% {
+
+        transform: translateX(-400vh);
+      }
     }
 
     p:nth-of-type(2){

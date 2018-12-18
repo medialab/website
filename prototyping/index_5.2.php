@@ -10,7 +10,7 @@
     <style type="text/css"></style>
     <link rel="stylesheet" href="assets/fonts/Museo_Sans/stylesheet.css">
     <link rel='stylesheet' type='text/css' href='assets/css-compiled/index_5.2.css'>
-
+ 
 
 
 </head>
@@ -265,8 +265,8 @@
 					<h4>How not to be a bad designer</h4>
 
 					<p class="date start"><span>Mardi</span> 12 Janvier</p>
-					<p class="horaire start">10:00</p>
-					<div class="agenda_end_container">
+					<div class="agenda_detail_container">
+						<p class="horaire start">10:00</p>
 						<p class="date end"><span>Jeudi</span> 14 Janvier</p>
 						<p class="horaire end">18:00</p>
 					</div>
@@ -280,8 +280,8 @@
 					<h4>Privacy by design</h4>
 
 					<p class="date start"><span>Jeudi</span> 19 Mars</p>
-					<p class="horaire start">10:00</p>
-					<div class="agenda_end_container">
+					<div class="agenda_detail_container">
+						<p class="horaire start">10:00</p>
 						<p class="horaire end">18:00</p>
 					</div>
 					<p class="hote" title="Organisé par un tiers" data-attribute="host_other">Chez le voisin</p>
@@ -294,8 +294,8 @@
 					<h4>Protocoles et data-carotte</h4>
 
 					<p class="date start"><span>Lundi</span> 14 Juin</p>
-					<p class="horaire start">08:30</p>
-					<div class="agenda_end_container">
+					<div class="agenda_detail_container">
+						<p class="horaire start">10:00</p>
 						<p class="date end"><span>Jeudi</span> 18 Juin</p>
 						<p class="horaire end">18:00</p>
 					</div>
@@ -309,8 +309,8 @@
 					<h4>How not to be a bad designer</h4>
 
 					<p class="date start"><span>Mardi</span> 12 Janvier</p>
-					<p class="horaire start">10:00</p>
-					<div class="agenda_end_container">
+					<div class="agenda_detail_container">
+						<p class="horaire start">10:00</p>
 						<p class="date end"><span>Jeudi</span> 14 Janvier</p>
 						<p class="horaire end">18:00</p>
 					</div>
@@ -324,8 +324,8 @@
 					<h4>Privacy by design</h4>
 
 					<p class="date start"><span>Jeudi</span> 19 Mars</p>
-					<p class="horaire start">10:00</p>
-					<div class="agenda_end_container">
+					<div class="agenda_detail_container">
+						<p class="horaire start">10:00</p>
 						<p class="horaire end">18:00</p>
 					</div>
 					<p class="hote" title="Organisé par un tiers" data-attribute="host_other">Chez le voisin</p>
@@ -338,8 +338,8 @@
 					<h4>Protocoles et data-carotte</h4>
 
 					<p class="date start"><span>Lundi</span> 14 Juin</p>
-					<p class="horaire start">08:30</p>
-					<div class="agenda_end_container">
+					<div class="agenda_detail_container">
+						<p class="horaire start">10:00</p>
 						<p class="date end"><span>Jeudi</span> 18 Juin</p>
 						<p class="horaire end">18:00</p>
 					</div>
@@ -353,8 +353,8 @@
 					<h4>How not to be a bad designer</h4>
 
 					<p class="date start"><span>Mardi</span> 12 Janvier</p>
-					<p class="horaire start">10:00</p>
-					<div class="agenda_end_container">
+					<div class="agenda_detail_container">
+						<p class="horaire start">10:00</p>
 						<p class="date end"><span>Jeudi</span> 14 Janvier</p>
 						<p class="horaire end">18:00</p>
 					</div>

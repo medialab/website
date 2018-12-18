@@ -86,6 +86,7 @@ def name_to_slug(s, name, type):
         # this guy doesn't have the same name in English & in French
         if name == 'François Gemenne' or name == 'François Gemmene':
             return 'francois-gemenne'
+        name = name.replace("'",'’')
         with open(os.path.join(directory, 'people_slugs.json'), 'r') as dict_file:
             slug_dict = json.load(dict_file)
     elif type == 'category':

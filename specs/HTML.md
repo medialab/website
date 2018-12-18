@@ -131,7 +131,7 @@ Est à rendre de la manière suivante:
 <p>This is some <a href=\"https://www.google.fr/maps\">link</a>.</p>
 <p>An image:</p>
 <figure>
-  <img src=\"a5bd2915-9702-4ac2-81b1-72a46cbf1c63_Yomguithereal2.jpeg\"/>
+  <img src=\"Yomguithereal2_a5bd2915-9702-4ac2-81b1-72a46cbf1c63.jpeg\"/>
 </figure>
 <p>An iframe:</p>
 <figure>

@@ -44,6 +44,15 @@ article{
 		h2{
 			@include article_h2();
 		}
+
+		p{
+			@include typo-labeur();
+		}
+
+		h3{
+			margin-top: $baseline*2;
+			@include article_h3();
+		}
 	}
 
 	#rel_personnes{

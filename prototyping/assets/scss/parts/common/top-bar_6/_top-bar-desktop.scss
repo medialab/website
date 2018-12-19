@@ -4,12 +4,12 @@
 
 
     #topbar{
-        height: $height-top-bar;
+        height: 100px;
         position: relative;
         top: 0;
         left: 0;
 
-        z-index: $topbar-desktop;
+        z-index: 30;
   
         display: inline-block;
         //width: calc(100vw - 20px);
@@ -30,21 +30,19 @@
             background-color: $backgroundsite;
 
             #logo-medialab{
-                width: 25%;
-                max-width: 400px;
-                vertical-align: bottom; 
-                margin-left: $margins-desktop;
-                margin-right: $margins-desktop;
+                width: 140px;
+                // max-width: 400px;
+                // vertical-align: bottom; 
+                // margin-left: $margins-desktop;
+                // margin-right: $margins-desktop;
 
                 grid-column: 1 / 2;
                 grid-row: 2 / 3; 
-                align-self: end;
+                // align-self: end;
      
                 //margin: 0 $margins-desktop;
 
-                // If fixed
-                position: fixed;
-                margin: 4rem 0 4rem 0.5rem;
+               
 
 
                 svg{ 

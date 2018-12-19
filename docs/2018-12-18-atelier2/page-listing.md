@@ -29,7 +29,6 @@ Présente l'ensemble des productions avec un affichage par défaut par ordre ant
 - Titre,
 - Auteurs,
 - description (au survol)
-- image (au survol)
 
 ## Filtres
 - A deux niveaux : d'abord sur une Metarubrique sur les types : "publications", "corpus", "tools" et "situations", puis sur le type de la production.

@@ -11,9 +11,10 @@ const {
 
 const {
   hashNode,
-  replaceHTMLAssetPaths,
   createI18nPage
 } = require('./utils.js');
+
+const {template} = require('./templating.js');
 
 const ROOT_PATH = process.env.ROOT_PATH || '..';
 
@@ -238,10 +239,10 @@ exports.createPages = function({graphql, actions}) {
 
         // Processing HTML
         if (person.bio && person.bio.en)
-          context.bio.en = replaceHTMLAssetPaths(person.bio.en, FILES);
+          context.bio.en = template(FILES, person.bio.en);
 
         if (person.bio && person.bio.fr)
-          context.bio.fr = replaceHTMLAssetPaths(person.bio.fr, FILES);
+          context.bio.fr = template(FILES, person.bio.fr);
 
         person.slugs.forEach(slug => {
           createI18nPage(createPage, {

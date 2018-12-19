@@ -9,18 +9,6 @@ exports.hashNode = function hashNode(data) {
     .digest('hex');
 };
 
-// Helper replacing HTML assets
-exports.replaceHTMLAssetPaths = function replaceHTMLAssetPaths(html, index) {
-
-  // TODO: this approach may be too slow in the future!
-  for (const base in index) {
-    const publicURL = index[base].publicURL;
-    html = html.replace(base, publicURL);
-  }
-
-  return html;
-};
-
 // Helper creating an internationalized page
 exports.createI18nPage = function createI18nPage(createPage, page) {
 

@@ -70,6 +70,9 @@ Présente l'ensemble des people avec un affichage aléatoire, il existe une dél
 - Actif / passé
 - membership : member/associate
 
+## Tri
+- Alphabétique (sur les Name)
+
 # Activités
 Présente l'ensemble des activités ; l'affichage se fait en fonction du type (recherche/enseignement/méthodes) et l'ordonnancement se fait en fonction du booléen "important".
 Par défaut, les activités passées ne sont pas affichées, un filtre permet de les faire apparaitre.

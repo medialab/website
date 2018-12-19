@@ -774,7 +774,7 @@ hr {
   text-align: center;
   overflow: hidden;
   grid-row-start: 1;
-  border-bottom: 1px solid black; }
+  border-bottom: 1px solid #808080; }
   #focus div {
     width: 100vw;
     overflow: hidden;
@@ -1066,34 +1066,29 @@ hr {
   opacity: .5; }
 
 .i1 {
-  overflow: hidden;
-  height: 5rem;
+  height: 30vh;
   width: 100%;
-  border-bottom: 1px solid black;
-  border-top: 1px solid black; }
+  border-bottom: 1px solid #808080;
+  margin: auto; }
   .i1 p:nth-of-type(1) {
-    background-color: white;
-    font-size: 4vh;
-    line-height: 4vh;
-    max-width: 500vw;
-    padding: 1rem 2rem;
+    font-size: 20px;
+    line-height: 30px;
+    max-width: 610px;
     z-index: 9;
-    white-space: nowrap;
-    position: absolute;
-    animation: defilement 30s infinite alternate linear; }
-@keyframes defilement {
-  0% {
-    transform: translateX(100vw); }
-  100% {
-    transform: translateX(-400vh); } }
-  .i1 p:nth-of-type(2) {
-    word-break: break-all;
-    font-size: 4vh;
-    line-height: 4.1vh;
-    height: 25vh;
-    overflow: hidden;
-    position: absolute;
-    top: 0; }
+    text-align: center;
+    margin: 5vh auto;
+    padding: 2rem 0px;
+    font-style: italic; }
+    .i1 p:nth-of-type(1) .emblem {
+      display: block;
+      font-size: 5rem;
+      padding: 0 0 2rem 0; }
+    .i1 p:nth-of-type(1) .signature {
+      display: block;
+      padding: 1rem 0;
+      font-size: 12px;
+      font-style: normal;
+      text-transform: uppercase; }
 
 :root {
   --height-top-bar: 100px; }
@@ -1243,7 +1238,7 @@ hr {
       grid-column: 1/7;
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      grid-template-rows: repeat(12, 10vh);
+      grid-template-rows: repeat(4, 10vh);
       grid-gap: 30px 2vw; }
       .container #ensecond h3 {
         grid-column: 1/5; }
@@ -1381,4 +1376,4 @@ hr {
   .container #agenda .day {
     grid-row: 2/3; }
 
-/*# sourceMappingURL=index_5.6.css.map */
+/*# sourceMappingURL=index_5.7.css.map */

@@ -276,7 +276,7 @@
             grid-column: 1/7;
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            grid-template-rows: repeat(12, 10vh);
+            grid-template-rows: repeat(4, 10vh);
             grid-gap: $baseline*2 2vw;
 
             h3{

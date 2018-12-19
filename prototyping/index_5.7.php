@@ -9,20 +9,17 @@
     <!-- styles -->
     <style type="text/css"></style>
     <link rel="stylesheet" href="assets/fonts/Museo_Sans/stylesheet.css">
-    <link rel='stylesheet' type='text/css' href='assets/css-compiled/index_5.6.css'>
- 
+    <link rel='stylesheet' type='text/css' href='assets/css-compiled/index_5.7.css'>
+
 	<link rel="shortcut icon" href="assets/images/favicon-32x32.png" type="image/jpg"> 
+ 
+
 
 </head>
 
 <body>
 	<?php include('fragments/_topbar_5.1.php'); ?>
 
-	<div class="i1" >
-		<p>
-			Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et sociales
-		</p>
-	</div>
 	<main>
 		<div class="slideshow">
 			<input type="radio" name="ss1" id="ss1-item-1" class="slideshow--bullet" checked="checked" />
@@ -189,7 +186,16 @@
 				<label for="ss1-item-4" class="slideshow--nav slideshow--nav-next">Go to slide 4</label>
 			</div>
 		</div>
-	 
+
+	<div class="i1" >
+		<p>
+			<span class="signature">Le médialab</span>
+			Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et sociales.
+
+
+		</p>
+	</div>
+
 		<div class="container">
 			
 			<h3>Actualité du labo</h3>

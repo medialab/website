@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="assets/fonts/Museo_Sans/stylesheet.css">
     <link rel='stylesheet' type='text/css' href='assets/css-compiled/index_5.4.css'>
 
-
+	<link rel="shortcut icon" href="assets/images/favicon-32x32.png" type="image/jpg"> 
 
 </head>
 

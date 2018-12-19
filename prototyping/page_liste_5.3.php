@@ -9,7 +9,7 @@
     <!-- styles -->
     <style type="text/css"></style>
     <link rel="stylesheet" href="assets/fonts/Museo_Sans/stylesheet.css">
-    <link rel='stylesheet' type='text/css' href='assets/css-compiled/page_listing_publication.css'>
+    <link rel='stylesheet' type='text/css' href='assets/css-compiled/page_liste_5.3.css'>
 
     <link rel="shortcut icon" href="assets/images/favicon-32x32.png" type="image/jpg"> 
 
@@ -17,7 +17,7 @@
 
 <body>
 	<?php include('fragments/_topbar_5.1.php'); ?>
-	<?php include('fragments/_liste_objet_5.1.php'); ?>		
+	<?php include('fragments/_liste_objet_5.2.php'); ?>		
 	
 </body>
 </html>

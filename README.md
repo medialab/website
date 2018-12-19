@@ -30,11 +30,11 @@ npm run dump
 
 ## development instructions 
 
-### port used 
+### ports used 
 
-- 7000: CMS
-- 8000: static website
-- 3000: server API
+- `7000`: CMS
+- `8000`: static website
+- `3000`: server API
 
 ### to bootstrap a dev instance to work on integration
 

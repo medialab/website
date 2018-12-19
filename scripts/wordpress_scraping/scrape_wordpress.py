@@ -109,6 +109,8 @@ def scrape_tools(s):
         tools_list = json.load(f)
     for key in tools_list:
         tool_url = TOOLS_URL + key + '/meta.json'
+        if key == 'manylines':
+            tool_url = 'https://raw.githubusercontent.com/medialab/manylines/master/meta.json'
         r = requests.get(tool_url)
         with open(os.path.join(directory, key + '.json'), 'wb') as outfile:
             outfile.write(r.content)

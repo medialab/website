@@ -57,6 +57,9 @@ const mois = {
     décembre: '12'
 };
 
+// code tools
+const codeTools = ['sigma', 'sandcrawler', 'pygexf', 'issue2navicrawler', 'artoo'];
+const deprecatedTools = ['sandcrawler', 'zup', 'manylines', 'anta', 'drive-in', 'issue2navicrawler', 'navicrawler', 'pygexf'];
 const translations = {
     activities: (o, indices, reverseLinks) => {
         const name = o.title_fr.length > 0 ? o.title_fr : o.title_en;
@@ -132,7 +135,7 @@ const translations = {
 
         return {newO: newPeople, reverseLinks: {activities: people.projets, productions: people.tools}};
     },
-    news: (o, indeces, reverseLinks) => {
+    news: (o, indeces) => {
         const name = o.title_fr.length > 0 ? o.title_fr : o.title_en;
         const newNews = {
             id: uuid(),
@@ -192,17 +195,45 @@ const translations = {
             Object.assign(newNews.label, {en: o.sstitre_projet_en});
 
         newNews.slugs = [slugifyNews(newNews)];
-        
+
         // links
         newNews.people = o.people.map(p => indeces.people[p]);
         newNews.people = o.projets.map(p => indeces.activities[p]);
         //newNews.productions = o.tools.map(p => indeces.productions[p]);
         return {newO: newNews, reverseLinks: {}};
     },
+    productions: (o, indeces, reverseLinks) => {
+        const newProduction = {
+            id: uuid(),
+            lastUpdated: new Date().getTime(),
+            oldSlug: o.oldSlug,
+            title: {
+                en: o.name,
+                fr: o.name
+            },
+            description: {
+                en: o.description || o.description_en,
+                fr: o.description_fr || ''
+            },
+            authors: o.authors.join(', '),
+            type: codeTools.indexOf(o.oldSlug) === -1 ? 'software' : 'code',
+            active: deprecatedTools.indexOf(o.oldSlug) === -1,
+            draft: true,
+            url: o.url || o.url_dev || o.url_source
+        };
+
+        //slug
+        newProduction.slugs = [slugifyNews(newProduction)];
+
+        // links from people
+        // todo: do union with authors from meta.json
+        if (reverseLinks['productions->people'][newProduction.oldSlug])
+            newProduction.people = reverseLinks['productions->people'][newProduction.oldSlug];
+
+        return {newO: newProduction, reverseLinks: {}};
+    }
 };
 
-
-const modelsToProcess = [{new: 'people', old: 'people'}, {new: 'activities', old: 'projets'}, {new: 'news', old: 'blogs'}];
 
 function processObjects(oldModel, newModel, indices, olinks, done) {
         const inPath = `./wordpress_scraping/data/${oldModel}/`;
@@ -210,9 +241,15 @@ function processObjects(oldModel, newModel, indices, olinks, done) {
         fs.removeSync(outPath);
         fs.ensureDirSync(outPath);
         const index = {};
-        const newLinks = [];
+        const newLinks = olinks ? olinks : [];
         async.each(fs.readdirSync(inPath), (f, localDone) => {
             const o = fs.readJsonSync(path.join(inPath, f), 'utf8');
+            // patch
+            if (oldModel === 'tools') {
+                // récupération du slug
+                o.oldSlug = f.split('.')[0];
+            }
+
             const {newO, reverseLinks} = translations[newModel](o, indices, olinks);
             index[newO.oldSlug] = newO.id;
             for (const sourceModel in reverseLinks) {
@@ -224,13 +261,14 @@ function processObjects(oldModel, newModel, indices, olinks, done) {
                     newLinks[`${sourceModel}->${newModel}`][slugO].push(newO.id);
                 });
             }
+
             if (o._id !== 1063) {
                // writting
                 fs.writeJsonSync(path.join(outPath, `${newO.id}.json`), newO, {spaces: 2, encoding: 'utf8'});
             }
             localDone(null);
         }, (err) => {
-            console.log(`done with ${newModel}`)
+            console.log(`done with ${newModel}`);
             if (err) throw err;
             indices[newModel] = index;
             done(null, indices, newLinks);
@@ -247,9 +285,13 @@ async.waterfall([
     (indeces, links, done) => {
         processObjects('projets', 'activities', indeces, links, done);
     },
+    //tools -> productions
+    (indeces, links, done) => {
+        processObjects('tools', 'productions', indeces, links, done);
+    },
     //news
     (indeces, links, done) => {
         processObjects('blogs', 'news', indeces, links, done);
-    },
+    }
 
 ]);

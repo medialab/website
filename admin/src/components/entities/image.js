@@ -5,6 +5,7 @@ import {ENTITY_TYPE} from 'draftail';
 import Dropzone from 'react-dropzone';
 
 import client from '../../client';
+import {getImageDimensions} from '../../utils';
 import Button from '../misc/Button';
 import CardModal from '../misc/CardModal';
 import ImageIcon from '../icons/ImageIcon';
@@ -19,21 +20,26 @@ class ImageSource extends Component {
   addEntity = (option) => {
     const {editorState, entityType, onComplete} = this.props;
 
-    const content = editorState.getCurrentContent();
-    const contentWithEntity = content.createEntity(
-      entityType.type,
-      'IMMUTABLE',
-      {src: option.src}
-    );
+    const resolvedSrc = `${API_URL}/assets/${option.src}`;
 
-    const entityKey = contentWithEntity.getLastCreatedEntityKey();
-    const nextState = AtomicBlockUtils.insertAtomicBlock(
-      editorState,
-      entityKey,
-      ' '
-    );
+    getImageDimensions(resolvedSrc, (width, height) => {
 
-    return onComplete(nextState);
+      const content = editorState.getCurrentContent();
+      const contentWithEntity = content.createEntity(
+        entityType.type,
+        'IMMUTABLE',
+        {src: option.src, width, height}
+      );
+
+      const entityKey = contentWithEntity.getLastCreatedEntityKey();
+      const nextState = AtomicBlockUtils.insertAtomicBlock(
+        editorState,
+        entityKey,
+        ' '
+      );
+
+      return onComplete(nextState);
+    });
   };
 
   handleDrop = acceptedFiles => {
@@ -115,7 +121,11 @@ const IMAGE = {
   icon: <ImageIcon />,
   source: ImageSource,
   block: ImageBlock,
-  attributes: ['src']
+  attributes: [
+    'height',
+    'width',
+    'src'
+  ]
 };
 
 export default IMAGE;

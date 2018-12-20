@@ -22,6 +22,19 @@ function entityStyleFn(entity) {
     };
   }
 
+  if (type === 'IMAGE') {
+    const data = entity.getData();
+
+    return {
+      element: 'img',
+      attributes: {
+        'src': data.src,
+        'data-width': data.width,
+        'data-height': data.height
+      }
+    };
+  }
+
   if (type === 'LINK') {
     const data = entity.getData();
 
@@ -51,6 +64,14 @@ function customInlineFn(element, {Entity}) {
 
     return Entity('LINK', {href: element.getAttribute('href'), internal: !!internal});
   }
+
+  if (element.tagName === 'IMG') {
+    const width = +element.getAttribute('data-width'),
+          height = +element.getAttribute('data-height'),
+          src = element.getAttribute('src');
+
+    return Entity('IMAGE', {src, width, height});
+  }
 }
 
 export function htmlToRaw(html) {
@@ -71,4 +92,17 @@ export function slugify(str) {
   const s = slug(str, {lower: true});
 
   return s.split('-').slice(0, DEFAULT_MAX_SLUG_TOKENS).join('-');
+}
+
+export function getImageDimensions(src, callback) {
+  const img = new Image();
+
+  img.onload = () => {
+    const width = img.naturalWidth,
+          height = img.naturalHeight;
+
+    callback(width, height);
+  };
+
+  img.src = src;
 }

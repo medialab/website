@@ -46,7 +46,7 @@ Les liens sont à rendre de la manière suivante:
 *Externe*
 
 ```html
-<a href="https://medialab.sciencespo.fr">Title</a> 
+<a href="https://medialab.sciencespo.fr">Title</a>
 ```
 
 *Interne*
@@ -63,7 +63,7 @@ QUESTIONS: toujours internes? Quid des références, le alt suffit?
 
 ```html
 <figure>
-  <img src="image.png">
+  <img src="image.png" data-width="400" data-height="600">
 </figure>
 ```
 

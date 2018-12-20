@@ -14,65 +14,59 @@ Faire connaître les rendez-vous où l'on peut rencontrer les membres du médial
 
 ## Objets et champs à afficher
 
-Actualités de type 'rendez-vous':
-- startDate et endDate (si il y a) (gros)
-- title (avec lien vers la fiche de l'actualité/RV) (gros)
-- label (moyen)
-- place (petit)
+**Actualités** de type **'rendez-vous'**:
+- *startDate* et *endDate* (si il y a) (**gros**)
+- *title* (avec lien vers la page objet) (**gros**)
+- *label* (moyen)
+- *place* (petit)
+- *internal* (petit) : différencier graphiquement les événements organisés par le médialab des autres (majoritairement participation dans des conf)
 
-_Remarque_ : différencier graphiquement les événements organisés par le médialab des autres (majoritairement participation dans des conf)?
-
-
-# Focus
+# Carrousel Hero
 priorité importante
 _Rermarque_ : pas certaine qu'il faille mettre un titre à cette zone, il est communément admis que ces zones de hero servent à mettre des choses en avant. En plus, on a une zone actualité plus bas: ca risque d'être compliqué de trouver 2 titres...; voir ces exemples (j'ai volontairement choisi des structures très différentes ):
 - https://www.gobelins.fr/
 - https://www.theatremarigny.fr/
 - https://www.polytechnique.edu/
-
+(Paul: je suis d'accord)
 
 ## quoi ?
-Mettre en avant l'actualité chaude du laboratoire avec un contenu *en hero* et jusqu’à 4 *contenus additionnels* - à choisir-.
+Mettre en avant l'actualité chaude du laboratoire avec un contenu *en hero* et jusqu’à maximum 4 *contenus liés*.
 _Rermarque_ : pas certaine que les contenus additionnels sont finalement nécessaire, ça complexifie le propos et on va se retrouver avec les mêmes contenus que DANS la page de l'objet.
 Je suggère de les supprimer.
 
 ## Objets et champs à afficher
 
-### ligne hero
-*Si objet de type actualité :*
-- title (gros)
-- label (moyen)
-- date si type = rendez-vous (petit)
-- description (petit)
-- illustration
+On peut afficher des objets de type : actualité, activité, production
 
-*Si activité :*
-- name (moyen)
-- baseline (gros)
-- type (petit)
-- baseline
-- illustration
+Si **actualité** :
+- *title* (gros)
+- *label* (moyen)
+- *startDate - endDate* si type = rendez-vous (petit)
+- *description* (petit)
+- *illustration*
 
-*Si membre :*
-- firstName lastName (gros)
-- title (moyen)
-- « membre de l’équipe » si membership = membre, « associé.e au médialab » sinon (petit)
-- activités liées (petit)
-- illustration
+Si **activité** :
+- *name* (moyen)
+- *baseline* (gros)
+- *type* (petit)
+- *description* (petit)
+- *illustration*
 
-*si publication :*
-- title (gros)
-- authors (moyen)
-- type (petit)
-- Description (petit)
-- illustration
+si **production** :
+- *title* (gros)
+- *authors* (moyen)
+- *type* (petit)
+- *description* (petit)
+- *illustration*
 
-### contenus additionnels [A supprimer?]
+### contenus liés [A supprimer?]
+
+Dans la zone hero, jusque 4 contenus liés peuvent être ajouté sous forme de liens :
 
 *Si objet de type actualité :*
 - title (gros)
 - label (moyen)
-- date si type = rendez-vous (petit)
+- startDate - endDate si type = rendez-vous (petit)
 
 *Si activité :*
 - baseline (gros)
@@ -89,34 +83,35 @@ Je suggère de les supprimer.
 - authors (moyen)
 - type (petit)
 
-# En ce moment
+# En ce moment, grille à 4 colonnes
+
 ## quoi ?
-Mettre en avant l'actualité du laboratoire du laboratoire.
+Mettre en avant l'actualité *tiède* du laboratoire en sélectionnant des objets qui ont eu, ont ou vont avoir une actualité.
 
 ## Objets et champs à afficher
-*Si objet de type actualité :*
-- title (gros)
-- label (moyen)
-- date si type = rendez-vous (petit)
+Si **actualité** :
+- *title* (gros)
+- *label* (moyen)
+- *startDate - endDate* si type = rendez-vous (petit)
+- *illustration*
+
+Si **activité** :
+- *baseline* (gros)
+- *name* (moyen)
+- *type* (petit)
+- *illustration*
+
+Si **people** :
+- *firstName LastName* (gros)
+- *role* (moyen)
+- « associé.e au médialab » si *membership* = associate (petit)
 - illustration
 
-*Si activité :*
-- baseline (gros)
-- name (moyen)
-- type (petit)
-- illustration
-
-*Si membre :*
-- firstName lastName (gros)
-- title (moyen)
-- « membre de l’équipe » si membership = membre, « associé.e au médialab » sinon (petit)
-- illustration
-
-*si publication :*
-- title (gros)
-- authors (moyen)
-- type (petit)
-- illustration
+si **publication** :
+- *title* (gros)
+- *authors* (moyen)
+- *type* (petit)
+- *illustration*
 
 # Flux / Et aussi
-amovible
+

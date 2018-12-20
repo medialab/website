@@ -1,12 +1,17 @@
 const cheerio = require('cheerio');
 const Entities = require('html-entities').AllHtmlEntities;
+const {union} = require('mnemonist/set');
 
 const entities = new Entities();
 
-exports.template = function template(assets, html) {
+const TITLE = /^H[123456]$/;
+
+function processHtml(html) {
   const $ = cheerio.load(html, {
     decodeEntities: false
   });
+
+  const assets = new Set();
 
   // Processing internal links
   $('a[data-internal=true]').each(function() {
@@ -14,9 +19,7 @@ exports.template = function template(assets, html) {
 
     $a.removeAttr('data-internal');
 
-    const href = assets[$a.attr('href')].publicURL;
-
-    $a.attr('href', href);
+    assets.add($a.attr('href'));
   });
 
   // Building custom output
@@ -26,33 +29,77 @@ exports.template = function template(assets, html) {
     const $this = $(this);
     const tag = $this.prop('tagName');
 
+    // Paragraphs
     if (tag === 'P') {
       output += `<p>${$this.html()}</p>`;
     }
+
+    // Titles
+    else if (TITLE.test(tag)) {
+      const level = tag[tag.length - 1];
+
+      output += `<h${level}>${$this.text()}</h${level}>`;
+    }
+
+    // Lists
+    else if (tag === 'UL') {
+      output += `<ul>${$this.html()}</ul>`;
+    }
+    else if (tag === 'OL') {
+      output += `<ol>${$this.html()}</ol>`;
+    }
+
+    // Raw blocks
     else if (tag === 'PRE') {
       output += entities.decode($this.text().replace(/^\s+/g, ''));
     }
+
+    // Atomics
     else if (tag === 'FIGURE') {
+
+      // Images
       if ($this.has('img').length) {
         const $img = $this.find('img');
 
-        const src = assets[$img.attr('src')].publicURL;
+        const src = $img.attr('src');
+
+        assets.add(src);
 
         output += `<img src="${src}" />`;
       }
+
+      // Iframes
       else {
         const $iframe = $this.find('iframe');
         const internal = !!$iframe.data('internal');
 
-        let src = $iframe.attr('src');
+        const src = $iframe.attr('src');
 
         if (internal)
-          src = assets[src].publicURL;
+          assets.add(src);
 
         output += `<iframe src="${src}"></iframe>`;
       }
     }
   });
 
-  return output;
+  return {html: output, assets};
+}
+
+exports.template = function template(content) {
+  let fr, en;
+
+  if (content.fr)
+    fr = processHtml(content.fr);
+
+  if (content.en)
+    en = processHtml(content.en);
+
+  return {
+    html: {
+      fr: fr ? fr.html : '',
+      en: en ? en.html : ''
+    },
+    assets: Array.from(union(fr ? fr.assets : new Set(), en ? en.assets : new Set()))
+  };
 };

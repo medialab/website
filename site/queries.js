@@ -31,10 +31,7 @@ exports.PEOPLE = `
         node {
           identifier
           slugs
-          bio {
-            en
-            fr
-          }
+          assets
         }
       }
     }

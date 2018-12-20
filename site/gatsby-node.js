@@ -2,7 +2,6 @@
 const fs = require('fs');
 const path = require('path');
 const chokidar = require('chokidar');
-const _ = require('lodash');
 
 const {
   graphQLSchemaAdditionForSettings,
@@ -14,7 +13,9 @@ const {
   createI18nPage
 } = require('./utils.js');
 
-const {template} = require('./templating.js');
+const {
+  template
+} = require('./templating.js');
 
 const ROOT_PATH = process.env.ROOT_PATH || '..';
 
@@ -34,7 +35,7 @@ MODELS.forEach(model => {
 MODELS_PATHS.settings = path.join(DB_PATH, 'settings.json');
 
 const MODEL_READERS = {
-  activities(createNode, deleteNode, getNode) {
+  activities({actions: {createNode, deleteNode}, getNode}) {
     const rawData = fs.readFileSync(MODELS_PATHS.activities, 'utf-8');
     const data = JSON.parse(rawData);
 
@@ -60,7 +61,7 @@ const MODEL_READERS = {
     });
   },
 
-  people(createNode, deleteNode, getNode) {
+  people({actions: {createNode, deleteNode}, getNode}) {
     const rawData = fs.readFileSync(MODELS_PATHS.people, 'utf-8');
     const data = JSON.parse(rawData);
 
@@ -72,10 +73,15 @@ const MODEL_READERS = {
       if (node)
         deleteNode({node});
 
+      // Processing HTML
+      const content = template(person.bio);
+
       const hash = hashNode(person);
 
       createNode({
         ...person,
+        bio: content.html,
+        assets: content.assets,
         identifier: person.id,
         internal: {
           type: 'PeopleJson',
@@ -86,7 +92,7 @@ const MODEL_READERS = {
     });
   },
 
-  productions(createNode, deleteNode, getNode) {
+  productions({actions: {createNode, deleteNode}, getNode}) {
     const rawData = fs.readFileSync(MODELS_PATHS.productions, 'utf-8');
     const data = JSON.parse(rawData);
 
@@ -112,7 +118,7 @@ const MODEL_READERS = {
     });
   },
 
-  news(createNode, deleteNode, getNode) {
+  news({actions: {createNode, deleteNode}, getNode}) {
     const rawData = fs.readFileSync(MODELS_PATHS.news, 'utf-8');
     const data = JSON.parse(rawData);
 
@@ -138,7 +144,7 @@ const MODEL_READERS = {
     });
   },
 
-  settings(createdNode, deleteNode, getNode) {
+  settings({actions: {createNode, deleteNode}, getNode}) {
     const rawData = fs.readFileSync(MODELS_PATHS.settings, 'utf-8');
     const data = JSON.parse(rawData);
 
@@ -149,7 +155,7 @@ const MODEL_READERS = {
 
     const hash = hashNode(data.settings);
 
-    createdNode({
+    createNode({
       ...data.settings,
       id: 'site-settings-node',
       internal: {
@@ -161,11 +167,9 @@ const MODEL_READERS = {
   }
 };
 
-exports.sourceNodes = function({actions, getNode}) {
-  const {createNode, deleteNode} = actions;
-
+exports.sourceNodes = function(args) {
   for (const model in MODEL_READERS)
-    MODEL_READERS[model](createNode, deleteNode, getNode);
+    MODEL_READERS[model](args);
 
   chokidar
     .watch(DB_GLOB)
@@ -176,7 +180,7 @@ exports.sourceNodes = function({actions, getNode}) {
         return;
 
       console.log(`Updating ${model}.json`);
-      const update = MODEL_READERS[model].bind(null, createNode, deleteNode, getNode);
+      const update = MODEL_READERS[model].bind(null, args);
 
       update();
 
@@ -188,8 +192,6 @@ exports.sourceNodes = function({actions, getNode}) {
 exports.createPages = function({graphql, actions}) {
   const {createPage} = actions;
 
-  let FILES = null;
-
   // Creating basic pages
   createI18nPage(createPage, {
     path: '/',
@@ -198,7 +200,7 @@ exports.createPages = function({graphql, actions}) {
   });
 
   // Chaining promises
-  const promises = () => [
+  const promises = [
 
     // Activities
     graphql(QUERIES.ACTIVITIES).then(result => {
@@ -233,16 +235,9 @@ exports.createPages = function({graphql, actions}) {
         const person = edge.node;
 
         const context = {
-          identifier: person.identifier,
-          bio: {}
+          assets: person.assets,
+          identifier: person.identifier
         };
-
-        // Processing HTML
-        if (person.bio && person.bio.en)
-          context.bio.en = template(FILES, person.bio.en);
-
-        if (person.bio && person.bio.fr)
-          context.bio.fr = template(FILES, person.bio.fr);
 
         person.slugs.forEach(slug => {
           createI18nPage(createPage, {
@@ -302,9 +297,7 @@ exports.createPages = function({graphql, actions}) {
     })
   ];
 
-  return graphql(QUERIES.FILE).then(result => {
-    FILES = _.keyBy(result.data.allFile.edges.map(e => e.node), 'base');
-  }).then(() => Promise.all(promises()));
+  return Promise.all(promises);
 };
 
 exports.setFieldsOnGraphQLNodeType = function({type}) {

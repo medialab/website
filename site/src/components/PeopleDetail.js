@@ -11,6 +11,10 @@ export const queryFragment = graphql`
       en
       fr
     }
+    bio {
+      fr
+      en
+    }
     membership
     active
     draft
@@ -18,8 +22,10 @@ export const queryFragment = graphql`
   }
 `;
 
-export default function PeopleDetail({data, bio}) {
-  console.log(data, bio);
+export default function PeopleDetail({data}) {
+  console.log(data);
+
+  const bio = data.bio;
 
   return (
     <div>

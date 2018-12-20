@@ -86,22 +86,22 @@
       "publications": {
           "fr": "Publications",
           "en": "Publications",
-          "types": ["article", "communication", "book", "workingPaper"]
+          "values": ["article", "communication", "book", "workingPaper"]
       },
       "webEditions": {
           "fr": "Éditions web",
           "en": "Web editions",
-          "types": ["datascape", "website"]
+          "values": ["datascape", "website"]
       },
       "tools": {
           "fr": "Outils",
           "en": "Tools",
-          "types": ["software", "code"]
+          "values": ["software", "code"]
       },
       "situations": {
           "fr": "Situations",
           "en": "Situations",
-          "types": ["exhibition", "workshop", "simulation", "conference"]
+          "values": ["exhibition", "workshop", "simulation", "conference"]
       }
     }
   }

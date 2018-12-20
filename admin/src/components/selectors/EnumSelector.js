@@ -7,11 +7,29 @@ import enums from '../../../../specs/enums.json';
 
 const OPTIONS = {};
 
-for (const k in enums)
-  OPTIONS[k] = map(enums[k].en, (label, key) => ({
-    value: key,
-    label
-  }));
+for (const k in enums) {
+  const e = enums[k];
+
+  if (e.groups) {
+    OPTIONS[k] = map(e.groups, ({en, values}) => {
+      return {
+        label: en,
+        options: values.map(value => {
+          return {
+            value,
+            label: e.en[value]
+          };
+        })
+      };
+    });
+  }
+  else {
+    OPTIONS[k] = map(e.en, (label, key) => ({
+      value: key,
+      label
+    }));
+  }
+}
 
 export default function EnumSelector(props) {
   const {
@@ -22,7 +40,14 @@ export default function EnumSelector(props) {
 
   const options = OPTIONS[enumType];
 
-  const selected = options.find(o => o.value === value);
+  let selected;
+
+  if (enums[enumType].groups) {
+    selected = options.flatMap(g => g.options).find(o => o.value === value);
+  }
+  else {
+    selected = options.find(o => o.value === value);
+  }
 
   if (options.length < 4)
     return (

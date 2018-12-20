@@ -23,7 +23,7 @@ Faire connaître les rendez-vous où l'on peut rencontrer les membres du médial
 
 # Carrousel Hero
 priorité importante
-_Rermarque_ : pas certaine qu'il faille mettre un titre à cette zone, il est communément admis que ces zones de hero servent à mettre des choses en avant. En plus, on a une zone actualité plus bas: ca risque d'être compliqué de trouver 2 titres...; voir ces exemples (j'ai volontairement choisi des structures très différentes ):
+_Remarque_ : pas certaine qu'il faille mettre un titre à cette zone, il est communément admis que ces zones de hero servent à mettre des choses en avant. En plus, on a une zone actualité plus bas: ca risque d'être compliqué de trouver 2 titres...; voir ces exemples (j'ai volontairement choisi des structures très différentes ):
 - https://www.gobelins.fr/
 - https://www.theatremarigny.fr/
 - https://www.polytechnique.edu/
@@ -31,7 +31,7 @@ _Rermarque_ : pas certaine qu'il faille mettre un titre à cette zone, il est co
 
 ## quoi ?
 Mettre en avant l'actualité chaude du laboratoire avec un contenu *en hero* et jusqu’à maximum 4 *contenus liés*.
-_Rermarque_ : pas certaine que les contenus additionnels sont finalement nécessaire, ça complexifie le propos et on va se retrouver avec les mêmes contenus que DANS la page de l'objet.
+_Remarque_ : pas certaine que les contenus additionnels sont finalement nécessaire, ça complexifie le propos et on va se retrouver avec les mêmes contenus que DANS la page de l'objet.
 Je suggère de les supprimer.
 
 ## Objets et champs à afficher

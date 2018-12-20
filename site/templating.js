@@ -28,18 +28,35 @@ exports.template = function template(assets, html) {
     const $this = $(this);
     const tag = $this.prop('tagName');
 
+    // Paragraphs
     if (tag === 'P') {
       output += `<p>${$this.html()}</p>`;
     }
+
+    // Titles
     else if (TITLE.test(tag)) {
       const level = tag[tag.length - 1];
 
       output += `<h${level}>${$this.text()}</h${level}>`;
     }
+
+    // Lists
+    else if (tag === 'UL') {
+      output += `<ul>${$this.html()}</ul>`;
+    }
+    else if (tag === 'OL') {
+      output += `<ol>${$this.html()}</ol>`;
+    }
+
+    // Raw blocks
     else if (tag === 'PRE') {
       output += entities.decode($this.text().replace(/^\s+/g, ''));
     }
+
+    // Atomics
     else if (tag === 'FIGURE') {
+
+      // Images
       if ($this.has('img').length) {
         const $img = $this.find('img');
 
@@ -47,6 +64,8 @@ exports.template = function template(assets, html) {
 
         output += `<img src="${src}" />`;
       }
+
+      // Iframes
       else {
         const $iframe = $this.find('iframe');
         const internal = !!$iframe.data('internal');

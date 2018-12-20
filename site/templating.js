@@ -89,10 +89,10 @@ function processHtml(html) {
 exports.template = function template(content) {
   let fr, en;
 
-  if (content.fr)
+  if (content && content.fr)
     fr = processHtml(content.fr);
 
-  if (content.en)
+  if (content && content.en)
     en = processHtml(content.en);
 
   return {

@@ -60,6 +60,11 @@ const mois = {
 // code tools
 const codeTools = ['sigma', 'sandcrawler', 'pygexf', 'issue2navicrawler', 'artoo'];
 const deprecatedTools = ['sandcrawler', 'zup', 'manylines', 'anta', 'drive-in', 'issue2navicrawler', 'navicrawler', 'pygexf'];
+
+// slugs correction
+const cleanPeopleSlug = {paul: 'paul-girard', benjamin: 'benjamin-ooghe-tabanou', plique: 'guillaume-plique'};
+const cleanProjetsSlug = {'medea': 'medea-mapping-environmental-debates-on-adaptation', 'source': 'source-project-societal-security-network', 'politiques-de-la-terre': 'politiques-de-la-terre-a-lepreuve-de-lanthropocene'};
+
 const translations = {
     activities: (o, indices, reverseLinks) => {
         const name = o.title_fr.length > 0 ? o.title_fr : o.title_en;
@@ -95,7 +100,7 @@ const translations = {
             newProject.endDate = formatDate(o.date_fin);
 
         //slug
-        newProject.slug = [slugifyActivity(newProject)];
+        newProject.slugs = [slugifyActivity(newProject)];
 
         // links from people
         if (reverseLinks['activities->people'][newProject.oldSlug])
@@ -108,7 +113,7 @@ const translations = {
         const newPeople = {
             id: uuid(),
             lastUpdated: new Date(Date.parse(people.date)).getTime(),
-            oldId: people._id,
+            //oldId: people._id,
             oldSlug: oldSlug(people),
             firstName: name.split(' ')[0],
             lastName: name.split(' ').slice(1).join(' '),
@@ -136,13 +141,11 @@ const translations = {
         return {newO: newPeople, reverseLinks: {activities: people.projets, productions: people.tools}};
     },
     news: (o, indeces) => {
-        const name = o.title_fr.length > 0 ? o.title_fr : o.title_en;
         const newNews = {
             id: uuid(),
-            oldId: o._id,
+            //oldId: o._id,
             lastUpdated: new Date(Date.parse(o.date)).getTime(),
             oldSlug: oldSlug(o),
-            name,
             description: {
                 en: o.excerpt_en,
                 fr: o.excerpt_fr
@@ -160,7 +163,6 @@ const translations = {
             //people : faudra récupérer les liens des people
             // activities N/A
             internal: false,
-            active: active(o),
             draft: true
         };
 
@@ -197,9 +199,24 @@ const translations = {
         newNews.slugs = [slugifyNews(newNews)];
 
         // links
-        newNews.people = o.people.map(p => indeces.people[p]);
-        newNews.people = o.projets.map(p => indeces.activities[p]);
-        //newNews.productions = o.tools.map(p => indeces.productions[p]);
+        newNews.people = [];
+        o.people.forEach(p => {
+            let pp = cleanPeopleSlug[p] || p;
+            if (indeces.people[pp])
+                newNews.people.push(indeces.people[pp]);
+            else
+                console.log('can\'t find people',pp);
+        });
+        newNews.activities = [];
+        o.projets.forEach(p => {
+            let pp = cleanProjetsSlug[p] || p;
+            if (indeces.activities[pp])
+                newNews.activities.push(indeces.activities[pp]);
+            else
+                console.log('can\'t find activity', pp);
+        });
+
+        newNews.productions = o.tools.map(p => indeces.productions[p]).filter(p => !!p);
         return {newO: newNews, reverseLinks: {}};
     },
     productions: (o, indeces, reverseLinks) => {
@@ -230,6 +247,9 @@ const translations = {
         if (reverseLinks['productions->people'][newProduction.oldSlug])
             newProduction.people = reverseLinks['productions->people'][newProduction.oldSlug];
 
+        if (o.oldSlug === 'hyphe') {
+            newProduction.activities = [indeces.activities['dime-shs']];
+        }
         return {newO: newProduction, reverseLinks: {}};
     }
 };
@@ -262,7 +282,8 @@ function processObjects(oldModel, newModel, indices, olinks, done) {
                 });
             }
 
-            if (o._id !== 1063) {
+            //filter out never published content
+            if (newO.oldSlug !== 'medialab-dev.sciences-po.fr') {
                // writting
                 fs.writeJsonSync(path.join(outPath, `${newO.id}.json`), newO, {spaces: 2, encoding: 'utf8'});
             }
@@ -292,6 +313,23 @@ async.waterfall([
     //news
     (indeces, links, done) => {
         processObjects('blogs', 'news', indeces, links, done);
+    },
+    //settings & assets
+    (indeces, links, done) => {
+        // adding one productions - production link
+        const hypheId = indeces.productions.hyphe;
+        const hyphe = fs.readJsonSync(`./wordpress_scraping/data/new/productions/${hypheId}.json`, 'utf8');
+        hyphe.productions = [indeces.productions['hyphe-browser']];
+        fs.writeJSONSync(`./wordpress_scraping/data/new/productions/${hypheId}.json`, hyphe, {spaces: 2, encoding: 'utf8'});
+        // adding one activity - activity link
+        const aimeId = indeces.activities.aime;
+        const aime = fs.readJsonSync(`./wordpress_scraping/data/new/activities/${aimeId}.json`, 'utf8');
+        aime.activitiess = [indeces.activities['reset-modernity']];
+        fs.writeJSONSync(`./wordpress_scraping/data/new/activities${aimeId}.json`, hyphe, {spaces: 2, encoding: 'utf8'});
+        
+
+        fs.ensureDirSync('./wordpress_scraping/data/new/assets');
+        fs.writeJSONSync('./wordpress_scraping/data/new/settings.json', {settings: {home: {editorialization: []}}}, {spaces: 2, encoding: 'utf8'});
     }
 
 ]);

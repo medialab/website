@@ -61,11 +61,16 @@ function processHtml(html) {
       if ($this.has('img').length) {
         const $img = $this.find('img');
 
-        const src = $img.attr('src');
+        const src = $img.attr('src'),
+              width = $img.data('width'),
+              height = $img.data('height');
+
+        // TODO: What about squares?
+        const className = width > height ? 'landscape' : 'portrait';
 
         assets.add(src);
 
-        output += `<img src="${src}" />`;
+        output += `<img class="${className}" src="${src}" />`;
       }
 
       // Iframes

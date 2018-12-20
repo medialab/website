@@ -52,7 +52,7 @@ Champs :
 - **LastName** *mandatory*
 - **membership** : associate, member
 Distinction entre membre et associé.
-- **function** *fr/en*: fonction occupée au format libre mais fortement suggéré, convergents vers des appelations communes : Directeur scientifique - Chercheur.e, Directeur technique - Ingénieur.e de recherche, Directeur de FORCCAST, Designer.e de recherche,     Ingénieur.e de recherche, Ingénieur.e pédagogique, Chercheur.e, Chargé.e de communication, Secrétaire général.e,     Assistant.e de recherche
+- **role** *fr/en*: fonction occupée au format libre mais fortement suggéré, convergents vers des appelations communes : Directeur scientifique - Chercheur.e, Directeur technique - Ingénieur.e de recherche, Directeur de FORCCAST, Designer.e de recherche,     Ingénieur.e de recherche, Ingénieur.e pédagogique, Chercheur.e, Chargé.e de communication, Secrétaire général.e,     Assistant.e de recherche
 - **currentStatus** : champs ouvert une ou deux phrases décrivant les sujets de travail actuel
 - **domain** : academic, technic, design, pedagogy, administrative. Utilisé uniquemnt pour du filtrage.
 - **contact** : information de contact, site perso, email... sous la forme de clef/valeur librement défini et pouvant contenir des liens ou emails (dans valeur)

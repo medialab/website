@@ -13,7 +13,7 @@
     "docker:up": "docker-compose -p website up",
     "docker:down": "docker-compose -p website down",
     "dump": "node ./scripts/dump.js",
-    "hydrate:json": "rm -rf data/* && mkdir -p data/assets && touch data/assets/dummy && cp specs/samples/json/*.json data",
+    "hydrate": "rm -rf data/* && mkdir -p data/assets && touch data/assets/dummy && cp specs/samples/*.json data",
     "install:admin": "cd admin && npm i",
     "install:site": "cd site && npm i",
     "lint": "eslint api scripts site/*.js site/src admin/src",

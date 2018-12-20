@@ -19,7 +19,7 @@ npm run reinstall
 Pour réinitialiser la base de données avec des données de test:
 
 ```
-npm run hydrate:json
+npm run hydrate
 ```
 
 Pour dumper les données de la base afin de les versionner:
@@ -28,9 +28,9 @@ Pour dumper les données de la base afin de les versionner:
 npm run dump
 ```
 
-## development instructions 
+## development instructions
 
-### ports used 
+### ports used
 
 - `7000`: CMS
 - `8000`: static website
@@ -40,7 +40,7 @@ npm run dump
 
 ```bash
 $ npm install
-$ npm run hydrate:json (ou run load)
+$ npm run hydrate (ou run load)
 $ npm run dev
 ```
 

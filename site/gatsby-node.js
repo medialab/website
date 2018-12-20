@@ -2,7 +2,6 @@
 const fs = require('fs');
 const path = require('path');
 const chokidar = require('chokidar');
-const _ = require('lodash');
 
 const {
   graphQLSchemaAdditionForSettings,
@@ -15,8 +14,7 @@ const {
 } = require('./utils.js');
 
 const {
-  template,
-  replaceAssetPaths
+  template
 } = require('./templating.js');
 
 const ROOT_PATH = process.env.ROOT_PATH || '..';
@@ -194,8 +192,6 @@ exports.sourceNodes = function(args) {
 exports.createPages = function({graphql, actions}) {
   const {createPage} = actions;
 
-  let FILES;
-
   // Creating basic pages
   createI18nPage(createPage, {
     path: '/',
@@ -204,7 +200,7 @@ exports.createPages = function({graphql, actions}) {
   });
 
   // Chaining promises
-  const promises = () => [
+  const promises = [
 
     // Activities
     graphql(QUERIES.ACTIVITIES).then(result => {
@@ -238,11 +234,9 @@ exports.createPages = function({graphql, actions}) {
       result.data.allPeopleJson.edges.forEach(edge => {
         const person = edge.node;
 
-        const content = replaceAssetPaths(FILES, person.assets, person.bio);
-
         const context = {
-          identifier: person.identifier,
-          bio: content
+          assets: person.assets,
+          identifier: person.identifier
         };
 
         person.slugs.forEach(slug => {
@@ -303,9 +297,7 @@ exports.createPages = function({graphql, actions}) {
     })
   ];
 
-  return graphql(QUERIES.FILE).then(result => {
-    FILES = _.keyBy(result.data.allFile.edges.map(e => e.node), 'base');
-  }).then(() => Promise.all(promises()));
+  return Promise.all(promises);
 };
 
 exports.setFieldsOnGraphQLNodeType = function({type}) {

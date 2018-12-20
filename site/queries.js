@@ -32,10 +32,6 @@ exports.PEOPLE = `
           identifier
           slugs
           assets
-          bio {
-            en
-            fr
-          }
         }
       }
     }

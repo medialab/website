@@ -103,14 +103,3 @@ exports.template = function template(content) {
     assets: Array.from(union(fr ? fr.assets : new Set(), en ? en.assets : new Set()))
   };
 };
-
-exports.replaceAssetPaths = function replaceAssetPaths(index, assets, content) {
-  const html = {...content};
-
-  assets.forEach(asset => {
-    html.fr = html.fr.replace(asset, index[asset].publicURL);
-    html.en = html.en.replace(asset, index[asset].publicURL);
-  });
-
-  return html;
-};

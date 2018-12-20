@@ -18,8 +18,8 @@ Présente l'ensemble des actualités avec un affichage par ordre antéchronologi
 - Type.
 
 
-# Publications
-Présente l'ensemble des publications avec un affichage par défaut par ordre antéchronologique (de la plus récente à la plus ancienne).
+# Productions
+Présente l'ensemble des productions avec un affichage par défaut par ordre antéchronologique (de la plus récente à la plus ancienne).
 
 ## Colonnes/champs à afficher
 - Date,

@@ -71,7 +71,7 @@ Présente l'ensemble des people avec un affichage aléatoire, il existe une dél
 - membership : member/associate
 
 ## Tri
-- Name : Ordre alphabétique
+- Alphabétique (sur les Name)
 
 # Activités
 Présente l'ensemble des activités ; l'affichage se fait en fonction du type (recherche/enseignement/méthodes) et l'ordonnancement se fait en fonction du booléen "important".

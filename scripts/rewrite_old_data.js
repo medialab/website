@@ -30,12 +30,12 @@ const associated = status => status.indexOf('associ') !== -1;
 const active = (o) => {
     if (!o.date_fin)
         return true;
-    const [d, m, y] = o.date_fin.split('/');
+    const [, , y] = o.date_fin.split('/');
     // simplified version of active counting anything which finish after january 2019
     return +y >= 19;
 };
 const formatDate = date => {
-    let [y, m, d] = date.split('/').reverse();
+    const [y, m, d] = date.split('/').reverse();
     let ny = y;
     if (y.length === 2)
         ny = '20' + y;

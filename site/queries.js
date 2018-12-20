@@ -1,16 +1,3 @@
-exports.FILE = `
-  {
-    allFile(filter: {sourceInstanceName: {eq: "assets"}}) {
-      edges {
-        node {
-          base,
-          publicURL
-        }
-      }
-    }
-  }
-`;
-
 exports.ACTIVITIES = `
   {
     allActivitiesJson {
@@ -31,7 +18,6 @@ exports.PEOPLE = `
         node {
           identifier
           slugs
-          assets
         }
       }
     }

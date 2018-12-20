@@ -30,6 +30,7 @@ module.exports = {
   ],
   mapping: {
     'ActivitiesJson.people': 'PeopleJson',
+    'PeopleJson.assets': 'File.base',
     'PeopleJson.mainActivities': 'ActivitiesJson',
     'PeopleJson.mainProductions': 'ProductionsJson',
     'ProductionsJson.activities': 'ActivitiesJson',

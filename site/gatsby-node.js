@@ -235,7 +235,6 @@ exports.createPages = function({graphql, actions}) {
         const person = edge.node;
 
         const context = {
-          assets: person.assets,
           identifier: person.identifier
         };
 

@@ -6,17 +6,9 @@ import Layout from '../components/Layout';
 import PeopleDetail from '../components/PeopleDetail';
 
 export const query = graphql`
-  query($identifier: String!, $assets: [String]!) {
+  query($identifier: String!) {
     peopleJson(identifier: {eq: $identifier}) {
       ...PeopleDetail
-    }
-    allFile(filter: {base: {in: $assets}}) {
-      edges {
-        node {
-          base
-          publicURL
-        }
-      }
     }
   }
 `;
@@ -24,7 +16,7 @@ export const query = graphql`
 export default ({data, pageContext}) => {
   console.log(data, pageContext);
 
-  replaceAssetPaths(data.allFile, data.peopleJson.bio);
+  replaceAssetPaths(data.peopleJson.assets, data.peopleJson.bio);
 
   return (
     <Layout lang={pageContext.lang}>

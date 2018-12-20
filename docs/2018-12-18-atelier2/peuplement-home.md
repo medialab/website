@@ -4,80 +4,119 @@ date: 2018-12-07
 ---
 
 # Phrase de présentation courte du laboratoire
-Bloc 1 - priorité très important
+priorité très important
 
-# Agenda
-Bloc 2 - priorité moyenne
+# Agenda / Rendez-vous
+priorité moyenne
 
 ## quoi ?
 Faire connaître les rendez-vous où l'on peut rencontrer les membres du médialab ; on affiche tous les événements à venir par ordre chronologique (du plus proche au plus lointain) tant qu'ils ne sont pas finis (Ex.: un RV sur plusieurs jours) ; si rien à venir, afficher une phrase « pas d’événement à venir»
 
 ## Objets et champs à afficher
 
-Actualités de type 'rendez-vous'
-- startDate et endDate (si il y a)
-- title (avec lien vers la fiche de l'actualité/RV)
-- label
-- place
+Actualités de type 'rendez-vous':
+- startDate et endDate (si il y a) (gros)
+- title (avec lien vers la fiche de l'actualité/RV) (gros)
+- label (moyen)
+- place (petit)
 
-_Question_ : faut-il différencier graphiquement les événements organisés par le médialab des autres (majoritairement participation dans des conf)? Il existe la mention du type d'événement mais faut il le marquer plus fortement?
--> Prévoir une proposition avec cette distinction.
+_Remarque_ : différencier graphiquement les événements organisés par le médialab des autres (majoritairement participation dans des conf)?
 
 
 # Focus
-Bloc 3 - priorité importante
+priorité importante
+_Rermarque_ : pas certaine qu'il faille mettre un titre à cette zone, il est communément admis que ces zones de hero servent à mettre des choses en avant. En plus, on a une zone actualité plus bas: ca risque d'être compliqué de trouver 2 titres...; voir ces exemples (j'ai volontairement choisi des structures très différentes ):
+- https://www.gobelins.fr/
+- https://www.theatremarigny.fr/
+- https://www.polytechnique.edu/
+
 
 ## quoi ?
-Mettre en avant l'actualité chaude (hors agenda) du laboratoire avec un contenu (actualité) *en hero* et jusqu’à 4 contenus additionnels (tout type) - idéalement pour contextualiser-.
-Il s'agit donc d'un bloc à deux lignes : une ligne HERO (une seule colonne pleine largeur) et une ligne autre (4 colonnes).
+Mettre en avant l'actualité chaude du laboratoire avec un contenu *en hero* et jusqu’à 4 *contenus additionnels* - à choisir-.
+_Rermarque_ : pas certaine que les contenus additionnels sont finalement nécessaire, ça complexifie le propos et on va se retrouver avec les mêmes contenus que DANS la page de l'objet.
+Je suggère de les supprimer.
 
 ## Objets et champs à afficher
 
 ### ligne hero
-Objet Actualité (tout type) :
-- title
-- description
-- label
-- date si type = rendez-vous
-
-### ligne 4 colonnes
-
 *Si objet de type actualité :*
 - title (gros)
-- label (moyen - haut)
-- date si type = rendez-vous (petit - bas)
+- label (moyen)
+- date si type = rendez-vous (petit)
+- description (petit)
+- illustration
 
 *Si activité :*
-- name (moyen - haut)
+- name (moyen)
 - baseline (gros)
-- type (petit - bas)
+- type (petit)
+- baseline
+- illustration
 
 *Si membre :*
 - firstName lastName (gros)
-- title (moyen-haut)
-- « membre de l’équipe » si membership = membre, « associé.e au médialab » sinon (petit - bas)
-
-ps Paul: j'ai du mal à imaginer qu'on mette qqun sur la home sans passer par une actualité ?
--> eventuellement si recrutement ou personne liée à un projet
+- title (moyen)
+- « membre de l’équipe » si membership = membre, « associé.e au médialab » sinon (petit)
+- activités liées (petit)
+- illustration
 
 *si publication :*
-
 - title (gros)
-- type (moyen - haut)
-- authors (petit - bas)
+- authors (moyen)
+- type (petit)
+- Description (petit)
+- illustration
 
-# liste des derniers posts
-Bloc 4 - priorité moindre
+### contenus additionnels [A supprimer?]
 
+*Si objet de type actualité :*
+- title (gros)
+- label (moyen)
+- date si type = rendez-vous (petit)
+
+*Si activité :*
+- baseline (gros)
+- name (moyen)
+- type (petit)
+
+*Si membre :*
+- firstName lastName (gros)
+- title (moyen)
+- « membre de l’équipe » si membership = membre, « associé.e au médialab » sinon (petit)
+
+*si publication :*
+- title (gros)
+- authors (moyen)
+- type (petit)
+
+# En ce moment
 ## quoi ?
-Donner un aperçu de l'activité générale du médialab avec les 10 dernières actualités passées qui ne sont pas mentionnées dans la partie Focus.
+Mettre en avant l'actualité du laboratoire du laboratoire.
 
-## champs à afficher
-Actualités
-- date
-- type
-- title (à couper en fonction du nombre de caractères)
+## Objets et champs à afficher
+*Si objet de type actualité :*
+- title (gros)
+- label (moyen)
+- date si type = rendez-vous (petit)
+- illustration
 
+*Si activité :*
+- baseline (gros)
+- name (moyen)
+- type (petit)
+- illustration
 
-# Flux
+*Si membre :*
+- firstName lastName (gros)
+- title (moyen)
+- « membre de l’équipe » si membership = membre, « associé.e au médialab » sinon (petit)
+- illustration
+
+*si publication :*
+- title (gros)
+- authors (moyen)
+- type (petit)
+- illustration
+
+# Flux / Et aussi
 amovible

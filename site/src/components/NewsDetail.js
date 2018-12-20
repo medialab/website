@@ -41,8 +41,8 @@ export const queryFragment = graphql`
   }
 `;
 
-export default function NewsDetail({data}) {
-  console.log(data);
+export default function NewsDetail({lang, data}) {
+  console.log(lang, data);
 
   return (
     <div>

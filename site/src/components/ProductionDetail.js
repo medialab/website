@@ -38,8 +38,8 @@ export const queryFragment = graphql`
   }
 `;
 
-export default function ProductionDetail({data}) {
-  console.log(data);
+export default function ProductionDetail({lang, data}) {
+  console.log(lang, data);
 
   return (
     <div>

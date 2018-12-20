@@ -34,8 +34,8 @@ export const queryFragment = graphql`
   }
 `;
 
-export default function ActivityDetail({data}) {
-  console.log(data);
+export default function ActivityDetail({lang, data}) {
+  console.log(lang, data);
 
   return (
     <div>

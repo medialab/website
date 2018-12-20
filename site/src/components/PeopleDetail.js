@@ -26,8 +26,8 @@ export const queryFragment = graphql`
   }
 `;
 
-export default function PeopleDetail({data}) {
-  console.log(data);
+export default function PeopleDetail({lang, data}) {
+  console.log(lang, data);
 
   const bio = data.bio;
 

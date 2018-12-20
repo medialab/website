@@ -5,7 +5,8 @@ const chokidar = require('chokidar');
 
 const {
   graphQLSchemaAdditionForSettings,
-  graphQLSchemaAdditionFromJsonSchema
+  graphQLSchemaAdditionFromJsonSchema,
+  patchGraphQLSchema
 } = require('./schema.js');
 
 const {
@@ -26,10 +27,12 @@ const DB_GLOB = path.join(ROOT_PATH, 'data', '*.json');
 
 const MODELS_PATHS = {};
 const SCHEMAS = {};
+const GRAPHQL_SCHEMAS = {};
 
 MODELS.forEach(model => {
   MODELS_PATHS[model] = path.join(DB_PATH, `${model}.json`);
   SCHEMAS[model] = require(path.join(ROOT_PATH, 'specs', 'schemas', `${model}.json`));
+  GRAPHQL_SCHEMAS[model] = graphQLSchemaAdditionFromJsonSchema(model, SCHEMAS[model]);
 });
 
 MODELS_PATHS.settings = path.join(DB_PATH, 'settings.json');
@@ -47,10 +50,15 @@ const MODEL_READERS = {
       if (node)
         deleteNode({node});
 
+      // Processing HTML
+      const content = template(activity.content);
+
       const hash = hashNode(activity);
 
       createNode({
         ...activity,
+        content: content.html,
+        assets: content.assets,
         identifier: activity.id,
         internal: {
           type: 'ActivitiesJson',
@@ -185,6 +193,7 @@ exports.sourceNodes = function(args) {
       update();
 
       // TODO: fix this hack. something is fishy here...
+      // Basically, if we remove that, assets are not properly loaded
       setTimeout(update, 100);
     });
 };
@@ -306,23 +315,23 @@ exports.setFieldsOnGraphQLNodeType = function({type}) {
   }
 
   else if (type.name === 'ActivitiesJson') {
-    const schema = SCHEMAS.activities;
-    return graphQLSchemaAdditionFromJsonSchema('activities', schema);
+    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'activities', type, SCHEMAS.activities);
+    return GRAPHQL_SCHEMAS.activities;
   }
 
   else if (type.name === 'PeopleJson') {
-    const schema = SCHEMAS.people;
-    return graphQLSchemaAdditionFromJsonSchema('people', schema);
+    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'people', type, SCHEMAS.people);
+    return GRAPHQL_SCHEMAS.people;
   }
 
   else if (type.name === 'ProductionsJson') {
-    const schema = SCHEMAS.productions;
-    return graphQLSchemaAdditionFromJsonSchema('productions', schema);
+    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'productions', type, SCHEMAS.productions);
+    return GRAPHQL_SCHEMAS.productions;
   }
 
   else if (type.name === 'NewsJson') {
-    const schema = SCHEMAS.news;
-    return graphQLSchemaAdditionFromJsonSchema('news', schema);
+    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'news', type, SCHEMAS.news);
+    return GRAPHQL_SCHEMAS.news;
   }
 
   return {};

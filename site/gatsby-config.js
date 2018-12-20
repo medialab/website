@@ -29,6 +29,7 @@ module.exports = {
     'gatsby-plugin-sitemap'
   ],
   mapping: {
+    'ActivitiesJson.assets': 'File.base',
     'ActivitiesJson.people': 'PeopleJson',
     'PeopleJson.assets': 'File.base',
     'PeopleJson.mainActivities': 'ActivitiesJson',

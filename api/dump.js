@@ -21,6 +21,7 @@ module.exports = function dump(outputDir) {
   );
 
   models.forEach(model => {
+    fs.removeSync(path.join(outputDir, model));
     fs.ensureDirSync(path.join(outputDir, model));
 
     const data = fs.readJsonSync(path.join(DATA_PATH, `${model}.json`), 'utf-8');

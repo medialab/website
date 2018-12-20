@@ -34,9 +34,11 @@ module.exports = {
     'PeopleJson.assets': 'File.base',
     'PeopleJson.mainActivities': 'ActivitiesJson',
     'PeopleJson.mainProductions': 'ProductionsJson',
+    'ProductionsJson.assets': 'File.base',
     'ProductionsJson.activities': 'ActivitiesJson',
     'ProductionsJson.people': 'PeopleJson',
     'ProductionsJson.productions': 'ProductionsJson',
+    'NewsJson.assets': 'File.base',
     'NewsJson.activities': 'ActivitiesJson',
     'NewsJson.people': 'PeopleJson',
     'NewsJson.productions': 'ProductionsJson'

@@ -112,10 +112,15 @@ const MODEL_READERS = {
       if (node)
         deleteNode({node});
 
+      // Processing HTML
+      const content = template(production.content);
+
       const hash = hashNode(production);
 
       createNode({
         ...production,
+        content: content.html,
+        assets: content.assets,
         identifier: production.id,
         internal: {
           type: 'ProductionsJson',
@@ -138,10 +143,15 @@ const MODEL_READERS = {
       if (node)
         deleteNode({node});
 
+      // Processing HTML
+      const content = template(news.content);
+
       const hash = hashNode(news);
 
       createNode({
         ...news,
+        content: content.html,
+        assets: content.assets,
         identifier: news.id,
         internal: {
           type: 'NewsJson',

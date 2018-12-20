@@ -5,29 +5,31 @@ date: 2018-12-07
 Description de chaque page listing
 
 # Actualités
-Présente l'ensemble des actualités avec un affichage par ordre antéchronologique (de la plus récente à la plus ancienne).
+Présente l'ensemble des actualités (liste exhaustive) avec un affichage par ordre antéchronologique (de la plus récente à la plus ancienne).
+Pas de tri possible.
+La liste est indexée avec des ancres par années pour se repérer dans la temporalité.
 
 ## Colonnes/champs à afficher
-- Date,
-- Titre,
-- Label,
+- Date, (moyen)
+- Titre, (gros)
+- Label, (petit)
 - description (au survol?)
 
 ## Filtres
-- Type
-
-## Tri
-- Date
+- Types (à savoir RV, Chronique, et Annonce)
 
 
 # Productions
 Présente l'ensemble des productions avec un affichage par défaut par ordre antéchronologique (de la plus récente à la plus ancienne).
+Pas de tri possible.
+La liste est indexée avec des ancres par années pour se repérer dans la temporalité.
+_Remarque_ : il faudrait prévoir un affichage de l'ensemble de la liste triée par type de publication.
 
 ## Colonnes/champs à afficher
-- Date,
-- type,
-- Titre,
-- Auteurs,
+- Date, (moyen)
+- type, (petit)
+- Titre, (gros)
+- Auteurs, (moyen)
 - description (au survol)
 
 ## Filtres
@@ -43,7 +45,7 @@ Structure du filtrage :
 - web
     - datascape
 	- site web
-- outils	
+- outils
     - logiciel
 	- code
 - situation
@@ -52,16 +54,15 @@ Structure du filtrage :
 	- simulation
 	- conférence
 
-## Tri
-- Date
 
 # Equipe
-Présente l'ensemble des people avec un affichage aléatoire, il existe une délimitation entre les actifs et inactifs.
+Présente l'ensemble des people avec un affichage aléatoire
+Par défaut, seuls les membres actifs sont visibles.
 
 ## Colonnes/champs à afficher
-- FirstName
-- LastName
-- Fonction (champs suggéré ;  valeurs possibles : Directeur scientifique - Chercheur.e, Directeur technique - Ingénieur.e de recherche, Directeur de FORCCAST, Designer.e de recherche, Ingénieur.e de recherche, Ingénieur.e pédagogique, Chercheur.e, Chargé.e de communication, Secrétaire général.e, Assistant.e de recherche)
+- FirstName (gros)
+- LastName (gros)
+- Fonction (champs suggéré ;  valeurs possibles : Directeur scientifique - Chercheur.e, Directeur technique - Ingénieur.e de recherche, Directeur de FORCCAST, Designer.e de recherche, Ingénieur.e de recherche, Ingénieur.e pédagogique, Chercheur.e, Chargé.e de communication, Secrétaire général.e, Assistant.e de recherche) (moyen)
 - Picture
 - Current Status _précise les activités actuelles_ (au survol)
 
@@ -72,21 +73,22 @@ Présente l'ensemble des people avec un affichage aléatoire, il existe une dél
 
 ## Tri
 - Alphabétique (sur les Name)
+_Remarque_ : faut-il prévoir une indexation alphabetique de la liste?
 
 # Activités
-Présente l'ensemble des activités ; l'affichage se fait en fonction du type (recherche/enseignement/méthodes) et l'ordonnancement se fait en fonction du booléen "important".
+Présente l'ensemble des activités ; une selection est épinglée en haut de liste en fonction du booléen "important", le reste de la liste est ordonné alphabétiquement.
 Par défaut, les activités passées ne sont pas affichées, un filtre permet de les faire apparaitre.
 
 ## Colonnes/champs à afficher
-- Name
-- type,
-- baseline
+- Name, (moyen)
+- type, (petit)
+- baseline, (gros)
 - illustration (?)
 - description (au survol?)
 
 ## Filtres
 - active
-- type
+- type (à savoir recherche/enseignement/méthodes)
 
 ## Tri
 - Name : Ordre alphabétique

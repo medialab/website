@@ -1,0 +1,2 @@
+LOG = "xxxxxxxxx"
+PWD = "xxxxxxxxx"

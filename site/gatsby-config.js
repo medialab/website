@@ -30,11 +30,13 @@ module.exports = {
   ],
   mapping: {
     'ActivitiesJson.people': 'PeopleJson',
-    'PublicationsJson.activities': 'ActivitiesJson',
-    'PublicationsJson.people': 'PeopleJson',
-    'PublicationsJson.publications': 'PublicationsJson',
+    'PeopleJson.mainActivities': 'ActivitiesJson',
+    'PeopleJson.mainProductions': 'ProductionsJson',
+    'ProductionsJson.activities': 'ActivitiesJson',
+    'ProductionsJson.people': 'PeopleJson',
+    'ProductionsJson.productions': 'ProductionsJson',
     'NewsJson.activities': 'ActivitiesJson',
     'NewsJson.people': 'PeopleJson',
-    'NewsJson.publications': 'PublicationsJson'
+    'NewsJson.productions': 'ProductionsJson'
   }
 };

@@ -1,14 +1,16 @@
 import React from 'react';
 import {graphql} from 'gatsby';
 
+import RawHtml from './RawHtml';
+
 export const queryFragment = graphql`
-  fragment PublicationDetail on PublicationsJson {
+  fragment ProductionDetail on ProductionsJson {
     title {
       en
       fr
     }
     type
-    abstract {
+    description {
       en
       fr
     }
@@ -25,14 +27,14 @@ export const queryFragment = graphql`
       firstName
       lastName
     }
-    publications {
+    productions {
       id
     }
     draft
   }
 `;
 
-export default function PublicationDetail({data}) {
+export default function ProductionDetail({data}) {
   console.log(data);
 
   return (
@@ -72,15 +74,15 @@ export default function PublicationDetail({data}) {
         </ul>
       </div>
       <div>
-        Related publications:
+        Related productions:
         <ul>
-          {(data.publications || []).map(p => <li key={p.id}>{p.id}</li>)}
+          {(data.productions || []).map(p => <li key={p.id}>{p.id}</li>)}
         </ul>
       </div>
       <hr />
-      {data.content && data.content.en && <div dangerouslySetInnerHTML={{__html: data.content.en}} />}
+      {data.content && data.content.en && <RawHtml html={data.content.en} />}
       <hr />
-      {data.content && data.content.fr && <div dangerouslySetInnerHTML={{__html: data.content.fr}} />}
+      {data.content && data.content.fr && <RawHtml html={data.content.fr} />}
     </div>
   );
 }

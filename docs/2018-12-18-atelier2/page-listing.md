@@ -14,8 +14,10 @@ Présente l'ensemble des actualités avec un affichage par ordre antéchronologi
 - description (au survol?)
 
 ## Filtres
-- Date,
-- Type.
+- Type
+
+## Tri
+- Date
 
 
 # Productions
@@ -25,38 +27,54 @@ Présente l'ensemble des productions avec un affichage par défaut par ordre ant
 - Date,
 - type,
 - Titre,
-- auteur,
-- description (au survol?)
+- Auteurs,
+- description (au survol)
 
 ## Filtres
-- Type
+- A deux niveaux : d'abord sur une Metarubrique sur les types : "publications", "corpus", "tools" et "situations", puis sur le type de la production.
+
+Structure du filtrage :
+
+- publication:
+	- article
+	- livre
+	- communication
+	- working paper
+- web
+    - datascape
+	- site web
+- outils	
+    - logiciel
+	- code
+- situation
+    - atelier
+	- exposition
+	- simulation
+	- conférence
 
 ## Tri
 - Date
-- Auteur : Ordre alphabétique des noms
 
 # Equipe
-Présente l'ensemble des people avec un affichage aléatoire ; le regroupement de proximité se fait en fonction des activités communes (non visible par l'utilisateur).
+Présente l'ensemble des people avec un affichage aléatoire, il existe une délimitation entre les actifs et inactifs.
 
 ## Colonnes/champs à afficher
 - FirstName
 - LastName
-- Fonction
+- Fonction (champs suggéré ;  valeurs possibles : Directeur scientifique - Chercheur.e, Directeur technique - Ingénieur.e de recherche, Directeur de FORCCAST, Designer.e de recherche, Ingénieur.e de recherche, Ingénieur.e pédagogique, Chercheur.e, Chargé.e de communication, Secrétaire général.e, Assistant.e de recherche)
 - Picture
-- Activités liées (au survol?)
+- Current Status _précise les activités actuelles_ (au survol)
 
 ## Filtres
+- Domaines (Académique, technique, design, pédagogie, administratif)
 - Actif / passé
-- membership
+- membership : member/associate
 
 ## Tri
-- Name : Ordre alphabétique
-- Fonction : Ordre alphabétique
-
-_Remarque : nécessité d'harmoniser a minima les fonctions pour que ce soit utile_
+- Alphabétique (sur les Name)
 
 # Activités
-Présente l'ensemble des activités ; l'affichage se fait en fonction du type (recherche/enseignement) et l'ordonnancement se fait en fonction du booléen "important".
+Présente l'ensemble des activités ; l'affichage se fait en fonction du type (recherche/enseignement/méthodes) et l'ordonnancement se fait en fonction du booléen "important".
 Par défaut, les activités passées ne sont pas affichées, un filtre permet de les faire apparaitre.
 
 ## Colonnes/champs à afficher

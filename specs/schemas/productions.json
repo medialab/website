@@ -2,6 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Productions",
   "description": "Les productions du médialab",
+  "additionalProperties": false,
   "type": "object",
   "properties": {
     "id": {
@@ -14,6 +15,10 @@
       "items": {
         "type": "string"
       }
+    },
+    "oldSlug": {
+      "title": "Slug de l'ancien site",
+      "type": "string"
     },
     "lastUpdated": {
       "title": "Timestamp of last update",
@@ -33,29 +38,38 @@
         }
       }
     },
-    "abstract": {
-      "title": "Résumé",
+    "description": {
+      "title": "Description",
       "type": "object",
       "properties": {
         "en": {
-          "title": "English abstract",
+          "title": "Description in english",
           "type": "string"
         },
         "fr": {
-          "title": "Résumé français",
+          "title": "Description en français",
           "type": "string"
         }
       }
     },
     "type": {
-      "title": "Type de la publication",
+      "title": "Type de la production",
       "type": "string",
       "enum": [
-        "conference",
-        "tool",
-        "web"
+        "article",
+        "book",
+        "communication",
+        "workingPaper",
+        "datascape",
+        "website",
+        "software",
+        "code",
+        "exhibition",
+        "simulation",
+        "workshop",
+        "conference"
       ],
-      "enumId": "publicationTypes"
+      "enumId": "productionTypes"
     },
     "content": {
       "title": "Contenu",
@@ -73,6 +87,10 @@
         }
       }
     },
+    "authors": {
+      "title": "Auteurs",
+      "type": "string"
+    },
     "activities": {
       "title": "Activités liées",
       "type": "array",
@@ -82,8 +100,17 @@
       "formType": "ref",
       "model": "activities"
     },
+    "productions": {
+      "title": "Productions liées",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "formType": "ref",
+      "model": "productions"
+    },
     "people": {
-      "title": "Gens impliqués",
+      "title": "Membres du labo",
       "type": "array",
       "items": {
         "type": "string"
@@ -91,23 +118,46 @@
       "formType": "ref",
       "model": "people"
     },
-    "publications": {
-      "title": "Publications liées",
-      "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "formType": "ref",
-      "model": "publications"
-    },
     "date": {
       "title": "Date",
       "type": "string",
-      "formType": "vardate"
+      "formType": "vardate",
+      "precision": "year"
+    },
+    "ref": {
+      "title": "Référence biblio",
+      "type": "string"
+    },
+    "url": {
+      "title": "Lien externe",
+      "type": "string"
     },
     "draft": {
       "title": "Draft?",
       "type": "boolean"
+    },
+    "active": {
+      "title": "Actif?",
+      "type": "boolean"
+    },
+    "spire": {
+      "title": "Information SPIRE",
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Identifiant SPIRE",
+          "type": "string"
+        },
+        "meta": {
+          "title": "Metadonnées SPIRE",
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            }
+          }
+        }
+      }
     }
   }
 }

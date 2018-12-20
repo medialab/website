@@ -1,13 +1,15 @@
 import React from 'react';
 import {graphql} from 'gatsby';
 
+import RawHtml from './RawHtml';
+
 export const queryFragment = graphql`
   fragment NewsDetail on NewsJson {
     title {
       en
       fr
     }
-    excerpt {
+    description {
       en
       fr
     }
@@ -28,7 +30,7 @@ export const queryFragment = graphql`
       firstName
       lastName
     }
-    publications {
+    productions {
       id
     }
     draft
@@ -44,10 +46,10 @@ export default function NewsDetail({data}) {
       {data.draft && <p><em>This is a draft.</em></p>}
       <hr />
       <p>
-        <strong>EN excerpt</strong>: {data.excerpt && data.excerpt.en}
+        <strong>EN description</strong>: {data.description && data.description.en}
       </p>
       <p>
-        <strong>FR excerpt</strong>: {data.excerpt && data.excerpt.fr}
+        <strong>FR description</strong>: {data.description && data.description.fr}
       </p>
       <hr />
       <p>
@@ -71,15 +73,15 @@ export default function NewsDetail({data}) {
         </ul>
       </div>
       <div>
-        Related publications:
+        Related productions:
         <ul>
-          {(data.publications || []).map(p => <li key={p.id}>{p.id}</li>)}
+          {(data.productions || []).map(p => <li key={p.id}>{p.id}</li>)}
         </ul>
       </div>
       <hr />
-      {data.content && data.content.en && <div dangerouslySetInnerHTML={{__html: data.content.en}} />}
+      {data.content && data.content.en && <RawHtml html={data.content.en} />}
       <hr />
-      {data.content && data.content.fr && <div dangerouslySetInnerHTML={{__html: data.content.fr}} />}
+      {data.content && data.content.fr && <RawHtml html={data.content.fr} />}
     </div>
   );
 }

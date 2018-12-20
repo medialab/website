@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import CreatableSelect from 'react-select/lib/Creatable';
-import get from 'lodash/fp/get';
 import client from '../../client';
 
 export default class SuggestionSelector extends Component {
@@ -14,12 +13,17 @@ export default class SuggestionSelector extends Component {
   }
 
   componentDidMount() {
-    client.list({params: {model: this.props.model}}, (err, data) => {
+    const payload = {
+      params: {
+        model: this.props.model,
+        field: [].concat(this.props.field).join('.')
+      }
+    };
+
+    client.suggest(payload, (err, data) => {
 
       const options = data
-        .map(item => {
-
-          const value = get(this.props.field, item);
+        .map(value => {
 
           return {
             value,

@@ -2,6 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Activités",
   "description": "Les projets menés au médialab",
+  "additionalProperties": false,
   "type": "object",
   "properties": {
     "id": {
@@ -14,6 +15,10 @@
       "items": {
         "type": "string"
       }
+    },
+    "oldSlug": {
+      "title": "Slug de l'ancien site",
+      "type": "string"
     },
     "lastUpdated": {
       "title": "Timestamp of last update",
@@ -56,9 +61,10 @@
       "type": "string",
       "enum": [
         "research",
-        "teaching"
+        "teaching",
+        "method"
       ],
-      "enumId": "activitiyTypes"
+      "enumId": "activityTypes"
     },
     "content": {
       "title": "Contenu",
@@ -77,7 +83,7 @@
       }
     },
     "people": {
-      "title": "Gens impliqués",
+      "title": "Membres impliqués",
       "type": "array",
       "items": {
         "type": "string"
@@ -85,9 +91,34 @@
       "formType": "ref",
       "model": "people"
     },
+    "activities": {
+      "title": "Activités liées",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "formType": "ref",
+      "model": "activities"
+    },
+    "important": {
+      "title": "Structurant?",
+      "type": "boolean"
+    },
     "active": {
       "title": "Actif?",
       "type": "boolean"
+    },
+    "startDate": {
+      "title": "Date de début",
+      "type": "string",
+      "formType": "vardate",
+      "precision": "month"
+    },
+    "endDate": {
+      "title": "Date de fin",
+      "type": "string",
+      "formType": "vardate",
+      "precision": "month"
     },
     "draft": {
       "title": "Draft?",

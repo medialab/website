@@ -2,6 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Actualités",
   "description": "Les actualités du médialab",
+  "additionalProperties": false,
   "type": "object",
   "properties": {
     "id": {
@@ -15,9 +16,23 @@
         "type": "string"
       }
     },
+    "oldSlug": {
+      "title": "Slug de l'ancien site",
+      "type": "string"
+    },
     "lastUpdated": {
       "title": "Timestamp of last update",
       "type": "number"
+    },
+    "type": {
+      "title": "Type",
+      "type": "string",
+      "enum": [
+        "event",
+        "post",
+        "notice"
+      ],
+      "enumId": "newsTypes"
     },
     "title": {
       "title": "Titre",
@@ -33,19 +48,24 @@
         }
       }
     },
-    "excerpt": {
-      "title": "Extrait",
+    "description": {
+      "title": "Description",
       "type": "object",
       "properties": {
         "en": {
-          "title": "English excerpt",
+          "title": "English description",
           "type": "string"
         },
         "fr": {
-          "title": "Extrait français",
+          "title": "Description en français",
           "type": "string"
         }
       }
+    },
+    "place": {
+      "title": "Lieux",
+      "type": "string",
+      "formType": "suggest"
     },
     "label": {
       "title": "Label",
@@ -97,24 +117,30 @@
       "formType": "ref",
       "model": "people"
     },
-    "publications": {
-      "title": "Publications liées",
+    "productions": {
+      "title": "Productions liées",
       "type": "array",
       "items": {
         "type": "string"
       },
       "formType": "ref",
-      "model": "publications"
+      "model": "productions"
     },
     "startDate": {
       "title": "Date de début",
       "type": "string",
-      "formType": "vardate"
+      "formType": "vardate",
+      "precision": "day"
     },
     "endDate": {
       "title": "Date de fin",
       "type": "string",
-      "formType": "vardate"
+      "formType": "vardate",
+      "precision": "day"
+    },
+    "internal": {
+      "title": "Interne ?",
+      "type": "boolean"
     },
     "draft": {
       "title": "Draft?",

@@ -1,8 +1,8 @@
 import React from 'react';
 import {graphql} from 'gatsby';
 
-import Layout from '../components/layout';
-import ActivityDetail from '../components/activity-detail';
+import Layout from '../components/Layout';
+import ActivityDetail from '../components/ActivityDetail';
 
 export const query = graphql`
   query($identifier: String!) {

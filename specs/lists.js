@@ -33,7 +33,7 @@ module.exports = {
     ],
     search: ['firstName', 'lastName']
   },
-  publications: {
+  productions: {
     fields: [
       {
         label: 'Title',

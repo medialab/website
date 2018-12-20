@@ -1,13 +1,13 @@
 import React from 'react';
 import {graphql} from 'gatsby';
 
-import Layout from '../components/layout';
-import PublicationDetail from '../components/publication-detail';
+import Layout from '../components/Layout';
+import ProductionDetail from '../components/ProductionDetail';
 
 export const query = graphql`
   query($identifier: String!) {
-    publicationsJson(identifier: {eq: $identifier}) {
-      ...PublicationDetail
+    productionsJson(identifier: {eq: $identifier}) {
+      ...ProductionDetail
     }
   }
 `;
@@ -17,7 +17,7 @@ export default ({data, pageContext}) => {
 
   return (
     <Layout lang={pageContext.lang}>
-      <PublicationDetail data={data.publicationsJson} />
+      <ProductionDetail data={data.productionsJson} />
     </Layout>
   );
 };

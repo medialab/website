@@ -148,6 +148,7 @@
     }
   },
   "required": [
-    "title"
+    "title", 
+    "slugs"
   ]
 }

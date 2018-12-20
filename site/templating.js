@@ -3,6 +3,8 @@ const Entities = require('html-entities').AllHtmlEntities;
 
 const entities = new Entities();
 
+const TITLE = /^H[123456]$/;
+
 exports.template = function template(assets, html) {
   const $ = cheerio.load(html, {
     decodeEntities: false
@@ -28,6 +30,11 @@ exports.template = function template(assets, html) {
 
     if (tag === 'P') {
       output += `<p>${$this.html()}</p>`;
+    }
+    else if (TITLE.test(tag)) {
+      const level = tag[tag.length - 1];
+
+      output += `<h${level}>${$this.text()}</h${level}>`;
     }
     else if (tag === 'PRE') {
       output += entities.decode($this.text().replace(/^\s+/g, ''));

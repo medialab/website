@@ -201,15 +201,15 @@ const translations = {
         // links
         newNews.people = [];
         o.people.forEach(p => {
-            let pp = cleanPeopleSlug[p] || p;
+            const pp = cleanPeopleSlug[p] || p;
             if (indeces.people[pp])
                 newNews.people.push(indeces.people[pp]);
             else
-                console.log('can\'t find people',pp);
+                console.log('can\'t find people', pp);
         });
         newNews.activities = [];
         o.projets.forEach(p => {
-            let pp = cleanProjetsSlug[p] || p;
+            const pp = cleanProjetsSlug[p] || p;
             if (indeces.activities[pp])
                 newNews.activities.push(indeces.activities[pp]);
             else
@@ -315,7 +315,7 @@ async.waterfall([
         processObjects('blogs', 'news', indeces, links, done);
     },
     //settings & assets
-    (indeces, links, done) => {
+    (indeces) => {
         // adding one productions - production link
         const hypheId = indeces.productions.hyphe;
         const hyphe = fs.readJsonSync(`./wordpress_scraping/data/new/productions/${hypheId}.json`, 'utf8');
@@ -326,7 +326,6 @@ async.waterfall([
         const aime = fs.readJsonSync(`./wordpress_scraping/data/new/activities/${aimeId}.json`, 'utf8');
         aime.activitiess = [indeces.activities['reset-modernity']];
         fs.writeJSONSync(`./wordpress_scraping/data/new/activities${aimeId}.json`, hyphe, {spaces: 2, encoding: 'utf8'});
-        
 
         fs.ensureDirSync('./wordpress_scraping/data/new/assets');
         fs.writeJSONSync('./wordpress_scraping/data/new/settings.json', {settings: {home: {editorialization: []}}}, {spaces: 2, encoding: 'utf8'});

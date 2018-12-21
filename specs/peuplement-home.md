@@ -30,7 +30,8 @@ _Remarque_ : pas certaine qu'il faille mettre un titre à cette zone, il est com
 (Paul: je suis d'accord)
 
 ## quoi ?
-Mettre en avant l'actualité chaude du laboratoire avec un contenu *en hero* et jusqu’à maximum 4 *contenus liés*.
+
+Mettre en avant l'actualité chaude du laboratoire avec un contenu *en hero* et jusqu’à 4 *contenus additionnels* - à choisir-.
 _Remarque_ : pas certaine que les contenus additionnels sont finalement nécessaire, ça complexifie le propos et on va se retrouver avec les mêmes contenus que DANS la page de l'objet.
 Je suggère de les supprimer.
 

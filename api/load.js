@@ -31,7 +31,7 @@ module.exports = function load(inputDir) {
       const item = JSON.parse(fs.readFileSync(path.join(p, f), 'utf-8'));
 
       if (!VALIDATORS[model](item)) {
-        console.error(VALIDATORS[model].errors);
+        console.error(model, item.id, VALIDATORS[model].errors);
         throw new Error('Failed item validation!');
       }
 

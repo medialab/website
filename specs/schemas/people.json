@@ -156,6 +156,7 @@
   },
   "required": [
     "firstName",
-    "lastName"
+    "lastName",
+    "slugs"
   ]
 }

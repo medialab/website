@@ -1,0 +1,158 @@
+/////////////////////
+//////// Agenda style
+/////////////////////
+
+
+
+@include for-size(desktop) {
+
+    #agenda {
+
+        #agenda-contenu{ 
+            margin-top: $baseline*4;
+            margin-bottom: $baseline*4;
+        }
+
+        article{
+
+
+            border-right: $border-light;
+            padding: 0 $margins-desktop;
+            &:first-of-type{ border-left: $border-light; }
+            cursor: pointer;
+
+            .year-main{
+                @include font-size-13(); 
+                color: $text-color-light;
+                margin-bottom: $baseline*1;
+            }
+
+
+            .internal{
+                @include font-size-13(); 
+                position: absolute;
+                top: 0;
+                right: $margins-desktop;
+                span{
+                    display: block;
+                    height: $baseline*1.5;
+                    width: $baseline*1.5;
+                    color: $text-color-light;
+                    border: $border-light; 
+                    border-radius: 50%;
+                    text-align: center;
+                }
+            }
+
+            .time{
+                @include font-size-27();
+                // font-weight: 400;
+                .year, .week{ display: none; }
+                
+            }
+            
+            h1{ 
+                @include font-size-20();  
+                margin-top: $baseline;
+            }
+
+            h2{ 
+                @include font-size-13();  
+                margin-bottom: $baseline*2;
+            }
+
+            .place, .hours{ 
+                @include font-size-13();
+                color: $text-color-light;
+            }
+
+
+        } /* end article */
+    } /* end #agenda */
+
+}/* end query desktop */
+
+@include for-size(desktop-900) {
+
+
+    #agenda{
+
+        #agenda-contenu{ min-height: 300px; }
+
+        article{
+
+
+            .year-main{
+                @include font-size-16(); 
+                color: $text-color-light;
+                
+            }
+
+            
+
+            .time{
+                padding-top: $baseline*1;
+                .year, .week{ display: none; }
+                .day, .month{ @include font-size-40();}
+                .between{ 
+                    @include font-size-27();
+                    top: -5px;
+                }                
+            }
+
+            .time-case3 .start{ display: block; }
+
+        
+        
+            h1{
+                padding-top: $baseline*1;
+                @include font-size-27();
+                font-weight: 400;
+            }
+
+            h2{
+                @include font-size-16();
+                padding-top: $baseline*0.5;
+                padding-bottom: $baseline*1.5;
+            }
+
+            .place, .hours{ 
+                @include font-size-16();
+            }
+
+
+            // .place::before{ content: "✻ "; }
+            // .hours::before{ content: "◷ " }
+
+            
+    
+        }/* end article*/
+
+        .past p{ 
+            @include font-size-16(); 
+            a{ 
+                text-decoration: underline; 
+                &::before{ content: ""}
+            }
+        }
+
+    } /* end #agenda*/
+
+} /* end query 900*/
+
+
+
+
+// all queries
+
+.time::before{ content: none; }
+
+article:hover{
+    color: $redlab;
+    .year-main, .place, .hours{ color: $redlab;}
+    .internal span{ 
+        color: $redlab;
+        border: $border-redlab;
+    }
+
+}

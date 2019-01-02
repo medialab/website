@@ -1,0 +1,101 @@
+/////////////////////
+//////// Now phone
+/////////////////////
+
+$width-image-now-phone: 15vw;
+
+/* no support of grid */
+@include for-size(phone){
+
+    #now article { margin-bottom: $baseline*4; }
+    #now article .image-pre{ display: none; }
+
+    @supports(display: grid) {
+
+        #now article{
+            display: grid;
+            grid-template-columns: $width-image-now-phone $margins-phone  auto;
+            grid-template-rows: $baseline*1.6 auto;
+            // grid-gap: $baseline;
+            align-items: start;
+            min-height: 170px;
+            margin-bottom: $baseline*2;
+
+            .image-pre{
+                display: block;
+                grid-column: 1 ;
+                grid-row: 1/4 ;
+            }
+            .nomenclature{
+                grid-column: 3 ;
+                grid-row: 1 ;
+            }
+            hgroup{
+                grid-column: 3 ;
+                grid-row: 2 ;
+                align-self: start;
+            }
+            .nomenclature{ margin-bottom: 0; } 
+
+
+        }
+
+    }/* end support grid */
+
+
+    #now .contenu{
+        margin: 0 $margins-phone;
+        margin-top: $baseline*4;
+
+        article{
+            .image-pre{
+                font-size: 3vw;
+                width: $width-image-now-phone;
+                height: 100%;
+                overflow: hidden;
+                border-top: $border-light;
+                border-bottom: $border-light;
+            }
+    
+            
+            .nomenclature, .more{ @include font-size-13-phone(); }
+        
+            
+            h1{ 
+                @include font-size-20-phone(); 
+                margin-top: $baseline;
+                margin-bottom: $baseline/2;
+            }
+    
+            h2, .time{ @include font-size-13-phone(); }
+    
+            .description{ display: none; }
+    
+            .more{
+                margin-top: $baseline*1;
+                color: $text-color-light;
+                text-decoration: underline;
+            }
+    
+            .nomenclature{
+
+                height: $baseline*2;
+                border-bottom: $border-light;
+            }
+
+            &:hover{ 
+                color: $redlab; 
+                .more{ color: $redlab-light; }
+                .nomenclature{ border-bottom: $border-redlab-light; }
+                .image-pre{
+                    border-top: $border-redlab-light;
+                    border-bottom: $border-redlab-light;
+                }
+            }
+    
+        }/* end article */
+
+        
+    }/* end #now .contenu*/
+
+}

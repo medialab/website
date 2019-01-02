@@ -1,0 +1,34 @@
+/* desktop */
+$unite: 25px;
+$height-top-bar: $unite*6;
+$margins-desktop: $unite;
+
+
+/*  phone  */
+$unite-phone: 10px;
+$margins-phone: $unite-phone*1.5;
+$topbar-phone: $unite-phone*6;
+
+
+/*  bordures  */
+$border: 0.5px solid ;
+$border-light: 0.5px solid #9e9d9d;
+$border-bold: 3px double;
+$border-redlab: 0.5px solid $redlab;
+$border-redlab-light: 0.5px solid $redlab-light;
+
+
+/*  unicode catégories */
+$actualites: "⁙ ";
+$productions: "☵ ";
+$activites: "⋇ ";
+
+
+/*  autre */
+::selection, ::-moz-selection{
+    background: $redlab;
+    color: $background-site;
+} 
+
+
+

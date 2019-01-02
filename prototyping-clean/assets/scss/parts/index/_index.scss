@@ -1,0 +1,62 @@
+/* all */
+
+.time::before{
+    content: "◷ ";
+}
+
+.nomenclature p{
+    display: inline; 
+    & + p::before{
+        content: " / "
+    }
+}
+
+
+.author span{ 
+    white-space: nowrap;
+    &:after{ content: ", "}
+    &:last-of-type:after{ content: ""}
+}
+
+
+
+
+
+@include for-size(phone) {
+
+    #introduction, #now, #agenda{
+        border-bottom: $border-bold;
+        padding-bottom: $baseline*4;
+        margin-left: $margins-phone;
+        margin-right: $margins-phone;
+    }
+    
+
+    section > h1{
+        @include font-size-27-phone;
+        margin-bottom: $baseline*1;
+        margin-top: $baseline*4;
+        text-align: center;
+    }
+
+}
+
+
+
+@include for-size(desktop) {
+
+    #introduction, #now, #agenda{
+        border-bottom: $border;
+        padding-bottom: $baseline*4;
+    }
+    
+
+    section > h1{
+        @include font-size-27;
+        margin-bottom: $baseline*1;
+        margin-top: $baseline*4;
+        text-align: center;
+    }
+
+}
+

@@ -1,0 +1,41 @@
+/* assets/scss/common/body.scss */
+
+@include for-size(phone) {
+    body{
+        overflow-x: hidden;
+        background-color: $background-site;
+    }
+}
+
+@include for-size(desktop) {
+    body{
+        // max-width: 1800px;
+        margin: 0 $margins-desktop!important;
+        overflow-x: hidden;
+        background-color: $background-site;
+    }
+}
+
+
+
+[data-type="actualite"] .type::before{
+    content: $actualites;
+}
+[data-type="production"] .type::before{
+    content: $productions;
+}
+[data-type="activite"] .type::before{
+    content: $activites;
+}
+
+
+a:hover{ color: $redlab; }
+
+label{
+    .span-nochecked{ display: block; }
+    .span-checked{ display: none; }
+}
+input:checked + label{
+    .span-nochecked{ display: none; }
+    .span-checked{ display: block; }
+}

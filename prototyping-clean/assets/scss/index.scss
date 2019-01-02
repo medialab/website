@@ -1,0 +1,26 @@
+/* page objet */
+/* julie: node-sass --watch index.scss ../css-compiled/index.css */
+
+@import 'common';
+
+
+//parts/home
+@import 'parts/index/index';
+
+@import 'parts/index/slideshow-phone';
+@import 'parts/index/slideshow-desktop';
+@import 'parts/index/slideshow-nav';
+
+@import 'parts/index/introduction';
+
+@import 'parts/index/now-phone';
+@import 'parts/index/now-desktop';
+
+@import 'parts/index/_agenda-phone';
+@import 'parts/index/_agenda-desktop-slider';
+@import 'parts/index/agenda-desktop-structure'; 
+@import 'parts/index/agenda-desktop-style'; 
+
+
+
+

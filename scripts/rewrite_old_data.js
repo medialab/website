@@ -17,7 +17,7 @@ function slugifyActivity(data) {
     return slugify(data.name);
   }
   function slugifyNews(data) {
-    return slugify(data.title ? (data.title.fr || '') : '');
+    return slugify(data.title ? (data.title.fr || data.title.en || '') : '');
   }
   function slugifyPeople(data) {
     return slugify(`${data.firstName} ${data.lastName}`);

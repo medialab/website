@@ -1,6 +1,9 @@
 {
   "data": "./data",
-  "spireAPI": "http://spire.sciencespo.fr/dissemination/json-rpc",
+  "spire": {
+    "api": "http://spire.sciencespo.fr/dissemination/json-rpc",
+    "front": "http://spire.sciencespo.fr/hdl:/"
+  },
   "build": {
     "path": "./build",
     "repository": "git@repo"

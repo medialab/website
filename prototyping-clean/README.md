@@ -3,24 +3,24 @@
 
 ## Global
 
-- [ ] topbar mobile style
+- [ ] topbar mobile style (à rendre plus jolie)
 - [ ] écrans XL
 
 
 ## Index
 
 ### Carrousel/hero
-- [ ] version mobile
+- [x] version mobile
 
 
 ### Introduction
-- [ ] version mobile
+- [x] version mobile
 
 ### Agenda
-- [ ] Style all
-- [ ] version desktop
-- [ ] version mobile
-- [ ] slider marchant au survol + au clic
+- [x] Style all
+- [x] version desktop
+- [x] version mobile
+- [x] slider marchant au survol + au clic
 
 ### Flux
 - [ ] all

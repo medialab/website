@@ -75,9 +75,9 @@ function translateRecord(record) {
   return newO;
 }
 
-module.exports = translators;
+module.exports.translators = translators;
 
-module.exports = function aSPIRE(dataDir = DATA_PATH) {
+module.exports.aSPIRE = function aSPIRE(dataDir = DATA_PATH) {
   // load existing productions indexed by spireId
   const spireProductions = {};
   const productions = fs.readJsonSync(path.join(dataDir, 'productions.json'), 'utf-8').productions.map(p => {
@@ -158,78 +158,55 @@ module.exports = function aSPIRE(dataDir = DATA_PATH) {
   });
 };
 
-module.exports = function aspireAuthors(outDir = '.') {
-  // load existing authors indexed by spireId
-  // const people = {};
-  // fs.readJsonSync(path.join(DATA_PATH, 'people.json'), 'utf-8').people.map(p => {
-  //   people[fingerprint(p.slugs[0])] = p;
-  // });
-  return new Promise((resolve, reject) => {
-    // call SPIRE API
-    let resultOffset = 0;
-    async.doUntil((done) => {
-      // request spire API
-      const body = {jsonrpc: '2.0', method: 'search', id: 1,
-      params: ['corpus', {
-        filter_class: 'Person',
-        result_batch_size: 2000,
-        search_terms: {
-            index: 'affiliation_id',
-            operator: '=',
-            value: '2441/53r60a8s3kup1vc9kf4j86q90'},
-        result_offset: resultOffset
-      }]};
-      console.debug('request to spire', resultOffset);
-      request.post(config.spire.api, {body, json: true}, done);
-    }, (response) => {
-      const r = response.body.result;
-      console.debug(`got ${r.result_batch_size}`);
-      // test if a new page is needed
-      if (r.result_batch_size < resultPerPage) {
-        // we are done
-        return true;
+module.exports.aspireAuthors = function aspireAuthors(callback) {
+  let resultOffset = 0;
+  async.doUntil((done) => {
+    // request spire API
+    const body = {jsonrpc: '2.0', method: 'search', id: 1,
+    params: ['corpus', {
+      filter_class: 'Person',
+      result_batch_size: 2000,
+      search_terms: {
+          index: 'affiliation_id',
+          operator: '=',
+          value: '2441/53r60a8s3kup1vc9kf4j86q90'},
+      result_offset: resultOffset
+    }]};
+    console.debug('request to spire', resultOffset);
+    request.post(config.spire.api, {body, json: true}, done);
+  }, (response) => {
+    const r = response.body.result;
+    console.debug(`got ${r.result_batch_size}`);
+    // test if a new page is needed
+    if (r.result_batch_size < resultPerPage) {
+      // we are done
+      return true;
+    }
+    // need more results
+    resultOffset += resultPerPage;
+    return false;
+  }, (err, response) => {
+    const spirePeople = {};
+    if (err) {
+      throw err;
+    }
+    response.body.result.records.map(p => {
+      let spireSlug = slugify(`${p.name_given} ${p.name_family}`);
+      switch (spireSlug) {
+        case 'benjamin-ooghe':
+          spireSlug = 'benjamin-ooghe-tabanou';
+          break;
+        case 'vincent-lepinay':
+          spireSlug = 'vincent-antonin-lepinay';
+          break;
+        case 'davy-braun':
+          spireSlug = 'davy-peter-braun';
+          break;
+        default:
+          break;
       }
-      // need more results
-      resultOffset += resultPerPage;
-      return false;
-    }, (err, response) => {
-      const spirePeople = {};
-      if (err) {
-        //work done
-        reject('error in spire api');
-      }
-      response.body.result.records.map(p => {
-        let spireSlug = slugify(`${p.name_given} ${p.name_family}`);
-        switch (spireSlug) {
-          case 'benjamin-ooghe':
-            spireSlug = 'benjamin-ooghe-tabanou';
-            break;
-          case 'vincent-lepinay':
-            spireSlug = 'vincent-antonin-lepinay';
-            break;
-          case 'davy-braun':
-            spireSlug = 'davy-peter-braun';
-            break;
-          default:
-            break;
-        }
-        spirePeople[spireSlug] = p.rec_id;
-      });
-      resolve(spirePeople);
-      //treat records
-      // async.each(spireData.records, (record, done) => {
-      //   const spireSlug = fingerprint(`${record.name_given} ${record.name_family}`);
-      //   const similars = _.keys(people).map(p => {
-      //     return {eudex: eudex.distance(p, spireSlug), overlap: overlap(p, spireSlug), slug: p};
-      //   }).sort((a,b) => {
-      //     if (b.overlap != a.overlap)
-      //       return b.overlap - a.overlap;
-      //     else
-      //       return a.eudex - b.eudex;
-      //   }).filter(c => c.eudex < 100 || c.overlap > 0.88);
-      //   console.debug(spireSlug, similars);
-      //   done();
-      // });
+      spirePeople[spireSlug] = p.rec_id;
     });
+    callback(spirePeople);
   });
 };

@@ -86,6 +86,12 @@ module.exports.aSPIRE = function aSPIRE(dataDir = DATA_PATH) {
     return p;
   });
   const newProductions = [];
+  // load existing authors indexed by spireId
+  const spireAuthors = {};
+  fs.readJsonSync(path.join(dataDir, 'people.json'), 'utf-8').people.map(p => {
+    if (p.spire && p.spire.id)
+      spireAuthors[p.spire.id] = p.id;
+  });
   // call SPIRE API
   let resultOffset = 0;
   async.doUntil((done) => {
@@ -142,9 +148,11 @@ module.exports.aSPIRE = function aSPIRE(dataDir = DATA_PATH) {
         };
         // slugs
         newProduction.slugs = [slugify(newProduction.title ? (newProduction.title.fr || newProduction.title.en || '') : '')];
+        // people
+        const people = record.creators.map(c => spireAuthors[c.agent.rec_id]).filter(c => !!c);
+        newProduction.people = people;
         // lastUpdated
         newProduction.lastUpdated = new Date(record.rec_modified_date).getTime();
-
         newProductions.push(newProduction);
       }
       done();

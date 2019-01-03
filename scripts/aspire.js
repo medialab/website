@@ -1,7 +1,7 @@
-const aspire = require('../api/spire.js');
+const spire = require('../api/spire.js');
 
 const argv = process.argv;
 
-const inputDir = argv.length > 2 ? argv[2] : './dump';
+const inputDir = argv.length > 2 ? argv[2] : './data';
 
-aspire(inputDir);
+spire.aSPIRE(inputDir);

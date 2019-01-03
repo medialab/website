@@ -45,4 +45,4 @@
 ## Page objet
 - [ ] séparer chaque élément dans le sass
 - [ ] version mobile
-- [ ] grille éléments liés
+- [ ] grille éléments liés (s'inspirer de la grille d'index)

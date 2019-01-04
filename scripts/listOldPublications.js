@@ -17,7 +17,6 @@ async.concat(fs.readdirSync('./scripts/wordpress_scraping/data/publications/'), 
     });
 },
 (err, lines) => {
-    console.log(lines);
     stringify(
         lines
       , {

@@ -6,19 +6,10 @@ const config = require('config'),
       async = require('async'),
       request = require('request'),
       _ = require('lodash'),
-      slug = require('slug');
-
-const DATA_PATH = config.get('data');
+      slug = require('slug'),
+      uuid = require('uuid/v4');
 
 const models = require('../specs/models.json');
-const spireTypes = require('../specs/spireProductionsTypes.json');
-
-const DEFAULT_MAX_SLUG_TOKENS = 6;
-function slugify(text) {
-  const s = slug(text, {lower: true});
-  return s.split('-').slice(0, DEFAULT_MAX_SLUG_TOKENS).join('-');
-}
-
 
 const VALIDATORS = {};
 
@@ -26,6 +17,17 @@ models.forEach(model => {
   const ajv = new Ajv();
   VALIDATORS[model] = ajv.compile(require(`../specs/schemas/${model}.json`));
 });
+
+
+const DATA_PATH = config.get('data');
+
+const spireTypes = require('../specs/spireProductionsTypes.json');
+
+const DEFAULT_MAX_SLUG_TOKENS = 6;
+function slugify(text) {
+  const s = slug(text, {lower: true});
+  return s.split('-').slice(0, DEFAULT_MAX_SLUG_TOKENS).join('-');
+}
 
 const resultPerPage = 2000;
 
@@ -56,12 +58,6 @@ const translators = {
       return record.resources[0].url;
     else
       return config.spire.front + record.rec_id;
-  },
-  'description.fr': record => {
-    return record.keywords && record.keywords.fr ? record.keywords.fr.join(', ') : false;
-  },
-  'description.en': record => {
-    return record.keywords && record.keywords.en ? record.keywords.en.join(', ') : false;
   }
 };
 
@@ -139,6 +135,7 @@ module.exports.aSPIRE = function aSPIRE(dataDir = DATA_PATH) {
       if (!p && spireTypes[record.spire_document_type]) {
         // create the object by translating it to our data model
         const newProduction = translateRecord(record);
+        newProduction.id = uuid();
         // draft by default
         newProduction.draft = true;
         // meta
@@ -148,6 +145,8 @@ module.exports.aSPIRE = function aSPIRE(dataDir = DATA_PATH) {
         };
         // slugs
         newProduction.slugs = [slugify(newProduction.title ? (newProduction.title.fr || newProduction.title.en || '') : '')];
+        // reuse ref for description 
+        newProduction.description = {fr: newProduction.ref, en: newProduction.ref};
         // people
         const people = record.creators.map(c => spireAuthors[c.agent.rec_id]).filter(c => !!c);
         newProduction.people = people;
@@ -159,9 +158,16 @@ module.exports.aSPIRE = function aSPIRE(dataDir = DATA_PATH) {
     }, (err2) => {
       if (err2)
         throw err2;
+      const allProductions = productions.concat(newProductions)
       // validate
+      allProductions.forEach(p => {
+        if (!VALIDATORS['productions'](p)) {
+          console.error('productions', p, VALIDATORS["productions"].errors);
+          throw new Error('Failed item validation!');
+        }
+      });
       // write everything back
-      fs.writeJsonSync(path.join(dataDir, 'newProductions.json'), {productions: productions.concat(newProductions)}, {spaces: 2, encoding: 'utf-8'});
+      fs.writeJsonSync(path.join(dataDir, 'productions.json'), {productions: allProductions}, {spaces: 2, encoding: 'utf-8'});
     });
   });
 };

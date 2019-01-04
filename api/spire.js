@@ -50,7 +50,7 @@ const translators = {
     }
     return content;
   },
-  'authors': record => record.creators.filter(c => c.role === 'aut').map(c => `${c.agent.name_given} ${c.agent.name_family}`).join(', '),
+  'authors': record => record.creators.filter(c => c.role === 'aut' && c.agent.rec_class === 'Person').map(c => `${c.agent.name_given} ${c.agent.name_family}`).join(', '),
   // people:
   'ref': record => record.citations.html.chicago,
   'url': record => {
@@ -73,7 +73,7 @@ function translateRecord(record) {
 
 module.exports.translators = translators;
 
-module.exports.aSPIRE = function aSPIRE(dataDir = DATA_PATH) {
+module.exports.aSPIRE = function aSPIRE(dataDir = DATA_PATH, callback) {
   // load existing productions indexed by spireId
   const spireProductions = {};
   const productions = fs.readJsonSync(path.join(dataDir, 'productions.json'), 'utf-8').productions.map(p => {
@@ -122,6 +122,7 @@ module.exports.aSPIRE = function aSPIRE(dataDir = DATA_PATH) {
       //work done
       console.log('spire requests done');
     }
+    const modifiedProductions = [];
     //treat records
     async.each(spireData.records, (record, done) => {
       const p = spireProductions[record.rec_id];
@@ -129,7 +130,8 @@ module.exports.aSPIRE = function aSPIRE(dataDir = DATA_PATH) {
       // has the content changed ?
       if (p && p.spire.meta.rec_modified_date !== record.rec_modified_date) {
         // yes and yes, let's upadte the meta
-        p.spire.meta = record.copy();
+        p.spire.meta = record;
+        modifiedProductions.push(p.id);
       }
       // if new publication + if type is not translated to null
       if (!p && spireTypes[record.spire_document_type]) {
@@ -168,6 +170,8 @@ module.exports.aSPIRE = function aSPIRE(dataDir = DATA_PATH) {
       });
       // write everything back
       fs.writeJsonSync(path.join(dataDir, 'productions.json'), {productions: allProductions}, {spaces: 2, encoding: 'utf-8'});
+      console.debug(`created ${newProductions.length} prods and updated meta for ${modifiedProductions.length}`);
+      callback(null, {nbNewProductions: newProductions.length, modifiedProductions});
     });
   });
 };

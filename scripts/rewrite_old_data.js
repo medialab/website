@@ -324,7 +324,7 @@ async.waterfall([
         processObjects('blogs', 'news', indeces, links, done);
     },
     //settings & assets
-    (indeces, links, done) => {
+    (indeces) => {
         // adding one productions - production link
         const hypheId = indeces.productions.hyphe;
         const hyphe = fs.readJsonSync(`./scripts/wordpress_scraping/data/new/productions/${hypheId}.json`, 'utf8');

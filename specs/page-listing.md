@@ -42,7 +42,7 @@ _Remarque_ : On imagine aussi un autre usage plus documentaire genre la biblio d
 - **description** (au survol)
 
 ## Filtres
-- A deux niveaux : d'abord sur une Metarubrique sur les types : "publications", "web editions", "tools" et "situations", puis sur le type de la production. Les groupements sont décrits dans [enums.json](./enums.json).
+- A deux niveaux : d'abord sur une Metarubrique sur les types : "publications", "médias", "web editions", "tools" et "situations", puis sur le type de la production (sauf pour "médias" qui n'a pas qu'une seule modalités donc pas de sous-filtres"). Les groupements sont décrits dans [enums.json](./enums.json).
 
 Le filtrage du premier niveau est précompilé par le build et propose donc une page spécifique pour chaque modalité. Le filtrage de deuxième niveau est effectué à la volée par le client par CSS.
 

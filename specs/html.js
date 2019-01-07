@@ -4,6 +4,15 @@ const uuid = require('uuid/v4');
 const fs = require('fs-extra');
 
 // TODO: internal links
+// TODO: strip \n from html generation?
+// TODO: <p></p>, <center>, \n <br> \n+ <p>
+// TODO: trim final &nbsp;
+// TODO: drop underline
+// TODO: drop <wbr> & <wbr />
+// TODO: data-saferedirecturl
+// TODO: drop spans
+// TODO: <span style="font-weight: 400;">
+// TODO: take the full image
 
 const ALLOWED_TAGS = new Set([
   'h1',
@@ -16,7 +25,9 @@ const INLINE_TAGS = new Set([
   'em',
   'i',
   'strong',
-  'b'
+  'b',
+  'u',
+  'span'
 ]);
 
 function isInternal(url) {
@@ -36,19 +47,67 @@ function buildUrl(current) {
 }
 
 function convertWordpressHtml(html) {
-  const $ = cheerio.load(html, {decodeEntities: false});
+  console.log('\nORIGINAL');
+  console.log('=====');
+  console.log(html);
+  console.log('=====');
+
+  let $ = cheerio.load(html.trim(), {decodeEntities: false});
+
+  // Dropping comments
+  $('body')
+    .contents()
+    .filter(function() {
+      return this.type === 'comment';
+    })
+    .remove();
 
   // Root-level text nodes
-  $('body').contents().filter(function() {
-    if (this.type === 'text')
-      $(this).replaceWith(`\n<p>${this.data.trim()}</p>\n`);
+  let open = false;
+  let newBody = '';
+
+  $('body').contents().each(function() {
+    if (this.type === 'text') {
+
+      if (!this.data.trim())
+        return;
+
+      if (!open)
+        newBody += '<p>';
+
+      open = true;
+      newBody += this.data;
+    }
+    else if (INLINE_TAGS.has(this.name)) {
+      if (!open)
+        newBody += '<p>';
+
+      open = true;
+      newBody += $.html($(this));
+    }
+    else {
+      if (open)
+        newBody += '</p>';
+
+      open = false;
+
+      newBody += $.html($(this));
+    }
   });
+
+  if (open)
+    newBody += '</p>';
+
+  newBody = newBody.replace(/<p><\/p>/g, '');
+
+  $ = cheerio.load(newBody, {decodeEntities: false});
 
   // Dropping attributes
   $('p').each(function() {
     $(this)
       .removeAttr('align')
-      .removeAttr('lang');
+      .removeAttr('lang')
+      .removeAttr('style');
   });
 
   $('a').each(function() {
@@ -84,6 +143,7 @@ function convertWordpressHtml(html) {
 
   html = $('body').html().trim();
 
+  console.log('\nPROCESSED');
   console.log('=====');
   console.log(html);
   console.log('=====');

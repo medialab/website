@@ -59,7 +59,8 @@
         "article",
         "book",
         "communication",
-        "workingPaper",
+        "thesis",
+        "grey",
         "datascape",
         "website",
         "software",
@@ -67,7 +68,8 @@
         "exhibition",
         "simulation",
         "workshop",
-        "conference"
+        "conference",
+        "media"
       ],
       "enumId": "productionTypes"
     },

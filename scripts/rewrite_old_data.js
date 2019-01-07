@@ -1,10 +1,11 @@
 
-const async = require('async');
-const fs = require('fs-extra');
-const path = require('path');
-const uuid = require('uuid/v4');
-const domains = require('./wordpress_scraping/domains.json');
-const slug = require('slug');
+const async = require('async'),
+    fs = require('fs-extra'),
+    path = require('path'),
+    uuid = require('uuid/v4'),
+    domains = require('./wordpress_scraping/domains.json'),
+    slug = require('slug'),
+    spire = require('../api/spire');
 
 const DEFAULT_MAX_SLUG_TOKENS = 6;
 function slugify(str) {
@@ -17,7 +18,7 @@ function slugifyActivity(data) {
     return slugify(data.name);
   }
   function slugifyNews(data) {
-    return slugify(data.title ? (data.title.fr || '') : '');
+    return slugify(data.title ? (data.title.fr || data.title.en || '') : '');
   }
   function slugifyPeople(data) {
     return slugify(`${data.firstName} ${data.lastName}`);
@@ -108,7 +109,7 @@ const translations = {
 
         return {newO: newProject, reverseLinks: {}};
     },
-    people: people => {
+    people: (people, indeces) => {
         const name = people.title_fr.length > 0 ? people.title_fr : people.title_en;
         const newPeople = {
             id: uuid(),
@@ -131,10 +132,12 @@ const translations = {
             membership: associated(people.excerpt_fr) ? 'associate' : 'member',
             // mainActivities / Productions N/A
             active: active(people),
-            draft: true,
-            // spire N/A
+            draft: true
             // ldap N/A
         };
+        //spire
+        if (indeces.spireAuthors[newPeople.oldSlug])
+            newPeople.spire = {id: indeces.spireAuthors[newPeople.oldSlug]};
 
         newPeople.slugs = [slugifyPeople(newPeople)];
 
@@ -255,9 +258,9 @@ const translations = {
 };
 
 
-function processObjects(oldModel, newModel, indices, olinks, done) {
-        const inPath = `./wordpress_scraping/data/${oldModel}/`;
-        const outPath = `./wordpress_scraping/data/new/${newModel}`;
+function processObjects(oldModel, newModel, indeces, olinks, done) {
+        const inPath = `./scripts/wordpress_scraping/data/${oldModel}/`;
+        const outPath = `./scripts/wordpress_scraping/data/new/${newModel}`;
         fs.removeSync(outPath);
         fs.ensureDirSync(outPath);
         const index = {};
@@ -270,7 +273,7 @@ function processObjects(oldModel, newModel, indices, olinks, done) {
                 o.oldSlug = f.split('.')[0];
             }
 
-            const {newO, reverseLinks} = translations[newModel](o, indices, olinks);
+            const {newO, reverseLinks} = translations[newModel](o, indeces, olinks);
             index[newO.oldSlug] = newO.id;
             for (const sourceModel in reverseLinks) {
                 if (!newLinks[`${sourceModel}->${newModel}`])
@@ -291,8 +294,8 @@ function processObjects(oldModel, newModel, indices, olinks, done) {
         }, (err) => {
             console.log(`done with ${newModel}`);
             if (err) throw err;
-            indices[newModel] = index;
-            done(null, indices, newLinks);
+            indeces[newModel] = index;
+            done(null, indeces, newLinks);
         });
 }
 
@@ -300,7 +303,13 @@ function processObjects(oldModel, newModel, indices, olinks, done) {
 async.waterfall([
     // first people
     (done) => {
-        processObjects('people', 'people', {}, {}, done);
+          // add spire id
+          spire.aspireAuthors(spireAuthors => {
+              done(null, {spireAuthors});
+          });
+    },
+    (indeces, done) => {
+        processObjects('people', 'people', indeces, {}, done);
     },
     //activity
     (indeces, links, done) => {
@@ -318,17 +327,18 @@ async.waterfall([
     (indeces) => {
         // adding one productions - production link
         const hypheId = indeces.productions.hyphe;
-        const hyphe = fs.readJsonSync(`./wordpress_scraping/data/new/productions/${hypheId}.json`, 'utf8');
+        const hyphe = fs.readJsonSync(`./scripts/wordpress_scraping/data/new/productions/${hypheId}.json`, 'utf8');
         hyphe.productions = [indeces.productions['hyphe-browser']];
-        fs.writeJSONSync(`./wordpress_scraping/data/new/productions/${hypheId}.json`, hyphe, {spaces: 2, encoding: 'utf8'});
+        fs.writeJSONSync(`./scripts/wordpress_scraping/data/new/productions/${hypheId}.json`, hyphe, {spaces: 2, encoding: 'utf8'});
         // adding one activity - activity link
         const aimeId = indeces.activities.aime;
-        const aime = fs.readJsonSync(`./wordpress_scraping/data/new/activities/${aimeId}.json`, 'utf8');
+        const aime = fs.readJsonSync(`./scripts/wordpress_scraping/data/new/activities/${aimeId}.json`, 'utf8');
         aime.activitiess = [indeces.activities['reset-modernity']];
-        fs.writeJSONSync(`./wordpress_scraping/data/new/activities${aimeId}.json`, hyphe, {spaces: 2, encoding: 'utf8'});
+        fs.writeJSONSync(`./scripts/wordpress_scraping/data/new/activities${aimeId}.json`, hyphe, {spaces: 2, encoding: 'utf8'});
 
-        fs.ensureDirSync('./wordpress_scraping/data/new/assets');
-        fs.writeJSONSync('./wordpress_scraping/data/new/settings.json', {settings: {home: {editorialization: []}}}, {spaces: 2, encoding: 'utf8'});
+        fs.ensureDirSync('./scripts/wordpress_scraping/data/new/assets');
+        fs.writeJSONSync('./scripts/wordpress_scraping/data/new/settings.json', {settings: {home: {editorialization: []}}}, {spaces: 2, encoding: 'utf8'});
+        done();
     }
 
 ]);

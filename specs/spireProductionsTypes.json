@@ -1,5 +1,6 @@
 {
-    "annotation": "article",
+    "annotation": "article", 
+  -> est-ce "note to legal judgment"?, auxquel cas, on s'en moque + ca n'irait pas dans article
     "article" : "article",
     "audiovisual" : "communication",
     "book" : "book",
@@ -9,9 +10,12 @@
     "conferencePaper" : "communication",
     "conferencePoster" : "communication",
     "conferenceProceedings" : "communication",
-    "contributionToPeriodical" : "media",
+article in a conférence proceedings -> "article"
+    "contributionToPeriodical" : "media", 
+(c'est quoi? on ne retrouve pas ce que c'esyt dans Sipre)
     "doctoralThesis": "thesis", 
     "event": "conference",
+attention, ce champ n'existe pas
     "interview": "media",
     "map": "website",
     "masterThesis": "thesis",

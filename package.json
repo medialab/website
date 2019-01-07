@@ -51,12 +51,14 @@
   "devDependencies": {
     "@yomguithereal/eslint-config": "^4.0.0",
     "babel-eslint": "^10.0.1",
+    "cli-highlight": "^2.0.0",
     "concurrently": "^4.1.0",
     "csv-stringify": "^5.1.2",
     "eslint": "^5.9.0",
     "eslint-plugin-react": "^7.11.1",
     "faker": "^4.1.0",
-    "nodemon": "^1.18.7"
+    "nodemon": "^1.18.7",
+    "pretty": "^2.0.0"
   },
   "nodemonConfig": {
     "ignore": [

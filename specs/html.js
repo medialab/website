@@ -1,9 +1,11 @@
 const cheerio = require('cheerio');
 const path = require('path');
 const uuid = require('uuid/v4');
+const pretty = require('pretty');
 const fs = require('fs-extra');
 
 // TODO: internal links
+// TODO: enable line breaks in editor
 // TODO: strip \n from html generation?
 // TODO: <p></p>, <center>, \n <br> \n+ <p>
 // TODO: trim final &nbsp;
@@ -13,6 +15,8 @@ const fs = require('fs-extra');
 // TODO: drop spans
 // TODO: <span style="font-weight: 400;">
 // TODO: take the full image
+// TODO: finish up the specs
+// TODO: save some false p lists
 
 const ALLOWED_TAGS = new Set([
   'h1',
@@ -49,7 +53,7 @@ function buildUrl(current) {
 function convertWordpressHtml(html) {
   console.log('\nORIGINAL');
   console.log('=====');
-  console.log(html);
+  console.log(pretty(html));
   console.log('=====');
 
   let $ = cheerio.load(html.trim(), {decodeEntities: false});
@@ -66,6 +70,10 @@ function convertWordpressHtml(html) {
   let open = false;
   let newBody = '';
 
+  $('body > span').each(function() {
+    $(this).replaceWith(`<p>${$(this).html()}</p>`);
+  });
+
   $('body').contents().each(function() {
     if (this.type === 'text') {
 
@@ -76,7 +84,7 @@ function convertWordpressHtml(html) {
         newBody += '<p>';
 
       open = true;
-      newBody += this.data;
+      newBody += this.data.replace(/([^\n\s<])\n(?=[^\n\s>])/g, '$1<br>');
     }
     else if (INLINE_TAGS.has(this.name)) {
       if (!open)
@@ -98,7 +106,10 @@ function convertWordpressHtml(html) {
   if (open)
     newBody += '</p>';
 
-  newBody = newBody.replace(/<p><\/p>/g, '');
+  newBody = newBody
+    .replace(/\n{2,}/g, '</p><p>')
+    .replace(/<([ip])>\s*<\/\1>/g, '')
+    .replace(/\n/g, '');
 
   $ = cheerio.load(newBody, {decodeEntities: false});
 
@@ -141,11 +152,25 @@ function convertWordpressHtml(html) {
     `);
   });
 
+  // Fixing old-school tags
+  $('i').each(function() {
+    $(this).replaceWith(`<em>${$(this).html()}</em>`);
+  });
+
+  $('b').each(function() {
+    $(this).replaceWith(`<strong>${$(this).html()}</strong>`);
+  });
+
+  // Dropping some tags
+  $('span').each(function() {
+    $(this).replaceWith($(this).html());
+  });
+
   html = $('body').html().trim();
 
   console.log('\nPROCESSED');
   console.log('=====');
-  console.log(html);
+  console.log(pretty(html));
   console.log('=====');
 
   return html;
@@ -185,15 +210,15 @@ if (require.main) {
       convertWordpressHtml(n.content.fr);
   });
 
-  people.people.forEach(person => {
-    if (!person.bio)
-      return;
+  // people.people.forEach(person => {
+  //   if (!person.bio)
+  //     return;
 
-    if (person.bio.en)
-      convertWordpressHtml(person.bio.en);
-    if (person.bio.fr)
-      convertWordpressHtml(person.bio.fr);
-  });
+  //   if (person.bio.en)
+  //     convertWordpressHtml(person.bio.en);
+  //   if (person.bio.fr)
+  //     convertWordpressHtml(person.bio.fr);
+  // });
 
   productions.productions.forEach(production => {
     if (!production.content)

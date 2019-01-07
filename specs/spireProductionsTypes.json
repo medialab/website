@@ -10,10 +10,12 @@
     "conferencePaper" : "communication",
     "conferencePoster" : "communication",
     "conferenceProceedings" : "communication",
- -> article?
-    "contributionToPeriodical" : "media",
+article in a conférence proceedings -> "article"
+    "contributionToPeriodical" : "media", 
+(c'est quoi? on ne retrouve pas ce que c'esyt dans Sipre)
     "doctoralThesis": "thesis", 
     "event": "conference",
+attention, ce champ n'existe pas
     "interview": "media",
     "map": "website",
     "masterThesis": "thesis",

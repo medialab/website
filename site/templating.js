@@ -6,6 +6,8 @@ const entities = new Entities();
 
 const TITLE = /^H[123456]$/;
 
+// TODO: iframe allowfullscreen & frameborder
+
 function processHtml(html) {
   const $ = cheerio.load(html, {
     decodeEntities: false
@@ -38,6 +40,7 @@ function processHtml(html) {
     else if (TITLE.test(tag)) {
       const level = tag[tag.length - 1];
 
+      // TODO: .html rather to handle links
       output += `<h${level}>${$this.text()}</h${level}>`;
     }
 
@@ -66,6 +69,7 @@ function processHtml(html) {
               height = $img.data('height');
 
         // TODO: What about squares?
+        // TODO: keep with and height to help with browser rendering
         const className = width > height ? 'landscape' : 'portrait';
 
         assets.add(src);

@@ -18,7 +18,12 @@ function FalseIcon({children}) {
       width="24"
       height="24"
       viewBox="0 0 24 24">
-      <text fontSize={14} stroke="black" fill="black" x={0} y={20}>
+      <text
+        fontSize={14}
+        stroke="black"
+        fill="black"
+        x={0}
+        y={20}>
         {children}
       </text>
     </svg>

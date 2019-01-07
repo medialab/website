@@ -147,7 +147,7 @@ module.exports.aSPIRE = function aSPIRE(dataDir = DATA_PATH, callback) {
         };
         // slugs
         newProduction.slugs = [slugify(newProduction.title ? (newProduction.title.fr || newProduction.title.en || '') : '')];
-        // reuse ref for description 
+        // reuse ref for description
         newProduction.description = {fr: newProduction.ref, en: newProduction.ref};
         // people
         const people = record.creators.map(c => spireAuthors[c.agent.rec_id]).filter(c => !!c);
@@ -160,11 +160,11 @@ module.exports.aSPIRE = function aSPIRE(dataDir = DATA_PATH, callback) {
     }, (err2) => {
       if (err2)
         throw err2;
-      const allProductions = productions.concat(newProductions)
+      const allProductions = productions.concat(newProductions);
       // validate
       allProductions.forEach(p => {
-        if (!VALIDATORS['productions'](p)) {
-          console.error('productions', p, VALIDATORS["productions"].errors);
+        if (!VALIDATORS.productions(p)) {
+          console.error('productions', p, VALIDATORS.productions.errors);
           throw new Error('Failed item validation!');
         }
       });

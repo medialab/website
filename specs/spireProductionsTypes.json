@@ -1,5 +1,6 @@
 {
-    "annotation": "article",
+    "annotation": "article", 
+  -> est-ce "note to legal judgment"?, auxquel cas, on s'en moque + ca n'irait pas dans article
     "article" : "article",
     "audiovisual" : "communication",
     "book" : "book",
@@ -9,6 +10,7 @@
     "conferencePaper" : "communication",
     "conferencePoster" : "communication",
     "conferenceProceedings" : "communication",
+ -> article?
     "contributionToPeriodical" : "media",
     "doctoralThesis": "thesis", 
     "event": "conference",

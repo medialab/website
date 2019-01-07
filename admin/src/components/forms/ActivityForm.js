@@ -1,331 +1,325 @@
-import React, {Component} from 'react';
-import {push as pushAction} from 'connected-react-router';
-import {connect} from 'react-redux';
-import set from 'lodash/fp/set';
-import uuid from 'uuid/v4';
+import React from 'react';
 import {slugify} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
 
-import FormLayout from './FormLayout';
+import Form from './Form';
 import Editor from '../Editor';
-import BooleanSelector from '../selectors/BooleanSelector';
 import EnumSelector from '../selectors/EnumSelector';
+import DateSelector from '../selectors/DateSelector';
+import BooleanSelector from '../selectors/BooleanSelector';
 import RelationSelector from '../selectors/RelationSelector';
-import {
-  createHandler,
-  createSlugRelatedHandler,
-  createRawHandler,
-  createAddRelationHandler,
-  createDropRelationHandler
-} from './utils';
-import client from '../../client';
 
-function slugForModel(data) {
-  return slugify(data.id, data.name);
+function slugifyActivity(data) {
+  return slugify(data.name);
 }
 
-class ActivityForm extends Component {
-  constructor(props, context) {
-    super(props, context);
+function validate(data) {
+  if (!data.name)
+    return 'Need at least a name';
+}
 
-    this.frenchEditorContent = null;
-    this.englishEditorContent = null;
-
-    if (props.id) {
-      this.state = {
-        new: false,
-        loading: true,
-        data: null
-      };
-    }
-
-    else {
-      this.state = {
-        new: true,
-        loading: false,
-        data: initializers.activity(uuid)
-      };
-    }
-
-    // Handlers
-    this.handleName = createSlugRelatedHandler(this, ['data', 'name'], slugForModel);
-    this.handleEnglishBaseline = createHandler(this, ['data', 'baseline', 'en']);
-    this.handleFrenchBaseline = createHandler(this, ['data', 'baseline', 'fr']);
-    this.handleEnglishDescription = createHandler(this, ['data', 'description', 'en']);
-    this.handleFrenchDescription = createHandler(this, ['data', 'description', 'fr']);
-    this.handleType = createRawHandler(this, ['data', 'type']);
-    this.handleAddPeople = createAddRelationHandler(this, 'people');
-    this.handleDropPeople = createDropRelationHandler(this, 'people');
-
-    this.handleFrenchContent = createRawHandler(this, ['data', 'content', 'fr']);
-    this.handleEnglishContent = createRawHandler(this, ['data', 'content', 'en']);
+const HANDLERS = {
+  name: {
+    type: 'slug',
+    field: 'name',
+    slugify: slugifyActivity
+  },
+  englishBaseline: {
+    field: ['baseline', 'en']
+  },
+  frenchBaseline: {
+    field: ['baseline', 'fr']
+  },
+  englishDescription: {
+    field: ['description', 'en']
+  },
+  frenchDescription: {
+    field: ['description', 'fr']
+  },
+  type: {
+    type: 'raw',
+    field: 'type'
+  },
+  people: {
+    type: 'relation',
+    field: 'people'
+  },
+  frenchContent: {
+    type: 'raw',
+    field: ['content', 'fr']
+  },
+  englishContent: {
+    type: 'raw',
+    field: ['content', 'en']
+  },
+  active: {
+    type: 'boolean',
+    field: ['active']
+  },
+  published: {
+    type: 'negative',
+    field: ['draft']
+  },
+  important: {
+    type: 'boolean',
+    field: ['important']
+  },
+  startDate: {
+    type: 'raw',
+    field: 'startDate'
+  },
+  endDate: {
+    type: 'raw',
+    field: 'endDate'
   }
+};
 
-  componentDidMount() {
+function renderActivityForm(props) {
+  const {
+    data,
+    handlers,
+    slug,
+    hasCollidingSlug,
+    englishEditorContent,
+    frenchEditorContent
+  } = props;
 
-    if (!this.state.new)
-      client.get({params: {model: 'activities', id: this.props.id}}, (err, data) => {
-        if (data.content && data.content.en)
-          this.englishEditorContent = data.content.en;
+  return (
+    <div className="container">
 
-        if (data.content && data.content.fr)
-          this.frenchEditorContent = data.content.fr;
-
-        this.setState({loading: false, data});
-      });
-  }
-
-  handlePublished = value => {
-    this.setState(set(['data', 'draft'], !value, this.state));
-  };
-
-  handleActive = value => {
-    this.setState(set(['data', 'active'], value, this.state));
-  };
-
-  handleSubmit = () => {
-    const {push} = this.props;
-
-    // TODO: validation here
-
-    if (this.state.new) {
-
-      // Creating the new item
-      const payload = {
-        params: {model: 'activities'},
-        data: this.state.data
-      };
-
-      client.post(payload, () => {
-        push(`/activities/${this.state.data.id}`);
-        this.setState({new: false});
-      });
-    }
-    else {
-
-      // Upating the item
-      const payload = {
-        params: {model: 'activities', id: this.props.id},
-        data: this.state.data
-      };
-
-      client.put(payload, () => {
-        // push('/activities');
-      });
-    }
-  };
-
-  render() {
-
-    const {
-      loading,
-      data
-    } = this.state;
-
-    if (loading)
-      return <div>Loading...</div>;
-
-    const slugValue = this.state.new ?
-      slugForModel(data) :
-      data.slugs[data.slugs.length - 1];
-
-    return (
-      <FormLayout
-        data={data}
-        new={this.state.new}
-        model="activities"
-        label="activity"
-        onSubmit={this.handleSubmit}>
-        <div className="container">
-
-          <div className="form-group">
-            <div className="columns">
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">Name</label>
-                  <div className="control">
-                    <input
-                      type="text"
-                      className="input"
-                      autoFocus
-                      value={data.name}
-                      onChange={this.handleName}
-                      placeholder="Name" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="columns">
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">Slug</label>
-                  <div className="control">
-                    <input
-                      type="text"
-                      className="input"
-                      value={slugValue}
-                      disabled
-                      placeholder="Slug" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="columns">
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">English Baseline</label>
-                  <div className="control">
-                    <textarea
-                      className="textarea"
-                      value={(data.baseline && data.baseline.en) || ''}
-                      onChange={this.handleEnglishBaseline}
-                      placeholder="English Baseline"
-                      rows={2} />
-                  </div>
-                </div>
-              </div>
-
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">French Baseline</label>
-                  <div className="control">
-                    <textarea
-                      className="textarea"
-                      value={(data.baseline && data.baseline.fr) || ''}
-                      onChange={this.handleFrenchBaseline}
-                      placeholder="French Baseline"
-                      rows={2} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <div className="form-group">
-            <h4 className="title is-4">
-              Activity presentation
-            </h4>
-
-            <div className="columns">
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">English Description</label>
-                  <div className="control">
-                    <textarea
-                      className="textarea"
-                      value={(data.description && data.description.en) || ''}
-                      onChange={this.handleEnglishDescription}
-                      placeholder="English Description"
-                      rows={4} />
-                  </div>
-                </div>
-              </div>
-
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">French Description</label>
-                  <div className="control">
-                    <textarea
-                      className="textarea"
-                      value={(data.description && data.description.fr) || ''}
-                      onChange={this.handleFrenchDescription}
-                      placeholder="French Description"
-                      rows={4} />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="columns">
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">English Content</label>
-                  <Editor
-                    content={this.englishEditorContent}
-                    onSave={this.handleEnglishContent} />
-                </div>
-              </div>
-
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">French Content</label>
-                  <Editor
-                    content={this.frenchEditorContent}
-                    onSave={this.handleFrenchContent} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="form-group">
-            <h4 className="title is-4">
-              Activity classification
-            </h4>
-            <div className="columns">
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">Type of activity</label>
-                  <div className="control">
-                    <EnumSelector
-                      enumType="activityTypes"
-                      value={data.type}
-                      onChange={this.handleType} />
-                  </div>
-                </div>
-              </div>
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">Is the activity still ongoing ?</label>
-                  <div className="control">
-                    <BooleanSelector
-                      value={data.active}
-                      labels={['activity is ongoing', 'activity is past/paused']}
-                      onChange={this.handleActive} />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="columns">
-              <div className="column is-12">
-                <div className="field">
-                  <label className="label">Related People</label>
-                  <div className="control">
-                    <RelationSelector
-                      model="people"
-                      selected={data.people}
-                      onAdd={this.handleAddPeople}
-                      onDrop={this.handleDropPeople} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="form-group is-important">
+      <div className="form-group">
+        <div className="columns">
+          <div className="column is-6">
             <div className="field">
-              <label className="label title is-4">{data.name || 'Activity'} page's publication status</label>
+              <label className="label">Name</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  autoFocus
+                  value={data.name}
+                  onChange={handlers.name}
+                  placeholder="Name" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Slug</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className={hasCollidingSlug ? 'input is-danger' : 'input'}
+                  value={slug}
+                  disabled
+                  placeholder="..." />
+              </div>
+              {hasCollidingSlug && <p className="help is-danger">This slug already exists!</p>}
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Baseline</label>
+              <div className="control">
+                <textarea
+                  className="textarea"
+                  value={(data.baseline && data.baseline.en) || ''}
+                  onChange={handlers.englishBaseline}
+                  placeholder="English Baseline"
+                  rows={2} />
+              </div>
+            </div>
+          </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">French Baseline</label>
+              <div className="control">
+                <textarea
+                  className="textarea"
+                  value={(data.baseline && data.baseline.fr) || ''}
+                  onChange={handlers.frenchBaseline}
+                  placeholder="French Baseline"
+                  rows={2} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <label className="label">Start Date</label>
+            <div className="control">
+              <DateSelector
+                precision="month"
+                value={data.startDate}
+                onChange={handlers.startDate} />
+            </div>
+          </div>
+
+          <div className="column is-6">
+            <label className="label">End Date</label>
+            <div className="control">
+              <DateSelector
+                precision="month"
+                value={data.endDate}
+                onChange={handlers.endDate} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div className="form-group">
+        <h4 className="title is-4">
+          Activity presentation
+        </h4>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Description</label>
+              <div className="control">
+                <textarea
+                  className="textarea"
+                  value={(data.description && data.description.en) || ''}
+                  onChange={handlers.englishDescription}
+                  placeholder="English Description"
+                  rows={4} />
+              </div>
+            </div>
+          </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">French Description</label>
+              <div className="control">
+                <textarea
+                  className="textarea"
+                  value={(data.description && data.description.fr) || ''}
+                  onChange={handlers.frenchDescription}
+                  placeholder="French Description"
+                  rows={4} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Content</label>
+              <Editor
+                content={englishEditorContent}
+                onSave={handlers.englishContent} />
+            </div>
+          </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">French Content</label>
+              <Editor
+                content={frenchEditorContent}
+                onSave={handlers.frenchContent} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="form-group">
+        <h4 className="title is-4">
+          Activity classification
+        </h4>
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Type of activity</label>
+              <div className="control">
+                <EnumSelector
+                  enumType="activityTypes"
+                  value={data.type}
+                  onChange={handlers.type} />
+              </div>
+            </div>
+          </div>
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Is the activity still ongoing ?</label>
               <div className="control">
                 <BooleanSelector
-                  value={!data.draft}
-                  labels={['published', 'draft']}
-                  onChange={this.handlePublished} />
+                  value={data.active}
+                  labels={['activity is ongoing', 'activity is past/paused']}
+                  onChange={handlers.active} />
               </div>
             </div>
           </div>
-
         </div>
-      </FormLayout>
-    );
-  }
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Importance</label>
+              <div className="control">
+                <BooleanSelector
+                  value={data.important}
+                  labels={['activity is important', 'activity is secondary']}
+                  onChange={handlers.important} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-12">
+            <div className="field">
+              <label className="label">Related People</label>
+              <div className="control">
+                <RelationSelector
+                  model="people"
+                  selected={data.people}
+                  onAdd={handlers.people.add}
+                  onDrop={handlers.people.drop} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="form-group is-important">
+        <div className="field">
+          <label className="label title is-4">{data.name || 'Activity'} page's production status</label>
+          <div className="control">
+            <BooleanSelector
+              value={!data.draft}
+              labels={['published', 'draft']}
+              onChange={handlers.published} />
+          </div>
+        </div>
+      </div>
+
+    </div>
+  );
 }
 
-const ConnectedActivityForm = connect(
-  null,
-  {push: pushAction}
-)(ActivityForm);
-
-export default ConnectedActivityForm;
+export default function ActivityForm({id}) {
+  return (
+    <Form
+      id={id}
+      initializer={initializers.activity}
+      handlers={HANDLERS}
+      contentField="content"
+      model="activities"
+      label="activity"
+      slugify={slugifyActivity}
+      validate={validate}>
+      {renderActivityForm}
+    </Form>
+  );
+}

@@ -9,9 +9,10 @@ import labels from '../../../../specs/labels';
 const noOptionsMessages = {
   activities: () => 'No matching activity',
   people: () => 'No matching people',
-  publications: () => 'No matching publication'
+  productions: () => 'No matching production'
 };
 
+// TODO: UX inform user about max if one
 export default class RelationSelector extends Component {
   constructor(props, context) {
     super(props, context);
@@ -25,6 +26,8 @@ export default class RelationSelector extends Component {
   }
 
   componentDidMount() {
+
+    // TODO: use _fields to limit bandwidth
     client.list({params: {model: this.props.model}}, (err, data) => {
 
       const options = data
@@ -50,7 +53,7 @@ export default class RelationSelector extends Component {
   render() {
     const {options, loading} = this.state;
 
-    const {self, model, onDrop, selected = []} = this.props;
+    const {self, model, onDrop, max = Infinity, selected = []} = this.props;
 
     const selectedSet = new Set(selected);
 
@@ -63,6 +66,7 @@ export default class RelationSelector extends Component {
       <div className="columns">
         <div className={'column is-4'}>
           <Select
+            isDisabled={selected.length >= max}
             value={null}
             onChange={this.handleChange}
             options={filteredOptions.filter(o => !selectedSet.has(o.value))}

@@ -29,12 +29,18 @@ module.exports = {
     'gatsby-plugin-sitemap'
   ],
   mapping: {
+    'ActivitiesJson.assets': 'File.base',
     'ActivitiesJson.people': 'PeopleJson',
-    'PublicationsJson.activities': 'ActivitiesJson',
-    'PublicationsJson.people': 'PeopleJson',
-    'PublicationsJson.publications': 'PublicationsJson',
+    'PeopleJson.assets': 'File.base',
+    'PeopleJson.mainActivities': 'ActivitiesJson',
+    'PeopleJson.mainProductions': 'ProductionsJson',
+    'ProductionsJson.assets': 'File.base',
+    'ProductionsJson.activities': 'ActivitiesJson',
+    'ProductionsJson.people': 'PeopleJson',
+    'ProductionsJson.productions': 'ProductionsJson',
+    'NewsJson.assets': 'File.base',
     'NewsJson.activities': 'ActivitiesJson',
     'NewsJson.people': 'PeopleJson',
-    'NewsJson.publications': 'PublicationsJson'
+    'NewsJson.productions': 'ProductionsJson'
   }
 };

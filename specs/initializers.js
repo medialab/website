@@ -7,7 +7,15 @@ module.exports = {
       name: '',
       type: enums.activityTypes.default,
       draft: true,
-      active: true
+      active: true,
+      important: false
+    };
+  },
+  news: function(uuid) {
+    return {
+      id: uuid(),
+      draft: true,
+      internal: false
     };
   },
   people: function(uuid) {
@@ -16,6 +24,13 @@ module.exports = {
       firstName: '',
       lastName: '',
       membership: enums.membershipTypes.default,
+      draft: true,
+      active: true
+    };
+  },
+  production: function(uuid) {
+    return {
+      id: uuid(),
       draft: true,
       active: true
     };

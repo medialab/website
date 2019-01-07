@@ -1,10 +1,19 @@
+/* eslint no-console: 0 */
 const config = require('config'),
       path = require('path'),
-      fs = require('fs-extra');
+      fs = require('fs-extra'),
+      Ajv = require('ajv');
 
 const DATA_PATH = config.get('data');
 
 const models = require('../specs/models.json');
+
+const VALIDATORS = {};
+
+models.forEach(model => {
+  const ajv = new Ajv();
+  VALIDATORS[model] = ajv.compile(require(`../specs/schemas/${model}.json`));
+});
 
 // TODO: make async
 module.exports = function load(inputDir) {
@@ -19,7 +28,14 @@ module.exports = function load(inputDir) {
     const items = [];
 
     fs.readdirSync(p).forEach(f => {
-      items.push(JSON.parse(fs.readFileSync(path.join(p, f), 'utf-8')));
+      const item = JSON.parse(fs.readFileSync(path.join(p, f), 'utf-8'));
+
+      if (!VALIDATORS[model](item)) {
+        console.error(model, item.id, VALIDATORS[model].errors);
+        throw new Error('Failed item validation!');
+      }
+
+      items.push(item);
     });
 
     fs.writeFileSync(

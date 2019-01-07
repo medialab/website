@@ -14,6 +14,12 @@ li {
   list-style-type: none;
 }
 
+// Editor
+.Draftail-Editor iframe {
+  // TODO...
+  border: 1px solid black;
+}
+
 // Helper classes
 .handle {
   cursor: pointer;

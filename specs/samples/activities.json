@@ -1,0 +1,61 @@
+{
+  "activities": [
+    {
+      "id": "beec8f47-80fa-4188-930b-7c20ce5ddcce",
+      "slugs": ["toflit18"],
+      "lastUpdated": 1543332209050,
+      "name": "TOFLIT18",
+      "baseline": {
+        "en": "A project about trade in the XVIIIth century.",
+        "fr": "Un projet sur le commerce au XVIIIème siècle."
+      },
+      "description": {
+        "en": "A very thorough project about trade in the XVIIIth century.",
+        "fr": "Un projet très complet sur le commerce au XVIIIème siècle."
+      },
+      "type": "research",
+      "content": {
+        "en": "<p>This project gathering many researchers is about a lot of things.</p>",
+        "fr": "<p>Ce project, rassemblant de nombreux chercheurs, parle de beaucoup de choses.</p>"
+      },
+      "people": [
+        "32fcbf11-d66d-4a41-bbe6-132021adc3e2",
+        "9f735836-44ea-40f4-8e95-9b8a7416d9a7"
+      ],
+      "activities": [
+        "4ca78423-c064-466f-9ce9-43b656ca083c"
+      ],
+      "startDate": "2015-12",
+      "endDate": "2017-12",
+      "important": true,
+      "active": false,
+      "draft": false
+    },
+    {
+      "id": "4ca78423-c064-466f-9ce9-43b656ca083c",
+      "slugs": ["ricardo"],
+      "lastUpdated": 1543332209050,
+      "name": "RICARDO",
+      "baseline": {
+        "en": "A project about trade in the XIX-XXth century.",
+        "fr": "Un projet sur le commerce au XIX-XXème siècle."
+      },
+      "description": {
+        "en": "A very thorough project about trade in the XIX-XXth century.",
+        "fr": "Un projet très complet sur le commerce au XIX-XXème siècle."
+      },
+      "type": "research",
+      "content": {
+        "en": "<p>This project gathering many researchers is about a lot of things.</p>",
+        "fr": "<p>Ce project, rassemblant de nombreux chercheurs, parle de beaucoup de choses.</p>"
+      },
+      "people": [
+        "9f735836-44ea-40f4-8e95-9b8a7416d9a7"
+      ],
+      "startDate": "2014-12",
+      "important": true,
+      "active": true,
+      "draft": false
+    }
+  ]
+}

@@ -1,292 +1,340 @@
-import React, {Component} from 'react';
-import {push as pushAction} from 'connected-react-router';
-import {connect} from 'react-redux';
-import set from 'lodash/fp/set';
-import uuid from 'uuid/v4';
+import React from 'react';
 import {slugify} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
 
-import FormLayout from './FormLayout';
+import Form from './Form';
 import Editor from '../Editor';
 import EnumSelector from '../selectors/EnumSelector';
 import BooleanSelector from '../selectors/BooleanSelector';
-import {
-  createHandler,
-  createRawHandler,
-  createSlugRelatedHandler
-} from './utils';
-import client from '../../client';
+import RelationSelector from '../selectors/RelationSelector';
 
-function slugForModel(data) {
-  return slugify(data.id, `${data.firstName} ${data.lastName}`);
+function slugifyPeople(data) {
+  return slugify(`${data.firstName} ${data.lastName}`);
 }
 
-class PeopleForm extends Component {
-  constructor(props, context) {
-    super(props, context);
+function validate(data) {
+  if (!data.firstName || !data.lastName)
+    return 'Need at least a first name & a last name';
+}
 
-    this.frenchEditorContent = null;
-    this.englishEditorContent = null;
-
-    if (props.id) {
-      this.state = {
-        new: false,
-        loading: true,
-        data: null
-      };
-    }
-
-    else {
-      this.state = {
-        new: true,
-        loading: false,
-        data: initializers.people(uuid)
-      };
-    }
-
-    // Handlers
-    this.handleFirstName = createSlugRelatedHandler(this, ['data', 'firstName'], slugForModel);
-    this.handleLastName = createSlugRelatedHandler(this, ['data', 'lastName'], slugForModel);
-    this.handleEnglishTitle = createHandler(this, ['data', 'title', 'en']);
-    this.handleFrenchTitle = createHandler(this, ['data', 'title', 'fr']);
-    this.handleMembership = createRawHandler(this, ['data', 'membership']);
-
-    this.handleFrenchContent = createRawHandler(this, ['data', 'bio', 'fr']);
-    this.handleEnglishContent = createRawHandler(this, ['data', 'bio', 'en']);
+// TODO: contact, sortable relations
+const HANDLERS = {
+  firstName: {
+    type: 'slug',
+    field: 'firstName',
+    slugify: slugifyPeople
+  },
+  lastName: {
+    type: 'slug',
+    field: 'lastName',
+    slugify: slugifyPeople
+  },
+  englishRole: {
+    field: ['role', 'en']
+  },
+  frenchRole: {
+    field: ['role', 'fr']
+  },
+  membership: {
+    type: 'raw',
+    field: 'membership'
+  },
+  domain: {
+    type: 'raw',
+    field: 'domain'
+  },
+  englishStatus: {
+    field: ['status', 'en']
+  },
+  frenchStatus: {
+    field: ['status', 'fr']
+  },
+  englishContent: {
+    type: 'raw',
+    field: ['bio', 'en']
+  },
+  frenchContent: {
+    type: 'raw',
+    field: ['bio', 'fr']
+  },
+  mainActivities: {
+    type: 'relation',
+    field: 'mainActivities'
+  },
+  mainProductions: {
+    type: 'relation',
+    field: 'mainProductions'
+  },
+  active: {
+    type: 'boolean',
+    field: ['active']
+  },
+  published: {
+    type: 'negative',
+    field: ['draft']
   }
+};
 
-  componentDidMount() {
+function renderPeopleForm(props) {
+  const {
+    data,
+    handlers,
+    slug,
+    hasCollidingSlug,
+    englishEditorContent,
+    frenchEditorContent
+  } = props;
 
-    if (!this.state.new)
-      client.get({params: {model: 'people', id: this.props.id}}, (err, data) => {
-        if (data.bio && data.bio.en)
-          this.englishEditorContent = data.bio.en;
+  return (
+    <div className="container">
 
-        if (data.bio && data.bio.fr)
-          this.frenchEditorContent = data.bio.fr;
-
-        this.setState({loading: false, data});
-      });
-  }
-
-  handlePublished = value => {
-    this.setState(set(['data', 'draft'], !value, this.state));
-  };
-
-  handleActive = value => {
-    this.setState(set(['data', 'active'], value, this.state));
-  };
-
-  handleSubmit = () => {
-    const {push} = this.props;
-
-    // TODO: validation here
-
-    if (this.state.new) {
-
-      // Creating the new item
-      const payload = {
-        params: {model: 'people'},
-        data: this.state.data
-      };
-
-      client.post(payload, () => {
-        push(`/people/${this.state.data.id}`);
-        this.setState({new: false});
-      });
-    }
-    else {
-
-      // Upating the item
-      const payload = {
-        params: {model: 'people', id: this.props.id},
-        data: this.state.data
-      };
-
-      client.put(payload, () => {
-        // push('/people');
-      });
-    }
-  };
-
-  render() {
-
-    const {
-      loading,
-      data
-    } = this.state;
-
-    if (loading)
-      return <div>Loading...</div>;
-
-    const slugValue = this.state.new ?
-      slugForModel(data) :
-      data.slugs[data.slugs.length - 1];
-
-    return (
-      <FormLayout
-        data={data}
-        new={this.state.new}
-        model="people"
-        label="person"
-        onSubmit={this.handleSubmit}>
-        <div className="container">
-
-          <div className="form-group">
-            <div className="columns">
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">First Name</label>
-                  <div className="control">
-                    <input
-                      type="text"
-                      className="input"
-                      autoFocus
-                      value={data.firstName}
-                      onChange={this.handleFirstName}
-                      placeholder="First Name" />
-                  </div>
-                </div>
-              </div>
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">Last Name</label>
-                  <div className="control">
-                    <input
-                      type="text"
-                      className="input"
-                      value={data.lastName}
-                      onChange={this.handleLastName}
-                      placeholder="Last Name" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="columns">
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">Slug</label>
-                  <div className="control">
-                    <input
-                      type="text"
-                      className="input"
-                      value={slugValue}
-                      disabled
-                      placeholder="Slug" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="form-group">
-            <h4 className="title is-4">
-              Relation to médialab
-            </h4>
-            <div className="columns">
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">History of the relation</label>
-                  <div className="control">
-                    <BooleanSelector
-                      value={data.active}
-                      labels={['presently working', 'worked in the past']}
-                      onChange={this.handleActive} />
-                  </div>
-                </div>
-              </div>
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">Membership</label>
-                  <div className="control">
-                    <EnumSelector
-                      enumType="membershipTypes"
-                      value={data.membership}
-                      onChange={this.handleMembership} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="form-group">
-            <h4 className="title is-4">
-              Presentation
-            </h4>
-            <div className="columns">
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">English Title</label>
-                  <div className="control">
-                    <input
-                      type="text"
-                      className="input"
-                      value={data.title ? data.title.en : ''}
-                      onChange={this.handleEnglishTitle}
-                      placeholder="English Title" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">French Title</label>
-                  <div className="control">
-                    <input
-                      type="text"
-                      className="input"
-                      value={data.title ? data.title.fr : ''}
-                      onChange={this.handleFrenchTitle}
-                      placeholder="French Title" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="columns">
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">English Biography</label>
-                  <Editor
-                    content={this.englishEditorContent}
-                    onSave={this.handleEnglishContent} />
-                </div>
-              </div>
-
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">French Biography</label>
-                  <Editor
-                    content={this.frenchEditorContent}
-                    onSave={this.handleFrenchContent} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="form-group is-important">
+      <div className="form-group">
+        <div className="columns">
+          <div className="column is-6">
             <div className="field">
-              <label className="label title is-4">{data.firstName ? `${data.firstName} ${data.lastName}` : 'People'} page's publication status</label>
+              <label className="label">First Name</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  autoFocus
+                  value={data.firstName}
+                  onChange={handlers.firstName}
+                  placeholder="First Name" />
+              </div>
+            </div>
+          </div>
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Last Name</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  value={data.lastName}
+                  onChange={handlers.lastName}
+                  placeholder="Last Name" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Slug</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className={hasCollidingSlug ? 'input is-danger' : 'input'}
+                  value={slug}
+                  disabled
+                  placeholder="..." />
+              </div>
+              {hasCollidingSlug && <p className="help is-danger">This slug already exists!</p>}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="form-group">
+        <h4 className="title is-4">
+          Relation to médialab
+        </h4>
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">History of the relation</label>
               <div className="control">
                 <BooleanSelector
-                  value={!data.draft}
-                  labels={['published', 'draft']}
-                  onChange={this.handlePublished} />
+                  value={data.active}
+                  labels={['presently working', 'worked in the past']}
+                  onChange={handlers.active} />
+              </div>
+            </div>
+          </div>
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Membership</label>
+              <div className="control">
+                <EnumSelector
+                  enumType="membershipTypes"
+                  value={data.membership}
+                  onChange={handlers.membership} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="form-group">
+        <h4 className="title is-4">
+          Presentation
+        </h4>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Domain</label>
+              <div className="control">
+                <EnumSelector
+                  enumType="domains"
+                  value={data.domain}
+                  onChange={handlers.domain} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Role</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  value={data.role ? data.role.en : ''}
+                  onChange={handlers.englishRole}
+                  placeholder="English Role" />
               </div>
             </div>
           </div>
 
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">French Role</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  value={data.role ? data.role.fr : ''}
+                  onChange={handlers.frenchRole}
+                  placeholder="French Role" />
+              </div>
+            </div>
+          </div>
         </div>
-      </FormLayout>
-    );
-  }
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Status</label>
+              <div className="control">
+                <textarea
+                  className="textarea"
+                  value={(data.status && data.status.en) || ''}
+                  onChange={handlers.englishStatus}
+                  placeholder="English Status"
+                  rows={2} />
+              </div>
+            </div>
+          </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">French Status</label>
+              <div className="control">
+                <textarea
+                  className="textarea"
+                  value={(data.status && data.status.fr) || ''}
+                  onChange={handlers.frenchStatus}
+                  placeholder="French Status"
+                  rows={2} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Biography</label>
+              <Editor
+                content={englishEditorContent}
+                onSave={handlers.englishContent} />
+            </div>
+          </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">French Biography</label>
+              <Editor
+                content={frenchEditorContent}
+                onSave={handlers.frenchContent} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="form-group">
+        <h4 className="title is-4">
+          Featured items
+        </h4>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Activities</label>
+              <div className="control">
+                <RelationSelector
+                  model="activities"
+                  max={5}
+                  selected={data.mainActivities}
+                  onAdd={handlers.mainActivities.add}
+                  onDrop={handlers.mainActivities.drop} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Productions</label>
+              <div className="control">
+                <RelationSelector
+                  model="productions"
+                  max={5}
+                  selected={data.mainProductions}
+                  onAdd={handlers.mainProductions.add}
+                  onDrop={handlers.mainProductions.drop} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div className="form-group is-important">
+        <div className="field">
+          <label className="label title is-4">{data.firstName ? `${data.firstName} ${data.lastName}` : 'People'} page's production status</label>
+          <div className="control">
+            <BooleanSelector
+              value={!data.draft}
+              labels={['published', 'draft']}
+              onChange={handlers.published} />
+          </div>
+        </div>
+      </div>
+
+    </div>
+  );
 }
 
-const ConnectedPeopleForm = connect(
-  null,
-  {push: pushAction}
-)(PeopleForm);
-
-export default ConnectedPeopleForm;
+export default function PeopleForm({id}) {
+  return (
+    <Form
+      id={id}
+      initializer={initializers.people}
+      handlers={HANDLERS}
+      contentField="bio"
+      model="people"
+      label="person"
+      slugify={slugifyPeople}
+      validate={validate}>
+      {renderPeopleForm}
+    </Form>
+  );
+}

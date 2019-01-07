@@ -1,0 +1,39 @@
+{
+  "news": [
+    {
+      "id": "c10d3935-abaa-4a6e-b581-adeef10e6d1e",
+      "slugs": ["seminaire-de-bouclage-toflit18"],
+      "lastUpdated": 1543332209050,
+      "type": "event",
+      "title": {
+        "en": "TOFLIT18 end seminar",
+        "fr": "Séminaire de bouclage TOFLIT18"
+      },
+      "description": {
+        "en": "A fine seminary to end the TOFLIT18 project.",
+        "fr": "Un vaillant séminaire pour clore le projet TOFLIT18."
+      },
+      "place": "13 rue de l'université",
+      "label": {
+        "en": "Seminar",
+        "fr": "Séminaire"
+      },
+      "content": {
+        "en": "<p>This next tuesday is organized in the lab a closing seminary for the TOFLIT18 project.</p>",
+        "fr": "<p>Ce mardi prochain est organisé au laboratoire le séminaire de clôture du projet TOFLIT18.</p>"
+      },
+      "activities": [
+        "beec8f47-80fa-4188-930b-7c20ce5ddcce"
+      ],
+      "people": [
+        "32fcbf11-d66d-4a41-bbe6-132021adc3e2"
+      ],
+      "productions": [
+        "137a9796-a16d-4251-9721-aaaebcc8c620"
+      ],
+      "startDate": "2018-11-21",
+      "internal": false,
+      "draft": false
+    }
+  ]
+}

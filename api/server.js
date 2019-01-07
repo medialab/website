@@ -1,6 +1,8 @@
 /* eslint no-console: 0 */
+const url = require('url');
 const http = require('http');
 const path = require('path');
+const querystring = require('querystring');
 const async = require('async');
 const express = require('express');
 const config = require('config');
@@ -10,6 +12,8 @@ const fileUpload = require('express-fileupload');
 const uuid = require('uuid/v4');
 const rimraf = require('rimraf');
 const simpleGit = require('simple-git');
+const get = require('lodash/fp/get');
+const set = require('lodash/fp/set');
 const fs = require('fs-extra');
 const io = require('socket.io');
 
@@ -83,6 +87,59 @@ app.use(fileUpload());
 app.use('/assets', express.static(ASSETS_PATH));
 
 ROUTERS.forEach(({model, router}) => {
+
+  // Adding fields projection
+  router.render = (req, res) => {
+    const parsed = url.parse(req.url);
+    let data = res.locals.data;
+
+    const query = querystring.parse(parsed.query);
+
+    if (query._fields) {
+      const fields = query._fields.split(',');
+
+      data = data.map(item => {
+        if (fields.length === 1)
+          return get(fields[0], item);
+
+        let result = {};
+
+        fields.forEach(field => {
+          result = set(field, get(field, item), result);
+        });
+
+        return result;
+      }).filter(x => x);
+    }
+
+    if (query._suggest) {
+      const field = query._suggest;
+
+      const values = new Set();
+
+      // TODO: we can do better...
+      if (field === 'contact.label') {
+        data.forEach(item => {
+          if (!item.contact)
+            return;
+
+          item.contact.forEach(contact => values.add(contact.label));
+        });
+      }
+      else {
+        data.forEach(item => {
+          const value = get(field, item);
+
+          [].concat(value).forEach(v => values.add(v));
+        });
+      }
+
+      data = Array.from(values);
+    }
+
+    return res.json(data);
+  };
+
   app.use(`/${model}`, middlewares.lastUpdated, router);
 });
 app.use('/settings', jsonServer.router(path.join(DATA_PATH, 'settings.json')));
@@ -94,7 +151,10 @@ app.post('/upload', (req, res) => {
   if (!file)
     return res.status(400).send('No file.');
 
-  const name = `${uuid()}_${file.name}`;
+  const ext = path.extname(file.name),
+        filename = path.basename(file.name, ext);
+
+  const name = `${filename}_${uuid()}${ext}`;
 
   file.mv(path.join(ASSETS_PATH, name), err => {
     if (err)

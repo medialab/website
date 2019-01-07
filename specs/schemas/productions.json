@@ -1,0 +1,166 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Productions",
+  "description": "Les productions du médialab",
+  "additionalProperties": false,
+  "type": "object",
+  "properties": {
+    "id": {
+      "title": "Identifiant",
+      "type": "string"
+    },
+    "slugs": {
+      "title": "Slugs",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "oldSlug": {
+      "title": "Slug de l'ancien site",
+      "type": "string"
+    },
+    "lastUpdated": {
+      "title": "Timestamp of last update",
+      "type": "number"
+    },
+    "title": {
+      "title": "Titre",
+      "type": "object",
+      "properties": {
+        "en": {
+          "title": "English title",
+          "type": "string"
+        },
+        "fr": {
+          "title": "Titre français",
+          "type": "string"
+        }
+      }
+    },
+    "description": {
+      "title": "Description",
+      "type": "object",
+      "properties": {
+        "en": {
+          "title": "Description in english",
+          "type": "string"
+        },
+        "fr": {
+          "title": "Description en français",
+          "type": "string"
+        }
+      }
+    },
+    "type": {
+      "title": "Type de la production",
+      "type": "string",
+      "enum": [
+        "article",
+        "book",
+        "communication",
+        "workingPaper",
+        "datascape",
+        "website",
+        "software",
+        "code",
+        "exhibition",
+        "simulation",
+        "workshop",
+        "conference"
+      ],
+      "enumId": "productionTypes"
+    },
+    "content": {
+      "title": "Contenu",
+      "type": "object",
+      "properties": {
+        "en": {
+          "title": "English content",
+          "type": "string",
+          "formType": "content"
+        },
+        "fr": {
+          "title": "Contenu français",
+          "type": "string",
+          "formType": "content"
+        }
+      }
+    },
+    "authors": {
+      "title": "Auteurs",
+      "type": "string"
+    },
+    "activities": {
+      "title": "Activités liées",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "formType": "ref",
+      "model": "activities"
+    },
+    "productions": {
+      "title": "Productions liées",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "formType": "ref",
+      "model": "productions"
+    },
+    "people": {
+      "title": "Membres du labo",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "formType": "ref",
+      "model": "people"
+    },
+    "date": {
+      "title": "Date",
+      "type": "string",
+      "formType": "vardate",
+      "precision": "year"
+    },
+    "ref": {
+      "title": "Référence biblio",
+      "type": "string"
+    },
+    "url": {
+      "title": "Lien externe",
+      "type": "string"
+    },
+    "draft": {
+      "title": "Draft?",
+      "type": "boolean"
+    },
+    "active": {
+      "title": "Actif?",
+      "type": "boolean"
+    },
+    "spire": {
+      "title": "Information SPIRE",
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Identifiant SPIRE",
+          "type": "string"
+        },
+        "meta": {
+          "title": "Metadonnées SPIRE",
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "required":[ 
+    "slugs"
+  ]
+}

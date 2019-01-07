@@ -1,8 +1,9 @@
 import React from 'react';
 import {graphql} from 'gatsby';
+import {replaceAssetPaths} from '../utils';
 
-import Layout from '../components/layout';
-import NewsDetail from '../components/news-detail';
+import Layout from '../components/Layout';
+import NewsDetail from '../components/NewsDetail';
 
 export const query = graphql`
   query($identifier: String!) {
@@ -15,9 +16,11 @@ export const query = graphql`
 export default ({data, pageContext}) => {
   console.log(data, pageContext);
 
+  replaceAssetPaths(data.newsJson.assets, data.newsJson.bio);
+
   return (
     <Layout lang={pageContext.lang}>
-      <NewsDetail data={data.newsJson} />
+      <NewsDetail lang={pageContext.lang} data={data.newsJson} />
     </Layout>
   );
 };

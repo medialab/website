@@ -2,6 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Membres",
   "description": "Les membres du médialab",
+  "additionalProperties": false,
   "type": "object",
   "properties": {
     "id": {
@@ -15,6 +16,10 @@
         "type": "string"
       }
     },
+    "oldSlug": {
+      "title": "Slug de l'ancien site",
+      "type": "string"
+    },
     "lastUpdated": {
       "title": "Timestamp of last update",
       "type": "number"
@@ -27,16 +32,43 @@
       "title": "Nom de famille",
       "type": "string"
     },
-    "title": {
-      "title": "Titre",
+    "role": {
+      "title": "Fonction",
       "type": "object",
       "properties": {
         "en": {
-          "title": "English title",
+          "title": "English function",
           "type": "string"
         },
         "fr": {
-          "title": "Titre français",
+          "title": "Fonction en français",
+          "type": "string"
+        }
+      },
+      "formType": "suggest"
+    },
+    "domain": {
+      "title": "Domaine",
+      "type": "string",
+      "enum": [
+        "academic",
+        "tech",
+        "design",
+        "pedagogy",
+        "admin"
+      ],
+      "enumId" : "domains"
+    },
+    "status": {
+      "title": "Occupation actuelle",
+      "type": "object",
+      "properties": {
+        "en": {
+          "title": "Current status",
+          "type": "string"
+        },
+        "fr": {
+          "title": "Occupation actuelle",
           "type": "string"
         }
       }
@@ -57,6 +89,21 @@
         }
       }
     },
+    "contact": {
+      "title": "Contact",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "membership": {
       "title": "Type de membre",
       "type": "string",
@@ -66,6 +113,24 @@
       ],
       "enumId": "membershipTypes"
     },
+    "mainActivities": {
+      "title": "Activités principales",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "formType": "ref",
+      "model": "activities"
+    },
+    "mainProductions": {
+      "title": "Productions principales",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "formType": "ref",
+      "model": "productions"
+    },
     "active": {
       "title": "Actif?",
       "type": "boolean"
@@ -73,10 +138,25 @@
     "draft": {
       "title": "Draft?",
       "type": "boolean"
+    },
+    "spire": {
+      "title": "Informations SPIRE",
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Identifiant SPIRE",
+          "type": "string"
+        }
+      }
+    },
+    "ldap":{
+      "title": "Identifiant LDAP",
+      "type": "string"
     }
   },
   "required": [
     "firstName",
-    "lastName"
+    "lastName",
+    "slugs"
   ]
 }

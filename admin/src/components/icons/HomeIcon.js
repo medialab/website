@@ -1,6 +1,6 @@
 import React from 'react';
 
-// https://material.io/tools/icons/?search=home&icon=home&style=baseline
+// https://material.io/tools/icons/?icon=home&style=baseline
 export default function HomeIcon() {
   return (
     <svg

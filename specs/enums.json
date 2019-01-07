@@ -3,11 +3,29 @@
     "default": "research",
     "fr": {
       "research": "Recherche",
-      "teaching": "Enseignement"
+      "teaching": "Enseignement",
+      "method": "Méthode"
     },
     "en": {
       "research": "Research",
-      "teaching": "Teaching"
+      "teaching": "Teaching",
+      "method": "Method"
+    }
+  },
+  "domains": {
+    "fr": {
+      "academic": "académique",
+      "tech": "technique",
+      "design": "design",
+      "pedagogy": "pédagogique",
+      "admin": "vie du labo"
+    },
+    "en": {
+      "academic": "academic",
+      "tech": "technic",
+      "design": "design",
+      "pedagogy": "pedagogy",
+      "admin": "lab's life"
     }
   },
   "membershipTypes": {
@@ -21,17 +39,70 @@
       "member": "Member"
     }
   },
-  "publicationTypes": {
-    "default": "conference",
+  "newsTypes": {
+    "default": "event",
     "fr": {
-      "conference": "Conférence",
-      "tool": "Outil",
-      "web": "Site web"
+      "event": "Rendez-vous",
+      "post": "Chronique",
+      "notice": "Annonce"
     },
     "en": {
-      "conference": "Conference",
-      "tool": "Tool",
-      "web": "Website"
+      "event": "Event",
+      "post": "Post",
+      "notice": "Notice"
+    }
+  },
+  "productionTypes": {
+    "default": "conference",
+    "fr": {
+      "article": "Article",
+      "communication": "Communication",
+      "book": "Livre",
+      "workingPaper": "Working paper",
+      "datascape": "Datascape",
+      "website": "Site web",
+      "software": "Logiciel",
+      "code": "Code",
+      "exhibition": "Exposition",
+      "workshop": "Atelier",
+      "simulation": "Simulation",
+      "conference": "Conférence"
+    },
+    "en": {
+      "article": "Article",
+      "communication": "Communication",
+      "book": "Book",
+      "workingPaper": "Working paper",
+      "datascape": "Datascape",
+      "website": "Website",
+      "software": "Software",
+      "code": "Code",
+      "exhibition": "Exhibition",
+      "workshop": "Workshop",
+      "simulation": "Simulation",
+      "conference": "Conference"
+    },
+    "groups": {
+      "publications": {
+          "fr": "Publications",
+          "en": "Publications",
+          "values": ["article", "communication", "book", "workingPaper"]
+      },
+      "webEditions": {
+          "fr": "Éditions web",
+          "en": "Web editions",
+          "values": ["datascape", "website"]
+      },
+      "tools": {
+          "fr": "Outils",
+          "en": "Tools",
+          "values": ["software", "code"]
+      },
+      "situations": {
+          "fr": "Situations",
+          "en": "Situations",
+          "values": ["exhibition", "workshop", "simulation", "conference"]
+      }
     }
   }
 }

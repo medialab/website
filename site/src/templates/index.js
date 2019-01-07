@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link, graphql} from 'gatsby';
 
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 
 // NOTE: Helmet can be used in each page!
 
@@ -26,7 +26,7 @@ export const query = graphql`
         }
       }
     }
-    allPublicationsJson {
+    allProductionsJson {
       edges {
         node {
           id
@@ -61,7 +61,7 @@ export const query = graphql`
 const IndexPage = ({data, pageContext}) => {
   const people = data.allPeopleJson.edges.map(e => e.node),
         activities = data.allActivitiesJson.edges.map(e => e.node),
-        publications = data.allPublicationsJson.edges.map(e => e.node),
+        productions = data.allProductionsJson.edges.map(e => e.node),
         news = data.allNewsJson.edges.map(e => e.node);
 
   console.log(pageContext);
@@ -90,11 +90,11 @@ const IndexPage = ({data, pageContext}) => {
         ))}
       </ul>
 
-      <h2>Publications</h2>
+      <h2>Productions</h2>
       <ul>
-        {publications.map(p => (
+        {productions.map(p => (
           <li key={p.id}>
-            <Link to={`/publications/${p.slugs[p.slugs.length - 1]}`}>{p.title.fr || p.title.en}</Link>
+            <Link to={`/productions/${p.slugs[p.slugs.length - 1]}`}>{p.title.fr || p.title.en}</Link>
           </li>
         ))}
       </ul>

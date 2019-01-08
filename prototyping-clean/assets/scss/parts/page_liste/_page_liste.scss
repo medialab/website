@@ -1,0 +1,56 @@
+/* all */
+
+#liste{
+    
+    position: relative;
+
+    .filtre_objet{
+   
+    	ul{
+
+            li{           
+
+                p{
+                    margin: auto;
+                    position: absolute;
+                }
+				
+				ul{ // if nested
+
+	                li{
+	                    min-height: inherit !important;
+	                    border: inherit !important;
+
+	                    input{
+	                        opacity: .5;
+	                    }
+
+	                } 
+	            }
+            }
+
+            li:nth-of-type(1){
+            }
+        }
+    }
+
+    #liste_objet{
+
+        ////    Liste des liens
+
+        [data-item]{ // S'applique aux items des troix catégorie
+            border-top: $border;
+            
+            &:hover{
+                transition: .25s ease;
+                border-top-color: $redlab;
+
+                *{ color: $redlab !important;} // Securise Typographie toujours coloré
+
+                &+ [data-item] {
+                    border-top-color: $redlab;
+                }
+            }            
+        }
+    }
+}

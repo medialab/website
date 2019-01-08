@@ -8,18 +8,18 @@
 
 	<div id="topbar-content">
 		<div id="logo-medialab">
-			<a href="#">
+			<a href="index.php">
 			<?php include('assets/svg/logo_medialab_draft.svg'); ?>
 			</a>
 		</div>
 		<nav id="nav-option">
 			<ul id="nav-objet">
 
-	              	<li data-type="actualite"><a href="page_listing_publication.php">Actualités</a></li>
+              	<li data-type="actualite"><a href="page_liste.php?type=actualite">Actualités</a></li>
 
-	              	<li data-type="production"><a href="page_listing_publication.php">Productions</a></li>
+              	<li data-type="production"><a href="page_liste.php?type=production">Productions</a></li>
 
-	              	<li data-type="activite"><a href="page_listing_publication.php">Activités</a></li>
+              	<li data-type="activite"><a href="page_liste.php?type=activite">Activités</a></li>
 
 			</ul>
 			<ul id="nav-institution">

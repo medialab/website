@@ -12,7 +12,10 @@
         @include font-size-16();
     }
 
-    #topbar label{ display: none; }
+    #topbar label{ 
+        display: none;
+        cursor: pointer;
+ }
         
     #topbar-content{
         height: 100%;
@@ -22,7 +25,9 @@
         #logo-medialab svg{
             width: $unite*6;
             fill: $text-color;
-            margin-right: $unite*4;   
+            margin-right: $unite*4;
+            top: 70%;
+            transform: translateY(-50%);  
         }
 
         li::before{

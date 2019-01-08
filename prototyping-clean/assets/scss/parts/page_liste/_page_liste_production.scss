@@ -1,0 +1,33 @@
+// For All page liste dedicated to Production Object
+
+
+/////////////////////
+//////// Global 
+/////////////////////
+
+[data-type="production"] a{
+	text-decoration: underline;
+}
+
+
+/////////////////////
+//////// Desktop 
+/////////////////////
+
+@include for-size(desktop) {
+
+    @supports (display: flex){
+
+	}
+}
+
+/////////////////////
+//////// Phone 
+/////////////////////
+
+@include for-size(phone) {
+
+    @supports (display: flex){
+
+	}
+}

@@ -6,15 +6,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 	
     <title>Medialab - Proto</title>
-    <!-- styles -->
-    <style type="text/css"></style>
-    <link rel="stylesheet" href="assets/fonts/Museo_Sans/stylesheet.css">
-    <link rel='stylesheet' type='text/css' href='assets/css-compiled/index.css'>
 
+    <link rel='stylesheet' type='text/css' href='assets/css-compiled/index.css'>
 	<link rel="shortcut icon" href="assets/images/favicon-32x32.png" type="image/jpg"> 
  
-
-
 </head>
 
 <body>

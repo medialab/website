@@ -57,6 +57,7 @@
         background-color: $background-site;
         color: $redlab;
         width: 100%;
+        height: calc(#{$height-top-bar-phone} - #{$margins-phone*2});
         z-index: 90;
         #logo-medialab svg{
             height: $unite-phone*3;

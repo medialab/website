@@ -439,6 +439,7 @@ ul {
     background-color: white;
     color: #f7323f;
     width: 100%;
+    height: calc(70px - 30px);
     z-index: 90; }
     #topbar-content #logo-medialab svg {
       height: 30px;
@@ -483,7 +484,8 @@ ul {
     font-weight: 100; }
 
   #topbar label {
-    display: none; }
+    display: none;
+    cursor: pointer; }
 
   #topbar-content {
     height: 100%;
@@ -505,7 +507,9 @@ ul {
     #topbar-content #logo-medialab svg {
       width: 150px;
       fill: #444;
-      margin-right: 100px; }
+      margin-right: 100px;
+      top: 70%;
+      transform: translateY(-50%); }
     #topbar-content li::before {
       display: inline-block;
       text-align: center;

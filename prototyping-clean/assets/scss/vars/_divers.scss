@@ -2,12 +2,15 @@
 $unite: 25px;
 $height-top-bar: $unite*6;
 $margins-desktop: $unite;
+$logo-column: $unite*10;
 
 
 /*  phone  */
 $unite-phone: 10px;
+$height-top-bar-phone: $unite-phone*7;
 $margins-phone: $unite-phone*1.5;
 $topbar-phone: $unite-phone*6;
+$mobile-container-width : calc( 100vw - #{$margins-phone*3});
 
 
 /*  bordures  */

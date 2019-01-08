@@ -1,0 +1,118 @@
+/////////////////////
+//////// item_accroche: Desktop 
+/////////////////////
+
+@include for-size(desktop) {
+
+	#liste{
+        
+       	margin-top: $unite*1;
+
+		////	Filtre Objet
+
+		.filtre_objet{
+        	
+            width:  $unite*10;
+            position: fixed;
+   
+        	ul{
+                max-width: $unite*3;
+
+                li{ 
+                	min-height: $unite*3;
+                    width: $unite*4;
+                    border-bottom: $border;
+
+                    p{ @include font-size-20; }
+                   	                    
+                    ul{ 	/////// If Nested / Eviter la redondance des Border
+                        padding: $unite/2 0;
+
+                        li{
+                            height: $unite;
+                            width: $unite*4;
+
+                            input{ margin-right: $unite/2; }
+                        } 
+                    } 		/////// End Nested
+                }
+
+                li:nth-of-type(1){
+                    min-height: $unite*3;
+	                border-top: $border;
+                }
+            }
+        }
+
+        #liste_objet{
+
+            width: calc(50% - #{$unite*5});
+            min-height: calc( 100vh - #{$height-top-bar});
+            left: $logo-column;
+
+			////	Liste des liens
+
+           	[data-item]{ // S'applique aux items des troix catégorie
+				min-height: $unite*3;
+				padding-top: $baseline;
+				padding-bottom: $baseline;
+                display: block;
+
+				h1{
+					@include typo-list_title();
+				}
+
+				a{ width: 100%;}
+				
+
+				ul{
+					width: 100%;
+					padding-top: $baseline*0.5;
+					display: block;
+
+
+					li.title{  display: inline-block; width: 30%; padding-right: 10px; }
+					li.type{  display: inline-block; width: 30%; padding-right: 10px;}
+					li.time{  display: inline-block;width: 20%; padding-right: 10px;}	
+					li.direct_link{	display: inline-block; width: 20%;}
+
+					@supports (display: flex){
+							@include flex();
+                			@include align-items(center);
+
+						li.title{  display: inline-block; width: 200px; padding-right: 10px; }
+						li.type{  display: inline-block; width: 200px; padding-right: 10px;}
+						li.time{  display: inline-block;width: 100px; padding-right: 10px;}	
+						li.direct_link{	display: inline-block; width: 20px;}
+					}
+
+				}
+			}
+
+			////	Accroche
+
+		    [data-item] ~ [data-item-accroche]{ display: none; }
+
+		    .accroche-titre{ display: block; }
+
+		    @for $i from 1 through 200 {
+		        [data-item="#{$i}"]:hover ~ [data-item-accroche="#{$i}"]{ display:block; }
+		        [data-item="#{$i}"]:hover ~ .accroche-titre{ display:none; }
+		    }
+		    .item_accroche{
+		        @include font-size-40();
+		        position: fixed;
+				width: calc( ( ( 100% - #{$logo-column} ) /2 ) - #{$margins-desktop*2} );
+				left: calc( 50% + #{$logo-column/2} + #{$unite} );
+				top: calc( #{$height-top-bar} + #{$unite});
+				border-top: $border;
+				padding-top: $unite/2;		        
+
+				@include for-size(desktop-1300) {
+					 // Prevenir des lignes trop étendues sur grand écran
+					width: calc( ( ( 90% - #{$logo-column} ) /2 ) - #{$margins-desktop*2} );
+				}
+		    }
+        }
+    }
+}

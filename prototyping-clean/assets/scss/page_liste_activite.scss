@@ -1,0 +1,16 @@
+/* page objet */
+/* julie: node-sass --watch index.scss ../css-compiled/index.css */
+
+@import 'common';
+
+
+//parts/page_list
+@import 'parts/page_liste/page_liste';
+@import 'parts/page_liste/_page_liste-desktop';
+@import 'parts/page_liste/_page_liste-phone';
+
+// Specific to the nature of Page ( Procuction, / News / Activities)
+@import 'parts/page_liste/page_liste_activite';
+
+
+

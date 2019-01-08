@@ -1,4 +1,4 @@
-<div id="filtre_objet_production" class="filtre_objet">
+<div id="filtre_objet_activite" class="filtre_objet">
 	<ul >
 		<li>
 			<ul>

@@ -19,9 +19,9 @@ const fs = require('fs-extra');
 // TODO: check divs
 // TODO: drop name
 // TODO: drop empty links
-// TODO: quid des hr?
 // TODO: check .text before et .text after est identique
 // TODO: check no more div
+// TODO: check all tags
 
 const ALLOWED_TAGS = new Set([
   'h1',
@@ -36,7 +36,8 @@ const INLINE_TAGS = new Set([
   'strong',
   'b',
   'u',
-  'span'
+  'span',
+  'sup'
 ]);
 
 const INTERNAL_URL_REGEX = /sciences-?po.fr\/wp-content\/uploads\//;
@@ -141,7 +142,8 @@ function convertWordpressHtml(wordpressHtml) {
   $('*').each(function() {
     $(this)
       .removeAttr('id')
-      .removeAttr('style');
+      .removeAttr('style')
+      .removeAttr('class');
   });
 
   $('p').each(function() {
@@ -203,9 +205,13 @@ function convertWordpressHtml(wordpressHtml) {
   $('hr, wbr').remove();
 
   // Unwrapping some tags
-  $('span, u, center').each(function() {
-    $(this).replaceWith($(this).html());
-  });
+  const unwrap = 'span, u, center, sup';
+
+  while ($(unwrap).length) {
+    $(unwrap).each(function() {
+      $(this).replaceWith($(this).html());
+    });
+  }
 
   $('p').each(function() {
     if (!$(this).html().trim())
@@ -213,6 +219,12 @@ function convertWordpressHtml(wordpressHtml) {
   });
 
   html = $('body').html().trim();
+
+  // Merging inline
+  html = html.replace(/<\/(strong|em)>(\s*)<\1>/g, '$2');
+
+  if (!wordpressHtml.includes('<sup'))
+    return;
 
   // console.log('\nORIGINAL');
   // console.log('=====');

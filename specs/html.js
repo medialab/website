@@ -6,14 +6,9 @@ const fs = require('fs-extra');
 
 // NOTE: we won't handle old internal links for now
 
-// TODO: quick verification afterwards
 // TODO: destructive operation through the converter
 
 // TODO: need data-internal on images also?
-// TODO: check divs
-// TODO: check .text before et .text after est identique
-// TODO: check no more div
-// TODO: check all tags
 // TODO: find bad images
 
 const INLINE_TAGS = new Set([
@@ -53,6 +48,9 @@ function validateHtml(html) {
 
   if ($('ul ul, ul ol, ol ol, ol ul').length > 1)
     throw new Error('Found nested list!');
+
+  if ($('div').length)
+    throw new Error('Found div tag!');
 }
 
 function convertWordpressHtml(wordpressHtml) {
@@ -189,9 +187,10 @@ function convertWordpressHtml(wordpressHtml) {
     $(this).replaceWith(`<em>${$(this).html()}</em>`);
   });
 
-  $('b').each(function() {
-    $(this).replaceWith(`<strong>${$(this).html()}</strong>`);
-  });
+  while ($('b').length)
+    $('b').each(function() {
+      $(this).replaceWith(`<strong>${$(this).html()}</strong>`);
+    });
 
   // Dropping messy cases
   $('div.issuuembed').remove();
@@ -214,6 +213,14 @@ function convertWordpressHtml(wordpressHtml) {
         <iframe src="${src}">&nbsp;</iframe>
       </figure>
     `);
+  });
+
+  $('blockquote').each(function() {
+    $(this).replaceWith(`<p>${$(this).html()}</p>`);
+  });
+
+  $('small').each(function() {
+    $(this).replaceWith($(this).text());
   });
 
   // Dropping some irrelevant links

@@ -10,15 +10,9 @@ const fs = require('fs-extra');
 // TODO: destructive operation through the converter
 
 // TODO: need data-internal on images also?
-// TODO: <span style="font-weight: 400;">
-// TODO: take the full image
 // TODO: finish up the specs
-// TODO: save some false p lists
-// TODO: Return HTML + found assets
 // TODO: check nested lists
 // TODO: check divs
-// TODO: drop name
-// TODO: drop empty links
 // TODO: check .text before et .text after est identique
 // TODO: check no more div
 // TODO: check all tags
@@ -143,7 +137,8 @@ function convertWordpressHtml(wordpressHtml) {
     $(this)
       .removeAttr('id')
       .removeAttr('style')
-      .removeAttr('class');
+      .removeAttr('class')
+      .removeAttr('name');
   });
 
   $('p').each(function() {
@@ -200,9 +195,18 @@ function convertWordpressHtml(wordpressHtml) {
 
   // Dropping messy cases
   $('div.issuuembed').remove();
+  $('object').remove();
 
   // Dropping hrs and wbr
   $('hr, wbr').remove();
+
+  // Dropping some irrelevant links
+  $('a').each(function() {
+    const href = $(this).attr('href').trim();
+
+    if (!href || href.startsWith('#'))
+      $(this).replaceWith($(this).html());
+  });
 
   // Unwrapping some tags
   const unwrap = 'span, u, center, sup';
@@ -222,9 +226,6 @@ function convertWordpressHtml(wordpressHtml) {
 
   // Merging inline
   html = html.replace(/<\/(strong|em)>(\s*)<\1>/g, '$2');
-
-  if (!wordpressHtml.includes('<sup'))
-    return;
 
   // console.log('\nORIGINAL');
   // console.log('=====');

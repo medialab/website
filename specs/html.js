@@ -48,13 +48,13 @@ function validateHtml(html) {
   if ($('div').length)
     throw new Error('Found div tag!');
 
-  // $('img').each(function() {
-  //   if ($(this).data('width') === 'undefined')
-  //     console.error($(this).parent().html());
+  $('img').each(function() {
+    if ($(this).data('width') === 'undefined')
+      console.error($(this).parent().html());
 
-  //   if ($(this).data('height') === 'undefined')
-  //     console.error($(this).parent().html())
-  // });
+    if ($(this).data('height') === 'undefined')
+      console.error($(this).parent().html())
+  });
 }
 
 function convertWordpressHtml(wordpressHtml) {

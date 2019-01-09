@@ -9,7 +9,7 @@ const fs = require('fs-extra');
 // TODO: destructive operation through the converter
 
 // TODO: need data-internal on images also?
-// TODO: find bad images
+// TODO: find bad images with bad height
 
 const INLINE_TAGS = new Set([
   'a',
@@ -51,6 +51,14 @@ function validateHtml(html) {
 
   if ($('div').length)
     throw new Error('Found div tag!');
+
+  // $('img').each(function() {
+  //   if ($(this).data('width') === 'undefined')
+  //     console.error($(this).parent().html());
+
+  //   if ($(this).data('height') === 'undefined')
+  //     console.error($(this).parent().html())
+  // });
 }
 
 function convertWordpressHtml(wordpressHtml) {
@@ -171,9 +179,17 @@ function convertWordpressHtml(wordpressHtml) {
           width = $(this).attr('width'),
           height = $(this).attr('height');
 
+    if (!src) {
+      $(this).replaceWith('');
+      return;
+    }
+
     const resolved = buildUrl(src);
 
     assets.push(resolved);
+
+    // if (resolved.newPath === resolved.oldPath)
+    //   console.log('ICI', resolved.newPath);
 
     $(this).replaceWith(`
       <figure>
@@ -255,11 +271,11 @@ function convertWordpressHtml(wordpressHtml) {
   // console.log(pretty(wordpressHtml));
   // console.log('=====');
 
-  console.log('\nPROCESSED');
-  console.log('=====');
-  console.log(pretty(html));
-  console.log(assets);
-  console.log('=====');
+  // console.log('\nPROCESSED');
+  // console.log('=====');
+  // console.log(pretty(html));
+  // console.log(assets);
+  // console.log('=====');
 
   validateHtml(html);
 

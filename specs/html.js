@@ -4,13 +4,9 @@ const uuid = require('uuid/v4');
 const pretty = require('pretty');
 const fs = require('fs-extra');
 
-// NOTE: we won't handle old internal links for now
+// NOTE: we don't handle old internal links
 
-// TODO: destructive operation through the converter
-
-// TODO: need data-internal on images also?
 // TODO: find bad images with bad height
-
 const INLINE_TAGS = new Set([
   'a',
   'em',
@@ -266,6 +262,12 @@ function convertWordpressHtml(wordpressHtml) {
   // Merging inline
   html = html.replace(/<\/(strong|em)>(\s*)<\1>/g, '$2');
 
+  // Light validation
+  validateHtml(html);
+
+  // Finally we use the editor's serialization scheme to destroy anything bad
+  // html = utils.rawToHtml(utils.htmlToRaw(html));
+
   // console.log('\nORIGINAL');
   // console.log('=====');
   // console.log(pretty(wordpressHtml));
@@ -276,8 +278,6 @@ function convertWordpressHtml(wordpressHtml) {
   // console.log(pretty(html));
   // console.log(assets);
   // console.log('=====');
-
-  validateHtml(html);
 
   return {assets, html};
 };

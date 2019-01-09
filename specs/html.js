@@ -4,9 +4,11 @@ const uuid = require('uuid/v4');
 const pretty = require('pretty');
 const fs = require('fs-extra');
 
+// TODO: quick verification afterwards
+// TODO: destructive operation through the converter
+
 // TODO: internal links
 // TODO: enable line breaks in editor
-// TODO: strip \n from html generation?
 // TODO: <p></p>, <center>, \n <br> \n+ <p>
 // TODO: trim final &nbsp;
 // TODO: drop underline

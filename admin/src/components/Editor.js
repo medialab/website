@@ -34,7 +34,6 @@ export default class Editor extends PureComponent {
 
   handleOnSave = content => {
     const html = content ? rawToHtml(content) : '';
-
     this.props.onSave(html);
   };
 

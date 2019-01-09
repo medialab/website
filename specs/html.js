@@ -10,18 +10,11 @@ const fs = require('fs-extra');
 // TODO: destructive operation through the converter
 
 // TODO: need data-internal on images also?
-// TODO: finish up the specs
-// TODO: check nested lists
 // TODO: check divs
 // TODO: check .text before et .text after est identique
 // TODO: check no more div
 // TODO: check all tags
-
-const ALLOWED_TAGS = new Set([
-  'h1',
-  'h2',
-  'h3'
-]);
+// TODO: find bad images
 
 const INLINE_TAGS = new Set([
   'a',
@@ -53,6 +46,13 @@ function buildUrl(current) {
     newPath: `${name}_${id}${ext}`,
     oldPath: `${name}${ext}`
   };
+}
+
+function validateHtml(html) {
+  const $ = cheerio.load(html, {decodeEntities: false});
+
+  if ($('ul ul, ul ol, ol ol, ol ul').length > 1)
+    throw new Error('Found nested list!');
 }
 
 function convertWordpressHtml(wordpressHtml) {
@@ -200,6 +200,22 @@ function convertWordpressHtml(wordpressHtml) {
   // Dropping hrs and wbr
   $('hr, wbr').remove();
 
+  // Dropping weak titles
+  $('h4, h5, h6').each(function() {
+    $(this).replaceWith(`<p><strong>${$(this).html()}</strong></p>`);
+  });
+
+  // Handling iframes
+  $('iframe').each(function() {
+    const src = $(this).attr('src');
+
+    $(this).replaceWith(`
+      <figure>
+        <iframe src="${src}">&nbsp;</iframe>
+      </figure>
+    `);
+  });
+
   // Dropping some irrelevant links
   $('a').each(function() {
     const href = $(this).attr('href').trim();
@@ -237,6 +253,8 @@ function convertWordpressHtml(wordpressHtml) {
   console.log(pretty(html));
   console.log(assets);
   console.log('=====');
+
+  validateHtml(html);
 
   return {assets, html};
 };

@@ -4,21 +4,24 @@ const uuid = require('uuid/v4');
 const pretty = require('pretty');
 const fs = require('fs-extra');
 
+// NOTE: we won't handle old internal links for now
+
 // TODO: quick verification afterwards
 // TODO: destructive operation through the converter
 
-// TODO: internal links
-// TODO: enable line breaks in editor
-// TODO: <p></p>, <center>, \n <br> \n+ <p>
-// TODO: trim final &nbsp;
-// TODO: drop underline
-// TODO: drop <wbr> & <wbr />
-// TODO: data-saferedirecturl
-// TODO: drop spans
+// TODO: need data-internal on images also?
 // TODO: <span style="font-weight: 400;">
 // TODO: take the full image
 // TODO: finish up the specs
 // TODO: save some false p lists
+// TODO: Return HTML + found assets
+// TODO: check nested lists
+// TODO: check divs
+// TODO: drop name
+// TODO: drop empty links
+// TODO: quid des hr?
+// TODO: check .text before et .text after est identique
+// TODO: check no more div
 
 const ALLOWED_TAGS = new Set([
   'h1',
@@ -36,29 +39,48 @@ const INLINE_TAGS = new Set([
   'span'
 ]);
 
+const INTERNAL_URL_REGEX = /sciences-?po.fr\/wp-content\/uploads\//;
+
 function isInternal(url) {
-  return url.includes('sciences-po.fr/wp-content/uploads/');
+  return INTERNAL_URL_REGEX.test(url);
 }
 
 function buildUrl(current) {
   if (!isInternal(current))
-    return current;
+    return {newPath: current, oldPath: current};
 
   const id = uuid();
 
   const ext = path.extname(current);
   const name = path.basename(current, ext);
 
-  return `${name}_${id}${ext}`;
+  return {
+    newPath: `${name}_${id}${ext}`,
+    oldPath: `${name}${ext}`
+  };
 }
 
-function convertWordpressHtml(html) {
-  console.log('\nORIGINAL');
-  console.log('=====');
-  console.log(pretty(html));
-  console.log('=====');
+function convertWordpressHtml(wordpressHtml) {
+  let html = wordpressHtml;
+
+  const assets = [];
 
   let $ = cheerio.load(html.trim(), {decodeEntities: false});
+
+  // Unwrapping divs
+  $('div')
+    .filter(function() {
+      return $(this).find('div').length === 0;
+    })
+    .each(function() {
+      $(this).replaceWith(`<p>${$(this).html()}</p>`);
+    });
+
+  while ($('body > div').length) {
+    $('body > div').each(function() {
+      $(this).replaceWith($(this).html());
+    });
+  }
 
   // Dropping comments
   $('body')
@@ -116,27 +138,36 @@ function convertWordpressHtml(html) {
   $ = cheerio.load(newBody, {decodeEntities: false});
 
   // Dropping attributes
+  $('*').each(function() {
+    $(this)
+      .removeAttr('id')
+      .removeAttr('style');
+  });
+
   $('p').each(function() {
     $(this)
       .removeAttr('align')
-      .removeAttr('lang')
-      .removeAttr('style');
+      .removeAttr('lang');
   });
 
   $('a').each(function() {
     $(this)
       .removeAttr('rel')
       .removeAttr('target')
-      .removeAttr('title');
+      .removeAttr('title')
+      .removeAttr('data-saferedirecturl');
 
     const href = $(this).attr('href');
 
-    const resolvedHref = buildUrl(href);
+    const resolved = buildUrl(href);
 
-    if (isInternal(href))
+    if (isInternal(href)) {
       $(this).attr('data-internal', 'true');
 
-    $(this).attr('href', resolvedHref);
+      assets.push(resolved);
+    }
+
+    $(this).attr('href', resolved.newPath);
   });
 
   // Images
@@ -145,11 +176,13 @@ function convertWordpressHtml(html) {
           width = $(this).attr('width'),
           height = $(this).attr('height');
 
-    const resolvedSrc = buildUrl(src);
+    const resolved = buildUrl(src);
+
+    assets.push(resolved);
 
     $(this).replaceWith(`
       <figure>
-        <img src="${resolvedSrc}" data-width="${width}" data-height="${height}" />
+        <img src="${resolved.newPath}" data-width="${width}" data-height="${height}" />
       </figure>
     `);
   });
@@ -163,19 +196,36 @@ function convertWordpressHtml(html) {
     $(this).replaceWith(`<strong>${$(this).html()}</strong>`);
   });
 
-  // Dropping some tags
-  $('span').each(function() {
+  // Dropping messy cases
+  $('div.issuuembed').remove();
+
+  // Dropping hrs and wbr
+  $('hr, wbr').remove();
+
+  // Unwrapping some tags
+  $('span, u, center').each(function() {
     $(this).replaceWith($(this).html());
+  });
+
+  $('p').each(function() {
+    if (!$(this).html().trim())
+      $(this).remove();
   });
 
   html = $('body').html().trim();
 
+  // console.log('\nORIGINAL');
+  // console.log('=====');
+  // console.log(pretty(wordpressHtml));
+  // console.log('=====');
+
   console.log('\nPROCESSED');
   console.log('=====');
   console.log(pretty(html));
+  console.log(assets);
   console.log('=====');
 
-  return html;
+  return {assets, html};
 };
 
 exports.convertWordpressHtml = convertWordpressHtml;
@@ -212,15 +262,15 @@ if (require.main) {
       convertWordpressHtml(n.content.fr);
   });
 
-  // people.people.forEach(person => {
-  //   if (!person.bio)
-  //     return;
+  people.people.forEach(person => {
+    if (!person.bio)
+      return;
 
-  //   if (person.bio.en)
-  //     convertWordpressHtml(person.bio.en);
-  //   if (person.bio.fr)
-  //     convertWordpressHtml(person.bio.fr);
-  // });
+    if (person.bio.en)
+      convertWordpressHtml(person.bio.en);
+    if (person.bio.fr)
+      convertWordpressHtml(person.bio.fr);
+  });
 
   productions.productions.forEach(production => {
     if (!production.content)

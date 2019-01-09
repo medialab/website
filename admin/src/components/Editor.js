@@ -46,6 +46,7 @@ export default class Editor extends PureComponent {
       <div className="content">
         <DraftailEditor
           placeholder="Type something..."
+          enableLineBreak={{icon: null}}
           rawContentState={content ? htmlToRaw(content) : null}
           stripPastedStyles={false}
           onSave={this.handleOnSave}

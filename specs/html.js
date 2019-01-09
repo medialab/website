@@ -6,7 +6,21 @@ const fs = require('fs-extra');
 
 // NOTE: we don't handle old internal links
 
-// TODO: find bad images with bad height
+const MISSING_DIMENSIONS = {
+  'ScientometricsLandscapeSmall.png': {
+    width: 690,
+    height: 200
+  },
+  'code-lawfactory.png': {
+    width: 654,
+    height: 386
+  },
+  'medialab_afp_2007_533.jpg': {
+    width: 459,
+    height: 199
+  }
+};
+
 const INLINE_TAGS = new Set([
   'a',
   'em',
@@ -50,10 +64,10 @@ function validateHtml(html) {
 
   $('img').each(function() {
     if ($(this).data('width') === 'undefined')
-      console.error($(this).parent().html());
+      console.error('Error: missing image width!', $(this).parent().html().trim());
 
-    if ($(this).data('height') === 'undefined')
-      console.error($(this).parent().html())
+    else if ($(this).data('height') === 'undefined')
+      console.error('Error: missing image height!', $(this).parent().html().trim())
   });
 }
 
@@ -171,9 +185,10 @@ function convertWordpressHtml(wordpressHtml) {
 
   // Images
   $('img').each(function() {
-    const src = $(this).attr('src'),
-          width = $(this).attr('width'),
-          height = $(this).attr('height');
+    const src = $(this).attr('src');
+
+    let width = $(this).attr('width'),
+        height = $(this).attr('height');
 
     if (!src) {
       $(this).replaceWith('');
@@ -181,6 +196,12 @@ function convertWordpressHtml(wordpressHtml) {
     }
 
     const resolved = buildUrl(src);
+
+    if (resolved.oldPath in MISSING_DIMENSIONS) {
+      const dimensions = MISSING_DIMENSIONS[resolved.oldPath];
+      width = dimensions.width;
+      height = dimensions.height;
+    }
 
     assets.push(resolved);
 

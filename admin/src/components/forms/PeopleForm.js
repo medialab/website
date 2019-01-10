@@ -8,6 +8,7 @@ import Editor from '../Editor';
 import EnumSelector from '../selectors/EnumSelector';
 import BooleanSelector from '../selectors/BooleanSelector';
 import RelationSelector from '../selectors/RelationSelector';
+import SuggestionSelector from '../selectors/SuggestionSelector';
 
 function slugifyPeople(data) {
   return slugify(`${data.firstName} ${data.lastName}`);
@@ -31,9 +32,11 @@ const HANDLERS = {
     slugify: slugifyPeople
   },
   englishRole: {
+    type: 'raw',
     field: ['role', 'en']
   },
   frenchRole: {
+    type: 'raw',
     field: ['role', 'fr']
   },
   membership: {
@@ -191,28 +194,24 @@ function renderPeopleForm(props) {
           <div className="column is-6">
             <div className="field">
               <label className="label">English Role</label>
-              <div className="control">
-                <input
-                  type="text"
-                  className="input"
-                  value={data.role ? data.role.en : ''}
-                  onChange={handlers.englishRole}
-                  placeholder="English Role" />
-              </div>
+              <SuggestionSelector
+                model="people"
+                field={['role', 'en']}
+                placeholder="English role..."
+                onChange={handlers.englishRole}
+                value={(data.role && data.role.en) || null} />
             </div>
           </div>
 
           <div className="column is-6">
             <div className="field">
               <label className="label">French Role</label>
-              <div className="control">
-                <input
-                  type="text"
-                  className="input"
-                  value={data.role ? data.role.fr : ''}
-                  onChange={handlers.frenchRole}
-                  placeholder="French Role" />
-              </div>
+              <SuggestionSelector
+                model="people"
+                field={['role', 'fr']}
+                placeholder="French role..."
+                onChange={handlers.frenchRole}
+                value={(data.role && data.role.fr) || null} />
             </div>
           </div>
         </div>

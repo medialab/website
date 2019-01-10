@@ -327,6 +327,7 @@ function processObjects(oldModel, newModel, indices, olinks, done) {
 }
 
 //prepare assets
+fs.removeSync('./scripts/wordpress_scraping/data/new/assets');
 fs.ensureDirSync('./scripts/wordpress_scraping/data/new/assets');
 async.waterfall([
   // first people

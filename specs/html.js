@@ -4,21 +4,70 @@ const uuid = require('uuid/v4');
 //const pretty = require('pretty');
 const fs = require('fs-extra');
 const url = require('url');
+const _ = require('lodash');
 
 // NOTE: we don't handle old internal links
 
 const MISSING_DIMENSIONS = {
-  'ScientometricsLandscapeSmall.png': {
+  '/wp-content/uploads/2015/04/ScientometricsLandscapeSmall.png': {
     width: 690,
     height: 200
   },
-  'code-lawfactory.png': {
+  '/wp-content/uploads/2017/05/code-lawfactory.png': {
     width: 654,
     height: 386
   },
-  'medialab_afp_2007_533.jpg': {
-    width: 459,
-    height: 199
+  '/wp-content/uploads/2012/07/medialab_afp_2007_533.jpg': {
+    width: 533,
+    height: 412
+  },
+  '/wp-content/uploads/2018/05/steps-1.png': {
+    width: 1020,
+    height: 659
+  },
+  '/wp-content/uploads/2018/05/urgence.png': {
+    width: 1082,
+    height: 621
+  },
+  '/wp-content/uploads/2019/01/IMG_20180627_162450.jpg': {
+    width: 3264,
+    height: 2448
+  },
+  '/wp-content/uploads/2019/01/Scan-tableau.png': {
+    width: 1200,
+    height: 606
+  },
+  '/wp-content/uploads/2019/01/duralex.png': {
+    width: 1320,
+    height: 854
+  },
+  '/wp-content/uploads/2019/01/durafront.png': {
+    width: 885,
+    height: 452
+  },
+  '/wp-content/uploads/2019/01/matrices-didascalies.png': {
+    width: 850,
+    height: 850
+  },
+  '/wp-content/uploads/2019/01/scrutins-an-senat.png': {
+    width: 1416,
+    height: 608
+  },
+  '/wp-content/uploads/2019/01/procedure.png': {
+    width: 838,
+    height: 2808
+  },
+  '/wp-content/uploads/2019/01/gitlaw.png': {
+    width: 997,
+    height: 744
+  },
+  '/wp-content/uploads/2019/01/codes-lfdll.png': {
+    width: 599,
+    height: 283
+  },
+  '/wp-content/uploads/2012/08/EMAPSworkshop_pic.jpg': {
+    width: 1280,
+    height: 956
   }
 };
 
@@ -39,7 +88,7 @@ function isInternal(url) {
   return INTERNAL_URL_REGEX.test(url);
 }
 
-function buildUrl(current) {
+const buildUrl = _.memoize((current) => {
   if (!isInternal(current))
     return {newPath: current, oldPath: current};
 
@@ -52,7 +101,7 @@ function buildUrl(current) {
     newPath: `${name}_${id}${ext}`,
     oldPath
   };
-}
+});
 
 function validateHtml(html) {
   const $ = cheerio.load(html, {decodeEntities: false});

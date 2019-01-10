@@ -16,7 +16,7 @@ export const query = graphql`
 export default ({data, pageContext}) => {
   console.log(data, pageContext);
 
-  replaceAssetPaths(data.productionsJson.assets, data.productionsJson.bio);
+  replaceAssetPaths(data.productionsJson.assets, data.productionsJson.content);
 
   return (
     <Layout lang={pageContext.lang}>

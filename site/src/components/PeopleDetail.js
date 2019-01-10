@@ -41,10 +41,10 @@ export default function PeopleDetail({lang, data}) {
       </p>
       <hr />
       <p>
-        <strong>EN title</strong>: {data.title && data.title.en}
+        <strong>EN role</strong>: {data.role && data.role.en}
       </p>
       <p>
-        <strong>FR title</strong>: {data.title && data.title.fr}
+        <strong>FR role</strong>: {data.role && data.role.fr}
       </p>
       <hr />
       {bio && bio.en && <RawHtml html={bio.en} />}

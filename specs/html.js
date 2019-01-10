@@ -1,8 +1,9 @@
 const cheerio = require('cheerio');
 const path = require('path');
 const uuid = require('uuid/v4');
-const pretty = require('pretty');
+//const pretty = require('pretty');
 const fs = require('fs-extra');
+const url = require('url');
 
 // NOTE: we don't handle old internal links
 
@@ -46,10 +47,10 @@ function buildUrl(current) {
 
   const ext = path.extname(current);
   const name = path.basename(current, ext);
-
+  const oldPath = url.parse(current).path;
   return {
     newPath: `${name}_${id}${ext}`,
-    oldPath: `${name}${ext}`
+    oldPath
   };
 }
 
@@ -301,59 +302,57 @@ function convertWordpressHtml(wordpressHtml) {
   // console.log('=====');
 
   return {assets, html};
-};
+}
 
 exports.convertWordpressHtml = convertWordpressHtml;
 
 // Testing on fresh dump
-if (require.main) {
+// if (require.main) {
 
-  const DUMP_PATH = './data/dump';
+//   const DUMP_PATH = './data/dump';
 
-  const path = require('path');
+//   const activities = fs.readJSONSync(path.join(DUMP_PATH, 'activities.json'));
+//   const news = fs.readJSONSync(path.join(DUMP_PATH, 'news.json'));
+//   const people = fs.readJSONSync(path.join(DUMP_PATH, 'people.json'));
+//   const productions = fs.readJSONSync(path.join(DUMP_PATH, 'productions.json'));
 
-  const activities = fs.readJSONSync(path.join(DUMP_PATH, 'activities.json'));
-  const news = fs.readJSONSync(path.join(DUMP_PATH, 'news.json'));
-  const people = fs.readJSONSync(path.join(DUMP_PATH, 'people.json'));
-  const productions = fs.readJSONSync(path.join(DUMP_PATH, 'productions.json'));
+//   activities.activities.forEach(activity => {
+//     if (!activity.content)
+//       return;
 
-  activities.activities.forEach(activity => {
-    if (!activity.content)
-      return;
+//     if (activity.content.en)
+//       convertWordpressHtml(activity.content.en);
+//     if (activity.content.fr)
+//       convertWordpressHtml(activity.content.fr);
+//   });
 
-    if (activity.content.en)
-      convertWordpressHtml(activity.content.en);
-    if (activity.content.fr)
-      convertWordpressHtml(activity.content.fr);
-  });
+//   news.news.forEach(n => {
+//     if (!n.content)
+//       return;
 
-  news.news.forEach(n => {
-    if (!n.content)
-      return;
+//     if (n.content.en)
+//       convertWordpressHtml(n.content.en);
+//     if (n.content.fr)
+//       convertWordpressHtml(n.content.fr);
+//   });
 
-    if (n.content.en)
-      convertWordpressHtml(n.content.en);
-    if (n.content.fr)
-      convertWordpressHtml(n.content.fr);
-  });
+//   people.people.forEach(person => {
+//     if (!person.bio)
+//       return;
 
-  people.people.forEach(person => {
-    if (!person.bio)
-      return;
+//     if (person.bio.en)
+//       convertWordpressHtml(person.bio.en);
+//     if (person.bio.fr)
+//       convertWordpressHtml(person.bio.fr);
+//   });
 
-    if (person.bio.en)
-      convertWordpressHtml(person.bio.en);
-    if (person.bio.fr)
-      convertWordpressHtml(person.bio.fr);
-  });
+//   productions.productions.forEach(production => {
+//     if (!production.content)
+//       return;
 
-  productions.productions.forEach(production => {
-    if (!production.content)
-      return;
-
-    if (production.content.en)
-      convertWordpressHtml(production.content.en);
-    if (production.content.fr)
-      convertWordpressHtml(production.content.fr);
-  });
-}
+//     if (production.content.en)
+//       convertWordpressHtml(production.content.en);
+//     if (production.content.fr)
+//       convertWordpressHtml(production.content.fr);
+//   });
+// }

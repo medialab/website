@@ -4,7 +4,8 @@ const async = require('async'),
       uuid = require('uuid/v4'),
       domains = require('./wordpress_scraping/domains.json'),
       slug = require('slug'),
-      spire = require('../api/spire');
+      spire = require('../api/spire'),
+      convertWordpressHtml = require('../specs/html').convertWordpressHtml;
 
 const DEFAULT_MAX_SLUG_TOKENS = 6;
 function slugify(str) {
@@ -271,8 +272,20 @@ function processObjects(oldModel, newModel, indices, olinks, done) {
         // récupération du slug
         o.oldSlug = f.split('.')[0];
       }
+      let allAssets = [];
+      if (o.text_en) {
+        const {assets, html} = convertWordpressHtml(o.text_en);
+        o.text_en = html;
+        allAssets = assets;
+      }
+      if (o.text_fr) {
+        const {assets, html} = convertWordpressHtml(o.text_fr);
+        o.text_fr = html;
+        allAssets = allAssets.concat(assets);
+      }
 
       const {newO, reverseLinks} = translations[newModel](o, indices, olinks);
+
       index[newO.oldSlug] = newO.id;
       for (const sourceModel in reverseLinks) {
         if (!newLinks[`${sourceModel}->${newModel}`])
@@ -289,7 +302,22 @@ function processObjects(oldModel, newModel, indices, olinks, done) {
          // writting
         fs.writeJsonSync(path.join(outPath, `${newO.id}.json`), newO, {spaces: 2, encoding: 'utf8'});
       }
-      localDone(null);
+      //move and rename assets
+      async.each(allAssets, (a, cb) => {
+        if (a.newPath !== a.oldPath) {
+          if (a.oldPath === 'onjour%20Bruno,%20%20Voici%20le%20lien%20vers%20l%27affiche%20corrigée%20:%20http://www.medialab.sciences-po.fr/wp-content/uploads/2013/04/affiche.jpg')
+            a.oldPath = '/wp-content/uploads/2013/04/affiche.jpg';
+          fs.copy(path.join('./scripts/wordpress_scraping/data/', a.oldPath), path.join('./scripts/wordpress_scraping/data/new/assets', a.newPath),
+            {overwrite: false},
+            (err) => {
+              if (err)
+                console.error(a.oldPath, o.permalink);
+              cb();
+            });
+        }
+        else
+          console.debug(`external asset: ${a.oldPath}`);
+      }, localDone);
     }, (err) => {
       console.log(`done with ${newModel}`);
       if (err) throw err;
@@ -298,7 +326,8 @@ function processObjects(oldModel, newModel, indices, olinks, done) {
     });
 }
 
-
+//prepare assets
+fs.ensureDirSync('./scripts/wordpress_scraping/data/new/assets');
 async.waterfall([
   // first people
   (done) => {
@@ -335,7 +364,6 @@ async.waterfall([
     aime.activitiess = [indices.activities['reset-modernity']];
     fs.writeJSONSync(`./scripts/wordpress_scraping/data/new/activities${aimeId}.json`, hyphe, {spaces: 2, encoding: 'utf8'});
 
-    fs.ensureDirSync('./scripts/wordpress_scraping/data/new/assets');
     fs.writeJSONSync('./scripts/wordpress_scraping/data/new/settings.json', {settings: {home: {editorialization: []}}}, {spaces: 2, encoding: 'utf8'});
     done();
   }

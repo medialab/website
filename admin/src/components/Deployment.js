@@ -1,6 +1,5 @@
-/* global API_URL */
 import React, {Component} from 'react';
-import io from 'socket.io-client';
+import {acquireSocket} from '../sockets';
 import Button from './misc/Button';
 
 const STEPS = {
@@ -41,7 +40,7 @@ export default class Deployment extends Component {
   componentDidMount() {
 
     // Connecting to socket
-    this.socket = io(API_URL);
+    this.socket = acquireSocket();
     this.socket.emit('getDeployStatus', null, (err, data) => {
       this.setState({status: data.status});
     });

@@ -175,7 +175,7 @@ gatsby.start();
 const server = http.Server(app);
 
 // Serving websockets
-const ws = io(server);
+const ws = io(server, {path: '/sockets'});
 
 const LOCKS = {
   deployStatus: 'free'

@@ -80,7 +80,6 @@ function renderActivityForm(props) {
     data,
     handlers,
     slug,
-    hasCollidingSlug,
     englishEditorContent,
     frenchEditorContent
   } = props;

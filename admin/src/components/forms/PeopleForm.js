@@ -84,7 +84,6 @@ function renderPeopleForm(props) {
     data,
     handlers,
     slug,
-    hasCollidingSlug,
     englishEditorContent,
     frenchEditorContent
   } = props;

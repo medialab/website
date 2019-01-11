@@ -321,12 +321,6 @@ class Form extends Component {
       slugify(data) :
       data.slugs[data.slugs.length - 1];
 
-    const hasCollidingSlug = (
-      isNew &&
-      existingSlugs &&
-      existingSlugs.has(slug)
-    );
-
     const pageLabel = label || model;
 
     const saveLabel = isNew ?
@@ -362,7 +356,6 @@ class Form extends Component {
         handlers: this.handlers,
         englishEditorContent: this.englishEditorContent,
         frenchEditorContent: this.frenchEditorContent,
-        hasCollidingSlug,
         slug,
         data
       });

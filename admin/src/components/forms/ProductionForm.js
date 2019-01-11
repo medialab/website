@@ -78,7 +78,6 @@ function renderProductionForm(props) {
     data,
     handlers,
     slug,
-    hasCollidingSlug,
     englishEditorContent,
     frenchEditorContent
   } = props;

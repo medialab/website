@@ -94,7 +94,6 @@ function renderNewsForm(props) {
     data,
     handlers,
     slug,
-    hasCollidingSlug,
     englishEditorContent,
     frenchEditorContent
   } = props;

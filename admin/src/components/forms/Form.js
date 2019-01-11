@@ -56,11 +56,11 @@ class SlugConfirm extends Component {
       <CardModal onClose={onClose}>
         {
           [
-            'Confirmation',
+            'Slug collision!',
             (
               <div key="body" className="content">
                 <p>
-                  You are going to create an item with the following slug:
+                  This slug is already taken! Please change it:
                 </p>
                 <div className="control">
                   <input
@@ -330,7 +330,7 @@ class Form extends Component {
     const pageLabel = label || model;
 
     const saveLabel = isNew ?
-      (`Create this ${pageLabel}` + (hasCollidingSlug ? ' and edit the slug' : '')) :
+      `Create this ${pageLabel}` :
       `Save this ${pageLabel}`;
 
     const dirty = hash(data) !== lastHash;

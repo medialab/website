@@ -137,16 +137,7 @@ function renderNewsForm(props) {
         <div className="columns">
           <div className="column is-6">
             <div className="field">
-              <label className="label">Slug</label>
-              <div className="control">
-                <input
-                  type="text"
-                  className={hasCollidingSlug ? 'input is-danger' : 'input'}
-                  value={slug}
-                  disabled
-                  placeholder="..." />
-              </div>
-              {hasCollidingSlug && <p className="help is-danger">This slug already exists!</p>}
+              <label className="label" style={{display: 'inline'}}>Slug of the page:</label> {slug && <code>{slug}</code>}
             </div>
           </div>
         </div>

@@ -1,0 +1,35 @@
+{
+  "activities": [
+    "1f5f0ba7-d1a2-44c6-97e2-23990f691095"
+  ],
+  "content": {
+    "en": "",
+    "fr": "Le 3 février, le médialab sera présent au FOSDEM’18 de Bruxelles pour présenter <a href=\"http://hyphe.medialab.sciences-po.fr/\" target=\"_blank\" rel=\"noopener\">Hyphe</a>, le crawler web développé par les équipes de <a href=\"http://dimeweb.dime-shs.sciences-po.fr/\">DIME-web</a>.\r\n<h1>Contexte</h1>\r\nLe FOSDEM’18 est un événement à destination des développeurs de logiciels libres et open-source. Ouvert à tous et sans inscription, il permet chaque année à des milliers de développeurs internationaux de se rencontrer, partager des idées et collaborer.\r\n\r\nPlus de 650 intervenants prendront part au <a href=\"https://fosdem.org/2018/schedule/\" target=\"_blank\" rel=\"noopener\">programme</a> dans différents formats de présentations : keynotes, main tracks, developer rooms, lightning talks et certification exams.\r\n<h1>It's a Trie... it's a Graph... it's a Traph! Designing an on-file multi-level graph index for the Hyphe web crawler</h1>\r\nLa présentation du <a href=\"http://hyphe.medialab.sciences-po.fr/\">web crawler Hyphe</a> par <a href=\"http://www.medialab.sciences-po.fr/people/paul-girard/\" target=\"_blank\" rel=\"noopener\">Paul Girard</a>, <a href=\"http://www.medialab.sciences-po.fr/people/mathieu-jacomy/\" target=\"_blank\" rel=\"noopener\">Mathieu Jacomy</a>, <a href=\"http://www.medialab.sciences-po.fr/people/benjamin-ooghe-tabanou/\" target=\"_blank\" rel=\"noopener\">Benjamin Ooghe-Tabanou</a> et <a href=\"http://www.medialab.sciences-po.fr/people/guillaume-plique/\" target=\"_blank\" rel=\"noopener\">Guillaume Plique</a> aura lieu samedi 3 février à 15h45 dans la <a href=\"https://fosdem.org/2018/schedule/track/graph_processing/\">Graph Processing devroom</a>.\r\n\r\nRésumé :\r\n\r\n« Hyphe, a web crawler for social scientists developed by the SciencesPo médialab, introduced the novel concept of web entities to provide a flexible and evolutive way of grouping web pages in situations where the notion of website is not relevant enough (either too large, for instance with Twitter accounts, newspaper articles or Wikipedia pages, or too constrained to group together multiple domains or TLDs...). This comes with technical challenges since indexing a graph of linked web entities as a dynamic layer based on a large number of URLs is not as straightforward as it may seem.\r\n\r\nWe aim at providing the graph community with some feedback about the design of an on-file index - part Graph, part Trie - named the \"Traph\", to solve this peculiar use-case. Additionally we propose to retrace the path we followed, from an old Lucene index, to our experiments with Neo4j, and lastly to our conclusion that we needed to develop our own data structure in order to be able to scale up. »\r\n\r\nToutes les infos sur <a href=\"https://fosdem.org/2018/schedule/event/multi_level_graph_index/\" target=\"_blank\" rel=\"noopener\">le site du FOSDEM</a>."
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "2866a96d-92c5-4313-a664-a5697e2bd2a3",
+  "internal": false,
+  "lastUpdated": 1516718340000,
+  "oldSlug": "hyphe-au-fosdem18-3-et-4-fevrier-bruxelles",
+  "people": [
+    "0dcba674-00f3-42d8-b943-89b698a29081",
+    "910c509c-ca11-4684-9898-f2b0b6f3283e",
+    "66d33f76-f197-494f-b8c3-1a61d1f60655",
+    "4d46ba96-c592-427c-9431-85e2922e9c33"
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "hyphe-au-fosdem18-3-et-4"
+  ],
+  "startDate": "2018-01-23",
+  "title": {
+    "en": "",
+    "fr": "Hyphe au FOSDEM’18 – 3 et 4 février Bruxelles"
+  },
+  "type": "notice"
+}

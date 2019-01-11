@@ -1,0 +1,24 @@
+{
+  "active": true,
+  "authors": "Mathieu Jacomy",
+  "description": {
+    "en": "Helpers for scientometrics. Convert files, get networks, visualize stuff from Scopus or Web of Science.",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "8550b979-cfde-46b5-a628-09910fc9a0d5",
+  "lastUpdated": 1545310617274,
+  "oldSlug": "sciencescape",
+  "people": [
+    "910c509c-ca11-4684-9898-f2b0b6f3283e"
+  ],
+  "slugs": [
+    "sciencescape"
+  ],
+  "title": {
+    "en": "ScienceScape",
+    "fr": "ScienceScape"
+  },
+  "type": "software",
+  "url": "http://tools.medialab.sciences-po.fr/sciencescape/"
+}

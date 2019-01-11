@@ -1,0 +1,34 @@
+{
+  "activities": [
+    "d2c6a575-51b6-4956-a43c-c5addfa58e55"
+  ],
+  "content": {
+    "en": "See <a href=\"https://medialab.sciencespo.fr/blog/prix-de-cartographie-des-controverses-edition-2018/\">the french description</a>.",
+    "fr": "<em>Tous les ans, le programme <a href=\"http://controverses.org\">Forccast</a> organise un événement pour célébrer les meilleures études produites au cours de l'année par les élèves et étudiants des établissements partenaires du programme.</em>\r\n\r\nL'édition 2018 se déroulera en deux temps :\r\n\r\n- le <strong>lundi 11 juin à Sciences Po</strong> (<a href=\"https://www.google.fr/maps?q=27,+rue+Saint-Guillaume,+Paris+7e&amp;um=1&amp;ie=UTF-8&amp;sa=X&amp;ved=0ahUKEwjfzMuu3K3bAhVLbxQKHSyPDgkQ_AUICigB\" target=\"_blank\" rel=\"noopener\">27, rue Saint-Guillaume, Paris 7e</a>),\r\n- et le <strong>vendredi 15 juin à la Gaîté lyrique</strong> (<a href=\"https://www.google.fr/maps/place/3bis,+3bis+Rue+Papin,+75003+Paris/@48.8665628,2.3512001,17z/data=!3m1!4b1!4m5!3m4!1s0x47e66e10631175ff:0x37d0fc22948586cb!8m2!3d48.8665593!4d2.3533941\" target=\"_blank\" rel=\"noopener\">3bis rue Papin, Paris 3e</a>).\r\n<h3>Programme</h3>\r\n<strong>Lundi 11 juin, 17h : présentation de trois études de controverses</strong>\r\n\r\n- La sortie du nucléaire, Toloue Akhtarkhavari, Assia Bouaziz, Raluca Mihalache (lycée Léon-Blum de Créteil) ;\r\n- Compter les victimes de Fukushima. Étude de la controverse autour du bilan des victimes de l'accident nucléaire, Camille Wiedemann, Imad Lakim, Simon Brient, Guillaume Dekeyser (ENPC École des Ponts ParisTech) ;\r\n- Authentifier Le Caravage, Alisée Koch, Pierre Miller, Emma Dahan, Léa Lo Van, France de Pradier d’Agrain (bachelor SCUBE, Sciences Po)\r\n\r\nLes présentations seront suivies d'un cocktail.\r\nEntrée libre, <a href=\"https://goo.gl/forms/B4QYjgDERENMHRfo1\">inscription requise</a>.\r\n\r\n<strong>Vendredi 15 juin, 19h : présentation de trois études de controverses</strong>\r\n\r\n- L’accès aux procédures de changement de sexe à l’état civil en France, Léa Adeline, Ludovic Brou, Guilherme Pascoal (Microlycée 93) ;\r\n- Vers une prévention automatisée du suicide ? Intelligence artificielle et santé mentale, Anas Bouzafour, Cuma Karakus, Rida Laarach, Paul-Ernest Martin, Lenny Renault, Edward Tombre (Télécom ParisTech) ;\r\n- Usine toxique ? Montreuil en panique ! Maxime Chiffoleau, Chloé Le Baron, Julie Olivier (ISIGE - Mines ParisTech).\r\n\r\n<strong>Vendredi 15 juin, 20h30 : atelier participatif \"Prendre le temps de l'enquête\"</strong>\r\n\r\nPour clôturer la soirée, Forccast propose à un atelier inédit pour découvrir la méthode d'enquête qui sous-tend la cartographie des controverses. Il sera animé par un groupe d'étudiants de l'<a href=\"http://www.sciencespo.fr/ecole-management-innovation/fr/category/mots-cles/emi\">École du management et de l'innovation</a>\r\n(EMI) de Sciences Po, à partir de leur étude sur les \"réfugiés climatiques\"."
+  },
+  "description": {
+    "en": "Forccast organizes an event to celebrate the best studies produced during the year by students from the program's partner institutions.",
+    "fr": "Forccast organise un événement pour célébrer les meilleures études produites au cours de l'année par les élèves et étudiants des établissements partenaires du programme. "
+  },
+  "draft": true,
+  "id": "2da546ac-dbdd-4680-864d-1e5e97afd5d7",
+  "internal": false,
+  "label": {
+    "fr": "Evénement"
+  },
+  "lastUpdated": 1527686820000,
+  "oldSlug": "prix-de-cartographie-des-controverses-edition-2018",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "prix-de-cartographie-des-controverses-edition"
+  ],
+  "startDate": "2018-05-30",
+  "title": {
+    "en": "2018 Mapping Controversies Awards",
+    "fr": "Prix de cartographie des controverses, édition 2018"
+  },
+  "type": "notice"
+}

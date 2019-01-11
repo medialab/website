@@ -1,0 +1,22 @@
+{
+  "active": true,
+  "bio": {
+    "en": "Maxime Crépel is a sociologist and research engineer at the Sciences Po médialab. His research focuses on the uses of digital technology. He has participated in several study projects related to the use of social networks and user generated content services, ebook and mobile phone uses, as well as digital identities.\r\n<div>Contact : maxime.crepel[AT]sciences-po.fr</div>",
+    "fr": "<div>\r\n\r\nMaxime Crépel est sociologue, ingénieur de recherche au médialab de Sciences Po. Ses travaux de recherche portent sur les usages du numérique. Il a participé à plusieurs projets d’étude relatifs aux  usages des réseaux sociaux et pratiques de publication de contenus en ligne, aux usages du livre numérique et du téléphone mobile, ainsi qu’aux identités numériques.\r\n<div>\r\n<div></div>\r\n</div>\r\n<div>Contact : maxime.crepel[AT]sciences-po.fr</div>\r\n</div>"
+  },
+  "domain": "academic",
+  "draft": true,
+  "firstName": "Maxime",
+  "id": "2dc8e973-3c23-4e08-9787-e4f37dd6d393",
+  "lastName": "Crépel",
+  "lastUpdated": 1353933060000,
+  "membership": "member",
+  "oldSlug": "maxime-crepel",
+  "role": {
+    "en": "Study manager",
+    "fr": "Chargé d'étude"
+  },
+  "slugs": [
+    "maxime-crepel"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "activities": [
+    "0e797a5c-671c-4dde-ac02-046a9d2a3a19",
+    "6b255f4d-5d1d-4d3f-89ef-0862f71bc8dd"
+  ],
+  "content": {
+    "en": "Pour renforcer l'esprit d'équipe et encourager la circulation des connaissances, le médialab organise un sprint de recherche.\r\nDu 18 au 20 mars l'entière équipe du médialab sera réunie dans le sous-marin numérique du 13 rue de l'Université.\r\n\r\nL'idée est de prendre quelques jours, de temps en temps, pour travailler tous ensemble sur la cartographie de controverses (et plus spécifiquement sur l'analyse d'une série de jeux de données relevants pour les projets Emaps et Medea, mais aussi OMS).\r\n\r\nIci une description plus détaillée des données et des objectives du sprint (en anglais) :\r\n\r\n<strong>Datasets, objectives and people</strong>\r\n<strong> General Objective</strong>\r\nThe aim of this sprint is less to produced final maps (visualization ready to be published) than to develop a clear and as-simple-as-possible procedure to extract data from the datasets listed below.\r\nThe expected output of the sprint are processed data tables that could be:\r\n- easily opened and exploited with tools such as Gephi, Libreoffice, ManyEyes and such;\r\n- easily updated as new data pours into the datasets without too much technical intervention.\r\n<strong>1. Scientific literature on adaptation </strong>\r\n<ul>\r\n\t<li><i>Source</i><i>: </i><i><a href=\"http://www.scopus.com/\">http://www.scopus.com/</a></i></li>\r\n\t<li><i>During the sprint</i>: prepare a script that compile and parse a csv exported from Scopus and generates various gexf (for relational information) and csv (for temporal series). (Mathieu, Tommaso, Liam)<i></i></li>\r\n\t<li><i>Before the sprint</i>: collect the data from Scopus (Tommaso)<i></i></li>\r\n</ul>\r\n<strong>2. Scientific literature in ISI on adaption</strong>\r\n<ul>\r\n\t<li><i>Source</i><i>: </i><i><a href=\"http://sub3.webofknowledge.com/\">http://webofknowledge.com/</a></i><i> </i><i></i></li>\r\n\t<li><i>During the sprint</i><i>: </i>prepare a script that compile and parse a txt exported from ISI WoK and generates various gexf (for relational information) and csv (for temporal series). (Mathieu, Tommaso, Liam)<i></i></li>\r\n\t<li><i>Before the sprint</i><i>: </i>collect the data from ISI WoK (Tommaso)<i></i></li>\r\n</ul>\r\n<strong>3a. IPCC report</strong>\r\n<ul>\r\n\t<li><i>Source</i><i>: <a href=\"http://www.ipcc.ch/publications_and_data/publications_and_data_reports.shtml\">http://www.ipcc.ch/publications_and_data/publications_and_data_reports.shtml</a></i><i> </i><i></i></li>\r\n\t<li><i>During the sprint</i>: Find intelligent ways to visualize the tables of contributors to the 5 IPCC reports. (Audrey B., Donato, Nicolas G.)<i></i></li>\r\n\t<li><i>Before the sprint</i>: complete the tables of contributors (Nicolas G., Ian, Audrey B)<i></i></li>\r\n</ul>\r\n<strong>4. Earth Negotiations Bulletin on UNFCCC </strong>\r\n<ul>\r\n\t<li><i>Source</i><i>: <a href=\"http://www.iisd.ca/vol12/\">http://www.iisd.ca/vol12/</a></i></li>\r\n</ul>\r\n<ul>\r\n\t<li><i>During the sprint</i>: Analyse with Pattern the pds and extract monopartite network of countries names appearing in the same sentences; bipartite network of countries names and issues nominal groups appearing in the same sentence; monopartite networks of issues nominal groups appearing in the same sentence; network of who is speaking of whom “NAME OF COUNTRY for NAME OF THE GROUP” (Paul, Axel, Daniele)<i></i></li>\r\n\t<li><i>Before the sprint</i>: scrape and select the relevant ENB documents (Axel, Benjamin O.)<i></i></li>\r\n</ul>\r\n<strong>5. UNFCCC document</strong>\r\n<ul>\r\n\t<li><i>Source</i><i>: <a href=\"http://unfccc.int/documentation/documents/items/3595.php\">http://unfccc.int/documentation/documents/items/3595.php</a></i></li>\r\n</ul>\r\n<ul>\r\n\t<li><i>During the sprint</i>: Index the documents and query it manually to generate various gexf (for relational information) and csv (for temporal series). (Julien, Romain, Ian)<i></i></li>\r\n\t<li><i>Before the sprint</i>: Before the sprint: create an dictionary on interesting n-grams (with merge) (Ian, Nicolas, Axel)<i></i></li>\r\n</ul>\r\n<strong>6. UNFCCC side events  </strong>\r\n<ul>\r\n\t<li><i>Source</i><i>:</i><i> </i><i><a href=\"http://regserver.unfccc.int/seors/reports/archive.html\">http://regserver.unfccc.int/seors/reports/archive.html</a></i></li>\r\n\t<li><i>During the sprint</i>: Scrape the table of side events and transform it in a csv (Christophe, Maxime, Dario)<i></i></li>\r\n\t<li><i>Before the sprint</i>: nothing<i></i></li>\r\n</ul>\r\n<strong>7. weADAPT.org, through their website API </strong>\r\n<ul>\r\n\t<li><i>Source</i><i>:  <a href=\"http://weadapt.org/\">http://weadapt.org/</a></i>, <i><a href=\"http://api.weadapt.org/docs/\">http://api.weadapt.org/docs/</a></i></li>\r\n\t<li><i>During the sprint</i>: Generate bi-partite network of organisations and projects; mono-partite network of organisations (sharing projects); mono-partite network of projects (sharing organisations). Generate bi-partite network of tags and projects; mono-partite network of tags (sharing projects); mono-partite network of projects (sharing tags). Generate bi-partite network of tags and organisations; mono-partite network of tags (sharing organisations); mono-partite network of organisations (sharing tags). (Benjamin, Tommaso, Liam)<i></i></li>\r\n\t<li><i>Before the sprint</i>: nothing<i></i></li>\r\n</ul>\r\n<strong>8. Websites on adaptation through Hyphe</strong>\r\n<ul>\r\n\t<li><i>Source</i><i>: </i></li>\r\n\t<li><i>During the sprint</i>: Crawl the seed, sieve the neighbours, iterate 2 or 3 times. (Benjamin, Tommaso, Audrey L.)<i></i></li>\r\n\t<li><i>Before the sprint</i>: Prepare a list of seed websites. (Ian, Nicolas, Axel)</li>\r\n</ul>",
+    "fr": ""
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "1973c6a7-2dd8-4456-9388-99b658e71772",
+  "internal": false,
+  "lastUpdated": 1361730300000,
+  "oldSlug": "controversy-mapping-sprint",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "sprint-cartographie-des-controverses"
+  ],
+  "startDate": "2013-02-24",
+  "title": {
+    "en": "Controversy Mapping Sprint",
+    "fr": "Sprint Cartographie des Controverses"
+  },
+  "type": "notice"
+}

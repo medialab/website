@@ -1,0 +1,22 @@
+{
+  "active": true,
+  "bio": {
+    "en": "After spending some years abroad, studying and working, Barbara arrived at Sciences Po in 2002. She spent 3 years at the International Affairs Division (DAIE), before joining the “Groupe d’Economie Mondiale” at Sciences Po, where she worked for the next eight years. In spring 2013, she joined the médialab team.  ",
+    "fr": "Après avoir fait des études et travaillé quelques années à l’étranger, Barbara est arrivée à Sciences po en 2002. Elle a passé trois ans à la Direction des Affaires Internationales et des Echanges avant d’intégrer le Groupe d’Economie Mondiale où elle a travaillé 8 ans comme chargée de mission. En 2013, elle a rejoint l’équipe du médialab. "
+  },
+  "domain": "admin",
+  "draft": true,
+  "firstName": "Barbara",
+  "id": "b23237f8-e814-47a1-8610-9b5bc0381b2e",
+  "lastName": "Bender",
+  "lastUpdated": 1404817560000,
+  "membership": "member",
+  "oldSlug": "barbara-bender",
+  "role": {
+    "en": "Administrative manager",
+    "fr": "Responsable administrative"
+  },
+  "slugs": [
+    "barbara-bender"
+  ]
+}

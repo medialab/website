@@ -1,0 +1,16 @@
+/* page objet */
+/* julie: node-sass --watch index.scss ../css-compiled/index.css */
+
+@import 'common';
+
+
+//parts/page_list
+@import 'parts/page_objet/page_objet';
+@import 'parts/page_objet/page_objet-desktop';
+@import 'parts/page_objet/page_objet-phone';
+
+@import 'parts/page_objet/menu-inside-article';
+@import 'parts/page_objet/elements-associes';
+
+// Specific to the nature of Page ( People, / Production ...)
+@import 'parts/page_objet/page_objet_personne';

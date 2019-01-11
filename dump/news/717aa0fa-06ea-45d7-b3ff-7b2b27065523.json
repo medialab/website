@@ -1,0 +1,32 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "Paul Girard and Guillaume Plique will present their work on the <a href=\"https://toflit18.hypotheses.org/\">TOFLIT18 datascape</a> at the Neubauer Collegium for Culture and Society on Friday, October 14 9:30 am - 4:45 pm.\r\n\r\nThis one-day workshop brings together historians and digital humanities specialists who are working building novel kinds of datasets and putting them to a variety of uses. It aims at discussing the creative use of large databases in the context of interdisciplinary projects with a focus on those exploring historical social and economic data in their quantitative and qualitative dimension simultaneously. We will showcase various methods currently in use (or in development) that go beyond traditional\r\nquantitative methods in order to analyse and visualise data in revealing ways.\r\n\r\nA conference of the The French Republic and the Plantation Economy: Saint-Domingue, 1794-1803\r\n\r\nSchedule:\r\n\r\n9:30-10:00 Coffee and Welcome, Paul Cheney (The University of Chicago)\r\n\r\n10:00-10:45 Jo Guldi (History, Southern Methodist University), “On the Interpretation of History by Squiggle: Visualizing Change Beyond the N-Gram”; Chair: Elizabeth Chaterjeee (The University of Chicago)\r\n\r\n10:45-11:30 Yves Gingras, (History, Université du Quebec à Montreal) “How Bibliometric Methods Can Map the Global Structure and Dynamics of Science from the 17th to the 21st Century”; Chair: Michael Rossi (The University of Chicago)\r\n\r\nCoffee Pause\r\n\r\n11:45-12:30 Loïc Charles (Economics, Université de Paris-8) and Guillaume Daudin (Economics, Université de Paris Dauphine), “Mapping the World of Eighteenth-Century Commodities with a Multidimensional Database”; Chair: Paul Cheney (The University of Chicago)\r\n\r\n12:30-1:45 Lunch\r\n\r\n1:45-2:30 Paul Maneuvrier-Hervieu (History, Université de Caen), \"Using and publishing a database: the benefits of XML format for an historical research on food riots in the Eighteenth Century\"; Chair: Allan Potofsky (University of Paris-7)\r\n\r\nCoffee Pause\r\n\r\n2:30-3:15 Silvia Marzagalli (History, Université de Nice), “Visualizing Early Modern Trade: the Navigocorpus”; Chair: Alain Bresson (The University of Chicago)\r\n\r\n3:30-4:15 Paul Girard (Médialab, Sciences Po, Paris) and Guillaume Plique (Médialab, Sciences Po, Paris), “Organizing the Reversible Chain of Transformations: from Trade Statistics records to Datascapes”; Chair: Loïc Charles (University of Paris-8)\r\n\r\n4:15-4:45 Roundtable\r\n\r\nCosponsored by the Franke Institute for the Humanities and the France Chicago Center.\r\n\r\nNeubauer Collegium for Culture and Society\r\n5701 S. Woodlawn Avenue\r\nChicago, Illinois 60637\r\n\r\n<a href=\"http://neubauercollegium.uchicago.edu/events/uc/from_quantitive_to_qualitative/\">Original program on Neubauer website</a>",
+    "fr": ""
+  },
+  "description": {
+    "en": "This one-day workshop brings together historians and digital humanities specialists who build novel kinds of datasets.\r\nFriday, October 14 9:30 am - 4:45 pm\r\nNeubauer Collegium for Culture and Society, Chicago",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "717aa0fa-06ea-45d7-b3ff-7b2b27065523",
+  "internal": false,
+  "lastUpdated": 1475493660000,
+  "oldSlug": "from-quantitative-to-qualitative-analysis-new-perspectives-on-research-in-social-history",
+  "people": [
+    "4d46ba96-c592-427c-9431-85e2922e9c33",
+    "66d33f76-f197-494f-b8c3-1a61d1f60655"
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    ""
+  ],
+  "startDate": "2016-10-3",
+  "title": {
+    "en": "From Quantitative to Qualitative Analysis: New Perspectives on Research in Social History",
+    "fr": ""
+  },
+  "type": "notice"
+}

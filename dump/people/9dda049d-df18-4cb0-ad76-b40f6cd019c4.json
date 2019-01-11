@@ -1,0 +1,22 @@
+{
+  "active": false,
+  "bio": {
+    "en": "Both a designer and an artist, Benoît Verjat graduated from the “École Supérieure des Arts décoratifs” in Strasbourg. Today, he teaches at the “École Supérieure d’Art” in Nancy.\r\n\r\nIn 2011, he joined the collective g.u.i (editorial and interactive design). From 2011 to 2014, he worked as a researcher within the Ensad Lab DIIP program (Displays Interactive and Performative) directed by Samuel Bianchini. In 2014-2015, he participated to SPEAP, an experimental program in arts and politics directed by Bruno Latour.\r\n\r\nHe joined the médialab in 2015.",
+    "fr": "Benoît Verjat est designer et artiste. Diplômé de l’École Supérieure des Arts décoratifs de Strasbourg, il enseigne aujourd’hui à l’École Supérieure d’Art de Nancy.\r\n\r\nEn 2011, il intègre le collectif g.u.i (design éditorial et interactif). De 2011 à 2014, il est chercheur au sein du programme DIIP à l’Ensad Lab (Dispositifs interactifs et performatifs) dirigé par Samuel Bianchini. En 2014-2015, il participe à SPEAP, programme d’expérimentation en arts et politique dirigé par Bruno Latour.\r\n\r\nIl intègre le médialab en 2015."
+  },
+  "domain": "design",
+  "draft": true,
+  "firstName": "Benoît",
+  "id": "9dda049d-df18-4cb0-ad76-b40f6cd019c4",
+  "lastName": "Verjat",
+  "lastUpdated": 1442821980000,
+  "membership": "member",
+  "oldSlug": "benoit-verjat",
+  "role": {
+    "en": "",
+    "fr": "Designer d'information"
+  },
+  "slugs": [
+    "benoit-verjat"
+  ]
+}

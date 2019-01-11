@@ -1,0 +1,30 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "",
+    "fr": "<strong>Les vidéos de la journée :</strong>\r\n\r\n- <a href=\"http://player.vimeo.com/video/67875376\">Pablo Jensen (ENS de Lyon) : Introduction à la journée, “Lien micro-macro : différences entre physique et sociologie”</a>\r\n<a href=\"http://www.medialab.sciences-po.fr/wp-content/uploads/2013/06/SciencePo-Jensen.pdf\">Slides P. Jensen</a>\r\n<iframe src=\"http://player.vimeo.com/video/67875376\" height=\"375\" width=\"500\" allowfullscreen=\"\" frameborder=\"0\"></iframe>\r\n\r\n\r\n- <a href=\"http://player.vimeo.com/video/67874128\">André Orléan (PSE) « La valeur économique comme fait social, irréductible aux individus »</a>\r\n<iframe src=\"http://player.vimeo.com/video/67874128\" height=\"375\" width=\"500\" allowfullscreen=\"\" frameborder=\"0\"></iframe>\r\n\r\n\r\n- <a href=\"http://player.vimeo.com/video/67874129\">Bruno Latour (médialab, Sciences Po) « Vision Tardienne du “tout” sociologique comme plus petit que les parties »</a>\r\n<iframe src=\"http://player.vimeo.com/video/67874129\" height=\"410\" width=\"500\" allowfullscreen=\"\" frameborder=\"0\"></iframe>\r\n\r\n\r\n- <a href=\"http://player.vimeo.com/video/67874133\">Antoine Georges (Collège de France), « émergence de propriétés collectives dans la matière »</a>\r\n<iframe src=\"http://player.vimeo.com/video/67874133\" height=\"375\" width=\"500\" allowfullscreen=\"\" frameborder=\"0\"></iframe>\r\n\r\n\r\n- <a href=\"http://player.vimeo.com/video/67875378\">Pierre Sonigo (INSERM) « L’organisme et les cellules : les métaphores de la machine et de la forêt »</a>\r\n<iframe src=\"http://player.vimeo.com/video/67875378\" width=\"500\" height=\"375\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>\r\n\r\n\r\n- <a href=\"http://player.vimeo.com/video/67874130\">Jean-Philippe Bouchaud (Polytechnique) « Effets collectifs en physique et dans les systèmes sociaux »</a>\r\n<a href=\"http://www.medialab.sciences-po.fr/wp-content/uploads/2013/06/micro-macro.pdf\">Slides JP Bouchaud</a>\r\n<iframe src=\"http://player.vimeo.com/video/67874130\" height=\"375\" width=\"500\" allowfullscreen=\"\" frameborder=\"0\"></iframe>\r\n\r\n\r\n- <a href=\"http://player.vimeo.com/video/67874131\">Dominique Boullier (CEE, Sciences Po), « Puissance de circulation des attributs d’une photo sur Flickr »</a>\r\n<a href=\"http://www.medialab.sciences-po.fr/wp-content/uploads/2013/06/Puissance-de-circulation-Tarde-mai-2013-v3.pptx\">Slides D. Boullier</a>\r\n<iframe src=\"http://player.vimeo.com/video/67874131\" height=\"375\" width=\"500\" allowfullscreen=\"\" frameborder=\"0\"></iframe>\r\n\r\n\r\n- <a href=\"http://player.vimeo.com/video/67875377\">Tommaso Venturini, conclusions, effets de seuil et la visualisation grâce à des données scientométriques du “tout” et des “parties”.</a>\r\n<iframe src=\"http://player.vimeo.com/video/67875377\" width=\"500\" height=\"375\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>"
+  },
+  "description": {
+    "en": "Vidéos du colloque interdisciplinaire  \"Le tout est-il plus grand ou plus petit que ses parties?\" Regards de sociologues, économistes, physiciens, biologistes… - qui s'est tenu à Sciences Po le 24 mai 2013.",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "80991b14-0ec6-490b-9c03-218edca647b7",
+  "internal": false,
+  "lastUpdated": 1370593320000,
+  "oldSlug": "videos-du-colloque-interdisciplinaire-le-tout-est-il-plus-grand-ou-plus-petit-que-ses-parties-regards-de-sociologues-economistes-physiciens-biologistes",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "videos-et-slides-du-colloque-interdisciplinaire"
+  ],
+  "startDate": "2013-06-7",
+  "title": {
+    "en": "",
+    "fr": "Vidéos et slides du colloque interdisciplinaire  \"Le tout est-il plus grand ou plus petit que ses parties?\" Regards de sociologues, économistes, physiciens, biologistes…"
+  },
+  "type": "notice"
+}

@@ -1,0 +1,22 @@
+{
+  "active": true,
+  "bio": {
+    "en": "Graduated from University Paris Saclay, Mengying Du got the master degree in Human Computer Interaction and Business Intelligence.\r\nAs a front-end developer in Medialab, she is passionate about creating innovative visualization tools to help people explore on massive dataset.",
+    "fr": ""
+  },
+  "domain": "tech",
+  "draft": true,
+  "firstName": "Mengying",
+  "id": "69ddaed4-3de5-4bbc-a6d5-337097e5d5c9",
+  "lastName": "Du",
+  "lastUpdated": 1505999100000,
+  "membership": "member",
+  "oldSlug": "mengying-du",
+  "role": {
+    "en": "Front-end developer",
+    "fr": "Developpeur interface web"
+  },
+  "slugs": [
+    "mengying-du"
+  ]
+}

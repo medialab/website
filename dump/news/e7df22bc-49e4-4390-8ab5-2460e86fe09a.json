@@ -1,0 +1,32 @@
+{
+  "activities": [
+    "c3f7c96a-32b2-4084-a380-f937b6acb8cb"
+  ],
+  "content": {
+    "en": "<a href=\"http://www.medialab.sciences-po.fr/wp-content/uploads/2013/05/habitele-Program.pdf\">habitele Program</a>\r\n\r\n<strong>Thursday May 30th</strong>\r\n<ul>\r\n\t<li><em>9.30 am: Welcome coffee</em></li>\r\n\t<li>10 am: General presentation by Dominique Boullier</li>\r\n\t<li>10.15 am: State of the art from the results of the survey: the questions to be addressed by Dominique Boullier</li>\r\n\t<li>10.45 Methodological issues</li>\r\n\t<li>11.30 am: Debate</li>\r\n\t<li><em>12.30: Lunch</em></li>\r\n\t<li>2 pm: Case studies. Presentation by each team of one relevant case study (20mn/ team), including a 15mn break</li>\r\n\t<li>4.50 pm: General debate and proposals for publications</li>\r\n\t<li>5.45 pm: End of the session</li>\r\n\t<li><em>7. pm: Invitation to the cocktail for Bruno Latour’s Holberg prize (Amphitheater Leroy- Beaulieu, 27 rue Saint Guillaume, 75007 Paris)</em></li>\r\n\t<li><em>8.30 pm: Dinner (Restaurant La petite chaise, 36 rue de Grenelle, 75007 Paris)</em></li>\r\n</ul>\r\n<strong>Friday May 31st</strong>\r\n<ul>\r\n\t<li>9.30 am: Detailed presentation of the data base and qualitative materials</li>\r\n\t<li>10.30 am: Discussion of hypothesis n°1 (social worlds switching) on the basis of statistical</li>\r\n\t<li>and qualitative evidence</li>\r\n\t<li>11.30 am: Discussion of hypothesis n°2 (alert regime)</li>\r\n\t<li>12.15 am: Short address by Bruno Latour (Sciences Po)</li>\r\n\t<li><em>12.30: Lunch</em></li>\r\n\t<li>2 pm: Discussion of hypothesis n°3 (privacy)</li>\r\n\t<li>3 pm: Discussion of hypothesis n°4 (envelope)</li>\r\n\t<li>4 pm: Presentation of Telecom Paris Tech work on hypothesis n°5 (asymmetry of control</li>\r\n\t<li>between users and operators)</li>\r\n\t<li>4.30 pm: General debate and perspectives of the Habitèle project</li>\r\n\t<li>5.30 pm: End of the conference</li>\r\n</ul>\r\n<strong>Contact:</strong> dominique.boullier[at]sciences-po.fr",
+    "fr": ""
+  },
+  "description": {
+    "en": "leader: Dominique Boullier Sciences Po Paris",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "e7df22bc-49e4-4390-8ab5-2460e86fe09a",
+  "internal": false,
+  "lastUpdated": 1369637160000,
+  "oldSlug": "international-conference-on-habitele-an-anr-research-project-program",
+  "people": [
+    "8081e4ed-552d-45a8-b1a8-5b5e9e924cdd"
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "conference-internationale-habitele-programme"
+  ],
+  "startDate": "2013-05-27",
+  "title": {
+    "en": "International conference on habitele - program",
+    "fr": "Conférence internationale Habitèle - programme"
+  },
+  "type": "notice"
+}

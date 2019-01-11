@@ -8,42 +8,12 @@
         
        	margin-top: $unite*1;
 
-		////	Filtre Objet
-
-		.filtre_objet{
-        	
-            width:  $unite*10;
-            position: fixed;
-   
-        	ul{
-                max-width: $unite*3;
-
-                li{ 
-                	min-height: $unite*3;
-                    width: $unite*4;
-                    border-bottom: $border;
-
-                    p{ @include font-size-20; }
-                   	                    
-                    ul{ 	/////// If Nested / Eviter la redondance des Border
-                        padding: $unite/2 0;
-
-                        li{
-                            height: $unite;
-                            width: $unite*4;
-
-                            input{ margin-right: $unite/2; }
-                        } 
-                    } 		/////// End Nested
-                }
-
-                li:nth-of-type(1){
-                    min-height: $unite*3;
-	                border-top: $border;
-                }
-            }
+		///// Accroche Phone
+        .accroche-titre-phone{
+        	display: none;
         }
-
+        ///// Acchroche Phone END
+        ///// Liste Objet
         #liste_objet{
 
             width: calc(50% - #{$unite*5});
@@ -80,7 +50,7 @@
 							@include flex();
                 			@include align-items(center);
 
-						li.title{  display: inline-block; width: 200px; padding-right: 10px; }
+						li.activite{  display: inline-block; width: 200px; padding-right: 10px; }
 						li.type{  display: inline-block; width: 200px; padding-right: 10px;}
 						li.time{  display: inline-block;width: 100px; padding-right: 10px;}	
 						li.direct_link{	display: inline-block; width: 20px;}
@@ -95,7 +65,10 @@
 
 		    .accroche-titre{ display: block; }
 
-		    @for $i from 1 through 200 {
+		    @for $i from 1 through 400 {
+		    	[data-item="#{$i}"]:hover{
+		    		color: $redlab;
+		    	}
 		        [data-item="#{$i}"]:hover ~ [data-item-accroche="#{$i}"]{ display:block; }
 		        [data-item="#{$i}"]:hover ~ .accroche-titre{ display:none; }
 		    }

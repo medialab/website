@@ -1,0 +1,22 @@
+{
+  "active": false,
+  "bio": {
+    "en": "After studying history and working in web agencies, Gregory started learning coding by joining the school 42.\r\n\r\nHe joined médialab after an internship in order to put his double understanding of history and coding to service of médialab projects.",
+    "fr": "Après des études d'histoire et un passage en agences web, Grégory se lance dans l'apprentissage du code en intégrant l'école 42.\r\nIl a rejoint le médialab pour un stage afin de mettre ses doubles compétences au service d'une application mêlant histoire et informatique.\r\n\r\n "
+  },
+  "domain": "tech",
+  "draft": true,
+  "firstName": "Grégory",
+  "id": "6a620933-82cc-4ab7-92f2-c3e03a4c6b18",
+  "lastName": "Tible",
+  "lastUpdated": 1442821260000,
+  "membership": "member",
+  "oldSlug": "gregory-tible",
+  "role": {
+    "en": "Developer",
+    "fr": "Développeur"
+  },
+  "slugs": [
+    "gregory-tible"
+  ]
+}

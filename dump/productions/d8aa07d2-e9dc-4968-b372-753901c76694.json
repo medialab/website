@@ -1,0 +1,24 @@
+{
+  "active": true,
+  "authors": "Mathieu Jacomy",
+  "description": {
+    "en": "Colors for data scientists. Generate and refine palettes of optimally distinct colors.",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "d8aa07d2-e9dc-4968-b372-753901c76694",
+  "lastUpdated": 1545310617262,
+  "oldSlug": "iwanthue",
+  "people": [
+    "910c509c-ca11-4684-9898-f2b0b6f3283e"
+  ],
+  "slugs": [
+    "i-want-hue"
+  ],
+  "title": {
+    "en": "I Want Hue",
+    "fr": "I Want Hue"
+  },
+  "type": "software",
+  "url": "http://tools.medialab.sciences-po.fr/iwanthue/"
+}

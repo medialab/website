@@ -1,0 +1,30 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "<a href=\"http://www.medialab.sciences-po.fr/publications/Venturini_et_al-Effet_Reseau_draft3.pdf\">Download</a>",
+    "fr": ""
+  },
+  "description": {
+    "en": "Publication draft - Venturini, T., Girard, P. & Jacomy, M. Effet de Réseau",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "36d60603-c135-436f-8f75-d04d7c70f9ee",
+  "internal": false,
+  "lastUpdated": 1359038340000,
+  "oldSlug": "francais-effet-de-reseau",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "effet-de-reseau"
+  ],
+  "startDate": "2013-01-24",
+  "title": {
+    "en": "",
+    "fr": "Effet de Réseau"
+  },
+  "type": "notice"
+}

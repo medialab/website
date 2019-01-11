@@ -1,0 +1,26 @@
+{
+  "active": false,
+  "content": {
+    "en": "<h2>Description</h2>\r\nSolen is a research and development program on the access to digital text contents in mobility, e-books loan, and e-readers. See the last project presentation.\r\n<h2>Context</h2>\r\nIn our interlinked era, new ways of economical exchanges emerge in the USA as well as in Japan. In France however, the local network of booksellers that keeps supporting a single price is slowing down the development of free networks. Therefore the challenge is to invent new circulation modes that redefine the profession of bookseller while guarantying them the respect of their interests.\r\n<h2>Objectives</h2>\r\nTo prototype a new economical model based on annotated e-books loan. Loan would be low priced and shared by editor and consumer themselves. Questions about social networking and shared annotations are the key point of the innovation proposed.\r\nTo question important themes on new collaboratives methods and digital exchanges of the digital era.\r\n\r\n<strong>- Project coordinator at Sciences Po: </strong>Dominique Boullier\r\n<strong> The project was closed in 2013 and the report will be published soon in a book .  See also the paper  \"modes de circulation du liver sur les réseaux numériques (<a href=\"http://edc.revues.org/6031\">http://edc.revues.org/6031</a>)</strong>\r\n\r\n<strong> Another research program was conducted the same year for MOTif (the regional agency for  books) including interviews and on-line questionaire (720 respondants). The report is available on their website </strong>\r\n\r\n<a href=\"http://www.lemotif.fr/fr/etudes-et-donnees/etudes-du-motif/pratiques-de-lecture-et-d-achat-de-livres-numeriques/\"><strong>http://www.lemotif.fr/fr/etudes-et-donnees/etudes-du-motif/pratiques-de-lecture-et-d-achat-de-livres-numeriques/</strong></a><strong></strong>",
+    "fr": "<h2>Description</h2>\r\nSolen is a research and development program about the access to digital text contents in mobility, e-books loan, and e-readers. See the last project presentation.\r\n<h2>Context</h2>\r\nIn our interlinked era, new ways of economical exchanges emerge in the USA as well as in Japan. In France however, the territoral networking of booksellers that keep supporting a unique price is slowing down the development of free networks. Therefore the challenge is to invent new circulation modes that redefine the profession of bookseller while guarantying them the respect of their interests.\r\n<h2>Objectifs</h2>\r\nTo prototype a new economical model based on annotated e-books loan. Loan would be low priced and shared by editor and consumer itself. Questions about social networking and shared annotations are the key point of the innovation proposed.\r\nTo question important themes of new collaboratives methods and digital exchanges of the numerical era.\r\n\r\n<strong></strong><strong><strong>Project coordinator at Sciences Po: </strong>Dominique Boullier\r\n<strong> The project was closed in 2013 and the report will be published soon in a book .  See also the paper  \"modes de circulation du liver sur les réseaux numériques (<a href=\"http://edc.revues.org/6031\">http://edc.revues.org/6031</a>)</strong></strong>\r\n\r\n<strong> Another research program was conducted the same year for MOTif (the regional agency for  books) including interviews and on-line questionaire (720 respondants). The report is available on their website </strong>\r\n\r\n<a href=\"http://www.lemotif.fr/fr/etudes-et-donnees/etudes-du-motif/pratiques-de-lecture-et-d-achat-de-livres-numeriques/\"><strong>http://www.lemotif.fr/fr/etudes-et-donnees/etudes-du-motif/pratiques-de-lecture-et-d-achat-de-livres-numeriques/</strong></a>\r\n\r\n<strong> </strong>"
+  },
+  "description": {
+    "en": "Solen is a research and development program about the access to digital text contents in mobility, e-books loan, and e-readers. See the last project presentation.",
+    "fr": "Solen is a research and development program about the access to digital text contents in mobility, e-books loan, and e-readers. See the last project presentation."
+  },
+  "draft": true,
+  "endDate": "2013-01-01",
+  "id": "27dff383-fb76-4bdb-a216-0f64a9c69a5c",
+  "important": false,
+  "lastUpdated": 1345790340000,
+  "name": "Solen",
+  "oldSlug": "solen",
+  "people": [
+    "2dc8e973-3c23-4e08-9787-e4f37dd6d393",
+    "8081e4ed-552d-45a8-b1a8-5b5e9e924cdd"
+  ],
+  "slugs": [
+    "solen"
+  ],
+  "type": "research"
+}

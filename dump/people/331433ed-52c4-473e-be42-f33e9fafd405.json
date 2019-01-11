@@ -1,0 +1,22 @@
+{
+  "active": false,
+  "bio": {
+    "en": "Contact : biljana.jankovic[AT]sciences-po.fr\r\n\r\nHaving arrived at Sciences Po in 2003 after over 10 years spent as a sales assistant, Biljana first worked at the continuing training direction. She then occupied multiple positions at the HR department, where she stayed for 4 years (GPEC assistant then training assistant and finally assistant to the HR director). After working for 18 months for the adjunct-director of Sciences Po in charge of coordination of support functions, she joined the scientific direction in February 2009 as the assistant of the scientific director. In September 2012, she followed Bruno Latour as his executive assistant, and joined the TARDE program and the médialab team.",
+    "fr": "Contact : biljana.jankovic[AT]sciences-po.fr\r\n\r\nArrivée à Sciences Po en 2003 après plus de 10 années passées dans le commerce, Biljana a tout d'abord travaillé à la direction de la formation continue. Elle a ensuite occupé plusieurs postes à la DRH, où elle est restée 4 ans (assistante GPEC puis assistante formation et enfin assistante du DRH). Après avoir travaillé pendant 18 mois auprès du directeur-adjoint de Sciences Po en charge de la coordination des fonctions support et appui, elle a rejoint la direction scientifique en février 2009 en tant qu'assistante du directeur scientifique. Elle a suivi Bruno Latour en septembre 2012 en rejoignant le programme TARDE et l’équipe du médialab, dont elle est l'assistante de direction."
+  },
+  "domain": "admin",
+  "draft": true,
+  "firstName": "Biljana",
+  "id": "331433ed-52c4-473e-be42-f33e9fafd405",
+  "lastName": "Jankovic",
+  "lastUpdated": 1357734600000,
+  "membership": "member",
+  "oldSlug": "biljana-jankovic",
+  "role": {
+    "en": "Executive Assistant",
+    "fr": "Assistante de Direction"
+  },
+  "slugs": [
+    "biljana-jankovic"
+  ]
+}

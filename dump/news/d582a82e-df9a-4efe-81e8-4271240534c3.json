@@ -1,0 +1,33 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "Presentation and discussion will be in French ; see <a href=\"http://www.medialab.sciences-po.fr/fr/blog/medialabs-research-seminar-moderated-by-mickael-sinatra-la-communaute-dh-du-quebec-au-reste-du-monde-tuesday-22-may-2018-from-2pm-to-4-pm\">the french abstract</a>.",
+    "fr": "Mardi 22 mai, le séminaire du médialab accueille Mickael Sinatra pour une intervention intitulée:\r\n\r\n<em>« La communauté DH, du Québec au reste du monde ».</em>\r\n\r\nLa présentation d’une heure sera suivie d’une heure d’échanges.\r\n\r\n&nbsp;\r\n<h3>Biographie</h3>\r\nTitulaire d'un doctorat en littérature anglaise de l'Université d'Oxford, Michael E. <span class=\"il\">Sinatra</span> est professeur titulaire à l'Université de Montréal et le fondateur du Centre de recherche interuniversitaire sur les humanités numériques (<a href=\"http://www.crihn.org/\" target=\"_blank\" rel=\"noopener\" data-saferedirecturl=\"https://www.google.com/url?hl=fr&amp;q=http://www.crihn.org&amp;source=gmail&amp;ust=1523342937506000&amp;usg=AFQjCNGGqKmF07AeRhOe4dJFvkTIbFRSVA\">www.crihn.org</a>). Il est l'ancien président (français) de l'association canadienne des humanités numériques et siège à présent comme secrétaire sur le bureau du comité de coordination d'Humanistica, l’association francophone des humanités numériques (<a href=\"http://www.humanisti.ca/\" target=\"_blank\" rel=\"noopener\" data-saferedirecturl=\"https://www.google.com/url?hl=fr&amp;q=http://www.humanisti.ca&amp;source=gmail&amp;ust=1523342937506000&amp;usg=AFQjCNHBguXV4GlkdzuPcCXunDpu3Ehu9g\">www.humanisti.ca</a>). <span class=\"il\">Sinatra</span> est aussi le co-directeur du projet NINES (Networked Infrastructure for Nineteenth-Century Electronic Scholarship). Il a co-organisé la conférence « Digital Humanities 2017 : Access / Accès » au nom d'ADHO, l’organisation qui regroupe toutes les associations en humanités numériques à travers le monde. (La conférence accueilli plus de 900 participants.) Il a fondé, avec Marcello Vitali-Rosati, la collection \"Parcours numériques\" au printemps 2014, une collection hybride papier/numérique (<a href=\"http://www.parcoursnumeriques-pum.ca/\" target=\"_blank\" rel=\"noopener\" data-saferedirecturl=\"https://www.google.com/url?hl=fr&amp;q=http://www.parcoursnumeriques-pum.ca&amp;source=gmail&amp;ust=1523342937506000&amp;usg=AFQjCNEA7iLwQ_tjUKGPO-AlZcghL1nLPg\">www.parcoursnumeriques-pum.ca</a><wbr />)\r\n<h3>Résumé</h3>\r\nCette conférence propose de réfléchir aux défis qui existent pour les chercheurs en sciences humaines de trouver les bonnes méthodes pour analyser le web en proposant, dans un premier temps, un survol historique des humanités numériques suivi d’un exemple canadien d’un centre de recherche afin d’offrir un cas d’étude concret après des aspects plus théoriques.\r\n<h3>Informations pratiques</h3>\r\nSéminaire ouvert à tous, dans la limite des places disponibles.\r\nInscription préalable fortement recommandée : <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc_ygq3zSqThPK4LgjubjhZGl8tf9eMQGjVKswRCFz9a09oVA/viewform\" target=\"_blank\" rel=\"noopener\">s’inscrire</a>\r\n\r\nMardi 22 maI 2018 - 14h00 à 16h00\r\nSalle du médialab, 13 rue de l’Université, 75007 Paris"
+  },
+  "description": {
+    "en": "Tuesday 22 May 2018, the medialab's research seminar will be moderated by Mickael Sinatra.",
+    "fr": "Mardi 22 mai, le séminaire du médialab accueille Mickael Sinatra."
+  },
+  "draft": true,
+  "id": "d582a82e-df9a-4efe-81e8-4271240534c3",
+  "internal": true,
+  "label": {
+    "fr": "Séminaire de recherche"
+  },
+  "lastUpdated": 1523250720000,
+  "oldSlug": "medialabs-research-seminar-moderated-by-mickael-sinatra-la-communaute-dh-du-quebec-au-reste-du-monde-tuesday-22-may-2018-from-2pm-to-4-pm",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "la-communaute-dh-du-quebec-au"
+  ],
+  "startDate": "2018-05-22",
+  "title": {
+    "en": "La communauté DH, du Québec au reste du monde",
+    "fr": "La communauté DH, du Québec au reste du monde"
+  },
+  "type": "event"
+}

@@ -1,0 +1,31 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "On <strong>June 11th</strong>, the seminar SHS3G, managed by the médialab (Dominique Boullier), will welcome <strong>Geof Bowker and Noortje Marres</strong> at the \"Maison Suger\" 16-18 rue Suger Paris 75006. \"Social sciences third generation\" is coined to account for the challenge to social sciences created by the emergence of Big Data, as a ressource, a technology and an intellectual framework. Traces become abundant but only platforms (GAFAT) generate and process them at will. Social sciences must invent new conventions to follow the vibrations of the digital world as new entities, different from \"society\" or from \"opinion\". The website <a href=\"http://shs3g.hypotheses.org/\">http://shs3g.hypotheses.org/</a> provides papers, accounts and news about the seminar.\r\n\r\nThe next meeting will take place on June<strong> 11th ( 14h30/17h30)</strong> , at the  Maison Suger , 16-18 rue Suger 75006 Paris and will host\r\n\r\n<strong></strong>Geof Bowker, professor at University of California Irvine, and Noorjet Marres, Professor at Goldsmiths Institute, University of London",
+    "fr": "Le séminaire SHS3G, sciences humaines et sociales troisième génération accueillera <strong>le 11 juin,  de 14h30 à 17h30, Geof Bowker, professeur à University of California Irvine, et Noorjet Marres, Professeur au Goldsmiths Institute, University of London.</strong> La séance se tiendra exceptionnellement à la Maison SUGER 16-18 Rue Suger, Paris 6eme (entre métro Odéon et St Michel).. Les informations nécessaires sont disponibles sur le site <a href=\"http://shs3g.hypotheses.org/\">http://shs3g.hypotheses.org/</a>.\r\n\r\n<strong> </strong>"
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "47a06227-4f3f-4e73-b8ae-75d6b9bbf8aa",
+  "internal": true,
+  "lastUpdated": 1427267160000,
+  "oldSlug": "social-sciences-third-generation-the-seminar",
+  "people": [
+    "8081e4ed-552d-45a8-b1a8-5b5e9e924cdd"
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "seminaire-shs-3g-sciences-humaines-et"
+  ],
+  "startDate": "2015-03-25",
+  "title": {
+    "en": "Social Sciences Third Generation: the seminar",
+    "fr": "Séminaire SHS 3G sciences humaines et sociales troisième génération"
+  },
+  "type": "event"
+}

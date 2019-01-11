@@ -1,0 +1,34 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "<a href=\"http://www.medialab.sciences-po.fr/publications/Venturini-Second_Degree_Objectivity_draft1.pdf\">Download</a>",
+    "fr": "<br />\r\n"
+  },
+  "description": {
+    "en": "Publication draft - Venturini, T., Jacomy & M., Ricci, D. Blurring the Net: A Method to Visualise Second-Degree Objectivity",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "5d0d0a63-c952-4c5b-a6e2-8f14464b765b",
+  "internal": false,
+  "lastUpdated": 1359038100000,
+  "oldSlug": "blurring-the-net-a-method-to-visualise-second-degree-objectivity",
+  "people": [
+    "8a5d71c4-b4d2-4d7a-95c2-09c6dc4fc3ac",
+    "910c509c-ca11-4684-9898-f2b0b6f3283e",
+    "13e835aa-90e4-4aa7-84e6-8270b396fc90"
+  ],
+  "productions": [
+    "9c64f56d-3c26-4b72-a500-1018bf91ba71"
+  ],
+  "slugs": [
+    ""
+  ],
+  "startDate": "2013-01-24",
+  "title": {
+    "en": "Blurring the Net: A Method to Visualise Second-Degree Objectivity",
+    "fr": ""
+  },
+  "type": "notice"
+}

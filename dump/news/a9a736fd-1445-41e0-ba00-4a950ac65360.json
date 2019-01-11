@@ -1,0 +1,30 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "<a title=\"Gephi\" href=\"http://gephi.org\">Gephi</a>, an open source and free software of system analysis and visualization, is used in <a href=\"https://www.youtube.com/watch?v=hN3-wTOxrsY\">social network analysis</a>, in <a href=\"http://diseasome.eu\">hard sciences</a> and <a href=\"http://schoolofdata.org/2013/04/25/social-network-analysis-for-journalists-using-the-twitter-api/\">journalism</a>. Donato Ricci and Mathieu Jacomy, respectively designer and engineer at the médialab, focused on its interface and are considering several possible ways for improvement. The result of this work is <a href=\"https://gephi.wordpress.com/2015/06/02/improving-the-gephi-user-experience/\">available on Gephi’s blog</a>. Your comments and participation in Gephi’s improvement are welcome!\r\n\r\nWhy develop software in a research center on social sciences?\r\n\r\nSoftware are increasingly important in academic research. The resources required for the development and maintenance of these tools are all the more complex that they are difficult to promote through academic publications. The algorithms can be published, but a software is more than a collection of scripts. Software make algorithms more efficient, mobile, and shareable. They can be installed on various computers and operating systems. They can be used by various graphic interfaces, in environments where the workflow is consistent and, if possible, enjoyable. The contextualization and implementation of algorithms are part of the research effort, including in social sciences. That is why the médialab welcomes in its team, not only academic researchers, but also engineers and designers. We believe that improving a software like Gephi, acknowledged internationally and downloaded over one million times, is an asset for research. Many people share this point of view, as shown by the recent establishment of <a href=\"http://www.journals.elsevier.com/softwarex\">SoftwareX</a>, an academic journal with peer review dedicated to the publication of research software.\r\n\r\nOur proposals for Gephi: <a href=\"https://gephi.wordpress.com/2015/06/02/improving-the-gephi-user-experience/\">gephi.wordpress.com/2015/06/02/improving-the-gephi-user-experience/</a>\r\n\r\nOur research tools: <a href=\"http://tools.medialab.sciences-po.fr/\">tools.medialab.sciences-po.fr</a>",
+    "fr": "<a title=\"Gephi\" href=\"http://gephi.org\">Gephi</a> est un logiciel libre et open source d'analyse et de visualisation de réseaux. Il est utilisé dans <a href=\"https://www.youtube.com/watch?v=hN3-wTOxrsY\">l'analyse de réseaux sociaux</a>, les <a href=\"http://diseasome.eu\">sciences dures</a> mais aussi le <a href=\"http://schoolofdata.org/2013/04/25/social-network-analysis-for-journalists-using-the-twitter-api/\">journalisme</a>. Donato Ricci et Mathieu Jacomy, respectivement designer et ingénieur au médialab, se sont penchés sur son interface et proposent plusieurs pistes pour l'améliorer. Le résultat de ce travail est <a href=\"https://gephi.wordpress.com/2015/06/02/improving-the-gephi-user-experience/\">disponible sur le blog de Gephi</a>. Donnez-nous votre avis et participez à l'amélioration de Gephi !\r\n\r\n<b>Pourquoi développer un logiciel dans un laboratoires de Sciences Humaines&nbsp;?</b>\r\n\r\n<p>Les logiciels sont de plus en plus importants pour la recherche académique. Les ressources nécessaires à leur développement et leur maintenance sont d'autant plus complexes à obtenir qu'ils sont difficiles à valoriser par des publications académiques. Les algorithmes peuvent être publiés, mais un logiciel est plus qu'une collection de scripts. Le logiciel rend les algorithmes plus efficaces, transportables, partageables, installables sur différentes machines et systèmes d'exploitation, utilisables par des interfaces graphiques, dans des environnements où le processus de travail est cohérent et, si possible, agréable. Ce travail de contextualisation et de mise-en-œuvre des algorithmes fait partie de l'effort de recherche, y compris et surtout dans les sciences sociales. C'est la raison pour laquelle le médialab accueille dans son équipe, outre des chercheurs académiques, des ingénieurs et des designers. Nous pensons qu'améliorer un logiciel comme Gephi, reconnu internationalement et téléchargé plus d'un million de fois, est fructueux pour la recherche. Et nous ne sommes pas les seuls, comme le montre la récente création de <a href=\"http://www.journals.elsevier.com/softwarex\">SoftwareX</a>, une revue académique avec peer review dédiée à la publication de logiciels de recherche.</p>\r\n\r\nNos propositions pour Gephi: <a href=\"https://gephi.wordpress.com/2015/06/02/improving-the-gephi-user-experience/\">gephi.wordpress.com/2015/06/02/improving-the-gephi-user-experience/</a>\r\n\r\nNos outils de recherche: <a href=\"http://tools.medialab.sciences-po.fr/\">tools.medialab.sciences-po.fr</a>"
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "a9a736fd-1445-41e0-ba00-4a950ac65360",
+  "internal": false,
+  "lastUpdated": 1433932740000,
+  "oldSlug": "towards-a-new-gephi-user-interface",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "vers-une-nouvelle-interface-de-gephi"
+  ],
+  "startDate": "2015-06-10",
+  "title": {
+    "en": "Towards a new Gephi user interface",
+    "fr": "Vers une nouvelle interface de Gephi"
+  },
+  "type": "notice"
+}

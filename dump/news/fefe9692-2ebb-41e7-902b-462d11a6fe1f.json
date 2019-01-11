@@ -1,0 +1,33 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "Presentation and discussion of this seminar will be in French.\r\n\r\nSee<a href=\"https://medialab.sciencespo.fr/fr/blog/lia-comme-evolution-la-plus-recente-des-cultures-algorithmiques-perspectives-et-enjeux-venant-des-ecosystemes-peripheriques/\"> the French presentation</a>.",
+    "fr": "Mardi 2 octobre, le séminaire du médialab accueille Jonathan Roberge pour une intervention intitulée:\r\n\r\n<em>«L'IA comme évolution la plus récente des cultures algorithmiques. Perspectives et enjeux venant des écosystèmes périphériques ».</em>\r\n\r\nLa présentation d’une heure sera suivie d’une heure d’échanges.\r\n<h3>Biographie</h3>\r\nJonathan Roberge est professeur agrégé au Centre Urbanisation Culture Société de l’Institut National de la Recherche Scientifique, Montréal et Québec. Ses travaux se consacrent à l’étude de la culture numérique du point de vue de la sociologie des technologies de l’information et de la communication. À titre de titulaire de la Chaire de recherche du Canada sur les nouveaux environnements numériques et l’intermédiation culturelle, ses projets touchent tout autant à l’intelligence artificielle, aux infrastructures technologiques, aux dispositifs interactifs du Web 2.0, à la critique et à la prescription des goûts en ligne, qu’aux conséquences de l’ensemble de ces bouleversements sur la sphère publique. En 2016, il a co-dirigé l’ouvrage Algorithmic Cultures. Essays on Meaning, Performance and New Technologies chez Routledge et traduit en langue allemande chez Transcript Verlag.\r\n<h3>Résumé</h3>\r\nLa présentation visera à expliciter comment viennent aujourd’hui se cristalliser plusieurs des attentes et promesses envers le développement de l’intelligence artificielle. Prenant exemple sur Montréal, il s’agira de voir comment se distribue la performativité de discours autour d’une « révolution » annoncée en un lieu (auto)-promu comme « plaque-tournante de l’IA ».\r\n\r\nAprès avoir rappelé certains aspects épistémologiques et techniques, Jonathan Roberge montrera comment les processus de légitimation mis en œuvre sont indissociables d’un réseau particulier d’acteurs et d’institutions allant du gouvernement aux GAFA en passant par les laboratoires universitaires. Ces mêmes réseaux ayant une forte revendication et un fort écho médiatiques, il sera en outre question d’analyser comment se structurent leurs justifications sur les registres de l’économie politique, mais aussi ceux de la culture et de l’éthique.\r\n<h3>Informations pratiques</h3>\r\nSéminaire ouvert à tous, dans la limite des places disponibles.\r\nInscription préalable fortement recommandée: <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSdlWWVX200TOTXuQinhU9TZ44UHiTXdJRXB_66TsL8P0LowQw/viewform?usp=sf_link\" target=\"_blank\" rel=\"noopener\">s’inscrire</a>\r\n\r\nMardi 02 octobrer 2018 – 14h00 à 16h00\r\nSalle du médialab, 13 rue de l’Université, 75007 Paris"
+  },
+  "description": {
+    "en": "",
+    "fr": "Mardi 2 octobre, le séminaire du médialab accueille Jonathan Roberge du Centre Urbanisation Culture Société de l’Institut National de la Recherche Scientifique, Montréal et Québec."
+  },
+  "draft": true,
+  "id": "fefe9692-2ebb-41e7-902b-462d11a6fe1f",
+  "internal": true,
+  "label": {
+    "fr": "Séminaire du médialab"
+  },
+  "lastUpdated": 1537248540000,
+  "oldSlug": "lia-comme-evolution-la-plus-recente-des-cultures-algorithmiques-perspectives-et-enjeux-venant-des-ecosystemes-peripheriques",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "lia-comme-evolution-la-plus-recente"
+  ],
+  "startDate": "2018-10-02",
+  "title": {
+    "en": "AI as the latest evolution of algorithmic culture",
+    "fr": "L'IA comme évolution la plus récente des cultures algorithmiques"
+  },
+  "type": "event"
+}

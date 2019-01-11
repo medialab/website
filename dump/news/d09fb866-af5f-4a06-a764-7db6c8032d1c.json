@@ -1,0 +1,31 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "Tuesday January 15th, 2019 Dario Rodighiero will present his latest work about \"translating data into pictures\" at the médialab's seminar.\r\n\r\nPresentation and discussion of this seminar will be in French.\r\n\r\nSee<a href=\"https://medialab.sciencespo.fr/fr/blog/translate-data-into-pictures/ ‎\"> the French presentation</a>.",
+    "fr": "Mardi 15 janvier 2019, le séminaire du médialab accueille Dario Rodighiero pour une présentation de son travail récent sur le thème:\r\n\r\n<em>«Traduire les données en images ».</em>\r\n\r\nLa présentation d’une heure sera suivie d’une heure d’échanges.\r\n<h3>Résumé</h3>\r\nLe processus de conception consiste en une série d’efforts visant à résoudre un problème, défini par extension comme un besoin, une tâche, une situation, etc. Les visualisations sont des objets résultant d’un processus de conception qui résout un problème de données autrement illisibles. Ce sont des médiateurs techniques qui transforment les données en images selon un point de vue adopté par l’auteur, qui définit leur contexte social et politique. Une façon de comprendre les visualisations est d’analyser le processus de leur conception : cette approche, appliquée ici à un projet appelé Affinity Map, permet de mettre en évidence la complexité d’un objet et d’expliciter les raisons de sa création. Le processus de conception sera exposé selon les principales étapes qui ont mené à la visualisation finale, en les discutant en matière de données, de choix et de représentations.\r\n\r\nLectures recommandées:\r\n<ul>\r\n \t<li><a href=\"https://www.frontiersin.org/articles/10.3389/frma.2018.00004\" target=\"_blank\" rel=\"noopener\" data-saferedirecturl=\"https://www.google.com/url?q=https://www.frontiersin.org/articles/10.3389/frma.2018.00004&amp;source=gmail&amp;ust=1544087495959000&amp;usg=AFQjCNHeG0fBEn4sQtBWx75UHmytrB5gZA\">https://www.frontiersin.org/<wbr />articles/10.3389/frma.2018.<wbr />00004</a></li>\r\n \t<li><a href=\"https://figshare.com/articles/Printing_Walkable_Visualizations/6104693/2\" target=\"_blank\" rel=\"noopener\" data-saferedirecturl=\"https://www.google.com/url?q=https://figshare.com/articles/Printing_Walkable_Visualizations/6104693/2&amp;source=gmail&amp;ust=1544087495959000&amp;usg=AFQjCNFLHZ9I2W1TUX5-tp4Y9Kx1jOS0Tw\">https://figshare.com/<wbr />articles/Printing_Walkable_<wbr />Visualizations/6104693/2</a></li>\r\n</ul>\r\nVoir aussi :\r\n<ul>\r\n \t<li><a href=\"https://affinitymap.epfl.ch\">https://affinitymap.epfl.ch</a></li>\r\n</ul>\r\n<h3>Biographie</h3>\r\nDario Rodighiero est un humaniste numérique profondément versé dans la pratique du design. Il est chercheur postdoctoral à l'EPFL et membre du Laboratoire d'humanités numériques dirigé par Frédéric Kaplan. Ses travaux portent sur la représentation visuelle des individus, en particulier sur la cartographie des collectifs académiques et de leurs dynamiques. Cette cartographie a fait l’objet de son doctorat.\r\n<h3>Informations pratiques</h3>\r\nSéminaire ouvert à tous, dans la limite des places disponibles.\r\nInscription préalable fortement recommandée: <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSdlWWVX200TOTXuQinhU9TZ44UHiTXdJRXB_66TsL8P0LowQw/viewform?usp=sf_link\" target=\"_blank\" rel=\"noopener\">s’inscrire</a>\r\n\r\nMardi 15 janvier 2019 – 14h00 à 16h00\r\nSalle du médialab, 13 rue de l’Université, 75007 Paris"
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "d09fb866-af5f-4a06-a764-7db6c8032d1c",
+  "internal": false,
+  "lastUpdated": 1543998120000,
+  "oldSlug": "translate-data-into-pictures",
+  "people": [
+    "73c2d239-0ebd-42a1-8d46-aa9792bf975d"
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "traduire-les-donnees-en-images"
+  ],
+  "startDate": "2018-12-5",
+  "title": {
+    "en": "Translate data into pictures",
+    "fr": "Traduire les données en images"
+  },
+  "type": "notice"
+}

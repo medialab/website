@@ -1,0 +1,22 @@
+{
+  "active": false,
+  "bio": {
+    "en": "Mathieu is a research engineer at the Sciences Po Paris médialab since 2010. In the DIME-SHS Team he leads the web sub-project where he develops digital tools for the social sciences and provides support and advice in digital methods to scholars. His current research focuses on visual network analysis, digital methods and issue mapping. He initiated the Gephi network analysis software and is still developing it, notably through algorithms like ForceAtlas2, and he is currently developing the web crawler Hyphe. He was also strongly involved in the e-Diasporas Atlas program with Dana Diminescu from 2006 to 2010. He tweets at @jacomyma.",
+    "fr": "Mathieu Jacomy est ingénieur et titulaire d'un master en SHS à l'Université de Technologie de Compiègne et son domaine de prédilection est la cartographie du web.<!--more-->\r\n\r\nIl est membre fondateur de l'association WebAtlas avec Franck Ghitalla, avec lequel il a fourbi ses premiers outils dédiés au web. Au sein du programme TIC Migrations de la Maison des Sciences de l'Homme, sous la direction de Dana Diminescu, il a initié le projet <a href=\"http://gephi.org/\">Gephi</a> (logiciel d'exploration de graphes), développé le <a href=\"http://webatlas.fr/wp/navicrawler/\">Navicrawler </a>(sourcing de corpus web) et réalisé les outils du<a href=\"http://www.e-diasporas.fr/\"> e-Diasporas Atlas</a>. Au sein du médialab de Sciences Po, il est responsable du <a href=\"http://www.sciencespo.fr/dime-shs/content/dime-shs-web\">volet web de l'équipex Dime SHS</a>, piloté par Laurent Lesnard. Son double profil technique et scientifique lui permet de comprendre les problématiques méthodologiques spécifiques aux sciences humaines et de construire, avec des chercheurs en SHS, des outils qui correspondent à leurs besoins."
+  },
+  "domain": "tech",
+  "draft": true,
+  "firstName": "Mathieu",
+  "id": "910c509c-ca11-4684-9898-f2b0b6f3283e",
+  "lastName": "Jacomy",
+  "lastUpdated": 1343994720000,
+  "membership": "member",
+  "oldSlug": "mathieu-jacomy",
+  "role": {
+    "en": "Engineer specialist in web corpuses ",
+    "fr": "Ingénieur spécialiste corpus web"
+  },
+  "slugs": [
+    "mathieu-jacomy"
+  ]
+}

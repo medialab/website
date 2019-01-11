@@ -1,0 +1,31 @@
+{
+  "activities": [
+    "aebd8a51-7d04-4dd1-bb5e-b1e3f7106484"
+  ],
+  "content": {
+    "en": "Anselm Spoerri will present his work on \"Visualizing the Most Controversial and Popular Topics in Wikipedia\" at médialab's research seminar on Tuesday June the 16th  from 3pm to 5pm at 13 rue de l'université Paris.\r\nThis work is similar to <a href=\"http://www.medialab.sciences-po.fr/projets/contropedia/\">contropedia project</a> which proposes a platform for the analysis and visualization of controversies in Wikipedia.\r\n\r\nAnselm Spoerri has a PhD from MIT and is a faculty member at the School of Information &amp; Communication at Rutgers University.\r\nHe teaches and conducts research in the areas of Information Visualization, Data Fusion and Multimedia Interfaces.\r\n\r\nAbstract of his talk:\r\nConflicts occur in the peer-production process of Wikipedia and can culminate in “edit wars” for specific topics.\r\nThis talk will present visualizations of the similarities and differences between the most controversial topics that have been identified in 10 different language versions of Wikipedia and discuss the dominant and shared themes of the controversies across languages and cultures.\r\nIn addition, it will present visualizations of the most popular topics over time in the English version of Wikipedia and visually analyze the relationship between most controversial and popular topics.\r\n\r\nThe related paper : http://papers.ssrn.com/sol3/papers.cfm?abstract_id=2269392",
+    "fr": ""
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "2cd0577f-a7db-45e6-ac2c-0e2493f25ecc",
+  "internal": false,
+  "lastUpdated": 1434091620000,
+  "oldSlug": "visualizing-the-most-controversial-and-popular-topics-in-wikipedia",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    ""
+  ],
+  "startDate": "2015-06-12",
+  "title": {
+    "en": "Visualizing the Most Controversial and Popular Topics in Wikipedia",
+    "fr": ""
+  },
+  "type": "notice"
+}

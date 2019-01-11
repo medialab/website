@@ -1,0 +1,35 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "This event has been cancelled.\r\nSee <a href=\"https://medialab.sciencespo.fr/fr/blog/livre-echange-vies-du-livre-et-pratiques-des-lecteurs/\">the French description</a>.",
+    "fr": "Une présentation publique de l’ouvrage <em>Livre-Echange - Vies du livre et pratiques des lecteurs</em> aura lieu lundi 19 novembre à 17h30 à 19h à la bibliothèque de Sciences Po.\r\nLes auteurs, Mariannig Le Béchec, Dominique Boullier et Maxime Crépel, exposeront leur démarche de recherche ainsi que les résultats qui sont à la base de l'ouvrage.\r\n\r\nUne séance de question permettra de dialoguer avec le public.\r\n<h3>Résumé</h3>\r\nLes livres, comme les chats, auraient neuf vies. Leur passage en librairie dure quelques semaines, mais une autre vie commence dans les mains des lecteurs et des lectrices.\r\nAimer un livre, c’est le prêter, l’offrir, le recommander, en parler, le commenter sur son blog, le présenter sur YouTube ou dans un cercle de lecture, et puis le poser sur un rayonnage ou le laisser quelque part, en quête d’une autre vie. Au travers des témoignages de lecteurs-échangeurs, se dessine tout un panorama des usages du livre, et des changements provoqués par internet et le livre numérique. Le livre-échange met en lumière une écologie de la lecture, dans toute la diversité des pratiques.\r\n<h3>Informations pratiques</h3>\r\nla présentation aura lieu dans à la bibliothèque de Sciences Po, 27 rue Saint Guillaume, 75007 Paris (métro 12 \"rue du Bac\" / métro 4 \"Saint Germain des Prés\").\r\nLe nombre de places est limité mais la séance est ouverte à tous, <a href=\"https://www.sciencespo.fr/evenements/?event=le-livre-echange\" target=\"_blank\" rel=\"noopener\">sur inscription</a>.\r\n<strong>ATTENTION:</strong> l'entrée ne peut s'effectuer que sur inscription et présentation d'une pièce d'identité."
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "16a1ca62-bb44-4d71-ae6a-f346a198a520",
+  "internal": false,
+  "label": {
+    "fr": "Présentation d'ouvrage"
+  },
+  "lastUpdated": 1541825880000,
+  "oldSlug": "livre-echange-vies-du-livre-et-pratiques-des-lecteurs",
+  "people": [
+    "8081e4ed-552d-45a8-b1a8-5b5e9e924cdd",
+    "2dc8e973-3c23-4e08-9787-e4f37dd6d393"
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "livre-echange-vies-du-livre-et"
+  ],
+  "startDate": "2018-11-10",
+  "title": {
+    "en": "Livre-Echange - Vies du livre et pratiques des lecteurs",
+    "fr": "Livre-Echange - Vies du livre et pratiques des lecteurs"
+  },
+  "type": "notice"
+}

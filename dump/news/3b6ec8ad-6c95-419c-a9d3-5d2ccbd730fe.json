@@ -1,0 +1,33 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "We developed a new version of our tool <a title=\"Sciencescape\" href=\"http://tools.medialab.sciences-po.fr/sciencescape/\">ScienceScape</a> this summer. We wanted students to be able to get easy insights from their Scopus results. Tommaso is now presenting how to do that!\r\n\r\n<iframe src=\"http://player.vimeo.com/video/78916756\" height=\"313\" width=\"500\" allowfullscreen=\"\" frameborder=\"0\"></iframe>\r\n\r\n<a href=\"http://vimeo.com/78916756\">Sciencescape Tutorial</a> from <a href=\"http://vimeo.com/medialab\">medialab Sciences Po</a> on <a href=\"https://vimeo.com\">Vimeo</a>.",
+    "fr": "Nous avons mis à jour <a title=\"Sciencescape\" href=\"http://tools.medialab.sciences-po.fr/sciencescape/\">ScienceScape</a> cet été pour permettre aux étudiants d'avoir facilement des visualisations de leurs résultats Scopus. Tommaso nous présente maintenant la marche à suivre !\r\n\r\n<iframe src=\"http://player.vimeo.com/video/78916756\" height=\"313\" width=\"500\" allowfullscreen=\"\" frameborder=\"0\"></iframe>\r\n\r\n<a href=\"http://vimeo.com/78916756\">Sciencescape Tutorial</a> de <a href=\"http://vimeo.com/medialab\">medialab Sciences Po</a> sur <a href=\"https://vimeo.com\">Vimeo</a>."
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "3b6ec8ad-6c95-419c-a9d3-5d2ccbd730fe",
+  "internal": false,
+  "lastUpdated": 1384354620000,
+  "oldSlug": "sciencescape-tutorial-helpers-for-scientometrics",
+  "people": [
+    "910c509c-ca11-4684-9898-f2b0b6f3283e",
+    "13e835aa-90e4-4aa7-84e6-8270b396fc90"
+  ],
+  "productions": [
+    "8550b979-cfde-46b5-a628-09910fc9a0d5"
+  ],
+  "slugs": [
+    "tutoriel-sciencescape-des-outils-pour-la"
+  ],
+  "startDate": "2013-11-13",
+  "title": {
+    "en": "ScienceScape Tutorial: helpers for scientometrics",
+    "fr": "Tutoriel ScienceScape: des outils pour la scientométrie"
+  },
+  "type": "notice"
+}

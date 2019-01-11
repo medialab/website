@@ -1,0 +1,33 @@
+{
+  "activities": [
+    "e22f0584-7821-45d6-9164-6cddb3b15f6b"
+  ],
+  "content": {
+    "en": "Presentation and discussion will be in French ; see <a href=\"http://www.medialab.sciences-po.fr/fr/blog/seminaire-de-recherche-lafabriquedelaloi-gitlaw-le-numerique-au-service-du-suivi-legislatif-avec-le-bureau-ouvert-contextedata-et-legilibre-mercredi-7-mars-2018-de-14h-a-16h/\">the french abstract</a>.",
+    "fr": "Mercredi 7 mars, le séminaire du médialab accueille les représentants du « Bureau Ouvert », de « Contexte Data » et de « LégiLibre », 3 projets très différents et très proches à la fois, visant chacun à sa manière, comme le projet « La Fabrique de la Loi », à simplifier grâce au numérique l'accès et la compréhension aux lois, à leur historique et au processus législatif leur donnant naissance.\r\n\r\n<em>GitLaw : le numérique au service du suivi législatif avec le Bureau Ouvert, ContexteData, LegiLibre, et LaFabriqueDeLaLoi</em>\r\n\r\nUne présentation d’une heure partagée entre les différents projets sera suivie d’une heure d'échanges, visant notamment à mieux cerner les perspectives d'interaction, de partage et de mutualisation entre ces différents projets et outils.\r\n<h3>Résumé</h3>\r\n<b>Le <a href=\"https://www.parlement-ouvert.fr/\">« Bureau Ouvert »</a></b>, représenté par Emmanual Raviart et Jean-Marc Le Roux, est une initiative de la députée <a href=\"https://forteza.fr/\">Paula Forteza</a>. Il accueille notamment le projet <a href=\"https://forum.parlement-ouvert.fr/t/amenda-generation-damendements/107\">Amenda</a>, prototype de dossier législatif numérique et de suivi en temps réel de la fabrique de la loi au Parlement, dont le but est de faciliter les interactions entre parlementaires et citoyens avant, pendant et après les votes grâce à un outil collaboratif permettant la rédaction et la publication des amendements en éditant directement le projet de loi.\r\n\r\n<b><a href=\"https://legilibre.fr/\">« Légilibre »</a></b>, représenté par Sébastien Beyou et Jean-Marc Le Roux, est un collectif créé fin 2016 lors de l’Open Government Partnership. Il réunit des citoyens \"hacktivistes\" intéressés par le traitement automatisé de la loi. Il s’agit notamment de partager l’expérience sur cette thématique, notamment autour des projets suivants :\r\n- <a href=\"https://github.com/Legilibre/legi.py\">legi.py</a> : transformation des données Légifrance en base de données relationnelle et recherche d’anomalies ;\r\n- <a href=\"https://archeo-lex.fr\">Archéo Lex</a> : publication des codes et lois avec suivi des modifications au format Git ;\r\n- <a href=\"https://github.com/Legilibre/SedLex\">SedLex</a> / <a href=\"https://github.com/Legilibre/DuraLex\">DuraLex</a> : outils permettant d'automatiser l'analyse, la transformation et l'application de modifications législatives (amendements, projets de lois) sur les textes (codes et lois) existants ;\r\n- <a href=\"https://github.com/Legilibre/legi-php\">legi-php</a> : plugin Wordpress de publication de la loi.\r\n\r\n<b><a href=\"https://www.contexte.com/data/lois/\">« Contexte Data »</a></b>, représenté par Damien Cirotteau et David Guillot, est un projet porté par le média professionnel en ligne <a href=\"https://www.contexte.com/\">Contexte</a> visant à proposer un outil de veille législative lancé en 2017 qui agrège les données de l'Assemblée nationale et du Sénat en temps réel pour fournir un suivi exhaustif et des alertes (sur des dossiers législatifs, des amendements, des mots-clés, etc.) concernant la fabrication de la loi.\r\n\r\n<b><a href=\"http://lafabriquedelaloi.fr/\">« La Fabrique de la Loi »</a></b> est un projet réalisé en partenariat entre l'association <a href=\"http://regardscitoyens.org/\">Regards Citoyens</a>, Olivier Rozenberg du <a href=\"http://cee.sciences-po.fr/\">CEE</a> et le <a href=\"http://medialab.sciences-po.fr/\">médialab</a> de Sciences Po visant à retracer le détail du cheminement législatif des lois au Parlement. Initié en 2012 avec le soutien financier de la région Île-de-France, le projet intégrait dès 2014 75% des projets de lois promulgués entre 2010 et 2014. Relancé depuis 2017 grâce au soutien du <a href=\"https://www.sciencespo.fr/liepp/\">LIEPP</a>, le projet accueille désormais beaucoup plus de textes et les intégrera prochainement en direct au fil de la procédure parlementaire.\r\n<h3>Informations pratiques</h3>\r\nSéminaire ouvert à tous, dans la limite des places disponibles. Inscription préalable fortement recommandée: <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc_ygq3zSqThPK4LgjubjhZGl8tf9eMQGjVKswRCFz9a09oVA/viewform\">s’inscrire</a>\r\n\r\nMercredi 7 mars 2018 – 14h00 à 16h00\r\nSalle du médialab, 13 rue de l’Université, 75007 Paris"
+  },
+  "description": {
+    "en": "",
+    "fr": "le séminaire du médialab accueille les représentants du « Bureau Ouvert », de « Contexte Data » et de « LégiLibre »"
+  },
+  "draft": true,
+  "id": "a1f3f392-0c13-4d6d-90db-3a959b0cf151",
+  "internal": true,
+  "lastUpdated": 1519393860000,
+  "oldSlug": "seminaire-de-recherche-lafabriquedelaloi-gitlaw-le-numerique-au-service-du-suivi-legislatif-avec-le-bureau-ouvert-contextedata-et-legilibre-mercredi-7-mars-2018-de-14h-a-16h",
+  "people": [
+    "0dcba674-00f3-42d8-b943-89b698a29081",
+    "25157f77-862e-47d9-b3bc-d479d329caf5"
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "seminaire-de-recherche-lafabriquedelaloi-gitlaw-le"
+  ],
+  "startDate": "2018-02-23",
+  "title": {
+    "en": "LaFabriqueDeLaLoi research seminar : GitLaw, le numérique au service du suivi législatif // Wednesday 7 March 2018 - 2pm to 4pm",
+    "fr": "Séminaire de recherche LaFabriqueDeLaLoi : GitLaw, le numérique au service du suivi législatif // Mercredi 7 mars 2018 de 14h à 16h"
+  },
+  "type": "event"
+}

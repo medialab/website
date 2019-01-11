@@ -1,0 +1,30 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "Médialab at Sciences Po, the <a href=\"http://www.cnap.fr/en_cnap\" target=\"_blank\">Centre national des arts plastiques</a> (CNAP) in collaboration with the <a href=\"http://www.videomuseum.fr/?page=sommaireEn\" target=\"_blank\">Videomuseum</a> association, are organizing, with the support of <a href=\"http://www.sciencespo.fr/liepp/en\" target=\"_blank\">LIEPP</a>, the first workshop on data provided by the <a href=\"http://www.cnap.fr/en_cnap/collection-en-ligne/\" target=\"_blank\">Fonds national d’art contemporain</a> (FNAC). This national collection, dating back to the French Revolution, is managed by the Cnap. The mission of the institution is to promote the art scene in all its diversity, to promote emerging talent on the French and international scene, and to enrich and disseminate the collection.\r\n\r\nOver three days (September 27-29), researchers in art history and the social sciences, experts on this specific art collection, engineers, and designers will gather together and work on this rich collection’s database, and test research hypotheses by exploring and visualizing information. A demonstration will be organized subsequently to present to the community of interested researchers some of the initial exploitable results and a working method compatible with other areas of culture.\r\n\r\nImage: Céleste Boursier-Mougenot. <em><a href=\"http://www.cnap.fr/collection-en-ligne#/artwork/140000000085431?layout=grid&amp;page=0&amp;filters=authors:BOURSIER-MOUGENOT+Celeste%E2%86%B9BOURSIER-MOUGENOT+C%C3%A9leste\" target=\"_blank\">From here to ear</a></em>, 1999-2009. FNAC 10-1068 © Adagp, Paris / Cnap / photo : Frédéric Lanternier. (And <a href=\"https://www.youtube.com/watch?v=Yn93J2axD_k\" target=\"_blank\">here a video</a> to know more about!)",
+    "fr": "Le médialab de Sciences Po, le <a href=\"http://www.cnap.fr/\" target=\"_blank\">Centre national des arts plastiques</a> (Cnap) en collaboration avec l’association <a href=\"http://www.videomuseum.fr/\" target=\"_blank\">Videomuseum</a>, organisent avec le soutien du <a href=\"http://www.sciencespo.fr/liepp/fr\" target=\"_blank\">LIEPP</a> un premier atelier sur les données du <a href=\"http://www.cnap.fr/collection-en-ligne#/\" target=\"_blank\">Fonds national d’art contemporain</a>. Cette collection de l’État, dont la création remonte à la Révolution française, est gérée par le Cnap. La mission de l'établissement est d'encourager la scène artistique dans toute sa diversité, de promouvoir la création émergente sur la scène française et internationale, d'enrichir et de diffuser la collection.\r\n\r\nPendant 3 journées (27-29 septembre), des chercheurs en histoire de l’art et sciences sociales, des experts de la collection, des ingénieurs et des designers se réuniront pour travailler ensemble sur cette collection particulièrement riche, et tester des hypothèses de recherche, par l’exploration et la visualisation d’informations. Un moment de restitution sera organisé par la suite afin de présenter à la communauté de chercheurs intéressés les premiers résultats exploitables et une méthode de travail déployable à d’autres domaines de la culture.\r\n\r\nIllustration: Céleste Boursier-Mougenot. <em><a href=\"http://www.cnap.fr/collection-en-ligne#/artwork/140000000085431?layout=grid&page=0&filters=authors:BOURSIER-MOUGENOT+Celeste%E2%86%B9BOURSIER-MOUGENOT+C%C3%A9leste\" target=\"_blank\">From here to ear</a></em>, 1999-2009. FNAC 10-1068 © Adagp, Paris / Cnap / photo : Frédéric Lanternier (une <a href=\"https://www.youtube.com/watch?v=Yn93J2axD_k\" target=\"_blank\">video</a> pour en savoir plus!)"
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "b0e310de-f986-4ec2-8eb1-85eaf1f339a1",
+  "internal": false,
+  "lastUpdated": 1474627560000,
+  "oldSlug": "atelier-sur-les-donnees-du-fonds-national-dart-contemporain",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "atelier-sur-les-donnees-du-fonds"
+  ],
+  "startDate": "2016-09-23",
+  "title": {
+    "en": "Workshop on data provided by the Fonds national d’art contemporain",
+    "fr": "Atelier sur les données du Fonds national d’art contemporain"
+  },
+  "type": "notice"
+}

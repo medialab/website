@@ -1,0 +1,24 @@
+{
+  "active": false,
+  "authors": "Guillaume Plique",
+  "description": {
+    "en": "Take advantage of artoo.js scraping features in a node.js serverside crawling framework optionally using PhantomJS.",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "e3ab82b9-ce71-4515-b12c-b311979dcaa0",
+  "lastUpdated": 1545310617273,
+  "oldSlug": "sandcrawler",
+  "people": [
+    "4d46ba96-c592-427c-9431-85e2922e9c33"
+  ],
+  "slugs": [
+    "sandcrawler"
+  ],
+  "title": {
+    "en": "Sandcrawler",
+    "fr": "Sandcrawler"
+  },
+  "type": "code",
+  "url": "http://medialab.github.io/sandcrawler/"
+}

@@ -1,0 +1,26 @@
+{
+  "active": true,
+  "content": {
+    "en": "",
+    "fr": "Du 29 novembre au 2 décembre 2017, se réuniront à Sciences Po, informaticiens, politistes, designers et journalistes qui ont suivi les campagnes électorales françaises de l’année 2017.\r\nIls vont explorer les données numériques de la campagne pour visualiser et interpréter de grands corpus de données politiques constitués lors de la campagne.\r\nAprès trois jours de travail, ils présenteront le samedi 2 décembre le résultat numérique de leurs projets lors d’un événement ouvert où seront discutés les apports du numérique à la fabrication de l’élection.\r\nCe datasprint propose une manière originale d’expérimenter cette coopération autour des données entre les différentes disciplines qui savent les interpréter et les manipuler.\r\n\r\nLes campagnes des élections présidentielles et législatives de 2017 ont été l’occasion d’une intense mobilisation sur le web.\r\nCandidats, partis, médias, militants et internautes ont occupé les différents espaces numériques d’arguments, de slogans, de commentaires, d’échanges, de disputes, d’injures et de partages.\r\nQuels enseignements peut-on extraire de cette nouvelle archive politique ?\r\nComment les échanges numériques ont-ils affectés la forme prise par la compétition entre les candidats ?\r\nQuels rôles ont joué les fakes news, l’exposition sélective (“bulle de filtre”), l’humour, les stratégies de communication dans la production de ce nouvel espace politique ?\r\n\r\nSi les données numériques ne donnent pas accès à ce que les sondages qualifient d’“opinion publique”, elles offrent en revanche un nouvel espace d’expression qui peut grandement enrichir nos connaissance des processus de mobilisation politique.\r\nElles sont aussi le terrain d’un nouveau genre de recherche interdisciplinaire associant étroitement chercheurs en sciences humaines et sociales, informaticiens, designer de l’information et journalistes.\r\nLes données numériques appellent des méthodes et une restitution des résultats qui soient elles aussi numériques.\r\n\r\n- Pour en savoir plus : <a href=\"http://bit.ly/data-pol\">le site du projet</a>\r\n- Contact : Audrey[point]Baneyx[arobase]sciencespo[point]fr"
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "597fbc3b-8632-493f-bce1-84f6d88df8d8",
+  "important": false,
+  "lastUpdated": 1508836500000,
+  "name": "Sprint Datapol - Que disent les données numériques de la dernière campagne électorale ?",
+  "oldSlug": "datapol",
+  "people": [
+    "ec108495-9899-495c-9655-cf1942afe23f",
+    "1bf6951b-0cd9-4760-b1e2-a95099a6278e",
+    "910c509c-ca11-4684-9898-f2b0b6f3283e"
+  ],
+  "slugs": [
+    "sprint-datapol-que-disent-les-donnees"
+  ],
+  "type": "research"
+}

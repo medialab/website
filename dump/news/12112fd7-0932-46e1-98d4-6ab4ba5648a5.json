@@ -1,0 +1,32 @@
+{
+  "activities": [
+    "1f5f0ba7-d1a2-44c6-97e2-23990f691095"
+  ],
+  "content": {
+    "en": "",
+    "fr": "Mathieu Jacomy présentera l'analyse visuelle de réseau dans la session Session 3. De la visualisation à la fouille visuelle de données de la <a href=\"http://res-conference.esy.es/#res01\">conférence RES#1</a>\r\n\r\n<i>Certains types de données peuvent être visualisés sous la forme d’un réseau : une série de «nœuds» représentés par des points distribués dans l’espace graphique et joints par des « liens » figurés par des traits. Comment tirer parti d’une telle visualisation et ainsi explorer ces données ? Prenant appui sur l’exemple d’une cartographie des sites impliqués dans la conférence « Rio+20 », je présenterai, au cours de cette intervention, une méthode pour lire et interpréter des réseaux. Je détaillerai alors des étapes techniques, qu’il revient de considérer comme ‘interprétatives’, et expliquerai où doit porter le regard et comment donner sens aux formes lues.</i>\r\n\r\nLa conférence RES#01 se tiendra le <b>15 juin 2015</b> prochain à l’<a title=\"IMAGINARIUM\" href=\"http://www.plaine-images.fr/presentation/\" target=\"_blank\">IMAGINARIUM</a> — Tourcoing (Plaine Images). Celle-ci accueillera des <b>designers, ingénieurs, chercheurs, managers et experts d’horizons divers</b> témoignant de leur propre expérience dans le champ de la visualisation de données. À cette occasion, ils signaleront les principaux enjeux et perspectives actuels (opportunités, défis) et préciseront, par là même, les questions et problèmes auxquels ils s’attèlent à trouver réponse/résolution.\r\n\r\nPour assister à la conférence, inscrivez-vous gratuitement sur eventbrite : <a href=\"https://www.eventbrite.fr/e/billets-edition-res01-recherche-action-en-visualisation-de-donnees-16269586772\" target=\"_blank\">https://www.eventbrite.fr/e/<wbr />billets-edition-res01-<wbr />recherche-action-en-<wbr />visualisation-de-donnees-<wbr />16269586772</a>"
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "12112fd7-0932-46e1-98d4-6ab4ba5648a5",
+  "internal": false,
+  "lastUpdated": 1433242260000,
+  "oldSlug": "medialab-at-res01",
+  "people": [
+    "910c509c-ca11-4684-9898-f2b0b6f3283e"
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "medialab-a-res01"
+  ],
+  "startDate": "2015-06-2",
+  "title": {
+    "en": "médialab at RES#01",
+    "fr": "médialab à RES#01"
+  },
+  "type": "notice"
+}

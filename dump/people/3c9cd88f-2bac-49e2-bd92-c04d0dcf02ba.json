@@ -1,0 +1,22 @@
+{
+  "active": false,
+  "bio": {
+    "en": "Étudiant-ingénieur à l'université de Technologie de Compiègne en Génie Informatique, stagiaire au sein du médialab.",
+    "fr": "Étudiant-ingénieur à l'université de Technologie de Compiègne en Génie Informatique, stagiaire au sein du médialab."
+  },
+  "domain": "tech",
+  "draft": true,
+  "firstName": "Gwenaël",
+  "id": "3c9cd88f-2bac-49e2-bd92-c04d0dcf02ba",
+  "lastName": "Samain",
+  "lastUpdated": 1505995500000,
+  "membership": "member",
+  "oldSlug": "gwenael-samain",
+  "role": {
+    "en": "Stagiaire",
+    "fr": "Stagiaire"
+  },
+  "slugs": [
+    "gwenael-samain"
+  ]
+}

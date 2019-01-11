@@ -1,0 +1,22 @@
+{
+  "active": true,
+  "bio": {
+    "en": "Thomas Tari is a sociologist of science. He has a diploma from <a href=\"http://www.univ-paris-est.fr/fr\">EHESS</a> and a doctorate from the <a href=\"http://www.univ-paris-est.fr/fr\">University of Paris-Est</a>. His research focuses on the emergence of research in bioenergy as a new frame of knowledge production. He supported a thesis on the subject in December 2015. He joined the médialab in February 2015, to participate in the <a href=\"http://forccast.hypotheses.org/\">FORCCAST</a> project (Training in the analysis of the sciences and techniques through controversy mapping – laureate of the call to excellence initiatives for innovative training) as a pedagogical engineer. He is an organizer and scientific animator during the summer schools (60 participants in 2015). He has taught sociology, statistics and ethnology as an instructor, ½ ATER then ATER full time (UPEM, 2009-2014), and is teaching courses in science and technology studies since 2010, particularly courses on controversy mapping (within masters of the <a href=\"http://www.sciencespo.fr/edc/\">École de la Communication</a> and the <a href=\"http://www.sciencespo.fr/psia/\">Paris School of International Affairs</a>).\r\n\r\n<u> </u>",
+    "fr": "Thomas Tari est sociologue des sciences. Il est diplômé de <a href=\"http://www.ehess.fr/fr/\">l'EHESS</a> et docteur de l'<a href=\"http://www.univ-paris-est.fr/fr\">Université Paris-Est</a>. Ses recherches portent sur l'émergence d'un domaine de recherche en bioénergies comme nouveau cadre de production de connaissances. Il a soutenu une thèse à ce sujet en décembre 2015. Il a rejoint le médialab en février 2015, pour participer au projet <a href=\"http://forccast.hypotheses.org/\">FORCCAST</a> (Formation par la cartographie de controverses à l’analyse des sciences et techniques – lauréat de l'appel Initiatives d’excellence en formations innovantes) en tant qu'ingénieur pédagogique. Il est organisateur et animateur scientifique de ses écoles d'été (60 participants en 2015). Il a enseigné la sociologie, les statistiques et l'ethnologie en tant que moniteur, 1/2 ATER puis ATER à temps plein (UPEM, 2009-2014), et il donne depuis 2010 des cours de science and technology studies à Sciences Po, notamment des enseignements de cartographie des controverses (au sein de masters de <a href=\"http://www.sciencespo.fr/edc/\">l'École de la Communication</a> et de la <a href=\"http://www.sciencespo.fr/psia/\">Paris School of International Affairs</a>)."
+  },
+  "domain": "pedagogy",
+  "draft": true,
+  "firstName": "Thomas",
+  "id": "f1999165-9071-4f38-be92-b27ca48382b3",
+  "lastName": "Tari",
+  "lastUpdated": 1452786000000,
+  "membership": "member",
+  "oldSlug": "thomas-tari",
+  "role": {
+    "en": "Pedagogical engineer - FORCCAST",
+    "fr": "Ingénieur pédagogique - FORCCAST"
+  },
+  "slugs": [
+    "thomas-tari"
+  ]
+}

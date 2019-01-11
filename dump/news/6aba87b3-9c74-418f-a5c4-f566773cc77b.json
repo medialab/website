@@ -1,0 +1,34 @@
+{
+  "activities": [
+    "1f5f0ba7-d1a2-44c6-97e2-23990f691095"
+  ],
+  "content": {
+    "en": "Mapping controversies can be highly facilitated by studying it from the prism of the web. Analysing the websites of the actors of a controversy and establishing a map from the links between them can be a source of great knowledge, although it can be quite complex to realize, especially for social scientists.\r\n\r\nBuilt as a <a href=\"https://github.com/medialab/hyphe\" title=\"Code source\" target=\"_blank\">free software available on GitHub</a>, Hyphe was designed to propose researchers and students a web corpus curation tool featuring a research-driven web crawler. It provides users with a method to build web corpora with both granularity, flexibility and simple curation principles.\r\n\r\nRather than websites, Hyphe manipulates WebEntities, which can be defined as a single page, as well as a subdomain, a combination of websites, and so on. Webpages relying within these WebEntities can then be crawled, in order to collecting all out-bounding links and text within the webpages of the entity. Most cited discovered WebEntities are then prospectable to enlarge your corpus before visualizing it as a network and export it for refinement within Gephi and publication with <a href=\"http://www.medialab.sciences-po.fr/publications/manylines-a-graph-web-publication-platform-with-storytelling-features/\" title=\"manylines\" target=\"_blank\">manylines</a>.\r\n\r\nWe release today a new version of Hyphe which handles multiple corpora simultaneously and proposes a brand new web front implemented as an HTML5 User Interface.\r\n\r\nDiscover Hyphe on its <a href=\"http://hyphe.medialab.sciences-po.fr/\" target=\"_blank\">dedicated website</a>, try <a href=\"http://hyphe.medialab.sciences-po.fr/demo\" target=\"_blank\">our demo</a> or <a href=\"https://github.com/medialab/hyphe/releases\" target=\"_blank\">install it</a> on your lab's servers!",
+    "fr": "La cartographie des controverses peut largement bénéficier d'études sous l'angle du web. Analyser les sites internet des acteurs d'une controverse et établir la carte des liens entre eux peut constituer un objet d'étude des plus riches, mais qui peut s'avérer quelque peu complexe à réaliser pour des chercheurs en sciences humaines et sociales.\r\n\r\nPublié sous la forme d'un <a href=\"https://github.com/medialab/hyphe\" title=\"Code source\" target=\"_blank\">logiciel libre publié sur GitHub</a>, Hyphe a été conçu pour offrir aux chercheurs et étudiants un outil de création et nettoyage de corpus web reposant sur un crawler orienté pour la recherche. Les utilisateurs sont accompagnés par une méthodologie pour construire leur corpus web de manière à la fois granulaire et flexible avec des principes de curation simples.\r\n\r\nPlutôt que de traiter de \"sites web\", Hyphe manipule des \"Web Entités\", qui peuvent être définies tout aussi bien comme de simples pages, un sous-domaine, une combinaison de sites, etc. Les pages résidant sous ces Web Entités sont ensuite crawlées, afin de collecter les liens sortants et les contenus textuels. Les entités les plus citées peuvent ensuite être prospectées afin d'enrichir le corpus avant de le visualiser sous la forme d'un réseau et de l'exporter pour nettoyage dans Gephi ou pour publication avec <a href=\"http://www.medialab.sciences-po.fr/publications/manylines-a-graph-web-publication-platform-with-storytelling-features/\" title=\"manylines\" target=\"_blank\">manylines</a>.\r\n\r\nNous publions aujourd'hui une nouvelle version de Hyphe désormais capable de gérer plusieurs corpus simultanément et reposant sur une toute nouvelle interface web pour les utilisateurs implementée en HTML5.\r\n\r\nDécouvrez Hyphe sur son <a href=\"http://hyphe.medialab.sciences-po.fr/\" target=\"_blank\">site dedié</a>, essayez <a href=\"http://hyphe.medialab.sciences-po.fr/demo\" target=\"_blank\">notre démo</a> ou <a href=\"https://github.com/medialab/hyphe/releases\" target=\"_blank\">installez-le</a> sur un server de votre labo&nbsp;!"
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "6aba87b3-9c74-418f-a5c4-f566773cc77b",
+  "internal": false,
+  "lastUpdated": 1429801500000,
+  "oldSlug": "build-a-web-corpus-with-hyphe-our-research-driven-crawler",
+  "people": [
+    "0dcba674-00f3-42d8-b943-89b698a29081",
+    "910c509c-ca11-4684-9898-f2b0b6f3283e"
+  ],
+  "productions": [
+    "19cf7adc-1880-4072-bfdf-c69eac7e6ffa"
+  ],
+  "slugs": [
+    "construisez-vos-corpus-web-avec-hyphe"
+  ],
+  "startDate": "2015-04-23",
+  "title": {
+    "en": "Build a web corpus with Hyphe!",
+    "fr": "Construisez vos corpus web avec Hyphe !"
+  },
+  "type": "notice"
+}

@@ -1,0 +1,31 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "Conference in the Library with <a href=\"http://www.medialab.sciences-po.fr/fr/people/mathieu-jacomy/\">Mathieu Jacomy</a> and <a href=\"http://cartographie.sciences-po.fr/fr/contacts\">Patrice Mitran</a>o on different types of data processing in the context of the exhibition of maps created by <a href=\"http://cartographie.sciences-po.fr/\">the Sciences Po atelier de cartographie</a> and <a href=\"http://www.medialab.sciences-po.fr/fr/\">médialab</a>.\r\n\r\nTo know more : <a href=\"http://medialab.github.io/double-dating-data/#/\">the exhibition website</a>, <a href=\"http://www.medialab.sciences-po.fr/fr/blog/exhibition-double-dating-data/\">the news about Double Dating Data</a>.\r\nThe conference will take place on Tuesday November 24<sup>th</sup> from 5:30pm to 7:30pm in the Sciences Po Library René Rémond, 27 rue Saint Guillaume, 75007 Paris. If you want to attend, please sign in <a href=\"http://www.sciencespo.fr/evenements/inscription/inscription.php?id=4299&amp;codeExterne=5d7O8p\">here</a>. It is free.\r\nThe conference will be held in French, but questions are welcome in English.\r\n\r\n&nbsp;",
+    "fr": "Conférence au kiosque de la bibliothèque sur les différentes façons de représenter les données avec <strong><a href=\"http://www.medialab.sciences-po.fr/fr/people/mathieu-jacomy/\">Mathieu Jacomy</a></strong> et <strong><a href=\"http://cartographie.sciences-po.fr/fr/contacts\">Patrice Mitrano</a> </strong>dans le cadre de l'exposition de cartes créées par <a class=\"ext\" title=\"l'atelier de cartographie - nouvelle fenêtre\" href=\"http://cartographie.sciences-po.fr/\" target=\"_blank\">l'atelier de cartographie</a> et le <a class=\"ext\" title=\"médialab - nouvelle fenêtre\" href=\"http://www.medialab.sciences-po.fr/fr/\" target=\"_blank\">médialab</a> de Sciences Po.\r\n\r\nPour en savoir plus, retrouvez l'<a href=\"http://www.medialab.sciences-po.fr/fr/blog/exhibition-double-dating-data/\">annonce de l'exposition</a> sur notre site web ainsi que le <a href=\"http://medialab.github.io/double-dating-data/#/\">site web de l'exposition</a>.\r\n\r\nLa conférence aura lieu le mardi 24 novembre entre 17h30 et 19h30 dans les locaux de la bibliothèque René Rémond, 27 rue Saint Guillaume, 75007 Paris. L'entrée est gratuite mais il faut s'inscrire <a href=\"http://www.sciencespo.fr/evenements/inscription/inscription.php?id=4299&amp;codeExterne=5d7O8p\">ici</a>.\r\n\r\nLes intervenants débattront de leurs idées en français mais les échanges en anglais avec le public sont les bienvenus.\r\n\r\n&nbsp;"
+  },
+  "description": {
+    "en": "Conference in the Library with Mathieu Jacomy and Patrice Mitrano on different types of data processing in the context of the exhibition of maps created by the Sciences Po atelier de cartographie and médialab.",
+    "fr": "Conférence au kiosque de la bibliothèque sur les différentes façons de représenter les données avec Mathieu Jacomy et Patrice Mitrano dans le cadre de l'exposition de cartes créées par l'atelier de cartographie et le médialab de Sciences Po."
+  },
+  "draft": true,
+  "id": "43232eab-58a1-4f90-99fc-04245ee44151",
+  "internal": false,
+  "lastUpdated": 1445513040000,
+  "oldSlug": "conference-double-dating-data-24112015-1700-1900",
+  "people": [
+    "910c509c-ca11-4684-9898-f2b0b6f3283e"
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "conference-donner-a-voir-les-donnees"
+  ],
+  "startDate": "2015-10-22",
+  "title": {
+    "en": "Conference 'Double Dating Data' - 24/11/2015 | 17:30-19:30",
+    "fr": "Conférence \"Donner à voir les données\"  - 24/11/2015 | 17:30-19:30"
+  },
+  "type": "notice"
+}

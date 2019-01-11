@@ -1,0 +1,22 @@
+{
+  "active": false,
+  "bio": {
+    "en": "Aurélien Reys is a geographer, with a diploma from the University of Paris Diderot. After getting a master's in cartography, he worked from 2010 to 2011 as an engineer within Orange Télécom. Since October 2011, he is working on a doctoral thesis in development geography. He joined the médialab team of Sciences Po in march 2015 to integrate the \"Politique de la Terre à l'épreuve de l'Anthropocène\" directed by Bruno Latour. This project gathers teams from several disciplines and several institutions of the University Sorbonne Paris Cité around several research axes whose goal is to look at the transformations of the Earth-World coupling in it's different dimensions",
+    "fr": "Contact : aurelien.reys[AT]sciences-po[DOT]fr\r\n\r\nAurélien Reys est géographe, diplômé de l’Université Paris Diderot. Après avoir obtenu un Master en cartographie, il a travaillé de 2010 à 2011 comme ingénieur d’étude au sein d’Orange Télécom. Depuis octobre 2011, il réalise une thèse de doctorat en géographie du développement. Il a rejoint l’équipe du médialab de Sciences-Po en mars 2015 pour intégrer le projet « Politiques de la Terre à l’épreuve de l’Anthropocène », piloté par Bruno Latour. Ce projet rassemble des équipes de plusieurs disciplines et de plusieurs établissements de l’Université Sorbonne Paris Cité autour de différents axes de recherche qui ont pour but d’aborder les transformations du couple Terre-Monde dans ses différentes dimensions."
+  },
+  "domain": "academic",
+  "draft": true,
+  "firstName": "Aurélien",
+  "id": "11125cc0-6e8a-4771-a39c-c81ea0f60cf6",
+  "lastName": "Reys",
+  "lastUpdated": 1441718040000,
+  "membership": "member",
+  "oldSlug": "aurelien-reys",
+  "role": {
+    "en": "Participating in the \"Politiques de la Terre\" project",
+    "fr": "Participe actuellement au projet « Politiques de la Terre »"
+  },
+  "slugs": [
+    "aurelien-reys"
+  ]
+}

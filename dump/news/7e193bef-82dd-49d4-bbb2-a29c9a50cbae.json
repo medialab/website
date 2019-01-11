@@ -1,0 +1,30 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "",
+    "fr": "<a href=\"http://www.sciencespo.fr/cartographie/\">L'Atelier de Cartographie</a> de Sciences Po animera notre <strong>séminaire de recherche le 29 novembre de 14h à 16h</strong>. Ils présenteront l'outil de cartographie <a href=\"http://www.sciencespo.fr/cartographie/khartis/\">Khartis</a>, développé en collaboration avec le médialab.\r\n\r\nKhartis est une<strong> application en ligne de cartographie thématique </strong>qui permet de créer une carte thématique en <strong>3 étapes</strong> :\r\n1. Importez vos données à partir d’un simple copier-coller depuis votre tableur.\r\n2. Explorez vos données avec 4 types de visualisations simples et éprouvées.\r\n3. Ajustez l’habillage de votre carte et exportez enfin votre image.\r\n\r\n<strong>Ses atouts </strong>: un géoréférencement automatique des données, un choix de 9 projections paramétrables, une manipulation qui laisse la part à l’exploration des données et enfin une exportation de l’image possible dans 2 formats standards (svg et png).\r\n\r\nVenez l'essayer et en discuter avec nous !\r\n\r\nRDV au 13 rue de l'université dans notre salle en sous-sol le 29 novembre à 14h."
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "7e193bef-82dd-49d4-bbb2-a29c9a50cbae",
+  "internal": true,
+  "lastUpdated": 1477564080000,
+  "oldSlug": "seminaire-de-recherche-29112016-de-14h-a-16h-atelier-de-cartographie-khartis-pour-creer-simplement-des-cartes-thematiques-en-trois-etapes",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "seminaire-de-recherche-29112016-de-14h"
+  ],
+  "startDate": "2016-10-27",
+  "title": {
+    "en": "",
+    "fr": "Séminaire de recherche - 29/11/2016 de 14h à 16h - Atelier de cartographie : Khartis pour créer simplement des cartes thématiques en trois étapes"
+  },
+  "type": "event"
+}

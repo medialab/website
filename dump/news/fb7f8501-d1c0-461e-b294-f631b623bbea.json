@@ -1,0 +1,33 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "In the fall of 2018, Sciences Po Undergraduate College is setting up a joint \"Digital Cultures\" course for 1,600 second-year students.\r\nConsequently, Sciences Po recruits teaching assistants in \"Practical Code\".\r\n\r\nSee <a href=\"https://medialab.sciencespo.fr/fr/blog/teaching-assistant-practical-code/\">the French presentation for this position</a>.",
+    "fr": "Le Collège universitaire de Sciences Po met en place à partir de l’automne 2018 un cours commun de «Culture numérique » pour les 1600 étudiants de deuxième année.\r\nDans ce contexte, Sciences Po recrute des enseignants en « code pratique » pour de l'initiation au code et à la programmation destinés à des profils de néophyte.\r\n<h3>Environnement</h3>\r\nLes étudiants sont distribués sur 7 campus en France ; une moitié de ces étudiants est anglophone.\r\nCette formation propose trois activités différentes:\r\n- suivre un cours en ligne assuré par Dominique Cardon,\r\n- participer à deux journées d’ateliers d’apprentissage pratique de différents outils d’édition et de programmation,\r\n- et produire une \"exploration numérique\" en groupe.\r\n\r\nAfin d'assurer sur chaque campus les ateliers d’apprentissage pratique de différents outils d’édition et de programmation, Sciences Po recrute des enseignants de \"code pratique\".\r\n<h3>Mission</h3>\r\nLes ateliers d’apprentissage pratique porteront sur les sujets suivants:\r\n- technologies Web (Réalisation de site web : HTML, CSS, Architectures web et protocoles),\r\n- IOT (APIs, Arduino, Raspberry PI),\r\n- publication numérique (Création d’un contenu numérique sous forme de vidéo),\r\n- Art Numérique (Processing, APIs, Interaction Homme Machine, Art Numérique, notion auteur amont / auteur aval, data visualisation).\r\n\r\nChaque sujet donnera lieu à un cours de 6h ou 12h, il n’est pas donc pas indispensable qu’un enseignant maitrise l’ensemble des sujets. Les modules seront attribués aux enseignants en fonction des compétences mises en avant dans les candidatures.\r\nLes enseignements devront être dispensés en français ou en anglais selon le public de chaque campus.\r\n<h3>Calendrier des enseignements</h3>\r\nLes enseignements sont répartis sur les campus de Sciences Po selon le calendrier suivant:\r\n- Paris : mardi 28 août et mercredi 29 août (en français)\r\n- Reims : jeudi 30 août et vendredi 31 août (en français et/ou en anglais)\r\n- Le Havre : vendredi 14 septembre et samedi 15 septembre (en anglais)\r\n- Menton : samedi 6 octobre et samedi 10 novembre (en français et/ou en anglais)\r\n- Dijon: lundi 3 décembre et mardi 4 décembre (en français)\r\n- Nancy : jeudi 6 décembre et vendredi 7 décembre (en français et/ou en anglais)\r\n<h3>Modalités de recrutement</h3>\r\nLes frais de déplacement et d’hébergement sur les campus sont pris en charge par Sciences Po.\r\n\r\nRecrutement sur contrat de vacation rémunéré 65 euros brut /h.\r\n\r\nLes candidatures sont à adresser à <a href=\"mailto:guillaume.cartigny@sciencespo.fr\">Guillaume Cartigny</a> en précisant:\r\n- le/les thème(s) des ateliers pressentis,\r\n- les dates de disponibilités,\r\n- la langue d'enseignement."
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "fb7f8501-d1c0-461e-b294-f631b623bbea",
+  "internal": false,
+  "label": {
+    "fr": "Emploi"
+  },
+  "lastUpdated": 1529310480000,
+  "oldSlug": "teaching-assistant-practical-code",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "recrute-enseignants-en-code-pratique"
+  ],
+  "startDate": "2018-06-18",
+  "title": {
+    "en": "Teaching assistant «Practical Code»",
+    "fr": "Recrute enseignants en «code pratique»"
+  },
+  "type": "notice"
+}

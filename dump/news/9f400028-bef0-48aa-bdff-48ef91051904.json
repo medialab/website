@@ -1,0 +1,36 @@
+{
+  "activities": [
+    "e8810f79-0325-4e44-99da-d26dfbe63a01"
+  ],
+  "content": {
+    "en": "See <a href=\"https://medialab.sciencespo.fr/fr/blog/algoglitch-et-autres-methodes-pour-un-public-calcule/\">the French abstract</a>.",
+    "fr": "Samedi 21 avril à 14h, à la Gaité Lyrique, le médialab propose un workshop de recherche exploratoire et d'expérimentation sur la sensibilité algorithmique.\r\n\r\n<strong>L’algoglitch</strong> - l’affleurement des calculs à la surface de la réalité – est un mot inventé. Il essaie de capter les manifestations de cette sensibilité ambigüe : entre le bug et le biais, l'esthétique et le fonctionnement, la technique et la politique, l'expérience individuelle et collective.\r\n\r\nCe workshop propose de partir de l'algoglitch comme méthode visuelle et sensible pour interpréter des rencontres algorithmiques quotidiennes et tester sa pertinence à la croisée de différents champs d’intérêts.\r\n\r\nCe workshop réunira des designers, ingénieurs, militants, et utilisateurs plus ou moins avertis pour nourrir la recherche exploratoire du <a href=\"https://medialab.sciencespo.fr/projets/algoglitch/\">projet Algoglitch</a>.\r\n\r\nEntrée libre sur inscription (billetterie@gaite-lyrique.net) dans la limite des places disponibles.\r\n\r\nToutes les informations sur <a href=\"https://gaite-lyrique.net/evenement/algoglitch\" target=\"_blank\" rel=\"noopener\">le site de la Gaité Lyrique</a>."
+  },
+  "description": {
+    "en": "",
+    "fr": "Samedi 21 avril, Algoglitch propose un workshop autour de la sensibilité algorithmique."
+  },
+  "draft": true,
+  "id": "9f400028-bef0-48aa-bdff-48ef91051904",
+  "internal": false,
+  "label": {
+    "fr": "Atelier"
+  },
+  "lastUpdated": 1523948160000,
+  "oldSlug": "algoglitch-et-autres-methodes-pour-un-public-calcule",
+  "people": [
+    "bef607ba-7496-4ca2-97ef-ea952fc9f8b2",
+    "ec108495-9899-495c-9655-cf1942afe23f"
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "algoglitch-et-autres-methodes-pour-un"
+  ],
+  "startDate": "2018-04-17",
+  "title": {
+    "en": "#Algoglitch et autres méthodes pour un public calculé // workshop samedi 21 avril 2018",
+    "fr": "#Algoglitch et autres méthodes pour un public calculé // workshop samedi 21 avril 2018"
+  },
+  "type": "notice"
+}

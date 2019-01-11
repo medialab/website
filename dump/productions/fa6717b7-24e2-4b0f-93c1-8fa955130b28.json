@@ -1,0 +1,24 @@
+{
+  "active": true,
+  "authors": "Benjamin Ooghe-Tabanou",
+  "description": {
+    "en": "Easily change a Google Search into its 100 results version and extract a CSV of results across multiple pages within your browser using simple bookmarklets.",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "fa6717b7-24e2-4b0f-93c1-8fa955130b28",
+  "lastUpdated": 1545310617253,
+  "oldSlug": "google-bookmarklets",
+  "people": [
+    "0dcba674-00f3-42d8-b943-89b698a29081"
+  ],
+  "slugs": [
+    "google-bookmarklets"
+  ],
+  "title": {
+    "en": "Google Bookmarklets",
+    "fr": "Google Bookmarklets"
+  },
+  "type": "software",
+  "url": "https://medialab.github.io/google-bookmarklets/"
+}

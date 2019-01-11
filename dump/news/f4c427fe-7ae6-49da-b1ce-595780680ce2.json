@@ -1,0 +1,30 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "",
+    "fr": "Nous accueillerons <span class=\"s1\"><strong><a href=\"http://www.gold.ac.uk/csisp/members/goldsmiths-members/gerlitz-carolin/\">Carolin Gerlitz</a>, <a href=\"http://www.medialab.sciences-po.fr/people/liliana-bounegru/\">Liliana Bounegru</a> et <a href=\"http://www.medialab.sciences-po.fr/people/jonathan-gray/\">Jonathan Gray</a></strong> pour le prochain séminaire de recherche du médialab. Nos invités présenteront leur recherche intitulée \"</span><span class=\"s1\"><b>Ways of Studying, Using and Intervening in Data Infrastructures\". </b>Vous trouverez un résumé ci-dessous.</span>\r\n\r\nRDV mardi 19 avril 2016 de 14h à 16h dans la salle du médialab au 13 rue de l'université, Paris.\r\n<p class=\"p1\" style=\"padding-left: 30px;\"><strong><em><span class=\"s1\">Ways of Studying, Using and Intervening in Data Infrastructures</span></em></strong></p>\r\n<p class=\"p1\" style=\"padding-left: 30px;\"><em><span class=\"s1\">Carolin Gerlitz, Liliana Bounegru and Jonathan Gray</span></em></p>\r\n<p class=\"p1\" style=\"padding-left: 30px;\"><em><span class=\"s1\">The session will introduce a range of ongoing projects that seek to study, use but also intervene in data infrastructures through means of digital research methods. The aim is to illustrate the research agenda of data infrastructure literacy, as well as to invite feedback and discussion about synergies with the work of the médialab and potential joint projects and collaborations in this area.</span></em></p>\r\n<p class=\"p1\" style=\"padding-left: 30px;\"><em><span class=\"s1\">Numbers, metrics and data are playing an increasingly important role in the making of knowledge in multiple areas, from social research, to policy and journalism. We argue that the usage and circulation of digital data needs to be accompanied by an outlook sensitive to the ways in which they are assembled in and addressed through data infrastructures as well as the layers of mediation inscribed in them.</span></em></p>\r\n<p class=\"p1\" style=\"padding-left: 30px;\"><em><span class=\"s1\">We will open the session by outlining the notion of data infrastructures alongside an ongoing project on social media metric critique. Digital research methods largely rely on repurposing measures and analytical capacities of other media. Drawing on a random 1% sample of Twitter data, the project asks what we actually count when aggregating tweets, hashtags or retweets. It focuses on the increasingly proliferating sources from which users tweet (such as mobile apps, buttons, platform cross syndication, and tweet automators among others) to show that medium-specific metrics do not necessarily aggregate comparable units but are dynamic, lively and subject to distributed accomplishment. Exploring devices to engage with platforms brings to attention that there are multiple ways of being on Twitter and challenges digital research to not only repurpose but to retrace the various actors and infrastructures that inform platform metrics and their accessibility. If we consider data not to be specific to a single platform but part of wider platform infrastructures how can we account for digital methods as ‘methods of the medium’?</span></em></p>\r\n<p class=\"p1\" style=\"padding-left: 30px;\"><span class=\"s1\"><em>Following from this project, we seek to open up a discussion about what it means to do digital methods research in a context in which both data production and analysis are increasingly subject to distributed and dynamic infrastructures which are at the same time enabled but also concealed by platforms. Doing so, we will introduce further selected cases on social media platforms and public information systems – including journalists sharing code and data on GitHub, information systems for public finance and data infrastructures implicated in the creation of information visualisations, to explore key concerns of data infrastructure literacy</em>.</span></p>\r\n<strong>Le séminaire est ouvert à tous dans la limite des places disponibles.</strong>\r\n\r\nCependant, attention aux restrictions d'accès dues à l'application du plan vigipirate. Pour les personnels de Sciences Po, n'oubliez pas de vous munir de votre carte d'accès. Pour les personnes extérieures, merci de contacter <a href=\"http://www.medialab.sciences-po.fr/people/audrey-baneyx/\">Audrey Baneyx</a> par email (audrey[POINT]baneyx[AT]sciencespo[POINT]fr) pour qu'on vous autorise l'accès."
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "f4c427fe-7ae6-49da-b1ce-595780680ce2",
+  "internal": true,
+  "lastUpdated": 1460360640000,
+  "oldSlug": "19042016-de-14h-a-16h-carolin-gerlitz-liliana-bounegru-and-jonathan-gray-ways-of-studying-using-and-intervening-in-data-infrastructures",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "seminaire-de-recherche-du-medialab-19042016"
+  ],
+  "startDate": "2016-04-11",
+  "title": {
+    "en": "",
+    "fr": "Séminaire de recherche du médialab - 19/04/2016 de 14h à 16h - Carolin Gerlitz, Liliana Bounegru and Jonathan Gray : \"Ways of Studying, Using and Intervening in Data Infrastructures\""
+  },
+  "type": "event"
+}

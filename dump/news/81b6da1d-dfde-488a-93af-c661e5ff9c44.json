@@ -1,0 +1,34 @@
+{
+  "activities": [
+    "6f085926-fa34-4754-bb6b-c6ab2edc0ab0"
+  ],
+  "content": {
+    "en": "From the 21 to the 25 of January, Tommaso Venturini organized in collaboration with <a href=\"http://twitter.com/nicolas_kb\">Nicolas Kayser-Brill</a> (former journalist of OWNI and co-founder of <a href=\"http://jplusplus.org/\">Journalism++</a>) an intensive course of data journalism for the Journalism School of Sciences Po.\r\n\r\nAudrey Baneyx and Benjamin Ooghe-Tabanou, from the médialab intervened in the course respectively on text-mining and data-scraping.\r\n<strong>\r\nHere are the results of the projets realized by the students during the week:</strong>\r\n<ul>\r\n\t<li><em><a href=\"http://controverses.sciences-po.fr/blogs/datajournalism/2013/01/25/du-rose-vers-le-bleu-la-knesset-depuis-1949/\">Du rose vers le bleu: la Knesset depuis 1949</a></em>\r\nAudrey Dufour\r\nRémi Noyon</li>\r\n\t<li><a href=\"http://controverses.sciences-po.fr/blogs/datajournalism/2013/01/25/le-reseau-des-succes-du-cinema-mondial/\">Box-office mondial à la carte</a>\r\nPhalène de la Valette\r\nJérémy Armand</li>\r\n\t<li><a href=\"http://controverses.sciences-po.fr/blogs/datajournalism/2013/01/25/qui-sont-les-visiteurs-du-louvre/\">Qui sont les visiteurs du Louvre ?</a>\r\nVanessa Carronnier\r\nAdeline Bertin</li>\r\n\t<li><a href=\"http://controverses.sciences-po.fr/blogs/datajournalism/2013/01/25/quel-est-le-meilleur-championnat-de-football-europeen-en-terme-de-rapport-qualiteprix/\">La Bundesligua, meilleur rapport qualité/prix en Europe</a>\r\nPierrick de Morel\r\nLucas Duvernet-Coppola</li>\r\n\t<li><a href=\"http://controverses.sciences-po.fr/blogs/datajournalism/2013/01/25/la-couverture-mediatique-des-morts-dans-le-monde/\">La couverture médiatique des morts dans le monde</a>\r\nAïcha Akalay\r\nAnais Bordages</li>\r\n\t<li><a href=\"http://emiliennemalfatto.blog.lemonde.fr/2013/01/24/prison-suicide/\">Suicides en prison: comprendre les chiffres qui accablent</a>\r\nEmilienne Malfatto\r\nJelena Prtoric</li>\r\n\t<li><a href=\"http://controverses.sciences-po.fr/blogs/datajournalism/2013/01/25/kisskissbankbank/\">Les chiffres derrière le crowdfunding en journalisme</a>\r\nHéloïse Leussier\r\nRuolin Yang</li>\r\n</ul>",
+    "fr": ""
+  },
+  "description": {
+    "en": "From the 21 to the 25 of January, Tommaso Venturini organized in collaboration with Nicolas Kayser-Brill (former journalist of OWNI and co-founder of Journalism++) an intensive course of data journalism for the Journalism School of Sciences Po.",
+    "fr": "Du 21 au 25 Janvier, Tommaso Venturini a organisé en collaboration avec Nicolas Kayser-Brill (ancien journaliste à OWNI et co-fondateur de Journalism++) un cours approdondi sur le data-journalisme pour l'École de Journalisme de Sciences Po."
+  },
+  "draft": true,
+  "id": "81b6da1d-dfde-488a-93af-c661e5ff9c44",
+  "internal": false,
+  "lastUpdated": 1359733020000,
+  "oldSlug": "cours-de-datajournalisme-a-lecole-de-journalisme-de-sciences-po",
+  "people": [
+    "1bf6951b-0cd9-4760-b1e2-a95099a6278e",
+    "0dcba674-00f3-42d8-b943-89b698a29081",
+    "13e835aa-90e4-4aa7-84e6-8270b396fc90"
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "cours-de-datajournalisme-a-lecole-de"
+  ],
+  "startDate": "2013-02-1",
+  "title": {
+    "en": "DataJournalism courses at SciencesPo's School of Journalism",
+    "fr": "Cours de DataJournalisme à l'école de Journalisme de Sciences-Po"
+  },
+  "type": "notice"
+}

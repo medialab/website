@@ -1,0 +1,36 @@
+{
+  "activities": [
+    "a7672017-2305-48b8-b839-d3fc9001a415"
+  ],
+  "content": {
+    "en": "",
+    "fr": "Le médialab recherche un stagiaire, de niveau Bac +2/5, pour travailler en sciences des données appliquées à l’étude de l’espace public numérique.\r\n<h3>Environnement de travail</h3>\r\n<span style=\"font-weight: 400;\">Ce stage se déroulera dans le cadre du projet de recherche mené par <a href=\"https://medialab.sciencespo.fr/people/vincent-antonin-lepinay/\">Vincent Lépinay</a> et <a href=\"https://medialab.sciencespo.fr/people/jean-philippe-cointet/\">Jean-Philippe Cointet</a> visant à étudier les théories développées par <a href=\"https://medialab.sciencespo.fr/projets/mapping-french-russia/\">les chercheurs et intellectuels français et américains étudiant la Russie soviétique et post-soviétique</a></span><span style=\"font-weight: 400;\">. </span>\r\n\r\n<span style=\"font-weight: 400;\">La personne retenue se joindra à l’équipe d’ingénieurs de recherche du médialab et sera amenée à se former aux techniques et enjeux méthodologiques de la récolte de données sur les plateformes du web et des bases de données disponibles en ligne (données bibliographiques, scientométriques, etc.), du stockage et de l’analyse de grands volumes de données complexes. Elle participera aux différentes stratégies d’analyse envisagées : analyse de réseaux en lien avec le traitement automatique de la langue. Un des objectifs du stage est notamment de concevoir une méthode originale de cartographie sémantique multi-échelle. Ces méthodes et algorithmes seront mise en oeuvre dans plusieurs  projets d’humanités numériques. , le principal d’entre eux portant sur la compréhension des des débats académiques et médiatiques français sur la Russie. </span>\r\n\r\n<span style=\"font-weight: 400;\">La/Le stagiaire sera ainsi également confronté(e) aux riches échanges d’une équipe de R&amp;D interdisciplinaire entre ingénierie logicielle, sociologie et design. Dans ce cadre, l’implication et les missions précises seront déterminées en fonction du profil et des intérêts de la / du candidat(e) retenu(e).</span>\r\n<h3>Compétences mobilisées</h3>\r\n<span style=\"font-weight: 400;\">Les principaux langages de programmation utilisés seront Python, et javascript.</span>\r\n<h3>Modalités de recrutement/candidature</h3>\r\n<ul>\r\n \t<li>Rémunération 800€ net</li>\r\n \t<li>Durée du stage : 6 mois, equivalent temps plein (35h/semaine)</li>\r\n \t<li>Avantages : tickets resto et remboursement partiel du pass navigo</li>\r\n \t<li>Date de prise de fonction : rentrée universitaire 2018</li>\r\n</ul>\r\nLes candidatures (CV, lettre de motivation, et plus si pertinent -lien github par exemple-) devront être transmises par voie électronique à <a title=\"mailto:recrutement.medialab@sciencespo.fr\" href=\"mailto:recrutement.medialab@sciencespo.fr\">recrutement.medialab@sciencespo.fr</a>"
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "18757f86-4cce-4312-a715-47461738c813",
+  "internal": false,
+  "label": {
+    "fr": "Stage"
+  },
+  "lastUpdated": 1525352520000,
+  "oldSlug": "sciences-des-donnees-appliquees-a-lhistoire-des-idees-et-la-scientometrie",
+  "people": [
+    "3aab3edb-b11d-4be0-b468-5d632cdba24b",
+    "e39b0e87-ede9-489c-9a37-187a5b786f48"
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "sciences-des-donnees-appliquees-a-lhistoire"
+  ],
+  "startDate": "2018-05-3",
+  "title": {
+    "en": "",
+    "fr": "Sciences des données appliquées à l’histoire des idées et la scientométrie"
+  },
+  "type": "notice"
+}

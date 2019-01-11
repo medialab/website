@@ -1,0 +1,22 @@
+{
+  "active": true,
+  "bio": {
+    "en": "Justine graduated with a BA in translation (EN-FR / FR-EN) from Université Bordeaux Montaigne and a Master’s degree in Anglophone cultures from University of Chester, England. She then received a Master's degree in Multimedia and Multilingual Documentation Design from Université Paris Diderot. As part of the training, Justine joined the FORCCAST team in September 2016, where she worked as a junior technical communicator for a year. In September 2018, she joined the FORCCAST team again, as the Public relations and technical documentation manager.",
+    "fr": "Après une licence de traduction et traductologie à Bordeaux Montaigne, ainsi qu'un Master en Etudes des Mondes Anglophones à l'Université de Chester en Angleterre, Justine a obtenu son Master Conception de Documentation Multilingue et Multimédia à Paris Diderot. Dans le cadre de cette formation qui se fait en alternance, Justine a travaillé au sein de l’équipe du programme FORCCAST de septembre 2016 à septembre 2017, en tant que conceptrice de documentation junior. En septembre 2018, elle intègre à nouveau l'équipe, cette fois-ci chargée de la communication de FORCCAST, ainsi que de la documentation technique des outils numériques développés par le programme."
+  },
+  "domain": "admin",
+  "draft": true,
+  "firstName": "Justine",
+  "id": "217b7e30-1665-461a-96df-5c48cc713413",
+  "lastName": "Gaucherand",
+  "lastUpdated": 1491560280000,
+  "membership": "member",
+  "oldSlug": "justine-gaucherand",
+  "role": {
+    "en": "Communication Officer and technical communicator  - FORCCAST",
+    "fr": "Chargée de communication et documentation technique  - FORCCAST"
+  },
+  "slugs": [
+    "justine-gaucherand"
+  ]
+}

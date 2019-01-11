@@ -1,0 +1,24 @@
+{
+  "active": false,
+  "authors": "Paul Girard",
+  "description": {
+    "en": "A python library to transform a issuecrawler xml file into a navicrawler wxsf (xml) file format.",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "77e60f77-31e5-4951-a3bc-1d21c5093c6d",
+  "lastUpdated": 1545310617261,
+  "oldSlug": "issue2navicrawler",
+  "people": [
+    "66d33f76-f197-494f-b8c3-1a61d1f60655"
+  ],
+  "slugs": [
+    "issue-2-navicrawler"
+  ],
+  "title": {
+    "en": "issue 2 navicrawler",
+    "fr": "issue 2 navicrawler"
+  },
+  "type": "code",
+  "url": "http://jiminy.medialab.sciences-po.fr/issue2navicrawler/"
+}

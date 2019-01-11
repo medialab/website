@@ -1,0 +1,23 @@
+{
+  "active": false,
+  "content": {
+    "en": "Security is widely considered to be a primary need and even a universal right.\r\nYet there is widespread disagreement on what a security is, what threats cause insecurity, and how we should best seek to increase security through research, policy, legal instruments, product design, industrial development, and practice on the ground.\r\nDiffering aims, means, methods and assumptions between those sectors involved in security research and development contribute to these disagreements.\r\nIn academics security is studied as a social or political phenomenon, while industrial actors regard it as a technological challenge against the backdrop of the market for security products. Public policy-makers see security as a matter of government, civil society actors consider security a matter of the common good, while security end-users are primarily concerned implementation.\r\nThe SOURCE network addresses these divergences, creating a platform for information, tools, practical resources, and events and people, all in support of communication and collaboration across sectors.\r\n\r\nThe aim of the SOURCE Network of Excellence is to create a robust and sustainable virtual centre of excellence capable of exploring and advancing societal issues in security research and development. The SOURCE Network of Excellence is built upon five types of activities: networking activities, research, information gathering, education and training, and knowledge-sharing. These five areas together address both the ambitions and the expected impact of the Work Programme specific to the Security call. Through an integrated information gathering hub, education programmes across the security sectors, and a comprehensive programme of networking activities the SOURCE project will advance European excellence in research and industrial innovation and form the foundation for a permanent virtual centre of excellence capable of continuing to bring added-value to research on societal security. Through a broad set of concerted activities the centre will gather experts and actors from all levels of the security chain (researchers, industry actors, policy-makers, civil society, end-users and the public at large), all linked by a common project of documenting, analysing and understanding the link between security and the society in which it is played out. Through an array of networking activities, meetings, scientific and popular publications, film, press and social media, a scholarly journal and the formation of an international association for the study and improvement of societal security, the SOURCE Network of Excellence will meet the goals of raising the awareness among policy makers and end-users, raising the competitiveness of the security industry by better applying it to the social layers of insecurity in society and, as a consequence, contribute to the improvement of the well-being and security of European citizens.\r\n\r\nThrough <a href=\"http://societalsecurity.net/\">this webpage</a> you can link to the <strong>SOURCE Societal Security Network</strong> and find information and updates on societal security research, development, changes regulatory and public policy, technological developments, relevant events, and people involved in the societal security community.",
+    "fr": ""
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "endDate": "2018-02-01",
+  "id": "13d04160-3eca-498a-a929-78f20dee5ad6",
+  "important": false,
+  "lastUpdated": 1402555620000,
+  "name": "SOURCE Project - Societal Security Network",
+  "oldSlug": "source-project-societal-security-network",
+  "slugs": [
+    "source-project-societal-security-network"
+  ],
+  "startDate": "2014-06-12",
+  "type": "research"
+}

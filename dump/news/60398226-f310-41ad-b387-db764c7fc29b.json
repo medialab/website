@@ -1,0 +1,33 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "Presentation and discussion of this seminar will be in French.\r\n\r\nSee<a href=\"https://medialab.sciencespo.fr/fr/blog/vaccine-criticism-on-the-web\"> French presentation</a>.",
+    "fr": "Mardi 19 février, le séminaire du médialab accueille Jeremy K. <span class=\"il\">Ward, Paul Guille-Escuret et Florian Cafiero</span> pour une intervention sur:\r\n\r\n<em>«Les critiques des vaccins sur le web : crédibilité scientifique et fragmentation des mouvements sociaux. »</em>\r\n\r\nLa présentation d’une heure sera suivie d’une heure d’échanges.\r\n<h3>Biographie</h3>\r\n<p class=\"p2\">Jeremy K. Ward est sociologue et ingénieur de recherche à l’ORS-PACA. Sa thèse, soutenue en 2015, portait sur la controverse sur la sécurité du vaccin contre la grippe A(H1N1) de 2009 en France. Depuis, il étudie les mobilisations critiques des vaccins sur Internet et les controverses vaccinales en France.</p>\r\n<p class=\"p2\">Paul Guille-Escuret a été initialement formé en biologie évolutive à l’École Normale Supérieure de Lyon. Il est actuellement doctorant en sociologie à l’Université Paris Sorbonne. Son travail porte sur les mouvements pro-science en France, comment ils en sont venus à se saisir de la question vaccinale, leurs interactions avec les critiques des vaccins et comment ces interactions façonnent les discours contemporains sur la vaccination et la science.</p>\r\n<p class=\"p2\">Florian Cafiero, ancien élève de l’Ecole Normale Supérieure Paris-Saclay, est ingénieur d’études à l’Université Sorbonne Paris Cité et chargé de cours à l’Ecole Nationale des Chartes.</p>\r\n\r\n<h3>Informations pratiques</h3>\r\nSéminaire ouvert à tous, dans la limite des places disponibles.\r\nInscription préalable fortement recommandée: <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSdlWWVX200TOTXuQinhU9TZ44UHiTXdJRXB_66TsL8P0LowQw/viewform?usp=sf_link\" target=\"_blank\" rel=\"noopener\">s’inscrire</a>\r\n\r\nMardi 19 février 2019 – 14h00 à 16h00\r\nSalle du médialab, 13 rue de l’Université, 75007 Paris"
+  },
+  "description": {
+    "en": "Medialab's research seminar moderated by J. Ward, P. Guille-Escuret and F. Cafiero",
+    "fr": "Séminaire de recherche animé par J. Ward, P. Guille-Escuret et F. Cafiero"
+  },
+  "draft": true,
+  "id": "60398226-f310-41ad-b387-db764c7fc29b",
+  "internal": true,
+  "label": {
+    "fr": "Séminaire de recherche"
+  },
+  "lastUpdated": 1540806000000,
+  "oldSlug": "vaccine-criticism-on-the-web",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "les-critiques-des-vaccins-sur-le"
+  ],
+  "startDate": "2019-02-19",
+  "title": {
+    "en": "Vaccine criticism on the web",
+    "fr": "Les critiques des vaccins sur le web"
+  },
+  "type": "event"
+}

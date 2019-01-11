@@ -1,0 +1,22 @@
+{
+  "active": false,
+  "bio": {
+    "en": "Etudiant à l'Université de Technologie de Compiègne, Patrick Browne a travaillé sur les projets EAT et ScholarScape au sein du Médialab. ",
+    "fr": ""
+  },
+  "domain": "tech",
+  "draft": true,
+  "firstName": "Patrick",
+  "id": "bb167589-6756-4264-bc07-7aacfc1b4bf2",
+  "lastName": "Browne",
+  "lastUpdated": 1361537040000,
+  "membership": "member",
+  "oldSlug": "patrick-browne",
+  "role": {
+    "en": "Stagiaire",
+    "fr": ""
+  },
+  "slugs": [
+    "patrick-browne"
+  ]
+}

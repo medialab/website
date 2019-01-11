@@ -1,0 +1,23 @@
+{
+  "active": false,
+  "authors": "Daniele Guido, Davy Brown",
+  "description": {
+    "en": "Publish a simple website from a _public_ google drive folder without coding in HTML",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "bb6ef666-9d4e-4732-b5f9-5a0236d6b820",
+  "lastUpdated": 1545310617250,
+  "oldSlug": "drive-in",
+  "people": [
+    "4d4cad62-1674-4f3c-85c0-30d7b501f6e0"
+  ],
+  "slugs": [
+    "drive-in"
+  ],
+  "title": {
+    "en": "Drive-In",
+    "fr": "Drive-In"
+  },
+  "type": "software"
+}

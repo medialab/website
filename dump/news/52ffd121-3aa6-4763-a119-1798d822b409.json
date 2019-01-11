@@ -1,0 +1,31 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "<span style=\"text-decoration: underline;\"><strong>Nouvelle publication en ligne de Dominique Boullier sur le site <a href=\"http://ceriscope.sciences-po.fr/puissance/content/part2/le-hard-du-soft-la-materialite-du-reseau-des-reseaux\">Ceriscope</a>.</strong></span>\r\n<div>\r\n\r\n<strong>Extrait :</strong>\r\n\r\n<em><strong>Internet, un réseau incontrôlable ? Du modèle distribué au réseau invariant d’échelle, du virtuel au hard des câbles et des serveurs</strong></em>\r\n\r\n<em>L’utopie majeure née avec Internet serait-elle déjà morte ? Le réseau distribué conçu comme incontrôlable aurait-il finalement succombé à diverses pressions délibérées et autres effets systémiques pour devenir aussi contrôlable que n’importe quel autre tuyau ? Ce qui se présentait comme un nouvel espace de jeux de pouvoirs marqués par le soft ne serait-il pas en passe de devenir tout simplement dépendant des propriétés de ses infrastructures, si hard et si aisément surveillées, bridées voire sabotées ?</em>\r\n\r\n<em>L’histoire d’Internet reste quelque peu paradoxale quand on songe que Paul Baran, chercheur à la Rand Corporation, imagine en 1964 une structure de réseau distribué non pas dans une vision libérale visant à s’émanciper de tout contrôle mais par anticipation de l’exigence de robustesse d’un réseau sujet à d’éventuelles attaques de l’ennemi de la guerre froide et qui a déjà approché des seuils d’alerte élevés dans la période précédente. Tout réseau présentant une dépendance à un centre risque de se retrouver impuissant [... <a href=\"http://ceriscope.sciences-po.fr/puissance/content/part2/le-hard-du-soft-la-materialite-du-reseau-des-reseaux\">lire la suite </a>...] </em>\r\n\r\n</div>",
+    "fr": ""
+  },
+  "description": {
+    "en": "Dominique BOULLIER, \"Le « hard » du « soft » : la matérialité du réseau des réseaux\", CERISCOPE Puissance, 2013, [en ligne], consulté le 05/12/2013, URL : http://ceriscope.sciences-po.fr/puissance/content/part2/le-hard-du-soft-la-materialite-du-reseau-des-reseaux",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "52ffd121-3aa6-4763-a119-1798d822b409",
+  "internal": false,
+  "lastUpdated": 1386234600000,
+  "oldSlug": "le-hard-du-soft-la-materialite-du-reseau-des-reseaux",
+  "people": [
+    "8081e4ed-552d-45a8-b1a8-5b5e9e924cdd"
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "le-hard-du-soft-la-materialite"
+  ],
+  "startDate": "2013-12-5",
+  "title": {
+    "en": "",
+    "fr": "Le « hard » du « soft » : la matérialité du réseau des réseaux"
+  },
+  "type": "notice"
+}

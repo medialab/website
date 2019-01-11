@@ -1,0 +1,33 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "Presentation and discussion of this seminar will be in French.\r\n\r\nSee<a href=\"https://medialab.sciencespo.fr/fr/blog/cultures-algorithmiques-et-creolisation-machinique/\"> the French presentation</a>.",
+    "fr": "Mardi 18  septembre, le séminaire du médialab accueille Nicolas Nova pour une intervention intitulée:\r\n\r\n<em>«Cultures algorithmiques et créolisation machinique ».</em>\r\n\r\nLa présentation d’une heure sera suivie d’une heure d’échanges.\r\n<h3>Résumé</h3>\r\nLes algorithmes, et plus largement la génération automatique de contenu par les systèmes de machine learning, intéressent de plus en plus les artistes et les designers. Livres Amazon générés automatiquement, entrées Wikipédia publiées par des robots, musique générative, twitterbots. Ces exemples soulignent l'importance croissante des procédures logicielles dans la production de contenus culturels. Qu'est-ce que cela signifie concrètement ? Comment fonctionne cette nouvelle forme de création ? Quelles sont les conséquences de l'automatisation de la production ? L'exposé abordera ces questions et discutera des implications diverses de ces \"cultures algorithmiques\".\r\n\r\nLecture recommandée : <a href=\"https://static1.squarespace.com/static/526d498ae4b0a8c91472d7d7/t/56e82bf22fe131ff7183d861/1458056178927/Essay-DADABOT.pdf\" target=\"_blank\" rel=\"noopener\">Nova, N. &amp; Vacheron, J. (2015). Dadabot: an Introduction to Machinic Creolization, Morges: ID Pure</a>\r\n\r\n<a href=\"https://medialab.sciencespo.fr/wp-content/uploads/2018/09/2018-SciencePoMedialab-nova-ilovepdf-compressed.pdf\" target=\"_blank\" rel=\"noopener\">Les slides de la présentation</a> sont consultables.\r\n<h3>Biographie</h3>\r\n<span class=\"il\">Nicolas</span> <span class=\"il\">Nova</span> est professeur associé à la Haute-Ecole d'Art et de Design (HEAD – Genève) où il enseigne l'anthropologie des techniques, l’ethnographie appliquée au design et les enjeux contemporains du numérique. Il est également co-fondateur du Near Future Laboratory, une agence de prospective et d’innovation impliqué dans des projets de design fiction. Il s'intéresse aux questions d'usages et de détournement des objets techniques dans le champ du numérique avec un point de vue socio-anthropologique.\r\n<h3>Informations pratiques</h3>\r\nSéminaire ouvert à tous, dans la limite des places disponibles.\r\nInscription préalable fortement recommandée: <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSdlWWVX200TOTXuQinhU9TZ44UHiTXdJRXB_66TsL8P0LowQw/viewform?usp=sf_link\" target=\"_blank\" rel=\"noopener\">s’inscrire</a>\r\n\r\nMardi 18 septembre 2018 – 14h00 à 16h00\r\nSalle du médialab, 13 rue de l’Université, 75007 Paris"
+  },
+  "description": {
+    "en": "",
+    "fr": "Mardi 18  septembre, le séminaire du médialab accueille Nicolas Nova pour une intervention intitulée «Cultures algorithmiques et créolisation machinique »."
+  },
+  "draft": true,
+  "id": "231999a4-242a-4486-8cbd-d35d100c9686",
+  "internal": true,
+  "label": {
+    "fr": "Séminaire du médialab"
+  },
+  "lastUpdated": 1531221480000,
+  "oldSlug": "cultures-algorithmiques-et-creolisation-machinique",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "cultures-algorithmiques-et-creolisation-machinique"
+  ],
+  "startDate": "2018-09-18",
+  "title": {
+    "en": "Algorithmic culture and machinic creolization ",
+    "fr": "Cultures algorithmiques et créolisation machinique"
+  },
+  "type": "event"
+}

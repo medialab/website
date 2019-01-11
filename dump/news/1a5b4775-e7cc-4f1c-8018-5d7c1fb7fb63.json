@@ -1,0 +1,30 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "<a href=\"http://www.medialab.sciences-po.fr/publications/Jacomy_Heymann_Venturini-Force_Atlas2.pdf\">Download paper</a>\r\n<a href=\"http://www.medialab.sciences-po.fr/publications/Jacomy_Heymann_Venturini-Force_Atlas2_Appendices.pdf\">Download appendices</a>\r\n",
+    "fr": ""
+  },
+  "description": {
+    "en": "Publication draft - Jacomy, M., Heymann, S. &Venturini, T. ForceAtlas2, A Graph Layout Algorithm for Handy Network Visualization",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "1a5b4775-e7cc-4f1c-8018-5d7c1fb7fb63",
+  "internal": false,
+  "lastUpdated": 1359038280000,
+  "oldSlug": "forceatlas2-a-graph-layout-algorithm-for-handy-network-visualization",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    ""
+  ],
+  "startDate": "2013-01-24",
+  "title": {
+    "en": "ForceAtlas2, A Graph Layout Algorithm for Handy Network Visualization",
+    "fr": ""
+  },
+  "type": "notice"
+}

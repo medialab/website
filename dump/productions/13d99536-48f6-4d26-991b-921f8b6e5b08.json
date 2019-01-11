@@ -1,0 +1,24 @@
+{
+  "active": true,
+  "authors": "Mathieu Jacomy",
+  "description": {
+    "en": "You have a CSV and you need to transform it into a better CSV, which includes filtering, clustering, parsing, merging, (...) and matching regular expressions. Why not do it in JS? You're welcome.",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "13d99536-48f6-4d26-991b-921f8b6e5b08",
+  "lastUpdated": 1545310617249,
+  "oldSlug": "csv-rinse-repeat",
+  "people": [
+    "910c509c-ca11-4684-9898-f2b0b6f3283e"
+  ],
+  "slugs": [
+    "csv-rinse-repeat"
+  ],
+  "title": {
+    "en": "CSV Rinse Repeat",
+    "fr": "CSV Rinse Repeat"
+  },
+  "type": "software",
+  "url": "http://tools.medialab.sciences-po.fr/csv-rinse-repeat/"
+}

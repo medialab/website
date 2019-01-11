@@ -1,0 +1,24 @@
+{
+  "active": true,
+  "authors": "Guillaume Plique",
+  "description": {
+    "en": "artoo.js - the client-side scraping companion.",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "9e198594-5dd0-4617-a9ff-3c5299d5209c",
+  "lastUpdated": 1545310617246,
+  "oldSlug": "artoo",
+  "people": [
+    "4d46ba96-c592-427c-9431-85e2922e9c33"
+  ],
+  "slugs": [
+    "artoojs"
+  ],
+  "title": {
+    "en": "artoo.js",
+    "fr": "artoo.js"
+  },
+  "type": "code",
+  "url": "https://medialab.github.io/artoo/"
+}

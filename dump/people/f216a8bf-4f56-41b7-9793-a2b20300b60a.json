@@ -1,0 +1,22 @@
+{
+  "active": true,
+  "bio": {
+    "en": "",
+    "fr": "Vincent Casanova enseigne l’histoire-géographie et l’histoire des arts au lycée Léon Blum de Créteil (94). En parallèle, il a exercé pendant sept ans, à compter de 2010, au <a href=\"http://germainetillionlycee.fr/microlycee-93/\">Microlycée 93</a> (structure publique de retour à l’école pour élèves décrocheurs en Seine-Saint-Denis) ; il en a été le co-coordonnateur de 2014 et 2017. Dans ce cadre, il a notamment participé au développement de l’enseignement de cartographie des controverses dans le secondaire. Depuis 2016, il co-anime avec Nicolas Benvegnu et Brice Laurent le cours de master à l’<a href=\"http://www.sciencespo.fr/ecole-management-innovation/fr\">Ecole du management et de l’innovation</a>. Il est depuis septembre 2017 chargé de mission responsable du développement du programme <a href=\"http://controverses.org/\">FORCCAST</a> dans l’enseignement secondaire."
+  },
+  "domain": "pedagogy",
+  "draft": true,
+  "firstName": "Vincent",
+  "id": "f216a8bf-4f56-41b7-9793-a2b20300b60a",
+  "lastName": "Casanova",
+  "lastUpdated": 1505998800000,
+  "membership": "member",
+  "oldSlug": "vincent-casanova",
+  "role": {
+    "en": "Pedagogical engineer - FORCCAST",
+    "fr": "Ingénieur pédagogique - FORCCAST"
+  },
+  "slugs": [
+    "vincent-casanova"
+  ]
+}

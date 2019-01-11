@@ -1,0 +1,22 @@
+{
+  "active": true,
+  "bio": {
+    "en": "Diplômée en 2008 d’un master en communication avec une spécialisation en médiation scientifique, Amélie s’oriente vers le milieu de la recherche et intègre le CNRS en 2012. Elle y assure la fonction de responsable de communication de la Très Grande Infrastructure de Recherche PROGEDO approfondissant ainsi sa connaissance des instances de mise à disposition de données de recherche en sciences sociales, au niveau français et européen. À ce poste, Amélie a également en charge la valorisation de l’enquête sociale européenne en lien avec l’équipe de production française basée au CDSP (Sciences Po/CNRS).\r\n\r\nAmélie a rejoint Sciences Po en janvier 2018 en tant que chargé de mission pour mettre en valeur les activités et résultats du CDSP et du médialab.",
+    "fr": "Amélie Vairelles est chargée de la communication du médialab.\r\n\r\nDiplômée en 2008 d’un master en communication avec une spécialisation en médiation scientifique, Amélie s’oriente vers le milieu de la recherche et intègre le CNRS en 2012. Elle y a assuré la fonction de responsable de communication de la Très Grande Infrastructure de Recherche PROGEDO approfondissant ainsi sa connaissance des instances de mise à disposition de données de recherche en sciences sociales, au niveau français et européen.\r\n\r\nAmélie a rejoint Sciences Po en janvier 2018 en tant que chargée de mission pour mettre en valeur les activités et résultats du CDSP et du médialab."
+  },
+  "domain": "admin",
+  "draft": true,
+  "firstName": "Amélie",
+  "id": "cb7f0d4b-5437-4a0c-9c87-8cb6725f60ff",
+  "lastName": "Vairelles",
+  "lastUpdated": 1517561280000,
+  "membership": "member",
+  "oldSlug": "amelie-vairelles",
+  "role": {
+    "en": "Communication Officer",
+    "fr": ""
+  },
+  "slugs": [
+    "amelie-vairelles"
+  ]
+}

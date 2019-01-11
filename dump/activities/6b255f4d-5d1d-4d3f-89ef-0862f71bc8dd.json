@@ -1,0 +1,22 @@
+{
+  "active": false,
+  "content": {
+    "en": "Most debates defining the future of our society and our planet are opaque. As regards the adaptation to climate change, the opacity is due to the uncertainties raised by the issues at stake and the multiplicity of scales, actors and sectors they imply. With the issue getting high in the scientific and political agenda, clarifying such emerging debates has become top priority. To address  this challenge, the ANR-funded MEDEA project proposes a fourfold research programme based on the innovative methodology of controversy-mapping. Firstly, drawing on a close collaboration between climate experts and social scientists, it aims to collect an extensive corpus of scientific, policy and media discourses on adaptation. Secondly, it seeks to analyze debates in such corpus using methods and tools developed in the field of Science and Technology Studies. Thirdly, drawing on media design expertise, it aims at developing an on-line interactive platform to make the debate legible to a large audience. Finally, the project will conclude by disseminating this platform to all relevant stakeholders in the debate.\r\n\r\nMEDEA project is based on an original approach combining quantitative and qualitative methods from social sciences, climate sciences and digital and communication design. To ensure such unusual disciplinary articulation, the project involves the collaboration of three partners: Sciences Po (médialab and IDDRI), the LSCE, and the ENSAD. Given its extensive experience in controversy mapping, Sciences Po médialab ensures the management of the project, under the scientific coordination of Tommaso Venturini.\r\n\r\nIn this manner, MEDEA aims to support policy development and public debate on adaptation and to provide a relevant contribution to the understanding of the processes underlying the adaptation and governance.\r\n\r\nThe blog of the project : <a href=\"https://projetmedea.hypotheses.org/\">https://projetmedea.hypotheses.org/</a>\r\nThe web plateforme with scientific storylines and visualisations : <a href=\"http://medea.medialab.sciences-po.fr/#/\">http://medea.medialab.sciences-po.fr/#/</a>\r\nThe news about the MEDEA exhibition : <a href=\"http://www.medialab.sciences-po.fr/blog/exposition-des-resultats-du-projet-medea-forum-liberationmake-it-work-3-octobre-2015-11h-19h30-27-rue-saint-guillaume/\">http://www.medialab.sciences-po.fr/blog/exposition-des-resultats-du-projet-medea-forum-liberationmake-it-work-3-octobre-2015-11h-19h30-27-rue-saint-guillaume/</a>",
+    "fr": ""
+  },
+  "description": {
+    "en": "Funded by the French National Research Agency (ANR) Program (CEP&S call for projects), MEDEA is a three-year controversy-mapping project focusing on the emerging debates on adaptation to climate change in France.",
+    "fr": ""
+  },
+  "draft": true,
+  "endDate": "2015-10-01",
+  "id": "6b255f4d-5d1d-4d3f-89ef-0862f71bc8dd",
+  "important": false,
+  "lastUpdated": 1354027260000,
+  "name": "MEDEA Cartographier les débats sur l'adaptation",
+  "oldSlug": "medea-mapping-environmental-debates-on-adaptation",
+  "slugs": [
+    "medea-cartographier-les-debats-sur-ladaptation"
+  ],
+  "type": "research"
+}

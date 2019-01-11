@@ -1,0 +1,31 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "Bonjour à tous,\r\n\r\nLe prochain séminaire de recherche du médialab aura lieu le 21 mai de 16h à 18h au 13 rue de l'Université, dans la salle de conférence du médialab. Nous recevrons <a href=\"http://www.liafa.univ-paris-diderot.fr/~prieur/\">Christophe Prieur</a>, Maître de conférence à l'Université Paris 7,  sur le thème <strong>\"La conjuration des égos — réseaux, algorithmes, identités\"</strong>.\r\n\r\nVenez nombreux !",
+    "fr": ""
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "8160e991-448e-4b3c-825e-a7835f797ef8",
+  "internal": true,
+  "lastUpdated": 1368707640000,
+  "oldSlug": "seminaire-de-recherche-du-medialab-mardi-21-mai-de-16h-a-18h",
+  "people": [
+    "1bf6951b-0cd9-4760-b1e2-a95099a6278e"
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "seminaire-de-recherche-du-medialab-mardi"
+  ],
+  "startDate": "2013-05-16",
+  "title": {
+    "en": "",
+    "fr": "Séminaire de recherche du médialab - mardi 21 mai de 16h à 18h"
+  },
+  "type": "event"
+}

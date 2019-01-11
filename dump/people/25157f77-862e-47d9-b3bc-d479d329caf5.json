@@ -1,0 +1,22 @@
+{
+  "active": false,
+  "bio": {
+    "en": "",
+    "fr": "Damien travaille sur le projet <a href=\"http://lafabriquedelaloi.fr/\" target=\"_blank\" rel=\"noopener\">lafabriquedelaloi.fr</a> avec <a href=\"http://www.medialab.sciences-po.fr/fr/people/benjamin-ooghe-tabanou/\">Benjamin Ooghe-Tabanou</a> et l'association <a href=\"http://regardscitoyens.org/\" target=\"_blank\" rel=\"noopener\">Regards Citoyens</a>. J'ai une formation d'ingénieur en informatique venant de l'<a href=\"https://www.utc.fr/\">UTC</a> mais je m'intéresse aussi à la <a href=\"https://tel.archives-ouvertes.fr/tel-01372404/document\">sociologie</a>, les <a href=\"https://en.wikipedia.org/wiki/Steiner_tree_problem\">mathématiques</a> ou même le <a href=\"http://dam.io/real/\">jeu</a> et la <a href=\"http://ncase.me/trust/\">théorie des jeux</a>.\r\n\r\nPlus d'information sur <a href=\"http://dam.io/\" target=\"_blank\" rel=\"noopener\">dam.io</a>"
+  },
+  "domain": "tech",
+  "draft": true,
+  "firstName": "Damien",
+  "id": "25157f77-862e-47d9-b3bc-d479d329caf5",
+  "lastName": "Marié",
+  "lastUpdated": 1505996220000,
+  "membership": "member",
+  "oldSlug": "damien-marie",
+  "role": {
+    "en": "Data scraping and processing engineer",
+    "fr": "Développeur extraction et traitement de données"
+  },
+  "slugs": [
+    "damien-marie"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "active": false,
+  "bio": {
+    "en": "Andrews-Junior Kimbembe est designer d’interactivité, diplômé en 2009 à la fois d’un master en design industriel de l’Ecole de Design Nantes-Atlantique [:fr]<p>Andrews-Junior Kimbembe est designer d’interactivité, diplômé en 2009 à la fois d’un master en design industriel de l’Ecole de Design Nantes-Atlantique <!--more-->[:en] et d’un master recherche en Ingénierie du Virtuel et Innovation des Arts et Métiers Paris Tech d’Angers. Formé aux processus de conception centré sur l’humain, il explore les manières dont ces méthodes peuvent s’articuler avec la recherche. En tant que designer, son travail se focalise sur la création d’interfaces et d’expériences utilisateur en se reposant sur la création d’idées et la recherche d’alternatives, tandis qu’en tant que collaborateur de recherche, il accompagne les chercheurs dans le recueil et la compréhension des besoins. C’est en juin 2009 qu’il rejoint l’équipe du médialab de Sciences Po avec pour mission de créer des visualisations ainsi que des interfaces de navigation et d’exploration de grands corpus de données.",
+    "fr": "<p>Andrews-Junior Kimbembe est designer d’interactivité, diplômé en 2009 à la fois d’un master en design industriel de l’Ecole de Design Nantes-Atlantique <!--more-->[:en] et d’un master recherche en Ingénierie du Virtuel et Innovation des Arts et Métiers Paris Tech d’Angers. Formé aux processus de conception centré sur l’humain, il explore les manières dont ces méthodes peuvent s’articuler avec la recherche. En tant que designer, son travail se focalise sur la création d’interfaces et d’expériences utilisateur en se reposant sur la création d’idées et la recherche d’alternatives, tandis qu’en tant que collaborateur de recherche, il accompagne les chercheurs dans le recueil et la compréhension des besoins. C’est en juin 2009 qu’il rejoint l’équipe du médialab de Sciences Po avec pour mission de créer des visualisations ainsi que des interfaces de navigation et d’exploration de grands corpus de données.[:fr] et d’un master recherche en Ingénierie du Virtuel et Innovation des Arts et Métiers Paris Tech d’Angers. Formé aux processus de conception centré sur l’humain, il explore les manières dont ces méthodes peuvent s’articuler avec la recherche. En tant que designer, son travail se focalise sur la création d’interfaces et d’expériences utilisateur en se reposant sur la création d’idées et la recherche d’alternatives, tandis qu’en tant que collaborateur de recherche, il accompagne les chercheurs dans le recueil et la compréhension des besoins. C’est en juin 2009 qu’il rejoint l’équipe du médialab de Sciences Po avec pour mission de créer des visualisations ainsi que des interfaces de navigation et d’exploration de grands corpus de données.</p>\r\n"
+  },
+  "domain": "design",
+  "draft": true,
+  "firstName": "Andrews-Junior",
+  "id": "ab421812-626b-41e8-a9b6-998cca2ea66f",
+  "lastName": "Kimbembe",
+  "lastUpdated": 1343995080000,
+  "membership": "member",
+  "oldSlug": "andrews-junior-kimbembe",
+  "role": {
+    "en": "Interaction Designer",
+    "fr": "Interaction Designer"
+  },
+  "slugs": [
+    "andrews-junior-kimbembe"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "Presentation and discussion will be in French ; see <a href=\"http://www.medialab.sciences-po.fr/fr/blog/medialabs-research-seminar-moderated-by-bernhard-rieder-engines-of-order-vers-une-archeologie-des-techniques-algorithmiques-tuesday-may-29th-2018-2pm-to-4pm\">the french abstract</a>.",
+    "fr": "Mardi 29 mai, le séminaire du médialab accueille Bernhard Rieder pour une intervention intitulée:\r\n\r\n<em>« Engines of Order : Vers une archéologie des techniques algorithmiques ».</em>\r\n\r\nLa présentation d’une heure sera suivie d’une heure d’échanges.\r\n<h3>Biographie</h3>\r\nBernhard <span class=\"il\">Rieder</span> est professeur associé en nouveaux médias et culture numérique à l'université d'Amsterdam. Il travaille sur la politique et l'historie des algorithmes, notamment à travers leur contribution à la gouvernance et à la production de connaissances. Il est également développeur de méthodes numériques pour la recherche en sciences humaines et sociales et membre de la Digital Methods Initiative.\r\n<h3>Résumé</h3>\r\nLes techniques et algorithmes qui filtrent, classifient, et organisent les informations qui nous entourent, sont-ils une conséquence inexorable de la numérisation ou connaissent-ils une contingence et donc une histoire ? Quelles idées et principes incorporent-ils ? Quelles marges de manoeuvre et quelle « plasticité » offrent-ils ? Partant de la philosophie de Gilbert Simondon, cette présentation se penche sur le domaine de la recherche d’information pour approcher ces questions dans un contexte particulier qui dispose de son propre jeu de « techniques algorithmiques ». Ces techniques, développées depuis le début des années 1950, constituent non seulement des points de repère dans un paysage technique toujours plus complexe, mais définissent une notion et un sens d’ordre qui est loin de l’universalisme qui caractérisait l’encyclopédie ou la bibliothèque. Intégrées dans les infrastructures numériques où se déroule une partie toujours plus importante de nos vies, elles introduisent des capacités de différentiation et de modulation particulières dans la gouvernance des sociétés contemporaines. La connaissance des techniques est donc devenue essentielle pour la compréhension de notre condition. Quelle sera la place des sciences humaines dans ce projet?\r\n<h3>Informations pratiques</h3>\r\nSéminaire ouvert à tous, dans la limite des places disponibles.\r\nInscription préalable fortement recommandée : <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSc_ygq3zSqThPK4LgjubjhZGl8tf9eMQGjVKswRCFz9a09oVA/viewform\" target=\"_blank\" rel=\"noopener\">s’inscrire</a>\r\n\r\nMardi 29 maI 2018 - 14h00 à 16h00\r\nSalle du médialab, 13 rue de l’Université, 75007 Paris"
+  },
+  "description": {
+    "en": "Tuesday 29 May 2018, the medialab's research seminar will be moderated by Bernhard Rieder.",
+    "fr": "Mardi 29 mai, le séminaire du médialab accueille Bernhard Rieder, professeur associé en nouveaux médias et culture numérique à l'université d'Amsterdam."
+  },
+  "draft": true,
+  "id": "af8d522b-e828-42c5-92f2-76b9e1ae101c",
+  "internal": true,
+  "label": {
+    "fr": "Séminaire de recherche"
+  },
+  "lastUpdated": 1523519640000,
+  "oldSlug": "medialabs-research-seminar-moderated-by-bernhard-rieder-engines-of-order-vers-une-archeologie-des-techniques-algorithmiques-tuesday-may-29th-2018-2pm-to-4pm",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "engines-of-order-vers-une-archeologie"
+  ],
+  "startDate": "2018-05-29",
+  "title": {
+    "en": "Engines of Order : Vers une archéologie des techniques algorithmiques",
+    "fr": "Engines of Order : Vers une archéologie des techniques algorithmiques"
+  },
+  "type": "event"
+}

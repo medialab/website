@@ -1,0 +1,24 @@
+{
+  "active": false,
+  "authors": "Mathieu Jacomy",
+  "description": {
+    "en": "Use this old tool to explore the web in Firefox and build a corpus. Export the hyperlink network to Gephi.",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "3d448f6b-c12a-48d7-931f-1ceeb16a00f2",
+  "lastUpdated": 1545310617268,
+  "oldSlug": "navicrawler",
+  "people": [
+    "910c509c-ca11-4684-9898-f2b0b6f3283e"
+  ],
+  "slugs": [
+    "navicrawler"
+  ],
+  "title": {
+    "en": "Navicrawler",
+    "fr": "Navicrawler"
+  },
+  "type": "software",
+  "url": "http://webatlas.fr/wp/navicrawler/"
+}

@@ -1,0 +1,30 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "",
+    "fr": "<a href=\"http://www.makery.info/author/ewen-chardronnet/\">Ewen Chardronnet</a> chroniqueur pour le média <a href=\"http://www.makery.info/\">Makery</a> rend visite au médialab et écrit deux papiers titrés :\r\n<ul>\r\n\t<li><a href=\"http://www.makery.info/2016/03/15/a-sciences-po-le-medialab-cartographie-la-complexite-12/\">À Sciences Po, le Médialab cartographie la complexité (1/2)</a></li>\r\n</ul>\r\n<ul>\r\n\t<li><a href=\"http://www.makery.info/2016/03/22/le-medialab-sciences-po-cartographie-les-controverses-22/\">Le Médialab Sciences Po cartographie les controverses (2/2)</a></li>\r\n</ul>"
+  },
+  "description": {
+    "en": "",
+    "fr": "Créé en 2009 à l’initiative du sociologue et anthropologue Bruno Latour, le Médialab Sciences Po conçoit des outils numériques pour les sciences sociales. En développant des logiciels libres, l'équipe du médialab contribue aussi bien à la prise de conscience des changements climatiques qu’à naviguer dans les controverses scientifiques. Rencontre avec ces experts en datavisualisation. Deux articles signés par Ewen Chardronnet chroniqueur pour le média Makery."
+  },
+  "draft": true,
+  "id": "4ec79f7a-94cb-403a-bac7-51679d6a1304",
+  "internal": false,
+  "lastUpdated": 1458814200000,
+  "oldSlug": "makery-le-media-de-tous-les-labs-en-visite-au-medialab",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "makery-le-media-de-tous-les"
+  ],
+  "startDate": "2016-03-24",
+  "title": {
+    "en": "",
+    "fr": "Makery - Le média de tous les labs en visite au médialab"
+  },
+  "type": "notice"
+}

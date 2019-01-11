@@ -1,0 +1,31 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "<em>Le séminaire est public donc n'hésitez pas à venir, vous êtes les très bienvenus. Cela dit, merci de bien vouloir envoyer un email à audrey.baneyxATsciencespo.fr pour que nous puissions gérer au mieux la capacité de la salle.</em>\r\n\r\n<strong>Invités :</strong> Elifsu Sabuncu, Antoine Blanchard, Axel Meunier\r\n\r\n<strong>Date et lieu :</strong> Mardi 17 décembre de 15h à 17h dans la salle du médialab de Sciences Po, au 13 rue de l'Université, 75007 Paris\r\n\r\n<strong>Résumé :</strong>\r\n\r\nL'expert-o-tron est un projet d'application web imaginé par <a href=\"http://www.deuxieme-labo.fr/equipe/antoine-blanchard/\">Antoine Blanchard</a> et <a href=\"http://www.deuxieme-labo.fr/equipe/elifsu-sabuncu/\">Elifsu Sabuncu</a> (<a href=\"http://www.deuxieme-labo.fr/\">Deuxième Labo</a>) et <a href=\"http://www.medialab.sciences-po.fr/fr/people/axel-meunier/\">Axel Meunier</a> du médialab. L'idée est de créer un outil de navigation dans l'actualité immédiate, et d'exploration du champ médiatique dans la plus longue durée, à partir des apparitions médiatiques d'\"experts\".\r\n\r\nQuelle que soit leur spécialité, leur profession et la base de leur autorité, des experts sont convoqués dans la presse écrite, la télévision, la radio et les médias numériques, pour produire des éclairages analytiques des événements. Pris dans la logique de l'audimat, les médias se disputent même l'exclusivité d'un expert ou l'originalité d'une analyse. Pourtant, cette construction de l'information est mal connue et les apparitions médiatiques bien peu documentées (qui, quand, où, sur quel événement/sujet, en compagnie de quels autres experts). Une base de données sur les apparitions médiatiques des experts pourrait donc être exploitée pour rendre visible une dynamique alternative de l'actualité, pour modifier qualitativement la perception des messages que les experts véhiculent, pour servir de base à d'autres histoires dont ils sont les héros, pour élargir l'éventail d'experts auxquels les médias font appel, etc. C'est l'objet de l'expert-o-tron.\r\n\r\nLe but du séminaire de recherche autour de l'expert-o-tron sera de proposer, après une présentation de ses enjeux et du travail déjà effectué, un brainstorming collectif avec toutes les personnes intéressées. Un grand nombre de questions non résolues à ce jour bénéficieraient de l'expérience et de la pratique des personnes présentes, avant une possible collaboration, en particulier sur :\r\n<ul>\r\n\t<li>les sources de données</li>\r\n\t<li>la construction de la base de données relationnelle</li>\r\n\t<li>les usages</li>\r\n\t<li>la visualisation</li>\r\n\t<li>la navigation</li>\r\n\t<li>les financements possibles</li>\r\n\t<li>etc.</li>\r\n</ul>",
+    "fr": ""
+  },
+  "description": {
+    "en": "L'expert-o-tron est un projet d'application web imaginé par Antoine Blanchard et Elifsu Sabuncu (Deuxième Labo) et Axel Meunier du médialab. L'idée est de créer un outil de navigation dans l'actualité immédiate, et d'exploration du champ médiatique dans la plus longue durée, à partir des apparitions médiatiques d'\"experts\" [...]",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "03b419cc-f45e-4d01-84ae-a171fd59dad7",
+  "internal": true,
+  "lastUpdated": 1386233400000,
+  "oldSlug": "seminaire-de-recherche-anime-par-deuxieme-labo-et-axel-meunier-lexpert-o-tron-17122013-de-15h-a-17h",
+  "people": [
+    "bef607ba-7496-4ca2-97ef-ea952fc9f8b2"
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "seminaire-de-recherche-anime-par-deuxieme"
+  ],
+  "startDate": "2013-12-5",
+  "title": {
+    "en": "",
+    "fr": "Séminaire de recherche animé par Deuxième Labo et Axel Meunier : \"L'expert-o-tron\", 17/12/2013 de 15h à 17h"
+  },
+  "type": "event"
+}

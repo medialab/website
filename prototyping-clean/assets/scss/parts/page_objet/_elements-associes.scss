@@ -1,0 +1,130 @@
+
+
+$hauteur-item-personne-grid: 80px*2;
+
+#elements-associes, #fichiers-associes{
+    h2{
+        margin-bottom: $margins-desktop;
+    }
+
+}
+
+
+#fichiers-associes{
+    li{ 
+        margin-bottom: $margins-desktop;
+        svg, p{ 
+            display: inline-block;
+            vertical-align: middle;
+        }
+        p{ margin-left: $margins-desktop;}
+        svg{ 
+            width: 50px;
+        }
+    }
+    
+}
+
+#elements-associes #ul-content{
+	
+	display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+	grid-template-rows: auto auto;
+    grid-gap: $margins-desktop;
+    margin-top: $margins-desktop;
+    
+    li{
+        border-top: 1px solid #0003;
+        // border-bottom: 1px solid #0003;
+        padding-top: $baseline;
+        padding-bottom: $baseline;
+    }
+
+    .equipe a, .publication a{
+        display: grid;
+        img, .img-generative{
+            height: $hauteur-item-personne-grid;
+        }
+        .type, p{
+            font-size: 1.3rem;
+            line-height: 1.5rem;
+        }
+        hgroup{
+            margin-left: $margins-desktop;
+            h1{ 
+                @include typo-labeur(); 
+                padding: 0;
+                letter-spacing: 0.1px;
+            }
+            
+        }
+
+        .type{
+            margin-left: $margins-desktop;
+            align-self: flex-end;
+            padding: 0;
+        }
+        
+    }
+
+    .equipe a{
+        grid-template-columns: $hauteur-item-personne-grid 1fr;
+        grid-template-rows: auto;
+        .type{
+            &:before{ content: "⁙ "; }
+        }
+        img{
+            width: $hauteur-item-personne-grid;
+            grid-row: 1/3;
+        }
+    }
+
+    .publication a{
+        grid-template-columns: $hauteur-item-personne-grid/2 1fr;
+        grid-template-rows: auto;
+        .img-generative{
+            width: $hauteur-item-personne-grid/2;
+            grid-row: 1/3;
+            overflow: hidden;
+        }
+        .type{
+            &:before{ content: "☵ "; }  
+        }
+        hgroup .titre{
+            text-transform: uppercase;
+            letter-spacing: 0.1px;
+            padding-bottom: 2rem;
+        }
+    }
+
+    
+
+   
+    
+   
+	
+	
+}
+
+// chekbox elements
+#ul-content .equipe, #ul-content .publication{ display: none; }
+
+
+#checkbox-equipe:checked ~ #ul-content .equipe{ display: block; }
+#checkbox-publication:checked ~ #ul-content .publication{ display: block; }
+
+#elements-associes {
+    input{ 
+        display: none;
+    }
+    label{
+        font-size: 1.3rem;
+        margin-right: 3rem;
+        &:before{ content: "◯ "}
+     }
+     input:checked + label{
+        &:before{ content: "◉ "}
+    } 
+    
+}

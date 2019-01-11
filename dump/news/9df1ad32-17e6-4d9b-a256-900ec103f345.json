@@ -1,0 +1,33 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "Tuesday december 18th, the médialab's seminar will be moderated by Séverine Arsène.\r\n\r\nPresentation and discussion of this seminar will be in French.\r\n\r\nSee<a href=\"https://medialab.sciencespo.fr/fr/blog/chinese-social-credit-system/\"> the French presentation</a>.",
+    "fr": "Mardi 18 décembre, le séminaire du médialab accueille Séverine Arsène pour une intervention sur:\r\n\r\n<em>«Le système de crédit social en Chine ».</em>\r\n\r\nLa présentation d’une heure sera suivie d’une heure d’échanges.\r\n<h3>Résumé</h3>\r\nLe système de crédit social est un projet politique du gouvernement chinois qui entend répondre aux dysfonctionnements chroniques de l'application des lois et des règlements. En construisant des indicateurs de \"crédit\" (au sens financier et au sens de \"confiance\"), associés à un systeme d'incitations et de sanctions, l'idée est d'encourager les citoyens à mieux se comporter, et de leur fournir des signaux facilitant les transactions entre individus, entreprises et administrations. De nombreuses expérimentations sont d'ores et déjà en place à l'échelle locale (municipalités, provinces), ainsi que dans diverses administrations. Le projet sert aussi d'inspiration à des initiatives privées, telles que le dispositif Credit Sesame, qui utilise les donnés d'usage de Alibaba pour attribuer une note de confiance, qui peut être utilisee dans le cadre du e-commerce et d'autres services appartenant au groupe.\r\nLe système de crédit social fait l'objet de nombreuses spéculations dans la presse, sous la forme de représentations dystopiques souvent factuellement inexactes, peut-être parce qu'il résonne avec une anxiété légitime, liée à l'exploitation massive des données personnelles par de nombreux acteurs publics et privés.\r\nL'objectif de ce séminaire sera de décrire ce que l'on sait aujourd'hui de l'application du système de crédit social, et ce qu'il révèle des transformations du régime politique chinois. La discussion s'ouvrira sur de possibles comparaisons avec d'autres dispositifs de gouvernance qui reposent sur la collecte, le partage et la publication des données personnelles.\r\n\r\nLectures recommandées :\r\n<ul>\r\n \t<li><a href=\"https://www.asiaglobalonline.hku.hk/china-social-credit-system/\" target=\"_blank\" rel=\"noopener\">Séverine Arsène, \"Trust in Ratings: China’s Social Credit System\", AsiaGlobal Online, 17 mai 2018</a></li>\r\n \t<li><a href=\"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3193577\" target=\"_blank\" rel=\"noopener\">Xin Dai, \"Toward a Reputation State: the Social Credit System Project of China\", 10/06/2018. </a></li>\r\n \t<li><a href=\"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3215138\" target=\"_blank\" rel=\"noopener\">Kostka, Genia, China’s Social Credit Systems and Public Opinion: Explaining High Levels of Approval (July 23, 2018).</a></li>\r\n \t<li><a href=\"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3175792\" target=\"_blank\" rel=\"noopener\">Creemers, Rogier, China's Social Credit System: An Evolving Practice of Control (May 9, 2018).</a></li>\r\n</ul>\r\n<h3>Biographie</h3>\r\nSéverine Arsène est politologue et sinologue. Ses recherches portent sur la stratégie numérique de la Chine.\r\nDocteure de l'IEP de Paris, elle a mené des recherches au Centre Français d'Etudes sur la Chine Contemporaine à Hong Kong, au laboratoire Orange Labs à Pékin et enseigné à l'Université Lille 3 et à l'Université Georgetown (Washington DC). Elle a été rédactrice en chef de la revue <i>Perspectives chinoises</i> et a fondé la revue en ligne <i>AsiaGlobal Online</i> (University of Hong Kong). Son livre, <i>Internet et politique en Chine</i>, a été publié aux éditions Karthala en 2011.\r\n<h3>Informations pratiques</h3>\r\nSéminaire ouvert à tous, dans la limite des places disponibles.\r\nInscription préalable fortement recommandée: <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSdlWWVX200TOTXuQinhU9TZ44UHiTXdJRXB_66TsL8P0LowQw/viewform?usp=sf_link\" target=\"_blank\" rel=\"noopener\">s’inscrire</a>\r\n\r\nMardi 18 décembre 2018 – 14h00 à 16h00\r\nSalle du médialab, 13 rue de l’Université, 75007 Paris"
+  },
+  "description": {
+    "en": "Séminaire de recherche animé par Séverine Arsène",
+    "fr": "Séminaire de recherche animé par Séverine Arsène"
+  },
+  "draft": true,
+  "id": "9df1ad32-17e6-4d9b-a256-900ec103f345",
+  "internal": true,
+  "label": {
+    "fr": "Séminaire du médialab"
+  },
+  "lastUpdated": 1540022520000,
+  "oldSlug": "chinese-social-credit-system",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "le-systeme-de-credit-social-en"
+  ],
+  "startDate": "2018-12-18",
+  "title": {
+    "en": " The social credit system in China",
+    "fr": "Le système de crédit social en Chine"
+  },
+  "type": "event"
+}

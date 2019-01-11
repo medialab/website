@@ -1,0 +1,29 @@
+{
+  "active": false,
+  "content": {
+    "en": "<a href=\"https://medialab.sciencespo.fr/fr/projets/etat-de-lart/\" target=\"_blank\" rel=\"noopener\">The project description is available in french.</a>",
+    "fr": "<h3>Responsables du projet</h3>\r\n- <a href=\"http://www.sciencespo.fr/liepp/fr/users/vincent-antoninlepinay\" target=\"_blank\" rel=\"noopener\">Vincent Antonin Lépinay</a> (associate professor au département de sociologie Sciences Po et chercheur au médialab)\r\n- <a href=\"http://chsp.sciences-po.fr/chercheur-rattache/bertrand-dorleac\" target=\"_blank\" rel=\"noopener\">Laurence Bertrand-Dorléac</a> (Professeur au département d’histoire, Sciences Po)\r\n- <a href=\"http://www.sciencespo.fr/liepp/fr/users/yannalgan-12\" target=\"_blank\" rel=\"noopener\">Yann Algan</a> (Doyen de l’Ecole d’affaires publiques de Sciences Po et professeur d’économie à Sciences Po)\r\n<div class=\"content\">\r\n<div class=\"body\">\r\n<h3>Chercheurs associés</h3>\r\n- Paul Girard (Chief Technological Officer, Médialab)\r\n\r\n- Christophe Leclercq (chercheur associé, Médialab et enseignant École du Louvre)\r\n\r\n- Aude Bodet (conservateur en chef, Centre national des arts plastiques)\r\n\r\n- Jean Philippe Cointet (LISIS)\r\n\r\nLe projet a obtenu le financement du LIEPP dans le cadre de l'appel à projets 2016.\r\n\r\nCe projet de recherche repose sur l'exploitation des données de la collection du Fonds national d’art contemporain (FNAC), gérée par le Centre national des arts plastiques (CNAP) pour étudier les effets de l’intervention de l’Etat sur la vie des oeuvres et la réputation des artistes. Avec un ensemble de données uniques qui permettent de suivre les carrières des artistes et des oeuvres et d'étudier le(s) goût(s) de l’État, ce projet analyse les effets joints de la mise en fonds et de la circulation des oeuvres sur la trajectoire marchande et sur la renommée des artistes célébrés par l’État. Il propose ensuite d’enrichir les données du FNAC de données touchant à l’iconographie qui donneront à voir le goût de l’État. Le projet sert aussi un second rôle central au programme du LIEPP : il est monté comme une expérience de médiation de la mise à disposition du public des données des administrations. En collaborant étroitement avec le CNAP et les acteurs principaux de l’archivage des données culturelles en France (AN, INHA), ce projet teste un format d’exploitation des données - le data sprint - qui permettra d’embrayer les intérêts des chercheurs aux soucis de valorisation et de suivi de leurs fonds pour les institutions culturelles.\r\n<h3>Evénements associés</h3>\r\n- Atelier <a class=\"ext\" href=\"https://www.inha.fr/fr/agenda/parcourir-par-annee/en-2017/novembre-2017/un-datasprint-sur-les-donnees-du-fonds-national-d-art-contemporain-nouvelle-page.html\">\"Datasprint sur les données du Fonds national d’art contemporain\"</a>, 27-29 septembre 2016, dans le cadre du cycle « Les Lundis numériques de l'INHA », organisé par médialab de Sciences Po, le Centre national des arts plastiques (Cnap), en collaboration de l’association Videomuseum, et avec le soutien du LIEPP. Pour plus d'information, <a class=\"ext\" href=\"http://www.medialab.sciences-po.fr/fr/blog/atelier-sur-les-donnees-du-fonds-national-dart-contemporain/\">cliquez ici</a>.\r\n\r\n- Atelier \"Datasprint sur les données du musée National d'art moderne, 7-10 novembre 2017, Sciences Po, organisé par médialab de Sciences Po, le Musée national d'art moderne, le Center for Data Art (The New School, New York), le Center for Art Market Studies (TU Berlin), en collaboration de l’association Videomuseum, et avec le soutien du LIEPP.\r\n\r\n</div>\r\n</div>"
+  },
+  "description": {
+    "en": "",
+    "fr": "Ce projet de recherche repose sur l'exploitation des données de la collection du Fonds national d’art contemporain (FNAC), gérée par le Centre national des arts plastiques (CNAP) pour étudier les effets de l’intervention de l’Etat sur la vie des oeuvres et la réputation des artistes. "
+  },
+  "draft": true,
+  "endDate": "2018-12-31",
+  "id": "f6619dda-a310-474c-909e-83bf738301db",
+  "important": false,
+  "lastUpdated": 1523344140000,
+  "name": "État de l'art",
+  "oldSlug": "etat-de-lart",
+  "people": [
+    "e39b0e87-ede9-489c-9a37-187a5b786f48",
+    "a6d5979a-b2c5-428c-a00b-a5248d9d0d01",
+    "3aab3edb-b11d-4be0-b468-5d632cdba24b",
+    "66d33f76-f197-494f-b8c3-1a61d1f60655"
+  ],
+  "slugs": [
+    "etat-de-lart"
+  ],
+  "startDate": "2016-06-01",
+  "type": "research"
+}

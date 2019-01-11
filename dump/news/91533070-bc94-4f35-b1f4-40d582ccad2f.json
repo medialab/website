@@ -1,0 +1,31 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "Paul Girard will participate to the <a href=\"http://www.paris-iea.fr/fr/evenements/symposium-on-software-and-digital-humanities-ii\"><em>software and Digital Humanities II</em> symposium</a> organized at Institut d'Études Avancées de Paris.\r\n\r\nIt will take place on Tuesday 24th of May 2016, 9h-18h30, Hôtel de Lauzun 17 quai d'Anjou 75004 Paris.\r\n\r\nHe will present how the Information Technology Engineering and Information Design can contribute to create <em>Softwares as research instruments for Social Sciences.</em>\r\n\r\n<a href=\"http://www.medialab.sciences-po.fr/wp-content/uploads/2016/05/capture-decran-2016-05-16-a-234713.png\"><img class=\"alignnone size-medium wp-image-3713\" src=\"http://www.medialab.sciences-po.fr/wp-content/uploads/2016/05/capture-decran-2016-05-16-a-234713-141x200.png\" alt=\"Software and Digital Humanities II\" width=\"141\" height=\"200\" /></a>",
+    "fr": "Paul Girard will participate to the <a href=\"http://www.paris-iea.fr/fr/evenements/symposium-on-software-and-digital-humanities-ii\"><em>software and Digital Humanities II</em> symposium</a> organized at Institut d'Études Avancées de Paris.\r\n\r\nIt will take place on Tuesday 24th of May 2016, 9h-18h30, Hôtel de Lauzun 17 quai d'Anjou 75004 Paris.\r\n\r\nHe will present how the Information Technology Engineering and Information Design can contribute to create <em>Softwares as research instruments for Social Sciences.</em>\r\n\r\n<a href=\"http://www.medialab.sciences-po.fr/wp-content/uploads/2016/05/capture-decran-2016-05-16-a-234713.png\"><img class=\"alignnone size-medium wp-image-3713\" src=\"http://www.medialab.sciences-po.fr/wp-content/uploads/2016/05/capture-decran-2016-05-16-a-234713-141x200.png\" alt=\"Software and Digital Humanities II\" width=\"141\" height=\"200\" /></a>"
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "91533070-bc94-4f35-b1f4-40d582ccad2f",
+  "internal": false,
+  "lastUpdated": 1463485860000,
+  "oldSlug": "symposium-on-software-and-digital-humanities-ii",
+  "people": [
+    "66d33f76-f197-494f-b8c3-1a61d1f60655"
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "symposium-on-software-and-digital-humanities"
+  ],
+  "startDate": "2016-05-17",
+  "title": {
+    "en": "Symposium on Software and Digital Humanities II",
+    "fr": "Symposium on Software and Digital Humanities II"
+  },
+  "type": "notice"
+}

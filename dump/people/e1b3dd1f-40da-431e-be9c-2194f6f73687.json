@@ -1,0 +1,22 @@
+{
+  "active": false,
+  "bio": {
+    "en": "Contact: alexis.jacomy[AT]sciencespo.fr\r\n\r\nAlexis Jacomy, a software engineer from the Université de Technologie de Compiègne, specializes in Web interfaces development. He has been developing network mapping tools for the Web since 2009, including <a title=\"Sigma.js\" href=\"http://sigmajs.org\" target=\"_blank\">sigma.js</a>, a reference in this domain. He joined the médialab in 2013 after two years at <a title=\"Linkfluence\" href=\"http://linkfluence.com\" target=\"_blank\">Linkfluence</a> as a Web developer.",
+    "fr": "Contact: alexis.jacomy[AT]sciencespo.fr\r\n\r\nAlexis Jacomy est ingénieur en informatique de l’Université de Technologie de Compiègne, spécialisé dans le développement d'interfaces Web. Depuis 2009, il développe des outils de cartographie des réseaux sur le Web, dont le dernier, <a href=\"http://sigmajs.org\" title=\"Sigma.js\" target=\"_blank\">sigma.js</a>, est devenu une référence. Il rejoint le Médialab en 2013, après avoir travaillé 2 ans chez <a href=\"http://linkfluence.com\" title=\"Linkfluence\" target=\"_blank\">Linkfluence </a>comme développeur Web.\r\n"
+  },
+  "domain": "tech",
+  "draft": true,
+  "firstName": "Alexis",
+  "id": "e1b3dd1f-40da-431e-be9c-2194f6f73687",
+  "lastName": "Jacomy",
+  "lastUpdated": 1382601360000,
+  "membership": "member",
+  "oldSlug": "alexis-jacomy",
+  "role": {
+    "en": "Web front-end developer",
+    "fr": "Développeur d'interfaces Web"
+  },
+  "slugs": [
+    "alexis-jacomy"
+  ]
+}

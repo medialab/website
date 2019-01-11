@@ -1,0 +1,22 @@
+{
+  "active": false,
+  "bio": {
+    "en": "Jonathan is a Postdoctoral Researcher at the University of Amsterdam working on an ERC funded project called \"DATACTIVE: The Politics of Big Data according to Civil Society\". His current research focuses on the politics of public information - in particular focusing on the ideals, imaginaries, practices, methods and technologies associated with open data, data journalism, data activism and transparency after the “digital turn”. He is also Director of Policy and Research at Open Knowledge; Research Associate at the Digital Methods Initiative, University of Amsterdam; and Tow Fellow at the Tow Center for Digital Journalism, Columbia University. More about him can be found at <a href=\"http://jonathangray.org/\" target=\"_blank\">jonathangray.org</a> and he is on Twitter at @jwyg.",
+    "fr": "Jonathan est un chercheur postdoctoral à l'Université d'Amsterdam, travaillant sur un projet financé par un ERC, appelé \"DATACTIVE: The Politics of Big Data according to Civil Society\". Ses recherches actuelles traitent des politiques d'informations publiques — en particulier celle sur les idéaux, les imaginaires, les pratiques, les méthodes et les technologies associées à l'open data, le data journalism, le data activism et la transparence après le \"tournant digital\". Il est aussi Director of Policy and Research de la fondation Open Knowledge, associé de recherche au laboratoire Digital Methods Initiative (Université d'Amsterdam), et <em>Tow Fellow</em> au Tow Center for Digital Journalism (Université de Columbia). Plus d'info sur <a href=\"http://jonathangray.org/\" target=\"_blank\">jonathangray.org</a>, et sur Twitter : @jwyg."
+  },
+  "domain": "academic",
+  "draft": true,
+  "firstName": "Jonathan",
+  "id": "889b8fb0-a6a3-4261-9141-ae160f24ce50",
+  "lastName": "Gray",
+  "lastUpdated": 1450428360000,
+  "membership": "member",
+  "oldSlug": "jonathan-gray",
+  "role": {
+    "en": "visiting Postdoctoral Researcher focusing on the politics of public information",
+    "fr": "chercheur postdoc invité, travaillant sur les politiques d'information publique"
+  },
+  "slugs": [
+    "jonathan-gray"
+  ]
+}

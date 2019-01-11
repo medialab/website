@@ -1,0 +1,24 @@
+{
+  "active": false,
+  "authors": "Daniele Guido, Paul Girard",
+  "description": {
+    "en": "ANTA or Actor Network Text Analyzer is a piece of software developed by the Sciences Po médialab to analyses medium-size text corpora, by extracting the expressions they contained in a set of texts and drawing a network of the occurrence of such expressions in the texts.",
+    "fr": "ANTA est un logiciel pour la constitution et l’analyse de corpus textuels. A la différence des  logiciels existants dans le domaine du text-mining, ANTA ne s’appuie pas sur des algorithmes syntaxiques ou sémantiques complexes, mais produit une simple analyse d’occurrence des expressions dans les textes du corpus. L’output d’ANTA est donc un réseau de cooccurrences de textes et expressions. La force d’ANTA vient de son interface conçue pour faciliter au maximum le travail de constitution du corpus, de sélection des expressions à tracer et de catégorisation des textes et des expressions (tagging)."
+  },
+  "draft": true,
+  "id": "0541186f-4138-4d26-a867-f48faa86c3a6",
+  "lastUpdated": 1545310617245,
+  "oldSlug": "anta",
+  "people": [
+    "4d4cad62-1674-4f3c-85c0-30d7b501f6e0"
+  ],
+  "slugs": [
+    "anta-actor-network-text-analyzer"
+  ],
+  "title": {
+    "en": "ANTA, actor-network text analyzer",
+    "fr": "ANTA, actor-network text analyzer"
+  },
+  "type": "software",
+  "url": "http://jiminy.medialab.sciences-po.fr/anta_dev/"
+}

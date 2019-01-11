@@ -1,0 +1,27 @@
+{
+  "active": false,
+  "content": {
+    "en": "Despite the knowledgeable efforts of data administrative agencies such as the CNIL in France and its regulatory governmental counterparts in other countries, and despite the development of data protection legislation, the huge extension of personal data circulation is not under control by any legal authority nor technical agency. The architecture is going astray and hacking incidents are increasing in both frequency and size, indicating that we are heading for a major crash/ hack in the next few years. At the same time, this concern is not shared by the public and every individual contributes to the flaws of the system through their own negligence, since no massive exit from platforms and services that use personal data extensively has been witnessed yet.\r\n\r\nIn order to get ready for this, we must redesign the conceptual framework of personal data by moving towards a deeper understanding of what the relationship to one’s data is constituted. In this project, personal data will include data that can be categorized as provided, observed, derived or inferred which means official data as well as traces left by any behaviour on the net. But the conceptual shift must go beyond this descriptive categorization. Personal data must be considered as transactional and distributed. This conceptual move, derived from our research on personal data ecosystems, will have to be anchored to and challenged by our fieldwork. The features of socio- cognitive barriers will have to be investigated.",
+    "fr": ""
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "endDate": "2018-02-01",
+  "id": "26448828-4d50-4778-b02d-1be6984f76ab",
+  "important": false,
+  "lastUpdated": 1426857660000,
+  "name": "Insurance for building trust and enabling Big Data",
+  "oldSlug": "insurance-big-data",
+  "people": [
+    "2dc8e973-3c23-4e08-9787-e4f37dd6d393",
+    "8081e4ed-552d-45a8-b1a8-5b5e9e924cdd"
+  ],
+  "slugs": [
+    "insurance-for-building-trust-and-enabling"
+  ],
+  "startDate": "2015-03-20",
+  "type": "research"
+}

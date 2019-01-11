@@ -1,0 +1,30 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "<b>Poste pourvu</b>\r\n\r\nGrâce au soutien financier du <a href=\"http://www.sciencespo.fr/liepp/\">LIEPP</a>, notre projet <a href=\"http://lafabriquedelaloi.fr/\">La Fabrique de la Loi</a> redémarre en 2017 et 2018 ! Mené en collaboration avec le <a href=\"http://www.sciencespo.fr/centre-etudes-europeennes/\">CEE</a> et l'association <a href=\"https://regardscitoyens.org\">Regards Citoyens</a>, le projet avait abouti en 2014, lors d'une <a href=\"http://blog.lafabriquedelaloi.fr/conference/oldp-conference-ii-time-has-come-for-law-tracking-follow-up/\">conférence internationale</a>, à la mise en ligne d'un site présentant l'évolution au fil de la procédure parlementaire de près de 300 lois françaises ainsi que l'ensemble des débats et amendements associés.\r\n\r\nNous recrutons sur 12 mois un-e nouveau développeur-se pour un travail avant tout orienté données : au sein de l'équipe académique et technique du médialab, et en collaboration avec Regards Citoyens, le CEE et le LIEPP, cette personne sera chargée de refondre les outils de récupération, préparation, nettoyage et traitement des données collectées sur les sites officiels de l'Assemblée nationale et du Sénat afin d'alimenter l'API du site LaFabriqueDeLaLoi.fr. L'objectif est à la fois de proposer sur le site l'ensemble des textes débattus au Parlement ces dernières années, ainsi qu'à l'avenir un suivi des nouveaux textes en direct.\r\n\r\nNous recherchons un profil expérimenté ou junior, autodidacte ou formé aux technologies numériques, qui soit intéressé par la vie parlementaire et passionné par le développement informatique, et plus particulièrement la collecte, l'extraction et le traitement de données.\r\n\r\nRetrouvez tous les détails de l'offre en ligne :\r\n\r\n<center style=\"margin-top: -15px;\"><a href=\"http://blog.lafabriquedelaloi.fr/documents/1704-recrutement-dev-LIEPP.pdf\">http://blog.lafabriquedelaloi.fr/documents/1704-recrutement-dev-LIEPP.pdf</a></center>Candidatez en remplissant le formulaire suivant :\r\n\r\n<center style=\"margin-top: -15px;\">https://framaforms.org/lafabriquedelaloifr-developpeurse-extraction-traitement-de-donnees-hf-1492359744</center><center><img src=\"http://www.medialab.sciences-po.fr/wp-content/uploads/2017/05/code-lawfactory.png\" alt=\"\" /></center>",
+    "fr": "<b>Poste pourvu</b>\r\n\r\nGrâce au soutien financier du <a href=\"http://www.sciencespo.fr/liepp/\">LIEPP</a>, notre projet <a href=\"http://lafabriquedelaloi.fr/\">La Fabrique de la Loi</a> redémarre en 2017 et 2018 ! Mené en collaboration avec le <a href=\"http://www.sciencespo.fr/centre-etudes-europeennes/\">CEE</a> et l'association <a href=\"https://regardscitoyens.org\">Regards Citoyens</a>, le projet avait abouti en 2014, lors d'une <a href=\"http://blog.lafabriquedelaloi.fr/conference/oldp-conference-ii-time-has-come-for-law-tracking-follow-up/\">conférence internationale</a>, à la mise en ligne d'un site présentant l'évolution au fil de la procédure parlementaire de près de 300 lois françaises ainsi que l'ensemble des débats et amendements associés.\r\n\r\nNous recrutons sur 12 mois un-e nouveau développeur-se pour un travail avant tout orienté données : au sein de l'équipe académique et technique du médialab, et en collaboration avec Regards Citoyens, le CEE et le LIEPP, cette personne sera chargée de refondre les outils de récupération, préparation, nettoyage et traitement des données collectées sur les sites officiels de l'Assemblée nationale et du Sénat afin d'alimenter l'API du site LaFabriqueDeLaLoi.fr. L'objectif est à la fois de proposer sur le site l'ensemble des textes débattus au Parlement ces dernières années, ainsi qu'à l'avenir un suivi des nouveaux textes en direct.\r\n\r\nNous recherchons un profil expérimenté ou junior, autodidacte ou formé aux technologies numériques, qui soit intéressé par la vie parlementaire et passionné par le développement informatique, et plus particulièrement la collecte, l'extraction et le traitement de données.\r\n\r\nRetrouvez tous les détails de l'offre en ligne :\r\n\r\n<center style=\"margin-top: -15px;\"><a href=\"http://blog.lafabriquedelaloi.fr/documents/1704-recrutement-dev-LIEPP.pdf\">http://blog.lafabriquedelaloi.fr/documents/1704-recrutement-dev-LIEPP.pdf</a></center>Candidatez en remplissant le formulaire suivant :\r\n\r\n<center style=\"margin-top: -15px;\">https://framaforms.org/lafabriquedelaloifr-developpeurse-extraction-traitement-de-donnees-hf-1492359744</center><center><img src=\"http://www.medialab.sciences-po.fr/wp-content/uploads/2017/05/code-lawfactory.png\" /></center>"
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "d3b9b5cd-0b24-4231-9832-e24c4b84dec7",
+  "internal": false,
+  "lastUpdated": 1493796780000,
+  "oldSlug": "thelawfactory-project-hires-a-data-oriented-developer",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "le-projet-la-fabrique-de-la"
+  ],
+  "startDate": "2017-05-3",
+  "title": {
+    "en": "TheLawFactory project hires a data-oriented developer!",
+    "fr": "Le projet « La Fabrique de la Loi » recrute un-e développeur-se axé-e données !"
+  },
+  "type": "notice"
+}

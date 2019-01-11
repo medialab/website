@@ -1,0 +1,31 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "",
+    "fr": "Au sujet de l'usage des armes à feu aux USA, Reuters a récemment publié cette image :\r\n<p style=\"text-align: center;\"><a href=\"http://www.medialab.sciences-po.fr/wp-content/uploads/2014/06/florida-gun-deaths1.jpg\"><img class=\"aligncenter size-full wp-image-2576\" style=\"max-height: 600px;\" alt=\"florida gun deaths1\" src=\"http://www.medialab.sciences-po.fr/wp-content/uploads/2014/06/florida-gun-deaths1-e1402997446813.jpg\" width=\"304\" height=\"381\" /></a></p>\r\nCe graphique montre l'évolution des meurtres par arme à feu des années 90 à nos jours, avec un focus sur la loi \"Stand your ground\", qui permet de se défendre par les armes sous certaines conditions. Il est inexplicablement construit à l'envers, l'échelle inversée laisse entendre que le nombre de meurtres diminue au moment de l'introduction de la loi. C'est bien sûr l'inverse qui se produit, mais le schéma \"corrigé\" sera plus démonstratif qu'une explication (ci-dessous).\r\n<p style=\"text-align: center;\"><a href=\"http://www.medialab.sciences-po.fr/wp-content/uploads/2014/06/gun-deaths-chart2-e1402997498796.jpg\"><img class=\"aligncenter size-full wp-image-2577\" style=\"max-height: 1000px;\" alt=\"gun deaths chart2\" src=\"http://www.medialab.sciences-po.fr/wp-content/uploads/2014/06/gun-deaths-chart2-e1402997498796.jpg\" width=\"304\" height=\"369\" /></a></p>\r\nCes images trompeuses, dont Fox News et d'autres médias sont coutumiers, recèlent deux pièges. Le premier est bien sûr la mauvaise interprétation. Le second est plus subtil et nous concerne directement : mettre en avant l'effet de manipulation plutôt que l'information elle-même. Le brouillage des faits (ici le comptage des crimes par armes à feu) est un moyen efficace d'instiller le doute, et les \"caisses de résonance\" du web que sont Twitter ou la Blogosphère tombent facilement dans ce panneau. J'en veux pour preuve d'avoir trouvé ce cas par un tweet qui stipulait \"the most misleading chart I have ever seen\", où l'on ne parle donc pas de l'info d'origine. Nous avons peu d'attention à accorder à ces informations que nous survolons pendant notre veille quotidienne. Le gros titre ou l'image de choc sont souvent l'essentiel de ce que nous retenons. Le temps passé à critiquer la manipulation est finalement retenu <i>contre</i> l'information d'origine.\r\n\r\n<strong>Quelle attitude adopter pour contrebalancer ce brouillage ?</strong>\r\n<a href=\"http://www.businessinsider.com/gun-deaths-in-florida-increased-with-stand-your-ground-2014-2\" target=\"_blank\">Cet article du Business Insider m'a interpellé par son positionnement</a>. Son auteure, Pamela Engel, livre la bonne lecture du chart en le corrigeant au passage (sur proposition d'un lecteur), sans perdre de temps sur le dévoilement de la manipulation. Elle oppose au graphique trompeur une stratégie tout aussi efficacement basée sur nos pratiques, car si nous ne devions lire que le titre de son billet nous aurions tout de même la <i>bonne</i> info : \"This Chart Shows An Alarming Rise In Florida Gun Deaths After 'Stand Your Ground' Was Enacted\". Le résultat est finalement plus subversif, dans ce contexte, qu'un discours de spécialiste sur les visualisations.\r\n\r\nN'en déduisons pas que l'article a été écrit dans ce but, ni que le graphique est le fruit d'une malveillance intentionnelle (il faudrait pousser l'enquête plus loin). Cet exemple nous permet simplement d'observer l'avancée de la démocratisation de la visualisation de données : un jour viendra où les \"junk charts\" seront discutés par les journalistes, et non plus seulement par des blogueurs spécialisés. En attendant ce jour, ces derniers restent une excellente façon de <a href=\"http://junkcharts.typepad.com/\" target=\"_blank\">s'instruire</a> ou <a href=\"http://wtfviz.net/\" target=\"_blank\">se distraire</a> !"
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "25cbf36d-e978-4c95-b940-be5277821937",
+  "internal": false,
+  "lastUpdated": 1402991520000,
+  "oldSlug": "les-junk-charts-et-la-democratisation-des-visualisations-le-cas-gun-deaths-in-florida",
+  "people": [
+    "910c509c-ca11-4684-9898-f2b0b6f3283e"
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "les-junk-charts-et-la-democratisation"
+  ],
+  "startDate": "2014-06-17",
+  "title": {
+    "en": "",
+    "fr": "Les junk charts et la démocratisation des visualisations : le cas \"Gun deaths in Florida\""
+  },
+  "type": "notice"
+}

@@ -1,0 +1,24 @@
+{
+  "active": true,
+  "authors": "Mathieu Jacomy",
+  "description": {
+    "en": "Extract a network from a table. Set a column for nodes and a column for edges. It deals with multiple items per cell.",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "6d72d347-4ff1-47bf-bc40-3f61dd7a75a2",
+  "lastUpdated": 1545310617277,
+  "oldSlug": "table2net",
+  "people": [
+    "910c509c-ca11-4684-9898-f2b0b6f3283e"
+  ],
+  "slugs": [
+    "table-2-net"
+  ],
+  "title": {
+    "en": "Table 2 Net",
+    "fr": "Table 2 Net"
+  },
+  "type": "software",
+  "url": "http://tools.medialab.sciences-po.fr/table2net/"
+}

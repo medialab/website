@@ -1,0 +1,30 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "Le médialab reçoit Dominique Cardon, Laboratoire SENSE (Orange Labs), LATTS (Université de Marne la vallée), Mardi 7 Octobre de 15h à 17h30.\r\n \r\nDans cette communication, on proposera une réflexion sur les propriétés organisationnelles, et notamment algorithmiques, de l'espace public numérique. Le web que nous connaissons ne serait pas le même s’il n’avait pas été profondément nourrie, domestiquée et organisée par l’algorithme qui le classe. L’organisation du web par les métriques de classement ne cesse d’interagir avec la forme des énonciations dont le web fait document. C’est parce que ces documents s’adressent entre eux des liens de reconnaissance que la métrique du PageRank a pu construire une représentation de l’information proche de celles qui prévalaient dans l’espace public traditionnel. On se propose d’entrer dans l’algorithme en retraçant son histoire, ses origines scientifiques et les justifications statistiques qui ont été apportées pour expliquer son efficacité. Cependant, la domination du PageRank sur l’ordre du web apparaît aujourd’hui de plus en plus fragile. S’appuyant sur une conception de la qualité des documents, inspirée par les métriques d’autorité issues de la communauté scientifique, il se voit concurrencé par la multiplication des classements affinitaires personnalisés, comme le « Fil d’actualité » (newsfeed) de Facebook ou la « Chronologie » (timeline) de Twitter, lesquels deviennent, pour certains internautes, la principale porte d’entrée vers les informations. Le web documentaire et le web des réseaux sociaux sont en effet en train de définir deux écosystèmes différents.\r\nPage, Lawrence, et al. \"The PageRank citation ranking: Bringing order to the web.\" (1999).",
+    "fr": "par Dominique Cardon, Laboratoire SENSE (Orange Labs), LATTS (Université de Marne la vallée) (dominique.cardon@gmail.com)\r\n \r\n Dans cette communication, on proposera une réflexion sur les propriétés organisationnelles, et notamment algorithmiques, de l'espace public numérique. Le web que nous connaissons ne serait pas le même s’il n’avait pas été profondément nourrie, domestiquée et organisée par l’algorithme qui le classe. L’organisation du web par les métriques de classement ne cesse d’interagir avec la forme des énonciations dont le web fait document. C’est parce que ces documents s’adressent entre eux des liens de reconnaissance que la métrique du PageRank a pu construire une représentation de l’information proche de celles qui prévalaient dans l’espace public traditionnel. On se propose d’entrer dans l’algorithme en retraçant son histoire, ses origines scientifiques et les justifications statistiques qui ont été apportées pour expliquer son efficacité. Cependant, la domination du PageRank sur l’ordre du web apparaît aujourd’hui de plus en plus fragile. S’appuyant sur une conception de la qualité des documents, inspirée par les métriques d’autorité issues de la communauté scientifique, il se voit concurrencé par la multiplication des classements affinitaires personnalisés, comme le « Fil d’actualité » (newsfeed) de Facebook ou la « Chronologie » (timeline) de Twitter, lesquels deviennent, pour certains internautes, la principale porte d’entrée vers les informations. Le web documentaire et le web des réseaux sociaux sont en effet en train de définir deux écosystèmes différents.\r\nPage, Lawrence, et al. \"The PageRank citation ranking: Bringing order to the web.\" (1999)."
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "0ae154f8-81bf-4f6a-8c67-fa8c0fd50714",
+  "internal": false,
+  "lastUpdated": 1412596740000,
+  "oldSlug": "dans-lesprit-du-pagerank-un-essai-danthropologie-de-lalgorithme-de-google",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "dans-lesprit-du-pagerank-un-essai"
+  ],
+  "startDate": "2014-10-6",
+  "title": {
+    "en": "\"Dans l’esprit du PageRank\". Un essai d’anthropologie de l’algorithme de Google",
+    "fr": "\"Dans l’esprit du PageRank\". Un essai d’anthropologie de l’algorithme de Google"
+  },
+  "type": "notice"
+}

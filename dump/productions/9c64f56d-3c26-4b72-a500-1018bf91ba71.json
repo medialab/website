@@ -1,0 +1,24 @@
+{
+  "active": true,
+  "authors": "Mathieu Jacomy",
+  "description": {
+    "en": "Visualize densities on spatialized networks. Get a global heatmap or a heatmap of the neighborhood of a given node.",
+    "fr": "Heatgraph est un outil de visualisation permettant de designer des heatmaps à partir de la densité des nœuds dans un réseau spatialisé."
+  },
+  "draft": true,
+  "id": "9c64f56d-3c26-4b72-a500-1018bf91ba71",
+  "lastUpdated": 1545310617254,
+  "oldSlug": "heatgraph",
+  "people": [
+    "910c509c-ca11-4684-9898-f2b0b6f3283e"
+  ],
+  "slugs": [
+    "heatgraph"
+  ],
+  "title": {
+    "en": "HeatGraph",
+    "fr": "HeatGraph"
+  },
+  "type": "software",
+  "url": "http://tools.medialab.sciences-po.fr/heatgraph/"
+}

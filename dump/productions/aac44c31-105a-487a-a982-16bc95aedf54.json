@@ -1,0 +1,25 @@
+{
+  "active": true,
+  "authors": "Benoit Verjat, Donato Ricci",
+  "description": {
+    "en": "A tweet curation tool for humanities. Takes output from Gazouilloire or TCAT and lets one easily browse all tweets to select them qualitatively.",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "aac44c31-105a-487a-a982-16bc95aedf54",
+  "lastUpdated": 1545310617247,
+  "oldSlug": "catwalk",
+  "people": [
+    "9dda049d-df18-4cb0-ad76-b40f6cd019c4",
+    "8a5d71c4-b4d2-4d7a-95c2-09c6dc4fc3ac"
+  ],
+  "slugs": [
+    "catwalk"
+  ],
+  "title": {
+    "en": "Catwalk",
+    "fr": "Catwalk"
+  },
+  "type": "software",
+  "url": "https://medialab.github.io/catwalk/"
+}

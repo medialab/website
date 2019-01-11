@@ -1,0 +1,33 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "See <a href=\"https://medialab.sciencespo.fr/fr/blog/stage-sciences-des-donnees-appliquees-a-letude-de-lespace-public-numerique/\">the french description</a>.",
+    "fr": "Le médialab recherche un stagiaire, <span style=\"font-weight: 400;\">de niveau Bac +2/5, pour travailler</span> en s<span style=\"font-weight: 400;\">ciences des données appliquées à l’étude de l’espace public numérique.</span>\r\n<h3><span style=\"font-weight: 400;\">Environnement de travail</span></h3>\r\n<span style=\"font-weight: 400;\">Ce stage se déroulera dans le cadre du projet de recherche <a href=\"https://medialab.sciencespo.fr/projets/algoglitch/\">Algoglitch</a> mené par <a href=\"https://medialab.sciencespo.fr/people/dominique-cardon/\">Dominique Cardon</a> visant à étudier la polarisation de l’espace médiatique numérique français. </span>\r\n\r\n<span style=\"font-weight: 400;\">La personne retenue se joindra à l’équipe d’ingénieurs de recherche du médialab et sera amenée à se former aux techniques et enjeux méthodologiques de la récolte de données web (Twitter, World Wide Web, RSS...), du stockage et de l’analyse de grands volumes de données riches. Elle participera aux différentes stratégies d’analyse envisagées : analyse de réseaux, traitement automatique de la langue sur des données hétérogènes, analyse visuelle de données (développement d’une série de visualisations interactives de données). Le déploiement de ces différentes techniques issues des sciences de données vise à améliorer notre compréhension de la structure et du dynamisme des différentes arènes médiatiques françaises présentes sur le web. </span>\r\n\r\n<span style=\"font-weight: 400;\">Le/La stagiaire sera ainsi également confronté(e) aux riches échanges d’une équipe de R&amp;D interdisciplinaire entre ingénierie logicielle, sociologie et design. Dans ce cadre, l’implication et les missions précises seront déterminées en fonction du profil et des intérêts du/de la candidat(e) retenu(e).</span>\r\n<h3>Compétences mobilisées</h3>\r\n<span style=\"font-weight: 400;\">Les langages de programmation utilisés seront Python 3 et/ou JavaScript ES 6.</span>\r\n\r\n<span style=\"font-weight: 400;\">Librairies, frameworks et base de données possiblement mobilisés : SpaCy, Flask, node.js, Graphology (dont nouvelle version de sigma.js), React, Redux, recharts, MongoDB, ElasticSearch, Neo4J</span>\r\n\r\n<span style=\"font-weight: 400;\">Pour plus de détails, explorez notre forge :<a href=\"http://github.com/medialab\"> http://github.com/medialab</a></span>\r\n<h3>Modalités de recrutement/candidature</h3>\r\n<ul>\r\n \t<li><span style=\"font-weight: 400;\">Rémunération 800€ net</span></li>\r\n \t<li><span style=\"font-weight: 400;\">Durée du stage : 6 mois, equivalent temps plein (35h/semaine)</span></li>\r\n \t<li><span style=\"font-weight: 400;\">Avantages : tickets resto et remboursement partiel du pass navigo</span></li>\r\n \t<li>Date de prise de fonction : rentrée universitaire 2018</li>\r\n</ul>\r\nLes candidatures (CV, lettre de motivation, et plus si pertinent -lien github par exemple-) devront être transmises par voie électronique à <a title=\"mailto:recrutement.medialab@sciencespo.fr\" href=\"mailto:recrutement.medialab@sciencespo.fr\">recrutement.medialab@sciencespo.fr</a>"
+  },
+  "description": {
+    "en": "Le médialab recherche un stagiaire, de niveau Bac +4, pour travailler en Sciences des données appliquées à l’étude de l’espace public numérique dans le cadre du projet de recherche Algoglitch mené par Dominique Cardon.",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "59479825-d324-4f02-9481-bcde7eef69c5",
+  "internal": false,
+  "label": {
+    "fr": "Stage"
+  },
+  "lastUpdated": 1524638820000,
+  "oldSlug": "stage-sciences-des-donnees-appliquees-a-letude-de-lespace-public-numerique",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "sciences-des-donnees-appliquees-a-letude"
+  ],
+  "startDate": "2018-04-25",
+  "title": {
+    "en": "Sciences des données appliquées à l’étude de l’espace public numérique",
+    "fr": "Sciences des données appliquées à l’étude de l’espace public numérique"
+  },
+  "type": "notice"
+}

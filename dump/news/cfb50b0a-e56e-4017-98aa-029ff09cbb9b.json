@@ -1,0 +1,31 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "",
+    "fr": "La prochaine session publique des séminaires de recherche du médialab aura lieu le mercredi 6 février de 14h à 16h dans la salle du médialab au 13 rue de l'université, 75007 Paris.\r\n<a href=\"http://www.lattice.cnrs.fr/poibeau/\">Thierry Poibeau</a>, directeur de recherche au CNRS et directeur du laboratoire <a href=\"http://www.lattice.cnrs.fr/?lang=fr\">LaTTiCe</a> (Langues, Textes, Traitements informatiques et Cognition) viendra présenter ses travaux récents en matière d'analyse sémantique de données en ligne. Cette présentation sera suivie d'une discussion avec l'ensemble des participants. \r\n\r\nQuelques lectures intéressantes pour préparer l'atelier :\r\n\r\n- \"Sur le statut référentiel des entités nommées\"\r\nThierry Poibeau, Conférence Traitement Automatique des Langues 2005, Dourdan : France (2005)\r\n<a href=\"http://hal.archives-ouvertes.fr/hal-00009448\">http://hal.archives-ouvertes.fr/hal-00009448</a>\r\n\r\n- \"A Weakly-supervised Approach to Argumentative Zoning of Scientific Documents\"\r\nYufan Guo, Anna Korhonen, Thierry Poibeau, Empirical Methods in Natural language Processing (EMNLP), Edinburgh : Royaume-Uni (2011)\r\n<a href=\"http://hal.archives-ouvertes.fr/hal-00666472\">http://hal.archives-ouvertes.fr/hal-00666472</a>\r\n\r\n- \"Latent Vector Weighting for Word Meaning in Context\"\r\nTim Van De Cruys, Thierry Poibeau, Anna Korhonen, Empirical Methods in Natural language Processing (EMNLP), Edinburgh : Royaume-Uni (2011)\r\n<a href=\"http://hal.archives-ouvertes.fr/hal-00666475\">http://hal.archives-ouvertes.fr/hal-00666475</a>\r\n\r\n- \"Résumé automatique de textes d'opinion\"\r\nAurélien Bossard, Michel Généreux, Thierry Poibeau, TAL (Traitement Automatique des Langues) 51, 3 (2010) 47-73\r\n<a href=\"http://hal.archives-ouvertes.fr/hal-00698693\">http://hal.archives-ouvertes.fr/hal-00698693</a>\r\n\r\n\r\n<em>Si vous souhaitez assister à ce séminaire, merci de bien vouloir envoyer un email à audrey.baneyx[at]sciences-po.fr. Le séminaire est ouvert mais le nombre de places est restreint.</em>"
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "cfb50b0a-e56e-4017-98aa-029ff09cbb9b",
+  "internal": true,
+  "lastUpdated": 1358150760000,
+  "oldSlug": "francais-seminaire-du-medialab-analyse-semantique-de-donnees-en-ligne",
+  "people": [
+    "1bf6951b-0cd9-4760-b1e2-a95099a6278e"
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "seminaire-du-medialab-analyse-semantique-de"
+  ],
+  "startDate": "2013-01-14",
+  "title": {
+    "en": "",
+    "fr": "Séminaire du médialab : analyse sémantique de données en ligne"
+  },
+  "type": "event"
+}

@@ -1,0 +1,32 @@
+{
+  "active": true,
+  "baseline": {
+    "en": "Public sensitivity to algorithmic computation",
+    "fr": "La sensibilité des publics aux calculs algorithmiques"
+  },
+  "content": {
+    "en": "",
+    "fr": "Nos activités quotidiennes sont assistées par des algorithmes que chacun.e d’entre nous voit différemment selon son style de vie, sa familiarité avec les technologies, son utilisation des plates-formes, les espoirs ou les craintes qu’il/elle forme envers l’innovation.\r\n<h3>Objectif</h3>\r\nSur la base d’une demande du Conseil national du numériques pour le \"développement d’outils et de ressources méthodologiques pour améliorer la remontée de problèmes rencontrés par les utilisateurs de plateformes\", le médialab a initié le projet de recherche exploratoire Algoglitch dont l’objet est de définir comment les algorithmes deviennent une question politique et sociale discutée dans l’espace public.\r\n\r\nDans un contexte où les internautes sont de plus en plus sensibles à la dimension algorithmique qui entre en jeu dans leur utilisation des différentes plates-formes en ligne (site marchand, consultation de contenus vidéo, mise en contact d’utilisateurs avec des conducteurs, livraison de repas à domicile, etc.), Algoglitch cherche à comprendre comment ces processus de sensibilisation mobilisent les internautes et peuvent assembler un « public calculé ».\r\n<h3>Méthodologie</h3>\r\nPour rendre compte de l’expérience de « public calculé », le projet a développé une méthode d’enquête à l’interface du design et des sciences sociales qui capte les manifestations de cette sensibilité ambigüe : entre le bug et le biais, l'esthétique et le fonctionnement, la technique et la politique, l'expérience individuelle et collective.\r\n\r\nEn savoir plus :\r\n<ul>\r\n \t<li><a href=\"http://algoglitch.smvi.co/\" target=\"_blank\" rel=\"noopener\">le site du projet Algoglitch</a></li>\r\n \t<li><a href=\"https://twitter.com/algoglitch\" target=\"_blank\" rel=\"noopener\">@algoglitch</a></li>\r\n</ul>\r\n&nbsp;"
+  },
+  "description": {
+    "en": "",
+    "fr": "Définir comment les algorithmes deviennent une question politique et sociale discutée dans l’espace public"
+  },
+  "draft": true,
+  "id": "e8810f79-0325-4e44-99da-d26dfbe63a01",
+  "important": false,
+  "lastUpdated": 1523945700000,
+  "name": "Algoglitch",
+  "oldSlug": "algoglitch",
+  "people": [
+    "bef607ba-7496-4ca2-97ef-ea952fc9f8b2",
+    "ec108495-9899-495c-9655-cf1942afe23f",
+    "2dc8e973-3c23-4e08-9787-e4f37dd6d393",
+    "8a5d71c4-b4d2-4d7a-95c2-09c6dc4fc3ac"
+  ],
+  "slugs": [
+    "algoglitch"
+  ],
+  "startDate": "2017-09-01",
+  "type": "research"
+}

@@ -1,0 +1,30 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "Les 4 missions du médialab.",
+    "fr": "<iframe src=\"http://player.vimeo.com/video/11428694\" width=\"456px\" height=\"343px\" frameborder=\"0\" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>"
+  },
+  "description": {
+    "en": "The four main missions of the médialab. Thanks a lot to Damien Bright for lending us his voice.",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "07f84161-34d8-40b4-9e49-9e6ed5402e3f",
+  "internal": false,
+  "lastUpdated": 1328028300000,
+  "oldSlug": "medialab-missions",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "medialab-missions"
+  ],
+  "startDate": "2012-01-31",
+  "title": {
+    "en": "médialab Missions",
+    "fr": "médialab Missions"
+  },
+  "type": "notice"
+}

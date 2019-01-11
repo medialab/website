@@ -1,0 +1,24 @@
+{
+  "active": true,
+  "content": {
+    "en": "See <a href=\"https://medialab.sciencespo.fr/fr/projets/shinrai/\">the french abstract of the project</a>",
+    "fr": "<span style=\"font-weight: 400;\">La catastrophe nucléaire récente de Fukushima a provoqué une crise politique et sociétale majeure au Japon marqué notamment par une perte de confiance durable des citoyens envers les autorités et leurs experts.</span>\r\n\r\n<span style=\"font-weight: 400;\">Le projet SHINRAI (2015-2018), initié par l’Institut de radioprotection et de sûreté nucléaire (IRSN) vise à analyser la gestion de cette crise par les autorités japonaises et sa réception par les populations afin d’anticiper la prise de décision en cas d’accident.</span>\r\n<h3><span style=\"font-weight: 400;\">Objet du projet</span></h3>\r\n<span style=\"font-weight: 400;\">Le projet de recherche pluridisciplinaire SHINRAI s'intéresse à la situation post-accidentelle, tant du point de vue de sa « gestion » par les autorités que de ses conséquences politiques et sociales.</span>\r\n\r\n<span style=\"font-weight: 400;\">Il vise à analyser de façon approfondie les prises de décisions des autorités dans un contexte de controverse scientifique -notamment sur les effets des «faibles doses»-, le rôle de l’expertise publique face à l'émergence de nouveaux experts citoyens, et la perte de confiance des citoyens japonais envers les autorités pendant la période qui a suivi l’accident. La question du retour des populations après la décontamination et le processus de prise de décisions par les évacués autour de cette question occupe une place centrale dans le projet.</span>\r\n<h3><span style=\"font-weight: 400;\">Méthodologie</span></h3>\r\n<span style=\"font-weight: 400;\">La recherche du projet SHINRAI est basée sur une revue de littérature et des enquêtes de terrain réalisées entre 2015-17 à Fukushima auprès des populations affectées par l’accident (évacués, résidents, retournés…), des autorités locales et gouvernementales, des associations d’aide aux victimes, des experts et chercheurs japonais et internationaux sur ces questions.</span>\r\n<h3><span style=\"font-weight: 400;\">Partenaires</span></h3>\r\n<span style=\"font-weight: 400;\">Cette recherche s’inscrit dans le programme transversal de l’USPC « Politiques de la terre à l’époque de l’Anthropocène » 2014-2017.</span>\r\n\r\n<span style=\"font-weight: 400;\">Coordinateur : Institut de radioprotection et de sûreté nucléaire (IRSN)</span>\r\n\r\n<span style=\"font-weight: 400;\">Chercheurs principaux : Reiko Hasegawa (Médialab), Christine Fassert (IRSN)</span>\r\n\r\n<span style=\"font-weight: 400;\">Partenaires : Tokyo Institut of Technology (Japon)</span>"
+  },
+  "description": {
+    "en": "",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "6fc4cae9-2a04-4760-ab97-17a5168c7a88",
+  "important": false,
+  "lastUpdated": 1525101300000,
+  "name": "SHINRAI",
+  "oldSlug": "shinrai",
+  "people": [
+    "6db2239a-073c-4c39-98fb-b2612192c7f6"
+  ],
+  "slugs": [
+    "shinrai"
+  ],
+  "type": "research"
+}

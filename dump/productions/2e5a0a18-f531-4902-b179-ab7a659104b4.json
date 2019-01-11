@@ -1,0 +1,25 @@
+{
+  "active": true,
+  "authors": "Alexis Jacomy, Guillaume Plique",
+  "description": {
+    "en": "Sigma is a JavaScript library dedicated to graph drawing. It makes easy to publish networks on Web pages, and allows developers to integrate network exploration in rich Web applications.",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "2e5a0a18-f531-4902-b179-ab7a659104b4",
+  "lastUpdated": 1545310617276,
+  "oldSlug": "sigma",
+  "people": [
+    "e1b3dd1f-40da-431e-be9c-2194f6f73687",
+    "4d46ba96-c592-427c-9431-85e2922e9c33"
+  ],
+  "slugs": [
+    "sigmajs"
+  ],
+  "title": {
+    "en": "sigma.js",
+    "fr": "sigma.js"
+  },
+  "type": "code",
+  "url": "http://sigmajs.org"
+}

@@ -1,0 +1,30 @@
+{
+  "activities": [
+  ],
+  "content": {
+    "en": "Le prochain séminaire de recherche aura lieu <b>mardi 21 janvier de 15h à 17h</b> dans la salle du médialab au 13 rue de l'université.\r\nNous accueillerons <a href=\"http://www.medialab.sciences-po.fr/fr/people/vincent-antonin-lepinay/\">Vincent Lepinay</a> qui présentera ses recherches sur <i>\"<small><big>Comparative Geekography - Mapping Russian Computer Science Diaspora\"</big>.</small></i>\r\n\r\nVoici une brève présentation :\r\n<i>We present the preliminary findings / methodological insights we are working with in the Geekography project.\r\nWe are dealing with a population that has no clear boundaries - who is a Russian computer scientist is a highly debated question as the very expression computer science does not exist in Russian. This is also a population that oscillates between two stances: either open collaboration (à la open source) or extremely cautious of its privacy (in the context of a limited sense of privacy over the past few..centuries). We discuss our strategies to overcome the limitations of working with public data. </i>\r\n\r\nLe séminaire est public donc n'hésitez pas à venir, vous êtes les très bienvenus. Cela dit, merci de bien vouloir envoyer un email à audrey.baneyxATsciencespo.fr pour que nous puissions gérer au mieux la capacité de la salle.",
+    "fr": ""
+  },
+  "description": {
+    "en": "We present the preliminary findings / methodological insights we are working with in the Geekography project.\r\nWe are dealing with a population that has no clear boundaries - who is a Russian computer scientist is a highly debated question as the very expression computer science does not exist in Russian. This is also a population that oscillates between two stances: either open collaboration (à la open source) or extremely cautious of its privacy (in the context of a limited sense of privacy over the past few..centuries). We discuss our strategies to overcome the limitations of working with public data.",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "2f89c79a-2f34-43cb-9ace-fdcf4990a2bc",
+  "internal": true,
+  "lastUpdated": 1389698880000,
+  "oldSlug": "seminaire-de-recherche-anime-par-vincent-lepinay-sur-comparative-geekography-mapping-russian-computer-science-diaspora-21012014-de-15h-a-17h",
+  "people": [
+  ],
+  "productions": [
+  ],
+  "slugs": [
+    "seminaire-de-recherche-anime-par-vincent"
+  ],
+  "startDate": "2014-01-14",
+  "title": {
+    "en": "",
+    "fr": "Séminaire de recherche animé par Vincent Lepinay sur \"Comparative Geekography - Mapping Russian Computer Science Diaspora\", 21/01/2014 de 15h à 17h"
+  },
+  "type": "event"
+}

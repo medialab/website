@@ -1,0 +1,22 @@
+{
+  "active": false,
+  "bio": {
+    "en": "Contact: pierre.julliandelafuente[AT]sciencespo.fr\r\n\r\nPierre Jullian de la Fuente, ingénieur généraliste diplômé de Télécom ParisTech, associe depuis 2007 son expertise des nouvelles technologies à des collaborations avec artistes (au sein de La kitchen puis du CITU). Il rejoint le médialab début 2011, et prend la responsabilité du projet Réanalyse (équipement DIME-SHS), permettant l’archivage et la consultation d’enquêtes qualitatives en ligne. Il y conçoit et développe des modules innovants de visualisation de données, permettant l’analyse exploratoire de grands corpus de données.\r\nEn 2013, il rejoint en tant qu'ingénieur recherche l'équipe du projet AIME (enquête sur les modes d'existence) porté par Bruno Latour.\r\n[:fr]<p>Pierre Jullian de la Fuente, ingénieur généraliste diplômé de Télécom ParisTech, associe depuis 2007 son expertise des nouvelles technologies à des collaborations avec artistes<!--more-->",
+    "fr": "<p>Pierre Jullian de la Fuente, ingénieur généraliste diplômé de Télécom ParisTech, associe depuis 2007 son expertise des nouvelles technologies à des collaborations avec artistes<!--more-->[:fr] (au sein de La kitchen puis du CITU). Il rejoint le médialab début 2011, et prend la responsabilité du projet Réanalyse (équipement DIME-SHS), permettant l'archivage et la consultation d'enquêtes qualitatives en ligne. Il y conçoit et développe des modules innovants de visualisation de données, permettant l'analyse exploratoire de grands corpus de données.</p>\r\n"
+  },
+  "domain": "tech",
+  "draft": true,
+  "firstName": "Pierre",
+  "id": "89609063-b487-4ec3-9d91-e6d65b162f92",
+  "lastName": "Jullian de la Fuente",
+  "lastUpdated": 1343994960000,
+  "membership": "member",
+  "oldSlug": "pierre-jullian-de-la-fuente",
+  "role": {
+    "en": "Ingénieur",
+    "fr": "Ingénieur"
+  },
+  "slugs": [
+    "pierre-jullian-de-la-fuente"
+  ]
+}

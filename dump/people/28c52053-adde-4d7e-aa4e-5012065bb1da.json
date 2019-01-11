@@ -1,0 +1,22 @@
+{
+  "active": false,
+  "bio": {
+    "en": "Contact : nicolas.bayalaffite[AT]sciences-po.fr\r\n\r\nNicolas Baya-Laffite holds degrees in Political Science, Urban Environmental Management (University of Buenos Aires) and Science and Technology Studies (EHESS, <a href=\"http://www.koyre.cnrs.fr/\" target=\"_blank\">Centre Alexandre Koyré</a>, Paris). His main research focus is on the interplay between science, technology, and politics in environmental controversies. In November 2011, he joined the medialab at Sciences Po as project manager and research fellow. In the MEDEA project, he is working on the development of a controversy-mapping platform to explore emerging debates on adaptation to climate change in France. Since 2011, he teaches \"Controversy Mapping\" at Sciences Po. He has taught different courses at Sciences Po, AgroParisTech, Université Paris-Est, and University of Buenos Aires. Beyond academia, he has worked in different research-related activities in the field of \"science and society\" for the OECD (<a href=\"http://www.oecd.org/innovation/policyplatform/briefs.htm\">new innovation platform</a>), UNESCO (<a href=\"http://www.unesco.org/new/en/social-and-human-sciences/themes/most-programme/\" target=\"_blank\">MOST programme</a>), Deuxième Labo (<a href=\"http://www.programme-repere.fr/\" target=\"_blank\">REPERE project</a>), Cité des sciences (<a href=\"http://www.cipast.org/\" target=\"_blank\">CIPAST project</a>, <a href=\"http://www.wwviews.org/node/259\" target=\"_blank\">World Wide Views project</a>), and Réseau Risques et Société (for the <a href=\"http://www.afsset.fr/upload/bibliotheque/738335374182688954357936440954/risques_societe_R2S.pdf\" target=\"_blank\">Anses</a>).",
+    "fr": "<p>Nicolas Baya-Laffite holds degrees in Political Science, Urban Environmental Management (University of Buenos Aires) and Science and Technology Studies (EHESS, Centre Alexandre Koyré, Paris). His main research focus is on the interplay between science, technology, and politics in environmental controversies. In november 2011, he joined the medialab at Sciences Po as project manager and researcher. In the MEDEA project, funded by ANR, he works in developing a controversy-mapping platform to explore emerging debates on adaptation to climate change in France. He also participates in the EU-funded, EMAPS project. Since 2011, he teaches \"Controversy Mapping\" at Sciences Po. Previously, he taught political theory, and sociology and history of science at Sciences Po, AgroParisTech, Université Paris-Est, and University of Buenos Aires. Beyond academia, he has worked in different research-related activities in the field of \"science and society\" for OECD (new innovation handbook), UNESCO (MOST programme), Deuxième Lab (REPERE project), and Cité des sciences (CIPAST project, World Wide Views project), and Réseau Risques et Société (for the Anses journal).</p>\r\n"
+  },
+  "domain": "academic",
+  "draft": true,
+  "firstName": "Nicolas",
+  "id": "28c52053-adde-4d7e-aa4e-5012065bb1da",
+  "lastName": "Baya-Laffite",
+  "lastUpdated": 1353948540000,
+  "membership": "member",
+  "oldSlug": "nicolas-baya-laffite",
+  "role": {
+    "en": "Researcher and teacher in Science and Technology Studies. Manager of the ANR project MEDEA",
+    "fr": "Researcher and teacher in Science and Technology Studies. Manager of the ANR project MEDEA"
+  },
+  "slugs": [
+    "nicolas-baya-laffite"
+  ]
+}

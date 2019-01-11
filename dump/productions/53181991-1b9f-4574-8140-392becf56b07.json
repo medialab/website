@@ -1,0 +1,24 @@
+{
+  "active": true,
+  "authors": "IFRIS (Jean-Philippe Cointet, Philippe Breucker, Guillaume Orsal)",
+  "description": {
+    "en": "The CorTexT initiative of IFRIS proposes tools to explore and analyse semantics dynamics in corpus of texts.",
+    "fr": ""
+  },
+  "draft": true,
+  "id": "53181991-1b9f-4574-8140-392becf56b07",
+  "lastUpdated": 1545310617248,
+  "oldSlug": "cortext",
+  "people": [
+    "3aab3edb-b11d-4be0-b468-5d632cdba24b"
+  ],
+  "slugs": [
+    "cortext"
+  ],
+  "title": {
+    "en": "CorText",
+    "fr": "CorText"
+  },
+  "type": "software",
+  "url": "http://manager.cortext.net/"
+}

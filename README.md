@@ -2,8 +2,12 @@
 
 Ce dépôt de code contient tout le code source lié au [site web](https://medialab.sciencespo.fr) du laboratoire at à son CMS custom utilisé pour en administrer les données.
 
-* **Production** : https://medialab-prod.medialab.sciencespo.fr/admin/
-* **Pré-production** : https://medialab-pprd.medialab.sciencespo.fr/admin/
+* **Production** :
+  - CMS : https://website-prod.medialab.sciences-po.fr/admin/
+  - Déployé sur : ~~https://medialab.sciencespo.fr/~~
+* **Pré-production** :
+  - CMS : https://website-pprd.medialab.sciences-po.fr/admin/
+  - Déployé sur : ??
 
 ## Installation
 

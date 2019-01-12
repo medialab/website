@@ -29,7 +29,13 @@ Espérance de mise en prod pour vendredi.
 L'intégration dans le CMS n'a pas encore commencé.
 On est en train de faire en sorte que ça s'affiche sur mobile.
 
-On prépare la prochaine étape d'intégration avec React. 
+On prépare la prochaine étape d'intégration avec React.
+
+![](Screenshot_2019-01-09 Medialab - Liste des productions.png)
+
+![](Screenshot_2019-01-09 Medialab - Proto.png)
+
+![](Screenshot_2019-01-09 Medialab - Proto(1).png)
 
 # Rétrospective
 
@@ -71,7 +77,7 @@ On prépare la prochaine étape d'intégration avec React.
 > J'ai envie qu'on travaille sur des contenus en prod, travailer sur Git et versionner les contenus
 - Quand est-ce qu'on met en prod ?
 > Vendredi au plus tard.
-> La seule incertitude c'est : est-ce que les CMS versionnera les contenus ou pas ? 
+> La seule incertitude c'est : est-ce que les CMS versionnera les contenus ou pas ?
 
 ## Rendez-vous
 

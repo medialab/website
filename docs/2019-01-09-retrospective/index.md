@@ -31,11 +31,11 @@ On est en train de faire en sorte que ça s'affiche sur mobile.
 
 On prépare la prochaine étape d'intégration avec React.
 
-![](Screenshot_2019-01-09 Medialab - Liste des productions.png)
+![](Screenshot_2019-01-09%20Medialab%20-%20Liste%20des%20productions.png)
 
-![](Screenshot_2019-01-09 Medialab - Proto.png)
+![](Screenshot_2019-01-09%20Medialab%20-%20Proto.png)
 
-![](Screenshot_2019-01-09 Medialab - Proto(1).png)
+![](Screenshot_2019-01-09%20Medialab%20-%20Proto(1).png)
 
 # Rétrospective
 

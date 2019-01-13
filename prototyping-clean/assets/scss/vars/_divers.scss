@@ -3,6 +3,8 @@ $unite: 25px;
 $height-top-bar: $unite*6;
 $margins-desktop: $unite;
 $logo-column: $unite*10;
+$container-width : calc( 100vw - #{$margins-desktop*3});
+
 
 
 /*  phone  */

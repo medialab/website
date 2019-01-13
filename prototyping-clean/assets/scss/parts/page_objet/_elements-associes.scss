@@ -1,130 +1,133 @@
+///// Global 
 
+///// Filtre
+// chekbox elements
+input.filtre_objet:checked ~ #ul-content li{display: none;}
+input#filtre_equipe:checked ~ #ul-content .equipe{ display: block !important; }
+input#filtre_publication:checked ~ #ul-content .publication{ display: block !important; }
 
-$hauteur-item-personne-grid: 80px*2;
+@include for-size(desktop) {
 
-#elements-associes, #fichiers-associes{
-    h2{
-        margin-bottom: $margins-desktop;
+    #elements-associes, #fichiers-associes{
+        h2{
+            margin-bottom: $margins-desktop;
+        }
+
     }
 
-}
-
-
-#fichiers-associes{
-    li{ 
-        margin-bottom: $margins-desktop;
-        svg, p{ 
-            display: inline-block;
-            vertical-align: middle;
-        }
-        p{ margin-left: $margins-desktop;}
-        svg{ 
-            width: 50px;
-        }
-    }
-    
-}
-
-#elements-associes #ul-content{
-	
-	display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-
-	grid-template-rows: auto auto;
-    grid-gap: $margins-desktop;
-    margin-top: $margins-desktop;
-    
-    li{
-        border-top: 1px solid #0003;
-        // border-bottom: 1px solid #0003;
-        padding-top: $baseline;
-        padding-bottom: $baseline;
-    }
-
-    .equipe a, .publication a{
-        display: grid;
-        img, .img-generative{
-            height: $hauteur-item-personne-grid;
-        }
-        .type, p{
-            font-size: 1.3rem;
-            line-height: 1.5rem;
-        }
-        hgroup{
-            margin-left: $margins-desktop;
-            h1{ 
-                @include typo-labeur(); 
-                padding: 0;
-                letter-spacing: 0.1px;
+    #fichiers-associes{
+        li{ 
+            margin-bottom: $margins-desktop;
+            svg, p{ 
+                display: inline-block;
+                vertical-align: middle;
             }
-            
-        }
-
-        .type{
-            margin-left: $margins-desktop;
-            align-self: flex-end;
-            padding: 0;
+            p{ margin-left: $margins-desktop;}
+            svg{ 
+                width: 50px;
+            }
         }
         
     }
 
-    .equipe a{
-        grid-template-columns: $hauteur-item-personne-grid 1fr;
-        grid-template-rows: auto;
-        .type{
-            &:before{ content: "⁙ "; }
+    #elements-associes{
+
+        //// Filtre
+        label{
+            padding: 0 $unite 0 5px;
+            bottom: 2px;
         }
-        img{
-            width: $hauteur-item-personne-grid;
-            grid-row: 1/3;
-        }
+
+        #ul-content{
+        	
+        	display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+        	grid-template-rows: auto auto;
+            grid-gap: $margins-desktop;
+            margin-top: $margins-desktop;
+            
+            li{
+                border-top: $border;
+                padding-top: $baseline;
+                padding-bottom: $baseline;
+            }
+
+            .equipe a, .publication a{
+                display: grid;
+                img, .img-generative{
+                    height: $unite*6;
+                }
+                .type, p{
+                }
+
+                hgroup{
+                    margin-left: $margins-desktop;
+                    h1{ 
+                        @include font-size-20(); 
+                        padding: 0;
+                        letter-spacing: 0.1px;
+                    }
+                    
+                }
+
+                .type{
+                    margin-left: $margins-desktop;
+                    align-self: flex-end;
+                    padding: 0;
+                }
+                
+                &:hover{
+                    .img_container{
+                        background-color: $redlab;
+
+                        img{
+                            mix-blend-mode: screen;
+                            -webkit-filter: grayscale(100%) contrast(200%);
+                            filter: grayscale(100%) contrast(200%);
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+
+            .equipe a{
+                grid-template-columns: $unite*6 1fr;
+                grid-template-rows: auto;
+                .type{
+                    &:before{ content: "⁙ "; }
+                }
+
+                .img_container{
+                   img{
+                        width: $unite*6;
+                        grid-row: 1/3;
+                        filter: contrast(1.4) grayscale(1);
+                    } 
+                }                
+            }
+
+            .publication a{
+                grid-template-columns: $unite*6/2 1fr;
+                grid-template-rows: auto;
+                .img-generative{
+                    width: $unite*6/2;
+                    grid-row: 1/3;
+                    overflow: hidden;
+                }
+                .type{
+                    &:before{ content: "☵ "; }  
+                }
+                hgroup .titre{
+                    text-transform: uppercase;
+                    letter-spacing: 0.1px;
+                    padding-bottom: 2rem;
+                }
+            }
+        }   
     }
-
-    .publication a{
-        grid-template-columns: $hauteur-item-personne-grid/2 1fr;
-        grid-template-rows: auto;
-        .img-generative{
-            width: $hauteur-item-personne-grid/2;
-            grid-row: 1/3;
-            overflow: hidden;
-        }
-        .type{
-            &:before{ content: "☵ "; }  
-        }
-        hgroup .titre{
-            text-transform: uppercase;
-            letter-spacing: 0.1px;
-            padding-bottom: 2rem;
-        }
-    }
-
-    
-
-   
-    
-   
-	
-	
 }
 
-// chekbox elements
-#ul-content .equipe, #ul-content .publication{ display: none; }
+@include for-size(phone) {
 
-
-#checkbox-equipe:checked ~ #ul-content .equipe{ display: block; }
-#checkbox-publication:checked ~ #ul-content .publication{ display: block; }
-
-#elements-associes {
-    input{ 
-        display: none;
-    }
-    label{
-        font-size: 1.3rem;
-        margin-right: 3rem;
-        &:before{ content: "◯ "}
-     }
-     input:checked + label{
-        &:before{ content: "◉ "}
-    } 
-    
 }

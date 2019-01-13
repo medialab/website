@@ -17,36 +17,7 @@
 
 <body>
 <?php include('fragments/_topbar.php'); ?>
-
-
-
-<nav id="nav-inside-article">
-	<div class="nav-inside-item">
-	<a href="#topbar">
-		<!-- <img src="assets/images/Medialab_logo_black_RVB.svg"> -->
-		<?php include('assets/images/Medialab_logo_black_RVB.svg'); ?>
-	</a>		
-	</div>
-	<div class="nav-inside-item" id="img-article">
-		<div>
-			<img src="assets/images/sample/RICardo_2017_2016_versions_b.png" alt="">
-			<div class="image-generator">
-				<?php include('assets/images/sample_txt/ricardo.html'); ?>
-			</div>
-
-		</div>
-	</div>
-	<div class="nav-inside-item" >
-		<a href="#item-1"><p class="item-1">Article</p></a>
-	</div>
-	<div class="nav-inside-item" >
-	<a href="#fichiers-associes"><p>Fichiers associés</p></a>
-	</div>
-	<div class="nav-inside-item">
-		<a href="#elements-associes"><p>Éléments liées</p></a>
-	</div>
-</nav>
-
+<?php include('fragments/page_objet/_nav.php'); ?>
 
 <main>
 
@@ -121,129 +92,9 @@
 	</article>
 
 
-<!-- FICHIERS ASSOCIÉS -->
-<aside class="container" id="fichiers-associes">
+<?php include('fragments/page_objet/_fichiers_associes.php'); ?>
+<?php include('fragments/page_objet/_elements_associes.php'); ?>
 
-
-  <h2>Fichiers associés</h2>
-		
-
-		<ul>
-			<li>
-			<a href="#">
-				<?php include('assets/svg/pdf.svg'); ?>
-				<p>Girard_Shinrai_20181210.pdf</p>
-			</a>
-			</li>
-			<li>
-			<a href="#">
-				<?php include('assets/svg/csv.svg'); ?>
-				<p>shinrai_data.csv</p>
-			</a>
-			</li>
-
-		</ul>
-
-
-
-</aside>
-
-
-<!-- PERSONNES LIÉES -->
-<aside class="container" id="elements-associes">
-
-
-  <h2>Éléments associés</h2>
-  <input type="checkbox" id="checkbox-equipe" checked/>
-	<label for="checkbox-equipe">Équipe</label>
-	<input type="checkbox" id="checkbox-publication" checked/>
-	<label for="checkbox-publication">Publications</label>
-
-	  <ul id="ul-content">
-
-		<li class="equipe">
-		<a href="#">
-			<img src="pessoa.jpg" alt="">
-			<hgroup>
-			<h1>Paul Girard</h1>
-			<p>Ingénieur, Directeur Technique</p>
-			</hgroup>
-			<p class="type">Équipe du Médialab</p>
-		</a>
-		</li>
-
-		<li class="publication">
-		<a href="#">
-			<div class="img-generative">
-			<?php include('assets/images/sample_txt/naturpradi_s.html'); ?>
-			</div>
-			<hgroup>				
-				<p class="titre">Naturpardi</p>			
-				<h1>Le numérique change-t-il les formes de nature urbaine ?</h1>
-			</hgroup>
-			<p class="type">Type publication – 01/01/2018</p>
-		</a>
-		</li>
-
-		<li class="publication">
-		<a href="#">
-			<div class="img-generative">
-			<?php include('assets/images/sample_txt/fabrique_loi_s.html'); ?>
-			</div>
-			<hgroup>				
-				<p class="titre">La fabrique de la loi</p>			
-				<h1>Les parlementaires font-ils la loi ?</h1>
-			</hgroup>
-			<p class="type">Type publication – 01/01/2018</p>
-		</a>
-		</li>
-
-		<li class="equipe">
-		<a href="#">
-			<img src="pessoa.jpg" alt="">
-			<hgroup>
-			<h1>Donato Ricci</h1>
-			<p>Designer Principal</p>
-			</hgroup>
-			<p class="type">Équipe du Médialab</p>
-		</a>
-		</li>
-
-		<li class="equipe">
-		<a href="#">
-			<img src="pessoa.jpg" alt="">
-			<hgroup>
-				<h1>Benjamin Ooghe Tabanou</h1>
-				<p>Ingénieur de recherche</p>
-			</hgroup>
-			<p class="type">Équipe du Médialab</p>
-		</a>
-		</li>
-
-
-
-		<li class="publication">
-		<a href="#">
-			<div class="img-generative">
-			<?php include('assets/images/sample_txt/shinrai_1_s.html'); ?>
-			</div>
-			<hgroup>				
-				<p class="titre">Shinrai</p>			
-				<h1>Quelle est la question de recherche de ce projet en quelques mots ?</h1>
-			</hgroup>
-			<p class="type">Type publication – 01/01/2018</p>
-		</a>
-		</li>
-
-
-
-	</ul>
-
-
-</aside>
-
-
-		
 	
 </body>
 </html>

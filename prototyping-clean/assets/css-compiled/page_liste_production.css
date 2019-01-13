@@ -548,48 +548,7 @@ ul {
 /* end desktop */
 /* all */
 #liste {
-  position: relative;
-  /*
-      .filtre_objet{
-     
-      	ul{
-  
-              li{           
-  
-                  p{
-                      margin: auto;
-                      position: absolute;
-                  }
-  				
-  				ul{ // if nested
-  
-  	                li{
-  	                    min-height: inherit !important;
-  	                    border: inherit !important;
-  
-  	                    input{
-  	                        opacity: .5;
-  	                    }
-  
-  	                } 
-  	            }
-              }
-  
-              li:nth-of-type(1){
-              }
-          }
-      }
-  */ }
-  #liste input.filtre_objet:checked ~ #liste_objet [data-type] {
-    display: none; }
-  #liste input#filtre_publication:checked ~ #liste_objet [data-type="publication"] {
-    display: block !important; }
-  #liste input#filtre_web:checked ~ #liste_objet [data-type="web"] {
-    display: block !important; }
-  #liste input#filtre_outils:checked ~ #liste_objet [data-type="outils"] {
-    display: block !important; }
-  #liste input#filtre_situation:checked ~ #liste_objet [data-type="situation"] {
-    display: block !important; }
+  position: relative; }
   #liste #liste_objet [data-item] {
     border-top: 0.5px solid; }
     #liste #liste_objet [data-item]:hover {
@@ -8955,5 +8914,16 @@ ul {
     transition-delay: inherit; } }
 [data-type="production"] a {
   text-decoration: underline; }
+
+#liste input.filtre_objet:checked ~ #liste_objet [data-type] {
+  display: none; }
+#liste input#filtre_publication:checked ~ #liste_objet [data-type="publication"] {
+  display: block !important; }
+#liste input#filtre_web:checked ~ #liste_objet [data-type="web"] {
+  display: block !important; }
+#liste input#filtre_outils:checked ~ #liste_objet [data-type="outils"] {
+  display: block !important; }
+#liste input#filtre_situation:checked ~ #liste_objet [data-type="situation"] {
+  display: block !important; }
 
 /*# sourceMappingURL=page_liste_production.css.map */

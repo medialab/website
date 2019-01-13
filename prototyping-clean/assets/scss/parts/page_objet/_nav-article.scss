@@ -12,12 +12,10 @@
     flex-direction: column;
     justify-content: stretch;
     align-content: stretch;
-    --height-nav: 80px;
-
 
     .nav-inside-item{
         //height: $height-nav;
-        height: 100%;
+        height: $unite*3;
         width:  $logo-column/2;
         background-color: white;
         border-bottom: 1px solid black;
@@ -27,11 +25,18 @@
         display: flex;
         align-items: center;
         &:first-of-type{
-            // border-top: 1px solid black;
             border-bottom: none;
-            // height: $height-nav + 40px;
+            //height: $height-top-bar - $margins-desktop;
+            height: calc(#{$unite*3} - 1px); 
             align-items: flex-start;
-            img, svg{ width: $logo-column/2; }
+            img, svg{ 
+                width: $logo-column/3 + $unite/2; 
+                margin: calc(#{$unite} + 5px) 0 5px 0;
+                fill: $text-color; }
+        }
+
+        a{
+            width: $logo-column/3;
         }
 
     }
@@ -43,26 +48,47 @@
         flex-grow: 1;
         width: $logo-column/2;
         overflow: hidden;
-        transition: width 1s;
-        font-size: 1.4vh;
-        .image-generator{ transition: opacity 4s; }
+        transition: width .25s linear;
+        .image-generator{ 
+            transition: opacity 1s linear; 
+            
+            pre{
+                font-size: 2vw !important;
+            }
+        }
         div{
             background-color: white;
+            position: absolute;
+            top: 0;
+            left: 0;            
             img{ 
                 position: absolute;
                 width: 100%;
                 height: 100%;
+
+                opacity:0;
+                z-index: 1;
+                filter: blur(20px);
             }
         }
     }
 
     #img-article:hover{
-        width: auto;
-        transition: width 1s;
+        width: $container-width;
         // overflow: visible;
         .image-generator{ 
-            opacity: 0;
-            transition: opacity 4s;
+            z-index: 2;
+        }
+        img{
+            width: calc(#{$container-width} * 2);
+            opacity: 1;
+            transition: opacity 1s linear;
+            height: 100%;
+            z-index: 9999;
+            position: relative;
+            top: 18px;
+            width: 121vw;
+            mix-blend-mode: color;
         }
     }
 }

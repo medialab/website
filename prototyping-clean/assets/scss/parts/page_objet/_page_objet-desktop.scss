@@ -4,24 +4,17 @@
 
 @include for-size(desktop) {
 
-	$maw-width-main: 1100px;
-
-
 	a:hover{
 		color: #E6142D;
 		svg{ fill: #E6142D; }
 		img{
-			background-color: #E6142D;
-			mix-blend-mode: color-burn;
+			//background-color: #E6142D;
+			//mix-blend-mode: color-burn;
 		}
 	}
-
-	/*#topbar{
-		max-width: $maw-width-main + $width-nav + $margin-desktop*5;
-	}*/
 		
 	main{
-		margin-left: $logo-column/2;
+		margin-left: $logo-column;
 		margin-right: $margins-desktop*2;
 		max-width: 1100px;
 		margin-bottom: 40vh;
@@ -46,8 +39,8 @@
 			z-index: 5;
 			padding-top: 50px;
 			font-weight: bold;
-			border-bottom: 1px solid black;
-			border-top: 1px solid black;
+			border-bottom: $border;
+			//border-top: 1px solid black;
 		}
 
 		.date, .type{

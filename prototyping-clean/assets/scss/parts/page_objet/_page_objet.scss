@@ -1,1 +1,9 @@
 /* all */
+body, html{
+	overflow: inherit;
+}
+
+#topbar{
+	z-index: 30;
+	background-color: $background-site;
+}

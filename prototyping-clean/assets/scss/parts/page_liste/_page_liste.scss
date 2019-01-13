@@ -3,43 +3,6 @@
 #liste{
     
     position: relative;
-/*
-    .filtre_objet{
-   
-    	ul{
-
-            li{           
-
-                p{
-                    margin: auto;
-                    position: absolute;
-                }
-				
-				ul{ // if nested
-
-	                li{
-	                    min-height: inherit !important;
-	                    border: inherit !important;
-
-	                    input{
-	                        opacity: .5;
-	                    }
-
-	                } 
-	            }
-            }
-
-            li:nth-of-type(1){
-            }
-        }
-    }
-*/
-    ///// Filtre : Selctionner tel ou tel article Pure CSS
-    input.filtre_objet:checked ~ #liste_objet [data-type]{display: none;}
-    input#filtre_publication:checked ~ #liste_objet [data-type="publication"] { display: block !important;}
-    input#filtre_web:checked ~ #liste_objet [data-type="web"] { display: block !important;}
-    input#filtre_outils:checked ~ #liste_objet [data-type="outils"] { display: block !important;}
-    input#filtre_situation:checked ~ #liste_objet [data-type="situation"] { display: block !important;}
 
     #liste_objet{
 

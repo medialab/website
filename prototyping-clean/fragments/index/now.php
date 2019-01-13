@@ -7,7 +7,7 @@
 	<div class="contenu">
 
 
-		<!-- if type=actualite -->
+		<!-- if type=actualite (bon modèle pour les liens -->
 		<article data-type="actualite">
 			<div class="nomenclature">
 				<p class="type"><a href="#linkPageActualite">Actualité</a></p>
@@ -20,8 +20,35 @@
 			</div>
 				<hgroup>
 				<a href="#linkObjet">
-					<h1 data-level-2="title">Recrute Professeur – STS et environnement </h1>
+					<h1 data-level-1="title">Recrute Professeur – STS et environnement </h1>
 					<h2 data-level-2="label">Nous recrutons quelqu'un pour terminer cette phrase</h2>
+				
+				<p class="more"><a href="#linkObjet">En savoir plus</a></p>
+				</a>
+				</hgroup>
+		</article>
+
+
+		<!-- if type=people -->
+		<article data-type="people">
+			<div class="nomenclature">
+				<p class="type"><a href="#linkPageEquipe">Équipe du médialab</a></p>
+			</div>
+			<div class="image-pre">
+				<a href="#linkObjet">
+				<?php include('assets/images/patterns/pattern-1.html'); ?>
+				</a>
+				<figure>
+					<img src="images/D-Cardon-200x200.jpg" alt="Portrait de Dominique Cardon"/>
+				</figure>
+				
+			</div>
+			
+				<hgroup>
+				<a href="#linkObjet">
+					<h1 data-level-1="name">Dominique Cardon</h1>
+					<h2 data-level-2="role">Directeur du médialab</h2>
+					<!-- <p>associé.e au médialab</p> -->
 				
 				<p class="more"><a href="#linkObjet">En savoir plus</a></p>
 				</a>
@@ -46,6 +73,7 @@
 		</article>
 
 
+		<!-- if type=actualite -->
 		<article data-type="activite">
 			<div class="nomenclature">
 				<p class="type">Activité</p>

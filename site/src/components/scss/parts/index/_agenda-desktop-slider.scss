@@ -1,0 +1,248 @@
+
+/////////////////////
+//////// agenda input slider
+/////////////////////
+
+
+@mixin agenda-2caches(){
+
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_1{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_2{ @include flex(); }
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_3{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_4{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_5{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_6{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_7{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_cache{ display: none;}
+
+
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_1{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_2{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_3{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_4{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_5{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_6{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_7{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_cache{ display: block;}
+
+}
+
+
+@mixin agenda-3caches(){
+
+
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_1{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_2{ @include flex(); }
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_3{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_4{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_5{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_6{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_7{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_cache{ display: none;}
+
+
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_1{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_2{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_3{ @include flex(); }
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_4{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_5{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_6{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_7{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_cache{ display: none;}
+
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_1{ display: none;}
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_2{ display: none;}
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_3{ display: none;}
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_4{ display: none;}
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_5{ display: none;}
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_6{ display: none;}
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_7{ display: none;}
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_cache{ display: block;}
+
+}
+
+
+@mixin agenda-4caches(){
+
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_1{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_2{ @include flex(); }
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_3{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_4{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_5{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_6{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_7{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_cache{ display: none;}
+
+
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_1{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_2{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_3{ @include flex(); }
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_4{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_5{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_6{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_7{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_cache{ display: none;}
+
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_1{ display: none;}
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_2{ display: none;}
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_3{ display: none;}
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_4{ @include flex(); }
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_5{ display: none;}
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_6{ display: none;}
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_7{ display: none;}
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_cache{ display: none;}
+
+    #input_agenda_moving_left_4:checked ~ #agenda_moving_left_1{ display: none;}
+    #input_agenda_moving_left_4:checked ~ #agenda_moving_left_2{ display: none;}
+    #input_agenda_moving_left_4:checked ~ #agenda_moving_left_3{ display: none;}
+    #input_agenda_moving_left_4:checked ~ #agenda_moving_left_4{ display: none;}
+    #input_agenda_moving_left_4:checked ~ #agenda_moving_left_5{ display: none;}
+    #input_agenda_moving_left_4:checked ~ #agenda_moving_left_6{ display: none;}
+    #input_agenda_moving_left_4:checked ~ #agenda_moving_left_7{ display: none;}
+    #input_agenda_moving_left_4:checked ~ #agenda_moving_left_cache{ display: block;}
+
+}
+
+
+@mixin agenda-5caches(){
+
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_1{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_2{ @include flex(); }
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_3{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_4{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_5{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_6{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_7{ display: none;}
+    #input_agenda_moving_left_1:checked ~ #agenda_moving_left_cache{ display: none;}
+
+
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_1{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_2{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_3{ @include flex(); }
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_4{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_5{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_6{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_7{ display: none;}
+    #input_agenda_moving_left_2:checked ~ #agenda_moving_left_cache{ display: none;}
+
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_1{ display: none;}
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_2{ display: none;}
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_3{ display: none;}
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_4{ @include flex(); }
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_5{ display: none;}
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_6{ display: none;}
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_7{ display: none;}
+    #input_agenda_moving_left_3:checked ~ #agenda_moving_left_cache{ display: none;}
+
+    #input_agenda_moving_left_4:checked ~ #agenda_moving_left_1{ display: none;}
+    #input_agenda_moving_left_4:checked ~ #agenda_moving_left_2{ display: none;}
+    #input_agenda_moving_left_4:checked ~ #agenda_moving_left_3{ display: none;}
+    #input_agenda_moving_left_4:checked ~ #agenda_moving_left_4{ display: none;}
+    #input_agenda_moving_left_4:checked ~ #agenda_moving_left_5{ @include flex(); }
+    #input_agenda_moving_left_4:checked ~ #agenda_moving_left_6{ display: none;}
+    #input_agenda_moving_left_4:checked ~ #agenda_moving_left_7{ display: none;}
+    #input_agenda_moving_left_4:checked ~ #agenda_moving_left_cache{ display: none;}
+
+    #input_agenda_moving_left_5:checked ~ #agenda_moving_left_1{ display: none;}
+    #input_agenda_moving_left_5:checked ~ #agenda_moving_left_2{ display: none;}
+    #input_agenda_moving_left_5:checked ~ #agenda_moving_left_3{ display: none;}
+    #input_agenda_moving_left_5:checked ~ #agenda_moving_left_4{ display: none;}
+    #input_agenda_moving_left_5:checked ~ #agenda_moving_left_5{ display: none;}
+    #input_agenda_moving_left_5:checked ~ #agenda_moving_left_6{ display: none;}
+    #input_agenda_moving_left_5:checked ~ #agenda_moving_left_7{ display: none;}
+    #input_agenda_moving_left_5:checked ~ #agenda_moving_left_cache{ display: block;}
+
+}
+
+
+
+
+
+
+
+/* si 6 rdv ------------------------------------------------------------------------------------------- */
+
+
+
+@include for-size(desktop) {
+    :root{
+        --nbr-rdv-affiche: 3;
+        --nbr-rdv: 6;
+    }
+    @include agenda-3caches();
+}
+
+@include for-size(desktop-1300) {
+    :root{
+        --nbr-rdv-affiche: 4;
+        --nbr-rdv: 6;
+    }
+    @include agenda-2caches();
+}
+
+
+
+
+
+
+
+
+/* si 7 rdv ------------------------------------------------------------------------------------------- */
+
+/*
+
+
+@include for-size(desktop) {
+    :root{
+        --nbr-rdv-affiche: 3;
+        --nbr-rdv: 7;
+    }
+
+    @include agenda-4caches();
+}
+
+@include for-size(desktop-1300) {
+    :root{
+        --nbr-rdv-affiche: 4;
+        --nbr-rdv: 7;
+    }
+
+    @include agenda-3caches();
+}
+
+*/
+
+
+
+
+/* si 8 rdv ------------------------------------------------------------------------------------------- */
+
+/*
+
+@include for-size(desktop) {
+    :root{
+        --nbr-rdv-affiche: 3;
+        --nbr-rdv: 8;
+    }
+    @include agenda-5caches();
+}
+
+@include for-size(desktop-1300) {
+    :root{
+        --nbr-rdv-affiche: 4;
+        --nbr-rdv: 8;
+    }
+    @include agenda-4caches();
+}
+
+*/
+
+
+
+
+/* à supprimer */
+
+// #agenda{ counter-reset: agenda; }
+// #agenda article h1{ counter-increment: agenda ;}
+// #agenda article h1::before{ content: counter(agenda); }
+

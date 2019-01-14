@@ -1,0 +1,109 @@
+/////////////////////
+//////// Top bar
+/////////////////////
+
+
+#topbar{
+    input{ display: none; }
+    
+    label{
+        svg{ 
+            width: $unite-phone*3;
+            fill: $text-color;
+        }
+        position: fixed;
+        top: $margins-phone;
+        right: $margins-phone;
+        z-index: 99;
+    } 
+
+    li[data-type="actualite"]::before{
+        content: $actualites;
+    }
+    li[data-type="production"]::before{
+        content: $productions;
+    }
+    li[data-type="activite"]::before{
+        content: $activites;
+    }
+
+
+
+}
+
+
+/////////////////////
+//////// Top bar mobile
+/////////////////////
+
+
+@include for-size(phone) {
+
+    #topbar{
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        padding: $margins-phone $margins-phone;
+        color: $text-color;
+        @include font-size-20();
+        background-color: $background-site;
+        border-bottom: $border;
+        z-index: 90;
+    }
+
+            
+    #topbar-content{
+        background-color: $background-site;
+        color: $redlab;
+        width: 100%;
+        height: calc(#{$height-top-bar-phone} - #{$margins-phone*2});
+        z-index: 90;
+        #logo-medialab svg{
+            height: $unite-phone*3;
+            fill: $text-color;
+            
+        }
+        ul{ 
+            padding-top: $baseline*2;
+            padding-bottom: $baseline*1.5;
+            border-bottom: $border-redlab;
+            li{ margin-bottom: $baseline*0.5; }
+            li::before{
+                display: inline-block;
+                text-align: center;
+                // display: none;
+                width: $baseline*1;
+                margin-right: $baseline*1;
+            }
+            &:first-of-type{
+                margin-top: $baseline*0.5;
+                border-top: $border-redlab;
+            }
+        }
+
+        #langue{
+            padding-top: $baseline*2;
+            text-align: right;
+        }
+    }/* end topbar-content */
+
+
+
+    #topbar-content nav, #topbar-content #langue{ display: none}
+    #topbar input:checked ~  #topbar-content{ height: 100vh; }
+    #topbar input:checked ~  #topbar-content svg{ fill: $redlab; }
+    #topbar input:checked + label svg{ fill: $redlab; }
+
+    #topbar input:checked ~  #topbar-content nav, 
+    #topbar input:checked ~ #topbar-content #langue{
+        display: block; 
+    }
+
+
+    
+    
+
+   
+    
+}

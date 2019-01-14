@@ -1,0 +1,129 @@
+/////////////////////
+//////// Dedicated to Filter
+/////////////////////
+
+@include for-size(desktop) {
+
+	.filtre_title, .toggle-filtre-phone{
+		display: none;
+	}
+	input.filtre_objet{
+		position: fixed;
+		width: $unite*5;
+		left: $unite*-1;
+
+		&:nth-of-type(2){
+			margin-top: $baseline * 2;
+		}	
+	}
+
+	label.filtre_objet{
+
+		position: fixed;
+		width: calc( #{$logo-column/2});
+		padding-left: $unite;
+		padding-top: 2px; // Corriger décalage text/Checkbox
+
+		&:nth-of-type(2){
+			border-top: $border;
+			padding-top: $baseline * 2;
+		}
+		&:last-of-type{
+			border-bottom: $border;
+			padding-bottom: $baseline * 2;
+		}
+	}
+
+
+	@for $i from 3 through 12 {
+		input.filtre_objet:nth-of-type(#{$i}), label.filtre_objet:nth-of-type(#{$i}){ 
+			margin-top: $baseline * 2 * ($i - 1);
+		}
+	}
+}
+
+@include for-size(phone) {
+
+	label.toggle-filtre-phone{
+		height: $baseline*3;
+		position: fixed;
+		left: $margins-phone;
+		bottom: 0;
+		width: $mobile-container-width;
+		@include font-size-16-phone();
+		text-align: center;
+		border-top: $border;
+		background-color: $background-site;
+		cursor: pointer;
+		z-index: 50;
+		//transition: .25s ease-in-out;
+
+		span{
+				transform: rotate(0deg);
+				transition: .25s ease-in-out;
+				position: absolute;
+			}			
+	}
+
+	input.toggle-filtre-phone:checked {
+
+		&+ label.toggle-filtre-phone{
+
+			height: $baseline*8;
+
+			span{
+				transform: rotate(180deg);
+			}
+		}
+
+		&~ .filtre_objet{
+			visibility: visible;
+
+		}
+	}
+
+	input.filtre_objet{
+		display: none;
+	}
+
+	label.filtre_objet{
+		visibility: hidden;
+		position: fixed;
+		width: calc(#{$mobile-container-width/2} - #{$unite-phone});
+		@include text-overflow();
+		@include font-size-13-phone();
+		text-align: center;
+		left: $margins-phone;
+		bottom: $unite;
+		cursor: pointer;
+		border: $border;
+		padding-top: 2px;
+		background-color: $background-site;
+		z-index:51;
+		//transition: .25s;
+	}
+
+
+	@for $i from 1 through 13 {
+		input.filtre_objet:nth-of-type(#{$i}), label.filtre_objet:nth-of-type(#{$i}){ 
+			bottom: $baseline * $i - $baseline;
+		}
+
+		@if $i % 2 == 0 {  //use $i for calculating mod here than #{$i}
+			input.filtre_objet:nth-of-type(#{$i}), label.filtre_objet:nth-of-type(#{$i}){ 
+				bottom: $baseline * $i;
+
+			}
+		}
+	}
+
+	input.filtre_objet:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone}); }
+	label.filtre_objet:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone});}
+	
+	input.filtre_objet:checked + label.filtre_objet{ 
+		font-weight: bold;
+		color: $redlab;
+		border-color: $redlab;
+		transition-delay: inherit;
+	}
+}

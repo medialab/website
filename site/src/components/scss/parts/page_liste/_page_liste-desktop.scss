@@ -1,0 +1,91 @@
+/////////////////////
+//////// item_accroche: Desktop 
+/////////////////////
+
+@include for-size(desktop) {
+
+	#liste{
+        
+       	margin-top: $unite*1;
+
+		///// Accroche Phone
+        .accroche-titre-phone{
+        	display: none;
+        }
+        ///// Acchroche Phone END
+        ///// Liste Objet
+        #liste_objet{
+
+            width: calc(50% - #{$unite*5});
+            min-height: calc( 100vh - #{$height-top-bar});
+            left: $logo-column;
+
+			////	Liste des liens
+
+           	[data-item]{ // S'applique aux items des troix catégorie
+				min-height: $unite*3;
+				padding-top: $baseline;
+				padding-bottom: $baseline;
+                display: block;
+
+				h1{
+					@include typo-list_title();
+				}
+
+				a{ width: 100%;}
+				
+
+				ul{
+					width: 100%;
+					padding-top: $baseline*0.5;
+					display: block;
+
+
+					li.title{  display: inline-block; width: 30%; padding-right: 10px; }
+					li.type{  display: inline-block; width: 30%; padding-right: 10px;}
+					li.time{  display: inline-block;width: 20%; padding-right: 10px;}	
+					li.direct_link{	display: inline-block; width: 20%;}
+
+					@supports (display: flex){
+							@include flex();
+                			@include align-items(center);
+
+						li.activite{  display: inline-block; width: 200px; padding-right: 10px; }
+						li.type{  display: inline-block; width: 200px; padding-right: 10px;}
+						li.time{  display: inline-block;width: 100px; padding-right: 10px;}	
+						li.direct_link{	display: inline-block; width: 20px;}
+					}
+
+				}
+			}
+
+			////	Accroche
+
+		    [data-item] ~ [data-item-accroche]{ display: none; }
+
+		    .accroche-titre{ display: block; }
+
+		    @for $i from 1 through 400 {
+		    	[data-item="#{$i}"]:hover{
+		    		color: $redlab;
+		    	}
+		        [data-item="#{$i}"]:hover ~ [data-item-accroche="#{$i}"]{ display:block; }
+		        [data-item="#{$i}"]:hover ~ .accroche-titre{ display:none; }
+		    }
+		    .item_accroche{
+		        @include font-size-40();
+		        position: fixed;
+				width: calc( ( ( 100% - #{$logo-column} ) /2 ) - #{$margins-desktop*2} );
+				left: calc( 50% + #{$logo-column/2} + #{$unite} );
+				top: calc( #{$height-top-bar} + #{$unite});
+				border-top: $border;
+				padding-top: $unite/2;		        
+
+				@include for-size(desktop-1300) {
+					 // Prevenir des lignes trop étendues sur grand écran
+					width: calc( ( ( 90% - #{$logo-column} ) /2 ) - #{$margins-desktop*2} );
+				}
+		    }
+        }
+    }
+}

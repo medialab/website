@@ -53,6 +53,18 @@ input:checked + label .span-nochecked {
 input:checked + label .span-checked {
   display: block; }
 
+.nomenclature p {
+  display: inline; }
+  .nomenclature p + p::before {
+    content: " / "; }
+
+.author span {
+  white-space: nowrap; }
+  .author span:after {
+    content: ", "; }
+  .author span:last-of-type:after {
+    content: ""; }
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -450,6 +462,11 @@ ul {
       border-bottom: 0.5px solid #f7323f; }
       #topbar-content ul li {
         margin-bottom: 7.5px; }
+      #topbar-content ul li::before {
+        display: inline-block;
+        text-align: center;
+        width: 15px;
+        margin-right: 15px; }
       #topbar-content ul:first-of-type {
         margin-top: 7.5px;
         border-top: 0.5px solid #f7323f; }
@@ -474,6 +491,9 @@ ul {
   #topbar input:checked ~ #topbar-content #langue {
     display: block; } }
 @media (min-width: 700px) {
+  #nav-home {
+    display: none !important; }
+
   #topbar {
     padding: 25px 0;
     width: 100%;
@@ -481,7 +501,9 @@ ul {
     color: #444;
     font-size: 16px;
     line-height: 24px;
-    font-weight: 100; }
+    font-weight: 100;
+    text-transform: uppercase;
+    letter-spacing: 0.2px; }
 
   #topbar label {
     display: none;

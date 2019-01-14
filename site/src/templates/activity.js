@@ -2,7 +2,7 @@ import React from 'react';
 import {graphql} from 'gatsby';
 import {replaceAssetPaths} from '../utils';
 
-import Layout from '../components/Layout';
+import Layout_objet from '../components/Layout_objet';
 import ActivityDetail from '../components/ActivityDetail';
 
 export const query = graphql`
@@ -19,8 +19,8 @@ export default ({data, pageContext}) => {
   replaceAssetPaths(data.activitiesJson.assets, data.activitiesJson.bio);
 
   return (
-    <Layout lang={pageContext.lang}>
+    <Layout_objet lang={pageContext.lang}>
       <ActivityDetail lang={pageContext.lang} data={data.activitiesJson} />
-    </Layout>
+    </Layout_objet>
   );
 };

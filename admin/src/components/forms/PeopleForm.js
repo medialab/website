@@ -299,11 +299,13 @@ function renderPeopleForm(props) {
               <label className="label">Activities</label>
               <div className="control">
                 <RelationSelector
+                  sortable
                   model="activities"
                   max={5}
                   selected={data.mainActivities}
                   onAdd={handlers.mainActivities.add}
-                  onDrop={handlers.mainActivities.drop} />
+                  onDrop={handlers.mainActivities.drop}
+                  onMove={handlers.mainActivities.move} />
               </div>
             </div>
           </div>
@@ -315,11 +317,13 @@ function renderPeopleForm(props) {
               <label className="label">Productions</label>
               <div className="control">
                 <RelationSelector
+                  sortable
                   model="productions"
                   max={5}
                   selected={data.mainProductions}
                   onAdd={handlers.mainProductions.add}
-                  onDrop={handlers.mainProductions.drop} />
+                  onDrop={handlers.mainProductions.drop}
+                  onMove={handlers.mainProductions.move} />
               </div>
             </div>
           </div>

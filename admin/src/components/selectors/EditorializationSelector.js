@@ -105,7 +105,7 @@ export default class EditorializationSelector extends Component {
   render() {
     const {options, loading} = this.state;
 
-    const {onDrop, onSortEnd, selected = []} = this.props;
+    const {onDrop, onMove, selected = []} = this.props;
 
     const selectedSet = new Set(selected.map(item => item[1]));
 
@@ -124,7 +124,7 @@ export default class EditorializationSelector extends Component {
             index={this.optionsIndex}
             useDragHandle
             onDrop={onDrop}
-            onSortEnd={onSortEnd} />
+            onSortEnd={onMove} />
         }
         <br />
         <Select

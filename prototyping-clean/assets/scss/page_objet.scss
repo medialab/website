@@ -10,7 +10,12 @@
 @import 'parts/page_objet/page_objet-phone';
 
 @import 'parts/page_objet/nav-article';
+@import 'parts/page_objet/fichiers-associes';
 @import 'parts/page_objet/elements-associes';
+@import 'parts/index/now-desktop';
+
+#elements-associes .more{ display: none;}
+
 
 // Specific to the nature of Page ( People, / Production ...)
 @import 'parts/page_objet/page_objet_personne';

@@ -171,21 +171,6 @@
 		</article>
 
 
-		<article data-type="activite">
-			<div class="nomenclature">
-				<p class="type">Activité</p>
-				<p class="sous-type"><a href="#">Pédagogie</a></p>
-			</div>
-			<div class="image-pre">
-				<?php include('assets/images/sample_txt/naturpradi_xs.html'); ?>
-			</div>
-			<hgroup><a href="#">
-				<h1 data-level-1="baseline">Marchés financiers : que sont les “bonnes” relations sociales d’échange?</h1>
-				<h2 data-level-2="name">How not to be a bad trader.</h2>
-			<p class="more"><a href="#">En savoir plus</a></p>
-			</a></hgroup>
-		</article>
-
 
 	</div>
 </section>

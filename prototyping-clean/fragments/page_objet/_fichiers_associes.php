@@ -1,6 +1,6 @@
 <!-- FICHIERS ASSOCIÉS -->
 <aside class="container" id="fichiers-associes">
-  <h2>Fichiers associés</h2>
+  <h1>Fichiers associés</h1>
 		<ul>
 			<li>
 			<a href="#">

@@ -4,19 +4,6 @@
     content: "◷ ";
 }
 
-.nomenclature p{
-    display: inline; 
-    & + p::before{
-        content: " / "
-    }
-}
-
-
-.author span{ 
-    white-space: nowrap;
-    &:after{ content: ", "}
-    &:last-of-type:after{ content: ""}
-}
 
 
 

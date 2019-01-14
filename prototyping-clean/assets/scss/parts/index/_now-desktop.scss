@@ -6,7 +6,7 @@
 
 /* no support of grid */
 @include for-size(desktop){
-    #now .contenu article{
+    #now .contenu article, #elements-associes .contenu article{
         display: inline-block;
         width: 46%;
         margin-right: $unite;
@@ -16,11 +16,11 @@
 }
 
 @include for-size(desktop-900) {
-    #now .contenu article{  width: 30%; }
+    #now .contenu article, #elements-associes .contenu article{  width: 30%; }
 }
 
 @include for-size(desktop-1300) {
-    #now .contenu article{  width: 22%; }
+    #now .contenu article, #elements-associes .contenu article{  width: 22%; }
 }
 
 
@@ -30,7 +30,7 @@
 
     /* grid support */
     @supports(display: grid) {
-        #now .contenu{
+        #now .contenu, #elements-associes .contenu{
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             grid-template-rows: auto auto;
@@ -46,7 +46,7 @@
     /* grid support for Edge (old syntax) */
     @supports (display: -ms-grid) {
 
-        #now .contenu{
+        #now .contenu, #elements-associes .contenu{
             display: -ms-grid;
             -ms-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             -ms-grid-template-rows: auto auto;
@@ -60,7 +60,7 @@
     }
 
 
-    #now {
+    #now, #elements-associes {
 
         .contenu{ margin-top: $baseline*3; }
 
@@ -157,20 +157,20 @@
 
 /* height of the image pre */
 @include for-size(phone){
-    #now .image-pre { 
+    #now .image-pre, #elements-associes .image-pre { 
         height: $font-size*10; 
         border-bottom: $border-light;
     }
 }
 
 @include for-size(desktop){
-    #now .image-pre { height: $font-size*20; }
+    #now .image-pre, #elements-associes .image-pre { height: $font-size*20; }
 }
 
 
 /* phone margins */
 @include for-size(phone){
-    #now article { 
+    #now article, #elements-associes article { 
         margin-top: $baseline*1!important;
         margin-bottom: $baseline*1!important; 
     }

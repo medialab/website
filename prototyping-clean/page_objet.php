@@ -19,18 +19,18 @@
 <?php include('fragments/_topbar.php'); ?>
 <?php include('fragments/page_objet/_nav.php'); ?>
 
-<main>
+<main id="main-objet">
 
 	<p class="titre-sticky">RICardo Project</p>
 	<!-- PUBLICATION -->
-	<article id="item-1">
+	<article id="article-contenu">
 
 		<hgroup>
 			<h1>Exploring XIX Century International Trade</h1>
 			<h2>We present the RICardo data visualization application designed to explore a XIXth century international trade statistics database.</h2>
 
 			<p class="date">11/11/2016</p>
-			<p class="type">Conference</p>
+			<p class="type-objet">Conference</p>
 			
 		</hgroup>
 
@@ -92,8 +92,12 @@
 	</article>
 
 
-<?php include('fragments/page_objet/_fichiers_associes.php'); ?>
-<?php include('fragments/page_objet/_elements_associes.php'); ?>
+
+
+	<?php include('fragments/page_objet/_fichiers_associes.php'); ?>
+	<?php include('fragments/page_objet/_elements_associes.php'); ?>
+
+</main>
 
 	
 </body>

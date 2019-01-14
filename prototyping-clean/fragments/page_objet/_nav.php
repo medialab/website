@@ -15,7 +15,7 @@
 		</div>
 	</div>
 	<div class="nav-inside-item" >
-		<a href="#item-1"><p class="item-1">Article</p></a>
+		<a href="#main-objet"><p class="article-contenu">Article</p></a>
 	</div>
 	<div class="nav-inside-item" >
 	<a href="#fichiers-associes"><p>Fichiers associés</p></a>

@@ -1,3 +1,6 @@
+$width-main-image: calc( 100vw - #{$margins-desktop*2});
+
+
 @include for-size(desktop) {
     #nav-inside-article{
         padding-top:$margins-desktop;
@@ -14,6 +17,10 @@
         justify-content: stretch;
         align-content: stretch;
 
+        #img-article{
+
+        }
+
         .nav-inside-item{
             //height: $height-nav;
             height: $unite*3;
@@ -21,8 +28,9 @@
             background-color: white;
             border-bottom: 1px solid black;
             //fonts
-            font-size: $font-size*1.3;
-            font-weight: 300;
+            
+            @include font-size-16();
+            
             display: flex;
             align-items: center;
             &:first-of-type{
@@ -50,6 +58,9 @@
             width: $logo-column/2;
             overflow: hidden;
             transition: width .25s linear;
+            font-size: $font-size*1.3!important;
+            line-height: 1.15!important;
+            font-weight: 300!important;
             .image-generator{ 
                 transition: opacity 1s linear; 
                 
@@ -75,13 +86,13 @@
         }
 
         #img-article:hover{
-            width: $container-width;
+            width: $width-main-image;
             // overflow: visible;
             .image-generator{ 
                 z-index: 2;
             }
             img{
-                width: calc(#{$container-width} * 2);
+                width: calc(#{$width-main-image} * 2);
                 opacity: 1;
                 transition: opacity 1s linear;
                 height: 100%;

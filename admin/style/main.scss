@@ -29,18 +29,18 @@ li {
   z-index: 10000;
 }
 
-.tags-container{
+.tags-container {
   display: flex;
 
-  > li{
+  > li {
     margin-right: 1rem;
   }
 }
 
-.form-group{
+.form-group {
   margin-bottom: 4rem;
 
-  &.is-important{
+  &.is-important {
     background: $white-ter;// rgba(0,0,0,0.1);
     padding: 1rem;
   }

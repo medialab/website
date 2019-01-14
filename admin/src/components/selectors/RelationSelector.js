@@ -72,7 +72,7 @@ export default class RelationSelector extends Component {
             options={filteredOptions.filter(o => !selectedSet.has(o.value))}
             isLoading={loading}
             menuPlacement="top"
-            placeholder="Add..."
+            placeholder="Search..."
             noOptionsMessage={noOptionsMessages[model]}
             styles={{menu: provided => ({...provided, zIndex: 1000})}} />
         </div>

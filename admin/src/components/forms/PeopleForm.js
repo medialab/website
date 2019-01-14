@@ -8,6 +8,7 @@ import Editor from '../Editor';
 import EnumSelector from '../selectors/EnumSelector';
 import BooleanSelector from '../selectors/BooleanSelector';
 import RelationSelector from '../selectors/RelationSelector';
+import SortableKeyValueList from '../selectors/SortableKeyValueList';
 import SuggestionSelector from '../selectors/SuggestionSelector';
 
 function slugifyPeople(data) {
@@ -19,7 +20,7 @@ function validate(data) {
     return 'Need at least a first name & a last name';
 }
 
-// TODO: contact, sortable relations
+// TODO: sortable relations
 const HANDLERS = {
   firstName: {
     type: 'slug',
@@ -60,6 +61,10 @@ const HANDLERS = {
   frenchContent: {
     type: 'raw',
     field: ['bio', 'fr']
+  },
+  contacts: {
+    type: 'relation',
+    field: 'contacts'
   },
   mainActivities: {
     type: 'relation',
@@ -261,6 +266,26 @@ function renderPeopleForm(props) {
           </div>
 
         </div>
+
+      </div>
+
+      <div className="form-group">
+        <h4 className="title is-4">
+          Contacts
+        </h4>
+
+        <div className="columns">
+          <div className="column is-6">
+            <SortableKeyValueList
+              items={data.contacts}
+              model="people"
+              field="contacts.label"
+              onAdd={handlers.contacts.add}
+              onDrop={handlers.contacts.drop}
+              onMove={handlers.contacts.move} />
+          </div>
+        </div>
+
       </div>
 
       <div className="form-group">

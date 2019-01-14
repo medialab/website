@@ -116,20 +116,6 @@ function renderActivityForm(props) {
         <div className="columns">
           <div className="column is-6">
             <div className="field">
-              <label className="label">English Baseline</label>
-              <div className="control">
-                <textarea
-                  className="textarea"
-                  value={(data.baseline && data.baseline.en) || ''}
-                  onChange={handlers.englishBaseline}
-                  placeholder="English Baseline"
-                  rows={2} />
-              </div>
-            </div>
-          </div>
-
-          <div className="column is-6">
-            <div className="field">
               <label className="label">French Baseline</label>
               <div className="control">
                 <textarea
@@ -137,6 +123,20 @@ function renderActivityForm(props) {
                   value={(data.baseline && data.baseline.fr) || ''}
                   onChange={handlers.frenchBaseline}
                   placeholder="French Baseline"
+                  rows={2} />
+              </div>
+            </div>
+          </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Baseline</label>
+              <div className="control">
+                <textarea
+                  className="textarea"
+                  value={(data.baseline && data.baseline.en) || ''}
+                  onChange={handlers.englishBaseline}
+                  placeholder="English Baseline"
                   rows={2} />
               </div>
             </div>
@@ -173,19 +173,6 @@ function renderActivityForm(props) {
         </h4>
 
         <div className="columns">
-          <div className="column is-6">
-            <div className="field">
-              <label className="label">English Description</label>
-              <div className="control">
-                <textarea
-                  className="textarea"
-                  value={(data.description && data.description.en) || ''}
-                  onChange={handlers.englishDescription}
-                  placeholder="English Description"
-                  rows={4} />
-              </div>
-            </div>
-          </div>
 
           <div className="column is-6">
             <div className="field">
@@ -200,17 +187,24 @@ function renderActivityForm(props) {
               </div>
             </div>
           </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Description</label>
+              <div className="control">
+                <textarea
+                  className="textarea"
+                  value={(data.description && data.description.en) || ''}
+                  onChange={handlers.englishDescription}
+                  placeholder="English Description"
+                  rows={4} />
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div className="columns">
-          <div className="column is-6">
-            <div className="field">
-              <label className="label">English Content</label>
-              <Editor
-                content={englishEditorContent}
-                onSave={handlers.englishContent} />
-            </div>
-          </div>
 
           <div className="column is-6">
             <div className="field">
@@ -220,6 +214,16 @@ function renderActivityForm(props) {
                 onSave={handlers.frenchContent} />
             </div>
           </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Content</label>
+              <Editor
+                content={englishEditorContent}
+                onSave={handlers.englishContent} />
+            </div>
+          </div>
+
         </div>
       </div>
 

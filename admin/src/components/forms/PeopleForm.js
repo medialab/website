@@ -181,17 +181,6 @@ function renderPeopleForm(props) {
         </div>
 
         <div className="columns">
-          <div className="column is-6">
-            <div className="field">
-              <label className="label">English Role</label>
-              <SuggestionSelector
-                model="people"
-                field={['role', 'en']}
-                placeholder="English role..."
-                onChange={handlers.englishRole}
-                value={(data.role && data.role.en) || null} />
-            </div>
-          </div>
 
           <div className="column is-6">
             <div className="field">
@@ -204,22 +193,22 @@ function renderPeopleForm(props) {
                 value={(data.role && data.role.fr) || null} />
             </div>
           </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Role</label>
+              <SuggestionSelector
+                model="people"
+                field={['role', 'en']}
+                placeholder="English role..."
+                onChange={handlers.englishRole}
+                value={(data.role && data.role.en) || null} />
+            </div>
+          </div>
+
         </div>
 
         <div className="columns">
-          <div className="column is-6">
-            <div className="field">
-              <label className="label">English Status</label>
-              <div className="control">
-                <textarea
-                  className="textarea"
-                  value={(data.status && data.status.en) || ''}
-                  onChange={handlers.englishStatus}
-                  placeholder="English Status"
-                  rows={2} />
-              </div>
-            </div>
-          </div>
 
           <div className="column is-6">
             <div className="field">
@@ -234,17 +223,24 @@ function renderPeopleForm(props) {
               </div>
             </div>
           </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Status</label>
+              <div className="control">
+                <textarea
+                  className="textarea"
+                  value={(data.status && data.status.en) || ''}
+                  onChange={handlers.englishStatus}
+                  placeholder="English Status"
+                  rows={2} />
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div className="columns">
-          <div className="column is-6">
-            <div className="field">
-              <label className="label">English Biography</label>
-              <Editor
-                content={englishEditorContent}
-                onSave={handlers.englishContent} />
-            </div>
-          </div>
 
           <div className="column is-6">
             <div className="field">
@@ -254,6 +250,16 @@ function renderPeopleForm(props) {
                 onSave={handlers.frenchContent} />
             </div>
           </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Biography</label>
+              <Editor
+                content={englishEditorContent}
+                onSave={handlers.englishContent} />
+            </div>
+          </div>
+
         </div>
       </div>
 

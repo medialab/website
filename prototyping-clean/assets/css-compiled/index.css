@@ -57,6 +57,18 @@ input:checked + label .span-nochecked {
 input:checked + label .span-checked {
   display: block; }
 
+.nomenclature p {
+  display: inline; }
+  .nomenclature p + p::before {
+    content: " / "; }
+
+.author span {
+  white-space: nowrap; }
+  .author span:after {
+    content: ", "; }
+  .author span:last-of-type:after {
+    content: ""; }
+
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -489,9 +501,11 @@ ul {
     width: 100%;
     height: 150px;
     color: #444;
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 100; }
+    font-size: 13px;
+    line-height: 19.5px;
+    font-weight: 100;
+    text-transform: uppercase;
+    letter-spacing: 0.2px; }
   #topbar label {
     display: none;
     cursor: pointer; }
@@ -558,18 +572,6 @@ ul {
 .time::before {
   content: "◷ "; }
 
-.nomenclature p {
-  display: inline; }
-  .nomenclature p + p::before {
-    content: " / "; }
-
-.author span {
-  white-space: nowrap; }
-  .author span:after {
-    content: ", "; }
-  .author span:last-of-type:after {
-    content: ""; }
-
 @media (max-width: 700px) {
   #introduction, #now, #agenda {
     border-bottom: 3px double;
@@ -588,8 +590,10 @@ ul {
   #nav-home {
     display: none; }
   #introduction, #now, #agenda {
-    border-bottom: 0.5px solid;
+    border-bottom: 3px double;
     padding-bottom: 60px; }
+  #slideshow {
+    border-bottom: 3px double; }
   section > h1 {
     font-size: 27px;
     font-weight: 100;
@@ -731,7 +735,6 @@ ul {
     max-height: 800px;
     margin: 0 auto;
     border-top: 0.5px solid;
-    border-bottom: 0.5px solid;
     /* end slideshow-item*/
     /* Navigatin slideshow flêches ----------------------------------------------- */
     /* Navigatin slideshow bullets ----------------------------------------------- */ }

@@ -69,6 +69,13 @@
             padding-bottom: $baseline*1.5;
             border-bottom: $border-redlab;
             li{ margin-bottom: $baseline*0.5; }
+            li::before{
+                display: inline-block;
+                text-align: center;
+                // display: none;
+                width: $baseline*1;
+                margin-right: $baseline*1;
+            }
             &:first-of-type{
                 margin-top: $baseline*0.5;
                 border-top: $border-redlab;

@@ -12,7 +12,14 @@
 			<?php include('assets/svg/logo_medialab_draft.svg'); ?>
 			</a>
 		</div>
+
+
 		<nav id="nav-option">
+			<ul id="nav-home">
+				<li><a href="linkHome#now">En ce moment</a></li>
+				<li><a href="linkHome#agenda">Les rendez-vous du labo</a></li>
+				<li><a href="linkHome#flux">Flux</a></li>
+			</ul>
 			<ul id="nav-objet">
 
               	<li data-type="actualite"><a href="page_liste.php?type=actualite">Actualités</a></li>

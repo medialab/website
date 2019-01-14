@@ -45,6 +45,8 @@
 
 @include for-size(desktop) {
 
+    #nav-home{ display: none; }
+
     #introduction, #now, #agenda{
         border-bottom: $border;
         padding-bottom: $baseline*4;

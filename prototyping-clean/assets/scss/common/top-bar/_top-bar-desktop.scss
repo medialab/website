@@ -4,6 +4,9 @@
 
 @include for-size(desktop) {
 
+    
+    #nav-home{ display: none!important; }
+    
     #topbar{
         padding: $margins-desktop 0;
         width: 100%;
@@ -56,6 +59,8 @@
             }
         }
     }/* end #topbar-content */
+
+    
 
 }/* end desktop */
 

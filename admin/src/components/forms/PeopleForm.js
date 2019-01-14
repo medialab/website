@@ -275,7 +275,7 @@ function renderPeopleForm(props) {
         </h4>
 
         <div className="columns">
-          <div className="column is-6">
+          <div className="column is-8">
             <SortableKeyValueList
               items={data.contacts}
               model="people"

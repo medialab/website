@@ -160,7 +160,7 @@ app.post('/upload', (req, res) => {
     if (err)
       return res.status(500).send(err);
 
-    return res.status(200).json({name});
+    return res.status(200).json({name, originalName: file.name});
   });
 });
 

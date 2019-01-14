@@ -16,8 +16,10 @@ attendees:
   - des activités
 
 L'observation des ateliers servirait à produire des **guides d'écriture**. Ces guides (la forme n'a pas été discutée) ont pour intention d'aider à rédiger les contenus.
-Par exemple, lorsqu'on crée un projet (Activity), il faudrait au moins que chaque projet présente : le contexte d'utilisation, la méthodologie, son but, les partenaires et à qui il s'adresse.
+Par exemple, lorsqu'on crée un projet (Activity), il faudrait au moins que chaque projet présente : le contexte général dans lequel s'intègre le projet, son but, la méthodologie, et les partenaires.
 Pour des personnes (People), Amélie évoque la formation, le parcours et les activités actuelles.
+
+- avoir des retours sur le CMS et son usage.
 
 ## Indicateurs de réussite
 
@@ -40,6 +42,7 @@ Le contenu du CMS est géré en base de données tandis que la version publiée 
 ## Dépôts Git
 
 Le **dépôt GitHub** contient le code source du site. Ce n'est pas clair quelle action faire pour déployer un changement de code en production ou préproduction.
+**Warning Amélie  : ca me parrait assez clair à moi**
 
 Le **dépôt GitLab** contient les données du CMS. Ce choix s'explique par le souhait préventif de ne pas avoir de données personnelles qui trainent. L'intégration continue de GitLab publie le site en production et préproduction.
 
@@ -56,7 +59,7 @@ Il y a du thé, des biscuits bio et des fruits bio, si possible de saison. Un so
 
 ![Une personne en train de naviguer dans l'interface d'administration.](IMG_20190111_093331.jpg)
 
-**Rôle et Statut** : une longue discussion a émergé sur l'intention des champs et leurs valeurs. Il semblerait qu'il y ait une volonté d'harmoniser les intitulés de poste, et de le compléter avec le champ Status. Le Role serait une peut-être à changer pour une liste fermée. Pour faciliter le repérage de "qui fait le même travail que qui ?".
+**Rôle et Statut** : une longue discussion a émergé sur l'intention des champs et leurs valeurs. Il semblerait qu'il y ait une volonté d'harmoniser les intitulés de poste, et de le compléter avec le champ Status. Le Role serait peut-être à changer pour une liste fermée. Pour faciliter le repérage de "qui fait le même travail que qui ?".
 
 **Thèse** : s'il y a une distinction entre thésard·e et personnel encadrant, ça offrirait la possibilité de démarcher quelqu'un pour devenir son thésard·e. C'est une pratique courante dans le domaine.
 
@@ -112,7 +115,7 @@ Il y a du thé, des biscuits bio et des fruits bio, si possible de saison. Un so
 
 😀 Je suis content d'avoir vu Robin alors qu'il n'avait pas prévu d'assister à la session. Son regard est ressenti comme précieux.
 
-😀 C'était chouette d'avoir l'avis et le regard de Dominique Cardon parce qu'il était resté discret jusqu'à présent. C'est vécu comme un **moment phare** de la session.
+😀 C'était chouette d'avoir l'avis et le regard de Dominique parce qu'il était resté discret jusqu'à présent. C'est vécu comme un **moment phare** de la session.
 
 😀 La session a aidé à répondre à des questionnements jusqu'alors restés en suspens.
 
@@ -122,7 +125,9 @@ Il y a du thé, des biscuits bio et des fruits bio, si possible de saison. Un so
 
 > Je me suis sentie démunie (de ne pas avoir pu clairement montrer où étaient utilisés les champs, la Preview ne les affichaient pas en contexte — Objet, Liste d'Objet, etc.)
 
-😫 J'ai attendu longtemps d'avoir quelque chose de visualisable. J'ai le sentiment d'avancer à l'aveugle. C'est une frustration que je tais — on est mi-janvier et je n'ai accès à l'admin _que maintenant_.
+😫 J'ai attendu longtemps d'avoir quelque chose de visualisable. J'ai le sentiment d'avancer à l'aveugle entre chaque réunion car je n'ai pas "accès" à ce qui est produit.
+
+😫 Une de mes frustrations repose sur la gestion du temps: je n'ai accès à l'admin _que maintenant_ mais on aurait pu commencer a tester des ajouts de contenus avant.
 
 😫 Un effet de bord de la session a révélé la difficulté d'un accès sans contrainte aux maquettes, en dehors des réunions de présentation. Il semblerait que la frustration soit très élevée, que l'attente est celle d'une livraison post-réunion, et que cette attente soit invisibilisée par les pairs.
 

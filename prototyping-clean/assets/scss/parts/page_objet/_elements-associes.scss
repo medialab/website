@@ -1,8 +1,0 @@
-///// Global 
-
-///// Filtre
-// chekbox elements
-input.filtre_objet:checked ~ .contenu article{display: none;}
-input#filtre_equipe:checked ~ .contenu .people{ display: block !important; }
-input#filtre_production:checked ~ .contenu .production{ display: block !important; }
-input#filtre_activite:checked ~ .contenu .activite{ display: block !important; }

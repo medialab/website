@@ -5,7 +5,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 	
-    <title>Medialab - Proto</title>
+    <title>Medialab - Page Objet</title>
     <!-- styles -->
     <style type="text/css"></style>
     <link rel="stylesheet" href="assets/fonts/Museo_Sans/stylesheet.css">
@@ -17,7 +17,7 @@
 
 <body>
 <?php include('fragments/_topbar.php'); ?>
-<?php include('fragments/page_objet/_nav.php'); ?>
+<?php include('fragments/pages/_nav.php'); ?>
 
 <main id="main-objet">
 
@@ -94,8 +94,8 @@
 
 
 
-	<?php include('fragments/page_objet/_fichiers_associes.php'); ?>
-	<?php include('fragments/page_objet/_elements_associes.php'); ?>
+	<?php include('fragments/pages/_fichiers_associes.php'); ?>
+	<?php include('fragments/pages/_elements_associes.php'); ?>
 
 </main>
 

@@ -44,6 +44,17 @@
 	flex-direction: $value;
 }
 
+@mixin flex-wrap($value: nowrap) {
+  // No Webkit/FF Box fallback.
+  -webkit-flex-wrap: $value;
+  @if $value == nowrap {
+    -ms-flex-wrap: none;
+  } @else {
+    -ms-flex-wrap: $value;
+  }
+  flex-wrap: $value;
+}
+
 @mixin justify-content($value: flex-start) {
     @if $value == flex-start {
       -webkit-box-pack: start;

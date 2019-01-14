@@ -1,0 +1,67 @@
+/////////////////////
+//////// Agenda style
+/////////////////////
+
+@include for-size(phone) {
+
+    .agenda_moving_left, .agenda_moving_right, .past{ display: none; }
+
+    #agenda{
+
+        #agenda-contenu{
+            margin-top: $baseline*4;
+        }
+
+        article{
+            margin: 0 $margins-phone;
+            // margin-bottom: $baseline*2;
+            border-top: $border-light;
+            padding: $baseline*2 0;
+
+
+            .year-main{ display: none; }
+            
+            .internal{
+                font-size: 11px;
+                position: absolute;
+                top: $baseline/4 + $baseline*2;
+                // left: $unite-phone*-4;
+                right: 0;
+                span{
+                    display: block;
+                    padding-top: 3px;
+                    height: $baseline*1.3;
+                    width: $baseline*1.3;
+                    color: $text-color-light;
+                    border: $border-light; 
+                    border-radius: 50%;
+                    text-align: center;
+                }
+            }
+
+
+            .time{ 
+                @include font-size-20-phone(); 
+                .week{ display: none; }
+
+      
+            }
+
+            h1{ 
+                @include font-size-20-phone();
+                padding-top: $baseline;  
+            }
+
+            h2{ 
+                @include font-size-13-phone(); 
+                padding-bottom: $baseline;  
+            }
+
+            .place, .hours{ @include font-size-13-phone();  }
+
+        }
+
+    } /* end agenda*/
+
+} /* end phone*/
+

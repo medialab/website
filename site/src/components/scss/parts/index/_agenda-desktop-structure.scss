@@ -1,0 +1,176 @@
+/////////////////////
+//////// Agenda structure
+/////////////////////
+
+$width-agenda-nav: 50px;
+
+
+// @media screen and (max-width: 1000px) {
+//  #agenga{ color: green;}
+// }
+
+@include for-size(desktop) {
+
+    #agenda-contenu{
+        width: calc((100vw - #{$width-agenda-nav}*2)/var(--nbr-rdv-affiche)*(var(--nbr-rdv) + 1));
+        left: calc(((100vw + #{$margins-desktop}*var(--nbr-rdv-affiche) - #{$width-agenda-nav}*2)/var(--nbr-rdv-affiche)) * -1 + #{$width-agenda-nav});
+        height: 100%;
+        @include flex();
+        transition: .75s ease-in-out;
+
+
+        article{
+            
+            width: calc(((100vw - #{$width-agenda-nav}*2)/var(--nbr-rdv-affiche)));
+            // height: 100%;
+            transition: .75s ease-in-out;
+            @include flex();
+            @include flex-direction(column);
+
+            
+
+            
+
+            .place, .hours{ 
+                flex-grow: 1;
+                @include flex();
+                @include align-items(flex-end); 
+            }
+
+            .hours + .place{
+                flex-grow: 0;
+            }
+
+            &.past{
+                opacity: .5;
+            }
+
+        }
+
+    }
+
+
+
+
+
+
+    #agenda{
+
+
+
+        .agenda_moving_left, .agenda_moving_right{
+            position: absolute;
+            top: 0;
+            width: $width-agenda-nav;
+            height: 100%;
+            background-color: $background-site;
+            color: $text-color;
+            z-index: 999;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;  
+            span{ padding: 3rem;}
+            &:hover{ color: $redlab; }
+        }
+
+
+        /* flèche de gauche */
+        .agenda_moving_right{
+            left: - $margins-desktop;
+            border-right: $border-light;
+            span{ 
+                left: -18px; 
+                letter-spacing: -30px;
+            }
+        }
+
+
+        /* flèche de droite */
+        .agenda_moving_left{
+            width: $width-agenda-nav + 1px;
+            right: - $margins-desktop;
+            border-left: $border-light;
+            span{ left: 8px; }
+        }
+        
+
+    
+
+        /* départ */
+        @for $i from 2 through 8 {
+            #agenda_moving_left_#{$i}{ display: none;}
+        }
+        #agenda_moving_left_cache{ display: none;}
+
+        /* bouge de 1 vers future*/
+
+        #agenda_moving_left_1:hover ~ #agenda-contenu, 
+        #input_agenda_moving_left_1:checked ~ #agenda-contenu{ //~
+            transform: translateX(calc(((100vw - #{$width-agenda-nav}*2)/var(--nbr-rdv-affiche)) * -1));
+        }
+
+        /* bouge de 2 vers future*/
+        // #agenda_moving_left_2:hover ~ #agenda-contenu, 
+        #input_agenda_moving_left_2:checked ~ #agenda-contenu{ //~
+            transform: translateX(calc(((100vw - #{$width-agenda-nav}*2)/var(--nbr-rdv-affiche)) * -2));
+        }
+
+
+        /* bouge de 3 vers future*/
+        // #agenda_moving_left_3:hover ~ #agenda-contenu, 
+        #input_agenda_moving_left_3:checked ~ #agenda-contenu{ //~
+            transform: translateX(calc(((100vw - #{$width-agenda-nav}*2)/var(--nbr-rdv-affiche)) * -3));
+        }
+
+        /* bouge de 4 vers future*/
+        // #agenda_moving_left_4:hover ~ #agenda-contenu, 
+        #input_agenda_moving_left_4:checked ~ #agenda-contenu{ //~
+            transform: translateX(calc(((100vw - #{$width-agenda-nav}*2)/var(--nbr-rdv-affiche)) * -4));
+        }
+
+        /* bouge de 5 vers future*/
+        // #agenda_moving_left_5:hover ~ #agenda-contenu, 
+        #input_agenda_moving_left_5:checked ~ #agenda-contenu{ //~
+            transform: translateX(calc(((100vw - #{$width-agenda-nav}*2)/var(--nbr-rdv-affiche)) * -5));
+        }
+
+
+        
+
+
+
+        /* remet à zéro */
+
+        @for $i from 1 through 8 {
+            #input_agenda_moving_left_#{$i}:checked ~ #agenda_moving_right_1{ display: none;}
+        }
+
+
+        #agenda_moving_right:hover ~ #agenda-contenu,
+        #input_agenda_moving_right:checked ~ #agenda-contenu{ //~
+            transform: translateX(0);
+
+        }
+
+        /* voir passé */
+        // #agenda_moving_right_1:hover ~ #agenda-contenu ,
+        #input_agenda_moving_right_1:checked ~ #agenda-contenu { 
+            transform: translateX(calc((100vw - #{$width-agenda-nav}*2)/var(--nbr-rdv-affiche)) );
+
+        }
+
+
+    } /* end #agenda*/
+
+} /* end query 1000 */
+
+
+@include for-size(desktop-1300) {
+
+    #agenda-contenu h2{ margin-bottom: $baseline*6!important; }
+}
+
+
+

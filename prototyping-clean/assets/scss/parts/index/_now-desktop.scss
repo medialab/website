@@ -26,7 +26,7 @@
 
 
 
-// @include for-size(desktop) {
+@include for-size(desktop) {
 
     /* grid support */
     @supports(display: grid) {
@@ -97,14 +97,17 @@
                 position: absolute;
                 top: 0;
                 left: 0;
-                -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-                filter: grayscale(100%);
-                mix-blend-mode: color-burn;
-                // padding: $font-size*2.3;
-         
+                //-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+                //filter: grayscale(100%);
+                
                 display: flex;
                 align-items: center;
                 justify-content: center;
+
+                &:hover{
+                    background-color: $redlab;
+                    mix-blend-mode: darken; // Pas certain...
+                }
 
                 a{ width: 100%; }
 
@@ -120,6 +123,9 @@
                     // height: 100%;
                     width: 100%;
                     object-fit: contain;
+                    mix-blend-mode: screen;
+                    -webkit-filter: grayscale(100%) contrast(1000%);
+                    filter: grayscale(100%) contrast(1000%);
                 }
 
                 // &:hover{ mix-blend-mode: screen; }
@@ -150,7 +156,7 @@
 
     } /* end #now*/
 
-// }
+}
 
 
 

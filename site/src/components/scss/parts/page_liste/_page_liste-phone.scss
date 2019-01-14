@@ -1,0 +1,122 @@
+/////////////////////
+//////// item_accroche: Phone 
+/////////////////////
+
+@include for-size(phone) {
+
+	#liste{
+        
+       	margin: #{$height-top-bar-phone*1} $margins-phone 0 $margins-phone ;
+
+        
+		
+		///// Accroche Phone
+        .accroche-titre-phone{
+        	display: block;
+        	width: $mobile-container-width;
+        	height: auto;
+
+        	padding: 5vh 0;
+        	@include font-size-27-phone();
+        	text-align: center;
+        }
+
+        ///// Accroche Phone END
+        ///// Liste Objet
+        #liste_objet{
+
+            width: $mobile-container-width;
+            height: auto;
+            margin-bottom: 50vh;
+
+			////	Liste des liens
+
+           	[data-item]{ // S'applique aux items des troix catégorie
+				min-height: $unite*3;
+				padding-top: $baseline;
+				padding-bottom: $baseline;
+                display: block;
+                background-color: $background-site;
+
+                
+	            &:first-of-type{
+	                //border: none !important;
+	            }
+
+				h1{
+					@include typo-list_title();
+				}
+
+				a{ width: 100%;}
+				
+
+				ul{
+					width: 100%;
+					padding-top: $baseline*0.5;
+					display: block;
+
+
+					li.activite{  display: inline-block; width: 50%; padding-right: 10px; }
+					li.type{  display: inline-block; width: 25%; padding-right: 10px;}
+					li.time{  display: inline-block;width: 20%; padding-right: 10px;}	
+					li.direct_link{	display: inline-block; width: 5%;}
+
+					@supports (display: flex){
+						@include flex();
+            			@include align-items(center);
+
+						li.title{  display: inline-block; width: 200px; padding-right: 10px; }
+						li.type{  display: inline-block; width: 200px; padding-right: 10px;}
+						li.time{  display: inline-block;width: 100px; padding-right: 10px;}	
+						li.direct_link{	display: inline-block; width: 20px;}
+					}
+
+				}
+			}
+
+			////	Accroche
+
+		    [data-item] ~ [data-item-accroche]{ 
+		    	display: block;
+		    	visibility: collapse;
+		    	height: 0;
+		    	transition: .5s ease-in-out;
+		    	transition-property: height;
+
+		    }
+
+		    .accroche-titre{ 
+		    	display: none;
+		    }
+
+		    @for $i from 1 through 400 {
+		    	[data-item="#{$i}"]:hover *,
+		    	[data-item="#{$i}"]:active *{
+		    		color: $redlab !important;
+		    	}
+
+		        [data-item="#{$i}"]:hover ~ [data-item-accroche="#{$i}"],
+		        [data-item="#{$i}"]:active ~ [data-item-accroche="#{$i}"],
+		        [data-item-accroche="#{$i}"]:hover, 
+		        [data-item-accroche="#{$i}"]:active{ 
+		        	transition: .5s ease-in-out;
+		        	transition-property: height;
+		        	height: 33vh;
+		        	visibility: visible;
+		        }
+
+		        [data-item="#{$i}"]:hover ~ .accroche-titre,
+		        [data-item="#{$i}"]:active ~ .accroche-titre{ 
+		        	// do nothing
+		        }
+		    }
+
+		    .item_accroche{
+		        @include font-size-16();
+			    position: relative;
+			    width: $mobile-container-width;
+			    color: $redlab;
+		    }
+        }
+    }
+}

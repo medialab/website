@@ -1,0 +1,156 @@
+/////////////////////
+//////// Slideshow phone
+/////////////////////
+
+
+$height-slideshow-phone: 500px;
+
+@include for-size(phone) {
+
+	
+	#slideshow{
+		
+		margin-top: $topbar-phone;
+		height: $height-slideshow-phone;
+		top: -3px;
+		border-bottom: $border;
+
+		.slideshow--item{
+
+			width: 100%;
+			height: $height-slideshow-phone;
+			overflow: hidden;
+
+			.image-pre-phone{ 
+			position: absolute; 
+				top: 0;
+			font-size: calc(10px + 3vw);
+			}
+
+			.image-pre{ display: none; }
+
+			article{
+
+				height: 100%;
+				@include flex();
+				@include justify-content(space-around);
+				@include align-items(center);
+
+				.contenu-slide{
+				
+					width: 70vw;
+					min-height: 60%;
+					overflow: hidden;
+					
+					background-color: $background-site;
+					padding: $baseline;
+					text-align: center;
+	
+					.nomenclature, .more{ @include font-size-13-phone(); }
+	
+					h1{ 
+						@include font-size-20-phone(); 
+						margin-top: $baseline;
+						margin-bottom: $baseline/2;
+					}
+	
+					h2, .time{ @include font-size-16-phone(); }
+	
+					.description{ display: none; }
+	
+					.more{
+						margin-top: $baseline*1;
+						color: $text-color-light;
+						text-decoration: underline;
+					}
+	
+					.nomenclature::after{
+						display: block;
+						margin: 0 auto;
+						content: " ";
+						width: 100%;
+						height: $baseline/2;
+						// background-color: red;
+						border-bottom: $border-light;
+					}
+					&:hover{
+						color: $redlab;
+						cursor: pointer;
+						.more{ color: $redlab-light!important;}
+					}
+				}/* .end contenu-slide*/
+
+			}/* .end article*/
+
+			
+		}/* end .slideshow--item */
+
+		hr, .slideshow--bullet-label{ display: none;}
+
+
+
+		/* Navigatin slideshow flêches ----------------------------------------------- */
+
+		.slideshow--nav:after {
+			
+			font-size: 3rem;
+			color: $text-color-light;
+			top: 50%;
+			right: 0px;
+			background: $background-site;
+			padding: 2.0vh .75vh;
+			width: $unite-phone*4;
+			margin-top: $unite-phone*(-2/2);
+			height: $unite-phone*6;
+			display: flex;
+			align-items: center;
+			padding: 1.4rem;
+			border-top: $border-light;
+			border-bottom: $border-light;
+			&:hover{ color: $redlab!important; }
+			
+		}
+
+
+		.slideshow--nav{
+			
+			appearance: none;
+			top: 0;
+			bottom: 0;
+			width: 15vw;
+			&:hover:after{ color: $redlab; }
+		}
+
+
+		.slideshow--nav-previous {
+			left: 0;
+		}
+
+		.slideshow--nav-previous:after {
+			right: auto;
+			left: 0px;
+		}
+
+		.slideshow--nav-next {
+			right: 0;
+		}
+
+
+		/* Navigatin slideshow bullets ----------------------------------------------- */
+
+
+		.slideshow--bullet {
+			display: none;
+		}
+
+
+
+
+		
+
+
+	}/* end #slideshow*/
+
+		
+}/* end query phone */
+

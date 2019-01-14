@@ -39,7 +39,9 @@ Voici quelques exemples et recommandation utiles
 * [Composants purs](#composants-purs)
 * [Conditions](#conditions)
 * [Les boucles](#les-boucles)
+* [Style](#style)
 * [Concernant les classes](#concernant-les-classes)
+* [Enfants](#enfants)
 
 #### Composants purs
 
@@ -127,6 +129,28 @@ function MonComposant(props) {
 }
 ```
 
+#### Style
+
+Pour ajouter du style directement aux éléments, react accepte des objets de style plutôt qu'une chaîne de caractère.
+
+```jsx
+// Par exemple ce style:
+'text-decoration: underline; color: blue;'
+
+// Deviens cet objet:
+const style = {
+  textDecoration: 'underline',
+  color: 'blue'
+}
+
+// Bien noter que le kebab-case du CSS se transforme en camelCase en JSX.
+
+// Ensuite pour utiliser cet objet de style, faire soit:
+<div style={style} />
+// ou directement inline (bien note les doubles accolades)
+<div style={{color: 'blue'}} />
+```
+
 #### Concernant les classes
 
 Dans le HTML, l'attribut de classe s'appelle `class`. Cependant, en JSX, afin de mimer le comportement du JavaScript, l'attribut s'appelle `className`.
@@ -150,4 +174,35 @@ import cls from 'classnames';
 
 const className = cls('column', isHidden && 'hidden');
 <div className={className} />
+```
+
+#### Enfants
+
+Il peut être utile de faire des composants ayant pour objectif de rendre des enfants. Par exemple, le composant `Layout` représente le header, le footer et tout ce qui est présent sur toutes les pages et ce composant se charge ensuite de rendre ses enfants, le composant affichant ce qui est spécifique à la page people, par exemple.
+
+```js
+// Si l'on passe des enfants à un composant, alors il aura une prop "children"
+function Layout(props) {
+
+  // Ici on rends "props.children" à l'intérieur d'une div
+  return (
+    <div className="container">
+      <div className="column">
+        {props.children}
+      </div>
+    </div>
+  );
+}
+
+// Dès lors, si l'on écrit ceci:
+<Layout>
+  <h1>Titre</h1>
+</Layout>
+
+// On va rendre au final:
+<div class="container">
+  <div class="column">
+    <h1>Titre</h1>
+  </div>
+</div>
 ```

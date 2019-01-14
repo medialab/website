@@ -35,8 +35,13 @@
     #nav-home{ display: none; }
 
     #introduction, #now, #agenda{
-        border-bottom: $border;
+        border-bottom: $border-bold;
         padding-bottom: $baseline*4;
+    }
+
+    #slideshow{
+        border-bottom: $border-bold;
+        // padding-bottom: $baseline*4;
     }
     
 

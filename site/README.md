@@ -36,7 +36,12 @@ Voici quelques liens utiles:
 
 Voici quelques exemples et recommandation utiles
 
-#### Composants pures
+* [Composants purs](#composants-purs)
+* [Conditions](#conditions)
+* [Les boucles](#les-boucles)
+* [Concernant les classes](#concernant-les-classes)
+
+#### Composants purs
 
 Sachant que le site n'a pas besoin d'interactivité JS, l'intégration n'a besoin que de composants react "purs" et n'a pas besoin de toutes les fioritures des classes de composant etc. Cela est bien plus simple.
 
@@ -61,6 +66,65 @@ function MonComposantPur(props) {
 <div>
   <h1>Super Titre</h1>
 </div>
+```
+
+#### Conditions
+
+Les conditions se font en JavaScript. Plusieurs solutions existent pour intégrer des conditions dans le JSX comme utiliser les opérateurs booléens et les ternaires.
+
+```jsx
+// Si l'on veut afficher quelque chose que si une condition est remplie
+<div>
+  {condition && <h1>Titre</h1>}
+</div>
+
+// Si l'on veut afficher soit quelque chose soit autre chose en fonction
+// d'une condition
+<div>
+  {condition ?
+    (<h1>Titre Un</h1>) :
+    (<h2>Titre Deux</h2>)}
+</div>
+
+// Si jamais on veut faire des choses plus complexes et utiliser de vraies conditions
+let body = null;
+
+if (lang === 'en') {
+  body = <span>Hello</span>
+}
+else {
+  body = <span>Bonjour</span>
+}
+
+<div>{body}</div>
+```
+
+#### Les boucles
+
+Le JSX est du JavaScript "augmenté". Pour faire des boucles il suffit donc d'utiliser les outils du JavaScript. Le plus utile est en général d'utiliser la méthode `map` des arrays.
+
+```jsx
+function MonComposant(props) {
+
+  // People est ici une liste de {firstName, lastName}
+  const people = props.people;
+
+  // Utilisons .map pour rendre une <ul>
+  return (
+    <ul>
+      {people.map((person, i) => {
+
+        // React aime qu'on donne une "key" aux composants contenus dans une
+        // liste pour pouvoir les mettre à jour plus efficacement
+        return (
+          <li key={i}>
+            {person.firstName} {person.lastName}
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
 ```
 
 #### Concernant les classes

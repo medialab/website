@@ -7,7 +7,7 @@
 	<div class="contenu">
 
 
-		<!-- if type=actualite (bon modèle pour les liens -->
+		<!-- if type=actualite (bon modèle pour les liens) -->
 		<article data-type="actualite">
 			<div class="nomenclature">
 				<p class="type"><a href="#linkPageActualite">Actualité</a></p>
@@ -37,10 +37,14 @@
 			<div class="image-pre">
 				<a href="#linkObjet">
 				<?php include('assets/images/patterns/pattern-1.html'); ?>
-				</a>
+				</a>	
+				
 				<figure>
-					<img src="images/D-Cardon-200x200.jpg" alt="Portrait de Dominique Cardon"/>
+					<a href="#linkObjet">
+						<img src="assets/images/sample/d-cardon-200x200.jpg" alt="Portrait de Dominique Cardon"/>
+					</a>
 				</figure>
+				
 				
 			</div>
 			

@@ -25,7 +25,8 @@
 
 
 
-@include for-size(desktop) {
+
+// @include for-size(desktop) {
 
     /* grid support */
     @supports(display: grid) {
@@ -70,7 +71,7 @@
             .image-pre{
                 font-size: $font-size*2.3;
                 width: 100%;
-                height: $font-size*20;
+                // height: $font-size*20;
                 overflow: hidden;
                 border-top: $border-light;
             }
@@ -104,6 +105,8 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+
+                a{ width: 100%; }
 
                 img{
                     
@@ -147,4 +150,28 @@
 
     } /* end #now*/
 
+// }
+
+
+
+
+/* height of the image pre */
+@include for-size(phone){
+    #now .image-pre { 
+        height: $font-size*10; 
+        border-bottom: $border-light;
+    }
+}
+
+@include for-size(desktop){
+    #now .image-pre { height: $font-size*20; }
+}
+
+
+/* phone margins */
+@include for-size(phone){
+    #now article { 
+        margin-top: $baseline*2!important;
+        margin-bottom: $baseline*2!important; 
+    }
 }

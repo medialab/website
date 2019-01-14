@@ -16,6 +16,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "npm run build:css -- --watch --source-map"
   },
+  "nodeSassConfig": {
+    "binarySite": "https://github.com/sass/node-sass/releases/download"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

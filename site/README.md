@@ -47,7 +47,7 @@ Voici quelques exemples et recommandation utiles
 
 Sachant que le site n'a pas besoin d'interactivité JS, l'intégration n'a besoin que de composants react "purs" et n'a pas besoin de toutes les fioritures des classes de composant etc. Cela est bien plus simple.
 
-Un composant pur, pour react, n'est ni plus ni moins qu'une fonction prenant des props comme arguments et renvoyant du html (via la syntaxe JSX).
+Un composant pur, pour react, n'est ni plus ni moins qu'une fonction prenant des props (les données au format du modèle) comme arguments et renvoyant du html (via la syntaxe JSX).
 
 Les composants, par convention, ont un nom écrit en TitleCase (majuscule sur tous les mots, y compris le premier).
 
@@ -116,13 +116,14 @@ function MonComposant(props) {
     <ul>
       {people.map((person, i) => {
 
-        // React aime qu'on donne une "key" aux composants contenus dans une
-        // liste pour pouvoir les mettre à jour plus efficacement
         return (
           <li key={i}>
             {person.firstName} {person.lastName}
           </li>
         );
+        // L'attribut key est utilisé par React pour optimiser les mises à jour des composants
+        // Dans notre cas ce n'est pas indispensable mais React génère des warnings si il manque des key
+        // Donc mieux de les ajouter mais pas grave si c'est oublié
       })}
     </ul>
   );
@@ -147,7 +148,7 @@ const style = {
 
 // Ensuite pour utiliser cet objet de style, faire soit:
 <div style={style} />
-// ou directement inline (bien note les doubles accolades)
+// ou directement inline (notez les doubles accolades)
 <div style={{color: 'blue'}} />
 ```
 

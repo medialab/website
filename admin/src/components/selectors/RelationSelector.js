@@ -81,8 +81,8 @@ export default class RelationSelector extends Component {
             selected.length ? (
               <ul className="tags-container">
                 {selected.map(id => {
-                  console.log(this.optionsIndex, id);
                     const title = this.optionsIndex[id].label;
+
                     return (
                       <li key={id}>
                         <span title={title} className="tag is-medium" style={{marginBottom: 3}}>

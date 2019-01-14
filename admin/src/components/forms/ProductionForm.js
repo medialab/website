@@ -231,7 +231,7 @@ function renderProductionForm(props) {
         </h4>
 
         <div className="columns">
-          <div className="column is-6">
+          <div className="column is-12">
             <div className="field">
               <label className="label">Related Activities</label>
               <div className="control">
@@ -246,7 +246,7 @@ function renderProductionForm(props) {
         </div>
 
         <div className="columns">
-          <div className="column is-6">
+          <div className="column is-12">
             <div className="field">
               <label className="label">Related People</label>
               <div className="control">
@@ -261,7 +261,7 @@ function renderProductionForm(props) {
         </div>
 
         <div className="columns">
-          <div className="column is-6">
+          <div className="column is-12">
             <div className="field">
               <label className="label">Related Productions</label>
               <div className="control">

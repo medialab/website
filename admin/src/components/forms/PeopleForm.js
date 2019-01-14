@@ -294,7 +294,7 @@ function renderPeopleForm(props) {
         </h4>
 
         <div className="columns">
-          <div className="column is-6">
+          <div className="column is-12">
             <div className="field">
               <label className="label">Activities</label>
               <div className="control">
@@ -310,7 +310,7 @@ function renderPeopleForm(props) {
         </div>
 
         <div className="columns">
-          <div className="column is-6">
+          <div className="column is-12">
             <div className="field">
               <label className="label">Productions</label>
               <div className="control">

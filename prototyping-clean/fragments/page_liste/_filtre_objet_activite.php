@@ -6,8 +6,9 @@
 <!-- End Filtre for phone -->
 
 
-<input type="checkbox" class="filtre_objet" id="filtre_publication" name="filtre_publication" value="publication" >
-<label  class="filtre_objet" for="filtre_publication">Publication</label>
+<input type="checkbox" class="filtre_objet" id="filtre_recherche" name="filtre_publication" value="recherche" >
+<label  class="filtre_objet" for="filtre_recherche">Recherche</label>
+
 <input type="checkbox" class="filtre_objet" id="filtre_web" name="filtre_web" value="web" >
 <label  class="filtre_objet" for="filtre_web">Web</label>
 <input type="checkbox" class="filtre_objet" id="filtre_outils" name="filtre_outils" value="outils" >

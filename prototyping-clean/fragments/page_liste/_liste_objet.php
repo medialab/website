@@ -4,7 +4,8 @@
 
 	<p class="accroche-titre-phone">Description en une phrase de la catégorie <?php echo $liste_nature ?>.</p>
 
-	<ul id="liste_objet">
+
+	<ul class="liste_objet">
 
 		<!--<div class="sort">
 			<button id="sort_publication_AZ"><p>▽</p></button>

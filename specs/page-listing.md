@@ -72,6 +72,11 @@ Par défaut l'ordre est aléatoire, généré au build.
 L'utilisateur doit pouvoir trier Alphabétiquement sur **name**
 _Remarque_ : faut-il prévoir une indexation alphabetique de la liste?
 
+
+
+
+
+
 # Activités
 Présente l'ensemble des activités
 

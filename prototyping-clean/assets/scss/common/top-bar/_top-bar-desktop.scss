@@ -11,10 +11,13 @@
         padding: $margins-desktop 0;
         width: 100%;
         height: $height-top-bar;
+        // @include font-size-16();
         color: $text-color;
-        @include font-size-16();
+        @include font-size-13();
         text-transform: uppercase;
         letter-spacing: 0.2px;
+        background-color: $background-site;
+        z-index: 999;
     }
 
     #topbar label{ 

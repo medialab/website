@@ -120,9 +120,9 @@ function renderProductionForm(props) {
         </div>
 
         <div className="columns">
-          <div className="column is-6">
+          <div className="column is-12">
             <div className="field">
-              <label className="label" style={{display: 'inline'}}>Slug of the page:</label> {slug && <code>{slug}</code>}
+              <label className="label" style={{display: 'inline'}}>Slug:</label> {slug && <code>{slug}</code>}
             </div>
           </div>
         </div>

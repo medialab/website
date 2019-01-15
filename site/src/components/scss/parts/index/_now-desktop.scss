@@ -113,7 +113,7 @@
 
                 img{
                     
-                    opacity: 0.9;
+                    opacity: 0.7;
 
                     // max-width: 100%;
                     // max-height: 100%;
@@ -123,12 +123,14 @@
                     // height: 100%;
                     width: 100%;
                     object-fit: contain;
-                    mix-blend-mode: screen;
+                    mix-blend-mode: multiply;
                     -webkit-filter: grayscale(100%) contrast(1000%);
                     filter: grayscale(100%) contrast(1000%);
                 }
 
-                // &:hover{ mix-blend-mode: screen; }
+                &:hover{ 
+                    img{mix-blend-mode: screen; }
+                }
                 
             }
 
@@ -148,6 +150,7 @@
                 color: $redlab;
                 .more{ color: $redlab-light; }
                 .image-pre{ border-top: $border-redlab-light; }
+                img{mix-blend-mode: screen; }
             }
 
 

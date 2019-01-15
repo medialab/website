@@ -2,6 +2,8 @@ import React from 'react';
 import {graphql} from 'gatsby';
 
 import RawHtml from './RawHtml';
+import Nav from './fragments/Nav.js';
+import './scss/page_personne.scss';
 
 export const queryFragment = graphql`
   fragment PeopleDetail on PeopleJson {
@@ -32,26 +34,26 @@ export default function PeopleDetail({lang, data}) {
   const bio = data.bio;
 
   return (
-    <div>
-      <h1>People: {data.firstName} {data.lastName}</h1>
-      {data.draft && <p><em>This is a draft.</em></p>}
-      {data.active && <p><em>This people is active.</em></p>}
-      <p>
-        <strong>Membership type</strong>: {data.membership}
-      </p>
-      <hr />
-      <p>
-        <strong>EN title</strong>: {data.title && data.title.en}
-      </p>
-      <p>
-        <strong>FR title</strong>: {data.title && data.title.fr}
-      </p>
-      <hr />
-      {bio && bio.en && <RawHtml html={bio.en} />}
-      <hr />
-      {bio && bio.fr && <RawHtml html={bio.fr} />}
-      <div>dernière mise à jour : {data.lastUpdated ? new Date(data.lastUpdated).toLocaleString() : 'jamais modifié !'}</div>
-    </div>
+    <main id="main-personne">
+      <p class="titre-sticky">L'équipe du Medialab<span> / {data.firstName} {data.lastname}</span></p>
+      <article id="biographie">
+        <figure>
+        </figure>
+        <hgroup>
+          <h1 data-level-1="name" data-type="name">{data.lastName} {data.firstName}</h1>
+          <h2 data-level-2="role" data-type="role">{data.title && data.title.fr}</h2>
+          <p data-type="domaine">Domaine&#8239;: </p>
+          <p data-type="statut">{data.membership}</p>
+
+          <p data-type="activite">En ce moment, je chef et j'écris des papiers</p>
+        </hgroup>
+        <div class="biographie-contenu">
+          {bio && bio.fr && <RawHtml html={bio.fr} />}
+        </div>
+      </article>
+    </main>
+
 
   );
 }
+

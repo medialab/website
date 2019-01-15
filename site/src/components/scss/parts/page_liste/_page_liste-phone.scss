@@ -2,13 +2,18 @@
 //////// item_accroche: Phone 
 /////////////////////
 
+
+////	Accroche
+
+
+
 @include for-size(phone) {
 
 	#liste{
         
        	margin: #{$height-top-bar-phone*1} $margins-phone 0 $margins-phone ;
 
-        
+		
 		
 		///// Accroche Phone
         .accroche-titre-phone{
@@ -23,7 +28,7 @@
 
         ///// Accroche Phone END
         ///// Liste Objet
-        #liste_objet{
+        .liste_objet{
 
             width: $mobile-container-width;
             height: auto;
@@ -32,47 +37,32 @@
 			////	Liste des liens
 
            	[data-item]{ // S'applique aux items des troix catégorie
-				min-height: $unite*3;
+				// min-height: $unite*3;
 				padding-top: $baseline;
 				padding-bottom: $baseline;
                 display: block;
-                background-color: $background-site;
+				background-color: $background-site;
+				border-top: $border-light;
 
                 
-	            &:first-of-type{
-	                //border: none !important;
-	            }
+	            .type{
+					@include font-size-13-phone();
+					text-align: right; 
+					color: $text-color-light;
+				}
 
 				h1{
-					@include typo-list_title();
+					@include font-size-20-phone();
 				}
 
-				a{ width: 100%;}
-				
-
-				ul{
-					width: 100%;
-					padding-top: $baseline*0.5;
-					display: block;
-
-
-					li.activite{  display: inline-block; width: 50%; padding-right: 10px; }
-					li.type{  display: inline-block; width: 25%; padding-right: 10px;}
-					li.time{  display: inline-block;width: 20%; padding-right: 10px;}	
-					li.direct_link{	display: inline-block; width: 5%;}
-
-					@supports (display: flex){
-						@include flex();
-            			@include align-items(center);
-
-						li.title{  display: inline-block; width: 200px; padding-right: 10px; }
-						li.type{  display: inline-block; width: 200px; padding-right: 10px;}
-						li.time{  display: inline-block;width: 100px; padding-right: 10px;}	
-						li.direct_link{	display: inline-block; width: 20px;}
-					}
-
+				h2{ 
+					@include font-size-16-phone();
+					margin-top: $baseline*0.5; 
+					&:before{ content: "– "; }
 				}
 			}
+
+
 
 			////	Accroche
 
@@ -82,14 +72,14 @@
 		    	height: 0;
 		    	transition: .5s ease-in-out;
 		    	transition-property: height;
-
+				margin-top: $baseline;
 		    }
 
 		    .accroche-titre{ 
 		    	display: none;
 		    }
 
-		    @for $i from 1 through 400 {
+		    @for $i from 0 through 400 {
 		    	[data-item="#{$i}"]:hover *,
 		    	[data-item="#{$i}"]:active *{
 		    		color: $redlab !important;
@@ -101,7 +91,7 @@
 		        [data-item-accroche="#{$i}"]:active{ 
 		        	transition: .5s ease-in-out;
 		        	transition-property: height;
-		        	height: 33vh;
+		        	height: 250px;
 		        	visibility: visible;
 		        }
 
@@ -112,7 +102,7 @@
 		    }
 
 		    .item_accroche{
-		        @include font-size-16();
+		        @include font-size-16-phone();
 			    position: relative;
 			    width: $mobile-container-width;
 			    color: $redlab;

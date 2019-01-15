@@ -2,6 +2,7 @@ import React from 'react';
 import {graphql} from 'gatsby';
 
 import RawHtml from './RawHtml';
+import './scss/page_objet.scss';
 
 export const queryFragment = graphql`
   fragment ProductionDetail on ProductionsJson {
@@ -42,51 +43,29 @@ export default function ProductionDetail({lang, data}) {
   console.log(lang, data);
 
   return (
-    <div>
-      <h1>Publication: {data.title.fr || data.title.en}</h1>
-      {data.draft && <p><em>This is a draft.</em></p>}
-      <hr />
-      <p>
-        <strong>Type</strong>: {data.type}
-      </p>
-      <hr />
-      <p>
-        <strong>EN title</strong>: {data.title && data.title.en}
-      </p>
-      <p>
-        <strong>FR title</strong>: {data.title && data.title.fr}
-      </p>
-      <hr />
-      <p>
-        <strong>EN abstract</strong>: {data.abstract && data.abstract.en}
-      </p>
-      <p>
-        <strong>FR abstract</strong>: {data.abstract && data.title.fr}
-      </p>
-      <hr />
-      <div>
-        Related activities:
-        <ul>
-          {(data.activities || []).map(a => <li key={a.id}>{a.name}</li>)}
-        </ul>
-      </div>
-      <hr />
+    <main id="main-objet">
+      <p class="titre-sticky">{data.name}</p>
+      <article id="article-contenu">
+        <hgroup>
+          <h1>{data.name}{data.baseline && data.baseline.fr}</h1>
+          <h2>{data.description && data.description.fr}</h2>
+
+          <p class="date">{data.endDate}</p>
+          <p class="type-objet">{data.type}</p>
+          
+        </hgroup>
+
+        <div class="article-contenu">
+        {data.content && data.content.fr && <RawHtml html={data.content.fr} />}
+        </div>
+      </article>
+
       <div>
         Related people:
         <ul>
           {(data.people || []).map(p => <li key={p.id}>{p.firstName} {p.lastName}</li>)}
         </ul>
       </div>
-      <div>
-        Related productions:
-        <ul>
-          {(data.productions || []).map(p => <li key={p.id}>{p.id}</li>)}
-        </ul>
-      </div>
-      <hr />
-      {data.content && data.content.en && <RawHtml html={data.content.en} />}
-      <hr />
-      {data.content && data.content.fr && <RawHtml html={data.content.fr} />}
-    </div>
+  </main>
   );
 }

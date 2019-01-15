@@ -48,7 +48,7 @@
 				@include article_h3();
 			}
 
-			hgroup{
+			div{
 				@include flex-order(2);
 				min-width: 50%;
 				padding-bottom: $baseline*2;

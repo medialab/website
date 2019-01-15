@@ -2,7 +2,7 @@ import React from 'react';
 import {graphql} from 'gatsby';
 import {replaceAssetPaths} from '../utils';
 
-import Layout_objet from '../components/Layout_objet';
+import Layout from '../components/Layout';
 import ActivityDetail from '../components/ActivityDetail';
 
 export const query = graphql`
@@ -13,14 +13,18 @@ export const query = graphql`
   }
 `;
 
+
 export default ({data, pageContext}) => {
   console.log(data, pageContext);
 
   replaceAssetPaths(data.activitiesJson.assets, data.activitiesJson.bio);
 
   return (
-    <Layout_objet lang={pageContext.lang}>
-      <ActivityDetail lang={pageContext.lang} data={data.activitiesJson} />
-    </Layout_objet>
+    <React.Fragment>
+      <Layout lang={pageContext.lang}>
+        <ActivityDetail lang={pageContext.lang} data={data.activitiesJson} />
+      </Layout>
+    </React.Fragment>
   );
 };
+

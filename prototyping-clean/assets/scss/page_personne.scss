@@ -3,7 +3,6 @@
 
 @import 'common';
 
-
 //parts/page_list
 @import 'parts/page_personne/page_personne';
 @import 'parts/page_personne/page_personne-desktop';
@@ -11,9 +10,9 @@
 
 @import 'common/pages/nav-article';
 @import 'common/pages/fichiers-associes';
-@import 'common/pages/elements-associes';
-@import 'parts/index/now-desktop';
-@import 'parts/index/now-phone';
-
+@import 'common/pages/elements-associes-liste';
+@import 'common/pages/implications';
+//@import 'parts/index/now-desktop';
+//@import 'parts/index/now-phone';
 
 #elements-associes .more{ display: none;} 

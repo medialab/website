@@ -30,7 +30,7 @@
         @include flex();
         @include justify-content(stretch);
 
-        #logo-medialab svg{
+        #logo-medialab svg, #logo-medialab img{
             width: $unite*6;
             fill: $text-color;
             margin-right: $unite*4;

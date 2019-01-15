@@ -16,7 +16,7 @@
 
 		<nav id="nav-option">
 			<ul id="nav-home">
-				<li><a href="linkHome#now">En ce moment</a></li>
+				<li><a href="linkHome#now">À la une</a></li>
 				<li><a href="linkHome#agenda">Les rendez-vous du labo</a></li>
 				<li><a href="linkHome#flux">Flux</a></li>
 			</ul>

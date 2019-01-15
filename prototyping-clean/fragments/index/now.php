@@ -1,6 +1,6 @@
 <section id="now">
 			
-	<h1>En ce moment</h1>
+	<h1>À la une</h1>
 
 
 	

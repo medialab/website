@@ -25,7 +25,27 @@
 	<!-- PUBLICATION -->
 	<article id="article-contenu">
 
-		<hgroup>
+		<?php include('fragments/pages/_toggle-lang.php'); ?>
+
+
+		<!-- chapô en français-->
+		<hgroup class="fr" lang="fr">
+			<h1>Explorer la finance internationale du XIXe siècle</h1>
+			<h2>Nous présentons l'application de data-visualisation RICardo conçue pour explorer une base de donnée sur la finance internationale du XIXe siècle.</h2>
+
+			<p class="date">11/11/2016</p>
+			<p class="type-objet">Conference</p>
+			
+		</hgroup>
+
+		<!-- contenu article en français -->
+		<div class="article-contenu fr" lang="fr">
+			<!--laisser la div même si elle est vide-->
+		</div>
+
+
+		<!-- chapô en anglais -->
+		<hgroup class="en" lang="en">
 			<h1>Exploring XIX Century International Trade</h1>
 			<h2>We present the RICardo data visualization application designed to explore a XIXth century international trade statistics database.</h2>
 
@@ -34,7 +54,10 @@
 			
 		</hgroup>
 
-		<div class="article-contenu">
+		
+
+		<!-- contenu article en anglais -->
+		<div class="article-contenu en" lang="en">
 
 			<p>
 			That’s why many people are seeing a promising alternative in Compressed Air Energy Storage (CAES), another form of mechanical energy storage. In these systems, electricity is used to compress air, which is stored in an underground cavern. To make use of the stored energy, the air is decompressed and converted back to electricity.
@@ -89,6 +112,13 @@
 			</p>			
 
 		</div>
+
+
+		
+
+		
+
+
 	</article>
 
 

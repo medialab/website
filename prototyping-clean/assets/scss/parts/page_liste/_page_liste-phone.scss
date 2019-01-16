@@ -11,22 +11,14 @@
 
 	#liste{
         
-       	margin: #{$height-top-bar-phone*1} $margins-phone 0 $margins-phone ;
+		   margin: $baseline $margins-phone 0 $margins-phone ;
+		   
+		   hr{ display: none; }
 
 		
 		
-		///// Accroche Phone
-        .accroche-titre-phone{
-        	display: block;
-        	width: $mobile-container-width;
-        	height: auto;
 
-        	padding: 5vh 0;
-        	@include font-size-27-phone();
-        	text-align: center;
-        }
-
-        ///// Accroche Phone END
+  
         ///// Liste Objet
         .liste_objet{
 
@@ -69,10 +61,10 @@
 		    [data-item] ~ [data-item-accroche]{ 
 		    	display: block;
 		    	visibility: collapse;
-		    	height: 0;
+		    	max-height: 0;
 		    	transition: .5s ease-in-out;
 		    	transition-property: height;
-				margin-top: $baseline;
+				
 		    }
 
 		    .accroche-titre{ 
@@ -90,9 +82,11 @@
 		        [data-item-accroche="#{$i}"]:hover, 
 		        [data-item-accroche="#{$i}"]:active{ 
 		        	transition: .5s ease-in-out;
-		        	transition-property: height;
-		        	height: 250px;
-		        	visibility: visible;
+		        	transition-property: max-height;
+		        	max-height: 500px;
+					visibility: visible;
+					padding-top: $baseline;
+					padding-bottom: $baseline*2;
 		        }
 
 		        [data-item="#{$i}"]:hover ~ .accroche-titre,
@@ -107,6 +101,22 @@
 			    width: $mobile-container-width;
 			    color: $redlab;
 		    }
-        }
-    }
+		}
+		
+
+		///// Accroche Phone
+        .accroche-titre-phone{
+        	display: block;
+        	width: $mobile-container-width;
+        	height: auto;
+
+        	border-top: none!important; 
+        	@include font-size-27-phone();
+			text-align: center;
+		
+			padding-bottom: $baseline*3;
+		}
+		
+
+    }/* end #liste */
 }

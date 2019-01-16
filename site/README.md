@@ -42,6 +42,8 @@ Voici quelques exemples et recommandation utiles
 * [Style](#style)
 * [Concernant les classes](#concernant-les-classes)
 * [Enfants](#enfants)
+* [Composants jumeaux sans div parente](#composants-jumeaux-sans-div-parent)
+* [Import/Export de fonctions](#import-export-de-fonctions)
 
 #### Composants purs
 
@@ -99,6 +101,36 @@ else {
 }
 
 <div>{body}</div>
+```
+
+Exemple de rendu conditionnel ou l'on affiche ou pas une image dans une nav en fonction des props.
+
+```jsx
+function Nav(props) {
+
+  let img = null;
+
+  if (props.image) {
+    img = (
+      <div>
+        <img src={props.image} />
+      </div>
+    );
+  }
+
+  return (
+    <nav>
+      <h1>{props.title}</h1>
+      {img}
+    </nav>
+  );
+}
+
+// On l'appelera comme ceci, sans image
+<Nav title="Super title" />
+
+// Et comme ceci avec une image
+<Nav image="project.png" title="Super title" />
 ```
 
 #### Les boucles
@@ -207,16 +239,18 @@ function Layout(props) {
   </div>
 </div>
 ```
-#### composants frères sans div parente
+#### Composants jumeaux sans div parente
 
-Pour créer un composant qui rends deux blocs qui sont frères sans avoir un conteneur div créé automatiquement pour les nester, il faut utiliser une syntaxe particulière:
+Pour créer un composant qui rends deux blocs qui sont jumeaux sans avoir un conteneur div créé automatiquement pour les nester, il faut utiliser une syntaxe particulière:
+
 ```html
 <>
   <nav/>
   <main>content</main>
 </>
-``` 
-#### import/export de fonctions
+```
+
+#### Import/Export de fonctions
 
 La syntaxe ES6 a un système d'import export des fonctions entre module.
 Voici [la documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import).

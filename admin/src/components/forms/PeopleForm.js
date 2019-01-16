@@ -337,7 +337,7 @@ function renderPeopleForm(props) {
           <div className="control">
             <BooleanSelector
               value={!data.draft}
-              labels={['published', 'draft']}
+              labels={['draft', 'published']}
               onChange={handlers.published} />
           </div>
         </div>

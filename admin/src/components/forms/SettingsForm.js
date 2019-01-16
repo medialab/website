@@ -36,7 +36,7 @@ export default class SettingsForm extends Component {
     this.setState(set(['settings', 'home', 'editorialization'], currentList, this.state));
   };
 
-  handleHomeSortEnd = ({oldIndex, newIndex}) => {
+  handleMoveHomeItem = ({oldIndex, newIndex}) => {
     let currentList = get(['settings', 'home', 'editorialization'], this.state);
     currentList = arrayMove(currentList, oldIndex, newIndex);
 
@@ -65,7 +65,7 @@ export default class SettingsForm extends Component {
               selected={settings.home.editorialization}
               onAdd={this.handleAddHomeItem}
               onDrop={this.handleDropHomeItem}
-              onSortEnd={this.handleHomeSortEnd} />
+              onMove={this.handleMoveHomeItem} />
             <br />
             <Button onClick={this.handleSubmit}>Save</Button>
           </div>

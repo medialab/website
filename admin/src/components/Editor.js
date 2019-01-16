@@ -6,10 +6,11 @@ import IMAGE from './entities/image';
 import LINK from './entities/link';
 
 import BoldIcon from './icons/BoldIcon';
+import CodeBlockIcon from './icons/CodeBlockIcon'
 import ItalicIcon from './icons/ItalicIcon';
-import NotesIcon from './icons/NotesIcon';
 import OrderedListIcon from './icons/OrderedListIcon';
 import UnorderedListIcon from './icons/UnorderedListIcon';
+import KeyboardReturnIcon from './icons/KeyboardReturnIcon';
 
 function FalseIcon({children}) {
   return (
@@ -18,7 +19,12 @@ function FalseIcon({children}) {
       width="24"
       height="24"
       viewBox="0 0 24 24">
-      <text fontSize={14} stroke="black" fill="black" x={0} y={20}>
+      <text
+        fontSize={14}
+        stroke="black"
+        fill="black"
+        x={0}
+        y={20}>
         {children}
       </text>
     </svg>
@@ -29,7 +35,6 @@ export default class Editor extends PureComponent {
 
   handleOnSave = content => {
     const html = content ? rawToHtml(content) : '';
-
     this.props.onSave(html);
   };
 
@@ -42,6 +47,7 @@ export default class Editor extends PureComponent {
       <div className="content">
         <DraftailEditor
           placeholder="Type something..."
+          enableLineBreak={{icon: <KeyboardReturnIcon />}}
           rawContentState={content ? htmlToRaw(content) : null}
           stripPastedStyles={false}
           onSave={this.handleOnSave}
@@ -59,7 +65,7 @@ export default class Editor extends PureComponent {
             // {type: BLOCK_TYPE.HEADER_SIX, icon: <FalseIcon>h6</FalseIcon>},
             {type: BLOCK_TYPE.UNORDERED_LIST_ITEM, icon: <UnorderedListIcon />},
             {type: BLOCK_TYPE.ORDERED_LIST_ITEM, icon: <OrderedListIcon />},
-            {type: BLOCK_TYPE.CODE, icon: <NotesIcon />}
+            {type: BLOCK_TYPE.CODE, icon: <CodeBlockIcon />}
           ]}
           inlineStyles={[
             {type: INLINE_STYLE.ITALIC, icon: <ItalicIcon />},

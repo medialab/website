@@ -8,6 +8,8 @@ import Editor from '../Editor';
 import EnumSelector from '../selectors/EnumSelector';
 import BooleanSelector from '../selectors/BooleanSelector';
 import RelationSelector from '../selectors/RelationSelector';
+import SortableKeyValueList from '../selectors/SortableKeyValueList';
+import SuggestionSelector from '../selectors/SuggestionSelector';
 
 function slugifyPeople(data) {
   return slugify(`${data.firstName} ${data.lastName}`);
@@ -18,7 +20,7 @@ function validate(data) {
     return 'Need at least a first name & a last name';
 }
 
-// TODO: contact, sortable relations
+// TODO: sortable relations
 const HANDLERS = {
   firstName: {
     type: 'slug',
@@ -31,9 +33,11 @@ const HANDLERS = {
     slugify: slugifyPeople
   },
   englishRole: {
+    type: 'raw',
     field: ['role', 'en']
   },
   frenchRole: {
+    type: 'raw',
     field: ['role', 'fr']
   },
   membership: {
@@ -58,6 +62,10 @@ const HANDLERS = {
     type: 'raw',
     field: ['bio', 'fr']
   },
+  contacts: {
+    type: 'relation',
+    field: 'contacts'
+  },
   mainActivities: {
     type: 'relation',
     field: 'mainActivities'
@@ -81,7 +89,6 @@ function renderPeopleForm(props) {
     data,
     handlers,
     slug,
-    hasCollidingSlug,
     englishEditorContent,
     frenchEditorContent
   } = props;
@@ -121,18 +128,9 @@ function renderPeopleForm(props) {
         </div>
 
         <div className="columns">
-          <div className="column is-6">
+          <div className="column is-12">
             <div className="field">
-              <label className="label">Slug</label>
-              <div className="control">
-                <input
-                  type="text"
-                  className={hasCollidingSlug ? 'input is-danger' : 'input'}
-                  value={slug}
-                  disabled
-                  placeholder="..." />
-              </div>
-              {hasCollidingSlug && <p className="help is-danger">This slug already exists!</p>}
+              <label className="label" style={{display: 'inline'}}>Slug:</label> {slug && <code>{slug}</code>}
             </div>
           </div>
         </div>
@@ -188,49 +186,34 @@ function renderPeopleForm(props) {
         </div>
 
         <div className="columns">
-          <div className="column is-6">
-            <div className="field">
-              <label className="label">English Role</label>
-              <div className="control">
-                <input
-                  type="text"
-                  className="input"
-                  value={data.role ? data.role.en : ''}
-                  onChange={handlers.englishRole}
-                  placeholder="English Role" />
-              </div>
-            </div>
-          </div>
 
           <div className="column is-6">
             <div className="field">
               <label className="label">French Role</label>
-              <div className="control">
-                <input
-                  type="text"
-                  className="input"
-                  value={data.role ? data.role.fr : ''}
-                  onChange={handlers.frenchRole}
-                  placeholder="French Role" />
-              </div>
+              <SuggestionSelector
+                model="people"
+                field={['role', 'fr']}
+                placeholder="French role..."
+                onChange={handlers.frenchRole}
+                value={(data.role && data.role.fr) || null} />
             </div>
           </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Role</label>
+              <SuggestionSelector
+                model="people"
+                field={['role', 'en']}
+                placeholder="English role..."
+                onChange={handlers.englishRole}
+                value={(data.role && data.role.en) || null} />
+            </div>
+          </div>
+
         </div>
 
         <div className="columns">
-          <div className="column is-6">
-            <div className="field">
-              <label className="label">English Status</label>
-              <div className="control">
-                <textarea
-                  className="textarea"
-                  value={(data.status && data.status.en) || ''}
-                  onChange={handlers.englishStatus}
-                  placeholder="English Status"
-                  rows={2} />
-              </div>
-            </div>
-          </div>
 
           <div className="column is-6">
             <div className="field">
@@ -245,17 +228,24 @@ function renderPeopleForm(props) {
               </div>
             </div>
           </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Status</label>
+              <div className="control">
+                <textarea
+                  className="textarea"
+                  value={(data.status && data.status.en) || ''}
+                  onChange={handlers.englishStatus}
+                  placeholder="English Status"
+                  rows={2} />
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div className="columns">
-          <div className="column is-6">
-            <div className="field">
-              <label className="label">English Biography</label>
-              <Editor
-                content={englishEditorContent}
-                onSave={handlers.englishContent} />
-            </div>
-          </div>
 
           <div className="column is-6">
             <div className="field">
@@ -265,7 +255,37 @@ function renderPeopleForm(props) {
                 onSave={handlers.frenchContent} />
             </div>
           </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Biography</label>
+              <Editor
+                content={englishEditorContent}
+                onSave={handlers.englishContent} />
+            </div>
+          </div>
+
         </div>
+
+      </div>
+
+      <div className="form-group">
+        <h4 className="title is-4">
+          Contacts
+        </h4>
+
+        <div className="columns">
+          <div className="column is-8">
+            <SortableKeyValueList
+              items={data.contacts}
+              model="people"
+              field="contacts.label"
+              onAdd={handlers.contacts.add}
+              onDrop={handlers.contacts.drop}
+              onMove={handlers.contacts.move} />
+          </div>
+        </div>
+
       </div>
 
       <div className="form-group">
@@ -274,32 +294,36 @@ function renderPeopleForm(props) {
         </h4>
 
         <div className="columns">
-          <div className="column is-6">
+          <div className="column is-12">
             <div className="field">
               <label className="label">Activities</label>
               <div className="control">
                 <RelationSelector
+                  sortable
                   model="activities"
                   max={5}
                   selected={data.mainActivities}
                   onAdd={handlers.mainActivities.add}
-                  onDrop={handlers.mainActivities.drop} />
+                  onDrop={handlers.mainActivities.drop}
+                  onMove={handlers.mainActivities.move} />
               </div>
             </div>
           </div>
         </div>
 
         <div className="columns">
-          <div className="column is-6">
+          <div className="column is-12">
             <div className="field">
               <label className="label">Productions</label>
               <div className="control">
                 <RelationSelector
+                  sortable
                   model="productions"
                   max={5}
                   selected={data.mainProductions}
                   onAdd={handlers.mainProductions.add}
-                  onDrop={handlers.mainProductions.drop} />
+                  onDrop={handlers.mainProductions.drop}
+                  onMove={handlers.mainProductions.move} />
               </div>
             </div>
           </div>

@@ -89,16 +89,24 @@
         }
       }
     },
-    "contact": {
-      "title": "Contact",
+    "contacts": {
+      "title": "Contacts",
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "attachment",
+              "string",
+              "url"
+            ]
+          },
           "label": {
             "type": "string"
           },
-          "url": {
+          "value": {
             "type": "string"
           }
         }

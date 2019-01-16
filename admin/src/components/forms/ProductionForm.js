@@ -78,7 +78,6 @@ function renderProductionForm(props) {
     data,
     handlers,
     slug,
-    hasCollidingSlug,
     englishEditorContent,
     frenchEditorContent
   } = props;
@@ -88,6 +87,21 @@ function renderProductionForm(props) {
 
       <div className="form-group">
         <div className="columns">
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">French Title</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  value={(data.title && data.title.fr) || ''}
+                  onChange={handlers.frenchTitle}
+                  placeholder="French Title" />
+              </div>
+            </div>
+          </div>
+
           <div className="column is-6">
             <div className="field">
               <label className="label">English Title</label>
@@ -103,34 +117,12 @@ function renderProductionForm(props) {
             </div>
           </div>
 
-          <div className="column is-6">
-            <div className="field">
-              <label className="label">French Title</label>
-              <div className="control">
-                <input
-                  type="text"
-                  className="input"
-                  value={(data.title && data.title.fr) || ''}
-                  onChange={handlers.frenchTitle}
-                  placeholder="French Title" />
-              </div>
-            </div>
-          </div>
         </div>
 
         <div className="columns">
-          <div className="column is-6">
+          <div className="column is-12">
             <div className="field">
-              <label className="label">Slug</label>
-              <div className="control">
-                <input
-                  type="text"
-                  className={hasCollidingSlug ? 'input is-danger' : 'input'}
-                  value={slug}
-                  disabled
-                  placeholder="..." />
-              </div>
-              {hasCollidingSlug && <p className="help is-danger">This slug already exists!</p>}
+              <label className="label" style={{display: 'inline'}}>Slug:</label> {slug && <code>{slug}</code>}
             </div>
           </div>
         </div>
@@ -179,19 +171,6 @@ function renderProductionForm(props) {
         </div>
 
         <div className="columns">
-          <div className="column is-6">
-            <div className="field">
-              <label className="label">English Description</label>
-              <div className="control">
-                <textarea
-                  className="textarea"
-                  value={(data.description && data.description.en) || ''}
-                  onChange={handlers.englishDescription}
-                  placeholder="English Description"
-                  rows={2} />
-              </div>
-            </div>
-          </div>
 
           <div className="column is-6">
             <div className="field">
@@ -206,17 +185,24 @@ function renderProductionForm(props) {
               </div>
             </div>
           </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Description</label>
+              <div className="control">
+                <textarea
+                  className="textarea"
+                  value={(data.description && data.description.en) || ''}
+                  onChange={handlers.englishDescription}
+                  placeholder="English Description"
+                  rows={2} />
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div className="columns">
-          <div className="column is-6">
-            <div className="field">
-              <label className="label">English Content</label>
-              <Editor
-                content={englishEditorContent}
-                onSave={handlers.englishContent} />
-            </div>
-          </div>
 
           <div className="column is-6">
             <div className="field">
@@ -226,6 +212,16 @@ function renderProductionForm(props) {
                 onSave={handlers.frenchContent} />
             </div>
           </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Content</label>
+              <Editor
+                content={englishEditorContent}
+                onSave={handlers.englishContent} />
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -235,7 +231,7 @@ function renderProductionForm(props) {
         </h4>
 
         <div className="columns">
-          <div className="column is-6">
+          <div className="column is-12">
             <div className="field">
               <label className="label">Related Activities</label>
               <div className="control">
@@ -250,7 +246,7 @@ function renderProductionForm(props) {
         </div>
 
         <div className="columns">
-          <div className="column is-6">
+          <div className="column is-12">
             <div className="field">
               <label className="label">Related People</label>
               <div className="control">
@@ -265,7 +261,7 @@ function renderProductionForm(props) {
         </div>
 
         <div className="columns">
-          <div className="column is-6">
+          <div className="column is-12">
             <div className="field">
               <label className="label">Related Productions</label>
               <div className="control">

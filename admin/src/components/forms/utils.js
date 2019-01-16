@@ -82,7 +82,8 @@ export function createHandlers(scope, specs) {
     else if (spec.type === 'relation')
       handler = {
         add: createAddRelationHandler(scope, field),
-        drop: createDropRelationHandler(scope, field)
+        drop: createDropRelationHandler(scope, field),
+        move: createArrayMoveHandler(scope, field)
       };
     else
       handler = createHandler(scope, field);

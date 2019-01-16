@@ -94,7 +94,6 @@ function renderNewsForm(props) {
     data,
     handlers,
     slug,
-    hasCollidingSlug,
     englishEditorContent,
     frenchEditorContent
   } = props;
@@ -104,6 +103,21 @@ function renderNewsForm(props) {
 
       <div className="form-group">
         <div className="columns">
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">French Title</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  value={(data.title && data.title.fr) || ''}
+                  onChange={handlers.frenchTitle}
+                  placeholder="French Title" />
+              </div>
+            </div>
+          </div>
+
           <div className="column is-6">
             <div className="field">
               <label className="label">English Title</label>
@@ -119,34 +133,12 @@ function renderNewsForm(props) {
             </div>
           </div>
 
-          <div className="column is-6">
-            <div className="field">
-              <label className="label">French Title</label>
-              <div className="control">
-                <input
-                  type="text"
-                  className="input"
-                  value={(data.title && data.title.fr) || ''}
-                  onChange={handlers.frenchTitle}
-                  placeholder="French Title" />
-              </div>
-            </div>
-          </div>
         </div>
 
         <div className="columns">
-          <div className="column is-6">
+          <div className="column is-12">
             <div className="field">
-              <label className="label">Slug</label>
-              <div className="control">
-                <input
-                  type="text"
-                  className={hasCollidingSlug ? 'input is-danger' : 'input'}
-                  value={slug}
-                  disabled
-                  placeholder="..." />
-              </div>
-              {hasCollidingSlug && <p className="help is-danger">This slug already exists!</p>}
+              <label className="label" style={{display: 'inline'}}>Slug:</label> {slug && <code>{slug}</code>}
             </div>
           </div>
         </div>
@@ -174,19 +166,6 @@ function renderNewsForm(props) {
         </div>
 
         <div className="columns">
-          <div className="column is-6">
-            <div className="field">
-              <label className="label">English Description</label>
-              <div className="control">
-                <textarea
-                  className="textarea"
-                  value={(data.description && data.description.en) || ''}
-                  onChange={handlers.englishDescription}
-                  placeholder="English Description"
-                  rows={2} />
-              </div>
-            </div>
-          </div>
 
           <div className="column is-6">
             <div className="field">
@@ -201,20 +180,24 @@ function renderNewsForm(props) {
               </div>
             </div>
           </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Description</label>
+              <div className="control">
+                <textarea
+                  className="textarea"
+                  value={(data.description && data.description.en) || ''}
+                  onChange={handlers.englishDescription}
+                  placeholder="English Description"
+                  rows={2} />
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div className="columns">
-          <div className="column is-6">
-            <div className="field">
-              <label className="label">English Label</label>
-              <SuggestionSelector
-                model="news"
-                field={['label', 'en']}
-                placeholder="English label..."
-                onChange={handlers.englishLabel}
-                value={(data.label && data.label.en) || null} />
-            </div>
-          </div>
 
           <div className="column is-6">
             <div className="field">
@@ -227,6 +210,19 @@ function renderNewsForm(props) {
                 value={(data.label && data.label.fr) || null} />
             </div>
           </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Label</label>
+              <SuggestionSelector
+                model="news"
+                field={['label', 'en']}
+                placeholder="English label..."
+                onChange={handlers.englishLabel}
+                value={(data.label && data.label.en) || null} />
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -235,14 +231,6 @@ function renderNewsForm(props) {
           News contents
         </h4>
         <div className="columns">
-          <div className="column is-6">
-            <div className="field">
-              <label className="label">English Content</label>
-              <Editor
-                content={englishEditorContent}
-                onSave={handlers.englishContent} />
-            </div>
-          </div>
 
           <div className="column is-6">
             <div className="field">
@@ -252,6 +240,16 @@ function renderNewsForm(props) {
                 onSave={handlers.frenchContent} />
             </div>
           </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">English Content</label>
+              <Editor
+                content={englishEditorContent}
+                onSave={handlers.englishContent} />
+            </div>
+          </div>
+
         </div>
       </div>
 

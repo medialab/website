@@ -56,11 +56,11 @@ class SlugConfirm extends Component {
       <CardModal onClose={onClose}>
         {
           [
-            'Confirmation',
+            'Slug collision!',
             (
               <div key="body" className="content">
                 <p>
-                  You are going to create an item with the following slug:
+                  This slug is already taken! Please change it:
                 </p>
                 <div className="control">
                   <input
@@ -321,16 +321,10 @@ class Form extends Component {
       slugify(data) :
       data.slugs[data.slugs.length - 1];
 
-    const hasCollidingSlug = (
-      isNew &&
-      existingSlugs &&
-      existingSlugs.has(slug)
-    );
-
     const pageLabel = label || model;
 
     const saveLabel = isNew ?
-      (`Create this ${pageLabel}` + (hasCollidingSlug ? ' and edit the slug' : '')) :
+      `Create this ${pageLabel}` :
       `Save this ${pageLabel}`;
 
     const dirty = hash(data) !== lastHash;
@@ -362,7 +356,6 @@ class Form extends Component {
         handlers: this.handlers,
         englishEditorContent: this.englishEditorContent,
         frenchEditorContent: this.frenchEditorContent,
-        hasCollidingSlug,
         slug,
         data
       });

@@ -81,10 +81,12 @@ export function htmlToRaw(html) {
 }
 
 export function rawToHtml(rawContentState) {
-  return stateToHTML(convertFromRaw(rawContentState), {
+  const html = stateToHTML(convertFromRaw(rawContentState), {
     defaultBlockTag: null,
     entityStyleFn
   });
+
+  return html.replace(/\n/g, '');
 }
 
 const DEFAULT_MAX_SLUG_TOKENS = 6;

@@ -118,12 +118,12 @@ ROUTERS.forEach(({model, router}) => {
       const values = new Set();
 
       // TODO: we can do better...
-      if (field === 'contact.label') {
+      if (field === 'contacts.label') {
         data.forEach(item => {
-          if (!item.contact)
+          if (!item.contacts)
             return;
 
-          item.contact.forEach(contact => values.add(contact.label));
+          item.contacts.forEach(contact => values.add(contact.label));
         });
       }
       else {
@@ -160,7 +160,7 @@ app.post('/upload', (req, res) => {
     if (err)
       return res.status(500).send(err);
 
-    return res.status(200).json({name});
+    return res.status(200).json({name, originalName: file.name});
   });
 });
 
@@ -175,7 +175,7 @@ gatsby.start();
 const server = http.Server(app);
 
 // Serving websockets
-const ws = io(server);
+const ws = io(server, {path: '/sockets'});
 
 const LOCKS = {
   deployStatus: 'free'

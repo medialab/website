@@ -20,6 +20,8 @@ module.exports = function load(inputDir) {
   fs.ensureDirSync(config.get('data'));
 
   fs.copySync(path.join(inputDir, 'settings.json'), path.join(DATA_PATH, 'settings.json'));
+  fs.removeSync(path.join(DATA_PATH, 'assets'));
+  fs.ensureDirSync(path.join(DATA_PATH, 'assets'));
   fs.copySync(path.join(inputDir, 'assets'), path.join(DATA_PATH, 'assets'));
 
   models.forEach(model => {

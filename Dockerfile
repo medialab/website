@@ -24,4 +24,7 @@ RUN chmod +x /entrypoint.sh
 
 RUN chown -R node:node /website
 
+RUN su-exec node:node git config --global user.email "bot@medialab.sciences-po.fr"
+RUN su-exec node:node git config --global user.name "medialabot"
+
 ENTRYPOINT ["/entrypoint.sh"]

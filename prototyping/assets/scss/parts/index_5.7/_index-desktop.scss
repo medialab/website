@@ -1,0 +1,584 @@
+html{
+    //background: #f7323fe6 !important;  
+    //mix-blend-mode: multiply;
+}
+
+::selection, ::-moz-selection{
+    background: var(--redlab);
+    color: white;
+} 
+
+body{
+    overflow-x: hidden;
+}
+
+.container h3:first-of-type{
+    padding: 4rem 0;
+}
+
+main{
+    padding: 0 2rem;
+}
+
+hr{ 
+    border: none;
+    border-bottom: 1px solid $color-header-text;
+}
+
+
+/////// Top Bar relative
+#topbar #topbar-content #logo-medialab {
+    width: 70%;
+    max-width: 150px;
+    vertical-align: bottom;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    align-self: end;
+    position: absolute;
+    margin: 0;
+    bottom: 0rem;
+    opacity: .5;
+}
+
+///////////////////////
+/////////// Focus
+///////////////////////
+ 
+.slideshow{
+    //border-top: 1px solid black;
+    //border-bottom: 1px solid black;
+}
+
+#focus{
+    grid-column: 1/7;
+
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 2rem;
+
+    width: 100% ;
+    height: calc(100vh -  #{$height-top-bar} );
+    height: 100%;
+    max-height: 960px;
+
+    padding: 0rem;
+    margin: 0 0 0 0;
+
+    //transition: .5s linear;
+    text-align:center;
+
+
+    overflow: hidden;
+    //specific
+    grid-row-start: 1;
+    border-bottom: 1px solid $color-header-text;
+
+    div{
+        width: 100vw;
+        overflow: hidden;
+        border: none;
+        //top: -50%;
+        //transform: translate(-50%);
+        //left: 50%;        
+        height: 200%;
+        font-size: 1.5vw;
+
+        &:hover{
+        //font-size:1.25vw;
+        //transition: .25s linear;
+       }
+
+    }
+
+    .container{ // Specific Slideshow
+        height: 100%;
+    }
+
+    article{
+        position: absolute;
+        width: 50vw;
+        min-width: 600px;
+        height: calc(92vh - #{$height-top-bar} );        
+        background: white;
+
+        margin: 4vh;
+        z-index: 90;
+        padding: 2vw 2vw;
+
+        header{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: $baseline;
+            height: calc(66% - 2rem);
+            grid-template-rows: 2rem calc( 50% - 2rem) calc( 50% - 4rem);
+            grid-template-rows: 2rem auto auto;
+
+
+
+            h1{
+                grid-column: 1/4;
+                grid-row: 2;
+                font-size: $font-size*4;
+                line-height: $baseline*4;
+                font-size: 4vw;
+                line-height: 4vw;
+                padding: 0 0 1vw 0;
+                letter-spacing: -1px;
+                
+                font-weight: 100;
+
+                align-self: center;
+            }
+
+            h2{
+                grid-column: 1/4;
+                grid-row:2;
+                font-size: $font-size*1.2;
+                line-height: $baseline*1.2;
+                font-weight: 100;
+                font-style: italic;
+
+                align-self: end;
+
+            }
+
+            .nomenclature{
+                grid-column: 1/4;
+                grid-row: 1/2;
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                height: auto;
+                top: 0;
+
+                p{
+
+                    @include typo-home-nomenclature();
+                    //color: $color-header-text;
+                    width: auto;
+
+                }    
+            }
+
+
+            .description{
+                grid-column: 1/4;
+                grid-row: 3/4;
+                overflow: hidden;
+                width: 100%;
+                font-size: $font-size*1.4;
+                line-height: $baseline*1.4;
+
+            }
+        }
+
+        nav.related{
+            height: calc(33% - 1rem);
+            width: 100%;
+
+            h3{
+
+                font-size: $font-size*1.8;
+                line-height: $baseline*1.8;
+                font-weight: bold;
+                text-align: left;
+            }
+
+            ul{
+
+                display: flex;
+                flex-flow: row wrap;
+                height: calc( 100% - 1rem );
+
+                li{
+                    display: flex;
+                    flex-wrap: nowrap;
+                    border-bottom: 1px solid $color-header-text;
+                    justify-content: flex-start;
+                    text-align: left;
+                    align-items: flex-start;
+
+                    height: 25%;
+                    width: 100%;
+                    align-items: center;
+
+                    h4{
+                        width: auto;
+                        flex-grow: 1;
+                        white-space: nowrap;
+                        margin: 0 .5rem 0 0;
+
+                        font-size: 16px;
+                        font-weight: normal;
+                    }
+
+                    h5{
+                        flex-grow: 1;
+
+                        font-size: $font-size*1.6;
+                        font-weight: normal;
+                        font-style: italic;
+
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
+                    }
+
+                    .nomenclature{
+                        display: flex;
+                        align-items: center;
+                        justify-content: stretch;
+                        flex-grow: 2;
+                        max-width: 33%;
+
+
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
+
+                        p{
+                            width: auto;
+                            margin: 0 0 0 2rem;
+
+                            @include typo-home-nomenclature();
+                            //color: $color-header-text;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.slideshow--item:nth-of-type(2n){
+    article{
+        right: 0;
+    }
+}
+
+
+///////////////////////
+/////////// Dernier Articles
+///////////////////////
+
+.container{ 
+
+    p{
+        @include typo-labeur();
+    }
+
+    #enavant, #ensecond{
+        
+        
+        header{
+            cursor: pointer;
+             
+            h4{
+                @include typo-home-article-title();
+                padding: 0;
+            }
+            
+            .nomenclature{
+            
+                padding: 0 0 5px 0;
+                border-bottom: 1px solid #0003;
+
+                p{
+                    @include typo-home-nomenclature();
+                    width: 50%;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+/////////////////////
+//////// Agenda
+/////////////////////
+.container{
+
+    h3{
+
+        @include typo-home-titre-container();
+
+    }
+
+    #agenda{
+        width: calc(180vw - 3rem);
+        left: -40vw;
+
+        padding: 0 0 10vh 0;
+        transition: .75s ease-in-out;
+
+        .day{
+            min-height: 25vh;
+            border-right: 1px solid #0003;
+            padding: 0 1vw 0 1vw;            
+            transition: .75s ease-in-out;
+            
+            display: grid;
+            grid-template-columns: 50% 50%;
+            grid-template-rows: 2rem 15px 80px 30px 15px auto 15px 60px ;
+            grid-gap: 0 0;
+
+            &:nth-of-type(8):hover [data-attribute="day"], &:nth-of-type(9):hover [data-attribute="day"]{
+                transform: translateX(-40vw);
+            } 
+
+            &:nth-of-type(1):hover [data-attribute="day"], &:nth-of-type(2):hover [data-attribute="day"]{
+                transform: translateX(40vw);
+            } 
+            
+            &.past{
+                opacity: .5;
+            }
+
+            h4{
+                @include typo-home-article-title();
+                padding: 0;
+                grid-row: 6;
+                grid-column: 1/3;
+
+            }
+ 
+            p.type, p.lieu, p.date, p.horaire, p.hote{
+                @include typo-agenda-labeur();
+            }
+
+            p.date.start{
+                font-size: $font-size*4;
+                line-height: $baseline*3.5;
+                font-weight: 100;
+                
+                grid-row: 3;
+                grid-column: 1/3;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: block;
+                height: 70px;
+                word-break: break-all;
+                //font-feature-settings: "frac";
+
+                margin: 0 0 0 -5px; // Optic
+                span{
+                    display: block;
+
+                    @include typo-agenda-labeur();
+                    
+                    font-size: $font-size*1.6; // Optivcal illusion ?
+                    font-weight: bold;
+                    letter-spacing: -.05px;
+
+                    margin: 0 0 0 5px; // Optic
+
+                    
+                }
+            }
+
+
+
+            p.horaire.start{
+                grid-row: 3;
+                align-self: start;
+                justify-self: start;
+                grid-column: 2/3;
+
+                &::before{
+                    content: "◷";
+                    margin: 0 .5rem 0 0;
+                }
+            }
+
+            .agenda_detail_container{
+                    grid-row: 4;
+                    grid-column: 1/3;
+                    display: flex;
+                    align-content: flex-start;
+
+                .date.end{
+                    //flex-grow: 2;
+                    @include typo-agenda-labeur();
+
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+
+                    & + .horaire.end:before{
+                        content: ", ";
+                        padding-right: 2px;
+                    }
+
+                }
+
+                .horaire.end{
+                    flex-grow: 1;
+                    @include typo-agenda-labeur();
+                } 
+
+                .horaire.start + .horaire.end, .horaire.start + .date.end {
+
+                    &::before {
+                        content: "⇥";
+                        margin: 4px .5rem 0 .5rem;
+                    }
+                }
+            }
+
+
+            p.hote{
+                grid-column: 2/3;
+                grid-row: 1;
+                justify-self: end;
+                align-self: start;
+                font-size: 0;
+                line-height: 0;
+                z-index: 99;
+
+                &[data-attribute="host_medialab"]{
+                    font-size: 10px;
+                    line-height: 10px;
+                    opacity: .5;
+                    padding: 4px 5px;
+                    border: 1px solid $color-header-text;
+                    border-radius: 50px;
+                    cursor: pointer;
+
+                }
+            }
+
+            p.type{
+
+                grid-row: 1;
+                grid-column: 1/3;
+                
+                &:before {
+                    //content:"☄";
+                    //margin: 0 0.8rem;
+                    //font-family: monospace;
+
+                }
+                &[data-attribute="seminaire"]:before {
+                    //content:"⦼";
+                }
+
+                &[data-attribute="conference"]:before {
+                    //content:"⧇";
+                }
+            } 
+
+            
+
+            p.lieu{
+                grid-column: 1/3;
+                grid-row: 8;
+                align-self: start;
+
+                &:before {
+                    content:"✻";
+                    margin: 0 .5rem;
+                    font-family: monospace;
+
+                }
+            }       
+        }
+    }
+
+
+    #agenda_moving_left, #agenda_moving_right{
+        position: absolute;
+        width: 5%;
+        height: calc(100% - 10rem);
+        z-index: 999;
+        cursor: pointer;
+        bottom: 0;
+        display: flex;
+        align-items: flex-end;
+
+        span{
+            padding-bottom: 3rem;
+            font-size: 1vw;
+        }
+    }
+
+    #agenda_moving_right{
+        left: 0;
+    }
+
+    #agenda_moving_left{
+        right: 0;
+    }
+
+    #agenda_moving_left:hover ~ #agenda .day{ //~
+        transform: translateX(-40vw);
+
+    }
+
+    #agenda_moving_right:hover ~ #agenda .day{ //~
+        transform: translateX(40vw);
+
+    }
+
+
+}
+
+
+#topbar #topbar-content #logo-medialab {
+    width: 70%;
+    max-width: 150px;
+    vertical-align: bottom;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    align-self: end;
+    position: absolute;
+    margin: 0;
+    top: 1rem;
+    opacity: .5;
+
+}
+
+/////////////////
+//// Introduction
+/////////////////
+
+.i1{
+    height: 30vh;
+    width: 100%;
+    border-bottom: 1px solid $color-header-text;
+    margin: auto;
+
+    p:nth-of-type(1){
+        font-size: 20px;
+        line-height: 30px;
+        max-width: 610px;
+        z-index: 9;
+        text-align: center;
+        margin: 5vh auto;
+        padding: 2rem 0px;
+        font-style: italic;
+
+
+        .emblem{
+            display: block;
+            font-size: 5rem;
+            padding: 0 0 2rem 0;
+        }
+
+        .signature{
+            display: block;
+            padding: 1rem 0;
+            font-size: 12px;
+            font-style: normal;
+            text-transform: uppercase;
+        }
+
+    }
+}
+
+
+////////////////////
+////////  Flux
+/////////////////////

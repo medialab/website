@@ -1,0 +1,116 @@
+html {
+  font: 16px/1.25 arial, sans-serif;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  overflow: hidden;
+  padding: 0.5rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+small {
+  font-size: 0.75rem;
+}
+
+p {
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+figure {
+  left: 50%;
+  margin: -180px 0 0 -270px;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+}
+
+figure::before {
+  background: #fff;
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 180px;
+  z-index: 101;
+}
+
+figcaption {
+  margin: 0.5rem 0 0;
+  max-width: 540px;
+}
+
+ul {
+  height: 360px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 540px;
+}
+
+ul::before,
+ul::after {
+  background: #fff;
+  content: "";
+  height: 100%;
+  position: absolute;
+  width: 1px;
+  z-index: 1;
+}
+
+ul::before {
+  left: 180px;
+}
+
+ul::after {
+  right: 180px;
+}
+
+li {
+  background: #bbb;
+  display: block;
+  float: left;
+  position: relative;
+}
+
+li::before {
+  color: #fff;
+  content: attr(title);
+  cursor: pointer;
+  display: inline-block;
+  font: bold 1.5rem/1 sans-serif;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) rotateZ(0);
+  z-index: 0;
+}
+
+canvas,
+img {
+  display: block;
+}
+
+canvas {
+  position: relative;
+}
+
+.is-iframe {
+  overflow: hidden;
+}
+
+.is-iframe figcaption {
+  display: none;
+}

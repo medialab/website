@@ -1,0 +1,166 @@
+/////////////////////
+//////// item_accroche: Desktop 
+/////////////////////
+
+
+
+
+///specifique à ativite
+// [data-item]{
+
+// 	ul{
+// 		li.titre{  display: inline-block; width: calc(33% - 10px); padding-right: 10px; }
+// 		li.type{  display: inline-block; width: calc(33% - 10px); padding-right: 10px;}
+// 		li.time{  display: inline-block; width: calc(33% - 10px); padding-right: 10px; text-align: right;}	
+
+// 		@supports (display: flex){
+// 			@include flex();
+// 			@include align-items(center);
+// 			.titre{ flex-grow: 2; }	
+// 			.type{ flex-grow: 2; }	
+// 			.time{ flex-grow: 1; text-align: right;}
+// 		}
+// 	}
+// }
+
+
+
+
+
+
+
+@include for-size(desktop) {
+
+	#topbar{ 
+		position: fixed!important; 
+		top: 0;
+		width: calc(100vw - #{$margins-desktop*2});
+		// left: 0;
+	}
+
+	#liste{
+        
+		   margin-top: $height-top-bar;
+		   margin-left: $logo-column;
+
+		   hr{
+			   display: block; 
+			   width: calc(100vw - #{$logo-column} - #{$margins-desktop*2});
+			   position: fixed;
+			   border-top: $border-bold;
+		   }
+		   
+
+		///// Accroche Phone
+        .accroche-titre-phone{
+        	display: none;
+        }
+		///// Acchroche Phone END
+		
+        ///// Liste Objet
+        .liste_objet{
+
+			
+			margin-bottom: 40vh;
+
+			.list-year{
+				padding-top: $height-top-bar + $baseline;
+				@include font-size-20();
+				height: $height-top-bar + $baseline*3.5;
+				border-bottom: $border-light;
+				// border-top: $border;
+
+
+				&:first-of-type{
+					height: $baseline*3.5;
+					padding-top: $baseline
+				}
+			}
+
+	
+
+			[data-item]{ // S'applique aux items des troix catégorie
+
+				padding-top: $baseline*1.5;
+				padding-bottom: $baseline;
+				border-bottom: $border-light;
+				
+
+				.date, .type{
+					@include font-size-13();
+					color: $text-color-light;
+				}
+
+				.date{
+					position: absolute;
+					bottom: $baseline;
+					left: 0;
+				}
+
+				.type{
+					text-align: right; 
+				}
+
+				h1{
+					@include font-size-20();
+				}
+
+				h2{ 
+					@include font-size-13();
+					margin-bottom: $baseline*0.5; 
+					&:before{ content: "– "; }
+				}
+
+				&:hover{
+					color: $redlab;
+					.type{ color: $redlab-light; }
+				}
+
+			}/* end data-item*/
+
+			[data-item] ~ [data-item-accroche]{ display: none; }
+
+			.accroche-titre{ display: block; }
+
+			@for $i from 0 through 400 {
+				
+				[data-item="#{$i}"]:hover ~ [data-item-accroche="#{$i}"],
+				[data-item="#{$i}"]:active ~ [data-item-accroche="#{$i}"]{ display:block; }
+				[data-item="#{$i}"]:hover ~ .accroche-titre{ display:none; }
+			}
+
+
+			
+		    .item_accroche{
+				@include font-size-40();
+				margin-left: $margins-desktop*3;
+			
+				// background-color: red;
+				position: fixed;
+				
+				top: $height-top-bar;
+				// border-top: $border;
+				padding-top: $baseline*2;		        
+
+				@include for-size(desktop-1300) {
+					 // Prevenir des lignes trop étendues sur grand écran
+					// width: calc( ( ( 90% - #{$logo-column} ) /2 ) - #{$margins-desktop*2} );
+				}
+			}/* end item_accroche*/
+			
+
+			[data-item], .list-year{
+				width: calc((100vw - #{$logo-column} - #{$margins-desktop*2})/5*2 );
+				// width: 40%;
+			}
+			.item_accroche{
+				width: calc(((100vw - #{$logo-column} - #{$margins-desktop*2})/5*3) - #{$margins-desktop}*3 );
+				left: calc(#{$logo-column} + #{$margins-desktop} + ((100vw - #{$logo-column} - #{$margins-desktop*2})/5*2 ));
+			}
+
+
+		}/* end .liste-objet */
+		
+
+    }/* end liste */
+}

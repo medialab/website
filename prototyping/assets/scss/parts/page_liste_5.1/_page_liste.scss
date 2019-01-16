@@ -1,0 +1,59 @@
+article{
+
+	--tabsize: 60px;
+
+    > #boussole{
+
+        @include typo-header();
+
+        ul{
+        	max-width: 75px;
+
+            li{
+
+                border-bottom: 1px solid black;
+
+                &:nth-of-type(1) {
+                    min-height: 4rem;
+                    border-top: 1px solid black;
+                    }
+            }
+        }
+    }
+
+
+	> main, > section{
+		
+
+		p{
+			@include typo-labeur();
+		}
+
+		h3{
+			@include article_h3();
+		}
+	}
+
+	main{
+
+		h1{
+			@include article_h1();
+		}
+		
+		h2{
+			@include article_h2();
+		}
+	}
+
+	#rel_personnes{
+
+        //border-top: $bordersize solid $bordercolor;
+	}
+
+	#rel_publications{
+        //border-top: $bordersize solid $bordercolor;
+	}
+
+
+
+}

@@ -1,0 +1,117 @@
+@supports(display: grid) {
+    .container{
+
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-gap: 2rem;
+
+        padding: 0 2rem;
+        width: calc( 100vw - 2rem);
+
+
+            article{
+            }
+
+            section#liste_item{
+                grid-column: 1/5;
+                grid-row-start: 1;
+
+            }
+
+            section#flux{
+                grid-column: 5/7;
+            }
+
+        #enavant{
+            grid-row: 2 / 3;
+            grid-column: 1/7;
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-gap: 2rem;
+        }
+
+        #ensecond{
+            grid-row: 4 / 4;
+            grid-column: 1/7;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 2rem;
+            grid-template-rows: $baseline*8 $baseline*8;
+
+            header{
+                //grid-column: 1/4;
+                display: grid;
+                grid-template-columns: repeat(6, 1fr);
+                grid-gap: $baseline;
+                grid-template-rows: $baseline*4 $baseline*2;
+
+                h4{
+                    grid-column: 1/7;
+                    grid-rows: 1/2;
+                }
+
+                .nomenclature{
+                    grid-column: 1/7;
+                    display: flex;
+                    align-self: end;
+
+                }
+
+
+            }
+        }
+    }
+} 
+
+
+/////////////////////
+//////// Agenda
+/////////////////////
+
+.container.agenda{
+    padding: 4rem  0 0 0 ;
+    width: calc(140vw - 3rem);
+
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 20px auto;
+}
+
+
+h3{
+    grid-row: 1/2;
+    grid-column: 1/6;
+    justify-self: center
+}
+
+#agenda{
+
+    grid-column: 1 / 8;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 2rem;
+    grid-template-rows: 4rem auto;
+
+    .day{
+        grid-row: 2/3;
+
+        h6{
+        
+        }
+
+        h5.type,h5.lieu{
+        
+        }
+
+        h5.type{
+
+        }
+
+        h5.lieu{
+
+        }
+
+        h4{
+
+        }
+    }
+}

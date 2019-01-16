@@ -1,0 +1,55 @@
+@supports(display: grid) {
+    .container{
+
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: 7rem auto 10vh auto auto auto auto ;
+
+        padding: 0 2rem;
+        width: calc( 100vw - 2rem);
+
+        #enavant{
+            grid-column: 1 / 5;
+            grid-row: 2 / 3;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 2.5rem;
+
+            article{
+
+
+            }
+        }
+
+         #flux{
+            position: fixed;
+            width: 33vw;
+            right: 0;
+            height: auto;
+            border-bottom: 1px solid grey;
+            padding: 1rem 0 2rem 0;
+            margin: 0 0 3rem 0;
+
+            h3{
+                    font-size: $font-size*4;
+                    line-height: $baseline*3.5;
+                    font-weight: 100;
+                    letter-spacing: -1px;
+
+                    padding: 1rem 0 1rem 0;
+            }
+
+            .date{
+                font-style: italic;
+                font-weight: 500;
+
+            }
+
+            .name{
+                font-weight: 500;
+            }
+        }
+
+    }
+} 

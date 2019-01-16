@@ -1,0 +1,42 @@
+/* all */
+body, html{
+	overflow: inherit;
+}
+
+#topbar{
+	z-index: 30;
+	background-color: $background-site;
+
+}
+
+a:hover{
+	color: #E6142D;
+	svg{ fill: #E6142D; }
+	img{
+		//background-color: #E6142D;
+		//mix-blend-mode: color-burn;
+	}
+}
+
+#nav-inside-article #img-article {
+    visibility: hidden !important;
+}
+
+#biographie .contact {
+		color:red !important;
+
+	li{
+		@include font-size-13();
+		border: $border-light;
+		width: $unite*2;
+		color: $text-color-light;
+		text-align: center;
+		display: inline-block;
+
+		&:hover{
+			border-color: $redlab;
+			color: $redlab;
+			cursor: pointer;
+		}
+	}
+}

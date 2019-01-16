@@ -1,0 +1,42 @@
+// For All page liste dedicated to Activity Object
+
+
+/////////////////////
+//////// Global 
+/////////////////////
+
+[data-type="activite"] a{
+	text-decoration: underline;
+}
+
+#liste{
+    ///// Filtre : Selctionner tel ou tel article Pure CSS
+    input.filtre_objet:checked ~ .liste_objet [data-type]{display: none;}
+    input#filtre_publication:checked ~ .liste_objet [data-type="publication"] { display: block !important;}
+    input#filtre_web:checked ~ .liste_objet [data-type="web"] { display: block !important;}
+    input#filtre_outils:checked ~ .liste_objet [data-type="outils"] { display: block !important;}
+    input#filtre_situation:checked ~ .liste_objet [data-type="situation"] { display: block !important;}
+}
+
+
+/////////////////////
+//////// Desktop 
+/////////////////////
+
+@include for-size(desktop) {
+
+    @supports (display: flex){
+
+	}
+}
+
+/////////////////////
+//////// Phone 
+/////////////////////
+
+@include for-size(phone) {
+
+    @supports (display: flex){
+
+	}
+}

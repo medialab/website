@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	
+    <title>Medialab - Proto</title>
+    <!-- styles -->
+    <style type="text/css"></style>
+
+    <!-- scripts -->
+    <style type="text/css">
+	    canvas{
+			position: absolute;
+			height: 70%;
+			top: 50%;
+			left:50%;
+			transform: translate(-50%, -50%);
+			box-sizing: border-box;
+			image-rendering: pixelated;
+		}
+
+		html,body {
+			box-sizing: border-box;
+			width: 100%;
+			height: 100%;
+			position: fixed;
+
+			overflow:hidden;
+			height: 100vh;
+		}
+
+    </style>
+
+</head>
+<body>
+	<canvas id="canv3" width="1000" height="1500"  style="filter: url(#half-tone5)" style="border: 1px solid grey"></canvas>
+</body>
+
+<svg class="ImageFilter-svg" style="display: block; height: 100%; width: 100%; overflow: hidden; left: 0px; position: absolute; top: 0px;">
+  <filter id="half-tone" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix" values="0.9 -0.1 0 -0.1 0.1 -1 0 0.4 -1 0.2734375 -1 0 0 -1 0.78125 0 0 0 1 0"></feColorMatrix>
+  </filter>
+
+  <filter id="half-tone2" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="-1 -0.3 0 0 1.1 -1 -1 -1 -1 -1 0.1 0.1 -1 -1 -1 -1 -0.2 0.2 0.8 0.1"></feColorMatrix></filter>
+
+  <filter id="half-tone3" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="-1 2 -1 0 1.1 -1 -1 1.2 -1 -1 0.1 0.1 -1 -1 -1 -1 -0.2 0.2 0.7 0.1"></feColorMatrix></filter>
+
+  <filter id="half-tone4" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0.5 0.1 0.1 -0.1 0.1 -1 -0.5 -0.5 -1 -1 -0.5078125 -1 -0.2 -0.4 0.6 0 0 0.4 1 0"></feColorMatrix></filter>
+
+  <filter id="half-tone5" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0.703125 0 0 0 0.15625 -0.15625 0 0 0 0.2734375 -0.5078125 0 0 0 0.78125 0 0 0 1 0"></feColorMatrix></filter>
+</svg>
+
+<script type="text/javascript">
+var img=new Image();
+img.crossOrigin = "Anonymous";
+img.src='pessoa.jpg';
+img.addEventListener('load',function(){
+var c=document.getElementById("canv3")
+ctx=c.getContext('2d');
+ctx.drawImage(img,0,0);
+
+var c2=document.getElementById("canv3")
+ctx2=c2.getContext('2d');
+//ctx2.fillStyle='#ffffff'
+//ctx2.fillRect(0,0,c.width,c.height)
+var d=ctx.getImageData(0,0,c.width,c.height).data;
+var d2=ctx2.createImageData(c.width,c.height);
+var yy=-1;
+for(var i=0;i<d.length;i+=c.width*4){
+  yy++;
+  var xx=-1;
+  for(var j=0;j<c.width*4;j+=4){
+    xx++;
+    var g=Math.floor((d[yy*c.width*4+(xx*4)]+d[yy*c.width*4+(xx*4)+1]+d[yy*c.width*4+(xx*4)+2]) / 3);
+    d2.data[yy*c.width*4+(xx*4)]=g;
+    d2.data[yy*c.width*4+(xx*4)+1]=g;
+    d2.data[yy*c.width*4+(xx*4)+2]=g;
+    d2.data[yy*c.width*4+(xx*4)+3]=255;
+  }
+}
+ctx2.putImageData(d2,0,0);
+
+
+
+var c3=document.getElementById("canv3");
+ctx3=c3.getContext('2d');
+//ctx3.fillStyle='#ffffff'
+//ctx3.fillRect(0,0,c.width,c.height)
+var d3=d2;
+var yy=-1;
+for(var i=0;i<d3.data.length;i+=c.width*4){
+  yy++;
+  var xx=-1;
+  for(var j=0;j<c.width*4;j+=4){
+    xx++;
+    var g=d3.data[yy*c.width*4+(xx*4)];
+    var oldpixel  = g;
+    var newpixel  = oldpixel<128?0:255;
+      //pixel[x][y]  := newpixel
+    var quant_error  = oldpixel - newpixel;
+    var xy=yy*c.width*4+xx*4;
+    //if(xx<c.width-1 && yy < c.height-1){
+      var xp1y=yy*c.width*4+((xx+1)*4);
+      var xm1yp1=(yy+1)*c.width*4+((xx-1)*4);
+      var xyp1=(yy+1)*c.width*4+(xx*4);
+      var xp1yp1=(yy+1)*c.width*4+((xx+1)*4);
+    //}
+    d3.data[xy]=newpixel;
+    d3.data[xp1y]=Math.floor(d3.data[xp1y]+quant_error*7/16);
+    d3.data[xm1yp1]=Math.floor(d3.data[xm1yp1]+quant_error*3/16);
+    d3.data[xyp1]=Math.floor(d3.data[xyp1]+quant_error*5/16);
+    d3.data[xp1yp1]=Math.floor(d3.data[xp1yp1]+quant_error*1/16);
+
+    for(var h=1;h<3;h++){
+      d3.data[xy+h]=d3.data[xy];
+      //if(xx<c.width-1 && yy < c.height-1){
+        d3.data[xp1y+h]=d3.data[xp1y];
+        d3.data[xm1yp1+h]=d3.data[xm1yp1];
+        d3.data[xyp1+h]=d3.data[xyp1];
+        d3.data[xp1yp1+h]=d3.data[xp1yp1];
+      //}
+    }
+  }
+}
+ctx3.putImageData(d3,0,0);
+
+});
+
+</script>
+</html>

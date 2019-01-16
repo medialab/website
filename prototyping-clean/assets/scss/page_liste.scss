@@ -1,0 +1,14 @@
+/* page liste Activite */
+/* julie: node-sass --watch index.scss ../css-compiled/index.css */
+
+@import 'common';
+
+
+//parts/page_list
+@import 'parts/page_liste/page_liste';
+@import 'parts/page_liste/page_liste-desktop';
+@import 'parts/page_liste/page_liste-phone';
+@import 'parts/page_liste/filtre';
+
+@import 'parts/page_liste/filtre_activite';
+@import 'parts/page_liste/filtre_production';

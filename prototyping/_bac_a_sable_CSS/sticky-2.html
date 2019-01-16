@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC>
+<html lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <title>
+      Sticky
+    </title>
+    <script src="jquery.min.js"></script>
+  <script>
+    $(window).scroll(function() {
+  var $headers = $(".header");
+  var scrollTop = $(this).scrollTop();
+
+  if (scrollTop <= 0) {
+    // reset all
+    $headers.css({
+      position: "relative",
+      top: "0px"
+    });
+  } else {
+    $headers.each(function(index, $el) {
+
+      var $curHeader = $($headers).eq(index);
+      var curTop = $curHeader.offset().top;
+      var curHeight = $curHeader.height();
+
+      // scroll up
+      var isRelative = ($el.isFixed && scrollTop <= $el.exTop);
+
+      // scroll down
+      var isFixed = (curTop <= scrollTop);
+
+      var position = "";
+      var top = 0;
+
+      if (isRelative) {
+        // reset
+        positon = "relative";
+        top = 0;
+
+        $el.isFixed = false;
+      } else if (isFixed) {
+        position = "fixed";
+        if (0 < index) {
+          for (var i = 0; i < index; i++) {
+            top += $($headers).eq(i).height();
+          }
+        }
+        scrollTop += curHeight;
+
+        if (!$el.isFixed) {
+          $el.isFixed = true;
+          $el.exTop = curTop;
+        }
+      }
+
+      $($el).css({
+        position: position,
+        top: top + "px"
+      });
+    });
+  }
+});
+  </script>
+
+
+    <style>
+       body {
+  height: 10000px;
+}
+div {
+  height: 200px;
+  background: gray;
+  width: 100%;
+}
+
+.header {
+  height: 50px;
+  background: green;
+}
+
+.header:after {
+  height: 50px;
+  background: green;
+}
+
+div.header:nth-child(4) {
+  height: 100px;
+}
+    </style>
+
+
+
+
+
+  </head>
+  <body>
+
+    <body>
+      <div>content 0</div>
+      <div class="header">header 1</div>
+      <div>content 1</div>
+      <div class="header">header 2</div>
+      <div>content 2</div>
+      <div class="header">header 3</div>
+      <div>content 3</div>
+  </body>
+</body>

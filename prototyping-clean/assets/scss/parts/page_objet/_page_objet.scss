@@ -1,0 +1,30 @@
+/* all */
+body, html{
+	overflow: inherit;
+}
+
+#topbar{
+	z-index: 30;
+	background-color: $background-site;
+}
+
+a:hover{
+	color: #E6142D;
+	svg{ fill: #E6142D; }
+	img{
+		//background-color: #E6142D;
+		//mix-blend-mode: color-burn;
+	}
+}
+
+
+#article-contenu{
+
+	// flex permet de mettre le choix de la langue en dernier (alors qu'il doit être en premier dans l'HTML pour pouvoir marcher)
+	@include flex();
+	@include flex-direction(column);
+
+	hgroup{ @include flex-order(1); }
+	.article-contenu{ @include flex-order(2); }
+	.toggle-lang{ @include flex-order(3); max-width:900px;}
+}

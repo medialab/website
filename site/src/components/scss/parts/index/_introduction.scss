@@ -1,0 +1,65 @@
+/////////////////////
+//////// Introduction phone
+/////////////////////
+
+@include for-size(phone) {
+
+    #introduction{
+        @include font-size-16-phone();
+        text-align: center;
+        margin: 0 $margins-phone;
+        p{ 
+            margin: 0 $margins-phone;
+            a{
+                @include font-size-13-phone();
+                display: block;
+                margin-top: $baseline;
+                color: $text-color-light;
+                text-decoration: underline;
+            }
+        }
+    }
+
+}
+
+
+
+/////////////////////
+//////// Introduction desktop
+/////////////////////
+
+@include for-size(desktop) {
+        
+    #introduction{
+        width: 100%;
+        margin: auto;
+        text-align: center;
+        padding-bottom: $baseline*5;
+
+        a{
+            @include font-size-16();
+            margin-top: $baseline*1;
+            color: $text-color-light;
+            text-decoration: underline;
+            display: none;
+        }
+
+        p{
+            @include font-size-20();
+            max-width: 610px;
+            z-index: 9;
+            margin: 0 auto;
+            // padding: 2rem 0px;
+            // font-style: italic;
+            transition: 0.2s;
+            &:hover{
+                @include font-size-40();
+                max-width: 1000px;
+                a{ display: block;}
+            }
+        }
+    }/* end #introduction */
+
+}
+
+

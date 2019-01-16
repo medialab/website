@@ -1,0 +1,111 @@
+$font-main: sans-serif;
+$font-mono: monospace;
+$font-size: 10px; // Base 10 pour simplifier les calculs
+$baseline: 15px;
+
+
+:root{
+	--font-size: $font-size;
+    --baseline: $baseline;
+
+    --font-main: $font-main;
+    --font-mono: $font-mono;
+    color: $black-color;
+}
+
+
+html{
+    font-family: $font-main;
+    font-size: $font-size;
+}
+
+
+@mixin typo-header() {
+    font-size: $font-size*1.3;
+    font-weight: 300;
+    line-height: $baseline;
+    line-height: $baseline*1.3;
+}
+
+@mixin typo-list_title() {
+    font-size: $font-size*2;
+    font-weight: normal;
+    line-height: $baseline;
+    line-height: $baseline*1.8;
+}
+
+
+@mixin menu-object-accroche-desktop() {
+    font-size: $font-size * 4;
+    font-weight: 100;
+    line-height: $baseline*3;
+}
+
+
+
+@mixin typo-labeur() {
+    font-size: $font-size*1.8;
+    line-height: $baseline*1.8;
+    font-weight: 100;
+}
+
+@mixin article_h1() {
+    font-size: $font-size*6;
+    line-height: $baseline*5.5;
+    font-weight: 100;
+    letter-spacing: -1px;
+
+    padding: 2rem 0 4rem 0;
+}
+
+@mixin article_h2() {
+    font-size: $font-size*3;
+    line-height: $baseline*3;
+    font-weight: 100;
+}
+
+@mixin article_h3() {
+    font-size: $font-size*1.8;
+    line-height: $baseline*1.8;
+    font-weight: 500;
+
+    padding: 1rem 0 2rem 0;
+}
+
+
+// Home
+
+@mixin typo-home-titre-container{
+        font-size: $font-size*2.7;
+        line-height: $baseline*2.7;
+        font-weight: 300;
+        text-align: center;
+}
+
+@mixin typo-home-titre-container_2{
+        font-size: $font-size*6;
+        line-height: $baseline*4.5;
+        font-weight: 300;
+        text-align: left;
+}
+
+@mixin typo-home-article-title() {
+    font-size: $font-size*2;
+    font-weight: normal;
+    line-height: $baseline;
+    line-height: $baseline*1.8;
+    letter-spacing: -.05px;
+}
+
+@mixin typo-home-nomenclature(){
+    font-size: $font-size*1.2;
+    line-height: $baseline*1.2;
+    font-weight: 100;
+    letter-spacing: -.05px;
+    //color: $color-header-text;
+}
+
+@mixin typo-agenda-labeur{
+    font-size: $font-size*1.4;
+    line-height:  $baseline*1.4;
+}

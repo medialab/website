@@ -1,6 +1,12 @@
 node_modules
 .DS_Store
 build
-config/local.json
-data
 dump
+config/local.json
+*.log
+.sass-cache
+prototyping/assets/.sass-cache
+admin/package-lock.json
+package-lock.json
+site/package-lock.json
+admin/package-lock.json

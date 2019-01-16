@@ -1,0 +1,71 @@
+/////////////////////
+//////// Top bar desktop
+/////////////////////
+
+@include for-size(desktop) {
+
+    
+    #nav-home{ display: none!important; }
+    
+    #topbar{
+        padding: $margins-desktop 0;
+        width: 100%;
+        height: $height-top-bar;
+        // @include font-size-16();
+        color: $text-color;
+        @include font-size-13();
+        text-transform: uppercase;
+        letter-spacing: 0.2px;
+        background-color: $background-site;
+        z-index: 999;
+    }
+
+    #topbar label{ 
+        display: none;
+        cursor: pointer;
+ }
+        
+    #topbar-content{
+        height: 100%;
+        @include flex();
+        @include justify-content(stretch);
+
+        #logo-medialab svg, #logo-medialab img{
+            width: $unite*6;
+            fill: $text-color;
+            margin-right: $unite*4;
+            top: 70%;
+            transform: translateY(-50%);  
+        }
+
+        li::before{
+            display: inline-block;
+            text-align: center;
+            // display: none;
+            width: $baseline*1;
+            margin-right: $baseline*0.75;
+        }
+
+        nav{
+            @include flex();
+            @include align-items(flex-end);
+            ul{ 
+                width: $unite*8; 
+                li{ margin-top: $baseline/4; }
+            }
+        }
+
+        #langue{
+            width: 100%;
+            @include align-self(flex-end);
+            p{
+                width: 100%;
+                text-align: right;
+            }
+        }
+    }/* end #topbar-content */
+
+    
+
+}/* end desktop */
+

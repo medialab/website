@@ -1,0 +1,615 @@
+{
+  "productions": [
+    {
+      "active": false,
+      "authors": "Daniele Guido, Paul Girard",
+      "description": {
+        "en": "ANTA or Actor Network Text Analyzer is a piece of software developed by the Sciences Po médialab to analyses medium-size text corpora, by extracting the expressions they contained in a set of texts and drawing a network of the occurrence of such expressions in the texts.",
+        "fr": "ANTA est un logiciel pour la constitution et l’analyse de corpus textuels. A la différence des  logiciels existants dans le domaine du text-mining, ANTA ne s’appuie pas sur des algorithmes syntaxiques ou sémantiques complexes, mais produit une simple analyse d’occurrence des expressions dans les textes du corpus. L’output d’ANTA est donc un réseau de cooccurrences de textes et expressions. La force d’ANTA vient de son interface conçue pour faciliter au maximum le travail de constitution du corpus, de sélection des expressions à tracer et de catégorisation des textes et des expressions (tagging)."
+      },
+      "draft": true,
+      "id": "0541186f-4138-4d26-a867-f48faa86c3a6",
+      "lastUpdated": 1545310617245,
+      "oldSlug": "anta",
+      "people": [
+        "4d4cad62-1674-4f3c-85c0-30d7b501f6e0"
+      ],
+      "slugs": [
+        "anta-actor-network-text-analyzer"
+      ],
+      "title": {
+        "en": "ANTA, actor-network text analyzer",
+        "fr": "ANTA, actor-network text analyzer"
+      },
+      "type": "software",
+      "url": "http://jiminy.medialab.sciences-po.fr/anta_dev/"
+    },
+    {
+      "active": true,
+      "authors": "Atelier de Cartographie (Patrice Mitrano, Thomas Ansart, Benoît Martin, Antoine Rio), APYX (Arnaud Pezel), Benjamin Ooghe-Tabanou, Audrey Baneyx",
+      "description": {
+        "en": "Easily create rich qualitative and quantitative maps from CSV files against different geographical projections.",
+        "fr": ""
+      },
+      "draft": true,
+      "id": "0cf20c05-38ff-48be-9880-6891efe54145",
+      "lastUpdated": 1545310617263,
+      "oldSlug": "khartis",
+      "people": [
+        "0dcba674-00f3-42d8-b943-89b698a29081",
+        "9dda049d-df18-4cb0-ad76-b40f6cd019c4"
+      ],
+      "slugs": [
+        "khartis"
+      ],
+      "title": {
+        "en": "Khartis",
+        "fr": "Khartis"
+      },
+      "type": "software",
+      "url": "http://tools.medialab.sciences-po.fr/carto/"
+    },
+    {
+      "active": true,
+      "authors": "Mathieu Jacomy",
+      "description": {
+        "en": "You have a CSV and you need to transform it into a better CSV, which includes filtering, clustering, parsing, merging, (...) and matching regular expressions. Why not do it in JS? You're welcome.",
+        "fr": ""
+      },
+      "draft": true,
+      "id": "13d99536-48f6-4d26-991b-921f8b6e5b08",
+      "lastUpdated": 1545310617249,
+      "oldSlug": "csv-rinse-repeat",
+      "people": [
+        "910c509c-ca11-4684-9898-f2b0b6f3283e"
+      ],
+      "slugs": [
+        "csv-rinse-repeat"
+      ],
+      "title": {
+        "en": "CSV Rinse Repeat",
+        "fr": "CSV Rinse Repeat"
+      },
+      "type": "software",
+      "url": "http://tools.medialab.sciences-po.fr/csv-rinse-repeat/"
+    },
+    {
+      "active": true,
+      "activities": [
+        "1f5f0ba7-d1a2-44c6-97e2-23990f691095"
+      ],
+      "authors": "Mathieu Jacomy, Benjamin Ooghe-Tabanou, Paul Girard",
+      "description": {
+        "en": "Hyphe is a web corpus curation tool featuring a research-driven web crawler",
+        "fr": "Dans le cadre du projet Hypertext Corpus Initiative, HCI tools a pour objectif de développer une nouvelle génération d’outils pour la constitution et l’exploration de corpus de sites web. L’objectif de cette initiative est d’améliorer l’intégration des activités qualitatives (création et qualification du corpus) et quantitatives (récolte, indexation, stockage des données) liée à la construction d’un corpus web et d’offrir un logiciel conçu par et pour les utilisateurs non techniciens (notamment les chercheurs en sciences humaines et les documentalistes)."
+      },
+      "draft": true,
+      "id": "19cf7adc-1880-4072-bfdf-c69eac7e6ffa",
+      "lastUpdated": 1545310617258,
+      "oldSlug": "hyphe",
+      "people": [
+        "4d46ba96-c592-427c-9431-85e2922e9c33",
+        "0dcba674-00f3-42d8-b943-89b698a29081",
+        "910c509c-ca11-4684-9898-f2b0b6f3283e"
+      ],
+      "productions": [
+        "5a8db7a8-2ec7-4c1d-af99-6911e189e5a9"
+      ],
+      "slugs": [
+        "hyphe"
+      ],
+      "title": {
+        "en": "Hyphe",
+        "fr": "Hyphe"
+      },
+      "type": "software",
+      "url": "http://hyphe.medialab.sciences-po.fr/"
+    },
+    {
+      "active": true,
+      "authors": "Alexis Jacomy, Guillaume Plique",
+      "description": {
+        "en": "Sigma is a JavaScript library dedicated to graph drawing. It makes easy to publish networks on Web pages, and allows developers to integrate network exploration in rich Web applications.",
+        "fr": ""
+      },
+      "draft": true,
+      "id": "2e5a0a18-f531-4902-b179-ab7a659104b4",
+      "lastUpdated": 1545310617276,
+      "oldSlug": "sigma",
+      "people": [
+        "e1b3dd1f-40da-431e-be9c-2194f6f73687",
+        "4d46ba96-c592-427c-9431-85e2922e9c33"
+      ],
+      "slugs": [
+        "sigmajs"
+      ],
+      "title": {
+        "en": "sigma.js",
+        "fr": "sigma.js"
+      },
+      "type": "code",
+      "url": "http://sigmajs.org"
+    },
+    {
+      "active": false,
+      "authors": "Mathieu Jacomy",
+      "description": {
+        "en": "Use this old tool to explore the web in Firefox and build a corpus. Export the hyperlink network to Gephi.",
+        "fr": ""
+      },
+      "draft": true,
+      "id": "3d448f6b-c12a-48d7-931f-1ceeb16a00f2",
+      "lastUpdated": 1545310617268,
+      "oldSlug": "navicrawler",
+      "people": [
+        "910c509c-ca11-4684-9898-f2b0b6f3283e"
+      ],
+      "slugs": [
+        "navicrawler"
+      ],
+      "title": {
+        "en": "Navicrawler",
+        "fr": "Navicrawler"
+      },
+      "type": "software",
+      "url": "http://webatlas.fr/wp/navicrawler/"
+    },
+    {
+      "active": true,
+      "authors": "Mathieu Jacomy",
+      "description": {
+        "en": "Graph Recipes is an environment to apply JS scripts to your network. Compute metrics, produce images, and tinker with Graphology.",
+        "fr": ""
+      },
+      "draft": true,
+      "id": "4c68d366-0f3b-48e9-818a-8816f6ded84b",
+      "lastUpdated": 1545310617254,
+      "oldSlug": "graph-recipes",
+      "people": [
+        "910c509c-ca11-4684-9898-f2b0b6f3283e"
+      ],
+      "slugs": [
+        "graph-recipes"
+      ],
+      "title": {
+        "en": "Graph Recipes",
+        "fr": "Graph Recipes"
+      },
+      "type": "software",
+      "url": "http://tools.medialab.sciences-po.fr/graph-recipes/"
+    },
+    {
+      "active": true,
+      "authors": "Benjamin Ooghe-Tabanou",
+      "description": {
+        "en": "Gazouilloire is a simple backend tool to collect within a Mongo database all tweets matching a list of keywords, optionnally with a planning of periods of collect for each keyword. For better completion, it collects tweets from both Twitter's Search API and Stream API.",
+        "fr": ""
+      },
+      "draft": true,
+      "id": "4e794654-1419-49b9-a0c2-5c18bca97d5f",
+      "lastUpdated": 1545310617251,
+      "oldSlug": "gazouilloire",
+      "people": [
+        "0dcba674-00f3-42d8-b943-89b698a29081"
+      ],
+      "slugs": [
+        "gazouilloire"
+      ],
+      "title": {
+        "en": "Gazouilloire",
+        "fr": "Gazouilloire"
+      },
+      "type": "software"
+    },
+    {
+      "active": true,
+      "authors": "IFRIS (Jean-Philippe Cointet, Philippe Breucker, Guillaume Orsal)",
+      "description": {
+        "en": "The CorTexT initiative of IFRIS proposes tools to explore and analyse semantics dynamics in corpus of texts.",
+        "fr": ""
+      },
+      "draft": true,
+      "id": "53181991-1b9f-4574-8140-392becf56b07",
+      "lastUpdated": 1545310617248,
+      "oldSlug": "cortext",
+      "people": [
+        "3aab3edb-b11d-4be0-b468-5d632cdba24b"
+      ],
+      "slugs": [
+        "cortext"
+      ],
+      "title": {
+        "en": "CorText",
+        "fr": "CorText"
+      },
+      "type": "software",
+      "url": "http://manager.cortext.net/"
+    },
+    {
+      "active": true,
+      "authors": "Thomas Tari, Benjamin Ooghe-Tabanou, Mathieu Jacomy, Byte Club (Nicolas Chambrier, Bruno Heridet), Donato Ricci, Agata Brill",
+      "description": {
+        "en": "A full browser connected to a Hyphe server to constitute, navigate and categorize the webpages of your corpus in situ the Navicrawler way.",
+        "fr": ""
+      },
+      "draft": true,
+      "id": "5a8db7a8-2ec7-4c1d-af99-6911e189e5a9",
+      "lastUpdated": 1545310617256,
+      "oldSlug": "hyphe-browser",
+      "people": [
+        "0dcba674-00f3-42d8-b943-89b698a29081",
+        "f1999165-9071-4f38-be92-b27ca48382b3"
+      ],
+      "slugs": [
+        "hyphe-browser"
+      ],
+      "title": {
+        "en": "Hyphe Browser",
+        "fr": "Hyphe Browser"
+      },
+      "type": "software",
+      "url": "https://github.com/medialab/hyphe-browser/releases"
+    },
+    {
+      "active": true,
+      "authors": "Mathieu Jacomy",
+      "description": {
+        "en": "Extract a network from a table. Set a column for nodes and a column for edges. It deals with multiple items per cell.",
+        "fr": ""
+      },
+      "draft": true,
+      "id": "6d72d347-4ff1-47bf-bc40-3f61dd7a75a2",
+      "lastUpdated": 1545310617277,
+      "oldSlug": "table2net",
+      "people": [
+        "910c509c-ca11-4684-9898-f2b0b6f3283e"
+      ],
+      "slugs": [
+        "table-2-net"
+      ],
+      "title": {
+        "en": "Table 2 Net",
+        "fr": "Table 2 Net"
+      },
+      "type": "software",
+      "url": "http://tools.medialab.sciences-po.fr/table2net/"
+    },
+    {
+      "active": false,
+      "authors": "Paul Girard",
+      "description": {
+        "en": "A python library to transform a issuecrawler xml file into a navicrawler wxsf (xml) file format.",
+        "fr": ""
+      },
+      "draft": true,
+      "id": "77e60f77-31e5-4951-a3bc-1d21c5093c6d",
+      "lastUpdated": 1545310617261,
+      "oldSlug": "issue2navicrawler",
+      "people": [
+        "66d33f76-f197-494f-b8c3-1a61d1f60655"
+      ],
+      "slugs": [
+        "issue-2-navicrawler"
+      ],
+      "title": {
+        "en": "issue 2 navicrawler",
+        "fr": "issue 2 navicrawler"
+      },
+      "type": "code",
+      "url": "http://jiminy.medialab.sciences-po.fr/issue2navicrawler/"
+    },
+    {
+      "active": true,
+      "authors": "Mathieu Jacomy",
+      "description": {
+        "en": "Helpers for scientometrics. Convert files, get networks, visualize stuff from Scopus or Web of Science.",
+        "fr": ""
+      },
+      "draft": true,
+      "id": "8550b979-cfde-46b5-a628-09910fc9a0d5",
+      "lastUpdated": 1545310617274,
+      "oldSlug": "sciencescape",
+      "people": [
+        "910c509c-ca11-4684-9898-f2b0b6f3283e"
+      ],
+      "slugs": [
+        "sciencescape"
+      ],
+      "title": {
+        "en": "ScienceScape",
+        "fr": "ScienceScape"
+      },
+      "type": "software",
+      "url": "http://tools.medialab.sciences-po.fr/sciencescape/"
+    },
+    {
+      "active": true,
+      "authors": "Mathieu Jacomy",
+      "description": {
+        "en": "Visualize densities on spatialized networks. Get a global heatmap or a heatmap of the neighborhood of a given node.",
+        "fr": "Heatgraph est un outil de visualisation permettant de designer des heatmaps à partir de la densité des nœuds dans un réseau spatialisé."
+      },
+      "draft": true,
+      "id": "9c64f56d-3c26-4b72-a500-1018bf91ba71",
+      "lastUpdated": 1545310617254,
+      "oldSlug": "heatgraph",
+      "people": [
+        "910c509c-ca11-4684-9898-f2b0b6f3283e"
+      ],
+      "slugs": [
+        "heatgraph"
+      ],
+      "title": {
+        "en": "HeatGraph",
+        "fr": "HeatGraph"
+      },
+      "type": "software",
+      "url": "http://tools.medialab.sciences-po.fr/heatgraph/"
+    },
+    {
+      "active": true,
+      "authors": "Guillaume Plique",
+      "description": {
+        "en": "artoo.js - the client-side scraping companion.",
+        "fr": ""
+      },
+      "draft": true,
+      "id": "9e198594-5dd0-4617-a9ff-3c5299d5209c",
+      "lastUpdated": 1545310617246,
+      "oldSlug": "artoo",
+      "people": [
+        "4d46ba96-c592-427c-9431-85e2922e9c33"
+      ],
+      "slugs": [
+        "artoojs"
+      ],
+      "title": {
+        "en": "artoo.js",
+        "fr": "artoo.js"
+      },
+      "type": "code",
+      "url": "https://medialab.github.io/artoo/"
+    },
+    {
+      "active": true,
+      "authors": "Benoit Verjat, Donato Ricci",
+      "description": {
+        "en": "A tweet curation tool for humanities. Takes output from Gazouilloire or TCAT and lets one easily browse all tweets to select them qualitatively.",
+        "fr": ""
+      },
+      "draft": true,
+      "id": "aac44c31-105a-487a-a982-16bc95aedf54",
+      "lastUpdated": 1545310617247,
+      "oldSlug": "catwalk",
+      "people": [
+        "9dda049d-df18-4cb0-ad76-b40f6cd019c4",
+        "8a5d71c4-b4d2-4d7a-95c2-09c6dc4fc3ac"
+      ],
+      "slugs": [
+        "catwalk"
+      ],
+      "title": {
+        "en": "Catwalk",
+        "fr": "Catwalk"
+      },
+      "type": "software",
+      "url": "https://medialab.github.io/catwalk/"
+    },
+    {
+      "active": false,
+      "authors": "Mathieu Jacomy, Guillaume Plique, Alexis Jacomy, Paul Girard, Daniele Guido",
+      "description": {
+        "en": "Explore networks and publish narratives. More and more people work with graphs nowadays, but it is not always easy to publish and share the graph interpretation on the web. Manylines is a web tool to solve this issue. It allows the user to display, spatialize and categorize a network, before explaining it and sharing a narrative about it: an interactive story where each “slide” is a particular zoom, pan and filtering of the network, completed by a title and description, with fluid transitions like in Prezi.",
+        "fr": ""
+      },
+      "draft": true,
+      "id": "b0554e4e-e0dd-4e09-8843-ff7a48694cdd",
+      "lastUpdated": 1545310617264,
+      "oldSlug": "manylines",
+      "people": [
+        "e1b3dd1f-40da-431e-be9c-2194f6f73687",
+        "4d46ba96-c592-427c-9431-85e2922e9c33",
+        "910c509c-ca11-4684-9898-f2b0b6f3283e"
+      ],
+      "slugs": [
+        "manylines"
+      ],
+      "title": {
+        "en": "Manylines",
+        "fr": "Manylines"
+      },
+      "type": "software",
+      "url": "http://tools.medialab.sciences-po.fr/manylines"
+    },
+    {
+      "active": false,
+      "authors": "Daniele Guido, Davy Brown",
+      "description": {
+        "en": "Publish a simple website from a _public_ google drive folder without coding in HTML",
+        "fr": ""
+      },
+      "draft": true,
+      "id": "bb6ef666-9d4e-4732-b5f9-5a0236d6b820",
+      "lastUpdated": 1545310617250,
+      "oldSlug": "drive-in",
+      "people": [
+        "4d4cad62-1674-4f3c-85c0-30d7b501f6e0"
+      ],
+      "slugs": [
+        "drive-in"
+      ],
+      "title": {
+        "en": "Drive-In",
+        "fr": "Drive-In"
+      },
+      "type": "software"
+    },
+    {
+      "active": false,
+      "authors": "Daniele Guido",
+      "description": {
+        "en": "A simple interface to extract texts from (almost) any url.",
+        "fr": ""
+      },
+      "draft": true,
+      "id": "d38a2dda-807d-47ed-86bf-9d251340347c",
+      "lastUpdated": 1545310617278,
+      "oldSlug": "zup",
+      "people": [
+        "4d4cad62-1674-4f3c-85c0-30d7b501f6e0"
+      ],
+      "slugs": [
+        "zup"
+      ],
+      "title": {
+        "en": "ZUP",
+        "fr": "ZUP"
+      },
+      "type": "software"
+    },
+    {
+      "active": true,
+      "authors": "Donato Ricci, Density Design (Daniele Ciminieri, Michele Mauri), Benjamin Ooghe-Tabanou, Guillaume Plique, Benoit Verjat",
+      "description": {
+        "en": "SeeAlsology is a simple tool to explore in a quick & dirty way the semantic area related to Wikipedia pages by producing a graph of links in the \"See also\" sections.",
+        "fr": ""
+      },
+      "draft": true,
+      "id": "d5cd24b1-3058-4813-a4c6-cab7c9983f48",
+      "lastUpdated": 1545310617275,
+      "oldSlug": "seealsology",
+      "people": [
+        "0dcba674-00f3-42d8-b943-89b698a29081",
+        "8a5d71c4-b4d2-4d7a-95c2-09c6dc4fc3ac"
+      ],
+      "slugs": [
+        "seealsology"
+      ],
+      "title": {
+        "en": "SeeAlsology",
+        "fr": "SeeAlsology"
+      },
+      "type": "software",
+      "url": "http://tools.medialab.sciences-po.fr/seealsology/"
+    },
+    {
+      "active": true,
+      "authors": "Mathieu Jacomy",
+      "description": {
+        "en": "Colors for data scientists. Generate and refine palettes of optimally distinct colors.",
+        "fr": ""
+      },
+      "draft": true,
+      "id": "d8aa07d2-e9dc-4968-b372-753901c76694",
+      "lastUpdated": 1545310617262,
+      "oldSlug": "iwanthue",
+      "people": [
+        "910c509c-ca11-4684-9898-f2b0b6f3283e"
+      ],
+      "slugs": [
+        "i-want-hue"
+      ],
+      "title": {
+        "en": "I Want Hue",
+        "fr": "I Want Hue"
+      },
+      "type": "software",
+      "url": "http://tools.medialab.sciences-po.fr/iwanthue/"
+    },
+    {
+      "active": true,
+      "authors": "Mathieu Jacomy, Matthieu Bastian, Sébastien Heymann",
+      "description": {
+        "en": "Gephi is an interactive visualization and exploration platform for all kinds of networks and complex systems, dynamic and hierarchical graphs. Runs on Windows, Linux and Mac OS X. Gephi is open-source and free.",
+        "fr": ""
+      },
+      "draft": true,
+      "id": "e1603437-881f-4ce4-934a-baa8966ae0f8",
+      "lastUpdated": 1545310617252,
+      "oldSlug": "gephi",
+      "people": [
+        "910c509c-ca11-4684-9898-f2b0b6f3283e"
+      ],
+      "slugs": [
+        "gephi"
+      ],
+      "title": {
+        "en": "Gephi",
+        "fr": "Gephi"
+      },
+      "type": "software",
+      "url": "https://gephi.org/"
+    },
+    {
+      "active": false,
+      "authors": "Guillaume Plique",
+      "description": {
+        "en": "Take advantage of artoo.js scraping features in a node.js serverside crawling framework optionally using PhantomJS.",
+        "fr": ""
+      },
+      "draft": true,
+      "id": "e3ab82b9-ce71-4515-b12c-b311979dcaa0",
+      "lastUpdated": 1545310617273,
+      "oldSlug": "sandcrawler",
+      "people": [
+        "4d46ba96-c592-427c-9431-85e2922e9c33"
+      ],
+      "slugs": [
+        "sandcrawler"
+      ],
+      "title": {
+        "en": "Sandcrawler",
+        "fr": "Sandcrawler"
+      },
+      "type": "code",
+      "url": "http://medialab.github.io/sandcrawler/"
+    },
+    {
+      "active": false,
+      "authors": "Paul Girard",
+      "description": {
+        "en": "A python library to read or write gexf format, the xml file format to store graph.",
+        "fr": "PyGexf est une librairie permettant de manipuler le format de graphe Gexf depuis le langage de programmation python. Cette librairie a déjà été reprise par la communauté open source notamment pour intégrer les fonctionnalités d’import/export du format Gexf par la librairie NetworkX."
+      },
+      "draft": true,
+      "id": "e8c4c84a-2a13-477c-808c-d5403116a063",
+      "lastUpdated": 1545310617272,
+      "oldSlug": "pygexf",
+      "people": [
+        "66d33f76-f197-494f-b8c3-1a61d1f60655"
+      ],
+      "slugs": [
+        "pygexf"
+      ],
+      "title": {
+        "en": "pyGEXF",
+        "fr": "pyGEXF"
+      },
+      "type": "code"
+    },
+    {
+      "active": true,
+      "authors": "Benjamin Ooghe-Tabanou",
+      "description": {
+        "en": "Easily change a Google Search into its 100 results version and extract a CSV of results across multiple pages within your browser using simple bookmarklets.",
+        "fr": ""
+      },
+      "draft": true,
+      "id": "fa6717b7-24e2-4b0f-93c1-8fa955130b28",
+      "lastUpdated": 1545310617253,
+      "oldSlug": "google-bookmarklets",
+      "people": [
+        "0dcba674-00f3-42d8-b943-89b698a29081"
+      ],
+      "slugs": [
+        "google-bookmarklets"
+      ],
+      "title": {
+        "en": "Google Bookmarklets",
+        "fr": "Google Bookmarklets"
+      },
+      "type": "software",
+      "url": "https://medialab.github.io/google-bookmarklets/"
+    }
+  ]
+}

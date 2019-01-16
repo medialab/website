@@ -1,0 +1,90 @@
+@font-face{
+	font-family:'MuseosSans';
+	src:url("MuseoSans_100.otf") format("otf");
+	src:url("museosans_100-webfont.woff") format("woff");
+	src:url("museosans_100-webfont.woff2") format("woff2");
+	font-weight:100;
+	font-style:normal;
+}
+
+@font-face{
+	font-family:'MuseosSans';
+	src:url("MuseoSans_100Italic.otf") format("otf");
+	src:url("museosans_100Italic-webfont.woff") format("woff");
+	src:url("museosans_100Italic-webfont.woff2") format("woff2");
+	font-weight:100;
+	font-style:italic;
+}
+
+@font-face{
+	font-family:'MuseosSans';
+	src:url("MuseoSans_300.otf") format("otf");
+	src:url("museosans_300-webfont.woff") format("woff");
+	src:url("museosans_300-webfont.woff2") format("woff2");
+	font-weight:300;
+	font-style:normal;
+}
+
+@font-face{
+	font-family:'MuseosSans';
+	src:url("MuseoSans_300Italic.otf") format("otf");
+	src:url("museosans_300Italic-webfont.woff") format("woff");
+	src:url("museosans_300Italic-webfont.woff2") format("woff2");
+	font-weight:300;
+	font-style:italic;
+}
+
+@font-face{
+	font-family:'MuseosSans';
+	src:url("MuseoSans_500.otf") format("otf");
+	src:url("museosans_500-webfont.woff") format("woff");
+	src:url("museosans_500-webfont.woff2") format("woff2");
+	font-weight:normal;
+	font-style:normal;
+}
+
+@font-face{
+	font-family:'MuseosSans';
+	src:url("MuseoSans_500Italic.otf") format("otf");
+	src:url("museosans_500Italic-webfont.woff") format("woff");
+	src:url("museosans_500Italic-webfont.woff2") format("woff2");
+	font-weight:normal;
+	font-style:italic;
+}
+
+@font-face{
+	font-family:'MuseosSans';
+	src:url("MuseoSans_700.otf") format("otf");
+	src:url("museosans_700-webfont.woff") format("woff");
+	src:url("museosans_700-webfont.woff2") format("woff2");
+	font-weight:700;
+	font-style:normal;
+}
+
+@font-face{
+	font-family:'MuseosSans';
+	src:url("MuseoSans_700Italic.otf") format("otf");
+	src:url("museosans_700Italic-webfont.woff") format("woff");
+	src:url("museosans_700Italic-webfont.woff2") format("woff2");
+	font-weight:700;
+	font-style:italic;
+}
+
+@font-face{
+	font-family:'MuseosSans';
+	src:url("MuseoSans_900.otf") format("otf");
+	src:url("museosans_900-webfont.woff") format("woff");
+	src:url("museosans_900-webfont.woff2") format("woff2");
+	font-weight:900;
+	font-style:normal;
+}
+
+@font-face{
+	font-family:'MuseosSans';
+	src:url("MuseoSans_900Italic.otf") format("otf");
+	src:url("museosans_900Italic-webfont.woff") format("woff");
+	src:url("museosans_900Italic-webfont.woff2") format("woff2");
+	font-weight:900;
+	font-style:italic;
+}
+

@@ -1,0 +1,1316 @@
+/* page objet */
+/* julie: node-sass --watch page_objet_02.scss ../css-compiled/page_objet_02.css */
+/* header */
+:root {
+  --redlab: #f7323f; }
+
+:root {
+  --font-size: 10px;
+  --baseline: 15px;
+  --font-main: "MuseosSans";
+  --font-mono: monospace; }
+
+html {
+  font-family: "MuseosSans";
+  font-size: 10px; }
+
+/* assets/scss/common/body.scss */
+body {
+  margin: 0 auto; }
+
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+/* Document
+   ========================================================================== */
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+html {
+  line-height: 1.15;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */ }
+
+/* Sections
+   ========================================================================== */
+/**
+ * Remove the margin in all browsers.
+ */
+body {
+  margin: 0; }
+
+/**
+ * Render the `main` element consistently in IE.
+ */
+main {
+  display: block; }
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+h1 {
+  font-size: 2em; }
+
+/* Grouping content
+   ========================================================================== */
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+hr {
+  box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */ }
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+pre {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */ }
+
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+a {
+  background-color: transparent; }
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+abbr[title] {
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  text-decoration: underline dotted;
+  /* 2 */ }
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+b,
+strong {
+  font-weight: bolder; }
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */ }
+
+/**
+ * Add the correct font size in all browsers.
+ */
+small {
+  font-size: 80%; }
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sub {
+  bottom: -0.25em; }
+
+sup {
+  top: -0.5em; }
+
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+img {
+  border-style: none; }
+
+/* Forms
+   ========================================================================== */
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */ }
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+button,
+input {
+  /* 1 */
+  overflow: visible; }
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+button,
+select {
+  /* 1 */
+  text-transform: none; }
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button; }
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0; }
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText; }
+
+/**
+ * Correct the padding in Firefox.
+ */
+fieldset {
+  padding: 0.35em 0.75em 0.625em; }
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+legend {
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */ }
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+progress {
+  vertical-align: baseline; }
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+textarea {
+  overflow: auto; }
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto; }
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */ }
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */ }
+
+/* Interactive
+   ========================================================================== */
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+details {
+  display: block; }
+
+/*
+ * Add the correct display in all browsers.
+ */
+summary {
+  display: list-item; }
+
+/* Misc
+   ========================================================================== */
+/**
+ * Add the correct display in IE 10+.
+ */
+template {
+  display: none; }
+
+/**
+ * Add the correct display in IE 10.
+ */
+[hidden] {
+  display: none; }
+
+html {
+  box-sizing: border-box; }
+
+body, html {
+  max-width: 100vw;
+  top: 0px;
+  left: 0px;
+  margin: 0px;
+  padding: 0px; }
+
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  font-smooth: never;
+  -moz-font-smooth: never; }
+
+em {
+  font-style: italic; }
+
+button {
+  border: none;
+  outline: none; }
+
+a {
+  text-decoration: none;
+  color: currentColor; }
+
+a:hover {
+  text-decoration: none; }
+
+ul {
+  list-style-type: none;
+  list-style-position: inside; }
+
+*:focus {
+  outline: none; }
+
+/* assets/parts/common/_top-bar.scss*/
+#topbar {
+  color: #808080;
+  width: 100%;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 15px;
+  line-height: 19.5px; }
+
+#logo-medialab svg {
+  fill: #333; }
+
+/* imports */
+/* assets/scss/common/_top-bar-mobile.scss */
+/* assets/scss/common/_top-bar-desktop.scss */
+:root {
+  --height-topbar: 120px; }
+
+@media (min-width: 700px) {
+  #topbar {
+    height: 120px;
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 1rem 2rem;
+    z-index: 100;
+    display: inline-block;
+    width: 100%; }
+    #topbar #topbar-content {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: 2rem auto 2rem;
+      grid-gap: 2rem; }
+      #topbar #topbar-content #logo-medialab {
+        /*width: 25%;
+        max-width: 400px;
+        vertical-align: bottom; 
+        margin-left: $margins-desktop;
+        margin-right: $margins-desktop;*/
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        align-self: end;
+        position: fixed;
+        margin: 4rem 0 4rem 0.5rem; }
+        #topbar #topbar-content #logo-medialab svg {
+          max-width: 70px;
+          opacity: .5;
+          transform: translateY(20%); }
+      #topbar #topbar-content nav#nav-option {
+        grid-row: 2 / 3;
+        grid-column: 2 / 5;
+        align-self: end;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 100%;
+        grid-gap: 2rem; }
+        #topbar #topbar-content nav#nav-option #nav-objet {
+          grid-column: 1/2;
+          align-self: end;
+          max-width: 50px; }
+        #topbar #topbar-content nav#nav-option #nav-institution {
+          grid-column: 2/3;
+          align-self: end; }
+        #topbar #topbar-content nav#nav-option #nav-archive {
+          grid-column: 3/4;
+          align-self: end; }
+      #topbar #topbar-content #langue {
+        grid-column: 6 / 7;
+        justify-self: end;
+        margin: 0 2rem; }
+        #topbar #topbar-content #langue span {
+          cursor: pointer; }
+          #topbar #topbar-content #langue span.hover {
+            text-decoration: underline; }
+      #topbar #topbar-content #langue {
+        margin: 0 2rem;
+        grid-column: 6 / 7;
+        justify-self: end;
+        grid-row: 2/3;
+        align-self: end; } }
+/* assets/parts/common/_liste_objet.scss*/
+:root {
+  --caseheight: 80px; }
+
+#menu_objet {
+  background: white;
+  z-index: 999; }
+  #menu_objet #liste_objet nav ul [data-item] {
+    border-bottom: 1px solid #333;
+    min-height: 75px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    align-items: center; }
+    #menu_objet #liste_objet nav ul [data-item]:hover {
+      transition: .25s ease;
+      background-color: #f9f9f9; }
+    #menu_objet #liste_objet nav ul [data-item] h1 {
+      font-size: 20px;
+      font-weight: normal;
+      line-height: 15px;
+      line-height: 27px; }
+
+/* imports */
+/* assets/scss/common/_top-bar-mobile.scss */
+/* assets/scss/common/_liste_objet-desktop.scss */
+@supports (display: grid) {
+  #menu_objet {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 2rem;
+    position: absolute;
+    overflow: hidden;
+    width: calc(100vw - 2rem);
+    top: var(--height-topbar);
+    left: calc(-16.6vw - 2rem);
+    padding: 3rem 2rem 1rem 2rem; }
+    #menu_objet #filtre_objet {
+      grid-column: 1 / 2;
+      margin: 0 2rem;
+      margin-top: calc(var(--font-size)*2); }
+      #menu_objet #filtre_objet ul {
+        max-width: 75px; }
+        #menu_objet #filtre_objet ul li {
+          height: 75px;
+          display: -ms-flexbox;
+          display: -webkit-flex;
+          display: flex;
+          -ms-flex-align: center;
+          -webkit-align-items: center;
+          -webkit-box-align: center;
+          align-items: center;
+          border-bottom: 1px solid #333; }
+          #menu_objet #filtre_objet ul li p {
+            margin: auto;
+            position: absolute;
+            font-size: 20px; }
+        #menu_objet #filtre_objet ul li:nth-of-type(1) {
+          min-height: 4rem;
+          border-top: 1px solid #333; }
+    #menu_objet #liste_objet {
+      grid-column: 2 / 4; }
+
+  [data-item] ~ [data-item-accroche] {
+    display: none; }
+
+  .accroche-titre {
+    display: block; }
+
+  [data-item="1"]:hover ~ [data-item-accroche="1"] {
+    display: block; }
+
+  [data-item="1"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="2"]:hover ~ [data-item-accroche="2"] {
+    display: block; }
+
+  [data-item="2"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="3"]:hover ~ [data-item-accroche="3"] {
+    display: block; }
+
+  [data-item="3"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="4"]:hover ~ [data-item-accroche="4"] {
+    display: block; }
+
+  [data-item="4"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="5"]:hover ~ [data-item-accroche="5"] {
+    display: block; }
+
+  [data-item="5"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="6"]:hover ~ [data-item-accroche="6"] {
+    display: block; }
+
+  [data-item="6"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="7"]:hover ~ [data-item-accroche="7"] {
+    display: block; }
+
+  [data-item="7"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="8"]:hover ~ [data-item-accroche="8"] {
+    display: block; }
+
+  [data-item="8"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="9"]:hover ~ [data-item-accroche="9"] {
+    display: block; }
+
+  [data-item="9"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="10"]:hover ~ [data-item-accroche="10"] {
+    display: block; }
+
+  [data-item="10"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="11"]:hover ~ [data-item-accroche="11"] {
+    display: block; }
+
+  [data-item="11"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="12"]:hover ~ [data-item-accroche="12"] {
+    display: block; }
+
+  [data-item="12"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="13"]:hover ~ [data-item-accroche="13"] {
+    display: block; }
+
+  [data-item="13"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="14"]:hover ~ [data-item-accroche="14"] {
+    display: block; }
+
+  [data-item="14"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="15"]:hover ~ [data-item-accroche="15"] {
+    display: block; }
+
+  [data-item="15"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="16"]:hover ~ [data-item-accroche="16"] {
+    display: block; }
+
+  [data-item="16"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="17"]:hover ~ [data-item-accroche="17"] {
+    display: block; }
+
+  [data-item="17"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="18"]:hover ~ [data-item-accroche="18"] {
+    display: block; }
+
+  [data-item="18"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="19"]:hover ~ [data-item-accroche="19"] {
+    display: block; }
+
+  [data-item="19"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="20"]:hover ~ [data-item-accroche="20"] {
+    display: block; }
+
+  [data-item="20"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="21"]:hover ~ [data-item-accroche="21"] {
+    display: block; }
+
+  [data-item="21"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="22"]:hover ~ [data-item-accroche="22"] {
+    display: block; }
+
+  [data-item="22"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="23"]:hover ~ [data-item-accroche="23"] {
+    display: block; }
+
+  [data-item="23"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="24"]:hover ~ [data-item-accroche="24"] {
+    display: block; }
+
+  [data-item="24"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="25"]:hover ~ [data-item-accroche="25"] {
+    display: block; }
+
+  [data-item="25"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="26"]:hover ~ [data-item-accroche="26"] {
+    display: block; }
+
+  [data-item="26"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="27"]:hover ~ [data-item-accroche="27"] {
+    display: block; }
+
+  [data-item="27"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="28"]:hover ~ [data-item-accroche="28"] {
+    display: block; }
+
+  [data-item="28"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="29"]:hover ~ [data-item-accroche="29"] {
+    display: block; }
+
+  [data-item="29"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="30"]:hover ~ [data-item-accroche="30"] {
+    display: block; }
+
+  [data-item="30"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="31"]:hover ~ [data-item-accroche="31"] {
+    display: block; }
+
+  [data-item="31"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="32"]:hover ~ [data-item-accroche="32"] {
+    display: block; }
+
+  [data-item="32"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="33"]:hover ~ [data-item-accroche="33"] {
+    display: block; }
+
+  [data-item="33"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="34"]:hover ~ [data-item-accroche="34"] {
+    display: block; }
+
+  [data-item="34"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="35"]:hover ~ [data-item-accroche="35"] {
+    display: block; }
+
+  [data-item="35"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="36"]:hover ~ [data-item-accroche="36"] {
+    display: block; }
+
+  [data-item="36"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="37"]:hover ~ [data-item-accroche="37"] {
+    display: block; }
+
+  [data-item="37"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="38"]:hover ~ [data-item-accroche="38"] {
+    display: block; }
+
+  [data-item="38"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="39"]:hover ~ [data-item-accroche="39"] {
+    display: block; }
+
+  [data-item="39"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="40"]:hover ~ [data-item-accroche="40"] {
+    display: block; }
+
+  [data-item="40"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="41"]:hover ~ [data-item-accroche="41"] {
+    display: block; }
+
+  [data-item="41"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="42"]:hover ~ [data-item-accroche="42"] {
+    display: block; }
+
+  [data-item="42"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="43"]:hover ~ [data-item-accroche="43"] {
+    display: block; }
+
+  [data-item="43"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="44"]:hover ~ [data-item-accroche="44"] {
+    display: block; }
+
+  [data-item="44"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="45"]:hover ~ [data-item-accroche="45"] {
+    display: block; }
+
+  [data-item="45"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="46"]:hover ~ [data-item-accroche="46"] {
+    display: block; }
+
+  [data-item="46"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="47"]:hover ~ [data-item-accroche="47"] {
+    display: block; }
+
+  [data-item="47"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="48"]:hover ~ [data-item-accroche="48"] {
+    display: block; }
+
+  [data-item="48"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="49"]:hover ~ [data-item-accroche="49"] {
+    display: block; }
+
+  [data-item="49"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="50"]:hover ~ [data-item-accroche="50"] {
+    display: block; }
+
+  [data-item="50"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="51"]:hover ~ [data-item-accroche="51"] {
+    display: block; }
+
+  [data-item="51"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="52"]:hover ~ [data-item-accroche="52"] {
+    display: block; }
+
+  [data-item="52"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="53"]:hover ~ [data-item-accroche="53"] {
+    display: block; }
+
+  [data-item="53"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="54"]:hover ~ [data-item-accroche="54"] {
+    display: block; }
+
+  [data-item="54"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="55"]:hover ~ [data-item-accroche="55"] {
+    display: block; }
+
+  [data-item="55"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="56"]:hover ~ [data-item-accroche="56"] {
+    display: block; }
+
+  [data-item="56"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="57"]:hover ~ [data-item-accroche="57"] {
+    display: block; }
+
+  [data-item="57"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="58"]:hover ~ [data-item-accroche="58"] {
+    display: block; }
+
+  [data-item="58"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="59"]:hover ~ [data-item-accroche="59"] {
+    display: block; }
+
+  [data-item="59"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="60"]:hover ~ [data-item-accroche="60"] {
+    display: block; }
+
+  [data-item="60"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="61"]:hover ~ [data-item-accroche="61"] {
+    display: block; }
+
+  [data-item="61"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="62"]:hover ~ [data-item-accroche="62"] {
+    display: block; }
+
+  [data-item="62"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="63"]:hover ~ [data-item-accroche="63"] {
+    display: block; }
+
+  [data-item="63"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="64"]:hover ~ [data-item-accroche="64"] {
+    display: block; }
+
+  [data-item="64"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="65"]:hover ~ [data-item-accroche="65"] {
+    display: block; }
+
+  [data-item="65"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="66"]:hover ~ [data-item-accroche="66"] {
+    display: block; }
+
+  [data-item="66"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="67"]:hover ~ [data-item-accroche="67"] {
+    display: block; }
+
+  [data-item="67"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="68"]:hover ~ [data-item-accroche="68"] {
+    display: block; }
+
+  [data-item="68"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="69"]:hover ~ [data-item-accroche="69"] {
+    display: block; }
+
+  [data-item="69"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="70"]:hover ~ [data-item-accroche="70"] {
+    display: block; }
+
+  [data-item="70"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="71"]:hover ~ [data-item-accroche="71"] {
+    display: block; }
+
+  [data-item="71"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="72"]:hover ~ [data-item-accroche="72"] {
+    display: block; }
+
+  [data-item="72"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="73"]:hover ~ [data-item-accroche="73"] {
+    display: block; }
+
+  [data-item="73"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="74"]:hover ~ [data-item-accroche="74"] {
+    display: block; }
+
+  [data-item="74"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="75"]:hover ~ [data-item-accroche="75"] {
+    display: block; }
+
+  [data-item="75"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="76"]:hover ~ [data-item-accroche="76"] {
+    display: block; }
+
+  [data-item="76"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="77"]:hover ~ [data-item-accroche="77"] {
+    display: block; }
+
+  [data-item="77"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="78"]:hover ~ [data-item-accroche="78"] {
+    display: block; }
+
+  [data-item="78"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="79"]:hover ~ [data-item-accroche="79"] {
+    display: block; }
+
+  [data-item="79"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="80"]:hover ~ [data-item-accroche="80"] {
+    display: block; }
+
+  [data-item="80"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="81"]:hover ~ [data-item-accroche="81"] {
+    display: block; }
+
+  [data-item="81"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="82"]:hover ~ [data-item-accroche="82"] {
+    display: block; }
+
+  [data-item="82"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="83"]:hover ~ [data-item-accroche="83"] {
+    display: block; }
+
+  [data-item="83"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="84"]:hover ~ [data-item-accroche="84"] {
+    display: block; }
+
+  [data-item="84"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="85"]:hover ~ [data-item-accroche="85"] {
+    display: block; }
+
+  [data-item="85"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="86"]:hover ~ [data-item-accroche="86"] {
+    display: block; }
+
+  [data-item="86"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="87"]:hover ~ [data-item-accroche="87"] {
+    display: block; }
+
+  [data-item="87"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="88"]:hover ~ [data-item-accroche="88"] {
+    display: block; }
+
+  [data-item="88"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="89"]:hover ~ [data-item-accroche="89"] {
+    display: block; }
+
+  [data-item="89"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="90"]:hover ~ [data-item-accroche="90"] {
+    display: block; }
+
+  [data-item="90"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="91"]:hover ~ [data-item-accroche="91"] {
+    display: block; }
+
+  [data-item="91"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="92"]:hover ~ [data-item-accroche="92"] {
+    display: block; }
+
+  [data-item="92"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="93"]:hover ~ [data-item-accroche="93"] {
+    display: block; }
+
+  [data-item="93"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="94"]:hover ~ [data-item-accroche="94"] {
+    display: block; }
+
+  [data-item="94"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="95"]:hover ~ [data-item-accroche="95"] {
+    display: block; }
+
+  [data-item="95"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="96"]:hover ~ [data-item-accroche="96"] {
+    display: block; }
+
+  [data-item="96"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="97"]:hover ~ [data-item-accroche="97"] {
+    display: block; }
+
+  [data-item="97"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="98"]:hover ~ [data-item-accroche="98"] {
+    display: block; }
+
+  [data-item="98"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="99"]:hover ~ [data-item-accroche="99"] {
+    display: block; }
+
+  [data-item="99"]:hover ~ .accroche-titre {
+    display: none; }
+
+  [data-item="100"]:hover ~ [data-item-accroche="100"] {
+    display: block; }
+
+  [data-item="100"]:hover ~ .accroche-titre {
+    display: none; }
+
+  .item_accroche {
+    position: absolute;
+    top: 0;
+    left: 33vw;
+    font-size: 40px;
+    font-weight: 100;
+    line-height: 45px;
+    width: 40vw;
+    margin-left: 6rem; } }
+#nav-objet input {
+  display: none !important; }
+  #nav-objet input:checked + label {
+    text-decoration: underline; }
+#nav-objet label {
+  transition: 0.25s ease;
+  padding: 10px 10px 10px 0;
+  cursor: pointer; }
+#nav-objet #actualites:checked ~ #menu_objet,
+#nav-objet #publications:checked ~ #menu_objet,
+#nav-objet #activites:checked ~ #menu_objet {
+  height: calc(80vh - var(--height-topbar));
+  transition: .2s ease-in;
+  transition-property: height;
+  padding: 3rem 2rem 1rem 2rem; }
+#nav-objet #actualites:checked ~ #clearzone + label,
+#nav-objet #publications:checked ~ #clearzone + label,
+#nav-objet #activites:checked ~ #clearzone + label,
+#nav-objet #actualites:checked ~ #clear + label,
+#nav-objet #publications:checked ~ #clear + label,
+#nav-objet #activites:checked ~ #clear + label {
+  display: block;
+  background-color: white; }
+#nav-objet #liste_actualite,
+#nav-objet #liste_publication,
+#nav-objet #liste_activite {
+  display: none;
+  background-color: none; }
+#nav-objet #actualites:checked ~ #menu_objet #liste_actualite,
+#nav-objet #publications:checked ~ #menu_objet #liste_publication,
+#nav-objet #activites:checked ~ #menu_objet #liste_activite {
+  display: block; }
+#nav-objet #clear:checked ~ #clearzone + label,
+#nav-objet #clearzone:checked, #nav-objet #clearzone:checked + label {
+  display: none !important; }
+#nav-objet #clear + label {
+  position: absolute;
+  width: calc(100vw - 2rem);
+  left: calc(-16.6vw - 2rem);
+  top: calc(var(--height-topbar) - 20px);
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  text-align: center; }
+#nav-objet #clear:checked ~ #menu_objet,
+#nav-objet #clearzone:checked ~ #menu_objet, #nav-objet #menu_objet {
+  height: 0px;
+  min-height: 0;
+  padding: 0; }
+#nav-objet #clear, #nav-objet #clear + label, #nav-objet #clearzone, #nav-objet #clearzone + label {
+  display: none; }
+#nav-objet #clearzone + label {
+  position: absolute;
+  width: calc(100vw - 2rem);
+  left: calc(-16.6vw - 2rem);
+  top: 80vh;
+  height: 20vh;
+  /* Temporaire */
+  mix-blend-mod: multiply;
+  background: repeating-linear-gradient(-55deg, #fff0, #fff0, 10px, red 10px, red 20px);
+  opacity: .2; }
+
+#liste_objet nav li .item_accroche {
+  display: block;
+  /*top: var(--height-topbar);
+  top: calc(var(--caseheight) * (-1));
+  top: calc(var(--height-topbar) + 12rem);*/
+  max-width: 50vw;
+  font-size: 5rem;
+  line-height: 5rem; }
+#liste_objet nav li:hover .item_accroche {
+  display: block;
+  color: red; }
+#liste_objet nav li {
+           /*
+            &:nth-of-type(1) .item_accroche{
+                top: calc((var(--caseheight) + (var(--baseline)*4)) * (-1)));
+            }
+            &:nth-of-type(2)  .item_accroche{
+                top: calc(((var(--caseheight) + (var(--baseline)*4)) * (-1)));
+            }
+
+            &:nth-of-type(3)  .item_accroche{
+                top: calc(((var(--caseheight) + (var(--baseline)*4)) * (-2)));
+            }*/ }
+
+article {
+  --tabsize: 60px; }
+  article > #boussole {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 15px;
+    line-height: 19.5px; }
+    article > #boussole ul {
+      max-width: 75px; }
+      article > #boussole ul li {
+        border-bottom: 1px solid black; }
+        article > #boussole ul li:nth-of-type(1) {
+          min-height: 4rem;
+          border-top: 1px solid black; }
+  article > main p, article > section p {
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 100; }
+  article > main h3, article > section h3 {
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 500;
+    padding: 1rem 0 2rem 0; }
+  article main h1 {
+    font-size: 60px;
+    line-height: 82.5px;
+    font-weight: 100;
+    letter-spacing: -1px;
+    padding: 2rem 0 4rem 0; }
+  article main h2 {
+    font-size: 30px;
+    line-height: 45px;
+    font-weight: 100; }
+
+@supports (display: grid) {
+  article {
+    --tabsize: 60px;
+    width: 100%;
+    padding: 1rem 2rem; }
+    article > #boussole {
+      bottom: 0;
+      position: fixed;
+      padding: 2rem 0;
+      z-index: 99;
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 15px;
+      line-height: 19.5px; }
+      article > #boussole ul li {
+        height: var(--caseheight);
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        align-items: center; }
+        article > #boussole ul li:nth-of-type(1) {
+          min-height: 4rem;
+          border-top: 1px solid black; }
+    article > main, article > section {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: auto auto 10vh;
+      grid-gap: 2rem; }
+    article > section {
+      min-height: 100vh !important; }
+    article main header {
+      grid-column: 2 / 5;
+      grid-row: 1/ 2;
+      align-self: center; }
+    article main section {
+      grid-column: 2 / 5;
+      grid-row: 2; }
+      article main section img {
+        max-width: 100%;
+        width: 50vh;
+        margin: 2rem 0; }
+    article #rel_personnes {
+      min-height: 50vh; }
+      article #rel_personnes header {
+        grid-column: 2 / 5;
+        grid-row: 1/ 2;
+        align-self: center; }
+      article #rel_personnes > div {
+        grid-column: 2 / 5; }
+    article #rel_publications {
+      position: sticky;
+      background: white;
+      min-height: 50vh; }
+      article #rel_publications header {
+        grid-column: 2 / 6;
+        grid-row: 1/ 2;
+        align-self: center; }
+      article #rel_publications > div {
+        grid-column: 2 / 6; } }
+
+/*# sourceMappingURL=page_objet_04.css.map */

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	
+    <title>Medialab - Proto</title>
+    <!-- styles -->
+    <style type="text/css"></style>
+    <link rel="preload" href="src/dither.js/index.js" as="script">
+
+
+    <!-- scripts -->
+    <style type="text/css">
+	    canvas{
+			position: absolute;
+			/*width: calc(90vh*1.5);*/
+			height: 70%;
+			top: 50%;
+			left:50%;
+			transform: translate(-50%, -50%);
+			box-sizing: border-box;
+			image-rendering: pixelated;
+		}
+
+		html,body {
+			box-sizing: border-box;
+			width: 100%;
+			height: 100%;
+			position: fixed;
+
+			overflow:hidden;
+			height: 100vh;
+		}
+
+    </style>
+
+</head>
+<body>
+	<canvas width="1000" height="1333" style="border: 1px solid grey">
+		<img src="pessoa.jpg" width="600" height="1000">
+	</canvas>
+</body>
+
+<script src="src/dither.js/index.js"></script>
+
+
+<script type="text/javascript">
+
+const source = document.createElement('img')
+const target = document.createElement('canvas').getContext('2d')
+
+const canvas = Object.assign(target.canvas, { width: 180, height: 180 })
+
+// The Floyd/Steinberg variety is default
+const filter = ordered()
+
+source.addEventListener('load', () => {
+    target.drawImage(source, 0, 0)
+
+    const pixels = target.getImageData(0, 0, canvas.width, canvas.height)
+    const result = filter(pixels)
+
+    target.putImageData(result, 0, 0)
+
+    document.body.appendChild(canvas)
+})
+
+/*	import { spatial as bender } from '@thewhodidthis/dither'
+
+  const source = document.createElement('img');
+  const target = document.createElement('canvas').getContext('2d');
+
+  const canvas = Object.assign(target.canvas, { width: 180, height: 180 });
+
+  // The Floyd/Steinberg variety is default
+  const filter = bender();
+
+  source.addEventListener('load', () => {
+      target.drawImage(source, 0, 0)
+
+      const pixels = target.getImageData(0, 0, canvas.width, canvas.height)
+      const result = filter(pixels)
+
+      target.putImageData(result, 0, 0)
+
+      document.body.appendChild(canvas)
+  })
+
+  source.setAttribute('crossOrigin', 'anonymous')
+  source.setAttribute('src', `//source.unsplash.com/random/${canvas.width}x${canvas.height}`)*/
+</script>
+
+</html>

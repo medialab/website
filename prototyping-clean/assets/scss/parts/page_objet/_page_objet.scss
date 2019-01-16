@@ -26,5 +26,5 @@ a:hover{
 
 	hgroup{ @include flex-order(1); }
 	.article-contenu{ @include flex-order(2); }
-	.toggle-lang{ @include flex-order(3); }
+	.toggle-lang{ @include flex-order(3); max-width:900px;}
 }

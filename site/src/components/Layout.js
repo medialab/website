@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import {StaticQuery, graphql} from 'gatsby';
+import TopBar from './fragments/TopBar.js';
+import Nav from './fragments/Nav.js';
 
-import './scss/page_objet.scss';
-import _topbar from './fragments/_topbar.js';
 
-const Layout_objet = ({children, lang}) => {
+const Layout = ({children, lang}) => {
 
   return (
     <StaticQuery
@@ -25,19 +25,20 @@ const Layout_objet = ({children, lang}) => {
             title={data.site.siteMetadata.title}>
             <html lang={lang} />
           </Helmet>
-          <_topbar></_topbar>
+          <TopBar />
+          <Nav />
           {children}
         </>
       )} />
   );
 };
 
-Layout_objet.defaultProps = {
+Layout.defaultProps = {
   lang: 'fr'
 };
 
-Layout_objet.propTypes = {
+Layout.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-export default Layout_objet;
+export default Layout;

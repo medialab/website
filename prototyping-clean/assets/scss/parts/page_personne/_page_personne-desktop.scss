@@ -51,7 +51,7 @@
 				@include article_h3();
 			}
 
-			hgroup{
+			div{
 				@include flex-order(2);
 				min-width: 50%;
 				padding-bottom: $baseline*2;
@@ -122,7 +122,7 @@
 		
 	} /* main */
 
-	#elements-associes > h1, #fichiers-associes > h1{
+	#elements-associes > h1, #fichiers-associes > h1, #implication > h1{
 		padding-top: $baseline*3;
 		margin-bottom: $baseline*2.5;
 		@include font-size-27();

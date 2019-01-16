@@ -6,6 +6,7 @@ body, html{
 #topbar{
 	z-index: 30;
 	background-color: $background-site;
+
 }
 
 a:hover{
@@ -21,3 +22,21 @@ a:hover{
     visibility: hidden !important;
 }
 
+#biographie .contact {
+		color:red !important;
+
+	li{
+		@include font-size-13();
+		border: $border-light;
+		width: $unite*2;
+		color: $text-color-light;
+		text-align: center;
+		display: inline-block;
+
+		&:hover{
+			border-color: $redlab;
+			color: $redlab;
+			cursor: pointer;
+		}
+	}
+}

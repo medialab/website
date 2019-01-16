@@ -70,6 +70,7 @@ const IndexPage = ({data, pageContext}) => {
 
   return (
     <Layout>
+    <div >
       <h1>médialab Static website</h1>
 
       <h2>Activities</h2>
@@ -117,6 +118,7 @@ const IndexPage = ({data, pageContext}) => {
           </li>
         ))}
       </ul>
+    </div>
     </Layout>
   );
 };

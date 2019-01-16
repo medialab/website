@@ -1,25 +1,19 @@
-/*import React from 'react';
+import React from 'react';/*
 import {graphql} from 'gatsby';
-
 import RawHtml from './RawHtml';
- 
+ */
 
-export default function ActivityDetail({lang, data}) {
-  console.log(lang, data);*/
-
-const _nav = () => {
+const Nav = () => {
 	return (
 	  	<nav id="nav-inside-article">
 			<div class="nav-inside-item">
 			<a href="#topbar">
-				<img src={require("./assets/svg/Medialab_logo_black_RVB.svg")}/>
+				<img src={require("./../assets/svg/logo_medialab.png")}  alt="" />
 			</a>		
 			</div>
 			<div class="nav-inside-item" id="img-article">
 				<div>
-					<img src={require("./assets/images/sample/RICardo_2017_2016_versions_b.png")}/>
 					<div class="image-generator">
-						<img src={require("./assets/images/sample_txt/ricardo_100.html")}/>
 					</div>
 				</div>
 			</div>
@@ -33,5 +27,7 @@ const _nav = () => {
 				<a href="#elements-associes"><p>Éléments liées</p></a>
 			</div>
 		</nav>
-	  );
+	);
 }
+
+export default Nav;

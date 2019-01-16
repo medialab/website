@@ -8,12 +8,15 @@
 @import 'parts/page_objet/page_objet';
 @import 'parts/page_objet/page_objet-desktop';
 @import 'parts/page_objet/page_objet-phone';
+@import 'parts/page_objet/toggle-lang';
+
 
 @import 'common/pages/nav-article';
 @import 'common/pages/fichiers-associes';
 @import 'common/pages/elements-associes';
 @import 'parts/index/now-desktop';
 @import 'parts/index/now-phone';
+
 
 // Specific to the nature of Page 
 // Uniquement pour les pags People / Production ou Actualite

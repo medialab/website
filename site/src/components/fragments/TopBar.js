@@ -1,5 +1,5 @@
 import React from 'react';
-import {graphql} from 'gatsby';
+/*import {graphql} from 'gatsby';*/
 /*
 import RawHtml from './RawHtml';
  
@@ -7,21 +7,26 @@ import RawHtml from './RawHtml';
 export default function ActivityDetail({lang, data}) {
   console.log(lang, data);
 */
+import Logo from './../assets/svg/logo_medialab.png';
+export {
+	Logo
+}
+						
 
-const _topbar = () => {
+const TopBar = () => {
 	return (
 		  	<header id="topbar">
 			<input type="checkbox" id="toggle-menu" name="toggle-menu" value="visible" hidden/>
 			<label for="toggle-menu">
-				<span class="span-nochecked"><img src={require("../assets/svg/menu-circle.svg")}/></span>
-				<span class="span-checked"><img src={require("../assets/svg/close-circle.svg")}/></span>
+				<span class="span-nochecked"><img src={require("./../assets/svg/menu-circle.svg")} alt="" /></span>
+				<span class="span-checked"><img src={require("./../assets/svg/close-circle.svg")} alt="" /></span>
 			</label>
 
 
 			<div id="topbar-content">
 				<div id="logo-medialab">
 					<a href="index.php">
-					<img src={require("../assets/svg/logo_medialab_draft.svg")}/>
+						<img src={Logo} alt="logo" />
 					</a>
 				</div>
 
@@ -57,3 +62,5 @@ const _topbar = () => {
 		</header>
   	);
 }
+
+export default TopBar;

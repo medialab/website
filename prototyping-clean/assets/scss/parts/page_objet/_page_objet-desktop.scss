@@ -44,24 +44,30 @@
 			}
 			.type-objet:before{ content: " – "}
 	
-			h1{
-				@include font-size-60();
-				padding-bottom: $baseline*1;
-				margin-top: $baseline*3;
-				max-width: 1100px;
-			}
+			hgroup {
+
+				h1{
+					@include font-size-60();
+					padding-bottom: $baseline*1;
+					margin-top: $baseline*3;
+					max-width: 1100px;
+				}
 	
-			hgroup h2{ padding-bottom: $baseline*1.5; }
-			
-			h2{
-				@include font-size-27();
-				max-width: 1100px;
+				h2{ 
+					padding-bottom: $baseline*1.5; 
+					@include font-size-27();
+					max-width: 1100px;
+				}
 			}
 	
 			p{
 				@include font-size-20();
 			}
-	
+			h2{  /// Incoherent mais temporaire; Données sont rédigé en base h2 et non h3
+				margin-top: $baseline*2;
+				@include article_h3();
+			}
+			
 			h3{
 				margin-top: $baseline*2;
 				@include article_h3();
@@ -79,6 +85,11 @@
 				figcaption{
 					margin-top: $baseline*1;
 				}
+			}
+
+			img{
+				max-width: 100%;
+				height: auto;
 			}
 
 		}/* #article-contenu */

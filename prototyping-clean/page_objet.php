@@ -8,7 +8,7 @@
     <title>Medialab - Page Objet</title>
     <!-- styles -->
     <style type="text/css"></style>
-    <link rel="stylesheet" href="assets/fonts/Museo_Sans/stylesheet.css">
+    <link rel="shortcut icon" href="assets/images/favicon-32x32.png" type="image/jpg"> 
     <link rel='stylesheet' type='text/css' href='assets/css-compiled/page_objet.css'>
 
 
@@ -125,7 +125,7 @@
 
 
 	<?php include('fragments/pages/_fichiers_associes.php'); ?>
-	<?php include('fragments/pages/_elements_associes.php'); ?>
+	<?php include('fragments/pages/_elements_associes_liste.php'); ?>
 
 </main>
 

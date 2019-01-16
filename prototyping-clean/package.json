@@ -1,0 +1,30 @@
+{
+  "name": "prototyping-clean",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "run-p 'build:*'",
+    "build:css": "node-sass --output assets/css-compiled assets/scss",
+    "build:php": "run-s 'build:php:*'",
+    "postbuild:php": "sed -i 's/.php?type=production/_production.html/g' *.html && sed -i 's/.php?type=actualite/_actualite.html/g' *.html && sed -i 's/.php?type=activite/_activite.html/g' *.html && sed -i 's/.php/.html/g' *.html",
+    "build:php:index": "php index.php > index.html",
+    "build:php:objet": "php page_objet.php > page_objet.html",
+    "build:php:objet": "php page_personne.php > page_personne.html",
+    "build:php:production": "php -r '$_GET[\"type\"]=\"production\"; require(\"page_liste.php\");' > page_liste_production.html",
+    "build:php:activite": "php -r '$_GET[\"type\"]=\"activite\"; require(\"page_liste.php\");' > page_liste_activite.html",
+    "build:php:actualite": "php -r '$_GET[\"type\"]=\"actualite\"; require(\"page_liste.php\");' > page_liste_actualite.html",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "npm run build:css -- --watch --source-map"
+  },
+  "nodeSassConfig": {
+    "binarySite": "https://github.com/sass/node-sass/releases/download"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^4.11.0",
+    "npm-run-all": "^4.1.5"
+  }
+}

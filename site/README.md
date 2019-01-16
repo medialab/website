@@ -216,3 +216,7 @@ Pour créer un composant qui rends deux blocs qui sont frères sans avoir un con
   <main>content</main>
 </>
 ``` 
+#### import/export de fonctions
+
+La syntaxe ES6 a un système d'import export des fonctions entre module.
+Voici [la documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import).

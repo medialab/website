@@ -2,13 +2,12 @@ import React from 'react';
 /*import {graphql} from 'gatsby';*/
 /*
 import RawHtml from './RawHtml';
- 
+
 
 export default function ActivityDetail({lang, data}) {
   console.log(lang, data);
 */
-import Logo from '../assets/svg/logo_medialab.png';
-console.log(Logo);					
+import Logo from '../assets/svg/logo_medialab.svg';
 
 const TopBar = () => {
 	return (
@@ -23,7 +22,7 @@ const TopBar = () => {
 			<div id="topbar-content">
 				<div id="logo-medialab">
 					<a href="index.php">
-						<img src={Logo} alt="logo" />
+						<Logo />
 					</a>
 				</div>
 

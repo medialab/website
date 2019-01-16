@@ -7,11 +7,8 @@ import RawHtml from './RawHtml';
 export default function ActivityDetail({lang, data}) {
   console.log(lang, data);
 */
-import Logo from './../assets/svg/logo_medialab.png';
-export {
-	Logo
-}
-						
+import Logo from '../assets/svg/logo_medialab.png';
+console.log(Logo);					
 
 const TopBar = () => {
 	return (

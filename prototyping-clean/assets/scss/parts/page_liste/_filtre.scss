@@ -64,15 +64,23 @@
 
 @include for-size(phone) {
 
+	h1.type_title{
+		margin-top: $height-top-bar-phone + $baseline*2;
+		@include font-size-20-phone;
+		text-align: center;
+	}
+
+	h2.filtre_activite_title{ display: none; }
+
 	label.toggle-filtre-phone{
 		height: $baseline*3;
 		position: fixed;
-		left: $margins-phone;
+		left: 0;
 		bottom: 0;
-		width: $mobile-container-width;
+		width: 100vw;
 		@include font-size-16-phone();
 		text-align: center;
-		border-top: $border;
+		border-top: $border-bold;
 		background-color: $background-site;
 		cursor: pointer;
 		z-index: 50;

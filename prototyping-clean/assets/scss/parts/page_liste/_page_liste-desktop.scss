@@ -63,18 +63,42 @@
 			
 			margin-bottom: 40vh;
 
+			.list-year{
+				padding-top: $height-top-bar + $baseline;
+				@include font-size-20();
+				height: $height-top-bar + $baseline*3.5;
+				border-bottom: $border-light;
+				// border-top: $border;
+
+
+				&:first-of-type{
+					height: $baseline*3.5;
+					padding-top: $baseline
+				}
+			}
+
+	
 
 			[data-item]{ // S'applique aux items des troix catégorie
 
 				padding-top: $baseline*1.5;
 				padding-bottom: $baseline;
 				border-bottom: $border-light;
-				display: block;
+				
+
+				.date, .type{
+					@include font-size-13();
+					color: $text-color-light;
+				}
+
+				.date{
+					position: absolute;
+					bottom: $baseline;
+					left: 0;
+				}
 
 				.type{
-					@include font-size-13();
 					text-align: right; 
-					color: $text-color-light;
 				}
 
 				h1{
@@ -82,8 +106,8 @@
 				}
 
 				h2{ 
-					@include font-size-16();
-					margin-top: $baseline*0.5; 
+					@include font-size-13();
+					margin-bottom: $baseline*0.5; 
 					&:before{ content: "– "; }
 				}
 
@@ -125,7 +149,7 @@
 			}/* end item_accroche*/
 			
 
-			[data-item]{
+			[data-item], .list-year{
 				width: calc((100vw - #{$logo-column} - #{$margins-desktop*2})/5*2 );
 				// width: 40%;
 			}

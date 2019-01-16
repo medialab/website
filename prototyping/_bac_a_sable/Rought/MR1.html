@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	
+    <title>Medialab - Proto</title>
+
+    <link rel="stylesheet" type="text/css" href="MR1_fichiers/index.css">
+	<link rel="shortcut icon" href="http://localhost/Medialab/website/prototyping-clean/assets/images/favicon-32x32.png" type="image/jpg"> 
+	<style type="text/css">
+	
+	article:hover{
+		color: inherit !important;
+	}
+	.image-post {
+	    opacity: 0;
+	    position: absolute;
+	    top: 0;
+	    left: -50px;
+	    
+	}
+
+	.image-post img{
+		width: 100vw;
+	}
+	.transition:hover .image-post {
+	    opacity: 1;
+	    transition: 0s ease;
+
+	}
+	</style>
+ 
+</head>
+
+<body>
+	<header id="topbar">
+	<input type="checkbox" id="toggle-menu" name="toggle-menu" value="visible" hidden="">
+	<label for="toggle-menu">
+		<span class="span-nochecked"><svg version="1.1" id="icon-menu" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 56 56" style="enable-background:new 0 0 56 56;" xml:space="preserve">
+<g>
+	<!--<path d="M28,0C12.561,0,0,12.561,0,28s12.561,28,28,28s28-12.561,28-28S43.439,0,28,0z M28,54C13.663,54,2,42.336,2,28
+		S13.663,2,28,2s26,11.664,26,26S42.337,54,28,54z"/>-->
+	<path d="M40,16H16c-0.553,0-1,0.448-1,1s0.447,1,1,1h24c0.553,0,1-0.448,1-1S40.553,16,40,16z"></path>
+	<path d="M40,27H16c-0.553,0-1,0.448-1,1s0.447,1,1,1h24c0.553,0,1-0.448,1-1S40.553,27,40,27z"></path>
+	<path d="M40,38H16c-0.553,0-1,0.448-1,1s0.447,1,1,1h24c0.553,0,1-0.448,1-1S40.553,38,40,38z"></path>
+</g>
+</svg>
+</span>
+		<span class="span-checked"><svg version="1.1" id="close-icon" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 52 52" style="enable-background:new 0 0 52 52;" xml:space="preserve">
+<g>
+	<!--<path d="M26,0C11.664,0,0,11.663,0,26s11.664,26,26,26s26-11.663,26-26S40.336,0,26,0z M26,50C12.767,50,2,39.233,2,26
+		S12.767,2,26,2s24,10.767,24,24S39.233,50,26,50z"/>-->
+	<path d="M35.707,16.293c-0.391-0.391-1.023-0.391-1.414,0L26,24.586l-8.293-8.293c-0.391-0.391-1.023-0.391-1.414,0
+		s-0.391,1.023,0,1.414L24.586,26l-8.293,8.293c-0.391,0.391-0.391,1.023,0,1.414C16.488,35.902,16.744,36,17,36
+		s0.512-0.098,0.707-0.293L26,27.414l8.293,8.293C34.488,35.902,34.744,36,35,36s0.512-0.098,0.707-0.293
+		c0.391-0.391,0.391-1.023,0-1.414L27.414,26l8.293-8.293C36.098,17.316,36.098,16.684,35.707,16.293z"></path>
+</g>
+</svg>
+</span>
+	</label>
+
+
+	<div id="topbar-content">
+		<div id="logo-medialab">
+			<a href="http://localhost/Medialab/website/prototyping-clean/index.php">
+			<svg version="1.1" id="medialab-logo-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 283.5 72.6" style="enable-background:new 0 0 283.5 72.6;" xml:space="preserve" aria-labelledby="Science Po | Medialab">
+	 <title>Science Po | Medialab</title>
+   	<desc>Largo of Science Po Medialab</desc>
+<g>
+	<path class="st0" d="M4.2,32.7c0,0,4.7,4.5,10.7,4.5c3.3,0,6.2-1.7,6.2-5.2c0-7.7-20.3-6.4-20.3-19.6C0.9,5.3,7.1,0,15.3,0
+		c8.5,0,12.8,4.6,12.8,4.6L24.8,11c0,0-4.1-3.8-9.5-3.8c-3.6,0-6.5,2.1-6.5,5.1C8.8,20,29,18.1,29,31.9c0,6.8-5.2,12.6-14.2,12.6
+		C5.3,44.5,0,38.6,0,38.6L4.2,32.7z"></path>
+	<path class="st0" d="M47.1,15.2c7.3,0,10.7,4.1,10.7,4.1l-3.1,4.7c0,0-2.9-3-7.3-3c-5.1,0-8.5,3.9-8.5,8.6c0,4.7,3.4,8.7,8.7,8.7
+		c4.7,0,8.2-3.5,8.2-3.5l2.7,4.9c0,0-4,4.5-11.5,4.5c-9.2,0-15.1-6.5-15.1-14.6C32,21.9,37.9,15.2,47.1,15.2"></path>
+	<path class="st0" d="M62.6,5h6.9v6.2h-6.9V5z M62.6,15.9h6.9v27.8h-6.9V15.9z"></path>
+	<path class="st0" d="M88.3,15.2c8,0,12.3,5.8,12.3,13.2c0,0.8-0.2,2.7-0.2,2.7H81.3c0.4,4.9,4.2,7.4,8.4,7.4c4.5,0,8-3.1,8-3.1
+		l2.7,5c0,0-4.3,4-11.2,4c-9.2,0-15-6.7-15-14.6C74.2,21.2,80,15.2,88.3,15.2 M93.7,26.4c-0.1-3.8-2.5-5.8-5.5-5.8
+		c-3.5,0-6,2.2-6.7,5.8H93.7z"></path>
+	<path class="st0" d="M105.3,15.9h6.7v3.2c0,1-0.1,1.9-0.1,1.9h0.1c1.2-2.3,4.3-5.8,9.9-5.8c6.2,0,9.7,3.2,9.7,10.6v17.9h-6.9V27.2
+		c0-3.4-0.9-5.7-4.4-5.7c-3.7,0-6.4,2.3-7.5,5.7c-0.4,1.1-0.5,2.4-0.5,3.7v12.8h-6.9L105.3,15.9L105.3,15.9z"></path>
+	<path class="st0" d="M150.8,15.2c7.3,0,10.7,4.1,10.7,4.1l-3.1,4.7c0,0-2.9-3-7.3-3c-5.1,0-8.5,3.9-8.5,8.6c0,4.7,3.4,8.7,8.7,8.7
+		c4.7,0,8.2-3.5,8.2-3.5l2.7,4.9c0,0-4,4.5-11.5,4.5c-9.2,0-15.1-6.5-15.1-14.6C135.6,21.9,141.5,15.2,150.8,15.2"></path>
+	<path class="st0" d="M178.5,15.2c8,0,12.3,5.8,12.3,13.2c0,0.8-0.2,2.7-0.2,2.7h-19.2c0.4,4.9,4.2,7.4,8.4,7.4c4.5,0,8-3.1,8-3.1
+		l2.7,5c0,0-4.3,4-11.2,4c-9.2,0-15-6.7-15-14.6C164.4,21.2,170.2,15.2,178.5,15.2 M183.8,26.4c-0.1-3.8-2.5-5.8-5.5-5.8
+		c-3.5,0-6,2.2-6.7,5.8H183.8z"></path>
+	<path class="st0" d="M197.4,35.4c0,0,3.1,3.1,7.6,3.1c2,0,3.7-0.9,3.7-2.5c0-4.1-13.5-3.6-13.5-12.6c0-5.2,4.6-8.2,10.6-8.2
+		c6.3,0,9.3,3.2,9.3,3.2l-2.6,5.1c0,0-2.6-2.4-6.8-2.4c-1.8,0-3.5,0.8-3.5,2.5c0,3.9,13.5,3.4,13.5,12.4c0,4.6-4,8.4-10.6,8.4
+		c-6.9,0-10.8-4.1-10.8-4.1L197.4,35.4z"></path>
+	<path class="st0" d="M221.8,0.7h16.6c8.1,0,13.7,5.6,13.7,14s-5.6,14.2-13.7,14.2h-8.8v14.8h-7.8V0.7z M236.9,22.1
+		c4.5,0,7.2-2.9,7.2-7.4c0-4.4-2.7-7.3-7.1-7.3h-7.4v14.7H236.9z"></path>
+	<path class="st0" d="M268.1,15.2c8.5,0,15.3,6.1,15.3,14.6c0,8.6-6.8,14.6-15.3,14.6c-8.5,0-15.3-6-15.3-14.6
+		C252.8,21.3,259.7,15.2,268.1,15.2 M268.2,38.5c4.5,0,8.2-3.5,8.2-8.7c0-5.1-3.8-8.7-8.2-8.7c-4.5,0-8.3,3.5-8.3,8.7
+		C259.9,35,263.6,38.5,268.2,38.5"></path>
+	<path class="st0" d="M1.3,57.7h2.9L7.1,65c0.3,0.9,0.8,2.2,0.8,2.2h0c0,0,0.4-1.3,0.7-2.2l2.9-7.4h2.9l1.2,14.9h-2.7l-0.6-8.3
+		c-0.1-1,0-2.3,0-2.3h0c0,0-0.4,1.4-0.8,2.3L9,70H6.7l-2.4-5.8c-0.4-0.9-0.8-2.3-0.8-2.3h0c0,0,0,1.3,0,2.3l-0.6,8.3H0L1.3,57.7z"></path>
+	<path class="st0" d="M18.9,57.7h8.9V60h-6.2v3.9h5v2.3h-5v4h6.6v2.3h-9.3C18.9,72.6,18.9,57.7,18.9,57.7z M24.1,53.8h2.8l-2.2,2.9
+		h-2.1L24.1,53.8z"></path>
+	<path class="st0" d="M31,57.7h5.1c4.6,0,7.6,2.7,7.6,7.4c0,4.7-3,7.5-7.6,7.5H31V57.7z M36,70.3c3,0,5-1.8,5-5.1c0-3.3-2-5.1-5-5.1
+		h-2.2v10.2L36,70.3L36,70.3z"></path>
+	<rect x="46.5" y="57.7" class="st0" width="2.7" height="14.9"></rect>
+	<path class="st0" d="M60.4,68.8h-5.2l-1.3,3.8h-2.8l5.2-14.9h2.8l5.2,14.9h-2.8L60.4,68.8z M57.8,60.3c0,0-0.3,1.5-0.6,2.3l-1.3,4
+		h3.9l-1.3-4C58.2,61.7,57.9,60.3,57.8,60.3L57.8,60.3z"></path>
+	<polygon class="st0" points="66.4,57.7 69.1,57.7 69.1,70.3 75.6,70.3 75.6,72.6 66.4,72.6 	"></polygon>
+	<path class="st0" d="M85.6,68.8h-5.2l-1.3,3.8h-2.8l5.2-14.9h2.8l5.2,14.9h-2.8L85.6,68.8z M83,60.3c0,0-0.3,1.5-0.6,2.3l-1.3,4
+		h3.9l-1.3-4C83.3,61.7,83,60.3,83,60.3L83,60.3z"></path>
+	<path class="st0" d="M91.6,57.7h5.3c2.7,0,4.6,1.4,4.6,3.8c0,1.4-0.7,2.6-1.8,3.2v0c1.6,0.5,2.4,2,2.4,3.5c0,3-2.4,4.3-5.1,4.3
+		h-5.4L91.6,57.7L91.6,57.7z M96.9,63.8c1.2,0,1.8-0.8,1.8-1.9S98.1,60,96.9,60h-2.6v3.8H96.9z M97.2,70.3c1.4,0,2.2-0.9,2.2-2.2
+		c0-1.2-0.8-2.1-2.2-2.1h-2.9v4.3H97.2z"></path>
+</g>
+</svg>
+			</a>
+		</div>
+
+
+		<nav id="nav-option">
+			<ul id="nav-home">
+				<li><a href="http://localhost/Medialab/website/prototyping-clean/linkHome#now">À la une</a></li>
+				<li><a href="http://localhost/Medialab/website/prototyping-clean/linkHome#agenda">Les rendez-vous du labo</a></li>
+				<li><a href="http://localhost/Medialab/website/prototyping-clean/linkHome#flux">Flux</a></li>
+			</ul>
+			<ul id="nav-objet">
+
+              	<li data-type="actualite"><a href="http://localhost/Medialab/website/prototyping-clean/page_liste.php?type=actualite">Actualités</a></li>
+
+              	<li data-type="production"><a href="http://localhost/Medialab/website/prototyping-clean/page_liste.php?type=production">Productions</a></li>
+
+              	<li data-type="activite"><a href="http://localhost/Medialab/website/prototyping-clean/page_liste.php?type=activite">Activités</a></li>
+
+			</ul>
+			<ul id="nav-institution">
+				<li><a href="#">Le Médialab</a></li>
+				<li><a href="http://localhost/Medialab/website/prototyping-clean/page_personne.php">L'équipe</a></li>
+			</ul>
+			<ul id="nav-archive">
+				<li><a href="#">Archives</a></li>
+			</ul>
+		</nav>
+
+		<div id="langue" class="menu langue">
+			<p><span>FR</span><span> | </span><span>EN</span></p>
+		</div>
+	</div>
+</header>
+
+	<main>
+
+	<section class="slideshow" id="slideshow">
+
+			<input type="radio" name="ss1" id="ss1-item-1" class="slideshow--bullet" checked="checked">
+			<label class="slideshow--bullet-label" for="ss1-item-1">Rencontre avec George Micheal</label>
+
+			<div class="slideshow--item">
+					<article class="transition" data-type="actualite">
+
+						<div class="image-pre" style="font-size: 1.6vw;">
+							<pre>▓█████▓███▓██████▓████▓▓▓████▓▓██▓██▓█▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▓█▓░░▒▓▓░░░░░░░░░░░░░▓░░░░▒░</pre><pre>▓▓▓▓▓▓▓█▓█▓███▓▓▓▓█▓█▓█▓▓▓█▓▓▓▓▓█▓▓█▒█▓▓▓▓▓▓▓▓▓▓▓█▓▒▒██▓█▓██▓█▓██▓▓▒▒▒▒▒▒▒▒▒▓▓██▒░░░░░░░░░░░░▒░░░░▒░</pre><pre>▓▓▓██▓█▓▓▓█▓▓▓▓▓▓▓▓▓▓▓▓▓▓█▓▓▓▓██████▓█▓▓▓▓▓▓▓▓▓▓▒█▓▒▒██▒█▒██░▓▒██▒▒▒▒▒▒░░░▓▓▒▓▓▓▒░░░░░░░░░▒▓▒░▒░░░░░</pre><pre>▓▓▓▓▓▓▒▒▓█████▓▓████▓▓████▓▓▓▓██▓█▓█▒▒█▓▓▓▓▓▓▓▓▓▓▓█▒▒▓▓░░░░░░░░░░░░░▒▒▒░░░▒▓▒▓▓▓▓░░░░░░░░▒▒▒▒▒▓▓▒░▒▒</pre><pre>▒▓█▓▓▒▒▓▓▓▓▓█▓▓██▓██▓▓█▓██▓▓▓▓▓▓▓▓▓█▒▒█▓▓▓▓▓▓▓▓▓▓▒█▓▒██░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒██▓▓▓▓██▓▓████▓▓▓▓▓▓▓</pre><pre>▒▓█▓▒▒▒▓▓▓▒▒▓▓███▓▓███▓▓███▓████▓▓▓██▒█▓█▓▓▓▓▓█▓▓▒█▓▒▒▓███▓▒▒░░░░░░░▒▓█▒███▓▒▓▓▓▓█▓██▓█▓▒██▒█▒▓▓██▓█</pre><pre>██▓██▓█▓▓▓▓▓▓▓▓██▓▓██▓▓██▓███▓▓█▓▓▓██▒▒█▓▓▓▓▓▓▓▓▓▒████████████▒▒▒░░░▒▓▓▓▓▓░▒▒▒▓███▓███▓▓▓██▒██████░░</pre><pre>█████████████████████████▓▓▓▓▓▓▓▓▓▓▓██▒▒▒▒▓██▓▒▒▓███████████████▓▒░░▒█▓░█▓▒▓▒▒▓▓█████████▓▓░██▓▓▓█░░</pre><pre>▓▓▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░▒▒▒▒▒▒▓▓▓▓██████▒▒▒░░▒▒▒█████▒▒▓███▓▓░▓▒██████████████▒█▓▒▒▒▓░▒</pre><pre>████████████▓▒██████████████████▓▓▓▓▓▓▒▒▒▒▒██▒█████▓▒▒▒▒▒▒░░▒▓█████████▓░▓▒▓████████████████▓▓▒░▒▓▒░</pre><pre>████████▓██████████████████████████████████████████▓▒▒▒▒▒▒▒▒▒▒▓████████▓░▒▒███████▓██████████▓▒░▒▓▒▒</pre><pre>▓▓█▓▒█░▒▒▒▓█▓▓█▒▒█████████████████████████████████▓▓▒▓▓▓▓▓▓▓█▓▓████████▓█▒██████▓▓▓█▓▓████████▒░▒▓▒░</pre><pre>▓▒█▓▒█░▒▒░▓█▒▓▒▒▒███▓▓█▓▒▓▓▓▓▓█████▓██████████████▓▓███▓▓▓▓▓▓▒▓████████▓█▓████████▓▓▓▓████████▒░▒▓▒░</pre><pre>▒▒█▒░▓░▒▒▒██▒▒▓░▒██▓▓▒▓▓▒▒▓▓▓▓▓███████████████████▓▒▒▓▓▒▒▒▒▓▓▓█████████▓███████▓▓▓▓▓▓▓▓███████▒░▒█▒░</pre><pre>▒▓█▒▓░▒▒▒▒██▒▒█░▒██████▓▓▓▓▓▓▓▓███▓████▓▓▓▓███████▓▓▒▒▓▓▒▒▒▓▒▒▒▓███████▓█████▓▓▓▓▓▓▓▒▓▓▓▓▓▓▓█▓▓░▒▓▓▒</pre><pre>▓▓█▒█▒▓▓▒▓███▒▓▒▒▒▒██████████▓█████▓▓██▒▒▒▒▒█▒████▓▓▓▓▓▓█████▓▓████████▒████▓█▓▓▒▒▓▒▒▒▓▒▒▓▓▓▓▒▒░░▓▓▒</pre><pre>▓██▒█▒█▒▒▓██▓▓▓▒▒▒▒█████████▒▒██▒▒█░░░░▒▓▒▒▓█▒▓▓██▓▓▓██▓███████████▓█▓██▓████▓▓▓▓▓▓▓█▓▓▓▓▓▓▓█▓▒░░▓▓▒</pre><pre>███▓▓▓▓░░░░░▒██▒▒▒▒▒▒▒▓█████▒▒██▓█▓▒▒▒░▒▓▒▒▓█░▓▓████▓▓▓▓▓▓▓█▓▓▓█████▒█████████▓▓▓▓▓▓▓▓▓▓▓▓▓███▓▒░▓▓░</pre><pre>▒▓███▓▒░▒▓░░▒█▓▒▒▒▓▒▒▒▒█████▒▒██░▒█▒░▓░▒▒░▒▒█▒▓▒█▓▓██▓▓▓▓▓▓▓▓██████▓▒███▓██████▓▓▓▓▓▓▓▓▓▓▓██████████</pre><pre>▒▓▒██▒░░▒▓▒░░▒▓▒▒▓▓▒▓▓▒█████▓▒██████▓▓░▒▒▒░▒█░█▓▓▓▒▓▓█▓▓▓▓▓▓███▓█▓▓▓█▓▓█▓▓▓▓██▓██▓▓▓▓▓▓▓███████████▓</pre><pre>█▓▓██▒▒░▒▒░░▒▒▓▒▒█▓▒▒▒▒██████▓██▓█▓█▒▓░▒░░▒▒█░█▒▓▓▓▒▒▓▓███████▓▓▓▓▓█████████████▓▓▓██████▓██████████</pre><pre>█████▒▒░░░░░░▓▒▓▒█▒█▒████████░▓▓▒▓██░▓░▒▒▓█▓███▒▒▒▓▓▒▒▒▒▒▓███▓▓▓▓▓▓▓████████████▓▓▓▓▓▓▓▓▓▓██████████</pre><pre>█████▓▓▒▒▒▒▒▒█▓█▒█▒█▓▓▓██████▒▓▓▒▓▓█░▓▒▒███████▒▒▒▓█▓▓▒▒▒▒░▓▓▒▓▓▓▓▓▓██████▓▓▓▒▒█▓▓▓▓▓▓▓▓▓▓██████████</pre><pre>██████░▒▒▒▒▒▒▒▓█▒▓▒██▓███████▒▓▓▓▒▓▒▒▓██████████▒▒▒█▒▓▓▒▒▒▓▒▒▓▓▓▓█▓▓█▒▒▒▒█████▒▒█▓▓▓▓▓▓▓▓▓██████████</pre><pre>██████▒▒▒▒▒▒▒▓▒▓▒▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒███████████▓▓▒▓▓█▒▓▒▒▒▓▓▒▒▒▓▓██████▓▒█▓██▒▒▒▒▒▓▒▒▒▒▒▒▒███████▒</pre><pre>▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓████████████████████████████▓▓▓▒▓█▓▓▓▒▒▓▓█▓█▓████████▓▓▒████▓▒▒▒▒▒▒▒▒▓▒██████▒█</pre><pre>███████████████████████████████████████████████████▓▓▓▒▓▒▓▓▓▒▓▓▓██████▓███▓▒▓▓█████▓▒▒▒█▓▓█████▓██░█</pre><pre>████████████████████████████████████████████████████▓▒▒▓▒░▓▓▓▓████████▒██▒▓▒▓░██████▒▓█▓▒▒█████▒▓▓░▓</pre><pre>█████████████████████████████████████████████████████▒▒▒▒▒▒▒██████████▒██▒▒▒▒░█████████████████▒▓▒░▒</pre>
+						</div>
+						<div class="image-pre-phone">
+							<pre>▓▓▓▓▒▓▓▓▓█▓▒▓▒▓▒▓▓▓▒▓▓▒█▒▒▒▒▒▒▒▒▒▒░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▓▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;</pre><pre>▒▒▓▒▓▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▒█░▒▒▒▒▒▒▒▒▓░▓░░▓█░░▓░░░▒&nbsp;░▒░▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>▒▓▒░▒▒▒▓▓▒█▓▓▒█▓▒▓░▒▒▓▓▓░▓▒▒▒▒▒▒░▓░▓&nbsp;&nbsp;&nbsp;░▒&nbsp;░░&nbsp;░░░░▒▒▒▓&nbsp;&nbsp;&nbsp;░░░░▒▒▒▒&nbsp;▓</pre><pre>░▒▒▒░▒▓▒▒▓▒▒▒▓▓▒▓▓▓▓▒█▒▓░▓▓▒▒▒▒▒▒▓░▒▒▒░░░&nbsp;&nbsp;░&nbsp;░▓██▒░▒░▒▒▓▒▒░▓&nbsp;▒░░▒▓</pre><pre>▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓░░▒▓▓▓▓▓▒▓███████▓&nbsp;&nbsp;&nbsp;▒▒█▒▒░▒▓▓▓█▒▒▒▓&nbsp;████░</pre><pre>▒▒▒▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓░░░░░▓▒▒▓███░░░░░███▒░▓▓&nbsp;▒░░▓▓█████▓▓&nbsp;▓░░▒░</pre><pre>█████████████████████████████████▓▒░░░░░░█████▓▒▒░███▓▓▓▓▓█▓▓░&nbsp;░▒&nbsp;</pre><pre>▒█░▓░▒▓▓▒▓░██▓███████████████████▒▒▒▒▒▒▓▒▒█████▓░███▓█▓▒▓█████░&nbsp;▒&nbsp;</pre><pre>▒█░&nbsp;░░█▒░▓░██▒░▒▒▒▒▒▓▓▒▓▒▓▓▓▓████▒▒▒▒░▒▓█▓█████▒░███▓▒▒▓▓▓▓█▓█░&nbsp;▒░</pre><pre>▒▓▒▒░░▓░▓▒&nbsp;██▓▓▒▒▒▒▒▓█▓▓▓▓▓▒▓▓███▒▒░▓░░▒░▒▓████▒███▒▒▓▒░▒▒▒▒▒▓▒&nbsp;▒&nbsp;</pre><pre>▒▓░▒░░█░░▓&nbsp;░░▒▓██▓▓&nbsp;▓▓▓&nbsp;▓&nbsp;░░░▒▒▒█▒▒▓▒▒▒▒▓▓▓██▓▒▒██▓▒▒░▒░▒▒▒▒▒▒░&nbsp;▒&nbsp;</pre><pre>▓▓▒▒&nbsp;&nbsp;&nbsp;&nbsp;█▒░░░░░██▓▓░▓▒▒&nbsp;░&nbsp;▒░▒▓░▓▒█▓▒▒▒▒▓▒▓█▓▓▒█████▓▒▒▒▒▓▒▒▒▓█▒&nbsp;▒░</pre><pre>▒░▓░▓░▒░▒▒&nbsp;▓░▓░██▓▓░▒▒░░▒&nbsp;░░▓█░▒▒▒▒▒▒▒▒▒▓▓▓▒▓▒▒▓████▓▒▒▒▒▒▓▓▒███▓▒</pre><pre>▓▓▓░▒░&nbsp;&nbsp;░▒░▓░░░█▓▓▓░▒░░▓▒░&nbsp;&nbsp;▒▓░▒▒▒▒▒▒▓▓▓▓▒▒▒▓████████▒▒▓▓▓▓▓██████</pre><pre>▓▓▓▓░░░░░░░▓░▓▓██▓▓▒▓░▒▓░░░▒███░░▒▒▒░░░▓░▒░▓▒█████▓▒█▒▒▒▒▒▒▓██████</pre><pre>█▓▓▓▒░░░░▒▒▒░▓▓▓█▓▓░█▒▒▓░██████▓▒░▒▒▒░░░░▒▒▓▒█▓█░██▒░▒▒▒▒▒▒▒█████▒</pre><pre>▒▒░░░░░░░░░░░░░░░░░░░░░░░███████▒▒░▒▒▓▒▒░▓▓▒██▒░▓████▓░░░░░░░█████</pre><pre>████████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█████████▒▒▒░▒▒▒▒▓███████▓░▓███░░▒██&nbsp;░▒▒█</pre><pre>▓▓██▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓██████████░▒░░▓▓██▓▓░█▒██████████████████</pre>						</div>
+						<div class="image-post">
+								<img src="../../assets/images/sample/shira_1.2.jpg">
+						</div>
+						<div class="contenu-slide">
+							<a href="#">
+								</a><div class="nomenclature"><a href="#">
+									</a><p class="type"><a href="#"></a><a href="#">Actualité</a></p>
+									<p class="sous-type"><a href="#">Rendez-vous</a></p>
+								</div>
+								
+								<h1 data-level-1="title">Rencontre avec George Micheal</h1>
+								<!--si rendez-vous--><time class="time">25 décembre / 18h-20h</time>
+								<h2 data-level-2="label">Dans le cadre du séminaire "Merry Christmas"</h2>
+								<p class="description">Georgios Kyriacos Panayiotou, connu sous 
+le nom de scène de George Michael, est un auteur-compositeur-interprète 
+et producteur britannique, né le 25 juin 1963 à Londres et mort le 25 
+décembre 2016 à Goring-on-Thames.</p>					
+								<p class="more"><a href="#">En savoir plus</a></p>
+							
+						</div>
+					</article>
+				<label for="ss1-item-3" class="slideshow--nav slideshow--nav-previous">Go to slide 3</label>
+				<label for="ss1-item-2" class="slideshow--nav slideshow--nav-next">Go to slide 2</label>
+			</div> <!-- fin item 1 -->
+		
+			<input type="radio" name="ss1" id="ss1-item-2" class="slideshow--bullet">
+			<label class="slideshow--bullet-label" for="ss1-item-2">Marchés financiers : que sont les “bonnes” relations sociales d’échange?</label>
+			<div class="slideshow--item">
+				<article class="transition" data-type="activite">
+					<div class="image-pre">
+						<pre>▓▓▓▓▓▓▓▓▓▓▓▒▓▓▓▒▓▓&nbsp;▒▓▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>█▓█████▓▓█▓██▒▓▓▓▓▓▓▓▓▓▓▓▓▒&nbsp;&nbsp;░░▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>▒▓▓█▓▓█▓▒▓▓▓▓▓▓▓▓▓▓░▓░▓▓▓▒▓▒▓▒▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▓▒░▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>░▒▓▓▓█▓▓▓▓▒░▓▓▓▓▓▓▒░▓▒▒▒▒▒▒░░▒░▒▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▓▓▓▒&nbsp;▒▒▒▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>░░▓▓▓░░&nbsp;&nbsp;▓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▓░▓▓░▓▓▒▓░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▓▓▓▓▒▒▒▒▒▒▓░▒░▒▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;░▓▓▓▓▓▒▓&nbsp;&nbsp;&nbsp;&nbsp;▒&nbsp;▒&nbsp;▓░▒▒░▓▒▒░▒&nbsp;▒▒▒▒░░▒▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▒▓▓▓▓▒▓▒░▒▒▒▓░▒▒▒▓▒▒░&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;▓▓▓▒░▒&nbsp;&nbsp;&nbsp;&nbsp;▒&nbsp;░&nbsp;▒&nbsp;░▒░&nbsp;&nbsp;&nbsp;&nbsp;▒▒&nbsp;&nbsp;&nbsp;&nbsp;▒▒░▒&nbsp;░▒▒&nbsp;▒▒▒▓▓▓▓▓▓▓▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▒▓▓▓▓▓▓▒▒▒▒░▓▓▒▒▒▒▒░▒░▒▒▒░&nbsp;</pre><pre>&nbsp;&nbsp;▒▓▓&nbsp;▓&nbsp;&nbsp;&nbsp;&nbsp;░▒░░▒░▒░▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░&nbsp;&nbsp;▒▓▓▒&nbsp;&nbsp;░▒▓▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒&nbsp;░▒▓▒▓░▒░▒▒▒▒</pre><pre>▓▒▒▓▓▓▒▓▓▓░▓▓▒▒░░░&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▒░░░░&nbsp;&nbsp;▒▓▓▒▒▒░&nbsp;▓▒▓▓▓▓▓█▓▓▓▓▓▓░▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▒▒░░▒░▒▒&nbsp;&nbsp;&nbsp;░&nbsp;▓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▒&nbsp;▓░▒▒▒▓&nbsp;&nbsp;▓▒▒▓▓▓▒▓▓▓▓▓▓▓▒▒▓▒▒▒▒▓░▒░░▒▒▒░▒</pre><pre>█▓██▓▓▒▓▓░░▓▒░▒▒░▓░░▒&nbsp;&nbsp;▒&nbsp;░▒▓▓▒░░&nbsp;▓▓▒▒▒▓▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▓▒▒▒▒▒▒▒▒▒▒▒▒▓▒▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▓▓▓▒▓▓▒▓▓▓▒▓▓▓▓▒░░▒▓▓▓▓▒▓▓▓▒░▓▓▒▒░▓▒░▒▒▒▒&nbsp;</pre><pre>▓███▓▓▓▓▒▒▓▒░▓▒▓▓▓&nbsp;▒░░&nbsp;&nbsp;░▒▒░▒▒▒▒&nbsp;▓▓▒▓▒▓▓▓▓▓▓▓▒▒&nbsp;▓░▒▓█▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▓▓▓▓▓▒▓▒▓▒▓▒▓▒▒▒▒░▒▓▓▓▓▓▓▒▓▓▓▒░▓▒▒▒▒▒&nbsp;▒▒░▒▒</pre><pre>▒▓▓▓▓▓▒▓▓▒▓▓▒▓▒░▒▓░░░░▓░░▒▓▓▓▓▒▒&nbsp;▓▓▓▓▓▒▒▓▓▓▓▓▓▓░▓▒▓▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▓▒▒&nbsp;&nbsp;&nbsp;&nbsp;░▓▓▒▒▒▒▒▒▒▒▒▓▒▒▒▓▓▓▒▓▓▒▓▓▓▓▓▓▓▓▒▓░▒▒▒░▒▒▒▒░</pre><pre>▒░▓▓▓▓▒▓▓▒░░░░░&nbsp;░░&nbsp;░░░░░░&nbsp;░▓▒▓▒▓&nbsp;▓▓▓▓▓▓▓▓▓▓▒▓▓▓▒▓▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▓&nbsp;&nbsp;&nbsp;&nbsp;▒▓▓▒▓▒▒▒▓▒▓▒▓▒▓▓▓▓▓▒▓▓▓▓▓▓▓▓▓▓▓▒░░▒▓░░░▓▓▓▒</pre><pre>░▓█▓▓▒▒▒▓▓▓&nbsp;░▒&nbsp;░▒░░░░░░▒░░░&nbsp;░&nbsp;▓▓&nbsp;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒&nbsp;▓▒▒▓▓▓▓▒▓▒▓▓▒▓▒▓▒▓▓▓▓▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▒░▒░▒▓▒▒▓▒</pre><pre>▓&nbsp;▓█▓&nbsp;▒▓▒░░▒&nbsp;▓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░█░▓&nbsp;░░▒▒▒&nbsp;▓▓▓▓▓▓▓▓▓▓▒▓▓▓▒▒▒▓█▓▓▓▒▒░▓▓▓▓▓▓▓▒▓▓▓▓▒▓▓▓▓▓▓▒▓▓▓▒▓▓▓▓▓▓▒▓▓▒▒▒▒▒▒▒▓▒▓▓▓▓▒░░▒▓▓▓▓▓▓▓▓▒▓▓▒▒▒▓▓▒░▓▓▓▒▓</pre><pre>&nbsp;░▓█▓▒░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▓&nbsp;&nbsp;&nbsp;&nbsp;▓▒&nbsp;&nbsp;&nbsp;▒&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▒░░▒▒▒░▓▓▒▓▓▓▓▒▒▓▓▓█▒▓▒▒▓▓▓▓░░░▓▓▓▒▒▒▒▒▒▒▓▒▓▒▒▒▒▒▒▒▒▒▒▒▒▒▓▒▒▒▓▓▓▓▓▒▓▓▒░░░&nbsp;▒▓▓▓▓▓▒▓▓▓▓▓▓▓▓▓▒▓▓▓▓▓▓▓</pre><pre>&nbsp;░▓▓▓▒▒▒&nbsp;░░░░░░&nbsp;▓▒&nbsp;▒▓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▓▒▒&nbsp;▓▒░&nbsp;▒░▓▓▒▒░░░░░░░▒▒▒▓▒▒▓▓▓▓▓█▒▒▒▓▒▓▓▓▓▒▓▒▒▓▒▒▒▒▓▒▒▒▒▒▒░░░▓▒▒▒▒▒▒░▒▒▒▒▓▓▒░▒▒▒▒▓▓▓▓▓▓▓▒▓▓▓▓▒▓▓▒▓▓▓▓▓▓▓</pre><pre>&nbsp;░▓█▓▒▓▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░▒▒▒▒▒░▒▒▒▒▒▓▓▓▓▓▒▓▓▒▓▓▓▓▒▒▒▒▓░▓▒▓▒▒▒▒▒▒▒▒▒▓▒▒▒▓▓▒▒░░░▓░░▓▒▒▒▓▒▒░▒▒▒▒▓▓▓▒▓▓▒▓▓▓▓▒▓▓▓▓▒▓▓▒▒▒▓▓▓▓▓▒▓▓▓▓</pre><pre>&nbsp;░▓█▓&nbsp;&nbsp;░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;▒▒▒▓▓▓▒▓▒▓▓▒▓▓▓▓▒▒▒▒▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▓▓▒▒▒▒▒▒▓▓▒▓▓▓▓▓▒▒▓▓▓▒▓▒▒▓▓▓▓▓▓▓▒</pre><pre>░&nbsp;▓▓▓░░&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░▒▒░░▒▓▓▓▒▓▒▒▒▒▒░░▒▒▒▓▒▒▒▒▓▒▒▒▒▓▓▓▓▒▒▒░░░░░░▒░░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▓▓▓▓▒▒▒▓▒▒▓▓▓▒▒▓▒▓▓▓▓▒▓▓▓▓▓▓▓▓▒</pre><pre>░░▓▓▓░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░▒▒▒▒▓▒░▒▒▓▒▒▒▓▒▒▓▓▓▒▒▒▒▒▒░▓▓▒▒▒▒░▒▒░░░░░░░▓░█▓█▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▓▒▒▒▓▓▒▓▓▓▒▓▒▓▓▒░▓▒▓▓▓▓▓▓▓▓▓▓▓</pre><pre>░░▓▓▓▒░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░░▒▒▒▒▒░░▒▒▒▒▒░▓▒▓▓▓▓▓▒▒▓▒▓▒▓▓▓▓▓▒▒▒▒▒▒▒░▓▓▓▓▓▓░░░░▓▓▓▓▓▓▓▒▒▒▒▒▒▓▒▒▒▓▓▓▒▒▒▒▓▓▓▒▓▓▓▒▓▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓</pre><pre>░░▓▓▓▒░▒▒▒▒&nbsp;░░░░░&nbsp;░░░░░░░░░&nbsp;░▒▒▒▒▒░▒░▒▒▒▒▒░░░▒▓▒▓▒▒▓▒▓▒▓▓▒▒▒▓▒▒▒▒░░▒▓▓▓▓▓▓▓▓▓▓▒░▓▓▓▓▓▓▓▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▒▓▓▓▓▓▓░▓▒░▓▓▒░▒▒░▒▓▒▒▒▒▒▓</pre><pre>░░▒▓▒░░▒▒░&nbsp;░░░░░░░░░░░░▒▒░░&nbsp;▒▒▒▒▒▓░▒░▒▒▒▒▒▒▒▒▓░▓▒▓█▓▓▓▓▒▒▒▒▒▒░▒░▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓░▓▒▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▒▒▒▒▒▒▒▓▓▓▒▒░▒▒▓▒▒▓▒▓▒▒▒▒░░░▒</pre><pre>░░▒▒░░&nbsp;░▒▒▒▒▒▒▒░░░▒▒░▒▒░▒▒░&nbsp;▒▒▒▒▒▒░░░▒▒▒▒▓▓▒▒▒▒▓▓▓▓▒▒▒▒▓▓▒▒▓▒▒░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▒▒▒▓▒▒░▒▒░▒▒▓▒▒▒▒▒░▓▓▓▓▓▓▒▓▒░▒</pre><pre>░░▒▒▒▒&nbsp;░▒▒▒▒▒▒▒▒▒░▒▒░░░▒▒▒░▒▒▒░░░░░▓▓▒▒&nbsp;&nbsp;&nbsp;▒▒▒▒▒▒▓▓▓▒▒▒▓▒▒▒▒▓▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▓▒▒▒▓▓▒▓▓▒▒▓▓▒▒░▒░▒▓▒▒▓▓▒▓▒░░▒▓▓▓▓▒▒▓▓▓</pre><pre>▒▒░░▒▓&nbsp;░▒▒▒░&nbsp;&nbsp;&nbsp;░▒&nbsp;░&nbsp;░░░&nbsp;▒▒░▒▒▓░▒▒░▒▓░░░░▒▒▓▒▒▓▒▒▓▒▒▒▓▒▓▒▓▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▓▓▒▒▒▓░░▒░▒▓▒▓▓▓▓▓▒▒░▓▒▒▓▒▒░▒▒▒▒▒▒▒▒▒▓▓▓▓▒▓░░▒▒▒▒▒</pre><pre>▒▒▓░▒▒░░▓▓▓▒▒▒░▒░&nbsp;░░&nbsp;&nbsp;&nbsp;&nbsp;░░&nbsp;▒▒▒▒▒▒▒▒░░▒▒▒▒▒▒▒▓▒▒▒▒▒▓▓▓▒▒▒▓▒▓▓▓▓█▓▒█▓▓▓▒▓▒▓▒▒▓█▓▓▓▒▓▓▓▒▒▒▒▒▒▒▒▓▒▒▒▓▓▒▒▓▓▒▓▓▒▓▒░▒▒▒▓▓▒▒▒▒▒▒▒▓▓&nbsp;&nbsp;░▒▓▒▒▓</pre><pre>▒▒▒▒▓▓░░░▒▓▓▒▓▒▒▒▒&nbsp;&nbsp;&nbsp;▒▒░▒&nbsp;&nbsp;▒▒░░▒░▒▒▒▒▒▒▒▓░░░▒░░▒░▒▓▒▒▒▒▒▒▓▓▒▓▓▓▓▓▓▓▓▒▒▒▓▒▓▒▓▓░▒▓▒▒░░▒▒▒▒▓▓▒▓▓▓▓▒░░▓▓▓▓▓▓▒▒▒░▒▒▓▒▓▓▒▓▓▒▒▓▓▓░░░▓▓▒▓▒▒</pre><pre>▒▓▓░▓▒▒▒▒▒▓▓▒▒▒▒▒▒░&nbsp;▒░░▒▒░░▒▓▒▒▓▓▒▒▒▒▒░░▒▒▒░▒▒▓▒▒▒▒▒▒▓▓▓▓▒▒▓▓▓▒▒▓▒█▒▒▓▒▓▒▓▓░▒▓▓▓▓▓░▒▒▒░▒▒▓▓▓▓▓▓▒░▒▒▓▒░▒▓▒▒▒▓▓▒▓▓▓▓▓▓▓▓▓▓▓▓▒▓░▒▓▒▒▒▒</pre><pre>▒▓▒▒▒▒░▒▓▓▓▓▓▓▒░▒▒▒░░░░░░░░▒▓░░░░▒▒▓▒▒▒▒▒▓▒▒▒▒▓▒▒▒▒▒▒▒▓▒░░░▒▒░░▓░░▒▒▓▓▒░▒▓▓▓▒█▓▓▓▓▒▒░▒░░░▒▓▓▓▓▓▓▓▓▓▒▓▓▓▒▒▒▓▓▓▓▓▓▓▓▓▓▓▒▓▓▒▒░░▒▒▓▓▒▒▒</pre><pre>▒▒▒▒▒▓░░▓▓▓▓▓▒░▓▓░░▒▒▒▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░▒▒&nbsp;▒▒▒▓▓▒▒▒░▒▓▓▒▒▒▒▒░░░░░▓▓▓▒▒▒░░▓▓▓▒░▒▓░░▒▒▓▒░▒▒▒▒▒░▒▒▒▒░░▒▒▓▒▒░▒▓▓▓▒▓▒▒▓▓▒▓▓▓▓▓▓▓▓▓▓▓▓▒▒░▒▒▓▓▓▓▓▓</pre><pre>▓▓▒▓▓▓▒░░▒▒▒░░▒▓▓░░▒▒▓▒▓▒░░&nbsp;&nbsp;░▒▒░▒▒▒░░▒▒░▒▒░░▒▒▒▒▓▒▒░░░▒░▒▒▒▓▒▓▓▒▓▓░▒░▒░░▓▒▒▓▓▒▒▒▓▒▒░▒▒▓▒▒░▒▒▒▒▓▒▓▓▓▒▓▓▓▓▓▓▓▓▓▓▓▒▒▓▓▓▓▓▓▓▓▒▒▒▒▓▓▒▓▓</pre><pre>▓▓▓▓▓▓▓▒░░░░░░▒░▓░░▓▒▒▒▓▓▓▓▓▓▓▒░▓▒▒▒▒▓░░▒▒▒▒&nbsp;░▒░▓▓▒▓▓▓▓▒░▒▒▒▒▓▓▒▒▒▒▓▓█▓▒▒▒▒░▒▓▓▒▓▒▒▒▒░▒▒▒▒▒▒▒▒▒▓▓▒▓█▓▒▓▒▓▓░▓▓▒░▒▓▓▒▓▓▒▓▓▓▓▓▓▓▓▓▓▓▓▓</pre><pre>▓▓▓▓▓▓▒▒░░░░░░░▒▒▒░▓░▒▒▒▓▒▓▒▓▓▓▓▓▒▒▒▒▒▓&nbsp;&nbsp;▒▒▒▒▒▒▒░&nbsp;░▒▒▓▓▓▒▓▓▓▒▒▓▓█▓▓▓▒░░░░▓▒▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▒▒▓▒▒▒▒▒▒&nbsp;&nbsp;░&nbsp;&nbsp;▓▓▓▓▓▓▒▒▓▓▓▒▒▒▓▓▓▓▓▓▓▓▓</pre><pre>▓▓▓▓▓▓▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█▒▓▓▓▓▒▒▒▒▒▒▓▒░▒▒▓▒▒▒▒▒▓▒▒▒█▓░░▓▓▒▓▓▓▓▓▓▒▓▒▓▒▒▒▒▓▓▓▒▒▓▒▒▒▓░▓▒▒▒▒▓▓▓▒▒▒▒▓█▓▒░░░▓█▓▓█▓██▓█▓▓▓▓▓▓▓░▓&nbsp;▒░▒▒▓▒▒▒</pre><pre>▓▒▒▒░░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▓▓█▒▓▓▓▓▓▒▓▓▒▒█▒▒▒▓▒▓▒▓▓▓▒▓▓▓▓▓▓▒▒▓▓▒▒░▒▓▓▓▓▒▒▓▓▓▒▒▓▓▒▒▒▓▓▓▒▒▒▓▒▒▒▓▒▓▒▓▓▓▓█▓█████▓▓█▒▓█▓▓▓▓▓▓▓█▓▒▒░▒▒▓▒▒░▒▓▓</pre><pre>▒▒░▒▓▓▓▓▓▓▓▓▒▓▓▓▒▓▓▓▒▒▓▓▓▒▒▒▓▓▓▒▓▓▓▒▒▒░▒▒▒▒▒░▒▒▓▓▓▒▒▒▒▓░▒▒░░▒░▒▓▒█▓▓▓▓▓▒▒░▒▒▒░▓▒▒▒▓▓▓▓▒▓▒▒▓▓█▓▓▓█▒▓▓▓▓▒▒▒▓████▓█▒█▓▒▓▒▒▓▒▒░▓▒▒▒▒▒░▓</pre><pre>▓▒▓▓▒▓▒▓▒▓▓▒▓▓▓▓▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▒▓▒░░░░░▒▒▓▓▒▒░▒▒▒▓▓▒▒▒▒▒░▒▒▒▒▒▓▒▓▓▓▓▒▓▓▓▒▒▒▒▒▒&nbsp;▒▒▒▒▓▓▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█▓▓▓███▓▓░░▒▒▓▓▓▓▓▒▓▓▓▓▓</pre><pre>▓▒▓▓▓▓▓▓▓▒▒▒▒▓▓▓▒▒▓▓▓▓▓▓▓▓▓▒▓▓▓▓▒░░░░░░▒▒▒▒▒░▒▒▒▓▒▒▓▒▒▒▒░▒▒▒▒▒▒▒▒▓▒▒█▓▓▒▒▒▒░▒░░&nbsp;&nbsp;▒▒▓▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█▓▓▓▓▒▒░▓░▒▓▒▓▓▓▒▓▓▓▒</pre><pre>▒▒▓▓▓▓▓▓░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▓▒▓▒░░░░░░▒▒▒▓▒▒░▒▒▒▒▒░▒▒▒▒▒▒░▒▒░▓▒▒▓▓▓██▓▓▒&nbsp;░▒▒▒▒▒▒░▒░▒▒▒░▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▒▓▓▓▓░░▓▒▒▓▒▒▓▒▓▓▓▓▒▓▒█▒▒▒▓▒</pre><pre>▒░▓▓▓▓▓▓▓▒▓▓▓▒▓▒▒▓▒▓▓▓▓▓▓▓▓▒▒▓▒▒░░░░░░▒▒▓▓▓&nbsp;&nbsp;&nbsp;&nbsp;░▒▒▒░▒▒▒▒▒▒▒░▒▒▒▒▓▓▓▓▓▓▒▒▒░░░░░░▒▒▓▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▓▒▒▒▓▓▒▓▓▓▓▓▓▓▓▓▒▓▓▒▒▓░▒</pre><pre>▓▓▓▓▓▓▓▓▓▒▓▓▓▓▓▓▒▓▒▒▓▓▒▒▓▓▓▒▒▒▒▓░░░&nbsp;░▒▒▒▒▓▒▒▓▒▒▒▒▒▒▓▒▒▒▒▒▒░░▒▒▒░▓▒▒░▓░▒░░&nbsp;▒▒▒▒▒░░░&nbsp;&nbsp;▒░▒▒▓▓▓▒▓▓▓▒▓▓▓▓▓▓▓▓▓▓▒▒█▓░▒▓▒░░░░▒░▒░▒▒▓▓▒▓▒▒▒</pre><pre>▓▓▓▓▓▓░▓▓▓▓▓▓▓▓░▒▒░▒▓▓▒▒▒▓▓▓▒▒▓▒░░░░▒▒▒▓▓▓▓▒░░▓▒▒░▒▒░▒▓▒▒░▒▒░▒▒▓▒▒▒░▓▒▒░▒░░░▒▒▒░░░&nbsp;░▒▒▒░▒▒▒▓▓▒▒▓▓▓▓▓▓▓▓▒▓░░▒▓▓▒▒▒░▓▓▓▓▓░▒▒▓▒▓▒▒░▒░░</pre>					</div>
+					<div class="image-pre-phone">
+						<pre>▓█▓█▓▓▓█▓▓▓▒▓&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>░▓█▓▓█▓▓░░▒▓▒▒▒▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▓▒▓▒&nbsp;&nbsp;&nbsp;▒&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;▓█▓▓&nbsp;&nbsp;░▓░▓▒▒&nbsp;&nbsp;░░▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▓▓▓░▒░▒▒▒&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;▓▓▒&nbsp;&nbsp;▓▓▒&nbsp;&nbsp;&nbsp;&nbsp;░▒&nbsp;░░&nbsp;&nbsp;▒▓▓▓▓▓▒▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▓▓▓▓▒░▒░▒▒░&nbsp;░▒</pre><pre>▓▓▓░▒░▒▒▒▒▒&nbsp;&nbsp;░░▒▒▓▒▒░▓▓▓▒▓▓▒▓&nbsp;&nbsp;&nbsp;▓▒▒▓▓▒▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▓▒▒▒▒▓▓▓▓▓▓▒▒▒▓▒░▒▒░▒</pre><pre>▓█▓░▓▓▓▒▒&nbsp;░░▓▒▒░▒▓▓▓▓▓▓▓▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓░▒▒&nbsp;&nbsp;░▒▒▒▓▒▒▒▒▓▓▓▒▓▓▓░▒▒░░▒</pre><pre>██▓░▓▓░&nbsp;▒▓▒░▒▓▒▓▒▓▓▒▓▓░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒&nbsp;░░▒▒▒▓▓▓▓▓▓▓▓▓▓▒▓▒░▒░▒▓</pre><pre>░█▓▒░░&nbsp;▒▒&nbsp;▒▓▒▒▒▒░░░▓▓▓█▓▒▓▓▓▒▓▓▒▓▓▒▒▒▓▓▓▒▒▒▓▓▓▓▓▓▓▓▓▓▒▓▓▓▒▓▒▓▓▒▒▓▓</pre><pre>░█▓▒░▓▓&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;▒▓▒&nbsp;░▒▒▒▒▒▓▓▓▓▓▒▓░▒▓▓▒▒░▒▒&nbsp;▓▒▒▒▒▒▒▒▒▓▓▒▓▓▓▓▓▓▓▒▓▒▓▓▓▓</pre><pre>░█▓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒░▒▒▓▓▓▓▒▒▒░▒▒▒▓▒▒▓▒▒░░▒░▓▓▒▒▒▒▒▓▓▓▓▓▒▓▓▓▒▒▒▒▓▓▓▓</pre><pre>░▓▓░░░&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░▒▓▒▒▒▒▓▒▒▒▒▓▓▒▒░▒▒░░▒█▓▓▓▒▓▓▓▓▓▓▓▓▓▓▓▓▒▒▓▓▓▓▓▓</pre><pre>░▓▓░&nbsp;&nbsp;░░░░░░░░▒▒▒░▒▒▒░▒▓▓▓▓▓▒▒▓▒▒▒▓▓▓▓▓▓▓▓▓▓░▒▒▓▒▒▒▒▓▓▓▓▓▓▒█▒░▒▒▒░</pre><pre>&nbsp;░▒▒▒▒▒░▒▒▒▒▒▒▒▒▒▓▒▒▒▓▒▓▓▓▒▓▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▓▒░░▓▒▒▓▒▓▓▒▓▒</pre><pre>░▒▓▒▒▓▓▒&nbsp;▒&nbsp;&nbsp;▓▒▒▒▒▒▒░▒▓▒▓▒▓▓▓▓▓▓▓█▓▓█▓▒▒▓▓▓▓▒▒▒▒▓▓▒▒▓▓▓▒▓▒▒▒▒▒▒░░▒▒</pre><pre>▒▒▓░▒▓&nbsp;&nbsp;░&nbsp;&nbsp;░▒░▒░▒▒░▒▒▒░▒░▓▒▒▓▒▓▓▓▒░▓▒▒▒▒▒░▒▒▒▓▓▒▓▓▓▓▒▒▒▒▓▓▓▒▓▒▒▓▒▒</pre><pre>▒▒▒▒▓▓░░▓░▒▒▓▒▓▓▒▒▒▓░▒▒▒▒▒░░▒▓▒▓░▓▓▒░▒▒▒▒▒▒░░▒▒░▓▓▓▒▒▓▓▓▓▓▓▓▓▒▒▓▓▓</pre><pre>▓▒▓▒░░▒▒▓░░▒▒&nbsp;&nbsp;▓▒▒░▓▒▒▒▒▒▓▓▓▒░▒▓▓▓▒░░▓▒▒▓▒▒▒▒▒▒▒▒▓▓▒▓▓▓▓▓▓▒▓▓▓▒▓▓▒</pre><pre>▓▓▓▒▓█▓█▓▒▒▒▒▓▓▓▒▒▒▓▒▒░▒▓░▓▓▓▓▓▓▓▒░▒▓▒▓▓▒▓▓▒▒▓▒▒▓▓▒&nbsp;▓▓▓▓▓▓▓█▒▓▓▒░▓</pre><pre>▒░▒▓▓▓▒▓▓▓░▒█▓█▒▒██▓▒▒░▒▓▒▒▓▒▓▒▒▓▓▓█▒▒▒▓▒▓▓▒▒▓▓▓▓▓▓▓▒▓█▓█▓▒▓▒▒▓▓▒▒</pre><pre>▓▓▓░▓▒▓▓▒▓▓▓▓▓▓▓▓░░▒▒▒░▒▒▓▒░░▒▒▓▒▒▒▓▒▒▒░▒▒▒▒▒▒▓▓▓▓▓▓█▓▓▓█▓▒▓▒▒▓▓▓▓</pre><pre>▒▓▓▓▓▒▒▓▓▓▒▓▓▓▒▒░░░░▒▓▒▒▒░░▓▒▒▒▒▒▓▓▓░░▒░░░▓▒▓▓▓▓▓▓▒▓▒░░▒▒▓▓▒▓▓▓▓▒▒</pre><pre>▓▓▒▓▓▓▓▓▒▓▓▒▓▓▒▓░░▒▒▓▓░▒▒▒▓▒▒▒▒░▒▒░▒▒▒▒▒░░▒▓▒▒▓▓▓▓▓▓▓▒▓▒▒▒▓▓▒▓▓▓▒▒</pre>					</div>
+					<div class="contenu-slide">
+						<a href="#">
+							</a><div class="nomenclature"><a href="#">
+								</a><p class="type"><a href="#"></a><a href="#">Activité</a></p>
+								<p class="sous-type"><a href="#">Pédagogie</a></p>
+							</div>
+							<h1 data-level-1="baseline">Marchés financiers : que sont les “bonnes” relations sociales d’échange?</h1>
+							<h2 data-level-2="name">How not to be a bad trader.</h2>
+							<p class="description">Le cas de la Rules 10b-5 de la Securities 
+and Exchange Commission : une exploration de l’histoire tumultueuse des 
+interprétations de ce texte de régulation boursière par juristes et 
+économistes, et du débat sur le “bon” comportement sur les marché 
+financiers.</p>					
+							<p class="more"><a href="#">En savoir plus</a></p>
+						
+					</div>
+				</article>
+				<label for="ss1-item-1" class="slideshow--nav slideshow--nav-previous">Go to slide 1</label>
+				<label for="ss1-item-3" class="slideshow--nav slideshow--nav-next">Go to slide 3</label>
+			</div>
+		
+			<input type="radio" name="ss1" id="ss1-item-3" class="slideshow--bullet">
+			<label class="slideshow--bullet-label" for="ss1-item-3">Hyperlink is not dead!</label>
+			<div class="slideshow--item">
+				<article class="transition" data-type="production">
+					<div class="image-pre">
+						<pre>&nbsp;&nbsp;&nbsp;▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;▓▓▓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▓▒▓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;███&nbsp;▓&nbsp;▒▓▓&nbsp;▓▓▓&nbsp;▓&nbsp;</pre><pre>░▓▓▓▓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre><pre>░░░▓▓▓▓▓&nbsp;▓▓▓▓▓▓▓▓&nbsp;▓▓▓▓▓░▓▓▓▓▓▓▓&nbsp;░▓▓▓▓▓▓&nbsp;&nbsp;▓▓▓&nbsp;▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▓░▓▓▓▓▓▒▓▒▒░▓░▒▓▒▓▓░░░</pre><pre>░░░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░▓&nbsp;&nbsp;░▓&nbsp;░&nbsp;&nbsp;▓▓▓▓▓&nbsp;▓&nbsp;&nbsp;▓▓▓▓▓░░░</pre><pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▒▓&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▓&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░░░░░░░░░░░▓░░░░░░░░░░░░░░░░░░░&nbsp;&nbsp;&nbsp;▒░&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░░░░░░░░░▒░░▓▓░░░░░░░░░░░░░░░░░&nbsp;&nbsp;▓░▓▒░&nbsp;&nbsp;&nbsp;░░░▓▒▒░░░▓▓&nbsp;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓&nbsp;▓▓░░░</pre><pre>░░░░░░░▒░░░░░░░░░░░░░░▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓░▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓░░░░░░░░░░░░░░░░░░░░&nbsp;░░░░░░░░░▓▓&nbsp;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓&nbsp;&nbsp;▓░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░&nbsp;&nbsp;&nbsp;▓▒▓&nbsp;&nbsp;▓░▒&nbsp;&nbsp;&nbsp;░▒▒&nbsp;▒▓▓░▓▓░&nbsp;▓&nbsp;▒░░&nbsp;▒&nbsp;░▒&nbsp;▓&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;░░&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;░░▒░░░░░░░&nbsp;&nbsp;▒&nbsp;&nbsp;&nbsp;&nbsp;▒&nbsp;&nbsp;░░▒░░░░░░░&nbsp;░▒&nbsp;&nbsp;&nbsp;░▒&nbsp;&nbsp;░░░░░░░░░&nbsp;&nbsp;░▒&nbsp;&nbsp;&nbsp;▒&nbsp;&nbsp;░░▒░░░░▒░░&nbsp;&nbsp;▒&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;░░▒░░░░▒░░&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;░▒&nbsp;&nbsp;░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;▓▓▓▓▓▓▓&nbsp;&nbsp;▓▓▓▓▓▓▓▓&nbsp;&nbsp;▓▓▓▓▓▓▓▓&nbsp;&nbsp;▓▓▓▓▓▓▓&nbsp;&nbsp;&nbsp;▓▓▓▓▓▓▓&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;▓▓▓▓▓▓▓&nbsp;&nbsp;▒▓▓▓▓▓▓▓&nbsp;&nbsp;▓▓▓▓▓▓▓▓&nbsp;&nbsp;▓▓▓▓▓▓▓&nbsp;&nbsp;&nbsp;▓▓▓▓▓▓▓&nbsp;&nbsp;▓▓▓▓▓▓▓▓░&nbsp;▓&nbsp;░▒&nbsp;▓&nbsp;▒&nbsp;▓▓&nbsp;▒▒░&nbsp;▒&nbsp;&nbsp;&nbsp;░▒&nbsp;▓░░▓&nbsp;░&nbsp;░▒▒░▓&nbsp;▓&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▒&nbsp;&nbsp;░&nbsp;&nbsp;░&nbsp;░&nbsp;░&nbsp;▒▒░▓░▒&nbsp;░░░░&nbsp;▒▒&nbsp;▒&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;▓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;▓▓▓▒▓▓▓&nbsp;&nbsp;▒▓▓▓▓▓▓▓&nbsp;&nbsp;▓▓▓▓▓▓▓▒&nbsp;&nbsp;▓▓▓▓▓▓▓&nbsp;&nbsp;&nbsp;▓▓▓▓▓▓▓&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;▓▓▓▒▓▓▓&nbsp;&nbsp;▒▓▓▓▓▓▓▓&nbsp;&nbsp;▓▓▓▓▓▓▓▓&nbsp;&nbsp;▓▓▓▓▓▓▓&nbsp;&nbsp;&nbsp;▓▓▓▓▓▓▓&nbsp;&nbsp;▓▓▓▓▓▓▓▓░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▒▒▒▒▒▒▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▒▒▒▒▒▒▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;▓&nbsp;&nbsp;░░&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;▒▒▒▒▒&nbsp;▒&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;░░&nbsp;▒░&nbsp;&nbsp;░░░░░░░▒░░░▒▒&nbsp;&nbsp;&nbsp;░&nbsp;░&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▒▒▒▒▒▒▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;▒░&nbsp;░▒▒▒▒&nbsp;░░&nbsp;&nbsp;░&nbsp;░▒&nbsp;▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;░░░░░░░░&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;▓▓░&nbsp;&nbsp;&nbsp;&nbsp;▓▓&nbsp;&nbsp;▒▓&nbsp;░▒▓&nbsp;░▓░▒▒▒▓▒▓▓&nbsp;▓▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;▓▓▓▓▓▓▓&nbsp;&nbsp;▒▓▓▓▓▓▓▓&nbsp;&nbsp;▓▓▓▓▓▓▓▒&nbsp;&nbsp;▓▓▓▓▓▓▓&nbsp;&nbsp;&nbsp;▓▓▓▓▓▓▓&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;▓▓▓▓▓▓▓&nbsp;&nbsp;▒▓▓▓▓▓▓▓&nbsp;&nbsp;▓▓▓▓▓▓▓▓&nbsp;&nbsp;▓▓▓▓▓▓▓&nbsp;&nbsp;&nbsp;▓▓▓▓▓▓▓&nbsp;&nbsp;▓▓▓▓▓▓▓▓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▒&nbsp;&nbsp;&nbsp;▓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░&nbsp;&nbsp;░░░░░░░░&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░&nbsp;&nbsp;▒▒▒▒▒▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▒▒▒▒▒▒░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;▒▒▒▒▒▒▒&nbsp;&nbsp;▒▒▒▒▒▒▒▒&nbsp;&nbsp;▒▒▒▒▒▒▒▒&nbsp;&nbsp;▒▒▒▒▒▒▒&nbsp;&nbsp;&nbsp;▒▒▒▒▒▒▒&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;▒▒▒▒▒▒▒&nbsp;&nbsp;▒▒▒▒▒▒▒▒&nbsp;&nbsp;▒▒▒▒▒▒▒▒&nbsp;&nbsp;▒▒▒▒▒▒▒&nbsp;&nbsp;&nbsp;▒▒▒▒▒▒▒&nbsp;&nbsp;▒▒▒▒▒▒▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;░░░░░░░░&nbsp;&nbsp;░░░░░░░░&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░&nbsp;&nbsp;░░░░░░░░&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░&nbsp;&nbsp;░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░&nbsp;&nbsp;░░░░░░░░▓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre>					</div>
+					<div class="image-pre-phone">
+						<pre>&nbsp;&nbsp;&nbsp;▒░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▓▓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▒█▓&nbsp;&nbsp;</pre><pre>░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░</pre><pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre><pre>░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░</pre><pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░&nbsp;▓▓▓▓▓▓▓▓▓▓▓▓▓&nbsp;▓░</pre><pre>░░░▒░░░░░░░▓░░░░░░░░░░░▒░░░▒░░▒░░░▒░░░░░░░░░░░░▓░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░</pre><pre>░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░</pre><pre>░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░</pre><pre>░&nbsp;▒░░&nbsp;░░░&nbsp;░░░&nbsp;░░░&nbsp;░░░&nbsp;░░░&nbsp;░░░&nbsp;░░░░░░&nbsp;░░░&nbsp;░░░&nbsp;░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░</pre><pre>░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░&nbsp;░░░&nbsp;▒▒▒&nbsp;░░░&nbsp;░░░&nbsp;░░░&nbsp;░░░░░░&nbsp;░░░&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░</pre><pre>░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▓▓▓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;░░&nbsp;&nbsp;░░&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;░&nbsp;▒&nbsp;&nbsp;&nbsp;▒▓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░</pre><pre>░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░</pre><pre>░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░&nbsp;░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░&nbsp;&nbsp;&nbsp;░&nbsp;░░░░&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░</pre><pre>░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░&nbsp;░░░&nbsp;▓▓▓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░&nbsp;░░░&nbsp;░░░░&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░</pre><pre>░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░&nbsp;░░░&nbsp;░░░&nbsp;░░░&nbsp;░░░&nbsp;▒▒░░░░&nbsp;░░░&nbsp;░░░&nbsp;░░░░&nbsp;░&nbsp;&nbsp;░░░▒▒░▒░▒░&nbsp;&nbsp;░</pre><pre>░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░&nbsp;░░░&nbsp;░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░</pre><pre>░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░&nbsp;░░░&nbsp;░░░&nbsp;░░░&nbsp;░░░░&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░</pre><pre>░&nbsp;░░░&nbsp;░░░&nbsp;▒▒▒&nbsp;▒▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░▒▒▒&nbsp;&nbsp;&nbsp;░░&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre>					</div>
+					<div class="contenu-slide">
+						<a href="#">
+							</a><div class="nomenclature"><a href="#">
+								</a><p class="type"><a href="#"></a><a href="#">Production</a></p>
+								<p class="sous-type"><a href="#">Communication</a></p>
+							</div>
+							<h1 data-level-1="title">Hyperlink is not dead!</h1>
+							<h2 data-level-2="author" class="author">
+								<span>Benjamin Ooghe-Tabanou</span>
+								<span>Guillaume Plique</span>
+								<span>Mathieu Jacomy</span>
+								<span>Paul Girard</span>
+							</h2>
+							<p class="description">Le 4 octobre, le premier Digital Tools 
+&amp; Uses Congress s’est tenu à la MSH Paris Nord autour des usages et 
+développements des outils numériques. Invité pour une Keynote intitulée 
+Hyperlink is not dead!, Benjamin Ooghe a présenté le rôle central et 
+structural de l’hyperlien dans l’étude du web en SHS, notamment à 
+travers l’exemple de l’outil Hyphe développé au médialab.</p>					
+							<p class="more"><a href="#">En savoir plus</a></p>
+						
+					</div>
+				</article>
+				<label for="ss1-item-2" class="slideshow--nav slideshow--nav-previous">Go to slide 2</label>
+				<label for="ss1-item-4" class="slideshow--nav slideshow--nav-next">Go to slide 4</label>
+
+				
+			</div>
+
+			<hr>
+
+		</section> <!--end slide show -->
+	<section id="introduction">
+		<h1>Le médialab</h1>
+		<p>
+			Laboratoire de recherche interdisciplinaire, le médialab est un lieu 
+de conception, de développement et d'expérimentation de méthodes 
+numériques hybrides pour nourrir des questions scientifiques ancrées 
+dans le périmètre des Sciences humaines et sociales.
+			<a href="#">En savoir plus</a>
+		</p>
+	</section>
+
+
+	<section id="now">
+			
+	<h1>À la une</h1>
+
+
+	
+	<div class="contenu">
+
+
+		<!-- if type=actualite (bon modèle pour les liens) -->
+		<article data-type="actualite">
+			<div class="nomenclature">
+				<p class="type"><a href="#linkPageActualite">Actualité</a></p>
+				<p class="sous-type"><a href="#linkPageAnnonce">Annonce</a></p>
+			</div>
+			<div class="image-pre">
+				<a href="#linkObjet">
+				<pre>▓▓▓▓▒▓&nbsp;&nbsp;▒▓▓▓▒░░&nbsp;&nbsp;&nbsp;▒▓&nbsp;▒&nbsp;▓&nbsp;░░░&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;▒▒▒▒&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>▓▓▒&nbsp;▓▓▒▒&nbsp;&nbsp;▒▓▒▓&nbsp;▓▒▓▒▓&nbsp;░&nbsp;▓▓▓░░░▒░░░░░░▒▓░▒▒&nbsp;&nbsp;</pre><pre>▒▓██▓▓▓▒▒▒▓&nbsp;▓▓&nbsp;&nbsp;&nbsp;▓&nbsp;&nbsp;&nbsp;▓▒▓▓░░░▒░░░░░░▓▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>▓▒▓▓▓▒▒▒▒▒&nbsp;&nbsp;█&nbsp;▓&nbsp;&nbsp;▓&nbsp;&nbsp;▓▒▓█&nbsp;░░▒▒&nbsp;&nbsp;░██▒▓▓▒░&nbsp;░&nbsp;&nbsp;</pre><pre>▓▒▒▓▓▓▒▓▓▓▓▒▒▓▒▒▓▓▓▓▒▓▓▓░░░▒▒░░░░▓▓▓▓▓▒░&nbsp;▒▒</pre><pre>▓█▓▓▓▓▓▓▒▓▓▓█▓█▓▓▓▓▓▒▒▓▓▒▓▒▒▓▒▓▓▓▒▒▓▓▓▒▒▒▓▓</pre><pre>▓▓▓▓█▒░▒▓▓▓▓▓▓█▓▓▓▓▓██▓▓▓▓▓&nbsp;▓▓▒░&nbsp;&nbsp;▒▒▓▓░&nbsp;░▒▒</pre><pre>░▒▒▒█▓▓░░▓▒▓▓▓▓▒░░░&nbsp;&nbsp;░░▒░▒▓░&nbsp;▒▓&nbsp;&nbsp;▓▓▓&nbsp;░▓▓▒░&nbsp;</pre><pre>▓▓▓▓▓▓▓▓█▒▒░▓▒▒▒▓░░░░░▒▒▒▒▒▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▒▒▒▒░&nbsp;&nbsp;&nbsp;</pre><pre>░&nbsp;░&nbsp;░&nbsp;▒▒▓▒▒▓▒▒▒&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░</pre><pre>░&nbsp;░░░&nbsp;▒▒▒▒▒▒▒▒▒▒▒▓░▓▒░&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░▒▒▒▒</pre><pre>░▒░▒▓░░&nbsp;▒▒▒▒░▒░▒░░░▒&nbsp;▒▒▒▒░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;░&nbsp;░░&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;▒░░▒▒▒░&nbsp;▒░&nbsp;░▓▒▒▒▓▒▒&nbsp;&nbsp;░&nbsp;&nbsp;░&nbsp;&nbsp;░&nbsp;&nbsp;░&nbsp;░░</pre><pre>░▒&nbsp;░▒▒▒▒▒▒▒▒░▒░░▒▒░▓░░░░▒▒▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;░░░░░░&nbsp;</pre>				</a>
+			</div>
+				<hgroup>
+				<a href="#linkObjet">
+					<h1 data-level-1="title">Recrute Professeur – STS et environnement </h1>
+					<h2 data-level-2="label">Nous recrutons quelqu'un pour terminer cette phrase</h2>
+				
+				</a><p class="more"><a href="#linkObjet"></a><a href="#linkObjet">En savoir plus</a></p>
+				
+				</hgroup>
+		</article>
+
+
+		<!-- if type=people -->
+		<article data-type="people">
+			<div class="nomenclature">
+				<p class="type"><a href="#linkPageEquipe">Équipe du médialab</a></p>
+			</div>
+			<div class="image-pre">
+				<a href="#linkObjet">
+				<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>				</a>	
+				
+				<figure>
+					<a href="#linkObjet">
+						<img src="MR1_fichiers/d-cardon-200x200.jpg" alt="Portrait de Dominique Cardon">
+					</a>
+				</figure>
+				
+				
+			</div>
+			
+				<hgroup>
+				<a href="#linkObjet">
+					<h1 data-level-1="name">Dominique Cardon</h1>
+					<h2 data-level-2="role">Directeur du médialab</h2>
+					<!-- <p>associé.e au médialab</p> -->
+				
+				</a><p class="more"><a href="#linkObjet"></a><a href="#linkObjet">En savoir plus</a></p>
+				
+				</hgroup>
+		</article>
+
+
+		<article data-type="actualite">
+			<div class="nomenclature">
+				<p class="type">Actualité</p>
+				<p class="sous-type"><a href="#">Rendez-vous</a></p>
+			</div>
+			<div class="image-pre">
+				<pre>█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░░░░░░██░</pre><pre>▒█████████████████████████████████████████▒</pre><pre>▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒</pre><pre>▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█░░░▒░▒░░░▒</pre><pre>▒░░░░░░░░░░░░░▒▒░░░░░░░░░░░░░░░▒░▓░░░░░░░░▒</pre><pre>▒░░░░░░░░▒▒░░░▒▒░▒▒▒▒░▒▒░░░▒▒░░▒▓▒▒▓▓▒▒▓▒░▒</pre><pre>▒░░░▒▒░░░▒▒░▒░▒▒░▒▒░░░░░░░░░░░░▒░░░░░░░░░░▒</pre><pre>▒█▒░▓███░██░▓░▒▒░▒███░███▒░████▒░░░░░░░░░░▒</pre><pre>▒░░░▒▒▒▒░██▒░▒▒▒▒▒▒▒▒░░░░░░░░░░▒░░░░░░░░░░▒</pre><pre>▒░░░░░░░░▒▒░▒░▒▒░▒▒░░░░░░░░░░░░▒▓░░▒█▒▓▓▓░▒</pre><pre>▒░░░▒▒░░░▒▒░▒░▒▒░▒▒▒▒░░░░░░░░░░▒░░░░░░░░░░▒</pre><pre>▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒</pre>			</div>
+			<hgroup><a href="#">
+				<h1 data-level-1="title">Rencontre avec George Micheal</h1>
+				<!--si rendez-vous--><time class="time">25 décembre / 18h - 20H</time>
+				<h2 data-level-2="label">Dans le cadre du séminaire "Merry Christmas"</h2>
+			</a><p class="more"><a href="#"></a><a href="#">En savoir plus</a></p>
+			</hgroup>
+		</article>
+
+
+		<!-- if type=actualite -->
+		<article data-type="activite">
+			<div class="nomenclature">
+				<p class="type">Activité</p>
+				<p class="sous-type"><a href="#">Pédagogie</a></p>
+			</div>
+			<div class="image-pre">
+				<pre>██▓▒▓█▓▒▒░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>▓█&nbsp;▒&nbsp;█▒▒&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▓▓▒▓▓&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;▓&nbsp;░░▒▒&nbsp;&nbsp;░&nbsp;░░▓▓▓▓▓▓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▓▓▓░▓▒▒▓▒</pre><pre>█▓▒▒▓▓░░▒▒▒▓▓▓▓▒▓███▓▓▓▓▓▓▒&nbsp;&nbsp;▓▓▓▒▓&nbsp;▓▓▓▒▒▓▒▒</pre><pre>▓█▓░▓▒▓▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█▒░▓▓▓▒▓▓▓▓▓▓▓▓░▒</pre><pre>▒█▒▓▓▒▒▓&nbsp;▓░░▓▓▓▓▒▒▒▓▓▓▓▓▓▒▒▒▓▓▓▓▓▓▒▓▓▓▓▓▓▓▒</pre><pre>░▓░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▒▓▓▒▒▒▒▒▒▓▒▓▒▒▒▓▓▓▓▒▓▓▓▓▒▓▓▒▓▓▒</pre><pre>░▓░░░░░░░&nbsp;▒░░▒▒▓▓▒█▓▒▒▒██▓▓▒▓▓▓▓▓▓▓▓▓▒▓▒▓▓▓</pre><pre>░▒▒▒▒▒▒▒▒▒▒▓▒▒▒▓▓▒▓▓▓████▓▓▒▒▒▓▒▒▓▒░▒▒▓▓▓▒▒</pre><pre>▒░░▒░&nbsp;&nbsp;&nbsp;░▓▒▒▒▒▓▓▓▒▓█▓▓▓▓▒▓▓▒▒▓▓▓▒▒▓▒▓▒▒▓░▓▓</pre><pre>▓▓▓▓▒▓▒▒▓▓▒▓▒▒▒▓▒▓░░▒▓▓▓▒▓▓▒░▒██▓▓▓▓▓▓▓▒░▓▒</pre><pre>█▓▒░▒▓▓▒▓▒▓▓█▓▒▒▓▓▓▒▓▓▓▒▒▓▓▓▓▒▒░▒▓▓░▓▓▓▓▓█▓</pre><pre>▓▒▓▓▓▓▓▓██░▓▓▓▒▒▒▓█▒▒▓▓░▓▒▓▓▓▓▓▒▓▓█▓▓█▓▓▒▒▓</pre><pre>▓▓▓▓▓▓▓▓▓▓░░▒▒▒▓▒▒░░▒▓▓▓▒▒▒▓▓▒▓▓▓▓█▓██▒▓▓▒▓</pre><pre>▓▓▓▓▓▒▒▓▓▓▒░▒▓▓▒▒▓▒▒▒▒▓▒▒▒░▒▒▓▓▓▓▓▓▓▒▒░▒▓▓▒</pre>			</div>
+			<hgroup><a href="#">
+				<h1 data-level-1="baseline">Marchés financiers : que sont les “bonnes” relations sociales d’échange?</h1>
+				<h2 data-level-2="name">How not to be a bad trader.</h2>
+			</a><p class="more"><a href="#"></a><a href="#">En savoir plus</a></p>
+			</hgroup>
+		</article>
+
+
+		<article data-type="production">
+			<div class="nomenclature">
+				<p class="type">Production</p>
+				<p class="sous-type"><a href="#">Communication</a></p>
+			</div>
+			<div class="image-pre">
+				<pre>██▓▒▓█▓▒▒░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>▓█&nbsp;▒&nbsp;█▒▒&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▓▓▒▓▓&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;▓&nbsp;░░▒▒&nbsp;&nbsp;░&nbsp;░░▓▓▓▓▓▓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▓▓▓░▓▒▒▓▒</pre><pre>█▓▒▒▓▓░░▒▒▒▓▓▓▓▒▓███▓▓▓▓▓▓▒&nbsp;&nbsp;▓▓▓▒▓&nbsp;▓▓▓▒▒▓▒▒</pre><pre>▓█▓░▓▒▓▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█▒░▓▓▓▒▓▓▓▓▓▓▓▓░▒</pre><pre>▒█▒▓▓▒▒▓&nbsp;▓░░▓▓▓▓▒▒▒▓▓▓▓▓▓▒▒▒▓▓▓▓▓▓▒▓▓▓▓▓▓▓▒</pre><pre>░▓░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▒▓▓▒▒▒▒▒▒▓▒▓▒▒▒▓▓▓▓▒▓▓▓▓▒▓▓▒▓▓▒</pre><pre>░▓░░░░░░░&nbsp;▒░░▒▒▓▓▒█▓▒▒▒██▓▓▒▓▓▓▓▓▓▓▓▓▒▓▒▓▓▓</pre><pre>░▒▒▒▒▒▒▒▒▒▒▓▒▒▒▓▓▒▓▓▓████▓▓▒▒▒▓▒▒▓▒░▒▒▓▓▓▒▒</pre><pre>▒░░▒░&nbsp;&nbsp;&nbsp;░▓▒▒▒▒▓▓▓▒▓█▓▓▓▓▒▓▓▒▒▓▓▓▒▒▓▒▓▒▒▓░▓▓</pre><pre>▓▓▓▓▒▓▒▒▓▓▒▓▒▒▒▓▒▓░░▒▓▓▓▒▓▓▒░▒██▓▓▓▓▓▓▓▒░▓▒</pre><pre>█▓▒░▒▓▓▒▓▒▓▓█▓▒▒▓▓▓▒▓▓▓▒▒▓▓▓▓▒▒░▒▓▓░▓▓▓▓▓█▓</pre><pre>▓▒▓▓▓▓▓▓██░▓▓▓▒▒▒▓█▒▒▓▓░▓▒▓▓▓▓▓▒▓▓█▓▓█▓▓▒▒▓</pre><pre>▓▓▓▓▓▓▓▓▓▓░░▒▒▒▓▒▒░░▒▓▓▓▒▒▒▓▓▒▓▓▓▓█▓██▒▓▓▒▓</pre><pre>▓▓▓▓▓▒▒▓▓▓▒░▒▓▓▒▒▓▒▒▒▒▓▒▒▒░▒▒▓▓▓▓▓▓▓▒▒░▒▓▓▒</pre>			</div>
+			<hgroup><a href="#">
+				<h1 data-level-1="title">Hyperlink is not dead!</h1>
+				<h2 data-level-2="author" class="author">
+					<span>Benjamin Ooghe-Tabanou</span>
+					<span>Guillaume Plique</span>
+					<span>Mathieu Jacomy</span>
+					<span>Paul Girard</span>
+				</h2>
+			</a><p class="more"><a href="#"></a><a href="#">En savoir plus</a></p>
+			</hgroup>
+		</article>
+
+
+		<article data-type="actualite">
+			<div class="nomenclature">
+				<p class="type">Actualité</p>
+				<p class="sous-type"><a href="#">Chronique</a></p>
+			</div>
+			<div class="image-pre">
+				<pre>▓▓▓▓▒▓&nbsp;&nbsp;▒▓▓▓▒░░&nbsp;&nbsp;&nbsp;▒▓&nbsp;▒&nbsp;▓&nbsp;░░░&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;▒▒▒▒&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>▓▓▒&nbsp;▓▓▒▒&nbsp;&nbsp;▒▓▒▓&nbsp;▓▒▓▒▓&nbsp;░&nbsp;▓▓▓░░░▒░░░░░░▒▓░▒▒&nbsp;&nbsp;</pre><pre>▒▓██▓▓▓▒▒▒▓&nbsp;▓▓&nbsp;&nbsp;&nbsp;▓&nbsp;&nbsp;&nbsp;▓▒▓▓░░░▒░░░░░░▓▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>▓▒▓▓▓▒▒▒▒▒&nbsp;&nbsp;█&nbsp;▓&nbsp;&nbsp;▓&nbsp;&nbsp;▓▒▓█&nbsp;░░▒▒&nbsp;&nbsp;░██▒▓▓▒░&nbsp;░&nbsp;&nbsp;</pre><pre>▓▒▒▓▓▓▒▓▓▓▓▒▒▓▒▒▓▓▓▓▒▓▓▓░░░▒▒░░░░▓▓▓▓▓▒░&nbsp;▒▒</pre><pre>▓█▓▓▓▓▓▓▒▓▓▓█▓█▓▓▓▓▓▒▒▓▓▒▓▒▒▓▒▓▓▓▒▒▓▓▓▒▒▒▓▓</pre><pre>▓▓▓▓█▒░▒▓▓▓▓▓▓█▓▓▓▓▓██▓▓▓▓▓&nbsp;▓▓▒░&nbsp;&nbsp;▒▒▓▓░&nbsp;░▒▒</pre><pre>░▒▒▒█▓▓░░▓▒▓▓▓▓▒░░░&nbsp;&nbsp;░░▒░▒▓░&nbsp;▒▓&nbsp;&nbsp;▓▓▓&nbsp;░▓▓▒░&nbsp;</pre><pre>▓▓▓▓▓▓▓▓█▒▒░▓▒▒▒▓░░░░░▒▒▒▒▒▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▒▒▒▒░&nbsp;&nbsp;&nbsp;</pre><pre>░&nbsp;░&nbsp;░&nbsp;▒▒▓▒▒▓▒▒▒&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░</pre><pre>░&nbsp;░░░&nbsp;▒▒▒▒▒▒▒▒▒▒▒▓░▓▒░&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░▒▒▒▒</pre><pre>░▒░▒▓░░&nbsp;▒▒▒▒░▒░▒░░░▒&nbsp;▒▒▒▒░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;░&nbsp;░░&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;▒░░▒▒▒░&nbsp;▒░&nbsp;░▓▒▒▒▓▒▒&nbsp;&nbsp;░&nbsp;&nbsp;░&nbsp;&nbsp;░&nbsp;&nbsp;░&nbsp;░░</pre><pre>░▒&nbsp;░▒▒▒▒▒▒▒▒░▒░░▒▒░▓░░░░▒▒▒▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░&nbsp;&nbsp;░░░░░░&nbsp;</pre>			</div>
+			<hgroup><a href="#">
+				<h1 data-level-2="title">Le systeme de crédit en Chine</h1>
+				<h2 data-level-2="label">Le système de crédit social est un projet politique du gouvernement chinois</h2>
+			</a><p class="more"><a href="#"></a><a href="#">En savoir plus</a></p>
+			</hgroup>
+		</article>
+
+
+		<article data-type="production">
+			<div class="nomenclature">
+				<p class="type">Production</p>
+				<p class="sous-type"><a href="#">Datascape</a></p>
+			</div>
+			<div class="image-pre">
+				<pre>██▓▒▓█▓▒▒░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>▓█&nbsp;▒&nbsp;█▒▒&nbsp;&nbsp;░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▓▓▒▓▓&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;▓&nbsp;░░▒▒&nbsp;&nbsp;░&nbsp;░░▓▓▓▓▓▓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▓▓▓░▓▒▒▓▒</pre><pre>█▓▒▒▓▓░░▒▒▒▓▓▓▓▒▓███▓▓▓▓▓▓▒&nbsp;&nbsp;▓▓▓▒▓&nbsp;▓▓▓▒▒▓▒▒</pre><pre>▓█▓░▓▒▓▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█▒░▓▓▓▒▓▓▓▓▓▓▓▓░▒</pre><pre>▒█▒▓▓▒▒▓&nbsp;▓░░▓▓▓▓▒▒▒▓▓▓▓▓▓▒▒▒▓▓▓▓▓▓▒▓▓▓▓▓▓▓▒</pre><pre>░▓░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▒▓▓▒▒▒▒▒▒▓▒▓▒▒▒▓▓▓▓▒▓▓▓▓▒▓▓▒▓▓▒</pre><pre>░▓░░░░░░░&nbsp;▒░░▒▒▓▓▒█▓▒▒▒██▓▓▒▓▓▓▓▓▓▓▓▓▒▓▒▓▓▓</pre><pre>░▒▒▒▒▒▒▒▒▒▒▓▒▒▒▓▓▒▓▓▓████▓▓▒▒▒▓▒▒▓▒░▒▒▓▓▓▒▒</pre><pre>▒░░▒░&nbsp;&nbsp;&nbsp;░▓▒▒▒▒▓▓▓▒▓█▓▓▓▓▒▓▓▒▒▓▓▓▒▒▓▒▓▒▒▓░▓▓</pre><pre>▓▓▓▓▒▓▒▒▓▓▒▓▒▒▒▓▒▓░░▒▓▓▓▒▓▓▒░▒██▓▓▓▓▓▓▓▒░▓▒</pre><pre>█▓▒░▒▓▓▒▓▒▓▓█▓▒▒▓▓▓▒▓▓▓▒▒▓▓▓▓▒▒░▒▓▓░▓▓▓▓▓█▓</pre><pre>▓▒▓▓▓▓▓▓██░▓▓▓▒▒▒▓█▒▒▓▓░▓▒▓▓▓▓▓▒▓▓█▓▓█▓▓▒▒▓</pre><pre>▓▓▓▓▓▓▓▓▓▓░░▒▒▒▓▒▒░░▒▓▓▓▒▒▒▓▓▒▓▓▓▓█▓██▒▓▓▒▓</pre><pre>▓▓▓▓▓▒▒▓▓▓▒░▒▓▓▒▒▓▒▒▒▒▓▒▒▒░▒▒▓▓▓▓▓▓▓▒▒░▒▓▓▒</pre>			</div>
+			<hgroup><a href="#">
+				<h1 data-level-1="title">The Modes of Existence Website</h1>
+				<h2 data-level-2="author" class="author">
+					<span>Alexis Jacomy</span>
+					<span>Christophe Leclerq</span>
+					<span>Daniel Guido</span>
+					<span>Donato Ricci</span>
+					<span>Guillaume Plique</span>
+					<span>Paul Girard</span>
+					<span>Pierre Julian de la Fuente</span>
+				</h2>
+			</a><p class="more"><a href="#"></a><a href="#">En savoir plus</a></p>
+			</hgroup>
+		</article>
+
+		<article data-type="actualite">
+			<div class="nomenclature">
+				<p class="type">Actualité</p>
+				<p class="sous-type"><a href="#">Rendez-vous</a></p>
+			</div>
+			<div class="image-pre">
+				<pre>█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░░░░░░██░</pre><pre>▒█████████████████████████████████████████▒</pre><pre>▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒</pre><pre>▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒█░░░▒░▒░░░▒</pre><pre>▒░░░░░░░░░░░░░▒▒░░░░░░░░░░░░░░░▒░▓░░░░░░░░▒</pre><pre>▒░░░░░░░░▒▒░░░▒▒░▒▒▒▒░▒▒░░░▒▒░░▒▓▒▒▓▓▒▒▓▒░▒</pre><pre>▒░░░▒▒░░░▒▒░▒░▒▒░▒▒░░░░░░░░░░░░▒░░░░░░░░░░▒</pre><pre>▒█▒░▓███░██░▓░▒▒░▒███░███▒░████▒░░░░░░░░░░▒</pre><pre>▒░░░▒▒▒▒░██▒░▒▒▒▒▒▒▒▒░░░░░░░░░░▒░░░░░░░░░░▒</pre><pre>▒░░░░░░░░▒▒░▒░▒▒░▒▒░░░░░░░░░░░░▒▓░░▒█▒▓▓▓░▒</pre><pre>▒░░░▒▒░░░▒▒░▒░▒▒░▒▒▒▒░░░░░░░░░░▒░░░░░░░░░░▒</pre><pre>▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒</pre>			</div>
+			<hgroup><a href="#">
+				<h1 data-level-1="title">Rencontre avec George Micheal</h1>
+				<!--si rendez-vous--><time class="time">25 décembre / 18h - 20H</time>
+				<h2 data-level-2="label">Dans le cadre du séminaire "Merry Christmas"</h2>
+			</a><p class="more"><a href="#"></a><a href="#">En savoir plus</a></p>
+			</hgroup>
+		</article>
+
+
+
+	</div>
+</section>		<section id="agenda">
+
+		<h1>Les rendez-vous du Labo</h1>
+
+		<div id="agenda-container">
+
+           
+            <input type="radio" name="move-agenda" value="agenda_moving_left" id="input_agenda_moving_left_1" hidden="">
+            <label class="agenda_moving_left" id="agenda_moving_left_1" for="input_agenda_moving_left_1">
+                <span>〉</span>
+            </label>
+
+            <input type="radio" name="move-agenda" value="agenda_moving_left" id="input_agenda_moving_left_2" hidden="">
+            <label class="agenda_moving_left" id="agenda_moving_left_2" for="input_agenda_moving_left_2">
+                <span>〉</span>
+            </label>
+
+            <input type="radio" name="move-agenda" value="agenda_moving_left" id="input_agenda_moving_left_3" hidden="">
+            <label class="agenda_moving_left" id="agenda_moving_left_3" for="input_agenda_moving_left_3">
+                <span>〉</span>
+            </label>
+
+            <input type="radio" name="move-agenda" value="agenda_moving_left" id="input_agenda_moving_left_4" hidden="">
+            <label class="agenda_moving_left" id="agenda_moving_left_4" for="input_agenda_moving_left_4">
+                <span>〉</span>
+            </label>
+
+            <input type="radio" name="move-agenda" value="agenda_moving_left" id="input_agenda_moving_left_5" hidden="">
+            <label class="agenda_moving_left" id="agenda_moving_left_5" for="input_agenda_moving_left_5">
+                <span>〉</span>
+            </label>
+
+            <input type="radio" name="move-agenda" value="agenda_moving_left" id="input_agenda_moving_left_6" hidden="">
+            <label class="agenda_moving_left" id="agenda_moving_left_6" for="input_agenda_moving_left_6">
+                <span>〉</span>
+            </label>
+
+            <div class="agenda_moving_left" id="agenda_moving_left_cache"></div>
+
+            <input type="radio" name="move-agenda" value="agenda_moving_right" id="input_agenda_moving_right" hidden="">
+            <label class="agenda_moving_right" id="agenda_moving_right" for="input_agenda_moving_right">
+                <span>〈〈</span>
+            </label>
+
+            <input type="radio" name="move-agenda" value="agenda_moving_right" id="input_agenda_moving_right_1" hidden="">
+            <label class="agenda_moving_right" id="agenda_moving_right_1" for="input_agenda_moving_right_1">
+                <span>〈</span>
+            </label>
+
+
+
+			<div id="agenda-contenu" data-attribute="agenda">
+
+
+                <article class="past" data-count="2">
+					<p>Voir les rendez-vous déjà passés dans <a href="#linkPageActualites">Actualités</a></p>
+                </article>
+
+                
+
+                <!--
+                    case1 == une seule journée
+                    case2 == plusieurs jours sur le même mois
+                    case 3 == plusieurs jours sur des mois différents (cas rare)
+                -->
+
+                <article>
+                    <p class="year-main">2018 </p>
+
+                    <p class="internal" data-internal="yes"><span>M</span></p>
+
+                    <!-- if case 1 -->
+                    <time class="time time-case1" data-time="2018-01-01">
+                    <a href="#linkObjet">
+                        <span class="week">Mardi</span>
+                        <span class="day">12 </span>
+                        <span class="month">janvier </span>
+                        <span class="year">2018 </span> 
+                    </a>
+                    </time>              
+                    
+                    <h1 data-level-1="title"><a href="#linkObjet">How not to be a bad designer</a></h1>
+                    <h2 data-level-2="label"><a href="#linkObjet">Le séminaire du mardi</a></h2>  
+                    
+                    <!-- if case 1 --><p class="hours">◷  10:00 ⇥ 18:00</p>
+                    <p class="place">✻ 14 rue de l'université, salle 809</p>
+							
+                </article>
+
+
+
+
+                <article>
+                    <p class="year-main">2018 </p>
+
+                    <p class="internal" data-internal="no"></p>
+
+                    <!-- if case 2 -->
+                    <time class="time time-case2" data-time="2018-01-01">
+                    <a href="#linkObjet">
+                        <span class="start">
+                            <span class="day">10 </span>
+                        </span>
+                        <span class="between">⇥ </span>
+                        <span class="end">
+                            <span class="day">12 </span>
+                            <span class="month">janvier</span>
+                        </span>
+                        <span class="year">2018</span>
+                    </a>
+                    </time>                   
+
+                    <h1 data-level-1="title"><a href="#linkObjet">Privacy by design</a></h1>
+                    <h2 data-level-2="label"><a href="#linkObjet">Colloque organisé par le voisin</a></h2>
+
+                    <p class="place">✻ EHESS, Paris</p>
+                   
+                </article>
+
+                <article>
+                    <p class="year-main">2018 </p>
+                    <p class="internal" data-internal="no"></p>
+
+                    <!-- if case 3 -->
+                    <time class="time time-case3" data-time="2018-01-01">
+                    <a href="#linkObjet">
+                        <span class="start">
+                            <span class="day">30 </span>
+                            <span class="month">mars </span>
+                        </span>
+                        <span class="between">⇥ </span>
+                        <span class="end">
+                            <span class="day">2 </span>
+                            <span class="month">avril </span>
+                        </span>
+                        <span class="year">2018 </span>
+                    </a>
+                    </time>
+                    
+                    <h1 data-level-1="title"><a href="#linkObjet">Privacy by design</a></h1>
+                    <h2 data-level-2="label"><a href="#linkObjet">Colloque organisé par le voisin</a></h2>
+
+                    <p class="place">✻ EHESS, Paris</p>
+                   
+                </article>
+
+
+
+
+
+                <article>
+                    <p class="year-main">2018 </p>
+
+                    <p class="internal" data-internal="yes"><span>M</span></p>
+
+                    <!-- if case 1 -->
+                    <time class="time time-case1" data-time="2018-01-01">
+                    <a href="#linkObjet">
+                        <span class="week">Mardi </span>
+                        <span class="day">6 </span>
+                        <span class="month">février </span>
+                        <span class="year">2018 </span>
+                    </a>
+                    </time>
+                    
+                    <h1 data-level-1="title"><a href="#linkObjet">Protocoles et data-carotte</a></h1>
+                    <h2 data-level-2="label"><a href="#linkObjet">Le séminaire du mardi</a></h2>
+                    
+                    <!-- if case 1 --><p class="hours">◷  10:00 ⇥ 18:00</p>
+                    <p class="place">✻ 14 rue de l'université, salle 809</p>			
+					
+                </article>
+
+
+
+                <article>
+                    <p class="year-main">2018 </p>
+
+                    <p class="internal" data-internal="yes"><span>M</span></p>
+
+                    <!-- if case 1 -->
+                    <time class="time time-case1" data-time="2018-01-01">
+                    <a href="#linkObjet">
+                        <span class="week">Mardi </span>
+                        <span class="day">6 </span>
+                        <span class="month">février </span>
+                        <span class="year">2018 </span>
+                    </a>
+                    </time>
+
+                    <h1 data-level-1="title"><a href="#linkObjet">La fabrique de la loi</a></h1>
+                    <h2 data-level-2="label"><a href="#linkObjet">Le séminaire du mardi, un label plus long que les autres</a></h2>
+
+                    <!-- if case 1 --><p class="hours">◷  10:00 ⇥ 18:00</p>
+                    <p class="place">✻ 14 rue de l'université, salle 809</p>
+
+                    
+                </article>
+
+
+
+                
+
+
+                <article>
+                    <p class="year-main">2018 </p>
+
+                    <p class="internal" data-internal="yes"><span>M</span></p>
+
+                    <!-- if case 1 -->
+                    <time class="time time-case1" data-time="2018-01-01">
+                    <a href="#linkObjet">
+                        <span class="week">Mardi</span>
+                        <span class="day">6 </span>
+                        <span class="month">février </span>
+                        <span class="year">2018 </span>
+                    </a>
+                    </time>
+
+                    
+                    <h1 data-level-1="title"><a href="#linkObjet">La fabrique de la loi</a></h1>
+                    <h2 data-level-2="label"><a href="#linkObjet">Le séminaire du mardi, un label plus long que les autres</a></h2>
+
+                    <!-- if case 1 --><p class="hours">◷ 10:00 ⇥ 18:00</p>
+                    <p class="place">✻ 14 rue de l'université, salle 809</p>
+
+
+                    
+                </article>
+
+
+
+                
+
+
+                                                
+
+
+
+			</div>
+		</div>
+
+
+		</section> 	
+
+		<section id="flux">
+			
+			<h1>À chaud</h1>
+			
+
+				<article class="tweet" data-attribute="follow">
+					<p class="emblem">◍</p>
+					<p class="action"><a href="">Medialab</a> suit désormais <a href="">Noortje Marres</a></p>
+					<p class="emblem cible">⬚</p>
+					<div class="nomenclature">
+						<p class="type">Twitter</p>
+						<p class="date">2019-07-08</p>
+					</div>
+				</article>
+
+				<article class="tweet" data-attribute="tweet">
+					<p class="emblem">◍</p>
+					<p class="action">Medialab tweet</p>
+					<p class="tweet_content">Médialab's contributions in Cogito n°5 are available in english ; let's read: - <span class="hashtag">#Digital</span> readings of the Bible, by <a class="tweet_account" href="">@jphcoi</a> - History of #internationaltrade in <span class="hashtag">#data</span> by <a class="tweet_account" href="">@paulanomalie</a></p>
+					<div class="nomenclature">
+						<p class="type">Tweet</p>
+						<p class="date">2019-07-08</p>
+					</div>
+				</article>
+
+				<article class="git" data-attribute="git">
+					<h4 class="nom_repo">Project A</h4>
+					<p class="description">Outils composé de 0 ou de 1, de $ ou de &lt;&gt; </p>
+					<p class="emblem">A</p>
+					<div class="nomenclature">
+						<p class="type">Git</p>
+						<p class="date">2019-07-08</p>
+					</div>
+				</article>
+
+				<article class="tweet" data-attribute="follow">
+					<p class="emblem">◍</p>
+					<p class="action"><a href="">Medialab</a> suit désormais <a href="">Noortje Marres</a></p>
+					<p class="emblem cible">⬚</p>
+					<div class="nomenclature">
+						<p class="type">Twitter</p>
+						<p class="date">2019-07-08</p>
+					</div>
+				</article>
+
+				<article class="tweet" data-attribute="tweet">
+					<p class="emblem">◍</p>
+					<p class="action">Medialab tweet</p>
+					<p class="tweet_content">Médialab's contributions in Cogito n°5 are available in english ; let's read: - <span class="hashtag">#Digital</span> readings of the Bible, by <a class="tweet_account" href="">@jphcoi</a> - History of #internationaltrade in <span class="hashtag">#data</span> by <a class="tweet_account" href="">@paulanomalie</a></p>
+					<div class="nomenclature">
+						<p class="type">Tweet</p>
+						<p class="date">2019-07-08</p>
+					</div>
+				</article>
+
+				<article class="git" data-attribute="git">
+					<h4 class="nom_repo">Project B</h4>
+					<p class="description">Outils composé de 0 ou de 1, de $ ou de &lt;&gt; </p>
+					<p class="emblem">B</p>
+					<div class="nomenclature">
+						<p class="type">Git</p>
+						<p class="date">2019-07-08</p>
+					</div>
+				</article>				
+
+		
+
+
+	</section></main>
+
+
+
+</body></html>

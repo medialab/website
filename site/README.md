@@ -207,3 +207,12 @@ function Layout(props) {
   </div>
 </div>
 ```
+#### composants frères sans div parente
+
+Pour créer un composant qui rends deux blocs qui sont frères sans avoir un conteneur div créé automatiquement pour les nester, il faut utiliser une syntaxe particulière:
+```html
+<>
+  <nav/>
+  <main>content</main>
+</>
+``` 

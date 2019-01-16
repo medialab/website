@@ -129,12 +129,11 @@ ROUTERS.forEach(({model, router}) => {
       else {
         data.forEach(item => {
           const value = get(field, item);
-
           [].concat(value).forEach(v => values.add(v));
         });
       }
 
-      data = Array.from(values);
+      data = Array.from(values).filter(x => x);
     }
 
     return res.json(data);

@@ -2,7 +2,6 @@ import React from 'react';
 import {graphql} from 'gatsby';
 
 import RawHtml from './RawHtml';
-import Nav from './fragments/Nav.js';
 import {templateMembership} from './helpers.js';
 import './scss/page_personne.scss';
 

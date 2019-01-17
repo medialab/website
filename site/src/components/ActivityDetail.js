@@ -2,7 +2,6 @@ import React from 'react';
 import {graphql} from 'gatsby';
 
 import RawHtml from './RawHtml';
-import Nav from './fragments/Nav.js';
 
 import './scss/page_objet.scss';
 

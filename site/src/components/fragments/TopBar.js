@@ -8,14 +8,16 @@ export default function ActivityDetail({lang, data}) {
   console.log(lang, data);
 */
 import Logo from '../assets/svg/logo_medialab.svg';
+import MenuCircle from '../assets/svg/menu-circle.svg';
+import CloseCircle from '../assets/svg/close-circle.svg';
 
 const TopBar = () => {
 	return (
 		  	<header id="topbar">
 			<input type="checkbox" id="toggle-menu" name="toggle-menu" value="visible" hidden/>
-			<label for="toggle-menu">
-				<span class="span-nochecked"><img src={require("./../assets/svg/menu-circle.svg")} alt="" /></span>
-				<span class="span-checked"><img src={require("./../assets/svg/close-circle.svg")} alt="" /></span>
+			<label htmlFor="toggle-menu">
+				<span className="span-nochecked"><MenuCircle /></span>
+				<span className="span-checked"><CloseCircle /></span>
 			</label>
 
 
@@ -51,7 +53,7 @@ const TopBar = () => {
 					</ul>
 				</nav>
 
-				<div id="langue" class="menu langue">
+				<div id="langue" className="menu langue">
 					<p><span>FR</span><span> | </span><span>EN</span></p>
 				</div>
 			</div>

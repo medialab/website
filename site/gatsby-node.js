@@ -61,6 +61,7 @@ const MODEL_READERS = {
         assets: content.assets,
         identifier: activity.id,
         rawPeople: activity.people,
+        rawActivities: activity.activities,
         internal: {
           type: 'ActivitiesJson',
           contentDigest: hash,
@@ -123,6 +124,9 @@ const MODEL_READERS = {
         content: content.html,
         assets: content.assets,
         identifier: production.id,
+        rawActivities: production.activities,
+        rawPeople: production.people,
+        rawProductions: production.productions,
         internal: {
           type: 'ProductionsJson',
           contentDigest: hash,
@@ -154,6 +158,9 @@ const MODEL_READERS = {
         content: content.html,
         assets: content.assets,
         identifier: news.id,
+        rawActivities: news.activities,
+        rawPeople: news.people,
+        rawProductions: news.productions,
         internal: {
           type: 'NewsJson',
           contentDigest: hash,

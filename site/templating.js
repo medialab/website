@@ -1,6 +1,7 @@
 const cheerio = require('cheerio');
 const Entities = require('html-entities').AllHtmlEntities;
 const {union} = require('mnemonist/set');
+const _ = require('lodash');
 
 const entities = new Entities();
 
@@ -24,6 +25,21 @@ function processHtml(html) {
     assets.add($a.attr('href'));
   });
 
+  // Finding highest title
+  let titleOffset = 0;
+
+  if (!$('h1').length)
+    titleOffset = 1;
+
+  if (!$('h2').length)
+    titleOffset = 2;
+
+  const titleMap = {
+    h1: 3 - titleOffset,
+    h2: 4 - titleOffset,
+    h3: 5 - titleOffset
+  };
+
   // Building custom output
   let output = '';
 
@@ -38,10 +54,11 @@ function processHtml(html) {
 
     // Titles
     else if (TITLE.test(tag)) {
-      const level = tag[tag.length - 1];
+      const h = tag.toLowerCase();
 
-      // TODO: .html rather to handle links
-      output += `<h${level}>${$this.text()}</h${level}>`;
+      const level = titleMap[h];
+
+      output += `<h${level}>${$this.html()}</h${level}>`;
     }
 
     // Lists

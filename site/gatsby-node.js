@@ -230,6 +230,21 @@ exports.createPages = function({graphql, actions}) {
     component: path.resolve('./src/templates/activity-list.js')
   });
 
+  createI18nPage(createPage, {
+    path: '/news',
+    component: path.resolve('./src/templates/news-list.js')
+  });
+
+  createI18nPage(createPage, {
+    path: '/productions',
+    component: path.resolve('./src/templates/production-list.js')
+  });
+
+  createI18nPage(createPage, {
+    path: '/people',
+    component: path.resolve('./src/templates/people-list.js')
+  });
+
   // Chaining promises
   const promises = [
 

@@ -222,8 +222,12 @@ exports.createPages = function({graphql, actions}) {
   // Creating basic pages
   createI18nPage(createPage, {
     path: '/',
-    component: path.resolve('./src/templates/index.js'),
-    context: {}
+    component: path.resolve('./src/templates/index.js')
+  });
+
+  createI18nPage(createPage, {
+    path: '/activities',
+    component: path.resolve('./src/templates/activity-list.js')
   });
 
   // Chaining promises

@@ -1,5 +1,5 @@
 import React from 'react';
-/*import {graphql} from 'gatsby';*/
+import {Link} from 'gatsby';
 /*
 import RawHtml from './RawHtml';
 
@@ -37,11 +37,11 @@ const TopBar = () => {
 					</ul>
 					<ul id="nav-objet">
 
-		              	<li data-type="actualite"><a href="page_liste.php?type=actualite">Actualités</a></li>
+		              	<li data-type="actualite"><Link to="/news">Actualités</Link></li>
 
-		              	<li data-type="production"><a href="page_liste.php?type=production">Productions</a></li>
+		              	<li data-type="production"><Link to="/productions">Productions</Link></li>
 
-		              	<li data-type="activite"><a href="page_liste.php?type=activite">Activités</a></li>
+		              	<li data-type="activite"><Link to="/activities">Activités</Link></li>
 
 					</ul>
 					<ul id="nav-institution">

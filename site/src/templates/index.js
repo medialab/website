@@ -57,11 +57,11 @@ export const query = graphql`
   }
 `;
 
-const IndexPage = ({data}) => {
+const IndexPage = ({data, pageContext}) => {
   console.log(data);
 
   return (
-    <Layout>
+    <Layout lang={pageContext}>
       <Home />
     </Layout>
   );

@@ -143,7 +143,7 @@ ROUTERS.forEach(({model, router}) => {
 });
 app.use('/settings', jsonServer.router(path.join(DATA_PATH, 'settings.json')));
 
-// custom routes
+// Upload route
 app.post('/upload', (req, res) => {
   const file = req.files.file;
 
@@ -163,8 +163,29 @@ app.post('/upload', (req, res) => {
   });
 });
 
+// Reboot gatsby route
 app.get('/reboot-gatsby', (req, res) => {
   gatsby.restart(() => res.status(200).send('Ok'));
+});
+
+// Migration routes
+const MIGRATION_SCHEMES = {
+  'fix-dates': require('./migrations/fix-dates.js')
+};
+
+app.get('/migrate/:scheme', (req, res) => {
+  const scheme = req.params.scheme;
+
+  const fn = MIGRATION_SCHEMES[scheme];
+
+  if (typeof fn !== 'function')
+    return res.status(404).send('Bad Scheme!');
+
+  const dbs = {};
+
+  ROUTERS.forEach(({model, router}) => (dbs[model] = router.db));
+
+  return fn(dbs, () => res.send('Success!'));
 });
 
 // Starting gatsby

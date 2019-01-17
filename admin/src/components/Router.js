@@ -6,6 +6,7 @@ import cls from 'classnames';
 import listSpecs from '../../../specs/lists.js';
 
 import Home from './Home';
+import Playground from './Playground';
 import HomeIcon from './icons/HomeIcon';
 import List from './List';
 
@@ -74,6 +75,7 @@ export default function Router() {
         <Route path="/productions/new" render={() => <ProductionForm />} />
         <Route path="/productions/:id" render={({match}) => <ProductionForm id={match.params.id} />} />
         <Route path="/productions" render={() => <List key="productions" model="productions" specs={listSpecs.productions} />} />
+        <Route path="/playground" component={Playground} />
         <Route path="/settings" render={() => <SettingsForm key="settings" />} />
         <Route render={() => (<div>Miss!</div>)} />
       </Switch>

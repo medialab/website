@@ -17,11 +17,13 @@ export const query = graphql`
 export default ({data, pageContext}) => {
   console.log(data, pageContext);
 
-  replaceAssetPaths(data.activitiesJson.assets, data.activitiesJson.content);
+  const activity = data.activitiesJson;
+
+  replaceAssetPaths(activity.assets, activity.content);
 
   return (
     <Layout lang={pageContext.lang}>
-      <ActivityDetail lang={pageContext.lang} activity={data.activitiesJson} />
+      <ActivityDetail lang={pageContext.lang} activity={activity} />
     </Layout>
   );
 };

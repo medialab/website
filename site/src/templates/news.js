@@ -16,11 +16,13 @@ export const query = graphql`
 export default ({data, pageContext}) => {
   console.log(data, pageContext);
 
-  replaceAssetPaths(data.newsJson.assets, data.newsJson.content);
+  const news = data.newsJson;
+
+  replaceAssetPaths(news.assets, news.content);
 
   return (
     <Layout lang={pageContext.lang}>
-      <NewsDetail lang={pageContext.lang} news={data.newsJson} />
+      <NewsDetail lang={pageContext.lang} news={news} />
     </Layout>
   );
 };

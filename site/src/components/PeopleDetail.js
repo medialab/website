@@ -29,22 +29,22 @@ export const queryFragment = graphql`
   }
 `;
 
-export default function PeopleDetail({lang, data}) {
-  console.log(lang, data);
+export default function PeopleDetail({lang, person}) {
+  console.log(lang, person);
 
-  const bio = data.bio;
+  const bio = person.bio;
 
   return (
     <main id="main-personne">
-      <p class="titre-sticky">L'équipe du Medialab<span> / {data.firstName} {data.lastname}</span></p>
+      <p class="titre-sticky">L'équipe du Medialab<span> / {person.firstName} {person.lastname}</span></p>
       <article id="biographie">
         <figure>
         </figure>
         <hgroup>
-          <h1 data-level-1="name" data-type="name">{data.lastName} {data.firstName}</h1>
-          <h2 data-level-2="role" data-type="role">{data.title && data.title.fr}</h2>
+          <h1 data-level-1="name" data-type="name">{person.lastName} {person.firstName}</h1>
+          <h2 data-level-2="role" data-type="role">{person.title && person.title.fr}</h2>
           <p data-type="domaine">Domaine&#8239;: </p>
-          <p data-type="statut">{templateMembership(data)}</p>
+          <p data-type="statut">{templateMembership(person)}</p>
 
           <p data-type="activite">En ce moment, je chef et j'écris des papiers</p>
         </hgroup>

@@ -21,7 +21,7 @@ export default ({data, pageContext}) => {
 
   return (
     <Layout lang={pageContext.lang}>
-      <ActivityDetail lang={pageContext.lang} data={data.activitiesJson} />
+      <ActivityDetail lang={pageContext.lang} activity={data.activitiesJson} />
     </Layout>
   );
 };

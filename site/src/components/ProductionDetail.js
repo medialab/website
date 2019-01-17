@@ -39,31 +39,31 @@ export const queryFragment = graphql`
   }
 `;
 
-export default function ProductionDetail({lang, data}) {
-  console.log(lang, data);
+export default function ProductionDetail({lang, production}) {
+  console.log(lang, production);
 
   return (
     <main id="main-objet">
-      <p class="titre-sticky">{data.name}</p>
+      <p class="titre-sticky">{production.name}</p>
       <article id="article-contenu">
         <hgroup>
-          <h1>{data.name}{data.baseline && data.baseline.fr}</h1>
-          <h2>{data.description && data.description.fr}</h2>
+          <h1>{production.name}{production.baseline && production.baseline.fr}</h1>
+          <h2>{production.description && production.description.fr}</h2>
 
-          <p class="date">{data.endDate}</p>
-          <p class="type-objet">{data.type}</p>
-          
+          <p class="date">{production.endDate}</p>
+          <p class="type-objet">{production.type}</p>
+
         </hgroup>
 
         <div class="article-contenu">
-        {data.content && data.content.fr && <RawHtml html={data.content.fr} />}
+        {production.content && production.content.fr && <RawHtml html={production.content.fr} />}
         </div>
       </article>
 
       <div>
         Related people:
         <ul>
-          {(data.people || []).map(p => <li key={p.id}>{p.firstName} {p.lastName}</li>)}
+          {(production.people || []).map(p => <li key={p.id}>{p.firstName} {p.lastName}</li>)}
         </ul>
       </div>
   </main>

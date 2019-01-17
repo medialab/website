@@ -20,7 +20,7 @@ export default ({data, pageContext}) => {
 
   return (
     <Layout lang={pageContext.lang}>
-      <NewsDetail lang={pageContext.lang} data={data.newsJson} />
+      <NewsDetail lang={pageContext.lang} news={data.newsJson} />
     </Layout>
   );
 };

@@ -41,27 +41,27 @@ export const queryFragment = graphql`
   }
 `;
 
-export default function NewsDetail({lang, data}) {
-  console.log(lang, data);
+export default function NewsDetail({lang, news}) {
+  console.log(lang, news);
 
   return (
     <main id="main-objet">
         <p class="titre-sticky"></p>
         <article id="article-contenu">
           <hgroup>
-            <h1>{data.title.fr || data.title.en}</h1>
-            <h2>{data.description && data.description.fr}</h2>
-            <p class="date">{data.endDate}</p>
-            <p class="type-objet">{data.type}</p>
+            <h1>{news.title.fr || news.title.en}</h1>
+            <h2>{news.description && news.description.fr}</h2>
+            <p class="date">{news.endDate}</p>
+            <p class="type-objet">{news.type}</p>
           </hgroup>
           <div class="article-contenu">
-          {data.content && data.content.fr && <RawHtml html={data.content.fr} />}
+          {news.content && news.content.fr && <RawHtml html={news.content.fr} />}
           </div>
         </article>
         <div>
           Related people:
           <ul>
-            {(data.people || []).map(p => <li key={p.id}>{p.firstName} {p.lastName}</li>)}
+            {(news.people || []).map(p => <li key={p.id}>{p.firstName} {p.lastName}</li>)}
           </ul>
         </div>
     </main>

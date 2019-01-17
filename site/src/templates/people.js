@@ -20,7 +20,7 @@ export default ({data, pageContext}) => {
 
   return (
     <Layout lang={pageContext.lang}>
-      <PeopleDetail lang={pageContext.lang} data={data.peopleJson} />
+      <PeopleDetail lang={pageContext.lang} person={data.peopleJson} />
     </Layout>
   );
 };

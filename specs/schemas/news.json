@@ -129,13 +129,13 @@
     "startDate": {
       "title": "Date de début",
       "type": "string",
-      "formType": "vardate",
+      "formType": "vardatetime",
       "precision": "day"
     },
     "endDate": {
       "title": "Date de fin",
       "type": "string",
-      "formType": "vardate",
+      "formType": "vardatetime",
       "precision": "day"
     },
     "internal": {
@@ -148,7 +148,7 @@
     }
   },
   "required": [
-    "title", 
+    "title",
     "slugs"
   ]
 }

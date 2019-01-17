@@ -16,7 +16,6 @@ const YEAR_OPTIONS = YEARS.map(year => {
   };
 });
 
-
 const MONTH_OPTIONS = [
   {label: 'January', value: '01'},
   {label: 'February', value: '02'},

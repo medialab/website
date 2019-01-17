@@ -20,11 +20,9 @@ export default ({data, pageContext}) => {
   replaceAssetPaths(data.activitiesJson.assets, data.activitiesJson.content);
 
   return (
-    <React.Fragment>
-      <Layout lang={pageContext.lang}>
-        <ActivityDetail lang={pageContext.lang} data={data.activitiesJson} />
-      </Layout>
-    </React.Fragment>
+    <Layout lang={pageContext.lang}>
+      <ActivityDetail lang={pageContext.lang} data={data.activitiesJson} />
+    </Layout>
   );
 };
 

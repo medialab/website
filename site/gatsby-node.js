@@ -60,6 +60,7 @@ const MODEL_READERS = {
         content: content.html,
         assets: content.assets,
         identifier: activity.id,
+        rawPeople: activity.people,
         internal: {
           type: 'ActivitiesJson',
           contentDigest: hash,

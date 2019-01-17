@@ -10,17 +10,29 @@ export const query = graphql`
     peopleJson(identifier: {eq: $identifier}) {
       ...PeopleDetail
     }
+    allActivitiesJson(filter: {rawPeople: {eq: $identifier}}) {
+      edges {
+        node {
+          name
+        }
+      }
+    }
   }
 `;
 
 export default ({data, pageContext}) => {
   console.log(data, pageContext);
 
-  replaceAssetPaths(data.peopleJson.assets, data.peopleJson.bio);
+  const person = data.peopleJson;
+
+  replaceAssetPaths(person.assets, person.bio);
+
+  // Relations
+  person.activities = data.allActivitiesJson.edges.map(e => e.node);
 
   return (
     <Layout lang={pageContext.lang}>
-      <PeopleDetail lang={pageContext.lang} person={data.peopleJson} />
+      <PeopleDetail lang={pageContext.lang} person={person} />
     </Layout>
   );
 };

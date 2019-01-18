@@ -4,6 +4,7 @@ import debounce from 'lodash/debounce';
 import Slider from './misc/Slider';
 
 import {imageFileToBlocks} from '../../../specs/processing';
+import { blockSize } from 'hash.js/lib/hash/sha/1';
 
 const preStyle = {
   background: 'none',
@@ -42,14 +43,13 @@ export default class Playground extends Component {
     this.debouncedUpdateBlocks(files[0]);
   };
 
-
   handleGamma = e => {
-    this.setState({gamma: e.target.value});
+    this.setState({gamma: +e.target.value});
     this.debouncedUpdateBlocks(this.state.file);
   };
 
   handleRows = e => {
-    this.setState({rows: e.target.value});
+    this.setState({rows: +e.target.value});
     this.debouncedUpdateBlocks(this.state.file);
   };
 

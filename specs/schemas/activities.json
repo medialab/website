@@ -100,6 +100,29 @@
       "formType": "ref",
       "model": "activities"
     },
+    "attachments": {
+      "title": "Pièces jointes",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "attachment",
+              "string",
+              "url"
+            ]
+          },
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "important": {
       "title": "Structurant?",
       "type": "boolean"
@@ -126,7 +149,7 @@
     }
   },
   "required": [
-    "name", 
+    "name",
     "slugs"
   ]
 }

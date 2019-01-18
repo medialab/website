@@ -87,6 +87,18 @@ function mapBlocksToCharacterMatrix(blocks, rows) {
   return matrix
 }
 
+// function compressBlocks(blocks) {
+//   const compressed = new Uint8Array(blocks.length / 2);
+
+//   for (let i = 0, j = 0; i < blocks.length; i += 2) {
+//     compressed[j] = (blocks[i] << 3) | blocks[i + 1];
+
+//     j++;
+//   }
+
+//   return compressed;
+// }
+
 function imageFileToBlocks(file, options, callback) {
 
   readImageFileAsDataUrl(file, url => {

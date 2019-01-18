@@ -1,5 +1,7 @@
 const BLOCKS = ['\u00A0', '\u2591', '\u2592', '\u2593', '\u2588'].reverse();
+const LAST_BLOCK = BLOCKS[BLOCKS.length - 1];
 const CARDINALITY = BLOCKS.length;
+const NUM_RATIO = 756 / CARDINALITY;
 const ASCII_WIDTH = 9;
 const ASCII_HEIGHT = 16;
 
@@ -29,6 +31,8 @@ function dataUrlToScaledCanvas(url, rows, callback) {
 
     callback(canvas);
   };
+
+  image.src = url;
 }
 
 function canvasToPixels(canvas) {
@@ -42,91 +46,64 @@ function canvasToPixels(canvas) {
 function canvasToBlocks(canvas, options) {
   const {
     gamma,
-    rows
   } = options;
-
-  const ratio = 765 / CARDINALITY;
 
   const pixels = canvasToPixels(canvas);
 
-  console.log(pixels);
+  const mono = [];
+
+  let px = 0;
+  for (let y = 0; y < canvas.height; y++) {
+    const row = [];
+
+    for (let x = 0; x < canvas.width * 4; x += 4) {
+
+      // If alpha is 0
+      if (pixels[px + 3] === 0) {
+        row.push(LAST_BLOCK);
+      }
+
+      // Else
+      else {
+        let block = Math.floor(
+          (
+            pixels[px] +
+            pixels[px + 1] +
+            pixels[px + 2] -
+            gamma
+          ) / NUM_RATIO
+        ) - 1;
+
+        if (block > CARDINALITY - 1) {
+          block = CARDINALITY - 1;
+        }
+        else if (block < 0) {
+          block = 0;
+        }
+
+        row.push(BLOCKS[block]);
+      }
+
+      px += 4;
+    }
+
+    mono.push(row);
+  }
+
+  return mono;
 };
 
+function imageFileToBlocks(file, options, callback) {
+  readImageFileAsDataUrl(file, url => {
+    dataUrlToScaledCanvas(url, options.rows, canvas => {
+      const blocks = canvasToBlocks(canvas, options);
 
+      return callback(null, blocks);
+    });
+  });
+}
 
-// 	  pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-// 	  mono = [];
-// 	  finalProduct.style.fontSize = factor + "vw";
-// 	  pixelCount = 0;
-// 	  for(var y = 0; y < ascii.height; y++) {
-// 	    mono[y] = [];
-// 	    for(var x = 0; x < ascii.width*4; x += 4) {
-// 	      mono[y].push(convert2Blocks(pixels, pixelCount, gamma));
-// 	      pixelCount += 4;
-// 	    }
-// 	    mono[y] = mono[y].join("");
-// 	    newLine = document.createElement("pre");
-// 	    newLine.innerHTML = mono[y];
-// 	   finalProduct.appendChild(newLine);
-// 	  }
-
-
-// 	function convert2Blocks(pixels, px, gamma, dbmode) {
-// 	  if(pixels[px+3] == 0) {
-// 	    return blocks[blocks.length-1];
-// 	  }
-// 	  block = Math.floor((pixels[px] + pixels[px + 1] + pixels[px + 2] -gamma)/numRatio)-1;
-// 	  if(block > numOBT-1) {block = numOBT-1}
-// 	  if(block < 0) {block = 0}
-// 	  return dbmode ? block : blocks[block];
-// 	}
-// 	function main(source) {
-// 	  factor = document.getElementById("zoom").value;
-// 	  ascii.width = document.getElementById("rows").value;
-// 	  ascii.height = Math.round(ascii.width*ascii.charWidth/ratio/ascii.charHeight);
-
-// 	  canvas.width = ascii.width;
-// 	  canvas.height = ascii.height;
-// 	  ctx.drawImage(source, 0, 0, ascii.width, ascii.height);
-// 	  if(typeof finalProduct == "object") {
-// 	    document.body.removeChild(finalProduct);
-// 	  }
-// 	  finalProduct = document.createElement("div");
-// 	  finalProduct.id = "image";
-// 	  document.body.appendChild(finalProduct);
-// 	  gamma = document.getElementById("gamma").value;
-// 	  pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-// 	  mono = [];
-// 	  finalProduct.style.fontSize = factor + "vw";
-// 	  pixelCount = 0;
-// 	  for(var y = 0; y < ascii.height; y++) {
-// 	    mono[y] = [];
-// 	    for(var x = 0; x < ascii.width*4; x += 4) {
-// 	      mono[y].push(convert2Blocks(pixels, pixelCount, gamma));
-// 	      pixelCount += 4;
-// 	    }
-// 	    mono[y] = mono[y].join("");
-// 	    newLine = document.createElement("pre");
-// 	    newLine.innerHTML = mono[y];
-// 	   finalProduct.appendChild(newLine);
-// 	  }
-
-
-
-
-
-
-// 	numOBT = blocks.length;
-// 	numRatio = 765/numOBT;
-// 	function convert2Blocks(pixels, px, gamma, dbmode) {
-// 	  if(pixels[px+3] == 0) {
-// 	    return blocks[blocks.length-1];
-// 	  }
-// 	  block = Math.floor((pixels[px] + pixels[px + 1] + pixels[px + 2] -gamma)/numRatio)-1;
-// 	  if(block > numOBT-1) {block = numOBT-1}
-// 	  if(block < 0) {block = 0}
-// 	  return dbmode ? block : blocks[block];
-// 	}
+exports.imageFileToBlocks = imageFileToBlocks;
 
 // <!DOCTYPE html>
 // <html xmlns="http://www.w3.org/1999/xhtml" lang="fr">

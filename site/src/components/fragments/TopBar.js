@@ -23,17 +23,16 @@ const TopBar = () => {
 
 			<div id="topbar-content">
 				<div id="logo-medialab">
-					<a href="index.php">
+					<Link to="/">
 						<Logo />
-					</a>
+					</Link>
 				</div>
-
 
 				<nav id="nav-option">
 					<ul id="nav-home">
-						<li><a href="linkHome#now">En ce moment</a></li>
-						<li><a href="linkHome#agenda">Les rendez-vous du labo</a></li>
-						<li><a href="linkHome#flux">Flux</a></li>
+						<li><Link to="#now">En ce moment</Link></li>
+						<li><Link to ="#agenda">Les rendez-vous du labo</Link></li>
+						<li><Link to="#flux">Flux</Link></li>
 					</ul>
 					<ul id="nav-objet">
 
@@ -45,11 +44,12 @@ const TopBar = () => {
 
 					</ul>
 					<ul id="nav-institution">
-						<li><a href="#">Le Médialab</a></li>
+						<li><Link to="/medialab">Le Médialab</Link></li>
 						<li><Link to="/people">L'équipe</Link></li>
 					</ul>
 					<ul id="nav-archive">
-						<li><a href="#">Archives</a></li>
+						<li><Link to="/outils">Outils</Link></li>
+						<li><Link to="/archive">Archives</Link></li>
 					</ul>
 				</nav>
 

@@ -6,10 +6,10 @@
 			<div class="slideshow--item">
 					<article class="transition" data-type="actualite">
 						<div class="image-pre">
-							<?php include('assets/images/sample_txt/shinrai_1.html'); ?>
+							<?php include('assets/images/image_block/shira_150.html'); ?>
 						</div>
 						<div class="image-pre-phone">
-							<?php include('assets/images/sample_txt/shinrai_1_s.html'); ?>
+							<?php include('assets/images/image_block/shira_75.html'); ?>
 						</div>
 						<div class="contenu-slide">
 							<a href="#">
@@ -35,10 +35,10 @@
 			<div class="slideshow--item">
 				<article class="transition" data-type="activite">
 					<div class="image-pre">
-						<?php include('assets/images/sample_txt/naturpradi_m.html'); ?>
+						<?php include('assets/images/image_block/naturpradi_150.html'); ?>
 					</div>
 					<div class="image-pre-phone">
-						<?php include('assets/images/sample_txt/naturpradi_s.html'); ?>
+						<?php include('assets/images/image_block/naturpradi_75.html'); ?>
 					</div>
 					<div class="contenu-slide">
 						<a href="#">
@@ -62,10 +62,10 @@
 			<div class="slideshow--item">
 				<article class="transition" data-type="production">
 					<div class="image-pre">
-						<?php include('assets/images/sample_txt/fabrique_loi_xl.html'); ?>
+						<?php include('assets/images/image_block/ricardo_150.html'); ?>
 					</div>
 					<div class="image-pre-phone">
-						<?php include('assets/images/sample_txt/fabrique_loi_s.html'); ?>
+						<?php include('assets/images/image_block/ricardo_75.html'); ?>
 					</div>
 					<div class="contenu-slide">
 						<a href="#">

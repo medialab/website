@@ -15,7 +15,7 @@
 			</div>
 			<div class="image-pre">
 				<a href="#linkObjet">
-				<?php include('assets/images/sample_txt/shinrai_3_xs.html'); ?>
+				<?php include('assets/images/image_block/shira_50.html'); ?>
 				</a>
 			</div>
 				<hgroup>
@@ -66,7 +66,7 @@
 				<p class="sous-type"><a href="#">Rendez-vous</a></p>
 			</div>
 			<div class="image-pre">
-				<?php include('assets/images/sample_txt/fabrique_loi_xs.html'); ?>
+				<?php include('assets/images/image_block/ricardo_50.html'); ?>
 			</div>
 			<hgroup><a href="#">
 				<h1 data-level-1="title">Rencontre avec George Micheal</h1>
@@ -84,7 +84,7 @@
 				<p class="sous-type"><a href="#">Pédagogie</a></p>
 			</div>
 			<div class="image-pre">
-				<?php include('assets/images/sample_txt/naturpradi_xs.html'); ?>
+				<?php include('assets/images/image_block/naturpradi_50.html'); ?>
 			</div>
 			<hgroup><a href="#">
 				<h1 data-level-1="baseline">Marchés financiers : que sont les “bonnes” relations sociales d’échange?</h1>
@@ -100,7 +100,7 @@
 				<p class="sous-type"><a href="#">Communication</a></p>
 			</div>
 			<div class="image-pre">
-				<?php include('assets/images/sample_txt/naturpradi_xs.html'); ?>
+				<?php include('assets/images/image_block/naturpradi_50.html'); ?>
 			</div>
 			<hgroup><a href="#">
 				<h1 data-level-1="title">Hyperlink is not dead!</h1>
@@ -121,7 +121,7 @@
 				<p class="sous-type"><a href="#">Chronique</a></p>
 			</div>
 			<div class="image-pre">
-				<?php include('assets/images/sample_txt/shinrai_3_xs.html'); ?>
+				<?php include('assets/images/image_block/shira_50.html'); ?>
 			</div>
 			<hgroup><a href="#">
 				<h1 data-level-2="title">Le systeme de crédit en Chine</h1>
@@ -137,7 +137,7 @@
 				<p class="sous-type"><a href="#">Datascape</a></p>
 			</div>
 			<div class="image-pre">
-				<?php include('assets/images/sample_txt/naturpradi_xs.html'); ?>
+				<?php include('assets/images/image_block/naturpradi_50.html'); ?>
 			</div>
 			<hgroup><a href="#">
 				<h1 data-level-1="title">The Modes of Existence Website</h1>
@@ -160,7 +160,7 @@
 				<p class="sous-type"><a href="#">Rendez-vous</a></p>
 			</div>
 			<div class="image-pre">
-				<?php include('assets/images/sample_txt/fabrique_loi_xs.html'); ?>
+				<?php include('assets/images/image_block/ricardo_50.html'); ?>
 			</div>
 			<hgroup><a href="#">
 				<h1 data-level-1="title">Rencontre avec George Micheal</h1>

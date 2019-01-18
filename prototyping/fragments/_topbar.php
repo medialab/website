@@ -34,6 +34,7 @@
 				<li><a href="page_personne.php">L'équipe</a></li>
 			</ul>
 			<ul id="nav-archive">
+				<li><a href="#">Outils</a></li>
 				<li><a href="#">Archives</a></li>
 			</ul>
 		</nav>

@@ -20,6 +20,15 @@ li {
   border: 1px solid black;
 }
 
+.editor {
+  background-color: #ccc;
+  padding: 20px;
+
+  img {
+    border: 1px solid black;
+  }
+}
+
 // Helper classes
 .handle {
   cursor: pointer;

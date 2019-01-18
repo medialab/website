@@ -112,7 +112,11 @@ function ImageBlock(props) {
 
   const url = `${API_URL}/assets/${src}`;
 
-  return <img src={url} />;
+  return (
+    <div className="editor image-container">
+      <img src={url} />
+    </div>
+  );
 }
 
 // Entity

@@ -4,20 +4,25 @@ import debounce from 'lodash/debounce';
 import Slider from './misc/Slider';
 
 import {imageFileToBlocks} from '../../../specs/processing';
-import { blockSize } from 'hash.js/lib/hash/sha/1';
+
+const containerStyle = {
+  lineHeight: 'normal',
+  wordBreak: 'keep-all',
+  whiteSpace: 'nowrap'
+};
 
 const preStyle = {
   background: 'none',
   fontFamily: 'Monospace',
-  fontSize: '8px',
   padding: 0,
   margin: 0,
-  lineHeight: '1'
+  overflowX: 'hidden',
+  fontSize: '1em'
 };
 
-function BlocksPreview({blocks}) {
+function BlocksPreview({blocks, zoom}) {
   return (
-    <div>
+    <div style={{...containerStyle, fontSize: `${zoom}vw`}}>
       {blocks.map((b, i) => {
         return (
           <pre key={i} style={preStyle}>
@@ -34,7 +39,8 @@ export default class Playground extends Component {
     blocks: null,
     file: null,
     gamma: 0,
-    rows: 80
+    rows: 80,
+    zoom: 0.5
   };
 
   handleFile = files => {
@@ -51,6 +57,10 @@ export default class Playground extends Component {
   handleRows = e => {
     this.setState({rows: +e.target.value});
     this.debouncedUpdateBlocks(this.state.file);
+  };
+
+  handleZoom = e => {
+    this.setState({zoom: +e.target.value});
   };
 
   updateBlocks = file => {
@@ -71,31 +81,44 @@ export default class Playground extends Component {
       blocks,
       gamma,
       file,
-      rows
+      rows,
+      zoom
     } = this.state;
 
     return (
       <div>
-        <h1>Playground</h1>
         {!file && <Dropzone onDrop={this.handleFile} />}
         {file && blocks && (
           <>
-            <div>
-              <label className="label">Gamma ({gamma})</label>
-              <Slider
-                value={gamma}
-                onChange={this.handleGamma} />
+            <div className="columns">
+              <div className="column is-2">
+                <label className="label">Gamma ({gamma})</label>
+                <Slider
+                  value={gamma}
+                  onChange={this.handleGamma} />
+              </div>
+              <div className="column is-2">
+                <label className="label">Rows ({rows})</label>
+                <Slider
+                  value={rows}
+                  onChange={this.handleRows}
+                  min={20}
+                  max={320}
+                  step={10} />
+              </div>
+              <div className="column is-2">
+                <label className="label">Zoom ({zoom})</label>
+                <Slider
+                  value={zoom}
+                  onChange={this.handleZoom}
+                  min={0.1}
+                  max={5}
+                  step={0.1} />
+              </div>
             </div>
-            <div>
-              <label className="label">Rows ({rows})</label>
-              <Slider
-                value={rows}
-                onChange={this.handleRows}
-                min={20}
-                max={320}
-                step={10} />
-            </div>
-            <BlocksPreview blocks={blocks} />
+            <BlocksPreview blocks={blocks} zoom={zoom} />
+            <br />
+            <br />
           </>
         )}
       </div>

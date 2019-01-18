@@ -70,10 +70,29 @@
 			<p>If the energy stored over the lifetime of a storage device is compared to the amount of primary energy required to build the device, CAES is vastly superior to electrochemical batteries.
 			</p>
 
-			<figure>
-
-			<img src="assets/images/sample/RICardo_2017_2016_versions_b.png" alt="">
-			<figcaption>Ceci est une légende pour l'image.</figcaption>
+			<figure class="vertical">
+				<img src="assets/images/sample/RICardo_2017_2016_versions_b.png" alt="">
+				<figcaption>Ceci est une légende pour l'image.</figcaption>
+			</figure>
+			<figure class="vertical duo">
+				<img src="assets/images/sample/RICardo_2017_2016_versions_b.png" alt="">
+				<figcaption>Ceci est une légende pour l'image.</figcaption>
+			</figure>
+			<figure class="vertical duo">
+				<img src="assets/images/sample/RICardo_2017_2016_versions_b.png" alt="">
+				<figcaption>Ceci est une légende pour l'image.</figcaption>
+			</figure>
+			<figure class="horizontal" >
+				<img src="assets/images/sample/shira_4.jpg" alt="">
+				<figcaption>Ceci est une légende pour l'image.</figcaption>
+			</figure>
+			<figure class="horizontal duo" >
+				<img src="assets/images/sample/shira_4.jpg" alt="">
+				<figcaption>Ceci est une légende pour l'image.</figcaption>
+			</figure>
+			<figure  class="horizontal duo" >
+				<img src="assets/images/sample/shira_4.jpg" alt="">
+				<figcaption>Ceci est une légende pour l'image.</figcaption>
 			</figure>
 
 			<p>Importantly, CAES is the most sustainable energy storage around. Unlike pumped hydropower energy storage, compressed air energy storage presents no environmental issues caused by the flooding of land and the damming of rivers.

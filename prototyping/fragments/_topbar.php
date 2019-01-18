@@ -35,7 +35,7 @@
 			</ul>
 			<ul id="nav-archive">
 				<li><a href="#">Outils</a></li>
-				<li><a href="#">Archives</a></li>
+				<li><a href="archive.php">Archives</a></li>
 			</ul>
 		</nav>
 

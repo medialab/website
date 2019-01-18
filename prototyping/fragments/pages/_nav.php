@@ -9,7 +9,7 @@
 		<div>
 			<img src="assets/images/sample/RICardo_2017_2016_versions_b.png" alt="">
 			<div class="image-generator">
-				<?php include('assets/images/sample_txt/ricardo_100.html'); ?>
+				<?php include('assets/images/image_block/ricardo_150.html'); ?>
 			</div>
 
 		</div>

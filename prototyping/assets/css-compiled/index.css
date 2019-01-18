@@ -1733,21 +1733,29 @@ changement navigation */
         font-weight: 100;
         color: rgba(68, 68, 68, 0.6);
         margin-bottom: 15px; }
-      #agenda article .internal {
+      #agenda article [data-external="yes"] {
         font-size: 13px;
         line-height: 19.5px;
         font-weight: 100;
         position: absolute;
         top: 0;
-        right: 25px; }
-        #agenda article .internal span {
-          display: block;
-          height: 22.5px;
-          width: 22.5px;
+        right: 25px;
+        height: 17px;
+        width: 17px;
+        color: rgba(68, 68, 68, 0.6);
+        border: 0.5px solid #9e9d9d;
+        text-align: center; }
+        #agenda article [data-external="yes"] span {
+          position: absolute;
           color: rgba(68, 68, 68, 0.6);
-          border: 0.5px solid #9e9d9d;
-          border-radius: 50%;
-          text-align: center; }
+          text-align: center;
+          transform-origin: center;
+          left: 5px;
+          font-size: 23px;
+          transform: translate(0%) rotate(45deg);
+          padding-bottom: 10px;
+          top: -10px;
+          text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white; }
       #agenda article .time {
         font-size: 27px;
         font-weight: 100;

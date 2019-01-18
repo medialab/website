@@ -1,6 +1,6 @@
 	<section id="agenda">
 
-		<h1>Les rendez-vous du Labo</h1>
+		<h1>Les rendez-vous</h1>
 
 		<div id="agenda-container">
 
@@ -67,7 +67,7 @@
                 <article>
                     <p class="year-main">2018 </p>
 
-                    <p class="internal" data-internal="yes"><span>M</span></p>
+                    <p class="external" data-external="yes" title="Cet évenement est externe au medialab"><span>↑</span></p>
 
                     <!-- if case 1 -->
                     <time class="time time-case1" data-time="2018-01-01">
@@ -93,7 +93,7 @@
                 <article>
                     <p class="year-main">2018 </p>
 
-                    <p class="internal" data-internal="no"></p>
+                    <p class="external" data-external="no"></p>
 
                     <!-- if case 2 -->
                     <time class="time time-case2" data-time="2018-01-01">
@@ -119,7 +119,7 @@
 
                 <article>
                     <p class="year-main">2018 </p>
-                    <p class="internal" data-internal="no"></p>
+                    <p class="external" data-external="no"></p>
 
                     <!-- if case 3 -->
                     <time class="time time-case3" data-time="2018-01-01">
@@ -151,7 +151,7 @@
                 <article>
                     <p class="year-main">2018 </p>
 
-                    <p class="internal" data-internal="yes"><span>M</span></p>
+                    <p class="external" data-external="yes" title="Cet évenement est externe au medialab"><span>↑</span></p>
 
                     <!-- if case 1 -->
                     <time class="time time-case1" data-time="2018-01-01">
@@ -176,7 +176,7 @@
                 <article>
                     <p class="year-main">2018 </p>
 
-                    <p class="internal" data-internal="yes"><span>M</span></p>
+                    <p class="external" data-external="yes" title="Cet évenement est externe au medialab"><span>↑</span></p>
 
                     <!-- if case 1 -->
                     <time class="time time-case1" data-time="2018-01-01">
@@ -205,7 +205,7 @@
                 <article>
                     <p class="year-main">2018 </p>
 
-                    <p class="internal" data-internal="yes"><span>M</span></p>
+                    <p class="external" data-external="yes" title="Cet évenement est externe au medialab"><span>↑</span></p>
 
                     <!-- if case 1 -->
                     <time class="time time-case1" data-time="2018-01-01">

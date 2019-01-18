@@ -36,7 +36,6 @@
 
 		#article-contenu{
 
-	
 			.date, .type-objet{
 				display: inline-block;
 				padding-bottom: $baseline*4;
@@ -72,18 +71,49 @@
 				margin-top: $baseline*2;
 				@include article_h3();
 			}
-	
-			figure{
-				margin-top: $baseline*2;
-				margin-bottom: $baseline*2;
-				max-width: 600px;
-				img{
-					width: 100%;
-					box-shadow: 0 0 0 1px #888;
-					margin-left: 2px;
-				}
-				figcaption{
-					margin-top: $baseline*1;
+
+			.article-contenu{
+
+				@include flex();
+				@include flex-wrap(wrap);
+
+				figure{
+					margin-top: $baseline*2;
+					margin-bottom: $baseline*2;
+					max-width: 66%;
+
+					page-break-after: always; /* CSS 2.1 syntax */
+  					break-after: always; /* New syntax */
+
+
+					&.duo{
+						flex: 1;
+						max-width: calc( 33.3333% - #{$unite/2});
+
+						page-break-after: inherit; /* CSS 2.1 syntax */
+	  					break-after: inherit; /* New syntax */
+
+	  					&.duo + .duo {
+							page-break-after: always; /* CSS 2.1 syntax */
+		  					break-after: always; /* New syntax */	  					
+						}
+					}
+
+					&.vertical{
+
+					}
+
+					&.horizontal{
+					}
+
+					img{
+						width: 100%;
+						box-shadow: 0 0 0 1px #888;
+						margin-left: 2px;
+					}
+					figcaption{
+						margin-top: $baseline*1;
+					}
 				}
 			}
 

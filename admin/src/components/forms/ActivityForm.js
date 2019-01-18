@@ -9,6 +9,7 @@ import EnumSelector from '../selectors/EnumSelector';
 import DateSelector from '../selectors/DateSelector';
 import BooleanSelector from '../selectors/BooleanSelector';
 import RelationSelector from '../selectors/RelationSelector';
+import SortableKeyValueList from '../selectors/SortableKeyValueList';
 
 function slugifyActivity(data) {
   return slugify(data.name);
@@ -53,6 +54,10 @@ const HANDLERS = {
     type: 'raw',
     field: ['content', 'en']
   },
+  attachments: {
+    type: 'relation',
+    field: 'attachments'
+  },
   active: {
     type: 'boolean',
     field: ['active']
@@ -60,10 +65,6 @@ const HANDLERS = {
   published: {
     type: 'negative',
     field: ['draft']
-  },
-  important: {
-    type: 'boolean',
-    field: ['important']
   },
   startDate: {
     type: 'raw',
@@ -229,6 +230,25 @@ function renderActivityForm(props) {
 
       <div className="form-group">
         <h4 className="title is-4">
+          Attachments
+        </h4>
+
+        <div className="columns">
+          <div className="column is-8">
+            <SortableKeyValueList
+              items={data.attachments}
+              model="activities"
+              field="attachments.label"
+              onAdd={handlers.attachments.add}
+              onDrop={handlers.attachments.drop}
+              onMove={handlers.attachments.move} />
+          </div>
+        </div>
+
+      </div>
+
+      <div className="form-group">
+        <h4 className="title is-4">
           Activity classification
         </h4>
         <div className="columns">
@@ -251,20 +271,6 @@ function renderActivityForm(props) {
                   value={data.active}
                   labels={['activity is ongoing', 'activity is past/paused']}
                   onChange={handlers.active} />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="columns">
-          <div className="column is-6">
-            <div className="field">
-              <label className="label">Importance</label>
-              <div className="control">
-                <BooleanSelector
-                  value={data.important}
-                  labels={['activity is important', 'activity is secondary']}
-                  onChange={handlers.important} />
               </div>
             </div>
           </div>

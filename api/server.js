@@ -118,12 +118,14 @@ ROUTERS.forEach(({model, router}) => {
       const values = new Set();
 
       // TODO: we can do better...
-      if (field === 'contacts.label') {
+      if (field === 'contacts.label' || field === 'attachments.label') {
+        const target = field.split('.')[0];
+
         data.forEach(item => {
-          if (!item.contacts)
+          if (!item[target])
             return;
 
-          item.contacts.forEach(contact => values.add(contact.label));
+          item[target].forEach(contact => values.add(contact.label));
         });
       }
       else {

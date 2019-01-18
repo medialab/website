@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import Fuse from 'fuse.js';
 import client from '../client';
 
 export default class List extends Component {
@@ -12,8 +11,6 @@ export default class List extends Component {
       filteredData: null,
       query: ''
     };
-
-    this.index = null;
   }
 
   componentDidMount() {
@@ -21,14 +18,6 @@ export default class List extends Component {
 
     // Fetching model list
     client.list({params: {model}}, (err, data) => {
-
-      this.index = new Fuse(data, {
-        shouldSort: false,
-        keys: this.props.specs.search,
-        distance: 5,
-        threshold: 0.2
-      });
-
       this.setState({data, filteredData: data});
     });
   }
@@ -37,7 +26,7 @@ export default class List extends Component {
     if (query.length < 1)
       return this.state.data;
 
-    const filteredData = this.index.search(query);
+    const filteredData = this.props.specs.search(this.state.data, query);
 
     return filteredData;
   };

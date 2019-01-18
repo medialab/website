@@ -189,7 +189,7 @@ export default class SortableKeyValueList extends Component {
             </div>
           </div>
           <div className="column is-5">
-            <label className="label">Value or attachment</label>
+            <label className="label">Value or upload</label>
             <div className="field has-addons">
               <div className="control">
                 <input

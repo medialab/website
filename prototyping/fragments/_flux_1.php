@@ -1,7 +1,7 @@
-<div id="flux_container">
+<section id="flux_container">
 	<button>∞</button>
 	<section id="flux">
-		<h3>Flux</h3>
+		<h1>Flux</h1>
 		<ul id="fil">
 			<li class="item XL">
 				<div class="emblem">

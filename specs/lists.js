@@ -1,3 +1,26 @@
+const get = (field, target) => {
+  const fields = field.split('.');
+
+  for (let i = 0; i < fields.length; i++) {
+    const f = fields[i];
+
+    target = target[f];
+
+    if (typeof target === 'undefined')
+      return;
+  }
+
+  return target;
+};
+
+const createSearch = fields => (data, query) => {
+  const q = query.toLowerCase();
+
+  return data.filter(item => {
+    return fields.some(field => get(field, item).toLowerCase().includes(q));
+  });
+};
+
 module.exports = {
   activities: {
     fields: [
@@ -7,7 +30,7 @@ module.exports = {
         link: true
       }
     ],
-    search: ['name']
+    search: createSearch(['name'])
   },
   news: {
     fields: [
@@ -19,7 +42,7 @@ module.exports = {
         link: true
       }
     ],
-    search: ['title.fr', 'title.en']
+    search: createSearch(['title.fr', 'title.en'])
   },
   people: {
     fields: [
@@ -31,7 +54,15 @@ module.exports = {
         link: true
       }
     ],
-    search: ['firstName', 'lastName']
+    search: (data, query) => {
+      const q = query.toLowerCase();
+
+      return data.filter(p => {
+        const name = `${p.firstName} ${p.lastName}`.toLowerCase();
+
+        return name.includes(q);
+      });
+    }
   },
   productions: {
     fields: [
@@ -43,6 +74,6 @@ module.exports = {
         link: true
       }
     ],
-    search: ['title.fr', 'title.en']
+    search: createSearch(['title.fr', 'title.en'])
   }
 };

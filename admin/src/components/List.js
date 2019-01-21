@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import cls from 'classnames';
 import client from '../client';
 
 export default class List extends Component {
@@ -50,49 +51,45 @@ export default class List extends Component {
         <div className="columns">
           <div className="column is-3">
             <input
-              className="input is-small"
+              className="input"
               type="text"
               value={query}
               onChange={this.handleQuery}
               placeholder="Search..." />
           </div>
+          <div className="column is-3">
+            <Link to={`${model}/new`} className="button">
+              Add
+            </Link>
+          </div>
         </div>
-        <table className="table">
+        <table className="listing table is-bordered is-hoverable">
           <thead>
             <tr>
-              <th>#</th>
               {specs.fields.map(({label}) => <th key={label}>{label}</th>)}
             </tr>
           </thead>
           <tbody>
             {filteredData.map((d, i) => (
-              <tr key={d.id}>
-                <td>{i + 1}.</td>
+              <tr key={d.id} className={cls(d.draft && 'is-draft')}>
                 {specs.fields.map((item, j) => {
                   const value = typeof item.property === 'function' ?
                     item.property(d) :
                     d[item.property];
 
-                  if (item.link) {
-                    return (
-                      <td key={j}>
-                        <Link to={`${model}/${d.id}`}>
-                          {value}
-                        </Link>
-                      </td>
-                    );
-                  }
-                  else {
-                    return <td key={j}>{value}</td>;
-                  }
+                  return (
+                    <td key={j}>
+                      <Link to={`${model}/${d.id}`} style={{display: 'block'}}>
+                        {value}
+                      </Link>
+                    </td>
+                  );
                 })}
               </tr>
             ))}
           </tbody>
         </table>
-        <Link to={`${model}/new`} className="button">
-          Add
-        </Link>
+        <br />
       </div>
     );
   }

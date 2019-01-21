@@ -21,10 +21,6 @@ export const queryFragment = graphql`
       en
       fr
     }
-    assets {
-      base
-      publicURL
-    }
     activities {
       id
       name

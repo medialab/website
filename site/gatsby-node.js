@@ -1,5 +1,5 @@
 /* eslint no-console: 0 */
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const chokidar = require('chokidar');
 
@@ -25,6 +25,9 @@ const QUERIES = require('./queries.js');
 const MODELS = require(path.join(ROOT_PATH, 'specs', 'models.json'));
 const DB_PATH = path.join(ROOT_PATH, 'data');
 const DB_GLOB = path.join(ROOT_PATH, 'data', '*.json');
+const ASSETS_PATH = path.join(ROOT_PATH, 'data', 'assets');
+const ASSETS_GLOB = path.join(ROOT_PATH, 'data', 'assets', '*');
+const PUBLIC_PATH = path.join(process.cwd(), 'public', 'static');
 
 const MODELS_PATHS = {};
 const SCHEMAS = {};
@@ -86,7 +89,7 @@ const DUMMY_HOME_DATA = {
 };
 
 const MODEL_READERS = {
-  activities({actions: {createNode, deleteNode}, getNode}) {
+  activities({actions: {createNode, deleteNode}, getNode, pathPrefix}) {
     const rawData = fs.readFileSync(MODELS_PATHS.activities, 'utf-8');
     const data = JSON.parse(rawData);
 
@@ -99,14 +102,13 @@ const MODEL_READERS = {
         deleteNode({node});
 
       // Processing HTML
-      const content = template(activity.content);
+      const content = template(pathPrefix, activity.content);
 
       const hash = hashNode(activity);
 
       createNode({
         ...activity,
-        content: content.html,
-        assets: content.assets,
+        content,
         identifier: activity.id,
         internal: {
           type: 'ActivitiesJson',
@@ -117,7 +119,7 @@ const MODEL_READERS = {
     });
   },
 
-  people({actions: {createNode, deleteNode}, getNode}) {
+  people({actions: {createNode, deleteNode}, getNode, pathPrefix}) {
     const rawData = fs.readFileSync(MODELS_PATHS.people, 'utf-8');
     const data = JSON.parse(rawData);
 
@@ -130,14 +132,13 @@ const MODEL_READERS = {
         deleteNode({node});
 
       // Processing HTML
-      const content = template(person.bio);
+      const content = template(pathPrefix, person.bio);
 
       const hash = hashNode(person);
 
       createNode({
         ...person,
-        bio: content.html,
-        assets: content.assets,
+        bio: content,
         identifier: person.id,
         internal: {
           type: 'PeopleJson',
@@ -148,7 +149,7 @@ const MODEL_READERS = {
     });
   },
 
-  productions({actions: {createNode, deleteNode}, getNode}) {
+  productions({actions: {createNode, deleteNode}, getNode, pathPrefix}) {
     const rawData = fs.readFileSync(MODELS_PATHS.productions, 'utf-8');
     const data = JSON.parse(rawData);
 
@@ -161,14 +162,13 @@ const MODEL_READERS = {
         deleteNode({node});
 
       // Processing HTML
-      const content = template(production.content);
+      const content = template(pathPrefix, production.content);
 
       const hash = hashNode(production);
 
       createNode({
         ...production,
-        content: content.html,
-        assets: content.assets,
+        content,
         identifier: production.id,
         internal: {
           type: 'ProductionsJson',
@@ -179,7 +179,7 @@ const MODEL_READERS = {
     });
   },
 
-  news({actions: {createNode, deleteNode}, getNode}) {
+  news({actions: {createNode, deleteNode}, getNode, pathPrefix}) {
     const rawData = fs.readFileSync(MODELS_PATHS.news, 'utf-8');
     const data = JSON.parse(rawData);
 
@@ -192,14 +192,13 @@ const MODEL_READERS = {
         deleteNode({node});
 
       // Processing HTML
-      const content = template(news.content);
+      const content = template(pathPrefix, news.content);
 
       const hash = hashNode(news);
 
       createNode({
         ...news,
-        content: content.html,
-        assets: content.assets,
+        content: content,
         identifier: news.id,
         rawActivities: news.activities,
         internal: {
@@ -235,6 +234,26 @@ const MODEL_READERS = {
 };
 
 exports.sourceNodes = function(args) {
+
+  const copyAsset = asset => {
+    fs.copySync(
+      asset,
+      path.join(PUBLIC_PATH, path.basename(asset)),
+      {overwrite: true}
+    );
+  };
+
+  const deleteAsset = asset => {
+    fs.unlinkSync(path.join(PUBLIC_PATH, path.basename(asset)));
+  };
+
+  // Handling assets
+  chokidar
+    .watch(ASSETS_GLOB)
+    .on('add', copyAsset)
+    .on('unlink', deleteAsset);
+
+  // Handling database
   for (const model in MODEL_READERS)
     MODEL_READERS[model](args);
 
@@ -247,13 +266,7 @@ exports.sourceNodes = function(args) {
         return;
 
       console.log(`Updating ${model}.json`);
-      const update = MODEL_READERS[model].bind(null, args);
-
-      update();
-
-      // TODO: fix this hack. something is fishy here...
-      // Basically, if we remove that, assets are not properly loaded
-      setTimeout(update, 100);
+      MODEL_READERS[model](args);
     });
 };
 

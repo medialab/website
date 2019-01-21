@@ -1,6 +1,5 @@
 const cheerio = require('cheerio');
 const Entities = require('html-entities').AllHtmlEntities;
-const {union} = require('mnemonist/set');
 const _ = require('lodash');
 
 const entities = new Entities();
@@ -9,12 +8,12 @@ const TITLE = /^H[123456]$/;
 
 // TODO: iframe allowfullscreen & frameborder
 
-function processHtml(html) {
+function processHtml(pathPrefix, html) {
+  const withPrefix = asset => `${pathPrefix}/static/${asset}`;
+
   const $ = cheerio.load(html, {
     decodeEntities: false
   });
-
-  const assets = new Set();
 
   // Processing internal links
   $('a[data-internal=true]').each(function() {
@@ -22,7 +21,9 @@ function processHtml(html) {
 
     $a.removeAttr('data-internal');
 
-    assets.add($a.attr('href'));
+    const href = $a.attr('href');
+
+    $a.attr('href', withPrefix(href));
   });
 
   // Finding highest title
@@ -89,9 +90,7 @@ function processHtml(html) {
         // TODO: keep with and height to help with browser rendering
         const className = width > height ? 'landscape' : 'portrait';
 
-        assets.add(src);
-
-        output += `<img class="${className}" src="${src}" />`;
+        output += `<img class="${className}" src="${withPrefix(src)}" />`;
       }
 
       // Iframes
@@ -99,33 +98,30 @@ function processHtml(html) {
         const $iframe = $this.find('iframe');
         const internal = !!$iframe.data('internal');
 
-        const src = $iframe.attr('src');
+        let src = $iframe.attr('src');
 
         if (internal)
-          assets.add(src);
+          src = withPrefix(src);
 
         output += `<iframe src="${src}"></iframe>`;
       }
     }
   });
 
-  return {html: output, assets};
+  return output;
 }
 
-exports.template = function template(content) {
+exports.template = function template(pathPrefix, content) {
   let fr, en;
 
   if (content && content.fr)
-    fr = processHtml(content.fr);
+    fr = processHtml(pathPrefix, content.fr);
 
   if (content && content.en)
-    en = processHtml(content.en);
+    en = processHtml(pathPrefix, content.en);
 
   return {
-    html: {
-      fr: fr ? fr.html : '',
-      en: en ? en.html : ''
-    },
-    assets: Array.from(union(fr ? fr.assets : new Set(), en ? en.assets : new Set()))
+    fr: fr ? fr : '',
+    en: en ? en : ''
   };
 };

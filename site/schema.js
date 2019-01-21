@@ -63,27 +63,6 @@ exports.graphQLSchemaAdditionFromJsonSchema = function(model, schema) {
 
 exports.patchGraphQLSchema = function(current, model, type, schema) {
 
-  // Do we need to patch assets?
-  const hasAssets = type.nodes.some(node => {
-    return node.assets && node.assets.length;
-  });
-
-  if (!hasAssets && !('assets' in current[model])) {
-    const AssetType = new GraphQLTypes.GraphQLObjectType({
-      name: model + '__assets',
-      fields: {
-        base: {
-          type: GraphQLTypes.GraphQLString
-        },
-        publicURL: {
-          type: GraphQLTypes.GraphQLString
-        }
-      }
-    });
-
-    current[model].assets = {type: new GraphQLTypes.GraphQLList(AssetType)};
-  }
-
   // Checking empty relations
   for (const k in schema.properties) {
     const spec = schema.properties[k];

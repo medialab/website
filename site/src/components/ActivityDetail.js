@@ -24,10 +24,6 @@ export const queryFragment = graphql`
       en
       fr
     }
-    assets {
-      base
-      publicURL
-    }
     people {
       id
       firstName

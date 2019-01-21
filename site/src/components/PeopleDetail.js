@@ -17,10 +17,6 @@ export const queryFragment = graphql`
       fr
       en
     }
-    assets {
-      base
-      publicURL
-    }
     membership
     active
     draft

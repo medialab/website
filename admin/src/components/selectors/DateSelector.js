@@ -7,7 +7,7 @@ import Button from '../misc/Button';
 
 const TODAY = new Date();
 
-const YEARS = range(2010, TODAY.getFullYear() + 3);
+const YEARS = range(2007, TODAY.getFullYear() + 3);
 
 const YEAR_OPTIONS = YEARS.map(year => {
   return {

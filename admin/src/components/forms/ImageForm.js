@@ -1,3 +1,4 @@
+// TODO: not used, here just as an example of cropper usage
 import React, {Component} from 'react';
 import Dropzone from 'react-dropzone';
 import Cropper from 'react-image-crop';

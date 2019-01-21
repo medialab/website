@@ -170,11 +170,20 @@ class Form extends Component {
     this.handlers = createHandlers(this, props.handlers);
   }
 
+  refreshEditorStates(data) {
+    const contentField = this.props.contentField;
+
+    const englishContent = get([contentField, 'en'], data) || null,
+          frenchContent = get([contentField, 'fr'], data) || null;
+
+    this.englishEditorContent = englishContent;
+    this.frenchEditorContent = frenchContent;
+  }
+
   componentDidMount() {
     const {
       id,
       model,
-      contentField
     } = this.props;
 
     // Window event listeners
@@ -183,11 +192,7 @@ class Form extends Component {
     // Loading necessary data through API
     if (!this.state.isNew)
       client.get({params: {model, id}}, (err, data) => {
-        const englishContent = get([contentField, 'en'], data) || null,
-              frenchContent = get([contentField, 'fr'], data) || null;
-
-        this.englishEditorContent = englishContent;
-        this.frenchEditorContent = frenchContent;
+        this.refreshEditorStates(data);
 
         this.setState({loading: false, data, lastHash: hash(data)});
       });
@@ -208,6 +213,7 @@ class Form extends Component {
     if (this.state.view === 'edit')
       return;
 
+    this.refreshEditorStates(this.state.data);
     this.setState({view: 'edit'});
   };
 

@@ -132,12 +132,20 @@ module.exports = {
         }
       },
       {
-        label: 'Member',
+        label: 'Membership',
         property: function(p) {
-          if (p.membership === 'member')
-            return '✔';
-
-          return '';
+          if (p.membership === 'member') {
+            if (p.active)
+              return 'Membre';
+            else
+              return 'Ancien membre';
+          }
+          else {
+            if (p.active)
+              return 'Membre associé•e';
+            else
+              return 'Ancien membre associé•e';
+          }
         }
       },
       {
@@ -155,6 +163,8 @@ module.exports = {
       });
     },
     defaultOrder: [
+      p => -p.active,
+      p => p.membership !== 'member',
       p => normalize(p.lastName),
       p => normalize(p.firstName)
     ]

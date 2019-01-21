@@ -168,6 +168,31 @@ module.exports = {
         }
       },
       {
+        label: 'Related People',
+        property: function(p, {people}) {
+          if (!p.people)
+            return '';
+
+          const persons = p.people
+            .map(id => people[id])
+            .filter(person => person.membership === 'member')
+            .map(person => person.lastName)
+            .sort((a, b) => {
+              const na = normalize(a),
+                    nb = normalize(b);
+
+              if (na < nb)
+                return - 1;
+              if (na > nb)
+                return 1;
+
+              return 0;
+            });
+
+          return persons.join(', ');
+        }
+      },
+      {
         label: 'Groupe',
         property: function(p) {
           const type = p.type;

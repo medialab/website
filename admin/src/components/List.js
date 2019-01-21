@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import keyBy from 'lodash/keyBy';
 import sortBy from 'lodash/sortBy';
 import cls from 'classnames';
+import parallel from 'async/parallel';
 import client from '../client';
+
+// TODO: debounce search
 
 export default class List extends Component {
   constructor(props, context) {
@@ -10,6 +14,7 @@ export default class List extends Component {
 
     this.state = {
       data: null,
+      relations: null,
       filteredData: null,
       query: ''
     };
@@ -19,12 +24,25 @@ export default class List extends Component {
     const {model, specs} = this.props;
 
     // Fetching model list
-    client.list({params: {model}}, (err, data) => {
+    const tasks = [
+      next => {
+        client.list({params: {model}}, next)
+      }
+    ];
 
+    if (model === 'productions')
+      tasks.push(next => client.list({params: {model: 'people'}}, next));
+
+    parallel(tasks, (err, [data, people]) => {
       if (specs.defaultOrder)
         data = sortBy(data, specs.defaultOrder);
 
-      this.setState({data, filteredData: data});
+      const newState = {data, filteredData: data};
+
+      if (model === 'productions')
+        newState.relations = {people: keyBy(people, 'id')};
+
+      this.setState(newState);
     });
   }
 
@@ -45,7 +63,7 @@ export default class List extends Component {
   };
 
   render() {
-    const {filteredData, query} = this.state;
+    const {filteredData, query, relations} = this.state;
     const {model, specs} = this.props;
 
     if (!filteredData)
@@ -79,7 +97,7 @@ export default class List extends Component {
               <tr key={d.id} className={cls(d.draft && 'is-draft')}>
                 {specs.fields.map((item, j) => {
                   const value = typeof item.property === 'function' ?
-                    item.property(d) :
+                    item.property(d, relations) :
                     d[item.property];
 
                   return (

@@ -4,6 +4,7 @@ const path = require('path');
 const chokidar = require('chokidar');
 
 const {
+  addBacklinkToGraphQLSchema,
   graphQLSchemaAdditionForSettings,
   graphQLSchemaAdditionFromJsonSchema,
   patchGraphQLSchema
@@ -107,8 +108,6 @@ const MODEL_READERS = {
         content: content.html,
         assets: content.assets,
         identifier: activity.id,
-        rawPeople: activity.people,
-        rawActivities: activity.activities,
         internal: {
           type: 'ActivitiesJson',
           contentDigest: hash,
@@ -171,9 +170,6 @@ const MODEL_READERS = {
         content: content.html,
         assets: content.assets,
         identifier: production.id,
-        rawActivities: production.activities,
-        rawPeople: production.people,
-        rawProductions: production.productions,
         internal: {
           type: 'ProductionsJson',
           contentDigest: hash,
@@ -206,8 +202,6 @@ const MODEL_READERS = {
         assets: content.assets,
         identifier: news.id,
         rawActivities: news.activities,
-        rawPeople: news.people,
-        rawProductions: news.productions,
         internal: {
           type: 'NewsJson',
           contentDigest: hash,
@@ -400,7 +394,7 @@ exports.createPages = function({graphql, actions}) {
   return Promise.all(promises);
 };
 
-exports.setFieldsOnGraphQLNodeType = function({type}) {
+exports.setFieldsOnGraphQLNodeType = function({type, getNodesByType}) {
 
   if (type.name === 'SettingsJson') {
     return graphQLSchemaAdditionForSettings();
@@ -413,6 +407,12 @@ exports.setFieldsOnGraphQLNodeType = function({type}) {
 
   else if (type.name === 'PeopleJson') {
     patchGraphQLSchema(GRAPHQL_SCHEMAS, 'people', type, SCHEMAS.people);
+    addBacklinkToGraphQLSchema(
+      getNodesByType.bind(null, 'ActivitiesJson'),
+      GRAPHQL_SCHEMAS,
+      'people',
+      'activities'
+    );
     return GRAPHQL_SCHEMAS.people;
   }
 

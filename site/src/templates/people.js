@@ -10,13 +10,6 @@ export const query = graphql`
     peopleJson(identifier: {eq: $identifier}) {
       ...PeopleDetail
     }
-    allActivitiesJson(filter: {rawPeople: {eq: $identifier}}) {
-      edges {
-        node {
-          name
-        }
-      }
-    }
   }
 `;
 
@@ -26,9 +19,6 @@ export default ({data, pageContext}) => {
   const person = data.peopleJson;
 
   replaceAssetPaths(person.assets, person.bio);
-
-  // Relations
-  person.activities = data.allActivitiesJson.edges.map(e => e.node);
 
   return (
     <Layout lang={pageContext.lang}>

@@ -112,3 +112,29 @@ exports.patchGraphQLSchema = function(current, model, type, schema) {
     }
   }
 };
+
+exports.addBacklinkToGraphQLSchema = function(getNodes, schemas, source, target) {
+
+  const BacklinkType = new GraphQLTypes.GraphQLObjectType({
+    name: target + '__backlink',
+    fields: {
+      ...schemas[target],
+      id: {
+        type: GraphQLTypes.GraphQLString
+      }
+    }
+  });
+
+  schemas[source][target] = {
+    type: new GraphQLTypes.GraphQLList(BacklinkType),
+    resolve: function(item) {
+      return getNodes().filter(node => {
+
+        if (!node[source])
+          return;
+
+        return node[source].some(id => id === item.id)
+      });
+    }
+  };
+};

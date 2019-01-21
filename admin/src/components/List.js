@@ -101,8 +101,8 @@ export default class List extends Component {
                     d[item.property];
 
                   return (
-                    <td key={j}>
-                      <Link to={`${model}/${d.id}`} style={{display: 'block'}}>
+                    <td key={j} style={{padding: '0'}}>
+                      <Link to={`${model}/${d.id}`} style={{display: 'block', padding: '0.5em 0.75em'}}>
                         {value}
                       </Link>
                     </td>

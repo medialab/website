@@ -78,7 +78,7 @@ export default class List extends Component {
               type="text"
               value={query}
               onChange={this.handleQuery}
-              placeholder="Search..." />
+              placeholder="Filter..." />
           </div>
           <div className="column is-3">
             <Link to={`${model}/new`} className="button">

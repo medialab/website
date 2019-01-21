@@ -1,5 +1,11 @@
 const enums = require('./enums.json');
 
+const deburr = string => {
+  return string.replace(/[Éé]/g, 'e');
+};
+
+const normalize = string => deburr(string.toLowerCase());
+
 const get = (field, target) => {
   const fields = field.split('.');
 
@@ -57,7 +63,8 @@ module.exports = {
         property: lastUpdatedProperty
       }
     ],
-    search: createSearch(['name'])
+    search: createSearch(['name']),
+    defaultOrder: a => normalize(a.name)
   },
   news: {
     fields: [
@@ -102,7 +109,10 @@ module.exports = {
         property: lastUpdatedProperty
       }
     ],
-    search: createSearch(['title.fr', 'title.en'])
+    search: createSearch(['title.fr', 'title.en']),
+    defaultOrder: [
+      n => -(new Date(n.startDate))
+    ]
   },
   people: {
     fields: [
@@ -143,7 +153,11 @@ module.exports = {
 
         return name.includes(q);
       });
-    }
+    },
+    defaultOrder: [
+      p => normalize(p.lastName),
+      p => normalize(p.firstName)
+    ]
   },
   productions: {
     fields: [
@@ -185,6 +199,10 @@ module.exports = {
         }
       }
     ],
-    search: createSearch(['title.fr', 'title.en'])
+    search: createSearch(['title.fr', 'title.en']),
+    defaultOrder: [
+      p => !p.date ? Infinity : -(new Date(p.date)),
+      p => p.title.fr || p.title.en
+    ]
   }
 };

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import sortBy from 'lodash/sortBy';
 import cls from 'classnames';
 import client from '../client';
 
@@ -15,10 +16,14 @@ export default class List extends Component {
   }
 
   componentDidMount() {
-    const model = this.props.model;
+    const {model, specs} = this.props;
 
     // Fetching model list
     client.list({params: {model}}, (err, data) => {
+
+      if (specs.defaultOrder)
+        data = sortBy(data, specs.defaultOrder);
+
       this.setState({data, filteredData: data});
     });
   }

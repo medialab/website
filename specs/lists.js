@@ -45,7 +45,8 @@ module.exports = {
     fields: [
       {
         label: 'Name',
-        property: 'name'
+        property: 'name',
+        important: true
       },
       {
         label: 'Type',
@@ -79,7 +80,8 @@ module.exports = {
         label: 'Title',
         property: function(n) {
           return n.title.fr || n.title.en || '';
-        }
+        },
+        important: true
       },
       {
         label: 'Label',
@@ -127,7 +129,8 @@ module.exports = {
         label: 'Name',
         property: function(p) {
           return p.firstName + ' ' + p.lastName;
-        }
+        },
+        important: true
       },
       {
         label: 'Role',
@@ -178,7 +181,8 @@ module.exports = {
         label: 'Title',
         property: function(p) {
           return p.title.fr || p.title.en;
-        }
+        },
+        important: true
       },
       {
         label: 'Related People',

@@ -100,11 +100,15 @@ export default class List extends Component {
                     item.property(d, relations) :
                     d[item.property];
 
+                  const link = (
+                    <Link to={`${model}/${d.id}`} style={{display: 'block', padding: '0.5em 0.75em'}}>
+                      {value}
+                    </Link>
+                  );
+
                   return (
                     <td key={j} style={{padding: '0'}}>
-                      <Link to={`${model}/${d.id}`} style={{display: 'block', padding: '0.5em 0.75em'}}>
-                        {value}
-                      </Link>
+                      {item.important ? (<strong>{link}</strong>) : link}
                     </td>
                   );
                 })}

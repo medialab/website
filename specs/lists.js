@@ -78,7 +78,8 @@ module.exports = {
         type: 'boolean'
       },
       draft: {
-        type: 'boolean'
+        type: 'boolean',
+        negate: true
       },
       type: {
         type: 'enum',

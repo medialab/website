@@ -2,10 +2,39 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import debounce from 'lodash/debounce';
 import keyBy from 'lodash/keyBy';
+import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
 import cls from 'classnames';
 import parallel from 'async/parallel';
 import client from '../client';
+
+import ListFilterSelector from './selectors/ListFilterSelector';
+
+function ListFilterBar({filters, onChange, specs}) {
+
+  return (
+    <div className="columns">
+      <div className="column is-12">
+        <div className="level">
+          <div className="level-left">
+          {map(specs.filters, (selector, name) => {
+            return (
+              <div key={name} className="level-item">
+                <ListFilterSelector
+                  name={name}
+                  negate={selector.negate || false}
+                  onChange={value => onChange(name, value)}
+                  type={selector.type}
+                  value={filters[name]} />
+              </div>
+            );
+          })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default class List extends Component {
   constructor(props, context) {
@@ -14,6 +43,7 @@ export default class List extends Component {
     this.state = {
       data: null,
       relations: null,
+      filters: props.specs.defaultFilters || {},
       filteredData: null,
       query: ''
     };
@@ -36,7 +66,7 @@ export default class List extends Component {
       if (specs.defaultOrder)
         data = sortBy(data, specs.defaultOrder);
 
-      const newState = {data, filteredData: data};
+      const newState = {data, filteredData: this.filter(data)};
 
       if (model === 'productions')
         newState.relations = {people: keyBy(people, 'id')};
@@ -45,29 +75,71 @@ export default class List extends Component {
     });
   }
 
-  filter = () => {
-    const query = this.state.query;
+  filter = data => {
+    const {
+      query,
+      filters
+    } = this.state;
 
-    if (query.length < 1)
-      return this.setState({filteredData: this.state.data});
+    const specs = this.props.specs;
 
-    const filteredData = this.props.specs.search(this.state.data, query);
+    let filteredData;
+
+    // Applying query
+    if (query.length < 1) {
+      filteredData = data;
+    }
+    else {
+      filteredData = this.props.specs.search(data, query);
+    }
+
+    // Applying filters
+    const filter = item => {
+      for (const name in filters) {
+        if (filters[name] === null)
+          continue;
+
+        const type = specs.filters[name].type;
+
+        if (type === 'boolean')
+          return item[name] === filters[name];
+      }
+
+      return true;
+    };
+
+    filteredData = filteredData.filter(filter);
+
+    return filteredData;
+  };
+
+  doFilter = () => {
+    const filteredData = this.filter(this.state.data);
 
     this.setState({filteredData});
   };
 
-  filter = debounce(this.filter, 100);
+  doFilter = debounce(this.doFilter, 100);
 
   handleQuery = e => {
     const query = e.target.value;
 
     this.setState({query});
-    this.filter();
+    this.doFilter();
+  };
+
+  handleFilter = (name, value) => {
+    const filters = {...this.state.filters};
+
+    filters[name] = value;
+
+    this.setState({filters});
+    this.doFilter();
   };
 
   render() {
-    const {filteredData, query, relations} = this.state;
-    const {model, specs} = this.props;
+    const {filters, filteredData, query, relations} = this.state;
+    const {label, model, specs} = this.props;
 
     if (!filteredData)
       return <div>Loading...</div>;
@@ -84,11 +156,15 @@ export default class List extends Component {
               placeholder="Filter..." />
           </div>
           <div className="column is-3">
-            <Link to={`${model}/new`} className="button">
-              Add
+            <Link to={`${model}/new`} className="button is-primary">
+              Add new {label}
             </Link>
           </div>
         </div>
+        <ListFilterBar
+          filters={filters}
+          onChange={this.handleFilter}
+          specs={specs} />
         <table className="listing table is-bordered is-hoverable">
           <thead>
             <tr style={{backgroundColor: 'hsl(0, 0%, 96%)'}}>

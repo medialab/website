@@ -1,7 +1,8 @@
 import React from 'react';
 import cls from 'classnames';
+import map from 'lodash/map';
 
-// import enums from '../../../../specs/enums.json';
+import enums from '../../../../specs/enums.json';
 
 const BOOLEAN_LABELS = {
   active: ['Active', 'Inactive'],
@@ -13,7 +14,7 @@ export default function ListFilterSelector(props) {
     name,
     negate = false,
     onChange,
-    type,
+    specs
   } = props;
 
   let value = props.value;
@@ -21,7 +22,7 @@ export default function ListFilterSelector(props) {
   if (negate && value !== null)
     value = !value;
 
-  if (type === 'boolean') {
+  if (specs.type === 'boolean') {
     const labels = BOOLEAN_LABELS[name];
 
     return (
@@ -35,6 +36,24 @@ export default function ListFilterSelector(props) {
         <span
           className={cls('button', 'is-small', value === false && ['is-selected', 'is-warning'])}
           onClick={() => onChange(negate ? true : false)}>{labels[1]}</span>
+      </div>
+    );
+  }
+
+  if (specs.type === 'enum') {
+    return (
+      <div className="buttons has-addons">
+        <span
+          className={cls('button', 'is-small', value === null && ['is-selected', 'is-info'])}
+          onClick={() => onChange(null)}>All</span>
+        {map(enums[specs.enum].fr, (label, key) => {
+          return (
+            <span
+              key={key}
+              className={cls('button', 'is-small', value === key && ['is-selected', 'is-info'])}
+              onClick={() => onChange(key)}>{label}</span>
+          );
+        })}
       </div>
     );
   }

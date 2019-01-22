@@ -24,7 +24,7 @@ function ListFilterBar({filters, onChange, specs}) {
                   name={name}
                   negate={selector.negate || false}
                   onChange={value => onChange(name, value)}
-                  type={selector.type}
+                  specs={selector}
                   value={filters[name]} />
               </div>
             );
@@ -81,8 +81,6 @@ export default class List extends Component {
       filters
     } = this.state;
 
-    const specs = this.props.specs;
-
     let filteredData;
 
     // Applying query
@@ -99,10 +97,8 @@ export default class List extends Component {
         if (filters[name] === null)
           continue;
 
-        const type = specs.filters[name].type;
-
-        if (type === 'boolean')
-          return item[name] === filters[name];
+        if (item[name] !== filters[name])
+          return false;
       }
 
       return true;

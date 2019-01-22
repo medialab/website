@@ -7,6 +7,10 @@ const deburr = string => {
 const normalize = string => deburr(string.toLowerCase());
 
 const get = (field, target) => {
+
+  if (typeof field === 'function')
+    return field(target);
+
   const fields = field.split('.');
 
   for (let i = 0; i < fields.length; i++) {
@@ -25,7 +29,7 @@ const createSearch = fields => (data, query) => {
   const q = query.toLowerCase();
 
   return data.filter(item => {
-    return fields.some(field => get(field, item).toLowerCase().includes(q));
+    return fields.some(field => normalize(get(field, item) || '').includes(normalize(q)));
   });
 };
 
@@ -63,7 +67,10 @@ module.exports = {
         property: lastUpdatedProperty
       }
     ],
-    search: createSearch(['name']),
+    search: createSearch([
+      'name',
+      a => enums.activityTypes.fr[a.type]
+    ]),
     defaultOrder: a => normalize(a.name)
   },
   news: {
@@ -153,15 +160,11 @@ module.exports = {
         property: lastUpdatedProperty
       }
     ],
-    search: (data, query) => {
-      const q = query.toLowerCase();
-
-      return data.filter(p => {
-        const name = `${p.firstName} ${p.lastName}`.toLowerCase();
-
-        return name.includes(q);
-      });
-    },
+    search: createSearch([
+      p => `${p.firstName} ${p.lastName}`,
+      'role.fr',
+      'role.en'
+    ]),
     defaultOrder: [
       p => -p.active,
       p => p.membership !== 'member',
@@ -199,23 +202,26 @@ module.exports = {
               return 0;
             });
 
+          // NOTE: this is bad but it gets shit done
+          p.relations = persons.join(',');
+
           return persons.join(', ');
         }
       },
-      {
-        label: 'Groupe',
-        property: function(p) {
-          const type = p.type;
+      // {
+      //   label: 'Groupe',
+      //   property: function(p) {
+      //     const type = p.type;
 
-          const groups = enums.productionTypes.groups;
+      //     const groups = enums.productionTypes.groups;
 
-          const group = Object.keys(groups).find(k => {
-            return groups[k].values.includes(type);
-          });
+      //     const group = Object.keys(groups).find(k => {
+      //       return groups[k].values.includes(type);
+      //     });
 
-          return groups[group].fr;
-        }
-      },
+      //     return groups[group].fr;
+      //   }
+      // },
       {
         label: 'Type',
         property: function(p) {
@@ -234,7 +240,7 @@ module.exports = {
         }
       }
     ],
-    search: createSearch(['title.fr', 'title.en']),
+    search: createSearch(['title.fr', 'title.en', 'relations']),
     defaultOrder: [
       p => !p.date ? Infinity : -(new Date(p.date)),
       p => p.title.fr || p.title.en

@@ -352,7 +352,7 @@ class Form extends Component {
     }
 
     if (dirty && !validationError) {
-      buttonKind = 'raw';
+      buttonKind = 'info';
     }
 
     let body = null;

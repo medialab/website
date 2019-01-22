@@ -139,7 +139,21 @@ module.exports = {
     search: createSearch(['title.fr', 'title.en']),
     defaultOrder: [
       n => -(new Date(n.startDate))
-    ]
+    ],
+    filters: {
+      draft: {
+        type: 'boolean',
+        negate: true
+      },
+      type: {
+        type: 'enum',
+        enum: 'newsTypes'
+      }
+    },
+    defaultFilters: {
+      draft: null,
+      type: null
+    }
   },
   people: {
     fields: [
@@ -191,7 +205,20 @@ module.exports = {
       p => p.membership !== 'member',
       p => normalize(p.lastName),
       p => normalize(p.firstName)
-    ]
+    ],
+    filters: {
+      active: {
+        type: 'boolean'
+      },
+      draft: {
+        type: 'boolean',
+        negate: true
+      }
+    },
+    defaultFilters: {
+      active: true,
+      draft: null
+    }
   },
   productions: {
     fields: [
@@ -266,6 +293,21 @@ module.exports = {
     defaultOrder: [
       p => !p.date ? Infinity : -(new Date(p.date)),
       p => p.title.fr || p.title.en
-    ]
+    ],
+    filters: {
+      draft: {
+        type: 'boolean',
+        negate: true
+      },
+      type: {
+        type: 'enum',
+        enum: 'productionTypes',
+        grouped: true
+      }
+    },
+    defaultFilters: {
+      draft: null,
+      type: null
+    }
   }
 };

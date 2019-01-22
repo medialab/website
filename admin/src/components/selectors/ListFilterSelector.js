@@ -41,19 +41,36 @@ export default function ListFilterSelector(props) {
   }
 
   if (specs.type === 'enum') {
+
+    let options;
+
+    if (specs.grouped) {
+      options = map(enums[specs.enum].groups, (group, key) => {
+        return (
+          <span
+            key={key}
+            className={cls('button', 'is-small', value && value.group === key && ['is-selected', 'is-info'])}
+            onClick={() => onChange({group: key, values: new Set(group.values)})}>{group.fr}</span>
+        );
+      });
+    }
+    else {
+      options = map(enums[specs.enum].fr, (label, key) => {
+        return (
+          <span
+            key={key}
+            className={cls('button', 'is-small', value === key && ['is-selected', 'is-info'])}
+            onClick={() => onChange(key)}>{label}</span>
+        );
+      });
+    }
+
     return (
       <div className="buttons has-addons">
         <span
           className={cls('button', 'is-small', value === null && ['is-selected', 'is-info'])}
           onClick={() => onChange(null)}>All</span>
-        {map(enums[specs.enum].fr, (label, key) => {
-          return (
-            <span
-              key={key}
-              className={cls('button', 'is-small', value === key && ['is-selected', 'is-info'])}
-              onClick={() => onChange(key)}>{label}</span>
-          );
-        })}
+        {options}
       </div>
     );
   }

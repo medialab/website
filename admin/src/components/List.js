@@ -97,8 +97,14 @@ export default class List extends Component {
         if (filters[name] === null)
           continue;
 
-        if (item[name] !== filters[name])
+        if (typeof filters[name] === 'object') {
+          if (!filters[name].values.has(item[name]))
+            return false;
+        }
+
+        else if (item[name] !== filters[name]) {
           return false;
+        }
       }
 
       return true;

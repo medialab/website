@@ -72,7 +72,24 @@ module.exports = {
       'name',
       a => enums.activityTypes.fr[a.type]
     ]),
-    defaultOrder: a => normalize(a.name)
+    defaultOrder: a => normalize(a.name),
+    filters: {
+      active: {
+        type: 'boolean'
+      },
+      draft: {
+        type: 'boolean'
+      },
+      type: {
+        type: 'enum',
+        enum: 'activityTypes'
+      }
+    },
+    defaultFilters: {
+      active: true,
+      draft: null,
+      type: null
+    }
   },
   news: {
     fields: [

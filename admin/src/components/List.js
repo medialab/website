@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import debounce from 'lodash/debounce';
 import keyBy from 'lodash/keyBy';
 import sortBy from 'lodash/sortBy';
 import cls from 'classnames';
 import parallel from 'async/parallel';
 import client from '../client';
-
-// TODO: debounce search
 
 export default class List extends Component {
   constructor(props, context) {
@@ -46,20 +45,24 @@ export default class List extends Component {
     });
   }
 
-  filter = query => {
+  filter = () => {
+    const query = this.state.query;
+
     if (query.length < 1)
-      return this.state.data;
+      return this.setState({filteredData: this.state.data});
 
     const filteredData = this.props.specs.search(this.state.data, query);
 
-    return filteredData;
+    this.setState({filteredData});
   };
 
-  handleQuery = e => {
-    const query = e.target.value,
-          filteredData = this.filter(query);
+  filter = debounce(this.filter, 100);
 
-    this.setState({query, filteredData});
+  handleQuery = e => {
+    const query = e.target.value;
+
+    this.setState({query});
+    this.filter();
   };
 
   render() {
@@ -88,7 +91,7 @@ export default class List extends Component {
         </div>
         <table className="listing table is-bordered is-hoverable">
           <thead>
-            <tr>
+            <tr style={{backgroundColor: 'hsl(0, 0%, 96%)'}}>
               {specs.fields.map(({label}) => <th key={label}>{label}</th>)}
             </tr>
           </thead>

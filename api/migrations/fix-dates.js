@@ -25,5 +25,5 @@ module.exports = function(dbs, next) {
 
   dbs.news.setState(state);
 
-  dbs.news.write().then(next);
+  dbs.news.write().then(() => next());
 };

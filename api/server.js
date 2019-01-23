@@ -172,6 +172,7 @@ app.get('/reboot-gatsby', (req, res) => {
 
 // Migration routes
 const MIGRATION_SCHEMES = {
+  'drop-important': require('./migrations/drop-important.js'),
   'fix-dates': require('./migrations/fix-dates.js')
 };
 
@@ -187,7 +188,15 @@ app.get('/migrate/:scheme', (req, res) => {
 
   ROUTERS.forEach(({model, router}) => (dbs[model] = router.db));
 
-  return fn(dbs, () => res.send('Success!'));
+  return fn(dbs, (err, result) => {
+    if (err)
+      return res.status(500).send('' + err);
+
+    if (!result)
+      return res.send('Success!');
+
+    return res.json(result);
+  });
 });
 
 // Starting gatsby

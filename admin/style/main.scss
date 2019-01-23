@@ -39,9 +39,7 @@ li {
   }
 
   &.link {
-    text-decoration: underline !important;
-    text-decoration-style: dotted !important;
-    text-decoration-color: $link !important;
+    border-bottom: 1px dotted $link;
     color: $black !important;
     background-color: lighten($link, 40%);
   }

@@ -25,6 +25,13 @@ const get = (field, target) => {
   return target;
 };
 
+const datetime = string => {
+  if (string.includes('T') && !string.includes(':'))
+    return new Date(string + ':00');
+
+  return new Date(string);
+};
+
 const createSearch = fields => (data, query) => {
   const q = query.toLowerCase();
 
@@ -140,12 +147,23 @@ module.exports = {
           if (!n.startDate)
             return '';
 
-          const [y, m, d] = n.startDate.split('-');
+          const [date, time] = n.startDate.split('T');
+
+          const [y, m, d] = date.split('-');
+
+          if (time) {
+            const [h, n] = time.split(':');
+
+            if (!n)
+              return `${d}/${m}/${y}, ${h}h`;
+
+              return `${d}/${m}/${y}, ${h}h${n}`;
+          }
 
           return `${d}/${m}/${y}`;
         },
         order: [
-          n => n.startDate && +(new Date(n.startDate))
+          n => n.startDate && +datetime(n.startDate)
         ]
       },
       {

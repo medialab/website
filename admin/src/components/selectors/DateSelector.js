@@ -36,6 +36,24 @@ const DAY_OPTIONS = range(1, 31 + 1).map(day => ({
   value: day < 10 ? ('0' + day) : ('' + day)
 }));
 
+const HOUR_OPTIONS = range(0, 24 + 1).map(hour => {
+  const value = hour < 10 ? ('0' + hour) : ('' + hour);
+
+  return {
+    label: value,
+    value
+  };
+});
+
+const MINUTE_OPTIONS = range(0, 60 + 1).map(min => {
+  const value = min < 10 ? ('0' + min) : ('' + min);
+
+  return {
+    label: value,
+    value
+  };
+});
+
 const customStyles = {
   year: {
     control(provided) {
@@ -58,6 +76,22 @@ const customStyles = {
       return {
         ...provided,
         width: '120px'
+      };
+    }
+  },
+  hour: {
+    control(provided) {
+      return {
+        ...provided,
+        width: '130px'
+      };
+    }
+  },
+  minutes: {
+    control(provided) {
+      return {
+        ...provided,
+        width: '130px'
       };
     }
   }
@@ -84,8 +118,18 @@ function format(year, month, day) {
   return [year, month, day].filter(x => x).join('-');
 }
 
-function parse(date) {
-  const split = (date || '').split('-');
+function formatTime(hour, minute) {
+  if (!hour)
+    return '';
+
+  if (!minute)
+    return hour;
+
+  return hour + ':' + minute;
+}
+
+function parseDate(string) {
+  const split = (string || '').split('T')[0].split('-');
 
   return {
     year: split[0] || null,
@@ -94,11 +138,26 @@ function parse(date) {
   };
 }
 
+function parseTime(string) {
+  if (!string || !string.includes('T'))
+    return {
+      hour: null,
+      minutes: null
+    };
+
+  const split = string.split('T')[1].split(':');
+
+  return {
+    hour: split[0] || null,
+    minute: split[1] || null
+  };
+}
+
 export default class DateSelector extends Component {
   constructor(props) {
     super(props);
 
-    const {year, month, day} = parse(props.value);
+    const {year, month, day} = parseDate(props.value);
 
     this.state = {
       year: YEAR_OPTIONS.find(o => o.value === year) || null,
@@ -106,8 +165,17 @@ export default class DateSelector extends Component {
       day: DAY_OPTIONS.find(o => o.value === day) || null
     };
 
+    if (props.datetime) {
+      const {hour, minute} = parseTime(props.value);
+
+      this.state.hour = HOUR_OPTIONS.find(o => o.value === hour) || null;
+      this.state.minute = MINUTE_OPTIONS.find(o => o.value === minute) || null;
+    }
+
     this.monthRef = React.createRef();
     this.dayRef = React.createRef();
+    this.hourRef = React.createRef();
+    this.minuteRef = React.createRef();
   }
 
   handleYear = o => {
@@ -130,88 +198,149 @@ export default class DateSelector extends Component {
 
   handleDay = o => {
     this.setState({day: o}, this.handleChange);
+
+    if (this.props.datetime && !this.state.hour)
+      setTimeout(() => this.hourRef.current.focus(), 200);
+  };
+
+  handleHour = o => {
+    this.setState({hour: o}, this.handleChange);
+
+    if (this.props.datetime && !this.state.minute)
+      setTimeout(() => this.minuteRef.current.focus(), 200);
+  };
+
+  handleMinute = o => {
+    this.setState({minute: o}, this.handleChange);
   };
 
   handleChange = () => {
     const {
       year,
       month,
-      day
+      day,
+      hour,
+      minute
     } = this.state;
 
     const validationError = validate(this.props.precision, year, month, day);
 
     if (!validationError) {
-      if (year)
-        this.props.onChange(format(year.value, month && month.value, day && day.value));
-      else
+      if (year) {
+
+        let formatted = format(year.value, month && month.value, day && day.value);
+
+        if (this.props.datetime && hour)
+          formatted += 'T' + formatTime(hour.value, minute && minute.value);
+
+        this.props.onChange(formatted);
+      }
+      else {
         this.props.onChange();
+      }
     }
   };
 
   handleErase = () => {
-    this.setState({year: null, month: null, day: null}, this.handleChange);
+    this.setState({year: null, month: null, day: null, hour: null, minute: null}, this.handleChange);
   };
 
   render() {
     const {
-      precision = 'year'
+      precision = 'year',
+      datetime = false
     } = this.props;
 
     const {
       year,
       month,
-      day
+      day,
+      hour,
+      minute
     } = this.state;
 
     const validationError = validate(precision, year, month, day);
 
     return (
-      <div className="field">
-        <div className="level">
-          <div className="level-left">
-            <div className="level-item">
-              <CreatableSelect
-                isClearable={!month}
-                placeholder="Year"
-                menuPlacement="top"
-                isValidNewOption={isYear}
-                value={year}
-                onChange={this.handleYear}
-                styles={customStyles.year}
-                options={YEAR_OPTIONS} />
-            </div>
-            <div className="level-item">
-              <Select
-                isClearable={!day}
-                isDisabled={!year}
-                placeholder="Month"
-                menuPlacement="top"
-                value={month}
-                onChange={this.handleMonth}
-                styles={customStyles.month}
-                options={MONTH_OPTIONS}
-                ref={this.monthRef} />
-            </div>
-            <div className="level-item">
-              <Select
-                isClearable
-                isDisabled={!month}
-                placeholder="Day"
-                menuPlacement="top"
-                value={day}
-                onChange={this.handleDay}
-                styles={customStyles.day}
-                options={DAY_OPTIONS}
-                ref={this.dayRef} />
-            </div>
-            <div className="level-item">
-              {year && <Button kind="text" onClick={this.handleErase}>Erase</Button>}
+      <>
+        <div className="field">
+          <div className="level">
+            <div className="level-left">
+              <div className="level-item">
+                <CreatableSelect
+                  isClearable={!month}
+                  placeholder="Year"
+                  menuPlacement="top"
+                  isValidNewOption={isYear}
+                  value={year}
+                  onChange={this.handleYear}
+                  styles={customStyles.year}
+                  options={YEAR_OPTIONS} />
+              </div>
+              <div className="level-item">
+                <Select
+                  isClearable={!day}
+                  isDisabled={!year}
+                  placeholder="Month"
+                  menuPlacement="top"
+                  value={month}
+                  onChange={this.handleMonth}
+                  styles={customStyles.month}
+                  options={MONTH_OPTIONS}
+                  ref={this.monthRef} />
+              </div>
+              <div className="level-item">
+                <Select
+                  isClearable={!hour}
+                  isDisabled={!month}
+                  placeholder="Day"
+                  menuPlacement="top"
+                  value={day}
+                  onChange={this.handleDay}
+                  styles={customStyles.day}
+                  options={DAY_OPTIONS}
+                  ref={this.dayRef} />
+              </div>
+              <div className="level-item">
+                {year && <Button kind="text" onClick={this.handleErase}>Erase</Button>}
+              </div>
             </div>
           </div>
+          {validationError && <p className="help is-info">{validationError}</p>}
         </div>
-        {validationError && <p className="help is-info">{validationError}</p>}
-      </div>
+        {datetime && day && (
+          <div className="field">
+            <div className="level">
+              <div className="level-left">
+                <div className="level-item">
+                  <Select
+                      isClearable={!minute}
+                      isDisabled={!day}
+                      placeholder="Hour"
+                      menuPlacement="top"
+                      value={hour}
+                      onChange={this.handleHour}
+                      styles={customStyles.hour}
+                      options={HOUR_OPTIONS}
+                      ref={this.hourRef} />
+                </div>
+                <div className="level-item">
+                  <Select
+                      isClearable
+                      isDisabled={!hour}
+                      placeholder="Min"
+                      menuPlacement="top"
+                      value={minute}
+                      onChange={this.handleMinute}
+                      styles={customStyles.minutes}
+                      options={MINUTE_OPTIONS}
+                      ref={this.minuteRef} />
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </>
     );
   }
 }

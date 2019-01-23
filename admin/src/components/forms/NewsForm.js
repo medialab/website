@@ -148,6 +148,7 @@ function renderNewsForm(props) {
             <label className="label">Start Date</label>
             <div className="control">
               <DateSelector
+                datetime
                 precision="day"
                 value={data.startDate}
                 onChange={handlers.startDate} />
@@ -158,6 +159,7 @@ function renderNewsForm(props) {
             <label className="label">End Date</label>
             <div className="control">
               <DateSelector
+                datetime
                 precision="day"
                 value={data.endDate}
                 onChange={handlers.endDate} />

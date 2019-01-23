@@ -1,4 +1,4 @@
-module.exports = function(dbs, next) {
+module.exports = function(req, dbs, next) {
   dbs.activities.read();
 
   const state = dbs.activities.getState();

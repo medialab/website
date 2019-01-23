@@ -34,7 +34,7 @@ export default function ListFilterSelector(props) {
           className={cls('button', 'is-small', value === true && ['is-selected', 'is-success'])}
           onClick={() => onChange(negate ? false : true)}>{labels[0]}</span>
         <span
-          className={cls('button', 'is-small', value === false && ['is-selected', 'is-warning'])}
+          className={cls('button', 'is-small', value === false && ['is-selected', 'is-success'])}
           onClick={() => onChange(negate ? true : false)}>{labels[1]}</span>
       </div>
     );

@@ -143,14 +143,10 @@ function LinkDecorator(props) {
   const data = contentState.getEntity(entityKey).getData();
 
   return (
-    <a
-      title={data.href}
-      className="editor link"
-      href={data.href}
-      target="_blank"
-      rel="noopener noreferrer">
-      {children}
-    </a>
+    <span
+      title={data.href}>
+      <span className="editor link">{children}</span>
+    </span>
   );
 }
 

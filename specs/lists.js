@@ -46,7 +46,8 @@ module.exports = {
       {
         label: 'Name',
         property: 'name',
-        important: true
+        important: true,
+        order: ['name']
       },
       {
         label: 'Type',
@@ -61,11 +62,18 @@ module.exports = {
             return 0;
 
           return a.people.length;
-        }
+        },
+        order: [
+          a => (a.people || []).length,
+          'name'
+        ]
       },
       {
         label: 'Updated',
-        property: lastUpdatedProperty
+        property: lastUpdatedProperty,
+        order: [
+          a => a.lastUpdated ? +(new Date(a.lastUpdated)) : Infinity
+        ]
       }
     ],
     search: createSearch([
@@ -99,7 +107,10 @@ module.exports = {
         property: function(n) {
           return n.title.fr || n.title.en || '';
         },
-        important: true
+        important: true,
+        order: [
+          n => n.title && normalize(n.title.fr || n.title.en)
+        ]
       },
       {
         label: 'Label',
@@ -108,7 +119,10 @@ module.exports = {
             return '';
 
           return n.label.fr || n.label.en || '';
-        }
+        },
+        order: [
+          n => n.label && normalize(n.label.fr || n.label.en)
+        ]
       },
       {
         label: 'Links',
@@ -129,11 +143,17 @@ module.exports = {
           const [y, m, d] = n.startDate.split('-');
 
           return `${d}/${m}/${y}`;
-        }
+        },
+        order: [
+          n => n.startDate && +(new Date(n.startDate))
+        ]
       },
       {
         label: 'Updated',
-        property: lastUpdatedProperty
+        property: lastUpdatedProperty,
+        order: [
+          a => a.lastUpdated ? +(new Date(a.lastUpdated)) : Infinity
+        ]
       }
     ],
     search: createSearch(['title.fr', 'title.en']),
@@ -162,7 +182,11 @@ module.exports = {
         property: function(p) {
           return p.firstName + ' ' + p.lastName;
         },
-        important: true
+        important: true,
+        order: [
+          p => normalize(p.lastName),
+          p => normalize(p.firstName)
+        ]
       },
       {
         label: 'Role',
@@ -171,7 +195,10 @@ module.exports = {
             return '';
 
           return p.role.fr || p.role.en || '';
-        }
+        },
+        order: [
+          p => p.role && normalize(p.role.fr || p.role.en)
+        ]
       },
       {
         label: 'Membership',
@@ -192,7 +219,10 @@ module.exports = {
       },
       {
         label: 'Updated',
-        property: lastUpdatedProperty
+        property: lastUpdatedProperty,
+        order: [
+          a => a.lastUpdated ? +(new Date(a.lastUpdated)) : Infinity
+        ]
       }
     ],
     search: createSearch([
@@ -257,20 +287,6 @@ module.exports = {
           return persons.join(', ');
         }
       },
-      // {
-      //   label: 'Groupe',
-      //   property: function(p) {
-      //     const type = p.type;
-
-      //     const groups = enums.productionTypes.groups;
-
-      //     const group = Object.keys(groups).find(k => {
-      //       return groups[k].values.includes(type);
-      //     });
-
-      //     return groups[group].fr;
-      //   }
-      // },
       {
         label: 'Type',
         property: function(p) {
@@ -287,6 +303,13 @@ module.exports = {
 
           return p.date.split('-')[0];
         }
+      },
+      {
+        label: 'Updated',
+        property: lastUpdatedProperty,
+        order: [
+          a => a.lastUpdated ? +(new Date(a.lastUpdated)) : Infinity
+        ]
       }
     ],
     search: createSearch(['title.fr', 'title.en', 'relations']),

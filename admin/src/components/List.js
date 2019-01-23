@@ -10,6 +10,9 @@ import client from '../client';
 
 import ListFilterSelector from './selectors/ListFilterSelector';
 
+const DOWN_ARROW = '▼',
+      UP_ARROW = '▲';
+
 function ListFilterBar({filters, onChange, specs}) {
 
   return (
@@ -41,16 +44,21 @@ export default class List extends Component {
     super(props, context);
 
     this.state = {
+
+      // Fetched data
       data: null,
       relations: null,
+
+      // List state
       filters: props.specs.defaultFilters || {},
       filteredData: null,
+      ordering: null,
       query: ''
     };
   }
 
   componentDidMount() {
-    const {model, specs} = this.props;
+    const {model} = this.props;
 
     // Fetching model list
     const tasks = [
@@ -63,9 +71,6 @@ export default class List extends Component {
       tasks.push(next => client.list({params: {model: 'people'}}, next));
 
     parallel(tasks, (err, [data, people]) => {
-      if (specs.defaultOrder)
-        data = sortBy(data, specs.defaultOrder);
-
       const newState = {data, filteredData: this.filter(data)};
 
       if (model === 'productions')
@@ -74,6 +79,21 @@ export default class List extends Component {
       this.setState(newState);
     });
   }
+
+  sort = (ordering, data) => {
+
+    // Sorting
+    const specs = this.props.specs;
+
+    let keys = ordering ? ordering.keys : specs.defaultOrder;
+
+    data = sortBy(data, keys);
+
+    if (ordering && ordering.reverse)
+      data.reverse();
+
+    return data;
+  };
 
   filter = data => {
     const {
@@ -111,6 +131,7 @@ export default class List extends Component {
     };
 
     filteredData = filteredData.filter(filter);
+    filteredData = this.sort(this.state.ordering, filteredData);
 
     return filteredData;
   };
@@ -139,8 +160,21 @@ export default class List extends Component {
     this.doFilter();
   };
 
+  handleOrdering = ordering => {
+    const sortedData = this.sort(ordering, this.state.filteredData);
+
+    this.setState({ordering, filteredData: sortedData});
+  };
+
   render() {
-    const {filters, filteredData, query, relations} = this.state;
+    const {
+      filters,
+      filteredData,
+      query,
+      ordering,
+      relations
+    } = this.state;
+
     const {label, model, specs} = this.props;
 
     if (!filteredData)
@@ -170,7 +204,45 @@ export default class List extends Component {
         <table className="listing table is-bordered is-hoverable">
           <thead>
             <tr style={{backgroundColor: 'hsl(0, 0%, 96%)'}}>
-              {specs.fields.map(({label}) => <th key={label}>{label}</th>)}
+              {specs.fields.map(({label, order}) => {
+
+                let onClick;
+
+                if (order) {
+                  onClick = () => {
+                    if (ordering && ordering.keys !== order)
+                      return this.handleOrdering({keys: order, reverse: false});
+
+                    if (ordering && ordering.reverse)
+                      return this.handleOrdering(null);
+
+                    this.handleOrdering({keys: order, reverse: !!ordering});
+                  };
+                }
+
+                let glyph = '';
+
+                if (order) {
+                  if (ordering === null || ordering.keys !== order)
+                    glyph = <span>&nbsp;</span>;
+                  else if (ordering.reverse)
+                    glyph = UP_ARROW;
+                  else
+                    glyph = DOWN_ARROW;
+                }
+
+                return (
+                  <th
+                    key={label}
+                    onClick={onClick}
+                    style={{
+                      cursor: order ? 'pointer' : 'default',
+                      userSelect: 'none'
+                    }}>
+                    <span style={{textDecoration: order ? 'underline' : 'none'}}>{label}</span> {glyph}
+                  </th>
+                );
+              })}
             </tr>
           </thead>
           <tbody>

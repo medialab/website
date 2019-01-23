@@ -14,6 +14,9 @@ import SuggestionSelector from '../selectors/SuggestionSelector';
 function validate(data) {
   if (!data.title || !data.title.fr)
     return 'Need at least a French title';
+
+  if (!data.startDate)
+    return 'Need a start date';
 }
 
 const HANDLERS = {

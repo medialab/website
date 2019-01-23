@@ -125,3 +125,15 @@ exports.template = function template(pathPrefix, content) {
     en: en ? en : ''
   };
 };
+
+exports.resolveAttachments = function resolveAttachments(pathPrefix, attachments) {
+  return attachments.map(a => {
+    if (a.type === 'attachment')
+      return {
+        ...a,
+        url: `${pathPrefix}/static/${a.value}`
+      };
+
+    return a;
+  });
+};

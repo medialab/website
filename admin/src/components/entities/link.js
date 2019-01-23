@@ -144,6 +144,8 @@ function LinkDecorator(props) {
 
   return (
     <a
+      title={data.href}
+      className="editor link"
       href={data.href}
       target="_blank"
       rel="noopener noreferrer">

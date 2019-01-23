@@ -1,15 +1,22 @@
 const slugs = require('../../specs/slugs.js');
 
-function reslugiyModel(dbs, edits, plural, singular) {
+function reslugifyModel(dbs, edits, plural, singular) {
   dbs[plural].read();
 
   edits[plural] = {};
 
   const state = dbs[plural].getState();
 
+  const distinctSlugs = new Set();
+
   return state[plural].map(item => {
     const oldSlug = item.slugs[0];
     const newSlug = slugs[singular](item);
+
+    if (distinctSlugs.has(newSlug))
+      throw new Error(`Conflicting slug [${plural}] "${newSlug}"!`);
+
+    distinctSlugs.add(newSlug);
 
     if (oldSlug !== newSlug)
       edits[plural][oldSlug] = newSlug;
@@ -32,7 +39,7 @@ module.exports = function(req, dbs, next) {
     ['people', 'people'],
     ['productions', 'production']
   ].forEach(([plural, singular]) => {
-    const state = reslugiyModel(dbs, edits, plural, singular);
+    const state = reslugifyModel(dbs, edits, plural, singular);
 
     if (!dryRun)
       dbs[plural].setState({[plural]: state});

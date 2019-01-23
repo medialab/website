@@ -1,7 +1,7 @@
 import React from 'react';
 
 import initializers from '../../../../specs/initializers';
-import {activity as slugifyActivity} from '../../../../specs/slugs';
+import {slugifyActivity} from '../../utils';
 
 import Form from './Form';
 import Editor from '../Editor';

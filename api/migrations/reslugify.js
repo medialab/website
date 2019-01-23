@@ -1,4 +1,7 @@
-const slugs = require('../../specs/slugs.js');
+const slug = require('slug');
+const makeSlugFunctions = require('../../specs/slugs.js');
+
+const slugs = makeSlugFunctions(slug);
 
 function reslugifyModel(dbs, edits, plural, singular) {
   dbs[plural].read();

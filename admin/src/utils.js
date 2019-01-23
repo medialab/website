@@ -2,6 +2,7 @@ import {convertFromRaw, convertToRaw} from 'draft-js';
 import {stateToHTML} from 'draft-js-export-html';
 import {stateFromHTML} from 'draft-js-import-html';
 import slug from 'slug';
+import makeSlugFunctions from '../../specs/slugs.js';
 
 function entityStyleFn(entity) {
   const type = entity.get('type');
@@ -101,3 +102,19 @@ export function getImageDimensions(src, callback) {
 
   img.src = src;
 }
+
+const slugFunctions = makeSlugFunctions(slug);
+
+const {
+  activity: slugifyActivity,
+  news: slugifyNews,
+  people: slugifyPeople,
+  production: slugifyProduction
+} = slugFunctions;
+
+export {
+  slugifyActivity,
+  slugifyNews,
+  slugifyPeople,
+  slugifyProduction
+};

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import initializers from '../../../../specs/initializers';
-import {people as slugifyPeople} from '../../../../specs/slugs';
+import {slugifyPeople} from '../../utils';
 
 import Form from './Form';
 import Editor from '../Editor';

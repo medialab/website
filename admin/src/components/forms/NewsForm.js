@@ -1,7 +1,7 @@
 import React from 'react';
 
 import initializers from '../../../../specs/initializers';
-import {news as slugifyNews} from '../../../../specs/slugs';
+import {slugifyNews} from '../../utils';
 
 import Form from './Form';
 import Editor from '../Editor';

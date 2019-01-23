@@ -12,7 +12,7 @@ exports.hashNode = function hashNode(data) {
 // Helper creating an internationalized page
 exports.createI18nPage = function createI18nPage(createPage, page) {
 
-  // Default page
+  // Default page, same as French
   createPage({
     ...page,
     context: {
@@ -22,14 +22,16 @@ exports.createI18nPage = function createI18nPage(createPage, page) {
   });
 
   // French page
-  createPage({
-    ...page,
-    path: '/fr' + page.path,
-    context: {
-      ...page.context,
-      lang: 'fr'
-    }
-  });
+  // NOTE: if required, we can probably do so using a redirection scheme
+  // I dropped it for the time being to make builds faster
+  // createPage({
+  //   ...page,
+  //   path: '/fr' + page.path,
+  //   context: {
+  //     ...page.context,
+  //     lang: 'fr'
+  //   }
+  // });
 
   // English page
   createPage({

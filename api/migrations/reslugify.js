@@ -11,10 +11,13 @@ function reslugifyModel(dbs, edits, plural, singular) {
 
   return state[plural].map(item => {
     const oldSlug = item.slugs[0];
-    const newSlug = slugs[singular](item);
+    let newSlug = slugs[singular](item);
 
-    if (distinctSlugs.has(newSlug))
-      throw new Error(`Conflicting slug [${plural}] "${newSlug}"!`);
+    if (distinctSlugs.has(newSlug)) {
+      console.error(`Conflicting slug [${plural}] "${newSlug}"!`);
+
+      newSlug += '2';
+    }
 
     distinctSlugs.add(newSlug);
 

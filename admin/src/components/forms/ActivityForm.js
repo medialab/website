@@ -1,7 +1,7 @@
 import React from 'react';
-import {slugify} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
+import {activity as slugifyActivity} from '../../../../specs/slugs';
 
 import Form from './Form';
 import Editor from '../Editor';
@@ -10,10 +10,6 @@ import DateSelector from '../selectors/DateSelector';
 import BooleanSelector from '../selectors/BooleanSelector';
 import RelationSelector from '../selectors/RelationSelector';
 import SortableKeyValueList from '../selectors/SortableKeyValueList';
-
-function slugifyActivity(data) {
-  return slugify(data.name);
-}
 
 function validate(data) {
   if (!data.name)

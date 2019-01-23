@@ -1,7 +1,7 @@
 import React from 'react';
-import {slugify} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
+import {people as slugifyPeople} from '../../../../specs/slugs';
 
 import Form from './Form';
 import Editor from '../Editor';
@@ -10,10 +10,6 @@ import BooleanSelector from '../selectors/BooleanSelector';
 import RelationSelector from '../selectors/RelationSelector';
 import SortableKeyValueList from '../selectors/SortableKeyValueList';
 import SuggestionSelector from '../selectors/SuggestionSelector';
-
-function slugifyPeople(data) {
-  return slugify(`${data.firstName} ${data.lastName}`);
-}
 
 function validate(data) {
   if (!data.firstName || !data.lastName)

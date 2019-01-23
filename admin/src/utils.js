@@ -89,13 +89,6 @@ export function rawToHtml(rawContentState) {
   return html.replace(/\n/g, '');
 }
 
-const DEFAULT_MAX_SLUG_TOKENS = 6;
-export function slugify(str) {
-  const s = slug(str, {lower: true});
-
-  return s.split('-').slice(0, DEFAULT_MAX_SLUG_TOKENS).join('-');
-}
-
 export function getImageDimensions(src, callback) {
   const img = new Image();
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import {slugify} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
+import {production as slugifyProduction} from '../../../../specs/slugs';
 
 import Form from './Form';
 import Editor from '../Editor';
@@ -10,10 +10,6 @@ import DateSelector from '../selectors/DateSelector';
 import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector from '../selectors/RelationSelector';
 import UrlInput from '../selectors/UrlInput';
-
-function slugifyProduction(data) {
-  return slugify(data.title ? (data.title.fr || '') : '');
-}
 
 function validate(data) {
   if (!data.title || !data.title.fr)

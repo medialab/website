@@ -139,7 +139,14 @@ module.exports = {
             (n.people || []).length +
             (n.productions || []).length
           );
-        }
+        },
+        order: [
+          n => (
+            (n.activities || []).length +
+            (n.people || []).length +
+            (n.productions || []).length
+          )
+        ]
       },
       {
         label: 'Start Date',

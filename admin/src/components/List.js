@@ -45,18 +45,18 @@ function ListFilterBar({filters, onChange, specs}) {
       <div className="column is-12">
         <div className="level">
           <div className="level-left">
-          {map(specs.filters, (selector, name) => {
-            return (
-              <div key={name} className="level-item">
-                <ListFilterSelector
-                  name={name}
-                  negate={selector.negate || false}
-                  onChange={value => onChange(name, value)}
-                  specs={selector}
-                  value={filters[name]} />
-              </div>
-            );
-          })}
+            {map(specs.filters, (selector, name) => {
+              return (
+                <div key={name} className="level-item">
+                  <ListFilterSelector
+                    name={name}
+                    negate={selector.negate || false}
+                    onChange={value => onChange(name, value)}
+                    specs={selector}
+                    value={filters[name]} />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -226,9 +226,9 @@ export default class List extends Component {
           filters={filters}
           onChange={this.handleFilter}
           specs={specs} />
-        <table className="listing table is-bordered is-hoverable">
+        <table className="listing table is-fake-bordered is-hoverable">
           <thead>
-            <tr style={{backgroundColor: 'hsl(0, 0%, 96%)'}}>
+            <tr>
               {specs.fields.map(({label, order}) => {
 
                 let onClick;
@@ -260,6 +260,7 @@ export default class List extends Component {
                   <th
                     key={label}
                     onClick={onClick}
+                    className="table--header table--header__sticky"
                     style={{
                       cursor: order ? 'pointer' : 'default',
                       userSelect: 'none'
@@ -271,9 +272,9 @@ export default class List extends Component {
             </tr>
           </thead>
           <tbody>
-            {filteredData.map((d, i) => (
+            {filteredData.map(d => (
               <tr key={d.id} className={cls(d.draft && 'is-draft')}>
-                {specs.fields.map((item, j) => {
+                {specs.fields.map(item => {
                   const value = typeof item.property === 'function' ?
                     item.property(d, relations) :
                     d[item.property];
@@ -298,7 +299,7 @@ export default class List extends Component {
                   );
 
                   return (
-                    <td key={j} style={{padding: '0'}}>
+                    <td key={item.label} style={{padding: '0'}}>
                       {item.important ? (<strong>{link}</strong>) : link}
                     </td>
                   );

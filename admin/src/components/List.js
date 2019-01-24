@@ -247,13 +247,12 @@ export default class List extends Component {
             </tr>
           </thead>
           <tbody>
-            {filteredData.map((d) => (
+            {filteredData.map(d => (
               <tr key={d.id} className={cls(d.draft && 'is-draft')}>
-                {specs.fields.map((item, j) => {
+                {specs.fields.map(item => {
                   const value = typeof item.property === 'function' ?
                     item.property(d, relations) :
                     d[item.property];
-
                   const link = (
                     <Link to={`${model}/${d.id}`} style={{display: 'block', padding: '0.5em 0.75em'}}>
                       {value}
@@ -261,7 +260,7 @@ export default class List extends Component {
                   );
 
                   return (
-                    <td key={j} style={{padding: '0'}}>
+                    <td key={item.label} style={{padding: '0'}}>
                       {item.important ? (<strong>{link}</strong>) : link}
                     </td>
                   );

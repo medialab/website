@@ -1,5 +1,10 @@
 // Variables override
 $modal-background-background-color: rgba(black, 0.4);
+$header-height: 41px;
+
+*, *::before, *::after {
+  box-sizing: border-box !important;
+}
 
 // Importing Bulma
 @import '~bulma';
@@ -19,10 +24,6 @@ li {
   a {
     color: $black !important;
   }
-
-  // .is-draft a {
-  //   color: $grey !important;
-  // }
 }
 
 // Editor
@@ -67,4 +68,26 @@ li {
     background: $white-ter;// rgba(0,0,0,0.1);
     padding: 1rem;
   }
+}
+
+.table--header__sticky {
+  position: sticky;
+  top: $header-height - 1;
+}
+
+.table--header {
+  background-color: hsl(0, 0%, 96%);  
+}
+
+.table.is-fake-bordered td, .table.is-fake-bordered th {
+  box-shadow: inset 0 0 0 1px #dbdbdb;
+  border: none;
+}
+
+.tabs.header {
+  position: sticky;
+  top: 0;
+  max-height: $header-height;
+  z-index: 10;
+  background-color: white;
 }

@@ -19,7 +19,7 @@ import SettingsForm from './forms/SettingsForm';
 export default function Router() {
   return (
     <div className="container">
-      <div className="tabs">
+      <div className="tabs header">
         <ul>
           <Route
             path="/" children={({match}) => (

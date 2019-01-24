@@ -4,7 +4,7 @@ import {SortableContainer, SortableElement, SortableHandle} from 'react-sortable
 import keyBy from 'lodash/keyBy';
 import flatten from 'lodash/flatten';
 import parallel from 'async/parallel';
-import ReorderIcon from '../icons/ReorderIcon';
+import ReorderIcon from 'material-icons-svg/components/baseline/Reorder';
 import client from '../../client';
 
 import labels from '../../../../specs/labels';
@@ -29,7 +29,7 @@ const createOptions = (model, items) => ({
 
 const DragHandle = SortableHandle(() => (
   <span className="handle" style={{marginTop: '5px', marginRight: '5px'}}>
-    <ReorderIcon />
+    <ReorderIcon width={20} height={20} fill="rgba(10, 10, 10, 0.2)" />>
   </span>
 ));
 

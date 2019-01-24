@@ -5,12 +5,12 @@ import IFRAME from './entities/iframe';
 import IMAGE from './entities/image';
 import LINK from './entities/link';
 
-import BoldIcon from './icons/BoldIcon';
-import CodeBlockIcon from './icons/CodeBlockIcon'
-import ItalicIcon from './icons/ItalicIcon';
-import OrderedListIcon from './icons/OrderedListIcon';
-import UnorderedListIcon from './icons/UnorderedListIcon';
-import KeyboardReturnIcon from './icons/KeyboardReturnIcon';
+import BoldIcon from 'material-icons-svg/components/baseline/FormatBold';
+import CodeBlockIcon from 'material-icons-svg/components/baseline/Code';
+import ItalicIcon from 'material-icons-svg/components/baseline/FormatItalic';
+import OrderedListIcon from 'material-icons-svg/components/baseline/FormatListNumbered';
+import UnorderedListIcon from 'material-icons-svg/components/baseline/FormatListBulleted';
+import KeyboardReturnIcon from 'material-icons-svg/components/baseline/KeyboardReturn';
 
 function FalseIcon({children}) {
   return (
@@ -47,7 +47,7 @@ export default class Editor extends PureComponent {
       <div className="content">
         <DraftailEditor
           placeholder="Type something..."
-          enableLineBreak={{icon: <KeyboardReturnIcon />}}
+          enableLineBreak={{icon: <KeyboardReturnIcon width={24} height={24} />}}
           rawContentState={content ? htmlToRaw(content) : null}
           stripPastedStyles={false}
           onSave={this.handleOnSave}
@@ -63,13 +63,13 @@ export default class Editor extends PureComponent {
             // {type: BLOCK_TYPE.HEADER_FOUR, icon: <FalseIcon>h4</FalseIcon>},
             // {type: BLOCK_TYPE.HEADER_FIVE, icon: <FalseIcon>h5</FalseIcon>},
             // {type: BLOCK_TYPE.HEADER_SIX, icon: <FalseIcon>h6</FalseIcon>},
-            {type: BLOCK_TYPE.UNORDERED_LIST_ITEM, icon: <UnorderedListIcon />},
-            {type: BLOCK_TYPE.ORDERED_LIST_ITEM, icon: <OrderedListIcon />},
-            {type: BLOCK_TYPE.CODE, icon: <CodeBlockIcon />}
+            {type: BLOCK_TYPE.UNORDERED_LIST_ITEM, icon: <UnorderedListIcon width={24} height={24} />},
+            {type: BLOCK_TYPE.ORDERED_LIST_ITEM, icon: <OrderedListIcon width={24} height={24} />},
+            {type: BLOCK_TYPE.CODE, icon: <CodeBlockIcon width={24} height={24} />}
           ]}
           inlineStyles={[
-            {type: INLINE_STYLE.ITALIC, icon: <ItalicIcon />},
-            {type: INLINE_STYLE.BOLD, icon: <BoldIcon />}
+            {type: INLINE_STYLE.ITALIC, icon: <ItalicIcon width={24} height={24} />},
+            {type: INLINE_STYLE.BOLD, icon: <BoldIcon width={24} height={24} />}
           ]} />
       </div>
     );

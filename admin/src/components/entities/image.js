@@ -8,7 +8,7 @@ import client from '../../client';
 import {getImageDimensions} from '../../utils';
 import Button from '../misc/Button';
 import CardModal from '../misc/CardModal';
-import ImageIcon from '../icons/ImageIcon';
+import ImageIcon from 'material-icons-svg/components/baseline/InsertPhoto';
 
 // Source
 class ImageSource extends Component {
@@ -122,7 +122,7 @@ function ImageBlock(props) {
 // Entity
 const IMAGE = {
   type: ENTITY_TYPE.IMAGE,
-  icon: <ImageIcon />,
+  icon: <ImageIcon width={24} height={24} />,
   source: ImageSource,
   block: ImageBlock,
   attributes: [

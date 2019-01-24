@@ -4,7 +4,7 @@ import Select from 'react-select';
 import keyBy from 'lodash/keyBy';
 import truncate from 'lodash/truncate';
 import client from '../../client';
-import ReorderIcon from '../icons/ReorderIcon';
+import ReorderIcon from 'material-icons-svg/components/baseline/Reorder';
 
 import labels from '../../../../specs/labels';
 
@@ -16,7 +16,7 @@ const noOptionsMessages = {
 
 const DragHandle = SortableHandle(() => (
   <span className="handle" style={{marginTop: '5px', marginRight: '5px'}}>
-    <ReorderIcon />
+    <ReorderIcon width={20} height={20} fill="rgba(10, 10, 10, 0.2)" />
   </span>
 ));
 

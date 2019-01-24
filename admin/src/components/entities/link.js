@@ -6,7 +6,7 @@ import Dropzone from 'react-dropzone';
 import client from '../../client';
 import Button from '../misc/Button';
 import CardModal from '../misc/CardModal';
-import LinkIcon from '../icons/LinkIcon';
+import LinkIcon from 'material-icons-svg/components/baseline/InsertLink';
 
 // Source
 class LinkSource extends Component {
@@ -153,7 +153,7 @@ function LinkDecorator(props) {
 // Entity
 const LINK = {
   type: ENTITY_TYPE.LINK,
-  icon: <LinkIcon />,
+  icon: <LinkIcon width={24} height={24} />,
   source: LinkSource,
   decorator: LinkDecorator,
   attributes: ['href', 'internal']

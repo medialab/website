@@ -403,7 +403,7 @@ class Form extends Component {
     }
 
     else if (view === 'preview-fr') {
-      body = <Preview url={`fr/${model}/${data.slugs[data.slugs.length - 1]}`} />;
+      body = <Preview url={`${model}/${data.slugs[data.slugs.length - 1]}`} />;
     }
 
     else {

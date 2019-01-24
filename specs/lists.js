@@ -1,5 +1,15 @@
 const enums = require('./enums.json');
 
+const productionTypeToGroup = {};
+
+for (const group in enums.productionTypes.groups) {
+  enums.productionTypes.groups[group].values.forEach(v => {
+    productionTypeToGroup[v] = group;
+  });
+}
+
+console.log( productionTypeToGroup)
+
 const deburr = string => {
   return string.replace(/[Éé]/g, 'e');
 };
@@ -117,7 +127,12 @@ module.exports = {
         important: true,
         order: [
           n => n.title && normalize(n.title.fr || n.title.en)
-        ]
+        ],
+        icon: {
+          type: 'newsTypes',
+          property: n => n.type,
+          label: n => enums.newsTypes.fr[n.type]
+        }
       },
       {
         label: 'Label',
@@ -282,7 +297,12 @@ module.exports = {
         property: function(p) {
           return p.title.fr || p.title.en;
         },
-        important: true
+        important: true,
+        icon: {
+          type: 'productionGroups',
+          property: p => productionTypeToGroup[p.type],
+          label: p => enums.productionTypes.groups[productionTypeToGroup[p.type]].fr
+        }
       },
       {
         label: 'Related People',

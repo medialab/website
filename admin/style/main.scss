@@ -22,7 +22,7 @@ li {
 // Listings
 .listing {
   a {
-    color: $black !important;
+    color: $black;
   }
 }
 
@@ -83,6 +83,10 @@ li {
   }
 }
 
+.table{
+  width: 100%;
+}
+
 .table--header__sticky {
   position: sticky;
   top: $header-height - 1;
@@ -104,3 +108,11 @@ li {
   z-index: 10;
   background-color: white;
 }
+
+.table tr.is-draft {
+  a{color: darkgrey;}
+  &:hover{
+      a{color: grey;}
+  }
+}
+

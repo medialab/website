@@ -8,8 +8,6 @@ for (const group in enums.productionTypes.groups) {
   });
 }
 
-console.log( productionTypeToGroup)
-
 const deburr = string => {
   return string.replace(/[Éé]/g, 'e');
 };

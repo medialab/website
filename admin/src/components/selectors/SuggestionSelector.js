@@ -42,6 +42,10 @@ export default class SuggestionSelector extends Component {
     return this.props.onChange(o.value);
   };
 
+  handleBlur = e => {
+    console.log(e.target.value);
+  };
+
   render() {
     const {options, loading} = this.state;
 
@@ -58,6 +62,7 @@ export default class SuggestionSelector extends Component {
         menuPlacement="top"
         placeholder={placeholder}
         onChange={this.handleChange}
+        onBlur={this.handleBlur}
         styles={{menu: provided => ({...provided, zIndex: 1000})}} />
     );
   }

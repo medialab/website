@@ -43,7 +43,21 @@ export default class SuggestionSelector extends Component {
   };
 
   handleBlur = e => {
-    console.log(e.target.value);
+    const value = e.target.value;
+
+    if (!value)
+      return;
+
+    const options = this.state.options;
+
+    const alreadyHasOption = options.some(o => o.value === value);
+
+    this.setState({
+      options: alreadyHasOption ? options : options.concat({
+        label: value,
+        value
+      }),
+    }, () => this.props.onChange(value));
   };
 
   render() {

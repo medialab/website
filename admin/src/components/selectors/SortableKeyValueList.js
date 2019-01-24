@@ -93,6 +93,33 @@ export default class SortableKeyValueList extends Component {
     this.setState({label: o});
   };
 
+  handleLabelBlur = e => {
+    const value = e.target.value;
+
+    if (!value)
+      return;
+
+    const options = this.state.options;
+
+    const matchingOption = options.find(o => o.value === value);
+
+    let option = matchingOption;
+
+    if (!option)
+      option = {
+        label: value,
+        value
+      };
+
+    this.setState({
+      options: matchingOption ? options : options.concat({
+        label: value,
+        value
+      }),
+      label: option
+    });
+  };
+
   handleValue = e => {
     this.setState({value: e.target.value});
   };
@@ -185,6 +212,7 @@ export default class SortableKeyValueList extends Component {
                 menuPlacement="top"
                 placeholder="Search..."
                 onChange={this.handleLabel}
+                onBlur={this.handleLabelBlur}
                 styles={{menu: provided => ({...provided, zIndex: 1000})}} />
             </div>
           </div>

@@ -28,13 +28,13 @@ export default function ListFilterSelector(props) {
     return (
       <div className="buttons has-addons">
         <span
-          className={cls('button', 'is-small', value === null && ['is-selected', 'is-info'])}
+          className={cls('button',  value === null && ['is-selected', 'is-info'])}
           onClick={() => onChange(null)}>All</span>
         <span
-          className={cls('button', 'is-small', value === true && ['is-selected', 'is-success'])}
+          className={cls('button', value === true && ['is-selected', 'is-success'])}
           onClick={() => onChange(negate ? false : true)}>{labels[0]}</span>
         <span
-          className={cls('button', 'is-small', value === false && ['is-selected', 'is-success'])}
+          className={cls('button', value === false && ['is-selected', 'is-success'])}
           onClick={() => onChange(negate ? true : false)}>{labels[1]}</span>
       </div>
     );
@@ -49,7 +49,7 @@ export default function ListFilterSelector(props) {
         return (
           <span
             key={key}
-            className={cls('button', 'is-small', value && value.group === key && ['is-selected', 'is-info'])}
+            className={cls('button', value && value.group === key && ['is-selected', 'is-info'])}
             onClick={() => onChange({group: key, values: new Set(group.values)})}>{group.fr}</span>
         );
       });
@@ -59,7 +59,7 @@ export default function ListFilterSelector(props) {
         return (
           <span
             key={key}
-            className={cls('button', 'is-small', value === key && ['is-selected', 'is-success'])}
+            className={cls('button', value === key && ['is-selected', 'is-success'])}
             onClick={() => onChange(key)}>{label}</span>
         );
       });
@@ -68,7 +68,7 @@ export default function ListFilterSelector(props) {
     return (
       <div className="buttons has-addons">
         <span
-          className={cls('button', 'is-small', value === null && ['is-selected', 'is-info'])}
+          className={cls('button', value === null && ['is-selected', 'is-info'])}
           onClick={() => onChange(null)}>All</span>
         {options}
       </div>

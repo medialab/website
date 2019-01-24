@@ -22,7 +22,7 @@ li {
 // Listings
 .listing {
   a {
-    color: $black !important;
+    color: $black;
   }
 }
 
@@ -83,6 +83,10 @@ li {
   }
 }
 
+.table{
+  width: 100%;
+}
+
 .table--header {
   background-color: hsl(0, 0%, 96%);  
 }
@@ -93,15 +97,16 @@ $table-header-color: #dbdbdb;
       border-top: none;
     }
     .table--header__sticky {
+      height: $header-height;
+      padding: 0;
+
       position: sticky;
       top: $header-height - 1;
-      border: none;
-      padding: 0;
-      border-right: 1px $table-header-color solid;
-      user-select: none;
 
+      border: none;
+      border-right: 1px $table-header-color solid;
       border-top: 1px $table-header-color solid;
-      height: $header-height;
+      user-select: none;
 
       &:first-child {
         border-left: 1px $table-header-color solid;
@@ -128,3 +133,11 @@ $table-header-color: #dbdbdb;
   z-index: 10;
   background-color: white;
 }
+
+.table tr.is-draft {
+  a{color: darkgrey;}
+  &:hover{
+      a{color: grey;}
+  }
+}
+

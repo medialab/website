@@ -79,6 +79,10 @@ li {
   }
 }
 
+.table{
+  width: 100%;
+}
+
 .table--header__sticky {
   position: sticky;
   top: $header-height - 1;

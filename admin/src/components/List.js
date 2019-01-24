@@ -193,6 +193,7 @@ export default class List extends Component {
 
   render() {
     const {
+      data,
       filters,
       filteredData,
       query,
@@ -208,24 +209,34 @@ export default class List extends Component {
     return (
       <div>
         <div className="columns">
-          <div className="column is-3">
+          <div className="column is-4">
             <input
-              className="input"
+              className="input is-fullwidth"
               type="text"
               value={query}
               onChange={this.handleQuery}
               placeholder="Filter..." />
           </div>
-          <div className="column is-3">
-            <Link to={`${model}/new`} className="button is-primary">
+          <div className="column is-8">
+            <ListFilterBar
+              filters={filters}
+              onChange={this.handleFilter}
+              specs={specs} />
+          </div>
+        </div>
+
+        <div style={{alignItems: 'center'}} className="columns">
+          <div className="column is-10">
+            {filteredData.length} / {data.length} items shown
+          </div>
+          
+          <div className="column is-2">
+            <Link to={`${model}/new`} className="button is-primary is-fullwidth">
               Add new {label}
             </Link>
           </div>
         </div>
-        <ListFilterBar
-          filters={filters}
-          onChange={this.handleFilter}
-          specs={specs} />
+            
         <table className="listing table is-fake-bordered is-hoverable">
           <thead>
             <tr>
@@ -308,6 +319,18 @@ export default class List extends Component {
             ))}
           </tbody>
         </table>
+
+        <div style={{alignItems: 'center'}} className="columns">
+          <div className="column is-10">
+            {filteredData.length} / {data.length} items shown
+          </div>
+          
+          <div className="column is-2">
+            <Link to={`${model}/new`} className="button is-primary is-fullwidth">
+              Add new {label}
+            </Link>
+          </div>
+        </div>
         <br />
       </div>
     );

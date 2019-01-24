@@ -32,6 +32,10 @@ li {
   border: 1px solid black;
 }
 
+.Draftail-Editor--focus .Draftail-Toolbar {
+  top: $header-height;
+}
+
 .editor {
 
   &.image-container {

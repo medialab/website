@@ -237,7 +237,7 @@ export default class List extends Component {
           </div>
         </div>
             
-        <table className="listing table is-fake-bordered is-hoverable">
+        <table className="listing table is-bordered is-hoverable">
           <thead>
             <tr>
               {specs.fields.map(({label, order}) => {
@@ -273,10 +273,11 @@ export default class List extends Component {
                     onClick={onClick}
                     className="table--header table--header__sticky"
                     style={{
-                      cursor: order ? 'pointer' : 'default',
-                      userSelect: 'none'
+                      cursor: order ? 'pointer' : 'default'
                     }}>
-                    <span style={{textDecoration: order ? 'underline' : 'none'}}>{label}</span> {glyph}
+                    <div className="table--header--container">
+                      <span style={{textDecoration: order ? 'underline' : 'none'}}>{label}</span> {glyph}
+                    </div>
                   </th>
                 );
               })}

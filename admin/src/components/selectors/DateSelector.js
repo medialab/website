@@ -308,7 +308,7 @@ export default class DateSelector extends Component {
           </div>
           {validationError && <p className="help is-info">{validationError}</p>}
         </div>
-        {datetime && day && (
+        {datetime && (
           <div className="field">
             <div className="level">
               <div className="level-left">

@@ -33,8 +33,17 @@ li {
 }
 
 .editor {
-  background-color: #ccc;
-  padding: 20px;
+
+  &.image-container {
+    background-color: #ccc;
+    padding: 20px;
+  }
+
+  &.link {
+    border-bottom: 1px dotted $link;
+    color: $black !important;
+    background-color: lighten($link, 40%);
+  }
 
   img {
     border: 1px solid black;

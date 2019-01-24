@@ -14,6 +14,7 @@ module.exports = {
   news: function(uuid) {
     return {
       id: uuid(),
+      startDate: (new Date()).toISOString().split('T')[0],
       draft: true,
       internal: false
     };

@@ -10,7 +10,7 @@ function fixDate(date) {
   return [y, m, d].join('-');
 }
 
-module.exports = function(dbs, next) {
+module.exports = function(req, dbs, next) {
   dbs.news.read();
 
   const state = dbs.news.getState();
@@ -25,5 +25,5 @@ module.exports = function(dbs, next) {
 
   dbs.news.setState(state);
 
-  dbs.news.write().then(next);
+  dbs.news.write().then(() => next());
 };

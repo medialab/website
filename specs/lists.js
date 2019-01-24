@@ -1,5 +1,15 @@
 const enums = require('./enums.json');
 
+const productionTypeToGroup = {};
+
+for (const group in enums.productionTypes.groups) {
+  enums.productionTypes.groups[group].values.forEach(v => {
+    productionTypeToGroup[v] = group;
+  });
+}
+
+console.log( productionTypeToGroup)
+
 const deburr = string => {
   return string.replace(/[Éé]/g, 'e');
 };
@@ -23,6 +33,13 @@ const get = (field, target) => {
   }
 
   return target;
+};
+
+const datetime = string => {
+  if (string.includes('T') && !string.includes(':'))
+    return new Date(string + ':00');
+
+  return new Date(string);
 };
 
 const createSearch = fields => (data, query) => {
@@ -110,7 +127,12 @@ module.exports = {
         important: true,
         order: [
           n => n.title && normalize(n.title.fr || n.title.en)
-        ]
+        ],
+        icon: {
+          type: 'newsTypes',
+          property: n => n.type,
+          label: n => enums.newsTypes.fr[n.type]
+        }
       },
       {
         label: 'Label',
@@ -132,7 +154,14 @@ module.exports = {
             (n.people || []).length +
             (n.productions || []).length
           );
-        }
+        },
+        order: [
+          n => (
+            (n.activities || []).length +
+            (n.people || []).length +
+            (n.productions || []).length
+          )
+        ]
       },
       {
         label: 'Start Date',
@@ -140,12 +169,23 @@ module.exports = {
           if (!n.startDate)
             return '';
 
-          const [y, m, d] = n.startDate.split('-');
+          const [date, time] = n.startDate.split('T');
+
+          const [y, m, d] = date.split('-');
+
+          if (time) {
+            const [h, n] = time.split(':');
+
+            if (!n)
+              return `${d}/${m}/${y}, ${h}h`;
+
+              return `${d}/${m}/${y}, ${h}h${n}`;
+          }
 
           return `${d}/${m}/${y}`;
         },
         order: [
-          n => n.startDate && +(new Date(n.startDate))
+          n => n.startDate && +datetime(n.startDate)
         ]
       },
       {
@@ -257,7 +297,12 @@ module.exports = {
         property: function(p) {
           return p.title.fr || p.title.en;
         },
-        important: true
+        important: true,
+        icon: {
+          type: 'productionGroups',
+          property: p => productionTypeToGroup[p.type],
+          label: p => enums.productionTypes.groups[productionTypeToGroup[p.type]].fr
+        }
       },
       {
         label: 'Related People',

@@ -1,26 +1,22 @@
 import React from 'react';
-import {slugify} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
+import {slugifyPeople} from '../../utils';
 
 import Form from './Form';
 import Editor from '../Editor';
+import CoverSelector from '../selectors/CoverSelector';
 import EnumSelector from '../selectors/EnumSelector';
 import BooleanSelector from '../selectors/BooleanSelector';
 import RelationSelector from '../selectors/RelationSelector';
 import SortableKeyValueList from '../selectors/SortableKeyValueList';
 import SuggestionSelector from '../selectors/SuggestionSelector';
 
-function slugifyPeople(data) {
-  return slugify(`${data.firstName} ${data.lastName}`);
-}
-
 function validate(data) {
   if (!data.firstName || !data.lastName)
     return 'Need at least a first name & a last name';
 }
 
-// TODO: sortable relations
 const HANDLERS = {
   firstName: {
     type: 'slug',
@@ -131,6 +127,15 @@ function renderPeopleForm(props) {
           <div className="column is-12">
             <div className="field">
               <label className="label" style={{display: 'inline'}}>Slug:</label> {slug && <code>{slug}</code>}
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-12">
+            <div className="field">
+              <label className="label">Cover</label>
+              <CoverSelector />
             </div>
           </div>
         </div>

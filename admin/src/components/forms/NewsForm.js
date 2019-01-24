@@ -1,7 +1,7 @@
 import React from 'react';
-import {slugify} from '../../utils';
 
 import initializers from '../../../../specs/initializers';
+import {slugifyNews} from '../../utils';
 
 import Form from './Form';
 import Editor from '../Editor';
@@ -11,13 +11,12 @@ import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector from '../selectors/RelationSelector';
 import SuggestionSelector from '../selectors/SuggestionSelector';
 
-function slugifyNews(data) {
-  return slugify(data.title ? (data.title.fr || '') : '');
-}
-
 function validate(data) {
   if (!data.title || !data.title.fr)
     return 'Need at least a French title';
+
+  if (!data.startDate)
+    return 'Need a start date';
 }
 
 const HANDLERS = {
@@ -148,6 +147,7 @@ function renderNewsForm(props) {
             <label className="label">Start Date</label>
             <div className="control">
               <DateSelector
+                datetime
                 precision="day"
                 value={data.startDate}
                 onChange={handlers.startDate} />
@@ -158,6 +158,7 @@ function renderNewsForm(props) {
             <label className="label">End Date</label>
             <div className="control">
               <DateSelector
+                datetime
                 precision="day"
                 value={data.endDate}
                 onChange={handlers.endDate} />

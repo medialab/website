@@ -7,8 +7,8 @@ import path from 'path';
 import isUrl from 'is-url';
 import client from '../../client';
 import Button from '../misc/Button';
-import DocumentIcon from '../icons/DocumentIcon';
-import ReorderIcon from '../icons/ReorderIcon';
+import DocumentIcon from 'material-icons-svg/components/baseline/AttachFile';
+import ReorderIcon from 'material-icons-svg/components/baseline/Reorder';
 
 function prettyName(name) {
   const ext = path.extname(name),
@@ -21,7 +21,7 @@ function prettyName(name) {
 
 const DragHandle = SortableHandle(() => (
   <span className="handle" style={{marginTop: '5px', marginRight: '5px'}}>
-    <ReorderIcon />
+    <ReorderIcon width={20} height={20} fill="rgba(10, 10, 10, 0.2)" />
   </span>
 ));
 
@@ -210,7 +210,7 @@ export default class SortableKeyValueList extends Component {
                       onChange={this.handleFile} />
                     <span className="file-cta">
                       <span className="file-label">
-                        <DocumentIcon />
+                        <DocumentIcon width={24} height={24} />
                       </span>
                     </span>
                   </label>

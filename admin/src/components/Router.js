@@ -7,7 +7,7 @@ import listSpecs from '../../../specs/lists.js';
 
 import Home from './Home';
 import Playground from './Playground';
-import HomeIcon from './icons/HomeIcon';
+import HomeIcon from 'material-icons-svg/components/baseline/Home';
 import List from './List';
 
 import ActivityForm from './forms/ActivityForm';
@@ -25,7 +25,7 @@ export default function Router() {
             path="/" children={({match}) => (
               <li className={cls(match && match.isExact && 'is-active')}>
                 <Link to="/">
-                  <HomeIcon />
+                  <HomeIcon width={24} height={24} />
                 </Link>
               </li>
           )} />

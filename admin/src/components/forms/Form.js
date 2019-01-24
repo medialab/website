@@ -69,7 +69,9 @@ class SlugConfirm extends Component {
                     onChange={this.handleSlug}
                     value={slug} />
                 </div>
-                {collision && <p className="help is-danger">This slug already exists!</p>}
+                {collision ?
+                  (<p className="help is-danger">This slug already exists!</p>) :
+                  (<p className="help is-success">This slug is ok!</p>)}
               </div>
             ),
             close => (

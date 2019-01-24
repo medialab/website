@@ -16,7 +16,8 @@ const {
 } = require('./utils.js');
 
 const {
-  template
+  template,
+  resolveAttachments
 } = require('./templating.js');
 
 const ROOT_PATH = process.env.ROOT_PATH || '..';
@@ -109,6 +110,7 @@ const MODEL_READERS = {
       createNode({
         ...activity,
         content,
+        attachments: resolveAttachments(pathPrefix, activity.attachments || []),
         identifier: activity.id,
         internal: {
           type: 'ActivitiesJson',
@@ -139,6 +141,7 @@ const MODEL_READERS = {
       createNode({
         ...person,
         bio: content,
+        contacts: resolveAttachments(pathPrefix, person.contacts || []),
         identifier: person.id,
         internal: {
           type: 'PeopleJson',

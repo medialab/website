@@ -59,7 +59,7 @@ export default function ListFilterSelector(props) {
         return (
           <span
             key={key}
-            className={cls('button', 'is-small', value === key && ['is-selected', 'is-info'])}
+            className={cls('button', 'is-small', value === key && ['is-selected', 'is-success'])}
             onClick={() => onChange(key)}>{label}</span>
         );
       });

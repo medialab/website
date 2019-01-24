@@ -6,7 +6,7 @@ import Dropzone from 'react-dropzone';
 import client from '../../client';
 import Button from '../misc/Button';
 import CardModal from '../misc/CardModal';
-import LinkIcon from '../icons/LinkIcon';
+import LinkIcon from 'material-icons-svg/components/baseline/InsertLink';
 
 // Source
 class LinkSource extends Component {
@@ -143,19 +143,17 @@ function LinkDecorator(props) {
   const data = contentState.getEntity(entityKey).getData();
 
   return (
-    <a
-      href={data.href}
-      target="_blank"
-      rel="noopener noreferrer">
-      {children}
-    </a>
+    <span
+      title={data.href}>
+      <span className="editor link">{children}</span>
+    </span>
   );
 }
 
 // Entity
 const LINK = {
   type: ENTITY_TYPE.LINK,
-  icon: <LinkIcon />,
+  icon: <LinkIcon width={24} height={24} />,
   source: LinkSource,
   decorator: LinkDecorator,
   attributes: ['href', 'internal']

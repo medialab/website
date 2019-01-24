@@ -8,7 +8,32 @@ import cls from 'classnames';
 import parallel from 'async/parallel';
 import client from '../client';
 
+import NoticeIcon from 'material-icons-svg/components/baseline/Announcement';
+import EventIcon from 'material-icons-svg/components/baseline/Event';
+import PostIcon from 'material-icons-svg/components/baseline/Receipt';
+
+import PublicationIcon from 'material-icons-svg/components/baseline/Book';
+import WebEditionIcon from 'material-icons-svg/components/baseline/DesktopWindows';
+import ToolsIcon from 'material-icons-svg/components/baseline/Build';
+import SituationIcon from 'material-icons-svg/components/baseline/Wallpaper';
+import MediaIcon from 'material-icons-svg/components/baseline/Mic';
+
 import ListFilterSelector from './selectors/ListFilterSelector';
+
+const ICONS_MAPPING = {
+  newsTypes: {
+    notice: NoticeIcon,
+    event: EventIcon,
+    post: PostIcon
+  },
+  productionGroups: {
+    publications: PublicationIcon,
+    webEditions: WebEditionIcon,
+    tools: ToolsIcon,
+    situations: SituationIcon,
+    media: MediaIcon
+  }
+};
 
 const DOWN_ARROW = '▼',
       UP_ARROW = '▲';
@@ -253,9 +278,23 @@ export default class List extends Component {
                   const value = typeof item.property === 'function' ?
                     item.property(d, relations) :
                     d[item.property];
+
+                  let icon = null;
+
+                  if (item.icon) {
+                    const IconComponent = ICONS_MAPPING[item.icon.type][item.icon.property(d)];
+
+                    icon = (
+                      <span title={item.icon.label(d)}>
+                        <IconComponent
+                          style={{display: 'inline-block', verticalAlign: 'middle'}}/> &middot;
+                      </span>
+                    );
+                  }
+
                   const link = (
-                    <Link to={`${model}/${d.id}`} style={{display: 'block', padding: '0.5em 0.75em'}}>
-                      {value}
+                    <Link to={`${model}/${d.id}`} style={{display: 'inline-block', padding: '0.5em 0.75em'}}>
+                      {icon} {value}
                     </Link>
                   );
 

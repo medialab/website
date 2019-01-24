@@ -6,7 +6,7 @@ import Dropzone from 'react-dropzone';
 import client from '../../client';
 import Button from '../misc/Button';
 import CardModal from '../misc/CardModal';
-import DocumentIcon from '../icons/DocumentIcon';
+import DocumentIcon from 'material-icons-svg/components/baseline/InsertDriveFile';
 
 // Source
 class IframeSource extends Component {
@@ -152,7 +152,7 @@ function IframeBlock(props) {
 // Entity
 const IFRAME = {
   type: 'IFRAME',
-  icon: <DocumentIcon />,
+  icon: <DocumentIcon width={24} height={24} />,
   source: IframeSource,
   block: IframeBlock,
   attributes: ['src', 'internal']

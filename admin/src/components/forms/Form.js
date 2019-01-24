@@ -1,3 +1,4 @@
+/* global STATIC_URL */
 /* eslint no-nested-ternary: 0 */
 /* eslint no-alert: 0 */
 /* eslint react/forbid-prop-types: 0 */
@@ -10,6 +11,7 @@ import {Link, Prompt} from 'react-router-dom';
 import uuid from 'uuid/v4';
 import get from 'lodash/fp/get';
 import set from 'lodash/fp/set';
+import last from 'lodash/fp/last';
 import cls from 'classnames';
 
 import client from '../../client';
@@ -358,14 +360,24 @@ class Form extends Component {
     }
 
     let body = null;
-
     if (view === 'edit') {
       const renderedForm = children({
         handlers: this.handlers,
         englishEditorContent: this.englishEditorContent,
         frenchEditorContent: this.frenchEditorContent,
         slug,
-        data
+        data,
+        children: (
+          !isNew && <div style={{marginBottom: '10px'}}>
+            <label className="label is-inline">
+              Preview link:{' '}
+            </label>
+            {slug && <a
+              href={`${STATIC_URL}/${model}/${slug}`}
+              target="_blank"
+              rel="noopener noreferrer">{`${STATIC_URL}/${model}/${slug}`}</a>}
+          </div>
+        )
       });
 
       body = (
@@ -396,6 +408,31 @@ class Form extends Component {
                   )}
                 </div>
               </div>
+              <div className="level-right">
+                <div className="field is-grouped">
+                  {!isNew && (
+                    <React.Fragment>
+                      <div className="field-label is-normal">
+                        <p className={cls(dirty && !validationError ? '' : 'has-text-grey')}>Preview {pageLabel} page:</p>
+                      </div>
+                      <div className="control">
+                        <Button
+                          kind={dirty && !validationError ? 'success' : 'white'}
+                          disabled={!dirty || validationError}
+                          loading={saving}
+                          onClick={this.toggleFrenchPreview}>French</Button>
+                      </div>
+                      <div className="control">
+                        <Button
+                          kind={dirty && !validationError ? 'success' : 'white'}
+                          disabled={!dirty || validationError}
+                          loading={saving}
+                          onClick={this.toggleEnglishPreview}>English</Button>
+                      </div>
+                    </React.Fragment>
+                    )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -403,11 +440,11 @@ class Form extends Component {
     }
 
     else if (view === 'preview-fr') {
-      body = <Preview url={`${model}/${data.slugs[data.slugs.length - 1]}`} />;
+      body = <Preview onClose={this.toggleEdit} url={`${model}/${data.slugs[data.slugs.length - 1]}`} />;
     }
 
     else {
-      body = <Preview url={`en/${model}/${data.slugs[data.slugs.length - 1]}`} />;
+      body = <Preview onClose={this.toggleEdit} url={`en/${model}/${data.slugs[data.slugs.length - 1]}`} />;
     }
 
     return (
@@ -422,29 +459,6 @@ class Form extends Component {
         <Prompt
           when={!saving && dirty}
           message={navigationPromptMessage} />
-        <div className="tabs is-boxed">
-          <ul>
-            <li
-              className={cls(view === 'edit' && 'is-active')}
-              onClick={this.toggleEdit}>
-              <a>Edit {pageLabel}</a>
-            </li>
-            {!isNew && (
-              <li
-                className={cls(view === 'preview-fr' && 'is-active')}
-                onClick={this.toggleFrenchPreview}>
-                <a>Preview French {pageLabel} page</a>
-              </li>
-            )}
-            {!isNew && (
-              <li
-                className={cls(view === 'preview-en' && 'is-active')}
-                onClick={this.toggleEnglishPreview}>
-                <a>Preview English {pageLabel} page</a>
-              </li>
-            )}
-          </ul>
-        </div>
         {body}
       </div>
     );

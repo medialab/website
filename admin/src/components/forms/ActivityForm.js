@@ -78,7 +78,8 @@ function renderActivityForm(props) {
     handlers,
     slug,
     englishEditorContent,
-    frenchEditorContent
+    frenchEditorContent,
+    children
   } = props;
 
   return (
@@ -106,6 +107,7 @@ function renderActivityForm(props) {
           <div className="column is-12">
             <div className="field">
               <label className="label" style={{display: 'inline'}}>Slug:</label> {slug && <code>{slug}</code>}
+              {children}
             </div>
           </div>
         </div>

@@ -68,9 +68,7 @@ MODELS.forEach(model => {
 });
 
 // Creating routers
-MODELS.push('settings');
-
-const ROUTERS = MODELS.map(model => {
+const ROUTERS = MODELS.concat('settings').map(model => {
   return {
     model,
     router: jsonServer.router(path.join(DATA_PATH, `${model}.json`))

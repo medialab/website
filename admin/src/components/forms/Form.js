@@ -402,7 +402,7 @@ class Form extends Component {
                   frenchEditorContent: this.frenchEditorContent,
                   slug,
                   data,
-                  children: (
+                  slugRenderer: () => (
                     !isNew && <div style={{marginBottom: '10px'}}>
                       <label className="label is-inline">
                         Preview link:{' '}

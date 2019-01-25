@@ -1,16 +1,72 @@
 const GraphQLTypes = require('gatsby/graphql');
 const _ = require('lodash');
 
-exports.graphQLSchemaAdditionForSettings = function() {
+exports.graphQLSchemaAdditionForSettings = function(schemas, getNode) {
+
+  const relationTypes = {};
+
+  for (const k in schemas) {
+    relationTypes[k] = new GraphQLTypes.GraphQLObjectType({
+      name: _.capitalize(k),
+      fields: {
+        ...schemas[k],
+        id: {
+          type: GraphQLTypes.GraphQLString
+        }
+      }
+    });
+  }
+
+  const ItemType = new GraphQLTypes.GraphQLObjectType({
+    name: 'settings__item',
+    fields: {
+      id: {
+        type: GraphQLTypes.GraphQLString
+      },
+      model: {
+        type: GraphQLTypes.GraphQLString
+      },
+      data: {
+        type: new GraphQLTypes.GraphQLUnionType({
+          name: 'settings__item__data',
+          types: Object.keys(relationTypes).map(k => relationTypes[k]),
+          resolveType(item) {
+            const type = item.internal.type;
+
+            if (type === 'ActivitiesJson')
+              return relationTypes.activities;
+
+            if (type === 'NewsJson')
+              return relationTypes.news;
+
+            if (type === 'PeopleJson')
+              return relationTypes.people;
+
+            if (type === 'ProductionsJson')
+              return relationTypes.productions;
+
+            throw new Error('Unknown type!');
+          }
+        }),
+        resolve(item) {
+          const node = getNode(item.id);
+
+          return node;
+        }
+      }
+    }
+  });
+
   return {
     home: {
       type: new GraphQLTypes.GraphQLObjectType({
         name: 'settings__home',
         fields: {
-          editorialization: {
-            type: new GraphQLTypes.GraphQLList(
-              new GraphQLTypes.GraphQLList(GraphQLTypes.GraphQLString)
-            )
+          grid: {
+            type: new GraphQLTypes.GraphQLList(ItemType)
+          },
+          slider: {
+            type: new GraphQLTypes.GraphQLList(ItemType)
           }
         }
       })

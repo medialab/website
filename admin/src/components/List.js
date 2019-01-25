@@ -64,6 +64,102 @@ function ListFilterBar({filters, onChange, specs}) {
   );
 }
 
+const ListTable = React.memo(props => {
+  const {
+    filteredData,
+    model,
+    ordering,
+    relations,
+    specs
+  } = props;
+
+  return (
+    <table className="listing table is-bordered is-hoverable">
+      <thead>
+        <tr>
+          {specs.fields.map(({label, order}) => {
+
+            let onClick;
+
+            if (order) {
+              onClick = () => {
+                if (ordering && ordering.keys !== order)
+                  return this.handleOrdering({keys: order, reverse: false});
+
+                if (ordering && ordering.reverse)
+                  return this.handleOrdering(null);
+
+                this.handleOrdering({keys: order, reverse: !!ordering});
+              };
+            }
+
+            let glyph = '';
+
+            if (order) {
+              if (ordering === null || ordering.keys !== order)
+                glyph = <span>&nbsp;</span>;
+              else if (ordering.reverse)
+                glyph = UP_ARROW;
+              else
+                glyph = DOWN_ARROW;
+            }
+
+            return (
+              <th
+                key={label}
+                onClick={onClick}
+                className="table--header table--header__sticky"
+                style={{
+                  cursor: order ? 'pointer' : 'default'
+                }}>
+                <div className="table--header--container">
+                  <span style={{textDecoration: order ? 'underline' : 'none'}}>{label}</span> {glyph}
+                </div>
+              </th>
+            );
+          })}
+        </tr>
+      </thead>
+      <tbody>
+        {filteredData.map(d => (
+          <tr key={d.id} className={cls(d.draft && 'is-draft')}>
+            {specs.fields.map(item => {
+              const value = typeof item.property === 'function' ?
+                item.property(d, relations) :
+                d[item.property];
+
+              let icon = null;
+
+              if (item.icon) {
+                const IconComponent = ICONS_MAPPING[item.icon.type][item.icon.property(d)];
+
+                icon = (
+                  <span title={item.icon.label(d)}>
+                    <IconComponent
+                      style={{display: 'inline-block', verticalAlign: 'middle'}}/> &middot;
+                  </span>
+                );
+              }
+
+              const link = (
+                <Link to={`${model}/${d.id}`} style={{display: 'inline-block', padding: '0.5em 0.75em'}}>
+                  {icon} {value}
+                </Link>
+              );
+
+              return (
+                <td key={item.label} style={{padding: '0'}}>
+                  {item.important ? (<strong>{link}</strong>) : link}
+                </td>
+              );
+            })}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+});
+
 export default class List extends Component {
   constructor(props, context) {
     super(props, context);
@@ -167,7 +263,7 @@ export default class List extends Component {
     this.setState({filteredData});
   };
 
-  doFilter = debounce(this.doFilter, 100);
+  doFilter = debounce(this.doFilter, 200);
 
   handleQuery = e => {
     const query = e.target.value;
@@ -229,102 +325,26 @@ export default class List extends Component {
           <div className="column is-10">
             {filteredData.length} / {data.length} items shown
           </div>
-          
+
           <div className="column is-2">
             <Link to={`${model}/new`} className="button is-primary is-fullwidth">
               Add new {label}
             </Link>
           </div>
         </div>
-            
-        <table className="listing table is-fake-bordered is-hoverable">
-          <thead>
-            <tr>
-              {specs.fields.map(({label, order}) => {
 
-                let onClick;
-
-                if (order) {
-                  onClick = () => {
-                    if (ordering && ordering.keys !== order)
-                      return this.handleOrdering({keys: order, reverse: false});
-
-                    if (ordering && ordering.reverse)
-                      return this.handleOrdering(null);
-
-                    this.handleOrdering({keys: order, reverse: !!ordering});
-                  };
-                }
-
-                let glyph = '';
-
-                if (order) {
-                  if (ordering === null || ordering.keys !== order)
-                    glyph = <span>&nbsp;</span>;
-                  else if (ordering.reverse)
-                    glyph = UP_ARROW;
-                  else
-                    glyph = DOWN_ARROW;
-                }
-
-                return (
-                  <th
-                    key={label}
-                    onClick={onClick}
-                    className="table--header table--header__sticky"
-                    style={{
-                      cursor: order ? 'pointer' : 'default',
-                      userSelect: 'none'
-                    }}>
-                    <span style={{textDecoration: order ? 'underline' : 'none'}}>{label}</span> {glyph}
-                  </th>
-                );
-              })}
-            </tr>
-          </thead>
-          <tbody>
-            {filteredData.map(d => (
-              <tr key={d.id} className={cls(d.draft && 'is-draft')}>
-                {specs.fields.map(item => {
-                  const value = typeof item.property === 'function' ?
-                    item.property(d, relations) :
-                    d[item.property];
-
-                  let icon = null;
-
-                  if (item.icon) {
-                    const IconComponent = ICONS_MAPPING[item.icon.type][item.icon.property(d)];
-
-                    icon = (
-                      <span title={item.icon.label(d)}>
-                        <IconComponent
-                          style={{display: 'inline-block', verticalAlign: 'middle'}}/> &middot;
-                      </span>
-                    );
-                  }
-
-                  const link = (
-                    <Link to={`${model}/${d.id}`} style={{display: 'inline-block', padding: '0.5em 0.75em'}}>
-                      {icon} {value}
-                    </Link>
-                  );
-
-                  return (
-                    <td key={item.label} style={{padding: '0'}}>
-                      {item.important ? (<strong>{link}</strong>) : link}
-                    </td>
-                  );
-                })}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <ListTable
+          filteredData={filteredData}
+          model={model}
+          ordering={ordering}
+          relations={relations}
+          specs={specs} />
 
         <div style={{alignItems: 'center'}} className="columns">
           <div className="column is-10">
             {filteredData.length} / {data.length} items shown
           </div>
-          
+
           <div className="column is-2">
             <Link to={`${model}/new`} className="button is-primary is-fullwidth">
               Add new {label}

@@ -1,19 +1,37 @@
 import React, {Component} from 'react';
-import {arrayMove} from 'react-sortable-hoc';
-import get from 'lodash/fp/get';
-import set from 'lodash/fp/set';
 
+import {createHandlers} from './utils';
 import client from '../../client';
 import EditorializationSelector from '../selectors/EditorializationSelector';
 import Button from '../misc/Button';
+
+const HANDLERS = {
+  grid: {
+    type: 'relation',
+    field: ['home', 'grid']
+  },
+  slider: {
+    type: 'relation',
+    field: ['home', 'slider']
+  }
+};
 
 export default class SettingsForm extends Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = {
-      settings: null
+
+      // Data
+      settings: null,
+
+      // State
+      saving: false,
+      signaling: false
     };
+
+    this.timeout = null;
+    this.handlers = createHandlers(this, HANDLERS, 'settings');
   }
 
   componentDidMount() {
@@ -22,35 +40,31 @@ export default class SettingsForm extends Component {
     });
   }
 
-  handleAddHomeItem = item => {
-    let currentList = get(['settings', 'home', 'editorialization'], this.state);
-    currentList = currentList.concat([[item.model, item.value]]);
-
-    this.setState(set(['settings', 'home', 'editorialization'], currentList, this.state));
-  };
-
-  handleDropHomeItem = id => {
-    let currentList = get(['settings', 'home', 'editorialization'], this.state);
-    currentList = currentList.filter(o => o[1] !== id);
-
-    this.setState(set(['settings', 'home', 'editorialization'], currentList, this.state));
-  };
-
-  handleMoveHomeItem = ({oldIndex, newIndex}) => {
-    let currentList = get(['settings', 'home', 'editorialization'], this.state);
-    currentList = arrayMove(currentList, oldIndex, newIndex);
-
-    this.setState(set(['settings', 'home', 'editorialization'], currentList, this.state));
-  };
+  componentWillUnmount() {
+    if (this.timeout)
+      clearTimeout(this.timeout);
+  }
 
   handleSubmit = () => {
-    client.post({params: {model: 'settings'}, data: this.state.settings}, () => {
-      console.log('Saved!');
-    });
+    this.setState({saving: true});
+
+    client.post({params: {model: 'settings'}, data: this.state.settings}, Function.prototype);
+
+    // Animating the save button
+    this.timeout = setTimeout(() => {
+      this.setState({saving: false, signaling: true});
+
+      this.timeout = setTimeout(() => this.setState({signaling: false}), 1500);
+    }, 1000);
   };
 
   render() {
-    const {settings} = this.state;
+    const {
+      saving,
+      signaling,
+
+      settings
+    } = this.state;
 
     if (!settings)
       return <div>Loading...</div>;
@@ -60,14 +74,30 @@ export default class SettingsForm extends Component {
         <div className="columns">
           <div className="column is-4">
             <h2 className="title is-4">Home Page</h2>
+            <h3 className="title is-5">Slider</h3>
             <EditorializationSelector
-              model="people"
-              selected={settings.home.editorialization}
-              onAdd={this.handleAddHomeItem}
-              onDrop={this.handleDropHomeItem}
-              onMove={this.handleMoveHomeItem} />
-            <br />
-            <Button onClick={this.handleSubmit}>Save</Button>
+              max={4}
+              models={['activities', 'news', 'productions']}
+              selected={settings.home.slider}
+              onAdd={this.handlers.slider.add}
+              onDrop={this.handlers.slider.drop}
+              onMove={this.handlers.slider.move} />
+            <hr />
+            <h3 className="title is-5">Grid</h3>
+            <EditorializationSelector
+              max={8}
+              models={['activities', 'news', 'people', 'productions']}
+              selected={settings.home.grid}
+              onAdd={this.handlers.grid.add}
+              onDrop={this.handlers.grid.drop}
+              onMove={this.handlers.grid.move} />
+            <hr />
+            <Button
+              kind={signaling ? 'success' : 'info'}
+              loading={saving}
+              onClick={!signaling ? this.handleSubmit : Function.prototype}>
+              {signaling ? 'Saved!' : 'Save'}
+            </Button>
           </div>
         </div>
       </div>

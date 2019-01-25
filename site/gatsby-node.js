@@ -26,7 +26,6 @@ const QUERIES = require('./queries.js');
 const MODELS = require(path.join(ROOT_PATH, 'specs', 'models.json'));
 const DB_PATH = path.join(ROOT_PATH, 'data');
 const DB_GLOB = path.join(ROOT_PATH, 'data', '*.json');
-const ASSETS_PATH = path.join(ROOT_PATH, 'data', 'assets');
 const ASSETS_GLOB = path.join(ROOT_PATH, 'data', 'assets', '*');
 const PUBLIC_PATH = path.join(process.cwd(), 'public', 'static');
 
@@ -41,53 +40,6 @@ MODELS.forEach(model => {
 });
 
 MODELS_PATHS.settings = path.join(DB_PATH, 'settings.json');
-
-const DUMMY_HOME_DATA = {
-  slider: [
-    {
-      type: 'news',
-      id: 'b635fdd5-ba26-47f1-8995-628cdf33ae18'
-    },
-    {
-      type: 'activities',
-      id: '5ec9bfeb-37cc-492d-991b-4ebe7d2ba224'
-    },
-    {
-      type: 'news',
-      id: '536fe70e-ffb7-4e3e-85d4-a648097a010b'
-    },
-    {
-      type: 'productions',
-      id: 'f6b39e7f-1077-449e-9936-62e9df187b24'
-    }
-  ],
-  grid: [
-    {
-      type: 'news',
-      id: '00195d68-1ad2-4814-baed-16e3b39f17b4'
-    },
-    {
-      type: 'productions',
-      id: '217bcd44-4f8d-4afb-9587-7a0a2ca1d7ce'
-    },
-    {
-      type: 'activities',
-      id: '5c03c6fc-8793-40ed-bf5d-f2d98a5c780d'
-    },
-    {
-      type: 'activities',
-      id: '676f5dd7-27ca-4831-9c5d-7510aa71b88d'
-    },
-    {
-      type: 'people',
-      id: 'a85cb8cb-3ece-41e0-adca-5085a331ee40'
-    },
-    {
-      type: 'news',
-      id: '43e75abf-2114-4db4-8c6b-86ff0280bb2a'
-    }
-  ]
-};
 
 const MODEL_READERS = {
   activities({actions: {createNode, deleteNode}, getNode, pathPrefix}) {
@@ -203,7 +155,6 @@ const MODEL_READERS = {
         ...news,
         content: content,
         identifier: news.id,
-        rawActivities: news.activities,
         internal: {
           type: 'NewsJson',
           contentDigest: hash,
@@ -281,12 +232,7 @@ exports.createPages = function({graphql, actions}) {
     path: '/',
     component: path.resolve('./src/templates/index.js'),
     context: {
-      today: (new Date()).toISOString().split('T')[0],
-      grid: DUMMY_HOME_DATA.grid,
-      slider: DUMMY_HOME_DATA.slider,
-      ids: DUMMY_HOME_DATA.grid
-        .concat(DUMMY_HOME_DATA.slider)
-        .map(({id}) => id)
+      today: (new Date()).toISOString().split('T')[0]
     }
   });
 
@@ -410,10 +356,10 @@ exports.createPages = function({graphql, actions}) {
   return Promise.all(promises);
 };
 
-exports.setFieldsOnGraphQLNodeType = function({type, getNodesByType}) {
+exports.setFieldsOnGraphQLNodeType = function({type, getNode, getNodesByType}) {
 
   if (type.name === 'SettingsJson') {
-    return graphQLSchemaAdditionForSettings();
+    return graphQLSchemaAdditionForSettings(GRAPHQL_SCHEMAS, getNode);
   }
 
   else if (type.name === 'ActivitiesJson') {

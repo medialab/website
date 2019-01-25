@@ -43,13 +43,15 @@ rimraf.sync(path.join(SITE_PATH, '.cache'));
 rimraf.sync(path.join(SITE_PATH, 'public'));
 
 const settingsPath = path.join(DATA_PATH, 'settings.json');
+
 if (!fs.existsSync(settingsPath))
   fs.writeFileSync(
     settingsPath,
     JSON.stringify({
       settings: {
         home: {
-          editorialization: []
+          grid: [],
+          slider: []
         }
       }
     }, null, 2)
@@ -66,6 +68,8 @@ MODELS.forEach(model => {
 });
 
 // Creating routers
+MODELS.push('settings');
+
 const ROUTERS = MODELS.map(model => {
   return {
     model,
@@ -143,7 +147,6 @@ ROUTERS.forEach(({model, router}) => {
 
   app.use(`/${model}`, middlewares.lastUpdated, router);
 });
-app.use('/settings', jsonServer.router(path.join(DATA_PATH, 'settings.json')));
 
 // Upload route
 app.post('/upload', (req, res) => {
@@ -174,6 +177,7 @@ app.get('/reboot-gatsby', (req, res) => {
 const MIGRATION_SCHEMES = {
   'drop-important': require('./migrations/drop-important.js'),
   'fix-dates': require('./migrations/fix-dates.js'),
+  'reset-settings': require('./migrations/reset-settings.js'),
   'reslugify': require('./migrations/reslugify.js')
 };
 

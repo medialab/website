@@ -1,3 +1,4 @@
+
 /* global STATIC_URL */
 /* eslint no-nested-ternary: 0 */
 /* eslint no-alert: 0 */
@@ -11,7 +12,15 @@ import {Link, Prompt} from 'react-router-dom';
 import uuid from 'uuid/v4';
 import get from 'lodash/fp/get';
 import set from 'lodash/fp/set';
-import last from 'lodash/fp/last';
+import cond from 'lodash/fp/cond';
+import negate from 'lodash/fp/negate';
+import isEqual from 'lodash/fp/isEqual';
+import property from 'lodash/fp/property';
+import stubTrue from 'lodash/fp/stubTrue';
+import map from 'lodash/fp/map';
+import constant from 'lodash/fp/constant';
+import overEvery from 'lodash/fp/overEvery';
+import isFunction from 'lodash/fp/isFunction';
 import cls from 'classnames';
 
 import client from '../../client';
@@ -20,15 +29,48 @@ import CardModal from '../misc/CardModal';
 import Preview from '../Preview';
 import {hash, createHandlers} from './utils';
 
-const actionBarStyle = {
-  borderTop: '1px solid #dbdbdb',
-  boxShadow: '0px -5px 7px -5px #ddd',
-  padding: '10px',
-  position: 'fixed',
-  bottom: '0px',
-  backgroundColor: 'white',
-  zIndex: 500
-};
+const condWithConstants = d => cond(
+  map(
+    ([condition, result]) => [condition, isFunction(result) ? result : constant(result)], d
+  )
+);
+const isPage = page => props => isEqual(
+  property('view', props), page
+);
+const isFrenchPage = isPage('preview-fr');
+const isEditPage = isPage('edit');
+const isNotEditPage = negate(isEditPage);
+const isItNew = property('isNew');
+const isItSignaling = property('signaling');
+const isDirty = property('dirty');
+const isNotDirty = negate(isDirty);
+const isThereErrors = property('validationError');
+const fnButtonKind = condWithConstants([
+  [isItSignaling, 'success'],
+  [isNotEditPage, 'danger'],
+  [
+    overEvery([
+      isDirty,
+      negate(isThereErrors)
+    ]),
+    'info'
+  ],
+  [stubTrue, 'white']
+]);
+const fnDisabled = condWithConstants([
+  [isNotEditPage, false],
+  [p => isNotDirty(p) || isThereErrors(p), true],
+  [stubTrue, false]
+]);
+const fnButtonText = pageLabel => condWithConstants([
+  [isNotEditPage, 'Back to editing ↲'],
+  [isItSignaling, `${pageLabel} saved!`],
+  [isNotDirty, 'Nothing yet to save'],
+  [isThereErrors, isThereErrors],
+  [isItNew, `Create this ${pageLabel}`],
+  [stubTrue, `Save this ${pageLabel}`]
+]);
+
 
 const navigationPromptMessage = () => 'You have unsaved modifications. Sure you want to move?';
 
@@ -311,9 +353,7 @@ class Form extends Component {
       data,
       existingSlugs,
       saving,
-      signaling,
-      time,
-      view
+      time
     } = this.state;
 
     const {
@@ -330,71 +370,69 @@ class Form extends Component {
     const slug = isNew ?
       slugify(data) :
       data.slugs[data.slugs.length - 1];
-
+    const URL = `${model}/${slug}`;
     const pageLabel = label || model;
-
-    const saveLabel = isNew ?
-      `Create this ${pageLabel}` :
-      `Save this ${pageLabel}`;
-
     const dirty = hash(data) !== lastHash;
-
-    let buttonText = saveLabel;
-    let buttonKind = 'white';
-
     const validationError = validate(data);
+    const state = {...this.state, dirty, validationError};
+    const previewPropsFilter = compareTo => ({
+      kind: !validationError && !dirty ? 'success' : 'white',
+      disabled: dirty || validationError || isPage(compareTo)(state),
+      loading: saving
+    });
 
-    if (signaling) {
-      buttonText = `${pageLabel} saved!`;
-      buttonKind = 'success';
-    }
-    else if (!dirty) {
-      buttonText = 'Nothing yet to save';
-    }
-    else if (validationError) {
-      buttonText = validationError;
-    }
-
-    if (dirty && !validationError) {
-      buttonKind = 'info';
-    }
-
-    let body = null;
-    if (view === 'edit') {
-      const renderedForm = children({
-        handlers: this.handlers,
-        englishEditorContent: this.englishEditorContent,
-        frenchEditorContent: this.frenchEditorContent,
-        slug,
-        data,
-        children: (
-          !isNew && <div style={{marginBottom: '10px'}}>
-            <label className="label is-inline">
-              Preview link:{' '}
-            </label>
-            {slug && <a
-              href={`${STATIC_URL}/${model}/${slug}`}
-              target="_blank"
-              rel="noopener noreferrer">{`${STATIC_URL}/${model}/${slug}`}</a>}
-          </div>
-        )
-      });
-
-      body = (
+    return (
+      <div>
+        {confirming && (
+          <SlugConfirm
+            slug={slug}
+            existingSlugs={existingSlugs}
+            onClose={this.handleConfirmationModalClose}
+            onSubmit={this.handleSubmit} />
+        )}
+        <Prompt
+          when={!saving && dirty}
+          message={navigationPromptMessage} />
         <div>
-          {renderedForm}
+          {
+            cond([
+              [isEditPage, constant(children({
+                  handlers: this.handlers,
+                  englishEditorContent: this.englishEditorContent,
+                  frenchEditorContent: this.frenchEditorContent,
+                  slug,
+                  data,
+                  children: (
+                    !isNew && <div style={{marginBottom: '10px'}}>
+                      <label className="label is-inline">
+                        Preview link:{' '}
+                      </label>
+                      {slug && <a
+                        href={`${STATIC_URL}/${URL}`}
+                        target="_blank"
+                        rel="noopener noreferrer">{`${STATIC_URL}/${URL}`}</a>}
+                    </div>
+                  )
+                }))],
+              [isFrenchPage, constant(<Preview url={URL} />)],
+              [stubTrue, constant(<Preview url={`en/${URL}`} />)]
+            ])(state)
+          }
           <p style={{height: '70px'}} />
-          <div style={actionBarStyle} className="container">
+          <div className="container footer-container">
             <div className="level">
               <div className="level-left">
                 <div className="field is-grouped">
                   <div className="control">
                     <Button
-                      kind={buttonKind}
-                      disabled={!dirty || validationError}
+                      kind={fnButtonKind(state)}
+                      disabled={fnDisabled(state)}
                       loading={saving}
-                      onClick={!signaling ? this.handleRawSubmit : Function.prototype}>
-                      {buttonText}
+                      onClick={cond([
+                        [isNotEditPage, constant(this.toggleEdit)],
+                        [stubTrue, constant(this.handleRawSubmit)]
+                      ])(state)}>
+                      {fnButtonText(pageLabel)(state)}
                     </Button>
                   </div>
                   <div className="control">
@@ -417,16 +455,12 @@ class Form extends Component {
                       </div>
                       <div className="control">
                         <Button
-                          kind={!validationError ? 'success' : 'white'}
-                          disabled={validationError}
-                          loading={saving}
+                          {...previewPropsFilter('preview-fr')}
                           onClick={this.toggleFrenchPreview}>French</Button>
                       </div>
                       <div className="control">
                         <Button
-                          kind={!validationError ? 'success' : 'white'}
-                          disabled={validationError}
-                          loading={saving}
+                          {...previewPropsFilter('preview-en')}
                           onClick={this.toggleEnglishPreview}>English</Button>
                       </div>
                     </React.Fragment>
@@ -436,30 +470,6 @@ class Form extends Component {
             </div>
           </div>
         </div>
-      );
-    }
-
-    else if (view === 'preview-fr') {
-      body = <Preview onClose={this.toggleEdit} url={`${model}/${data.slugs[data.slugs.length - 1]}`} />;
-    }
-
-    else {
-      body = <Preview onClose={this.toggleEdit} url={`en/${model}/${data.slugs[data.slugs.length - 1]}`} />;
-    }
-
-    return (
-      <div>
-        {confirming && (
-          <SlugConfirm
-            slug={slug}
-            existingSlugs={existingSlugs}
-            onClose={this.handleConfirmationModalClose}
-            onSubmit={this.handleSubmit} />
-        )}
-        <Prompt
-          when={!saving && dirty}
-          message={navigationPromptMessage} />
-        {body}
       </div>
     );
   }

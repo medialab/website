@@ -116,3 +116,12 @@ li {
   }
 }
 
+.footer-container {
+  border-top: 1px solid #dbdbdb;
+  box-shadow: 0px -5px 7px -5px #ddd;
+  padding: 10px;
+  position: fixed;
+  bottom: 0px;
+  background-color: white;
+  z-index: 500
+}

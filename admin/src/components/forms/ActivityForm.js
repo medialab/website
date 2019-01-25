@@ -12,8 +12,11 @@ import RelationSelector from '../selectors/RelationSelector';
 import SortableKeyValueList from '../selectors/SortableKeyValueList';
 
 function validate(data) {
-  if (!data.name)
-    return 'Need at least a name';
+  if (!data.name) {
+    return 'A name is required';
+  }
+  if (!slugifyActivity(data).length)
+    return 'A name with at least one valid characters is required';
 }
 
 const HANDLERS = {
@@ -84,7 +87,6 @@ function renderActivityForm(props) {
 
   return (
     <div className="container">
-
       <div className="form-group">
         <div className="columns">
           <div className="column is-6">

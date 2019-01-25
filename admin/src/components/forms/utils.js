@@ -62,12 +62,12 @@ export function createArrayMoveHandler(scope, key) {
   };
 }
 
-export function createHandlers(scope, specs) {
+export function createHandlers(scope, specs, root = 'data') {
   const handlers = {};
 
   for (const k in specs) {
     const spec = specs[k],
-          field = ['data'].concat(spec.field);
+          field = [root].concat(spec.field);
 
     let handler;
 

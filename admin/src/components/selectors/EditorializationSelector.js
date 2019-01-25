@@ -16,6 +16,21 @@ const TITLES = {
   news: 'News'
 };
 
+const TASKS = {
+  activities(next) {
+    return client.list({params: {model: 'activities'}}, next);
+  },
+  people(next) {
+    return client.list({params: {model: 'people'}}, next);
+  },
+  productions(next) {
+    return client.list({params: {model: 'productions'}}, next);
+  },
+  news(next) {
+    return client.list({params: {model: 'news'}}, next);
+  }
+};
+
 const noOptionsMessage = () => 'No matching item';
 
 const createOptions = (model, items) => ({
@@ -29,7 +44,7 @@ const createOptions = (model, items) => ({
 
 const DragHandle = SortableHandle(() => (
   <span className="handle" style={{marginTop: '5px', marginRight: '5px'}}>
-    <ReorderIcon width={20} height={20} fill="rgba(10, 10, 10, 0.2)" />>
+    <ReorderIcon width={20} height={20} fill="rgba(10, 10, 10, 0.2)" />
   </span>
 ));
 
@@ -45,14 +60,14 @@ const SortableItem = SortableElement(({id, label, model, onDrop}) => (
 
 const SortableList = SortableContainer(({items, index, onDrop}) => (
   <ul className="sortable">
-    {items.map(([model, id], i) => (
+    {items.map((item, i) => (
       <SortableItem
-        key={id}
+        key={item.id}
         index={i}
-        id={id}
-        model={model}
-        label={index[id].label}
-        onDrop={() => onDrop(id)} />
+        id={item.id}
+        model={item.model}
+        label={index[item.id].label}
+        onDrop={() => onDrop(item)} />
     ))}
   </ul>
 ));
@@ -70,25 +85,16 @@ export default class EditorializationSelector extends Component {
   }
 
   componentDidMount() {
-    parallel({
-      activities(next) {
-        return client.list({params: {model: 'activities'}}, next);
-      },
-      people(next) {
-        return client.list({params: {model: 'people'}}, next);
-      },
-      productions(next) {
-        return client.list({params: {model: 'productions'}}, next);
-      },
-      news(next) {
-        return client.list({params: {model: 'news'}}, next);
-      }
-    }, (err, data) => {
-      const options = []
-        .concat(createOptions('activities', data.activities))
-        .concat(createOptions('people', data.people))
-        .concat(createOptions('productions', data.productions))
-        .concat(createOptions('news', data.news));
+    const models = this.props.models;
+
+    const tasks = {};
+
+    models.forEach(model => (tasks[model] = TASKS[model]));
+
+    parallel(tasks, (err, data) => {
+      const options = models.reduce((acc, model) => {
+        return acc.concat(createOptions(model, data[model]));
+      }, []);
 
       this.optionsIndex = keyBy(flatten(options.map(g => g.options)), 'value');
       this.setState({options, loading: false});
@@ -99,15 +105,23 @@ export default class EditorializationSelector extends Component {
     if (!option || !option.value)
       return;
 
-    this.props.onAdd(option);
+    this.props.onAdd({
+      model: option.model,
+      id: option.value
+    });
   };
 
   render() {
     const {options, loading} = this.state;
 
-    const {onDrop, onMove, selected = []} = this.props;
+    const {
+      max = Infinity,
+      onDrop,
+      onMove,
+      selected = []
+    } = this.props;
 
-    const selectedSet = new Set(selected.map(item => item[1]));
+    const selectedSet = new Set(selected.map(item => item.id));
 
     const filteredOptions = options.map(group => {
       return {
@@ -115,6 +129,8 @@ export default class EditorializationSelector extends Component {
         options: group.options.filter(o => !selectedSet.has(o.value))
       };
     });
+
+    const full = selected.length >= max;
 
     return (
       <div>
@@ -128,12 +144,12 @@ export default class EditorializationSelector extends Component {
         }
         <br />
         <Select
+          isDisabled={full}
           value={null}
           onChange={this.handleChange}
           options={filteredOptions}
           isLoading={loading}
-          menuPlacement="top"
-          placeholder="Add..."
+          placeholder={full ? 'Already full' : 'Add...'}
           noOptionsMessage={noOptionsMessage} />
       </div>
     );

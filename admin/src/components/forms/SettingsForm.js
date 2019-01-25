@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
-import {arrayMove} from 'react-sortable-hoc';
-import get from 'lodash/fp/get';
-import set from 'lodash/fp/set';
 
+import {createHandlers} from './utils';
 import client from '../../client';
 import EditorializationSelector from '../selectors/EditorializationSelector';
 import Button from '../misc/Button';
+
+const HANDLERS = {
+  grid: {
+    type: 'relation',
+    field: ['home', 'grid']
+  }
+};
 
 export default class SettingsForm extends Component {
   constructor(props, context) {
@@ -14,6 +19,8 @@ export default class SettingsForm extends Component {
     this.state = {
       settings: null
     };
+
+    this.handlers = createHandlers(this, HANDLERS, 'settings');
   }
 
   componentDidMount() {
@@ -21,27 +28,6 @@ export default class SettingsForm extends Component {
       this.setState({settings: data});
     });
   }
-
-  handleAddHomeItem = item => {
-    let currentList = get(['settings', 'home', 'editorialization'], this.state);
-    currentList = currentList.concat([[item.model, item.value]]);
-
-    this.setState(set(['settings', 'home', 'editorialization'], currentList, this.state));
-  };
-
-  handleDropHomeItem = id => {
-    let currentList = get(['settings', 'home', 'editorialization'], this.state);
-    currentList = currentList.filter(o => o[1] !== id);
-
-    this.setState(set(['settings', 'home', 'editorialization'], currentList, this.state));
-  };
-
-  handleMoveHomeItem = ({oldIndex, newIndex}) => {
-    let currentList = get(['settings', 'home', 'editorialization'], this.state);
-    currentList = arrayMove(currentList, oldIndex, newIndex);
-
-    this.setState(set(['settings', 'home', 'editorialization'], currentList, this.state));
-  };
 
   handleSubmit = () => {
     client.post({params: {model: 'settings'}, data: this.state.settings}, () => {
@@ -60,12 +46,14 @@ export default class SettingsForm extends Component {
         <div className="columns">
           <div className="column is-4">
             <h2 className="title is-4">Home Page</h2>
+            <h3 className="title is-5">Grid</h3>
             <EditorializationSelector
-              model="people"
-              selected={settings.home.editorialization}
-              onAdd={this.handleAddHomeItem}
-              onDrop={this.handleDropHomeItem}
-              onMove={this.handleMoveHomeItem} />
+              max={4}
+              models={['activities', 'news', 'productions']}
+              selected={settings.home.grid}
+              onAdd={this.handlers.grid.add}
+              onDrop={this.handlers.grid.drop}
+              onMove={this.handlers.grid.move} />
             <br />
             <Button onClick={this.handleSubmit}>Save</Button>
           </div>

@@ -1,8 +1,10 @@
 module.exports = function(req, dbs, next) {
   dbs.settings.setState({
-    home: {
-      grid: [],
-      slider: []
+    settings: {
+      home: {
+        grid: [],
+        slider: []
+      }
     }
   });
 

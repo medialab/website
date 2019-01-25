@@ -9,6 +9,10 @@ const HANDLERS = {
   grid: {
     type: 'relation',
     field: ['home', 'grid']
+  },
+  slider: {
+    type: 'relation',
+    field: ['home', 'slider']
   }
 };
 
@@ -70,15 +74,24 @@ export default class SettingsForm extends Component {
         <div className="columns">
           <div className="column is-4">
             <h2 className="title is-4">Home Page</h2>
-            <h3 className="title is-5">Grid</h3>
+            <h3 className="title is-5">Slider</h3>
             <EditorializationSelector
               max={4}
               models={['activities', 'news', 'productions']}
+              selected={settings.home.slider}
+              onAdd={this.handlers.slider.add}
+              onDrop={this.handlers.slider.drop}
+              onMove={this.handlers.slider.move} />
+            <hr />
+            <h3 className="title is-5">Grid</h3>
+            <EditorializationSelector
+              max={8}
+              models={['activities', 'news', 'people', 'productions']}
               selected={settings.home.grid}
               onAdd={this.handlers.grid.add}
               onDrop={this.handlers.grid.drop}
               onMove={this.handlers.grid.move} />
-            <br />
+            <hr />
             <Button
               kind={signaling ? 'success' : 'info'}
               loading={saving}

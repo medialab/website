@@ -21,6 +21,7 @@ import map from 'lodash/fp/map';
 import constant from 'lodash/fp/constant';
 import overEvery from 'lodash/fp/overEvery';
 import isFunction from 'lodash/fp/isFunction';
+import overSome from 'lodash/fp/overSome';
 import cls from 'classnames';
 
 import client from '../../client';
@@ -49,9 +50,12 @@ const fnButtonKind = condWithConstants([
   [isItSignaling, 'success'],
   [isNotEditPage, 'danger'],
   [
-    overEvery([
-      isDirty,
-      negate(isThereErrors)
+    overSome([
+      overEvery([
+        isDirty,
+        negate(isThereErrors)
+      ]),
+      ({saving}) => saving
     ]),
     'info'
   ],
@@ -425,6 +429,7 @@ class Form extends Component {
                 <div className="field is-grouped">
                   <div className="control">
                     <Button
+                      className="button__animated-color"
                       kind={fnButtonKind(state)}
                       disabled={fnDisabled(state)}
                       loading={saving}
@@ -455,11 +460,13 @@ class Form extends Component {
                       </div>
                       <div className="control">
                         <Button
+                          className="button__animated-color"
                           {...previewPropsFilter('preview-fr')}
                           onClick={this.toggleFrenchPreview}>French</Button>
                       </div>
                       <div className="control">
                         <Button
+                          className="button__animated-color"
                           {...previewPropsFilter('preview-en')}
                           onClick={this.toggleEnglishPreview}>English</Button>
                       </div>

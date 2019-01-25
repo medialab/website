@@ -150,3 +150,7 @@ $table-header-color: #dbdbdb;
   background-color: white;
   z-index: 500
 }
+
+.button__animated-color {
+  transition: background-color 0.3s ease;
+}

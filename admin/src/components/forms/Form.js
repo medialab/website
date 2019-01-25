@@ -413,19 +413,19 @@ class Form extends Component {
                   {!isNew && (
                     <React.Fragment>
                       <div className="field-label is-normal">
-                        <p className={cls(dirty && !validationError ? '' : 'has-text-grey')}>Preview {pageLabel} page:</p>
+                        <p className={cls(validationError && 'has-text-grey')}>Preview {pageLabel} page:</p>
                       </div>
                       <div className="control">
                         <Button
-                          kind={dirty && !validationError ? 'success' : 'white'}
-                          disabled={!dirty || validationError}
+                          kind={!validationError ? 'success' : 'white'}
+                          disabled={validationError}
                           loading={saving}
                           onClick={this.toggleFrenchPreview}>French</Button>
                       </div>
                       <div className="control">
                         <Button
-                          kind={dirty && !validationError ? 'success' : 'white'}
-                          disabled={!dirty || validationError}
+                          kind={!validationError ? 'success' : 'white'}
+                          disabled={validationError}
                           loading={saving}
                           onClick={this.toggleEnglishPreview}>English</Button>
                       </div>

@@ -17,9 +17,16 @@ export default class SettingsForm extends Component {
     super(props, context);
 
     this.state = {
-      settings: null
+
+      // Data
+      settings: null,
+
+      // State
+      saving: false,
+      signaling: false
     };
 
+    this.timeout = null;
     this.handlers = createHandlers(this, HANDLERS, 'settings');
   }
 
@@ -29,14 +36,31 @@ export default class SettingsForm extends Component {
     });
   }
 
+  componentWillUnmount() {
+    if (this.timeout)
+      clearTimeout(this.timeout);
+  }
+
   handleSubmit = () => {
-    client.post({params: {model: 'settings'}, data: this.state.settings}, () => {
-      console.log('Saved!');
-    });
+    this.setState({saving: true});
+
+    client.post({params: {model: 'settings'}, data: this.state.settings}, Function.prototype);
+
+    // Animating the save button
+    this.timeout = setTimeout(() => {
+      this.setState({saving: false, signaling: true});
+
+      this.timeout = setTimeout(() => this.setState({signaling: false}), 1500);
+    }, 1000);
   };
 
   render() {
-    const {settings} = this.state;
+    const {
+      saving,
+      signaling,
+
+      settings
+    } = this.state;
 
     if (!settings)
       return <div>Loading...</div>;
@@ -55,7 +79,12 @@ export default class SettingsForm extends Component {
               onDrop={this.handlers.grid.drop}
               onMove={this.handlers.grid.move} />
             <br />
-            <Button onClick={this.handleSubmit}>Save</Button>
+            <Button
+              kind={signaling ? 'success' : 'info'}
+              loading={saving}
+              onClick={!signaling ? this.handleSubmit : Function.prototype}>
+              {signaling ? 'Saved!' : 'Save'}
+            </Button>
           </div>
         </div>
       </div>

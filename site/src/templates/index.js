@@ -5,42 +5,53 @@ import Layout from '../components/Layout';
 import Home from '../components/Home';
 
 export const query = graphql`
-  query($ids: [String]!) {
-    allActivitiesJson(filter: {identifier: {in: $ids}}) {
-      edges {
-        node {
+  {
+    settingsJson {
+      home {
+        grid {
           id
-          name
-        }
-      }
-    }
-    allNewsJson(filter: {identifier: {in: $ids}}) {
-      edges {
-        node {
-          id
-          title {
-            fr
-            en
+          model
+          data {
+            ... on Activities {
+              name
+            }
+            ... on News {
+              title {
+                en
+                fr
+              }
+            }
+            ... on Productions {
+              title {
+                en
+                fr
+              }
+            }
           }
         }
-      }
-    }
-    allPeopleJson(filter: {identifier: {in: $ids}}) {
-      edges {
-        node {
+        slider {
           id
-          firstName
-          lastName
-        }
-      }
-    }
-    allProductionsJson(filter: {identifier: {in: $ids}}) {
-      edges {
-        node {
-          id
-          title {
-            fr
-            en
+          model
+          data {
+            ... on Activities {
+              name
+            }
+            ... on News {
+              title {
+                en
+                fr
+              }
+            }
+            ... on People {
+              firstName
+              lastName
+            }
+            ... on Productions {
+              title {
+                en
+                fr
+              }
+            }
           }
         }
       }
@@ -63,15 +74,8 @@ export const query = graphql`
 const IndexPage = ({data, pageContext}) => {
   console.log(data, pageContext);
 
-  const index = {};
-
-  data.allActivitiesJson.edges.forEach(({node}) => index[node.id] = node);
-  data.allNewsJson.edges.forEach(({node}) => index[node.id] = node);
-  data.allPeopleJson.edges.forEach(({node}) => index[node.id] = node);
-  data.allProductionsJson.edges.forEach(({node}) => index[node.id] = node);
-
-  const grid = pageContext.grid.map(({id}) => index[id]);
-  const slider = pageContext.grid.map(({id}) => index[id]);
+  const grid = data.settingsJson.home.grid;
+  const slider = data.settingsJson.home.slider;
   const rdv = data.rdv.edges.map(({node}) => node);
 
   return (

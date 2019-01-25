@@ -395,8 +395,8 @@ class Form extends Component {
           message={navigationPromptMessage} />
         <div>
           {
-            cond([
-              [isEditPage, constant(children({
+            condWithConstants([
+              [isEditPage, children({
                   handlers: this.handlers,
                   englishEditorContent: this.englishEditorContent,
                   frenchEditorContent: this.frenchEditorContent,
@@ -413,9 +413,9 @@ class Form extends Component {
                         rel="noopener noreferrer">{`${STATIC_URL}/${URL}`}</a>}
                     </div>
                   )
-                }))],
-              [isFrenchPage, constant(<Preview url={URL} />)],
-              [stubTrue, constant(<Preview url={`en/${URL}`} />)]
+                })],
+              [isFrenchPage, <Preview key="preview" url={URL} />],
+              [stubTrue, <Preview key="preview" url={`en/${URL}`} />]
             ])(state)
           }
           <p style={{height: '70px'}} />

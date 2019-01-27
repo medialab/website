@@ -1,0 +1,44 @@
+/////////////////////
+//////// Footer desktop
+/////////////////////
+
+@include for-size(desktop) {
+    footer{
+        height: $unite*3;
+        margin-top: $unite*2;
+        @include flex();
+
+        @include font-size-16();
+
+        .mentions{
+            width: 50%;
+        }
+
+        .contact{
+            width: 50%;
+        }
+    }
+}
+
+/////////////////////
+//////// Footer phone
+/////////////////////
+
+@include for-size(phone) {
+    footer{
+        height: $unite*3;
+        margin-top: $unite*2;
+        @include flex();
+
+        @include font-size-13-phone();
+
+        .mentions{
+            width: 50%;
+        }
+
+        .contact{
+            width: 50%;
+        }
+    }
+}
+

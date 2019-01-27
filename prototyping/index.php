@@ -27,15 +27,13 @@
 		</p>
 	</section>
 
-
 	<?php include('fragments/index/now.php'); ?>
 	<?php include('fragments/index/agenda.php'); ?>
 	<?php include('fragments/index/flux.php'); ?>
 
-
-
 	</main>
 
+	<?php include('fragments/_footer.php'); ?>
 
 </body>
 </html>

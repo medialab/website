@@ -1,0 +1,131 @@
+/////////////////////
+//////// Flux desktop
+/////////////////////
+
+/* no support of grid */
+@include for-size(desktop){
+    #flux{
+        display: inline-block;
+        width: 100%;
+        margin-right: $margins-phone;
+        margin-bottom: $margins-phone;
+        vertical-align: top;
+    }
+
+}
+
+@include for-size(desktop-900) {
+}
+
+@include for-size(desktop-1300) {
+}
+
+@include for-size(desktop) {
+
+    /* grid support */
+    @supports(display: grid) {
+        #flux #flux-container{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-rows: auto auto;
+            grid-gap: $unite;
+            article{
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    /* grid support for Edge (old syntax) */
+    @supports (display: -ms-grid) {
+
+        #flux #flux-container{
+            display: -ms-grid;
+            -ms-grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            -ms-grid-template-rows: auto auto;
+            grid-gap: $unite;
+            article{
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 0;
+            }
+        }
+    }
+
+
+    #flux {
+        
+        #flux-container{
+            
+            margin-top: 45px;
+            overflow: hidden;
+        
+            article{
+
+                border-right: $border-light;
+                background: $background-site;
+
+                &:after{
+                    content: "";
+                    border-bottom: $border-light;
+                    display: block;
+                    width: calc( 100% - #{$unite*1} );
+                    //height: $unite;
+                    height: 5%;
+                    margin-left: 0;
+                }
+
+                .nomenclature{
+                    @include font-size-16();
+                    margin-bottom: $baseline/2;
+                }
+                
+                hgroup{
+
+                    h1{
+                        @include font-size-20();
+                        margin-top: $baseline*1;
+                        margin-bottom: $baseline*1;
+                    }
+
+                    h2{
+                        @include font-size-16();
+                    }
+
+                    h3{
+                        @include font-size-13();
+
+                        time:after{
+                            content: ", ";
+                        }
+                    }
+
+                }
+
+                &:hover{
+                    .more{
+                        color: $redlab;
+                    }
+                }
+            }
+
+            .block{
+                display: none;
+                position: absolute;
+                top: 0;
+                right: 0;
+                word-wrap: break-word;
+                width: 100%;
+                z-index: -1;
+
+                p{
+                    font-size: 4vw;
+                }
+            }
+
+        } /* End flux container*/
+        
+    } /* end #flux*/
+
+}

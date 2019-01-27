@@ -27,6 +27,9 @@
 [data-type="activite"] .type::before{
     content: $activites;
 }
+[data-type="git"] .type::before{
+    content: $git;
+}
 
 
 a:hover{ color: $redlab; }
@@ -117,6 +120,24 @@ input:checked + label .checkbox-medialab_link:after {
   // si checkbox = reconfiguration du build (par lien)
   input:checked + label .checkbox-medialab_link:after { left: 2px; }
   .checkbox-medialab_link:hover { color: currentColor;}
+
+
+
+////////////////////////////
+// En savoir plus Button //
+///////////////////////////
+
+.more{
+    margin-top: $baseline*1;
+    margin-bottom: $baseline*1;
+    @include font-size-13();
+    color: $text-color-light;
+    text-decoration: underline; 
+    
+    &:hover{
+        color: $redlab;
+    }
+}
 
 
 

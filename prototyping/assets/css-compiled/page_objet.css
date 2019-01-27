@@ -32,13 +32,16 @@ html {
     overflow-x: hidden;
     background-color: white; } }
 [data-type="actualite"] .type::before {
-  content: "⁙ "; }
+  content: "∾ "; }
 
 [data-type="production"] .type::before {
   content: "☵ "; }
 
 [data-type="activite"] .type::before {
   content: "⋇ "; }
+
+[data-type="git"] .type::before {
+  content: "⊶ "; }
 
 a:hover {
   color: #f7323f; }
@@ -120,6 +123,17 @@ input:checked + label .checkbox-medialab_link:after {
 
 .checkbox-medialab_link:hover {
   color: currentColor; }
+
+.more {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 13px;
+  line-height: 19.5px;
+  font-weight: 100;
+  color: rgba(68, 68, 68, 0.6);
+  text-decoration: underline; }
+  .more:hover {
+    color: #f7323f; }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
@@ -482,7 +496,7 @@ ul {
     width: 30px;
     fill: #444; }
 #topbar li[data-type="actualite"]::before {
-  content: "⁙ "; }
+  content: "∾ "; }
 #topbar li[data-type="production"]::before {
   content: "☵ "; }
 #topbar li[data-type="activite"]::before {
@@ -626,6 +640,48 @@ ul {
 
   /* end #topbar-content */ }
 /* end desktop */
+@media (min-width: 700px) {
+  footer {
+    height: 75px;
+    margin-top: 50px;
+    display: -webkit-box;
+    /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;
+    /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;
+    /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    /* NEW - Chrome */
+    display: flex;
+    /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 100; }
+    footer .mentions {
+      width: 50%; }
+    footer .contact {
+      width: 50%; } }
+@media (max-width: 700px) {
+  footer {
+    height: 75px;
+    margin-top: 50px;
+    display: -webkit-box;
+    /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;
+    /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;
+    /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    /* NEW - Chrome */
+    display: flex;
+    /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    font-size: 13px;
+    line-height: 19.5px;
+    font-weight: 300; }
+    footer .mentions {
+      width: 50%; }
+    footer .contact {
+      width: 50%; } }
 /* all */
 body, html {
   overflow: inherit; }

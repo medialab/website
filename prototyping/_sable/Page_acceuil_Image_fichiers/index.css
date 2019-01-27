@@ -32,16 +32,13 @@ html {
     overflow-x: hidden;
     background-color: white; } }
 [data-type="actualite"] .type::before {
-  content: "∾ "; }
+  content: "⁙ "; }
 
 [data-type="production"] .type::before {
   content: "☵ "; }
 
 [data-type="activite"] .type::before {
   content: "⋇ "; }
-
-[data-type="git"] .type::before {
-  content: "⊶ "; }
 
 a:hover {
   color: #f7323f; }
@@ -123,17 +120,6 @@ input:checked + label .checkbox-medialab_link:after {
 
 .checkbox-medialab_link:hover {
   color: currentColor; }
-
-.more {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  font-size: 13px;
-  line-height: 19.5px;
-  font-weight: 100;
-  color: rgba(68, 68, 68, 0.6);
-  text-decoration: underline; }
-  .more:hover {
-    color: #f7323f; }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
@@ -496,7 +482,7 @@ ul {
     width: 30px;
     fill: #444; }
 #topbar li[data-type="actualite"]::before {
-  content: "∾ "; }
+  content: "⁙ "; }
 #topbar li[data-type="production"]::before {
   content: "☵ "; }
 #topbar li[data-type="activite"]::before {
@@ -640,48 +626,6 @@ ul {
 
   /* end #topbar-content */ }
 /* end desktop */
-@media (min-width: 700px) {
-  footer {
-    height: 75px;
-    margin-top: 50px;
-    display: -webkit-box;
-    /* OLD - iOS 6-, Safari 3.1-6 */
-    display: -moz-box;
-    /* OLD - Firefox 19- (buggy but mostly works) */
-    display: -ms-flexbox;
-    /* TWEENER - IE 10 */
-    display: -webkit-flex;
-    /* NEW - Chrome */
-    display: flex;
-    /* NEW, Spec - Opera 12.1, Firefox 20+ */
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 100; }
-    footer .mentions {
-      width: 50%; }
-    footer .contact {
-      width: 50%; } }
-@media (max-width: 700px) {
-  footer {
-    height: 75px;
-    margin-top: 50px;
-    display: -webkit-box;
-    /* OLD - iOS 6-, Safari 3.1-6 */
-    display: -moz-box;
-    /* OLD - Firefox 19- (buggy but mostly works) */
-    display: -ms-flexbox;
-    /* TWEENER - IE 10 */
-    display: -webkit-flex;
-    /* NEW - Chrome */
-    display: flex;
-    /* NEW, Spec - Opera 12.1, Firefox 20+ */
-    font-size: 13px;
-    line-height: 19.5px;
-    font-weight: 300; }
-    footer .mentions {
-      width: 50%; }
-    footer .contact {
-      width: 50%; } }
 /* all */
 .time::before {
   content: "◷ "; }
@@ -1234,6 +1178,14 @@ changement navigation */
         filter: grayscale(100%) contrast(1000%); }
       #now article figure:hover img, #elements-associes article figure:hover img {
         mix-blend-mode: screen; }
+    #now article .more, #elements-associes article .more {
+      margin-top: 15px;
+      margin-bottom: 15px;
+      font-size: 13px;
+      line-height: 19.5px;
+      font-weight: 100;
+      color: rgba(68, 68, 68, 0.6);
+      text-decoration: underline; }
     #now article:hover, #elements-associes article:hover {
       cursor: pointer;
       color: #f7323f; }
@@ -1333,6 +1285,14 @@ changement navigation */
         mix-blend-mode: screen;
         -webkit-filter: grayscale(100%) contrast(1000%);
         filter: grayscale(100%) contrast(1000%); }
+    #now article .more, #elements-associes article .more {
+      margin-top: 15px;
+      margin-bottom: 15px;
+      font-size: 13px;
+      line-height: 19.5px;
+      font-weight: 100;
+      color: rgba(68, 68, 68, 0.6);
+      text-decoration: underline; }
     #now article:hover, #elements-associes article:hover {
       cursor: pointer;
       color: #f7323f; }
@@ -1780,8 +1740,8 @@ changement navigation */
         position: absolute;
         top: 0;
         right: 25px;
-        height: 15px;
-        width: 15px;
+        height: 17px;
+        width: 17px;
         color: rgba(68, 68, 68, 0.6);
         border: 0.5px solid #9e9d9d;
         text-align: center; }
@@ -1883,145 +1843,5 @@ article:hover {
   article:hover .internal span {
     color: #f7323f;
     border: 0.5px solid #f7323f; }
-
-/* no support of grid */
-@media (min-width: 700px) {
-  #flux {
-    display: inline-block;
-    width: 100%;
-    margin-right: 15px;
-    margin-bottom: 15px;
-    vertical-align: top; } }
-@media (min-width: 700px) {
-  /* grid support */
-  @supports (display: grid) {
-    #flux #flux-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      grid-template-rows: auto auto;
-      grid-gap: 25px; }
-      #flux #flux-container article {
-        width: 100%;
-        margin-right: 0;
-        margin-bottom: 0; } }
-  /* grid support for Edge (old syntax) */
-  @supports (display: -ms-grid) {
-    #flux #flux-container {
-      display: -ms-grid;
-      -ms-grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      -ms-grid-template-rows: auto auto;
-      grid-gap: 25px; }
-      #flux #flux-container article {
-        width: 100%;
-        margin-right: 0;
-        margin-bottom: 0; } }
-  #flux {
-    /* End flux container*/ }
-    #flux #flux-container {
-      margin-top: 45px;
-      overflow: hidden; }
-      #flux #flux-container article {
-        border-right: 0.5px solid #9e9d9d;
-        background: white; }
-        #flux #flux-container article:after {
-          content: "";
-          border-bottom: 0.5px solid #9e9d9d;
-          display: block;
-          width: calc( 100% - 25px );
-          height: 5%;
-          margin-left: 0; }
-        #flux #flux-container article .nomenclature {
-          font-size: 16px;
-          line-height: 24px;
-          font-weight: 100;
-          margin-bottom: 7.5px; }
-        #flux #flux-container article hgroup h1 {
-          font-size: 20px;
-          font-weight: 300;
-          line-height: 27px;
-          margin-top: 15px;
-          margin-bottom: 15px; }
-        #flux #flux-container article hgroup h2 {
-          font-size: 16px;
-          line-height: 24px;
-          font-weight: 100; }
-        #flux #flux-container article hgroup h3 {
-          font-size: 13px;
-          line-height: 19.5px;
-          font-weight: 100; }
-          #flux #flux-container article hgroup h3 time:after {
-            content: ", "; }
-        #flux #flux-container article:hover .more {
-          color: #f7323f; }
-      #flux #flux-container .block {
-        display: none;
-        position: absolute;
-        top: 0;
-        right: 0;
-        word-wrap: break-word;
-        width: 100%;
-        z-index: -1; }
-        #flux #flux-container .block p {
-          font-size: 4vw; }
-
-  /* end #flux*/ }
-/* no support of grid */
-@media (max-width: 700px) {
-  #flux article {
-    display: inline-block;
-    width: 100%;
-    margin: 0 15px 15px 15px;
-    vertical-align: top; } }
-@media (max-width: 700px) {
-  #flux {
-    /* End flux container*/ }
-    #flux #flux-container {
-      margin-top: 45px;
-      overflow: hidden; }
-      #flux #flux-container article {
-        border-right: 0.5px solid #9e9d9d;
-        background: white; }
-        #flux #flux-container article:after {
-          content: "";
-          border-bottom: 0.5px solid #9e9d9d;
-          display: block;
-          width: calc( 100% - 25px );
-          height: 5%;
-          margin-left: 0; }
-        #flux #flux-container article .nomenclature {
-          font-size: 16px;
-          line-height: 24px;
-          font-weight: 100;
-          margin-bottom: 7.5px; }
-        #flux #flux-container article hgroup h1 {
-          font-size: 20px;
-          font-weight: 300;
-          line-height: 27px;
-          margin-top: 15px;
-          margin-bottom: 15px; }
-        #flux #flux-container article hgroup h2 {
-          font-size: 16px;
-          line-height: 24px;
-          font-weight: 100; }
-        #flux #flux-container article hgroup h3 {
-          font-size: 13px;
-          line-height: 19.5px;
-          font-weight: 100; }
-          #flux #flux-container article hgroup h3 time:after {
-            content: ", "; }
-        #flux #flux-container article:hover .more {
-          color: #f7323f; }
-      #flux #flux-container .block {
-        display: none;
-        position: absolute;
-        top: 0;
-        right: 0;
-        word-wrap: break-word;
-        width: 100%;
-        z-index: -1; }
-        #flux #flux-container .block p {
-          font-size: 4vw; }
-
-  /* end #flux*/ }
 
 /*# sourceMappingURL=index.css.map */

@@ -140,17 +140,6 @@
                 
             }
 
-        
-
-            .more{
-                margin-top: $baseline*1;
-                margin-bottom: $baseline*1;
-                @include font-size-13();
-                color: $text-color-light;
-                text-decoration: underline;	
-
-            }
-
             &:hover{
                 cursor: pointer;
                 color: $redlab;

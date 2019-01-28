@@ -1,3 +1,4 @@
+/* global STATIC_URL */
 import React from 'react';
 
 import initializers from '../../../../specs/initializers';
@@ -10,6 +11,7 @@ import DateSelector from '../selectors/DateSelector';
 import BooleanSelector from '../selectors/BooleanSelector';
 import RelationSelector from '../selectors/RelationSelector';
 import SortableKeyValueList from '../selectors/SortableKeyValueList';
+import PreviewLink from '../misc/PreviewLink';
 
 function validate(data) {
   if (!data.name) {
@@ -82,7 +84,8 @@ function renderActivityForm(props) {
     slug,
     englishEditorContent,
     frenchEditorContent,
-    slugRenderer
+    url,
+    dirty
   } = props;
 
   return (
@@ -109,7 +112,7 @@ function renderActivityForm(props) {
           <div className="column is-12">
             <div className="field">
               <label className="label" style={{display: 'inline'}}>Slug:</label> {slug && <code>{slug}</code>}
-              {slugRenderer(props)}
+              {url && <PreviewLink url={url} disabled={dirty} />}
             </div>
           </div>
         </div>

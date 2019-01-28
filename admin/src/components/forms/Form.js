@@ -406,17 +406,8 @@ class Form extends Component {
                   frenchEditorContent: this.frenchEditorContent,
                   slug,
                   data,
-                  slugRenderer: () => (
-                    !isNew && <div style={{marginBottom: '10px'}}>
-                      <label className="label is-inline">
-                        Preview link:{' '}
-                      </label>
-                      {slug && <a
-                        href={`${STATIC_URL}/${URL}`}
-                        target="_blank"
-                        rel="noopener noreferrer">{`${STATIC_URL}/${URL}`}</a>}
-                    </div>
-                  )
+                  url: !isNew && `${STATIC_URL}/${URL}`,
+                  dirty
                 })],
               [isFrenchPage, <Preview key="preview" url={URL} />],
               [stubTrue, <Preview key="preview" url={`en/${URL}`} />]

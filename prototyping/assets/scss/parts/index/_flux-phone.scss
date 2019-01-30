@@ -15,76 +15,109 @@
 @include for-size(phone){
 
 
+
     #flux {
         
         #flux-container{
             
             margin-top: 45px;
             overflow: hidden;
+
+            
         
             article{
-
-                border-right: $border-light;
+                
+                width: 100%;
                 background: $background-site;
 
-                &:after{
-                    content: "";
-                    border-bottom: $border-light;
-                    display: block;
-                    width: calc( 100% - #{$unite*1} );
-                    //height: $unite;
-                    height: 5%;
-                    margin-left: 0;
+                @include flex();
+
+                .numero{
+                    @include font-size-16-phone();
+                    font-weight: 100;
+                    text-align: right;
+                    height: $unite;
+                    //width: $unite;
+                    margin: 0 $unite 0 0;
+                    top: $unite/2;
+                    order: 4;
+                    right: $margins-phone;
+                    //color: $text-color-light;
+
                 }
 
-                .nomenclature{
-                    @include font-size-16();
-                    margin-bottom: $baseline/2;
+                .embleme{
+                    @include font-size-40();
+                    padding-right: 10px;
+                    order: 1;
+
+
                 }
+
+                .type{
+                    @include font-size-40();
+                    @include flex();
+                    margin: 0 $unite 0 0;
+                    min-width: 10%;
+                    top: 5px;
+                    order: 2;
+                }
+
                 
                 hgroup{
 
-                    h1{
-                        @include font-size-20();
-                        margin-top: $baseline*1;
-                        margin-bottom: $baseline*1;
-                    }
+                    @include flex();
+                    @include align-items(center);
+                    @include flex-wrap(wrap);
+                    @include flex-grow(2);
+                    order: 3;
 
-                    h2{
-                        @include font-size-16();
-                    }
+                    a{
+                        p{
+                           @include font-size-16();
+                           line-height: $baseline*1.8;
+                           //color: $text-color-light;
 
-                    h3{
-                        @include font-size-13();
+                            /*time{
 
-                        time:after{
-                            content: ", ";
+                                text-transform: capitalize;
+                                &:after{
+                                    content: ", ";
+                                }
+                            }*/
+                        }
+
+                        h1{
+                            @include font-size-16();
                         }
                     }
+                }
 
+                .description{
+                    display: none;
+                    @include text-overflow();
+                    /*@include flex();
+                    @include align-items(center);
+                    @include flex-wrap(wrap);
+                    @include flex-grow(2);
+                    max-width: 25%;
+
+                    p{
+                        @include font-size-16();
+                    }*/
                 }
 
                 &:hover{
-                    .more{
-                        color: $redlab;
-                    }
+                    color: $redlab !important;
                 }
-            }
 
-            .block{
-                display: none;
-                position: absolute;
-                top: 0;
-                right: 0;
-                word-wrap: break-word;
-                width: 100%;
-                z-index: -1;
+                pre.end{
+                    display: none;
 
-                p{
-                    font-size: 4vw;
                 }
-            }
+            } // End article
 
+            
         } /* End flux container*/
         
     } /* end #flux*/

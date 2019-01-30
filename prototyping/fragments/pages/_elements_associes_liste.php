@@ -1,5 +1,5 @@
 <!-- Elements liées -->
-<aside class="container" id="elements-associes">
+<aside class="container" id="elements-associes-liste">
     <h1>Éléments associés</h1>
     <input type="checkbox" id="filtre_equipe" class="filtre_objet"/>
     <label for="filtre_equipe">Équipe</label>

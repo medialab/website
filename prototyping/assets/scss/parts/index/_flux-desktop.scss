@@ -22,108 +22,108 @@
 
 @include for-size(desktop) {
 
-    /* grid support */
-    @supports(display: grid) {
-        #flux #flux-container{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            grid-template-rows: auto auto;
-            grid-gap: $unite;
-            article{
-                width: 100%;
-                margin-right: 0;
-                margin-bottom: 0;
-            }
-        }
-    }
-
-    /* grid support for Edge (old syntax) */
-    @supports (display: -ms-grid) {
-
-        #flux #flux-container{
-            display: -ms-grid;
-            -ms-grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            -ms-grid-template-rows: auto auto;
-            grid-gap: $unite;
-            article{
-                width: 100%;
-                margin-right: 0;
-                margin-bottom: 0;
-            }
-        }
-    }
-
-
     #flux {
         
         #flux-container{
             
             margin-top: 45px;
             overflow: hidden;
+
+            
         
             article{
-
-                border-right: $border-light;
+                
+                width: 100%;
                 background: $background-site;
 
-                &:after{
-                    content: "";
-                    border-bottom: $border-light;
-                    display: block;
-                    width: calc( 100% - #{$unite*1} );
-                    //height: $unite;
-                    height: 5%;
-                    margin-left: 0;
+                @include flex();
+
+                .numero{
+                    @include font-size-13();
+                    font-weight: 100;
+                    text-align: right;
+                    height: $unite;
+                    width: $unite;
+                    margin: 0 $unite 0 0;
+                    top: $unite/2;
+                    //color: $text-color-light;
+
                 }
 
-                .nomenclature{
-                    @include font-size-16();
-                    margin-bottom: $baseline/2;
+                .embleme{
+                    @include font-size-80();
+                    width: 70px;
+
+
                 }
+
+                .type{
+                    @include font-size-80();
+                    @include flex();
+                    margin: 0 $unite 0 0;
+                    min-width: 10%;
+                    top: 5px;
+                }
+
                 
                 hgroup{
 
-                    h1{
-                        @include font-size-20();
-                        margin-top: $baseline*1;
-                        margin-bottom: $baseline*1;
-                    }
+                    @include flex();
+                    @include align-items(center);
+                    @include flex-wrap(wrap);
+                    @include flex-grow(2);
 
-                    h2{
-                        @include font-size-16();
-                    }
+                    width: 20%;
+                    max-width: 20%;
 
-                    h3{
-                        @include font-size-13();
+                    a{
+                        p{
+                           @include font-size-27();
+                           line-height: $baseline*2.4;
+                           //color: $text-color-light;
 
-                        time:after{
-                            content: ", ";
+                            /*time{
+
+                                text-transform: capitalize;
+                                &:after{
+                                    content: ", ";
+                                }
+                            }*/
+                        }
+
+                        h1{
+                            @include font-size-27();
                         }
                     }
+                }
 
+                .description{
+                    @include flex();
+                    @include align-items(center);
+                    @include flex-wrap(wrap);
+                    @include flex-grow(2);
+                    max-width: 25%;
+
+                    p{
+                        @include font-size-16();
+                    }
                 }
 
                 &:hover{
-                    .more{
-                        color: $redlab;
-                    }
+                    color: $redlab !important;
                 }
-            }
 
-            .block{
-                display: none;
-                position: absolute;
-                top: 0;
-                right: 0;
-                word-wrap: break-word;
-                width: 100%;
-                z-index: -1;
+                pre.end{
+                    @include font-size-80();
+                    @include text-overflow(clip);
+                    @include flex-grow(1);
+                    flex: 1;
+                    margin-left: 5rem;
 
-                p{
-                    font-size: 4vw;
                 }
-            }
+            } // En article
 
+            
         } /* End flux container*/
         
     } /* end #flux*/

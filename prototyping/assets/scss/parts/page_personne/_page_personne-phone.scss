@@ -1,13 +1,13 @@
 /////////////////////
-////////  Desktop 
+////////  Phone 
 /////////////////////
 
 @include for-size(phone) {
 		
 	main{
-		margin-left: $margins-phone;
+		/*margin-left: $margins-phone;
 		margin-right: $margins-phone;
-		margin-bottom: 40vh;
+		margin-bottom: 40vh;*/
 
 		margin: $height-top-bar-phone $margins-phone;
 	
@@ -33,26 +33,29 @@
 
 		#biographie{
 
+			/* no support of grid */
+			figure{
+				max-height: auto;
+				overflow: hidden;
+				//margin: $unite-phone*2 0;
 
-			h2{
-				@include font-size-27();
-				max-width: 1100px;
-			}
-	
-			p{
-				@include font-size-20-phone();
-			}
-	
-			h3{
-				margin-top: $baseline*4;
-				@include article_h3();
+				img{
+					width: 100%;
+					filter: grayscale(1);
+				}
+				figcaption{
+					margin-top: $baseline*1;
+				}
 			}
 
-			div{
-				@include flex-order(2);
+			header{
+				padding-top: $baseline*3;
+			}
+
+			header{
+				@include flex-order(1);
 				min-width: 50%;
 				padding-bottom: $baseline*2;
-				text-align: center; // Apax, Bizarre c'est le seul text align center de tout le site..
 
 				& *{
 					width: 100%;
@@ -60,10 +63,19 @@
 
 				h1{
 					@include font-size-40();
-					padding-bottom: $baseline 0 $baseline*3 0
+					//padding-bottom: $baseline*1;
+					max-width: 1100px;
+					font-weight: bold;
 				}
-				h2{
-					@include font-size-27-phone();
+		
+				h2{ 
+					@include font-size-40();
+					max-width: 1100px;
+					padding-bottom: $baseline*1.5; 
+				}
+
+				p{
+					@include font-size-20();
 				}
 
 
@@ -72,12 +84,12 @@
 					width: inherit;
 					display: inline;
 
-					padding: 0 $unite 0 0;
+					padding: 0 $unite-phone 0 0;
 				}		
 
 				[data-type="activite"]{
 					@include font-size-20();
-					margin: $unite 0;
+					margin: $unite-phone 0;
 					font-style:italic;
 
 					&:before{
@@ -89,31 +101,15 @@
 				}
 			}
 	
-			figure{
-
-				margin: $baseline*2 0;
-				width: 100%;
-				text-align: center;
-
-				img{
-
-					max-width: 150px;
-					box-shadow: 0 0 0 1px #888;
-					margin-left: 2px;
-					border-radius: 75px;
-					filter: grayscale(1);
-				}
-				figcaption{
-					margin-top: $baseline*1;
-				}
-			}
-
 			.biographie-contenu{
 				width: 100%;
+
+				p{
+					@include font-size-20();
+				}
 			}
 
 		}/* #article-contenu */
-
 		
 	} /* main */
 
@@ -122,6 +118,5 @@
 		margin-bottom: $baseline*2.5;
 		@include font-size-27();
 	}
-
-
 }
+

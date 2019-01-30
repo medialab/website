@@ -23,6 +23,11 @@
     order: $value;                       /* NEW, Spec - Opera 12.1, Firefox 20+ */
 }
 
+@mixin flex-grow($value) {
+    -webkit-flex-grow: $value;   /* Safari  */
+    flex-grow: $value;
+    -ms-flex-positive: $value;
+}
 
 @mixin flex-direction($value: row) {
 	@if $value == row-reverse {

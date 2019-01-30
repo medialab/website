@@ -1,0 +1,184 @@
+/////////////////////
+//////// Desktop
+/////////////////////
+
+@include for-size(desktop) {
+
+	.filtre_title, .toggle-filtre-phone{
+		display: none;
+	}
+
+	h1.type_title{ 
+		position: fixed;
+		left: $margins-desktop;
+		top: $height-top-bar ;
+		// width: calc( #{$logo-column} - #{$margins-desktop});
+		width: $logo-column - $margins-desktop;
+		border-top: $border-light;
+		border-bottom: $border-light;
+		padding-top: $baseline * 1;
+		padding-bottom: $baseline * 1;
+		@include font-size-13();
+		text-transform: uppercase;
+		font-weight: 400;
+		height: $baseline*3.5;
+	}
+	
+	h2.filtre_domaine_title,
+	h2.filtre_membre_title{
+		position: fixed;
+		left: $margins-desktop;
+		@include font-size-13();
+		font-weight: 400;
+	}
+
+	label.filtre_equipe{
+
+		position: fixed;
+		left: $margins-desktop;
+		width: $logo-column - $margins-desktop;
+		@include font-size-13();
+		/*white-space: nowrap;*/
+		
+		/*.checkbox-medialab{
+			display: inline;
+		}*/	
+	}
+
+	[data-statut="passif"]{
+		opacity: .6;
+
+	}
+}
+
+@include for-size(phone) {
+
+	h1.type_title{
+		margin-top: $height-top-bar-phone + $baseline*2;
+		@include font-size-20-phone;
+		text-align: center;
+	}
+
+	h2.filtre_activite_title{ display: none; }
+
+	label.toggle-filtre-phone{
+		height: $baseline*3;
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		width: 100vw;
+		@include font-size-16-phone();
+		text-align: center;
+		border-top: $border-bold;
+		background-color: $background-site;
+		cursor: pointer;
+		z-index: 50;
+
+		span{
+				transform: rotate(0deg);
+				transition: .25s ease-in-out;
+				position: absolute;
+			}			
+	}
+
+	input.toggle-filtre-phone:checked {
+
+		&+ label.toggle-filtre-phone{
+
+			height: $baseline*8;
+
+			span{
+				transform: rotate(180deg);
+			}
+		}
+
+		&~ .filtre_equipe{
+			visibility: visible;
+
+		}
+	}
+
+	input.filtre_equipe{
+		display: none;
+	}
+
+	label.filtre_equipe{
+		visibility: hidden;
+		position: fixed;
+		width: calc(#{$mobile-container-width/2} - #{$unite-phone});
+		@include text-overflow();
+		@include font-size-13-phone();
+		text-align: center;
+		left: $margins-phone;
+		bottom: $unite;
+		cursor: pointer;
+		border: $border;
+		padding-top: 2px;
+		background-color: $background-site;
+		z-index:51;
+		//transition: .25s;
+	}
+
+
+	@for $i from 1 through 13 {
+		input.filtre_equipe:nth-of-type(#{$i}), label.filtre_equipe:nth-of-type(#{$i}){ 
+			bottom: $baseline * $i - $baseline;
+		}
+
+		@if $i % 2 == 0 {  //use $i for calculating mod here than #{$i}
+			input.filtre_equipe:nth-of-type(#{$i}), label.filtre_equipe:nth-of-type(#{$i}){ 
+				bottom: $baseline * $i;
+
+			}
+		}
+	}
+
+	input.filtre_equipe:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone}); }
+	label.filtre_equipe:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone});}
+	
+	input.filtre_equipe:checked + label.filtre_equipe{ 
+		font-weight: bold;
+		color: $redlab;
+		border-color: $redlab;
+		transition-delay: inherit;
+	}
+}
+
+///////////////
+/// Global ////
+///////////////
+
+/* Actif / Passif */
+#filtre_statut_actif:checked ~ #liste #liste_equipe [data-statut="passif"],
+#filtre_statut_passif:checked ~ #liste #liste_equipe [data-statut="actif"]{
+	display:none;
+}
+
+#filtre_statut_actif:checked ~ #liste #liste_equipe [data-statut="actif"],
+#filtre_statut_passif:checked ~ #liste #liste_equipe [data-statut="passif"]{
+	display:block;
+}
+
+/* Domaine */ 
+.filtre_domaine:checked ~ #liste #liste_equipe [data-domaine]{
+	display: none;
+}
+
+#domaine_academique:checked ~ #liste #liste_equipe [data-domaine="academique"],
+#domaine_technique:checked ~ #liste #liste_equipe [data-domaine="technique"],
+#domaine_design:checked ~ #liste #liste_equipe [data-domaine="design"],
+#domaine_pedagogie:checked ~ #liste #liste_equipe [data-domaine="pedagogie"],
+#domaine_administratif:checked ~ #liste #liste_equipe [data-domaine="administratif"]{
+	display:block;
+}
+
+/* Membre */
+#filtre_membre:checked ~ #liste #liste_equipe [data-member="no"],
+#filtre_non_membre:checked ~ #liste #liste_equipe [data-member="yes"]{
+	display:none;
+}
+
+#filtre_membre:checked ~ #liste #liste_equipe [data-member="yes"],
+#filtre_non_membre:checked ~ #liste #liste_equipe [data-member="no"]{
+	display:block;
+}

@@ -69,7 +69,8 @@
         article{
 
             .image-pre{
-                font-size: 1.25vw;
+                font-size: 1.25vw; // if _50
+                //font-size: .75vw; //  if _100
                 width: 100%;
                 // height: $font-size*20;
                 overflow: hidden;

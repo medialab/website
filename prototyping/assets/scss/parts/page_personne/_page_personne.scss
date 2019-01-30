@@ -23,20 +23,28 @@ a:hover{
 }
 
 #biographie .contact {
-		color:red !important;
+	//color:red !important;
 
 	li{
 		@include font-size-13();
-		border: $border-light;
-		width: $unite*2;
+		border-right: $border-light;
+		border-left: $border-light;
+		padding: 0 $unite/1.5;
+		width: auto;
 		color: $text-color-light;
 		text-align: center;
 		display: inline-block;
+		margin-right: -4px;
+
+		&:first-of-type{
+			
+		}
 
 		&:hover{
 			border-color: $redlab;
 			color: $redlab;
 			cursor: pointer;
+			z-index: 99;
 		}
 	}
 }

@@ -17,26 +17,28 @@
 
 <main id="main-personne">
 
-	<p class="titre-sticky">L'équipe du Medialab<span> / Dominique Cardon</span></p>
+	<p class="titre-sticky"><a href="#linktoPageEquipe"><span class="retour">❬</span>L'équipe du Medialab</a><span class="personne">Dominique Cardon</span></p>
 	<!-- PUBLICATION -->
+
+
 	<article id="biographie">
 		<figure>
-			<img src="assets/images/sample/D-Cardon-200x200.jpg">
+			<img src="assets/images/sample/D-Cardon-bis.jpg">
 		</figure>
 
-		<div>
+		<header>
 			<h1 data-level-1="name" data-type="name">Dominique Cardon</h1>
 			<h2 data-level-2="role" data-type="role">Directeur du médialab</h2>
 			<p data-type="domaine">Domaine&#8239;: Academique</p>
 			<p data-type="statut">Membre actif du Medialab</p>
 
-			<p data-type="activite">En ce moment, je chef et j'écris des papier</p>
+			<p data-type="activite">En ce moment, je chef et j'écris des papiers</p>
 			<ul class="contact">
 				<li data-type="email"><a href="#">Mail</a></li>
 				<li data-type="Twitter"><a href="#">Twitter</a></li>
 				<li data-type="Git"><a href="#">Git</a></li>
 			</ul>
-		</div>
+		</header>
 
 		<div class="biographie-contenu">
 			<p>
@@ -47,31 +49,10 @@
 
 		</article>
 
-		<aside class="container" id="implications">
-			<h1>Implication</h1>
-			<ul>
-				<li>
-					<p class="year-main">2018</p>
-					<p data-type="title">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
-				</li>
-				<li>
-					<p class="year-main">2018</p>
-					<p data-type="title">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
-				</li>
-				<li>
-					<p class="year-main">2017</p>
-					<p data-type="title">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
-				</li>
-				<li>
-					<p class="year-main">2016</p>
-					<p data-type="title">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
-				</li>
-			</ul>
-		</aside>
-
+	<?php include('fragments/pages/_elements_associes-dissocies.php'); ?>
 	<?php include('fragments/pages/_fichiers_associes.php'); ?>
-	<?php include('fragments/pages/_elements_associes_liste.php'); ?>
-</main>	
 
+</main>	
+<?php include('fragments/_footer.php'); ?>
 </body>
 </html>

@@ -1,0 +1,84 @@
+/* all */
+/*::root{
+	$border: 0.5px solid $background-site;
+}
+*/
+::selection, ::-moz-selection{
+    background: #fc424e;
+    color: $background-site;
+}
+
+body, html{
+	overflow: inherit;
+}
+
+ body{
+	background-color: #fc424e; 
+
+	a:hover {
+	    color: $background-site;
+	}
+	/** {
+		color: $background-site !important;
+	}*/
+}
+
+#topbar,{
+	z-index: 30;
+	//background-color: $background-site;
+	background-color:  #fc424e !important;
+}
+
+nav, nav .nav-inside-item{
+	background-color:  #fc424e !important;
+}
+
+.nav-inside-item{
+	border-color: $background-site;
+}
+
+footer{ // red to footer 
+
+	border-top-color: $text-color !important; 
+
+	*{
+		color: $text-color !important;
+	}
+
+}
+
+a:hover{
+	color: #E6142D;
+	svg{ fill: #E6142D; }
+	img{
+		//background-color: #E6142D;
+		//mix-blend-mode: color-burn;
+	}
+}
+
+/* Masquer image dans Navbar */
+
+#nav-inside-article #img-article {
+    visibility: hidden !important;
+}
+
+////////////////////////
+////// Hidden part /////
+////////////////////////
+
+.minified {
+	display: none;
+}
+
+.minify{
+	& + label h3{
+		&:before{content:"⋁"; padding-right: 10px !important;}
+	}
+	&:checked + label h3{
+		&:before{content:"⋀";}
+	}
+}
+
+input.minify{display: none;}
+input.minify{cursor:pointer; &+label{cursor:pointer; padding: 0 $unite 0 0;}}
+input.minify:checked ~ .minified{display: block !important;}

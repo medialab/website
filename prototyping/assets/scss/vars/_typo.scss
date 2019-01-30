@@ -1,5 +1,5 @@
 $font-main: sans-serif;
-$font-mono: monospace;
+$font-mono: 'Bel', courier, monospace; 
 $font-size: 10px; // Base 10 pour simplifier les calculs
 $baseline: 15px;
 
@@ -21,6 +21,13 @@ html{
 
 
 //// BONNE TYPO
+
+@mixin font-size-80() {
+    font-size: $font-size*8;
+    font-weight: 100;
+    line-height: $baseline*7.5;
+    letter-spacing: -1px;
+}
 
 @mixin font-size-60() {
     font-size: $font-size*6;
@@ -47,13 +54,13 @@ html{
 @mixin font-size-27() {
     font-size: $font-size*2.7;
     font-weight: 100;
-    line-height: $baseline*2.4;
+    line-height: $baseline*2.6;
 }// ancien typo-list_title
 
 @mixin font-size-27-phone() {
     font-size: $font-size*2.7;
     font-weight: 300;
-    line-height: $baseline*2.4;
+    line-height: $baseline*2.6;
 }
 
 

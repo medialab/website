@@ -115,6 +115,23 @@ $table-header-color: #dbdbdb;
         padding: 0.5em 0.75em;
         border-bottom: 1px $table-header-color solid;
         height: 100%;
+        white-space: nowrap;
+        &::after {
+          content: "▼";
+          margin-left: 5px;
+          opacity: 0;
+          display: inline-block;
+          transition: opacity 0.2s ease, transform 0.2s ease 0.3s;
+        }
+        &.up--arrow::after {
+          opacity: 1;
+          transform: rotate(180deg);
+          transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        &.down--arrow::after {
+          opacity: 1;
+          transition: opacity 0.2s ease, transform 0.2s ease;
+        }
       }
     }
   }

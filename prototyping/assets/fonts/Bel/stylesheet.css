@@ -1,0 +1,10 @@
+@font-face{
+	font-family:'Bel';
+    src: url('bel.eot');
+    src: url('bel.eot?#iefix') format('embedded-opentype'),
+         /*url('bel.woff2') format('woff2'),*/
+         url('bel.woff') format('woff'),
+         url('bel.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}

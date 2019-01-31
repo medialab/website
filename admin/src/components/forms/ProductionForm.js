@@ -8,7 +8,7 @@ import Editor from '../Editor';
 import BooleanSelector from '../selectors/BooleanSelector';
 import DateSelector from '../selectors/DateSelector';
 import EnumSelector from '../selectors/EnumSelector';
-import RelationSelector from '../selectors/RelationSelector';
+import RelationSelector, {ComplexRelationSelector} from '../selectors/RelationSelector';
 import UrlInput from '../selectors/UrlInput';
 
 function validate(data) {
@@ -261,7 +261,7 @@ function renderProductionForm(props) {
             <div className="field">
               <label className="label">Related Productions</label>
               <div className="control">
-                <RelationSelector
+                <ComplexRelationSelector
                   model="productions"
                   self={data.id}
                   selected={data.productions}

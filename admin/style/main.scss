@@ -158,3 +158,16 @@ $table-header-color: #dbdbdb;
   }
 }
 
+.footer-container {
+  border-top: 1px solid #dbdbdb;
+  box-shadow: 0px -5px 7px -5px #ddd;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0px;
+  background-color: white;
+  z-index: 500
+}
+
+.button__animated-color {
+  transition: background-color 0.3s ease;
+}

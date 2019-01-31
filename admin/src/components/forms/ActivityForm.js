@@ -1,3 +1,4 @@
+/* global STATIC_URL */
 import React from 'react';
 
 import initializers from '../../../../specs/initializers';
@@ -10,10 +11,14 @@ import DateSelector from '../selectors/DateSelector';
 import BooleanSelector from '../selectors/BooleanSelector';
 import RelationSelector from '../selectors/RelationSelector';
 import SortableKeyValueList from '../selectors/SortableKeyValueList';
+import PreviewLink from '../misc/PreviewLink';
 
 function validate(data) {
-  if (!data.name)
-    return 'Need at least a name';
+  if (!data.name) {
+    return 'A name is required';
+  }
+  if (!slugifyActivity(data).length)
+    return 'A name with at least one valid characters is required';
 }
 
 const HANDLERS = {
@@ -78,12 +83,13 @@ function renderActivityForm(props) {
     handlers,
     slug,
     englishEditorContent,
-    frenchEditorContent
+    frenchEditorContent,
+    url,
+    dirty
   } = props;
 
   return (
     <div className="container">
-
       <div className="form-group">
         <div className="columns">
           <div className="column is-6">
@@ -106,6 +112,7 @@ function renderActivityForm(props) {
           <div className="column is-12">
             <div className="field">
               <label className="label" style={{display: 'inline'}}>Slug:</label> {slug && <code>{slug}</code>}
+              {url && <PreviewLink url={url} disabled={dirty} />}
             </div>
           </div>
         </div>

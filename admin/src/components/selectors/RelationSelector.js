@@ -150,17 +150,7 @@ const MultiRelationSelectorRenderer = props => {
 
   return (
     <div>
-      {!loading && sortable && (
-        <div className="column is-6">
-          <SortableList
-            useDragHandle
-            items={selected}
-            optionsIndex={optionsIndex}
-            onDrop={onDrop}
-            onSortEnd={onMove} />
-        </div>
-      )}
-      <div className={'column is-4'}>
+      <div>
         <Select
           isDisabled={selected.length >= max}
           value={null}
@@ -172,21 +162,22 @@ const MultiRelationSelectorRenderer = props => {
           noOptionsMessage={noOptionsMessages[model]}
           styles={{menu: provided => ({...provided, zIndex: 1000})}} />
       </div>
-      <div className="column is-8">
-        {!loading && !sortable && (
+      <div>
+        {!loading && (
           selected.length ? (
             <ul className="tags-container">
               {selected.map(id => {
-                  const title = optionsIndex[id].label;
-                  return (
-                    <li key={id}>
-                      <span title={title} className="tag is-medium" style={{marginBottom: 3}}>
-                        {truncate(title, {length: 30, omission: '...'})}
-                        &nbsp;<button className="delete is-small" onClick={() => onDrop(id)} />
-                      </span>
-                    </li>
-                  );
-                })}
+                const title = optionsIndex[id].title.fr;
+                console.log({title, id, opti: optionsIndex[id]});
+                return (
+                  <li key={id}>
+                    <span title={title} className="tag is-medium" style={{marginBottom: 3}}>
+                      {truncate(title, {length: 30, omission: '...'})}
+                      &nbsp;<button className="delete is-small" onClick={() => onDrop(id)} />
+                    </span>
+                  </li>
+                );
+              })}
             </ul>
           ) : (
             <p><em>No items yet...</em></p>
@@ -257,10 +248,9 @@ const RelationSelectorContainer = (YesComponent, NoComponent) => {
             );
           }),
           chunk(2),
-          map(els => {
-            console.log(els);
-            return (<div key={els.reduce((acc, el) => acc + el.key, '')} className="columns">{els}</div>);
-          })
+          map(els =>
+            <div key={els.reduce((acc, el) => acc + el.key, '')} className="columns">{els}</div>
+          )
         );
         return f(this.state.data);
       }

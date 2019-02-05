@@ -136,7 +136,7 @@ const ListTable = React.memo(props => {
                 icon = (
                   <span title={item.icon.label(d)}>
                     <IconComponent
-                      style={{display: 'inline-block', verticalAlign: 'middle'}}/> &middot;
+                      style={{display: 'inline-block', verticalAlign: 'middle'}} /> &middot;
                   </span>
                 );
               }
@@ -184,7 +184,7 @@ export default class List extends Component {
     // Fetching model list
     const tasks = [
       next => {
-        client.list({params: {model}}, next)
+        client.list({params: {model}}, next);
       }
     ];
 
@@ -206,7 +206,7 @@ export default class List extends Component {
     // Sorting
     const specs = this.props.specs;
 
-    let keys = ordering ? ordering.keys : specs.defaultOrder;
+    const keys = ordering ? ordering.keys : specs.defaultOrder;
 
     data = sortBy(data, keys);
 

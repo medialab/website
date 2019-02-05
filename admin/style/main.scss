@@ -142,3 +142,29 @@ $table-header-color: #dbdbdb;
   }
 }
 
+.hide-list__menu-list  {
+  background: whitesmoke;
+}
+div.hide-list__option {
+  position: relative;
+  cursor: pointer;
+  .option-container {
+    transition: transform 0.2s ease;
+    display: inline-block;
+    font-weight: bold;
+  }
+  &.hide-list__option--is-focused {
+    &::after {
+      transform: translate(10px);
+    }
+    .option-container {
+      transform: translate(10px);
+    }
+  }
+  &::after {
+    content: ">";
+    transition: transform 0.2s ease;
+    position: absolute;
+    right: 20px;
+  }
+}

@@ -30,8 +30,8 @@
 
 			</ul>
 			<ul id="nav-institution">
-				<li><a href="#">Le Médialab</a></li>
-				<li><a href="page_personne.php">L'équipe</a></li>
+				<li><a href="apropos.php">Le Médialab</a></li>
+				<li><a href="page_equipe.php">L'équipe</a><a href="page_personne.php">/*TEMP*/</a></li>
 			</ul>
 			<ul id="nav-archive">
 				<li><a href="#">Outils</a></li>

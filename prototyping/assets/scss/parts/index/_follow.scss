@@ -1,0 +1,25 @@
+@include for-size(desktop){
+    #follow{
+        width: 100%;
+        padding: $unite 0;
+
+        p{
+            font-size: 3.5vw;
+            text-align: justify;
+
+        }
+    }
+}
+
+@include for-size(phone){
+    #follow{
+        width: calc( 100% - #{$margins-phone*2} );
+        padding: $unite 0;
+
+        p{
+            @include font-size-27();
+            text-align: center;
+
+        }
+    }
+}

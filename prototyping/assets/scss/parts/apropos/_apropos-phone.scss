@@ -1,0 +1,57 @@
+/////////////////////
+//////// Phone 
+/////////////////////
+
+@include for-size(phone) {
+
+	main{
+		
+		margin: $height-top-bar-phone $margins-phone;
+
+		hgroup{
+				padding-top: $baseline*1.5;
+				padding-bottom: $baseline*1;
+			h1{
+				@include font-size-40();
+				padding-bottom: $baseline*1; 
+			}
+
+			h2{ 
+				@include font-size-27();
+				padding-bottom: $baseline*1.5; 
+			}
+		}
+
+		.contenu{
+			max-width: 900px;
+		}	
+
+		h3{
+			padding-top: $baseline*3;
+			margin-bottom: $baseline*2.5;
+			@include font-size-27();
+			font-weight: bold;
+		}
+
+		p{
+			@include font-size-20;
+		}
+	}
+	
+	#inshort{
+		display: none;
+	}	
+
+	footer{
+	}
+
+	////////////////////////
+	////// Hidden part /////
+	////////////////////////
+
+	.minified {
+		p{
+			@include font-size-20;
+		}	
+	}
+}

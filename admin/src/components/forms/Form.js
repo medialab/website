@@ -1,3 +1,5 @@
+
+/* global STATIC_URL */
 /* eslint no-nested-ternary: 0 */
 /* eslint no-alert: 0 */
 /* eslint react/forbid-prop-types: 0 */
@@ -10,6 +12,16 @@ import {Link, Prompt} from 'react-router-dom';
 import uuid from 'uuid/v4';
 import get from 'lodash/fp/get';
 import set from 'lodash/fp/set';
+import cond from 'lodash/fp/cond';
+import negate from 'lodash/fp/negate';
+import isEqual from 'lodash/fp/isEqual';
+import property from 'lodash/fp/property';
+import stubTrue from 'lodash/fp/stubTrue';
+import map from 'lodash/fp/map';
+import constant from 'lodash/fp/constant';
+import overEvery from 'lodash/fp/overEvery';
+import isFunction from 'lodash/fp/isFunction';
+import overSome from 'lodash/fp/overSome';
 import cls from 'classnames';
 
 import client from '../../client';
@@ -18,15 +30,51 @@ import CardModal from '../misc/CardModal';
 import Preview from '../Preview';
 import {hash, createHandlers} from './utils';
 
-const actionBarStyle = {
-  borderTop: '1px solid #dbdbdb',
-  boxShadow: '0px -5px 7px -5px #ddd',
-  padding: '10px',
-  position: 'fixed',
-  bottom: '0px',
-  backgroundColor: 'white',
-  zIndex: 500
-};
+const condWithConstants = d => cond(
+  map(
+    ([condition, result]) => [condition, isFunction(result) ? result : constant(result)], d
+  )
+);
+const isPage = page => props => isEqual(
+  property('view', props), page
+);
+const isFrenchPage = isPage('preview-fr');
+const isEditPage = isPage('edit');
+const isNotEditPage = negate(isEditPage);
+const isItNew = property('isNew');
+const isItSignaling = property('signaling');
+const isDirty = property('dirty');
+const isNotDirty = negate(isDirty);
+const isThereErrors = property('validationError');
+const fnButtonKind = condWithConstants([
+  [isItSignaling, 'success'],
+  [isNotEditPage, 'danger'],
+  [
+    overSome([
+      overEvery([
+        isDirty,
+        negate(isThereErrors)
+      ]),
+      ({saving}) => saving
+    ]),
+    'info'
+  ],
+  [stubTrue, 'white']
+]);
+const fnDisabled = condWithConstants([
+  [isNotEditPage, false],
+  [p => isNotDirty(p) || isThereErrors(p), true],
+  [stubTrue, false]
+]);
+const fnButtonText = pageLabel => condWithConstants([
+  [isNotEditPage, 'Back to editing ↲'],
+  [isItSignaling, `${pageLabel} saved!`],
+  [isNotDirty, 'Nothing yet to save'],
+  [isThereErrors, isThereErrors],
+  [isItNew, `Create this ${pageLabel}`],
+  [stubTrue, `Save this ${pageLabel}`]
+]);
+
 
 const navigationPromptMessage = () => 'You have unsaved modifications. Sure you want to move?';
 
@@ -309,9 +357,7 @@ class Form extends Component {
       data,
       existingSlugs,
       saving,
-      signaling,
-      time,
-      view
+      time
     } = this.state;
 
     const {
@@ -328,87 +374,16 @@ class Form extends Component {
     const slug = isNew ?
       slugify(data) :
       data.slugs[data.slugs.length - 1];
-
+    const URL = `${model}/${slug}`;
     const pageLabel = label || model;
-
-    const saveLabel = isNew ?
-      `Create this ${pageLabel}` :
-      `Save this ${pageLabel}`;
-
     const dirty = hash(data) !== lastHash;
-
-    let buttonText = saveLabel;
-    let buttonKind = 'white';
-
     const validationError = validate(data);
-
-    if (signaling) {
-      buttonText = `${pageLabel} saved!`;
-      buttonKind = 'success';
-    }
-    else if (!dirty) {
-      buttonText = 'Nothing yet to save';
-    }
-    else if (validationError) {
-      buttonText = validationError;
-    }
-
-    if (dirty && !validationError) {
-      buttonKind = 'info';
-    }
-
-    let body = null;
-
-    if (view === 'edit') {
-      const renderedForm = children({
-        handlers: this.handlers,
-        englishEditorContent: this.englishEditorContent,
-        frenchEditorContent: this.frenchEditorContent,
-        slug,
-        data
-      });
-
-      body = (
-        <div>
-          {renderedForm}
-          <p style={{height: '70px'}} />
-          <div style={actionBarStyle} className="container">
-            <div className="level">
-              <div className="level-left">
-                <div className="field is-grouped">
-                  <div className="control">
-                    <Button
-                      kind={buttonKind}
-                      disabled={!dirty || validationError}
-                      loading={saving}
-                      onClick={!signaling ? this.handleRawSubmit : Function.prototype}>
-                      {buttonText}
-                    </Button>
-                  </div>
-                  <div className="control">
-                    <Link to={`/${model}`} className="button is-text">Cancel</Link>
-                  </div>
-
-                  {time && (
-                    <div className="level-item">
-                      <small><em>Last saved <TimeAgo date={time} minPeriod={10} /></em></small>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    else if (view === 'preview-fr') {
-      body = <Preview url={`${model}/${data.slugs[data.slugs.length - 1]}`} />;
-    }
-
-    else {
-      body = <Preview url={`en/${model}/${data.slugs[data.slugs.length - 1]}`} />;
-    }
+    const state = {...this.state, dirty, validationError};
+    const previewPropsFilter = compareTo => ({
+      kind: !validationError && !dirty ? 'success' : 'white',
+      disabled: dirty || validationError || isPage(compareTo)(state),
+      loading: saving
+    });
 
     return (
       <div>
@@ -422,30 +397,77 @@ class Form extends Component {
         <Prompt
           when={!saving && dirty}
           message={navigationPromptMessage} />
-        <div className="tabs is-boxed">
-          <ul>
-            <li
-              className={cls(view === 'edit' && 'is-active')}
-              onClick={this.toggleEdit}>
-              <a>Edit {pageLabel}</a>
-            </li>
-            {!isNew && (
-              <li
-                className={cls(view === 'preview-fr' && 'is-active')}
-                onClick={this.toggleFrenchPreview}>
-                <a>Preview French {pageLabel} page</a>
-              </li>
-            )}
-            {!isNew && (
-              <li
-                className={cls(view === 'preview-en' && 'is-active')}
-                onClick={this.toggleEnglishPreview}>
-                <a>Preview English {pageLabel} page</a>
-              </li>
-            )}
-          </ul>
+        <div>
+          {
+            condWithConstants([
+              [isEditPage, children({
+                  handlers: this.handlers,
+                  englishEditorContent: this.englishEditorContent,
+                  frenchEditorContent: this.frenchEditorContent,
+                  slug,
+                  data,
+                  url: !isNew && `${STATIC_URL}/${URL}`,
+                  dirty
+                })],
+              [isFrenchPage, <Preview key="preview" url={URL} />],
+              [stubTrue, <Preview key="preview" url={`en/${URL}`} />]
+            ])(state)
+          }
+          <p style={{height: '70px'}} />
+          <div className="container footer-container">
+            <div className="level">
+              <div className="level-left">
+                <div className="field is-grouped">
+                  <div className="control">
+                    <Button
+                      className="button__animated-color"
+                      kind={fnButtonKind(state)}
+                      disabled={fnDisabled(state)}
+                      loading={saving}
+                      onClick={cond([
+                        [isNotEditPage, constant(this.toggleEdit)],
+                        [stubTrue, constant(this.handleRawSubmit)]
+                      ])(state)}>
+                      {fnButtonText(pageLabel)(state)}
+                    </Button>
+                  </div>
+                  <div className="control">
+                    <Link to={`/${model}`} className="button is-text">Cancel</Link>
+                  </div>
+
+                  {time && (
+                    <div className="level-item">
+                      <small><em>Last saved <TimeAgo date={time} minPeriod={10} /></em></small>
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="level-right">
+                <div className="field is-grouped">
+                  {!isNew && (
+                    <React.Fragment>
+                      <div className="field-label is-normal">
+                        <p className={cls(validationError && 'has-text-grey')}>Preview {pageLabel} page:</p>
+                      </div>
+                      <div className="control">
+                        <Button
+                          className="button__animated-color"
+                          {...previewPropsFilter('preview-fr')}
+                          onClick={this.toggleFrenchPreview}>French</Button>
+                      </div>
+                      <div className="control">
+                        <Button
+                          className="button__animated-color"
+                          {...previewPropsFilter('preview-en')}
+                          onClick={this.toggleEnglishPreview}>English</Button>
+                      </div>
+                    </React.Fragment>
+                    )}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        {body}
       </div>
     );
   }

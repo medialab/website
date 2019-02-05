@@ -35,9 +35,6 @@ const ICONS_MAPPING = {
   }
 };
 
-const DOWN_ARROW = '▼',
-      UP_ARROW = '▲';
-
 function ListFilterBar({filters, onChange, specs}) {
 
   return (
@@ -70,7 +67,8 @@ const ListTable = React.memo(props => {
     model,
     ordering,
     relations,
-    specs
+    specs,
+    handleOrdering
   } = props;
 
   return (
@@ -84,12 +82,12 @@ const ListTable = React.memo(props => {
             if (order) {
               onClick = () => {
                 if (ordering && ordering.keys !== order)
-                  return this.handleOrdering({keys: order, reverse: false});
+                  return handleOrdering({keys: order, reverse: false});
 
                 if (ordering && ordering.reverse)
-                  return this.handleOrdering(null);
+                  return handleOrdering(null);
 
-                this.handleOrdering({keys: order, reverse: !!ordering});
+                return handleOrdering({keys: order, reverse: !!ordering});
               };
             }
 
@@ -97,11 +95,11 @@ const ListTable = React.memo(props => {
 
             if (order) {
               if (ordering === null || ordering.keys !== order)
-                glyph = <span>&nbsp;</span>;
+                glyph = '';
               else if (ordering.reverse)
-                glyph = UP_ARROW;
+                glyph = 'up--arrow';
               else
-                glyph = DOWN_ARROW;
+                glyph = 'down--arrow';
             }
 
             return (
@@ -112,8 +110,11 @@ const ListTable = React.memo(props => {
                 style={{
                   cursor: order ? 'pointer' : 'default'
                 }}>
-                <div className="table--header--container">
-                  <span style={{textDecoration: order ? 'underline' : 'none'}}>{label}</span> {glyph}
+                <div className={cls(
+                  'table--header--container',
+                  glyph
+                )}>
+                  <span style={{textDecoration: order ? 'underline' : 'none'}}>{label}</span>
                 </div>
               </th>
             );
@@ -338,7 +339,8 @@ export default class List extends Component {
           model={model}
           ordering={ordering}
           relations={relations}
-          specs={specs} />
+          specs={specs}
+          handleOrdering={this.handleOrdering} />
 
         <div style={{alignItems: 'center'}} className="columns">
           <div className="column is-10">

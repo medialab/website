@@ -5,7 +5,7 @@
   --font-size: 10px;
   --baseline: 15px;
   --font-main: sans-serif;
-  --font-mono: monospace;
+  --font-mono: "Bel", courier, monospace;
   color: #444; }
 
 html {
@@ -20,120 +20,6 @@ html {
 ::selection, ::-moz-selection {
   background: #f7323f;
   color: white; }
-
-/* assets/scss/common/body.scss */
-@media (max-width: 700px) {
-  body {
-    overflow-x: hidden;
-    background-color: white; } }
-@media (min-width: 700px) {
-  body {
-    margin: 0 25px !important;
-    overflow-x: hidden;
-    background-color: white; } }
-[data-type="actualite"] .type::before {
-  content: "∾ "; }
-
-[data-type="production"] .type::before {
-  content: "☵ "; }
-
-[data-type="activite"] .type::before {
-  content: "⋇ "; }
-
-[data-type="git"] .type::before {
-  content: "⊶ "; }
-
-a:hover {
-  color: #f7323f; }
-
-label .span-nochecked {
-  display: block; }
-label .span-checked {
-  display: none; }
-
-input:checked + label .span-nochecked {
-  display: none; }
-input:checked + label .span-checked {
-  display: block; }
-
-.nomenclature p {
-  display: inline; }
-  .nomenclature p + p::before {
-    content: " / "; }
-
-/* virgules après les auteurs. ATTENTION = il faut plutôt le mettre depuis le CMS car au copier/coller les éléments after ne restent pas*/
-.author span {
-  white-space: nowrap; }
-  .author span:after {
-    content: ", "; }
-  .author span:last-of-type:after {
-    content: ""; }
-
-.checkbox-medialab {
-  display: -webkit-box;
-  /* OLD - iOS 6-, Safari 3.1-6 */
-  display: -moz-box;
-  /* OLD - Firefox 19- (buggy but mostly works) */
-  display: -ms-flexbox;
-  /* TWEENER - IE 10 */
-  display: -webkit-flex;
-  /* NEW - Chrome */
-  display: flex;
-  /* NEW, Spec - Opera 12.1, Firefox 20+ */
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center; }
-
-.checkbox-medialab:before {
-  content: '';
-  margin-right: 10px;
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  background: white;
-  border: 0.5px solid #9e9d9d; }
-
-.checkbox-medialab:hover:before {
-  background: #444;
-  border: 0.5px solid; }
-
-input:checked + .checkbox-medialab:before,
-input:checked + label .checkbox-medialab_link:before {
-  background: #444;
-  border: 0.5px solid; }
-
-input:checked + .checkbox-medialab:after,
-input:checked + label .checkbox-medialab_link:after {
-  content: '';
-  position: absolute;
-  left: 10px;
-  background: white;
-  width: 2px;
-  height: 2px;
-  box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
-  transform: rotate(45deg); }
-
-input:checked + .filtre_objet_value:after {
-  margin-left: 18px; }
-
-input:checked + label .checkbox-medialab_link:after {
-  left: 2px; }
-
-.checkbox-medialab_link:hover {
-  color: currentColor; }
-
-.more {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  font-size: 13px;
-  line-height: 19.5px;
-  font-weight: 100;
-  color: rgba(68, 68, 68, 0.6);
-  text-decoration: underline; }
-  .more:hover {
-    color: #f7323f; }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
@@ -485,6 +371,149 @@ ul {
 *:focus {
   outline: none; }
 
+/* assets/scss/common/body.scss */
+@media (max-width: 700px) {
+  body {
+    overflow-x: hidden;
+    background-color: white; } }
+@media (min-width: 700px) {
+  body {
+    margin: 0 25px !important;
+    overflow-x: hidden;
+    background-color: white; } }
+[data-type="actualite"] .type::before {
+  content: "∾ "; }
+
+[data-type="production"] .type::before {
+  content: "☵ "; }
+
+[data-type="activite"] .type::before {
+  content: "⋇ "; }
+
+a:hover {
+  color: #f7323f; }
+
+label .span-nochecked {
+  display: block; }
+label .span-checked {
+  display: none; }
+
+input:checked + label .span-nochecked {
+  display: none; }
+input:checked + label .span-checked {
+  display: block; }
+
+.nomenclature p {
+  display: inline; }
+  .nomenclature p + p::before {
+    content: " / "; }
+
+/* virgules après les auteurs. ATTENTION = il faut plutôt le mettre depuis le CMS car au copier/coller les éléments after ne restent pas*/
+.author span {
+  white-space: nowrap; }
+  .author span:after {
+    content: ", "; }
+  .author span:last-of-type:after {
+    content: ""; }
+
+.checkbox-medialab {
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;
+  /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* NEW - Chrome */
+  display: flex;
+  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center; }
+
+.checkbox-medialab:before {
+  content: '';
+  margin-right: 10px;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background: white;
+  border: 0.5px solid #9e9d9d; }
+
+.checkbox-medialab:hover:before {
+  background: #444;
+  border: 0.5px solid #444; }
+
+input:checked + .checkbox-medialab:before,
+input:checked + label .checkbox-medialab_link:before {
+  background: #444;
+  border: 0.5px solid #444; }
+
+input:checked + .checkbox-medialab:after,
+input:checked + label .checkbox-medialab_link:after {
+  content: '';
+  position: absolute;
+  left: 10px;
+  background: white;
+  width: 2px;
+  height: 2px;
+  box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
+  transform: rotate(45deg); }
+
+input:checked + .filtre_objet_value:after {
+  margin-left: 18px; }
+
+input:checked + label .checkbox-medialab_link:after,
+input:checked + label.checkbox-parent-medialab:after {
+  left: 2px; }
+
+.checkbox-medialab_link:hover {
+  color: currentColor; }
+
+.more {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 13px;
+  line-height: 19.5px;
+  font-weight: 100;
+  color: rgba(68, 68, 68, 0.6);
+  text-decoration: underline; }
+  .more:hover {
+    color: #f7323f; }
+
+pre {
+  font-family: "Bel", courier, monospace; }
+
+span.tip {
+  display: none; }
+
+.totip {
+  text-decoration: underline;
+  text-decoration-skip-ink: auto;
+  cursor: help; }
+
+*:hover > span.tip, .totip:hover > span.tip, span.tip:hover {
+  display: block;
+  position: absolute;
+  z-index: 999;
+  max-width: 15%;
+  min-width: 150px;
+  top: 100%;
+  left: 50%;
+  -webkit-transform: translate3D(-50%, 0, 0);
+  -ms-transform: translate3D(-50%, 0, 0);
+  transform: translate3D(-50%, 0, 0);
+  padding: 0.6rem 0.8rem;
+  margin: 0.5rem 12.5px;
+  background: #444;
+  color: white;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 100;
+  text-decoration: none; }
+
 #topbar input {
   display: none; }
 #topbar label {
@@ -514,7 +543,7 @@ ul {
     font-weight: 300;
     line-height: 27px;
     background-color: white;
-    border-bottom: 0.5px solid;
+    border-bottom: 0.5px solid #444;
     z-index: 90; }
 
   #topbar-content {
@@ -642,8 +671,9 @@ ul {
 /* end desktop */
 @media (min-width: 700px) {
   footer {
-    height: 75px;
+    height: 175px;
     margin-top: 50px;
+    border-top: 0.5px solid #9e9d9d;
     display: -webkit-box;
     /* OLD - iOS 6-, Safari 3.1-6 */
     display: -moz-box;
@@ -654,17 +684,104 @@ ul {
     /* NEW - Chrome */
     display: flex;
     /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    -webkit-box-pack: justify;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
     font-size: 16px;
     line-height: 24px;
     font-weight: 100; }
-    footer .mentions {
-      width: 50%; }
+    footer .logo {
+      width: 50%;
+      flex: 2;
+      display: -webkit-box;
+      /* OLD - iOS 6-, Safari 3.1-6 */
+      display: -moz-box;
+      /* OLD - Firefox 19- (buggy but mostly works) */
+      display: -ms-flexbox;
+      /* TWEENER - IE 10 */
+      display: -webkit-flex;
+      /* NEW - Chrome */
+      display: flex;
+      /* NEW, Spec - Opera 12.1, Firefox 20+ */
+      -webkit-box-align: center;
+      -moz-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+      height: 0;
+      margin: auto;
+      display: none; }
+      footer .logo svg {
+        fill: #f7323f;
+        max-width: 100px; }
+    footer .adresse, footer .mentions {
+      flex: 1;
+      color: rgba(68, 68, 68, 0.6);
+      display: -webkit-box;
+      /* OLD - iOS 6-, Safari 3.1-6 */
+      display: -moz-box;
+      /* OLD - Firefox 19- (buggy but mostly works) */
+      display: -ms-flexbox;
+      /* TWEENER - IE 10 */
+      display: -webkit-flex;
+      /* NEW - Chrome */
+      display: flex;
+      /* NEW, Spec - Opera 12.1, Firefox 20+ */
+      -webkit-box-align: center;
+      -moz-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center; }
     footer .contact {
-      width: 50%; } }
+      flex: 1;
+      width: 25%;
+      color: rgba(68, 68, 68, 0.6);
+      display: -webkit-box;
+      /* OLD - iOS 6-, Safari 3.1-6 */
+      display: -moz-box;
+      /* OLD - Firefox 19- (buggy but mostly works) */
+      display: -ms-flexbox;
+      /* TWEENER - IE 10 */
+      display: -webkit-flex;
+      /* NEW - Chrome */
+      display: flex;
+      /* NEW, Spec - Opera 12.1, Firefox 20+ */
+      -webkit-box-align: center;
+      -moz-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center; }
+      footer .contact ul {
+        display: -webkit-box;
+        /* OLD - iOS 6-, Safari 3.1-6 */
+        display: -moz-box;
+        /* OLD - Firefox 19- (buggy but mostly works) */
+        display: -ms-flexbox;
+        /* TWEENER - IE 10 */
+        display: -webkit-flex;
+        /* NEW - Chrome */
+        display: flex;
+        /* NEW, Spec - Opera 12.1, Firefox 20+ */
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-pack: end;
+        -moz-box-pack: end;
+        -ms-flex-pack: end;
+        -webkit-justify-content: flex-end;
+        justify-content: flex-end;
+        width: 100%; }
+        footer .contact ul li:not(:last-of-type):after {
+          content: "/";
+          padding: 0 25px; } }
 @media (max-width: 700px) {
   footer {
-    height: 75px;
-    margin-top: 50px;
+    margin: 10px 15px 0 15px;
+    padding: 10px 0;
+    width: calc( 100% - 30px );
+    border-top: 0.5px solid #9e9d9d;
     display: -webkit-box;
     /* OLD - iOS 6-, Safari 3.1-6 */
     display: -moz-box;
@@ -675,13 +792,43 @@ ul {
     /* NEW - Chrome */
     display: flex;
     /* NEW, Spec - Opera 12.1, Firefox 20+ */
-    font-size: 13px;
-    line-height: 19.5px;
-    font-weight: 300; }
-    footer .mentions {
-      width: 50%; }
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 100; }
+    footer .logo {
+      display: none; }
+    footer .adresse, footer .mentions {
+      color: rgba(68, 68, 68, 0.6);
+      order: 2;
+      margin-top: 24px; }
     footer .contact {
-      width: 50%; } }
+      order: 1;
+      width: 100%;
+      color: rgba(68, 68, 68, 0.6); }
+      footer .contact ul {
+        width: 100%;
+        display: -webkit-box;
+        /* OLD - iOS 6-, Safari 3.1-6 */
+        display: -moz-box;
+        /* OLD - Firefox 19- (buggy but mostly works) */
+        display: -ms-flexbox;
+        /* TWEENER - IE 10 */
+        display: -webkit-flex;
+        /* NEW - Chrome */
+        display: flex;
+        /* NEW, Spec - Opera 12.1, Firefox 20+ */
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap; }
+        footer .contact ul li:not(:last-of-type):after {
+          content: "/";
+          padding: 0 20px; } }
 /* all */
 body, html {
   overflow: inherit; }
@@ -690,35 +837,74 @@ body, html {
   z-index: 30;
   background-color: white; }
 
-a:hover {
-  color: #E6142D; }
-  a:hover svg {
-    fill: #E6142D; }
-
 #nav-inside-article #img-article {
   visibility: hidden !important; }
 
-#biographie .contact {
-  color: red !important; }
-  #biographie .contact li {
-    font-size: 13px;
-    line-height: 19.5px;
-    font-weight: 100;
-    border: 0.5px solid #9e9d9d;
-    width: 50px;
-    color: rgba(68, 68, 68, 0.6);
-    text-align: center;
-    display: inline-block; }
-    #biographie .contact li:hover {
-      border-color: #f7323f;
-      color: #f7323f;
-      cursor: pointer; }
+.titre-sticky .retour {
+  padding-right: 12.5px; }
+.titre-sticky .personne {
+  font-weight: 100; }
+  .titre-sticky .personne:before {
+    content: " / "; }
+
+#biographie figure {
+  max-height: auto;
+  overflow: hidden; }
+  #biographie figure img {
+    width: 100%;
+    filter: grayscale(1); }
+  #biographie figure figcaption {
+    margin-top: 15px; }
+#biographie header * {
+  width: 100%; }
+#biographie header [data-type="domaine"], #biographie header [data-type="statut"] {
+  font-size: 13px;
+  line-height: 19.5px;
+  font-weight: 100;
+  width: inherit;
+  display: inline; }
+#biographie header [data-type="activite"] {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 27px;
+  margin: 25px 0;
+  font-style: italic; }
+  #biographie header [data-type="activite"]:before {
+    content: '“'; }
+  #biographie header [data-type="activite"]:after {
+    content: '”'; }
+#biographie .contact li {
+  font-size: 13px;
+  line-height: 19.5px;
+  font-weight: 100;
+  border-right: 0.5px solid #9e9d9d;
+  border-left: 0.5px solid #9e9d9d;
+  padding: 0 16.66667px;
+  width: auto;
+  color: rgba(68, 68, 68, 0.6);
+  text-align: center;
+  display: inline-block;
+  margin-right: -4px; }
+  #biographie .contact li:hover {
+    border-color: #f7323f;
+    color: #f7323f;
+    cursor: pointer;
+    z-index: 99; }
 
 @media (min-width: 700px) {
+  #topbar:after {
+    content: "";
+    border-bottom: 0.5px solid #444;
+    margin-left: 250px;
+    width: calc( 100vw - 250px - 75px );
+    position: absolute;
+    bottom: 0;
+    z-index: 10; }
+
   main {
     margin-left: 250px;
     margin-bottom: 40vh;
-    /* #article-contenu */ }
+    transition: .25s ease-in-out; }
     main aside {
       padding-top: 100px; }
     main .titre-sticky {
@@ -733,82 +919,21 @@ a:hover {
       z-index: 5;
       padding-top: 50px;
       font-weight: bold;
-      border-bottom: 0.5px solid;
-      border-top: 1px solid black; }
+      border-bottom: 0.5px solid #444; }
     main #biographie {
-      /* Honnetement un bon vieux Inline Block / Width 50% ferait l'affaire
-      A voir si cela est utile */
-      display: -webkit-box;
-      /* OLD - iOS 6-, Safari 3.1-6 */
-      display: -moz-box;
-      /* OLD - Firefox 19- (buggy but mostly works) */
-      display: -ms-flexbox;
-      /* TWEENER - IE 10 */
-      display: -webkit-flex;
-      /* NEW - Chrome */
-      display: flex;
-      /* NEW, Spec - Opera 12.1, Firefox 20+ */
-      -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
-      flex-wrap: wrap; }
-      main #biographie h2 {
-        font-size: 27px;
-        font-weight: 100;
-        line-height: 36px;
-        max-width: 1100px; }
-      main #biographie p {
-        font-size: 20px;
-        font-weight: 300;
-        line-height: 27px; }
-      main #biographie h3 {
-        margin-top: 60px;
-        font-size: 18px;
-        line-height: 27px;
-        font-weight: 500;
-        padding: 1rem 0 2rem 0; }
-      main #biographie div {
-        -webkit-box-ordinal-group: 2;
-        /* OLD - iOS 6-, Safari 3.1-6 */
-        -moz-box-ordinal-group: 2;
-        /* OLD - Firefox 19- */
-        -ms-flex-order: 2;
-        /* TWEENER - IE 10 */
-        -webkit-order: 2;
-        /* NEW - Chrome */
-        order: 2;
-        /* NEW, Spec - Opera 12.1, Firefox 20+ */
-        min-width: 50%;
-        padding-bottom: 30px; }
-        main #biographie div * {
-          width: 100%; }
-        main #biographie div h1 {
-          font-size: 60px;
-          font-weight: 100;
-          line-height: 82.5px;
-          letter-spacing: -0.5px;
-          padding-bottom: 15px;
-          margin-top: 45px;
-          max-width: 1100px; }
-        main #biographie div h2 {
-          padding-bottom: 7.5px; }
-        main #biographie div [data-type="domaine"], main #biographie div [data-type="statut"] {
-          font-size: 13px;
-          line-height: 19.5px;
-          font-weight: 100;
-          width: inherit;
-          display: inline;
-          padding: 0 25px 0 0; }
-        main #biographie div [data-type="activite"] {
-          font-size: 20px;
-          font-weight: 300;
-          line-height: 27px;
-          margin: 25px 0;
-          font-style: italic; }
-          main #biographie div [data-type="activite"]:before {
-            content: '“'; }
-          main #biographie div [data-type="activite"]:after {
-            content: '”'; }
+      margin-top: 75px;
+      /* no support of grid */
+      /* Regles de base */
+      /* if support of grid */
+      /* Start Support IE */
+      /* END Support IE */ }
       main #biographie figure {
+        margin: 50px 0; } }
+      @media (min-width: 700px) and (min-width: 1000px) {
+        main #biographie figure {
+          width: 50%; } }
+@media (min-width: 700px) {
+      main #biographie header {
         -webkit-box-ordinal-group: 1;
         /* OLD - iOS 6-, Safari 3.1-6 */
         -moz-box-ordinal-group: 1;
@@ -819,47 +944,109 @@ a:hover {
         /* NEW - Chrome */
         order: 1;
         /* NEW, Spec - Opera 12.1, Firefox 20+ */
-        -webkit-align-self: center;
-        -ms-flex-item-align: center;
-        align-self: center;
-        max-width: 500px;
-        margin: 0 50px 0 0; }
-        main #biographie figure img {
-          width: 100%;
-          box-shadow: 0 0 0 1px #888;
-          margin-left: 2px;
-          border-radius: 800px;
-          filter: grayscale(1); }
-        main #biographie figure figcaption {
-          margin-top: 15px; }
+        min-width: 50%;
+        padding-bottom: 30px;
+        padding-top: 45px; }
+        main #biographie header h1 {
+          font-size: 40px;
+          font-weight: 100;
+          line-height: 45px;
+          letter-spacing: -0.5px;
+          max-width: 1100px;
+          font-weight: bold; }
+        main #biographie header h2 {
+          font-size: 40px;
+          font-weight: 100;
+          line-height: 45px;
+          letter-spacing: -0.5px;
+          max-width: 1100px;
+          padding-bottom: 22.5px; }
+        main #biographie header p {
+          font-size: 20px;
+          font-weight: 300;
+          line-height: 27px; }
+        main #biographie header [data-type="domaine"], main #biographie header [data-type="statut"] {
+          padding: 0 25px 0 0; }
+        main #biographie header [data-type="activite"] {
+          margin: 25px 0; }
       main #biographie .biographie-contenu {
-        -webkit-box-ordinal-group: 3;
-        /* OLD - iOS 6-, Safari 3.1-6 */
-        -moz-box-ordinal-group: 3;
-        /* OLD - Firefox 19- */
-        -ms-flex-order: 3;
-        /* TWEENER - IE 10 */
-        -webkit-order: 3;
-        /* NEW - Chrome */
-        order: 3;
-        /* NEW, Spec - Opera 12.1, Firefox 20+ */
         width: 100%;
-        max-width: 900px; }
+        max-width: 900px;
+        min-width: calc( 700px - 250px); } }
+      @media (min-width: 700px) and (min-width: 1000px) {
+        main #biographie .biographie-contenu {
+          min-width: 600px; } }
+@media (min-width: 700px) {
+        main #biographie .biographie-contenu p {
+          font-size: 20px;
+          font-weight: 300;
+          line-height: 27px; }
+      @supports (display: grid) {
+        @media (min-width: 1000px) {
+          main #biographie {
+            display: grid;
+            grid-template-columns: minmax(200px, 2fr) 1fr !important;
+            grid-gap: 25px 50px; } }
+        @media (min-width: 1200px) {
+          main #biographie {
+            grid-template-columns: minmax(100px, calc( 50% - 25px )) 1fr !important; } }
+        @media (min-width: 1000px) {
+          main #biographie figure {
+            grid-column: 2/3;
+            grid-row: 1 / 3;
+            width: 100%;
+            min-width: 400px;
+            margin: 0; } }
+        @media (min-width: 1000px) {
+          main #biographie header {
+            grid-column: 1/2;
+            grid-row-start: 1;
+            padding-top: 0;
+            align-self: center; } }
+        main #biographie .biographie-contenu {
+          grid-column: 1/2; } }
+      @supports (display: -ms-grid) {
+        @media (min-width: 1000px) {
+          main #biographie {
+            display: -ms-grid;
+            -ms-grid-template-columns: minmax(200px, 2fr) 1fr;
+            -ms-grid-gap: 25px 50px; } }
+        @media (min-width: 1200px) {
+          main #biographie {
+            -ms-grid-template-columns: minmax(100px, calc( 50% - 25px )) 1fr !important; } }
+        @media (min-width: 1000px) {
+          main #biographie figure {
+            -ms-grid-column: 2/3;
+            -ms-grid-row-start: 1;
+            width: 100%;
+            min-width: 300px;
+            max-height: 35vh;
+            margin: 0; } }
+        @media (min-width: 1000px) {
+          main #biographie header {
+            -ms-grid-column: 1/2;
+            -ms-grid-row-start: 1;
+            padding-top: 0;
+            align-self: center; } }
+        @media (min-width: 1000px) {
+          main #biographie .biographie-contenu {
+            -ms-grid-column: 1/2; } } }
 
-  /* main */
-  #elements-associes > h1, #fichiers-associes > h1, #implication > h1 {
+  /* end main */
+  aside > h1 {
     padding-top: 45px;
     margin-bottom: 37.5px;
     font-size: 27px;
     font-weight: 100;
-    line-height: 36px; } }
+    line-height: 39px; }
+
+  footer {
+    margin-left: 250px;
+    width: calc( 100% - 50px - 250px);
+    margin-bottom: 2px; } }
 @media (max-width: 700px) {
   main {
-    margin-left: 15px;
-    margin-right: 15px;
-    margin-bottom: 40vh;
-    margin: 70px 15px;
-    /* #article-contenu */ }
+    margin: 70px 15px; }
     main aside {
       padding-top: 100px; }
     main .titre-sticky {
@@ -873,81 +1060,49 @@ a:hover {
       z-index: 5;
       padding-top: 50px;
       font-weight: bold;
-      border-bottom: 0.5px solid; }
-      main .titre-sticky span {
+      border-bottom: 0.5px solid #444; }
+      main .titre-sticky span.personne {
         display: none; }
-    main #biographie h2 {
-      font-size: 27px;
-      font-weight: 100;
-      line-height: 36px;
-      max-width: 1100px; }
-    main #biographie p {
-      font-size: 20px;
-      font-weight: 400;
-      line-height: 27px; }
-    main #biographie h3 {
-      margin-top: 60px;
-      font-size: 18px;
-      line-height: 27px;
-      font-weight: 500;
-      padding: 1rem 0 2rem 0; }
-    main #biographie div {
-      -webkit-box-ordinal-group: 2;
+    main #biographie header {
+      -webkit-box-ordinal-group: 1;
       /* OLD - iOS 6-, Safari 3.1-6 */
-      -moz-box-ordinal-group: 2;
+      -moz-box-ordinal-group: 1;
       /* OLD - Firefox 19- */
-      -ms-flex-order: 2;
+      -ms-flex-order: 1;
       /* TWEENER - IE 10 */
-      -webkit-order: 2;
+      -webkit-order: 1;
       /* NEW - Chrome */
-      order: 2;
+      order: 1;
       /* NEW, Spec - Opera 12.1, Firefox 20+ */
       min-width: 50%;
-      padding-bottom: 30px;
-      text-align: center; }
-      main #biographie div * {
-        width: 100%; }
-      main #biographie div h1 {
-        font-size: 40px;
-        font-weight: 100;
-        line-height: 45px;
-        letter-spacing: -0.5px;
-        padding-bottom: 15px 0 45px 0; }
-      main #biographie div h2 {
+      padding-top: 22.5px;
+      padding-bottom: 45px; }
+      main #biographie header h1 {
         font-size: 27px;
-        font-weight: 300;
-        line-height: 36px; }
-      main #biographie div [data-type="domaine"], main #biographie div [data-type="statut"] {
-        font-size: 13px;
-        line-height: 19.5px;
         font-weight: 100;
-        width: inherit;
-        display: inline;
-        padding: 0 25px 0 0; }
-      main #biographie div [data-type="activite"] {
+        line-height: 39px;
+        font-weight: bold; }
+      main #biographie header h2 {
+        font-size: 27px;
+        font-weight: 100;
+        line-height: 39px;
+        padding-bottom: 22.5px; }
+      main #biographie header p {
         font-size: 20px;
         font-weight: 300;
-        line-height: 27px;
-        margin: 25px 0;
-        font-style: italic; }
-        main #biographie div [data-type="activite"]:before {
-          content: '“'; }
-        main #biographie div [data-type="activite"]:after {
-          content: '”'; }
-    main #biographie figure {
-      margin: 30px 0;
-      width: 100%;
-      text-align: center; }
-      main #biographie figure img {
-        max-width: 150px;
-        box-shadow: 0 0 0 1px #888;
-        margin-left: 2px;
-        border-radius: 75px;
-        filter: grayscale(1); }
-      main #biographie figure figcaption {
-        margin-top: 15px; }
+        line-height: 27px; }
+      main #biographie header [data-type="domaine"], main #biographie header [data-type="statut"] {
+        padding: 0 10px 0 0; }
+      main #biographie header [data-type="activite"] {
+        margin: 10px 0; }
+      main #biographie header .contact {
+        margin-top: 20px; }
     main #biographie .biographie-contenu {
       width: 100%; }
+      main #biographie .biographie-contenu p {
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 27px; }
 
   /* main */
   #elements-associes > h1, #fichiers-associes > h1 {
@@ -955,7 +1110,34 @@ a:hover {
     margin-bottom: 37.5px;
     font-size: 27px;
     font-weight: 100;
-    line-height: 36px; } }
+    line-height: 39px; } }
+.toggle-lang {
+  border: dotted 1px #444;
+  padding: 30px 50px;
+  margin-top: 45px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 100; }
+  .toggle-lang span {
+    border-bottom: 0.5px solid #444;
+    white-space: nowrap;
+    cursor: pointer; }
+    .toggle-lang span:hover {
+      color: #f7323f;
+      border-bottom: 0.5px solid #f7323f; }
+
+#fr-to-en:checked + label {
+  color: red; }
+
+#en-to-fr:checked + label {
+  color: red; }
+
+#fr-to-en:checked ~ .fr {
+  display: none; }
+
+#en-to-fr:checked ~ .en {
+  display: none; }
+
 @media (min-width: 700px) {
   #nav-inside-article {
     padding-top: 25px;
@@ -973,7 +1155,7 @@ a:hover {
       height: 75px;
       width: 125px;
       background-color: white;
-      border-bottom: 1px solid black;
+      border-bottom: 0.5px solid #444;
       font-size: 16px;
       line-height: 24px;
       font-weight: 100;
@@ -990,49 +1172,49 @@ a:hover {
       #nav-inside-article .nav-inside-item a {
         width: 83.33333px; }
     #nav-inside-article #img-article {
-      border-top: 1px solid black;
       flex-grow: 1;
       width: 125px;
       overflow: hidden;
-      transition: width .25s linear;
+      transition: all 0.25s cubic-bezier(0.76, 0.05, 0.86, 0.06);
       font-size: 13px !important;
       line-height: 1.15 !important;
       font-weight: 300 !important; }
-      #nav-inside-article #img-article .image-generator {
-        transition: opacity 1s linear; }
-        #nav-inside-article #img-article .image-generator pre {
-          font-size: 2vw !important; }
       #nav-inside-article #img-article div {
         background-color: white;
-        position: absolute;
+        position: relative;
         top: 0;
         left: 0; }
         #nav-inside-article #img-article div img {
           position: absolute;
-          width: 100%;
-          height: 100%;
+          width: calc( 80vw - 50px);
+          height: auto;
           opacity: 0;
-          z-index: 1;
-          filter: blur(20px); }
-    #nav-inside-article #img-article:hover {
-      width: calc( 100vw - 50px); }
-      #nav-inside-article #img-article:hover .image-generator {
-        z-index: 2; }
-      #nav-inside-article #img-article:hover img {
-        width: calc(calc( 100vw - 50px) * 2);
-        opacity: 1;
-        transition: opacity 1s linear;
-        height: 100%;
-        z-index: 9999;
-        position: relative;
-        top: 18px;
-        width: 121vw;
-        mix-blend-mode: color; } }
+          z-index: 2;
+          transform: translateY(-50%);
+          top: 50%; }
+        #nav-inside-article #img-article div .image-generator {
+          transition: opacity 1s linear;
+          position: relative;
+          z-index: 1; }
+          #nav-inside-article #img-article div .image-generator pre {
+            font-size: 2vw !important; }
+      #nav-inside-article #img-article:hover {
+        width: calc( 80vw - 50px); }
+        #nav-inside-article #img-article:hover:before {
+          content: "";
+          border-top: 0.5px solid #444;
+          position: absolute;
+          top: 0;
+          z-index: 10; }
+        #nav-inside-article #img-article:hover img {
+          width: calc( 80vw - 50px);
+          opacity: 1;
+          transition: all 0.25s cubic-bezier(0.76, 0.05, 0.86, 0.06); } }
 @media (max-width: 700px) {
   #nav-inside-article {
     display: none; } }
 .icon {
-  border: 0.5px solid;
+  border: 0.5px solid #444;
   font-size: 30px;
   letter-spacing: -4px;
   left: 0px;
@@ -1045,7 +1227,7 @@ a:hover {
     left: 60%;
     top: -50px;
     float: right;
-    border: 0.5px solid;
+    border: 0.5px solid #444;
     background: white;
     transform: rotate(-45deg); }
   .icon span:last-of-type {
@@ -1093,27 +1275,22 @@ a:hover {
       width: 50px; }
 
   /* end #fichiers-associes */ }
-input.filtre_objet {
+#elements-associes-liste input.filtre_objet {
   cursor: pointer; }
-  input.filtre_objet + label {
+  #elements-associes-liste input.filtre_objet + label {
     cursor: pointer;
     padding: 0 25px 0 5px; }
-
-input.filtre_objet:checked ~ .contenu li {
+#elements-associes-liste input.filtre_objet:checked ~ .contenu li {
   display: none !important; }
-
-input#filtre_equipe:checked ~ .contenu li[data-type="people"] {
+#elements-associes-liste input#filtre_equipe:checked ~ .contenu li[data-type="people"] {
   display: block !important; }
-
-input#filtre_production:checked ~ .contenu li[data-type="production"] {
+#elements-associes-liste input#filtre_production:checked ~ .contenu li[data-type="production"] {
   display: block !important; }
-
-input#filtre_activite:checked ~ .contenu li[data-type="activite"] {
+#elements-associes-liste input#filtre_activite:checked ~ .contenu li[data-type="activite"] {
   display: block !important; }
-
-ul.liste_objet {
+#elements-associes-liste ul.liste_objet {
   padding: 25px 0; }
-  ul.liste_objet li a {
+  #elements-associes-liste ul.liste_objet li a {
     display: -webkit-box;
     /* OLD - iOS 6-, Safari 3.1-6 */
     display: -moz-box;
@@ -1131,12 +1308,12 @@ ul.liste_objet {
     justify-content: flex-start;
     width: 100%;
     padding: 15px 0;
-    border-bottom: 0.5px solid; }
-    ul.liste_objet li a * {
+    border-bottom: 0.5px solid #444; }
+    #elements-associes-liste ul.liste_objet li a * {
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden; }
-    ul.liste_objet li a h1 {
+    #elements-associes-liste ul.liste_objet li a h1 {
       font-size: 16px;
       line-height: 24px;
       font-weight: 100;
@@ -1153,7 +1330,7 @@ ul.liste_objet {
       padding-right: 12.5px;
       font-weight: bold;
       width: 33%; }
-    ul.liste_objet li a h2 {
+    #elements-associes-liste ul.liste_objet li a h2 {
       font-size: 16px;
       line-height: 24px;
       font-weight: 100;
@@ -1170,7 +1347,7 @@ ul.liste_objet {
       padding-right: 12.5px;
       font-weight: bold;
       width: 33%; }
-    ul.liste_objet li a p {
+    #elements-associes-liste ul.liste_objet li a p {
       font-size: 16px;
       line-height: 24px;
       font-weight: 100;
@@ -1184,7 +1361,7 @@ ul.liste_objet {
       /* NEW - Chrome */
       order: 4;
       /* NEW, Spec - Opera 12.1, Firefox 20+ */ }
-    ul.liste_objet li a .image-pre {
+    #elements-associes-liste ul.liste_objet li a .image-pre {
       display: none;
       height: 25px;
       overflow: hidden;
@@ -1200,6 +1377,70 @@ ul.liste_objet {
       order: 1;
       /* NEW, Spec - Opera 12.1, Firefox 20+ */ }
 
+.elements-associes-block > p {
+  font-size: 13px;
+  line-height: 19.5px;
+  font-weight: 100;
+  color: rgba(68, 68, 68, 0.6);
+  display: none; }
+.elements-associes-block ul.liste_objet li {
+  box-sizing: border-box;
+  padding: 15px 0;
+  margin-right: 25px;
+  border-bottom: 0.5px solid #9e9d9d; }
+  .elements-associes-block ul.liste_objet li a * {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; }
+  .elements-associes-block ul.liste_objet li a h1 {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 100;
+    padding-right: 12.5px;
+    font-weight: bold; }
+  .elements-associes-block ul.liste_objet li a h2 {
+    display: none; }
+  .elements-associes-block ul.liste_objet li a p {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 100; }
+  .elements-associes-block ul.liste_objet li a .image-pre {
+    display: none; }
+  .elements-associes-block ul.liste_objet li a .embleme {
+    font-size: 40px;
+    width: 25px;
+    order: 1;
+    display: none; }
+  .elements-associes-block ul.liste_objet li a .type::before {
+    content: inherit; }
+
+.elements-associes-block ul.liste_objet {
+  padding: 10px 0;
+  padding: 10px 0;
+  display: block; }
+  .elements-associes-block ul.liste_objet li {
+    width: 100%; }
+
+@media (min-width: 700px) {
+  .elements-associes-block ul.liste_objet {
+    max-width: 800px;
+    padding: 25px 0;
+    padding: 25px 0;
+    display: -webkit-box;
+    /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;
+    /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;
+    /* TWEENER - IE 10 */
+    display: -webkit-flex;
+    /* NEW - Chrome */
+    display: flex;
+    /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap; }
+    .elements-associes-block ul.liste_objet li {
+      width: calc( ( 100% - 50px ) / 2 ); } }
 #implications ul {
   padding: 25px 0; }
   #implications ul li {
@@ -1214,8 +1455,5 @@ ul.liste_objet {
     #implications ul li p[data-type="title"] {
       width: calc(100% - 150px);
       max-width: 800px; }
-
-#elements-associes .more {
-  display: none; }
 
 /*# sourceMappingURL=page_personne.css.map */

@@ -31,6 +31,6 @@
         <?php include('fragments/page_liste/_liste_'.$liste_nature.'.php');  ?>	
     
     </section>
-	
+	<?php include('fragments/_footer.php'); ?>
 </body>
 </html>

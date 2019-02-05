@@ -8,6 +8,7 @@
     <title>Medialab - Proto</title>
 
     <link rel='stylesheet' type='text/css' href='assets/css-compiled/index.css'>
+    <link rel='stylesheet' type='text/css' href='assets/fonts/Bel/stylesheet.css'>
 	<link rel="shortcut icon" href="assets/images/favicon-32x32.png" type="image/jpg"> 
  
 </head>
@@ -29,6 +30,7 @@
 
 	<?php include('fragments/index/now.php'); ?>
 	<?php include('fragments/index/agenda.php'); ?>
+	<?php include('fragments/index/follow.php'); ?>
 	<?php include('fragments/index/flux.php'); ?>
 
 	</main>

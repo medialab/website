@@ -11,6 +11,7 @@ import BooleanSelector from '../selectors/BooleanSelector';
 import RelationSelector from '../selectors/RelationSelector';
 import SortableKeyValueList from '../selectors/SortableKeyValueList';
 import SuggestionSelector from '../selectors/SuggestionSelector';
+import PreviewLink from '../misc/PreviewLink';
 
 function validate(data) {
   if (!data.firstName || !data.lastName)
@@ -86,7 +87,8 @@ function renderPeopleForm(props) {
     handlers,
     slug,
     englishEditorContent,
-    frenchEditorContent
+    frenchEditorContent,
+    dirty, url
   } = props;
 
   return (
@@ -127,6 +129,7 @@ function renderPeopleForm(props) {
           <div className="column is-12">
             <div className="field">
               <label className="label" style={{display: 'inline'}}>Slug:</label> {slug && <code>{slug}</code>}
+              {url && <PreviewLink url={url} disabled={dirty} />}
             </div>
           </div>
         </div>

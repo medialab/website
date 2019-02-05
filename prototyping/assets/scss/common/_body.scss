@@ -16,8 +16,6 @@
     }
 }
 
-
-
 [data-type="actualite"] .type::before{
     content: $actualites;
 }
@@ -28,7 +26,7 @@
     content: $activites;
 }
 [data-type="git"] .type::before{
-    content: $git;
+    //content: $git;
 }
 
 
@@ -110,16 +108,19 @@ input:checked + label .checkbox-medialab_link:after {
     transform: rotate(45deg);
   }
 
-  
 
-  input:checked + .filtre_objet_value:after{
-    margin-left: $margins-desktop - 7px;
-    }
- 
 
-  // si checkbox = reconfiguration du build (par lien)
-  input:checked + label .checkbox-medialab_link:after { left: 2px; }
-  .checkbox-medialab_link:hover { color: currentColor;}
+input:checked + .filtre_objet_value:after{
+margin-left: $margins-desktop - 7px;
+}
+
+
+// si checkbox = reconfiguration du build (par lien)
+input:checked + label .checkbox-medialab_link:after,
+input:checked + label.checkbox-parent-medialab:after { 
+    left: 2px; 
+}
+.checkbox-medialab_link:hover { color: currentColor;}
 
 
 
@@ -139,5 +140,53 @@ input:checked + label .checkbox-medialab_link:after {
     }
 }
 
+/////////
+// Pre //
+/////////
+
+
+pre {
+  font-family: $font-mono;
+}
+
+
+//////////////////
+//// Tip!  ///////
+//////////////////
+
+span.tip{
+    display: none;
+}
+
+.totip{
+    text-decoration: underline;
+    text-decoration-skip-ink: auto;
+    cursor: help;
+
+}
+
+*:hover > span.tip, .totip:hover > span.tip, span.tip:hover {
+    display: block;
+    position: absolute;
+    z-index: 999;
+    max-width: 15%;
+    min-width: 150px;
+    
+    top: 100%;
+    left: 50%;
+    -webkit-transform: translate3D(-50%, 0, 0);
+    -ms-transform: translate3D(-50%, 0, 0);
+    transform: translate3D(-50%, 0, 0);
+
+    padding: 0.6rem 0.8rem;
+    margin: .5rem $unite/2;    
+    //border: $border-light;
+    background: $text-color;
+    color: $background-site;
+    @include font-size-16();
+    text-decoration: none;
+
+
+}
 
 

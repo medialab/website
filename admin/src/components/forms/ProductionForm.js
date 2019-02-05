@@ -10,6 +10,7 @@ import DateSelector from '../selectors/DateSelector';
 import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector, {MultiRelationSelector} from '../selectors/RelationSelector';
 import UrlInput from '../selectors/UrlInput';
+import PreviewLink from '../misc/PreviewLink';
 
 function validate(data) {
   if (!data.title || !data.title.fr)
@@ -75,7 +76,9 @@ function renderProductionForm(props) {
     handlers,
     slug,
     englishEditorContent,
-    frenchEditorContent
+    frenchEditorContent,
+    url,
+    dirty
   } = props;
 
   return (
@@ -119,6 +122,7 @@ function renderProductionForm(props) {
           <div className="column is-12">
             <div className="field">
               <label className="label" style={{display: 'inline'}}>Slug:</label> {slug && <code>{slug}</code>}
+              {url && <PreviewLink url={url} disabled={dirty} />}
             </div>
           </div>
         </div>

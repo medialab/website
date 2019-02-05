@@ -148,6 +148,7 @@
 
 </main>
 
-	
+<?php include('fragments/_footer.php'); ?>
+
 </body>
 </html>

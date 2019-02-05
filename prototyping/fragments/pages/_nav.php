@@ -15,12 +15,15 @@
 		</div>
 	</div>
 	<div class="nav-inside-item" >
-		<a href="#main-objet"><p class="article-contenu">Article ⁭⁭↑</p></a>
+		<a href="#topbar"><p class="article-contenu">Article ⁭⁭↑</p></a>
 	</div>
 	<div class="nav-inside-item" >
 	<a href="#fichiers-associes"><p>Fichiers associés</p></a>
 	</div>
 	<div class="nav-inside-item">
-		<a href="#elements-associes"><p>Éléments liées</p></a>
+		<a href="#publications_liees"><p>Publication liées</p></a>
+	</div>
+	<div class="nav-inside-item">
+		<a href="#activites_liees"><p>Activités liées</p></a>
 	</div>
 </nav>

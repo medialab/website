@@ -5,10 +5,6 @@
 @include for-size(phone) {
 		
 	main{
-		/*margin-left: $margins-phone;
-		margin-right: $margins-phone;
-		margin-bottom: 40vh;*/
-
 		margin: $height-top-bar-phone $margins-phone;
 	
 		aside{
@@ -26,51 +22,26 @@
 			font-weight: bold;
 			border-bottom: $border;
 
-			span{
-				display: none;
-			}
+			span.personne{ display: none; }
 		}
 
 		#biographie{
 
-			/* no support of grid */
-			figure{
-				max-height: auto;
-				overflow: hidden;
-				//margin: $unite-phone*2 0;
-
-				img{
-					width: 100%;
-					filter: grayscale(1);
-				}
-				figcaption{
-					margin-top: $baseline*1;
-				}
-			}
-
-			header{
-				padding-top: $baseline*3;
-			}
+			figure{	}
 
 			header{
 				@include flex-order(1);
 				min-width: 50%;
-				padding-bottom: $baseline*2;
-
-				& *{
-					width: 100%;
-				}
+				padding-top: $baseline*1.5;
+				padding-bottom: $baseline*3;
 
 				h1{
-					@include font-size-40();
-					//padding-bottom: $baseline*1;
-					max-width: 1100px;
+					@include font-size-27();
 					font-weight: bold;
 				}
 		
 				h2{ 
-					@include font-size-40();
-					max-width: 1100px;
+					@include font-size-27();
 					padding-bottom: $baseline*1.5; 
 				}
 
@@ -78,39 +49,24 @@
 					@include font-size-20();
 				}
 
-
 				[data-type="domaine"],[data-type="statut"]{
-					@include font-size-13();
-					width: inherit;
-					display: inline;
-
 					padding: 0 $unite-phone 0 0;
 				}		
 
 				[data-type="activite"]{
-					@include font-size-20();
 					margin: $unite-phone 0;
-					font-style:italic;
+				}
 
-					&:before{
-						content: '“';
-					}
-					&:after{
-						content: '”';
-					}
+				.contact {
+					margin-top: $unite-phone*2;	
 				}
 			}
 	
 			.biographie-contenu{
 				width: 100%;
-
-				p{
-					@include font-size-20();
-				}
+				p{ @include font-size-20();}
 			}
-
-		}/* #article-contenu */
-		
+		}		
 	} /* main */
 
 	#elements-associes > h1, #fichiers-associes > h1{

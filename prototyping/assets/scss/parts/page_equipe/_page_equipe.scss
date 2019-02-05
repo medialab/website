@@ -3,31 +3,11 @@
 #liste{
     
     position: relative;
-
-    #liste_objet{
-
-        ////    Liste des liens
-
-        [data-item]{ // S'applique aux items des troix catégorie
-            border-top: $border;
-            
-            &:hover{
-                transition: .25s ease;
-                border-top-color: $redlab;
-
-                &+ [data-item] {
-                    border-top-color: $redlab;
-                }
-            }
+        
+    a:hover{
+        figure{
+            background-color: $redlab;
+            img{ mix-blend-mode: screen; filter: grayscale(1) contrast(2);}
         }
-
-        @for $i from 1 through 400 {
-
-            [data-item="#{$i}"]:hover ~ [data-item="#{$i + 1}"],
-            [data-item="#{$i}"]:active ~ [data-item="#{$i + 1}"]{ 
-                border-top-color: $redlab;
-            }
-        }  
     }
 }
-

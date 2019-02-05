@@ -11,7 +11,6 @@
 
 
 		li{
-			
 			box-sizing: border-box;
 			padding: $baseline 0 ;
 			margin-right: $unite;
@@ -19,7 +18,7 @@
 
 			a{
 
-				*{@include text-overflow();}
+				*{ @include text-overflow(); }
 
 				h1{
 					@include font-size-16();
@@ -27,13 +26,9 @@
 					font-weight: bold;
 				}
 
-				h2{
-					display: none;
-				}
+				h2{ display: none; }
 
-				p{
-					@include font-size-16();
-				}
+				p{ @include font-size-16(); }
 
 				.image-pre{
 					display: none;
@@ -51,35 +46,6 @@
 					content: inherit;
 				}
 			}
-
-			/*
-			&[data-type="actualite"]::before{
-			    content: $actualites;
-			}
-			&[data-type="production"]::before{
-			    content: $productions;
-			}
-			&[data-type="activite"]::before{
-			    content: $activites;
-			}
-
-			&[data-type="activite"], 
-			&[data-type="production"], 
-			&[data-type="actualite"]{
-
-				@include flex;
-				
-				a{
-					left: $unite*2;
-				}
-
-				&::before{
-					font-size: $font-size*1.6*2;
-					font-weight: 100;
-					position: absolute;
-					@include align-self(center);
-				}
-			}*/
 		}
 	}
 }
@@ -91,14 +57,9 @@
 				
 			padding: $unite-phone 0;
 			padding: $unite-phone 0;
-
 			display: block;
 
-			li{
-			
-				width: 100%;
-
-			}
+			li{ width: 100%; }
 		}
 }
 
@@ -114,11 +75,7 @@
 			@include flex;
 			@include flex-wrap(wrap);
 			
-
-			li{
-				width: calc( ( 100% - #{$unite*2} ) / 2 );
-				
-			}
+			li{ width: calc( ( 100% - #{$unite*2} ) / 2 ); }
 		}		
 	}
 }

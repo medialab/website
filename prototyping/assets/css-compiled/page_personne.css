@@ -837,14 +837,42 @@ body, html {
   z-index: 30;
   background-color: white; }
 
-a:hover {
-  color: #E6142D; }
-  a:hover svg {
-    fill: #E6142D; }
-
 #nav-inside-article #img-article {
   visibility: hidden !important; }
 
+.titre-sticky .retour {
+  padding-right: 12.5px; }
+.titre-sticky .personne {
+  font-weight: 100; }
+  .titre-sticky .personne:before {
+    content: " / "; }
+
+#biographie figure {
+  max-height: auto;
+  overflow: hidden; }
+  #biographie figure img {
+    width: 100%;
+    filter: grayscale(1); }
+  #biographie figure figcaption {
+    margin-top: 15px; }
+#biographie header * {
+  width: 100%; }
+#biographie header [data-type="domaine"], #biographie header [data-type="statut"] {
+  font-size: 13px;
+  line-height: 19.5px;
+  font-weight: 100;
+  width: inherit;
+  display: inline; }
+#biographie header [data-type="activite"] {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 27px;
+  margin: 25px 0;
+  font-style: italic; }
+  #biographie header [data-type="activite"]:before {
+    content: '“'; }
+  #biographie header [data-type="activite"]:after {
+    content: '”'; }
 #biographie .contact li {
   font-size: 13px;
   line-height: 19.5px;
@@ -876,8 +904,7 @@ a:hover {
   main {
     margin-left: 250px;
     margin-bottom: 40vh;
-    transition: .25s ease-in-out;
-    /* #article-contenu */ }
+    transition: .25s ease-in-out; }
     main aside {
       padding-top: 100px; }
     main .titre-sticky {
@@ -893,36 +920,67 @@ a:hover {
       padding-top: 50px;
       font-weight: bold;
       border-bottom: 0.5px solid #444; }
-      main .titre-sticky .retour {
-        padding-right: 12.5px; }
-      main .titre-sticky .personne {
-        font-weight: 100; }
-        main .titre-sticky .personne:before {
-          content: " / "; }
     main #biographie {
       margin-top: 75px;
       /* no support of grid */
       /* Regles de base */
-      /* END Regle de base */
       /* if support of grid */
-      /* END Support Grid */
       /* Start Support IE */
       /* END Support IE */ }
       main #biographie figure {
-        max-height: auto;
-        overflow: hidden;
         margin: 50px 0; } }
       @media (min-width: 700px) and (min-width: 1000px) {
         main #biographie figure {
           width: 50%; } }
 @media (min-width: 700px) {
-        main #biographie figure img {
-          width: 100%;
-          filter: grayscale(1); }
-        main #biographie figure figcaption {
-          margin-top: 15px; }
       main #biographie header {
+        -webkit-box-ordinal-group: 1;
+        /* OLD - iOS 6-, Safari 3.1-6 */
+        -moz-box-ordinal-group: 1;
+        /* OLD - Firefox 19- */
+        -ms-flex-order: 1;
+        /* TWEENER - IE 10 */
+        -webkit-order: 1;
+        /* NEW - Chrome */
+        order: 1;
+        /* NEW, Spec - Opera 12.1, Firefox 20+ */
+        min-width: 50%;
+        padding-bottom: 30px;
         padding-top: 45px; }
+        main #biographie header h1 {
+          font-size: 40px;
+          font-weight: 100;
+          line-height: 45px;
+          letter-spacing: -0.5px;
+          max-width: 1100px;
+          font-weight: bold; }
+        main #biographie header h2 {
+          font-size: 40px;
+          font-weight: 100;
+          line-height: 45px;
+          letter-spacing: -0.5px;
+          max-width: 1100px;
+          padding-bottom: 22.5px; }
+        main #biographie header p {
+          font-size: 20px;
+          font-weight: 300;
+          line-height: 27px; }
+        main #biographie header [data-type="domaine"], main #biographie header [data-type="statut"] {
+          padding: 0 25px 0 0; }
+        main #biographie header [data-type="activite"] {
+          margin: 25px 0; }
+      main #biographie .biographie-contenu {
+        width: 100%;
+        max-width: 900px;
+        min-width: calc( 700px - 250px); } }
+      @media (min-width: 700px) and (min-width: 1000px) {
+        main #biographie .biographie-contenu {
+          min-width: 600px; } }
+@media (min-width: 700px) {
+        main #biographie .biographie-contenu p {
+          font-size: 20px;
+          font-weight: 300;
+          line-height: 27px; }
       @supports (display: grid) {
         @media (min-width: 1000px) {
           main #biographie {
@@ -973,68 +1031,6 @@ a:hover {
         @media (min-width: 1000px) {
           main #biographie .biographie-contenu {
             -ms-grid-column: 1/2; } } }
-      main #biographie header {
-        -webkit-box-ordinal-group: 1;
-        /* OLD - iOS 6-, Safari 3.1-6 */
-        -moz-box-ordinal-group: 1;
-        /* OLD - Firefox 19- */
-        -ms-flex-order: 1;
-        /* TWEENER - IE 10 */
-        -webkit-order: 1;
-        /* NEW - Chrome */
-        order: 1;
-        /* NEW, Spec - Opera 12.1, Firefox 20+ */
-        min-width: 50%;
-        padding-bottom: 30px; }
-        main #biographie header * {
-          width: 100%; }
-        main #biographie header h1 {
-          font-size: 40px;
-          font-weight: 100;
-          line-height: 45px;
-          letter-spacing: -0.5px;
-          max-width: 1100px;
-          font-weight: bold; }
-        main #biographie header h2 {
-          font-size: 40px;
-          font-weight: 100;
-          line-height: 45px;
-          letter-spacing: -0.5px;
-          max-width: 1100px;
-          padding-bottom: 22.5px; }
-        main #biographie header p {
-          font-size: 20px;
-          font-weight: 300;
-          line-height: 27px; }
-        main #biographie header [data-type="domaine"], main #biographie header [data-type="statut"] {
-          font-size: 13px;
-          line-height: 19.5px;
-          font-weight: 100;
-          width: inherit;
-          display: inline;
-          padding: 0 25px 0 0; }
-        main #biographie header [data-type="activite"] {
-          font-size: 20px;
-          font-weight: 300;
-          line-height: 27px;
-          margin: 25px 0;
-          font-style: italic; }
-          main #biographie header [data-type="activite"]:before {
-            content: '“'; }
-          main #biographie header [data-type="activite"]:after {
-            content: '”'; }
-      main #biographie .biographie-contenu {
-        width: 100%;
-        max-width: 900px;
-        min-width: calc( 700px - 250px); } }
-      @media (min-width: 700px) and (min-width: 1000px) {
-        main #biographie .biographie-contenu {
-          min-width: 600px; } }
-@media (min-width: 700px) {
-        main #biographie .biographie-contenu p {
-          font-size: 20px;
-          font-weight: 300;
-          line-height: 27px; }
 
   /* end main */
   aside > h1 {
@@ -1050,11 +1046,7 @@ a:hover {
     margin-bottom: 2px; } }
 @media (max-width: 700px) {
   main {
-    /*margin-left: $margins-phone;
-    margin-right: $margins-phone;
-    margin-bottom: 40vh;*/
-    margin: 70px 15px;
-    /* #article-contenu */ }
+    margin: 70px 15px; }
     main aside {
       padding-top: 100px; }
     main .titre-sticky {
@@ -1069,76 +1061,48 @@ a:hover {
       padding-top: 50px;
       font-weight: bold;
       border-bottom: 0.5px solid #444; }
-      main .titre-sticky span {
+      main .titre-sticky span.personne {
         display: none; }
-    main #biographie {
-      /* no support of grid */ }
-      main #biographie figure {
-        max-height: auto;
-        overflow: hidden; }
-        main #biographie figure img {
-          width: 100%;
-          filter: grayscale(1); }
-        main #biographie figure figcaption {
-          margin-top: 15px; }
-      main #biographie header {
-        padding-top: 45px; }
-      main #biographie header {
-        -webkit-box-ordinal-group: 1;
-        /* OLD - iOS 6-, Safari 3.1-6 */
-        -moz-box-ordinal-group: 1;
-        /* OLD - Firefox 19- */
-        -ms-flex-order: 1;
-        /* TWEENER - IE 10 */
-        -webkit-order: 1;
-        /* NEW - Chrome */
-        order: 1;
-        /* NEW, Spec - Opera 12.1, Firefox 20+ */
-        min-width: 50%;
-        padding-bottom: 30px; }
-        main #biographie header * {
-          width: 100%; }
-        main #biographie header h1 {
-          font-size: 40px;
-          font-weight: 100;
-          line-height: 45px;
-          letter-spacing: -0.5px;
-          max-width: 1100px;
-          font-weight: bold; }
-        main #biographie header h2 {
-          font-size: 40px;
-          font-weight: 100;
-          line-height: 45px;
-          letter-spacing: -0.5px;
-          max-width: 1100px;
-          padding-bottom: 22.5px; }
-        main #biographie header p {
-          font-size: 20px;
-          font-weight: 300;
-          line-height: 27px; }
-        main #biographie header [data-type="domaine"], main #biographie header [data-type="statut"] {
-          font-size: 13px;
-          line-height: 19.5px;
-          font-weight: 100;
-          width: inherit;
-          display: inline;
-          padding: 0 10px 0 0; }
-        main #biographie header [data-type="activite"] {
-          font-size: 20px;
-          font-weight: 300;
-          line-height: 27px;
-          margin: 10px 0;
-          font-style: italic; }
-          main #biographie header [data-type="activite"]:before {
-            content: '“'; }
-          main #biographie header [data-type="activite"]:after {
-            content: '”'; }
-      main #biographie .biographie-contenu {
-        width: 100%; }
-        main #biographie .biographie-contenu p {
-          font-size: 20px;
-          font-weight: 300;
-          line-height: 27px; }
+    main #biographie header {
+      -webkit-box-ordinal-group: 1;
+      /* OLD - iOS 6-, Safari 3.1-6 */
+      -moz-box-ordinal-group: 1;
+      /* OLD - Firefox 19- */
+      -ms-flex-order: 1;
+      /* TWEENER - IE 10 */
+      -webkit-order: 1;
+      /* NEW - Chrome */
+      order: 1;
+      /* NEW, Spec - Opera 12.1, Firefox 20+ */
+      min-width: 50%;
+      padding-top: 22.5px;
+      padding-bottom: 45px; }
+      main #biographie header h1 {
+        font-size: 27px;
+        font-weight: 100;
+        line-height: 39px;
+        font-weight: bold; }
+      main #biographie header h2 {
+        font-size: 27px;
+        font-weight: 100;
+        line-height: 39px;
+        padding-bottom: 22.5px; }
+      main #biographie header p {
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 27px; }
+      main #biographie header [data-type="domaine"], main #biographie header [data-type="statut"] {
+        padding: 0 10px 0 0; }
+      main #biographie header [data-type="activite"] {
+        margin: 10px 0; }
+      main #biographie header .contact {
+        margin-top: 20px; }
+    main #biographie .biographie-contenu {
+      width: 100%; }
+      main #biographie .biographie-contenu p {
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 27px; }
 
   /* main */
   #elements-associes > h1, #fichiers-associes > h1 {
@@ -1423,35 +1387,7 @@ a:hover {
   box-sizing: border-box;
   padding: 15px 0;
   margin-right: 25px;
-  border-bottom: 0.5px solid #9e9d9d;
-  			/*
-  			&[data-type="actualite"]::before{
-  			    content: $actualites;
-  			}
-  			&[data-type="production"]::before{
-  			    content: $productions;
-  			}
-  			&[data-type="activite"]::before{
-  			    content: $activites;
-  			}
-  
-  			&[data-type="activite"], 
-  			&[data-type="production"], 
-  			&[data-type="actualite"]{
-  
-  				@include flex;
-  				
-  				a{
-  					left: $unite*2;
-  				}
-  
-  				&::before{
-  					font-size: $font-size*1.6*2;
-  					font-weight: 100;
-  					position: absolute;
-  					@include align-self(center);
-  				}
-  			}*/ }
+  border-bottom: 0.5px solid #9e9d9d; }
   .elements-associes-block ul.liste_objet li a * {
     text-overflow: ellipsis;
     white-space: nowrap;

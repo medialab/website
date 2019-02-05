@@ -830,44 +830,56 @@ span.tip {
           content: "/";
           padding: 0 20px; } }
 /* all */
-/*::root{
-	$border: 0.5px solid $background-site;
-}
-*/
+body, html {
+  overflow: inherit; }
+
 ::selection, ::-moz-selection {
   background: #fc424e;
   color: white; }
 
-body, html {
-  overflow: inherit; }
+#topbar {
+  background-color: #fc424e !important; }
 
+@media (max-width: 700px) {
+  #topbar {
+    background-color: #fc424e !important; }
+    #topbar #logo-medialab svg, #topbar label svg {
+      fill: #444 !important; }
+    #topbar #topbar-content {
+      background-color: #fc424e !important; }
+      #topbar #topbar-content * {
+        color: #444 !important; }
+      #topbar #topbar-content ul {
+        border-color: #444; }
+        #topbar #topbar-content ul li {
+          color: #444; } }
 body {
-  background-color: #fc424e;
-  /** {
-  	color: $background-site !important;
-  }*/ }
+  background-color: #fc424e; }
   body a:hover {
     color: white; }
-
-#topbar {
-  z-index: 30;
-  background-color: #fc424e !important; }
+    body a:hover svg {
+      fill: white !important; }
 
 nav, nav .nav-inside-item {
   background-color: #fc424e !important; }
 
 .nav-inside-item {
   border-color: white; }
+  .nav-inside-item:hover {
+    border-color: white !important; }
 
 footer {
   border-top-color: #444 !important; }
+  footer a:hover {
+    color: white !important; }
   footer * {
     color: #444 !important; }
 
-a:hover {
-  color: #E6142D; }
-  a:hover svg {
-    fill: #E6142D; }
+#topbar {
+  z-index: 30; }
+
+hgroup + .contenu > h3 {
+  padding-top: 0; }
 
 /* Masquer image dans Navbar */
 #nav-inside-article #img-article {
@@ -968,54 +980,23 @@ input.minify:checked ~ .minified {
   font-weight: 100;
   line-height: 39px; }
 
-/* if support of grid */
-                        /*
-@supports(display: grid) {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);;
-    grid-gap: $unite;
-    *:not(.duo) {
-        grid-column: 1 / 3;
-    }
-
-}
-
-@supports (display: -ms-grid) {
-    display: -ms-grid;
-    -ms-grid-template-columns: repeat(2, 1fr);;
-    grid-gap: $unite;
-
-}*/
 @media (max-width: 700px) {
-  #topbar {
-    background-color: #fc424e !important; }
-    #topbar #logo-medialab svg, #topbar label svg {
-      fill: #444 !important; }
-    #topbar #topbar-content {
-      background-color: #fc424e !important; }
-      #topbar #topbar-content * {
-        color: #444 !important; }
-      #topbar #topbar-content ul {
-        border-color: #444; }
-        #topbar #topbar-content ul li {
-          color: #444; }
-
   main {
     margin: 70px 15px; }
-    main hgroup h1 {
-      font-size: 60px;
-      font-weight: 100;
-      line-height: 82.5px;
-      letter-spacing: -0.5px;
-      padding-bottom: 15px;
-      margin-top: 45px;
-      max-width: 1100px; }
-    main hgroup h2 {
-      padding-bottom: 22.5px;
-      font-size: 27px;
-      font-weight: 100;
-      line-height: 39px;
-      max-width: 1100px; }
+    main hgroup {
+      padding-top: 22.5px;
+      padding-bottom: 15px; }
+      main hgroup h1 {
+        font-size: 40px;
+        font-weight: 100;
+        line-height: 45px;
+        letter-spacing: -0.5px;
+        padding-bottom: 15px; }
+      main hgroup h2 {
+        font-size: 27px;
+        font-weight: 100;
+        line-height: 39px;
+        padding-bottom: 22.5px; }
     main .contenu {
       max-width: 900px; }
     main h3 {

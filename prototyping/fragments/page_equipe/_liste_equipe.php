@@ -16,7 +16,7 @@
                     <a href="page_personne.php">
                 <figure><img src="assets/images/sample/D-Cardon-bis.jpg"></figure>
                 <hgroup>
-                    <h1 data-level-1="name">Michel Jonaz</h1>
+                    <h1 data-level-1="name">Michel Jonasz</h1>
                     <h2 data-level-2="role" data-type="role">Eternel second</h2>
                 </hgroup>
                 <p data-type="activite">En ce moment, dobidouwaap wap</p>

@@ -1,32 +1,42 @@
 /* all */
-/*::root{
-	$border: 0.5px solid $background-site;
+body, html{
+	overflow: inherit;
 }
-*/
+
+////////////////////////
+//////    color    /////
+////////////////////////
+
 ::selection, ::-moz-selection{
     background: #fc424e;
     color: $background-site;
 }
 
-body, html{
-	overflow: inherit;
+#topbar,{ background-color:  #fc424e !important; }
+
+@include for-size(phone) { // Exeption car couleur
+	#topbar{ 
+		background-color:  #fc424e !important;
+        #logo-medialab svg, label svg{ fill: $text-color !important;}
+
+		#topbar-content{
+			background-color:  #fc424e !important;
+			*{ color: $text-color !important;}
+			
+			ul{ border-color: $text-color;
+				li{ color: $text-color; }
+			}
+		}
+	}
 }
 
- body{
+body{
 	background-color: #fc424e; 
 
 	a:hover {
 	    color: $background-site;
+	    svg{ fill:$background-site !important;}
 	}
-	/** {
-		color: $background-site !important;
-	}*/
-}
-
-#topbar,{
-	z-index: 30;
-	//background-color: $background-site;
-	background-color:  #fc424e !important;
 }
 
 nav, nav .nav-inside-item{
@@ -35,40 +45,37 @@ nav, nav .nav-inside-item{
 
 .nav-inside-item{
 	border-color: $background-site;
+	&:hover{ border-color: $background-site !important; }
 }
 
 footer{ // red to footer 
 
 	border-top-color: $text-color !important; 
-
-	*{
-		color: $text-color !important;
-	}
+	a:hover { color: $background-site !important; }
+	*{ color: $text-color !important; }
 
 }
 
-a:hover{
-	color: #E6142D;
-	svg{ fill: #E6142D; }
-	img{
-		//background-color: #E6142D;
-		//mix-blend-mode: color-burn;
-	}
-}
+////////////////////////
+//////    Divers   /////
+////////////////////////
+
+#topbar,{  z-index: 30; }
+
+hgroup + .contenu > h3{ padding-top: 0; } // Anihile l'espace  superieur au h3 si juste après titraille
+
+////////////////////////
+//////   Nav bar   /////
+////////////////////////
 
 /* Masquer image dans Navbar */
-
-#nav-inside-article #img-article {
-    visibility: hidden !important;
-}
+#nav-inside-article #img-article { visibility: hidden !important; }
 
 ////////////////////////
 ////// Hidden part /////
 ////////////////////////
 
-.minified {
-	display: none;
-}
+.minified { display: none; }
 
 .minify{
 	& + label h3{

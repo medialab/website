@@ -13,6 +13,7 @@ export default function Button(props) {
   } = props;
 
   const className = cls(
+    props.className,
     'button',
     loading && 'is-loading',
     rounded && 'is-rounded',

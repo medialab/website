@@ -10,6 +10,7 @@ import DateSelector from '../selectors/DateSelector';
 import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector from '../selectors/RelationSelector';
 import SuggestionSelector from '../selectors/SuggestionSelector';
+import PreviewLink from '../misc/PreviewLink';
 
 function validate(data) {
   if (!data.title || !data.title.fr)
@@ -93,6 +94,8 @@ function renderNewsForm(props) {
     data,
     handlers,
     slug,
+    url,
+    dirty,
     englishEditorContent,
     frenchEditorContent
   } = props;
@@ -138,6 +141,7 @@ function renderNewsForm(props) {
           <div className="column is-12">
             <div className="field">
               <label className="label" style={{display: 'inline'}}>Slug:</label> {slug && <code>{slug}</code>}
+              {url && <PreviewLink url={url} disabled={dirty} />}
             </div>
           </div>
         </div>

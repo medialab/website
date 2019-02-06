@@ -3,40 +3,21 @@ import Select, {components} from 'react-select';
 import Button from '../misc/Button';
 import enums from '../../../../specs/enums.json';
 
+const timedOptions = Object
+  .keys(enums.productionTypes.groups)
+  .map(value => ({value, label: value}));
+
 const Menu = props => {
   return (
     <components.MenuList {...props}>
-      <div>
-        <Button onClick={props.onClickBack}>
-          {'<-'}
-        </Button>
-        Search in {props.selected}
-      </div>
+      <header className="multilevel-selector__menu-header">
+        <Button className="multilevel-selector__menu-header-button" onClick={props.onClickBack}>◀</Button>
+        <span className="multilevel-selector__menu-header-text">Search in {props.selected}</span>
+      </header>
       {props.children}
     </components.MenuList>
   );
 };
-const Blanket = props => (
-  <div
-    style={{
-      bottom: 0,
-      left: 0,
-      top: 0,
-      right: 0,
-      position: 'fixed',
-      zIndex: 1,
-    }}
-    {...props} />
-);
-const Dropdown = ({children, isOpen, target, onClose}) => (
-  <div css={{position: 'relative'}}>
-    {isOpen ? null : target}
-    {isOpen ? children : null}
-    {isOpen ? <Blanket onClick={onClose} /> : null}
-  </div>
-);
-
-const timedOptions = Object.keys(enums.productionTypes.groups).map(value => ({value, label: value}));
 
 const CustomOption = props => (
   <components.Option {...props}>
@@ -45,19 +26,19 @@ const CustomOption = props => (
 );
 
 export default class PopupSelector extends React.PureComponent {
-  state = {isOpen: false, show: undefined, search: false};
+  state = {isPopupOpen: false, selectedCategory: 'publications', textInInput: false};
   toggleOpen = () => {
     this.setState(state => ({
-      isOpen: !state.isOpen
+      isPopupOpen: !state.isPopupOpen
     }));
   };
   onClickBack = () => {
-    return this.setState({show: undefined});
+    return this.setState({selectedCategory: undefined});
   };
   onSelectChange = value => {
     if (timedOptions.includes(value)) {
       return this.setState({
-        show: value.value
+        selectedCategory: value.value
       });
     }
     this.toggleOpen();
@@ -65,66 +46,59 @@ export default class PopupSelector extends React.PureComponent {
     this.props.onChange(value);
   };
   render() {
-    const {isOpen, show, search} = this.state;
+    const {isPopupOpen, selectedCategory, textInInput} = this.state;
     const CustomMenuRenderer = props => (
-      <Menu {...props} onClickBack={this.onClickBack} selected={show} />
+      <Menu {...props} onClickBack={this.onClickBack} selected={selectedCategory} />
     );
     const onInputChange = (inputValue, {action}) => {
       switch (action) {
         case 'menu-close':
           return this.setState({
-            search: false,
-            show: undefined
+            // textInInput: false,
+            // selectedCategory: undefined
           });
         case 'input-change':
           const hasSearch = inputValue.length >= 1;
-          if (hasSearch !== this.state.search) {
+          if (hasSearch !== this.state.textInInput) {
             return this.setState({
-              search: hasSearch
+              textInInput: hasSearch
             });
           }
           break;
+        case 'input-blur':
+          return this.setState({
+            isPopupOpen: false
+          });
         default:
           return;
       }
     };
     const chooseOptions = () => {
-      if (show) {
-        return this.props.options.filter(d => d.familly === show);
+      if (selectedCategory) {
+        return this.props.options.filter(d => d.familly === selectedCategory);
       }
-      else if (!search) {
+      else if (!textInInput) {
         return timedOptions;
       }
       else {
         return this.props.options;
       }
     };
-    const showList = show || search;
+    const showSecondLevel = selectedCategory || textInInput;
     return (
-      <Dropdown
-        isOpen={isOpen}
-        onClose={this.toggleOpen}
-        target={
-          <Button
-            onClick={this.toggleOpen}
-            isSelected={isOpen}>
-            Select a Production
-          </Button>
-        }>
-        <Select
-          autoFocus
-          classNamePrefix={showList ? 'show-list' : 'hide-list'}
-          {...this.props}
-          onInputChange={onInputChange}
-          components={{
-            MenuList: showList ? CustomMenuRenderer : components.MenuList,
-            Option: showList ? components.Option : CustomOption
-          }}
-          controlShouldRenderValue={false}
-          menuIsOpen
-          onChange={this.onSelectChange}
-          options={chooseOptions()} />
-      </Dropdown>
+      <Select
+        onFocus={this.toggleOpen}
+        classNamePrefix={showSecondLevel ? 'multilevel-selector__second-level' : 'multilevel-selector__first-level'}
+        {...this.props}
+        onInputChange={onInputChange}
+        components={{
+          MenuList: showSecondLevel ? CustomMenuRenderer : components.MenuList,
+          Option: showSecondLevel ? components.Option : CustomOption
+        }}
+        controlShouldRenderValue={false}
+        menuIsOpen
+        onChange={this.onSelectChange}
+        options={chooseOptions()} />
     );
   }
 }

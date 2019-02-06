@@ -1,21 +1,12 @@
-
-
-
 /////////////////////
 //////// Desktop
 /////////////////////
-
-
-
-
-
 
 @include for-size(desktop) {
 
 	.filtre_title, .toggle-filtre-phone{
 		display: none;
 	}
-
 
 	h1.type_title{ 
 		position: fixed;
@@ -33,33 +24,31 @@
 		height: $baseline*3.5;
 	}
 	
-	h2.filtre_activite_title,
-	h2.filtre_production{
+	h2.filtre_domaine_title,
+	h2.filtre_membre_title{
 		position: fixed;
 		left: $margins-desktop;
 		@include font-size-13();
 		font-weight: 400;
 	}
 
-	
-
-	label.filtre_objet, label.filtre_objet_value{
+	label.filtre_equipe{
 
 		position: fixed;
 		left: $margins-desktop;
 		width: $logo-column - $margins-desktop;
 		@include font-size-13();
-	
-	}
-
-	.filtre_objet_value{
-		padding-left: $margins-desktop;
+		/*white-space: nowrap;*/
 		
+		/*.checkbox-medialab{
+			display: inline;
+		}*/	
 	}
 
-	
+	[data-statut="passif"]{
+		opacity: .6;
 
-	
+	}
 }
 
 @include for-size(phone) {
@@ -103,17 +92,17 @@
 			}
 		}
 
-		&~ .filtre_objet{
+		&~ .filtre_equipe{
 			visibility: visible;
 
 		}
 	}
 
-	input.filtre_objet{
+	input.filtre_equipe{
 		display: none;
 	}
 
-	label.filtre_objet{
+	label.filtre_equipe{
 		visibility: hidden;
 		position: fixed;
 		width: calc(#{$mobile-container-width/2} - #{$unite-phone});
@@ -132,25 +121,64 @@
 
 
 	@for $i from 1 through 13 {
-		input.filtre_objet:nth-of-type(#{$i}), label.filtre_objet:nth-of-type(#{$i}){ 
+		input.filtre_equipe:nth-of-type(#{$i}), label.filtre_equipe:nth-of-type(#{$i}){ 
 			bottom: $baseline * $i - $baseline;
 		}
 
 		@if $i % 2 == 0 {  //use $i for calculating mod here than #{$i}
-			input.filtre_objet:nth-of-type(#{$i}), label.filtre_objet:nth-of-type(#{$i}){ 
+			input.filtre_equipe:nth-of-type(#{$i}), label.filtre_equipe:nth-of-type(#{$i}){ 
 				bottom: $baseline * $i;
 
 			}
 		}
 	}
 
-	input.filtre_objet:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone}); }
-	label.filtre_objet:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone});}
+	input.filtre_equipe:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone}); }
+	label.filtre_equipe:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone});}
 	
-	input.filtre_objet:checked + label.filtre_objet{ 
+	input.filtre_equipe:checked + label.filtre_equipe{ 
 		font-weight: bold;
 		color: $redlab;
 		border-color: $redlab;
 		transition-delay: inherit;
 	}
+}
+
+///////////////
+/// Global ////
+///////////////
+
+/* Actif / Passif */
+#filtre_statut_actif:checked ~ #liste #liste_equipe [data-statut="passif"],
+#filtre_statut_passif:checked ~ #liste #liste_equipe [data-statut="actif"]{
+	display:none;
+}
+
+#filtre_statut_actif:checked ~ #liste #liste_equipe [data-statut="actif"],
+#filtre_statut_passif:checked ~ #liste #liste_equipe [data-statut="passif"]{
+	display:block;
+}
+
+/* Domaine */ 
+.filtre_domaine:checked ~ #liste #liste_equipe [data-domaine]{
+	display: none;
+}
+
+#domaine_academique:checked ~ #liste #liste_equipe [data-domaine="academique"],
+#domaine_technique:checked ~ #liste #liste_equipe [data-domaine="technique"],
+#domaine_design:checked ~ #liste #liste_equipe [data-domaine="design"],
+#domaine_pedagogie:checked ~ #liste #liste_equipe [data-domaine="pedagogie"],
+#domaine_administratif:checked ~ #liste #liste_equipe [data-domaine="administratif"]{
+	display:block;
+}
+
+/* Membre */
+#filtre_membre:checked ~ #liste #liste_equipe [data-member="no"],
+#filtre_non_membre:checked ~ #liste #liste_equipe [data-member="yes"]{
+	display:none;
+}
+
+#filtre_membre:checked ~ #liste #liste_equipe [data-member="yes"],
+#filtre_non_membre:checked ~ #liste #liste_equipe [data-member="no"]{
+	display:block;
 }

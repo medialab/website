@@ -6,8 +6,9 @@
 @import 'vars/cross-browser';
 
 // common
-@import 'common/body';
 @import 'common/normalize';
 @import 'common/clean';
+@import 'common/body';
 @import 'common/top-bar/top-bar-mobile';
 @import 'common/top-bar/top-bar-desktop';
+@import 'common/footer/footer';

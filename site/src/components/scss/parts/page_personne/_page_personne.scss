@@ -6,18 +6,90 @@ body, html{
 #topbar{
 	z-index: 30;
 	background-color: $background-site;
-}
 
-a:hover{
-	color: #E6142D;
-	svg{ fill: #E6142D; }
-	img{
-		//background-color: #E6142D;
-		//mix-blend-mode: color-burn;
-	}
 }
 
 #nav-inside-article #img-article {
     visibility: hidden !important;
 }
 
+.titre-sticky{
+
+	.retour{
+		padding-right: $unite/2;
+	}
+
+	.personne{
+		font-weight: 100;
+		&:before{
+			content: " / ";
+		}
+	}
+}
+
+#biographie{
+	figure{
+		max-height: auto;
+		overflow: hidden;
+
+		img{
+			width: 100%;
+			filter: grayscale(1);
+		}
+		figcaption{
+			margin-top: $baseline*1;
+		}
+	}
+
+	header{
+
+		& *{
+			width: 100%;
+		}
+
+		[data-type="domaine"],[data-type="statut"]{
+			@include font-size-13();
+			width: inherit;
+			display: inline;
+		}
+
+		[data-type="activite"]{
+			@include font-size-20();
+			margin: $unite 0;
+			font-style:italic;
+
+			&:before{
+				content: '“';
+			}
+			&:after{
+				content: '”';
+			}
+		}
+	}
+
+	.contact {
+
+		li{
+			@include font-size-13();
+			border-right: $border-light;
+			border-left: $border-light;
+			padding: 0 $unite/1.5;
+			width: auto;
+			color: $text-color-light;
+			text-align: center;
+			display: inline-block;
+			margin-right: -4px;
+
+			&:first-of-type{
+				
+			}
+
+			&:hover{
+				border-color: $redlab;
+				color: $redlab;
+				cursor: pointer;
+				z-index: 99;
+			}
+		}
+	}
+}

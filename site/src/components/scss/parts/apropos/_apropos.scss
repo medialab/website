@@ -1,0 +1,91 @@
+/* all */
+body, html{
+	overflow: inherit;
+}
+
+////////////////////////
+//////    color    /////
+////////////////////////
+
+::selection, ::-moz-selection{
+    background: #fc424e;
+    color: $background-site;
+}
+
+#topbar,{ background-color:  #fc424e !important; }
+
+@include for-size(phone) { // Exeption car couleur
+	#topbar{ 
+		background-color:  #fc424e !important;
+        #logo-medialab svg, label svg{ fill: $text-color !important;}
+
+		#topbar-content{
+			background-color:  #fc424e !important;
+			*{ color: $text-color !important;}
+			
+			ul{ border-color: $text-color;
+				li{ color: $text-color; }
+			}
+		}
+	}
+}
+
+body{
+	background-color: #fc424e; 
+
+	a:hover {
+	    color: $background-site;
+	    svg{ fill:$background-site !important;}
+	}
+}
+
+nav, nav .nav-inside-item{
+	background-color:  #fc424e !important;
+}
+
+.nav-inside-item{
+	border-color: $background-site;
+	&:hover{ border-color: $background-site !important; }
+}
+
+footer{ // red to footer 
+
+	border-top-color: $text-color !important; 
+	a:hover { color: $background-site !important; }
+	*{ color: $text-color !important; }
+
+}
+
+////////////////////////
+//////    Divers   /////
+////////////////////////
+
+#topbar,{  z-index: 30; }
+
+hgroup + .contenu > h3{ padding-top: 0; } // Anihile l'espace  superieur au h3 si juste après titraille
+
+////////////////////////
+//////   Nav bar   /////
+////////////////////////
+
+/* Masquer image dans Navbar */
+#nav-inside-article #img-article { visibility: hidden !important; }
+
+////////////////////////
+////// Hidden part /////
+////////////////////////
+
+.minified { display: none; }
+
+.minify{
+	& + label h3{
+		&:before{content:"⋁"; padding-right: 10px !important;}
+	}
+	&:checked + label h3{
+		&:before{content:"⋀";}
+	}
+}
+
+input.minify{display: none;}
+input.minify{cursor:pointer; &+label{cursor:pointer; padding: 0 $unite 0 0;}}
+input.minify:checked ~ .minified{display: block !important;}

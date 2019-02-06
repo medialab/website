@@ -69,11 +69,18 @@
         article{
 
             .image-pre{
-                font-size: $font-size*2.3;
+                font-size: 1.25vw; // if _50
+                //font-size: .75vw; //  if _100
                 width: 100%;
                 // height: $font-size*20;
                 overflow: hidden;
                 border-top: $border-light;
+
+                pre{
+                    left: -50%;
+                    top: -50%;
+                    transform: translate(50%);
+                }
             }
 
             .nomenclature{
@@ -132,17 +139,6 @@
                     img{mix-blend-mode: screen; }
                 }
                 
-            }
-
-        
-
-            .more{
-                margin-top: $baseline*1;
-                margin-bottom: $baseline*1;
-                @include font-size-13();
-                color: $text-color-light;
-                text-decoration: underline;	
-
             }
 
             &:hover{

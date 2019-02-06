@@ -16,8 +16,6 @@
     }
 }
 
-
-
 [data-type="actualite"] .type::before{
     content: $actualites;
 }
@@ -26,6 +24,9 @@
 }
 [data-type="activite"] .type::before{
     content: $activites;
+}
+[data-type="git"] .type::before{
+    //content: $git;
 }
 
 
@@ -48,9 +49,144 @@ input:checked + label{
 }
 
 
+
+/* virgules après les auteurs. ATTENTION = il faut plutôt le mettre depuis le CMS car au copier/coller les éléments after ne restent pas*/
 .author span{ 
     white-space: nowrap;
     &:after{ content: ", "}
     &:last-of-type:after{ content: ""}
 }
+
+
+/////////////////////
+//////// Checkbox
+/////////////////////
+
+
+.checkbox-medialab{
+    @include flex();
+	@include align-items(center);
+}
+
+.checkbox-medialab:before {
+    content: '';
+    margin-right: 10px;
+    display: inline-block;
+    width: $baseline;
+    height: $baseline;
+    background: $background-site;
+    border: $border-light; 
+}
+
+.checkbox-medialab:hover:before{
+    background: $text-color;
+    border: $border; 
+}
+
+input:checked + .checkbox-medialab:before,
+input:checked + label .checkbox-medialab_link:before{
+    background: $text-color;
+    border: $border; 
+}
+
+input:checked + .checkbox-medialab:after,
+input:checked + label .checkbox-medialab_link:after {
+    content: '';
+    position: absolute;
+    left: 10px;
+    // top: 9px;
+    background: white;
+    width: 2px;
+    height: 2px;
+    box-shadow: 
+      2px 0 0 white,
+      4px 0 0 white,
+      4px -2px 0 white,
+      4px -4px 0 white,
+      4px -6px 0 white,
+      4px -8px 0 white;
+    transform: rotate(45deg);
+  }
+
+
+
+input:checked + .filtre_objet_value:after{
+margin-left: $margins-desktop - 7px;
+}
+
+
+// si checkbox = reconfiguration du build (par lien)
+input:checked + label .checkbox-medialab_link:after,
+input:checked + label.checkbox-parent-medialab:after { 
+    left: 2px; 
+}
+.checkbox-medialab_link:hover { color: currentColor;}
+
+
+
+////////////////////////////
+// En savoir plus Button //
+///////////////////////////
+
+.more{
+    margin-top: $baseline*1;
+    margin-bottom: $baseline*1;
+    @include font-size-13();
+    color: $text-color-light;
+    text-decoration: underline; 
+    
+    &:hover{
+        color: $redlab;
+    }
+}
+
+/////////
+// Pre //
+/////////
+
+
+pre {
+  font-family: $font-mono;
+}
+
+
+//////////////////
+//// Tip!  ///////
+//////////////////
+
+span.tip{
+    display: none;
+}
+
+.totip{
+    text-decoration: underline;
+    text-decoration-skip-ink: auto;
+    cursor: help;
+
+}
+
+*:hover > span.tip, .totip:hover > span.tip, span.tip:hover {
+    display: block;
+    position: absolute;
+    z-index: 999;
+    max-width: 15%;
+    min-width: 150px;
+    
+    top: 100%;
+    left: 50%;
+    -webkit-transform: translate3D(-50%, 0, 0);
+    -ms-transform: translate3D(-50%, 0, 0);
+    transform: translate3D(-50%, 0, 0);
+
+    padding: 0.6rem 0.8rem;
+    margin: .5rem $unite/2;    
+    //border: $border-light;
+    background: $text-color;
+    color: $background-site;
+    @include font-size-16();
+    text-decoration: none;
+
+
+}
+
 

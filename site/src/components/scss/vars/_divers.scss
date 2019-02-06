@@ -17,17 +17,19 @@ $mobile-container-width : calc( 100vw - #{$margins-phone*3});
 
 
 /*  bordures  */
-$border: 0.5px solid ;
+$border: 0.5px solid $text-color;
 $border-light: 0.5px solid #9e9d9d;
-$border-bold: 3px double;
+//$border-bold: 3px double; // Pas un paragon de simplicité, On peut en discuter ?
+$border-bold: 1px solid $text-color;
 $border-redlab: 0.5px solid $redlab;
 $border-redlab-light: 0.5px solid $redlab-light;
 
 
 /*  unicode catégories */
-$actualites: "⁙ ";
+$actualites: "∾ ";
 $productions: "☵ ";
 $activites: "⋇ ";
+$git: "⊶ ";
 
 
 /*  autre */
@@ -36,8 +38,13 @@ $activites: "⋇ ";
     color: $background-site;
 } 
 
-@mixin text-overflow(){
-	text-overflow: ellipsis;
+@mixin text-overflow($value: ellipsis) {
+    @if $value == clip {
+		text-overflow: clip;
+	}
+	@else {
+		text-overflow: $value;
+	}
 	white-space: nowrap;
 	overflow: hidden;
 }

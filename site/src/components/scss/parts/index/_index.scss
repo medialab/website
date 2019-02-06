@@ -11,7 +11,7 @@
 
 @include for-size(phone) {
 
-    #introduction, #now, #agenda{
+    #introduction, #now, #agenda, #follow{
         border-bottom: $border-bold;
         padding-bottom: $baseline*4;
         margin-left: $margins-phone;
@@ -34,7 +34,7 @@
 
     #nav-home{ display: none; }
 
-    #introduction, #now, #agenda{
+    #introduction, #now, #agenda, #follow{
         border-bottom: $border-bold;
         padding-bottom: $baseline*4;
     }

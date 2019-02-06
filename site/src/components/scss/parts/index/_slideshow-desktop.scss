@@ -46,6 +46,7 @@
 				.image-pre{
 					width: 100%;
 					font-size: 1.4vw;
+					line-height: 1.45vw;
 					height: 100%;
 					background-color: $background-site;
 					overflow: hidden;
@@ -223,7 +224,8 @@ changement navigation */
 		hr{
 			display: block;
 			width: $unite*6;
-			height: 3px;
+			height: 1px;
+			border: none;
 			border-bottom: $border;
 			position: absolute; 
 			left: $unite*-7;

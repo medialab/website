@@ -20,7 +20,6 @@ const TopBar = () => {
 				<span className="span-checked"><CloseCircle /></span>
 			</label>
 
-
 			<div id="topbar-content">
 				<div id="logo-medialab">
 					<Link to="/">
@@ -38,9 +37,9 @@ const TopBar = () => {
 
 		              	<li data-type="actualite"><Link to="/news">Actualités</Link></li>
 
-		              	<li data-type="production"><Link to="/productions">Productions</Link></li>
+		              	<li data-type="production"><Link to="/production">Productions</Link></li>
 
-		              	<li data-type="activite"><Link to="/activities">Activités</Link></li>
+		              	<li data-type="activite"><Link to="/activity">Activités</Link></li>
 
 					</ul>
 					<ul id="nav-institution">

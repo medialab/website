@@ -1,0 +1,114 @@
+/////////////////////
+//////// Footer desktop
+/////////////////////
+
+@include for-size(desktop) {
+    footer{
+        height: $unite*7;
+        margin-top: $unite*2;
+        //padding-top: $unite;
+        border-top: $border-light;
+        @include flex();
+        @include justify-content(space-between);
+
+        @include font-size-16();
+
+        .logo{
+            
+            width: 50%;
+            flex: 2;
+            @include flex();
+            @include align-items(center);
+            //padding-bottom: $unite;
+            height: 0;
+            margin: auto;
+
+            svg{
+                fill: $redlab;
+                max-width: 100px;
+            }
+            display: none;
+        }
+        .adresse, .mentions{
+
+            flex: 1;
+            color: $text-color-light;
+            @include flex();
+            @include align-items(center);
+            //padding-bottom: $unite;
+        }
+
+        .contact{
+
+            flex: 1;
+            width: 25%;
+            color: $text-color-light;
+
+            @include flex();
+            @include align-items(center);
+            //padding-bottom: calc( #{$unite} + #{$baseline*1.6} );
+            ul{
+                @include flex();
+                @include flex-wrap(wrap);
+                @include justify-content(flex-end);
+                width: 100%;
+
+                li{
+
+                    &:not(:last-of-type):after{
+                        content: "/";
+                        padding: 0 $unite;
+                    }
+
+                }
+            }           
+        }
+    }
+}
+
+/////////////////////
+//////// Footer phone
+/////////////////////
+
+@include for-size(phone) {
+    footer{
+        margin: $unite-phone $margins-phone 0 $margins-phone;
+        padding: $unite-phone 0;
+        width: calc( 100% - #{$margins-phone*2} );
+        border-top: $border-light;
+
+        @include flex();
+        @include flex-direction(column);
+        @include font-size-16();
+
+        .logo{
+            display: none;
+        }
+        .adresse, .mentions{
+            color: $text-color-light;
+            order: 2;
+            margin-top: $baseline*1.6;
+        }
+
+        .contact{
+
+            order: 1;
+            width: 100%;
+            color: $text-color-light;
+
+            ul{
+                width: 100%;
+                @include flex();
+                @include flex-wrap(wrap);
+                
+                li{
+                    &:not(:last-of-type):after{
+                        content: "/";
+                        padding: 0 $unite-phone*2;
+                    }
+                }
+            }           
+        }
+    }
+}
+

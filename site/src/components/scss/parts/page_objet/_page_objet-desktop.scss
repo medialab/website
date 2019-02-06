@@ -3,40 +3,42 @@
 /////////////////////
 
 @include for-size(desktop) {
-		
+
+	#topbar{
+        &:after{
+            content:"";
+            border-bottom: $border;
+            margin-left: $logo-column;
+            width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
+            position: absolute;
+            bottom: 0;
+            z-index: 10;
+        }
+	}
 
 	main{
 		margin-left: $logo-column;
-		// margin-right: $margins-desktop*2;
-		// max-width: 1100px;
-		margin-bottom: 40vh;
-
-		
-			.article-contenu{
-				max-width: 900px;
-			}
+		margin-bottom: 40vh;	
 	
-			aside{
-				padding-top: 100px;
-			}
+		aside{
+			padding-top: 100px;
+		}
 	
-			.titre-sticky{
-				@include font-size-20();
-				position: sticky;
-				top: -1px;
-				width: 100%;
-				height: 101px;
-				background-color: white;
-				z-index: 5;
-				padding-top: 50px;
-				font-weight: bold;
-				border-bottom: $border;
-				border-top: 1px solid black;
-			}
+		.titre-sticky{
+			@include font-size-20();
+			position: sticky;
+			top: -1px;
+			width: 100%;
+			height: 101px;
+			background-color: white;
+			z-index: 5;
+			padding-top: 50px;
+			font-weight: bold;
+			border-bottom: $border;
+		}
 
 		#article-contenu{
 
-	
 			.date, .type-objet{
 				display: inline-block;
 				padding-bottom: $baseline*4;
@@ -63,45 +65,114 @@
 			p{
 				@include font-size-20();
 			}
-			h2{  /// Incoherent mais temporaire; Données sont rédigé en base h2 et non h3
-				margin-top: $baseline*2;
-				@include article_h3();
-			}
-			
-			h3{
-				margin-top: $baseline*2;
-				@include article_h3();
-			}
-	
-			figure{
-				margin-top: $baseline*2;
-				margin-bottom: $baseline*2;
-				max-width: 600px;
-				img{
-					width: 100%;
-					box-shadow: 0 0 0 1px #888;
-					margin-left: 2px;
+			.article-contenu{
+				
+				max-width: 900px;
+				
+				/* Regles de Base */
+				figure{
+					margin: $unite*4 0 $unite*2 0;
 				}
-				figcaption{
-					margin-top: $baseline*1;
+
+				h2{  /// Incoherent mais temporaire; Données sont rédigé en base h2 et non h3
+					@include font-size-20;
+					font-weight: bold;
+					margin-top: $baseline*2;
+				}
+				
+				h3{
+					@include font-size-20;
+					font-weight: bold;
+					margin-top: $baseline*3;
+
+				}
+
+				//////////////////////////
+				///        Grid 	/////
+				/////////////////////////
+
+				/* if support of grid */
+				@supports(display: grid) {
+		            display: grid;
+		            grid-template-columns: repeat(2, 1fr);;
+		            grid-gap: $unite;
+		            *:not(.duo) { 	// Tous les éléments s'etire sur toute la largeur. Sauf les Images .Duo
+		                grid-column: 1 / 3;
+		            }
+		         	figure{
+						margin: $unite*3 0 $unite*2 0; // Si grid, diminnue les margins car Grid-gap s'ajoute à ces marges
+					}
+					h3{
+						margin-top: $baseline*2; // Si grid, diminnue les margins car Grid-gap s'ajoute à ces marges
+					}
+				}
+
+				@supports (display: -ms-grid) {
+		            display: -ms-grid;
+		            -ms-grid-template-columns: repeat(2, 1fr);;
+		            //-ms-grid-template-rows: auto auto;
+		            grid-gap: $unite;
+		            *:not(.duo){
+		                grid-column: 1 / 3;
+		            }
+		         	figure{
+						margin: $unite*3 0 $unite*2 0;
+					}
+					h3{
+						margin-top: $baseline*2;
+					}
+				}
+
+				/* End Support */
+
+				//////////////////////////
+				///        Image 	/////
+				/////////////////////////
+
+				figure{
+
+					text-align: left;
+
+  					figcaption{
+  						@include font-size-13;
+  						color: $text-color-light;
+  					}
+
+					&.duo{
+						flex: 1;
+					}
+
+					&.vertical{
+
+					}
+
+					&.horizontal{
+					}
+
+					img{
+						height: auto;
+						max-height: 80vh;
+						width: auto;
+						max-width: 100%;
+						box-shadow: 0 0 0 1px #888;
+					}
+					figcaption{
+						margin-top: $baseline*1;
+					}
 				}
 			}
-
-			img{
-				max-width: 100%;
-				height: auto;
-			}
-
 		}/* #article-contenu */
-
-		
 	} /* main */
 
-	#elements-associes > h1, #fichiers-associes > h1{
+	aside > h1{
 		padding-top: $baseline*3;
 		margin-bottom: $baseline*2.5;
 		@include font-size-27();
+	}	
+
+	footer{
+		margin-left: $logo-column;
+		width: calc( 100% - /*#{$margins-desktop*2} -*/ #{$logo-column});
+		margin-bottom: 2px;
 	}
-
-
 }

@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import {StaticQuery, graphql} from 'gatsby';
 import TopBar from './fragments/TopBar.js';
 import Nav from './fragments/Nav.js';
-
+import Footer from './fragments/Footer.js';
 
 const Layout = ({children, lang}) => {
 
@@ -28,6 +28,7 @@ const Layout = ({children, lang}) => {
           <TopBar />
           <Nav />
           {children}
+          <Footer />
         </>
       )} />
   );

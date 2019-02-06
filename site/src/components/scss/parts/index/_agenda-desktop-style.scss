@@ -28,19 +28,37 @@
             }
 
 
-            .internal{
+            [data-external="yes"]{
                 @include font-size-13(); 
                 position: absolute;
-                top: 0;
+                top: 7px;
                 right: $margins-desktop;
-                span{
-                    display: block;
-                    height: $baseline*1.5;
-                    width: $baseline*1.5;
+                height: 15px;
+                width: 15px;
+                color: $text-color-light;;
+                border-bottom: $border-light;
+                text-align: center;
+
+                &:hover{
+                    border-color: $redlab;
+                    color: $redlab !important;
+                }
+
+                span.out{
+                    position: absolute;
                     color: $text-color-light;
-                    border: $border-light; 
-                    border-radius: 50%;
                     text-align: center;
+                    transform-origin: center;
+                    left: 2px;
+                    font-size: 18px;
+                    transform: translate(-0%) rotate(45deg);
+                    padding-bottom: 10px;
+                    top: -7px;
+                    //text-shadow: -1px -1px 0 $background-site, 1px -1px 0  $background-site, -1px 1px 0  $background-site, 1px 1px 0  $background-site;
+                    
+                    &:hover{
+                        color: $redlab !important;
+                    }                
                 }
             }
 

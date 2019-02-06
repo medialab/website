@@ -1,0 +1,131 @@
+/////////////////////
+//////// Flux desktop
+/////////////////////
+
+/* no support of grid */
+@include for-size(desktop){
+    #flux{
+        display: inline-block;
+        width: 100%;
+        margin-right: $margins-phone;
+        margin-bottom: $margins-phone;
+        vertical-align: top;
+    }
+
+}
+
+@include for-size(desktop-900) {
+}
+
+@include for-size(desktop-1300) {
+}
+
+@include for-size(desktop) {
+
+    #flux {
+        
+        #flux-container{
+            
+            margin-top: 45px;
+            overflow: hidden;
+
+            
+        
+            article{
+                
+                width: 100%;
+                background: $background-site;
+
+                @include flex();
+
+                .numero{
+                    @include font-size-13();
+                    font-weight: 100;
+                    text-align: right;
+                    height: $unite;
+                    width: $unite;
+                    margin: 0 $unite 0 0;
+                    top: $unite/2;
+                    //color: $text-color-light;
+
+                }
+
+                .embleme{
+                    @include font-size-80();
+                    width: 70px;
+
+
+                }
+
+                .type{
+                    @include font-size-80();
+                    @include flex();
+                    margin: 0 $unite 0 0;
+                    min-width: 10%;
+                    top: 5px;
+                }
+
+                
+                hgroup{
+
+                    @include flex();
+                    @include align-items(center);
+                    @include flex-wrap(wrap);
+                    @include flex-grow(2);
+
+                    width: 20%;
+                    max-width: 20%;
+
+                    a{
+                        p{
+                           @include font-size-27();
+                           line-height: $baseline*2.4;
+                           //color: $text-color-light;
+
+                            /*time{
+
+                                text-transform: capitalize;
+                                &:after{
+                                    content: ", ";
+                                }
+                            }*/
+                        }
+
+                        h1{
+                            @include font-size-27();
+                        }
+                    }
+                }
+
+                .description{
+                    @include flex();
+                    @include align-items(center);
+                    @include flex-wrap(wrap);
+                    @include flex-grow(2);
+                    max-width: 25%;
+
+                    p{
+                        @include font-size-16();
+                    }
+                }
+
+                &:hover{
+                    color: $redlab !important;
+                }
+
+                pre.end{
+                    @include font-size-80();
+                    @include text-overflow(clip);
+                    @include flex-grow(1);
+                    flex: 1;
+                    margin-left: 5rem;
+
+                }
+            } // En article
+
+            
+        } /* End flux container*/
+        
+    } /* end #flux*/
+
+}

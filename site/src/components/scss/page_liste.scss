@@ -10,5 +10,5 @@
 @import 'parts/page_liste/page_liste-phone';
 @import 'parts/page_liste/filtre';
 
-// Specific to the nature of Page ( Procuction, / News / Activities)
-// @import 'parts/page_liste/page_liste_activite';
+@import 'parts/page_liste/filtre_activite';
+@import 'parts/page_liste/filtre_production';

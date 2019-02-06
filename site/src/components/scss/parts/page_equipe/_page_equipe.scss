@@ -1,0 +1,13 @@
+/* all */
+
+#liste{
+    
+    position: relative;
+        
+    a:hover{
+        figure{
+            background-color: $redlab;
+            img{ mix-blend-mode: screen; filter: grayscale(1) contrast(2);}
+        }
+    }
+}

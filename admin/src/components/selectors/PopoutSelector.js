@@ -3,13 +3,28 @@ import Select, {components} from 'react-select';
 import Button from '../misc/Button';
 import enums from '../../../../specs/enums.json';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
-import omit from 'lodash/fp/omit';
 
 const timedOptions = Object
   .keys(enums.productionTypes.groups)
   .map(value => ({value, label: value}));
 
-const MenuListWithHeader = props => {
+const MenuList = props => {
+  let header;
+  if (props.selectProps.selected) {
+    header = (
+      <header className="multilevel-selector__menu-header" onClick={props.selectProps.onClickBack}>
+        <Button className="multilevel-selector__menu-header-button">◀</Button>
+        <span className="multilevel-selector__menu-header-text">Search in {props.selectProps.selected}</span>
+      </header>
+    );
+  }
+  else if (props.selectProps.inputValue.length) {
+    header = (
+      <header className="multilevel-selector__menu-header">
+        <span className="multilevel-selector__menu-header-text">Search in every productions</span>
+      </header>
+    );
+  }
   return (
     <components.MenuList {...props}>
       <TransitionGroup appear enter exit>
@@ -18,10 +33,7 @@ const MenuListWithHeader = props => {
           classNames="fade"
           timeout={200}>
           <div className={`multilevel-selecto__animation ${props.selectProps.selected ? 'second-level' : 'first-level' }`}>
-            {props.selectProps.selected && <header className="multilevel-selector__menu-header">
-              <Button className="multilevel-selector__menu-header-button" onClick={props.selectProps.onClickBack}>◀</Button>
-              <span className="multilevel-selector__menu-header-text">Search in {props.selectProps.selected}</span>
-            </header>}
+            {header}
             {props.children}
           </div>
         </CSSTransition>
@@ -29,19 +41,22 @@ const MenuListWithHeader = props => {
     </components.MenuList>
   );
 };
-
 const Option = props => (
   <components.Option {...props}>
     <span className="multilevel-selector__option-container">{props.children}</span>
   </components.Option>
 );
-
+const Control = props => (
+  <span onMouseDown={props.selectProps.onFocus}>
+    <components.Control {...props} />
+  </span>
+);
 export default class PopupSelector extends React.PureComponent {
   state = {isPopupOpen: false, selectedCategory: undefined, textInInput: false};
   toggleOpen = () => {
-    this.setState(state => ({
-      isPopupOpen: !state.isPopupOpen
-    }));
+    this.setState({
+      isPopupOpen: true
+    });
   };
   onClickBack = () => {
     return this.setState({selectedCategory: undefined});
@@ -52,8 +67,9 @@ export default class PopupSelector extends React.PureComponent {
         selectedCategory: value.value
       });
     }
-    this.toggleOpen();
-    // this.onClickBack();
+    this.setState({
+      isPopupOpen: false
+    });
     this.props.onChange(value);
   };
   render() {
@@ -69,7 +85,8 @@ export default class PopupSelector extends React.PureComponent {
           const hasSearch = inputValue.length >= 1;
           if (hasSearch !== this.state.textInInput) {
             return this.setState({
-              textInInput: hasSearch
+              textInInput: hasSearch,
+              isPopupOpen: true
             });
           }
           break;
@@ -102,9 +119,11 @@ export default class PopupSelector extends React.PureComponent {
         onClickBack={this.onClickBack}
         selected={selectedCategory}
         components={{
-          MenuList: MenuListWithHeader,
-          Option
+          MenuList,
+          Option,
+          Control
         }}
+        placeholder={`Search in every ${selectedCategory || 'productions'}`}
         controlShouldRenderValue={false}
         menuIsOpen={isPopupOpen}
         onChange={this.onSelectChange}

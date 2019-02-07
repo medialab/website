@@ -256,6 +256,11 @@ exports.createPages = function({graphql, actions}) {
     component: path.resolve('./src/templates/people-list.js')
   });
 
+  createI18nPage(createPage, {
+    path: '/about',
+    component: path.resolve('./src/templates/about.js')
+  });
+
   // Chaining promises
   const promises = [
 

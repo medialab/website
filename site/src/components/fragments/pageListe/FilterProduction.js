@@ -2,7 +2,7 @@ import React from 'react';
 /*import {graphql} from 'gatsby';*/
 import {Link} from 'gatsby';
 
-const FiltreEquipe = () => {
+const FilterProduction = () => {
 	return (
 		<>
 			<h1 className="type_title">Productions</h1>
@@ -67,4 +67,4 @@ const FiltreEquipe = () => {
 	);
 }
 
-export default FiltreEquipe;
+export default FilterProduction;

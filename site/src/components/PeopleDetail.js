@@ -73,7 +73,7 @@ export default function PeopleDetail({lang, person}) {
         <PublicationsAssocies />
         <FichiersAssocies />
       </main>
-      </>
+    </>
 
   );
 }

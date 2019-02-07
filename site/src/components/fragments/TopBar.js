@@ -37,13 +37,13 @@ const TopBar = () => {
 
 		              	<li data-type="actualite"><Link to="/news">Actualités</Link></li>
 
-		              	<li data-type="production"><Link to="/production">Productions</Link></li>
+		              	<li data-type="production"><Link to="/productions">Productions</Link></li>
 
-		              	<li data-type="activite"><Link to="/activity">Activités</Link></li>
+		              	<li data-type="activite"><Link to="/activities">Activités</Link></li>
 
 					</ul>
 					<ul id="nav-institution">
-						<li><Link to="/medialab">Le Médialab</Link></li>
+						<li><Link to="/about">Le Médialab</Link></li>
 						<li><Link to="/people">L'équipe</Link></li>
 					</ul>
 					<ul id="nav-archive">

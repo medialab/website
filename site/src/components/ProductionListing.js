@@ -5,7 +5,6 @@ import FilterProduction from './fragments/pageListe/FilterProduction.js';
 
 /* import {templateMembership} from './helpers.js';  */ 
 import './scss/page_liste.scss';
-/*import './scss/page_liste/_page_liste_production.scss'; */
 
 export default function ProductionListing({lang, list}) {
   console.log(lang, list);

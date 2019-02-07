@@ -5,7 +5,6 @@ import FilterActivity from './fragments/pageListe/FilterActivity.js';
 
 /* import {templateMembership} from './helpers.js';  */ 
 import './scss/page_liste.scss';
-/*import './scss/page_liste/_page_liste_production.scss'; */
 
 export default function ActivityListing({lang, list}) {
   console.log(lang, list);

@@ -25,9 +25,7 @@ const FilterActivity = () => {
 
 		<input type="checkbox" id="filtre_enseignement" name="filtre_enseignement" value="enseignement" hidden />
 		<label className="filtre_objet filtre_activite checkbox-medialab" for="filtre_enseignement">Enseignement</label>
-
-		<input type="checkbox" id="filtre_methode" name="filtre_methode" value="methode" hidden />
-		<label className="filtre_objet filtre_activite checkbox-medialab" for="filtre_methode">Méthode</label>
+		
 		</>
 	);
 }

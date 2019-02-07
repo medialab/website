@@ -9564,25 +9564,16 @@ span.tip {
     color: #f7323f;
     border-color: #f7323f;
     transition-delay: inherit; } }
-#filtre_recherche:checked ~ #liste #liste-objet-activite [data-type="enseignement"],
-#filtre_recherche:checked ~ #liste #liste-objet-activite [data-type="methode"] {
+#filtre_recherche:checked ~ #liste #liste-objet-activite [data-type="enseignement"] {
   display: none; }
 
-#filtre_enseignement:checked ~ #liste #liste-objet-activite [data-type="recherche"],
-#filtre_enseignement:checked ~ #liste #liste-objet-activite [data-type="methode"] {
-  display: none; }
-
-#filtre_methode:checked ~ #liste #liste-objet-activite [data-type="enseignement"],
-#filtre_methode:checked ~ #liste #liste-objet-activite [data-type="recherche"] {
+#filtre_enseignement:checked ~ #liste #liste-objet-activite [data-type="recherche"] {
   display: none; }
 
 #filtre_recherche:checked ~ #liste #liste-objet-activite [data-type="recherche"] {
   display: block !important; }
 
 #filtre_enseignement:checked ~ #liste #liste-objet-activite [data-type="enseignement"] {
-  display: block !important; }
-
-#filtre_methode:checked ~ #liste #liste-objet-activite [data-type="methode"] {
   display: block !important; }
 
 @media (min-width: 700px) {

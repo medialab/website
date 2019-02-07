@@ -1,7 +1,4 @@
-
 <h1 class="type_title" id="activite_title">Membres</h1>
-
-
 
 <!-- Filtre for phone -->
 <input type="checkbox" class="toggle-filtre-phone" id="toggle-filtre-phone" name="toggle-filtre-phone" value="visible"  hidden>
@@ -18,10 +15,10 @@
 -->
 
 <!-- Actif (par défaut) -->
-<input type="checkbox" id="filtre_statut_actif" name="filtre_statut_actif" value="statut_actif" hidden checked>
+<input type="radio" id="filtre_statut_actif" name="filtre_statut" value="statut_actif" hidden checked>
 <label class="filtre_equipe filtre_statut checkbox-medialab checkbox-parent-medialab" for="filtre_statut_actif">Actives</label>
 
-<input type="checkbox" id="filtre_statut_passif" name="filtre_statut_passif" value="statut_passif" hidden >
+<input type="radio" id="filtre_statut_passif" name="filtre_statut" value="statut_passif" hidden >
 <label class="filtre_equipe filtre_statut checkbox-medialab checkbox-parent-medialab" for="filtre_statut_passif">Passées</label>
 
 

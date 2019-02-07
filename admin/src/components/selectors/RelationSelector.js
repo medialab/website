@@ -7,7 +7,6 @@ import client from '../../client';
 import ReorderIcon from 'material-icons-svg/components/baseline/Reorder';
 import PopoutSelector from './PopoutSelector';
 import enums from '../../../../specs/enums.json';
-
 import findKey from 'lodash/fp/findKey';
 
 import labels from '../../../../specs/labels';
@@ -118,6 +117,7 @@ const RelationSelectorContainer = (BaseComponent) => {
           <div className="columns">
             <div className={'column is-4'}>
               <BaseComponent
+                groupBy={this.props.groupBy}
                 isDisabled={selected.length >= max}
                 value={null}
                 onChange={handleChange}

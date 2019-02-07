@@ -8,7 +8,8 @@ import Editor from '../Editor';
 import BooleanSelector from '../selectors/BooleanSelector';
 import DateSelector from '../selectors/DateSelector';
 import EnumSelector from '../selectors/EnumSelector';
-import RelationSelector, {MultiRelationSelector} from '../selectors/RelationSelector';
+import RelationSelector from '../selectors/RelationSelector';
+import ProductionsSelector from './ProductionsSelector';
 import UrlInput from '../selectors/UrlInput';
 import PreviewLink from '../misc/PreviewLink';
 
@@ -265,7 +266,7 @@ function renderProductionForm(props) {
             <div className="field">
               <label className="label">Related Productions</label>
               <div className="control">
-                <MultiRelationSelector
+                <ProductionsSelector
                   model="productions"
                   self={data.id}
                   selected={data.productions}

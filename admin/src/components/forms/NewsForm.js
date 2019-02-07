@@ -11,6 +11,7 @@ import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector from '../selectors/RelationSelector';
 import SuggestionSelector from '../selectors/SuggestionSelector';
 import PreviewLink from '../misc/PreviewLink';
+import ProductionsSelector from './ProductionsSelector';
 
 function validate(data) {
   if (!data.title || !data.title.fr)
@@ -344,7 +345,7 @@ function renderNewsForm(props) {
             <div className="field">
               <label className="label">Related Productions</label>
               <div className="control">
-                <RelationSelector
+                <ProductionsSelector
                   model="productions"
                   selected={data.productions}
                   onAdd={handlers.productions.add}

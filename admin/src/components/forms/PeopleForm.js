@@ -12,6 +12,7 @@ import RelationSelector from '../selectors/RelationSelector';
 import SortableKeyValueList from '../selectors/SortableKeyValueList';
 import SuggestionSelector from '../selectors/SuggestionSelector';
 import PreviewLink from '../misc/PreviewLink';
+import ProductionsSelector from './ProductionsSelector';
 
 function validate(data) {
   if (!data.firstName || !data.lastName)
@@ -324,7 +325,7 @@ function renderPeopleForm(props) {
             <div className="field">
               <label className="label">Productions</label>
               <div className="control">
-                <RelationSelector
+                <ProductionsSelector
                   sortable
                   model="productions"
                   max={5}

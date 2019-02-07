@@ -12,38 +12,23 @@ const timedOptions = Object
 const MenuListWithHeader = props => {
   return (
     <components.MenuList {...props}>
-      <header className="multilevel-selector__menu-header">
-        <Button className="multilevel-selector__menu-header-button" onClick={props.selectProps.onClickBack}>◀</Button>
-        <span className="multilevel-selector__menu-header-text">Search in {props.selectProps.selected}</span>
-      </header>
       <TransitionGroup appear enter exit>
-        {React.Children.map(props.children, (child, index) => {
-          return (
-            <CSSTransition
-              key={child.props.data ? child.props.data.value : index}
-              timeout={3500}
-              classNames="fade">{child}</CSSTransition>
-          );
-        })}
+        <CSSTransition
+          key={props.selectProps.selected || 'woké'}
+          classNames="fade"
+          timeout={200}>
+          <div className={`multilevel-selecto__animation ${props.selectProps.selected ? 'second-level' : 'first-level' }`}>
+            {props.selectProps.selected && <header className="multilevel-selector__menu-header">
+              <Button className="multilevel-selector__menu-header-button" onClick={props.selectProps.onClickBack}>◀</Button>
+              <span className="multilevel-selector__menu-header-text">Search in {props.selectProps.selected}</span>
+            </header>}
+            {props.children}
+          </div>
+        </CSSTransition>
       </TransitionGroup>
     </components.MenuList>
   );
 };
-
-const MenuList = props => (
-  <components.MenuList {...props}>
-    <TransitionGroup>
-      {React.Children.map(props.children, (child, index) => {
-        return (
-          <CSSTransition
-            key={child.props.data ? child.props.data.value : index}
-            timeout={3500}
-            classNames="fade">{child}</CSSTransition>
-        );
-      })}
-    </TransitionGroup>
-  </components.MenuList>
-);
 
 const Option = props => (
   <components.Option {...props}>
@@ -52,7 +37,7 @@ const Option = props => (
 );
 
 export default class PopupSelector extends React.PureComponent {
-  state = {isPopupOpen: false, selectedCategory: 'publications', textInInput: false};
+  state = {isPopupOpen: false, selectedCategory: undefined, textInInput: false};
   toggleOpen = () => {
     this.setState(state => ({
       isPopupOpen: !state.isPopupOpen
@@ -73,15 +58,12 @@ export default class PopupSelector extends React.PureComponent {
   };
   render() {
     const {isPopupOpen, selectedCategory, textInInput} = this.state;
-    const CustomMenuRenderer = props => (
-      <MenuListWithHeader key="nemechangepasstp" {...props} onClickBack={this.onClickBack} selected={selectedCategory} />
-    );
     const onInputChange = (inputValue, {action}) => {
       switch (action) {
         case 'menu-close':
           return this.setState({
-            // textInInput: false,
-            // selectedCategory: undefined
+            textInInput: false,
+            selectedCategory: undefined
           });
         case 'input-change':
           const hasSearch = inputValue.length >= 1;
@@ -124,7 +106,7 @@ export default class PopupSelector extends React.PureComponent {
           Option
         }}
         controlShouldRenderValue={false}
-        menuIsOpen
+        menuIsOpen={isPopupOpen}
         onChange={this.onSelectChange}
         options={chooseOptions()} />
     );

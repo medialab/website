@@ -162,6 +162,9 @@ $table-header-color: #dbdbdb;
 .multilevel-selector__first-level__menu-list  {
   background: whitesmoke;
 }
+.multilevel-selector__second-level__menu-list, .multilevel-selector__first-level__menu-list {
+  overflow-x: hidden;
+}
 div.multilevel-selector__first-level__option {
   position: relative;
   text-transform: capitalize;
@@ -195,19 +198,7 @@ div.multilevel-selector__first-level__option {
 .multilevel-selector__menu-header-text {
   padding-left: 12px;  
 }
-@keyframes slidein {
-  from {
-    transform: translate(50%);
-  }
-  to {
-    transform: translate(0%);
-  }
-}
-.animation {
-  // animation-duration: 0.2s;
-  // animation-name: slidein;
-  // animation-iteration-count: 1;
-}
+
 div.multilevel-selector__second-level__menu-list {
   padding-top: 0;
 }
@@ -220,20 +211,40 @@ div.multilevel-selector__second-level__menu-list {
   background-color: white;
   z-index: 500
 }
+$duration: 0.2s;
 
-.fade-enter {
-  opacity: 0.01;
-}
 .fade-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
+  height: 0;
 }
-.fade-exit {
-  opacity: 1;
+
+.first-level.fade-enter {
+  transform: translateX(-100%);
 }
-.fade-exit-active {
-  opacity: 0.01;
-  transition: opacity 500ms ease-in;
+.first-level.fade-enter-active {
+  transform: translateX(0%);
+  transition: transform $duration ease-in;
+}
+.first-level.fade-exit {
+  transform: translateX(0%);
+}
+.first-level.fade-exit-active {
+  transform: translateX(-100%);
+  transition: transform $duration ease-in;
+}
+
+.second-level.fade-enter {
+  transform: translateX(100%);
+}
+.second-level.fade-enter-active {
+  transform: translateX(0%);
+  transition: transform $duration ease-in;
+}
+.second-level.fade-exit {
+  transform: translateX(0%);
+}
+.second-level.fade-exit-active {
+  transform: translateX(100%);
+  transition: transform $duration ease-in;
 }
 
 .button__animated-color {

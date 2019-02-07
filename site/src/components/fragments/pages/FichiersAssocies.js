@@ -1,5 +1,5 @@
 import React from 'react';
-import {graphql} from 'gatsby';
+/*import {graphql} from 'gatsby';*/
 import {Link} from 'gatsby';
 
 const FichiersAssocies = (person) => {

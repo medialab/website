@@ -1,10 +1,10 @@
 import React from 'react';
-import {graphql} from 'gatsby';
+/*import {graphql} from 'gatsby';*/
 import {Link} from 'gatsby';
 
-import FiltreEquipe from './fragments/pageEquipe/FiltreEquipe.js'
+import FiltreEquipe from './fragments/pageEquipe/FiltreEquipe.js';
 
-import RawHtml from './RawHtml';
+/*import RawHtml from './RawHtml';*/
 import {templateMembership} from './helpers.js';
 import './scss/page_equipe.scss';
 
@@ -19,8 +19,8 @@ export default function PeopleListing({lang, list}) {
 
 			{list.map(p => (
 	          	<li key={p.id} data-item={p.id} data-domaine={p.domain} data-statut={p.active} data-member={p.membership}>
-				    <Link to={`/people/`}>
-		                <figure><img src="/assets/images/sample/D-Cardon-bis.jpg" /></figure>
+				    <Link to={`/people/dominique-cardon`}>
+		                <figure><img src="./assets/images/sample/D-Cardon-bis.jpg"  alt="caption"/></figure>
 		                <hgroup>
 						    <h1 data-level-1="name">{p.firstName} {p.lastName}</h1>
 		                    <h2 data-level-2="role" data-type="role">{p.role && p.role.fr}</h2>

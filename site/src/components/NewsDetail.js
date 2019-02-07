@@ -1,6 +1,10 @@
 import React from 'react';
 import {graphql} from 'gatsby';
 
+import PublicationsAssocies from './fragments/pages/PublicationsAssocies.js';
+import FichiersAssocies from './fragments/pages/FichiersAssocies.js';
+import Nav from './fragments/Nav.js';
+
 import RawHtml from './RawHtml';
 
 export const queryFragment = graphql`
@@ -41,7 +45,9 @@ export default function NewsDetail({lang, news}) {
   console.log(lang, news);
 
   return (
-    <main id="main-objet">
+    <>
+      <Nav />
+      <main id="main-objet">
         <p class="titre-sticky"></p>
         <article id="article-contenu">
           <hgroup>
@@ -60,6 +66,9 @@ export default function NewsDetail({lang, news}) {
             {(news.people || []).map(p => <li key={p.id}>{p.firstName} {p.lastName}</li>)}
           </ul>
         </div>
-    </main>
+        <PublicationsAssocies />
+        <FichiersAssocies />
+      </main>
+    </>
   );
 }

@@ -29,6 +29,11 @@ export const queryFragment = graphql`
     draft
     lastUpdated
     domain
+    title
+    contacts{
+      label
+      value
+    }
   }
 `;
 
@@ -59,11 +64,14 @@ export default function PeopleDetail({lang, person}) {
           <figure><img src={Img}  alt="caption"/></figure>
           <header>
             <h1 data-level-1="name" data-type="name">{person.lastName} {person.firstName}</h1>
-            <h2 data-level-2="role" data-type="role">{person.title && person.title.fr}</h2>
+            <h2 data-level-2="role" data-type="role">{lang === "fr" ? person.title.fr : person.title.en}</h2>
             <p data-type="domaine">{lang === "fr" ? "Domaine" + String.fromCharCode(8239) +":" : "Domain:"} {person.domain}</p>
             <p data-type="statut">{templateMembership(person)}</p>
             <p data-type="activite">{person.status}</p>
             <ul className="contact">
+              ${person.contacts.map(contact => <li data-type={contact.label}>
+                <Link to={contact.value}>{contact.label}</Link>
+                </li>)}
               <li data-type="email"><Link to="/">Mail</Link></li>
               <li data-type="Twitter"><Link to="/">Twitter</Link></li>
               <li data-type="Git"><Link to="/">Git</Link></li>

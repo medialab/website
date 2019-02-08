@@ -2,13 +2,14 @@ import React from 'react';
 
 import initializers from '../../../../specs/initializers';
 import {slugifyProduction} from '../../utils';
+import enums from '../../../../specs/enums.json';
 
+import RelationSelector, {MultiRelationSelector} from '../selectors/RelationSelector';
 import Form from './Form';
 import Editor from '../Editor';
 import BooleanSelector from '../selectors/BooleanSelector';
 import DateSelector from '../selectors/DateSelector';
 import EnumSelector from '../selectors/EnumSelector';
-import RelationSelector from '../selectors/RelationSelector';
 import UrlInput from '../selectors/UrlInput';
 import PreviewLink from '../misc/PreviewLink';
 
@@ -265,7 +266,8 @@ function renderProductionForm(props) {
             <div className="field">
               <label className="label">Related Productions</label>
               <div className="control">
-                <RelationSelector
+                <MultiRelationSelector
+                  categories={enums.productionTypes.groups}
                   model="productions"
                   self={data.id}
                   selected={data.productions}

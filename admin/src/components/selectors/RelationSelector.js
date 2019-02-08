@@ -2,12 +2,12 @@ import React, {Component, useState, useEffect, useCallback} from 'react';
 import {SortableContainer, SortableElement, SortableHandle} from 'react-sortable-hoc';
 import Select from 'react-select';
 import keyBy from 'lodash/keyBy';
+import find from 'lodash/fp/find';
 import truncate from 'lodash/truncate';
 import client from '../../client';
 import ReorderIcon from 'material-icons-svg/components/baseline/Reorder';
 import PopoutSelector from './PopoutSelector';
 import enums from '../../../../specs/enums.json';
-import findKey from 'lodash/fp/findKey';
 
 import labels from '../../../../specs/labels';
 
@@ -75,18 +75,20 @@ const RelationSelectorContainer = (BaseComponent) => {
       onAdd
     } = props;
 
-    if (props.groupBy) {
-      console.log(props.groupBy, enums.productionTypes.groups);
-    }
-
-    const [options, loading] = useFetchModel(model, item => ({
+    const mapGeneric = item => ({
       value: item.id,
       label: labels[model](item),
-      familly: findKey(
+    });
+
+    const mapForProductions = item => ({
+      ...mapGeneric(item),
+      type: find(
         group => group.values.includes(item.type),
         enums.productionTypes.groups
-      )
-    }));
+      ).en,
+    });
+
+    const [options, loading] = useFetchModel(model, props.categories ? mapForProductions : mapGeneric);
 
     const handleChange = useCallback((option) => {
       if (option && option.value)
@@ -119,7 +121,7 @@ const RelationSelectorContainer = (BaseComponent) => {
         <div className="columns">
           <div className={'column is-4'}>
             <BaseComponent
-              groupBy={props.groupBy}
+              categories={props.categories}
               isDisabled={selected.length >= max}
               value={null}
               onChange={handleChange}

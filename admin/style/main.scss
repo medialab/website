@@ -217,32 +217,32 @@ $duration: 0.2s;
   height: 0;
 }
 
-.first-level.fade-enter {
+.multilevel-selecto__animation__first-level.fade-enter {
   transform: translateX(-100%);
 }
-.first-level.fade-enter-active {
+.multilevel-selecto__animation__first-level.fade-enter-active {
   transform: translateX(0%);
   transition: transform $duration ease-in;
 }
-.first-level.fade-exit {
+.multilevel-selecto__animation__first-level.fade-exit {
   transform: translateX(0%);
 }
-.first-level.fade-exit-active {
+.multilevel-selecto__animation__first-level.fade-exit-active {
   transform: translateX(-100%);
   transition: transform $duration ease-in;
 }
 
-.second-level.fade-enter {
+.multilevel-selecto__animation__second-level.fade-enter {
   transform: translateX(100%);
 }
-.second-level.fade-enter-active {
+.multilevel-selecto__animation__second-level.fade-enter-active {
   transform: translateX(0%);
   transition: transform $duration ease-in;
 }
-.second-level.fade-exit {
+.multilevel-selecto__animation__second-level.fade-exit {
   transform: translateX(0%);
 }
-.second-level.fade-exit-active {
+.multilevel-selecto__animation__second-level.fade-exit-active {
   transform: translateX(100%);
   transition: transform $duration ease-in;
 }

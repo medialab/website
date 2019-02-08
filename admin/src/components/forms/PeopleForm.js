@@ -2,17 +2,17 @@ import React from 'react';
 
 import initializers from '../../../../specs/initializers';
 import {slugifyPeople} from '../../utils';
+import enums from '../../../../specs/enums.json';
 
+import RelationSelector, {MultiRelationSelector} from '../selectors/RelationSelector';
 import Form from './Form';
 import Editor from '../Editor';
 import CoverSelector from '../selectors/CoverSelector';
 import EnumSelector from '../selectors/EnumSelector';
 import BooleanSelector from '../selectors/BooleanSelector';
-import RelationSelector from '../selectors/RelationSelector';
 import SortableKeyValueList from '../selectors/SortableKeyValueList';
 import SuggestionSelector from '../selectors/SuggestionSelector';
 import PreviewLink from '../misc/PreviewLink';
-import ProductionsSelector from './ProductionsSelector';
 
 function validate(data) {
   if (!data.firstName || !data.lastName)
@@ -325,9 +325,10 @@ function renderPeopleForm(props) {
             <div className="field">
               <label className="label">Productions</label>
               <div className="control">
-                <ProductionsSelector
+                <MultiRelationSelector
                   sortable
                   model="productions"
+                  categories={enums.productionTypes.groups}
                   max={5}
                   selected={data.mainProductions}
                   onAdd={handlers.mainProductions.add}

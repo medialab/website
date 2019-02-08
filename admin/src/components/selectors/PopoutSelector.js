@@ -2,7 +2,11 @@ import React, {useState, useCallback, useMemo} from 'react';
 import Select, {components} from 'react-select';
 import cond from 'lodash/fp/cond';
 import property from 'lodash/fp/property';
+import pipe from 'lodash/fp/pipe';
+import filter from 'lodash/fp/filter';
+import some from 'lodash/fp/some';
 import stubTrue from 'lodash/fp/stubTrue';
+import map from 'lodash/fp/map';
 import Button from '../misc/Button';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
@@ -32,7 +36,7 @@ const MenuList = props => {
           timeout={200}>
           <div
             className={`multilevel-selecto__animation ${
-              props.selectProps.selected ? 'second-level' : 'first-level'
+              props.selectProps.selected ? 'multilevel-selecto__animation__second-level' : 'multilevel-selecto__animation__first-level'
             }`}>
             {header}
             {props.children}
@@ -54,29 +58,46 @@ const Control = props => (
 );
 
 const determineOptions = cond([[
-  property('state.selectedCategory'),
-  ({state, props}) => props.options.filter(d => d.familly === state.selectedCategory)
+  property('selectedCategory'),
+  ({selectedCategory, options}) => filter(
+    d => d.type === selectedCategory,
+    options
+  )
 ], [
-  property('state.textInInput'),
-  property('props.options')
+  property('textInInput'),
+  property('options')
 ], [
-  stubTrue,
-  property('props.groupBy')
+  stubTrue, pipe(
+    property('categories'),
+    map(
+      (category) => ({
+        value: category.en,
+        label: category.en
+      })
+    )
+  )
 ]]);
 
 const PopupSelector = props => {
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [textInInput, setTextInInput] = useState(false);
+
   const showSecondLevel = selectedCategory || textInInput;
+  const options = determineOptions({
+    selectedCategory,
+    textInInput,
+    options: props.options,
+    categories: props.categories
+  });
 
   const onSelectChange = useCallback(value => {
-    if (props.groupBy.includes(value)) {
+    if (some(category => category.en === value.value, props.categories)) {
       return setSelectedCategory(value.value);
     }
     setPopupOpen(false);
     props.onChange(value);
-  }, [props.groupBy, props.onChange]);
+  }, [props.categories, props.onChange]);
   const onClickBack = useCallback(() => setSelectedCategory(null));
   const toggleOpen = useCallback(() => setPopupOpen(true));
   const inputReducer = useCallback((inputValue, {action}) => {
@@ -117,13 +138,7 @@ const PopupSelector = props => {
       controlShouldRenderValue={false}
       menuIsOpen={isPopupOpen}
       onChange={onSelectChange}
-      options={determineOptions({
-        state: {
-          selectedCategory,
-          textInInput
-        },
-        props
-      })} />
+      options={options} />
   );
 };
 

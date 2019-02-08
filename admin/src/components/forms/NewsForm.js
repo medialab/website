@@ -2,16 +2,16 @@ import React from 'react';
 
 import initializers from '../../../../specs/initializers';
 import {slugifyNews} from '../../utils';
+import enums from '../../../../specs/enums.json';
 
 import Form from './Form';
 import Editor from '../Editor';
 import BooleanSelector from '../selectors/BooleanSelector';
 import DateSelector from '../selectors/DateSelector';
 import EnumSelector from '../selectors/EnumSelector';
-import RelationSelector from '../selectors/RelationSelector';
+import RelationSelector, {MultiRelationSelector} from '../selectors/RelationSelector';
 import SuggestionSelector from '../selectors/SuggestionSelector';
 import PreviewLink from '../misc/PreviewLink';
-import ProductionsSelector from './ProductionsSelector';
 
 function validate(data) {
   if (!data.title || !data.title.fr)
@@ -345,8 +345,9 @@ function renderNewsForm(props) {
             <div className="field">
               <label className="label">Related Productions</label>
               <div className="control">
-                <ProductionsSelector
+                <MultiRelationSelector
                   model="productions"
+                  categories={enums.productionTypes.groups}
                   selected={data.productions}
                   onAdd={handlers.productions.add}
                   onDrop={handlers.productions.drop} />

@@ -48,7 +48,7 @@ export default function PeopleDetail({lang, person}) {
       <main id="main-personne">
         <p className="titre-sticky">
           <Link to="/people">
-            <span>L'équipe du Medialab</span>
+            <span>{lang === "fr" ? "L'équipe du Medialab" : "Medialab team"} </span>
           </Link>
           <span className="personne">{person.lastname} {person.firstName}</span>
         </p>
@@ -57,7 +57,7 @@ export default function PeopleDetail({lang, person}) {
           <header>
             <h1 data-level-1="name" data-type="name">{person.lastName} {person.firstName}</h1>
             <h2 data-level-2="role" data-type="role">{person.title && person.title.fr}</h2>
-            <p data-type="domaine">Domaine&#8239;: {person.domain}</p>
+            <p data-type="domaine">{lang === "fr" ? "Domaine" + String.fromCharCode(8239) +":" : "Domain:"} {person.domain}</p>
             { /*<p data-type="statut">if (membership != 'member') { if (active != 'false') { Membre associé inactif du Medialab } else { Membre inactif du Medialab } }</p>*/}
             <p data-type="activite">{person.status}</p>
             <ul className="contact">

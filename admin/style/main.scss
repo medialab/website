@@ -67,6 +67,7 @@ li {
 .tags-container {
   display: flex;
   flex-flow: row wrap;
+  margin-top: 20px;
 
   > li {
     margin-right: 0.5rem;
@@ -158,6 +159,49 @@ $table-header-color: #dbdbdb;
   }
 }
 
+.multilevel-selector__first-level__menu-list  {
+  background: whitesmoke;
+}
+.multilevel-selector__second-level__menu-list, .multilevel-selector__first-level__menu-list {
+  overflow-x: hidden;
+}
+div.multilevel-selector__first-level__option {
+  position: relative;
+  text-transform: capitalize;
+  cursor: pointer;
+  .multilevel-selector__option-container {
+    display: inline-block;
+    font-weight: bold;
+  }
+  &::after {
+    content: "▶";
+    transition: transform 0.2s ease;
+    position: absolute;
+    right: 20px;
+  }
+}
+.multilevel-selector__menu-header {
+  background-color: transparent;
+  color: inherit;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  font-size: inherit;
+  padding: 8px 12px;
+  width: 100%;
+  font-weight: bold;
+  background: whitesmoke;
+}
+.multilevel-selector__menu-header-button {
+  border-radius: 50%;
+}
+.multilevel-selector__menu-header-text {
+  padding-left: 12px;  
+}
+
+div.multilevel-selector__second-level__menu-list {
+  padding-top: 0;
+}
 .footer-container {
   border-top: 1px solid #dbdbdb;
   box-shadow: 0px -5px 7px -5px #ddd;
@@ -166,6 +210,41 @@ $table-header-color: #dbdbdb;
   bottom: 0px;
   background-color: white;
   z-index: 500
+}
+$duration: 0.2s;
+
+.fade-enter-active {
+  height: 0;
+}
+
+.multilevel-selecto__animation__first-level.fade-enter {
+  transform: translateX(-100%);
+}
+.multilevel-selecto__animation__first-level.fade-enter-active {
+  transform: translateX(0%);
+  transition: transform $duration ease-in;
+}
+.multilevel-selecto__animation__first-level.fade-exit {
+  transform: translateX(0%);
+}
+.multilevel-selecto__animation__first-level.fade-exit-active {
+  transform: translateX(-100%);
+  transition: transform $duration ease-in;
+}
+
+.multilevel-selecto__animation__second-level.fade-enter {
+  transform: translateX(100%);
+}
+.multilevel-selecto__animation__second-level.fade-enter-active {
+  transform: translateX(0%);
+  transition: transform $duration ease-in;
+}
+.multilevel-selecto__animation__second-level.fade-exit {
+  transform: translateX(0%);
+}
+.multilevel-selecto__animation__second-level.fade-exit-active {
+  transform: translateX(100%);
+  transition: transform $duration ease-in;
 }
 
 .button__animated-color {

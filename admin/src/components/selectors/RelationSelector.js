@@ -1,10 +1,13 @@
-import React, {Component} from 'react';
+import React, {Component, useState, useEffect, useCallback} from 'react';
 import {SortableContainer, SortableElement, SortableHandle} from 'react-sortable-hoc';
 import Select from 'react-select';
 import keyBy from 'lodash/keyBy';
+import find from 'lodash/fp/find';
 import truncate from 'lodash/truncate';
 import client from '../../client';
 import ReorderIcon from 'material-icons-svg/components/baseline/Reorder';
+import PopoutSelector from './PopoutSelector';
+import enums from '../../../../specs/enums.json';
 
 import labels from '../../../../specs/labels';
 
@@ -42,47 +45,25 @@ const SortableList = SortableContainer(({items, onDrop, optionsIndex}) => (
   </ul>
 ));
 
-// TODO: UX inform user about max if one
-export default class RelationSelector extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.optionsIndex = {};
-
-    this.state = {
-      loading: true,
-      options: []
-    };
-  }
-
-  componentDidMount() {
-
-    // TODO: use _fields to limit bandwidth
-    client.list({params: {model: this.props.model}}, (err, data) => {
-
-      const options = data
-        .map(item => {
-          return {
-            value: item.id,
-            label: labels[this.props.model](item)
-          };
-        });
-
-      this.optionsIndex = keyBy(options, 'value');
-      this.setState({options, loading: false});
+const useFetchModel = (model, mapper) => {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    client.list({params: {model}}, (err, response) => {
+      if (err) {
+        console.error(err.message);
+        setLoading(false);
+        return;
+      }
+      setData(response.map(mapper));
+      setLoading(false);
     });
-  }
+  }, [model]);
+  return [data, loading];
+};
 
-  handleChange = (option) => {
-    if (!option || !option.value)
-      return;
-
-    this.props.onAdd(option.value);
-  };
-
-  render() {
-    const {options, loading} = this.state;
-
+const RelationSelectorContainer = (BaseComponent) => {
+  return (props) => {
     const {
       self,
       model,
@@ -90,10 +71,33 @@ export default class RelationSelector extends Component {
       onMove,
       max = Infinity,
       selected = [],
-      sortable = false
-    } = this.props;
+      sortable = false,
+      onAdd
+    } = props;
+
+    const mapGeneric = item => ({
+      value: item.id,
+      label: labels[model](item),
+    });
+
+    const mapForProductions = item => ({
+      ...mapGeneric(item),
+      type: find(
+        group => group.values.includes(item.type),
+        enums.productionTypes.groups
+      ).en,
+    });
+
+    const [options, loading] = useFetchModel(model, props.categories ? mapForProductions : mapGeneric);
+
+    const handleChange = useCallback((option) => {
+      if (option && option.value)
+        onAdd(option.value);
+    }, [onAdd]);
 
     const selectedSet = new Set(selected);
+
+    const optionsIndex = keyBy(options, item => item.value);
 
     let filteredOptions = options;
 
@@ -108,7 +112,7 @@ export default class RelationSelector extends Component {
               <SortableList
                 useDragHandle
                 items={selected}
-                optionsIndex={this.optionsIndex}
+                optionsIndex={optionsIndex}
                 onDrop={onDrop}
                 onSortEnd={onMove} />
             </div>
@@ -116,10 +120,11 @@ export default class RelationSelector extends Component {
         )}
         <div className="columns">
           <div className={'column is-4'}>
-            <Select
+            <BaseComponent
+              categories={props.categories}
               isDisabled={selected.length >= max}
               value={null}
-              onChange={this.handleChange}
+              onChange={handleChange}
               options={filteredOptions.filter(o => !selectedSet.has(o.value))}
               isLoading={loading}
               menuPlacement="top"
@@ -132,17 +137,16 @@ export default class RelationSelector extends Component {
               selected.length ? (
                 <ul className="tags-container">
                   {selected.map(id => {
-                      const title = this.optionsIndex[id].label;
-
-                      return (
-                        <li key={id}>
-                          <span title={title} className="tag is-medium" style={{marginBottom: 3}}>
-                            {truncate(title, {length: 30, omission: '...'})}
-                            &nbsp;<button className="delete is-small" onClick={() => onDrop(id)} />
-                          </span>
-                        </li>
-                      );
-                    })}
+                    const title = optionsIndex[id].label;
+                    return (
+                      <li key={id}>
+                        <span title={title} className="tag is-medium" style={{marginBottom: 3}}>
+                          {truncate(title, {length: 30, omission: '...'})}
+                          &nbsp;<button className="delete is-small" onClick={() => onDrop(id)} />
+                        </span>
+                      </li>
+                    );
+                  })}
                 </ul>
               ) : (
                 <p><em>No items yet...</em></p>
@@ -152,5 +156,10 @@ export default class RelationSelector extends Component {
         </div>
       </div>
     );
-  }
-}
+  };
+};
+
+export const MultiRelationSelector = RelationSelectorContainer(PopoutSelector);
+
+// TODO: UX inform user about max if one
+export default RelationSelectorContainer(Select);

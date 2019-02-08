@@ -34,15 +34,19 @@ export const queryFragment = graphql`
       label
       value
     }
+    status {
+      en
+      fr
+    }
   }
 `;
 
 /*let translated.body = null
 
-if (lang === 'en') { 
-  translated.body = <span>Medialab's team</span> 
-} else { 
-  translated.body =  
+if (lang === 'en') {
+  translated.body = <span>Medialab's team</span>
+} else {
+  translated.body =
 }*/
 
 export default function PeopleDetail({lang, person}) {
@@ -67,7 +71,7 @@ export default function PeopleDetail({lang, person}) {
             <h2 data-level-2="role" data-type="role">{lang === "fr" ? person.title.fr : person.title.en}</h2>
             <p data-type="domaine">{lang === "fr" ? "Domaine" + String.fromCharCode(8239) +":" : "Domain:"} {person.domain}</p>
             <p data-type="statut">{templateMembership(person)}</p>
-            <p data-type="activite">{person.status}</p>
+            <p data-type="activite">{person.status && (lang === "fr" ? person.status.fr : person.status.en)}</p>
             <ul className="contact">
               ${person.contacts.map(contact => <li data-type={contact.label}>
                 <Link to={contact.value}>{contact.label}</Link>
@@ -81,11 +85,10 @@ export default function PeopleDetail({lang, person}) {
             {bio && bio.fr && <RawHtml html={bio.fr} />}
           </div>
         </article>
-        <PublicationsAssocies />
+        <PublicationsAssocies person={person} />
         <FichiersAssocies />
       </main>
     </>
 
   );
 }
-

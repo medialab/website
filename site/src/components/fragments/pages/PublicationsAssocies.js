@@ -2,10 +2,10 @@ import React from 'react';
 /*import {graphql} from 'gatsby';*/
 import {Link} from 'gatsby';
 
-const PublicationsAssocies = (person) => {
+const PublicationsAssocies = ({person}) => {
 	return (
 		<aside className="container elements-associes-block" id="publications_liees">
-		    <h1> est à l'origine de plusieurs publications</h1>
+		    <h1>{person.firstName} {person.lastName} est à l'origine de plusieurs publications</h1>
 
 		    <div className="contenu">
 		        <ul className="liste_objet">

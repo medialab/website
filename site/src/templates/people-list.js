@@ -11,6 +11,7 @@ export const query = graphql`
         node {
           firstName
           lastName
+          slugs
         }
       }
     }

@@ -19,7 +19,7 @@ export default function PeopleListing({lang, list}) {
 
 			{list.map(p => (
 	          	<li key={p.id} data-item={p.id} data-domaine={p.domain} data-statut={p.active} data-member={p.membership}>
-				    <Link to={`/people/dominique-cardon`}>
+				    <Link to={`/people/${p.slugs[p.slugs.length - 1]}`}>
 		                <figure><img src="./assets/images/sample/D-Cardon-bis.jpg"  alt="caption"/></figure>
 		                <hgroup>
 						    <h1 data-level-1="name">{p.firstName} {p.lastName}</h1>

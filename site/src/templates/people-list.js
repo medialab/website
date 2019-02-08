@@ -12,6 +12,14 @@ export const query = graphql`
           firstName
           lastName
           slugs
+          id
+          domain
+          active
+          membership
+          role{
+            fr
+            en
+          }
         }
       }
     }

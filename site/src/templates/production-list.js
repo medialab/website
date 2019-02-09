@@ -13,6 +13,14 @@ export const query = graphql`
             en
             fr
           }
+          description {
+            en
+            fr
+          }
+          slugs
+          type
+          authors
+          lastUpdated
         }
       }
     }
@@ -30,4 +38,3 @@ export default ({data, pageContext}) => {
     </Layout>
   );
 };
-

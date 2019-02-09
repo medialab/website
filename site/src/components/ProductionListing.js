@@ -3,40 +3,36 @@ import {Link} from 'gatsby';
 
 import FilterProduction from './fragments/pageListe/FilterProduction.js';
 
-/* import {templateMembership} from './helpers.js';  */ 
+/* import {templateMembership} from './helpers.js';  */
 import './scss/page_liste.scss';
 
 export default function ProductionListing({lang, list}) {
   console.log(lang, list);
 
   	return (
-    	<> 
+    	<>
     		<FilterProduction />
-	       	<ul class="liste_objet" id="liste-objet-activite">
-		        <li id="year-2018" class="list-year">
+	      <ul className="liste_objet" id="liste-objet-activite">
+		        <li id="year-2018" className="list-year">
 		            2018
 		        </li>
-		        {/*list.map(p => (      
-					<>
-					<li key={p.id} data-item={p.id} data-domaine={p.type} class={p.type}>
-					
-						<Link to="">
-							<h1 data-level-1="title">{p.title}</h1>
-			                <h2 data-level-2="authors">
-			                    <span>FirstName LastName</span>,
-			                    <span>FirstName Last</span>
-			            	</h2>
-			            </Link>
-			            
-			            <p class="date">{p.lastUpdated}</p>
-						<p class="type">{p.type}</p>
-					</li>
-					<li class="item_accroche description" data-item-accroche="0"><Link to="">{p.description}</Link></li>
-					</>
-				))*/}
+		        {list.map(p => (
+            <>
+              <li key={p.id} data-item={p.id} data-domaine={p.type} className={p.type}>
+  						<Link to={p.slugs[p.slugs.length - 1]}>
+  							<h1 data-level-1="title">{lang === "fr" ? p.title.fr : p.title.en}</h1>
+                <h2 data-level-2="authors">
+                  <span>{p.authors}</span>
+	            	</h2>
+              </Link>
 
-				<li class="item_accroche accroche-titre">Description en une phrase de la catégorie.</li>
-			</ul> 
+  			      <p className="date">{p.lastUpdated}</p>
+  						<p className="type">{p.type}</p>
+  					</li>
+  					<li className="item_accroche description" data-item-accroche="0"><Link to={p.slugs[p.slugs.length - 1]}>{lang === "fr" ? p.description.fr : p.description.en}</Link></li>
+            </>
+				 ))}
+		     </ul>
 	    </>
 	 );
 }

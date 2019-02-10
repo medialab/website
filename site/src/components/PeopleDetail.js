@@ -89,12 +89,9 @@ export default function PeopleDetail({lang, person}) {
             <p data-type="statut">{templateMembership(person)}</p>
             <p data-type="activite">{person.status && (lang === "fr" ? person.status.fr : person.status.en)}</p>
             <ul className="contact">
-              ${person.contacts.map(contact => <li data-type={contact.label}>
+              {person.contacts.map(contact => <li data-type={contact.label}>
                 <Link to={contact.value}>{contact.label}</Link>
                 </li>)}
-              <li data-type="email"><Link to="/">Mail</Link></li>
-              <li data-type="Twitter"><Link to="/">Twitter</Link></li>
-              <li data-type="Git"><Link to="/">Git</Link></li>
             </ul>
           </header>
           <div className="biographie-contenu">

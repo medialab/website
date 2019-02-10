@@ -1,12 +1,12 @@
 
-	<ul class="liste_objet" id="liste-objet-activite">
+	<ul class="liste_objet" id="liste-activity">
 
-		<li data-item="0" data-type="recherche" class="recherche">
+		<li data-item="0" data-type="research" class="list-item research">
 		
 			<a href="page_objet.php">
 				<h1 data-level-1="baseline">Ceci est la baseline de l'activité</h1>
 				<h2 data-level-2="title">Nom de l'activité</h2>
-				<p class="type">Type de l'activité</p>
+				<p class="type">research</p>
 
 			</a>
 		</li>
@@ -16,7 +16,7 @@
 
 
 
-		<li data-item="1" data-type="recherche" class="recherche">
+		<li data-item="1" data-type="research" class="list-item research">
 			<a href="page_objet.php">
 				<h1 data-level-1="baseline">Le numérique change-t-il les formes de nature urbaine ?</h1>
 				<h2 data-level-2="title">Naturpradi</h2>
@@ -26,7 +26,7 @@
 		<li class="item_accroche" data-item-accroche="1"><a href="page_objet.php">Nature(s) urbaine(s) en pratique(s) digitale(s)- étudie le retour de la nature en ville au prisme de ses effets sociaux, politiques et technologiques notamment grâce aux nouvelles technologies et dispositifs participatifs.</a></li>
 		
 
-		<li data-item="2"  data-type="methode" class="methode">
+		<li data-item="2"  data-type="method" class="list-item method">
 			<a href="page_objet.php">
 				<h1 data-level-1="baseline">Quelle est la question de recherche de cette activité en quelques mots ?</h1>
 				<h2 data-level-2="title">Shinrai</h2>
@@ -36,7 +36,7 @@
 		<li class="item_accroche" data-item-accroche="2"><a href="page_objet.php">La catastrophe de Fukushima a provoqué une crise politique et sociétale majeure au Japon. SHINRAI analyse la gestion faite par les autorités japonaises et sa réception par les populations.</a></li>
 		
 		
-		<li data-item="3" data-type="enseignement" class="enseignement">
+		<li data-item="3" data-type="teaching" class="list-item teaching">
 		<a href="page_objet.php">
 				<h1 data-level-1="baseline">Les parlementaires font-ils la loi ?</h1>
 				<h2 data-level-2="title">La fabrique de la loi</h2>
@@ -47,7 +47,7 @@
 		
 
 
-		<li data-item="4" data-type="recherche" class="recherche">
+		<li data-item="4" data-type="research" class="list-item research">
 			<a href="page_objet.php">
 				<h1 data-level-1="baseline">Le numérique change-t-il les formes de nature urbaine ?</h1>
 				<h2 data-level-2="title">Naturpradi</h2>
@@ -57,7 +57,7 @@
 
 		<li class="item_accroche" data-item-accroche="4">Nature(s) urbaine(s) en pratique(s) digitale(s)- étudie le retour de la nature en ville au prisme de ses effets sociaux, politiques et technologiques notamment grâce aux nouvelles technologies et dispositifs participatifs.</li>
 		
-		<li data-item="5"  data-type="methode" class="methode">
+		<li data-item="5"  data-type="method" class="list-item method">
 			<a href="page_objet.php">
 				<h1 data-level-1="baseline">Quelle est la question de recherche de cette activité en quelques mots ?</h1>
 				<h2 data-level-2="title">Shinrai</h2>
@@ -68,7 +68,7 @@
 		<li class="item_accroche" data-item-accroche="5">La catastrophe de Fukushima a provoqué une crise politique et sociétale majeure au Japon. SHINRAI analyse la gestion faite par les autorités japonaises et sa réception par les populations.</li>
 		
 		
-		<li data-item="6" data-type="enseignement" class="enseignement">
+		<li data-item="6" data-type="teaching" class="list-item teaching">
 		<a href="page_objet.php">
 				<h1 data-level-1="baseline">Les parlementaires font-ils la loi ?</h1>
 				<h2 data-level-2="title">La fabrique de la loi</h2>
@@ -78,7 +78,7 @@
 		<li class="item_accroche" data-item-accroche="6">Ouvrir la boîte noire de la procédure législative en France grâce à l’exploration des données parlementaires. A destination des chercheurs, ce dispositif est également accessible à tous les citoyens et démocratise la compréhension des différentes étapes de fabrique de la loi.</li>
 		
 		
-		<li data-item="7" data-type="recherche" class="recherche">
+		<li data-item="7" data-type="research" class="list-item research">
 			<a href="page_objet.php">
 				<h1 data-level-1="baseline">Le numérique change-t-il les formes de nature urbaine ?</h1>
 				<h2 data-level-2="title">Naturpradi</h2>
@@ -88,7 +88,7 @@
 		<li class="item_accroche" data-item-accroche="7">Nature(s) urbaine(s) en pratique(s) digitale(s)- étudie le retour de la nature en ville au prisme de ses effets sociaux, politiques et technologiques notamment grâce aux nouvelles technologies et dispositifs participatifs.</li>
 		
 
-		<li data-item="8"  data-type="methode" class="methode">
+		<li data-item="8"  data-type="method" class="list-item method">
 			<a href="page_objet.php">
 				<h1 data-level-1="baseline">Quelle est la question de recherche de cette activité en quelques mots ?</h1>
 				<h2 data-level-2="title">Shinrai</h2>
@@ -98,7 +98,7 @@
 		<li class="item_accroche" data-item-accroche="8">La catastrophe de Fukushima a provoqué une crise politique et sociétale majeure au Japon. SHINRAI analyse la gestion faite par les autorités japonaises et sa réception par les populations.</li>
 		
 		
-		<li data-item="9" data-type="enseignement" class="enseignement">
+		<li data-item="9" data-type="teaching" class="list-item teaching">
 		<a href="page_objet.php">
 				<h1 data-level-1="baseline">Les parlementaires font-ils la loi ?</h1>
 				<h2 data-level-2="title">La fabrique de la loi</h2>
@@ -108,7 +108,7 @@
 		<li class="item_accroche" data-item-accroche="9">Ouvrir la boîte noire de la procédure législative en France grâce à l’exploration des données parlementaires. A destination des chercheurs, ce dispositif est également accessible à tous les citoyens et démocratise la compréhension des différentes étapes de fabrique de la loi.</li>
 		
 
-		<li data-item="10" data-type="recherche" class="recherche">
+		<li data-item="10" data-type="research" class="list-item research">
 			<a href="page_objet.php">
 				<h1 data-level-1="baseline">Le numérique change-t-il les formes de nature urbaine ?</h1>
 				<h2 data-level-2="title">Naturpradi</h2>
@@ -118,7 +118,7 @@
 		<li class="item_accroche" data-item-accroche="10">Nature(s) urbaine(s) en pratique(s) digitale(s)- étudie le retour de la nature en ville au prisme de ses effets sociaux, politiques et technologiques notamment grâce aux nouvelles technologies et dispositifs participatifs.</li>
 		
 
-		<li data-item="11"  data-type="methode" class="methode">
+		<li data-item="11"  data-type="method" class="list-item method">
 			<a href="page_objet.php">
 				<h1 data-level-1="baseline">Quelle est la question de recherche de cette activité en quelques mots ?</h1>
 				<h2 data-level-2="title">Shinrai</h2>
@@ -128,7 +128,7 @@
 		<li class="item_accroche" data-item-accroche="11">La catastrophe de Fukushima a provoqué une crise politique et sociétale majeure au Japon. SHINRAI analyse la gestion faite par les autorités japonaises et sa réception par les populations.</li>
 		
 		
-		<li data-item="12" data-type="enseignement" class="enseignement">
+		<li data-item="12" data-type="teaching" class="list-item teaching">
 		<a href="page_objet.php">
 				<h1 data-level-1="baseline">Les parlementaires font-ils la loi ?</h1>
 				<h2 data-level-2="title">La fabrique de la loi</h2>
@@ -139,7 +139,7 @@
 		
 
 		
-		<li data-item="13" data-type="recherche" class="recherche">
+		<li data-item="13" data-type="research" class="list-item research">
 			<a href="page_objet.php">
 				<h1 data-level-1="baseline">Le numérique change-t-il les formes de nature urbaine ?</h1>
 				<h2 data-level-2="title">Naturpradi</h2>
@@ -149,7 +149,7 @@
 		<li class="item_accroche" data-item-accroche="13">Nature(s) urbaine(s) en pratique(s) digitale(s)- étudie le retour de la nature en ville au prisme de ses effets sociaux, politiques et technologiques notamment grâce aux nouvelles technologies et dispositifs participatifs.</li>
 		
 
-		<li data-item="14"  data-type="methode" class="methode">
+		<li data-item="14"  data-type="method" class="list-item method">
 			<a href="page_objet.php">
 				<h1 data-level-1="baseline">Quelle est la question de recherche de cette activité en quelques mots ?</h1>
 				<h2 data-level-2="title">Shinrai</h2>
@@ -159,7 +159,7 @@
 		<li class="item_accroche" data-item-accroche="14">La catastrophe de Fukushima a provoqué une crise politique et sociétale majeure au Japon. SHINRAI analyse la gestion faite par les autorités japonaises et sa réception par les populations.</li>
 		
 		
-		<li data-item="15" data-type="enseignement" class="enseignement">
+		<li data-item="15" data-type="teaching" class="list-item teaching">
 		<a href="page_objet.php">
 				<h1 data-level-1="baseline">Les parlementaires font-ils la loi ?</h1>
 				<h2 data-level-2="title">La fabrique de la loi</h2>

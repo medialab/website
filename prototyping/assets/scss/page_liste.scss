@@ -8,7 +8,10 @@
 @import 'parts/page_liste/page_liste';
 @import 'parts/page_liste/page_liste-desktop';
 @import 'parts/page_liste/page_liste-phone';
-@import 'parts/page_liste/filtre';
 
-@import 'parts/page_liste/filtre_activite';
-@import 'parts/page_liste/filtre_production';
+
+// @import 'parts/page_liste/filtre-style-phone';
+@import 'parts/page_liste/filtre-style-desktop';
+@import 'parts/page_liste/filtre-methodes';
+
+

@@ -1,6 +1,28 @@
 
-<h1 class="type_title" id="activite_title">Activités</h1>
 
+<aside id="filtres-activity" class="filtres-listing">
+
+<h1 class="type_title">Activités</h1>
+
+<ul class="link-activity-sort">
+	<!-- liens vers les pages triées par le builder: la class .pageProduction_current est à ajouter selon la page sur laquelle on se trouve, par defaut: "actives"-->
+	<li class="pageProduction_current"><a href="linkActivity/actives">Actives <span>〉</span></a></li>
+	<li><a href="linkActivity/passees">Passées <span>〉</span></a></li>
+</ul>
+
+
+</aside>
+
+
+
+<input type="checkbox" id="filtre-activity_research" name="filtre-activity_research" class="input_filtre-activity" value="research" hidden >
+<label class="filtre-activity checkbox-medialab" for="filtre-activity_research">research</label>
+
+<input type="checkbox" id="filtre-activity_teaching" name="filtre-activity_teaching" class="input_filtre-activity" value="teaching" hidden >
+<label class="filtre-activity checkbox-medialab" for="filtre-activity_teaching">teaching</label>
+
+<input type="checkbox" id="filtre-activity_method" name="filtre-activity_method" class="input_filtre-activity" value="method" hidden >
+<label class="filtre-activity checkbox-medialab" for="filtre-activity_method">method</label>
 
 
 <!-- Filtre for phone -->
@@ -11,48 +33,7 @@
 <!-- End Filtre for phone -->
 
 
-<!-- Trois possibilité dans le build
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
--->
-
-<!-- Active (par défaut) -->
-<input type="checkbox" id="filtre_activite_passe" name="filtre_activite_active" value="activite_active" hidden checked>
-<label class="filtre_objet filtre_activite" for="filtre_activite_active"><a class="checkbox-medialab checkbox-medialab_link" href="linkPageActivitesActives">Actives</a></label>
-
-<input type="checkbox" id="filtre_activite_passe" name="filtre_activite_passe" value="activite_passe" hidden >
-<label class="filtre_objet filtre_activite" for="filtre_activite_passe"><a class="checkbox-medialab checkbox-medialab_link" href="linkPageActivitesActives+Passees">Passées</a></label>
 
 
-<!-- Active + Passees
-<input type="checkbox" id="filtre_activite_passe" name="filtre_activite_active" value="activite_active" hidden checked>
-<label class="filtre_objet filtre_activite" for="filtre_activite_active"><a class="checkbox-medialab checkbox-medialab_link" href="linkPageActivitesPassees">Actives</a></label>
-
-<input type="checkbox" id="filtre_activite_passe" name="filtre_activite_passe" value="activite_passe" hidden checked>
-<label class="filtre_objet filtre_activite" for="filtre_activite_passe"><a class="checkbox-medialab checkbox-medialab_link" href="linkPageActivitesActives">Passées</a></label>
- -->
-
-<!-- Passees 
-<input type="checkbox" id="filtre_activite_passe" name="filtre_activite_active" value="activite_active" hidden>
-<label class="filtre_objet filtre_activite" for="filtre_activite_active"><a class="checkbox-medialab checkbox-medialab_link" href="linkPageActivitesActives+Passees">Actives</a></label>
-
-<input type="checkbox" id="filtre_activite_passe" name="filtre_activite_passe" value="activite_passe" hidden checked>
-<label class="filtre_objet filtre_activite" for="filtre_activite_passe"><a class="checkbox-medialab checkbox-medialab_link" href="linkPageActivitesActives">Passées</a></label>
--->
 
 
-<!-- Filtrer par type
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------
--->
-
-<h2 class="filtre_objet filtre_activite_title">Filtrer par type</h2>
-
-<input type="checkbox" id="filtre_recherche" name="filtre_recherche" value="recherche" hidden >
-<label class="filtre_objet filtre_activite checkbox-medialab" for="filtre_recherche">Recherche</label>
-
-
-<input type="checkbox" id="filtre_enseignement" name="filtre_enseignement" value="enseignement" hidden >
-<label class="filtre_objet filtre_activite checkbox-medialab" for="filtre_enseignement">Enseignement</label>

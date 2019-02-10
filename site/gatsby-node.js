@@ -237,6 +237,14 @@ exports.createPages = function({graphql, actions}) {
   });
 
   createI18nPage(createPage, {
+    path: '/404.html',
+    component: path.resolve('./src/templates/error.js'),
+    context: {
+      code: 404
+    }
+  });
+
+  createI18nPage(createPage, {
     path: '/activities',
     component: path.resolve('./src/templates/activity-list.js')
   });

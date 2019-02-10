@@ -80,7 +80,7 @@ const IndexPage = ({data, pageContext}) => {
 
   return (
     <Layout lang={pageContext.lang}>
-      <Home grid={grid} slider={slider} rdv={rdv} />
+      <Home lang={pageContext.lang} grid={grid} slider={slider} rdv={rdv} />
     </Layout>
   );
 };

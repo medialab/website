@@ -12,6 +12,7 @@ export default function ProductionListing({lang, list}) {
   	return (
     	<>
     		<FilterProduction />
+        <section id="liste">
 	      <ul className="liste_objet" id="liste-objet-activite">
 		        <li id="year-2018" className="list-year">
 		            2018
@@ -33,6 +34,7 @@ export default function ProductionListing({lang, list}) {
             </>
 				 ))}
 		     </ul>
+         </section>
 	    </>
 	 );
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'gatsby';
 
 import FilterProduction from './fragments/pageListe/FilterProduction.js';
+import RawHTML from './RawHtml.js';
 
 /* import {templateMembership} from './helpers.js';  */
 import './scss/page_liste.scss';
@@ -20,7 +21,6 @@ export default function ProductionListing({lang, list}) {
               <span>2018</span>
               <pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
           </li>
-
           {list.map(p => (
               <>
               <li data-item={p.id} data-type={p.type} class={`list-item ${p.type}`}>

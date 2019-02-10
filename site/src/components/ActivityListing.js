@@ -2,15 +2,16 @@ import React from 'react';
 import {Link} from 'gatsby';
 
 import FilterActivity from './fragments/pageListe/FilterActivity.js';
+import RawHTML from './RawHtml.js';
 
-/* import {templateMembership} from './helpers.js';  */ 
+/* import {templateMembership} from './helpers.js';  */
 import './scss/page_liste.scss';
 
 export default function ActivityListing({lang, list}) {
   console.log(lang, list);
 
   	return (
-    	<> 
+    	<>
     		<FilterActivity />
     		<section id="liste">
        	 	<ul className="liste_objet" id="liste-activity">
@@ -35,5 +36,3 @@ export default function ActivityListing({lang, list}) {
 	    </>
 	 );
 }
-
-

@@ -19,6 +19,10 @@ export const query = graphql`
             en
             fr
           }
+          people {
+            firstName
+            lastName
+          }
           slugs
           type
           lastUpdated
@@ -39,4 +43,3 @@ export default ({data, pageContext}) => {
     </Layout>
   );
 };
-

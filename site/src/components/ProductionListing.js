@@ -22,28 +22,28 @@ export default function ProductionListing({lang, list}) {
               <pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
           </li>
           {list.map(p => (
-              <>
-              <li data-item={p.id} data-type={p.type} class={`list-item ${p.type}`}>
-                {/* Dans les données Json "data-type" fait référence à "productionTypes" */}
-                  <Link to={p.slugs[p.slugs.length - 1]}>
-                  <h1 data-level-1="title">{lang === "fr" ? p.title.fr : p.title.en}</h1>
-                    <h2 data-level-2="authors">
-                      <span>{p.authors}</span>
-                  </h2>
-                </Link>
-                      
-                <p class="date">{p.lastUpdated}</p>
-                <p class="type">{p.type}</p>
-              </li>
+            <>
+            <li data-item={p.id} data-type={p.type} class={`list-item ${p.type}`}>
+              {/* Dans les données Json "data-type" fait référence à "productionTypes" */}
+                <Link to={`/productions/${p.slugs[p.slugs.length - 1]}`}>
+                <h1 data-level-1="title">{lang === "fr" ? p.title.fr : p.title.en}</h1>
+                  <h2 data-level-2="authors">
+                    <span>{p.authors}</span>
+                </h2>
+              </Link>
+                    
+              <p class="date">{p.lastUpdated}</p>
+              <p class="type">{p.type}</p>
+            </li>
 
-              <li class="item_accroche description" data-item-accroche={p.id}>
-                  <Link to={p.slugs[p.slugs.length - 1]}>
-                      <span class="item_accroche_texte">
-                        <RawHTML html={lang === "fr" ? p.description.fr : p.description.en} />
-                      </span>
-                      <span class="image-pre"></span>
-                  </Link>
-              </li>
+            <li class="item_accroche description" data-item-accroche={p.id}>
+                <Link to={`/productions/${p.slugs[p.slugs.length - 1]}`}>
+                    <span class="item_accroche_texte">
+                      <RawHTML html={lang === "fr" ? p.description.fr : p.description.en} />
+                    </span>
+                    <span class="image-pre"></span>
+                </Link>
+            </li>
             </>
           ))}
           <li class="item_accroche accroche-titre">Description en une phrase de la catégorie Production</li>

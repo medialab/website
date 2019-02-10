@@ -79,13 +79,14 @@ export default function PeopleDetail({lang, person}) {
               ${person.contacts.map(contact => <li data-type={contact.label}>
                 <Link to={contact.value}>{contact.label}</Link>
                 </li>)}
-              <li data-type="email"><Link to="/">Mail</Link></li>
+              {/*<li data-type="email"><Link to="/">Mail</Link></li>
               <li data-type="Twitter"><Link to="/">Twitter</Link></li>
-              <li data-type="Git"><Link to="/">Git</Link></li>
+              <li data-type="Git"><Link to="/">Git</Link></li>*/}
             </ul>
           </header>
           <div className="biographie-contenu">
-            {bio && bio.fr && <RawHtml html={bio.fr} />}
+            {person.bio && (lang === "fr" ? person.bio.fr && <RawHtml html={bio.fr} />  : person.bio.en && <RawHtml html={bio.en} />)}          
+            {/*bio && bio.fr && <RawHtml html={bio.fr} />*/}
           </div>
         </article>
         <PublicationsAssocies person={person} />

@@ -79,48 +79,30 @@ input:checked + label{
 }
 
 .checkbox-medialab:hover:before{
-    background: $text-color;
-    border: $border; 
+    border: 5px solid $text-color; 
 }
 
-input:checked + .checkbox-medialab:before,
-input:checked + label .checkbox-medialab_link:before{
-    background: $text-color;
-    border: $border; 
-}
-
-input:checked + .checkbox-medialab:after,
-input:checked + label .checkbox-medialab_link:after {
-    content: '';
-    position: absolute;
-    left: 10px;
-    // top: 9px;
-    background: white;
-    width: 2px;
-    height: 2px;
-    box-shadow: 
-      2px 0 0 white,
-      4px 0 0 white,
-      4px -2px 0 white,
-      4px -4px 0 white,
-      4px -6px 0 white,
-      4px -8px 0 white;
-    transform: rotate(45deg);
-  }
-
-
-
-input:checked + .filtre_objet_value:after{
-margin-left: $margins-desktop - 7px;
+.checkbox-medialab:hover{
+    font-weight: 600;
+    color: $color-hover;
+    cursor: pointer;
+    &:before{ border: 5x solid $color-hover;}
 }
 
 
-// si checkbox = reconfiguration du build (par lien)
-input:checked + label .checkbox-medialab_link:after,
-input:checked + label.checkbox-parent-medialab:after { 
-    left: 2px; 
+input:checked + .checkbox-medialab{
+    font-weight: 600;
+    &:before{ border: 5px solid $text-color;}
 }
-.checkbox-medialab_link:hover { color: currentColor;}
+
+input:checked + .checkbox-medialab:hover{
+    font-weight: 600;
+    color: $text-color;
+    &:before{ border: 5px solid $text-color;}
+}
+
+
+
 
 
 

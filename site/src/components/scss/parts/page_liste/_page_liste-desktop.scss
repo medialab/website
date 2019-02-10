@@ -64,10 +64,28 @@
 			margin-bottom: 40vh;
 
 			.list-year{
-				padding-top: $height-top-bar + $baseline;
-				@include font-size-20();
-				height: $height-top-bar + $baseline*3.5;
+				padding-top: $baseline;
+				min-height: $baseline*3.5;
+				padding-bottom: $baseline;
+				@include font-size-16();
+				font-weight: 600;
+				
 				border-bottom: $border-light;
+				overflow: hidden;
+				
+				&:target{
+					padding-top: $height-top-bar + $baseline*1;
+				}
+				pre{
+					position: absolute; 
+					bottom: $baseline*1;
+					left: 10px;
+				}
+				span{
+					background-color: white;
+					z-index: 10;
+					padding-right: $baseline/2;
+				}
 				// border-top: $border;
 
 
@@ -75,8 +93,10 @@
 					height: $baseline*3.5;
 					padding-top: $baseline
 				}
+				
 			}
 
+		
 	
 
 			[data-item]{ // S'applique aux items des troix catégorie
@@ -134,18 +154,49 @@
 		    .item_accroche{
 				@include font-size-40();
 				margin-left: $margins-desktop*3;
+				padding: 20px;
+				overflow: hidden;
 			
 				// background-color: red;
 				position: fixed;
 				
 				top: $height-top-bar;
 				// border-top: $border;
-				padding-top: $baseline*2;		        
+				padding-top: $baseline*2;
+				height: calc(100vh - #{$height-top-bar} - #{$margins-desktop});	
+
+				a{ 
+					display: block;
+					width: 100%;
+				height: 100%;}
+				
+				.item_accroche_texte{
+					background-color: white;
+					z-index: 10;
+					display: block;
+					width: 100%;
+					position: absolute;
+					padding: $baseline $baseline*2;
+					
+					
+				}
+
+				.image-pre{
+					position: absolute;
+					top: -20px;
+					left: -20px;
+					pre{
+						font-size: 20px;
+						line-height: 23.2px;
+					}
+				}
 
 				@include for-size(desktop-1300) {
 					 // Prevenir des lignes trop étendues sur grand écran
 					// width: calc( ( ( 90% - #{$logo-column} ) /2 ) - #{$margins-desktop*2} );
 				}
+
+
 			}/* end item_accroche*/
 			
 

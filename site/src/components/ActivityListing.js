@@ -12,31 +12,26 @@ export default function ActivityListing({lang, list}) {
   	return (
     	<> 
     		<FilterActivity />
-	       	<ul class="liste_objet" id="liste-objet-activite">
-		        <li id="year-2018" class="list-year">
-		            2018
-		        </li>
-		        {/*list.map(p => (      
-					<>
-					<li key={p.id} data-item={p.id} data-domaine={p.type} class={p.type}>
-					
-						<Link to="">
-							<h1 data-level-1="title">{p.title}</h1>
-			                <h2 data-level-2="authors">
-			                    <span>FirstName LastName</span>,
-			                    <span>FirstName Last</span>
-			            	</h2>
-			            </Link>
-			            
-			            <p class="date">{p.lastUpdated}</p>
-						<p class="type">{p.type}</p>
-					</li>
-					<li class="item_accroche description" data-item-accroche="0"><Link to="">{p.description}</Link></li>
-					</>
-				))*/}
-
-				<li class="item_accroche accroche-titre">Description en une phrase de la catégorie.</li>
-			</ul> 
+    		<section id="liste">
+       	 	<ul className="liste_objet" id="liste-activity">
+       	 	{list.map(a => (
+				<>
+				<li data-item={a.id} data-type={a.type} className={`list-item ${a.type}`}>
+					<Link to={a.slugs[a.slugs.length - 1]}>
+						<h1 data-level-1="baseline">{a.baseline && ( lang === "fr" ? a.baseline.fr : a.baseline.en)}</h1>
+						<h2 data-level-2="title">{a.name}</h2>
+						<p className="type">{a.type}</p>
+					</Link>
+				</li>
+				<li className="item_accroche description" data-item-accroche={a.id}>
+					<Link to={a.slugs[a.slugs.length - 1]}>
+						{lang === "fr" ? a.description.fr : a.description.en}
+					</Link>
+				</li>
+            	</>
+          	))}
+			</ul>
+		</section>
 	    </>
 	 );
 }

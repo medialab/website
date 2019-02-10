@@ -12,27 +12,43 @@ export default function ProductionListing({lang, list}) {
   	return (
     	<>
     		<FilterProduction />
-	      <ul className="liste_objet" id="liste-objet-activite">
-		        <li id="year-2018" className="list-year">
-		            2018
-		        </li>
-		        {list.map(p => (
-            <>
-              <li key={p.id} data-item={p.id} data-domaine={p.type} className={p.type}>
-  						<Link to={p.slugs[p.slugs.length - 1]}>
-  							<h1 data-level-1="title">{lang === "fr" ? p.title.fr : p.title.en}</h1>
-                <h2 data-level-2="authors">
-                  <span>{p.authors}</span>
-	            	</h2>
-              </Link>
+        <section id="liste">
+          <p class="accroche-titre-phone">Description en une phrase de la catégorie activité....</p>
+          <ul class="liste_objet" id="liste-productions">
 
-  			      <p className="date">{p.lastUpdated}</p>
-  						<p className="type">{p.type}</p>
-  					</li>
-  					<li className="item_accroche description" data-item-accroche="0"><Link to={p.slugs[p.slugs.length - 1]}>{lang === "fr" ? p.description.fr : p.description.en}</Link></li>
+          <li id="year-2018" class="list-year">
+              <span>2018</span>
+              <pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+          </li>
+
+          {list.map(p => (
+              <>
+              <li data-item={p.id} data-type={p.type} class={`list-item ${p.type}`}>
+                {/* Dans les données Json "data-type" fait référence à "productionTypes" */}
+                  <Link to={p.slugs[p.slugs.length - 1]}>
+                  <h1 data-level-1="title">{lang === "fr" ? p.title.fr : p.title.en}</h1>
+                    <h2 data-level-2="authors">
+                      <span>{p.authors}</span>
+                  </h2>
+                </Link>
+                      
+                <p class="date">{p.lastUpdated}</p>
+                <p class="type">{p.type}</p>
+              </li>
+
+              <li class="item_accroche description" data-item-accroche={p.id}>
+                  <Link to={p.slugs[p.slugs.length - 1]}>
+                      <span class="item_accroche_texte">
+                        {lang === "fr" ? p.description.fr : p.description.en}
+                      </span>
+                      <span class="image-pre"></span>
+                  </Link>
+              </li>
             </>
-				 ))}
-		     </ul>
-	    </>
+          ))}
+          <li class="item_accroche accroche-titre">Description en une phrase de la catégorie Production</li>
+        </ul>
+        </section>
+      </>
 	 );
 }

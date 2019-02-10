@@ -9,13 +9,25 @@ export const query = graphql`
     allActivitiesJson {
       edges {
         node {
+          id
           name
+          description {
+            en
+            fr
+          }
+          baseline {
+            en
+            fr
+          }
+          slugs
+          type
+          lastUpdated
         }
       }
     }
   }
 `;
-
+ 
 export default ({data, pageContext}) => {
   console.log(data, pageContext);
 

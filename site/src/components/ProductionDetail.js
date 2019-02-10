@@ -34,6 +34,16 @@ export const queryFragment = graphql`
     }
     productions {
       id
+      description {
+        en
+        fr
+      }
+      slugs
+      title {
+        en
+        fr
+      }
+      type
     }
     draft
   }
@@ -68,7 +78,7 @@ export default function ProductionDetail({lang, production}) {
             {(production.people || []).map(p => <li key={p.id}>{p.firstName} {p.lastName}</li>)}
           </ul>
         </div>
-        <PublicationsAssocies />
+        <PublicationsAssocies publications={production.productions} lang={lang} />
         <FichiersAssocies />
       </main>
     </>

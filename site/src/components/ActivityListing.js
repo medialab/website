@@ -22,7 +22,7 @@ export default function ActivityListing({lang, list}) {
 					<>
 					<li key={p.id} data-item={p.id} data-domaine={p.type} className={p.type}>
 
-						<Link to={p.slugs[p.slugs.length - 1]}>
+						<Link to={`/activities/${p.slugs[p.slugs.length - 1]}`}>
 							<h1 data-level-1="title">{p.name}</h1>
               <h2 data-level-2="authors">
                 {(p.people || []).map(person => <span>{person.firstName} {person.lastName}</span>)}
@@ -32,7 +32,7 @@ export default function ActivityListing({lang, list}) {
             <p className="date">{p.lastUpdated}</p>
 						<p className="type">{p.type}</p>
 					</li>
-					<li className="item_accroche description" data-item-accroche="0"><Link to={p.slugs[p.slugs.length - 1]}><RawHTML html={lang === "fr" ? p.description.fr : p.description.en} /></Link></li>
+					<li className="item_accroche description" data-item-accroche="0"><Link to={`/activities/${p.slugs[p.slugs.length - 1]}`}><RawHTML html={lang === "fr" ? p.description.fr : p.description.en} /></Link></li>
 					</>
 				))}
 

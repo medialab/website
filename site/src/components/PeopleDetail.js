@@ -41,6 +41,19 @@ export const queryFragment = graphql`
       en
       fr
     }
+    mainProductions {
+      id
+      description {
+        en
+        fr
+      }
+      slugs
+      title {
+        en
+        fr
+      }
+      type
+    }
   }
 `;
 
@@ -88,7 +101,7 @@ export default function PeopleDetail({lang, person}) {
             {bio && bio.fr && <RawHtml html={bio.fr} />}
           </div>
         </article>
-        <PublicationsAssocies person={person} />
+        <PublicationsAssocies lang={lang} person={person} publications={person.mainProductions} />
         <FichiersAssocies />
       </main>
     </>

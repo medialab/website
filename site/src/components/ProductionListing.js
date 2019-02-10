@@ -21,7 +21,7 @@ export default function ProductionListing({lang, list}) {
 		        {list.map(p => (
             <>
               <li key={p.id} data-item={p.id} data-domaine={p.type} className={p.type}>
-  						<Link to={p.slugs[p.slugs.length - 1]}>
+  						<Link to={`/productions/${p.slugs[p.slugs.length - 1]}`}>
   							<h1 data-level-1="title">{lang === "fr" ? p.title.fr : p.title.en}</h1>
                 <h2 data-level-2="authors">
                   <span>{p.authors}</span>
@@ -31,7 +31,7 @@ export default function ProductionListing({lang, list}) {
   			      <p className="date">{p.lastUpdated}</p>
   						<p className="type">{p.type}</p>
   					</li>
-  					<li className="item_accroche description" data-item-accroche="0"><Link to={p.slugs[p.slugs.length - 1]}><RawHTML html={lang === "fr" ? p.description.fr : p.description.en} /></Link></li>
+  					<li className="item_accroche description" data-item-accroche="0"><Link to={`/productions/${p.slugs[p.slugs.length - 1]}`}><RawHTML html={lang === "fr" ? p.description.fr : p.description.en} /></Link></li>
             </>
 				 ))}
 		     </ul>

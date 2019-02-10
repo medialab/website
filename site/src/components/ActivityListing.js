@@ -26,7 +26,7 @@ export default function ActivityListing({lang, list}) {
 				</li>
 				<li className="item_accroche description" data-item-accroche={a.id}>
 					<Link to={a.slugs[a.slugs.length - 1]}>
-						{lang === "fr" ? a.description.fr : a.description.en}
+						<RawHTML html={lang === "fr" ? a.description.fr : a.description.en} />
 					</Link>
 				</li>
             	</>
@@ -36,3 +36,9 @@ export default function ActivityListing({lang, list}) {
 	    </>
 	 );
 }
+
+/* Keep the code
+<h2 data-level-2="authors">
+	{(p.people || []).map(person => <span>{person.firstName} {person.lastName}</span>)}
+</h2>
+*/

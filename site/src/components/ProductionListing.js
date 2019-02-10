@@ -39,7 +39,7 @@ export default function ProductionListing({lang, list}) {
               <li class="item_accroche description" data-item-accroche={p.id}>
                   <Link to={p.slugs[p.slugs.length - 1]}>
                       <span class="item_accroche_texte">
-                        {lang === "fr" ? p.description.fr : p.description.en}
+                        <RawHTML html={lang === "fr" ? p.description.fr : p.description.en} />
                       </span>
                       <span class="image-pre"></span>
                   </Link>
@@ -52,3 +52,5 @@ export default function ProductionListing({lang, list}) {
       </>
 	 );
 }
+
+            

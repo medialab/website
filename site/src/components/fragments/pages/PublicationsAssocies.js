@@ -28,10 +28,10 @@ export default PublicationsAssocies;
 
 
 /*
-        <div>
-          Related people:
-          <ul>
-            {(news.people || []).map(p => <li key={p.id}>{p.firstName} {p.lastName}</li>)}
-          </ul>
-        </div>
-        */
+<div>
+  Related people:
+  <ul>
+    {(news.people || []).map(p => <li key={p.id}>{p.firstName} {p.lastName}</li>)}
+  </ul>
+</div>
+*/

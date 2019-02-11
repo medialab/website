@@ -20,7 +20,7 @@ export default function PeopleListing({lang, list}) {
 		    <ul className="liste_equipe" id="liste_equipe">
 
 			{list.map(p => (
-	          	<li key={p.id} data-item={p.id} data-domaine={p.domain} data-active={p.active ? "yes" : "no"} data-member={p.membership === "member" ? "yes" : "no"}>
+	          	<li key={p.id} data-item={p.id} data-domain={p.domain} data-active={p.active ? "yes" : "no"} data-member={p.membership === "member" ? "yes" : "no"}>
 				    <Link to={`/people/${p.slugs[p.slugs.length - 1]}`}>
 		                <figure><img src={Img}  alt="caption"/></figure>
 		                <hgroup>

@@ -45,7 +45,7 @@
 		}*/	
 	}
 
-	[data-statut="passif"]{
+	[data-active="passif"]{
 		opacity: .6;
 
 	}
@@ -149,26 +149,26 @@
 ///////////////
 
 /* Actif / Passif */
-#filtre_statut_actif:checked ~ #liste #liste_equipe [data-statut="passif"],
-#filtre_statut_passif:checked ~ #liste #liste_equipe [data-statut="actif"]{
+#filtre_statut_actif:checked ~ #liste #liste_equipe [data-active="no"],
+#filtre_statut_passif:checked ~ #liste #liste_equipe [data-active="yes"]{
 	display:none;
 }
 
-#filtre_statut_actif:checked ~ #liste #liste_equipe [data-statut="actif"],
-#filtre_statut_passif:checked ~ #liste #liste_equipe [data-statut="passif"]{
+#filtre_statut_actif:checked ~ #liste #liste_equipe [data-active="yes"],
+#filtre_statut_passif:checked ~ #liste #liste_equipe [data-active="no"]{
 	display:block;
 }
 
 /* Domaine */ 
-.filtre_domaine:checked ~ #liste #liste_equipe [data-domaine]{
+.filtre_domaine:checked ~ #liste #liste_equipe [data-domain]{
 	display: none;
 }
 
-#domaine_academique:checked ~ #liste #liste_equipe [data-domaine="academique"],
-#domaine_technique:checked ~ #liste #liste_equipe [data-domaine="technique"],
-#domaine_design:checked ~ #liste #liste_equipe [data-domaine="design"],
-#domaine_pedagogie:checked ~ #liste #liste_equipe [data-domaine="pedagogie"],
-#domaine_administratif:checked ~ #liste #liste_equipe [data-domaine="administratif"]{
+#domaine_academique:checked ~ #liste #liste_equipe [data-domain="academic"],
+#domaine_technique:checked ~ #liste #liste_equipe [data-domain="tech"],
+#domaine_design:checked ~ #liste #liste_equipe [data-domain="design"],
+#domaine_pedagogie:checked ~ #liste #liste_equipe [data-domain="pedagogy"],
+#domaine_administratif:checked ~ #liste #liste_equipe [data-domain="admin"]{
 	display:block;
 }
 

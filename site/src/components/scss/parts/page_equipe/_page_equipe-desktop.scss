@@ -10,7 +10,7 @@
 		width: calc(100vw - #{$margins-desktop*2});
 	}
 
-	#liste{        
+	#liste_equipe{        
 		margin-top: $height-top-bar;
 		margin-left: $logo-column;
 		min-height: calc( 100vh - #{$height-top-bar} - #{$unite*9} - 3px); //unite*9 correspond a la hauteur du footer

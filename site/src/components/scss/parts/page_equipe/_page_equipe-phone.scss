@@ -9,7 +9,7 @@
 
 @include for-size(phone) {
 
-	#liste{
+	#liste_equipe{
         
 		   margin: $baseline $margins-phone 0 $margins-phone ;
 		   
@@ -19,8 +19,8 @@
 		
 
   
-        ///// Liste Objet
-        .liste_objet{
+        ///// Liste equipe
+        .liste_equipe{
 
             width: $mobile-container-width;
             height: auto;

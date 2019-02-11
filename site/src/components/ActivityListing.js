@@ -15,16 +15,16 @@ export default function ActivityListing({lang, list}) {
 		<FilterActivity />
 		<section id="liste">
        	 	<ul className="liste_objet" id="liste-activity">
-       	 	{list.map(a => (
+       	 	{list.map((a, index) => (
 				<>
-				<li data-item={a.id} data-type={a.type} className={`list-item ${a.type}`}>
+				<li data-item={index} data-type={a.type} className={`list-item ${a.type}`}>
 					<Link to={`/activities/${a.slugs[a.slugs.length - 1]}`}>
 						<h1 data-level-1="baseline">{a.baseline && ( lang === "fr" ? a.baseline.fr : a.baseline.en)}</h1>
 						<h2 data-level-2="title">{a.name}</h2>
 						<p className="type">{a.type}</p>
 					</Link>
 				</li>
-				<li className="item_accroche description" data-item-accroche={a.id}>
+				<li className="item_accroche description" data-item-accroche={index}>
 					<Link to={`/activities/${a.slugs[a.slugs.length - 1]}`}>
 						<RawHTML html={lang === "fr" ? a.description.fr : a.description.en} />
 					</Link>

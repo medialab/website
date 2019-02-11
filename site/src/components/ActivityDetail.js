@@ -47,8 +47,8 @@ export default function ActivityDetail({lang, activity}) {
       <p className="titre-sticky">{activity.name}</p>
       <article id="article-contenu">
         <hgroup>
-          <h1>{activity.name}{activity.baseline && activity.baseline.fr}</h1>
-          <h2>{activity.description && activity.description.fr}</h2>
+          <h1>{activity.name} — {activity.baseline && (lang === "fr" ?  activity.baseline.fr : activity.baseline.en)}</h1>
+          <h2>{activity.description && (lang === "fr" ?  activity.description.fr : activity.description.en)}</h2>
 
           <p className="date">{activity.endDate}</p>
           <p className="type-objet">{activity.type}</p>
@@ -56,12 +56,12 @@ export default function ActivityDetail({lang, activity}) {
         </hgroup>
 
         <div className="article-contenu">
-        {activity.content && activity.content.fr && <RawHtml html={activity.content.fr} />}
+        {activity.content && (lang === "fr" ? activity.content.fr && <RawHtml html={activity.content.fr} />  : activity.content.en && <RawHtml html={activity.content.en} />)}          
         </div>
       </article>
 
       <div>
-        Related people: {join(people, ', ')}
+        {lang === "fr" ? "Personnes liées" + String.fromCharCode(8239) +":"  : "Related people:"} {join(people, ', ')}
       </div>
   </main>
   );

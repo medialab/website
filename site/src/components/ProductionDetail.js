@@ -59,8 +59,8 @@ export default function ProductionDetail({lang, production}) {
         <p class="titre-sticky">{production.name}</p>
         <article id="article-contenu">
           <hgroup>
-            <h1>{production.name}{production.baseline && production.baseline.fr}</h1>
-            <h2>{production.description && production.description.fr}</h2>
+            <h1>{production.baseline && (lang === "fr" ?  production.baseline.fr : production.baseline.en)}</h1>
+            <h2>{production.baseline && (lang === "fr" ?  production.baseline.fr : production.baseline.en)}</h2>
 
             <p class="date">{production.endDate}</p>
             <p class="type-objet">{production.type}</p>
@@ -68,12 +68,12 @@ export default function ProductionDetail({lang, production}) {
           </hgroup>
 
           <div class="article-contenu">
-          {production.content && production.content.fr && <RawHtml html={production.content.fr} />}
+          {production.content && (lang === "fr" ? production.content.fr && <RawHtml html={production.content.fr} />  : production.content.en && <RawHtml html={production.content.en} />)}          
           </div>
         </article>
 
         <div>
-          Related people:
+          {lang === "fr" ? "Personnes liées" + String.fromCharCode(8239) +":"  : "Related people:"}
           <ul>
             {(production.people || []).map(p => <li key={p.id}>{p.firstName} {p.lastName}</li>)}
           </ul>

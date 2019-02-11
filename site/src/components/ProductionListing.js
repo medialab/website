@@ -21,9 +21,9 @@ export default function ProductionListing({lang, list}) {
               <span>2018</span>
               <pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
           </li>
-          {list.map(p => (
+          {list.map((p, index) => (
             <>
-            <li data-item={p.id} data-type={p.type} class={`list-item ${p.type}`}>
+            <li data-item={index} data-type={p.type} class={`list-item ${p.type}`}>
               {/* Dans les données Json "data-type" fait référence à "productionTypes" */}
                 <Link to={`/productions/${p.slugs[p.slugs.length - 1]}`}>
                 <h1 data-level-1="title">{lang === "fr" ? p.title.fr : p.title.en}</h1>
@@ -36,7 +36,7 @@ export default function ProductionListing({lang, list}) {
               <p class="type">{p.type}</p>
             </li>
 
-            <li class="item_accroche description" data-item-accroche={p.id}>
+            <li class="item_accroche description" data-item-accroche={index}>
                 <Link to={`/productions/${p.slugs[p.slugs.length - 1]}`}>
                     <span class="item_accroche_texte">
                       <RawHTML html={lang === "fr" ? p.description.fr : p.description.en} />

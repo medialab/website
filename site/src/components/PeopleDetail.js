@@ -96,7 +96,6 @@ export default function PeopleDetail({lang, person}) {
           </header>
           <div className="biographie-contenu">
             {person.bio && (lang === "fr" ? person.bio.fr && <RawHtml html={bio.fr} />  : person.bio.en && <RawHtml html={bio.en} />)}          
-            {/*bio && bio.fr && <RawHtml html={bio.fr} />*/}
           </div>
         </article>
         <PublicationsAssocies lang={lang} person={person} publications={person.mainProductions} />

@@ -53,7 +53,7 @@ const TopBar = () => {
 				</nav>
 
 				<div id="langue" className="menu langue">
-					<p><span>FR</span><span> | </span><span>EN</span></p>
+					<p><Link to="/">FR</Link><span> | </span><Link to="/en">EN</Link></p>
 				</div>
 			</div>
 		</header>

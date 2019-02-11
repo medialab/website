@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {RichUtils} from 'draft-js';
+import React, {Component, useState, useCallback} from 'react';
+import {RichUtils, EditorState} from 'draft-js';
 import {ENTITY_TYPE} from 'draftail';
 import Dropzone from 'react-dropzone';
 
@@ -10,26 +10,49 @@ import LinkIcon from 'material-icons-svg/components/baseline/InsertLink';
 
 // Source
 class LinkSource extends Component {
-  state = {
-    loading: false,
-    file: null,
-    href: ''
-  };
+
+  constructor (props, context) {
+    super(props, context);
+    if (props.entity) {
+      this.state = {
+        href: props.entity.get('data').href,
+        newWindow: false
+      };
+      return;
+    }
+    this.state = {
+      href: ''
+    };
+  }
 
   addEntity = (option) => {
     const {editorState, entityType, onComplete} = this.props;
-
     const content = editorState.getCurrentContent();
-    const contentWithEntity = content.createEntity(
-      entityType.type,
-      'MUTABLE',
-      option
-    );
 
-    const entityKey = contentWithEntity.getLastCreatedEntityKey();
-    const nextState = RichUtils.toggleLink(
+    let entityKey;
+    let contentWithEntity;
+    if (this.props.entityKey) {
+      contentWithEntity = content.replaceEntityData(
+        this.props.entityKey,
+        option
+      );
+      entityKey = this.props.entityKey;
+    }
+    else {
+      contentWithEntity = content.createEntity(
+        entityType.type,
+        'MUTABLE',
+        option
+      );
+      entityKey = contentWithEntity.getLastCreatedEntityKey();
+    }
+    const newEditorState = EditorState.set(
       editorState,
-      editorState.getSelection(),
+      {currentContent: contentWithEntity}
+    );
+    const nextState = RichUtils.toggleLink(
+      newEditorState,
+      newEditorState.getSelection(),
       entityKey
     );
 
@@ -40,25 +63,12 @@ class LinkSource extends Component {
     this.setState({href: e.target.value});
   };
 
-  handleDrop = acceptedFiles => {
-    this.setState({file: acceptedFiles[0]});
-  };
-
   handleSubmit = () => {
-    if (!this.state.file && !this.state.href)
+    if (!this.state.href)
       return;
 
     // Using a link
-    if (this.state.href)
-      return this.addEntity({href: this.state.href, internal: false});
-
-    // Using a file
-    this.setState({loading: true});
-
-    client.upload(this.state.file, result => {
-      this.setState({loading: false});
-      this.addEntity({href: result.name, internal: true});
-    });
+    this.addEntity({href: this.state.href, internal: false});
   };
 
   handleCancel = () => {
@@ -69,13 +79,10 @@ class LinkSource extends Component {
 
   render() {
     const {
-      href,
-      file
+      href
     } = this.state;
 
-    const buttonLabel = file ?
-      'Upload & insert attachment' :
-      'Insert link';
+    const buttonLabel = 'Insert link';
 
     // TODO: UX toggle one side over the other when selecting
 
@@ -98,7 +105,6 @@ class LinkSource extends Component {
                       <input
                         type="text"
                         className="input"
-                        disabled={!!file}
                         value={href}
                         onChange={this.handleHref} />
                     </div>
@@ -107,11 +113,9 @@ class LinkSource extends Component {
 
                 <div className="column is-5">
                   <div className="field">
-                    <label className="label">Uploading an attachment:</label>
+                    <label className="label">Open in a new window ?</label>
                     <div className="control">
-                      {file ?
-                        <div>{file.name}</div> :
-                        <Dropzone disabled={!!href} onDrop={this.handleDrop} />}
+                      <input type="checkbox" />
                     </div>
                   </div>
                 </div>
@@ -124,7 +128,7 @@ class LinkSource extends Component {
           (
             <Button
               key="footer"
-              disabled={!href && !file}
+              disabled={!href}
               onClick={this.handleSubmit}>
               {buttonLabel}
             </Button>
@@ -136,16 +140,82 @@ class LinkSource extends Component {
   }
 }
 
+const TooltipEntity = props => {
+  const [showTooltipAt, setTooltipVisibility] = useState(null);
+  const openTooltip = useCallback(
+    event => {
+      // setTooltipVisibility(true);
+      const trigger = event.target;
+      if (trigger instanceof Element) {
+        showTooltipAt(trigger.getBoundingClientRect());
+      }
+    }
+  );
+  const closeTooltip = useCallback(() => setTooltipVisibility(null));
+
+  return (
+    <a role="button" onMouseUp={openTooltip} className="TooltipEntity">
+      <span className="TooltipEntity__text editor link">{props.children}</span>
+      {showTooltipAt && (
+        <Portal
+          onClose={this.closeTooltip}
+          closeOnClick
+          closeOnType
+          closeOnResize
+        >
+          <Tooltip target={showTooltipAt} direction="top">
+            <a
+              href={url}
+              title={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="Tooltip__link"
+            >
+              {label}
+            </a>
+
+            <button
+              type="button"
+              className="Tooltip__button"
+              onClick={onEdit.bind(null, entityKey)}
+            >
+              Edit
+            </button>
+
+            <button
+              type="button"
+              className="Tooltip__button"
+              onClick={onRemove.bind(null, entityKey)}
+            >
+              Remove
+            </button>
+          </Tooltip>
+        </Portal>
+      )}
+    </a>
+  );
+}
+
 // Decorator
 function LinkDecorator(props) {
-  const {entityKey, contentState, children} = props;
+  const {entityKey, contentState, children, onEdit, onRemove} = props;
 
-  const data = contentState.getEntity(entityKey).getData();
+  const {href} = contentState.getEntity(entityKey).getData();
+
+  return (
+    <TooltipEntity
+      entityKey={entityKey}
+      contentState={contentState}
+      onEdit={onEdit}
+      onRemove={onRemove}>
+      {children}
+    </TooltipEntity>
+  );
 
   return (
     <span
-      title={data.href}>
-      <span className="editor link">{children}</span>
+      title={href}>
+      <span data-tip={href} className="editor link">{children}</span>
     </span>
   );
 }

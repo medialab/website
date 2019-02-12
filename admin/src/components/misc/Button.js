@@ -8,6 +8,7 @@ export default function Button(props) {
     loading = false,
     disabled = false,
     rounded = false,
+    small = false,
     style = {},
     onClick
   } = props;
@@ -17,7 +18,8 @@ export default function Button(props) {
     'button',
     loading && 'is-loading',
     rounded && 'is-rounded',
-    kind !== 'raw' && `is-${kind}`
+    kind !== 'raw' && `is-${kind}`,
+    small && 'is-small'
   );
 
   return (

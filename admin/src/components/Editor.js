@@ -39,10 +39,7 @@ export default class Editor extends PureComponent {
   };
 
   render() {
-    const {
-      content
-    } = this.props;
-
+    const {content} = this.props;
     return (
       <div className="content">
         <DraftailEditor

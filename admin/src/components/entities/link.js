@@ -14,14 +14,8 @@ class LinkSource extends Component {
 
   constructor (props, context) {
     super(props, context);
-    if (props.entity) {
-      this.state = {
-        href: props.entity.get('data').href
-      };
-      return;
-    }
     this.state = {
-      href: ''
+      href: props.entity ? props.entity.get('data').href : ''
     };
   }
 
@@ -33,36 +27,39 @@ class LinkSource extends Component {
 
   addEntity = (option) => {
     const {editorState, entityType, onComplete} = this.props;
-      const content = editorState.getCurrentContent();
+    const content = editorState.getCurrentContent();
 
-      let entityKey;
-      let contentWithEntity;
-      if (this.props.entityKey) {
-        contentWithEntity = content.replaceEntityData(
-          this.props.entityKey,
-          option
-        );
-        entityKey = this.props.entityKey;
-      }
-      else {
-        contentWithEntity = content.createEntity(
-          entityType.type,
-          'MUTABLE',
-          option
-        );
-        entityKey = contentWithEntity.getLastCreatedEntityKey();
-      }
-      const newEditorState = EditorState.set(
-        editorState,
-        {currentContent: contentWithEntity}
+    let entityKey;
+    let contentWithEntity;
+    if (this.props.entityKey) {
+      contentWithEntity = content.replaceEntityData(
+        this.props.entityKey,
+        option
       );
-      const nextState = RichUtils.toggleLink(
-        newEditorState,
-        newEditorState.getSelection(),
-        entityKey
+      entityKey = this.props.entityKey;
+    }
+    else {
+      contentWithEntity = content.createEntity(
+        entityType.type,
+        'MUTABLE',
+        option
       );
+      entityKey = contentWithEntity.getLastCreatedEntityKey();
+    }
+    const newEditorState = EditorState.set(
+      editorState,
+      {currentContent: contentWithEntity}
+    );
+    const nextState = RichUtils.toggleLink(
+      newEditorState,
+      newEditorState.getSelection(),
+      entityKey
+    );
+    // Avoid a redundant bug with Draftjs and Firefox.
+    if (this.input) {
       this.input.blur();
-      return onComplete(nextState);
+    }
+    return onComplete(nextState);
   };
 
   handleHref = e => {

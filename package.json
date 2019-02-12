@@ -5,6 +5,7 @@
   "description": "The website's CMS API.",
   "main": "index.js",
   "scripts": {
+    "clean": "rm -rf build && cd site && npm run clean",
     "dev": "concurrently --names api,admin -c blue,green \"npm run dev:api\" \"npm run dev:admin\"",
     "dev:api": "nodemon api/server.js",
     "dev:admin": "cd admin && npm run dev",

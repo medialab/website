@@ -250,3 +250,10 @@ $duration: 0.2s;
 .button__animated-color {
   transition: background-color 0.3s ease;
 }
+
+label em {
+  display: block;
+  color: grey;
+  font-style: italic;
+  font-weight: lighter;
+}

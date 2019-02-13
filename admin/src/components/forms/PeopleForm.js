@@ -96,10 +96,11 @@ function renderPeopleForm(props) {
     <div className="container">
 
       <div className="form-group">
+        <label className="label title is-4">{ data.lastName ? `${data.firstName} ${data.lastName}` : 'Infos personnelles'} </label>
         <div className="columns">
           <div className="column is-6">
             <div className="field">
-              <label className="label">First Name</label>
+              <label className="label">Prénom</label>
               <div className="control">
                 <input
                   type="text"
@@ -107,20 +108,20 @@ function renderPeopleForm(props) {
                   autoFocus
                   value={data.firstName}
                   onChange={handlers.firstName}
-                  placeholder="First Name" />
+                  placeholder="Jean-Claude, Arnold, Willy..." />
               </div>
             </div>
           </div>
           <div className="column is-6">
             <div className="field">
-              <label className="label">Last Name</label>
+              <label className="label">Nom</label>
               <div className="control">
                 <input
                   type="text"
                   className="input"
                   value={data.lastName}
                   onChange={handlers.lastName}
-                  placeholder="Last Name" />
+                  placeholder="Duss, Drummond..." />
               </div>
             </div>
           </div>
@@ -129,11 +130,30 @@ function renderPeopleForm(props) {
         <div className="columns">
           <div className="column is-12">
             <div className="field">
-              <label className="label" style={{display: 'inline'}}>Slug:</label> {slug && <code>{slug}</code>}
+              <label className="label" style={{display: 'inline'}}>Limace:</label> {slug && <code>{slug}</code>}
               {url && <PreviewLink url={url} disabled={dirty} />}
             </div>
           </div>
         </div>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <div className="control">
+                <BooleanSelector
+                  value={data.active}
+                  labels={['membre actif', 'ancien membre']}
+                  onChange={handlers.active} />
+              
+                <EnumSelector
+                  enumType="membershipTypes"
+                  value={data.membership}
+                  onChange={handlers.membership} />
+              </div>
+            </div>
+          </div>
+        </div>
+
 
         <div className="columns">
           <div className="column is-12">
@@ -143,47 +163,37 @@ function renderPeopleForm(props) {
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="form-group">
-        <h4 className="title is-4">
-          Relation to médialab
-        </h4>
         <div className="columns">
-          <div className="column is-6">
-            <div className="field">
-              <label className="label">History of the relation</label>
-              <div className="control">
-                <BooleanSelector
-                  value={data.active}
-                  labels={['presently working', 'worked in the past']}
-                  onChange={handlers.active} />
-              </div>
-            </div>
-          </div>
-          <div className="column is-6">
-            <div className="field">
-              <label className="label">Membership</label>
-              <div className="control">
-                <EnumSelector
-                  enumType="membershipTypes"
-                  value={data.membership}
-                  onChange={handlers.membership} />
-              </div>
-            </div>
+          <div className="column is-8">
+          <label className="label">Contacts
+            <em>Choisissez le type de contact (email, site, CV...) et renseigner l'information adaptée.<br></br>
+              Il est également possible d'ajouter un fichier (pour un CV par exemple).</em>
+          </label>
+            <SortableKeyValueList
+              items={data.contacts}
+              model="people"
+              field="contacts.label"
+              onAdd={handlers.contacts.add}
+              onDrop={handlers.contacts.drop}
+              onMove={handlers.contacts.move} />
           </div>
         </div>
-      </div>
 
+        
+      </div>
       <div className="form-group">
         <h4 className="title is-4">
-          Presentation
+          Profil
         </h4>
 
         <div className="columns">
           <div className="column is-6">
             <div className="field">
-              <label className="label">Domain</label>
+              <label className="label">
+                Domaine d'activité
+                <em>Choisissez le domaine qui représente le mieux votre activité au sein du médialab.</em>
+              </label>
               <div className="control">
                 <EnumSelector
                   enumType="domains"
@@ -198,7 +208,9 @@ function renderPeopleForm(props) {
 
           <div className="column is-6">
             <div className="field">
-              <label className="label">French Role</label>
+              <label className="label">Fonction (fr)
+                <em>Sélectionner une fonction déjà présente.</em>
+              </label>
               <SuggestionSelector
                 model="people"
                 field={['role', 'fr']}
@@ -210,7 +222,9 @@ function renderPeopleForm(props) {
 
           <div className="column is-6">
             <div className="field">
-              <label className="label">English Role</label>
+              <label className="label">Position (en)
+                <em>Choose an existing position.</em>
+              </label>
               <SuggestionSelector
                 model="people"
                 field={['role', 'en']}
@@ -226,7 +240,9 @@ function renderPeopleForm(props) {
 
           <div className="column is-6">
             <div className="field">
-              <label className="label">French Status</label>
+              <label className="label">Présentation courte (fr)
+                <em>Présentez vous en une phrase : statut, activités et/ou intérets du moment.</em>
+              </label>
               <div className="control">
                 <textarea
                   className="textarea"
@@ -240,7 +256,9 @@ function renderPeopleForm(props) {
 
           <div className="column is-6">
             <div className="field">
-              <label className="label">English Status</label>
+              <label className="label">Short introduction (en)
+                <em>Present yourself in one sentence : current status, activities and/or interests.</em>
+              </label>
               <div className="control">
                 <textarea
                   className="textarea"
@@ -253,12 +271,18 @@ function renderPeopleForm(props) {
           </div>
 
         </div>
-
+      </div>
+      <div className="form-group">
+        <h4 className="title is-4">
+          Biographie
+        </h4>
         <div className="columns">
 
           <div className="column is-6">
             <div className="field">
-              <label className="label">French Biography</label>
+              <label className="label">
+                <em>Présentez vos <b>formations</b>, votre <b>parcours</b> et ce qui vous a amené à rejoindre le médialab. Précisez vos <b>activités principales</b>. Vous pouvez également mettre en avant des productions importantes réalisées avant d'avoir rejoint le labo.</em>
+              </label>
               <Editor
                 content={frenchEditorContent}
                 onSave={handlers.frenchContent} />
@@ -267,7 +291,9 @@ function renderPeopleForm(props) {
 
           <div className="column is-6">
             <div className="field">
-              <label className="label">English Biography</label>
+              <label className="label">
+                <em>Present yourself by describing how your <b>educational</b> and <b>profesional</b> backgrounds brought you to join the médialab. Describe your <b>principal activities</b>. Focuses on past achievements are more than welcome.</em>
+              </label>
               <Editor
                 content={englishEditorContent}
                 onSave={handlers.englishContent} />
@@ -278,34 +304,20 @@ function renderPeopleForm(props) {
 
       </div>
 
-      <div className="form-group">
-        <h4 className="title is-4">
-          Contacts
-        </h4>
-
-        <div className="columns">
-          <div className="column is-8">
-            <SortableKeyValueList
-              items={data.contacts}
-              model="people"
-              field="contacts.label"
-              onAdd={handlers.contacts.add}
-              onDrop={handlers.contacts.drop}
-              onMove={handlers.contacts.move} />
-          </div>
-        </div>
-
-      </div>
+      
 
       <div className="form-group">
         <h4 className="title is-4">
-          Featured items
+          Mises en avant
         </h4>
+        <em>Sélectionner les <b>activités et productions phares</b> de votre activité au médialab.<br></br>
+        Cette sélection vise à mettre en avant certains éléments dans une liste exhaustive qui sera générée automatiquement.  
+        </em>
 
         <div className="columns">
           <div className="column is-12">
             <div className="field">
-              <label className="label">Activities</label>
+              <label className="label">Activités</label>
               <div className="control">
                 <RelationSelector
                   sortable
@@ -341,18 +353,19 @@ function renderPeopleForm(props) {
 
       </div>
 
-      <div className="form-group is-important">
-        <div className="field">
-          <label className="label title is-4">{data.firstName ? `${data.firstName} ${data.lastName}` : 'People'} page's production status</label>
-          <div className="control">
-            <BooleanSelector
-              value={!data.draft}
-              labels={['published', 'draft']}
-              onChange={handlers.published} />
+      { data.lastName &&
+        <div className="form-group is-important">
+          <div className="field">
+            <label className="label title is-4">État de la page de  {`${data.firstName} ${data.lastName}`} :</label>
+            <div className="control">
+              <BooleanSelector
+                value={!data.draft}
+                labels={['publié', 'brouillon']}
+                onChange={handlers.published} />
+            </div>
           </div>
         </div>
-      </div>
-
+      }
     </div>
   );
 }

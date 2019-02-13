@@ -188,42 +188,31 @@ export default class SortableKeyValueList extends Component {
 
     return (
       <div>
-        {/* Existing items */}
-        <div className="columns">
-          <div className="column is-12">
-            <SortableList
-              useDragHandle
-              items={items}
-              onDrop={this.handleDrop}
-              onSortEnd={onMove} />
-          </div>
-        </div>
+       
 
         {/* Form to add a new item */}
         <div className="columns">
           <div className="column is-5">
             <div className="field">
-              <label className="label">Label</label>
               <CreatableSelect
                 value={label}
                 isClearable
                 isLoading={loading}
                 options={options}
                 menuPlacement="top"
-                placeholder="Search..."
+                placeholder="Choisir un type"
                 onChange={this.handleLabel}
                 onBlur={this.handleLabelBlur}
                 styles={{menu: provided => ({...provided, zIndex: 1000})}} />
             </div>
           </div>
           <div className="column is-5">
-            <label className="label">Value or upload</label>
             <div className="field has-addons">
               <div className="control">
                 <input
                   type="text"
                   className="input"
-                  placeholder="Value..."
+                  placeholder="Entrer un texte ou choisir un fichier"
                   disabled={!!file}
                   value={file ? file.name : value}
                   onChange={this.handleValue} />
@@ -249,13 +238,12 @@ export default class SortableKeyValueList extends Component {
           </div>
           <div className="column is-3">
             <div className="field">
-              <label className="label">&nbsp;</label>
               <Button
                 kind="text"
                 loading={uploading}
                 disabled={!canAdd}
                 onClick={this.handleAdd}>
-                Add
+                Créer
               </Button>
               {file && (
                 <Button
@@ -265,6 +253,21 @@ export default class SortableKeyValueList extends Component {
                 </Button>
               )}
             </div>
+          </div>
+        </div>
+
+        {/* Existing items */}
+        <div className="columns">
+          <div className="column is-12">
+            {
+              items.length !== 0 &&
+                <label><em>Ces éléments peuvent être ordonnés.</em></label>
+            }
+            <SortableList
+              useDragHandle
+              items={items}
+              onDrop={this.handleDrop}
+              onSortEnd={onMove} />
           </div>
         </div>
       </div>

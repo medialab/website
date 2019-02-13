@@ -12,10 +12,16 @@ import enums from '../../../../specs/enums.json';
 import labels from '../../../../specs/labels';
 
 const noOptionsMessages = {
-  activities: () => 'No matching activity',
-  people: () => 'No matching people',
-  productions: () => 'No matching production'
+  activities: () => 'Pas d\"activité correspondante',
+  people: () => 'Pas de membre correspondant',
+  productions: () => 'Pas de productions correspondantes'
 };
+
+const labelSearchModel = {
+  activities: 'activités',
+  people: 'membres',
+  productions: 'productions' 
+}
 
 const DragHandle = SortableHandle(() => (
   <span className="handle" style={{marginTop: '5px', marginRight: '5px'}}>
@@ -106,18 +112,7 @@ const RelationSelectorContainer = (BaseComponent) => {
 
     return (
       <div>
-        {!loading && sortable && (
-          <div className="columns">
-            <div className="column is-6">
-              <SortableList
-                useDragHandle
-                items={selected}
-                optionsIndex={optionsIndex}
-                onDrop={onDrop}
-                onSortEnd={onMove} />
-            </div>
-          </div>
-        )}
+        
         <div className="columns">
           <div className={'column is-4'}>
             <BaseComponent
@@ -128,7 +123,7 @@ const RelationSelectorContainer = (BaseComponent) => {
               options={filteredOptions.filter(o => !selectedSet.has(o.value))}
               isLoading={loading}
               menuPlacement="top"
-              placeholder="Search..."
+              placeholder={"rechercher dans les " + labelSearchModel[model]}
               noOptionsMessage={noOptionsMessages[model]}
               styles={{menu: provided => ({...provided, zIndex: 1000})}} />
           </div>
@@ -149,11 +144,23 @@ const RelationSelectorContainer = (BaseComponent) => {
                   })}
                 </ul>
               ) : (
-                <p><em>No items yet...</em></p>
+                <p><em>pas d'élément...</em></p>
               )
           )}
           </div>
         </div>
+        {!loading && sortable && (
+          <div className="columns">
+            <div className="column is-6">
+              <SortableList
+                useDragHandle
+                items={selected}
+                optionsIndex={optionsIndex}
+                onDrop={onDrop}
+                onSortEnd={onMove} />
+            </div>
+          </div>
+        )}
       </div>
     );
   };

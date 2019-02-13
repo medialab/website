@@ -17,14 +17,14 @@ for (const k in enums) {
         options: values.map(value => {
           return {
             value,
-            label: e.en[value]
+            label: e.fr[value]
           };
         })
       };
     });
   }
   else {
-    OPTIONS[k] = map(e.en, (label, key) => ({
+    OPTIONS[k] = map(e.fr, (label, key) => ({
       value: key,
       label
     }));
@@ -51,7 +51,7 @@ export default function EnumSelector(props) {
 
   if (options.length < 4)
     return (
-      <div className="buttons has-addons">
+      <span className="buttons has-addons">
         {options.map(o => {
           return (
             <span
@@ -62,7 +62,7 @@ export default function EnumSelector(props) {
             </span>
           );
         })}
-      </div>
+      </span>
     );
 
   return (

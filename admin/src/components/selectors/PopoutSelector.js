@@ -71,8 +71,8 @@ const determineOptions = cond([[
     property('categories'),
     map(
       (category) => ({
-        value: category.en,
-        label: category.en
+        value: category.fr,
+        label: category.fr
       })
     )
   )
@@ -92,7 +92,7 @@ const PopupSelector = props => {
   });
 
   const onSelectChange = useCallback(value => {
-    if (some(category => category.en === value.value, props.categories)) {
+    if (some(category => category.fr === value.value, props.categories)) {
       return setSelectedCategory(value.value);
     }
     setPopupOpen(false);
@@ -134,7 +134,7 @@ const PopupSelector = props => {
         Option,
         Control
       }}
-      placeholder={`Search in every ${selectedCategory || 'productions'}`}
+      placeholder={`rechercher dans les ${selectedCategory || 'productions'}`}
       controlShouldRenderValue={false}
       menuIsOpen={isPopupOpen}
       onChange={onSelectChange}

@@ -1,21 +1,24 @@
 import React, {Component} from 'react';
 import {RichUtils, EditorState} from 'draft-js';
 import {ENTITY_TYPE} from 'draftail';
+import Dropzone from 'react-dropzone';
 import Tooltip from 'rc-tooltip';
 import truncate from 'lodash/fp/truncate';
 import 'rc-tooltip/assets/bootstrap_white.css';
+import LinkIcon from 'material-icons-svg/components/baseline/InsertLink';
 
 import Button from '../misc/Button';
 import CardModal from '../misc/CardModal';
-import LinkIcon from 'material-icons-svg/components/baseline/InsertLink';
-
+import client from '../../client';
 // Source
 class LinkSource extends Component {
 
   constructor (props, context) {
     super(props, context);
     this.state = {
-      href: props.entity ? props.entity.get('data').href : ''
+      href: props.entity ? props.entity.get('data').href : '',
+      file: null,
+      loading: false
     };
   }
 
@@ -66,12 +69,22 @@ class LinkSource extends Component {
     this.setState({href: e.target.value});
   };
 
-  handleSubmit = () => {
-    if (!this.state.href)
-      return;
+  handleDrop = acceptedFiles => {
+    this.setState({file: acceptedFiles[0], href: ''});
+  };
 
-    // Using a link
-    this.addEntity({href: this.state.href, internal: false});
+  handleSubmit = () => {
+    if (!this.state.file && !this.state.href)
+      return;
+    if (this.state.href)
+      return this.addEntity({href: this.state.href, internal: false});
+
+    // Using a file
+    this.setState({loading: true});
+    client.upload(this.state.file, result => {
+      this.setState({loading: false});
+      this.addEntity({href: result.name, internal: true});
+    });
   };
 
   handleCancel = () => {
@@ -89,7 +102,7 @@ class LinkSource extends Component {
   }
 
   render() {
-    const {href} = this.state;
+    const {href, file, loading} = this.state;
     const {entityKey} = this.props;
 
     const buttonLabel = entityKey ? 'Update link' : 'Insert link';
@@ -113,11 +126,22 @@ class LinkSource extends Component {
                         onKeyUp={this.onKeyDown}
                         type="text"
                         className="input"
+                        disabled={!!file}
                         ref={el => {
                           this.input = el;
                         }}
                         value={href}
                         onChange={this.handleHref} />
+                    </div>
+                  </div>
+                </div>
+                <div className="column is-5">
+                  <div className="field">
+                    <label className="label">Uploading an attachment:</label>
+                    <div className="control">
+                      {file ?
+                        <div>{file.name}</div> :
+                        <Dropzone onDrop={this.handleDrop} />}
                     </div>
                   </div>
                 </div>
@@ -128,8 +152,8 @@ class LinkSource extends Component {
           (
             <Button
               key="footer"
-              disabled={!href}
-              kind="success"
+              disabled={!href && !file}
+              kind={loading ? 'loading' : 'success'}
               onClick={this.handleSubmit}>
               {buttonLabel}
             </Button>

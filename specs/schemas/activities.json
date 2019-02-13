@@ -104,6 +104,7 @@
       "title": "Pièces jointes",
       "type": "array",
       "items": {
+        "title": "Pièce jointe",
         "type": "object",
         "properties": {
           "type": {

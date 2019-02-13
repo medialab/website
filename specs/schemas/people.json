@@ -93,6 +93,7 @@
       "title": "Contacts",
       "type": "array",
       "items": {
+        "title": "Contact",
         "type": "object",
         "properties": {
           "type": {

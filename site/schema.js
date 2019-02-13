@@ -85,6 +85,14 @@ function recurseIntoSchema(model, meta) {
   if (meta.type === 'boolean')
     return {type: GraphQLTypes.GraphQLBoolean};
 
+  if (meta.type === 'array' && meta.formType !== 'ref') {
+    const {type: subType} = recurseIntoSchema(model, meta.items);
+
+    return {
+      type: new GraphQLTypes.GraphQLList(subType)
+    };
+  }
+
   if (meta.type === 'object') {
     const fields = {};
 

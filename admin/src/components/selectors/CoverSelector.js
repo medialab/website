@@ -24,7 +24,7 @@ export default class CoverSelector extends Component {
     } = this.state;
 
     const modal = (
-      <CardModal onClose={this.handleModalClose}>
+      <CardModal onClose={this.handleModalClose} large>
         {
           [
             'Uploading a cover',

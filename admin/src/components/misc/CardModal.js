@@ -19,7 +19,8 @@ export default class CardModal extends Component {
 
   render() {
     const {
-      children
+      children,
+      large = false
     } = this.props;
 
     const {
@@ -36,10 +37,15 @@ export default class CardModal extends Component {
       leave ? 'zoomOut' : 'zoomIn'
     );
 
+    const style = {};
+
+    if (large)
+      style.width = '80%';
+
     const body = (
       <div className="modal is-active">
         <div className="modal-background" onClick={this.handleClose} />
-        <div className={className}>
+        <div className={className} style={style}>
           <header className="modal-card-head">
             <p className="modal-card-title">{children[0]}</p>
             <button className="delete" aria-label="close" onClick={this.handleClose} />

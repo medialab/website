@@ -8,12 +8,24 @@
 		position: fixed!important; 
 		top: 0;
 		width: calc(100vw - #{$margins-desktop*2});
+
+		&:after{ // Si Titre-Sticky. Topbar herite de la Border-bottom
+            content:"";
+            border-bottom: $border;
+            margin-left: $logo-column;
+            width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
+            position: absolute;
+            bottom: 0;
+            z-index: 10;
+        }
+
 	}
 
 	#liste_equipe{        
 		margin-top: $height-top-bar;
 		margin-left: $logo-column;
 		min-height: calc( 100vh - #{$height-top-bar} - #{$unite*9} - 3px); //unite*9 correspond a la hauteur du footer
+		max-width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
 
 		ul{
 			display: inline-block;

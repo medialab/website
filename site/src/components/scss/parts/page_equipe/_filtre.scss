@@ -54,12 +54,21 @@
 @include for-size(phone) {
 
 	h1.type_title{
-		margin-top: $height-top-bar-phone + $baseline*2;
-		@include font-size-20-phone;
+		margin-top: $height-top-bar-phone + $baseline;
+		//border-top: $border-light;
+		border-bottom: $border-light;
+		padding-top: $baseline * .5;
+		padding-bottom: $baseline * 1;
+		@include font-size-13();
+		text-transform: uppercase;
+		font-weight: 400;
 		text-align: center;
+		height: $baseline*3.5;
 	}
 
-	h2.filtre_activite_title{ display: none; }
+	h2.filtre_membre_title, 
+	h2.filtre_domaine_title
+	{ display: none; }
 
 	label.toggle-filtre-phone{
 		height: $baseline*3;

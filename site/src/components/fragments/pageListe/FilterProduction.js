@@ -4,7 +4,7 @@ import React from 'react';
 
 const FilterProduction = () => {
 	return (
-		<> 
+		<>
 			<aside id="filtres-productions" className="filtres-listing">
 
 				<h1 className="type_title">Productions</h1>
@@ -23,7 +23,7 @@ const FilterProduction = () => {
 				<div id="go-to-year">
 					<p>Aller à l'année...</p>
 					<input type="checkbox" id="go-to-year-input" name="go-to-year-input" value="go-to-year-input" hidden />
-					<label for="go-to-year-input"><span></span></label>
+					<label htmlFor="go-to-year-input"><span></span></label>
 					<ul>
 						<li><a href="#year-2018">2018</a></li>
 						<li><a href="#year-2017">2017</a></li>
@@ -34,7 +34,7 @@ const FilterProduction = () => {
 					</ul>
 				</div>
 
-				
+
 			</aside>
 
 
@@ -54,7 +54,7 @@ const FilterProduction = () => {
 			<label className="filtre-production checkbox-medialab" for="filtre-production_thesis">thesis</label>
 
 			<input type="checkbox" id="filtre-production_grey" name="filtre-production_grey" className="input_filtre-production" value="grey" hidden />
-			<label className="filtre-production checkbox-medialab" for="filtre-production_grey">grey</label> 
+			<label className="filtre-production checkbox-medialab" for="filtre-production_grey">grey</label>
 
 
 		</>

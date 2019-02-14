@@ -5,8 +5,8 @@ import Layout from '../components/Layout';
 import ProductionListing from '../components/ProductionListing';
 
 export const query = graphql`
-  {
-    allProductionsJson {
+  query ($allowedTypes: [String]!) {
+    allProductionsJson(filter: {type: {in: $allowedTypes}}) {
       edges {
         node {
           id
@@ -35,7 +35,7 @@ export default ({data, pageContext}) => {
 
   return (
     <Layout lang={pageContext.lang}>
-      <ProductionListing lang={pageContext.lang} list={list} />
+      <ProductionListing lang={pageContext.lang} list={list} group={pageContext.group} />
     </Layout>
   );
 };

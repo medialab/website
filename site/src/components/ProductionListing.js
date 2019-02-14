@@ -7,23 +7,23 @@ import RawHTML from './RawHtml.js';
 /* import {templateMembership} from './helpers.js';  */
 import './scss/page_liste.scss';
 
-export default function ProductionListing({lang, list}) {
-  console.log(lang, list);
+export default function ProductionListing({lang, list, group}) {
+  console.log(lang, list, group);
 
   	return (
     	<>
     		<FilterProduction />
         <section id="liste">
-          <p class="accroche-titre-phone">Description en une phrase de la catégorie activité....</p>
-          <ul class="liste_objet" id="liste-productions">
+          <p className="accroche-titre-phone">Description en une phrase de la catégorie activité....</p>
+          <ul className="liste_objet" id="liste-productions">
 
-          <li id="year-2018" class="list-year">
+          <li id="year-2018" className="list-year">
               <span>2018</span>
               <pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
           </li>
           {list.map((p, index) => (
             <>
-            <li data-item={index} data-type={p.type} class={`list-item ${p.type}`}>
+            <li data-item={index} data-type={p.type} className={`list-item ${p.type}`}>
               {/* Dans les données Json "data-type" fait référence à "productionTypes" */}
                 <Link to={`/productions/${p.slugs[p.slugs.length - 1]}`}>
                 <h1 data-level-1="title">{lang === "fr" ? p.title.fr : p.title.en}</h1>
@@ -31,26 +31,25 @@ export default function ProductionListing({lang, list}) {
                     <span>{p.authors}</span>
                 </h2>
               </Link>
-                    
-              <p class="date">{p.lastUpdated}</p>
-              <p class="type">{p.type}</p>
+
+              <p className="date">{p.lastUpdated}</p>
+              <p className="type">{p.type}</p>
             </li>
 
-            <li class="item_accroche description" data-item-accroche={index}>
+            <li className="item_accroche description" data-item-accroche={index}>
                 <Link to={`/productions/${p.slugs[p.slugs.length - 1]}`}>
-                    <span class="item_accroche_texte">
+                    <span className="item_accroche_texte">
                       <RawHTML html={lang === "fr" ? p.description.fr : p.description.en} />
                     </span>
-                    <span class="image-pre"></span>
+                    <span className="image-pre"></span>
                 </Link>
             </li>
             </>
           ))}
-          <li class="item_accroche accroche-titre">Description en une phrase de la catégorie Production</li>
+          <li className="item_accroche accroche-titre">Description en une phrase de la catégorie Production</li>
         </ul>
         </section>
       </>
 	 );
 }
 
-            

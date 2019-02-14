@@ -23,6 +23,7 @@ const {
 const ROOT_PATH = process.env.ROOT_PATH || '..';
 
 const QUERIES = require('./queries.js');
+const ENUMS = require(path.join(ROOT_PATH, 'specs', 'enums.json'));
 const MODELS = require(path.join(ROOT_PATH, 'specs', 'models.json'));
 const DB_PATH = path.join(ROOT_PATH, 'data');
 const DB_GLOB = path.join(ROOT_PATH, 'data', '*.json');
@@ -256,8 +257,23 @@ exports.createPages = function({graphql, actions}) {
 
   createI18nPage(createPage, {
     path: '/productions',
-    component: path.resolve('./src/templates/production-list.js')
+    component: path.resolve('./src/templates/production-list.js'),
+    context: {
+      group: 'all',
+      allowedTypes: Object.keys(ENUMS.productionTypes.en)
+    }
   });
+
+  for (const group in ENUMS.productionTypes.groups) {
+    createI18nPage(createPage, {
+      path: `/productions/${group}`,
+      component: path.resolve('./src/templates/production-list.js'),
+      context: {
+        group,
+        allowedTypes: ENUMS.productionTypes.groups[group].values
+      }
+    });
+  }
 
   createI18nPage(createPage, {
     path: '/people',

@@ -261,3 +261,8 @@ label em {
   font-style: italic;
   font-weight: lighter;
 }
+
+// NOTE: this is to prevent bugs from the 'fill-available' property
+.ReactCrop__image {
+  max-height: 300px !important;
+}

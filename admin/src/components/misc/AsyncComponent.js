@@ -8,6 +8,9 @@ export default class AsyncComponent extends Component {
 
   updateChildren() {
     this.props.children(result => {
+      if (this.unmounted)
+        return;
+
       this.setState({children: result});
     });
   }
@@ -18,6 +21,10 @@ export default class AsyncComponent extends Component {
 
   componentDidUpdate() {
     this.updateChildren();
+  }
+
+  componentWillUnmount() {
+    this.unmounted = true;
   }
 
   render() {

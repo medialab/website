@@ -21,6 +21,7 @@ export const query = graphql`
           slugs
           type
           authors
+          date
           lastUpdated
         }
       }
@@ -39,3 +40,7 @@ export default ({data, pageContext}) => {
     </Layout>
   );
 };
+/*
+          lastUpdated(formatString: "dddd DD MMMM YYYY")
+
+*/

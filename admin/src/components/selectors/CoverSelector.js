@@ -148,6 +148,17 @@ export default class CoverSelector extends Component {
     });
   };
 
+  handleClear = () => {
+    this.setState({
+      crop: null,
+      pixelCrop: null,
+      file: null,
+      img: null
+    });
+
+    this.props.onChange();
+  };
+
   render() {
     const {
       cover
@@ -179,6 +190,7 @@ export default class CoverSelector extends Component {
                       <div className="column is-6">
                         <div>
                           <label>Original image</label>
+                          &nbsp;(<a style={{textDecoration: 'underline'}} onClick={this.handleClear}>clear</a>)
                         </div>
                         <Crop
                           keepSelection

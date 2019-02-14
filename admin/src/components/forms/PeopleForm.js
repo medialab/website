@@ -42,6 +42,10 @@ const HANDLERS = {
     type: 'raw',
     field: 'membership'
   },
+  cover: {
+    type: 'raw',
+    field: 'cover'
+  },
   domain: {
     type: 'raw',
     field: 'domain'
@@ -144,7 +148,7 @@ function renderPeopleForm(props) {
                   value={data.active}
                   labels={['membre actif', 'ancien membre']}
                   onChange={handlers.active} />
-              
+
                 <EnumSelector
                   enumType="membershipTypes"
                   value={data.membership}
@@ -159,7 +163,10 @@ function renderPeopleForm(props) {
           <div className="column is-12">
             <div className="field">
               <label className="label">Cover</label>
-              <CoverSelector />
+              <CoverSelector
+                cover={data.cover}
+                ratio={4 / 3}
+                onChange={handlers.cover} />
             </div>
           </div>
         </div>
@@ -180,7 +187,7 @@ function renderPeopleForm(props) {
           </div>
         </div>
 
-        
+
       </div>
       <div className="form-group">
         <h4 className="title is-4">
@@ -304,14 +311,14 @@ function renderPeopleForm(props) {
 
       </div>
 
-      
+
 
       <div className="form-group">
         <h4 className="title is-4">
           Mises en avant
         </h4>
         <em>Sélectionner les <b>activités et productions phares</b> de votre activité au médialab.<br></br>
-        Cette sélection vise à mettre en avant certains éléments dans une liste exhaustive qui sera générée automatiquement.  
+        Cette sélection vise à mettre en avant certains éléments dans une liste exhaustive qui sera générée automatiquement.
         </em>
 
         <div className="columns">

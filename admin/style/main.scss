@@ -19,6 +19,10 @@ li {
   list-style-type: none;
 }
 
+img.black-and-white {
+  filter: grayscale(100%);
+}
+
 // Listings
 .listing {
   a {
@@ -89,7 +93,7 @@ li {
 }
 
 .table--header {
-  background-color: hsl(0, 0%, 96%);  
+  background-color: hsl(0, 0%, 96%);
 }
 $table-header-color: #dbdbdb;
 .table {
@@ -196,7 +200,7 @@ div.multilevel-selector__first-level__option {
   border-radius: 50%;
 }
 .multilevel-selector__menu-header-text {
-  padding-left: 12px;  
+  padding-left: 12px;
 }
 
 div.multilevel-selector__second-level__menu-list {

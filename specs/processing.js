@@ -110,4 +110,5 @@ function imageFileToBlocks(file, options, callback) {
   });
 }
 
+exports.readImageFileAsDataUrl = readImageFileAsDataUrl;
 exports.imageFileToBlocks = imageFileToBlocks;

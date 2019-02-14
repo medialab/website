@@ -9,6 +9,7 @@ const config = require('config');
 const exec = require('child_process').exec;
 const jsonServer = require('json-server');
 const fileUpload = require('express-fileupload');
+const csp = require('express-csp-header');
 const uuid = require('uuid/v4');
 const rimraf = require('rimraf');
 const simpleGit = require('simple-git');
@@ -82,6 +83,14 @@ process.on('exit', () => gatsby.kill());
 // json-server init
 const app = jsonServer.create();
 const jsonServerMiddlewares = jsonServer.defaults();
+
+// CSP for dev
+if (process.env.NODE_ENV !== 'production')
+  app.use(csp({
+    policies: {
+      'img-src': ['data:', 'blob:', 'localhost:3000', 'localhost:7000', 'localhost:8000']
+    }
+  }));
 
 app.use(jsonServerMiddlewares);
 app.use(jsonServer.bodyParser);

@@ -11,7 +11,7 @@ import Logo from '../assets/svg/logo_medialab.svg';
 import MenuCircle from '../assets/svg/menu-circle.svg';
 import CloseCircle from '../assets/svg/close-circle.svg';
 
-const TopBar = () => {
+const TopBar = ({permalink}) => {
 	return (
 		  	<header id="topbar">
 			<input type="checkbox" id="toggle-menu" name="toggle-menu" value="visible" hidden/>
@@ -53,7 +53,7 @@ const TopBar = () => {
 				</nav>
 
 				<div id="langue" className="menu langue">
-					<p><Link to="/">FR</Link><span> | </span><Link to="/en">EN</Link></p>
+					<p><Link activeClassName="active" to={`/${permalink}`}>FR</Link><span> | </span><Link activeClassName="active" to={`/en/${permalink}`}>EN</Link></p>
 				</div>
 			</div>
 		</header>

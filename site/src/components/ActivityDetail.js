@@ -32,6 +32,7 @@ export const queryFragment = graphql`
     }
     active
     draft
+    slugs
   }
 `;
 
@@ -56,7 +57,7 @@ export default function ActivityDetail({lang, activity}) {
         </hgroup>
 
         <div className="article-contenu">
-        {activity.content && (lang === "fr" ? activity.content.fr && <RawHtml html={activity.content.fr} />  : activity.content.en && <RawHtml html={activity.content.en} />)}          
+        {activity.content && (lang === "fr" ? activity.content.fr && <RawHtml html={activity.content.fr} />  : activity.content.en && <RawHtml html={activity.content.en} />)}
         </div>
       </article>
 
@@ -66,4 +67,3 @@ export default function ActivityDetail({lang, activity}) {
   </main>
   );
 }
-

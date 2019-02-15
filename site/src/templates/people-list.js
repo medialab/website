@@ -30,11 +30,11 @@ export default ({data, pageContext}) => {
   console.log(data, pageContext);
 
   const list = data.allPeopleJson.edges.map(e => e.node);
+  const permalink = 'people';
 
   return (
-    <Layout lang={pageContext.lang}>
+    <Layout lang={pageContext.lang} className="page-people-list" permalink={permalink}>
       <PeopleListing lang={pageContext.lang} list={list} />
     </Layout>
   );
 };
-

@@ -9,9 +9,10 @@ const ErrorPage = ({data, pageContext}) => {
   console.log(data, pageContext);
 
   const {code} = pageContext;
+  const permalink = `${code}.html`;
 
   return (
-    <Layout lang={pageContext.lang}>
+    <Layout lang={pageContext.lang} className="page-error" permalink={permalink}>
       <Page code={code} lang={pageContext.lang} />
     </Layout>
   );

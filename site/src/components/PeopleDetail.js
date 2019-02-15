@@ -33,6 +33,7 @@ export const queryFragment = graphql`
       en
       fr
     }
+    slugs
     contacts{
       label
       value
@@ -95,7 +96,7 @@ export default function PeopleDetail({lang, person}) {
             </ul>
           </header>
           <div className="biographie-contenu">
-            {person.bio && (lang === "fr" ? person.bio.fr && <RawHtml html={bio.fr} />  : person.bio.en && <RawHtml html={bio.en} />)}          
+            {person.bio && (lang === "fr" ? person.bio.fr && <RawHtml html={bio.fr} />  : person.bio.en && <RawHtml html={bio.en} />)}
           </div>
         </article>
         <PublicationsAssocies lang={lang} person={person} publications={person.mainProductions} />

@@ -4,6 +4,7 @@ import Dropzone from 'react-dropzone';
 import Crop from 'react-image-crop';
 import cls from 'classnames';
 import Button from '../misc/Button';
+import ProcessedImage from '../ProcessedImage';
 import omit from 'lodash/omit';
 import debounceRender from 'react-debounce-render';
 
@@ -58,6 +59,7 @@ function CroppedImage({blackAndWhite, img, pixelCrop}) {
 }
 
 const DebouncedCroppedImage = debounceRender(CroppedImage, 150);
+const DebouncedProcessedImage = debounceRender(ProcessedImage, 150);
 
 export default class CoverSelector extends Component {
   state = {
@@ -175,7 +177,8 @@ export default class CoverSelector extends Component {
 
   render() {
     const {
-      cover
+      cover,
+      processing
     } = this.props;
 
     const {
@@ -188,72 +191,96 @@ export default class CoverSelector extends Component {
     } = this.state;
 
     return (
-      <div className="columns">
-        <div className="column is-6">
-          {!cover && !file && (
-            <>
-              <div><small>Select image to upload:</small></div>
-              <Dropzone onDrop={this.handleDrop} />
-            </>
-          )}
-          {file && (
-            <>
-              <div><small>Original image to crop:</small></div>
-              <Crop
-                keepSelection
-                crop={crop}
-                src={img.src}
-                onChange={this.handleCrop}
-                style={{maxHeight: '200px'}} />
-            </>
-          )}
-          {!cover ?
-            (
+      <>
+        <div className="columns">
+          <div className="column is-6">
+            {!cover && !file && (
+              <>
+                <div><small>Select image to upload:</small></div>
+                <Dropzone onDrop={this.handleDrop} />
+              </>
+            )}
+            {file && (
+              <>
+                <div><small>Original image to crop:</small></div>
+                <Crop
+                  keepSelection
+                  crop={crop}
+                  src={img.src}
+                  onChange={this.handleCrop}
+                  style={{maxHeight: '200px'}} />
+              </>
+            )}
+            {!cover ?
+              (
+                <div>
+                  <br />
+                  <Button
+                    disabled={!file}
+                    loading={uploading}
+                    kind={file ? 'primary' : 'raw'}
+                    onClick={() => {
+                      this.handleUpload();
+                    }}>
+                    {file ? 'Upload this cover' : 'Waiting for an image'}
+                  </Button>
+                </div>
+              ) : (
+                <div>
+                  <Button
+                    small
+                    kind="text"
+                    onClick={this.handleClear}>
+                    Choose another image
+                  </Button>
+                </div>
+              )
+            }
+          </div>
+          <div className="column is-6">
+            {pixelCrop && (
               <div>
-                <br />
-                <Button
-                  disabled={!file}
-                  loading={uploading}
-                  kind={file ? 'primary' : 'raw'}
-                  onClick={() => {
-                    this.handleUpload();
-                  }}>
-                  {file ? 'Upload this cover' : 'Waiting for an image'}
-                </Button>
+                <div><small>Cropped image:</small></div>
+                <DebouncedCroppedImage
+                  blackAndWhite={blackAndWhite}
+                  img={img}
+                  pixelCrop={pixelCrop} />
+                <div>
+                  <label className="checkbox">
+                    <input
+                      type="checkbox"
+                      checked={blackAndWhite}
+                      onChange={this.toggleBlackAndWhite} />
+                    <small>&nbsp;Black &amp; white preview?</small>
+                  </label>
+                </div>
               </div>
-            ) : (
-              <div>
-                <Button
-                  small
-                  kind="text"
-                  onClick={this.handleClear}>
-                  Choose another image
-                </Button>
-              </div>
-            )
-          }
+            )}
+          </div>
         </div>
-        <div className="column is-6">
-          {pixelCrop && (
-            <div>
-              <div><small>Cropped image:</small></div>
-              <DebouncedCroppedImage
-                blackAndWhite={blackAndWhite}
-                img={img}
-                pixelCrop={pixelCrop} />
+        {processing && pixelCrop && (
+          <div className="columns">
+            <div className="column is-4">
+              <div><small>Processed image (large):</small></div>
               <div>
-                <label className="checkbox">
-                  <input
-                    type="checkbox"
-                    checked={blackAndWhite}
-                    onChange={this.toggleBlackAndWhite} />
-                  <small>&nbsp;Black &amp; white preview?</small>
-                </label>
+                <DebouncedProcessedImage img={img} crop={pixelCrop} rows={150} zoom={0.3} />
               </div>
             </div>
-          )}
-        </div>
-      </div>
+            <div className="column is-4">
+              <div><small>Processed image (medium):</small></div>
+              <div>
+                <DebouncedProcessedImage img={img} crop={pixelCrop} rows={75} zoom={0.5} />
+              </div>
+            </div>
+            <div className="column is-4">
+              <div><small>Processed image (small):</small></div>
+              <div>
+                <DebouncedProcessedImage img={img} crop={pixelCrop} rows={25} zoom={0.6} />
+              </div>
+            </div>
+          </div>
+        )}
+      </>
     );
   }
 }

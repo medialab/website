@@ -143,7 +143,7 @@ const ListTable = React.memo(props => {
               }
 
               const link = (
-                <Link to={`${model}/${d.id}`} style={{display: 'inline-block', padding: '0.5em 0.75em'}}>
+                <Link to={`${model}/${d.id}`} style={{display: 'inline-block', padding: '0.5em 0.75em', width: '100%'}}>
                   {icon} {value}
                 </Link>
               );

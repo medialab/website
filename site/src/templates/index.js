@@ -77,9 +77,10 @@ const IndexPage = ({data, pageContext}) => {
   const grid = data.settingsJson.home.grid;
   const slider = data.settingsJson.home.slider;
   const rdv = data.rdv.edges.map(({node}) => node);
+  const permalink = '';
 
   return (
-    <Layout lang={pageContext.lang} className="page-home">
+    <Layout lang={pageContext.lang} className="page-home" permalink={permalink}>
       <Home lang={pageContext.lang} grid={grid} slider={slider} rdv={rdv} />
     </Layout>
   );

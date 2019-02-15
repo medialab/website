@@ -33,9 +33,10 @@ export default ({data, pageContext}) => {
   console.log(data, pageContext);
 
   const list = data.allProductionsJson.edges.map(e => e.node);
+  const permalink = 'productions';
 
   return (
-    <Layout lang={pageContext.lang} className="page-production-list">
+    <Layout lang={pageContext.lang} className="page-production-list" permalink={permalink}>
       <ProductionListing lang={pageContext.lang} list={list} group={pageContext.group} />
     </Layout>
   );

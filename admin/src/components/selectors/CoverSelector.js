@@ -57,7 +57,7 @@ function CroppedImage({blackAndWhite, img, pixelCrop}) {
   );
 }
 
-const DebouncedCroppedImage = debounceRender(CroppedImage, 100);
+const DebouncedCroppedImage = debounceRender(CroppedImage, 150);
 
 export default class CoverSelector extends Component {
   state = {

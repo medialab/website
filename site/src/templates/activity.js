@@ -18,9 +18,8 @@ export default ({data, pageContext}) => {
   const activity = data.activitiesJson;
 
   return (
-    <Layout lang={pageContext.lang}>
+    <Layout lang={pageContext.lang} className="page-activity">
       <ActivityDetail lang={pageContext.lang} activity={activity} />
     </Layout>
   );
 };
-

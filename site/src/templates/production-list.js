@@ -35,7 +35,7 @@ export default ({data, pageContext}) => {
   const list = data.allProductionsJson.edges.map(e => e.node);
 
   return (
-    <Layout lang={pageContext.lang}>
+    <Layout lang={pageContext.lang} className="page-production-list">
       <ProductionListing lang={pageContext.lang} list={list} group={pageContext.group} />
     </Layout>
   );

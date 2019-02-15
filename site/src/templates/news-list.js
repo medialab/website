@@ -26,9 +26,8 @@ export default ({data, pageContext}) => {
   const list = data.allNewsJson.edges.map(e => e.node);
 
   return (
-    <Layout lang={pageContext.lang}>
+    <Layout lang={pageContext.lang} className="page-news-list">
       <NewsListing lang={pageContext.lang} list={list} />
     </Layout>
   );
 };
-

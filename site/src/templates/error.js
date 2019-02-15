@@ -11,7 +11,7 @@ const ErrorPage = ({data, pageContext}) => {
   const {code} = pageContext;
 
   return (
-    <Layout lang={pageContext.lang}>
+    <Layout lang={pageContext.lang} className="page-error">
       <Page code={code} lang={pageContext.lang} />
     </Layout>
   );

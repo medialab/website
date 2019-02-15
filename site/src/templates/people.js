@@ -18,7 +18,7 @@ export default ({data, pageContext}) => {
   const person = data.peopleJson;
 
   return (
-    <Layout lang={pageContext.lang}>
+    <Layout lang={pageContext.lang} className="page-people">
       <PeopleDetail lang={pageContext.lang} person={person} />
     </Layout>
   );

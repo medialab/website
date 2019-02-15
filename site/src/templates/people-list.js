@@ -32,9 +32,8 @@ export default ({data, pageContext}) => {
   const list = data.allPeopleJson.edges.map(e => e.node);
 
   return (
-    <Layout lang={pageContext.lang}>
+    <Layout lang={pageContext.lang} className="page-people-list">
       <PeopleListing lang={pageContext.lang} list={list} />
     </Layout>
   );
 };
-

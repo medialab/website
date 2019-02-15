@@ -79,7 +79,7 @@ const IndexPage = ({data, pageContext}) => {
   const rdv = data.rdv.edges.map(({node}) => node);
 
   return (
-    <Layout lang={pageContext.lang}>
+    <Layout lang={pageContext.lang} className="page-home">
       <Home lang={pageContext.lang} grid={grid} slider={slider} rdv={rdv} />
     </Layout>
   );

@@ -31,14 +31,14 @@ export const query = graphql`
     }
   }
 `;
- 
+
 export default ({data, pageContext}) => {
   console.log(data, pageContext);
 
   const list = data.allActivitiesJson.edges.map(e => e.node);
 
   return (
-    <Layout lang={pageContext.lang}>
+    <Layout lang={pageContext.lang} className="page-activity-list">
       <ActivityListing lang={pageContext.lang} list={list} />
     </Layout>
   );

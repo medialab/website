@@ -18,7 +18,7 @@ export default ({data, pageContext}) => {
   const production = data.productionsJson;
 
   return (
-    <Layout lang={pageContext.lang}>
+    <Layout lang={pageContext.lang} className="page-production">
       <ProductionDetail lang={pageContext.lang} production={production} />
     </Layout>
   );

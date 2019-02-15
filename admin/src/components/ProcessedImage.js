@@ -17,12 +17,12 @@ const preStyle = {
   fontSize: '1em'
 };
 
-export default function ProcessedImage({img, crop, rows, zoom}) {
+export default function ProcessedImage({img, crop, gamma, rows, zoom}) {
 
   const blocks = imageToBlocks(img, {
     rows,
     crop,
-    gamma: 0
+    gamma
   });
 
   return (

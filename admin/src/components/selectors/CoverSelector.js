@@ -4,6 +4,7 @@ import Dropzone from 'react-dropzone';
 import Crop from 'react-image-crop';
 import cls from 'classnames';
 import Button from '../misc/Button';
+import Slider from '../misc/Slider';
 import ProcessedImage from '../ProcessedImage';
 import omit from 'lodash/omit';
 import debounceRender from 'react-debounce-render';
@@ -59,7 +60,7 @@ function CroppedImage({blackAndWhite, img, pixelCrop}) {
 }
 
 const DebouncedCroppedImage = debounceRender(CroppedImage, 150);
-const DebouncedProcessedImage = debounceRender(ProcessedImage, 150);
+const DebouncedProcessedImage = debounceRender(ProcessedImage, 50);
 
 export default class CoverSelector extends Component {
   state = {
@@ -130,7 +131,8 @@ export default class CoverSelector extends Component {
     this.props.onChange({
       processed: this.props.processed || false,
       file: filename,
-      crop: omit(this.state.pixelCrop, ['aspect'])
+      crop: omit(this.state.pixelCrop, ['aspect']),
+      gamma: this.props.cover ? this.props.cover.gamma : 0
     });
   };
 
@@ -161,6 +163,13 @@ export default class CoverSelector extends Component {
         file: true,
         img
       });
+    });
+  };
+
+  handleGamma = e => {
+    this.props.onChange({
+      ...this.props.cover,
+      gamma: +e.target.value
     });
   };
 
@@ -258,27 +267,52 @@ export default class CoverSelector extends Component {
             )}
           </div>
         </div>
-        {processing && pixelCrop && (
-          <div className="columns">
-            <div className="column is-4">
-              <div><small>Processed image (large):</small></div>
-              <div>
-                <DebouncedProcessedImage img={img} crop={pixelCrop} rows={150} zoom={0.3} />
+        {processing && pixelCrop && cover && (
+          <>
+            <div className="columns">
+              <div className="column is-4">
+                <div><small>Processed image (large):</small></div>
+                <div>
+                  <DebouncedProcessedImage
+                    img={img}
+                    crop={pixelCrop}
+                    gamma={cover.gamma}
+                    rows={150}
+                    zoom={0.3} />
+                </div>
+              </div>
+              <div className="column is-4">
+                <div><small>Processed image (medium):</small></div>
+                <div>
+                  <DebouncedProcessedImage
+                    img={img}
+                    crop={pixelCrop}
+                    gamma={cover.gamma}
+                    rows={75}
+                    zoom={0.5} />
+                </div>
+              </div>
+              <div className="column is-4">
+                <div><small>Processed image (small):</small></div>
+                <div>
+                  <DebouncedProcessedImage
+                    img={img}
+                    crop={pixelCrop}
+                    gamma={cover.gamma}
+                    rows={25}
+                    zoom={0.6} />
+                </div>
               </div>
             </div>
-            <div className="column is-4">
-              <div><small>Processed image (medium):</small></div>
-              <div>
-                <DebouncedProcessedImage img={img} crop={pixelCrop} rows={75} zoom={0.5} />
+            <div className="columns">
+              <div className="column">
+                <div className="field">
+                  <div><small>Gamma parameter for image processing: ({cover.gamma})</small></div>
+                  <Slider value={cover.gamma} onChange={this.handleGamma} min={-255} max={255} />
+               </div>
               </div>
             </div>
-            <div className="column is-4">
-              <div><small>Processed image (small):</small></div>
-              <div>
-                <DebouncedProcessedImage img={img} crop={pixelCrop} rows={25} zoom={0.6} />
-              </div>
-            </div>
-          </div>
+          </>
         )}
       </>
     );

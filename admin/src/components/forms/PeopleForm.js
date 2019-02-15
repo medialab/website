@@ -174,7 +174,7 @@ function renderPeopleForm(props) {
         <div className="columns">
           <div className="column is-8">
           <label className="label">Contacts
-            <em>Choisissez le type de contact (email, site, CV...) et renseigner l'information adaptée.<br></br>
+            <em>Choisissez le type de contact (email, site, CV...) et renseignez l'information adaptée.<br></br>
               Il est également possible d'ajouter un fichier (pour un CV par exemple).</em>
           </label>
             <SortableKeyValueList

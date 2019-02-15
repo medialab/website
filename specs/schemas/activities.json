@@ -28,6 +28,46 @@
       "title": "Nom",
       "type": "string"
     },
+    "cover": {
+      "title": "Image de couverture",
+      "type": "object",
+      "properties": {
+        "processed": {
+          "title": "Processing?",
+          "type": "boolean"
+        },
+        "file": {
+          "title": "Fichier image",
+          "type": "string"
+        },
+        "gamma": {
+          "title": "Processing gamma",
+          "type": "number"
+        },
+        "crop": {
+          "title": "Crop specs",
+          "type": "object",
+          "properties": {
+            "x": {
+              "title": "Crop x",
+              "type": "number"
+            },
+            "y": {
+              "title": "Crop y",
+              "type": "number"
+            },
+            "width": {
+              "title": "Crop largeur",
+              "type": "number"
+            },
+            "height": {
+              "title": "Crop hauteur",
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
     "baseline": {
       "title": "Accroche",
       "type": "object",

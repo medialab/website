@@ -1,7 +1,3 @@
-const path = require('path');
-
-const ROOT_PATH = process.env.ROOT_PATH || '..';
-
 module.exports = {
   siteMetadata: {
     title: 'médialab website',

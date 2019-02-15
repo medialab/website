@@ -158,7 +158,7 @@ export default class CoverSelector extends Component {
         },
         file: true,
         img
-      }, this.handleModalOpen);
+      });
     });
   };
 
@@ -241,6 +241,15 @@ export default class CoverSelector extends Component {
                 blackAndWhite={blackAndWhite}
                 img={img}
                 pixelCrop={pixelCrop} />
+              <div>
+                <label className="checkbox">
+                  <input
+                    type="checkbox"
+                    checked={blackAndWhite}
+                    onChange={this.toggleBlackAndWhite} />
+                  <small>&nbsp;Black &amp; white preview?</small>
+                </label>
+              </div>
             </div>
           )}
         </div>

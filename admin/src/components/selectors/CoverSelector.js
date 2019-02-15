@@ -4,7 +4,6 @@ import Dropzone from 'react-dropzone';
 import Crop from 'react-image-crop';
 import cls from 'classnames';
 import Button from '../misc/Button';
-import CardModal from '../misc/CardModal';
 import AsyncComponent from '../misc/AsyncComponent';
 import omit from 'lodash/omit';
 
@@ -64,12 +63,13 @@ export default class CoverSelector extends Component {
     pixelCrop: null,
     file: null,
     img: null,
-    selecting: false,
     uploading: false
   };
 
-  handleModalOpen = () => this.setState({selecting: true});
-  handleModalClose = () => this.setState({selecting: false});
+  componentDidMount() {
+    if (this.props.cover)
+      this.handleUpdateCover();
+  }
 
   handleDrop = files => {
 
@@ -96,23 +96,25 @@ export default class CoverSelector extends Component {
   };
 
   handleCrop = (crop, pixelCrop) => {
-    this.setState({crop, pixelCrop});
+    this.setState({crop, pixelCrop}, () => {
+      if (this.props.cover)
+        this.handleChange(this.props.cover.file);
+    });
   };
 
   toggleBlackAndWhite = e => {
     this.setState({blackAndWhite: e.target.checked});
   };
 
-  handleUpload = callback => {
+  handleUpload = () => {
 
     this.setState({uploading: true});
 
     client.upload(this.state.file, result => {
       this.setState({uploading: false});
 
+      this.handleUpdateCover();
       this.handleChange(result.name);
-
-      return callback();
     });
   };
 
@@ -125,23 +127,29 @@ export default class CoverSelector extends Component {
   };
 
   handleUpdateCover = () => {
-    getDimensions(getSrc(this.props.cover.file), (img, dimensions) => {
+    const cover = this.props.cover;
+
+    getDimensions(getSrc(cover.file), (img, dimensions) => {
       const ratio = this.props.ratio;
 
-      const w = dimensions.width / ratio,
-            h = dimensions.height / ratio;
+      const w = dimensions.width,
+            h = dimensions.height;
 
       // These are in percentages
       const crop = {
-        x: 0,
-        y: 0,
+        x: cover.crop.x * 100 / w,
+        y: cover.crop.y * 100 / h,
         aspect: ratio,
-        width: w,
-        height: h
+        width: cover.crop.width * 100 / w,
+        height: cover.crop.height * 100 / h
       };
 
       this.setState({
         crop,
+        pixelCrop: {
+          aspect: ratio,
+          ...cover.crop
+        },
         file: true,
         img
       }, this.handleModalOpen);
@@ -170,110 +178,55 @@ export default class CoverSelector extends Component {
       pixelCrop,
       file,
       img,
-      selecting,
       uploading
     } = this.state;
 
-    let modal = null;
-
-    if (selecting)
-      modal = (
-        <CardModal onClose={this.handleModalClose} large>
-          {
-            [
-              'Uploading a cover',
-              (
-                <div key="body">
-                  {!file && <Dropzone onDrop={this.handleDrop} />}
-                  {file && (
-                    <div className="columns">
-                      <div className="column is-6">
-                        <div>
-                          <label>Original image</label>
-                          &nbsp;(<a style={{textDecoration: 'underline'}} onClick={this.handleClear}>clear</a>)
-                        </div>
-                        <Crop
-                          keepSelection
-                          crop={crop}
-                          src={img.src}
-                          onChange={this.handleCrop}
-                          style={{maxHeight: '300px'}} />
-                      </div>
-                      <div className="column is-6">
-                        <div>
-                          <label>Preview</label>&nbsp;&nbsp;
-                          <input
-                            type="checkbox"
-                            onChange={this.toggleBlackAndWhite}
-                            checked={blackAndWhite} />
-                          (Black and white?)
-                        </div>
-                        {pixelCrop && (
-                          <div>
-                            <img
-                              className={cls(blackAndWhite && 'black-and-white')}
-                              src={getCroppedDataUrl(img, pixelCrop)}
-                              style={{maxHeight: '300px'}} />
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ),
-              close => (
-                <div key="footer">
-                  {file && !cover && (
-                    <Button
-                      disabled={!file}
-                      loading={uploading}
-                      kind="success"
-                      onClick={() => {
-                        this.handleUpload(close);
-                      }}>
-                      Choose this cover
-                    </Button>
-                  )}
-                  {cover && (
-                    <Button
-                      kind="success"
-                      onClick={() => {
-                        this.handleChange(cover.file);
-                        close();
-                      }}>
-                      Update the cover
-                    </Button>
-                  )}
-                  <Button
-                    onClick={close}>
-                    Cancel
-                  </Button>
-                </div>
-              )
-            ]
-          }
-        </CardModal>
-      );
-
     return (
-      <div>
-        {modal}
-        {cover ?
-          (
+      <div className="columns">
+        <div className="column is-6">
+          {!cover && !file && (
+            <>
+              <div><small>Select image to upload:</small></div>
+              <Dropzone onDrop={this.handleDrop} />
+            </>
+          )}
+          {file && (
+            <>
+              <div><small>Original image to crop:</small></div>
+              <Crop
+                keepSelection
+                crop={crop}
+                src={img.src}
+                onChange={this.handleCrop}
+                style={{maxHeight: '200px'}} />
+            </>
+          )}
+          {!cover && (
             <div>
-              <div>
-                <AsyncComponent>
-                  {renderCroppedImg(cover.file, cover.crop)}
-                </AsyncComponent>
-              </div>
-              <div>
-                <Button onClick={this.handleUpdateCover}>Update cover</Button>
-              </div>
+              <br />
+              <Button
+                disabled={!file}
+                loading={uploading}
+                kind={file ? 'primary' : 'raw'}
+                onClick={() => {
+                  this.handleUpload();
+                }}>
+                {file ? 'Upload this cover' : 'Waiting for an image'}
+              </Button>
             </div>
-          ) : (
-            <Button onClick={this.handleModalOpen}>Upload a cover</Button>
-          )
-        }
+          )}
+        </div>
+        <div className="column is-6">
+          {pixelCrop && (
+            <div>
+              <div><small>Cropped image:</small></div>
+              <img
+                className={cls(blackAndWhite && 'black-and-white')}
+                src={getCroppedDataUrl(img, pixelCrop)}
+                style={{maxHeight: '200px'}} />
+            </div>
+          )}
+        </div>
       </div>
     );
   }

@@ -5,7 +5,7 @@ import {StaticQuery, graphql} from 'gatsby';
 import TopBar from './fragments/TopBar.js';
 import Footer from './fragments/Footer.js';
 
-const Layout = ({children, lang, className}) => {
+const Layout = ({children, lang, className, permalink}) => {
 
   return (
     <StaticQuery
@@ -25,7 +25,7 @@ const Layout = ({children, lang, className}) => {
             <html lang={lang} />
             <body className={className} />
           </Helmet>
-          <TopBar />
+          <TopBar lang={lang} permalink={permalink} />
           {children}
           <Footer />
         </>

@@ -34,6 +34,30 @@ function dataUrlToScaledCanvas(url, rows, callback) {
   image.src = url;
 }
 
+function imgToScaledCanvas(img, rows, crop) {
+  const ratio = img.width / img.height;
+
+  const canvas = document.createElement('canvas');
+  canvas.width = rows;
+  canvas.height = rows * ASCII_WIDTH / ratio / ASCII_HEIGHT;
+
+  const context = canvas.getContext('2d');
+
+  context.drawImage(
+    img,
+    crop.x,
+    crop.y,
+    crop.width,
+    crop.height,
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+  return canvas;
+}
+
 function canvasToPixels(canvas) {
   const context = canvas.getContext('2d');
 
@@ -87,18 +111,6 @@ function mapBlocksToCharacterMatrix(blocks, rows) {
   return matrix
 }
 
-// function compressBlocks(blocks) {
-//   const compressed = new Uint8Array(blocks.length / 2);
-
-//   for (let i = 0, j = 0; i < blocks.length; i += 2) {
-//     compressed[j] = (blocks[i] << 3) | blocks[i + 1];
-
-//     j++;
-//   }
-
-//   return compressed;
-// }
-
 function imageFileToBlocks(file, options, callback) {
 
   readImageFileAsDataUrl(file, url => {
@@ -110,5 +122,14 @@ function imageFileToBlocks(file, options, callback) {
   });
 }
 
+function imageToBlocks(img, options) {
+  const canvas = imgToScaledCanvas(img, options.rows, options.crop);
+
+  const blocks = canvasToBlocks(canvas, options);
+
+  return mapBlocksToCharacterMatrix(blocks, options.rows);
+}
+
 exports.readImageFileAsDataUrl = readImageFileAsDataUrl;
 exports.imageFileToBlocks = imageFileToBlocks;
+exports.imageToBlocks = imageToBlocks;

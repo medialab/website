@@ -6,6 +6,7 @@ import {slugifyActivity} from '../../utils';
 
 import Form from './Form';
 import Editor from '../Editor';
+import CoverSelector from '../selectors/CoverSelector';
 import EnumSelector from '../selectors/EnumSelector';
 import DateSelector from '../selectors/DateSelector';
 import BooleanSelector from '../selectors/BooleanSelector';
@@ -26,6 +27,10 @@ const HANDLERS = {
     type: 'slug',
     field: 'name',
     slugify: slugifyActivity
+  },
+  cover: {
+    type: 'raw',
+    field: 'cover'
   },
   englishBaseline: {
     field: ['baseline', 'en']
@@ -113,6 +118,19 @@ function renderActivityForm(props) {
             <div className="field">
               <label className="label" style={{display: 'inline'}}>Slug:</label> {slug && <code>{slug}</code>}
               {url && <PreviewLink url={url} disabled={dirty} />}
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-12">
+            <div className="field">
+              <label className="label">Cover</label>
+              <CoverSelector
+                cover={data.cover}
+                processing
+                ratio={4 / 3}
+                onChange={handlers.cover} />
             </div>
           </div>
         </div>

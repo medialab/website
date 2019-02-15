@@ -16,9 +16,10 @@ export default ({data, pageContext}) => {
   console.log(data, pageContext);
 
   const activity = data.activitiesJson;
+  const permalink = `activities/${activity.slugs[ activity.slugs.length-1 ]}`
 
   return (
-    <Layout lang={pageContext.lang} className="page-activity">
+    <Layout lang={pageContext.lang} className="page-activity" permalink={permalink}>
       <ActivityDetail lang={pageContext.lang} activity={activity} />
     </Layout>
   );

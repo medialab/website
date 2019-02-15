@@ -7,6 +7,7 @@ import enums from '../../../../specs/enums.json';
 import Form from './Form';
 import Editor from '../Editor';
 import BooleanSelector from '../selectors/BooleanSelector';
+import CoverSelector from '../selectors/CoverSelector';
 import DateSelector from '../selectors/DateSelector';
 import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector, {MultiRelationSelector} from '../selectors/RelationSelector';
@@ -29,6 +30,10 @@ const HANDLERS = {
     type: 'slug',
     field: ['title', 'fr'],
     slugify: slugifyNews
+  },
+  cover: {
+    type: 'raw',
+    field: 'cover'
   },
   englishDescription: {
     field: ['description', 'en']
@@ -143,6 +148,19 @@ function renderNewsForm(props) {
             <div className="field">
               <label className="label" style={{display: 'inline'}}>Slug:</label> {slug && <code>{slug}</code>}
               {url && <PreviewLink url={url} disabled={dirty} />}
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-12">
+            <div className="field">
+              <label className="label">Cover</label>
+              <CoverSelector
+                cover={data.cover}
+                processing
+                ratio={4 / 3}
+                onChange={handlers.cover} />
             </div>
           </div>
         </div>

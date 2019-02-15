@@ -46,6 +46,7 @@ export const queryFragment = graphql`
       type
     }
     draft
+    slugs
   }
 `;
 
@@ -68,7 +69,7 @@ export default function ProductionDetail({lang, production}) {
           </hgroup>
 
           <div class="article-contenu">
-          {production.content && (lang === "fr" ? production.content.fr && <RawHtml html={production.content.fr} />  : production.content.en && <RawHtml html={production.content.en} />)}          
+          {production.content && (lang === "fr" ? production.content.fr && <RawHtml html={production.content.fr} />  : production.content.en && <RawHtml html={production.content.en} />)}
           </div>
         </article>
 

@@ -38,6 +38,7 @@ export const queryFragment = graphql`
       id
     }
     draft
+    slugs
   }
 `;
 
@@ -57,7 +58,7 @@ export default function NewsDetail({lang, news}) {
             <p class="type-objet">{news.type}</p>
           </hgroup>
           <div class="article-contenu">
-          {news.content && (lang === "fr" ? news.content.fr && <RawHtml html={news.content.fr} />  : news.content.en && <RawHtml html={news.content.en} />)}          
+          {news.content && (lang === "fr" ? news.content.fr && <RawHtml html={news.content.fr} />  : news.content.en && <RawHtml html={news.content.en} />)}
           </div>
         </article>
         <div>

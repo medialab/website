@@ -4,8 +4,8 @@ import Dropzone from 'react-dropzone';
 import Crop from 'react-image-crop';
 import cls from 'classnames';
 import Button from '../misc/Button';
-import AsyncComponent from '../misc/AsyncComponent';
 import omit from 'lodash/omit';
+import debounceRender from 'react-debounce-render';
 
 import client from '../../client';
 import {readImageFileAsDataUrl} from '../../../../specs/processing';
@@ -48,13 +48,16 @@ function getCroppedDataUrl(img, pixelCrop) {
   return canvas.toDataURL('image/jpeg');
 }
 
-function renderCroppedImg(src, pixelCrop) {
-  return callback => {
-    getDimensions(getSrc(src), img => {
-      return callback(<img src={getCroppedDataUrl(img, pixelCrop)} style={{maxHeight: '200px'}} />);
-    });
-  };
+function CroppedImage({blackAndWhite, img, pixelCrop}) {
+  return (
+    <img
+      className={cls(blackAndWhite && 'black-and-white')}
+      src={getCroppedDataUrl(img, pixelCrop)}
+      style={{maxHeight: '200px'}} />
+  );
 }
+
+const DebouncedCroppedImage = debounceRender(CroppedImage, 100);
 
 export default class CoverSelector extends Component {
   state = {
@@ -68,6 +71,11 @@ export default class CoverSelector extends Component {
 
   componentDidMount() {
     if (this.props.cover)
+      this.handleUpdateCover();
+  }
+
+  componentDidUpdate(previousProps) {
+    if (!previousProps.cover && this.props.cover)
       this.handleUpdateCover();
   }
 
@@ -112,8 +120,6 @@ export default class CoverSelector extends Component {
 
     client.upload(this.state.file, result => {
       this.setState({uploading: false});
-
-      this.handleUpdateCover();
       this.handleChange(result.name);
     });
   };
@@ -201,29 +207,40 @@ export default class CoverSelector extends Component {
                 style={{maxHeight: '200px'}} />
             </>
           )}
-          {!cover && (
-            <div>
-              <br />
-              <Button
-                disabled={!file}
-                loading={uploading}
-                kind={file ? 'primary' : 'raw'}
-                onClick={() => {
-                  this.handleUpload();
-                }}>
-                {file ? 'Upload this cover' : 'Waiting for an image'}
-              </Button>
-            </div>
-          )}
+          {!cover ?
+            (
+              <div>
+                <br />
+                <Button
+                  disabled={!file}
+                  loading={uploading}
+                  kind={file ? 'primary' : 'raw'}
+                  onClick={() => {
+                    this.handleUpload();
+                  }}>
+                  {file ? 'Upload this cover' : 'Waiting for an image'}
+                </Button>
+              </div>
+            ) : (
+              <div>
+                <Button
+                  small
+                  kind="text"
+                  onClick={this.handleClear}>
+                  Choose another image
+                </Button>
+              </div>
+            )
+          }
         </div>
         <div className="column is-6">
           {pixelCrop && (
             <div>
               <div><small>Cropped image:</small></div>
-              <img
-                className={cls(blackAndWhite && 'black-and-white')}
-                src={getCroppedDataUrl(img, pixelCrop)}
-                style={{maxHeight: '200px'}} />
+              <DebouncedCroppedImage
+                blackAndWhite={blackAndWhite}
+                img={img}
+                pixelCrop={pixelCrop} />
             </div>
           )}
         </div>

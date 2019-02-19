@@ -47,13 +47,13 @@ function getCroppedDataUrl(img, pixelCrop) {
     pixelCrop.height
   );
 
-  return canvas.toDataURL('image/jpeg');
+  return canvas.toDataURL('image/png');
 }
 
 function CroppedImage({blackAndWhite, img, pixelCrop}) {
   return (
     <img
-      className={cls(blackAndWhite && 'black-and-white')}
+      className={cls(blackAndWhite && 'black-and-white', 'checkered')}
       src={getCroppedDataUrl(img, pixelCrop)}
       style={{maxHeight: '200px'}} />
   );

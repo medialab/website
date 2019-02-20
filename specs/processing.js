@@ -66,12 +66,10 @@ function canvasToPixels(canvas) {
   return imageData.data;
 }
 
-function canvasToBlocks(canvas, options) {
+function pixelsToBlocks(pixels, options) {
   const {
     gamma,
   } = options;
-
-  const pixels = canvasToPixels(canvas);
 
   const blocks = new Uint8Array(pixels.length / 4);
 
@@ -97,6 +95,12 @@ function canvasToBlocks(canvas, options) {
   }
 
   return blocks;
+}
+
+function canvasToBlocks(canvas, options) {
+  const pixels = canvasToPixels(canvas);
+
+  return pixelsToBlocks(pixels, options);
 }
 
 function mapBlocksToCharacterMatrix(blocks, rows) {

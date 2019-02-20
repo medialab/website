@@ -1,4 +1,6 @@
 const GraphQLTypes = require('gatsby/graphql');
+const sharp = require('sharp');
+const path = require('path');
 const _ = require('lodash');
 
 exports.graphQLSchemaAdditionForSettings = function(schemas, getNode) {
@@ -125,7 +127,7 @@ exports.graphQLSchemaAdditionFromJsonSchema = function(model, schema) {
   return item;
 };
 
-exports.patchGraphQLSchema = function(current, model, type, schema, prefix) {
+exports.patchGraphQLSchema = function(current, model, type, schema, settings) {
 
   // Checking empty relations
   for (const k in schema.properties) {
@@ -172,12 +174,33 @@ exports.patchGraphQLSchema = function(current, model, type, schema, prefix) {
       if (!item.cover)
         return null;
 
-      return new Promise((resolve) => {
-        const data = {
-          url: `${prefix}/static/${item.cover.file}`
-        };
+      const cover = item.cover;
 
-        resolve(data);
+      const ext = path.extname(cover.file),
+            name = path.basename(cover.file, ext);
+
+      const output = `${name}.cover${ext}`;
+
+      const crop = cover.crop;
+
+      const data = {
+        url: `${settings.prefix}/static/${output}`
+      };
+
+      return new Promise((resolve, reject) => {
+        return sharp(path.join(settings.assetsPath, cover.file))
+          .extract({
+            left: crop.x,
+            top: crop.y,
+            width: crop.width,
+            height: crop.height
+          })
+          .toFile(path.join(settings.publicPath, output), err => {
+            if (err)
+              return reject(err);
+
+            resolve(data);
+          });
       });
     }
   };

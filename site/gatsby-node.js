@@ -27,7 +27,8 @@ const ENUMS = require(path.join(ROOT_PATH, 'specs', 'enums.json'));
 const MODELS = require(path.join(ROOT_PATH, 'specs', 'models.json'));
 const DB_PATH = path.join(ROOT_PATH, 'data');
 const DB_GLOB = path.join(ROOT_PATH, 'data', '*.json');
-const ASSETS_GLOB = path.join(ROOT_PATH, 'data', 'assets', '*');
+const ASSETS_PATH = path.join(ROOT_PATH, 'data', 'assets');
+const ASSETS_GLOB = path.join(ASSETS_PATH, '*');
 const PUBLIC_PATH = path.join(process.cwd(), 'public', 'static');
 
 const MODELS_PATHS = {};
@@ -387,17 +388,23 @@ exports.createPages = function({graphql, actions}) {
 
 exports.setFieldsOnGraphQLNodeType = function({type, getNode, getNodesByType, pathPrefix}) {
 
+  const settings = {
+    assetsPath: ASSETS_PATH,
+    publicPath: PUBLIC_PATH,
+    prefix: pathPrefix
+  };
+
   if (type.name === 'SettingsJson') {
     return graphQLSchemaAdditionForSettings(GRAPHQL_SCHEMAS, getNode);
   }
 
   else if (type.name === 'ActivitiesJson') {
-    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'activities', type, SCHEMAS.activities, pathPrefix);
+    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'activities', type, SCHEMAS.activities, settings);
     return GRAPHQL_SCHEMAS.activities;
   }
 
   else if (type.name === 'PeopleJson') {
-    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'people', type, SCHEMAS.people, pathPrefix);
+    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'people', type, SCHEMAS.people, settings);
     addBacklinkToGraphQLSchema(
       getNodesByType.bind(null, 'ActivitiesJson'),
       GRAPHQL_SCHEMAS,
@@ -408,12 +415,12 @@ exports.setFieldsOnGraphQLNodeType = function({type, getNode, getNodesByType, pa
   }
 
   else if (type.name === 'ProductionsJson') {
-    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'productions', type, SCHEMAS.productions, pathPrefix);
+    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'productions', type, SCHEMAS.productions, settings);
     return GRAPHQL_SCHEMAS.productions;
   }
 
   else if (type.name === 'NewsJson') {
-    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'news', type, SCHEMAS.news, pathPrefix);
+    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'news', type, SCHEMAS.news, settings);
     return GRAPHQL_SCHEMAS.news;
   }
 

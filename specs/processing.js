@@ -35,7 +35,7 @@ function dataUrlToScaledCanvas(url, rows, callback) {
 }
 
 function imgToScaledCanvas(img, rows, crop) {
-  const ratio = img.width / img.height;
+  const ratio = crop.width / crop.height;
 
   const canvas = document.createElement('canvas');
   canvas.width = rows;

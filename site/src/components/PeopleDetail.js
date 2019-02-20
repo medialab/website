@@ -10,7 +10,7 @@ import RawHtml from './RawHtml';
 import {templateMembership} from './helpers.js';
 import './scss/page_personne.scss';
 
-import Img from './assets/images/sample/D-Cardon-bis.jpg';
+//import Img from './assets/images/sample/D-Cardon-bis.jpg';
 
 export const queryFragment = graphql`
   fragment PeopleDetail on PeopleJson {
@@ -44,6 +44,13 @@ export const queryFragment = graphql`
     status {
       en
       fr
+    }
+    cover {
+      file
+      crop{
+        height
+        width
+      }
     }
     mainProductions {
       id
@@ -85,9 +92,9 @@ export default function PeopleDetail({lang, person}) {
           <span className="personne">{person.lastname} {person.firstName}</span>
         </p>
         <article id="biographie">
-          <figure><img src={Img}  alt="caption"/></figure>
+          <figure><img src={`/static/${person.cover && (person.cover.file)}`}  alt={lang === "fr" ? "Photo de profil de " + person.firstName + person.lastName : person.firstName + person.lastName + " profil picture"} /></figure>
           <header>
-            <h1 data-level-1="name" data-type="name">{person.lastName} {person.firstName}</h1>
+            <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
             <h2 data-level-2="role" data-type="role">{lang === "fr" ? person.role.fr : person.role.en}</h2>
             <p data-type="domaine">{lang === "fr" ? "Domaine" + String.fromCharCode(8239) +":" : "Domain:"} {person.domain}</p>
             <p data-type="statut">{templateMembership(person)}</p>
@@ -109,3 +116,6 @@ export default function PeopleDetail({lang, person}) {
 
   );
 }
+
+/* { contact.label + String.fromCharCode(8239) + ":"} <Link to={contact.value}>{contact.value}</Link>
+*/

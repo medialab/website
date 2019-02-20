@@ -9,6 +9,9 @@ $header-height: 41px;
 // Importing Bulma
 @import '~bulma';
 
+// Importing fonts
+@import './font/Bel2/stylesheet.css';
+
 // Generic rules
 html, body, #app {
   width: 100%;

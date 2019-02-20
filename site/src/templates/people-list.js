@@ -16,7 +16,18 @@ export const query = graphql`
           domain
           active
           membership
-          role{
+          cover {
+            file
+            crop{
+              height
+              width
+            }
+          }
+          status {
+            fr
+            en
+          }
+          role {
             fr
             en
           }
@@ -33,6 +44,7 @@ export default ({data, pageContext}) => {
   const permalink = 'people';
 
   return (
+
     <Layout lang={pageContext.lang} className="page-people-list" permalink={permalink}>
       <PeopleListing lang={pageContext.lang} list={list} />
     </Layout>

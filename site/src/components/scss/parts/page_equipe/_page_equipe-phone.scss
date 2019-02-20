@@ -19,8 +19,13 @@
 				width: 100%;
 				
 				figure{
+
+					width: 200px;
+					overflow: hidden;
+
 					img{
-						width: 100%;
+						min-width: 100%;
+						height: 100%;
 						filter: grayscale(1);
 					}
 				}

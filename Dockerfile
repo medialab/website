@@ -13,7 +13,7 @@ WORKDIR /website
 RUN apk add --no-cache --virtual .build-deps make gcc g++ libc-dev libpng-dev automake autoconf libtool python \
     && npm ci --quiet --no-audit --ignore-scripts \
     && cd site \
-    && SHARP_IGNORE_GLOBAL_LIBVIPS=1 && npm ci --quite --no-audit \
+    && SHARP_IGNORE_GLOBAL_LIBVIPS=1 && npm ci --quiet --no-audit \
     && apk del .build-deps \
     && rm -fr /root/.npm /root/.node-gyp
 

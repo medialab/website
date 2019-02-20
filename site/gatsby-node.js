@@ -385,19 +385,19 @@ exports.createPages = function({graphql, actions}) {
   return Promise.all(promises);
 };
 
-exports.setFieldsOnGraphQLNodeType = function({type, getNode, getNodesByType}) {
+exports.setFieldsOnGraphQLNodeType = function({type, getNode, getNodesByType, pathPrefix}) {
 
   if (type.name === 'SettingsJson') {
     return graphQLSchemaAdditionForSettings(GRAPHQL_SCHEMAS, getNode);
   }
 
   else if (type.name === 'ActivitiesJson') {
-    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'activities', type, SCHEMAS.activities);
+    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'activities', type, SCHEMAS.activities, pathPrefix);
     return GRAPHQL_SCHEMAS.activities;
   }
 
   else if (type.name === 'PeopleJson') {
-    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'people', type, SCHEMAS.people);
+    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'people', type, SCHEMAS.people, pathPrefix);
     addBacklinkToGraphQLSchema(
       getNodesByType.bind(null, 'ActivitiesJson'),
       GRAPHQL_SCHEMAS,
@@ -408,12 +408,12 @@ exports.setFieldsOnGraphQLNodeType = function({type, getNode, getNodesByType}) {
   }
 
   else if (type.name === 'ProductionsJson') {
-    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'productions', type, SCHEMAS.productions);
+    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'productions', type, SCHEMAS.productions, pathPrefix);
     return GRAPHQL_SCHEMAS.productions;
   }
 
   else if (type.name === 'NewsJson') {
-    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'news', type, SCHEMAS.news);
+    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'news', type, SCHEMAS.news, pathPrefix);
     return GRAPHQL_SCHEMAS.news;
   }
 

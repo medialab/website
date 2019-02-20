@@ -125,7 +125,7 @@ exports.graphQLSchemaAdditionFromJsonSchema = function(model, schema) {
   return item;
 };
 
-exports.patchGraphQLSchema = function(current, model, type, schema) {
+exports.patchGraphQLSchema = function(current, model, type, schema, prefix) {
 
   // Checking empty relations
   for (const k in schema.properties) {
@@ -154,6 +154,33 @@ exports.patchGraphQLSchema = function(current, model, type, schema) {
       }
     }
   }
+
+  // Handling cover
+  const CoverType = new GraphQLTypes.GraphQLObjectType({
+    name: model + '__cover',
+    fields: {
+      url: {
+        type: GraphQLTypes.GraphQLString
+      }
+    }
+  });
+
+  current[model].coverImage = {
+    type: CoverType,
+    resolve: item => {
+
+      if (!item.cover)
+        return null;
+
+      return new Promise((resolve) => {
+        const data = {
+          url: `${prefix}/static/${item.cover.file}`
+        };
+
+        resolve(data);
+      });
+    }
+  };
 };
 
 exports.addBacklinkToGraphQLSchema = function(getNodes, schemas, source, target) {

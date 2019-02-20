@@ -209,7 +209,8 @@ exports.patchGraphQLSchema = function(current, model, type, schema, settings) {
             if (cover.processed) {
               const processingOptions = {
                 rows: 75,
-                gamma: cover.gamma
+                gamma: cover.gamma,
+                noAlpha: true
               };
 
               settings.processing(img(), cover.crop, processingOptions, processed => {

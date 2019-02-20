@@ -112,7 +112,29 @@ function mapBlocksToCharacterMatrix(blocks, rows) {
     i++;
   }
 
-  return matrix
+  return matrix;
+}
+
+function mapBlocksToString(blocks) {
+  return Array.from(blocks, i => BLOCKS[i]).join('');
+}
+
+function sharpToString(img, crop, options, callback) {
+  const ratio = crop.width / crop.height;
+
+  img
+    .resize({
+      width: options.rows,
+      height: options.rows * ASCII_WIDTH / ratio / ASCII_HEIGHT
+    })
+    .raw()
+    .toBuffer((err, buffer) => {
+      callback(pixelsToString(buffer, options));
+    });
+}
+
+function pixelsToString(pixels, options) {
+  return mapBlocksToString(pixelsToBlocks(pixels, options));
 }
 
 function imageFileToBlocks(file, options, callback) {
@@ -135,5 +157,6 @@ function imageToBlocks(img, options) {
 }
 
 exports.readImageFileAsDataUrl = readImageFileAsDataUrl;
+exports.sharpToString = sharpToString;
 exports.imageFileToBlocks = imageFileToBlocks;
 exports.imageToBlocks = imageToBlocks;

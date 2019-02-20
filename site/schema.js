@@ -163,6 +163,9 @@ exports.patchGraphQLSchema = function(current, model, type, schema, settings) {
     fields: {
       url: {
         type: GraphQLTypes.GraphQLString
+      },
+      processed: {
+        type: GraphQLTypes.GraphQLString
       }
     }
   });
@@ -189,19 +192,42 @@ exports.patchGraphQLSchema = function(current, model, type, schema, settings) {
 
       return new Promise((resolve, reject) => {
 
+        const img = () => sharp(path.join(settings.assetsPath, cover.file)).extract({
+          left: crop.x,
+          top: crop.y,
+          width: crop.width,
+          height: crop.height
+        });
+
         // TODO: temporal memoize to avoid triggering too many copies?
-        return sharp(path.join(settings.assetsPath, cover.file))
-          .extract({
-            left: crop.x,
-            top: crop.y,
-            width: crop.width,
-            height: crop.height
-          })
+        // TODO: only use a single stream!
+        return img()
           .toFile(path.join(settings.publicPath, output), err => {
             if (err)
               return reject(err);
 
             resolve(data);
+
+            // TODO: need to rescale the image!
+            // if (cover.processed) {
+            //   img().raw().toBuffer((err, buffer) => {
+            //     if (err)
+            //       return reject(err);
+
+            //     data.processed = settings.processing(buffer, {
+            //       rows: 75,
+            //       gamma: cover.gamma
+            //     });
+            //     console.log(data, settings.processing(buffer, {
+            //       rows: 75,
+            //       gamma: cover.gamma
+            //     }));
+            //     resolve(data);
+            //   });
+            // }
+            // else {
+            //   resolve(data);
+            // }
           });
       });
     }

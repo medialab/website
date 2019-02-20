@@ -31,6 +31,8 @@ const ASSETS_PATH = path.join(ROOT_PATH, 'data', 'assets');
 const ASSETS_GLOB = path.join(ASSETS_PATH, '*');
 const PUBLIC_PATH = path.join(process.cwd(), 'public', 'static');
 
+const processing = require(path.join(ROOT_PATH, 'specs', 'processing.js')).pixelsToString;
+
 const MODELS_PATHS = {};
 const SCHEMAS = {};
 const GRAPHQL_SCHEMAS = {};
@@ -391,7 +393,8 @@ exports.setFieldsOnGraphQLNodeType = function({type, getNode, getNodesByType, pa
   const settings = {
     assetsPath: ASSETS_PATH,
     publicPath: PUBLIC_PATH,
-    prefix: pathPrefix
+    prefix: pathPrefix,
+    processing
   };
 
   if (type.name === 'SettingsJson') {

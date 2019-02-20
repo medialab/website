@@ -112,7 +112,15 @@ function mapBlocksToCharacterMatrix(blocks, rows) {
     i++;
   }
 
-  return matrix
+  return matrix;
+}
+
+function mapBlocksToString(blocks, rows) {
+  return Array.from(blocks, i => BLOCKS[i]).join('');
+}
+
+function pixelsToString(pixels, options) {
+  return mapBlocksToString(pixelsToBlocks(pixels, options), options.rows);
 }
 
 function imageFileToBlocks(file, options, callback) {
@@ -135,5 +143,6 @@ function imageToBlocks(img, options) {
 }
 
 exports.readImageFileAsDataUrl = readImageFileAsDataUrl;
+exports.pixelsToString = pixelsToString;
 exports.imageFileToBlocks = imageFileToBlocks;
 exports.imageToBlocks = imageToBlocks;

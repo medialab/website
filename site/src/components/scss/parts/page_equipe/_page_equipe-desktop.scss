@@ -5,7 +5,7 @@
 @include for-size(desktop) {
 
 	#topbar{ 
-		position: fixed!important; 
+		//position: fixed!important; 
 		top: 0;
 		width: calc(100vw - #{$margins-desktop*2});
 
@@ -41,12 +41,10 @@
 
 				figure{
 					width: 100%;
-					height: 300px;
 					overflow: hidden;
 
 					img{
 						width: 100%;
-						min-height: 100%;
 						filter: grayscale(1);
 					}
 				}

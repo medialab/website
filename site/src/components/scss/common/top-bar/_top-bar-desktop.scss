@@ -7,6 +7,14 @@
     
     #nav-home{ display: none!important; }
     
+    body.page-news-liste #topbar, 
+    body.page-production-liste #topbar, 
+    body.page-activity-liste #topbar, 
+    body.page-people-list #topbar {
+        position: fixed!important;
+    }
+
+
     #topbar{
         padding: $margins-desktop 0;
         //width: 100%;
@@ -62,6 +70,10 @@
             p{
                 width: 100%;
                 text-align: right;
+
+                .active{
+                    border-bottom: $border;
+                }
             }
         }
     }/* end #topbar-content */

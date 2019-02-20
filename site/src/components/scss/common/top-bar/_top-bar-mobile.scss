@@ -1,38 +1,4 @@
 /////////////////////
-//////// Top bar
-/////////////////////
-
-
-#topbar{
-    input{ display: none; }
-    
-    label{
-        svg, img{ 
-            width: $unite-phone*3;
-            fill: $text-color;
-        }
-        position: fixed;
-        top: $margins-phone;
-        right: $margins-phone;
-        z-index: 99;
-    } 
-
-    li[data-type="actualite"]::before{
-        content: $actualites;
-    }
-    li[data-type="production"]::before{
-        content: $productions;
-    }
-    li[data-type="activite"]::before{
-        content: $activites;
-    }
-
-
-
-}
-
-
-/////////////////////
 //////// Top bar mobile
 /////////////////////
 
@@ -85,6 +51,11 @@
         #langue{
             padding-top: $baseline*2;
             text-align: right;
+
+            .active{
+                border-bottom: $border;
+                border-color: $redlab;
+            }
         }
     }/* end topbar-content */
 

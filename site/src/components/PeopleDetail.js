@@ -24,6 +24,9 @@ export const queryFragment = graphql`
       fr
       en
     }
+    coverImage {
+      url
+    }
     membership
     active
     draft

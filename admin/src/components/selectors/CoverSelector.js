@@ -129,7 +129,7 @@ export default class CoverSelector extends Component {
 
   handleChange = filename => {
     this.props.onChange({
-      processed: this.props.processed || false,
+      processed: this.props.processing || false,
       file: filename,
       crop: omit(this.state.pixelCrop, ['aspect']),
       gamma: this.props.cover ? this.props.cover.gamma : 0

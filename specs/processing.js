@@ -71,9 +71,11 @@ function pixelsToBlocks(pixels, options) {
     gamma,
   } = options;
 
-  const blocks = new Uint8Array(pixels.length / 4);
+  const offset = options.noAlpha ? 3 : 4;
 
-  for (let px = 0, b = 0; px < pixels.length; px += 4) {
+  const blocks = new Uint8Array(pixels.length / offset);
+
+  for (let px = 0, b = 0; px < pixels.length; px += offset) {
 
     let block = Math.floor(
       (
@@ -129,7 +131,7 @@ function sharpToString(img, crop, options, callback) {
     })
     .raw()
     .toBuffer((err, buffer) => {
-      callback(pixelsToString(buffer, options));
+      callback(pixelsToString(new Uint8ClampedArray(buffer), options));
     });
 }
 

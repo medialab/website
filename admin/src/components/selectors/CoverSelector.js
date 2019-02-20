@@ -308,7 +308,7 @@ export default class CoverSelector extends Component {
               <div className="column">
                 <div className="field">
                   <div><small>Gamma parameter for image processing: ({cover.gamma})</small></div>
-                  <Slider value={cover.gamma} onChange={this.handleGamma} min={-255} max={255} />
+                  <Slider value={cover.gamma} onChange={this.handleGamma} min={-255 * 3} max={255  * 3} />
                </div>
               </div>
             </div>

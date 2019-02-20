@@ -10,7 +10,7 @@ const containerStyle = {
 
 const preStyle = {
   background: 'none',
-  fontFamily: 'Monospace',
+  fontFamily: 'Courier New',
   padding: 0,
   margin: 0,
   overflowX: 'hidden',

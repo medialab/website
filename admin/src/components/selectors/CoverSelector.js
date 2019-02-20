@@ -270,7 +270,7 @@ export default class CoverSelector extends Component {
         {processing && pixelCrop && cover && (
           <>
             <div className="columns">
-              <div className="column is-4">
+              <div className="column is-5">
                 <div><small>Processed image (large):</small></div>
                 <div>
                   <DebouncedProcessedImage
@@ -281,7 +281,7 @@ export default class CoverSelector extends Component {
                     zoom={0.3} />
                 </div>
               </div>
-              <div className="column is-4">
+              <div className="column is-5">
                 <div><small>Processed image (medium):</small></div>
                 <div>
                   <DebouncedProcessedImage
@@ -308,7 +308,7 @@ export default class CoverSelector extends Component {
               <div className="column">
                 <div className="field">
                   <div><small>Gamma parameter for image processing: ({cover.gamma})</small></div>
-                  <Slider value={cover.gamma} onChange={this.handleGamma} min={-255} max={255} />
+                  <Slider value={cover.gamma} onChange={this.handleGamma} min={-255 * 3} max={255  * 3} />
                </div>
               </div>
             </div>

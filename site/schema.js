@@ -1,4 +1,6 @@
 const GraphQLTypes = require('gatsby/graphql');
+const sharp = require('sharp');
+const path = require('path');
 const _ = require('lodash');
 
 exports.graphQLSchemaAdditionForSettings = function(schemas, getNode) {
@@ -125,7 +127,7 @@ exports.graphQLSchemaAdditionFromJsonSchema = function(model, schema) {
   return item;
 };
 
-exports.patchGraphQLSchema = function(current, model, type, schema) {
+exports.patchGraphQLSchema = function(current, model, type, schema, settings) {
 
   // Checking empty relations
   for (const k in schema.properties) {
@@ -154,6 +156,56 @@ exports.patchGraphQLSchema = function(current, model, type, schema) {
       }
     }
   }
+
+  // Handling cover
+  const CoverType = new GraphQLTypes.GraphQLObjectType({
+    name: model + '__cover',
+    fields: {
+      url: {
+        type: GraphQLTypes.GraphQLString
+      }
+    }
+  });
+
+  current[model].coverImage = {
+    type: CoverType,
+    resolve: item => {
+
+      if (!item.cover)
+        return null;
+
+      const cover = item.cover;
+
+      const ext = path.extname(cover.file),
+            name = path.basename(cover.file, ext);
+
+      const output = `${name}.cover${ext}`;
+
+      const crop = cover.crop;
+
+      const data = {
+        url: `${settings.prefix}/static/${output}`
+      };
+
+      return new Promise((resolve, reject) => {
+
+        // TODO: temporal memoize to avoid triggering too many copies?
+        return sharp(path.join(settings.assetsPath, cover.file))
+          .extract({
+            left: crop.x,
+            top: crop.y,
+            width: crop.width,
+            height: crop.height
+          })
+          .toFile(path.join(settings.publicPath, output), err => {
+            if (err)
+              return reject(err);
+
+            resolve(data);
+          });
+      });
+    }
+  };
 };
 
 exports.addBacklinkToGraphQLSchema = function(getNodes, schemas, source, target) {

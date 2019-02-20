@@ -61,6 +61,7 @@
     "babel-loader": "^8.0.5",
     "config": "^3.0.1",
     "css-loader": "^1.0.1",
+    "file-loader": "^3.0.1",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",

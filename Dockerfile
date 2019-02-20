@@ -11,9 +11,12 @@ ADD . /website
 WORKDIR /website
 
 RUN apk add --no-cache --virtual .build-deps make gcc g++ libc-dev libpng-dev automake autoconf libtool python \
+    && apk add vips-dev fftw-dev build-base --update-cache \
+      --repository https://alpine.global.ssl.fastly.net/alpine/edge/testing/ \
+      --repository https://alpine.global.ssl.fastly.net/alpine/edge/main \
     && npm ci --quiet --no-audit --ignore-scripts \
     && cd site \
-    && SHARP_IGNORE_GLOBAL_LIBVIPS=1 && npm ci --quiet --no-audit \
+    && npm ci --quiet --no-audit \
     && apk del .build-deps \
     && rm -fr /root/.npm /root/.node-gyp
 

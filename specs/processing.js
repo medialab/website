@@ -2,7 +2,7 @@ const BLOCKS = ['\u00A0', '\u2591', '\u2592', '\u2593', '\u2588'].reverse();
 const CARDINALITY = BLOCKS.length;
 const NUM_RATIO = 756 / CARDINALITY;
 const ASCII_WIDTH = 9;
-const ASCII_HEIGHT = 16;
+const ASCII_HEIGHT = 19;
 
 function readImageFileAsDataUrl(file, callback) {
   const reader = new FileReader();

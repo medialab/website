@@ -32,7 +32,7 @@
 @include for-size(desktop) {
 
 	#topbar{ 
-		position: fixed!important; 
+		//position: fixed!important; 
 		top: 0;
 		width: calc(100vw - #{$margins-desktop*2});
 		// left: 0;

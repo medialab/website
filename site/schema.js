@@ -206,28 +206,19 @@ exports.patchGraphQLSchema = function(current, model, type, schema, settings) {
             if (err)
               return reject(err);
 
-            resolve(data);
+            if (cover.processed) {
+              const processingOptions = {
+                rows: 75,
+                gamma: cover.gamma
+              };
 
-            // TODO: need to rescale the image!
-            // if (cover.processed) {
-            //   img().raw().toBuffer((err, buffer) => {
-            //     if (err)
-            //       return reject(err);
-
-            //     data.processed = settings.processing(buffer, {
-            //       rows: 75,
-            //       gamma: cover.gamma
-            //     });
-            //     console.log(data, settings.processing(buffer, {
-            //       rows: 75,
-            //       gamma: cover.gamma
-            //     }));
-            //     resolve(data);
-            //   });
-            // }
-            // else {
-            //   resolve(data);
-            // }
+              settings.processing(img(), cover.crop, processingOptions, processed => {
+                resolve({...data, processed});
+              });
+            }
+            else {
+              resolve(data);
+            }
           });
       });
     }

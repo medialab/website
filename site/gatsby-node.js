@@ -31,7 +31,7 @@ const ASSETS_PATH = path.join(ROOT_PATH, 'data', 'assets');
 const ASSETS_GLOB = path.join(ASSETS_PATH, '*');
 const PUBLIC_PATH = path.join(process.cwd(), 'public', 'static');
 
-const processing = require(path.join(ROOT_PATH, 'specs', 'processing.js')).pixelsToString;
+const processing = require(path.join(ROOT_PATH, 'specs', 'processing.js')).sharpToString;
 
 const MODELS_PATHS = {};
 const SCHEMAS = {};

@@ -188,6 +188,8 @@ exports.patchGraphQLSchema = function(current, model, type, schema, settings) {
       };
 
       return new Promise((resolve, reject) => {
+
+        // TODO: temporal memoize to avoid triggering too many copies?
         return sharp(path.join(settings.assetsPath, cover.file))
           .extract({
             left: crop.x,

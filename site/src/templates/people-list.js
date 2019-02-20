@@ -11,12 +11,15 @@ export const query = graphql`
         node {
           firstName
           lastName
+          coverImage {
+            url
+          }
           slugs
           id
           domain
           active
           membership
-          role{
+          role {
             fr
             en
           }

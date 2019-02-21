@@ -22,7 +22,11 @@ a:hover{
 body.page-production, 
 body.page-news, 
 body.page-activity{
-
+	
+	.titre-sticky{
+		@include text-overflow;
+	}
+	
 	#article-contenu{
 
 		// flex permet de mettre le choix de la langue en dernier (alors qu'il doit être en premier dans l'HTML pour pouvoir marcher)

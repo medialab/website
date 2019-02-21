@@ -33,6 +33,7 @@
 				padding-top: 50px;
 				font-weight: bold;
 				border-bottom: $border;
+
 			}
 
 			.date, .type-objet{
@@ -43,8 +44,9 @@
 			.type-objet:before{ content: " – "}
 
 			h1{
-				@include font-size-60-phone();
-				padding-bottom: $baseline 0 $baseline*3 0
+				@include font-size-27();
+				font-weight: bold;
+				padding: $baseline 0 $baseline*3 0;
 			}
 
 			hgroup h2{ padding-bottom: $baseline*1.5; }

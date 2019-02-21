@@ -12,8 +12,9 @@
 					padding-top: $baseline*1.5;
 					padding-bottom: $baseline*1;
 				h1{
-					@include font-size-40();
-					padding-bottom: $baseline*1; 
+					@include font-size-27();
+					font-weight: bold;
+					padding: $baseline 0 $baseline*3 0;
 				}
 
 				h2{ 

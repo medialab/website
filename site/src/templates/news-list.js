@@ -10,10 +10,32 @@ export const query = graphql`
       edges {
         node {
           id
-          title {
-            fr
+          title{
             en
+            fr
           }
+          description {
+            en
+            fr
+          }
+          place
+          label{
+            en
+            fr
+          }
+          startDate
+          endDate
+          internal
+          cover {
+            file
+            crop{
+              height
+              width
+            }
+          }
+          slugs
+          type
+          lastUpdated
         }
       }
     }

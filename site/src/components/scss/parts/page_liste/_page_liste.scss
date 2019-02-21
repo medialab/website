@@ -1,33 +1,37 @@
 /* all */
 
-#liste{
-    
-    position: relative;
+body.page-production-list,
+body.page-news-list,
+body.page-activity-list{
 
-    #liste_objet{
+    #liste{
+        
+        position: relative;
 
-        ////    Liste des liens
+        #liste_objet{
 
-        [data-item]{ // S'applique aux items des troix catégorie
-            border-top: $border;
-            
-            &:hover{
-                transition: .25s ease;
-                border-top-color: $redlab;
+            ////    Liste des liens
 
-                &+ [data-item] {
+            [data-item]{ // S'applique aux items des troix catégorie
+                border-top: $border;
+                
+                &:hover{
+                    transition: .25s ease;
                     border-top-color: $redlab;
+
+                    &+ [data-item] {
+                        border-top-color: $redlab;
+                    }
                 }
             }
+
+            @for $i from 1 through 400 {
+
+                [data-item="#{$i}"]:hover ~ [data-item="#{$i + 1}"],
+                [data-item="#{$i}"]:active ~ [data-item="#{$i + 1}"]{ 
+                    border-top-color: $redlab;
+                }
+            }  
         }
-
-        @for $i from 1 through 400 {
-
-            [data-item="#{$i}"]:hover ~ [data-item="#{$i + 1}"],
-            [data-item="#{$i}"]:active ~ [data-item="#{$i + 1}"]{ 
-                border-top-color: $redlab;
-            }
-        }  
     }
 }
-

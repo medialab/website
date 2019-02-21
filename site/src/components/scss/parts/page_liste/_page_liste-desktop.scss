@@ -31,187 +31,188 @@
 
 @include for-size(desktop) {
 
-	#topbar{ 
-		//position: fixed!important; 
-		top: 0;
-		width: calc(100vw - #{$margins-desktop*2});
-		// left: 0;
-	}
+	body.page-production-list,
+	body.page-news-list,
+	body.page-activity-list{
 
-	#liste{
-        
-		   margin-top: $height-top-bar;
-		   margin-left: $logo-column;
+		#topbar{ 
+			//position: fixed!important; 
+			top: 0;
+			width: calc(100vw - #{$margins-desktop*2});
+			// left: 0;
+		}
 
-		   hr{
-			   display: block; 
-			   width: calc(100vw - #{$logo-column} - #{$margins-desktop*2});
-			   position: fixed;
-			   border-top: $border-bold;
-		   }
-		   
+		#liste{
+	        
+			   margin-top: $height-top-bar;
+			   margin-left: $logo-column;
 
-		///// Accroche Phone
-        .accroche-titre-phone{
-        	display: none;
-        }
-		///// Acchroche Phone END
-		
-        ///// Liste Objet
-        .liste_objet{
+			   hr{
+				   display: block; 
+				   width: calc(100vw - #{$logo-column} - #{$margins-desktop*2});
+				   position: fixed;
+				   border-top: $border-bold;
+			   }
+			   
 
+			///// Accroche Phone
+	        .accroche-titre-phone{
+	        	display: none;
+	        }
+			///// Acchroche Phone END
 			
-			margin-bottom: 40vh;
+	        ///// Liste Objet
+	        .liste_objet{
 
-			.list-year{
-				padding-top: $baseline;
-				min-height: $baseline*3.5;
-				padding-bottom: $baseline;
-				@include font-size-16();
-				font-weight: 600;
 				
-				border-bottom: $border-light;
-				overflow: hidden;
-				
-				&:target{
-					padding-top: $height-top-bar + $baseline*1;
-				}
-				pre{
-					position: absolute; 
-					bottom: $baseline*1;
-					left: 10px;
-				}
-				span{
-					background-color: white;
-					z-index: 10;
-					padding-right: $baseline/2;
-				}
-				// border-top: $border;
+				margin-bottom: 40vh;
 
-
-				&:first-of-type{
-					height: $baseline*3.5;
-					padding-top: $baseline
-				}
-				
-			}
-
-		
-	
-
-			[data-item]{ // S'applique aux items des troix catégorie
-
-				padding-top: $baseline*1.5;
-				padding-bottom: $baseline;
-				border-bottom: $border-light;
-				
-
-				.date, .type{
-					@include font-size-13();
-					color: $text-color-light;
-				}
-
-				.date{
-					position: absolute;
-					bottom: $baseline;
-					left: 0;
-				}
-
-				.type{
-					text-align: right; 
-				}
-
-				h1{
-					@include font-size-20();
-				}
-
-				h2{ 
-					@include font-size-13();
-					margin-bottom: $baseline*0.5; 
-					&:before{ content: "– "; }
-				}
-
-				&:hover{
-					color: $redlab;
-					.type{ color: $redlab-light; }
-				}
-
-			}/* end data-item*/
-
-			[data-item] ~ [data-item-accroche]{ display: none; }
-
-			.accroche-titre{ display: block; }
-
-			@for $i from 0 through 400 {
-				
-				[data-item="#{$i}"]:hover ~ [data-item-accroche="#{$i}"],
-				[data-item="#{$i}"]:active ~ [data-item-accroche="#{$i}"]{ display:block; }
-				[data-item="#{$i}"]:hover ~ .accroche-titre{ display:none; }
-			}
-
-
-			
-		    .item_accroche{
-				@include font-size-40();
-				margin-left: $margins-desktop*3;
-				padding: 20px;
-				overflow: hidden;
-			
-				// background-color: red;
-				position: fixed;
-				
-				top: $height-top-bar;
-				// border-top: $border;
-				padding-top: $baseline*2;
-				height: calc(100vh - #{$height-top-bar} - #{$margins-desktop});	
-
-				a{ 
-					display: block;
-					width: 100%;
-				height: 100%;}
-				
-				.item_accroche_texte{
-					background-color: white;
-					z-index: 10;
-					display: block;
-					width: 100%;
-					position: absolute;
-					padding: $baseline $baseline*2;
+				.list-year{
+					padding-top: $baseline;
+					min-height: $baseline*3.5;
+					padding-bottom: $baseline;
+					@include font-size-16();
+					font-weight: 600;
 					
+					border-bottom: $border-light;
+					overflow: hidden;
 					
-				}
-
-				.image-pre{
-					position: absolute;
-					top: -20px;
-					left: -20px;
-					pre{
-						font-size: 20px;
-						line-height: 23.2px;
+					&:target{
+						padding-top: $height-top-bar + $baseline*1;
 					}
+					pre{
+						position: absolute; 
+						bottom: $baseline*1;
+						left: 10px;
+					}
+					span{
+						background-color: white;
+						z-index: 10;
+						padding-right: $baseline/2;
+					}
+					// border-top: $border;
+
+
+					&:first-of-type{
+						height: $baseline*3.5;
+						padding-top: $baseline
+					}
+					
 				}
 
-				@include for-size(desktop-1300) {
-					 // Prevenir des lignes trop étendues sur grand écran
-					// width: calc( ( ( 90% - #{$logo-column} ) /2 ) - #{$margins-desktop*2} );
-				}
-
-
-			}/* end item_accroche*/
 			
-
-			[data-item], .list-year{
-				width: calc((100vw - #{$logo-column} - #{$margins-desktop*2})/5*2 );
-				// width: 40%;
-			}
-			.item_accroche{
-				width: calc(((100vw - #{$logo-column} - #{$margins-desktop*2})/5*3) - #{$margins-desktop}*3 );
-				left: calc(#{$logo-column} + #{$margins-desktop} + ((100vw - #{$logo-column} - #{$margins-desktop*2})/5*2 ));
-			}
-
-
-		}/* end .liste-objet */
 		
 
+				[data-item]{ // S'applique aux items des troix catégorie
+
+					padding-top: $baseline*1.5;
+					padding-bottom: $baseline;
+					border-bottom: $border-light;
+					
+
+					.date, .type{
+						@include font-size-13();
+						color: $text-color-light;
+					}
+
+					.date{
+						position: absolute;
+						bottom: $baseline;
+						left: 0;
+					}
+
+					.type{
+						text-align: right; 
+					}
+
+					h1{
+						@include font-size-20();
+					}
+
+					h2{ 
+						@include font-size-13();
+						margin-bottom: $baseline*0.5; 
+						&:before{ content: "– "; }
+					}
+
+					&:hover{
+						color: $redlab;
+						.type{ color: $redlab-light; }
+					}
+
+				}/* end data-item*/
+
+				[data-item] ~ [data-item-accroche]{ display: none; }
+
+				.accroche-titre{ display: block; }
+
+				@for $i from 0 through 400 {
+					
+					[data-item="#{$i}"]:hover ~ [data-item-accroche="#{$i}"],
+					[data-item="#{$i}"]:active ~ [data-item-accroche="#{$i}"]{ display:block; }
+					[data-item="#{$i}"]:hover ~ .accroche-titre{ display:none; }
+				}
+
+
+				
+			    .item_accroche{
+					@include font-size-40();
+					margin-left: $margins-desktop*3;
+					padding: 20px;
+					overflow: hidden;
+				
+					// background-color: red;
+					position: fixed;
+					
+					top: $height-top-bar;
+					// border-top: $border;
+					padding-top: $baseline*2;
+					height: calc(100vh - #{$height-top-bar} - #{$margins-desktop});	
+
+					a{ 
+						display: block;
+						width: 100%;
+					height: 100%;}
+					
+					.item_accroche_texte{
+						background-color: white;
+						z-index: 10;
+						display: block;
+						width: 100%;
+						position: absolute;
+						padding: $baseline $baseline*2;
+						
+						
+					}
+
+					.image-pre{
+						position: absolute;
+						top: -20px;
+						left: -20px;
+						pre{
+							font-size: 20px;
+							line-height: 23.2px;
+						}
+					}
+
+					@include for-size(desktop-1300) {
+						 // Prevenir des lignes trop étendues sur grand écran
+						// width: calc( ( ( 90% - #{$logo-column} ) /2 ) - #{$margins-desktop*2} );
+					}
+
+
+				}/* end item_accroche*/
+				
+
+				[data-item], .list-year{
+					width: calc((100vw - #{$logo-column} - #{$margins-desktop*2})/5*2 );
+					// width: 40%;
+				}
+				.item_accroche{
+					width: calc(((100vw - #{$logo-column} - #{$margins-desktop*2})/5*3) - #{$margins-desktop}*3 );
+					left: calc(#{$logo-column} + #{$margins-desktop} + ((100vw - #{$logo-column} - #{$margins-desktop*2})/5*2 ));
+				}
+			}/* end .liste-objet */
+		}
     }/* end liste */
 }

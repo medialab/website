@@ -1,93 +1,98 @@
 
 @include for-size(phone) {
 
-	h1.type_title{
-		margin-top: $height-top-bar-phone + $baseline*2;
-		@include font-size-20-phone;
-		text-align: center;
-	}
+	body.page-production-list,
+	body.page-news-list,
+	body.page-activity-list{
 
-	h2.filtre_activite_title{ display: none; }
+		h1.type_title{
+			margin-top: $height-top-bar-phone + $baseline*2;
+			@include font-size-20-phone;
+			text-align: center;
+		}
 
-	label.toggle-filtre-phone{
-		height: $baseline*3;
-		position: fixed;
-		left: 0;
-		bottom: 0;
-		width: 100vw;
-		@include font-size-16-phone();
-		text-align: center;
-		border-top: $border-bold;
-		background-color: $background-site;
-		cursor: pointer;
-		z-index: 50;
+		h2.filtre_activite_title{ display: none; }
 
-		span{
-				transform: rotate(0deg);
-				transition: .25s ease-in-out;
-				position: absolute;
-			}			
-	}
-
-	input.toggle-filtre-phone:checked {
-
-		&+ label.toggle-filtre-phone{
-
-			height: $baseline*8;
+		label.toggle-filtre-phone{
+			height: $baseline*3;
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 100vw;
+			@include font-size-16-phone();
+			text-align: center;
+			border-top: $border-bold;
+			background-color: $background-site;
+			cursor: pointer;
+			z-index: 50;
 
 			span{
-				transform: rotate(180deg);
+					transform: rotate(0deg);
+					transition: .25s ease-in-out;
+					position: absolute;
+				}			
+		}
+
+		input.toggle-filtre-phone:checked {
+
+			&+ label.toggle-filtre-phone{
+
+				height: $baseline*8;
+
+				span{
+					transform: rotate(180deg);
+				}
+			}
+
+			&~ .filtre_objet{
+				visibility: visible;
+
 			}
 		}
 
-		&~ .filtre_objet{
-			visibility: visible;
-
-		}
-	}
-
-	input.filtre_objet{
-		display: none;
-	}
-
-	label.filtre_objet{
-		visibility: hidden;
-		position: fixed;
-		width: calc(#{$mobile-container-width/2} - #{$unite-phone});
-		@include text-overflow();
-		@include font-size-13-phone();
-		text-align: center;
-		left: $margins-phone;
-		bottom: $unite;
-		cursor: pointer;
-		border: $border;
-		padding-top: 2px;
-		background-color: $background-site;
-		z-index:51;
-		//transition: .25s;
-	}
-
-
-	@for $i from 1 through 13 {
-		input.filtre_objet:nth-of-type(#{$i}), label.filtre_objet:nth-of-type(#{$i}){ 
-			bottom: $baseline * $i - $baseline;
+		input.filtre_objet{
+			display: none;
 		}
 
-		@if $i % 2 == 0 {  //use $i for calculating mod here than #{$i}
+		label.filtre_objet{
+			visibility: hidden;
+			position: fixed;
+			width: calc(#{$mobile-container-width/2} - #{$unite-phone});
+			@include text-overflow();
+			@include font-size-13-phone();
+			text-align: center;
+			left: $margins-phone;
+			bottom: $unite;
+			cursor: pointer;
+			border: $border;
+			padding-top: 2px;
+			background-color: $background-site;
+			z-index:51;
+			//transition: .25s;
+		}
+
+
+		@for $i from 1 through 13 {
 			input.filtre_objet:nth-of-type(#{$i}), label.filtre_objet:nth-of-type(#{$i}){ 
-				bottom: $baseline * $i;
+				bottom: $baseline * $i - $baseline;
+			}
 
+			@if $i % 2 == 0 {  //use $i for calculating mod here than #{$i}
+				input.filtre_objet:nth-of-type(#{$i}), label.filtre_objet:nth-of-type(#{$i}){ 
+					bottom: $baseline * $i;
+
+				}
 			}
 		}
-	}
 
-	input.filtre_objet:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone}); }
-	label.filtre_objet:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone});}
-	
-	input.filtre_objet:checked + label.filtre_objet{ 
-		font-weight: bold;
-		color: $redlab;
-		border-color: $redlab;
-		transition-delay: inherit;
+		input.filtre_objet:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone}); }
+		label.filtre_objet:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone});}
+		
+		input.filtre_objet:checked + label.filtre_objet{ 
+			font-weight: bold;
+			color: $redlab;
+			border-color: $redlab;
+			transition-delay: inherit;
+		}
 	}
 }

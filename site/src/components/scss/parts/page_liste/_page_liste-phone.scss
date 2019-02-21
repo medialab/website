@@ -9,114 +9,119 @@
 
 @include for-size(phone) {
 
-	#liste{
-        
-		   margin: $baseline $margins-phone 0 $margins-phone ;
-		   
-		   hr{ display: none; }
+	body.page-production-list,
+	body.page-news-list,
+	body.page-activity-list{
 
-		
-		
+		#liste{
+	        
+			   margin: $baseline $margins-phone 0 $margins-phone ;
+			   
+			   hr{ display: none; }
 
-  
-        ///// Liste Objet
-        .liste_objet{
+			
+			
 
-            width: $mobile-container-width;
-            height: auto;
-            margin-bottom: 50vh;
+	  
+	        ///// Liste Objet
+	        .liste_objet{
 
-			////	Liste des liens
+	            width: $mobile-container-width;
+	            height: auto;
+	            margin-bottom: 50vh;
 
-           	[data-item]{ // S'applique aux items des troix catégorie
-				// min-height: $unite*3;
-				padding-top: $baseline;
-				padding-bottom: $baseline;
-                display: block;
-				background-color: $background-site;
-				border-top: $border-light;
+				////	Liste des liens
 
-                
-	            .type{
-					@include font-size-13-phone();
-					text-align: right; 
-					color: $text-color-light;
-				}
-
-				h1{
-					@include font-size-20-phone();
-				}
-
-				h2{ 
-					@include font-size-16-phone();
-					margin-top: $baseline*0.5; 
-					&:before{ content: "– "; }
-				}
-			}
-
-
-
-			////	Accroche
-
-		    [data-item] ~ [data-item-accroche]{ 
-		    	display: block;
-		    	visibility: collapse;
-		    	max-height: 0;
-		    	transition: .5s ease-in-out;
-		    	transition-property: height;
-				
-		    }
-
-		    .accroche-titre{ 
-		    	display: none;
-		    }
-
-		    @for $i from 0 through 400 {
-		    	[data-item="#{$i}"]:hover *,
-		    	[data-item="#{$i}"]:active *{
-		    		color: $redlab !important;
-		    	}
-
-		        [data-item="#{$i}"]:hover ~ [data-item-accroche="#{$i}"],
-		        [data-item="#{$i}"]:active ~ [data-item-accroche="#{$i}"],
-		        [data-item-accroche="#{$i}"]:hover, 
-		        [data-item-accroche="#{$i}"]:active{ 
-		        	transition: .5s ease-in-out;
-		        	transition-property: max-height;
-		        	max-height: 500px;
-					visibility: visible;
+	           	[data-item]{ // S'applique aux items des troix catégorie
+					// min-height: $unite*3;
 					padding-top: $baseline;
-					padding-bottom: $baseline*2;
-		        }
+					padding-bottom: $baseline;
+	                display: block;
+					background-color: $background-site;
+					border-top: $border-light;
 
-		        [data-item="#{$i}"]:hover ~ .accroche-titre,
-		        [data-item="#{$i}"]:active ~ .accroche-titre{ 
-		        	// do nothing
-		        }
-		    }
+	                
+		            .type{
+						@include font-size-13-phone();
+						text-align: right; 
+						color: $text-color-light;
+					}
 
-		    .item_accroche{
-		        @include font-size-16-phone();
-			    position: relative;
-			    width: $mobile-container-width;
-			    color: $redlab;
-		    }
-		}
-		
+					h1{
+						@include font-size-20-phone();
+					}
 
-		///// Accroche Phone
-        .accroche-titre-phone{
-        	display: block;
-        	width: $mobile-container-width;
-        	height: auto;
+					h2{ 
+						@include font-size-16-phone();
+						margin-top: $baseline*0.5; 
+						&:before{ content: "– "; }
+					}
+				}
 
-        	border-top: none!important; 
-        	@include font-size-27-phone();
-			text-align: center;
-		
-			padding-bottom: $baseline*3;
-		}
-		
 
-    }/* end #liste */
+
+				////	Accroche
+
+			    [data-item] ~ [data-item-accroche]{ 
+			    	display: block;
+			    	visibility: collapse;
+			    	max-height: 0;
+			    	transition: .5s ease-in-out;
+			    	transition-property: height;
+					
+			    }
+
+			    .accroche-titre{ 
+			    	display: none;
+			    }
+
+			    @for $i from 0 through 400 {
+			    	[data-item="#{$i}"]:hover *,
+			    	[data-item="#{$i}"]:active *{
+			    		color: $redlab !important;
+			    	}
+
+			        [data-item="#{$i}"]:hover ~ [data-item-accroche="#{$i}"],
+			        [data-item="#{$i}"]:active ~ [data-item-accroche="#{$i}"],
+			        [data-item-accroche="#{$i}"]:hover, 
+			        [data-item-accroche="#{$i}"]:active{ 
+			        	transition: .5s ease-in-out;
+			        	transition-property: max-height;
+			        	max-height: 500px;
+						visibility: visible;
+						padding-top: $baseline;
+						padding-bottom: $baseline*2;
+			        }
+
+			        [data-item="#{$i}"]:hover ~ .accroche-titre,
+			        [data-item="#{$i}"]:active ~ .accroche-titre{ 
+			        	// do nothing
+			        }
+			    }
+
+			    .item_accroche{
+			        @include font-size-16-phone();
+				    position: relative;
+				    width: $mobile-container-width;
+				    color: $redlab;
+			    }
+			}
+			
+
+			///// Accroche Phone
+	        .accroche-titre-phone{
+	        	display: block;
+	        	width: $mobile-container-width;
+	        	height: auto;
+
+	        	border-top: none!important; 
+	        	@include font-size-27-phone();
+				text-align: center;
+			
+				padding-bottom: $baseline*3;
+			}
+			
+
+	    }/* end #liste */
+	}
 }

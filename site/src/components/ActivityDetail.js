@@ -2,8 +2,12 @@ import React from 'react';
 import {graphql} from 'gatsby';
 
 import {join} from './helpers';
-import RawHtml from './RawHtml';
+import PublicationsAssocies from './fragments/pages/PublicationsAssocies.js';
+import FichiersAssocies from './fragments/pages/FichiersAssocies.js';
+import Nav from './fragments/Nav.js';
+import ToggleLang from './fragments/pages/ToggleLang.js';
 
+import RawHtml from './RawHtml';
 import './scss/page_objet.scss';
 
 
@@ -46,24 +50,43 @@ export default function ActivityDetail({lang, activity}) {
   return (
     <main id="main-objet">
       <p className="titre-sticky">{activity.name}</p>
-      <article id="article-contenu">
-        <hgroup>
-          <h1>{activity.name} — {activity.baseline && (lang === "fr" ?  activity.baseline.fr : activity.baseline.en)}</h1>
-          <h2>{activity.description && (lang === "fr" ?  activity.description.fr : activity.description.en)}</h2>
+        <article id="article-contenu">
+          {/* Toggle Langue */}
+          <ToggleLang lang={lang} content={activity.content} />
+          {/* Chapô FR */}
+          <hgroup className="fr" lang="fr">
+            <h1>{activity.name}</h1>
+            <h2>{activity.description && (activity.description.fr)}</h2>
+            <p className="date">{activity.endDate}</p>
+            <p className="type-objet">{activity.type}</p>
+          </hgroup>
+          {/* Article FR */}
+          <div className="article-contenu fr" lang="fr">
+            {activity.content && ( activity.content.fr && <RawHtml html={activity.content.fr} /> )}
+          </div>
 
-          <p className="date">{activity.endDate}</p>
-          <p className="type-objet">{activity.type}</p>
+          {/* Chapô EN */}
+          <hgroup className="en" lang="en">
+            <h1>{activity.title && (activity.title.en)}</h1>
+            <h2>{activity.description && (activity.description.en)}</h2>
+            <p className="date">{activity.endDate}</p>
+            <p className="type-objet">{activity.type}</p>
+          </hgroup>
+          {/* Article EN */}
+          <div className="article-contenu en" lang="en">
+            {activity.content && ( activity.content.en && <RawHtml html={activity.content.en} /> )}
+          </div>
 
-        </hgroup>
+        </article>
 
-        <div className="article-contenu">
-        {activity.content && (lang === "fr" ? activity.content.fr && <RawHtml html={activity.content.fr} />  : activity.content.en && <RawHtml html={activity.content.en} />)}
+        <div>
+          {lang === "fr" ? "Personnes liées" + String.fromCharCode(8239) +":"  : "Related people:"}
+          <ul>
+            {(activity.people || []).map(p => <li key={p.id}>{p.firstName} {p.lastName}</li>)}
+          </ul>
         </div>
-      </article>
-
-      <div>
-        {lang === "fr" ? "Personnes liées" + String.fromCharCode(8239) +":"  : "Related people:"} {join(people, ', ')}
-      </div>
+        <PublicationsAssocies publications={activity.productions} lang={lang} />
+        <FichiersAssocies />
   </main>
   );
 }

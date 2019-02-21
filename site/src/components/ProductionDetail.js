@@ -61,7 +61,7 @@ export default function ProductionDetail({lang, production}) {
         <p className="titre-sticky">{production.title && (lang === "fr" ? production.title.fr : production.title.en ) }</p>
         <article id="article-contenu">
           {/* Toggle Langue */}
-          <ToggleLang />
+          <ToggleLang lang={lang} content={production.content} />
           {/* Chapô FR */}
           <hgroup className="fr" lang="fr">
             <h1>{production.title && (production.title.fr)}</h1>

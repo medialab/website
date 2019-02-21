@@ -15,27 +15,38 @@ export default function ProductionListing({lang, list, group}) {
   	return (
     	<>
     		<FilterProduction />
+        
         <section id="liste">
-          <p className="accroche-titre-phone">Description en une phrase de la catégorie activité....</p>
+        <hr/>
+          <p className="accroche-titre-phone">Description en une phrase de la catégorie production....</p>
           <ul className="liste_objet" id="liste-productions">
 
           <li id="year-2018" className="list-year">
               <span>2018</span>
               <pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
           </li>
+
           {list.map((p, index) => (
             <>
             <li data-item={index} data-type={p.type} className={`list-item ${p.type}`}>
               {/* Dans les données Json "data-type" fait référence à "productionTypes" */}
                 <Link to={`/productions/${p.slugs[p.slugs.length - 1]}`}>
                 <h1 data-level-1="title">{lang === "fr" ? p.title.fr : p.title.en}</h1>
-                  <h2 data-level-2="authors">
+                {p.authors && 
+                <h2 data-level-2="authors">
                     <span>{p.authors}</span>
-                </h2>
-              </Link>
+                </h2>}
+                  
+              
 
-              <p className="date">{formatDate(p.lastUpdated, 'dd MMMM yyyy', {locale: lang === "fr" ? fr : en})}</p>
-              <p className="type">{p.type}</p>
+                {/* <p className="date">{formatDate(p.lastUpdated, 'dd MMMM yyyy', {locale: lang === "fr" ? fr : en})}</p> */}
+                {p.date && <p className="date">{p.date}</p>}
+                <p className="type" data-icon="production">
+                Production - {p.type}
+                {/* {p.productionTypes} - {p.type} */}
+                </p>
+
+                </Link>
             </li>
 
             <li className="item_accroche description" data-item-accroche={index}>
@@ -48,6 +59,9 @@ export default function ProductionListing({lang, list, group}) {
             </li>
             </>
           ))}
+
+
+
           <li className="item_accroche accroche-titre">Description en une phrase de la catégorie Production</li>
         </ul>
         </section>

@@ -25,7 +25,7 @@ body.page-activity-list{
                 }
             }
 
-            @for $i from 1 through 400 {
+        @for $i from 1 through 1000 {
 
                 [data-item="#{$i}"]:hover ~ [data-item="#{$i + 1}"],
                 [data-item="#{$i}"]:active ~ [data-item="#{$i + 1}"]{ 

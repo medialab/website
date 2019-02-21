@@ -34,6 +34,11 @@
             padding-top: $baseline*2;
             padding-bottom: $baseline*1.5;
             border-bottom: $border-redlab;
+
+            &#nav-home{
+                display: none;
+            }
+
             li{ margin-bottom: $baseline*0.5; }
             li::before{
                 display: inline-block;
@@ -42,7 +47,8 @@
                 width: $baseline*1;
                 margin-right: $baseline*1;
             }
-            &:first-of-type{
+
+            &:nth-of-type(2){
                 margin-top: $baseline*0.5;
                 border-top: $border-redlab;
             }
@@ -69,12 +75,27 @@
     #topbar input:checked ~  #topbar-content nav, 
     #topbar input:checked ~ #topbar-content #langue{
         display: block; 
+    }  
+    
+}
+
+body.page-home { // Homepage inclus une section supplementaire ici activé
+    #topbar{
+        ul{
+            &#nav-home{
+            display: block !important;
+            }
+
+            &:first-of-type {
+                margin-top: $baseline*0.5;
+                border-top: $border-redlab;
+            }
+
+            &:nth-of-type(2){
+                margin-top: inherit;
+                border-top: inherit;
+            }
+        }
+
     }
-
-
-    
-    
-
-   
-    
 }

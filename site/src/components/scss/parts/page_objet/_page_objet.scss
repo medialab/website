@@ -18,13 +18,19 @@ a:hover{
 }
 
 
-#article-contenu{
 
-	// flex permet de mettre le choix de la langue en dernier (alors qu'il doit être en premier dans l'HTML pour pouvoir marcher)
-	@include flex();
-	@include flex-direction(column);
+body.page-production, 
+body.page-news, 
+body.page-activity{
 
-	hgroup{ @include flex-order(1); }
-	.article-contenu{ @include flex-order(2); }
-	.toggle-lang{ @include flex-order(3); max-width:900px;}
+	#article-contenu{
+
+		// flex permet de mettre le choix de la langue en dernier (alors qu'il doit être en premier dans l'HTML pour pouvoir marcher)
+		@include flex();
+		@include flex-direction(column);
+
+		hgroup{ @include flex-order(1); }
+		.article-contenu{ @include flex-order(2); }
+		.toggle-lang{ @include flex-order(3); max-width:900px;}
+	}
 }

@@ -74,6 +74,10 @@
                 .active{
                     border-bottom: $border;
                 }
+
+                a:hover.active{
+                    border-color: $redlab;
+                }
             }
         }
     }/* end #topbar-content */

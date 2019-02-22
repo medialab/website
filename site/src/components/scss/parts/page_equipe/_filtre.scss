@@ -9,7 +9,6 @@
 	}
 
 	h1.type_title{ 
-		position: fixed;
 		left: $margins-desktop;
 		top: $height-top-bar ;
 		// width: calc( #{$logo-column} - #{$margins-desktop});
@@ -38,11 +37,7 @@
 		left: $margins-desktop;
 		width: $logo-column - $margins-desktop;
 		@include font-size-13();
-		/*white-space: nowrap;*/
-		
-		/*.checkbox-medialab{
-			display: inline;
-		}*/	
+	
 	}
 
 	[data-active="no"]{

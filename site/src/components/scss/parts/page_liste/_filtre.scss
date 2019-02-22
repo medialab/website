@@ -1,162 +1,138 @@
 /////////////////////
-//////// Desktop
+//////// Filtres
 /////////////////////
 
-@include for-size(desktop) {
 
-	body.page-production-list,
-	body.page-news-list,
-	body.page-activity-list{
+.filtres-listing{
 
-		.filtre_title, .toggle-filtre-phone{
-			display: none;
+	h1{
+		@include font-size-16();
+		text-transform: uppercase;
+		font-weight: 600;
+		border-top: $border-light;
+		border-bottom: $border-light;
+		padding-top: $baseline * 1;
+		padding-bottom: $baseline * 1;
+	}
+
+
+	.link-productions-sort,
+	.link-activity-sort{
+		@include font-size-13();
+		font-weight: 300;
+		text-transform: uppercase;
+		padding-top: $baseline * 1.5;
+		padding-bottom: $baseline * 1;
+		border-bottom: $border-very-light;
+		li, a{
+			transition: 1s max-height;
+			overflow: hidden;
+			height: $baseline*2;
+			display: block;
+			width: 100%;
+			span{
+				position: absolute;
+				right: 0;
+				display: none;
+			}
 		}
 
-
-		h1.type_title{ 
-			position: fixed;
-			left: $margins-desktop;
-			top: $height-top-bar ;
-			// width: calc( #{$logo-column} - #{$margins-desktop});
-			width: $logo-column - $margins-desktop;
-			border-top: $border-light;
-			border-bottom: $border-light;
-			padding-top: $baseline * 1;
-			padding-bottom: $baseline * 1;
-			@include font-size-13();
-			text-transform: uppercase;
-			font-weight: 400;
-			height: $baseline*3.5;
-		}
-		
-		h2.filtre_activite_title,
-		h2.filtre_production{
-			position: fixed;
-			left: $margins-desktop;
-			@include font-size-13();
-			font-weight: 400;
-		}
-
-		
-
-		label.filtre_objet, label.filtre_objet_value{
-
-			position: fixed;
-			left: $margins-desktop;
-			width: $logo-column - $margins-desktop;
-			@include font-size-13();
-		
-		}
-
-		.filtre_objet_value{
-			padding-left: $margins-desktop;
-			
+		.pageProduction_current{
+			font-weight: 600!important;
+			span{ display: inline; }
 		}
 		
+		
+	}
+
+	
+}/* end filtre-listing */
+
+
+
+#go-to-year{      
+	z-index: 90;
+	@include font-size-13;
+	margin-top: $baseline * 0.5;
+	margin-bottom: $baseline * 1.5;      
+	padding-top: $baseline * 0.5;
+	border-bottom: $border-very-light;
+
+	.current-year{
+		font-weight: 600;
+		padding-right: $margins-desktop*1.5;
+		position: absolute;
+		right: 0;
+		top: $baseline * 0.5;
+	}
+
+	ul{
+		background-color: $background-site;       
+		@include font-size-13;
+		max-height: 0;
+		transition: 1s;
+		overflow: hidden;
+		margin-top: $baseline;
+
+		li{
+			display: inline-block;              
+			padding-bottom: $baseline/2;
+			padding-top: $baseline/2;
+			border-right: $border-very-light;
+			border-bottom: $border-very-light;
+			text-align: center;
+		}
+		
+	}
+
+	#go-to-year-input:checked ~ ul,
+	#radio_filtre-production_year:checked ~ ul{
+		max-height: 100vh;         
+	}
+	
+}/* end #go-to-year */
+
+
+
+
+/* flêches ouvrantes/fermantes */
+#go-to-year-input + label, 
+#radio_filtre-production_group + label,
+#radio_filtre-production_year + label,
+#radio_filtre-production_type + label{
+	padding-top: $baseline * 0.5;
+	@include font-size-13;
+	position: absolute;
+	text-align: right;
+	right: 0;
+	top: 0;
+	z-index: 99;
+	span{
+		display: inline-block; 
+		width: $baseline;
+		height: $baseline;
 	}
 }
 
-@include for-size(phone) {
-
-	body.page-production-list,
-	body.page-news-list,
-	body.page-activity-list{
-
-		h1.type_title{
-			margin-top: $height-top-bar-phone + $baseline;
-			//border-top: $border-light;
-			border-bottom: $border-light;
-			padding-top: $baseline * .5;
-			padding-bottom: $baseline * 1;
-			@include font-size-13();
-			text-transform: uppercase;
-			font-weight: 400;
-			text-align: center;
-			height: $baseline*3.5;
-		}
-
-		h2.filtre_activite_title{ display: none; }
-
-		label.toggle-filtre-phone{
-			height: $baseline*3;
-			position: fixed;
-			left: 0;
-			bottom: 0;
-			width: 100vw;
-			@include font-size-16-phone();
-			text-align: center;
-			border-top: $border-bold;
-			background-color: $background-site;
-			cursor: pointer;
-			z-index: 50;
-
-			span{
-					transform: rotate(0deg);
-					transition: .25s ease-in-out;
-					position: absolute;
-				}			
-		}
-
-		input.toggle-filtre-phone:checked {
-
-			&+ label.toggle-filtre-phone{
-
-				height: $baseline*8;
-
-				span{
-					transform: rotate(180deg);
-				}
-			}
-
-			&~ .filtre_objet{
-				visibility: visible;
-
-			}
-		}
-
-		input.filtre_objet{
-			display: none;
-		}
-
-		label.filtre_objet{
-			visibility: hidden;
-			position: fixed;
-			width: calc(#{$mobile-container-width/2} - #{$unite-phone});
-			@include text-overflow();
-			@include font-size-13-phone();
-			text-align: center;
-			left: $margins-phone;
-			bottom: $unite;
-			cursor: pointer;
-			border: $border;
-			padding-top: 2px;
-			background-color: $background-site;
-			z-index:51;
-			//transition: .25s;
-		}
-
-
-		@for $i from 1 through 13 {
-			input.filtre_objet:nth-of-type(#{$i}), label.filtre_objet:nth-of-type(#{$i}){ 
-				bottom: $baseline * $i - $baseline;
-			}
-
-			@if $i % 2 == 0 {  //use $i for calculating mod here than #{$i}
-				input.filtre_objet:nth-of-type(#{$i}), label.filtre_objet:nth-of-type(#{$i}){ 
-					bottom: $baseline * $i;
-
-				}
-			}
-		}
-
-		input.filtre_objet:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone}); }
-		label.filtre_objet:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone});}
-		
-		input.filtre_objet:checked + label.filtre_objet{ 
-			font-weight: bold;
-			color: $redlab;
-			border-color: $redlab;
-			transition-delay: inherit;
-		}
+#go-to-year-input:checked + label,
+#radio_filtre-production_group:checked + label,
+#radio_filtre-production_year:checked + label,
+#radio_filtre-production_type:checked + label{
+	span{
+		transform: rotate(90deg);
+		transform-origin: center center;
+		top: 3px;
 	}
+}
+
+
+.filtre-production, .filtre-activity{ 
+	position: fixed;
+	@include font-size-13;
+	font-weight: 300;
+
+}
+
+#radio_filtre-production_type + label{
+	position: fixed;
 }

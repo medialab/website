@@ -1,157 +1,96 @@
 @include for-size(desktop) {
 
-    body.page-production-list,
-    body.page-news-list,
-    body.page-activity-list{
+	.toggle-filtre-phone{ display: none; }
 
     	.toggle-filtre-phone{
     		display: none;
     	}
 
-
-        .filtres-listing{
-                position: fixed;
-                z-index: 10;
-                left: $margins-desktop;
-                top: $height-top-bar ;
-                width: $logo-column - $margins-desktop;
-                
-
-                h1{
-                    @include font-size-16();
-                    text-transform: uppercase;
-                    font-weight: 600;
-                    // font-weight: 300;
-                    border-top: $border-light;
-                    border-bottom: $border-light;
-                    padding-top: $baseline * 1;
-                    padding-bottom: $baseline * 1;
-                }
-                
-
-                .link-productions-sort,
-                .link-activity-sort{
-                    @include font-size-13();
-                    font-weight: 300;
-                    text-transform: uppercase;
-                    margin-top: $baseline * 1.5;
-                    margin-bottom: $baseline * 1;
-                    // border-bottom: $border-light;
-                    li, a{
-                        
-                        height: $baseline*2;
-                        display: block;
-                        width: 100%;
-                        span{
-                            position: absolute;
-                            right: 0;
-                            display: none;
-                        }
-                    }
-
-                    .pageProduction_current{
-                        font-weight: 600!important;
-                        span{ display: inline; }
-                    }
-                    
-                    
-                }
-        }
-
-
-
-        #go-to-year{
-            
-            height: $baseline*2;
-            width: $logo-column - $margins-desktop;
-            z-index: 90;
-            margin-top: $baseline * 1;
-            margin-bottom: $baseline * 1.5;
-            @include font-size-13;
-            padding-top: $baseline * 0.5;
-            p{ z-index: 90; }
-
-            label{
-                padding-top: $baseline * 0.5;
-                @include font-size-13;
-                position: absolute;
-                width: $logo-column - $margins-desktop;
-                text-align: right;
-                right: 0;
-                top: 0;
-                z-index: 90;
-                span::after{
-                    content: "〉";
-                }
-            }
-
-            
-
-            ul{
-                background-color: $background-site;
-                text-align: right;
-                position: absolute;
-                top: $baseline * 0.5;
-                left: 0;
-                width: $logo-column - $margins-desktop;
-                @include font-size-13;
-                max-height: $baseline;
-                transition: 1s;
-                overflow: hidden;
-
-
-                li{
-                    padding-bottom: $baseline/2;
-                    padding-right: $margins-desktop*2;
-                    font-weight: 600;
-                    &:last-of-type{ 
-                        border-bottom: $border-light;
-                        padding-bottom: $baseline;
-                    }
-                }
-            }
-
-            #go-to-year-input:checked ~ ul{
-                max-height: 100vh;
-                
-            }
-
-            #go-to-year-input:checked +label {
-                border-top: $border-light; 
-                span::after{
-                    content: "✕";
-                }
-            }
-        }
-
-        .filtre-production, .filtre-activity{ 
+    .filtres-listing{
             position: fixed;
-            @include font-size-13;
-            font-weight: 300;
-        }
+            z-index: 10;
+            left: $margins-desktop;
+            top: $height-top-bar ;
+            width: $logo-column - $margins-desktop;             
+    } 
 
-
-
-        $height-filtres-productions: $baseline * 17;
-        $height-filtres-activites: $baseline * 5.5;
-
-        @include for-size(desktop) {
-
-            .filtre-production:nth-of-type(1){ top: $height-top-bar + $height-filtres-productions + $baseline* 2.5 * 2; }
-            .filtre-production:nth-of-type(2){ top: $height-top-bar + $height-filtres-productions + $baseline* 2.5 * 3; }
-            .filtre-production:nth-of-type(3){ top: $height-top-bar + $height-filtres-productions + $baseline* 2.5 * 4; }
-            .filtre-production:nth-of-type(4){ top: $height-top-bar + $height-filtres-productions + $baseline* 2.5 * 5; }
-            .filtre-production:nth-of-type(5){ top: $height-top-bar + $height-filtres-productions + $baseline* 2.5 * 6; }
-            .filtre-production:nth-of-type(6){ top: $height-top-bar + $height-filtres-productions + $baseline* 2.5 * 7; }
-
-            .filtre-activity:nth-of-type(1){ top: $height-top-bar + $height-filtres-activites + $baseline* 2.5 * 2; }
-            .filtre-activity:nth-of-type(2){ top: $height-top-bar + $height-filtres-activites + $baseline* 2.5 * 3; }
-            .filtre-activity:nth-of-type(3){ top: $height-top-bar + $height-filtres-activites + $baseline* 2.5 * 4; }
-
-        }
+    #go-to-year{
+        width: $logo-column - $margins-desktop;
+        ul{ width: 100%; }
+        ul li{ width: 33%; }
+        li:nth-of-type(1), li:nth-of-type(2), li:nth-of-type(3){ border-top: $border-very-light; }
+        li:nth-of-type(3n){ border-right: none; }
     }
+    
+    #go-to-year-input + label, 
+    #radio_filtre-production_year + label{
+        width: $logo-column - $margins-desktop;
+    }
+
+
+    #radio_filtre-production_year + label,
+    #radio_filtre-production_group + label{ display: none; }
+
+
+    .filtre-production, .filtre-activity{ 
+        width: $logo-column - $margins-desktop;
+    
+    }
+
+    // .filtre-production:nth-of-type(1){ 
+    //     border-top: $border-light; 
+    //     padding-top: $baseline*1.5;
+    // }
+
+    #radio_filtre-production_type + label{
+        @include font-size-13;
+        text-transform: uppercase;
+        // color: $text-color-light;
+        span{ display: none; }
+    }
+
+    $height-filtres-productions: $baseline * 18;
+    $height-filtres-activites: $baseline * 5.5;
+
+    #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions + $baseline* 2.5 * 2; }
+    .filtre-production:nth-of-type(1){ top: $height-top-bar + $height-filtres-productions + $baseline* 2.5 * 2; }
+    .filtre-production:nth-of-type(2){ top: $height-top-bar + $height-filtres-productions + $baseline* 2.5 * 3; }
+    .filtre-production:nth-of-type(3){ top: $height-top-bar + $height-filtres-productions + $baseline* 2.5 * 4; }
+    .filtre-production:nth-of-type(4){ top: $height-top-bar + $height-filtres-productions + $baseline* 2.5 * 5; }
+    .filtre-production:nth-of-type(5){ top: $height-top-bar + $height-filtres-productions + $baseline* 2.5 * 6; }
+    .filtre-production:nth-of-type(6){ top: $height-top-bar + $height-filtres-productions + $baseline* 2.5 * 7; }
+
+    .filtre-activity:nth-of-type(1){ top: $height-top-bar + $height-filtres-activites + $baseline* 2.5 * 2; }
+    .filtre-activity:nth-of-type(2){ top: $height-top-bar + $height-filtres-activites + $baseline* 2.5 * 3; }
+    .filtre-activity:nth-of-type(3){ top: $height-top-bar + $height-filtres-activites + $baseline* 2.5 * 4; }
+
 
 }
 
+
+
+@media screen and (max-height: 650px){
+
+
+    #radio_filtre-production_group ~ .link-productions-sort li{ max-height: 0; }
+
+    #radio_filtre-production_group ~ .link-productions-sort .pageProduction_current{ 
+        max-height: 100px; 
+        span{ display: none; }
+    }
+
+    #radio_filtre-production_group:checked ~ .link-productions-sort li{ max-height: 100px; }
+
+    #radio_filtre-production_group + label{
+        display: block!important;
+        background-color: red;
+    }
+
+
+    #go-to-year_label{ display: none; }
+    #radio_filtre-production_year_label{ display: block; }
+
+    
+}
 
 

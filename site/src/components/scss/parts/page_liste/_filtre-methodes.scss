@@ -1,4 +1,6 @@
-body.page-production-list, body.page-news-list, body.page-activity-list{
+//filtres production
+input.input_filtre-production:checked ~ #liste #liste-productions .list-item,
+input.input_filtre-activity:checked ~ #liste #liste-activity .list-item{display: none !important;}
 
 	//filtres
 	input.input_filtre-production:checked ~ #liste #liste-productions .list-item,
@@ -20,8 +22,7 @@ body.page-production-list, body.page-news-list, body.page-activity-list{
 	input#filtre-production_media:checked ~ #liste #liste-productions .media{ display: block!important; }
 	input#filtre-production_thesis:checked ~ #liste #liste-productions .thesis{ display: block!important; }
 
-
-	input#filtre-activity_research:checked ~ #liste #liste-activity .research{ display: block!important; }
-	input#filtre-activity_teaching:checked ~ #liste #liste-activity .teaching{ display: block!important; }
-	input#filtre-activity_method:checked ~ #liste #liste-activity .method{ display: block!important; }
-}
+//filtres activity
+input#filtre-activity_research:checked ~ #liste #liste-activity .research{ display: block!important; }
+input#filtre-activity_teaching:checked ~ #liste #liste-activity .teaching{ display: block!important; }
+input#filtre-activity_method:checked ~ #liste #liste-activity .method{ display: block!important; }

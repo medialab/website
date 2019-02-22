@@ -6,12 +6,11 @@ import { templateMembership } from '../../helpers';
 const FilterProduction = () => {
 	return (
 		<>
-			<aside id="filtres-productions" className="filtres-listing">
 
 				<h1 className="type_title" data-icon="production">Productions</h1>
 
 				<input type="radio" id="radio_filtre-production_group" name="radio_filtre-production" value="group" hidden/>
-				<label htmlFor="radio_filtre-production_group">Group <span>〉</span></label>
+				<label htmlFor="radio_filtre-production_group"><span>〉</span></label>
 
 				<ul className="link-productions-sort">
 					{/* liens vers les pages triées par le builder: la class .pageProduction_current est à ajouter selon la page sur laquelle on se trouve (productionTypes/groups) et il n'y a pas de lien à l'intérieur*/}
@@ -24,13 +23,11 @@ const FilterProduction = () => {
 				</ul>
 
 
+				<input type="radio" id="radio_filtre-production_year" name="radio_filtre-production" value="year" hidden/>
+				<label htmlFor="radio_filtre-production_year"><span>〉</span></label>
 
-				<div id="go-to-year">
+				<div class="go-to-year" id="go-to-year_production">
 					<p>Aller à l'année...</p>
-					<input type="radio" id="radio_filtre-production_year" name="radio_filtre-production" value="year" hidden/>
-					<label htmlFor="radio_filtre-production_year"><span>〉</span></label>
-					<input type="checkbox" id="go-to-year-input" name="go-to-year-input" value="go-to-year-input" hidden />
-					<label htmlFor="go-to-year-input"><span>〉</span></label>
 					<p class="current-year">2019</p>
 					<ul>
 						<li><a href="#year-2019">2019</a></li>
@@ -49,10 +46,9 @@ const FilterProduction = () => {
 				</div>
 
 
-			</aside>
 
 
-			<input type="radio" id="radio_filtre-production_type" name="radio_filtre-production" value="type" hidden/>
+			<input type="radio" id="radio_filtre-production_type" name="radio_filtre-production" value="type" checked hidden/>
 			<label htmlFor="radio_filtre-production_type">Type de publications <span>〉</span></label>
 
 			{/*  si productionTypes/groups = publications */}

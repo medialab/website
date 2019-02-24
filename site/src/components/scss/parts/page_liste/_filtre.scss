@@ -129,6 +129,8 @@
 }
 
 
+
+
 /* flêches ouvrantes/fermantes */
 
 #radio_filtre-production_group + label span,
@@ -148,3 +150,7 @@
 	// top: -3px;
 }
 
+
+#radio_filtre-production_year + label span{
+	margin-top: $baseline*0.25;
+}

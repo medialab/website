@@ -22,6 +22,7 @@ export default function ActivityListing({lang, list}) {
 						<h1 data-level-1="baseline">{a.baseline && ( lang === "fr" ? a.baseline.fr : a.baseline.en)}</h1>
 						<h2 data-level-2="title">{a.name}</h2>
 						<p className="type">{a.type}</p>
+						<p className="go-to-object"><span>〉</span></p>
 					</Link>
 				</li>
 				<li className="item_accroche description" data-item-accroche={index}>

@@ -32,8 +32,35 @@
 
 				////	Liste des liens
 
-	           	[data-item]{ // S'applique aux items des troix catégorie
-					// min-height: $unite*3;
+			////	Accroche
+
+		    [data-item] ~ [data-item-accroche]{ 
+		    	display: block;
+		    	visibility: collapse;
+		    	max-height: 0;
+		    	transition: .5s ease-in-out;
+		    	transition-property: height;
+				
+		    }
+
+		    .accroche-titre{ 
+		    	display: none;
+		    }
+
+		    @for $i from 0 through 1000 {
+		    	[data-item="#{$i}"]:hover *,
+		    	[data-item="#{$i}"]:active *{
+		    		color: $redlab !important;
+		    	}
+
+		        [data-item="#{$i}"]:hover ~ [data-item-accroche="#{$i}"],
+		        [data-item="#{$i}"]:active ~ [data-item-accroche="#{$i}"],
+		        [data-item-accroche="#{$i}"]:hover, 
+		        [data-item-accroche="#{$i}"]:active{ 
+		        	transition: .5s ease-in-out;
+		        	transition-property: max-height;
+		        	max-height: 500px;
+					visibility: visible;
 					padding-top: $baseline;
 					padding-bottom: $baseline;
 	                display: block;

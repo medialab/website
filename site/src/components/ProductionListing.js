@@ -27,37 +27,25 @@ export default function ProductionListing({lang, list, group}) {
           </li>
 
           {list.map((p, index) => (
-            <>
-            <li data-item={index} data-type={p.type} className={`list-item ${p.type}`}>
-              {/* Dans les données Json "data-type" fait référence à "productionTypes" */}
-                <Link to={`/productions/${p.slugs[p.slugs.length - 1]}`}>
-                <h1 data-level-1="title">{lang === "fr" ? p.title.fr : p.title.en}</h1>
-                {p.authors && 
-                <h2 data-level-2="authors">
-                    <span>{p.authors}</span>
-                </h2>}
-                  
-              
-
-                {/* <p className="date">{formatDate(p.lastUpdated, 'dd MMMM yyyy', {locale: lang === "fr" ? fr : en})}</p> */}
-                {p.date && <p className="date">{p.date}</p>}
-                <p className="type" data-icon="production">
-                Production - {p.type}
-                {/* {p.productionTypes} - {p.type} */}
-                </p>
-
+              <>
+              <li data-item={index} data-type={p.type} className={`list-item ${p.type}`}>
+              <Link to={`/productions/${p.slugs[p.slugs.length - 1]}`}>
+                  <h1 data-level-1="title">{lang === "fr" ? p.title.fr : p.title.en}</h1>
+                  {p.authors && <h2 data-level-2="authors"><span>{p.authors}</span></h2>}
+                  {p.date && <p className="date">{p.date}</p>}
+                  <p className="type" data-icon="production">
+                  Production - {p.type}
+                  {/* {p.productionTypes} - {p.type} */}
+                  </p>
+                  <p className="go-to-object"><span>〉</span></p>
                 </Link>
-            </li>
-
-            <li className="item_accroche description" data-item-accroche={index}>
+              </li>
+              <li className="item_accroche description" data-item-accroche={index}>
                 <Link to={`/productions/${p.slugs[p.slugs.length - 1]}`}>
-                    <span className="item_accroche_texte">
                       <RawHTML html={lang === "fr" ? p.description.fr : p.description.en} />
-                    </span>
-                    <span className="image-pre"></span>
                 </Link>
-            </li>
-            </>
+              </li>
+            	</>
           ))}
 
 

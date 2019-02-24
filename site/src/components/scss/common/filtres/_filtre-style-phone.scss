@@ -1,0 +1,91 @@
+$top-filtre-phone-open: $height-top-bar-phone + $baseline*3.5;
+
+@include for-size(phone) {
+
+	#background-phone{
+		position: fixed;
+		background-color: $background-site;
+		display: block;
+		width: 100vw;
+		height: calc(100vh - #{$top-filtre-phone-open});
+		z-index: 20;
+		background-color: $background-site;
+	}
+
+
+
+	#toggle-filtre-phone + label{ 
+		@include font-size-16-phone;
+		padding-top: $baseline;
+		padding-bottom: $baseline;
+		text-align: center;
+		position: fixed;
+		z-index: 30;
+		width: 100vw;
+		left: 0;
+		padding-right: $margins-phone*2;
+		border-top: $border-bold; 
+		span{
+			display: block;
+			position: absolute; 
+			top: -4px; 
+			right: 0;
+			margin-left: $baseline;
+			width: $baseline*1.6;
+			height: $baseline*1.6;
+		}
+		span:before{
+			content: "〉";
+			display: block;
+			width: $baseline*1.6;
+			height: $baseline*1.6;
+			transform: rotate(-90deg);
+			transform-origin: center center; 
+			color: $text-color;
+		}
+	 }
+
+
+	 #toggle-filtre-phone ~ #background-phone,
+	#toggle-filtre-phone + label{
+		top: calc(100vh - #{$baseline}*3.5);
+		transition: 0.6s top;
+	 }
+
+
+
+	#toggle-filtre-phone:checked ~ #background-phone{
+		top: $top-filtre-phone-open;
+	}
+	 #toggle-filtre-phone:checked + label{ 
+		top: $top-filtre-phone-open - 1px;
+		span:before{ 
+			content: "✕";
+			transform: rotate(0); 
+			//top: 4px;
+		}
+	}
+
+	 .link-activity-sort, 
+	 .link-productions-sort{
+		 border-top: $border-light;
+	 }
+
+	#radio_filtre-production_group + label,
+	.link-productions-sort, 
+	#go-to-year_production, 
+	#radio_filtre-production_year + label,
+	#radio_filtre-production_type + label,
+	.filtre-production, 
+	.link-activity-sort, 
+	.filtre-activity{
+		position: fixed;
+		z-index: 30;
+		width: $mobile-container-width;
+		left: $margins-phone;
+	}
+
+	
+
+
+}

@@ -98,7 +98,10 @@
 			h2, .date, .type{ color: $redlab; }
 			h1, h2{ border-bottom: $border-redlab-very-light }
 			.date{ border-right: $border-redlab-very-light }
-			.go-to-object{ border-left: $border-redlab-very-light }
+			.go-to-object{ 
+				border-left: $border-redlab-very-light ;
+				color: $redlab;
+			}
 		}
 
 

@@ -6,14 +6,11 @@ import { templateMembership } from '../../helpers';
 const FilterProduction = () => {
 	return (
 		<>
-
-
-
 				<h1 className="type_title" data-icon="production"><a href="#year-2018">Productions</a></h1>
 
-				<input type="checkbox" className="toggle-filtre-phone" id="toggle-filtre-phone" name="toggle-filtre-phone" value="visible" hidden/>
+				<input type="checkbox" id="toggle-filtre-phone" name="toggle-filtre-phone" value="visible" hidden/>
 				<label for="toggle-filtre-phone" title="Découvrir les options de filtrage">
-					<p>Filtres<span>〉</span></p>
+					<p>Filtres<span></span></p>
 				</label>
 
 				<div id="background-phone"></div>

@@ -4,51 +4,49 @@
 
 body.page-activity-list{
 
-	#filtre_recherche:checked ~ #liste #liste-objet-activite [data-type="enseignement"],
-	#filtre_recherche:checked ~ #liste #liste-objet-activite [data-type="methode"]{
-		display:none;
-	}
 
+@include for-size(desktop) {
 
-	#filtre_enseignement:checked ~ #liste #liste-objet-activite [data-type="recherche"],
-	#filtre_enseignement:checked ~ #liste #liste-objet-activite [data-type="methode"]{
-		display:none;
-	}
+        /* ACTIVITES */
+	#filtre-activity_research + label{ top: $height-top-bar + $height-filtres-activites + $baseline* 2.5 * 3; }
+    #filtre-activity_teaching + label{ top: $height-top-bar + $height-filtres-activites + $baseline* 2.5 * 4; }
+    #filtre-activity_method + label{ top: $height-top-bar + $height-filtres-activites + $baseline* 2.5 * 5; }
 
-	#filtre_methode:checked ~ #liste #liste-objet-activite [data-type="enseignement"],
-	#filtre_methode:checked ~ #liste #liste-objet-activite [data-type="recherche"]{
-		display:none;
-	}
-
-	#filtre_recherche:checked ~ #liste #liste-objet-activite [data-type="recherche"] {
-		display: block!important;
-	}
-
-
-	#filtre_enseignement:checked ~ #liste #liste-objet-activite [data-type="enseignement"] {
-		display: block!important;
-	}
-
-	#filtre_methode:checked ~ #liste #liste-objet-activite [data-type="methode"] {
-		display: block!important;
-	}
-
-
-	@include for-size(desktop) {
-
-		
-
-		.filtre_activite:nth-of-type(2){ top: $height-top-bar + $baseline* 2.5 + $baseline* 2.5 * 1; }
-
-		.filtre_activite:nth-of-type(3){ top: $height-top-bar + $baseline* 2.5 + $baseline* 2.5 * 2; }
-
-		.filtre_activite_title:nth-of-type(1){ top: $height-top-bar + $baseline* 2.5 * 4.5;}
-
-		.filtre_activite:nth-of-type(4){ top: $height-top-bar + $baseline* 2.5 + $baseline* 2.5 * 4.5; }
-
-		.filtre_activite:nth-of-type(5){ top: $height-top-bar + $baseline* 2.5 + $baseline* 2.5 * 5.5; }
-
-		.filtre_activite:nth-of-type(6){ top: $height-top-bar + $baseline* 2.5 + $baseline* 2.5 * 6.5; }
-
-	}
 }
+
+
+@include for-size(phone) {
+
+	.link-activity-sort, .filtre-activity{ transition: 0.6 top; }
+
+	#toggle-filtre-phone ~ .link-activity-sort{ 		
+		top: calc(100vh + 2px);
+		transition: 0.6 top;
+	 }
+
+	#toggle-filtre-phone:checked ~ .link-activity-sort{ 		
+		top: $top-filtre-phone-open + $baseline*3.5;
+		transition: 0.6 top;
+	 }
+
+	 
+
+	#toggle-filtre-phone ~ #filtre-activity_research + label{ top: 100vh; }
+    #toggle-filtre-phone ~ #filtre-activity_teaching + label{ top: 100vh; }
+    #toggle-filtre-phone ~ #filtre-activity_method + label{ top: 100vh; }
+
+	 #toggle-filtre-phone:checked ~ #filtre-activity_research + label{ top: $height-top-bar + $height-filtres-activites - $baseline + $baseline* 2.5 * 3; }
+	 #toggle-filtre-phone:checked ~ #filtre-activity_teaching + label{ top: $height-top-bar + $height-filtres-activites - $baseline + $baseline* 2.5 * 4; }
+	 #toggle-filtre-phone:checked ~ #filtre-activity_method + label{ top: $height-top-bar + $height-filtres-activites - $baseline + $baseline* 2.5 * 5; }
+
+}
+
+
+
+input#filtre-activity_research:checked ~ #liste #liste-activity .research{ display: block!important; }
+input#filtre-activity_teaching:checked ~ #liste #liste-activity .teaching{ display: block!important; }
+input#filtre-activity_method:checked ~ #liste #liste-activity .method{ display: block!important; }
+
+
+
+

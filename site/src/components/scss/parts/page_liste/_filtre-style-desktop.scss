@@ -5,10 +5,9 @@ $height-filtres-productions_medium_group-checked: $baseline * 18;
 $height-filtres-productions_medium_year-checked: $baseline * 16;
 $height-filtres-activites: $baseline * 5.5;
 
-
 @include for-size(desktop) {
 
-	.toggle-filtre-phone{ display: none; }
+	#toggle-filtre-phone{ display: none; }
 
     .type_title,
     .link-productions-sort,
@@ -60,20 +59,14 @@ $height-filtres-activites: $baseline * 5.5;
     #radio_filtre-production_type:checked ~ .filtre-production{ max-height: 100vh; }
     
     #radio_filtre-production_year ~ #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions + $baseline*5; }
-    #radio_filtre-production_year ~ .filtre-production:nth-of-type(4){ top: $height-top-bar + $height-filtres-productions + $baseline* 2.5 * 3; }
-    #radio_filtre-production_year ~ .filtre-production:nth-of-type(5){ top: $height-top-bar + $height-filtres-productions + $baseline* 2.5 * 4; }
-    #radio_filtre-production_year ~ .filtre-production:nth-of-type(6){ top: $height-top-bar + $height-filtres-productions + $baseline* 2.5 * 5; }
-    #radio_filtre-production_year ~ .filtre-production:nth-of-type(7){ top: $height-top-bar + $height-filtres-productions + $baseline* 2.5 * 6; }
-    #radio_filtre-production_year ~ .filtre-production:nth-of-type(8){ top: $height-top-bar + $height-filtres-productions + $baseline* 2.5 * 7; }
-    #radio_filtre-production_year ~ .filtre-production:nth-of-type(9){ top: $height-top-bar + $height-filtres-productions + $baseline* 2.5 * 8; }
+
+    @for $a from 5 through 10 {				  
+        #radio_filtre-production_year ~ .filtre-production:nth-of-type(#{$a}){ top: $height-top-bar + $height-filtres-productions -$baseline* 2.5 + $baseline* 2.5 * ($a - 1); }
+    }
+
 
     #radio_filtre-production_year:checked ~ #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions_year-checked + $baseline*5; }
-    #radio_filtre-production_year:checked ~ .filtre-production:nth-of-type(4){ top: $height-top-bar + $height-filtres-productions_year-checked + $baseline* 2.5 * 3; }
-    #radio_filtre-production_year:checked ~ .filtre-production:nth-of-type(5){ top: $height-top-bar + $height-filtres-productions_year-checked + $baseline* 2.5 * 4; }
-    #radio_filtre-production_year:checked ~ .filtre-production:nth-of-type(6){ top: $height-top-bar + $height-filtres-productions_year-checked + $baseline* 2.5 * 5; }
-    #radio_filtre-production_year:checked ~ .filtre-production:nth-of-type(7){ top: $height-top-bar + $height-filtres-productions_year-checked + $baseline* 2.5 * 6; }
-    #radio_filtre-production_year:checked ~ .filtre-production:nth-of-type(8){ top: $height-top-bar + $height-filtres-productions_year-checked + $baseline* 2.5 * 7; }
-    #radio_filtre-production_year:checked ~ .filtre-production:nth-of-type(9){ top: $height-top-bar + $height-filtres-productions_year-checked + $baseline* 2.5 * 8; }
+
 
 
      /* ACTIVITES */
@@ -86,7 +79,7 @@ $height-filtres-activites: $baseline * 5.5;
 
 
 
-@media screen and (max-height: 700px){
+@media screen and (min-width: 700px) and (max-height: 700px){
 
     /* PRODUCTION */
 
@@ -133,13 +126,7 @@ $height-filtres-activites: $baseline * 5.5;
     }
 
     #radio_filtre-production_year ~ #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions_medium + $baseline*5; }
-    #radio_filtre-production_year ~ .filtre-production:nth-of-type(4){ top: $height-top-bar + $height-filtres-productions_medium + $baseline* 2.5 * 3; }
-    #radio_filtre-production_year ~ .filtre-production:nth-of-type(5){ top: $height-top-bar + $height-filtres-productions_medium + $baseline* 2.5 * 4; }
-    #radio_filtre-production_year ~ .filtre-production:nth-of-type(6){ top: $height-top-bar + $height-filtres-productions_medium + $baseline* 2.5 * 5; }
-    #radio_filtre-production_year ~ .filtre-production:nth-of-type(7){ top: $height-top-bar + $height-filtres-productions_medium + $baseline* 2.5 * 6; }
-    #radio_filtre-production_year ~ .filtre-production:nth-of-type(8){ top: $height-top-bar + $height-filtres-productions_medium + $baseline* 2.5 * 7; }
-    #radio_filtre-production_year ~ .filtre-production:nth-of-type(9){ top: $height-top-bar + $height-filtres-productions_medium + $baseline* 2.5 * 8; }
-
+  
     #radio_filtre-production_group:checked ~ #go-to-year_production{
         top: $height-top-bar + $baseline*18;
     }
@@ -148,22 +135,14 @@ $height-filtres-activites: $baseline * 5.5;
         top: $height-top-bar + $baseline*19;
     }
 
-    #radio_filtre-production_group:checked ~ #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions_medium_group-checked + $baseline*5; }
-    #radio_filtre-production_group:checked ~ #radio_filtre-production_year ~ .filtre-production:nth-of-type(4){ top: $height-top-bar + $height-filtres-productions_medium_group-checked + $baseline* 2.5 * 3; }
-    #radio_filtre-production_group:checked ~ #radio_filtre-production_year ~ .filtre-production:nth-of-type(5){ top: $height-top-bar + $height-filtres-productions_medium_group-checked + $baseline* 2.5 * 4; }
-    #radio_filtre-production_group:checked ~ #radio_filtre-production_year ~ .filtre-production:nth-of-type(6){ top: $height-top-bar + $height-filtres-productions_medium_group-checked + $baseline* 2.5 * 5; }
-    #radio_filtre-production_group:checked ~ #radio_filtre-production_year ~ .filtre-production:nth-of-type(7){ top: $height-top-bar + $height-filtres-productions_medium_group-checked + $baseline* 2.5 * 6; }
-    #radio_filtre-production_group:checked ~ #radio_filtre-production_year ~ .filtre-production:nth-of-type(8){ top: $height-top-bar + $height-filtres-productions_medium_group-checked + $baseline* 2.5 * 7; }
-    #radio_filtre-production_group:checked ~ #radio_filtre-production_year ~ .filtre-production:nth-of-type(9){ top: $height-top-bar + $height-filtres-productions_medium_group-checked + $baseline* 2.5 * 8; }
+    @for $i from 5 through 10 {				  
+        #radio_filtre-production_year ~ .filtre-production:nth-of-type(#{$i}){ top: $height-top-bar + $baseline*4.5 + $baseline* 2.5 * ($i - 1); }
+    }
+    
 
+    #radio_filtre-production_group:checked ~ #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions_medium_group-checked + $baseline*5; }
 
     #radio_filtre-production_year:checked ~ #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions_medium_year-checked + $baseline*5; }
-    #radio_filtre-production_year:checked ~ #radio_filtre-production_year ~ .filtre-production:nth-of-type(4){ top: $height-top-bar + $height-filtres-productions_medium_year-checked + $baseline* 2.5 * 3; }
-    #radio_filtre-production_year:checked ~ #radio_filtre-production_year ~ .filtre-production:nth-of-type(5){ top: $height-top-bar + $height-filtres-productions_medium_year-checked + $baseline* 2.5 * 4; }
-    #radio_filtre-production_year:checked ~ #radio_filtre-production_year ~ .filtre-production:nth-of-type(6){ top: $height-top-bar + $height-filtres-productions_medium_year-checked + $baseline* 2.5 * 5; }
-    #radio_filtre-production_year:checked ~ #radio_filtre-production_year ~ .filtre-production:nth-of-type(7){ top: $height-top-bar + $height-filtres-productions_medium_year-checked + $baseline* 2.5 * 6; }
-    #radio_filtre-production_year:checked ~ #radio_filtre-production_year ~ .filtre-production:nth-of-type(8){ top: $height-top-bar + $height-filtres-productions_medium_year-checked + $baseline* 2.5 * 7; }
-    #radio_filtre-production_year:checked ~ #radio_filtre-production_year ~ .filtre-production:nth-of-type(9){ top: $height-top-bar + $height-filtres-productions_medium_year-checked + $baseline* 2.5 * 8; }
    
     
 }

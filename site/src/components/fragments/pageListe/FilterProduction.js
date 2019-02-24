@@ -7,13 +7,21 @@ const FilterProduction = () => {
 	return (
 		<>
 
-				<h1 className="type_title" data-icon="production">Productions</h1>
+
+
+				<h1 className="type_title" data-icon="production"><a href="#year-2018">Productions</a></h1>
+
+				<input type="checkbox" className="toggle-filtre-phone" id="toggle-filtre-phone" name="toggle-filtre-phone" value="visible" hidden/>
+				<label for="toggle-filtre-phone" title="Découvrir les options de filtrage">
+					<p>Filtres<span>〉</span></p>
+				</label>
+
+				<div id="background-phone"></div>
 
 				<input type="radio" id="radio_filtre-production_group" name="radio_filtre-production" value="group" hidden/>
 				<label htmlFor="radio_filtre-production_group"><span>〉</span></label>
 
 				<ul className="link-productions-sort">
-					{/* liens vers les pages triées par le builder: la class .pageProduction_current est à ajouter selon la page sur laquelle on se trouve (productionTypes/groups) et il n'y a pas de lien à l'intérieur */}
 					<li><a href="linkProductions">Toutes les productions <span>〉</span></a></li>
 					<li className="pageProduction_current">publications <span>〉</span></li>
 					<li><a href="linkProductions/editionsweb">webEditions <span>〉</span></a></li>
@@ -64,7 +72,7 @@ const FilterProduction = () => {
 			<label className="filtre-production checkbox-medialab" for="filtre-production_thesis">thesis</label>
 
 			<input type="checkbox" id="filtre-production_grey" name="filtre-production_grey" className="input_filtre-production" value="grey" hidden />
-			<label className="filtre-production checkbox-medialab" for="filtre-production_grey">grey</label>
+			<label className="filtre-production checkbox-medialab" for="filtre-production_grey">grey</label> 
 
 
 		</>

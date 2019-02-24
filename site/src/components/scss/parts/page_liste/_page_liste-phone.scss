@@ -83,8 +83,22 @@
 
 @include for-size(phone) {
 
+	.type_title{
+		display: block;
+		width: 100vw!important;
+		top: $height-top-bar-phone!important;
+		margin: 0!important;
+		padding-top: $baseline*1!important;
+		padding-bottom: $baseline*1!important;
+		background-color: $background-site!important;		
+		border-top: none!important; 
+		border-bottom: $border-bold!important; 
+		z-index: 15!important;
+	}
+
 	#liste{
-		margin: $height-top-bar-phone $margins-phone 0 $margins-phone;
+		margin: 0 $margins-phone;
+		margin-top: $height-top-bar-phone + $baseline*3;
 		width: $mobile-container-width;
 		
 		hr{ display: none; }

@@ -26,7 +26,7 @@ const FilterActivity = () => {
 		{/*  Filtre for phone */}
 		<input type="checkbox" className="toggle-filtre-phone" id="toggle-filtre-phone" name="toggle-filtre-phone" value="visible"  hidden />
 		<label className="toggle-filtre-phone filtre_title" for="toggle-filtre-phone" title="Découvrir les options de filtrage">
-			<p>Filtre<span>⋀</span>	</p>
+			<p>Filtrer<span>⋀</span></p>
 		</label>
 		{/* End Filtre for phone */}
 

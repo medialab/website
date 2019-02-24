@@ -159,19 +159,6 @@ $height-filtres-productions-phone: $baseline*8;
 			top: 4px;
 		}
 
-<<<<<<< HEAD
-		input.filtre_objet:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone}); }
-		label.filtre_objet:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone});}
-		
-		input.filtre_objet:checked + label.filtre_objet{ 
-			font-weight: bold;
-			color: $redlab;
-			border-color: $redlab;
-			transition-delay: inherit;
-		}
-	}
-}
-=======
 	#toggle-filtre-phone:checked ~ #radio_filtre-production_group ~ .link-productions-sort,
 	#toggle-filtre-phone:checked ~ #radio_filtre-production_group + label{
 		top: $top-filtre-phone-open + $baseline*3.5;
@@ -224,4 +211,3 @@ $height-filtres-productions-phone: $baseline*8;
 
 
 }
->>>>>>> filtres listes productions version mobile

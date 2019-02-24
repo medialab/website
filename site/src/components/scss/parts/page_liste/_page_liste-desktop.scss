@@ -1,239 +1,43 @@
 /////////////////////
-//////// item_accroche: Desktop 
+//////// Page liste DESKTOP
 /////////////////////
-
-
-
-
-///specifique à ativite
-// [data-item]{
-
-// 	ul{
-// 		li.titre{  display: inline-block; width: calc(33% - 10px); padding-right: 10px; }
-// 		li.type{  display: inline-block; width: calc(33% - 10px); padding-right: 10px;}
-// 		li.time{  display: inline-block; width: calc(33% - 10px); padding-right: 10px; text-align: right;}	
-
-// 		@supports (display: flex){
-// 			@include flex();
-// 			@include align-items(center);
-// 			.titre{ flex-grow: 2; }	
-// 			.type{ flex-grow: 2; }	
-// 			.time{ flex-grow: 1; text-align: right;}
-// 		}
-// 	}
-// }
-
-
-
-
-
-
 
 @include for-size(desktop) {
 
-<<<<<<< HEAD
-	body.page-production-list,
-	body.page-news-list,
-	body.page-activity-list{
-
-		#topbar{ 
-			//position: fixed!important; 
-			top: 0;
-			width: calc(100vw - #{$margins-desktop*2});
-			// left: 0;
-		}
-
-		#liste{
-	        
-			   margin-top: $height-top-bar;
-			   margin-left: $logo-column;
-
-			   hr{
-				   display: block; 
-				   width: calc(100vw - #{$logo-column} - #{$margins-desktop*2});
-				   position: fixed;
-				   border-top: $border-bold;
-			   }
-			   
-
-			///// Accroche Phone
-	        .accroche-titre-phone{
-	        	display: none;
-	        }
-			///// Acchroche Phone END
-			
-	        ///// Liste Objet
-	        .liste_objet{
-
-=======
 	#topbar{ 
 		position: fixed!important; 
 		top: 0;
 		width: calc(100vw - #{$margins-desktop*2});
-		// left: 0;
 	}
 
 	#liste{
         
-		   margin-top: $height-top-bar;
-		   margin-left: $logo-column;
+		margin-top: $height-top-bar;
+		margin-left: $logo-column;
 
-		   hr{
-			   display: block; 
-			   width: calc(100vw - #{$logo-column} - #{$margins-desktop*3});
-			   position: fixed;
-			   border-top: $border-light;
-		   }
+		hr{
+			display: block; 
+			width: calc(100vw - #{$logo-column} - #{$margins-desktop*3});
+			position: fixed;
+			border-top: $border-light;
+		}
 		   
-
-        .accroche-titre-phone{
-        	display: none;
-        }
+    .accroche-titre-phone{ display: none; }
 		
-        ///// Liste Objet
-        .liste_objet{
+		.liste_objet{
 
 			margin-bottom: 40vh;
 
-			[data-item], .list-year{
-				width: calc((100vw - #{$logo-column} - #{$margins-desktop*2})/5*2 );
-			}
+			[data-item], .list-year{ width: calc((100vw - #{$logo-column} - #{$margins-desktop*2})/5*2 ); }
 
-			.list-year{
-				padding-top: $baseline;
-				min-height: $baseline*3.5;
-				padding-bottom: $baseline;
-				@include font-size-16();
-				font-weight: 600;
-				
-				border-bottom: $border-light;
-				overflow: hidden;
->>>>>>> page listing versions intermediaires mobile/desktop
-				
-				&:target{
-					padding-top: $height-top-bar + $baseline*1;
-				}
-				pre{
-					position: absolute; 
-					bottom: $baseline*1;
-					left: 10px;
-				}
-				span{
-					background-color: white;
-					z-index: 10;
-					padding-right: $baseline/2;
-					padding-top: $baseline/2;
-					padding-bottom: $baseline/2;
-				}
-
-
-					&:first-of-type{
-						height: $baseline*3.5;
-						padding-top: $baseline
-					}
-					
-				}
-
-<<<<<<< HEAD
-			
-		
-
-				[data-item]{ // S'applique aux items des troix catégorie
-=======
 			[data-item]{
->>>>>>> page listing versions intermediaires mobile/desktop
-
-				padding-top: $baseline*1.5;
-				padding-bottom: $baseline*0.5;
-				border-bottom: $border-light;
+				h1{ @include font-size-20(); }
+				h2{ @include font-size-13(); }
+				.date, .type, .go-to-object{ @include font-size-13(); }
+			}
+		}
 		
-				a{
-					display: block;
-					width: 100%;
-					height: 100%;
-				}
-
-<<<<<<< HEAD
-					.date, .type{
-						@include font-size-13();
-						color: $text-color-light;
-					}
-
-=======
-				h1{
-					@include font-size-20();
-					padding-bottom: $baseline*1.5;
-					border-bottom: $border-very-light;
-				}
-		
-				h2{ 
-					@include font-size-13();					
-					border-bottom: $border-very-light;
-					padding-top: $baseline*0.5;
-					padding-bottom: $baseline*0.5;
-					color: $text-color-light; 
-				}
-				
-		
-				.date, .type{
-					@include font-size-13();
-					color: $text-color-light;
-				}
-		
->>>>>>> page listing versions intermediaires mobile/desktop
-				.date{
-					position: absolute;
-					bottom: 0;
-					left: 0;
-					width: 100px;
-					height: $baseline*1.3;
-					border-right: $border-very-light;
-				}
-		
-				.type{
-					display: inline-block;
-					width: calc(100% -  #{$baseline}*2.5);
-					text-align: right; 
-					padding-top: $baseline*0.5;
-					
-				}
-
-	
-				.go-to-object{
-					display: inline-block;
-					width: $baseline*2;
-					margin-left: $baseline*0.5;
-					@include font-size-13();
-					border-left: $border-very-light;
-					text-align: right;
-					span{
-						width: $baseline*1.3;
-						height: $baseline*1.3;
-					}
-				}
-		
-				
-		
-				&:hover{
-					color: $redlab;
-					h2, .date, .type{ color: $redlab; }
-					h1, h2{ border-bottom: $border-redlab-very-light }
-					.date{ border-right: $border-redlab-very-light }
-					.go-to-object{ border-left: $border-redlab-very-light }
-				}
-<<<<<<< HEAD
-
-				}/* end data-item*/
-=======
-		
-			}/* end data-item*/
->>>>>>> page listing versions intermediaires mobile/desktop
-
-
-		}/* end .liste-objet */
-		
-
-    }/* end liste */
+  }/* end #liste */
 }
 
 
@@ -244,10 +48,8 @@
 @include for-size(desktop-1000) {
 
 
-	
-		
 	#liste .liste_objet .item_accroche{
-		width: calc(((100vw - #{$logo-column} - #{$margins-desktop*2})/5*3) - #{$margins-desktop}*3 );
+		width: calc(((100vw - #{$logo-column} - #{$margins-desktop*2})/5*3) - #{$margins-desktop}*2 );
 		left: calc(#{$logo-column} + #{$margins-desktop} + ((100vw - #{$logo-column} - #{$margins-desktop*2})/5*2 ));
 		@include font-size-40();
 		margin-left: $margins-desktop*3;
@@ -259,7 +61,7 @@
 		position: fixed;				
 		top: $height-top-bar;
 
-		a{ 
+		& > a{ 
 			display: block;
 			width: 100%;
 		height: 100%;}
@@ -288,15 +90,11 @@
 
 	}
 
-
-	
-
-
 	[data-item] ~ [data-item-accroche]{ display: none; }
 
 	.accroche-titre{ 
 		display: block;
-		color: $text-color 
+		color: $text-color!important;
 	}
 
 	@for $i from 0 through 5000 {				
@@ -315,120 +113,15 @@
 
 
 @media screen and (max-height: 700px){
-	#liste .liste_objet .item_accroche{
-		@include font-size-27();
-
-	}
+	#liste .liste_objet .item_accroche{ @include font-size-27(); }
 }
 
 
 @media screen and (max-height: 1200px) and (max-height: 800px){
-	#liste .liste_objet .item_accroche{
-		@include font-size-27();
-
-	}
+	#liste .liste_objet .item_accroche{ @include font-size-27(); }
 }
 
 @media (max-width: 1200px)  {
-	
-	#liste .liste_objet{
-		[data-item], .list-year{ width: calc((100vw - #{$logo-column} - #{$margins-desktop*2})/32*15 ); }
-	}
+	#liste .liste_objet [data-item], #liste .liste_objet .list-year{ width: calc((100vw - #{$logo-column} - #{$margins-desktop*2})/32*15 ); }
 }
 
-
-@media (max-width: 1000px)  {
-	
-	#liste .liste_objet{
-
-
-		[data-item], .list-year{ 
-			width: calc((100vw - #{$logo-column} - #{$margins-desktop*3}) ); 
-			
-		}
-	
-
-<<<<<<< HEAD
-					@include for-size(desktop-1300) {
-						 // Prevenir des lignes trop étendues sur grand écran
-						// width: calc( ( ( 90% - #{$logo-column} ) /2 ) - #{$margins-desktop*2} );
-					}
-=======
-
-		////	Accroche
-
-		[data-item] ~ [data-item-accroche]{ 
-			display: block;
-			max-height: 0;
-			overflow: hidden;
-			transition: .5s max-height;
-			// transition-property: max-height;
-			width: calc((100vw - #{$logo-column} - #{$margins-desktop*3}) ); 			
-			// border-bottom: $border-light; 
-			& > a{
-				display: block;
-				margin: $baseline 0;
-			}
-		}
-
-
-		[data-item]:hover{
-			border-bottom: $border-redlab-very-light!important;
-		}
-
-		[data-item]:hover ~ [data-item-accroche],
-		[data-item-accroche]:hover{
-			border-bottom: $border-light; 
-		}
-	
-
-		.accroche-titre{ 
-			display: none;
-		}
-
-		@for $i from 0 through 1000 {
-			[data-item="#{$i}"]:hover *,
-			[data-item="#{$i}"]:active *{
-				color: $redlab !important;
-			}
->>>>>>> page listing versions intermediaires mobile/desktop
-
-			[data-item="#{$i}"]:hover ~ [data-item-accroche="#{$i}"],
-			[data-item="#{$i}"]:active ~ [data-item-accroche="#{$i}"],
-			[data-item-accroche="#{$i}"]:hover, 
-			[data-item-accroche="#{$i}"]:active{ 
-				// transition: .5s ease-in-out;
-				// transition-property: max-height;
-				max-height: 180px;
-			}
-
-<<<<<<< HEAD
-				}/* end item_accroche*/
-				
-
-				[data-item], .list-year{
-					width: calc((100vw - #{$logo-column} - #{$margins-desktop*2})/5*2 );
-					// width: 40%;
-				}
-				.item_accroche{
-					width: calc(((100vw - #{$logo-column} - #{$margins-desktop*2})/5*3) - #{$margins-desktop}*3 );
-					left: calc(#{$logo-column} + #{$margins-desktop} + ((100vw - #{$logo-column} - #{$margins-desktop*2})/5*2 ));
-				}
-			}/* end .liste-objet */
-		}
-    }/* end liste */
-=======
-		
-		}
-
-		.item_accroche{
-			@include font-size-13();
-			position: relative;
-			width: $mobile-container-width;
-			color: $redlab;
-		}
-
->>>>>>> page listing versions intermediaires mobile/desktop
-}
-
-}

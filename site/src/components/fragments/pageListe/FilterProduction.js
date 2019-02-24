@@ -13,7 +13,7 @@ const FilterProduction = () => {
 				<label htmlFor="radio_filtre-production_group"><span>〉</span></label>
 
 				<ul className="link-productions-sort">
-					{/* liens vers les pages triées par le builder: la class .pageProduction_current est à ajouter selon la page sur laquelle on se trouve (productionTypes/groups) et il n'y a pas de lien à l'intérieur*/}
+					{/* liens vers les pages triées par le builder: la class .pageProduction_current est à ajouter selon la page sur laquelle on se trouve (productionTypes/groups) et il n'y a pas de lien à l'intérieur */}
 					<li><a href="linkProductions">Toutes les productions <span>〉</span></a></li>
 					<li className="pageProduction_current">publications <span>〉</span></li>
 					<li><a href="linkProductions/editionsweb">webEditions <span>〉</span></a></li>
@@ -50,9 +50,6 @@ const FilterProduction = () => {
 
 			<input type="radio" id="radio_filtre-production_type" name="radio_filtre-production" value="type" checked hidden/>
 			<label htmlFor="radio_filtre-production_type">Type de publications <span>〉</span></label>
-
-			{/*  si productionTypes/groups = publications */}
-
 
 			<input type="checkbox" id="filtre-production_article" name="filtre-production_article" className="input_filtre-production" value="article" hidden />
 			<label className="filtre-production checkbox-medialab" for="filtre-production_article">article</label>

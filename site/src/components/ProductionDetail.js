@@ -24,14 +24,23 @@ export const queryFragment = graphql`
       en
       fr
     }
-    activities {
-      id
-      name
+    coverImage {
+      url
     }
     people {
       id
       firstName
       lastName
+    }
+    activities {
+      id
+      description {
+        en
+        fr
+      }
+      slugs
+      name
+      type
     }
     productions {
       id
@@ -52,11 +61,52 @@ export const queryFragment = graphql`
 `;
 
 export default function ProductionDetail({lang, production}) {
-  console.log(lang, production);
+  //console.log(lang, production);
+
+  /*
+  // Definir les valeurs à envoyer à l'élément Nav
+  object.propTypes = {
+    nature: "Production",
+    image: production.coverImage.url,
+    imageProcessed: ,
+    related: {
+      default: {
+        id: main-objet,
+        exist : true,
+        en: Main article // le titre de cette élément doit changer si Page Personne : Biography
+        fr: Article principal // le titre de cette élément doit changer si Page Personne : Biographie
+      }
+      production: {
+        id: productions-associes,
+        exist : {production.productions ? true : false},
+        en: Related poduction,
+        fr: Production en liens
+      }
+      activities: {
+        id: activites-associees,
+        exist : {production.activities ? true : false},
+        en: Related Activities,
+        fr: Activité en lien
+      },
+      files: {
+        id: fichiers-associes,
+        exist : {production.files ? true : false},
+        en: Related files,
+        fr: Fichier associés
+      },
+      people: {
+        id: membres-associes,
+        exist : {production.people ? true : false},
+        en: Related people,
+        fr: Membres en lien
+      },
+    }
+  }*/
+
 
   return (
     <>
-      <Nav />
+      <Nav lang={lang} /* object={object} */ />
       <main id="main-objet">
         <p className="titre-sticky">{production.title && (lang === "fr" ? production.title.fr : production.title.en ) }</p>
         <article id="article-contenu">

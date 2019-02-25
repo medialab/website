@@ -9,24 +9,32 @@ import RawHtml from './RawHtml';
 import Logo from '../assets/svg/logo_medialab.svg';
 
 
-function Nav(props) {
+function Nav(lang, /*object */) {
 
-	let img = null;
-	let imgGen = null;
+	//console.log(object);
 	
-	if (props.image) {
+	 
+	//Je pense que nous n'avons pas assez de donnée dans le CMS pour mener à bien cette fonction
+	// Néanmoins la logique serait :  Si et seulement si il existe une Image Générée créer cet élément
+	// Cet élément est composé d'une image lambda et de son corrolaire Image Générée
+	let img = null;
+	/*if (object.image) {
 		img = (
-			<div className="image-original">
-				<img src={props.image} alt={props.image.caption} />
+			<div>
+				<img src={object.coverImage.url} alt={object.coverImage.title} />
+				<div class=".image-generator">
+
+				</div>
 			</div>
 		);
+	}*/
 
-		imgGen = (
-		  	<div className="image-generator">
-		    	<img src={props.image_gen} alt={props.image_gen.caption} />
-		  	</div>
-		);
-	}
+
+
+
+
+
+
 	return (
 	  	<nav id="nav-inside-article">
 			<div className="nav-inside-item">
@@ -36,8 +44,25 @@ function Nav(props) {
 			</div>
 			<div className="nav-inside-item" id="img-article">
 				{img}
-				{imgGen}
 			</div>
+			{/*
+			//Definir le contenu de la Nav en fonction du contexte
+			//Pour chaque valeur object.related non null, retourner une div 
+			
+			{(object.related || []).map(o => (
+					
+				if(o.exist === true ){
+					<div className="nav-inside-item" >
+						<Link to={`#${o.id}`}><p>{lang === "fr" ? o.fr : o.en }</p></Link>
+					</div>
+				}
+				)
+			)}
+
+			// Effacer les 3 divs suivantes
+			*/}
+
+
 			<div className="nav-inside-item" >
 				<Link to="#main-objet"><p className="article-contenu">Article</p></Link>
 			</div>
@@ -47,6 +72,7 @@ function Nav(props) {
 			<div className="nav-inside-item">
 				<Link to="#elements-associes"><p>Éléments liées</p></Link>
 			</div>
+
 		</nav>
 	);
 }

@@ -46,6 +46,17 @@ MODELS.forEach(model => {
 
 MODELS_PATHS.settings = path.join(DB_PATH, 'settings.json');
 
+function solveEnum(e, target, o) {
+  const k = target + 'Label';
+
+  o[k] = {};
+
+  if (o[target]) {
+    o[k].fr = e.fr[o[target]];
+    o[k].en = e.en[o[target]];
+  }
+}
+
 const MODEL_READERS = {
   activities({actions: {createNode, deleteNode}, getNode, pathPrefix}) {
     const rawData = fs.readFileSync(MODELS_PATHS.activities, 'utf-8');
@@ -120,6 +131,9 @@ const MODEL_READERS = {
 
       if (node)
         deleteNode({node});
+
+      // Solving enums
+      solveEnum(ENUMS.productionTypes, 'type', production);
 
       // Processing HTML
       const content = template(pathPrefix, production.content);

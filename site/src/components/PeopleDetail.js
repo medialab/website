@@ -10,7 +10,7 @@ import RawHtml from './RawHtml';
 import {templateMembership} from './helpers.js';
 import './scss/page_personne.scss';
 
-//import Img from './assets/images/sample/D-Cardon-bis.jpg';
+import Img from './assets/images/sample/D-Cardon-bis.jpg';
 
 export const queryFragment = graphql`
   fragment PeopleDetail on PeopleJson {
@@ -92,7 +92,7 @@ export default function PeopleDetail({lang, person}) {
           <span className="personne">{person.lastname} {person.firstName}</span>
         </p>
         <article id="biographie">
-            <figure><img src={person.coverImage && person.coverImage.url}   alt={lang === "fr" ? "Photo de profil de " + person.firstName + person.lastName : person.firstName + person.lastName + " profil picture"} /></figure>
+            <figure><img src={person.coverImage ? person.coverImage.url : Img}   alt={lang === "fr" ? "Photo de profil de " + person.firstName + person.lastName : person.firstName + person.lastName + " profil picture"} /></figure>
           <header>
             <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
             <h2 data-level-2="role" data-type="role">{lang === "fr" ? person.role.fr : person.role.en}</h2>

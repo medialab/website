@@ -88,30 +88,31 @@
     },
     "groups": {
       "publications": {
-          "fr": "Publications",
-          "en": "Publications",
-          "values": ["article", "communication", "book", "thesis", "grey"]
+        "fr": "Publications",
+        "en": "Publications",
+        "values": ["article", "communication", "book", "thesis", "grey"]
       },
       "webEditions": {
-          "fr": "Éditions web",
-          "en": "Web editions",
-          "values": ["datascape", "website"]
+        "fr": "Éditions web",
+        "en": "Web editions",
+        "values": ["datascape", "website"]
       },
       "tools": {
-          "fr": "Outils",
-          "en": "Tools",
-          "values": ["software", "code"]
+        "fr": "Outils",
+        "en": "Tools",
+        "values": ["software", "code"]
       },
       "situations": {
-          "fr": "Situations",
-          "en": "Situations",
-          "values": ["exhibition", "workshop", "simulation", "conference"]
+        "fr": "Situations",
+        "en": "Situations",
+        "values": ["exhibition", "workshop", "simulation", "conference"]
       },
       "media": {
         "fr": "Médias",
         "en": "Media",
         "values": ["media"]
       }
-    }
+    },
+    "groupOrder": ["publications", "tools", "webEditions", "medias", "situations"]
   }
 }

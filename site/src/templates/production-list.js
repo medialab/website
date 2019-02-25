@@ -4,6 +4,7 @@ import {graphql} from 'gatsby';
 import Layout from '../components/Layout';
 import ProductionListing from '../components/ProductionListing';
 
+// TODO: is the groupLabel necessary here?
 export const query = graphql`
   query ($allowedTypes: [String]!) {
     allProductionsJson(filter: {type: {in: $allowedTypes}}) {
@@ -15,6 +16,16 @@ export const query = graphql`
             fr
           }
           description {
+            en
+            fr
+          }
+          type,
+          group,
+          typeLabel {
+            en
+            fr
+          }
+          groupLabel {
             en
             fr
           }

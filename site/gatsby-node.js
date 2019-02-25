@@ -32,6 +32,12 @@ const ASSETS_PATH = path.join(ROOT_PATH, 'data', 'assets');
 const ASSETS_GLOB = path.join(ASSETS_PATH, '*');
 const PUBLIC_PATH = path.join(process.cwd(), 'public', 'static');
 
+const PRODUCTION_TYPE_TO_GROUP = {};
+
+_.forEach(ENUMS.productionTypes.groups, (group, key) => {
+  group.values.forEach(type => PRODUCTION_TYPE_TO_GROUP[type] = key);
+});
+
 const processing = require(path.join(ROOT_PATH, 'specs', 'processing.js')).sharpToString;
 
 const MODELS_PATHS = {};
@@ -134,6 +140,15 @@ const MODEL_READERS = {
 
       // Solving enums
       solveEnum(ENUMS.productionTypes, 'type', production);
+
+      production.group = PRODUCTION_TYPE_TO_GROUP[production.type];
+
+      const relevantGroupInfo = ENUMS.productionTypes.groups[production.group];
+
+      production.groupLabel = {
+        en: relevantGroupInfo.en,
+        fr: relevantGroupInfo.fr
+      };
 
       // Processing HTML
       const content = template(pathPrefix, production.content);

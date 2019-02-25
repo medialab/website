@@ -15,13 +15,14 @@
 		margin-top: $height-top-bar;
 		margin-left: $logo-column;
 
-		hr{
+		&:before{
+			content: "";
 			display: block; 
 			width: calc(100vw - #{$logo-column} - #{$margins-desktop*3});
 			position: fixed;
 			border-top: $border-light;
 		}
-		   
+
     .accroche-titre-phone{ display: none; }
 		
 		.liste_objet{

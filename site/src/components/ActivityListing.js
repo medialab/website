@@ -14,7 +14,6 @@ export default function ActivityListing({lang, list}) {
     	<>
 		<FilterActivity />
 		<section id="liste">
-		<hr/>
 			<p className="accroche-titre-phone">Description en une phrase de la catégorie activité...</p>
        	 	<ul className="liste_objet" id="liste-activity">
        	 	{list.map((a, index) => (

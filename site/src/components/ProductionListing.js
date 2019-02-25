@@ -9,13 +9,13 @@ import {en, fr} from 'date-fns/locale'
 /* import {templateMembership} from './helpers.js';  */
 import './scss/page_liste.scss';
 
-export default function ProductionListing({lang, list, group}) {
-  console.log(lang, list, group);
+export default function ProductionListing({lang, list, group, types}) {
+  console.log(lang, list, group, types);
 
   	return (
     	<>
     		<FilterProduction />
-        
+
         <section id="liste">
         <hr/>
           <p className="accroche-titre-phone">Description en une phrase de la catégorie production....</p>

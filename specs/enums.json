@@ -113,6 +113,6 @@
         "values": ["media"]
       }
     },
-    "groupOrder": ["publications", "tools", "webEditions", "medias", "situations"]
+    "groupOrder": ["publications", "tools", "webEditions", "media", "situations"]
   }
 }

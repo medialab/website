@@ -2,6 +2,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 const chokidar = require('chokidar');
+const _ = require('lodash');
 
 const {
   addBacklinkToGraphQLSchema,
@@ -226,6 +227,56 @@ exports.sourceNodes = function(args) {
       console.log(`Updating ${model}.json`);
       MODEL_READERS[model](args);
     });
+
+  // Creating enum nodes
+  const {actions: {createNode}} = args;
+
+  const enumHash = hashNode(ENUMS);
+
+  createNode({
+    ...ENUMS,
+    id: 'site-enums-node',
+    internal: {
+      type: 'EnumsJson',
+      contentDigest: enumHash,
+      mediaType: 'application/json'
+    }
+  });
+
+  // Some faceted enums for templating convenience
+  const facetedEnums = {
+    productionTypes: ENUMS.productionTypes.groupOrder.map(group => {
+      const e = ENUMS.productionTypes.groups[group];
+
+      return {
+        label: {
+          en: e.en,
+          fr: e.fr
+        },
+        values: e.values.map(v => {
+          return {
+            label: {
+              en: ENUMS.productionTypes.en[v],
+              fr: ENUMS.productionTypes.fr[v]
+            },
+            type: v
+          }
+        })
+      }
+    })
+  };
+
+  const facetedEnumHash = hashNode(facetedEnums);
+
+  createNode({
+    ...facetedEnums,
+    id: 'site-faceted-enums-node',
+    internal: {
+      type: 'FacetedEnumsJson',
+      contentDigest: facetedEnumHash,
+      mediaType: 'application/json'
+    }
+  });
 };
 
 exports.createPages = function({graphql, actions}) {

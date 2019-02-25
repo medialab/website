@@ -26,6 +26,22 @@ export const query = graphql`
         }
       }
     }
+
+    facetedEnumsJson {
+      productionTypes {
+        label {
+          en
+          fr
+        }
+        values {
+          type
+          label {
+            en
+            fr
+          }
+        }
+      }
+    }
   }
 `;
 
@@ -37,7 +53,11 @@ export default ({data, pageContext}) => {
 
   return (
     <Layout lang={pageContext.lang} className="page-production-list" permalink={permalink}>
-      <ProductionListing lang={pageContext.lang} list={list} group={pageContext.group} />
+      <ProductionListing
+        lang={pageContext.lang}
+        list={list}
+        group={pageContext.group}
+        types={data.facetedEnumsJson.productionTypes} />
     </Layout>
   );
 };

@@ -17,7 +17,6 @@ export default function ProductionListing({lang, list, group, types}) {
     		<FilterProduction />
 
         <section id="liste">
-        <hr/>
           <p className="accroche-titre-phone">Description en une phrase de la catégorie production....</p>
           <ul className="liste_objet" id="liste-productions">
 
@@ -35,6 +34,7 @@ export default function ProductionListing({lang, list, group, types}) {
                   {p.date && <p className="date">{p.date}</p>}
                   <p className="type" data-icon="production">
                   Production - {p.type}
+                  {/* {lang === "fr" ? p.typeLabel.fr : p.typeLabel.en} */}
                   {/* {p.productionTypes} - {p.type} */}
                   </p>
                   <p className="go-to-object"><span>〉</span></p>

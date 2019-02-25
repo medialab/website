@@ -11,46 +11,55 @@
 
 @include for-size(phone) {
 
-    #introduction, #now, #agenda, #follow{
-        border-bottom: $border-bold;
-        padding-bottom: $baseline*4;
-        margin-left: $margins-phone;
-        margin-right: $margins-phone;
-    }
-    
+    body.page-home{
+        
+        #introduction, #now, #agenda, #follow{
+            border-bottom: $border-bold;
+            padding-bottom: $baseline*4;
+            margin-left: $margins-phone;
+            margin-right: $margins-phone;
+        }
+        
 
-    section > h1{
-        @include font-size-27-phone;
-        margin-bottom: $baseline*1;
-        margin-top: $baseline*4;
-        text-align: center;
+        section > h1{
+            @include font-size-27-phone;
+            margin-bottom: $baseline*1;
+            margin-top: $baseline*4;
+            text-align: center;
+        }
     }
-
 }
 
 
 
 @include for-size(desktop) {
-
-    #nav-home{ display: none; }
-
-    #introduction, #now, #agenda, #follow{
-        border-bottom: $border-bold;
-        padding-bottom: $baseline*4;
-    }
-
-    #slideshow{
-        border-bottom: $border-bold;
-        // padding-bottom: $baseline*4;
-    }
     
+    body.page-home{
+    
+        #nav-home{ display: none; }
 
-    section > h1{
-        @include font-size-27;
-        margin-bottom: $baseline*1;
-        margin-top: $baseline*4;
-        text-align: center;
+        #introduction, #now, #agenda, #follow{
+            border-bottom: $border-bold;
+            padding-bottom: $baseline*4;
+        }
+
+        #slideshow{
+            border-bottom: $border-bold;
+            // padding-bottom: $baseline*4;
+        }
+        
+
+        section > h1{
+            @include font-size-27;
+            margin-bottom: $baseline*1;
+            margin-top: $baseline*4;
+            text-align: center;
+        }
+
+        footer{
+            width: 100%;
+            margin-left: 0;
+        }
     }
-
 }
 

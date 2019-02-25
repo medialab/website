@@ -14,6 +14,8 @@ export default function ActivityListing({lang, list}) {
     	<>
 		<FilterActivity />
 		<section id="liste">
+		<hr/>
+			<p className="accroche-titre-phone">Description en une phrase de la catégorie activité...</p>
        	 	<ul className="liste_objet" id="liste-activity">
        	 	{list.map((a, index) => (
 				<>
@@ -22,6 +24,7 @@ export default function ActivityListing({lang, list}) {
 						<h1 data-level-1="baseline">{a.baseline && ( lang === "fr" ? a.baseline.fr : a.baseline.en)}</h1>
 						<h2 data-level-2="title">{a.name}</h2>
 						<p className="type">{a.type}</p>
+						<p className="go-to-object"><span>〉</span></p>
 					</Link>
 				</li>
 				<li className="item_accroche description" data-item-accroche={index}>

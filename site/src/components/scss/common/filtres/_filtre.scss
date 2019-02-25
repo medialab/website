@@ -1,0 +1,157 @@
+/////////////////////
+//////// Filtres
+/////////////////////
+
+
+
+.type_title{
+	position: fixed;
+	@include font-size-16();
+	text-transform: uppercase;
+	font-weight: 600;
+	border-top: $border-light;
+	border-bottom: $border-light;
+	padding-top: $baseline * 1;
+	height: $baseline * 3.5;
+}
+
+
+.link-productions-sort,
+.link-activity-sort{
+	position: fixed;
+	@include font-size-13();
+	font-weight: 300;
+	text-transform: uppercase;
+	padding-top: $baseline * 1.5;
+	padding-bottom: $baseline * 1;
+	border-bottom: $border-very-light;
+	li, a{
+		// transition: 1s max-height;
+		overflow: hidden;
+		height: $baseline*2;
+		display: block;
+		width: 100%;
+		span{
+			position: absolute;
+			right: 0;
+			display: none;
+		}
+	}
+
+	.pageProduction_current{
+		font-weight: 600!important;
+		span{ display: inline; }
+	}
+	
+}
+
+
+
+
+
+.go-to-year{  
+	position: fixed;    
+	@include font-size-13;
+	padding-top: $baseline * 1.25;
+	border-bottom: $border-very-light;
+	height: $baseline * 3.5;
+
+
+	.current-year{
+		font-weight: 600;
+		padding-right: $margins-desktop*1.5;
+		position: absolute;
+		right: 0;
+		top: $baseline * 1.25;
+	}
+
+	ul{
+		background-color: $background-site;       
+		@include font-size-13;
+		// transition: 1.5s;
+		overflow: hidden;
+		margin-top: $baseline;
+
+		li{
+			display: inline-block;              
+			padding-bottom: $baseline/2;
+			padding-top: $baseline/2;
+			border-right: $border-very-light;
+			border-bottom: $border-very-light;
+			text-align: center;
+		}
+		
+	}
+
+	
+}/* end .go-to-year */
+
+
+#radio_filtre-production_type + label{
+	position: fixed;
+	@include font-size-13;
+	text-transform: uppercase;
+	text-align: left;
+	// transition: 0.5s top;
+	span{ display: none; }
+}
+
+.filtre-production, .filtre-activity{ 
+	position: fixed;
+	overflow: hidden;
+	@include font-size-13;
+	font-weight: 300;
+	// transition: top 0.5s, max-height 0.5s;
+}
+
+
+#radio_filtre-production_group + label,
+#radio_filtre-production_year + label, 
+#radio_filtre-production_type + label{
+	height: $baseline*2;
+	z-index: 99;
+	cursor: pointer; 
+}
+
+
+#radio_filtre-production_group + label span,
+#radio_filtre-production_year + label span, 
+#radio_filtre-production_type + label span{
+	// padding-top: $baseline * 0.5;
+	@include font-size-13;
+	position: absolute;
+	text-align: right;
+	right: 0;
+	top: 0;	
+}
+
+#radio_filtre-production_year + label{
+	padding-top: $baseline * 0.25;
+}
+
+
+
+
+/* flêches ouvrantes/fermantes */
+
+#radio_filtre-production_group + label span,
+#radio_filtre-production_year + label span,
+#radio_filtre-production_type + label span{
+	display: inline-block; 
+	width: $baseline;
+	height: $baseline;
+}
+
+
+#radio_filtre-production_group:checked + label span,
+#radio_filtre-production_year:checked + label span,
+#radio_filtre-production_type:checked + label span{
+	transform: rotate(90deg);
+	transform-origin: center center;
+	// top: -3px;
+}
+
+
+#radio_filtre-production_year + label span{
+	margin-top: $baseline*0.25;
+}

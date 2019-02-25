@@ -13,16 +13,18 @@ $unite-phone: 10px;
 $height-top-bar-phone: $unite-phone*7;
 $margins-phone: $unite-phone*1.5;
 $topbar-phone: $unite-phone*6;
-$mobile-container-width : calc( 100vw - #{$margins-phone*3});
+$mobile-container-width : calc(100vw - #{$margins-phone*3});
 
 
 /*  bordures  */
 $border: 0.5px solid $text-color;
 $border-light: 0.5px solid #9e9d9d;
+$border-very-light: 0.5px solid rgb(235, 235, 235);
 //$border-bold: 3px double; // Pas un paragon de simplicité, On peut en discuter ?
 $border-bold: 1px solid $text-color;
 $border-redlab: 0.5px solid $redlab;
 $border-redlab-light: 0.5px solid $redlab-light;
+$border-redlab-very-light: 0.5px solid #fad5d8;
 
 
 /*  unicode catégories */

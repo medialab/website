@@ -77,6 +77,7 @@
 			text-align: right; 
 			padding-top: $baseline*0.5;
 			color: $text-color-light;
+			min-height: $baseline*1.5;
 		}
 		
 		
@@ -105,6 +106,13 @@
 		}
 
 
+	}
+
+	#liste-news .date-news{
+		width: 100%;
+		border-bottom: $border-very-light;
+		padding-bottom: $baseline*1;
+		margin-bottom: $baseline*1;
 	}
 	
 

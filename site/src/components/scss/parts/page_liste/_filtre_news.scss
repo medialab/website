@@ -1,0 +1,31 @@
+/////////////////////
+//////// NEWS — filtres
+/////////////////////
+
+@include for-size(desktop) {
+
+	#go-to-year_news{ 
+		top: $height-top-bar + $baseline * 3.5;
+		.current-year{ 
+			padding-right: $baseline*1.75; 
+		}
+	}
+
+}
+
+@include for-size(phone) {
+
+	#toggle-filtre-phone:checked ~ #go-to-year_news{ 		
+		top: $top-filtre-phone-open + $baseline*3.5;
+		transition: 0.6s top;
+	}
+
+	#toggle-filtre-phone ~ #go-to-year_news{ 
+		top: 100vh;
+		border-top: $border-very-light;
+		transition: 0.6s top;
+		.current-year{ padding-right: $baseline*1.75; }
+	}
+
+}
+

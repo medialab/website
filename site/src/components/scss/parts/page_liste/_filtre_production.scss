@@ -5,24 +5,29 @@
 
 @include for-size(desktop) {
 
-    #radio_filtre-production_group + label{ display: none; }
-
-    #radio_filtre-production_year ~ .go-to-year ul{ max-height: 0vh; }
-    #radio_filtre-production_year:checked ~ .go-to-year ul{ max-height: 100vh; }
-
-    #radio_filtre-production_type ~ .filtre-production{ max-height: 0px; }
-    #radio_filtre-production_type:checked ~ .filtre-production{ max-height: 100vh; }
-    
-    #radio_filtre-production_year ~ #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions + $baseline*5; }
-
-    @for $a from 5 through 10 {				  
-        #radio_filtre-production_year ~ .filtre-production:nth-of-type(#{$a}){ top: $height-top-bar + $height-filtres-productions -$baseline* 2.5 + $baseline* 2.5 * ($a - 1); }
-    }
-
-	#radio_filtre-production_year:checked ~ #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions_year-checked + $baseline*5; }
 	
-	#go-to-year_production{ top: $height-top-bar + $height-filtres-productions;}
+	body.page-production-list,
+	body.page-news-list,
+	body.page-activity-list{
 
+    	#radio_filtre-production_group + label{ display: none; }
+
+	    #radio_filtre-production_year ~ .go-to-year ul{ max-height: 0vh; }
+	    #radio_filtre-production_year:checked ~ .go-to-year ul{ max-height: 100vh; }
+
+	    #radio_filtre-production_type ~ .filtre-production{ max-height: 0px; }
+	    #radio_filtre-production_type:checked ~ .filtre-production{ max-height: 100vh; }
+	    
+	    #radio_filtre-production_year ~ #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions + $baseline*5; }
+
+	    @for $a from 5 through 10 {				  
+	        #radio_filtre-production_year ~ .filtre-production:nth-of-type(#{$a}){ top: $height-top-bar + $height-filtres-productions -$baseline* 2.5 + $baseline* 2.5 * ($a - 1); }
+	    }
+
+		#radio_filtre-production_year:checked ~ #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions_year-checked + $baseline*5; }
+		
+		#go-to-year_production{ top: $height-top-bar + $height-filtres-productions;}
+	}
 }
 
 
@@ -30,210 +35,217 @@
 @media screen and (min-width: 700px) and (max-height: 700px){
 
 
-    #radio_filtre-production_group + label{
-        position: fixed;
-        left: $margins-desktop;
-        top: $height-top-bar + $baseline*4.5;
-        width: $logo-column - $margins-desktop;
-        display: block;
-    }
+	body.page-production-list,
+	body.page-news-list,
+	body.page-activity-list{
+
+	    #radio_filtre-production_group + label{
+	        position: fixed;
+	        left: $margins-desktop;
+	        top: $height-top-bar + $baseline*4.5;
+	        width: $logo-column - $margins-desktop;
+	        display: block;
+	    }
 
 
-    #radio_filtre-production_group:checked + label{ display: none; }
+	    #radio_filtre-production_group:checked + label{ display: none; }
 
-    #radio_filtre-production_group ~ .link-productions-sort li{ max-height: 0; }
-    #radio_filtre-production_group:checked ~ .link-productions-sort li{ max-height: 100px; }
+	    #radio_filtre-production_group ~ .link-productions-sort li{ max-height: 0; }
+	    #radio_filtre-production_group:checked ~ .link-productions-sort li{ max-height: 100px; }
 
-    #radio_filtre-production_group ~ .link-productions-sort{
-        min-height: $baseline*3.5;
-        top: $height-top-bar + $baseline*3.5;
-        padding-top: $baseline*1;
-        padding-bottom: 0;
-    }
+	    #radio_filtre-production_group ~ .link-productions-sort{
+	        min-height: $baseline*3.5;
+	        top: $height-top-bar + $baseline*3.5;
+	        padding-top: $baseline*1;
+	        padding-bottom: 0;
+	    }
 
-    #radio_filtre-production_group:checked ~ .link-productions-sort{
-        padding-top: $baseline * 1.5;
-	    padding-bottom: $baseline * 1;
-    }  
+	    #radio_filtre-production_group:checked ~ .link-productions-sort{
+	        padding-top: $baseline * 1.5;
+		    padding-bottom: $baseline * 1;
+	    }  
 
-    #radio_filtre-production_group ~ .link-productions-sort .pageProduction_current{ 
-        max-height: 100px; 
-        font-weight: 300!important;
-        span{ display: none; }
-    }
+	    #radio_filtre-production_group ~ .link-productions-sort .pageProduction_current{ 
+	        max-height: 100px; 
+	        font-weight: 300!important;
+	        span{ display: none; }
+	    }
 
-    #radio_filtre-production_group:checked ~ .link-productions-sort .pageProduction_current{ font-weight: 600!important; }
+	    #radio_filtre-production_group:checked ~ .link-productions-sort .pageProduction_current{ font-weight: 600!important; }
 
-    #go-to-year_production{
-        top: $height-top-bar + $baseline*7;
-    }
+	    #go-to-year_production{
+	        top: $height-top-bar + $baseline*7;
+	    }
 
-    #radio_filtre-production_year + label{
-        top: $height-top-bar + $baseline*8;
-    }
+	    #radio_filtre-production_year + label{
+	        top: $height-top-bar + $baseline*8;
+	    }
 
-    #radio_filtre-production_year ~ #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions_medium + $baseline*5; }
-  
-    #radio_filtre-production_group:checked ~ #go-to-year_production{
-        top: $height-top-bar + $baseline*18;
-    }
+	    #radio_filtre-production_year ~ #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions_medium + $baseline*5; }
+	  
+	    #radio_filtre-production_group:checked ~ #go-to-year_production{
+	        top: $height-top-bar + $baseline*18;
+	    }
 
-    #radio_filtre-production_group:checked ~ #radio_filtre-production_year + label{
-        top: $height-top-bar + $baseline*19;
-    }
+	    #radio_filtre-production_group:checked ~ #radio_filtre-production_year + label{
+	        top: $height-top-bar + $baseline*19;
+	    }
 
-    @for $i from 5 through 10 {				  
-        #radio_filtre-production_year ~ .filtre-production:nth-of-type(#{$i}){ top: $height-top-bar + $baseline*4.5 + $baseline* 2.5 * ($i - 1); }
-    }
-    
+	    @for $i from 5 through 10 {				  
+	        #radio_filtre-production_year ~ .filtre-production:nth-of-type(#{$i}){ top: $height-top-bar + $baseline*4.5 + $baseline* 2.5 * ($i - 1); }
+	    }
+	    
 
-    #radio_filtre-production_group:checked ~ #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions_medium_group-checked + $baseline*5; }
+	    #radio_filtre-production_group:checked ~ #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions_medium_group-checked + $baseline*5; }
 
-    #radio_filtre-production_year:checked ~ #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions_medium_year-checked + $baseline*5; }
-   
-    
+	    #radio_filtre-production_year:checked ~ #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions_medium_year-checked + $baseline*5; }
+	   
+	} 
 }
 
 
 
 
 @include for-size(phone) {
+	
+	body.page-production-list,
+	body.page-news-list,
+	body.page-activity-list{
 
 
 
+		 #radio_filtre-production_group + label{ 		
+			 z-index: 90;
+			 height: $baseline*3.5;
+			 @include font-size-13-phone;
+			 span{ top: $baseline*1;}
 
-	 #radio_filtre-production_group + label{ 		
-		 z-index: 90;
-		 height: $baseline*3.5;
-		 @include font-size-13-phone;
-		 span{ top: $baseline*1;}
+		  }
 
-	  }
-
-	 #radio_filtre-production_group ~ .link-productions-sort li{ max-height: 0; }
-	 #radio_filtre-production_group:checked ~ .link-productions-sort li{ max-height: 100px; }
- 
-	 #radio_filtre-production_group ~ .link-productions-sort{
-		 min-height: $baseline*3.5;
-		 padding-top: $baseline*1;
-		 padding-bottom: 0;
-	 }
- 
+		 #radio_filtre-production_group ~ .link-productions-sort li{ max-height: 0; }
+		 #radio_filtre-production_group:checked ~ .link-productions-sort li{ max-height: 100px; }
 	 
-	 #radio_filtre-production_group ~ .link-productions-sort .pageProduction_current{ 
-		 max-height: 100px; 
-		 font-weight: 300!important;
-			span{ display: none; }
-	 }
- 
-	 #radio_filtre-production_group:checked ~ .link-productions-sort .pageProduction_current{ font-weight: 600!important; }
- 
-	
-	#radio_filtre-production_year + label{ 
-		z-index: 40; 
-	}
+		 #radio_filtre-production_group ~ .link-productions-sort{
+			 min-height: $baseline*3.5;
+			 padding-top: $baseline*1;
+			 padding-bottom: 0;
+		 }
+	 
+		 
+		 #radio_filtre-production_group ~ .link-productions-sort .pageProduction_current{ 
+			 max-height: 100px; 
+			 font-weight: 300!important;
+				span{ display: none; }
+		 }
+	 
+		 #radio_filtre-production_group:checked ~ .link-productions-sort .pageProduction_current{ font-weight: 600!important; }
+	 
+		
+		#radio_filtre-production_year + label{ 
+			z-index: 40; 
+		}
 
 
 
 
 
-    
+	    
 
 
-	//close
+		//close
 
-	
-
-
-	#toggle-filtre-phone ~ #radio_filtre-production_group ~ .link-productions-sort,
-	#toggle-filtre-phone ~ #radio_filtre-production_group + label{
-		top: calc(100vh + 1px);
-		transition: 0.6s top;
-	}
+		
 
 
+		#toggle-filtre-phone ~ #radio_filtre-production_group ~ .link-productions-sort,
+		#toggle-filtre-phone ~ #radio_filtre-production_group + label{
+			top: calc(100vh + 1px);
+			transition: 0.6s top;
+		}
 
-	#toggle-filtre-phone ~ #go-to-year_production{
-		top: calc(100vh - #{$baseline}*3.5 + #{$baseline}*7);
-		transition: 0.6s top;
-    }
 
-    #toggle-filtre-phone ~ #radio_filtre-production_year + label{
-		top: calc(100vh - #{$baseline}*3.5 + #{$baseline}*8);
-		transition: 0.6s top;
-	}
-	
-	#toggle-filtre-phone ~ #radio_filtre-production_type + label{
-		top: calc(100vh - #{$baseline}*3.5 + #{$baseline}*11.5);
-		transition: 0.6 top;
-	}
 
-	@for $a from 5 through 10 {	
-		#toggle-filtre-phone ~ #radio_filtre-production_year ~ .filtre-production:nth-of-type(#{$a}){ 
-			top: calc(100vh + #{$baseline}*1.5 + #{$baseline}* 2.5 * 5); 
+		#toggle-filtre-phone ~ #go-to-year_production{
+			top: calc(100vh - #{$baseline}*3.5 + #{$baseline}*7);
+			transition: 0.6s top;
+	    }
+
+	    #toggle-filtre-phone ~ #radio_filtre-production_year + label{
+			top: calc(100vh - #{$baseline}*3.5 + #{$baseline}*8);
+			transition: 0.6s top;
+		}
+		
+		#toggle-filtre-phone ~ #radio_filtre-production_type + label{
+			top: calc(100vh - #{$baseline}*3.5 + #{$baseline}*11.5);
 			transition: 0.6 top;
 		}
-	}
-	
-	
-    
 
-	
+		@for $a from 5 through 10 {	
+			#toggle-filtre-phone ~ #radio_filtre-production_year ~ .filtre-production:nth-of-type(#{$a}){ 
+				top: calc(100vh + #{$baseline}*1.5 + #{$baseline}* 2.5 * 5); 
+				transition: 0.6 top;
+			}
+		}
+		
+		
+	    
 
-
-
-	 //open
-
-	 
-
-	#toggle-filtre-phone:checked ~ #radio_filtre-production_group ~ .link-productions-sort,
-	#toggle-filtre-phone:checked ~ #radio_filtre-production_group + label{
-		top: $top-filtre-phone-open + $baseline*3.5;
-	}
+		
 
 
-	#toggle-filtre-phone:checked ~ #go-to-year_production{
-		top: $top-filtre-phone-open + $baseline*7;
+
+		 //open
+
+		 
+
+		#toggle-filtre-phone:checked ~ #radio_filtre-production_group ~ .link-productions-sort,
+		#toggle-filtre-phone:checked ~ #radio_filtre-production_group + label{
+			top: $top-filtre-phone-open + $baseline*3.5;
+		}
+
+
+		#toggle-filtre-phone:checked ~ #go-to-year_production{
+			top: $top-filtre-phone-open + $baseline*7;
+	    }
+
+	    #toggle-filtre-phone:checked ~ #radio_filtre-production_year + label{
+			top: $top-filtre-phone-open + $baseline*8;
+		}
+		
+		#toggle-filtre-phone:checked ~ #radio_filtre-production_type + label{
+			top: $top-filtre-phone-open + $baseline*11.5;
+		}
+
+
+		#toggle-filtre-phone:checked ~ #radio_filtre-production_group:checked ~ .link-productions-sort{
+			padding-top: $baseline * 1.5;
+			padding-bottom: $baseline * 1;
+		}  
+
+
+		#toggle-filtre-phone:checked ~ #radio_filtre-production_year ~ .go-to-year ul{ max-height: 0vh; }
+		#toggle-filtre-phone:checked ~ #radio_filtre-production_year:checked ~ .go-to-year ul{ max-height: 100vh!important; }
+
+		#toggle-filtre-phone:checked ~ #radio_filtre-production_group:checked ~ #go-to-year_production{
+	        top: $top-filtre-phone-open + $baseline*18;
+	    }
+		
+		#toggle-filtre-phone:checked ~ #radio_filtre-production_group:checked ~ #radio_filtre-production_year + label{
+			top: $top-filtre-phone-open + $baseline*19;	
+		}
+		
+		#toggle-filtre-phone:checked ~ #radio_filtre-production_type ~ .filtre-production{ max-height: 0px; }
+		#toggle-filtre-phone:checked ~ #radio_filtre-production_type:checked ~ .filtre-production{ max-height: 100vh; }
+		
+		#toggle-filtre-phone:checked ~ #radio_filtre-production_year ~ #radio_filtre-production_type + label{ top: $top-filtre-phone-open + $height-filtres-productions_medium + $baseline*5; }
+		#toggle-filtre-phone:checked ~ #radio_filtre-production_group:checked ~ #radio_filtre-production_type + label{ top: $top-filtre-phone-open + $height-filtres-productions_medium_year-checked + $baseline*7; }
+	    #toggle-filtre-phone:checked ~ #radio_filtre-production_year:checked ~ #radio_filtre-production_type + label{ top: $top-filtre-phone-open + $height-filtres-productions_medium_year-checked + $baseline*5; }
+
+
+		@for $i from 5 through 10 {	
+	        #toggle-filtre-phone:checked ~ #radio_filtre-production_year ~ .filtre-production:nth-of-type(#{$i}){ top: $top-filtre-phone-open + $baseline*4.5 + $baseline* 2.5 * ($i - 1); transition: 0.6 top;}
+	    }
     }
-
-    #toggle-filtre-phone:checked ~ #radio_filtre-production_year + label{
-		top: $top-filtre-phone-open + $baseline*8;
-	}
-	
-	#toggle-filtre-phone:checked ~ #radio_filtre-production_type + label{
-		top: $top-filtre-phone-open + $baseline*11.5;
-	}
-
-
-	#toggle-filtre-phone:checked ~ #radio_filtre-production_group:checked ~ .link-productions-sort{
-		padding-top: $baseline * 1.5;
-		padding-bottom: $baseline * 1;
-	}  
-
-
-	#toggle-filtre-phone:checked ~ #radio_filtre-production_year ~ .go-to-year ul{ max-height: 0vh; }
-	#toggle-filtre-phone:checked ~ #radio_filtre-production_year:checked ~ .go-to-year ul{ max-height: 100vh!important; }
-
-	#toggle-filtre-phone:checked ~ #radio_filtre-production_group:checked ~ #go-to-year_production{
-        top: $top-filtre-phone-open + $baseline*18;
-    }
-	
-	#toggle-filtre-phone:checked ~ #radio_filtre-production_group:checked ~ #radio_filtre-production_year + label{
-		top: $top-filtre-phone-open + $baseline*19;	
-	}
-	
-	#toggle-filtre-phone:checked ~ #radio_filtre-production_type ~ .filtre-production{ max-height: 0px; }
-	#toggle-filtre-phone:checked ~ #radio_filtre-production_type:checked ~ .filtre-production{ max-height: 100vh; }
-	
-	#toggle-filtre-phone:checked ~ #radio_filtre-production_year ~ #radio_filtre-production_type + label{ top: $top-filtre-phone-open + $height-filtres-productions_medium + $baseline*5; }
-	#toggle-filtre-phone:checked ~ #radio_filtre-production_group:checked ~ #radio_filtre-production_type + label{ top: $top-filtre-phone-open + $height-filtres-productions_medium_year-checked + $baseline*7; }
-    #toggle-filtre-phone:checked ~ #radio_filtre-production_year:checked ~ #radio_filtre-production_type + label{ top: $top-filtre-phone-open + $height-filtres-productions_medium_year-checked + $baseline*5; }
-
-
-	@for $i from 5 through 10 {	
-        #toggle-filtre-phone:checked ~ #radio_filtre-production_year ~ .filtre-production:nth-of-type(#{$i}){ top: $top-filtre-phone-open + $baseline*4.5 + $baseline* 2.5 * ($i - 1); transition: 0.6 top;}
-    }
-    
 
 }
 

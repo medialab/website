@@ -2,50 +2,51 @@
 //////// Activités
 /////////////////////
 
+body.page-production-list, body.page-news-list, body.page-activity-list{
 
 
-@include for-size(desktop) {
+	@include for-size(desktop) {
 
-        /* ACTIVITES */
-	#filtre-activity_research + label{ top: $height-top-bar + $height-filtres-activites + $baseline* 2.5 * 3; }
-    #filtre-activity_teaching + label{ top: $height-top-bar + $height-filtres-activites + $baseline* 2.5 * 4; }
-    #filtre-activity_method + label{ top: $height-top-bar + $height-filtres-activites + $baseline* 2.5 * 5; }
+	        /* ACTIVITES */
+		#filtre-activity_research + label{ top: $height-top-bar + $height-filtres-activites + $baseline* 2.5 * 3; }
+	    #filtre-activity_teaching + label{ top: $height-top-bar + $height-filtres-activites + $baseline* 2.5 * 4; }
+	    #filtre-activity_method + label{ top: $height-top-bar + $height-filtres-activites + $baseline* 2.5 * 5; }
+
+	}
+
+
+	@include for-size(phone) {
+
+		.link-activity-sort, .filtre-activity{ transition: 0.6 top; }
+
+		#toggle-filtre-phone ~ .link-activity-sort{ 		
+			top: calc(100vh + 2px);
+			transition: 0.6 top;
+		 }
+
+		#toggle-filtre-phone:checked ~ .link-activity-sort{ 		
+			top: $top-filtre-phone-open + $baseline*3.5;
+			transition: 0.6 top;
+		 }
+
+		 
+
+		#toggle-filtre-phone ~ #filtre-activity_research + label{ top: 100vh; }
+	    #toggle-filtre-phone ~ #filtre-activity_teaching + label{ top: 100vh; }
+	    #toggle-filtre-phone ~ #filtre-activity_method + label{ top: 100vh; }
+
+		 #toggle-filtre-phone:checked ~ #filtre-activity_research + label{ top: $height-top-bar + $height-filtres-activites - $baseline + $baseline* 2.5 * 3; }
+		 #toggle-filtre-phone:checked ~ #filtre-activity_teaching + label{ top: $height-top-bar + $height-filtres-activites - $baseline + $baseline* 2.5 * 4; }
+		 #toggle-filtre-phone:checked ~ #filtre-activity_method + label{ top: $height-top-bar + $height-filtres-activites - $baseline + $baseline* 2.5 * 5; }
+
+	}
+
+
+
+	input#filtre-activity_research:checked ~ #liste #liste-activity .research{ display: block!important; }
+	input#filtre-activity_teaching:checked ~ #liste #liste-activity .teaching{ display: block!important; }
+	input#filtre-activity_method:checked ~ #liste #liste-activity .method{ display: block!important; }
 
 }
-
-
-@include for-size(phone) {
-
-	.link-activity-sort, .filtre-activity{ transition: 0.6 top; }
-
-	#toggle-filtre-phone ~ .link-activity-sort{ 		
-		top: calc(100vh + 2px);
-		transition: 0.6 top;
-	 }
-
-	#toggle-filtre-phone:checked ~ .link-activity-sort{ 		
-		top: $top-filtre-phone-open + $baseline*3.5;
-		transition: 0.6 top;
-	 }
-
-	 
-
-	#toggle-filtre-phone ~ #filtre-activity_research + label{ top: 100vh; }
-    #toggle-filtre-phone ~ #filtre-activity_teaching + label{ top: 100vh; }
-    #toggle-filtre-phone ~ #filtre-activity_method + label{ top: 100vh; }
-
-	 #toggle-filtre-phone:checked ~ #filtre-activity_research + label{ top: $height-top-bar + $height-filtres-activites - $baseline + $baseline* 2.5 * 3; }
-	 #toggle-filtre-phone:checked ~ #filtre-activity_teaching + label{ top: $height-top-bar + $height-filtres-activites - $baseline + $baseline* 2.5 * 4; }
-	 #toggle-filtre-phone:checked ~ #filtre-activity_method + label{ top: $height-top-bar + $height-filtres-activites - $baseline + $baseline* 2.5 * 5; }
-
-}
-
-
-
-input#filtre-activity_research:checked ~ #liste #liste-activity .research{ display: block!important; }
-input#filtre-activity_teaching:checked ~ #liste #liste-activity .teaching{ display: block!important; }
-input#filtre-activity_method:checked ~ #liste #liste-activity .method{ display: block!important; }
-
-
 
 

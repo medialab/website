@@ -3,117 +3,121 @@
 /////////////////////
 
 @include for-size(desktop) {
+	
+	body.page-production-list,
+	body.page-news-list,
+	body.page-activity-list{
 
-	#topbar{ 
-		position: fixed!important; 
-		top: 0;
-		width: calc(100vw - #{$margins-desktop*2});
-	}
-
-	#liste{
-        
-		margin-top: $height-top-bar;
-		margin-left: $logo-column;
-
-		&:before{
-			content: "";
-			display: block; 
-			width: calc(100vw - #{$logo-column} - #{$margins-desktop*3});
-			position: fixed;
-			border-top: $border-light;
+		#topbar{ 
+			position: fixed!important; 
+			top: 0;
+			width: calc(100vw - #{$margins-desktop*2});
 		}
 
-    	.accroche-titre-phone{ display: none; }
-		
-		.liste_objet{
+		#liste{
+	        
+			margin-top: $height-top-bar;
+			margin-left: $logo-column;
 
-			margin-bottom: 40vh;
-
-			[data-item], .list-year{ width: calc((100vw - #{$logo-column} - #{$margins-desktop*2})/5*2 ); }
-
-			[data-item]{
-				h1{ @include font-size-20(); }
-				h2{ @include font-size-13(); }
-				.date, .type, .go-to-object{ @include font-size-13(); }
+			&:before{
+				content: "";
+				display: block; 
+				width: calc(100vw - #{$logo-column} - #{$margins-desktop*3});
+				position: fixed;
+				border-top: $border-light;
 			}
-		}
 
-		#liste-news .date-news{
-			@include font-size-20();
-			.startDate, .endDate{ min-width: 50%; }
-			.startDate{ padding-right: $baseline; }
-			.endDate{ 
-				border-left: $border-very-light;
-				padding-left: $baseline;
-			}
-		}	
-		
-  }/* end #liste */
-}
-
-
-/////////////////////
-//////// Accroches desktop
-/////////////////////
-
-@include for-size(desktop-1000) {
-
-
-	#liste .liste_objet .item_accroche{
-		width: calc(((100vw - #{$logo-column} - #{$margins-desktop*2})/5*3) - #{$margins-desktop}*2 );
-		left: calc(#{$logo-column} + #{$margins-desktop} + ((100vw - #{$logo-column} - #{$margins-desktop*2})/5*2 ));
-		@include font-size-40();
-		margin-left: $margins-desktop*3;
-		padding: 20px;
-		overflow: hidden;
-		color: $redlab;				
-		padding-top: $baseline*2;
-		height: calc(100vh - #{$height-top-bar} - #{$margins-desktop});	
-		position: fixed;				
-		top: $height-top-bar;
-
-		& > a{ 
-			display: block;
-			width: 100%;
-		height: 100%;}
-		
-		.item_accroche_texte{
-			background-color: white;
-			z-index: 10;
-			display: block;
-			width: 100%;
-			position: absolute;
-			padding: $baseline $baseline*2;
+	    	.accroche-titre-phone{ display: none; }
 			
-			
-		}
+			.liste_objet{
 
-		.image-pre{
-			position: absolute;
-			top: -20px;
-			left: -20px;
-			pre{
-				font-size: 20px;
-				line-height: 23.2px;
+				margin-bottom: 40vh;
+
+				[data-item], .list-year{ width: calc((100vw - #{$logo-column} - #{$margins-desktop*2})/5*2 ); }
+
+				[data-item]{
+					h1{ @include font-size-20(); }
+					h2{ @include font-size-13(); }
+					.date, .type, .go-to-object{ @include font-size-13(); }
+				}
 			}
+
+			#liste-news .date-news{
+				@include font-size-20();
+				.startDate, .endDate{ min-width: 50%; }
+				.startDate{ padding-right: $baseline; }
+				.endDate{ 
+					border-left: $border-very-light;
+					padding-left: $baseline;
+				}
+			}	
+			
+	  }/* end #liste */
+	}
+
+
+	/////////////////////
+	//////// Accroches desktop
+	/////////////////////
+
+	@include for-size(desktop-1000) {
+
+
+		#liste .liste_objet .item_accroche{
+			width: calc(((100vw - #{$logo-column} - #{$margins-desktop*2})/5*3) - #{$margins-desktop}*2 );
+			left: calc(#{$logo-column} + #{$margins-desktop} + ((100vw - #{$logo-column} - #{$margins-desktop*2})/5*2 ));
+			@include font-size-40();
+			margin-left: $margins-desktop*3;
+			padding: 20px;
+			overflow: hidden;
+			color: $redlab;				
+			padding-top: $baseline*2;
+			height: calc(100vh - #{$height-top-bar} - #{$margins-desktop});	
+			position: fixed;				
+			top: $height-top-bar;
+
+			& > a{ 
+				display: block;
+				width: 100%;
+			height: 100%;}
+			
+			.item_accroche_texte{
+				background-color: white;
+				z-index: 10;
+				display: block;
+				width: 100%;
+				position: absolute;
+				padding: $baseline $baseline*2;
+				
+				
+			}
+
+			.image-pre{
+				position: absolute;
+				top: -20px;
+				left: -20px;
+				pre{
+					font-size: 20px;
+					line-height: 23.2px;
+				}
+			}
+
+
 		}
 
+		[data-item] ~ [data-item-accroche]{ display: none; }
 
+		.accroche-titre{ 
+			display: block;
+			color: $text-color!important;
+		}
+
+		@for $i from 0 through 5000 {				
+			[data-item="#{$i}"]:hover ~ [data-item-accroche="#{$i}"],
+			[data-item="#{$i}"]:active ~ [data-item-accroche="#{$i}"]{ display:block; }
+			[data-item="#{$i}"]:hover ~ .accroche-titre{ display:none; }
+		}
 	}
-
-	[data-item] ~ [data-item-accroche]{ display: none; }
-
-	.accroche-titre{ 
-		display: block;
-		color: $text-color!important;
-	}
-
-	@for $i from 0 through 5000 {				
-		[data-item="#{$i}"]:hover ~ [data-item-accroche="#{$i}"],
-		[data-item="#{$i}"]:active ~ [data-item-accroche="#{$i}"]{ display:block; }
-		[data-item="#{$i}"]:hover ~ .accroche-titre{ display:none; }
-	}
-
 }
 
 

@@ -10,8 +10,6 @@ import RawHtml from './RawHtml';
 import {templateMembership} from './helpers.js';
 import './scss/page_personne.scss';
 
-//import Img from './assets/images/sample/D-Cardon-bis.jpg';
-
 export const queryFragment = graphql`
   fragment PeopleDetail on PeopleJson {
     firstName
@@ -23,9 +21,6 @@ export const queryFragment = graphql`
     bio {
       fr
       en
-    }
-    coverImage {
-      url
     }
     membership
     active
@@ -80,6 +75,7 @@ export default function PeopleDetail({lang, person}) {
   console.log(lang, person);
 
   const bio = person.bio;
+  const name = `${person.firstName} ${person.lastName}`;
 
   return (
     <>
@@ -92,7 +88,7 @@ export default function PeopleDetail({lang, person}) {
           <span className="personne">{person.lastname} {person.firstName}</span>
         </p>
         <article id="biographie">
-            <figure><img src={person.coverImage ? person.coverImage.url : Img}   alt={lang === "fr" ? "Photo de profil de " + person.firstName + person.lastName : person.firstName + person.lastName + " profil picture"} /></figure>
+            <figure><img src={person.cover ? '/assets/' + person.cover.file : '#'} alt={lang === "fr" ? `Photo de profil de ${name}` : `${name} profile picture`} /></figure>
           <header>
             <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
             <h2 data-level-2="role" data-type="role">{lang === "fr" ? person.role.fr : person.role.en}</h2>

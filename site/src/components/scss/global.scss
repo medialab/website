@@ -1,0 +1,86 @@
+@import 'common';
+
+// Index
+
+@import 'parts/index/index';
+
+@import 'parts/index/slideshow-phone';
+@import 'parts/index/slideshow-desktop';
+@import 'parts/index/slideshow-nav';
+
+@import 'parts/index/introduction';
+
+@import 'parts/index/now-desktop';
+@import 'parts/index/now-phone';
+
+@import 'parts/index/_agenda-phone';
+@import 'parts/index/_agenda-desktop-slider';
+@import 'parts/index/agenda-desktop-structure'; 
+@import 'parts/index/agenda-desktop-style'; 
+
+@import 'parts/index/flux-desktop';
+@import 'parts/index/flux-phone';
+
+@import 'parts/index/follow';
+
+// Page Liste
+
+@import 'parts/page_liste/page_liste';
+@import 'parts/page_liste/page_liste-desktop';
+@import 'parts/page_liste/page_liste-phone';
+
+@import 'common/filtres/filtre';
+@import 'common/filtres/filtre-style-desktop';
+@import 'common/filtres/filtre-style-phone';
+
+@import 'parts/page_liste/filtre_production';
+@import 'parts/page_liste/filtre_activite';
+@import 'parts/page_liste/filtre_news';
+
+// page Equipe
+
+@import 'parts/page_equipe/page_equipe';
+@import 'parts/page_equipe/page_equipe-desktop';
+@import 'parts/page_equipe/page_equipe-phone';
+@import 'parts/page_equipe/filtre';
+
+@import 'parts/page_equipe/filtre_equipe';
+
+
+// Page_Personne
+@import 'parts/page_personne/page_personne';
+@import 'parts/page_personne/page_personne-desktop';
+@import 'parts/page_personne/page_personne-phone';
+
+@import 'common/pages/toggle-lang';
+@import 'common/pages/nav-article';
+@import 'common/pages/fichiers-associes';
+@import 'common/pages/elements-associes-liste';
+@import 'common/pages/elements-associes-dissocies';
+@import 'common/pages/implications';
+
+// Page Objet
+
+@import 'parts/page_objet/page_objet';
+@import 'parts/page_objet/page_objet-desktop';
+@import 'parts/page_objet/page_objet-phone';
+
+@import 'common/pages/toggle-lang';
+@import 'common/pages/nav-article';
+@import 'common/pages/fichiers-associes';
+@import 'common/pages/elements-associes';
+@import 'common/pages/elements-associes-liste';
+
+// About
+
+@import 'parts/apropos/apropos';
+@import 'parts/apropos/apropos-desktop';
+@import 'parts/apropos/apropos-phone';
+
+@import 'common/pages/nav-article';
+
+// Archive
+
+//@import 'parts/archive/_archive';
+//@import 'parts/archive/_archive-desktop';
+//@import 'parts/archive/_archive-phone';

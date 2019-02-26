@@ -60,53 +60,43 @@ export const queryFragment = graphql`
   }
 `;
 
+const relatedElements = [
+	{
+		id: 'main-objet',
+		en: 'Main article',
+		fr: 'Article principal',
+	},
+	{
+		id: 'productions-associes',
+		exist : ({productions}) => Boolean(productions),
+		en: 'Related poduction',
+		fr: 'Production en liens'
+	},
+	{
+		id: 'activites-associees',
+		exist : ({activities}) => Boolean(activities),
+		en: 'Related Activities',
+		fr: 'Activités en lien',
+	},
+	{
+		id: 'fichiers-associes',
+		exist : ({files}) => Boolean(files),
+		en: 'Related files',
+		fr: 'Fichier associés'
+	},
+	{
+		id: 'membres-associes',
+		exist : ({people}) => Boolean(people),
+		en: 'Related people',
+		fr: 'Membres en lien'
+	},
+];
+
 export default function ProductionDetail({lang, production}) {
-  //console.log(lang, production);
-
-  /*
-  // Definir les valeurs à envoyer à l'élément Nav
-  object.propTypes = {
-    nature: "Production",
-    image: production.coverImage.url,
-    imageProcessed: ,
-    related: {
-      default: {
-        id: main-objet,
-        exist : true,
-        en: Main article // le titre de cette élément doit changer si Page Personne : Biography
-        fr: Article principal // le titre de cette élément doit changer si Page Personne : Biographie
-      }
-      production: {
-        id: productions-associes,
-        exist : {production.productions ? true : false},
-        en: Related poduction,
-        fr: Production en liens
-      }
-      activities: {
-        id: activites-associees,
-        exist : {production.activities ? true : false},
-        en: Related Activities,
-        fr: Activité en lien
-      },
-      files: {
-        id: fichiers-associes,
-        exist : {production.files ? true : false},
-        en: Related files,
-        fr: Fichier associés
-      },
-      people: {
-        id: membres-associes,
-        exist : {production.people ? true : false},
-        en: Related people,
-        fr: Membres en lien
-      },
-    }
-  }*/
-
 
   return (
     <>
-      <Nav lang={lang} /* object={object} */ />
+      <Nav lang={lang} object={production} related={relatedElements} />
       <main id="main-objet">
         <p className="titre-sticky">{production.title && (lang === "fr" ? production.title.fr : production.title.en ) }</p>
         <article id="article-contenu">

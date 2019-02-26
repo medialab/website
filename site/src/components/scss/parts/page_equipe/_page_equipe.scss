@@ -1,13 +1,15 @@
 /* all */
 
-#liste_equipe{
-    
-    position: relative;
-        
-    a:hover{
-        figure{
-            background-color: $redlab;
-            img{ mix-blend-mode: screen; filter: grayscale(1) contrast(2);}
-        }
-    }
+body.page-people-list{
+	#liste_equipe{
+	    
+	    position: relative;
+	        
+	    a:hover{
+	        figure{
+	            background-color: $redlab;
+	            img{ mix-blend-mode: screen; filter: grayscale(1) contrast(2);}
+	        }
+	    }
+	}
 }

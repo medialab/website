@@ -3,53 +3,55 @@
 /////////////////////
 
 @include for-size(phone) {
+	body.page-people-list{
 
-	#liste_equipe{
-		
-    }
+		#liste_equipe{
+			
+	    }
 
-	#liste_equipe{        
-		margin: $baseline $margins-phone 0 $margins-phone ;
+		#liste_equipe{        
+			margin: $baseline $margins-phone 0 $margins-phone ;
 
-		ul{
-			display: inline-block;
+			ul{
+				display: inline-block;
 
-			li{
-				float: left;
-				width: 100%;
-				
-				figure{
-
+				li{
+					float: left;
 					width: 100%;
-					overflow: hidden;
-					height: 25vh;
+					
+					figure{
 
-					img{
 						width: 100%;
-						top: 50%;
-						transform: translateY(-50%);
-						filter: grayscale(1);
-					}
-				}
+						overflow: hidden;
+						height: 25vh;
 
-				hgroup{
-					padding: $baseline*1 0;
-
-					h1{
-						@include font-size-20;
-						font-weight: bold;
-
+						img{
+							width: 100%;
+							top: 50%;
+							transform: translateY(-50%);
+							filter: grayscale(1);
+						}
 					}
 
-					h2{
-						@include font-size-20;
-					}
-				}
+					hgroup{
+						padding: $baseline*1 0;
 
-				[data-type="activite"]{
-					display: none ;
-				}
-			}		   	
+						h1{
+							@include font-size-20;
+							font-weight: bold;
+
+						}
+
+						h2{
+							@include font-size-20;
+						}
+					}
+
+					[data-type="activite"]{
+						display: none ;
+					}
+				}		   	
+			}
 		}
 	}
 }

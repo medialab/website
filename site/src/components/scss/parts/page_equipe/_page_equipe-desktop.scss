@@ -4,88 +4,110 @@
 
 @include for-size(desktop) {
 
-	#topbar{ 
-		//position: fixed!important; 
-		top: 0;
-		width: calc(100vw - #{$margins-desktop*2});
+	body.page-people-list{
 
-		&:after{ // Si Titre-Sticky. Topbar herite de la Border-bottom
-            content:"";
-            border-bottom: $border;
-            margin-left: $logo-column;
-            width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
-            position: absolute;
-            bottom: 0;
-            z-index: 10;
-        }
+		#topbar{ 
+			//position: fixed!important; 
+			top: 0;
+			width: calc(100vw - #{$margins-desktop*2});
 
-	}
+			&:after{ // Si Titre-Sticky. Topbar herite de la Border-bottom
+	            content:"";
+	            border-bottom: $border;
+	            margin-left: $logo-column;
+	            width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
+	            position: absolute;
+	            bottom: 0;
+	            z-index: 10;
+	        }
 
-	#liste_equipe{        
-		margin-top: $height-top-bar;
-		margin-left: $logo-column;
-		min-height: calc( 100vh - #{$height-top-bar} - #{$unite*9} - 3px); //unite*9 correspond a la hauteur du footer
-		max-width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
-
-		ul{
-			display: inline-block;
-            width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
-			li{
-				/* No support of grid */ 
-				float: left;
-				width: calc( 25% - #{$unite*1.5} );
-				
-				&:not(:nth-of-type(4n)){
-					margin-right: $unite*2;
-				}
-
-				figure{
-					width: 100%;
-					overflow: hidden;
-
-					img{
-						width: 100%;
-						filter: grayscale(1);
-					}
-				}
-
-				hgroup{
-					padding: $baseline*1 0;
-
-					h1{
-						@include font-size-20;
-						font-weight: bold;
-
-					}
-
-					h2{
-						@include font-size-20;
-					}
-				}
-
-				[data-type="activite"]{
-					display: none ;
-					@include font-size-16;
-				}
-			}		   	
 		}
 
-		//////////////////////////
-		///        Grid 	/////
-		/////////////////////////	
+		#liste_equipe{        
+			margin-top: $height-top-bar;
+			margin-left: $logo-column;
+			min-height: calc( 100vh - #{$height-top-bar} - #{$unite*9} - 3px); //unite*9 correspond a la hauteur du footer
+			max-width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
 
-		/* if support of grid */
-		@supports(display: grid) {
 			ul{
+				display: inline-block;
+	            width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
+				li{
+					/* No support of grid */ 
+					float: left;
+					width: calc( 25% - #{$unite*1.5} );
+					
+					&:not(:nth-of-type(4n)){
+						margin-right: $unite*2;
+					}
+
+					figure{
+						width: 100%;
+						overflow: hidden;
+
+						img{
+							width: 100%;
+							filter: grayscale(1);
+						}
+					}
+
+					hgroup{
+						padding: $baseline*1 0;
+
+						h1{
+							@include font-size-20;
+							font-weight: bold;
+
+						}
+
+						h2{
+							@include font-size-20;
+						}
+					}
+
+					[data-type="activite"]{
+						display: none ;
+						@include font-size-16;
+					}
+				}		   	
+			}
+
+			//////////////////////////
+			///        Grid 	/////
+			/////////////////////////	
+
+			/* if support of grid */
+			@supports(display: grid) {
+				ul{
+					width: inherit; // désarmocer régles précédente si GRID support
+					display: grid;
+				    grid-template-columns: repeat(2, 1fr);
+				    @include for-size(desktop-1000) {grid-template-columns: repeat(2, 1fr);}
+				    @include for-size(desktop-1200) {grid-template-columns: repeat(3, 1fr); }
+				    @include for-size(desktop-1300) {grid-template-columns: repeat(4, 1fr); }
+				    @include for-size(desktop-1800) {grid-template-columns: repeat(4, 1fr); }
+				    grid-gap: $unite*2;
+		            
+					li{
+						float: inherit;
+						width: inherit;
+						
+						&:not(:nth-of-type(4n)){
+							margin-right: inherit;
+						}
+					}		   	
+				}
+			}
+
+			@supports (display: -ms-grid) {
 				width: inherit; // désarmocer régles précédente si GRID support
-				display: grid;
-			    grid-template-columns: repeat(2, 1fr);
-			    @include for-size(desktop-1000) {grid-template-columns: repeat(2, 1fr);}
-			    @include for-size(desktop-1200) {grid-template-columns: repeat(3, 1fr); }
-			    @include for-size(desktop-1300) {grid-template-columns: repeat(4, 1fr); }
-			    @include for-size(desktop-1800) {grid-template-columns: repeat(4, 1fr); }
-			    grid-gap: $unite*2;
-	            
+			    display: -ms-grid;
+			    -ms-grid-template-columns: repeat(3, 1fr);
+			    @include for-size(desktop-1000) {-ms-grid-template-columns: repeat(2, 1fr);}
+			    @include for-size(desktop-1200) {-ms-grid-template-columns: repeat(3, 1fr); }
+			    @include for-size(desktop-1300) {-ms-grid-template-columns: repeat(4, 1fr); }
+			    @include for-size(desktop-1800) {-ms-grid-template-columns: repeat(4, 1fr); }
+			    -ms-grid-gap: $unite*2;
 				li{
 					float: inherit;
 					width: inherit;
@@ -93,34 +115,15 @@
 					&:not(:nth-of-type(4n)){
 						margin-right: inherit;
 					}
-				}		   	
-			}
-		}
-
-		@supports (display: -ms-grid) {
-			width: inherit; // désarmocer régles précédente si GRID support
-		    display: -ms-grid;
-		    -ms-grid-template-columns: repeat(3, 1fr);
-		    @include for-size(desktop-1000) {-ms-grid-template-columns: repeat(2, 1fr);}
-		    @include for-size(desktop-1200) {-ms-grid-template-columns: repeat(3, 1fr); }
-		    @include for-size(desktop-1300) {-ms-grid-template-columns: repeat(4, 1fr); }
-		    @include for-size(desktop-1800) {-ms-grid-template-columns: repeat(4, 1fr); }
-		    -ms-grid-gap: $unite*2;
-			li{
-				float: inherit;
-				width: inherit;
-				
-				&:not(:nth-of-type(4n)){
-					margin-right: inherit;
 				}
-			}
-		} // End grid
-	}// end liste
+			} // End grid
+		}// end liste
 
-	footer{
-		margin-left: $logo-column;
-		width: calc( 100% - /*#{$margins-desktop*2} -*/ #{$logo-column});
-		margin-bottom: 2px;
+		footer{
+			margin-left: $logo-column;
+			width: calc( 100% - /*#{$margins-desktop*2} -*/ #{$logo-column});
+			margin-bottom: 2px;
+		}
 	}
 }
 

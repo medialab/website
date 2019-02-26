@@ -1,188 +1,190 @@
 /////////////////////
 //////// Desktop
 /////////////////////
+body.page-people-list{
 
-@include for-size(desktop) {
+	@include for-size(desktop) {
 
-	.filtre_title, .toggle-filtre-phone{
-		display: none;
+		.filtre_title, .toggle-filtre-phone{
+			display: none;
+		}
+
+		h1.type_title{ 
+			left: $margins-desktop;
+			top: $height-top-bar ;
+			// width: calc( #{$logo-column} - #{$margins-desktop});
+			width: $logo-column - $margins-desktop;
+			border-top: $border-light;
+			border-bottom: $border-light;
+			padding-top: $baseline * 1;
+			padding-bottom: $baseline * 1;
+			@include font-size-13();
+			text-transform: uppercase;
+			font-weight: 400;
+			height: $baseline*3.5;
+		}
+		
+		h2.filtre_domaine_title,
+		h2.filtre_membre_title{
+			position: fixed;
+			left: $margins-desktop;
+			@include font-size-13();
+			font-weight: 400;
+		}
+
+		label.filtre_equipe{
+
+			position: fixed;
+			left: $margins-desktop;
+			width: $logo-column - $margins-desktop;
+			@include font-size-13();
+		
+		}
+
+		[data-active="no"]{
+			opacity: .8;
+
+		}
 	}
 
-	h1.type_title{ 
-		left: $margins-desktop;
-		top: $height-top-bar ;
-		// width: calc( #{$logo-column} - #{$margins-desktop});
-		width: $logo-column - $margins-desktop;
-		border-top: $border-light;
-		border-bottom: $border-light;
-		padding-top: $baseline * 1;
-		padding-bottom: $baseline * 1;
-		@include font-size-13();
-		text-transform: uppercase;
-		font-weight: 400;
-		height: $baseline*3.5;
-	}
-	
-	h2.filtre_domaine_title,
-	h2.filtre_membre_title{
-		position: fixed;
-		left: $margins-desktop;
-		@include font-size-13();
-		font-weight: 400;
-	}
+	@include for-size(phone) {
 
-	label.filtre_equipe{
+		h1.type_title{
+			margin-top: $height-top-bar-phone + $baseline;
+			//border-top: $border-light;
+			border-bottom: $border-light;
+			padding-top: $baseline * .5;
+			padding-bottom: $baseline * 1;
+			@include font-size-13();
+			text-transform: uppercase;
+			font-weight: 400;
+			text-align: center;
+			height: $baseline*3.5;
+		}
 
-		position: fixed;
-		left: $margins-desktop;
-		width: $logo-column - $margins-desktop;
-		@include font-size-13();
-	
-	}
+		h2.filtre_membre_title, 
+		h2.filtre_domaine_title
+		{ display: none; }
 
-	[data-active="no"]{
-		opacity: .8;
-
-	}
-}
-
-@include for-size(phone) {
-
-	h1.type_title{
-		margin-top: $height-top-bar-phone + $baseline;
-		//border-top: $border-light;
-		border-bottom: $border-light;
-		padding-top: $baseline * .5;
-		padding-bottom: $baseline * 1;
-		@include font-size-13();
-		text-transform: uppercase;
-		font-weight: 400;
-		text-align: center;
-		height: $baseline*3.5;
-	}
-
-	h2.filtre_membre_title, 
-	h2.filtre_domaine_title
-	{ display: none; }
-
-	label.toggle-filtre-phone{
-		height: $baseline*3;
-		position: fixed;
-		left: 0;
-		bottom: 0;
-		width: 100vw;
-		@include font-size-16-phone();
-		text-align: center;
-		border-top: $border-bold;
-		background-color: $background-site;
-		cursor: pointer;
-		z-index: 50;
-
-		span{
-				transform: rotate(0deg);
-				transition: .25s ease-in-out;
-				position: absolute;
-			}			
-	}
-
-	input.toggle-filtre-phone:checked {
-
-		&+ label.toggle-filtre-phone{
-
-			height: $baseline*8;
+		label.toggle-filtre-phone{
+			height: $baseline*3;
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 100vw;
+			@include font-size-16-phone();
+			text-align: center;
+			border-top: $border-bold;
+			background-color: $background-site;
+			cursor: pointer;
+			z-index: 50;
 
 			span{
-				transform: rotate(180deg);
+					transform: rotate(0deg);
+					transition: .25s ease-in-out;
+					position: absolute;
+				}			
+		}
+
+		input.toggle-filtre-phone:checked {
+
+			&+ label.toggle-filtre-phone{
+
+				height: $baseline*8;
+
+				span{
+					transform: rotate(180deg);
+				}
+			}
+
+			&~ .filtre_equipe{
+				visibility: visible;
+
 			}
 		}
 
-		&~ .filtre_equipe{
-			visibility: visible;
+		input.filtre_equipe{
+			display: none;
+		}
 
+		label.filtre_equipe{
+			visibility: hidden;
+			position: fixed;
+			width: calc(#{$mobile-container-width/2} - #{$unite-phone});
+			@include text-overflow();
+			@include font-size-13-phone();
+			text-align: center;
+			left: $margins-phone;
+			bottom: $unite;
+			cursor: pointer;
+			border: $border;
+			padding-top: 2px;
+			background-color: $background-site;
+			z-index:51;
+			//transition: .25s;
+		}
+
+
+		@for $i from 1 through 13 {
+			input.filtre_equipe:nth-of-type(#{$i}), label.filtre_equipe:nth-of-type(#{$i}){ 
+				bottom: $baseline * $i - $baseline;
+			}
+
+			@if $i % 2 == 0 {  //use $i for calculating mod here than #{$i}
+				input.filtre_equipe:nth-of-type(#{$i}), label.filtre_equipe:nth-of-type(#{$i}){ 
+					bottom: $baseline * $i;
+
+				}
+			}
+		}
+
+		input.filtre_equipe:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone}); }
+		label.filtre_equipe:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone});}
+		
+		input.filtre_equipe:checked + label.filtre_equipe{ 
+			font-weight: bold;
+			color: $redlab;
+			border-color: $redlab;
+			transition-delay: inherit;
 		}
 	}
 
-	input.filtre_equipe{
+	///////////////
+	/// Global ////
+	///////////////
+
+	/* Actif / Passif */
+	#filtre_statut_actif:checked ~ #liste_equipe [data-active="no"],
+	#filtre_statut_passif:checked ~ #liste_equipe [data-active="yes"]{
+		display:none;
+	}
+
+	#filtre_statut_actif:checked ~ #liste_equipe [data-active="yes"],
+	#filtre_statut_passif:checked ~ #liste_equipe [data-active="no"]{
+		display:block;
+	}
+
+	/* Domaine */ 
+	.filtre_domaine:checked ~ #liste_equipe [data-domain]{
 		display: none;
 	}
 
-	label.filtre_equipe{
-		visibility: hidden;
-		position: fixed;
-		width: calc(#{$mobile-container-width/2} - #{$unite-phone});
-		@include text-overflow();
-		@include font-size-13-phone();
-		text-align: center;
-		left: $margins-phone;
-		bottom: $unite;
-		cursor: pointer;
-		border: $border;
-		padding-top: 2px;
-		background-color: $background-site;
-		z-index:51;
-		//transition: .25s;
+	#domaine_academique:checked ~ #liste_equipe [data-domain="academic"],
+	#domaine_technique:checked ~ #liste_equipe [data-domain="tech"],
+	#domaine_design:checked ~ #liste_equipe [data-domain="design"],
+	#domaine_pedagogie:checked ~ #liste_equipe [data-domain="pedagogy"],
+	#domaine_administratif:checked ~ #liste_equipe [data-domain="admin"]{
+		display:block;
 	}
 
-
-	@for $i from 1 through 13 {
-		input.filtre_equipe:nth-of-type(#{$i}), label.filtre_equipe:nth-of-type(#{$i}){ 
-			bottom: $baseline * $i - $baseline;
-		}
-
-		@if $i % 2 == 0 {  //use $i for calculating mod here than #{$i}
-			input.filtre_equipe:nth-of-type(#{$i}), label.filtre_equipe:nth-of-type(#{$i}){ 
-				bottom: $baseline * $i;
-
-			}
-		}
+	/* Membre */
+	#filtre_membre:checked ~ #liste_equipe [data-member="no"],
+	#filtre_non_membre:checked ~ #liste_equipe [data-member="yes"]{
+		display:none;
 	}
 
-	input.filtre_equipe:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone}); }
-	label.filtre_equipe:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone});}
-	
-	input.filtre_equipe:checked + label.filtre_equipe{ 
-		font-weight: bold;
-		color: $redlab;
-		border-color: $redlab;
-		transition-delay: inherit;
+	#filtre_membre:checked ~ #liste_equipe [data-member="yes"],
+	#filtre_non_membre:checked ~ #liste_equipe [data-member="no"]{
+		display:block;
 	}
-}
-
-///////////////
-/// Global ////
-///////////////
-
-/* Actif / Passif */
-#filtre_statut_actif:checked ~ #liste_equipe [data-active="no"],
-#filtre_statut_passif:checked ~ #liste_equipe [data-active="yes"]{
-	display:none;
-}
-
-#filtre_statut_actif:checked ~ #liste_equipe [data-active="yes"],
-#filtre_statut_passif:checked ~ #liste_equipe [data-active="no"]{
-	display:block;
-}
-
-/* Domaine */ 
-.filtre_domaine:checked ~ #liste_equipe [data-domain]{
-	display: none;
-}
-
-#domaine_academique:checked ~ #liste_equipe [data-domain="academic"],
-#domaine_technique:checked ~ #liste_equipe [data-domain="tech"],
-#domaine_design:checked ~ #liste_equipe [data-domain="design"],
-#domaine_pedagogie:checked ~ #liste_equipe [data-domain="pedagogy"],
-#domaine_administratif:checked ~ #liste_equipe [data-domain="admin"]{
-	display:block;
-}
-
-/* Membre */
-#filtre_membre:checked ~ #liste_equipe [data-member="no"],
-#filtre_non_membre:checked ~ #liste_equipe [data-member="yes"]{
-	display:none;
-}
-
-#filtre_membre:checked ~ #liste_equipe [data-member="yes"],
-#filtre_non_membre:checked ~ #liste_equipe [data-member="no"]{
-	display:block;
 }

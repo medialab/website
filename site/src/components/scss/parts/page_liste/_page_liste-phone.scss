@@ -65,6 +65,7 @@ body.page-activity-list{
 
 		} /* end #liste */
 
+<<<<<<< HEAD
 		#liste .accroche-titre-phone{
 			display: block;
 			height: auto;
@@ -75,7 +76,22 @@ body.page-activity-list{
 			padding-bottom: $baseline*2;
 			border-bottom: $border-light;
 		}
- 
+=======
+
+
+	} /* end #liste */
+
+	#liste .accroche-titre-phone{
+		display: block;
+		height: auto;
+		border-top: none!important; 
+		@include font-size-27();
+		text-align: center;	
+		padding-top: $baseline*2;
+		padding-bottom: $baseline*2;
+		border-bottom: $border-light;
+	}
+>>>>>>> 05dabb72f1efeb0bb3c9361557ef229c354fa98c
 
 	}
 	
@@ -84,12 +100,15 @@ body.page-activity-list{
 
 
 
+<<<<<<< HEAD
 	@include for-size(phone) {
+=======
 	#liste{
 		margin: 0 $margins-phone;
 		margin-top: $height-top-bar-phone + $baseline*3.5;
 		width: $mobile-container-width;
-
+		
+>>>>>>> 05dabb72f1efeb0bb3c9361557ef229c354fa98c
 
 		.type_title{
 			display: block;
@@ -132,24 +151,30 @@ body.page-activity-list{
 					width: $mobile-container-width!important;
 				}
 
+<<<<<<< HEAD
+			}
+=======
 		#liste-news .date-news, #liste-news .hours-news{
 			@include font-size-13-phone();
 			font-weight: 600;
 		}	
 
+		
+>>>>>>> 05dabb72f1efeb0bb3c9361557ef229c354fa98c
+
+			#liste-news .date-news{
+				@include font-size-20-phone();
+			}
 
 		} /* end #liste */
 
+<<<<<<< HEAD
 		#liste .accroche-titre-phone{ 
 			width: $mobile-container-width; 
 			@include font-size-27-phone();
 		}
-
-		#liste-news .date-news, #liste-news .hours-news{
-			@include font-size-13-phone();
-			font-weight: 600;
-		}	
 	}
+=======
 }
 
 
@@ -174,4 +199,7 @@ body.page-activity-list{
 		[data-item] h1{
 			margin-top: $baseline*1;
 		}
+
+	} 
+>>>>>>> 05dabb72f1efeb0bb3c9361557ef229c354fa98c
 }

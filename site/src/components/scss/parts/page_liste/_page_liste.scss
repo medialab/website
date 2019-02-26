@@ -65,13 +65,13 @@ body.page-activity-list{
 				color: $text-color-light; 
 			}
 
- 
-			/*.date{
+<<<<<<< HEAD
+			.date{
 				position: absolute;
 				bottom: 0;
 				left: 0;
-				width: 100px;*/
- 
+				width: 100px;
+=======
 		.date {
 			position: absolute;
 			bottom: 0;
@@ -132,6 +132,9 @@ body.page-activity-list{
 				}
 			}
 
+<<<<<<< HEAD
+			&:hover{
+=======
 		&:hover{
 			color: $redlab;
 			h2, .date, .hours-news, .type{ color: $redlab; }
@@ -140,14 +143,21 @@ body.page-activity-list{
 			.hours-news{ border-left: $border-redlab-very-light }
 			.go-to-object{ 
 				border-left: $border-redlab-very-light ;
+>>>>>>> 05dabb72f1efeb0bb3c9361557ef229c354fa98c
 				color: $redlab;
+				h2, .date, .type{ color: $redlab; }
+				h1, h2{ border-bottom: $border-redlab-very-light }
+				.date{ border-right: $border-redlab-very-light }
+				.go-to-object{ 
+					border-left: $border-redlab-very-light ;
+					color: $redlab;
 				}
 			}
 
 
 		}
 
-
+<<<<<<< HEAD
 		#liste-news .date-news{
 			width: 100%;
 			border-bottom: $border-very-light;
@@ -155,8 +165,8 @@ body.page-activity-list{
 			margin-bottom: $baseline*1;
 		}
 	}
-
-	/* #liste-news {
+=======
+	#liste-news {
 
 		[data-item]{
 			padding-top: $baseline*0.5;
@@ -180,6 +190,11 @@ body.page-activity-list{
 			.type::before{ content: $actualites; }
 		}
 
-	}*/
+	}
+
+
+	
+>>>>>>> 05dabb72f1efeb0bb3c9361557ef229c354fa98c
+
 }/* end #liste */
 

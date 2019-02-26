@@ -38,15 +38,12 @@
 			}
 		}
 
-		#liste-news .date-news{
-			@include font-size-20();
-			.startDate, .endDate{ min-width: 50%; }
-			.startDate{ padding-right: $baseline; }
-			.endDate{ 
-				border-left: $border-very-light;
-				padding-left: $baseline;
-			}
+		#liste-news .date-news, #liste-news .hours-news{
+			@include font-size-13();
+			font-weight: 600;
 		}	
+
+
 		
   }/* end #liste */
 }

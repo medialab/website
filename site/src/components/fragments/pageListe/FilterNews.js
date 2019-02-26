@@ -17,10 +17,9 @@ const FilterNews = ({lang}) => {
 		filters = "Filters";
 	}
 
-
 	return (
 		<>
-			<h1 className="type_title" data-icon="actualites">{ title }</h1>
+			<h1 className="type_title" data-icon="actualite">{ title }</h1>
 
 			<input type="checkbox" className="toggle-filtre-phone" id="toggle-filtre-phone" name="toggle-filtre-phone" value="visible" hidden/>
 			<label for="toggle-filtre-phone" title="Découvrir les options de filtrage">

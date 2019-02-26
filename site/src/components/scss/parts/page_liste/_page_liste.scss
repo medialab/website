@@ -61,7 +61,7 @@
 			color: $text-color-light; 
 		}
 
-		.date{
+		.date {
 			position: absolute;
 			bottom: 0;
 			left: 0;
@@ -70,6 +70,8 @@
 			border-right: $border-very-light;
 			color: $text-color-light;
 		}
+
+		
 		
 		.type{
 			display: inline-block;
@@ -96,9 +98,10 @@
 
 		&:hover{
 			color: $redlab;
-			h2, .date, .type{ color: $redlab; }
+			h2, .date, .hours-news, .type{ color: $redlab; }
 			h1, h2{ border-bottom: $border-redlab-very-light }
 			.date{ border-right: $border-redlab-very-light }
+			.hours-news{ border-left: $border-redlab-very-light }
 			.go-to-object{ 
 				border-left: $border-redlab-very-light ;
 				color: $redlab;
@@ -108,12 +111,33 @@
 
 	}
 
-	#liste-news .date-news{
-		width: 100%;
-		border-bottom: $border-very-light;
-		padding-bottom: $baseline*1;
-		margin-bottom: $baseline*1;
+	#liste-news {
+
+		[data-item]{
+			padding-top: $baseline*0.5;
+		
+			.date-news{
+				border-bottom: $border-very-light;
+				padding-bottom: $baseline*0.5;
+				margin-bottom: $baseline*1;
+			}
+
+			.hours-news{
+				padding-left: $baseline*1;
+				position: absolute;
+				right: 0;
+				top: 0;
+				border-left: $border-very-light;
+				text-align: right;
+			}
+			.hours-news::before{ content: $time; }
+
+			.type::before{ content: $actualites; }
+		}
+
 	}
+
+
 	
 
 }/* end #liste */

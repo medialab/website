@@ -4,13 +4,12 @@
 //////// Page liste DESKTOP MEDIUM
 /////////////////////
 
-
-@media (max-width: 1000px)  {
-
 	
-	body.page-production-list,
-	body.page-news-list,
-	body.page-activity-list{
+body.page-production-list,
+body.page-news-list,
+body.page-activity-list{
+
+	@media (max-width: 1000px){
 
 		#liste .liste_objet{
 
@@ -79,16 +78,12 @@
 
 	}
 	
-}
 
 
 
 
-@include for-size(phone) {
-	
-	body.page-production-list,
-	body.page-news-list,
-	body.page-activity-list{
+
+	@include for-size(phone) {
 
 		.type_title{
 			display: block;

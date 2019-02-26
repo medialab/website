@@ -1,12 +1,12 @@
 /////////////////////
 //////// Page liste ALL SIZES
 /////////////////////
-
-#liste{
 	
-	body.page-production-list,
-	body.page-news-list,
-	body.page-activity-list{
+body.page-production-list,
+body.page-news-list,
+body.page-activity-list{
+		
+	#liste{
 
 		.list-year{
 			padding-top: $baseline;

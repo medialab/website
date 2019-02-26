@@ -1,12 +1,12 @@
 /////////////////////
 //////// Page liste DESKTOP
 /////////////////////
-
-@include for-size(desktop) {
 	
-	body.page-production-list,
-	body.page-news-list,
-	body.page-activity-list{
+body.page-production-list,
+body.page-news-list,
+body.page-activity-list{
+	
+	@include for-size(desktop) {
 
 		#topbar{ 
 			position: fixed!important; 
@@ -118,7 +118,7 @@
 			[data-item="#{$i}"]:hover ~ .accroche-titre{ display:none; }
 		}
 	}
-}
+
 
 
 
@@ -127,16 +127,17 @@
 /////////////////////
 
 
-@media screen and (max-height: 700px){
-	#liste .liste_objet .item_accroche{ @include font-size-27(); }
+	@media screen and (max-height: 700px){
+		#liste .liste_objet .item_accroche{ @include font-size-27(); }
+	}
+
+
+	@media screen and (max-height: 1200px) and (max-height: 800px){
+		#liste .liste_objet .item_accroche{ @include font-size-27(); }
+	}
+
+	@media (max-width: 1200px)  {
+		#liste .liste_objet [data-item], #liste .liste_objet .list-year{ width: calc((100vw - #{$logo-column} - #{$margins-desktop*2})/32*15 ); }
+	}
+
 }
-
-
-@media screen and (max-height: 1200px) and (max-height: 800px){
-	#liste .liste_objet .item_accroche{ @include font-size-27(); }
-}
-
-@media (max-width: 1200px)  {
-	#liste .liste_objet [data-item], #liste .liste_objet .list-year{ width: calc((100vw - #{$logo-column} - #{$margins-desktop*2})/32*15 ); }
-}
-

@@ -1,14 +1,14 @@
 /////////////////////
 //////// PRODUCTIONS - filtres positions
 /////////////////////
-
-
-@include for-size(desktop) {
-
 	
-	body.page-production-list,
-	body.page-news-list,
-	body.page-activity-list{
+body.page-production-list,
+body.page-news-list,
+body.page-activity-list{
+
+	@include for-size(desktop) {
+
+
 
     	#radio_filtre-production_group + label{ display: none; }
 
@@ -28,16 +28,11 @@
 		
 		#go-to-year_production{ top: $height-top-bar + $height-filtres-productions;}
 	}
-}
 
 
 
-@media screen and (min-width: 700px) and (max-height: 700px){
 
-
-	body.page-production-list,
-	body.page-news-list,
-	body.page-activity-list{
+	@media screen and (min-width: 700px) and (max-height: 700px){
 
 	    #radio_filtre-production_group + label{
 	        position: fixed;
@@ -95,24 +90,16 @@
 	        #radio_filtre-production_year ~ .filtre-production:nth-of-type(#{$i}){ top: $height-top-bar + $baseline*4.5 + $baseline* 2.5 * ($i - 1); }
 	    }
 	    
-
 	    #radio_filtre-production_group:checked ~ #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions_medium_group-checked + $baseline*5; }
 
 	    #radio_filtre-production_year:checked ~ #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions_medium_year-checked + $baseline*5; }
-	   
-	} 
-}
+		   
+	}
 
 
 
 
-@include for-size(phone) {
-	
-	body.page-production-list,
-	body.page-news-list,
-	body.page-activity-list{
-
-
+	@include for-size(phone) {
 
 		 #radio_filtre-production_group + label{ 		
 			 z-index: 90;
@@ -145,25 +132,15 @@
 			z-index: 40; 
 		}
 
-
-
-
-
-	    
-
-
+		////////
 		//close
-
-		
-
+		//////
 
 		#toggle-filtre-phone ~ #radio_filtre-production_group ~ .link-productions-sort,
 		#toggle-filtre-phone ~ #radio_filtre-production_group + label{
 			top: calc(100vh + 1px);
 			transition: 0.6s top;
 		}
-
-
 
 		#toggle-filtre-phone ~ #go-to-year_production{
 			top: calc(100vh - #{$baseline}*3.5 + #{$baseline}*7);
@@ -187,16 +164,9 @@
 			}
 		}
 		
-		
-	    
-
-		
-
-
-
-		 //open
-
-		 
+		////////
+		// Open
+		//////
 
 		#toggle-filtre-phone:checked ~ #radio_filtre-production_group ~ .link-productions-sort,
 		#toggle-filtre-phone:checked ~ #radio_filtre-production_group + label{
@@ -247,30 +217,28 @@
 	    }
     }
 
+
+	/////////////////////
+	//////// PRODUCTIONS - filtres méthodes
+	/////////////////////
+
+	input.input_filtre-production:checked ~ #liste #liste-productions .list-item,
+	input.input_filtre-activity:checked ~ #liste #liste-activity .list-item{display: none !important;}
+
+	input#filtre-production_article:checked ~ #liste #liste-productions .article{ display: block!important; }
+	input#filtre-production_communication:checked ~ #liste #liste-productions .communication{ display: block!important; }
+	input#filtre-production_book:checked ~ #liste #liste-productions .book{ display: block!important; }
+	input#filtre-production_thesis:checked ~ #liste #liste-productions .thesis{ display: block!important; }
+	input#filtre-production_grey:checked ~ #liste #liste-productions .grey{ display: block!important; }
+	input#filtre-production_datascape:checked ~ #liste #liste-productions .datascape{ display: block!important; }
+	input#filtre-production_website:checked ~ #liste #liste-productions .website{ display: block!important; }
+	input#filtre-production_software:checked ~ #liste #liste-productions .software{ display: block!important; }
+	input#filtre-production_code:checked ~ #liste #liste-productions .code{ display: block!important; }
+	input#filtre-production_exhibition:checked ~ #liste #liste-productions .exhibition{ display: block!important; }
+	input#filtre-production_workshop:checked ~ #liste #liste-productions .workshop{ display: block!important; }
+	input#filtre-production_simulation:checked ~ #liste #liste-productions .simulation{ display: block!important; }
+	input#filtre-production_conference:checked ~ #liste #liste-productions .conference{ display: block!important; }
+	input#filtre-production_media:checked ~ #liste #liste-productions .media{ display: block!important; }
+	input#filtre-production_thesis:checked ~ #liste #liste-productions .thesis{ display: block!important; }
+
 }
-
-
-
-
-/////////////////////
-//////// PRODUCTIONS - filtres méthodes
-/////////////////////
-
-input.input_filtre-production:checked ~ #liste #liste-productions .list-item,
-input.input_filtre-activity:checked ~ #liste #liste-activity .list-item{display: none !important;}
-
-input#filtre-production_article:checked ~ #liste #liste-productions .article{ display: block!important; }
-input#filtre-production_communication:checked ~ #liste #liste-productions .communication{ display: block!important; }
-input#filtre-production_book:checked ~ #liste #liste-productions .book{ display: block!important; }
-input#filtre-production_thesis:checked ~ #liste #liste-productions .thesis{ display: block!important; }
-input#filtre-production_grey:checked ~ #liste #liste-productions .grey{ display: block!important; }
-input#filtre-production_datascape:checked ~ #liste #liste-productions .datascape{ display: block!important; }
-input#filtre-production_website:checked ~ #liste #liste-productions .website{ display: block!important; }
-input#filtre-production_software:checked ~ #liste #liste-productions .software{ display: block!important; }
-input#filtre-production_code:checked ~ #liste #liste-productions .code{ display: block!important; }
-input#filtre-production_exhibition:checked ~ #liste #liste-productions .exhibition{ display: block!important; }
-input#filtre-production_workshop:checked ~ #liste #liste-productions .workshop{ display: block!important; }
-input#filtre-production_simulation:checked ~ #liste #liste-productions .simulation{ display: block!important; }
-input#filtre-production_conference:checked ~ #liste #liste-productions .conference{ display: block!important; }
-input#filtre-production_media:checked ~ #liste #liste-productions .media{ display: block!important; }
-input#filtre-production_thesis:checked ~ #liste #liste-productions .thesis{ display: block!important; }

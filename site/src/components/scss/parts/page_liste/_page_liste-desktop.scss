@@ -35,12 +35,24 @@ body.page-activity-list{
 
 				[data-item], .list-year{ width: calc((100vw - #{$logo-column} - #{$margins-desktop*2})/5*2 ); }
 
+<<<<<<< HEAD
 				[data-item]{
 					h1{ @include font-size-20(); }
 					h2{ @include font-size-13(); }
 					.date, .type, .go-to-object{ @include font-size-13(); }
 				}
 			}
+=======
+		#liste-news .date-news, #liste-news .hours-news{
+			@include font-size-13();
+			font-weight: 600;
+		}	
+
+
+		
+  }/* end #liste */
+}
+>>>>>>> 05dabb72f1efeb0bb3c9361557ef229c354fa98c
 
 			#liste-news .date-news{
 				@include font-size-20();

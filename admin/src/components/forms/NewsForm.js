@@ -329,52 +329,52 @@ function renderNewsForm(props) {
       </div>
 
       <div className="form-group">
-          <div className="columns">
-            <div className="column is-12">
-              <div className="field">
-                <label className="label">Activités liées</label>
-                <div className="control">
-                  <RelationSelector
-                    model="activities"
-                    selected={data.activities}
-                    onAdd={handlers.activities.add}
-                    onDrop={handlers.activities.drop} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="columns">
-            <div className="column is-12">
-              <div className="field">
-                <label className="label">Participant.e.s</label>
-                <div className="control">
-                  <RelationSelector
-                    model="people"
-                    selected={data.people}
-                    onAdd={handlers.people.add}
-                    onDrop={handlers.people.drop} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="columns">
-            <div className="column is-12">
-              <div className="field">
-                <label className="label">Productions liées</label>
-                <div className="control">
-                  <MultiRelationSelector
-                    model="productions"
-                    categories={enums.productionTypes.groups}
-                    selected={data.productions}
-                    onAdd={handlers.productions.add}
-                    onDrop={handlers.productions.drop} />
-                </div>
+        <div className="columns">
+          <div className="column is-12">
+            <div className="field">
+              <label className="label">Activités liées</label>
+              <div className="control">
+                <RelationSelector
+                  model="activities"
+                  selected={data.activities}
+                  onAdd={handlers.activities.add}
+                  onDrop={handlers.activities.drop} />
               </div>
             </div>
           </div>
         </div>
+
+        <div className="columns">
+          <div className="column is-12">
+            <div className="field">
+              <label className="label">Participant.e.s</label>
+              <div className="control">
+                <RelationSelector
+                  model="people"
+                  selected={data.people}
+                  onAdd={handlers.people.add}
+                  onDrop={handlers.people.drop} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-12">
+            <div className="field">
+              <label className="label">Productions liées</label>
+              <div className="control">
+                <MultiRelationSelector
+                  model="productions"
+                  categories={enums.productionTypes.groups}
+                  selected={data.productions}
+                  onAdd={handlers.productions.add}
+                  onDrop={handlers.productions.drop} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
       {

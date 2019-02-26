@@ -61,11 +61,10 @@ export const queryFragment = graphql`
 `;
 
 export default function ProductionDetail({lang, production}) {
-  //console.log(lang, production);
 
   /*
   // Definir les valeurs à envoyer à l'élément Nav
-  object.propTypes = {
+  object = {
     nature: "Production",
     image: production.coverImage.url,
     imageProcessed: ,
@@ -106,7 +105,7 @@ export default function ProductionDetail({lang, production}) {
 
   return (
     <>
-      <Nav lang={lang} /* object={object} */ />
+      <Nav lang={lang} object={production} />
       <main id="main-objet">
         <p className="titre-sticky">{production.title && (lang === "fr" ? production.title.fr : production.title.en ) }</p>
         <article id="article-contenu">

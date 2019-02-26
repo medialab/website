@@ -125,6 +125,10 @@
 
 		}
 
+		#liste-news .date-news{
+			@include font-size-20-phone();
+		}
+
 	} /* end #liste */
 
 	#liste .accroche-titre-phone{ 

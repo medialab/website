@@ -23,7 +23,7 @@
 			border-top: $border-light;
 		}
 
-    .accroche-titre-phone{ display: none; }
+    	.accroche-titre-phone{ display: none; }
 		
 		.liste_objet{
 
@@ -37,6 +37,16 @@
 				.date, .type, .go-to-object{ @include font-size-13(); }
 			}
 		}
+
+		#liste-news .date-news{
+			@include font-size-20();
+			.startDate, .endDate{ min-width: 50%; }
+			.startDate{ padding-right: $baseline; }
+			.endDate{ 
+				border-left: $border-very-light;
+				padding-left: $baseline;
+			}
+		}	
 		
   }/* end #liste */
 }

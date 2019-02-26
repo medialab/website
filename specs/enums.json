@@ -3,13 +3,11 @@
     "default": "research",
     "fr": {
       "research": "Recherche",
-      "teaching": "Enseignement",
-      "method": "Méthode"
+      "teaching": "Enseignement"
     },
     "en": {
       "research": "Research",
-      "teaching": "Teaching",
-      "method": "Method"
+      "teaching": "Teaching"
     }
   },
   "domains": {

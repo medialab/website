@@ -162,7 +162,7 @@ function renderPeopleForm(props) {
         <div className="columns">
           <div className="column is-12">
             <div className="field">
-              <label className="label">Cover</label>
+              <label className="label">Photo</label>
               <CoverSelector
                 cover={data.cover}
                 ratio={4 / 3}

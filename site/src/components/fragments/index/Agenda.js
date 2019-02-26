@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'gatsby';
-import {getYear} from 'date-fns';
 import {format} from 'date-fns';
 import {getDate} from 'date-fns';
 import {getMonth} from 'date-fns';
@@ -18,7 +17,7 @@ const Agenda = (lang, rdv) => {
 	    else
 	      return "time-case2"; // sinon indique plusieurs jours sur le même mois
 	  }
-	}	
+	}
 
 	return (
 		<section id="agenda">
@@ -89,7 +88,7 @@ const Agenda = (lang, rdv) => {
 	                	<article>
 		                    <p className="year-main">{getYear(rdv.endDate)} </p>
 							
-							{ rdv.external && rdv.external === true ? 
+							{ rdv.external && (rdv.external === true) ? 
 								<p className="external" data-external="yes">
 									<span className="out">↑</span>
 									<span className="tip">{ lang === "fr" ? "Cet evenement est externe au Médialab" : "This event is external to Medialab" }</span>
@@ -130,7 +129,7 @@ const Agenda = (lang, rdv) => {
 		                    </h1>
 		                    <h2 data-level-1="label">
 		                    	<Link to={rdv.url}>
-		                    		{ rdv.label && {lang === "fr" ? rdv.label.fr : rdv.label.en } }
+		                    		{ rdv.label && (lang === "fr" ? rdv.label.fr : rdv.label.en ) }
 		                    	</Link>
 		                    </h2>
 		                    

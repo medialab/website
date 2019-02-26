@@ -205,13 +205,13 @@ export default class CoverSelector extends Component {
           <div className="column is-6">
             {!cover && !file && (
               <>
-                <div><small>Select image to upload:</small></div>
+                <div><small>Sélectionner l'image :</small></div>
                 <Dropzone onDrop={this.handleDrop} />
               </>
             )}
             {file && (
               <>
-                <div><small>Original image to crop:</small></div>
+                <div><small>Image originale à recadrer :</small></div>
                 <Crop
                   keepSelection
                   crop={crop}
@@ -231,7 +231,7 @@ export default class CoverSelector extends Component {
                     onClick={() => {
                       this.handleUpload();
                     }}>
-                    {file ? 'Upload this cover' : 'Waiting for an image'}
+                    {file ? 'Charger cette image' : 'Sélectionner une image'}
                   </Button>
                 </div>
               ) : (
@@ -240,7 +240,7 @@ export default class CoverSelector extends Component {
                     small
                     kind="text"
                     onClick={this.handleClear}>
-                    Choose another image
+                    Choisir une autre image
                   </Button>
                 </div>
               )
@@ -249,7 +249,7 @@ export default class CoverSelector extends Component {
           <div className="column is-6">
             {pixelCrop && (
               <div>
-                <div><small>Cropped image:</small></div>
+                <div><small>Image recadrée :</small></div>
                 <DebouncedCroppedImage
                   blackAndWhite={blackAndWhite}
                   img={img}
@@ -260,7 +260,7 @@ export default class CoverSelector extends Component {
                       type="checkbox"
                       checked={blackAndWhite}
                       onChange={this.toggleBlackAndWhite} />
-                    <small>&nbsp;Black &amp; white preview?</small>
+                    <small>&nbsp;en Noir &amp; blanc ?</small>
                   </label>
                 </div>
               </div>
@@ -271,7 +271,7 @@ export default class CoverSelector extends Component {
           <>
             <div className="columns">
               <div className="column is-5">
-                <div><small>Processed image (large):</small></div>
+                <div><small>Image traitée (grande) :</small></div>
                 <div>
                   <DebouncedProcessedImage
                     img={img}
@@ -282,7 +282,7 @@ export default class CoverSelector extends Component {
                 </div>
               </div>
               <div className="column is-5">
-                <div><small>Processed image (medium):</small></div>
+                <div><small>Image traitée (moyenne) :</small></div>
                 <div>
                   <DebouncedProcessedImage
                     img={img}
@@ -293,7 +293,7 @@ export default class CoverSelector extends Component {
                 </div>
               </div>
               <div className="column is-4">
-                <div><small>Processed image (small):</small></div>
+                <div><small>Image traitée(petite) :</small></div>
                 <div>
                   <DebouncedProcessedImage
                     img={img}
@@ -307,7 +307,7 @@ export default class CoverSelector extends Component {
             <div className="columns">
               <div className="column">
                 <div className="field">
-                  <div><small>Gamma parameter for image processing: ({cover.gamma})</small></div>
+                  <div><small>paramètre Gamma pour le traitement de l'image : ({cover.gamma})</small></div>
                   <Slider value={cover.gamma} onChange={this.handleGamma} min={-255 * 3} max={255  * 3} />
                </div>
               </div>

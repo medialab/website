@@ -33,9 +33,7 @@ export default function ProductionListing({lang, list, group, types}) {
                   {p.authors && <h2 data-level-2="authors"><span>{p.authors}</span></h2>}
                   {p.date && <p className="date">{p.date}</p>}
                   <p className="type" data-icon="production">
-                  Production - {p.type}
-                  {/* {lang === "fr" ? p.typeLabel.fr : p.typeLabel.en} */}
-                  {/* {p.productionTypes} - {p.type} */}
+                    {lang === "fr" ? p.typeLabel.fr : p.typeLabel.en}
                   </p>
                   <p className="go-to-object"><span>〉</span></p>
                 </Link>

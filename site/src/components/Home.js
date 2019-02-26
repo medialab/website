@@ -10,7 +10,7 @@ import {Link} from 'gatsby';
 
 /*import RawHtml from './RawHtml';*/
 
-import './scss/index.scss';
+//import './scss/index.scss';
 
 
 export default function Home({lang, grid, slider, rdv}) {

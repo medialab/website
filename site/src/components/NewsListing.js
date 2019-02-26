@@ -4,7 +4,7 @@ import {Link} from 'gatsby';
 import FilterNews from './fragments/pageListe/FilterNews.js';
 import DateNews from './fragments/DateNews.js';
 import RawHTML from './RawHtml.js';
-import './scss/page_liste.scss';
+//import './scss/page_liste.scss';
 
 export default function NewsListing({lang, list}) {
   console.log(lang, list);

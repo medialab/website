@@ -7,7 +7,7 @@ import {format as formatDate} from 'date-fns'
 import {en, fr} from 'date-fns/locale'
 
 /* import {templateMembership} from './helpers.js';  */
-import './scss/page_liste.scss';
+//import './scss/page_liste.scss';
 
 export default function ProductionListing({lang, list, group, types}) {
   console.log(lang, list, group, types);

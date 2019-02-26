@@ -4,7 +4,7 @@ import {Link} from 'gatsby';
 import Nav from './fragments/Nav.js';
 
 import RawHtml from './RawHtml';
-import './scss/apropos.scss';
+//import './scss/apropos.scss';
 
 export default function About({lang}) {
   console.log(lang);

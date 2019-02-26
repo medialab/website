@@ -8,7 +8,7 @@ import Nav from './fragments/Nav.js';
 
 import RawHtml from './RawHtml';
 import {templateMembership} from './helpers.js';
-import './scss/page_personne.scss';
+//import './scss/page_personne.scss';
 
 import Img from './assets/images/sample/D-Cardon-bis.jpg';
 

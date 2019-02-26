@@ -7,7 +7,7 @@ import Nav from './fragments/Nav.js';
 import ToggleLang from './fragments/pages/ToggleLang.js';
 
 import RawHtml from './RawHtml';
-import './scss/page_objet.scss';
+//import './scss/page_objet.scss';
 
 export const queryFragment = graphql`
   fragment NewsDetail on NewsJson {

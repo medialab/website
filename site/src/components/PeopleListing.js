@@ -11,8 +11,6 @@ import './scss/page_equipe.scss';
 export default function PeopleListing({lang, list}) {
 	console.log(lang, list);
 
-	const name = `${person.firstName} ${person.lastName}`;
-
 	return (
 		<>
 		<FiltreEquipe />
@@ -21,7 +19,7 @@ export default function PeopleListing({lang, list}) {
 			{list.map(p => (
 	          	<li key={p.id} data-item={p.id} data-domain={p.domain} data-active={p.active ? "yes" : "no"} data-member={p.membership === "member" ? "yes" : "no"}>
 				    <Link to={`/people/${p.slugs[p.slugs.length - 1]}`}>
-		                <figure><img src={p.cover ? '/assets/' + p.cover.file : '#'} alt={lang === "fr" ? `Photo de profil de ${name}` : `${name} profile picture`} /></figure>
+		                <figure><img src={p.cover ? '/assets/' + p.cover.file : '#'} alt={lang === "fr" ? `Photo de profil de ${p.firstName} ${p.lastName}` : `${p.firstName} ${p.lastName} profile picture`} /></figure>
 		                <hgroup>
 						    <h1 data-level-1="name">{p.firstName} {p.lastName}</h1>
 		                    <h2 data-level-2="role" data-type="role">{lang === "fr" ? p.role.fr : p.role.en}</h2>

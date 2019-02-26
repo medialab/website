@@ -78,24 +78,3 @@
     }  
     
 }
-
-body.page-home { // Homepage inclus une section supplementaire ici activé
-    #topbar{
-        ul{
-            &#nav-home{
-            display: block !important;
-            }
-
-            &:first-of-type {
-                margin-top: $baseline*0.5;
-                border-top: $border-redlab;
-            }
-
-            &:nth-of-type(2){
-                margin-top: inherit;
-                border-top: inherit;
-            }
-        }
-
-    }
-}

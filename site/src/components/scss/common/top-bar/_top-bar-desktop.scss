@@ -4,14 +4,11 @@
 
 @include for-size(desktop) {
 
-    
-    #nav-home{ display: none!important; }
-    
     body.page-news-liste #topbar, 
     body.page-production-liste #topbar, 
     body.page-activity-liste #topbar, 
     body.page-people-list #topbar {
-        position: fixed!important;
+        position: fixed !important;
     }
 
 
@@ -81,8 +78,6 @@
             }
         }
     }/* end #topbar-content */
-
-    body.page-home #topbar ul #nav-home{ display: none !important; }
 
 }/* end desktop */
 

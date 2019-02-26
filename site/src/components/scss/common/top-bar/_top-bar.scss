@@ -2,7 +2,6 @@
 //////// Top bar
 /////////////////////
 
-
 #topbar{
     input{ display: none; }
     
@@ -26,6 +25,8 @@
     li[data-type="activite"]::before{
         content: $activites;
     }
+
+    #nav-home{ display: none; }
 
 }
 

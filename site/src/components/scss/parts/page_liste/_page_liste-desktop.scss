@@ -1,7 +1,7 @@
 /////////////////////
 //////// Page liste DESKTOP
 /////////////////////
-	
+
 body.page-production-list,
 body.page-news-list,
 body.page-activity-list{
@@ -35,34 +35,19 @@ body.page-activity-list{
 
 				[data-item], .list-year{ width: calc((100vw - #{$logo-column} - #{$margins-desktop*2})/5*2 ); }
 
-<<<<<<< HEAD
 				[data-item]{
 					h1{ @include font-size-20(); }
 					h2{ @include font-size-13(); }
 					.date, .type, .go-to-object{ @include font-size-13(); }
 				}
 			}
-=======
-		#liste-news .date-news, #liste-news .hours-news{
-			@include font-size-13();
-			font-weight: 600;
-		}	
 
-
-		
-  }/* end #liste */
-}
->>>>>>> 05dabb72f1efeb0bb3c9361557ef229c354fa98c
-
-			#liste-news .date-news{
-				@include font-size-20();
-				.startDate, .endDate{ min-width: 50%; }
-				.startDate{ padding-right: $baseline; }
-				.endDate{ 
-					border-left: $border-very-light;
-					padding-left: $baseline;
-				}
+			#liste-news .date-news, #liste-news .hours-news{
+				@include font-size-13();
+				font-weight: 600;
 			}	
+
+
 			
 	  }/* end #liste */
 	}
@@ -129,14 +114,14 @@ body.page-activity-list{
 			[data-item="#{$i}"]:active ~ [data-item-accroche="#{$i}"]{ display:block; }
 			[data-item="#{$i}"]:hover ~ .accroche-titre{ display:none; }
 		}
+
 	}
 
 
 
-
-/////////////////////
-//////// Corrections taille accroches
-/////////////////////
+	/////////////////////
+	//////// Corrections taille accroches
+	/////////////////////
 
 
 	@media screen and (max-height: 700px){
@@ -151,5 +136,4 @@ body.page-activity-list{
 	@media (max-width: 1200px)  {
 		#liste .liste_objet [data-item], #liste .liste_objet .list-year{ width: calc((100vw - #{$logo-column} - #{$margins-desktop*2})/32*15 ); }
 	}
-
 }

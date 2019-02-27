@@ -123,7 +123,7 @@ function formatTime(hour, minute) {
     return '';
 
   if (!minute)
-    return hour;
+    return hour + ':00';
 
   return hour + ':' + minute;
 }

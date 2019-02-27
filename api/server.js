@@ -176,6 +176,7 @@ const MIGRATION_SCHEMES = {
   'drop-important': require('./migrations/drop-important.js'),
   'fix-dates': require('./migrations/fix-dates.js'),
   'fix-minutes': require('./migrations/fix-minutes.js'),
+  'fix-missing-processed': require('./migrations/fix-missing-processed.js'),
   'reset-settings': require('./migrations/reset-settings.js'),
   'reslugify': require('./migrations/reslugify.js')
 };

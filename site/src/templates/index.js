@@ -64,7 +64,12 @@ export const query = graphql`
             en
           }
           startDate
-          endDate
+          endDate,
+          label {
+            en
+            fr
+          }
+          place
         }
       }
     }

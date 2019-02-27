@@ -11,8 +11,6 @@ import {en, fr} from 'date-fns/locale'
 
 const byYear = ([yearA], [yearB]) => yearB - yearA;
 
-const byYear = ([yearA], [yearB]) => yearB - yearA;
-
 export default function ProductionListing({lang, list, group, types}) {
     const yearGroups = new Map();
 

@@ -109,7 +109,7 @@ body.page-activity-list{
 			color: $text-color!important;
 		}
 
-		@for $i from 0 through 5000 {				
+		@for $i from 0 through 500 {				
 			[data-item="#{$i}"]:hover ~ [data-item-accroche="#{$i}"],
 			[data-item="#{$i}"]:active ~ [data-item-accroche="#{$i}"]{ display:block; }
 			[data-item="#{$i}"]:hover ~ .accroche-titre{ display:none; }

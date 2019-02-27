@@ -37,7 +37,7 @@ body.page-activity-list{
 				.accroche-titre{ display: none; }
 
 				
-				@for $i from 0 through 1000 {
+				@for $i from 0 through 500 {
 					[data-item="#{$i}"]:hover *,
 					[data-item="#{$i}"]:active *{
 						color: $redlab !important;

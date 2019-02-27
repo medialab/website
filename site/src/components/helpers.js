@@ -28,3 +28,11 @@ export function templateMembership(person){
 
   return ''; // membre actif
 }
+
+export function PlaceHolder(data){
+
+  if(typeof data.attachements && data.attachements != "undefined"){ return data.attachements = "Faux_files.pdf" };
+
+
+
+}

@@ -22,9 +22,9 @@
 #en-to-fr:checked + label { color: red;}
 
 #fr-to-en:checked ~ .fr{
-  display: none; 
+  display: none !important; 
 }
 
 #en-to-fr:checked ~ .en{
-    display: none; 
+    display: none !important; 
   }

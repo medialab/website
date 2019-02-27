@@ -5,6 +5,7 @@ import PublicationsAssocies from './fragments/pages/PublicationsAssocies.js';
 import FichiersAssocies from './fragments/pages/FichiersAssocies.js';
 import Nav from './fragments/Nav.js';
 import ToggleLang from './fragments/pages/ToggleLang.js';
+import {PlaceHolder} from './helpers.js';
 
 import RawHtml from './RawHtml';
 //import './scss/page_objet.scss';
@@ -27,29 +28,82 @@ export const queryFragment = graphql`
       en
       fr
     }
-    activities {
-      id
-      name
-    }
     people {
       id
       firstName
       lastName
     }
-    productions {
-      id
-    }
     draft
     slugs
+    activities {
+      id
+      description {
+        en
+        fr
+      }
+      slugs
+      name
+      type
+    }
+    productions {
+      id
+      description {
+        en
+        fr
+      }
+      slugs
+      title {
+        en
+        fr
+      }
+      type
+    }
   }
 `;
+
+  const relatedElements = [
+    {
+      id: 'main-objet',
+      en: 'Main article',
+      fr: 'Article principal',
+    },
+    {
+      id: 'productions-associes',
+      exist : ({productions}) => Boolean(productions),
+      en: 'Related poduction',
+      fr: 'Production en liens'
+    },
+    {
+      id: 'activites-associees',
+      exist : ({activities}) => Boolean(activities),
+      en: 'Related Activities',
+      fr: 'Activités en lien',
+    },
+    {
+      id: 'fichiers-associes',
+      exist : ({files}) => Boolean(files),
+      en: 'Related files',
+      fr: 'Fichier associés'
+    },
+    {
+      id: 'membres-associes',
+      exist : ({people}) => Boolean(people),
+      en: 'Related people',
+      fr: 'Membres en lien'
+    },
+  ];
+
+
 
 export default function NewsDetail({lang, news}) {
   console.log(lang, news);
 
+  // Place Holder attachements
+  PlaceHolder(news);
+
   return (
     <>
-      <Nav />
+      <Nav lang={lang} object={news} related={relatedElements} />
       <main id="main-objet">
         <p className="titre-sticky">{news.title && (lang === "fr" ? news.title.fr : news.title.en ) }</p>
         <article id="article-contenu">
@@ -88,7 +142,7 @@ export default function NewsDetail({lang, news}) {
           </ul>
         </div>
         <PublicationsAssocies publications={news.productions} lang={lang} />
-        <FichiersAssocies />
+        <FichiersAssocies lang={lang} fichier={news.attachement} />
       </main>
     </>
   );

@@ -34,14 +34,54 @@ export const queryFragment = graphql`
       firstName
       lastName
     }
+    activities{
+      type
+    }
+    attachments{
+      type
+    }
     active
     draft
     slugs
   }
 `;
 
+  const relatedElements = [
+      {
+      id: 'main-objet',
+      en: 'Main article',
+      fr: 'Article principal',
+    },
+    /*{
+      id: 'productions-associes',
+      exist : ({productions}) => Boolean(productions),
+      en: 'Related poduction',
+      fr: 'Production en liens'
+    },*/
+    {
+      id: 'activites-associees',
+      exist : ({activities}) => Boolean(activities),
+      en: 'Related Activities',
+      fr: 'Activités en lien',
+    },
+    {
+      id: 'fichiers-associes',
+      exist : ({files}) => Boolean(files),
+      en: 'Related files',
+      fr: 'Fichier associés'
+    },
+    {
+      id: 'membres-associes',
+      exist : ({people}) => Boolean(people),
+      en: 'Related people',
+      fr: 'Membres en lien'
+    },
+  ];
+
 export default function ActivityDetail({lang, activity}) {
   console.log(lang, activity);
+
+  const files = activity.attachments;
 
   const people = activity.people.map(p => {
     return <span key={p.id}>{p.firstName} {p.lastName}</span>;

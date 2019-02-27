@@ -65,6 +65,16 @@ export const queryFragment = graphql`
       }
       type
     }
+    mainActivities {
+      id
+      description {
+        en
+        fr
+      }
+      slugs
+      name
+      type
+    }
   }
 `;
 
@@ -76,14 +86,55 @@ if (lang === 'en') {
   translated.body =
 }*/
 
+
+
+const relatedElements = [
+  
+
+  {
+    id: 'main-objet',
+    en: 'Main article',
+    fr: 'Article principal',
+  },
+  {
+    id: 'productions-associes',
+    exist : ({productions}) => Boolean(productions),
+    en: 'Related poduction',
+    fr: 'Production en liens'
+  },
+  {
+    id: 'activites-associees',
+    exist : ({activities}) => Boolean(activities),
+    en: 'Related Activities',
+    fr: 'Activités en lien',
+  },
+  {
+    id: 'fichiers-associes',
+    exist : ({files}) => Boolean(files),
+    en: 'Related files',
+    fr: 'Fichier associés'
+  },
+  /*{
+    id: 'membres-associes',
+    exist : ({people}) => Boolean(people),
+    en: 'Related people',
+    fr: 'Membres en lien'
+  },*/
+];
+
+
 export default function PeopleDetail({lang, person}) {
   console.log(lang, person);
 
   const bio = person.bio;
+  //const people = null; // is there related people ?
+  const productions = person.mainProductions; // Sync mainProd
+  const activities = person.mainActivities;  // Sync mainActivities
+
 
   return (
     <>
-      <Nav />
+      <Nav lang={lang} object={person} related={relatedElements} />
       <main id="main-personne">
         <p className="titre-sticky">
           <Link to="/people">

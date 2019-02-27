@@ -121,18 +121,23 @@ function mapBlocksToString(blocks) {
   return Array.from(blocks, i => BLOCKS[i]).join('');
 }
 
-function sharpToString(img, crop, options, callback) {
+function sharpToString(img, crop, options) {
   const ratio = crop.width / crop.height;
 
-  img
-    .resize({
-      width: options.rows,
-      height: options.rows * ASCII_WIDTH / ratio / ASCII_HEIGHT
-    })
-    .raw()
-    .toBuffer((err, buffer) => {
-      callback(pixelsToString(new Uint8ClampedArray(buffer), options));
-    });
+  return new Promise((resolve, reject) => {
+    img
+      .resize({
+        width: options.rows,
+        height: options.rows * ASCII_WIDTH / ratio / ASCII_HEIGHT
+      })
+      .raw()
+      .toBuffer((err, buffer) => {
+        if (err)
+          return reject(err);
+
+        resolve(pixelsToString(new Uint8ClampedArray(buffer), {...options, noAlpha: true}));
+      });
+  });
 }
 
 function pixelsToString(pixels, options) {

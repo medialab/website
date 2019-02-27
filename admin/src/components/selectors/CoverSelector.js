@@ -128,12 +128,18 @@ export default class CoverSelector extends Component {
   };
 
   handleChange = filename => {
-    this.props.onChange({
-      processed: this.props.processing || false,
+    const processing = !!this.props.processing;
+
+    const coverData = {
+      processed: processing,
       file: filename,
-      crop: omit(this.state.pixelCrop, ['aspect']),
-      gamma: this.props.cover ? this.props.cover.gamma : 0
-    });
+      crop: omit(this.state.pixelCrop, ['aspect'])
+    };
+
+    if (processing)
+    coverData.gamma = this.props.cover ? this.props.cover.gamma : 0;
+
+    this.props.onChange(coverData);
   };
 
   handleUpdateCover = () => {

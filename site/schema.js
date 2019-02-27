@@ -158,6 +158,21 @@ exports.patchGraphQLSchema = function(current, model, type, schema, settings) {
   }
 
   // Handling cover
+  const ProcessedType = new GraphQLTypes.GraphQLObjectType({
+    name: model + '__processed_image_string',
+    fields: {
+      small: {
+        type: GraphQLTypes.GraphQLString
+      },
+      medium: {
+        type: GraphQLTypes.GraphQLString
+      },
+      large: {
+        type: GraphQLTypes.GraphQLString
+      }
+    }
+  });
+
   const CoverType = new GraphQLTypes.GraphQLObjectType({
     name: model + '__cover',
     fields: {
@@ -165,7 +180,7 @@ exports.patchGraphQLSchema = function(current, model, type, schema, settings) {
         type: GraphQLTypes.GraphQLString
       },
       processed: {
-        type: GraphQLTypes.GraphQLString
+        type: ProcessedType
       }
     }
   });
@@ -207,15 +222,22 @@ exports.patchGraphQLSchema = function(current, model, type, schema, settings) {
               return reject(err);
 
             if (cover.processed) {
-              const processingOptions = {
-                rows: 75,
-                gamma: cover.gamma,
-                noAlpha: true
-              };
-
-              settings.processing(img(), cover.crop, processingOptions, processed => {
-                resolve({...data, processed});
-              });
+              Promise.all([
+                settings.processing(img(), cover.crop, {
+                  rows: 25,
+                  gamma: cover.gamma
+                }),
+                settings.processing(img(), cover.crop, {
+                  rows: 75,
+                  gamma: cover.gamma
+                }),
+                settings.processing(img(), cover.crop, {
+                  rows: 150,
+                  gamma: cover.gamma
+                })
+              ]).then(([small, medium, large]) => {
+                resolve({...data, processed: {small, medium, large}});
+              }).catch(reject);
             }
             else {
               resolve(data);

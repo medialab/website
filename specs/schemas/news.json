@@ -166,6 +166,30 @@
       "formType": "ref",
       "model": "productions"
     },
+    "attachments": {
+      "title": "Pièces jointes",
+      "type": "array",
+      "items": {
+        "title": "Pièce jointe",
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "attachment",
+              "string",
+              "url"
+            ]
+          },
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "startDate": {
       "title": "Date de début",
       "type": "string",

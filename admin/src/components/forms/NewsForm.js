@@ -11,6 +11,7 @@ import CoverSelector from '../selectors/CoverSelector';
 import DateSelector from '../selectors/DateSelector';
 import EnumSelector from '../selectors/EnumSelector';
 import RelationSelector, {MultiRelationSelector} from '../selectors/RelationSelector';
+import SortableKeyValueList from '../selectors/SortableKeyValueList';
 import SuggestionSelector from '../selectors/SuggestionSelector';
 import PreviewLink from '../misc/PreviewLink';
 
@@ -65,6 +66,10 @@ const HANDLERS = {
     type: 'relation',
     field: 'productions'
   },
+  attachments: {
+    type: 'relation',
+    field: 'attachments'
+  },
   frenchContent: {
     type: 'raw',
     field: ['content', 'fr']
@@ -111,7 +116,7 @@ function renderNewsForm(props) {
 
       <div className="form-group">
         <label className="label title is-4">{ data.title ? ( data.title.fr ? data.title.fr :  data.title.en) : 'Nouvelle actualité'}</label>
-          
+
         <div className="columns">
           <div className="column is-6">
             <div className="field">
@@ -178,7 +183,7 @@ function renderNewsForm(props) {
         </div>
 
         { data.type && data.type !== 'post' &&
-     
+
             <div className="columns">
 
               <div className="column is-6">
@@ -297,7 +302,7 @@ function renderNewsForm(props) {
 
         </div>
 
-        
+
       </div>
 
       <div className="form-group">
@@ -376,6 +381,24 @@ function renderNewsForm(props) {
         </div>
       </div>
 
+      <div className="form-group">
+        <h4 className="title is-4">
+          Ressources liées
+        </h4>
+
+        <div className="columns">
+          <div className="column is-8">
+            <SortableKeyValueList
+              items={data.attachments}
+              model="news"
+              field="attachments.label"
+              onAdd={handlers.attachments.add}
+              onDrop={handlers.attachments.drop}
+              onMove={handlers.attachments.move} />
+          </div>
+        </div>
+
+      </div>
 
       {
         data.title &&

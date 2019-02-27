@@ -51,7 +51,7 @@ module.exports = function(req, dbs, next) {
       dbs[plural].setState({[plural]: state});
   });
 
-  if (!dryRun)
+  if (dryRun)
     return next(null, edits);
 
   Promise.all([

@@ -44,7 +44,16 @@ function processHtml(pathPrefix, html) {
   // Building custom output
   let output = '';
 
-  $('body > *').each(function() {
+  $('body').contents().each(function() {
+
+    // Raw text
+    if (this.type === 'text') {
+      output += `<p>${this.data.trim()}</p>`;
+    }
+
+    if (this.type !== 'tag')
+      return;
+
     const $this = $(this);
     const tag = $this.prop('tagName');
 

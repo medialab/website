@@ -15,7 +15,7 @@ export default function PeopleListing({lang, list}) {
 
 	return (
 		<>
-		<FiltreEquipe />
+		<FiltreEquipe lang={lang} />
 		<section id="liste_equipe">
 		    <ul className="liste_equipe">
 			{list.map(p => (

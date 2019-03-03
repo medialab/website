@@ -13,6 +13,16 @@ const byYear = ([yearA], [yearB]) => yearB - yearA;
 
 export default function ProductionListing({lang, list, group, types}) {
     const yearGroups = new Map();
+    
+    let accroche
+
+    if (lang === 'fr') {
+      accroche = "Description en une phrase de la catégorie production";
+    }
+    else {
+      accroche = "Description in english en une phrase de la catégorie production";
+    }
+
 
     list.forEach(production => {
       const year = getYear(parseISO(production.date));
@@ -29,10 +39,10 @@ export default function ProductionListing({lang, list, group, types}) {
 
   	return (
     	<>
-    		<FilterProduction />
+    		<FilterProduction lang={lang} />
 
         <section id="liste">
-          <p className="accroche-titre-phone">Description en une phrase de la catégorie production....</p>
+          <p className="accroche-titre-phone">{accroche}</p>
           <ul className="liste_objet" id="liste-productions">
 
           {Array.from(yearGroups.entries()).sort(byYear).map(([year, list]) => (

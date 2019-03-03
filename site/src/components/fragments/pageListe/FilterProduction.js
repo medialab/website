@@ -3,14 +3,53 @@ import { templateMembership } from '../../helpers';
 /*import {graphql} from 'gatsby';*/
 /*import {Link} from 'gatsby';*/
 
-const FilterProduction = () => {
+const FilterProduction = ({lang}) => {
+
+
+	let title, filter, all, publication, webedition, tool, situation, media, year, type, article, communication, book, thesis, grey; 
+
+	if (lang === 'fr') {
+		title = "Productions";
+		filter = 'Filtres';
+		all = "Toutes les productions";
+		publication = "Publications";
+		webedition = "webEditions";
+		tool = "Outils";
+		situation = "Situations";
+		media = "Media";
+		year = "Aller à l'année…";
+		type = "Type de publication";
+		article = "Article";
+		communication = "Communication";
+		book = "Livre";
+		thesis = "Thèse";
+		grey = "Littérature grise";
+	}
+	else {
+		title = "Productions";
+		filter = 'Filters';
+		all = "All productions";
+		publication = "Publications";
+		webedition = "webEditions";
+		tool = "Tools";
+		situation = "Situations";
+		media = "Media";
+		year = "Go to year…";
+		type = "Publication's type";
+		article = "Article";
+		communication = "Communication";
+		book = "Book"; 
+		thesis = "Thesis";
+		grey = "Grey literature";
+	}
+
 	return (
 		<>
-				<h1 className="type_title" data-icon="production"><a href="#year-2018">Productions</a></h1>
+				<h1 className="type_title" data-icon="production"><a href="#year-2018">{title}</a></h1>
 
 				<input type="checkbox" id="toggle-filtre-phone" name="toggle-filtre-phone" value="visible" hidden/>
 				<label for="toggle-filtre-phone" title="Découvrir les options de filtrage">
-					<p>Filtres<span></span></p>
+					<p>{filter}<span></span></p>
 				</label>
 
 				<div id="background-phone"></div>
@@ -19,21 +58,21 @@ const FilterProduction = () => {
 				<label htmlFor="radio_filtre-production_group"><span>〉</span></label>
 
 				<ul className="link-productions-sort">
-					<li><a href="linkProductions">Toutes les productions <span>〉</span></a></li>
-					<li className="pageProduction_current">publications <span>〉</span></li>
-					<li><a href="linkProductions/editionsweb">webEditions <span>〉</span></a></li>
-					<li><a href="linkProductions/tools">tools <span>〉</span></a></li>
-					<li><a href="linkProductions/siautions">situations <span>〉</span></a></li>
-					<li><a href="linkProductions/media">media <span>〉</span></a></li>
+					<li><a href="linkProductions">{all}<span>〉</span></a></li>
+					<li className="pageProduction_current">{publication} <span>〉</span></li>
+					<li><a href="linkProductions/editionsweb">{webedition} <span>〉</span></a></li>
+					<li><a href="linkProductions/tools">{tool} <span>〉</span></a></li>
+					<li><a href="linkProductions/siautions">{situation} <span>〉</span></a></li>
+					<li><a href="linkProductions/media">{media} <span>〉</span></a></li>
 				</ul>
 
 
 				<input type="radio" id="radio_filtre-production_year" name="radio_filtre-production" value="year" hidden/>
 				<label htmlFor="radio_filtre-production_year"><span>〉</span></label>
 
-				<div class="go-to-year" id="go-to-year_production">
-					<p>Aller à l'année...</p>
-					<p class="current-year">2019</p>
+				<div className="go-to-year" id="go-to-year_production">
+					<p>{year}</p>
+					<p className="current-year">2019</p>
 					<ul>
 						<li><a href="#year-2019">2019</a></li>
 						<li><a href="#year-2018">2018</a></li>
@@ -54,22 +93,22 @@ const FilterProduction = () => {
 
 
 			<input type="radio" id="radio_filtre-production_type" name="radio_filtre-production" value="type" checked hidden/>
-			<label htmlFor="radio_filtre-production_type">Type de publications <span>〉</span></label>
+			<label htmlFor="radio_filtre-production_type">{type} <span>〉</span></label>
 
 			<input type="checkbox" id="filtre-production_article" name="filtre-production_article" className="input_filtre-production" value="article" hidden />
-			<label className="filtre-production checkbox-medialab" for="filtre-production_article">article</label>
+			<label className="filtre-production checkbox-medialab" for="filtre-production_article">{article}</label>
 
 			<input type="checkbox" id="filtre-production_communication" name="filtre-production_communication" className="input_filtre-production" value="communication" hidden />
-			<label className="filtre-production checkbox-medialab" for="filtre-production_communication">communication</label>
+			<label className="filtre-production checkbox-medialab" for="filtre-production_communication">{communication}</label>
 
 			<input type="checkbox" id="filtre-production_book" name="filtre-production_book" className="input_filtre-production" value="book" hidden />
-			<label className="filtre-production checkbox-medialab" for="filtre-production_book">book</label>
+			<label className="filtre-production checkbox-medialab" for="filtre-production_book">{book}</label>
 
 			<input type="checkbox" id="filtre-production_thesis" name="filtre-production_thesis" className="input_filtre-production" value="thesis" hidden />
-			<label className="filtre-production checkbox-medialab" for="filtre-production_thesis">thesis</label>
+			<label className="filtre-production checkbox-medialab" for="filtre-production_thesis">{thesis}</label>
 
 			<input type="checkbox" id="filtre-production_grey" name="filtre-production_grey" className="input_filtre-production" value="grey" hidden />
-			<label className="filtre-production checkbox-medialab" for="filtre-production_grey">grey</label> 
+			<label className="filtre-production checkbox-medialab" for="filtre-production_grey">{grey}</label> 
 
 
 		</>

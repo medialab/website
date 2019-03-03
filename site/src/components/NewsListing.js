@@ -9,12 +9,21 @@ import RawHTML from './RawHtml.js';
 
 export default function NewsListing({lang, list}) {
   console.log(lang, list);
+  
+	let accroche
+
+	if (lang === 'fr') {
+		accroche = "Description en une phrase de la catégorie actualité";
+	}
+	else {
+		accroche = "Description in english en une phrase de la catégorie actualité";
+	}
 
   	return (
     	<>
-		<FilterNews/>
+		<FilterNews lang={lang} />
 		<section id="liste">
-		<p className="accroche-titre-phone">Description en une phrase de la catégorie actualité</p>
+		<p className="accroche-titre-phone">{accroche}</p>
        	 	<ul className="liste_objet" id="liste-news">
        	 	{list.map((news, index) => (
 				<>

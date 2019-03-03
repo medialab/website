@@ -5,10 +5,11 @@ import {Link} from 'gatsby';
 
 const FilterActivity = ({lang}) => {
 
-let title, active, past, research, teaching; 
+let title, filtre, active, past, research, teaching; 
 
 if (lang === 'fr') {
 	title = "Activités";
+	filtre = 'Filtres';
 	active = "Actives";
 	past = "Passées";
 	research = "Recherche";
@@ -16,6 +17,7 @@ if (lang === 'fr') {
 }
 else {
 	title = "Activities";
+	filtre = 'Filters';
 	active = "Active";
 	past = "Past";
 	research = "Research";
@@ -30,7 +32,7 @@ else {
 
 			<input type="checkbox" className="toggle-filtre-phone" id="toggle-filtre-phone" name="toggle-filtre-phone" value="visible" hidden/>
 			<label for="toggle-filtre-phone" title="Découvrir les options de filtrage">
-				<p>Filtres<span></span></p>
+				<p>{ filtre }<span></span></p>
 			</label>
 
 			<div id="background-phone"></div>

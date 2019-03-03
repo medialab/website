@@ -48,7 +48,8 @@ else {
 	tool = "Tools";
 	archive = "Archives";
 }
-
+let relLang;
+if (lang === 'en') { relLang = '/en'}else{ relLang = ""};
 
 
 	return (
@@ -74,20 +75,20 @@ else {
 					</ul>
 					<ul id="nav-objet">
 
-		              	<li data-type="actualite"><Link to="/news">{ news }</Link></li>
+		              	<li data-type="actualite"><Link to={`${relLang}/news`}>{ news }</Link></li>
 
-		              	<li data-type="production"><Link to="/productions">{ prod }</Link></li>
+		              	<li data-type="production"><Link to={`${relLang}/productions`}>{ prod }</Link></li>
 
-		              	<li data-type="activite"><Link to="/activities">{ activite }</Link></li>
+		              	<li data-type="activite"><Link to={`${relLang}/activities`}>{ activite }</Link></li>
 
 					</ul>
 					<ul id="nav-institution">
-						<li><Link to="/about">{ medialab }</Link></li>
-						<li><Link to="/people">{ team }</Link></li>
+						<li><Link to={`${relLang}/about`}>{ medialab }</Link></li>
+						<li><Link to={`${relLang}/people`}>{ team }</Link></li>
 					</ul>
 					<ul id="nav-archive">
-						<li><Link to="/outils">{ tool }</Link></li>
-						<li><Link to="/archive">{ archive }</Link></li>
+						<li><Link to={`${relLang}/outils`}>{ tool }</Link></li>
+						<li><Link to={`${relLang}/archive`}>{ archive }</Link></li>
 					</ul>
 				</nav>
 

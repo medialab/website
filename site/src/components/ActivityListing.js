@@ -11,11 +11,20 @@ import RawHTML from './RawHtml.js';
 export default function ActivityListing({lang, list}) {
   console.log(lang, list);
 
+	let accroche
+
+	if (lang === 'fr') {
+		accroche = "Description en une phrase de la catégorie activité";
+	}
+	else {
+		accroche = "Description in english en une phrase de la catégorie activité";
+	}
+
   	return (
     	<>
-		<FilterActivity />
+		<FilterActivity lang={lang}/>
 		<section id="liste">
-			<p className="accroche-titre-phone">Description en une phrase de la catégorie activité...</p>
+			<p className="accroche-titre-phone">{accroche}</p>
        	 	<ul className="liste_objet" id="liste-activity">
        	 	{list.map((a, index) => (
 				<>

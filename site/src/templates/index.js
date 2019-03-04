@@ -34,19 +34,23 @@ export const query = graphql`
           model
           data {
             ... on Activities {
+              slugs
               name
             }
             ... on News {
+              slugs
               title {
                 en
                 fr
               }
             }
             ... on People {
+              slugs
               firstName
               lastName
             }
             ... on Productions {
+              slugs
               title {
                 en
                 fr

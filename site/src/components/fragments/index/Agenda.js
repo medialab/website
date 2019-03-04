@@ -19,6 +19,27 @@ const Agenda = (lang, rdv) => {
 	  }
 	}
 
+	//// Input Button 
+	/* J'ai essayé de minifier les inputs name="move-agenda" sans succés... */
+	{/*const InputButton = () => {
+	    let buttons = []
+
+	    for (let i = 1; i < 7; i++) {
+	    	buttons.push(
+	      		
+	      		<input type="radio" name="move-agenda" value="agenda_moving_left" id={`input_agenda_moving_left_${i}`} hidden />
+	            <label className="agenda_moving_left" id={`agenda_moving_left_${i}`} for={`input_agenda_moving_left_${i}`}>
+	                <span>〉</span>
+	            </label>
+	    	)
+	    }
+
+	    return buttons
+
+	};	*/}
+
+	let timeCase;
+
 	return (
 		<section id="agenda">
 
@@ -83,7 +104,7 @@ const Agenda = (lang, rdv) => {
 
 	                {(rdv || []).map(rdv => (
 
-	                	let timeCase = whichTimeCase(rdv);
+	                	timeCase = whichTimeCase(rdv);
 
 	                	<article>
 		                    <p className="year-main">{getYear(rdv.endDate)} </p>

@@ -5,7 +5,7 @@ import {Link} from 'gatsby';
 import FiltreEquipe from './fragments/pageEquipe/FiltreEquipe.js';
 
 /*import RawHtml from './RawHtml';*/
-import {templateMembership} from './helpers.js';
+//import {templateMembership} from './helpers.js';
 //import './scss/page_equipe.scss';
 
 import Img from './assets/images/sample/D-Cardon-bis.jpg';

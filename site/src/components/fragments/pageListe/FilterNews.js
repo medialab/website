@@ -1,6 +1,6 @@
 import React from 'react';
 /*import {graphql} from 'gatsby';*/
-import {Link} from 'gatsby';
+//import {Link} from 'gatsby';
 
 const FilterNews = ({lang}) => {
 

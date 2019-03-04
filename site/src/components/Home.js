@@ -3,7 +3,7 @@ import React from 'react';
 import {graphql} from 'gatsby';
 import {Link} from 'gatsby';
 
-//import Slideshow from './fragments/index/Slideshow.js';
+import Slideshow from './fragments/index/Slideshow.js';
 //import Now from './fragments/index/Now.js';
 //import Agenda from './fragments/index/Agenda.js';
 //import Flux from './fragments/index/Flux.js';
@@ -18,7 +18,7 @@ export default function Home({lang, grid, slider, rdv}) {
 
   return (
   	<>
-  	{/*<Slideshow slider={slider} />*/}
+  	<Slideshow slider={slider} />
   	<main>
 		<section id="introduction">
 			<h1>Le médialab</h1>

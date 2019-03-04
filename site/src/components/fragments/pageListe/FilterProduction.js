@@ -1,5 +1,4 @@
 import React from 'react';
-import { templateMembership } from '../../helpers';
 /*import {graphql} from 'gatsby';*/
 /*import {Link} from 'gatsby';*/
 

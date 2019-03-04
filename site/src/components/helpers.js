@@ -31,8 +31,5 @@ export function templateMembership(person){
 
 export function PlaceHolder(data){
 
-  if(typeof data.attachements && data.attachements != "undefined"){ return data.attachements = "Faux_files.pdf" };
-
-
-
+  if(typeof data.attachements && data.attachements !== "undefined"){ return data.attachements = "Faux_files.pdf" };
 }

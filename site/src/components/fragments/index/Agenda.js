@@ -9,19 +9,8 @@ import {getHours} from 'date-fns';
 import {en, fr} from 'date-fns/locale'
 
 
-const Agenda = (lang, rdv) => {
-
-	function whichTimeCase(rdv){
-	  if (getMonth(rdv.startDate) === getMonth(rdv.endDate) ){
-	  	return "time-case3"; // Si plusieurs jours sur des mois différents (cas rare) case3
-	  } else{
-	    if(getDate(rdv.startDate) - getDate(rdv.endDate) === 0 )
-	      return "time-case1"; // si une seule journée case 1;
-	    else
-	      return "time-case2"; // sinon indique plusieurs jours sur le même mois
-	  }
-	}
-
+export default function Agenda(rdv, lang){
+	
 	//// Input Button 
 	const InputButton = () => {
 	    let buttons = []
@@ -37,16 +26,91 @@ const Agenda = (lang, rdv) => {
 	    	)
 	    }
 
-	    return buttons
+	    return buttons;
 	};
+	
+	function OneDay(rdv, lang){
+		
+		function whichTimeCase(rdv){
+		  if (getMonth(rdv.startDate) === getMonth(rdv.endDate) ){
+		  	return "time-case3"; // Si plusieurs jours sur des mois différents (cas rare) case3
+		  } else{
+		    if(getDate(rdv.startDate) - getDate(rdv.endDate) === 0 )
+		      return "time-case1"; // si une seule journée case 1;
+		    else
+		      return "time-case2"; // sinon indique plusieurs jours sur le même mois
+		  }
+		}
+		
+		function WhichTimeLang(lang){
+	       	if(lang === "fr"){ 
+	    		return "fr" ;
+			} else {
+	    		return "en" ;
+	    	};
+		} 
 
-	function WhichTimeLang(lang){
-       	if(lang === "fr"){ 
-    		return "fr" ;
-		} else {
-    		return "en" ;
-    	};
-	} 
+		rdv.map((rdv, i) => {
+
+			const timeCase = whichTimeCase(rdv);
+			const TimeLang = WhichTimeLang(lang);	
+
+			return (
+			<article key={i}>
+		        <p className="year-main">{getYear(rdv.endDate)} </p>
+				
+				{ rdv.external && (rdv.external === true) ? 
+					<p className="external" data-external="yes">
+						<span className="out">↑</span>
+						<span className="tip">{ lang === "fr" ? "Cet evenement est externe au Médialab" : "This event is external to Medialab" }</span>
+					</p> : ""
+				}
+
+		        <time className={`time ${timeCase}`} data-time="">
+		            <Link to={rdv.slugs && rdv.slugs }> 
+
+		            	{timeCase === "time-case1" && <span className="week">{format(getDay(rdv.startDate), 'dddd', {locale: TimeLang} )}</span> }
+		            	{timeCase === "time-case1" && <span className="day">{getDay(rdv.startDate)}</span>}
+
+		            	{timeCase !== "time-case1" && // if note case 1
+		                    <>
+		                    <span className="start">
+		                    <span className="day">{getDay(rdv.startDate)}</span>
+		                     {timeCase === "time-case3" && <span className="month">{getMonth(rdv.startDate)} </span> }
+		                    </span>
+		                    <span className="between">⇥ </span>
+		                    </>
+		            	}
+		            	{timeCase === "time-case1" && <span className="month">{format(getMonth(rdv.endDate), 'MMMM', {locale: TimeLang} )}</span> }
+		            	{timeCase !== "time-case1" &&  // if note case 1
+		                    <span className="end">
+		                    	<span className="day">{getDay(rdv.endDate)}</span> 
+		                        <span className="month">{getMonth(rdv.endDate)}</span>
+		                    </span>
+		            	}
+		                <span className="year">{getYear(rdv.endDate)} </span>
+		            </Link>
+		        </time>
+
+		        {/*  Title & sub */}
+		        <h1 data-level-1="title">
+		        	<Link to={rdv.url}>
+		        		{lang === "fr" ? rdv.title.fr : rdv.title.en }
+		        	</Link>
+		        </h1>
+		        <h2 data-level-1="label">
+		        	<Link to={rdv.url}>
+		        		{ rdv.label && (lang === "fr" ? rdv.label.fr : rdv.label.en ) }
+		        	</Link>
+		        </h2>
+		        
+		        { timeCase === "time-case1" ? <p className="hours">{"◷ " + getHours(rdv.startDate) + " ⇥ " + getHours(rdv.startDate)}</p> : "" }
+		        <p className="place">{"✻ " + rdv.place}</p>
+					
+			</article>
+			)}
+		)
+	}
 
 	return (
 		<>
@@ -81,66 +145,7 @@ const Agenda = (lang, rdv) => {
 						</p>
 
 	                </article>
-					{/*
-					{rdv.map((rdv, i) => (
-					    {const timeCase = whichTimeCase(rdv);
-				        const TimeLang = WhichTimeLang(lang);}
-
-				    	<article key={i}>
-				            <p className="year-main">{getYear(rdv.endDate)} </p>
-							
-							{ rdv.external && (rdv.external === true) ? 
-								<p className="external" data-external="yes">
-									<span className="out">↑</span>
-									<span className="tip">{ lang === "fr" ? "Cet evenement est externe au Médialab" : "This event is external to Medialab" }</span>
-								</p> : ""
-							}
-
-				            <time className={`time ${timeCase}`} data-time="">
-				                <Link to={rdv.slugs && rdv.slugs }> 
-
-				                	{timeCase === "time-case1" && <span className="week">{format(getDay(rdv.startDate), 'dddd', {locale: TimeLang} )}</span> }
-				                	{timeCase === "time-case1" && <span className="day">{getDay(rdv.startDate)}</span>}
-
-				                	{timeCase !== "time-case1" && // if note case 1
-					                    <>
-					                    <span className="start">
-				                        <span className="day">{getDay(rdv.startDate)}</span>
-				                         {timeCase === "time-case3" && <span className="month">{getMonth(rdv.startDate)} </span> }
-				                        </span>
-				                        <span className="between">⇥ </span>
-				                        </>
-				                	}
-				                	{timeCase === "time-case1" && <span className="month">{format(getMonth(rdv.endDate), 'MMMM', {locale: TimeLang} )}</span> }
-				                	{timeCase !== "time-case1" &&  // if note case 1
-					                    <span className="end">
-					                    	<span className="day">{getDay(rdv.endDate)}</span> 
-				                            <span className="month">{getMonth(rdv.endDate)}</span>
-				                        </span>
-				                	}
-				                    <span className="year">{getYear(rdv.endDate)} </span>
-				                </Link>
-				            </time>
-
-				            {/*  Title & sub *//*}
-				            <h1 data-level-1="title">
-				            	<Link to={rdv.url}>
-				            		{lang === "fr" ? rdv.title.fr : rdv.title.en }
-				            	</Link>
-				            </h1>
-				            <h2 data-level-1="label">
-				            	<Link to={rdv.url}>
-				            		{ rdv.label && (lang === "fr" ? rdv.label.fr : rdv.label.en ) }
-				            	</Link>
-				            </h2>
-				            
-				            { timeCase === "time-case1" ? <p className="hours">{"◷ " + getHours(rdv.startDate) + " ⇥ " + getHours(rdv.startDate)}</p> : "" }
-				            <p className="place">{"✻ " + rdv.place}</p>
-								
-				    	</article>
-	            	)}
-				    	*/}
-
+					{/*<OneDay />*/}
 					</>
 				</div>
 			</div>
@@ -148,5 +153,3 @@ const Agenda = (lang, rdv) => {
 		</>
   	);
 }
-
-export default Agenda;

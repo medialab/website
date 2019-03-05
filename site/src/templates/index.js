@@ -13,15 +13,39 @@ export const query = graphql`
           model
           data {
             ... on Activities {
+              slugs
+              coverImage{
+                url
+              }
+              description{
+                en
+                fr
+              }
               name
             }
             ... on News {
+              slugs
+              coverImage{
+                url
+              }
+              description{
+                en
+                fr
+              }
               title {
                 en
                 fr
               }
             }
             ... on Productions {
+              slugs
+              coverImage{
+                url
+              }
+              description{
+                en
+                fr
+              }
               title {
                 en
                 fr
@@ -36,21 +60,49 @@ export const query = graphql`
             ... on Activities {
               slugs
               name
+              coverImage{
+                url
+              }
+              baseline{
+                en
+                fr
+              }
+              description{
+                en
+                fr
+              }
+              baseline{
+                en
+                fr
+              }
             }
             ... on News {
               slugs
+              coverImage{
+                url
+              }
+              place
+              startDate
+              endDate
+              label{
+                en
+                fr
+              }
               title {
                 en
                 fr
               }
             }
-            ... on People {
-              slugs
-              firstName
-              lastName
-            }
             ... on Productions {
               slugs
+              coverImage{
+                url
+              }
+              description{
+                en
+                fr
+              }
+              authors
               title {
                 en
                 fr

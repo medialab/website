@@ -14,11 +14,11 @@ import Slideshow from './fragments/index/Slideshow.js';
 
 
 export default function Home({lang, grid, slider, rdv}) {
-  console.log(grid, slider, rdv);
+  //console.log(grid, slider, rdv);
 
   return (
   	<>
-  	<Slideshow slider={slider} />
+  	<Slideshow slider={slider} lang={lang}/>
   	<main>
 		<section id="introduction">
 			<h1>Le médialab</h1>
@@ -27,7 +27,7 @@ export default function Home({lang, grid, slider, rdv}) {
 				<a href="#">En savoir plus</a>
 			</p>
 		</section>
-		{/*<Now />*/}
+		{/*<Now now={grid} lang={lang}/>*/}
 		{/*<Agenda  rdv={rdv} lang={lang} />*/}
 		<section id="follow">
 			<p>Vous pouvez suivre les activité du Medialab sur <a href="https://twitter.com/medialab_scpo" title="twitter">⟐</a> ou sur <a href="https://github.com/medialab" title="Github">⊶</a></p>

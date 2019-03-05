@@ -1,86 +1,123 @@
 import React from 'react';
 import {Link} from 'gatsby';
-import {format} from 'date-fns';
-import {getDate} from 'date-fns';
-import {getMonth} from 'date-fns';
-import {getYear} from 'date-fns';
-import {getHours} from 'date-fns';
 
-const Now = () => {
+import DateNews from '../DateNews.js';
+import TimeNews from '../TimeNews.js'; 
+import ProcessedImage from '../../ProcessedImage.js'; 
+import {IsModel} from '../../helpers.js'; 
+
+
+export default function Now({now, lang}) {
+
+  	//const noww = now.map(({object}) => object);
+	//console.log(noww);
 
 	return (
-		
+		<>
 		<section id="now">
 			<h1>À la une</h1>
 			<div className="contenu">
+ 
+			{now.map((item, index) => 
 
-			{(grid || []).map(item => (
-
-				let type = null;
-
-				{ item.model === "activities" ? ( lang === fr ? type = "Activités" : type "Activities") } 
-				{ item.model === "productions" && type = "Productions" } 
-				{ item.model === "news" ? ( lang === fr ? type = "Actualités" : type "News") } 
-				{ item.model === "people" ? ( lang === fr ? type = "L'equipe" : type "Medialab's Team") } 
+				<>
 				
+				
+
 				{/* if type=actualite (bon modèle pour les liens) */}
 				<article data-type={item.model}>
 					<div className="nomenclature">
-						<p className="type"><Link to{item.url}>{type}</Link></p>
+						<p className="type"><Link to={item.data.slugs}>{IsModel(item.model, lang)}</Link></p>
 						{/*<p className="sous-type"><Link to{item.url}>{type}</Link></p> */}
 					</div>
 					<div className="image-pre">
-						<a href="#linkObjet">
-						{img}
-						</a>
+						<Link to={item.model + "/" + item.data.slugs}>
+							<ProcessedImage size="medium" image="" />
+						</Link>
 					</div>
 						<hgroup>
-						<Link to{item.url}>
-
-							{item.model === "productions" ? 
+						<Link to={item.model + "/" + item.data.slugs}>
+							
+							{/* If Production*/}
+							{item.model === "productions" && 
+								
+								(item.data.title && 
+									<>
+									{lang === "fr" ? 
+										<h1 data-level-1="title">{item.data.title.fr}</h1> :
+										<h1 data-level-1="title">{item.data.title.en}</h1> 
+									}
+									<h2 data-level-2="author" className="author">
+										{(item.data.author || []).map(person => <span>{person.firstName} {person.lastName}</span>)}
+									</h2>
+									</>
+								) 
+							}
+							
+							{/* If People*/}
+							{item.model === "people" && 
 								(lang === "fr" ? 
-									<h1 data-level-1="title">item.title.fr</h1> :
-									<h1 data-level-1="title">item.title.en</h1> 
+									<>
+									<h1 data-level-1="name">{item.data.name && item.data.name.fr}</h1>
+									<h2 data-level-2="role">{item.data.title && item.data.title.en}</h2>
+									</>
+									: 	
+									<>
+									<h1 data-level-1="name">{item.data.name && item.data.name.en}</h1>
+									<h2 data-level-2="role">{item.data.title && item.data.title.en}</h2>
+									</>
 								)
-								<h2 data-level-2="author" className="author">
-									{(item.author || []).map(person => <span>{person.firstName} {person.lastName}</span>)}
-								</h2> :
+							}
+							
+							{/* If News */}
+							{item.model === "news" && 
+								(lang === "fr" ? 
+									<>
+									<h1 data-level-1="title">{item.data.title && item.data.title.fr}</h1>
+									{ item.data.date && 
+										<>
+										<DateNews startDate={item.data.startDate} endDate={item.data.endDate} />
+										<TimeNews startDate={item.data.startDate} endDate={item.data.endDate} />
+										</>
+									}
+									<h2 data-level-2="label">{item.data.label && item.data.label.fr}</h2>
+									</>
+									: 	
+									<>
+									<h1 data-level-1="title">{item.data.label && item.data.title.en}</h1>
+									{ item.data.date && 
+										<>
+										<DateNews startDate={item.data.startDate && item.data.startDate} endDate={item.data.endDate} />
+										<TimeNews startDate={item.data.startDate && item.data.startDate} endDate={item.data.endDate} />
+										</>
+									}
+									<h2 data-level-2="label">{item.data.label.en}</h2>
+									</>
+								)
 							}
 
-							{item.model === "people" ? (lang === "fr" ? 
-									<h1 data-level-1="name">item.name.fr</h1>
-									<h2 data-level-2="role">item.title.en</h2>
-
-								: 	<h1 data-level-1="name">item.name.en</h1>
-									<h2 data-level-2="role">item.title.en</h2>
-							)}
-
-							{item.model === "news" ? (lang === "fr" ? 
-									<h1 data-level-1="title">item.title.fr</h1>
-									{ item.date ? <time className="time">{format(getdate(item.date), ) D MMMM) + " / " + getHours(item.date) + "H" + getMinutes(item.date) + " - " + getHours(item.date) + "H" + getMinutes(item.date)}</time> : }
-									<h2 data-level-2="label">item.label.fr</h2>
-
-								: 	<h1 data-level-1="title">item.title.en</h1>
-									{ item.date ? <time className="time">{format(getdate(item.date), ) D MMMM) + " / " + getHours(item.date) + "H" + getMinutes(item.date) + " - " + getHours(item.date) + "H" + getMinutes(item.date)}</time> : }
-									<h2 data-level-2="label">item.label.en</h2>
-							)}
-
-							{item.model === "activities" ? 
-								<h1 data-level-1="baseline">item.name</h1>
-								(lang === "fr" ? <h2 data-level-2="name">item.title.en</h2> : <h2 data-level-2="name">item.title.en</h2> )
+							{/* If Activity */}
+							{item.model === "activities" && 
+								<>
+								{lang === "fr" ? 
+									<h1 data-level-1="baseline">{item.data.baseline && item.data.baseline.fr}</h1> : 
+									<h1 data-level-1="baseline">{item.data.baseline && item.data.baseline.en}</h1> 
+								} 
+								<h2 data-level-2="name">{item.data.name}</h2>
+								</>													
 							}
 					
-							<p className="more"><Link to{item.url}>{lang === "fr" ? "En savoir plus" : "Get more about it" }</Link></p>
+							<p className="more"><Link to={item.data.slugs}>{lang === "fr" ? "En savoir plus" : "Get more about it" }</Link></p>
 						</Link>
 						</hgroup>
 				</article>
-				)
+				</>
+			
 	        )}
 
 			</div>
 		</section>
-		
-  	);
+		</>
+	);
 }
-
-export default Now;
+ 

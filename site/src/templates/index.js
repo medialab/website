@@ -22,6 +22,10 @@ export const query = graphql`
                 fr
               }
               name
+              baseline{
+                en
+                fr
+              }
             }
             ... on News {
               slugs

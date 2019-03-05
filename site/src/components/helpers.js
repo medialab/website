@@ -33,3 +33,33 @@ export function PlaceHolder(data){
 
   if(typeof data.attachements && data.attachements !== "undefined"){ return data.attachements = "Faux_files.pdf" };
 }
+
+export function IsModel (item, lang){
+  let type;
+
+  if(item === "activities") {
+    if(lang === "fr") {
+      type = "Activités";
+    } else {
+      type = "Activities";
+    }
+  }
+  if(item === "productions") {
+    type = "Productions";
+  }
+  if(item === "news") {
+    if(lang === "fr") {
+      type = "Actualités";
+    } else {
+      type = "News";
+    }
+  }
+  if(item === "people") {
+    if(lang === "fr") {
+      type = "L'equipe";
+    } else {
+      type = "Medialab's Team";
+    }
+  }
+   return type;
+}

@@ -1,10 +1,13 @@
 import React from 'react';
 import {Link} from 'gatsby';
-import {format} from 'date-fns';
+import format from 'date-fns/format';
+import {getDay} from 'date-fns';
 import {getDate} from 'date-fns';
 import {getMonth} from 'date-fns';
 import {getYear} from 'date-fns';
 import {getHours} from 'date-fns';
+import {en, fr} from 'date-fns/locale'
+
 
 const Agenda = (lang, rdv) => {
 
@@ -20,62 +23,40 @@ const Agenda = (lang, rdv) => {
 	}
 
 	//// Input Button 
-	/* J'ai essayé de minifier les inputs name="move-agenda" sans succés... */
-	{/*const InputButton = () => {
+	const InputButton = () => {
 	    let buttons = []
 
 	    for (let i = 1; i < 7; i++) {
 	    	buttons.push(
-	      		
+	      		<>
 	      		<input type="radio" name="move-agenda" value="agenda_moving_left" id={`input_agenda_moving_left_${i}`} hidden />
 	            <label className="agenda_moving_left" id={`agenda_moving_left_${i}`} for={`input_agenda_moving_left_${i}`}>
 	                <span>〉</span>
 	            </label>
+	            </>
 	    	)
 	    }
 
 	    return buttons
+	};
 
-	};	*/}
-
-	let timeCase;
+	function WhichTimeLang(lang){
+       	if(lang === "fr"){ 
+    		return "fr" ;
+		} else {
+    		return "en" ;
+    	};
+	} 
 
 	return (
+		<>
 		<section id="agenda">
 
 			<h1>{lang === "fr" ? "Les rendez-vous " : "The agenda"} </h1>
 
 			<div id="agenda-container">
 
-	            <input type="radio" name="move-agenda" value="agenda_moving_left" id="input_agenda_moving_left_1" hidden />
-	            <label className="agenda_moving_left" id="agenda_moving_left_1" for="input_agenda_moving_left_1">
-	                <span>〉</span>
-	            </label>
-
-	            <input type="radio" name="move-agenda" value="agenda_moving_left" id="input_agenda_moving_left_2" hidden />
-	            <label className="agenda_moving_left" id="agenda_moving_left_2" for="input_agenda_moving_left_2">
-	                <span>〉</span>
-	            </label>
-
-	            <input type="radio" name="move-agenda" value="agenda_moving_left" id="input_agenda_moving_left_3" hidden />
-	            <label className="agenda_moving_left" id="agenda_moving_left_3" for="input_agenda_moving_left_3">
-	                <span>〉</span>
-	            </label>
-
-	            <input type="radio" name="move-agenda" value="agenda_moving_left" id="input_agenda_moving_left_4" hidden />
-	            <label className="agenda_moving_left" id="agenda_moving_left_4" for="input_agenda_moving_left_4">
-	                <span>〉</span>
-	            </label>
-
-	            <input type="radio" name="move-agenda" value="agenda_moving_left" id="input_agenda_moving_left_5" hidden />
-	            <label className="agenda_moving_left" id="agenda_moving_left_5" for="input_agenda_moving_left_5">
-	                <span>〉</span>
-	            </label>
-
-	            <input type="radio" name="move-agenda" value="agenda_moving_left" id="input_agenda_moving_left_6" hidden />
-	            <label className="agenda_moving_left" id="agenda_moving_left_6" for="input_agenda_moving_left_6">
-	                <span>〉</span>
-	            </label>
+	            <InputButton />
 
 	            <div className="agenda_moving_left" id="agenda_moving_left_cache"></div>
 
@@ -89,82 +70,82 @@ const Agenda = (lang, rdv) => {
 	                <span>〈</span>
 	            </label>
 
-
-
 				<div id="agenda-contenu" data-attribute="agenda">
-
-
+					<>
 	                <article className="past" data-count="2">
-						{lang === "fr" ? 
-							<p>Voir les rendez-vous déjà passés dans <Link to="/news">Actualités</Link></p> : 
-							<p>Have a look to past appoitement in <Link to="/news">actuality</Link></p>
-						}
 						
+						<p>{lang === "fr" ? 
+							"Voir les rendez-vous déjà passés dans " + <Link to="/news">Actualités</Link> : 
+							"Have a look to past appoitement in actuality " + <Link to="/en/news">Actuality</Link>
+							}
+						</p>
+
 	                </article>
+					{/*
+					{rdv.map((rdv, i) => (
+					    {const timeCase = whichTimeCase(rdv);
+				        const TimeLang = WhichTimeLang(lang);}
 
-	                {(rdv || []).map(rdv => (
-
-	                	timeCase = whichTimeCase(rdv);
-
-	                	<article>
-		                    <p className="year-main">{getYear(rdv.endDate)} </p>
+				    	<article key={i}>
+				            <p className="year-main">{getYear(rdv.endDate)} </p>
 							
 							{ rdv.external && (rdv.external === true) ? 
 								<p className="external" data-external="yes">
 									<span className="out">↑</span>
 									<span className="tip">{ lang === "fr" ? "Cet evenement est externe au Médialab" : "This event is external to Medialab" }</span>
-								</p> : 
+								</p> : ""
 							}
 
-		                    <time className={`time ${timeCase}`} data-time="2018-01-01">
-			                    <Link to{ rdv.url ? rdv.url }> 
+				            <time className={`time ${timeCase}`} data-time="">
+				                <Link to={rdv.slugs && rdv.slugs }> 
 
-			                    	{timeCase === "time-case1" ? <span className="week">{format(getDay(rdv.startDate)), dddd}</span> : }
-			                    	{timeCase === "time-case1" ? <span className="day">{getDay(rdv.startDate)}</span> : }
+				                	{timeCase === "time-case1" && <span className="week">{format(getDay(rdv.startDate), 'dddd', {locale: TimeLang} )}</span> }
+				                	{timeCase === "time-case1" && <span className="day">{getDay(rdv.startDate)}</span>}
 
-			                    	{timeCase != "time-case1" ? // if note case 1
+				                	{timeCase !== "time-case1" && // if note case 1
+					                    <>
 					                    <span className="start">
-				                            <span className="day">{getDay(rdv.startDate)}</span>
-				                            {timeCase === "time-case3" ? <span className="month">{getMonth(rdv.startDate)} </span> : "" } /* And if Case 3, add this line */
+				                        <span className="day">{getDay(rdv.startDate)}</span>
+				                         {timeCase === "time-case3" && <span className="month">{getMonth(rdv.startDate)} </span> }
 				                        </span>
 				                        <span className="between">⇥ </span>
-				                        : ""
-			                    	}
-			                    	{timeCase === "time-case1" ? <span className="month">{format(getMonth(rdv.endDate)), MMMM}</span> : }
-			                    	{timeCase != "time-case1" ?  // if note case 1
+				                        </>
+				                	}
+				                	{timeCase === "time-case1" && <span className="month">{format(getMonth(rdv.endDate), 'MMMM', {locale: TimeLang} )}</span> }
+				                	{timeCase !== "time-case1" &&  // if note case 1
 					                    <span className="end">
 					                    	<span className="day">{getDay(rdv.endDate)}</span> 
 				                            <span className="month">{getMonth(rdv.endDate)}</span>
 				                        </span>
-				                        : ""
-			                    	}
-			                        <span className="year">{getYear(rdv.endDate)} </span>
-			                    </Link>
-		                    </time>
+				                	}
+				                    <span className="year">{getYear(rdv.endDate)} </span>
+				                </Link>
+				            </time>
 
-		                    {/*  Title & sub */}
-		                    <h1 data-level-1="title">
-		                    	<Link to={rdv.url}>
-		                    		{lang === "fr" ? rdv.title.fr : rdv.title.en }
-		                    	</Link>
-		                    </h1>
-		                    <h2 data-level-1="label">
-		                    	<Link to={rdv.url}>
-		                    		{ rdv.label && (lang === "fr" ? rdv.label.fr : rdv.label.en ) }
-		                    	</Link>
-		                    </h2>
-		                    
-		                    { timeCase === "time-case1" ? <p className="hours">{"◷ " + getHours(rdv.startDate) + " ⇥ " + getHours(rdv.startDate)}</p> : "" }
-		                    <p className="place">{"✻ " + rdv.place}</p>
+				            {/*  Title & sub *//*}
+				            <h1 data-level-1="title">
+				            	<Link to={rdv.url}>
+				            		{lang === "fr" ? rdv.title.fr : rdv.title.en }
+				            	</Link>
+				            </h1>
+				            <h2 data-level-1="label">
+				            	<Link to={rdv.url}>
+				            		{ rdv.label && (lang === "fr" ? rdv.label.fr : rdv.label.en ) }
+				            	</Link>
+				            </h2>
+				            
+				            { timeCase === "time-case1" ? <p className="hours">{"◷ " + getHours(rdv.startDate) + " ⇥ " + getHours(rdv.startDate)}</p> : "" }
+				            <p className="place">{"✻ " + rdv.place}</p>
 								
-	                	</article>
+				    	</article>
+	            	)}
+				    	*/}
 
-	                	)
-	                )}
-
-					</div>
+					</>
 				</div>
-			</section>
+			</div>
+		</section>
+		</>
   	);
 }
 

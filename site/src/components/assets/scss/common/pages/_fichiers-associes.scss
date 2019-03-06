@@ -1,4 +1,5 @@
-.icon{
+.fichiers-associes-block{
+    .icon{
     border: $border;
     font-size: 30px;
     letter-spacing: -4px;
@@ -6,30 +7,31 @@
     overflow: hidden;
     line-height: 20px;
 
-    span{
+        span{
 
-        &:first-of-type{
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            left: 60%;
-            top: -50px;
-            float: right;
-            border: $border;
-            background: white;
-            transform: rotate(-45deg);            
-        }
-        &:last-of-type{
-            bottom: 2px;
-            right: 9px;
-            font-size: 15px;
-            letter-spacing: 0px;
+            &:first-of-type{
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                left: 60%;
+                top: -50px;
+                float: right;
+                border: $border;
+                background: white;
+                transform: rotate(-45deg);            
+            }
+            &:last-of-type{
+                bottom: 2px;
+                right: 9px;
+                font-size: 15px;
+                letter-spacing: 0px;
+            }
         }
     }
 }
 
 @include for-size(desktop) {
-    #fichiers-associes{
+    .fichiers-associes-block{
         li{ 
             @include font-size-20();
             margin-bottom: $margins-desktop;
@@ -45,11 +47,11 @@
                 width: 50px;
             }
         }       
-    }/* end #fichiers-associes */
+    }/* end .fichiers-associes-block */
 }
 
 @include for-size(phone) {
-    #fichiers-associes{
+    .fichiers-associes-block{
         li{ 
             @include font-size-20();
             margin-bottom: $margins-desktop;
@@ -66,5 +68,5 @@
                 width: 50px;
             }
         }       
-    }/* end #fichiers-associes */
+    }/* end .fichiers-associes-block */
 }

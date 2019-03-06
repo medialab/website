@@ -14,7 +14,7 @@ export default function ActivityListing({lang, list}) {
 	let accroche
 
 	if (lang === 'fr') {
-		accroche = "Description en une phrase de la catégorie activité";
+		accroche = "A la fois objet de recherche et outils au service des projets, les méthodes numériques sont au coeur des activités du médialab et contribuent à nourrir la réflexion sur les enjeux contemporains tant en sociologie qu’en STS. Organisées entre recherche, enseignement et méthodes, ces activités étudient notamment la montée des populismes, les futurs écologiques ou encore de l’histoire de l’art numérique.";
 	}
 	else {
 		accroche = "Description in english en une phrase de la catégorie activité";

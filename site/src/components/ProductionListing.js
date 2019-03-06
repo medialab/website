@@ -45,14 +45,14 @@ export default function ProductionListing({lang, list, group, types}) {
           <p className="accroche-titre-phone">{accroche}</p>
           <ul className="liste_objet" id="liste-productions">
 
-          {Array.from(yearGroups.entries()).sort(byYear).map(([year, list]) => (
+          {Array.from(yearGroups.entries()).sort(byYear).map(([year, list], index) => (
             <>
             <li id={year === 2008 ? 'years-before-2009' : `year-${year}`} className="list-year">
                 <span>{year}</span>
                 <pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
             </li>
 
-            {list.map((p, index) => (
+            {list.map((p) => (
                 <>
                 <li data-item={index} data-type={p.type} className={`list-item ${p.type}`}>
                 <Link to={`/productions/${p.slugs[p.slugs.length - 1]}`}>

@@ -6,15 +6,15 @@ import DateNews from './fragments/DateNews.js';
 import TimeNews from './fragments/TimeNews.js';
 import RawHTML from './RawHtml.js';
 //import './scss/page_liste.scss';
-import { format as formatDate, getYear, parseISO } from 'date-fns'
-import { en, fr } from 'date-fns/locale'
+// import { format as formatDate, getYear, parseISO } from 'date-fns'
+// import { en, fr } from 'date-fns/locale'
 
 const byYear = ([yearA], [yearB]) => yearB - yearA;
 
 
 export default function NewsListing({ lang, list }) {
 	console.log(lang, list);
-	const yearGroups = new Map();
+	// const yearGroups = new Map();
 
 
 	let accroche
@@ -26,18 +26,18 @@ export default function NewsListing({ lang, list }) {
 		accroche = "Description in english en une phrase de la catégorie actualité";
 	}
 
-	list.forEach(news => {
-		const year = getYear(parseISO(news.date));
-		if (Number.isNaN(year)) {
-			return;
-		}
+	// list.forEach(news => {
+	// 	const year = getYear(parseISO(news.date));
+	// 	if (Number.isNaN(year)) {
+	// 		return;
+	// 	}
 
-		if (!yearGroups.has(year)) {
-			yearGroups.set(year, []);
-		}
+	// 	if (!yearGroups.has(year)) {
+	// 		yearGroups.set(year, []);
+	// 	}
 
-		yearGroups.get(year).push(news);
-	});
+	// 	yearGroups.get(year).push(news);
+	// });
 
 	return (
 		<>
@@ -45,14 +45,15 @@ export default function NewsListing({ lang, list }) {
 			<section id="liste">
 				<p className="accroche-titre-phone">{accroche}</p>
 				<ul className="liste_objet" id="liste-news">
-					{Array.from(yearGroups.entries()).sort(byYear).map(([year, list], index) => (
+					{/* {Array.from(yearGroups.entries()).sort(byYear).map(([year, list], index) => (
 						<>
 							<li id={year === 2008 ? 'years-before-2009' : `year-${year}`} className="list-year">
 								<span>{year}</span>
 								<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
 							</li>
 
-							{list.map((p) => (
+							{list.map((p) => ( */}
+							{list.map((news, index) => (
 								<>
 									<li data-item={index} data-type={news.type} className={`list-item ${news.type}`}>
 										<Link to={`/news/${news.slugs[news.slugs.length - 1]}`}>
@@ -72,8 +73,8 @@ export default function NewsListing({ lang, list }) {
 									</li>
 								</>
 							))}
-						</>
-					))}
+						{/* </>
+					))} */}
 					<li className="item_accroche accroche-titre">Description en une phrase de la catégorie.</li>
 				</ul>
 			</section>

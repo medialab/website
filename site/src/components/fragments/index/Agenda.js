@@ -12,12 +12,12 @@ import {en, fr} from 'date-fns/locale'
 /* 
 Function Agenda
 	InputButton -> Generer Input Button
-	SetCssVar -> Determiner nombre de jour et import CSS
+	SetCssVar -> Determiner le nombre de jour et importer mixin SCSS ou CSS en fonction 
 	OneDay -> Retourne un HTML pour un Jour
 		whichTimeCase -> Détermine Structure HTML à adopter
 		WhichTimeLang -> Retourne une valeur pour une fonction qui la traduction de la date
 	
-	return -> L'enssemble des OneDay entouré d'element HTML dont les InputButton
+	return -> Retourne l'ensemble des OneDay entourés d'element HTML dont les InputButton.
 
 */
 
@@ -45,13 +45,14 @@ export default function Agenda(rdv, lang){
 		// Déterminer le nombre d'évenement totaux à afficher
 		const HowManyDays = rdv.lenght;
 
-		// Inclure var(--nbr-rdv) dans l'élément parent Section
-		// Importer une partie de la feuille de style scss parts/index/_agenda-desktop-slider.scss en fonction de ce nombre
+		// TO DO : Inclure var(--nbr-rdv) dans l'élément parent Section
+		// TO DO : Importer une partie de la feuille de style scss parts/index/_agenda-desktop-slider.scss en fonction de ce nombre
 	}
 	
 	function OneDay(OneDay, lang){
 		
-		// L'agenda se pare de trois mise en page possible. Cette fonction détermine laquel est la plus pertinente pour chaque événement.
+		/* L'agenda se pare de trois mise en page possible. 
+		Cette fonction détermine laquel est la plus pertinente pour chaque événement. */
 		function whichTimeCase(OneDay){
 		  if (getMonth(OneDay.startDate) === getMonth(OneDay.endDate) ){
 		  	return "time-case3"; // Si plusieurs jours sur des mois différents (cas rare) case3
@@ -63,7 +64,9 @@ export default function Agenda(rdv, lang){
 		  }
 		}
 		
-		// Cette fonction est peut être supperflu. Elle est destinée à remplir le champ {locale: TimeLang} afin de determiner une traduction de la date
+		/* Cette fonction est peut être supperflu. 
+		Elle est destinée à remplir le champ {locale: TimeLang} afin de determiner 
+		une traduction de la date */
 		function WhichTimeLang(lang){
 	       	if(lang === "fr"){ 
 	    		return "fr" ;
@@ -72,6 +75,8 @@ export default function Agenda(rdv, lang){
 	    	};
 		} 
 
+
+		// Ci Dessous, on compose la structure HTML d'un module journalier.
 		OneDay.map((OneDay, i) => {
 
 			const timeCase = whichTimeCase(OneDay);
@@ -114,7 +119,6 @@ export default function Agenda(rdv, lang){
 		            </Link>
 		        </time>
 
-		        {/*  Title & sub */}
 		        <h1 data-level-1="title">
 		        	<Link to={OneDay.slugs}>
 		        		{lang === "fr" ? OneDay.title.fr : OneDay.title.en }
@@ -137,7 +141,7 @@ export default function Agenda(rdv, lang){
 	return (
 		<>
 		<section id="agenda">
-
+		{/* 
 			<h1>{lang === "fr" ? "Les rendez-vous " : "The agenda"} </h1>
 
 			<div id="agenda-container">
@@ -167,11 +171,12 @@ export default function Agenda(rdv, lang){
 						</p>
 
 	                </article>
-					{/*<OneDay /> C'est l'élément le plus important, il est ici en commentaire car sinon BadaBooom */}  
+					<OneDay />  
 					</>
 				</div>
 			</div>
-		</section>
+				*/}
+		</section> 
 		</>
   	);
 }

@@ -55,7 +55,7 @@ export default function NewsListing({lang, list}) {
               <>
                 <li data-item={nbNews} data-type={news.type} className={`list-item ${news.type}`}>
                   <Link to={`/news/${news.slugs[news.slugs.length - 1]}`}>
-                    <DateNews startDate={news.startDate} endDate={news.endDate} />
+                    <DateNews startDate={news.startDate} endDate={news.endDate} lang={lang} />
                     {/* <p className="date-news differentYear"><span className="startDate" >10 décembre</span><span className="endDate" >⇥ 10 novembre 2019</span></p>		 */}
                     <TimeNews startDate={news.startDate} endDate={news.endDate} />
                     <h1 data-level-1="baseline">{news.title && (lang === 'fr' ? news.title.fr : news.title.en)}</h1>

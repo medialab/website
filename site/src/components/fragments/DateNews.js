@@ -1,5 +1,4 @@
 import React from 'react';
-import {format as formatDate} from 'date-fns'
 import {format as formatDate, getYear, parseISO} from 'date-fns'
 import {en, fr} from 'date-fns/locale'
 

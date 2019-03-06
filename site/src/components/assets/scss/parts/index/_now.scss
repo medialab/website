@@ -1,0 +1,14 @@
+#now .nomenclature{
+    p[data-type="news"]::before{
+        content: $actualites;
+    }
+    p[data-type="productions"]::before{
+        content: $productions;
+    }
+    p[data-type="activities"]::before{
+        content: $activites;
+    }
+    p[data-type="people"]::before{
+        content: $people;
+    }
+}

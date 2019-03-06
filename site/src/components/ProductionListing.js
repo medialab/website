@@ -36,48 +36,47 @@ export default function ProductionListing({lang, list, group, types}) {
 
       yearGroups.get(year).push(production);
     });
-
-  	return (
-    	<>
-    		<FilterProduction lang={lang} />
+    let nbItem = 0;
+    return (
+      <>
+        <FilterProduction lang={lang} />
 
         <section id="liste">
           <p className="accroche-titre-phone">{accroche}</p>
           <ul className="liste_objet" id="liste-productions">
-
-          {Array.from(yearGroups.entries()).sort(byYear).map(([year, list]) => (
-            <>
-            <li id={year === 2008 ? 'years-before-2009' : `year-${year}`} className="list-year">
-                <span>{year}</span>
-                <pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
-            </li>
-
-            {list.map((p, index) => (
-                <>
-                <li data-item={index} data-type={p.type} className={`list-item ${p.type}`}>
-                <Link to={`/productions/${p.slugs[p.slugs.length - 1]}`}>
-                    <h1 data-level-1="title">{lang === "fr" ? p.title.fr : p.title.en}</h1>
-                    {p.authors && <h2 data-level-2="authors"><span>{p.authors}</span></h2>}
-                    {p.date && <p className="date">{p.date}</p>}
-                    <p className="type">
-                    {lang === "fr" ? p.groupLabel.fr : p.groupLabel.en} - {lang === "fr" ? p.typeLabel.fr : p.typeLabel.en}
-                    </p>
-                    <p className="go-to-object"><span>〉</span></p>
-                  </Link>
+            {Array.from(yearGroups.entries()).sort(byYear).map(([year, list]) => (
+              <>
+                <li id={year === 2008 ? 'years-before-2009' : `year-${year}`} className="list-year">
+                  <span>{year}</span>
+                  <pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
                 </li>
-                <li className="item_accroche description" data-item-accroche={index}>
-                  <Link to={`/productions/${p.slugs[p.slugs.length - 1]}`}>
-                        <RawHTML html={lang === "fr" ? p.description.fr : p.description.en} />
-                  </Link>
-                </li>
-              	</>
+
+                {list.map((p) => (
+                  <>
+                    <li data-item={nbItem} data-type={p.type} className={`list-item ${p.type}`}>
+                      <Link to={`/productions/${p.slugs[p.slugs.length - 1]}`}>
+                        <h1 data-level-1="title">{lang === 'fr' ? p.title.fr : p.title.en}</h1>
+                        {p.authors && <h2 data-level-2="authors"><span>{p.authors}</span></h2>}
+                        {p.date && <p className="date">{p.date}</p>}
+                        <p className="type">
+                          {lang === 'fr' ? p.groupLabel.fr : p.groupLabel.en} - {lang === 'fr' ? p.typeLabel.fr : p.typeLabel.en}
+                        </p>
+                        <p className="go-to-object"><span>〉</span></p>
+                      </Link>
+                    </li>
+                    <li className="item_accroche description" data-item-accroche={nbItem}>
+                      <Link to={`/productions/${p.slugs[p.slugs.length - 1]}`}>
+                        <RawHTML html={lang === 'fr' ? p.description.fr : p.description.en} />
+                      </Link>
+                    </li>
+                    {nbItem++}
+                  </>
+                ))}
+              </>
             ))}
-            </>
-          ))}
-
-          <li className="item_accroche accroche-titre">Description en une phrase de la catégorie Production</li>
-        </ul>
+            <li className="item_accroche accroche-titre">Description en une phrase de la catégorie Production</li>
+          </ul>
         </section>
       </>
-	 );
+   );
 }

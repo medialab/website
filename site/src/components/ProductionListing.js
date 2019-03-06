@@ -17,7 +17,7 @@ export default function ProductionListing({lang, list, group, types}) {
     let accroche
 
     if (lang === 'fr') {
-      accroche = "Description en une phrase de la catégorie production";
+      accroche = "Issues des dynamiques de recherche du laboratoire combinant méthode, analyse et théorie, les productions du médialab constituent un panorama hétéroclite. Aux traditionnelles publications académiques s’ajoute un ensemble de réalisations techniques qui répondent à des problèmes de recherche récurrents. Récemment, les sites web et réalisations en situation se sont développés comme de nouvelles formes pour rendre compte des activités du laboratoire.";
     }
     else {
       accroche = "Description in english en une phrase de la catégorie production";

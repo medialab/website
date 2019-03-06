@@ -9,9 +9,21 @@ import {getHours} from 'date-fns';
 import {en, fr} from 'date-fns/locale'
 
 
+/* 
+Function Agenda
+	InputButton -> Generer Input Button
+	SetCssVar -> Determiner nombre de jour et import CSS
+	OneDay -> Retourne un HTML pour un Jour
+		whichTimeCase -> Détermine Structure HTML à adopter
+		WhichTimeLang -> Retourne une valeur pour une fonction qui la traduction de la date
+	
+	return -> L'enssemble des OneDay entouré d'element HTML dont les InputButton
+
+*/
+
 export default function Agenda(rdv, lang){
 	
-	//// Input Button 
+	// Générer les bouttons de navigation Input 
 	const InputButton = () => {
 	    let buttons = []
 
@@ -28,20 +40,30 @@ export default function Agenda(rdv, lang){
 
 	    return buttons;
 	};
+
+	function SetCssVar(rdv){
+		// Déterminer le nombre d'évenement totaux à afficher
+		const HowManyDays = rdv.lenght;
+
+		// Inclure var(--nbr-rdv) dans l'élément parent Section
+		// Importer une partie de la feuille de style scss parts/index/_agenda-desktop-slider.scss en fonction de ce nombre
+	}
 	
-	function OneDay(rdv, lang){
+	function OneDay(OneDay, lang){
 		
-		function whichTimeCase(rdv){
-		  if (getMonth(rdv.startDate) === getMonth(rdv.endDate) ){
+		// L'agenda se pare de trois mise en page possible. Cette fonction détermine laquel est la plus pertinente pour chaque événement.
+		function whichTimeCase(OneDay){
+		  if (getMonth(OneDay.startDate) === getMonth(OneDay.endDate) ){
 		  	return "time-case3"; // Si plusieurs jours sur des mois différents (cas rare) case3
 		  } else{
-		    if(getDate(rdv.startDate) - getDate(rdv.endDate) === 0 )
+		    if(getDate(OneDay.startDate) - getDate(OneDay.endDate) === 0 )
 		      return "time-case1"; // si une seule journée case 1;
 		    else
 		      return "time-case2"; // sinon indique plusieurs jours sur le même mois
 		  }
 		}
 		
+		// Cette fonction est peut être supperflu. Elle est destinée à remplir le champ {locale: TimeLang} afin de determiner une traduction de la date
 		function WhichTimeLang(lang){
 	       	if(lang === "fr"){ 
 	    		return "fr" ;
@@ -50,16 +72,16 @@ export default function Agenda(rdv, lang){
 	    	};
 		} 
 
-		rdv.map((rdv, i) => {
+		OneDay.map((OneDay, i) => {
 
-			const timeCase = whichTimeCase(rdv);
+			const timeCase = whichTimeCase(OneDay);
 			const TimeLang = WhichTimeLang(lang);	
 
 			return (
 			<article key={i}>
-		        <p className="year-main">{getYear(rdv.endDate)} </p>
+		        <p className="year-main">{getYear(OneDay.endDate)} </p>
 				
-				{ rdv.external && (rdv.external === true) ? 
+				{ OneDay.external && (OneDay.external === true) ? 
 					<p className="external" data-external="yes">
 						<span className="out">↑</span>
 						<span className="tip">{ lang === "fr" ? "Cet evenement est externe au Médialab" : "This event is external to Medialab" }</span>
@@ -67,45 +89,45 @@ export default function Agenda(rdv, lang){
 				}
 
 		        <time className={`time ${timeCase}`} data-time="">
-		            <Link to={rdv.slugs && rdv.slugs }> 
+		            <Link to={OneDay.slugs && OneDay.slugs }> 
 
-		            	{timeCase === "time-case1" && <span className="week">{format(getDay(rdv.startDate), 'dddd', {locale: TimeLang} )}</span> }
-		            	{timeCase === "time-case1" && <span className="day">{getDay(rdv.startDate)}</span>}
+		            	{timeCase === "time-case1" && <span className="week">{format(getDay(OneDay.startDate), 'dddd', {locale: TimeLang} )}</span> }
+		            	{timeCase === "time-case1" && <span className="day">{getDay(OneDay.startDate)}</span>}
 
 		            	{timeCase !== "time-case1" && // if note case 1
 		                    <>
 		                    <span className="start">
-		                    <span className="day">{getDay(rdv.startDate)}</span>
-		                     {timeCase === "time-case3" && <span className="month">{getMonth(rdv.startDate)} </span> }
+		                    <span className="day">{getDay(OneDay.startDate)}</span>
+		                     {timeCase === "time-case3" && <span className="month">{getMonth(OneDay.startDate)} </span> }
 		                    </span>
 		                    <span className="between">⇥ </span>
 		                    </>
 		            	}
-		            	{timeCase === "time-case1" && <span className="month">{format(getMonth(rdv.endDate), 'MMMM', {locale: TimeLang} )}</span> }
+		            	{timeCase === "time-case1" && <span className="month">{format(getMonth(OneDay.endDate), 'MMMM', {locale: TimeLang} )}</span> }
 		            	{timeCase !== "time-case1" &&  // if note case 1
 		                    <span className="end">
-		                    	<span className="day">{getDay(rdv.endDate)}</span> 
-		                        <span className="month">{getMonth(rdv.endDate)}</span>
+		                    	<span className="day">{getDay(OneDay.endDate)}</span> 
+		                        <span className="month">{getMonth(OneDay.endDate)}</span>
 		                    </span>
 		            	}
-		                <span className="year">{getYear(rdv.endDate)} </span>
+		                <span className="year">{getYear(OneDay.endDate)} </span>
 		            </Link>
 		        </time>
 
 		        {/*  Title & sub */}
 		        <h1 data-level-1="title">
-		        	<Link to={rdv.url}>
-		        		{lang === "fr" ? rdv.title.fr : rdv.title.en }
+		        	<Link to={OneDay.slugs}>
+		        		{lang === "fr" ? OneDay.title.fr : OneDay.title.en }
 		        	</Link>
 		        </h1>
 		        <h2 data-level-1="label">
-		        	<Link to={rdv.url}>
-		        		{ rdv.label && (lang === "fr" ? rdv.label.fr : rdv.label.en ) }
+		        	<Link to={OneDay.slugs}>
+		        		{ OneDay.label && (lang === "fr" ? OneDay.label.fr : OneDay.label.en ) }
 		        	</Link>
 		        </h2>
 		        
-		        { timeCase === "time-case1" ? <p className="hours">{"◷ " + getHours(rdv.startDate) + " ⇥ " + getHours(rdv.startDate)}</p> : "" }
-		        <p className="place">{"✻ " + rdv.place}</p>
+		        { timeCase === "time-case1" ? <p className="hours">{"◷ " + getHours(OneDay.startDate) + " ⇥ " + getHours(OneDay.startDate)}</p> : "" }
+		        <p className="place">{"✻ " + OneDay.place}</p>
 					
 			</article>
 			)}
@@ -145,7 +167,7 @@ export default function Agenda(rdv, lang){
 						</p>
 
 	                </article>
-					{/*<OneDay />*/}
+					{/*<OneDay /> C'est l'élément le plus important, il est ici en commentaire car sinon BadaBooom */}  
 					</>
 				</div>
 			</div>

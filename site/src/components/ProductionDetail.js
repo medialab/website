@@ -82,7 +82,7 @@ const relatedElements = [
 		id: 'fichiers-associes',
 		exist : ({files}) => Boolean(files),
 		en: 'Related files',
-		fr: 'Fichier associés'
+		fr: 'Fichiers associés'
 	},
 	{
 		id: 'membres-associes',

@@ -1,5 +1,7 @@
 import React from 'react';
 import {format as formatDate} from 'date-fns'
+import {format as formatDate, getYear, parseISO} from 'date-fns'
+import {en, fr} from 'date-fns/locale'
 
 function DateNews(news){
     
@@ -52,7 +54,8 @@ function DateNews(news){
         
     }else{
         startDateFormat = startDateString.substr(0, 10); // formater ici la date, si fr = "1 janvier 2019", si en = "1 january 2019"
-        dateNews = <p className="date-news"><span className="startDate">{startDateFormat}</span></p>     
+        dateNews = <p className="date-news"><span className="startDate">{startDateFormat}</span></p>  
+        // dateNews = <p className="date-news"><span className="startDate"> {formatDate(startDateFormat, 'dd MMMM yyyy', en)}</span></p>     
     }
 
     

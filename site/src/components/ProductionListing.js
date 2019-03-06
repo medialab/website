@@ -45,6 +45,15 @@ export default function ProductionListing({lang, list, group, types}) {
           <p className="accroche-titre-phone">{accroche}</p>
           <ul className="liste_objet" id="liste-productions">
 
+      {/* en fonction du lien de page, doit renvoyer différentes listes: 
+      si le lien de page = /productions, renvoie toutes les productions
+      si lien de page = productions/publications, renvoie uniquement les p.groupLabel = publications
+      si lien de page = productions/editionsweb, renvoie uniquement les p.groupLabel = editionsweb
+      si lien de page = productions/tools, renvoie uniquement les p.groupLabel = tools
+      si lien de page = productions/situations, renvoie uniquement les p.groupLabel = situations
+      si lien de page = productions/media, renvoie uniquement les p.groupLabel = media */}
+      
+
           {Array.from(yearGroups.entries()).sort(byYear).map(([year, list], index) => (
             <>
             <li id={year === 2008 ? 'years-before-2009' : `year-${year}`} className="list-year">

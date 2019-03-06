@@ -2,8 +2,7 @@ import React from 'react';
 import {graphql} from 'gatsby';
 import {Link} from 'gatsby';
 
-import PublicationsAssocies from './fragments/pages/PublicationsAssocies.js';
-import FichiersAssocies from './fragments/pages/FichiersAssocies.js';
+import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
 import Nav from './fragments/Nav.js';
 
 import RawHtml from './RawHtml';
@@ -160,11 +159,10 @@ export default function PeopleDetail({lang, person}) {
             {person.bio && (lang === "fr" ? person.bio.fr && <RawHtml html={bio.fr} />  : person.bio.en && <RawHtml html={bio.en} />)}
           </div>
         </article>
-        <PublicationsAssocies lang={lang} person={person} publications={person.mainProductions} />
-        <FichiersAssocies />
+        <PublicationsAssociees publications={person.mainProductions} context="people" lang={lang}/>
+        {/*<FichiersAssocies lang={lang} attachments={person.attachments} context="people" person={person} />*/}
       </main>
     </>
-
   );
 }
 

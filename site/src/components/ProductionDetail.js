@@ -1,8 +1,7 @@
 import React from 'react';
 import {graphql} from 'gatsby';
 
-import PublicationsAssocies from './fragments/pages/PublicationsAssocies.js';
-import FichiersAssocies from './fragments/pages/FichiersAssocies.js';
+import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
 import Nav from './fragments/Nav.js';
 import ToggleLang from './fragments/pages/ToggleLang.js';
 
@@ -134,8 +133,7 @@ export default function ProductionDetail({lang, production}) {
             {(production.people || []).map(p => <li key={p.id}>{p.firstName} {p.lastName}</li>)}
           </ul>
         </div>
-        <PublicationsAssocies publications={production.productions} lang={lang} />
-        <FichiersAssocies />
+        <PublicationsAssociees publications={production.productions} context="productions" lang={lang}/>
       </main>
     </>
   );

@@ -15,14 +15,16 @@ Function Agenda
 	SetCssVar -> Determiner le nombre de jour et importer mixin SCSS ou CSS en fonction 
 	OneDay -> Retourne un HTML pour un Jour
 		whichTimeCase -> Détermine Structure HTML à adopter
-		WhichTimeLang -> Retourne une valeur pour une fonction qui la traduction de la date
+		WhichtimeLang -> Retourne une valeur pour une fonction qui la traduction de la date
 	
 	return -> Retourne l'ensemble des OneDay entourés d'element HTML dont les InputButton.
 
 */
 
-export default function Agenda(rdv, lang){
+export default function Agenda({rdv, lang}){
 	
+	let timeCase, timeLang;
+
 	// Générer les bouttons de navigation Input 
 	const InputButton = () => {
 	    let buttons = []
@@ -49,99 +51,34 @@ export default function Agenda(rdv, lang){
 		// TO DO : Importer une partie de la feuille de style scss parts/index/_agenda-desktop-slider.scss en fonction de ce nombre
 	}
 	
-	function OneDay(OneDay, lang){
-		
-		/* L'agenda se pare de trois mise en page possible. 
-		Cette fonction détermine laquel est la plus pertinente pour chaque événement. */
-		function whichTimeCase(OneDay){
-		  if (getMonth(OneDay.startDate) === getMonth(OneDay.endDate) ){
-		  	return "time-case3"; // Si plusieurs jours sur des mois différents (cas rare) case3
-		  } else{
-		    if(getDate(OneDay.startDate) - getDate(OneDay.endDate) === 0 )
-		      return "time-case1"; // si une seule journée case 1;
-		    else
-		      return "time-case2"; // sinon indique plusieurs jours sur le même mois
-		  }
-		}
-		
-		/* Cette fonction est peut être supperflu. 
-		Elle est destinée à remplir le champ {locale: TimeLang} afin de determiner 
-		une traduction de la date */
-		function WhichTimeLang(lang){
-	       	if(lang === "fr"){ 
-	    		return "fr" ;
-			} else {
-	    		return "en" ;
-	    	};
-		} 
-
-
-		// Ci Dessous, on compose la structure HTML d'un module journalier.
-		OneDay.map((OneDay, i) => {
-
-			const timeCase = whichTimeCase(OneDay);
-			const TimeLang = WhichTimeLang(lang);	
-
-			return (
-			<article key={i}>
-		        <p className="year-main">{getYear(OneDay.endDate)} </p>
-				
-				{ OneDay.external && (OneDay.external === true) ? 
-					<p className="external" data-external="yes">
-						<span className="out">↑</span>
-						<span className="tip">{ lang === "fr" ? "Cet evenement est externe au Médialab" : "This event is external to Medialab" }</span>
-					</p> : ""
-				}
-
-		        <time className={`time ${timeCase}`} data-time="">
-		            <Link to={OneDay.slugs && OneDay.slugs }> 
-
-		            	{timeCase === "time-case1" && <span className="week">{format(getDay(OneDay.startDate), 'dddd', {locale: TimeLang} )}</span> }
-		            	{timeCase === "time-case1" && <span className="day">{getDay(OneDay.startDate)}</span>}
-
-		            	{timeCase !== "time-case1" && // if note case 1
-		                    <>
-		                    <span className="start">
-		                    <span className="day">{getDay(OneDay.startDate)}</span>
-		                     {timeCase === "time-case3" && <span className="month">{getMonth(OneDay.startDate)} </span> }
-		                    </span>
-		                    <span className="between">⇥ </span>
-		                    </>
-		            	}
-		            	{timeCase === "time-case1" && <span className="month">{format(getMonth(OneDay.endDate), 'MMMM', {locale: TimeLang} )}</span> }
-		            	{timeCase !== "time-case1" &&  // if note case 1
-		                    <span className="end">
-		                    	<span className="day">{getDay(OneDay.endDate)}</span> 
-		                        <span className="month">{getMonth(OneDay.endDate)}</span>
-		                    </span>
-		            	}
-		                <span className="year">{getYear(OneDay.endDate)} </span>
-		            </Link>
-		        </time>
-
-		        <h1 data-level-1="title">
-		        	<Link to={OneDay.slugs}>
-		        		{lang === "fr" ? OneDay.title.fr : OneDay.title.en }
-		        	</Link>
-		        </h1>
-		        <h2 data-level-1="label">
-		        	<Link to={OneDay.slugs}>
-		        		{ OneDay.label && (lang === "fr" ? OneDay.label.fr : OneDay.label.en ) }
-		        	</Link>
-		        </h2>
-		        
-		        { timeCase === "time-case1" ? <p className="hours">{"◷ " + getHours(OneDay.startDate) + " ⇥ " + getHours(OneDay.startDate)}</p> : "" }
-		        <p className="place">{"✻ " + OneDay.place}</p>
-					
-			</article>
-			)}
-		)
+	/* L'agenda se pare de trois mise en page possible. 
+	Cette fonction détermine laquel est la plus pertinente pour chaque événement. */
+	function whichTimeCase(OneDay){
+	  if (getMonth(OneDay.startDate) === getMonth(OneDay.endDate) ){
+	  	timeCase = "time-case3"; // Si plusieurs jours sur des mois différents (cas rare) case3
+	  } else{
+	    if(getDate(OneDay.startDate) - getDate(OneDay.endDate) === 0 )
+	      timeCase = "time-case1"; // si une seule journée case 1;
+	    else
+	      timeCase = "time-case2"; // sinon indique plusieurs jours sur le même mois
+	  }
 	}
+	
+	/* Cette fonction est peut être supperflu. 
+	Elle est destinée à remplir le champ {locale: timeLang} afin de determiner 
+	une traduction de la date */
+	function WhichtimeLang(lang){
+       	if(lang === "fr"){ 
+    		return "fr" ;
+		} else {
+    		return "en" ;
+    	};
+	} 
+ 	console.log(rdv);
 
 	return (
 		<>
 		<section id="agenda">
-		{/* 
 			<h1>{lang === "fr" ? "Les rendez-vous " : "The agenda"} </h1>
 
 			<div id="agenda-container">
@@ -165,17 +102,74 @@ export default function Agenda(rdv, lang){
 	                <article className="past" data-count="2">
 						
 						<p>{lang === "fr" ? 
-							"Voir les rendez-vous déjà passés dans " + <Link to="/news">Actualités</Link> : 
-							"Have a look to past appoitement in actuality " + <Link to="/en/news">Actuality</Link>
+							("Voir les rendez-vous déjà passés dans " + <Link to="/news">Actualités</Link>) : 
+							("Have a look to past appoitement in actuality " + <Link to="/en/news">Actuality</Link>)
 							}
 						</p>
 
 	                </article>
-					<OneDay />  
+					{rdv.map((OneDay, i) => 
+						<>
+
+					 	{whichTimeCase(OneDay)}
+					 	{WhichtimeLang(lang)}
+
+						<article key={i}>
+					        <p className="year-main">{getYear(OneDay.endDate)} </p>
+							
+							{ OneDay.external && (OneDay.external === true) ? 
+								<p className="external" data-external="yes">
+									<span className="out">↑</span>
+									<span className="tip">{ lang === "fr" ? "Cet evenement est externe au Médialab" : "This event is external to Medialab" }</span>
+								</p> : ""
+							}
+
+					        <time className={`time ${timeCase}`} data-time="">
+					            <Link to={OneDay.slugs && OneDay.slugs }> 
+
+					            	{timeCase === "time-case1" && <span className="week">{format(getDay(OneDay.startDate), 'dddd', {locale: fr} )}</span> }
+					            	{timeCase === "time-case1" && <span className="day">{getDay(OneDay.startDate)}</span>}
+
+					            	{timeCase !== "time-case1" && // if note case 1
+					                    <>
+					                    <span className="start">
+					                    <span className="day">{getDay(OneDay.startDate)}</span>
+					                     {timeCase === "time-case3" && <span className="month">{getMonth(OneDay.startDate)} </span> }
+					                    </span>
+					                    <span className="between">⇥ </span>
+					                    </>
+					            	}
+					            	{timeCase === "time-case1" && <span className="month">{format(getMonth(OneDay.endDate), 'MMMM', {locale: timeLang} )}</span> }
+					            	{timeCase !== "time-case1" &&  // if note case 1
+					                    <span className="end">
+					                    	<span className="day">{getDay(OneDay.endDate)}</span> 
+					                        <span className="month">{getMonth(OneDay.endDate)}</span>
+					                    </span>
+					            	}
+					                <span className="year">{getYear(OneDay.endDate)} </span>
+					            </Link>
+					        </time>
+
+					        <h1 data-level-1="title">
+					        	<Link to={OneDay.slugs}>
+					        		{lang === "fr" ? OneDay.title.fr : OneDay.title.en }
+					        	</Link>
+					        </h1>
+					        <h2 data-level-1="label">
+					        	<Link to={OneDay.slugs}>
+					        		{ OneDay.label && (lang === "fr" ? OneDay.label.fr : OneDay.label.en ) }
+					        	</Link>
+					        </h2>
+					        
+					        { timeCase === "time-case1" ? <p className="hours">{"◷ " + getHours(OneDay.startDate) + " ⇥ " + getHours(OneDay.startDate)}</p> : "" }
+					        <p className="place">{"✻ " + OneDay.place}</p>
+								
+						</article>
+						</>
+						)} 
 					</>
 				</div>
 			</div>
-				*/}
 		</section> 
 		</>
   	);

@@ -35,6 +35,10 @@ export const queryFragment = graphql`
       firstName
       lastName
     }
+    cover { 
+      processed
+      file
+    }
     draft
     slugs
     activities {

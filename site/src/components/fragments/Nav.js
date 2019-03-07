@@ -7,40 +7,42 @@ const getRelatedElements = (relatedElements, object) => {
 	return relatedElements.filter(({exist}) => {
 		return !(typeof exist === 'function') || exist(object);
 	});
-}
+};
 
 
-export default function Nav({lang, object={}, related=[]}) {
+export default function Nav({lang, object = {}, related = []}) {
 	//Je pense que nous n'avons pas assez de donnée dans le CMS pour mener à bien cette fonction
 	// Néanmoins la logique serait :  Si et seulement si il existe une Image Générée créer cet élément
 	// Cet élément est composé d'une image lambda et de son corrolaire Image Générée
 	let coverImage = null;
-	if (object && object.cover) {
+	if (object && object.cover && object.cover.file) {
+		// we shoudl probably use withPrefix instead of '/static/' string
+		// we haev tot ad processed image 
 		coverImage = (
-			<div>
-				<img src={withPrefix(object.cover.file)} alt={object.cover.title} />
-				<div class=".image-generator"></div>
-			</div>
+    <div>
+      <img src={`/static/${object.cover.file}`} alt={object.cover.file} />
+      <div className=".image-generator" />
+    </div>
 		);
 	}
 
-
-	return (<nav id="nav-inside-article">
-			<div className="nav-inside-item" data-type="main-article">
-				<Link to="#topbar">
-					<Logo />
-				</Link>
-			</div>
-			<div className="nav-inside-item" id="img-article">
-				{coverImage}
-			</div>
-			{(getRelatedElements(related, object)).map(related => (
-				<div className="nav-inside-item" data-type={related.id}>
-					<p>
-						<a href={`#${related.id}`}>{related[ lang ]}</a>
-					</p>
-				</div>)
-			)}
-		</nav>
+	return (
+  <nav id="nav-inside-article">
+    <div className="nav-inside-item" data-type="main-article">
+      <Link to="#topbar">
+        <Logo />
+      </Link>
+    </div>
+    <div className="nav-inside-item" id="img-article">
+      {coverImage}
+    </div>
+    {(getRelatedElements(related, object)).map(related => (
+      <div key={related.id} className="nav-inside-item" data-type={related.id}>
+        <p>
+          <a href={`#${related.id}`}>{related[lang]}</a>
+        </p>
+      </div>)
+    )}
+  </nav>
 	);
 }

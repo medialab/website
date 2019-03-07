@@ -11,7 +11,6 @@ import { format as formatDate, getYear, parseISO } from 'date-fns';
 
 const byYear = ([yearA], [yearB]) => yearB - yearA;
 
-
 export default function NewsListing({lang, list}) {
 	console.log(lang, list);
 	const yearGroups = new Map();
@@ -39,15 +38,15 @@ export default function NewsListing({lang, list}) {
 		yearGroups.get(year).push(news);
   });
   let nbNews = 0;
-	return (
+  return (
   <>
-    <FilterNews lang={lang} />
+    <FilterNews lang={lang} years={Array.from(yearGroups.keys()).sort(byYear)} />
     <section id="liste">
       <p className="accroche-titre-phone">{accroche}</p>
       <ul className="liste_objet" id="liste-news">
-        {Array.from(yearGroups.entries()).sort(byYear).map(([year, yearNews]) => (
+        {Array.from(yearGroups.entries()).sort(byYear).map(([year, yearNews], index) => (
           <>
-            <li id={year === 2008 ? 'years-before-2009' : `year-${year}`} className="list-year">
+            <li id={`year-${year}`} className="list-year">
               <span>{year}</span>
               <pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
             </li>

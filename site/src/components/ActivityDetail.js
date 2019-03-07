@@ -35,9 +35,21 @@ export const queryFragment = graphql`
       id
       firstName
       lastName
+      slugs
     }
     activities{
+      id
+      name
       type
+      slugs
+      baseline {
+        en
+        fr
+      }
+      description {
+        en
+        fr
+      }
     }
     attachments{
       type
@@ -72,27 +84,29 @@ export const queryFragment = graphql`
       fr: 'Activités en lien',
     },
     {
-      id: 'fichiers-associes',
-      exist : ({files}) => Boolean(files),
-      en: 'Related files',
-      fr: 'Fichier associés'
-    },
-    {
       id: 'membres-associes',
       exist : ({people}) => Boolean(people),
       en: 'Related people',
       fr: 'Membres en lien'
     },
+    {
+      id: 'fichiers-associes',
+      exist : ({attachments}) => Boolean(attachments),
+      en: 'Related files',
+      fr: 'Fichier associés'
+    }
   ];
 
 export default function ActivityDetail({lang, activity}) {
   console.log(lang, activity);
 
   //Placeholder
-  activity.attachments = [{label: "Faux_files.xml", value: "Faux_files", type: 'XML',},{label: "Faux_files.pdf", value: "Faux_files", type: 'PDF',}];
-  activity.activities = [{name: "Fausse Activité", baseline: { fr: "Fausse baseline", en: "Fake Baseline"}, slugs: "fakeslug"}];
-  activity.people = [{firstName: "Bob", lastName: "Morane", slugs: "fakeslug"}];
-  console.log(activity);
+  // activity.attachments = [{label: "Faux_files.xml", value: "Faux_files", type: 'XML',},{label: "Faux_files.pdf", value: "Faux_files", type: 'PDF',}];
+  // activity.activities = [{name: "Fausse Activité", baseline: { fr: "Fausse baseline", en: "Fake Baseline"}, slugs: "fakeslug"}];
+  // activity.people = [{firstName: "Bob", lastName: "Morane", slugs: "fakeslug"}];
+  // console.log(activity);
+  //activity.attachments = [{label: "Faux_files.pdf", value: "Faux_files", type: 'Fake',}];
+
 
   // related Elements
   const files = activity.attachments;
@@ -100,45 +114,43 @@ export default function ActivityDetail({lang, activity}) {
     return <span key={p.id}>{p.firstName} {p.lastName}</span>;
   });
 
-  //PlaceHolder
-  activity.attachments = [{label: "Faux_files.pdf", value: "Faux_files", type: 'Fake',}];
 
   return (
     <main id="main-objet">
       <Nav lang={lang} object={activity} related={relatedElements} />
       <p className="titre-sticky">{activity.name}</p>
-        <article id="article-contenu">
-          {/* Toggle Langue */}
-          <ToggleLang lang={lang} content={activity.content} />
-          {/* Chapô FR */}
-          <hgroup className="fr" lang="fr">
-            <h1>{activity.name}</h1>
-            <h2>{activity.description && (activity.description.fr)}</h2>
-            <p className="date">{activity.endDate}</p>
-            <p className="type-objet">{activity.type}</p>
-          </hgroup>
-          {/* Article FR */}
-          <div className="article-contenu fr" lang="fr">
-            {activity.content && ( activity.content.fr && <RawHtml html={activity.content.fr} /> )}
-          </div>
+      <article id="article-contenu">
+        {/* Toggle Langue */}
+        <ToggleLang lang={lang} content={activity.content} />
+        {/* Chapô FR */}
+        <hgroup className="fr" lang="fr">
+          <h1>{activity.name}</h1>
+          <h2>{activity.description && (activity.description.fr)}</h2>
+          <p className="date">{activity.endDate}</p>
+          <p className="type-objet">{activity.type}</p>
+        </hgroup>
+        {/* Article FR */}
+        <div className="article-contenu fr" lang="fr">
+          {activity.content && ( activity.content.fr && <RawHtml html={activity.content.fr} /> )}
+        </div>
 
-          {/* Chapô EN */}
-          <hgroup className="en" lang="en">
-            <h1>{activity.title && (activity.title.en)}</h1>
-            <h2>{activity.description && (activity.description.en)}</h2>
-            <p className="date">{activity.endDate}</p>
-            <p className="type-objet">{activity.type}</p>
-          </hgroup>
-          {/* Article EN */}
-          <div className="article-contenu en" lang="en">
-            {activity.content && ( activity.content.en && <RawHtml html={activity.content.en} /> )}
-          </div>
+        {/* Chapô EN */}
+        <hgroup className="en" lang="en">
+          <h1>{activity.title && (activity.title.en)}</h1>
+          <h2>{activity.description && (activity.description.en)}</h2>
+          <p className="date">{activity.endDate}</p>
+          <p className="type-objet">{activity.type}</p>
+        </hgroup>
+        {/* Article EN */}
+        <div className="article-contenu en" lang="en">
+          {activity.content && ( activity.content.en && <RawHtml html={activity.content.en} /> )}
+        </div>
 
-        </article>
-        <MembresAssocies person={activity.people} context="activity" lang={lang}/>
-        <ActivitesAssociees activities={activity.activities} context="activity" lang={lang}/>
-        <FichiersAssocies lang={lang} attachments={activity.attachments} context="activity" person="" />
-  </main>
+      </article>
+      <MembresAssocies people={activity.people} context="activity" lang={lang} />
+      <ActivitesAssociees activities={activity.activities} context="activity" lang={lang} />
+      <FichiersAssocies lang={lang} attachments={activity.attachments} context="activity" />
+    </main>
   );
 }
 

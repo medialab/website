@@ -21,7 +21,7 @@ function DateNews(props) {
       const endDateFormat = formatDate(parseISO(endDate), 'd MMMM yyyy', {locale: lang === 'fr' ? fr : en});
       if (startDateString.substr(0, 10) === endDateString.substr(0, 10)) {
           // same date
-          dateNews = <p className="date-news"><span className="startDate" >{startDateFormat}</span></p> ;
+          dateNews = <p className="date-news"><span className="startDate" >{startDateFormat}</span></p>;
       }
       else {
           if (startDateString.substr(0, 4) === endDateString.substr(0, 4)) {

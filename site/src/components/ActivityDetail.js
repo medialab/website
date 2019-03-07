@@ -105,6 +105,7 @@ export default function ActivityDetail({lang, activity}) {
 
   return (
     <main id="main-objet">
+      <Nav lang={lang} object={activity} related={relatedElements} />
       <p className="titre-sticky">{activity.name}</p>
         <article id="article-contenu">
           {/* Toggle Langue */}

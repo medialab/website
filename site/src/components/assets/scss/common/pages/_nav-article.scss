@@ -1,6 +1,5 @@
 $width-main-image: calc( 80vw - #{$margins-desktop*2});
 
-
 @include for-size(desktop) {
     #nav-inside-article{
         padding-top:$margins-desktop;
@@ -47,6 +46,23 @@ $width-main-image: calc( 80vw - #{$margins-desktop*2});
             a{
                 width: $logo-column/3;
             }
+            
+            &[data-type="main-article"] a::before{
+                content: $productions;
+            }
+
+            &[data-type="productions-associes"] a::before{
+                content: $productions;
+            }
+            &[data-type="activites-associees"] a::before{
+                content: $activites;
+            }
+            &[data-type="fichiers-associes"] a::before{
+                content: $files;
+            }
+            &[data-type="membres-associes"] a::before{
+                content: $people;
+            }            
 
         }
 

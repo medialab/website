@@ -27,7 +27,7 @@ export default function Now({now, lang}) {
 				{/* if type=actualite (bon modèle pour les liens) */}
 				<article data-type={item.model}>
 					<div className="nomenclature">
-						<p className="type"><Link to={item.data.slugs}>{IsModel(item.model, lang)}</Link></p>
+						<p className="type" data-type={item.model}><Link to={item.data.slugs}>{IsModel(item.model, lang)}</Link></p>
 						{/*<p className="sous-type"><Link to{item.url}>{type}</Link></p> */}
 					</div>
 					<div className="image-pre">

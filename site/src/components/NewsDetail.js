@@ -1,14 +1,16 @@
 import React from 'react';
 import {graphql} from 'gatsby';
+import RawHtml from './RawHtml';
 
-import PublicationsAssocies from './fragments/pages/PublicationsAssocies.js';
-import FichiersAssocies from './fragments/pages/FichiersAssocies.js';
 import Nav from './fragments/Nav.js';
 import ToggleLang from './fragments/pages/ToggleLang.js';
-import {PlaceHolder} from './helpers.js';
-
-import RawHtml from './RawHtml';
+//import {PlaceHolder} from './helpers.js';
 //import './scss/page_objet.scss';
+
+import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
+import FichiersAssocies from './fragments/pages/FichiersAssocies.js';
+import MembresAssocies from './fragments/pages/MembresAssocies.js';
+import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
 
 export const queryFragment = graphql`
   fragment NewsDetail on NewsJson {
@@ -58,6 +60,11 @@ export const queryFragment = graphql`
       }
       type
     }
+    attachments{
+      label
+      value
+      type
+    }
   }
 `;
 
@@ -66,6 +73,12 @@ export const queryFragment = graphql`
       id: 'main-objet',
       en: 'Main article',
       fr: 'Article principal',
+    },
+    {
+      id: 'membres-associes',
+      exist : ({people}) => Boolean(people),
+      en: 'Related people',
+      fr: 'Membres en lien'
     },
     {
       id: 'productions-associes',
@@ -85,21 +98,19 @@ export const queryFragment = graphql`
       en: 'Related files',
       fr: 'Fichier associés'
     },
-    {
-      id: 'membres-associes',
-      exist : ({people}) => Boolean(people),
-      en: 'Related people',
-      fr: 'Membres en lien'
-    },
+
   ];
 
 
 
 export default function NewsDetail({lang, news}) {
-  console.log(lang, news);
 
-  // Place Holder attachements
-  PlaceHolder(news);
+  //Placeholder
+  news.attachments = [{label: "Faux_files.xml", value: "Faux_files", type: 'XML',},{label: "Faux_files.pdf", value: "Faux_files", type: 'PDF',}];
+  news.productions = [{title: { fr: "Faux", en: "Fake"}, description: { fr: "Fausse", en: "Fake"}, slugs: "fakeslug"}];
+  news.activities = [{name: "Fausse Activité", baseline: { fr: "Fausse baseline", en: "Fake Baseline"}, slugs: "fakeslug"}];
+  news.people = [{firstName: "Bob", lastName: "Morane", slugs: "fakeslug"}];
+  console.log(news);
 
   return (
     <>
@@ -135,14 +146,12 @@ export default function NewsDetail({lang, news}) {
 
         </article>
 
-        <div>
-          {lang === "fr" ? "Personnes liées" + String.fromCharCode(8239) +":"  : "Related people:"}
-          <ul>
-            {(news.people || []).map(p => <li key={p.id}>{p.firstName} {p.lastName}</li>)}
-          </ul>
-        </div>
-        <PublicationsAssocies publications={news.productions} lang={lang} />
-        <FichiersAssocies lang={lang} fichier={news.attachement} />
+        {/* Block Associes */}
+        <MembresAssocies person={news.people} context="news" lang={lang}/>
+        <PublicationsAssociees productions={news.productions} context="news" lang={lang}/>
+        <ActivitesAssociees activities={news.activities} context="news" lang={lang}/>
+        <FichiersAssocies lang={lang} attachments={news.attachments} context="news" person="" />
+
       </main>
     </>
   );

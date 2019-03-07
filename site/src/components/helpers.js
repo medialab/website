@@ -30,9 +30,14 @@ export function templateMembership(person){
 }
 
 export function PlaceHolder(data){
+ 
+  //if(typeof data.attachments != null){ data.attachments.push(attchmts); console.log(data.attachments); };
+  //if(typeof data && data !== "undefined"){ return (data.label = "Faux_files.pdf", data.value = "Faux_file",  data.type = "fake") };
 
-  if(typeof data.attachements && data.attachements !== "undefined"){ return data.attachements = "Faux_files.pdf" };
 }
+
+
+
 
 export function IsModel (item, lang){
   let type;

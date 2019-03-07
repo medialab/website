@@ -26,7 +26,7 @@ export default function Nav({lang, object={}, related=[]}) {
 
 
 	return (<nav id="nav-inside-article">
-			<div className="nav-inside-item">
+			<div className="nav-inside-item" data-type="main-article">
 				<Link to="#topbar">
 					<Logo />
 				</Link>
@@ -35,7 +35,7 @@ export default function Nav({lang, object={}, related=[]}) {
 				{coverImage}
 			</div>
 			{(getRelatedElements(related, object)).map(related => (
-				<div className="nav-inside-item">
+				<div className="nav-inside-item" data-type={related.id}>
 					<p>
 						<a href={`#${related.id}`}>{related[ lang ]}</a>
 					</p>

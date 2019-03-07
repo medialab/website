@@ -2,10 +2,12 @@ import React from 'react';
 import {graphql} from 'gatsby';
 
 import {join} from './helpers';
-import PublicationsAssocies from './fragments/pages/PublicationsAssocies.js';
-import FichiersAssocies from './fragments/pages/FichiersAssocies.js';
 import Nav from './fragments/Nav.js';
 import ToggleLang from './fragments/pages/ToggleLang.js';
+
+import FichiersAssocies from './fragments/pages/FichiersAssocies.js';
+import MembresAssocies from './fragments/pages/MembresAssocies.js';
+import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
 
 import RawHtml from './RawHtml';
 //import './scss/page_objet.scss';
@@ -43,6 +45,11 @@ export const queryFragment = graphql`
     active
     draft
     slugs
+    attachments{
+      label
+      value
+      type
+    }
   }
 `;
 
@@ -81,11 +88,20 @@ export const queryFragment = graphql`
 export default function ActivityDetail({lang, activity}) {
   console.log(lang, activity);
 
-  const files = activity.attachments;
+  //Placeholder
+  activity.attachments = [{label: "Faux_files.xml", value: "Faux_files", type: 'XML',},{label: "Faux_files.pdf", value: "Faux_files", type: 'PDF',}];
+  activity.activities = [{name: "Fausse Activité", baseline: { fr: "Fausse baseline", en: "Fake Baseline"}, slugs: "fakeslug"}];
+  activity.people = [{firstName: "Bob", lastName: "Morane", slugs: "fakeslug"}];
+  console.log(activity);
 
+  // related Elements
+  const files = activity.attachments;
   const people = activity.people.map(p => {
     return <span key={p.id}>{p.firstName} {p.lastName}</span>;
   });
+
+  //PlaceHolder
+  activity.attachments = [{label: "Faux_files.pdf", value: "Faux_files", type: 'Fake',}];
 
   return (
     <main id="main-objet">
@@ -118,15 +134,14 @@ export default function ActivityDetail({lang, activity}) {
           </div>
 
         </article>
-
-        <div>
-          {lang === "fr" ? "Personnes liées" + String.fromCharCode(8239) +":"  : "Related people:"}
-          <ul>
-            {(activity.people || []).map(p => <li key={p.id}>{p.firstName} {p.lastName}</li>)}
-          </ul>
-        </div>
-        <PublicationsAssocies publications={activity.productions} lang={lang} />
-        <FichiersAssocies />
+        <MembresAssocies person={activity.people} context="activity" lang={lang}/>
+        <ActivitesAssociees activities={activity.activities} context="activity" lang={lang}/>
+        <FichiersAssocies lang={lang} attachments={activity.attachments} context="activity" person="" />
   </main>
   );
 }
+
+
+
+
+

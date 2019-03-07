@@ -43,9 +43,9 @@ else {
 			</ul>
 
 		<input type="checkbox" id="filtre-activity_research" name="filtre-activity_research" className="input_filtre-activity" value="research" hidden  />
-		<label className="filtre-activity checkbox-medialab" ifor="filtre-activity_research">{ research }</label>
+		<label className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_research">{ research }</label>
 		<input type="checkbox" id="filtre-activity_teaching" name="filtre-activity_teaching" className="input_filtre-activity" value="teaching" hidden  />
-		<label className="filtre-activity checkbox-medialab" for="filtre-activity_teaching">{ teaching }</label>
+		<label className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_teaching">{ teaching }</label>
 		{/*  La classification methode a était retirée le 5 fevrier dernier 
 		<input type="checkbox" id="filtre-activity_method" name="filtre-activity_method" className="input_filtre-activity" value="method" hidden />
 		<label className="filtre-activity checkbox-medialab" for="filtre-activity_method">method</label>  */}

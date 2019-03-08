@@ -3,6 +3,7 @@ import {graphql} from 'gatsby';
 import {Link} from 'gatsby';
 
 import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
+import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
 import Nav from './fragments/Nav.js';
 
 import RawHtml from './RawHtml';
@@ -142,8 +143,9 @@ export default function PeopleDetail({lang, person}) {
           <span className="personne">{person.lastname} {person.firstName}</span>
         </p>
         <article id="biographie">
-            <figure><img src={person.coverImage ? person.coverImage.url : Img}   alt={lang === "fr" ? "Photo de profil de " + person.firstName + person.lastName : person.firstName + person.lastName + " profil picture"} /></figure>
+          <figure><img src={person.coverImage ? person.coverImage.url : Img}   alt={lang === "fr" ? "Photo de profil de " + person.firstName + person.lastName : person.firstName + person.lastName + " profil picture"} /></figure>
           <header>
+            
             <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
             <h2 data-level-2="role" data-type="role">{lang === "fr" ? person.role.fr : person.role.en}</h2>
             <p data-type="domaine">{lang === "fr" ? "Domaine" + String.fromCharCode(8239) +":" : "Domain:"} {person.domain}</p>
@@ -159,7 +161,8 @@ export default function PeopleDetail({lang, person}) {
             {person.bio && (lang === "fr" ? person.bio.fr && <RawHtml html={bio.fr} />  : person.bio.en && <RawHtml html={bio.en} />)}
           </div>
         </article>
-        <PublicationsAssociees publications={person.mainProductions} context="people" lang={lang}/>
+        <PublicationsAssociees productions={person.mainProductions} person={person} context="people" lang={lang}/>
+        <ActivitesAssociees activities={person.mainActivities} person={person} context="people" lang={lang}/>
         {/*<FichiersAssocies lang={lang} attachments={person.attachments} context="people" person={person} />*/}
       </main>
     </>

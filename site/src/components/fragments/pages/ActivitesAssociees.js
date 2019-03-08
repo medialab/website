@@ -4,32 +4,35 @@ import {Link} from 'gatsby';
 
 const ActivitesAssociees = ({lang, context, activities, person}) => {
   
-  // Si aucun fichier lié, retourne null
+  // Si aucune activitée liée, retourne null
   if (!activities || activities.length === 0)
     return null;
 
   // definissons une accroche
   let accroche;
-  if (lang === "fr") { 
+  if (lang === "fr") {
     if (context && context === "people") {
-      accroche = person && person.firstName + person && person.lastName + "est en lien avec ces activité"+ String.fromCharCode(8239) +":";
+    accroche = "Activités auxquelles " + person.firstName + " " + person.lastName + " a participé";
+    }else{
+      accroche =  "Activités liées à ce sujet"+ String.fromCharCode(8239) +":";
     }
-    accroche = "Il existe des activités associés à ce sujet"+ String.fromCharCode(8239) +":";
   } else {
     if (context && context === "people") {
-      accroche = person && person.firstName + person && person.lastName + " is linked to this activities";
-    }		
-    accroche = "There is activities linked to this subject:";
+      accroche = "Activities in which " + person.firstName + " " + person.lastName + " participated";
+    } else {
+      accroche = "Activities linked to this subject:";
+    }
+
   }
 
   return (
-    <aside className="container fichiers-associes-block" id="activites-associees">
-      <h1>{accroche}</h1>
+    <aside className="container elements-associes-block" id="activites-associees">
+      <h1><span data-icon="activite"></span> {accroche}</h1>
 
       <div className="contenu">
         <ul className="liste_objet">
           {activities.map(a => (
-            <li key={a.id} data-type="activities" className="item">
+            <li key={a.id} data-type="activite" className="item">
               <Link to={`/activities/${a.slugs[a.slugs.length - 1]}`}>
                 <h1 data-level-="baseline">{lang === 'fr' ? a.baseline.fr : a.description.en}</h1>
                 <h2 data-level-="name">{lang === 'fr' ? a.name : a.name}</h2>
@@ -37,6 +40,27 @@ const ActivitesAssociees = ({lang, context, activities, person}) => {
               </Link>
             </li>
           ))}
+
+
+            {/* <li data-type="activite" className="item">
+              <a href="#">
+                <h1 data-level-="baseline">Comment repenser conjointement le Monde et la Terre?</h1>
+                <h2 data-level-="name">Politiques de la terre à l'épreuve de l'Anthropocène</h2>
+                <p className="type">Enseignement</p>
+              </a>
+            </li>
+
+            <li data-type="activite" className="item">
+              <a href="#">
+                <h1 data-level-="baseline">Quelle transformation de l’économie française entre 1716-1821?</h1>
+                <h2 data-level-="name">TOFLIT18: Transformations de l'économie française analysées suivant le commerce international, 1716-1821</h2>
+                <p class="type">Recherche</p>
+              </a>
+            </li> */}
+
+            
+
+
         </ul>
       </div>
     </aside>

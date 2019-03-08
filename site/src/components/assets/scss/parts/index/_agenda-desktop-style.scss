@@ -163,9 +163,9 @@
 
 // all queries
 
-.time::before{ content: none; }
+#agenda .time::before{ content: none; }
 
-article:hover{
+#agenda article:hover{
     color: $redlab;
     .year-main, .place, .hours{ color: $redlab;}
     .internal span{ 

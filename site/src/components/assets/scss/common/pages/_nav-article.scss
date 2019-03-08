@@ -47,9 +47,9 @@ $width-main-image: calc( 80vw - #{$margins-desktop*2});
                 width: $logo-column/3;
             }
             
-            &[data-type="main-article"] a::before{
-                content: $productions;
-            }
+            // &[data-type="main-article"] a::before{
+            //     content: $productions;
+            // }
 
             &[data-type="productions-associes"] a::before{
                 content: $productions;

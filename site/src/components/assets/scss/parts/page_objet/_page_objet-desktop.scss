@@ -24,9 +24,6 @@
 			margin-left: $logo-column;
 			margin-bottom: 40vh;	
 		
-			aside{
-				padding-top: 100px;
-			}
 		
 			.titre-sticky{
 				@include font-size-20();
@@ -167,12 +164,6 @@
 				}
 			}/* #article-contenu */
 		} /* main */
-
-		aside > h1{
-			padding-top: $baseline*3;
-			margin-bottom: $baseline*2.5;
-			@include font-size-27();
-		}	
 
 		footer{
 			margin-left: $logo-column;

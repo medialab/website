@@ -71,7 +71,7 @@ body, html{
 
 		li{
 			@include font-size-13();
-			border-right: $border-light;
+			
 			border-left: $border-light;
 			padding: 0 $unite/1.5;
 			width: auto;
@@ -80,13 +80,13 @@ body, html{
 			display: inline-block;
 			margin-right: -4px;
 
-			&:first-of-type{
-				
+			&:last-of-type{
+				border-right: $border-light;
 			}
 
-			&:hover{
-				border-color: $redlab;
+			&:hover{	
 				color: $redlab;
+				border-left: $border-light;
 				cursor: pointer;
 				z-index: 99;
 			}

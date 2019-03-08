@@ -1,6 +1,13 @@
 ///// Global 
 .elements-associes-block{
 
+	padding-top: $sticky-height + $baseline*2;
+
+	& > h1{
+		margin-bottom: $baseline*2;
+		
+	}
+	
 	& > p{
 		@include font-size-13;
 		color: $text-color-light;
@@ -9,26 +16,42 @@
 
 	ul.liste_objet{ 
 
+		// background-color: red;
 
 		li{
 			box-sizing: border-box;
-			padding: $baseline 0 ;
-			margin-right: $unite;
+			
+			padding-bottom: $baseline/2;
+			// margin-right: $unite*3;
 			border-bottom: $border-light;
 
 			a{
 
-				*{ @include text-overflow(); }
+				// *{ @include text-overflow(); }
 
 				h1{
-					@include font-size-16();
-					padding-right: $unite/2;
-					font-weight: bold;
+					@include font-size-20();
+					padding-top: $baseline*1.5;
+					padding-bottom: $baseline*1.5;
+					border-bottom: $border-very-light;
+					padding-right: $unite;
+				}			
+
+			
+				h2{ 
+					border-bottom: $border-very-light;
+					padding-top: $baseline*0.5;
+					padding-bottom: $baseline*0.5;
+					color: $text-color-light; 
+					@include font-size-13();
 				}
 
-				h2{ display: none; }
-
-				p{ @include font-size-16(); }
+				.type{ 
+					color: $text-color-light; 
+					@include font-size-13();
+					padding-top: $baseline*0.5;
+					text-align: right;
+				}
 
 				.image-pre{
 					display: none;
@@ -50,32 +73,78 @@
 	}
 }
 
-@include for-size(phone) {}
-	.elements-associes-block{
 
-		ul.liste_objet{ 
-				
-			padding: $unite-phone 0;
-			padding: $unite-phone 0;
-			display: block;
 
-			li{ width: 100%; }
-		}
+///// Responsive
+
+@include for-size(phone) {
+
+	.elements-associes-block > h1{ 
+		@include font-size-16-phone();
+		font-weight: 600;
+		span{ font-weight: 300;}
+	}
+	.elements-associes-block .liste_objet{
+		h1{ @include font-size-20-phone(); }				
+		h2{ @include font-size-13-phone(); }
+		.type{ @include font-size-13-phone(); }
+	}
 }
 
 @include for-size(desktop) {
+	.elements-associes-block > h1{ 
+		@include font-size-20();
+		font-weight: 600;
+		span{ font-weight: 300;}
+	}
+	.elements-associes-block .liste_objet{
+		h1{ @include font-size-20(); }				
+		h2{ @include font-size-13(); }
+		.type{ @include font-size-13(); }
+	}
+}
+
+@media screen and (max-width: 1000px){
+	.elements-associes-block{
+
+		ul.liste_objet{ 
+			// li{ width: 100%; }
+			li:first-of-type{ border-top: $border-light; }
+		}
+	}
+}
+
+
+@media screen and (min-width: 1000px){
 
 	.elements-associes-block{
-		ul.liste_objet{ 
-			
-			max-width: 800px;
-			padding: $unite 0;
-			padding: $unite 0;
+		ul.liste_objet{ 		
+			// @include flex;
+			// @include flex-wrap(wrap);			
+			// li{ width: calc( ( 100% - #{$unite*3*2} ) / 2 ); }
+			column-count: 2;
+			column-gap: $unite*1.5;
+			column-fill: auto;
+			margin-right: $unite*1;	
+			li{ break-inside: avoid}
+		}		
+	}
+}
 
-			@include flex;
-			@include flex-wrap(wrap);
-			
-			li{ width: calc( ( 100% - #{$unite*2} ) / 2 ); }
+
+@media screen and (min-width: 1600px) {
+
+	.elements-associes-block{
+		ul.liste_objet{ 		
+			max-width: 1500px;
+			// @include flex;
+			// @include flex-wrap(wrap);			
+			// li{ width: calc( ( 100% - #{$unite*3*3} ) / 3 ); }
+			column-count: 3;
+			column-gap: $unite*3;
+			column-fill: auto;
+			column-rule: $border-very-light;
+			li{ break-inside: avoid}
 		}		
 	}
 }

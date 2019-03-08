@@ -4,20 +4,17 @@
 
 /* no support of grid */
 @include for-size(phone){
-    #now .contenu article, #elements-associes .contenu article{
+    #now .contenu article{
         display: inline-block;
         width: 100%;
         margin-right: $margins-phone;
         margin-bottom: $margins-phone;
         vertical-align: top;
     }
-}
-
-@include for-size(phone){
 
     /* grid support */
     @supports(display: grid) {
-        #now .contenu, #elements-associes .contenu{
+        #now .contenu{
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             grid-template-rows: auto auto;
@@ -33,7 +30,7 @@
     /* grid support for Edge (old syntax) */
     @supports (display: -ms-grid) {
 
-        #now .contenu, #elements-associes .contenu{
+        #now .contenu{
             display: -ms-grid;
             -ms-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             -ms-grid-template-rows: auto auto;
@@ -46,113 +43,17 @@
         }
     }
 
-
-    #now, #elements-associes {
-
-        .contenu{ margin-top: $baseline*3; }
-
-        
-
-        article{
-
-            .image-pre{
-                font-size: $font-size*2.3;
-                width: 100%;
-                // height: $font-size*20;
-                overflow: hidden;
-                border-top: $border-light;
-            }
-
-            .nomenclature{
-                @include font-size-16();
-                margin-bottom: $baseline/2;
-            }
-
-            h1{
-                @include font-size-20();
-                margin-top: $baseline*1;
-                margin-bottom: $baseline*1;
-            }
-
-            h2, .time{
-                @include font-size-16();
-            }
-
-            figure{ 
-                width: 100%;
-                //height: $font-size*20;
-                position: absolute;
-                top: -50%;
-                left: 0;
-                //-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-                //filter: grayscale(100%);
-                
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                &:hover{
-                    background-color: $redlab;
-                    mix-blend-mode: darken; // Pas certain...
-                }
-
-                a{ width: 100%; }
-
-                img{
-                    
-                    opacity: 0.9;
-
-                    // max-width: 100%;
-                    // max-height: 100%;
-                    // border-radius: 50%;
-                    // border: $border;
-
-                    // height: 100%;
-                    width: 100%;
-                    object-fit: contain;
-                    mix-blend-mode: screen;
-                    -webkit-filter: grayscale(100%) contrast(1000%);
-                    filter: grayscale(100%) contrast(1000%);
-                }
-
-                // &:hover{ mix-blend-mode: screen; }
-                
-            }
-
-            &:hover{
-                cursor: pointer;
-                color: $redlab;
-                .more{ color: $redlab-light; }
-                .image-pre{ border-top: $border-redlab-light; }
-            }
-
-
-            
-        }/* end article*/
-
-    } /* end #now*/
+    #now .contenu{ margin-top: $baseline*3; }
 
 }
 
 
 
-
-/* height of the image pre */
-@include for-size(phone){
-    #now .image-pre, #elements-associes .image-pre { 
-        height: $font-size*10; 
-        border-bottom: $border-light;
-    }
-}
-
-@include for-size(phone){
-    #now .image-pre, #elements-associes .image-pre { height: $font-size*20; }
-}
 
 
 /* phone margins */
 @include for-size(phone){
-    #now article, #elements-associes article { 
+    #now article { 
         margin-top: $baseline*1!important;
         margin-bottom: $baseline*1!important; 
     }

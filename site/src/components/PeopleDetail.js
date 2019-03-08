@@ -2,6 +2,7 @@ import React from 'react';
 import {graphql} from 'gatsby';
 import {Link} from 'gatsby';
 
+import Highlight from './fragments/pageEquipe/Highlight.js';
 import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
 import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
 import Nav from './fragments/Nav.js';
@@ -161,6 +162,7 @@ export default function PeopleDetail({lang, person}) {
             {person.bio && (lang === "fr" ? person.bio.fr && <RawHtml html={bio.fr} />  : person.bio.en && <RawHtml html={bio.en} />)}
           </div>
         </article>
+        <Highlight highlight={person.mainProductions} lang={lang}/>
         <PublicationsAssociees productions={person.mainProductions} person={person} context="people" lang={lang}/>
         <ActivitesAssociees activities={person.mainActivities} person={person} context="people" lang={lang}/>
         {/*<FichiersAssocies lang={lang} attachments={person.attachments} context="people" person={person} />*/}

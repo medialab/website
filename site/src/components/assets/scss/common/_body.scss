@@ -16,13 +16,23 @@
     }
 }
 
-[data-type="actualite"] .type::before, [data-icon="actualite"]::before{
+[data-type="news"] .type::before, 
+[data-icon="news"]::before,
+[data-type="actualite"] .type::before, 
+[data-icon="actualite"]::before{
     content: $actualites;
 }
-[data-type="production"] .type::before, [data-icon="production"]::before{
+[data-type="production"] .type::before, 
+[data-icon="production"]::before,
+[data-type="productions"] .type::before, 
+[data-icon="productions"]::before{
     content: $productions;
 }
-[data-type="activite"] .type::before, [data-icon="activite"]::before{
+
+[data-type="activities"] .type::before, 
+[data-icon="activities"]::before,
+[data-type="activite"] .type::before, 
+[data-icon="activite"]::before{
     content: $activites;
 }
 [data-type="git"] .type::before{

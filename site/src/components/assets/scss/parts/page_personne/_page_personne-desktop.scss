@@ -38,10 +38,18 @@
 
 			}
 
+			#highlight{ 
+				margin-top:  $sticky-height;
+				border-top: $border;
+				padding-top: $baseline*3;
+				border-bottom: $border;
+				padding-bottom: $baseline*3;
+			 }
+
 			
 			#biographie{
 				
-
+				
 				header{
 					@include flex-order(1);
 
@@ -84,9 +92,10 @@
 			
 
 			}	
+			
+
 		} /* end main */
 
-	
 
 		footer{
 			margin-left: $logo-column;
@@ -113,9 +122,22 @@
 		
 	}
 
+	body.page-people #highlight{
+
+		.image-pre{
+            font-size: $font-size*2.3;
+            width: 100%;
+            // height: $font-size*20;
+            overflow: hidden;
+			border-top: $border-light;
+			height: $font-size*10; 
+        	border-bottom: $border-light;
+        }
+	}
+
 }
 
-@media screen and (min-width: 1000px) and (max-width: 1150px) {
+@media screen and (min-width: 1000px) and (max-width: 1080px) {
 
 	body.page-people #biographie header{
 		h1{ @include font-size-27(); }
@@ -124,7 +146,7 @@
 
 }
 
-@media screen and (min-width: 1150px) {
+@media screen and (min-width: 1080px) {
 
 	body.page-people #biographie header{
 		h1{ @include font-size-40(); }
@@ -137,82 +159,88 @@
 
 @media screen and (min-width: 1000px) {
 
-	body.page-people{
+	body.page-people #biographie{				
+		margin-top: $unite*2;
+		
 
-		#biographie{
-				
-			margin-top: $unite*2;
-
-			figure{
-				float: right;
-				width: 400px;
-				padding-left: $baseline*2;
-			}
-
-			header{
-				min-height: 300px;
-				margin-bottom: $baseline*3;
-				
-			}
+		figure{
+			float: right;
+			width: 350px;
+			padding-left: $baseline*2;
 		}
 
-	}/* body.page-people */
-
-}
-
-
-
-@media screen and (min-width: 1441px) {
-
-	body.page-people #biographie figure{
-		width: 35vw;
-		padding-bottom: $baseline*1;
+		header{
+			min-height: 250px; 
+			margin-bottom: $baseline*3;	
+		}
 	}
 
+	body.page-people #highlight{
+		
+		width: 100%;
+		max-width: 1500px;
+		
+		article{
+			display: inline-block;
+			vertical-align: top;
+			width: calc(50% - #{$unite*0.75});
+			margin-bottom: $unite*1.5;
+			&:nth-last-of-type(2n){ margin-left: $unite*1.5; }
+		}
+	}	
+
 }
 
 
 
+@media screen and (min-width: 1200px) {
+	body.page-people #biographie { 
+		header{ min-height: 350px; }
+		figure{ width: 500px; }
+	}
+}
+
+@media screen and (min-width: 1600px) {
+
+	body.page-people #biographie{
+
+		max-width: 1500px;
+		figure{
+			float: right;
+			width: 33%;
+			padding-bottom: $baseline*1;
+		}
+		
+		header{ min-height: auto!important; }
+
+	} 
+
+	body.page-people #highlight article{
+		width: calc(33% - #{$unite*1.5});
+		margin-right: $unite*1.5;
+		margin-bottom: $unite*1.5;
+	}
+	
+
+	/* grid support */
+    @supports(display: grid) {
+        body.page-people #highlight .contenu{
+            display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+            grid-template-rows: auto auto;
+            grid-gap: $unite*1.5;
+		
+			article{
+				width: 100%!important;
+				margin-left: 0!important;
+				margin-right: 0!important;
+				margin-bottom: 0!important;
+			}
+		}
+	}	
+
+}
 
 @media screen and (min-width: 1800px) {
-
-	body.page-people{
-
-		#biographie{		
-			margin-top: $unite*3;
-
-			figure{
-				position: absolute;
-				left: 900px + $margins-desktop*2;
-				width: calc(100vw - 900px - #{$logo-column} - #{$margins-desktop*4});
-			}
-
-			header{
-				max-width: 900px;
-				margin-bottom: $baseline;		
-			}
-		}
-
-	}
-
-}
-
-
-
-@media screen and (min-width: 2000px) {
-
-	body.page-people{
-
-		#biographie{
-				
-			figure{
-				left: 610px;
-				width: 400px;
-			}
-
-			header{ max-width: 1000px; }
-		}
-
-	}
-
+	body.page-people #biographie figure{ width: 505px; }
 }

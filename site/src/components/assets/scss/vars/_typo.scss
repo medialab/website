@@ -79,13 +79,13 @@ html{
 
 @mixin font-size-16() {
     font-size: $font-size*1.6;
-    line-height: $baseline*1.6;
+    line-height: $baseline*1.4;
     font-weight: 100;
 }//ancien typo-labeur
 
 @mixin font-size-16-phone() {
     font-size: $font-size*1.6;
-    line-height: $baseline*1.6;
+    line-height: $baseline*1.4;
     font-weight: 300;
 }
 

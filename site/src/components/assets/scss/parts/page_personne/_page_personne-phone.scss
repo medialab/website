@@ -24,6 +24,15 @@
 				span.personne{ display: none; }
 			}
 
+			#highlight .contenu article{
+				display: inline-block;
+				width: 100%;
+				margin-right: $margins-phone;
+				margin-bottom: $margins-phone;
+				vertical-align: top;
+			}
+		
+
 			#biographie{
 
 				figure{
@@ -66,9 +75,10 @@
 		
 				.biographie-contenu{
 					width: 100%;
-					p{ @include font-size-20();}
+					p, li{ @include font-size-16-phone();}
 				}
 			}		
+			#highlight{ margin-top: $height-top-bar-phone + $baseline*2; }
 		} /* main */
 
 

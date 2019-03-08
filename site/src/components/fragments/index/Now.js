@@ -21,22 +21,13 @@ export default function Now({now, lang}) {
 			{now.map((item, index) => 
 
 				<>
-				
-				
-
-				{/* if type=actualite (bon modèle pour les liens) */}
 				<article data-type={item.model}>
-					<div className="nomenclature">
-						<p className="type" data-type={item.model}><Link to={item.data.slugs}>{IsModel(item.model, lang)}</Link></p>
-						{/*<p className="sous-type"><Link to{item.url}>{type}</Link></p> */}
-					</div>
+				<Link to={item.model + "/" + item.data.slugs}>
+					<p className="type" data-type={item.model}>{IsModel(item.model, lang)}</p>
 					<div className="image-pre">
-						<Link to={item.model + "/" + item.data.slugs}>
 							<ProcessedImage size="medium" image="" />
-						</Link>
 					</div>
 						<hgroup>
-						<Link to={item.model + "/" + item.data.slugs}>
 							
 							{/* If Production*/}
 							{item.model === "productions" && 
@@ -107,9 +98,9 @@ export default function Now({now, lang}) {
 								</>													
 							}
 					
-							<p className="more"><Link to={item.data.slugs}>{lang === "fr" ? "En savoir plus" : "Get more about it" }</Link></p>
-						</Link>
+							<p className="more"><Link to={item.model + "/" + item.data.slugs}>{lang === "fr" ? "En savoir plus" : "Get more about it"}</Link></p>
 						</hgroup>
+				</Link>
 				</article>
 				</>
 			

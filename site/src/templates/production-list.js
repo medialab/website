@@ -33,7 +33,6 @@ export const query = graphql`
             en
             fr
           }
-          slugs
           type
           authors
           date

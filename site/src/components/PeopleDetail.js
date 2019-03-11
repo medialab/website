@@ -76,6 +76,21 @@ export const queryFragment = graphql`
       name
       type
     }
+    activities {
+      name
+    }
+    news {
+      title {
+        en
+        fr
+      }
+    }
+    productions {
+      title {
+        en
+        fr
+      }
+    }
   }
 `;
 
@@ -90,7 +105,7 @@ if (lang === 'en') {
 
 
 const relatedElements = [
-  
+
 
   {
     id: 'main-objet',
@@ -146,7 +161,7 @@ export default function PeopleDetail({lang, person}) {
         <article id="biographie">
           <figure><img src={person.coverImage ? person.coverImage.url : Img}   alt={lang === "fr" ? "Photo de profil de " + person.firstName + person.lastName : person.firstName + person.lastName + " profil picture"} /></figure>
           <header>
-            
+
             <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
             <h2 data-level-2="role" data-type="role">{lang === "fr" ? person.role.fr : person.role.en}</h2>
             <p data-type="domaine">{lang === "fr" ? "Domaine" + String.fromCharCode(8239) +":" : "Domain:"} {person.domain}</p>

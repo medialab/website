@@ -494,6 +494,18 @@ exports.setFieldsOnGraphQLNodeType = function({type, getNode, getNodesByType, pa
       'people',
       'activities'
     );
+    addBacklinkToGraphQLSchema(
+      getNodesByType.bind(null, 'NewsJson'),
+      GRAPHQL_SCHEMAS,
+      'people',
+      'news'
+    );
+    addBacklinkToGraphQLSchema(
+      getNodesByType.bind(null, 'ProductionsJson'),
+      GRAPHQL_SCHEMAS,
+      'people',
+      'productions'
+    );
     return GRAPHQL_SCHEMAS.people;
   }
 

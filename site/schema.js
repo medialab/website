@@ -185,6 +185,9 @@ exports.patchGraphQLSchema = function(current, model, type, schema, settings) {
     }
   });
 
+  if ('coverImage' in current[model])
+    return;
+
   current[model].coverImage = {
     type: CoverType,
     resolve: item => {
@@ -249,6 +252,9 @@ exports.patchGraphQLSchema = function(current, model, type, schema, settings) {
 };
 
 exports.addBacklinkToGraphQLSchema = function(getNodes, schemas, source, target) {
+
+  if (target in schemas[source])
+    return;
 
   const BacklinkType = new GraphQLTypes.GraphQLObjectType({
     name: target + '__backlink',

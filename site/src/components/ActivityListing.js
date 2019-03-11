@@ -29,7 +29,7 @@ export default function ActivityListing({lang, list}) {
             {list.map((a, index) => (
               <>
                 <li data-item={index} data-type={a.type} className={`list-item ${a.type}`}>
-                  <Link to={`/activities/${a.slugs[a.slugs.length - 1]}`}>
+                  <Link to={a.permalink[lang]}>
                     <h1 data-level-1="baseline">{a.baseline && (lang === 'fr' ? a.baseline.fr : a.baseline.en)}</h1>
                     <h2 data-level-2="title">{a.name}</h2>
                     <p className="type">{a.type}</p>
@@ -38,7 +38,7 @@ export default function ActivityListing({lang, list}) {
                   </Link>
                 </li>
                 <li className="item_accroche description" data-item-accroche={index}>
-                  <Link to={`/activities/${a.slugs[a.slugs.length - 1]}`}>
+                  <Link to={a.permalink[lang]}>
                     {a.description &&
                     <RawHTML html={lang === 'fr' ? a.description.fr : a.description.en} />}
                   </Link>

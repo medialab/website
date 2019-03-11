@@ -19,21 +19,17 @@ export const query = graphql`
             fr
           }
           place
-          label{
+          label {
             en
             fr
           }
           startDate
           endDate
           internal
-          cover {
-            file
-            crop{
-              height
-              width
-            }
+          permalink {
+            en
+            fr
           }
-          slugs
           type
           lastUpdated
         }

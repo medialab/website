@@ -13,7 +13,7 @@ const byYear = ([yearA], [yearB]) => yearB - yearA;
 
 export default function ProductionListing({lang, list, group, types}) {
     const yearGroups = new Map();
-    
+
     let accroche
 
     if (lang === 'fr') {
@@ -43,7 +43,7 @@ export default function ProductionListing({lang, list, group, types}) {
         <section id="liste">
           <p className="accroche-titre-phone">{accroche}</p>
           <ul className="liste_objet" id="liste-productions">
-            {/*-- en fonction du lien de page, doit renvoyer différentes listes: 
+            {/*-- en fonction du lien de page, doit renvoyer différentes listes:
             si le lien de page = /productions, renvoie toutes les productions
             si lien de page = productions/publications, renvoie uniquement les p.groupLabel = publications
             si lien de page = productions/editionsweb, renvoie uniquement les p.groupLabel = editionsweb
@@ -60,7 +60,7 @@ export default function ProductionListing({lang, list, group, types}) {
                 {yearList.map((p) => (
                   <>
                     <li data-item={nbItem} data-type={p.type} className={`list-item ${p.type}`}>
-                      <Link to={`/productions/${p.slugs[p.slugs.length - 1]}`}>
+                      <Link to={p.permalink[lang]}>
                         <h1 data-level-1="title">{lang === 'fr' ? p.title.fr : p.title.en}</h1>
                         {p.authors && <h2 data-level-2="authors"><span>{p.authors}</span></h2>}
                         {p.date && <p className="date">{p.date}</p>}
@@ -72,7 +72,7 @@ export default function ProductionListing({lang, list, group, types}) {
                       </Link>
                     </li>
                     <li className="item_accroche description" data-item-accroche={nbItem++}>
-                      <Link to={`/productions/${p.slugs[p.slugs.length - 1]}`}>
+                      <Link to={p.permalink[lang]}>
                         <RawHTML html={lang === 'fr' ? p.description.fr : p.description.en} />
                       </Link>
                     </li>

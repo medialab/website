@@ -53,7 +53,7 @@ export default function NewsListing({lang, list}) {
             {yearNews.map((news) => (
               <>
                 <li data-item={nbNews} data-type={news.type} className={`list-item ${news.type}`}>
-                  <Link to={`/news/${news.slugs[news.slugs.length - 1]}`}>
+                  <Link to={news.permalink[lang]}>
                     <DateNews startDate={news.startDate} endDate={news.endDate} lang={lang} />
                     {/* <p className="date-news differentYear"><span className="startDate" >10 décembre</span><span className="endDate" >⇥ 10 novembre 2019</span></p>		 */}
                     <TimeNews startDate={news.startDate} endDate={news.endDate} />
@@ -64,7 +64,7 @@ export default function NewsListing({lang, list}) {
                   </Link>
                 </li>
                 <li className="item_accroche description" data-item-accroche={nbNews++}>
-                  <Link to={`/activities/${news.slugs[news.slugs.length - 1]}`}>
+                  <Link to={news.permalink[lang]}>
                     <RawHTML html={lang === 'fr' ? news.description.fr : news.description.en} />
                   </Link>
                 </li>

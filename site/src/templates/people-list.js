@@ -19,12 +19,9 @@ export const query = graphql`
           domain
           active
           membership
-          cover {
-            file
-            crop{
-              height
-              width
-            }
+          permalink {
+            en
+            fr
           }
           status {
             fr

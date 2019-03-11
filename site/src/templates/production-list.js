@@ -29,6 +29,10 @@ export const query = graphql`
             en
             fr
           }
+          permalink {
+            en
+            fr
+          }
           slugs
           type
           authors

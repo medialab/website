@@ -23,7 +23,10 @@ export const query = graphql`
             firstName
             lastName
           }
-          slugs
+          permalink {
+            en
+            fr
+          }
           type
           lastUpdated
         }

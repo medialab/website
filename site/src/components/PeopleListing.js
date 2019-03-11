@@ -20,7 +20,7 @@ export default function PeopleListing({lang, list}) {
 		    <ul className="liste_equipe">
 			{list.map(p => (
 	          	<li key={p.id} data-item={p.id} data-domain={p.domain} data-active={p.active ? "yes" : "no"} data-member={p.membership === "member" ? "yes" : "no"}>
-				    <Link to={`/people/${p.slugs[p.slugs.length - 1]}`}>
+				    <Link to={p.permalink[lang]}>
 		                <figure><img src={p.coverImage ? p.coverImage.url : Img} alt={lang === "fr" ? "Photo de profil de " + p.firstName + p.lastName : p.firstName + p.lastName + " profil picture"} /></figure>
 		                <hgroup>
 						    <h1 data-level-1="name">{p.firstName} {p.lastName}</h1>

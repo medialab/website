@@ -1,15 +1,15 @@
 import React from 'react';
 import {Link} from 'gatsby';
- 
+
 
 const MembresAssocies = ({lang, context, people}) => {
 
   // Si aucun fichier lié, retourne null
-  if (people && people.length === 0) { return null; }
+  if (!people || people.length === 0) { return null; }
 
   // definissons une accroche
-  let accroche; 
-  if (lang === "fr") { 
+  let accroche;
+  if (lang === "fr") {
     // il n'y a jamais de liens entre personne, je commente mais faut supprimer je pense
     // if (context && context === "people") {
     // 	accroche = person && person.firstName + person && person.lastName + "a collaboré avec ces personnes"+ String.fromCharCode(8239) +":";
@@ -18,7 +18,7 @@ const MembresAssocies = ({lang, context, people}) => {
   } else {
     // if (context && context === "people") {
     // 	accroche = person && person.firstName + person && person.lastName + " had collaborate with this people";
-    // }		
+    // }
     accroche = "Medialab's member are linked to this subject:";
   }
 

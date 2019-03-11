@@ -81,10 +81,16 @@ const MODEL_READERS = {
 
       const hash = hashNode(activity);
 
+      const slug = _.last(activity.slugs);
+
       createNode({
         ...activity,
         content,
         attachments: resolveAttachments(pathPrefix, activity.attachments || []),
+        permalink: {
+          fr: `/activities/${slug}`,
+          en: `/en/activities/${slug}`
+        },
         identifier: activity.id,
         internal: {
           type: 'ActivitiesJson',
@@ -112,10 +118,16 @@ const MODEL_READERS = {
 
       const hash = hashNode(person);
 
+      const slug = _.last(person.slugs);
+
       createNode({
         ...person,
         bio: content,
         contacts: resolveAttachments(pathPrefix, person.contacts || []),
+        permalink: {
+          fr: `/people/${slug}`,
+          en: `/en/people/${slug}`
+        },
         identifier: person.id,
         internal: {
           type: 'PeopleJson',
@@ -155,9 +167,15 @@ const MODEL_READERS = {
 
       const hash = hashNode(production);
 
+      const slug = _.last(production.slugs);
+
       createNode({
         ...production,
         content,
+        permalink: {
+          fr: `/productions/${slug}`,
+          en: `/en/productions/${slug}`
+        },
         identifier: production.id,
         internal: {
           type: 'ProductionsJson',
@@ -185,9 +203,15 @@ const MODEL_READERS = {
 
       const hash = hashNode(news);
 
+      const slug = _.last(news.slugs);
+
       createNode({
         ...news,
         content: content,
+        permalink: {
+          fr: `/news/${slug}`,
+          en: `/en/news/${slug}`
+        },
         identifier: news.id,
         internal: {
           type: 'NewsJson',

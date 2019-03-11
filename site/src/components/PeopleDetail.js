@@ -33,12 +33,12 @@ export const queryFragment = graphql`
     draft
     lastUpdated
     domain
-    role{
+    role {
       en
       fr
     }
     slugs
-    contacts{
+    contacts {
       label
       value
     }

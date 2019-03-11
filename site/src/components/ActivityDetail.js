@@ -37,7 +37,7 @@ export const queryFragment = graphql`
       lastName
       slugs
     }
-    activities{
+    activities {
       id
       name
       type
@@ -51,13 +51,13 @@ export const queryFragment = graphql`
         fr
       }
     }
-    attachments{
+    attachments {
       type
     }
     active
     draft
     slugs
-    attachments{
+    attachments {
       label
       value
       type

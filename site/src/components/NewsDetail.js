@@ -35,10 +35,6 @@ export const queryFragment = graphql`
       firstName
       lastName
     }
-    cover { 
-      processed
-      file
-    }
     draft
     slugs
     activities {
@@ -64,7 +60,7 @@ export const queryFragment = graphql`
       }
       type
     }
-    attachments{
+    attachments {
       label
       value
       type

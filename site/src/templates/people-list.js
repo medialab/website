@@ -14,7 +14,6 @@ export const query = graphql`
           coverImage {
             url
           }
-          slugs
           id
           domain
           active

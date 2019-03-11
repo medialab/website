@@ -13,26 +13,24 @@ export const query = graphql`
           model
           data {
             ... on Activities {
-              slugs
-              coverImage{
+              coverImage {
                 url
               }
-              description{
+              description {
                 en
                 fr
               }
               name
-              baseline{
+              baseline {
                 en
                 fr
               }
             }
             ... on News {
-              slugs
-              coverImage{
+              coverImage {
                 url
               }
-              description{
+              description {
                 en
                 fr
               }
@@ -42,11 +40,10 @@ export const query = graphql`
               }
             }
             ... on Productions {
-              slugs
-              coverImage{
+              coverImage {
                 url
               }
-              description{
+              description {
                 en
                 fr
               }
@@ -62,33 +59,31 @@ export const query = graphql`
           model
           data {
             ... on Activities {
-              slugs
               name
-              coverImage{
+              coverImage {
                 url
               }
-              baseline{
+              baseline {
                 en
                 fr
               }
-              description{
+              description {
                 en
                 fr
               }
-              baseline{
+              baseline {
                 en
                 fr
               }
             }
             ... on News {
-              slugs
-              coverImage{
+              coverImage {
                 url
               }
               place
               startDate
               endDate
-              label{
+              label {
                 en
                 fr
               }
@@ -98,11 +93,10 @@ export const query = graphql`
               }
             }
             ... on Productions {
-              slugs
-              coverImage{
+              coverImage {
                 url
               }
-              description{
+              description {
                 en
                 fr
               }
@@ -130,7 +124,6 @@ export const query = graphql`
             fr
           }
           place
-          slugs
         }
       }
     }

@@ -11,7 +11,7 @@ import Logo from '../assets/svg/logo_medialab.svg';
 import MenuCircle from '../assets/svg/menu-circle.svg';
 import CloseCircle from '../assets/svg/close-circle.svg';
 
-const TopBar = ({permalink, lang}) => {
+const TopBar = ({permalinks, lang}) => {
 
 let now = null;
 let agenda = null;
@@ -93,7 +93,7 @@ if (lang === 'en') { relLang = '/en'}else{ relLang = ""};
 				</nav>
 
 				<div id="langue" className="menu langue">
-					<p><Link activeClassName="active" to={`/${permalink}`}>FR</Link><span> | </span><Link activeClassName="active" to={`/en/${permalink}`}>EN</Link></p>
+					<p><Link activeClassName="active" to={permalinks.fr}>FR</Link><span> | </span><Link activeClassName="active" to={permalinks.en}>EN</Link></p>
 				</div>
 			</div>
 		</header>

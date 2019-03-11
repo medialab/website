@@ -16,10 +16,12 @@ export default ({data, pageContext}) => {
   console.log(data, pageContext);
 
   const person = data.peopleJson;
-  const permalink = `people/${person.slugs[ person.slugs.length-1 ]}`;
 
   return (
-    <Layout lang={pageContext.lang} className="page-people" permalink={permalink}>
+    <Layout
+      lang={pageContext.lang}
+      className="page-people"
+      permalinks={pageContext.permalinks}>
       <PeopleDetail lang={pageContext.lang} person={person} />
     </Layout>
   );

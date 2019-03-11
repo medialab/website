@@ -42,10 +42,12 @@ export default ({data, pageContext}) => {
   console.log(data, pageContext);
 
   const list = data.allNewsJson.edges.map(e => e.node);
-  const permalink = 'news';
 
   return (
-    <Layout lang={pageContext.lang} className="page-news-list" permalink={permalink}>
+    <Layout
+      lang={pageContext.lang}
+      className="page-news-list"
+      permalinks={pageContext.permalinks}>
       <NewsListing lang={pageContext.lang} list={list} />
     </Layout>
   );

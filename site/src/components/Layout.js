@@ -6,7 +6,7 @@ import TopBar from './fragments/TopBar.js';
 import Footer from './fragments/Footer.js';
 import './assets/scss/global.scss';
 
-const Layout = ({children, lang, className, permalink}) => {
+const Layout = ({children, lang, className, permalinks}) => {
 
   return (
     <StaticQuery
@@ -26,7 +26,7 @@ const Layout = ({children, lang, className, permalink}) => {
             <html lang={lang} />
             <body className={className} />
           </Helmet>
-          <TopBar lang={lang} permalink={permalink} />
+          <TopBar lang={lang} permalinks={permalinks} />
             {children}
           <Footer />
         </>

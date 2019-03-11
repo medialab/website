@@ -75,6 +75,10 @@ export const query = graphql`
                 en
                 fr
               }
+              permalink {
+                en
+                fr
+              }
             }
             ... on News {
               coverImage {
@@ -91,6 +95,10 @@ export const query = graphql`
                 en
                 fr
               }
+              permalink {
+                en
+                fr
+              }
             }
             ... on Productions {
               coverImage {
@@ -102,6 +110,10 @@ export const query = graphql`
               }
               authors
               title {
+                en
+                fr
+              }
+              permalink {
                 en
                 fr
               }

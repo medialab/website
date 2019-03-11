@@ -1,13 +1,13 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
-import ProcessedImage from '../../ProcessedImage.js'; 
-import {IsModel} from '../../helpers.js'; 
+import ProcessedImage from '../../ProcessedImage.js';
+import {IsModel} from '../../helpers.js';
 
 
 // Ici nous composons l'ensemble du caroussel
 const Slideshow = ({slider, lang}) => {
-	
+
 	let a, z;
 	a = 3;
 	z = 1;
@@ -30,55 +30,55 @@ const Slideshow = ({slider, lang}) => {
 	return (
 		<>
 		<section className="slideshow" id="slideshow">
-			{slider.map((slide, index) => 
-				<>	
+			{slider.map((slide, index) =>
+				<>
 				{/* index === 0 ? ( a = "3",  z = "2" ) :
 					index === 1 ? ( a = "1",  z = "3" ) :
 						index === 3 ? ( a = "2",  z = "4" ) : "" */}
-				
+
 				{IsIndex(index)}
 
 				<input type="radio" name="ss1" id={`ss1-item-${index + 1}`} className="slideshow--bullet" checked="checked" />
 				<label className="slideshow--bullet-label" for={`ss1-item-${index + 1}`}>
-					{slide.model === "activities" ? 
+					{slide.model === "activities" ?
 						slide.data.baseline && (lang === "fr" ? slide.data.baseline.fr : slide.data.baseline.en )
-						: 
+						:
 						slide.data.title && (lang === "fr" ? slide.data.title.fr : slide.data.title.en )
-					}	
+					}
 				</label>
 				{/* Content Below */}
 				<div className="slideshow--item">
 					<article className="transition" data-type={slide.model}>
-						<Link to={slide.model + "/" + slide.data.slugs[0]}>
+						<Link to={slide.data.permalink[lang]}>
 							<div className="image-pre">
-								<ProcessedImage size="large" image="" />  
+								<ProcessedImage size="large" image="" />
 							</div>
 							<div className="image-pre-phone">
 								<ProcessedImage size="medium" image=""  />
 							</div>
 						</Link>
 						<div className="contenu-slide">
-							<Link to={slide.model + "/" + slide.data.slugs[0]}>
-								
+							<Link to={slide.data.permalink[lang]}>
+
 								<div className="nomenclature">
 									<p className="type">{IsModel(slide.model, lang)}</p>
-									{/* Sur cette derniere ligne ? Comment trouver le sous-type ?*/} 
-									{/* <p className="sous-type"><a href="#">Communication</a></p> */} 
+									{/* Sur cette derniere ligne ? Comment trouver le sous-type ?*/}
+									{/* <p className="sous-type"><a href="#">Communication</a></p> */}
 				 				</div>
 
 								{/* If Activité */}
-								{slide.model === "activities" && 
+								{slide.model === "activities" &&
 									<>
-									{ lang === "fr" ? 
-										<h1 data-level-1="baseline">{slide.data.baseline && slide.data.baseline.fr}</h1> : 
-										console.log(lang) 
+									{ lang === "fr" ?
+										<h1 data-level-1="baseline">{slide.data.baseline && slide.data.baseline.fr}</h1> :
+										console.log(lang)
 									}
 									<h2 data-level-2="name">{slide.data.name}</h2>
 									</>
 								}
 
 								{/* If Production */}
-								{slide.model === "productions" && 
+								{slide.model === "productions" &&
 									<>
 										{ lang === "fr" ?
 											<h1 data-level-1="title">{slide.data.title  && slide.data.title.fr }</h1>
@@ -90,28 +90,28 @@ const Slideshow = ({slider, lang}) => {
 											{(slide.people || []).map(p => <li key={p.id}>{p.firstName} {p.lastName}</li>)}
 											</ul>
 										</h2>
-									</> 
+									</>
 								}
 
 								{/* if News */}
-								{slide.model === "news" && 
-									(lang === "fr" ? 
+								{slide.model === "news" &&
+									(lang === "fr" ?
 										<>
 										<h1 data-level-1="title">{slide.data.title && slide.data.title.fr}</h1>
 										<time className="time">{slide.data.startDate && slide.data.startDate} — {slide.data.endDate && slide.data.endDate}</time>
 										<h2 data-level-2="label">{slide.data.label && slide.data.label.fr}</h2>
 										</>
 										:
-										<> 
+										<>
 										<h1 data-level-1="title">{slide.data.title && slide.data.title.en}</h1>
 										<time className="time">{slide.data.startDate && slide.data.startDate} — {slide.data.endDate && slide.data.endDate}</time>
 										<h2 data-level-2="label">{slide.data.label && slide.data.label.en}</h2>
-										</>						
-									) 
+										</>
+									)
 								}
 
 								{/* Default */}
-								<p className="description">{slide.data.description && (lang === "fr" ? slide.data.description.fr : slide.data.description.en)}</p>					
+								<p className="description">{slide.data.description && (lang === "fr" ? slide.data.description.fr : slide.data.description.en)}</p>
 								<p className="more">En savoir plus</p>
 							</Link>
 						</div>

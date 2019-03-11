@@ -124,6 +124,22 @@ exports.graphQLSchemaAdditionFromJsonSchema = function(model, schema) {
       item[k] = addition;
   }
 
+  const PermalinkType = new GraphQLTypes.GraphQLObjectType({
+    name: model + '__permalink',
+    fields: {
+      en: {
+        type: GraphQLTypes.GraphQLString
+      },
+      fr: {
+        type: GraphQLTypes.GraphQLString
+      }
+    }
+  });
+
+  item.permalink = {
+    type: PermalinkType
+  };
+
   return item;
 };
 

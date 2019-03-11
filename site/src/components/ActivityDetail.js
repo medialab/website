@@ -35,13 +35,15 @@ export const queryFragment = graphql`
       id
       firstName
       lastName
-      slugs
+      permalink {
+        en
+        fr
+      }
     }
     activities {
       id
       name
       type
-      slugs
       baseline {
         en
         fr
@@ -56,7 +58,6 @@ export const queryFragment = graphql`
     }
     active
     draft
-    slugs
     attachments {
       label
       value

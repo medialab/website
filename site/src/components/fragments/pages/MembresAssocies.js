@@ -30,7 +30,7 @@ const MembresAssocies = ({lang, context, people}) => {
         <ul className="liste_objet">
           {people.map(p => (
             <li key={p.id} data-type="people">
-              <Link to={`/people/${p.slugs[p.slugs.length - 1]}`}>
+              <Link to={p.permalink[lang]}>
                 {p.firstName} {p.lastName}
               </Link>
             </li>

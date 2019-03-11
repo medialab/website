@@ -36,14 +36,12 @@ export const queryFragment = graphql`
       lastName
     }
     draft
-    slugs
     activities {
       id
       description {
         en
         fr
       }
-      slugs
       name
       type
     }
@@ -53,7 +51,6 @@ export const queryFragment = graphql`
         en
         fr
       }
-      slugs
       title {
         en
         fr
@@ -107,9 +104,9 @@ export default function NewsDetail({lang, news}) {
 
   //Placeholder
   news.attachments = [{label: "Faux_files.xml", value: "Faux_files", type: 'XML',},{label: "Faux_files.pdf", value: "Faux_files", type: 'PDF',}];
-  news.productions = [{title: { fr: "Faux", en: "Fake"}, description: { fr: "Fausse", en: "Fake"}, slugs: "fakeslug"}];
-  news.activities = [{name: "Fausse Activité", baseline: { fr: "Fausse baseline", en: "Fake Baseline"}, slugs: "fakeslug"}];
-  news.people = [{firstName: "Bob", lastName: "Morane", slugs: "fakeslug"}];
+  news.productions = [{title: { fr: "Faux", en: "Fake"}, description: { fr: "Fausse", en: "Fake"}, permalink: {en: "Faux permalink en", fr: "Faux permalink fr"}}];
+  news.activities = [{name: "Fausse Activité", baseline: { fr: "Fausse baseline", en: "Fake Baseline"}, permalink: {en: "Faux permalink en", fr: "Faux permalink fr"}}];
+  news.people = [{firstName: "Bob", lastName: "Morane", permalink: {en: "Faux permalink en", fr: "Faux permalink fr"}}];
   console.log(news);
 
   return (

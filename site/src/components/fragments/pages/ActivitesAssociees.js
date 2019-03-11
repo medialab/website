@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link} from 'gatsby';
- 
+
 
 const ActivitesAssociees = ({lang, context, activities, person}) => {
-  
+
   // Si aucune activitée liée, retourne null
   if (!activities || activities.length === 0)
     return null;
@@ -33,7 +33,7 @@ const ActivitesAssociees = ({lang, context, activities, person}) => {
         <ul className="liste_objet">
           {activities.map(a => (
             <li key={a.id} data-type="activite" className="item">
-              <Link to={`/activities/${a.slugs[a.slugs.length - 1]}`}>
+              <Link to={a.permalink[lang]}>
                 <h1 data-level-="baseline">{lang === 'fr' ? a.baseline.fr : a.description.en}</h1>
                 <h2 data-level-="name">{lang === 'fr' ? a.name : a.name}</h2>
                 <p className="type">{a.type}</p>
@@ -58,7 +58,7 @@ const ActivitesAssociees = ({lang, context, activities, person}) => {
               </a>
             </li> */}
 
-            
+
 
 
         </ul>

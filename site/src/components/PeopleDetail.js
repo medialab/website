@@ -37,7 +37,6 @@ export const queryFragment = graphql`
       en
       fr
     }
-    slugs
     contacts {
       label
       value
@@ -52,7 +51,6 @@ export const queryFragment = graphql`
         en
         fr
       }
-      slugs
       title {
         en
         fr
@@ -65,7 +63,6 @@ export const queryFragment = graphql`
         en
         fr
       }
-      slugs
       name
       type
     }

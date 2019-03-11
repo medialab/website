@@ -37,7 +37,6 @@ export const queryFragment = graphql`
         en
         fr
       }
-      slugs
       name
       type
     }
@@ -47,7 +46,6 @@ export const queryFragment = graphql`
         en
         fr
       }
-      slugs
       title {
         en
         fr
@@ -55,7 +53,6 @@ export const queryFragment = graphql`
       type
     }
     draft
-    slugs
   }
 `;
 

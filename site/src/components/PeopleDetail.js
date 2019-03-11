@@ -46,13 +46,6 @@ export const queryFragment = graphql`
       en
       fr
     }
-    cover {
-      file
-      crop{
-        height
-        width
-      }
-    }
     mainProductions {
       id
       description {

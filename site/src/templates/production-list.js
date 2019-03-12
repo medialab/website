@@ -43,7 +43,12 @@ export const query = graphql`
 
     facetedEnumsJson {
       productionTypes {
+        id
         label {
+          en
+          fr
+        }
+        permalink {
           en
           fr
         }

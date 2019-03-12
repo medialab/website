@@ -1,11 +1,12 @@
 import React from 'react';
 /*import {graphql} from 'gatsby';*/
-/*import {Link} from 'gatsby';*/
+import {Link} from 'gatsby';
+import cls from 'classnames';
 
-const FilterProduction = ({lang}) => {
+const FilterProduction = ({lang, group, types}) => {
 
 
-	let title, filter, all, publication, webedition, tool, situation, media, year, type, article, communication, book, thesis, grey; 
+	let title, filter, all, publication, webedition, tool, situation, media, year, type, article, communication, book, thesis, grey;
 
 	if (lang === 'fr') {
 		title = "Productions";
@@ -37,10 +38,17 @@ const FilterProduction = ({lang}) => {
 		type = "Publication's type";
 		article = "Article";
 		communication = "Communication";
-		book = "Book"; 
+		book = "Book";
 		thesis = "Thesis";
 		grey = "Grey literature";
 	}
+
+	// <li><a href="linkProductions">{all}<span>〉</span></a></li>
+	// <li className="pageProduction_current">{publication} <span>〉</span></li>
+	// <li><a href="linkProductions/editionsweb">{webedition} <span>〉</span></a></li>
+	// <li><a href="linkProductions/tools">{tool} <span>〉</span></a></li>
+	// <li><a href="linkProductions/siautions">{situation} <span>〉</span></a></li>
+	// <li><a href="linkProductions/media">{media} <span>〉</span></a></li>
 
 	return (
 		<>
@@ -57,12 +65,17 @@ const FilterProduction = ({lang}) => {
 				<label htmlFor="radio_filtre-production_group"><span>〉</span></label>
 
 				<ul className="link-productions-sort">
-					<li><a href="linkProductions">{all}<span>〉</span></a></li>
-					<li className="pageProduction_current">{publication} <span>〉</span></li>
-					<li><a href="linkProductions/editionsweb">{webedition} <span>〉</span></a></li>
-					<li><a href="linkProductions/tools">{tool} <span>〉</span></a></li>
-					<li><a href="linkProductions/siautions">{situation} <span>〉</span></a></li>
-					<li><a href="linkProductions/media">{media} <span>〉</span></a></li>
+					{types.map(g => {
+						return (
+							<li key={g.label.fr}>
+								<Link
+									className={cls(g.id === group && 'pageProduction_current')}
+									to={g.permalink[lang]}>
+									{g.label[lang]} <span>〉</span>
+								</Link>
+							</li>
+						);
+					})}
 				</ul>
 
 
@@ -107,7 +120,7 @@ const FilterProduction = ({lang}) => {
 			<label className="filtre-production checkbox-medialab" for="filtre-production_thesis">{thesis}</label>
 
 			<input type="checkbox" id="filtre-production_grey" name="filtre-production_grey" className="input_filtre-production" value="grey" hidden />
-			<label className="filtre-production checkbox-medialab" for="filtre-production_grey">{grey}</label> 
+			<label className="filtre-production checkbox-medialab" for="filtre-production_grey">{grey}</label>
 
 
 		</>

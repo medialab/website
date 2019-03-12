@@ -39,7 +39,7 @@ export default function ProductionListing({lang, list, group, types}) {
     let nbItem = 0;
     return (
       <>
-        <FilterProduction lang={lang} />
+        <FilterProduction lang={lang} group={group} types={types} />
         <section id="liste">
           <p className="accroche-titre-phone">{accroche}</p>
           <ul className="liste_objet" id="liste-productions">

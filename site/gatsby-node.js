@@ -302,9 +302,14 @@ exports.sourceNodes = function(args) {
       const e = ENUMS.productionTypes.groups[group];
 
       return {
+        id: group,
         label: {
           en: e.en,
           fr: e.fr
+        },
+        permalink: {
+          en: '/en/productions/' + group,
+          fr: '/productions/' + group
         },
         values: e.values.map(v => {
           return {

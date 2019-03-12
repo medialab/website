@@ -124,6 +124,10 @@ body.page-activity-list{
 					border-bottom: $border-very-light;
 					padding-bottom: $baseline*0.5;
 					margin-bottom: $baseline*1;
+
+					.day-name{
+						display: none;
+					}
 				}
 
 				.hours-news{

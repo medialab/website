@@ -5,12 +5,11 @@ import {join} from './helpers';
 import Nav from './fragments/Nav.js';
 import ToggleLang from './fragments/pages/ToggleLang.js';
 
-
 import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
-import FichiersAssocies from './fragments/pages/FichiersAssocies.js';
-import MembresAssocies from './fragments/pages/MembresAssocies.js';
 import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
-import RelatedElements from './fragments/pages/RelatedElements.js';
+import ActuAssociees from './fragments/pages/ActuAssociees.js';
+import MembresAssocies from './fragments/pages/MembresAssocies.js';
+import FichiersAssocies from './fragments/pages/FichiersAssocies.js';
 
 import RawHtml from './RawHtml';
 //import './scss/page_objet.scss';

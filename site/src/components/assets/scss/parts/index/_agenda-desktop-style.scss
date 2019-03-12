@@ -132,7 +132,7 @@
 
             .place, .hours-news{ 
                 @include font-size-16();
-                align-item: baseline;
+                align-items: baseline;
             }
    
         }/* end article*/
@@ -156,8 +156,8 @@
 
 #agenda {
     .date-news::before{ content: none; }
-    .place::before{ content: "✻ "; }
-    .hours-news::before{ content: "◷ " }    
+    .place::before{ content: "✻ "; padding-right: 5px;}
+    .hours-news::before{ content: "◷ "; padding-right: 5px;}    
 }
 
 #agenda article:hover{

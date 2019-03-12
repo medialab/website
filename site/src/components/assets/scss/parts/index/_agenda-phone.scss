@@ -58,7 +58,7 @@
                 padding-bottom: $baseline;  
             }
 
-            .place, .hours-news{ @include font-size-13-phone();  align-item: baseline;}
+            .place, .hours-news{ @include font-size-13-phone();  align-items: baseline;}
 
         }
 

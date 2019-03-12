@@ -3,7 +3,10 @@ import {Link} from 'gatsby';
 
 import ProcessedImage from '../../ProcessedImage.js';
 import {IsModel} from '../../helpers.js';
-
+import DateNews from '../DateNews.js';
+import TimeNews from '../TimeNews.js';
+import { format as formatDate, getYear, parseISO } from 'date-fns';
+ 
 
 // Ici nous composons l'ensemble du caroussel
 const Slideshow = ({slider, lang}) => {
@@ -98,14 +101,17 @@ const Slideshow = ({slider, lang}) => {
 									(lang === "fr" ?
 										<>
 										<h1 data-level-1="title">{slide.data.title && slide.data.title.fr}</h1>
-										<time className="time">{slide.data.startDate && slide.data.startDate} — {slide.data.endDate && slide.data.endDate}</time>
+										<DateNews startDate={slide.data.startDate} endDate={slide.data.endDate} lang="fr" />
+								        <TimeNews startDate={slide.data.startDate} endDate={slide.data.endDate} />
+
 										<h2 data-level-2="label">{slide.data.label && slide.data.label.fr}</h2>
 										</>
 										:
 										<>
 										<h1 data-level-1="title">{slide.data.title && slide.data.title.en}</h1>
-										<time className="time">{slide.data.startDate && slide.data.startDate} — {slide.data.endDate && slide.data.endDate}</time>
-										<h2 data-level-2="label">{slide.data.label && slide.data.label.en}</h2>
+										<DateNews startDate={slide.data.startDate} endDate={slide.data.endDate} lang="fr" />
+								        <TimeNews startDate={slide.data.startDate} endDate={slide.data.endDate} />
+								        <h2 data-level-2="label">{slide.data.label && slide.data.label.en}</h2>
 										</>
 									)
 								}

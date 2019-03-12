@@ -95,8 +95,10 @@
 						
 					}
 
-					time{
+					.date-news{
 						@include font-size-20();
+						.year{display: none}
+						//.year:last-of-type{display: inline;}
 					}
 
 					.description{

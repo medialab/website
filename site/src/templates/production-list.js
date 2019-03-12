@@ -67,7 +67,9 @@ export const query = graphql`
 export default ({data, pageContext}) => {
   console.log(data, pageContext);
 
-  const list = data.allProductionsJson.edges.map(e => e.node);
+  const list = data.allProductionsJson ?
+    data.allProductionsJson.edges.map(e => e.node) :
+    [];
 
   return (
     <Layout

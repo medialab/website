@@ -25,9 +25,11 @@ export default function ProductionListing({lang, list, group, types}) {
 
 
     list.forEach(production => {
-      const year = getYear(parseISO(production.date));
+      let year = getYear(parseISO(production.date));
+
+      // TODO: this is a temporary workaround
       if (Number.isNaN(year)) {
-        return;
+        year = 2008;
       }
 
       if (!yearGroups.has(year)) {
@@ -37,6 +39,7 @@ export default function ProductionListing({lang, list, group, types}) {
       yearGroups.get(year).push(production);
     });
     let nbItem = 0;
+
     return (
       <>
         <FilterProduction lang={lang} group={group} types={types} />

@@ -132,7 +132,7 @@ export default function NewsDetail({lang, news}) {
             <h2 data-type="description">{news.description && (news.description.fr)}</h2>
             <DateNews startDate={news.startDate} endDate={news.endDate} lang={lang} />
             <TimeNews startDate={news.startDate} endDate={news.endDate} />
-            {news.type && (<p className="type-objet">news.type</p>) }
+            {news.type && <p className="type-objet">{news.type}</p> }
           </hgroup>
           {/* Article FR */}
           <div className="article-contenu fr" lang="fr">

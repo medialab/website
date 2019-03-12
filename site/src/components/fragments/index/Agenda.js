@@ -87,9 +87,10 @@ export default function Agenda({rdv, lang}){
 						        <h2 data-level-1="label">
 						        	{ event.label && (lang === "fr" ? event.label.fr : event.label.en ) }
 						        </h2>						        
-						        <TimeNews startDate={event.startDate} endDate={event.endDate} />
-						        {/*<p className="hours">{"◷ " + getHours(event.startDate) + " ⇥ " + getHours(event.startDate)}</p> : "" } */}
-						        <p className="place">{event.place}</p>
+						        <div class="details">
+							        <TimeNews startDate={event.startDate} endDate={event.endDate} />
+							        { event.place && <p className="place">{event.place}</p> }
+						        </div>
 							</Link>
 						</article>
 						</>

@@ -8,9 +8,10 @@ import ToggleLang from './fragments/pages/ToggleLang.js';
 //import './scss/page_objet.scss';
 
 import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
-import FichiersAssocies from './fragments/pages/FichiersAssocies.js';
-import MembresAssocies from './fragments/pages/MembresAssocies.js';
 import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
+import ActuAssociees from './fragments/pages/ActuAssociees.js';
+import MembresAssocies from './fragments/pages/MembresAssocies.js';
+import FichiersAssocies from './fragments/pages/FichiersAssocies.js';
 
 export const queryFragment = graphql`
   fragment NewsDetail on NewsJson {
@@ -90,15 +91,17 @@ export const queryFragment = graphql`
       fr: 'Activités en lien',
     },
     {
+      id: 'actualités-associes',
+      exist : ({news}) => Boolean(news),
+      en: 'Related news',
+      fr: 'Actualités associés'
+    },    {
       id: 'fichiers-associes',
       exist : ({files}) => Boolean(files),
       en: 'Related files',
       fr: 'Fichier associés'
     },
-
   ];
-
-
 
 export default function NewsDetail({lang, news}) {
 
@@ -108,7 +111,7 @@ export default function NewsDetail({lang, news}) {
   news.activities = [{name: "Fausse Activité", baseline: { fr: "Fausse baseline", en: "Fake Baseline"}, permalink: {en: "Faux permalink en", fr: "Faux permalink fr"}}];
   news.people = [{firstName: "Bob", lastName: "Morane", permalink: {en: "Faux permalink en", fr: "Faux permalink fr"}}];
   console.log(news);
-
+  
   return (
     <>
       <Nav lang={lang} object={news} related={relatedElements} />
@@ -144,11 +147,10 @@ export default function NewsDetail({lang, news}) {
         </article>
 
         {/* Block Associes */}
-        <MembresAssocies person={news.people} context="news" lang={lang}/>
-        <PublicationsAssociees productions={news.productions} context="news" lang={lang}/>
-        <ActivitesAssociees activities={news.activities} context="news" lang={lang}/>
-        <FichiersAssocies lang={lang} attachments={news.attachments} context="news" person="" />
-
+        <MembresAssocies people={news.people} related={relatedElements[1]} lang={lang} />
+        <PublicationsAssociees productions={news.productions} related={relatedElements[2]} lang={lang} />
+        <ActivitesAssociees activities={news.activities} related={relatedElements[3]} lang={lang} />
+        <FichiersAssocies attachments={news.attachments} related={relatedElements[4]} lang={lang}  />
       </main>
     </>
   );

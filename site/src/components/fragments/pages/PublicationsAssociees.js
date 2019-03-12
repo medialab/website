@@ -1,30 +1,16 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-const PublicationsAssociees = ({ lang, person, context, productions }) => {
+const PublicationsAssociees = ({ lang, related, productions }) => {
 
-	 // Si aucune production liée, retourne null
-	// if (!productions || productions.length === 0)
+	//if (!productions || productions.length === 0)
 	//   return null;
-
-	// definissons une accroche
 	let accroche;
 	if (lang === "fr") {
-		if (context && context === "people") {
-		accroche = "Productions auxquelles " + person.firstName + " " + person.lastName + " a participé";
-		}else{
-			accroche =  "Productions liées à ce sujet"+ String.fromCharCode(8239) +":";
-		}
-	} else {
-		if (context && context === "people") {
-			accroche = "Productions in which " + person.firstName + " " + person.lastName + " participated";
-		} else {
-			accroche = "Productions linked to this subject:";
-		}
-
+      accroche =  related.fr + String.fromCharCode(8239) +":";
+  	} else {
+      accroche = related.en + ":";
 	}
-
-
 
 	console.log(productions);
 	return (

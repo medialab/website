@@ -2,28 +2,22 @@ import React from 'react';
 import {Link, withPrefix} from 'gatsby';
  
 
-const FichiersAssocies = ({lang, attachments, context, person}) => {
+const FichiersAssocies = ({ lang, related, attachments }) => {
   
   // Si aucun fichier lié, retourne null
   if (!attachments || attachments.length === 0)
     return null;
+  let accroche;
 
-  // definissons une accroche
-  let accroche; 
-  if (lang === "fr") { 
-    if (context && context === "people") {
-      accroche = person && person.firstName + person && person.lastName + "est en lien avec plusieurs fichiers"+ String.fromCharCode(8239) +":";
-    }
-    accroche = "Il existe des fichiers associés à ce sujet"+ String.fromCharCode(8239) +":";
+  if (lang === "fr") {
+      accroche =  related.fr + String.fromCharCode(8239) +":";
   } else {
-    if (context && context === "people") {
-      accroche = person && person.firstName + person && person.lastName + " is linked to this files";
-    }		
-    accroche = "There is files linked to this subject:";
+      accroche = related.en + ":";
   }
+
   return (
     <aside className="container fichiers-associes-block" id="fichiers-associes">
-      <h1>{accroche}</h1>
+      <h1><span data-icon="file"></span> {accroche} </h1>
 
       <div className="contenu">
         <ul className="liste_objet">

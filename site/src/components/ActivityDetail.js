@@ -5,9 +5,12 @@ import {join} from './helpers';
 import Nav from './fragments/Nav.js';
 import ToggleLang from './fragments/pages/ToggleLang.js';
 
+
+import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
 import FichiersAssocies from './fragments/pages/FichiersAssocies.js';
 import MembresAssocies from './fragments/pages/MembresAssocies.js';
 import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
+import RelatedElements from './fragments/pages/RelatedElements.js';
 
 import RawHtml from './RawHtml';
 //import './scss/page_objet.scss';
@@ -91,6 +94,12 @@ export const queryFragment = graphql`
       fr: 'Membres en lien'
     },
     {
+      id: 'actualités-associes',
+      exist : ({news}) => Boolean(news),
+      en: 'Related news',
+      fr: 'Actualités associés'
+    },
+    {
       id: 'fichiers-associes',
       exist : ({attachments}) => Boolean(attachments),
       en: 'Related files',
@@ -148,14 +157,10 @@ export default function ActivityDetail({lang, activity}) {
         </div>
 
       </article>
-      <MembresAssocies people={activity.people} context="activity" lang={lang} />
-      <ActivitesAssociees activities={activity.activities} context="activity" lang={lang} />
-      <FichiersAssocies lang={lang} attachments={activity.attachments} context="activity" />
+      <MembresAssocies people={activity.people} related={relatedElements[1]} lang={lang} />
+      <PublicationsAssociees productions={activity.productions} related={relatedElements[2]} lang={lang} />
+      <ActivitesAssociees activities={activity.activities} related={relatedElements[3]} lang={lang} />
+      <FichiersAssocies attachments={activity.attachments} related={relatedElements[4]} lang={lang}  />      
     </main>
   );
 }
-
-
-
-
-

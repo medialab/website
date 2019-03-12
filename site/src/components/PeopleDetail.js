@@ -5,6 +5,9 @@ import {Link} from 'gatsby';
 import Highlight from './fragments/pageEquipe/Highlight.js';
 import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
 import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
+import ActuAssociees from './fragments/pages/ActuAssociees.js';
+
+import RelatedElements from './fragments/pages/RelatedElements.js';
 import Nav from './fragments/Nav.js';
 
 import RawHtml from './RawHtml';
@@ -84,49 +87,31 @@ export const queryFragment = graphql`
   }
 `;
 
-/*let translated.body = null
-
-if (lang === 'en') {
-  translated.body = <span>Medialab's team</span>
-} else {
-  translated.body =
-}*/
-
-
-
-const relatedElements = [
-
-
-  {
-    id: 'main-objet',
-    en: 'Main article',
-    fr: 'Article principal',
-  },
-  {
-    id: 'productions-associes',
-    exist : ({productions}) => Boolean(productions),
-    en: 'Related poduction',
-    fr: 'Production en liens'
-  },
-  {
-    id: 'activites-associees',
-    exist : ({activities}) => Boolean(activities),
-    en: 'Related Activities',
-    fr: 'Activités en lien',
-  },
-  {
-    id: 'fichiers-associes',
-    exist : ({files}) => Boolean(files),
-    en: 'Related files',
-    fr: 'Fichier associés'
-  },
-  /*{
-    id: 'membres-associes',
-    exist : ({people}) => Boolean(people),
-    en: 'Related people',
-    fr: 'Membres en lien'
-  },*/
-];
+  const relatedElements = [
+    {
+      id: 'main-objet',
+      en: 'Main article',
+      fr: 'Article principal',
+    },
+    {
+      id: 'productions-associes',
+      exist : ({productions}) => Boolean(productions),
+      en: 'Related poductions',
+      fr: 'Productions en liens'
+    },
+    {
+      id: 'activites-associees',
+      exist : ({activities}) => Boolean(activities),
+      en: 'Related Activities',
+      fr: 'Activités en lien',
+    },
+    {
+      id: 'actualités-associes',
+      exist : ({news}) => Boolean(news),
+      en: 'Related news',
+      fr: 'Actualités associés'
+    }
+  ];
 
 
 export default function PeopleDetail({lang, person}) {
@@ -168,9 +153,9 @@ export default function PeopleDetail({lang, person}) {
           </div>
         </article>
         <Highlight highlight={person.mainProductions} lang={lang}/>
-        <PublicationsAssociees productions={person.mainProductions} person={person} context="people" lang={lang}/>
-        <ActivitesAssociees activities={person.mainActivities} person={person} context="people" lang={lang}/>
-        {/*<FichiersAssocies lang={lang} attachments={person.attachments} context="people" person={person} />*/}
+        <PublicationsAssociees productions={person.productions} related={relatedElements[1]} lang={lang} />
+        <ActivitesAssociees activities={person.activities} related={relatedElements[2]} lang={lang} />
+        <ActuAssociees actu={person.activities} related={relatedElements[3]} lang={lang} />
       </main>
     </>
   );

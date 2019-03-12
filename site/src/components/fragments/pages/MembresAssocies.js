@@ -1,25 +1,18 @@
 import React from 'react';
 import {Link} from 'gatsby';
+import Img from '../../assets/images/sample/D-Cardon-bis.jpg';
 
-
-const MembresAssocies = ({lang, context, people}) => {
+const MembresAssocies = ({lang, related, people}) => {
 
   // Si aucun fichier lié, retourne null
-  if (!people || people.length === 0) { return null; }
+  //if (!people || people.length === 0) { return null; }
 
   // definissons une accroche
   let accroche;
   if (lang === "fr") {
-    // il n'y a jamais de liens entre personne, je commente mais faut supprimer je pense
-    // if (context && context === "people") {
-    // 	accroche = person && person.firstName + person && person.lastName + "a collaboré avec ces personnes"+ String.fromCharCode(8239) +":";
-    // }
-    accroche = "Certains membres du Medialab sont liés à ce sujet"+ String.fromCharCode(8239) +":";
+      accroche =  related.fr + String.fromCharCode(8239) +":";
   } else {
-    // if (context && context === "people") {
-    // 	accroche = person && person.firstName + person && person.lastName + " had collaborate with this people";
-    // }
-    accroche = "Medialab's member are linked to this subject:";
+      accroche = related.en + ":";
   }
 
   return (
@@ -35,6 +28,22 @@ const MembresAssocies = ({lang, context, people}) => {
               </Link>
             </li>
           ))}
+                  {/* TEST */}
+                  <li key="99" data-type="people">
+                    <Link to="">
+                       <figure><img src={Img}   alt={lang === "fr" ? "Photo de profil de ": " profil picture"} /></figure>
+                      <h2>Mireille Mathieu</h2>
+                      <h3>Soliste</h3>
+                    </Link>
+                  </li> 
+                  <li key="99" data-type="people">
+                    <Link to="">
+                       <figure><img src={Img}   alt={lang === "fr" ? "Photo de profil de ": " profil picture"} /></figure>
+                      <h2>George Mathieu</h2>
+                      <h3>Soliste</h3>
+                    </Link>
+                  </li>                     
+                  {/* END TEST */}
         </ul>
       </div>
     </aside>

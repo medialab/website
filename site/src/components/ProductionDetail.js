@@ -1,7 +1,13 @@
 import React from 'react';
 import {graphql} from 'gatsby';
 
+import Highlight from './fragments/pageEquipe/Highlight.js';
 import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
+import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
+import ActuAssociees from './fragments/pages/ActuAssociees.js';
+import MembresAssocies from './fragments/pages/MembresAssocies.js';
+import FichiersAssocies from './fragments/pages/FichiersAssocies.js';
+
 import Nav from './fragments/Nav.js';
 import ToggleLang from './fragments/pages/ToggleLang.js';
 
@@ -57,35 +63,40 @@ export const queryFragment = graphql`
 `;
 
 const relatedElements = [
-	{
-		id: 'main-objet',
-		en: 'Main article',
-		fr: 'Article principal',
-	},
-	{
-		id: 'productions-associes',
-		exist : ({productions}) => Boolean(productions),
-		en: 'Related poduction',
-		fr: 'Production en liens'
-	},
-	{
-		id: 'activites-associees',
-		exist : ({activities}) => Boolean(activities),
-		en: 'Related Activities',
-		fr: 'Activités en lien',
-	},
-	{
-		id: 'fichiers-associes',
-		exist : ({files}) => Boolean(files),
-		en: 'Related files',
-		fr: 'Fichiers associés'
-	},
-	{
-		id: 'membres-associes',
-		exist : ({people}) => Boolean(people),
-		en: 'Related people',
-		fr: 'Membres en lien'
-	},
+  {
+    id: 'main-objet',
+    en: 'Main article',
+    fr: 'Article principal',
+  },
+  {
+    id: 'membres-associes',
+    exist : ({people}) => Boolean(people),
+    en: 'Related people',
+    fr: 'Membres en lien'
+  },
+  {
+    id: 'productions-associes',
+    exist : ({productions}) => Boolean(productions),
+    en: 'Related poduction',
+    fr: 'Production en liens'
+  },
+  {
+    id: 'activites-associees',
+    exist : ({activities}) => Boolean(activities),
+    en: 'Related Activities',
+    fr: 'Activités en lien',
+  },
+  {
+    id: 'actualités-associes',
+    exist : ({news}) => Boolean(news),
+    en: 'Related news',
+    fr: 'Actualités associés'
+  },    {
+    id: 'fichiers-associes',
+    exist : ({files}) => Boolean(files),
+    en: 'Related files',
+    fr: 'Fichier associés'
+  },
 ];
 
 export default function ProductionDetail({lang, production}) {
@@ -130,7 +141,11 @@ export default function ProductionDetail({lang, production}) {
             {(production.people || []).map(p => <li key={p.id}>{p.firstName} {p.lastName}</li>)}
           </ul>
         </div>
-        <PublicationsAssociees publications={production.productions} context="productions" lang={lang}/>
+        <MembresAssocies people={production.people} related={relatedElements[1]} lang={lang} />
+        <PublicationsAssociees productions={production.productions} related={relatedElements[2]} lang={lang} />
+        <ActivitesAssociees activities={production.activities} related={relatedElements[3]} lang={lang} />
+        <ActuAssociees actu={production.news} related={relatedElements[4]} lang={lang} />
+        <FichiersAssocies attachments={production.attachments} related={relatedElements[5]} lang={lang}  />   
       </main>
     </>
   );

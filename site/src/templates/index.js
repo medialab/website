@@ -134,7 +134,7 @@ export const query = graphql`
         }
       }
     }
-    rdv: allNewsJson(limit: 5) {
+    rdv: allNewsJson(limit: 7) {
       edges {
         node {
           title {

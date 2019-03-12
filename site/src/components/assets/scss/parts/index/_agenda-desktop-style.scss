@@ -2,8 +2,6 @@
 //////// Agenda style
 /////////////////////
 
-
-
 @include for-size(desktop) {
 
     #agenda {
@@ -62,7 +60,7 @@
                 }
             }
 
-            .time{
+            .date-news{
                 @include font-size-27();
                 // font-weight: 400;
                 .year, .week{ display: none; }
@@ -79,7 +77,7 @@
                 margin-bottom: $baseline*2;
             }
 
-            .place, .hours{ 
+            .place, .hours-news{ 
                 @include font-size-13();
                 color: $text-color-light;
             }
@@ -99,26 +97,24 @@
 
         article{
 
-
             .year-main{
                 @include font-size-16(); 
                 color: $text-color-light;
                 
             }
 
-            
-
-            .time{
+            .date-news{
                 padding-top: $baseline*1;
+                @include font-size-40();
+                .day-name { @include font-size-27(); display: block; }
                 .year, .week{ display: none; }
-                .day, .month{ @include font-size-40();}
                 .between{ 
                     @include font-size-27();
                     top: -5px;
                 }                
             }
 
-            .time-case3 .start{ display: block; }
+            .differentMonth .start{ display: block; }
 
         
         
@@ -134,16 +130,11 @@
                 padding-bottom: $baseline*1.5;
             }
 
-            .place, .hours{ 
+            .place, .hours-news{ 
                 @include font-size-16();
+                align-item: baseline;
             }
-
-
-            // .place::before{ content: "✻ "; }
-            // .hours::before{ content: "◷ " }
-
-            
-    
+   
         }/* end article*/
 
         .past p{ 
@@ -163,14 +154,19 @@
 
 // all queries
 
-#agenda .time::before{ content: none; }
+#agenda {
+    .date-news::before{ content: none; }
+    .place::before{ content: "✻ "; }
+    .hours-news::before{ content: "◷ " }    
+}
 
 #agenda article:hover{
     color: $redlab;
-    .year-main, .place, .hours{ color: $redlab;}
+    .year-main, .place, .hours-news{ color: $redlab;}
     .internal span{ 
         color: $redlab;
         border: $border-redlab;
     }
 
 }
+

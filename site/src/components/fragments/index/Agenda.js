@@ -1,31 +1,12 @@
 import React from 'react';
 import {Link} from 'gatsby';
-import format from 'date-fns/format';
-import {getDay} from 'date-fns';
-import {getDate} from 'date-fns';
-import {getMonth} from 'date-fns';
-import {getYear} from 'date-fns';
-import {getHours} from 'date-fns';
-import {en, fr} from 'date-fns/locale'
-
-
-/*
-Function Agenda
-	InputButton -> Generer Input Button
-	SetCssVar -> Determiner le nombre de jour et importer mixin SCSS ou CSS en fonction
-	OneDay -> Retourne un HTML pour un Jour
-		whichTimeCase -> Détermine Structure HTML à adopter
-		WhichtimeLang -> Retourne une valeur pour une fonction qui la traduction de la date
-
-	return -> Retourne l'ensemble des OneDay entourés d'element HTML dont les InputButton.
-
-*/
-
+import DateNews from '../DateNews.js';
+import TimeNews from '../TimeNews.js';
+import { format as formatDate, getYear, parseISO } from 'date-fns';
+ 
 export default function Agenda({rdv, lang}){
-
-	let timeCase, timeLang;
-
-	// Générer les bouttons de navigation Input
+	
+	// Générer les bouttons de navigation Input 
 	const InputButton = () => {
 	    let buttons = []
 
@@ -43,42 +24,19 @@ export default function Agenda({rdv, lang}){
 	    return buttons;
 	};
 
-	function SetCssVar(rdv){
-		// Déterminer le nombre d'évenement totaux à afficher
-		const HowManyDays = rdv.lenght;
 
-		// TO DO : Inclure var(--nbr-rdv) dans l'élément parent Section
-		// TO DO : Importer une partie de la feuille de style scss parts/index/_agenda-desktop-slider.scss en fonction de ce nombre
-	}
+	// Déterminer le nombre d'évenement totaux à afficher
+	/*const lgthRdv = rdv.length;
+	console.log(lgthRdv);
+	const nbRdv = {
+		'--nbr-rdv-affiche': lgthRdv
+	}*/
 
-	/* L'agenda se pare de trois mise en page possible.
-	Cette fonction détermine laquel est la plus pertinente pour chaque événement. */
-	function whichTimeCase(OneDay){
-	  if (getMonth(OneDay.startDate) === getMonth(OneDay.endDate) ){
-	  	timeCase = "time-case3"; // Si plusieurs jours sur des mois différents (cas rare) case3
-	  } else{
-	    if(getDate(OneDay.startDate) - getDate(OneDay.endDate) === 0 )
-	      timeCase = "time-case1"; // si une seule journée case 1;
-	    else
-	      timeCase = "time-case2"; // sinon indique plusieurs jours sur le même mois
-	  }
-	}
-
-	/* Cette fonction est peut être supperflu.
-	Elle est destinée à remplir le champ {locale: timeLang} afin de determiner
-	une traduction de la date */
-	function WhichtimeLang(lang){
-       	if(lang === "fr"){
-    		return "fr" ;
-		} else {
-    		return "en" ;
-    	};
-	}
  	console.log(rdv);
 
 	return (
 		<>
-		<section id="agenda">
+		<section id="agenda" /* style={nbRdv} */>
 			<h1>{lang === "fr" ? "Les rendez-vous " : "The agenda"} </h1>
 
 			<div id="agenda-container">
@@ -100,77 +58,46 @@ export default function Agenda({rdv, lang}){
 				<div id="agenda-contenu" data-attribute="agenda">
 					<>
 	                <article className="past" data-count="2">
-
-						<p>{lang === "fr" ?
-							("Voir les rendez-vous déjà passés dans " + <Link to="/news">Actualités</Link>) :
-							("Have a look to past appoitement in actuality " + <Link to="/en/news">Actuality</Link>)
+						
+						<p>{lang === "fr" ? 
+							"Voir les rendez-vous déjà passés dans " + <Link to="/news">Actualités</Link> : 
+							"Have a look to past appoitement in actuality " + <Link to="/en/news">Actuality</Link>
 							}
 						</p>
 
 	                </article>
-					{rdv.map((OneDay, i) =>
+					{rdv.map((event, i) => 
 						<>
 
-					 	{whichTimeCase(OneDay)}
-					 	{WhichtimeLang(lang)}
-
 						<article key={i}>
-					        <p className="year-main">{getYear(OneDay.endDate)} </p>
-
-							{ OneDay.external && (OneDay.external === true) ?
+					        <p className="year-main">{getYear(parseISO(event.startDate))}</p>
+							
+							{ event.external && (event.external === true) ? 
 								<p className="external" data-external="yes">
 									<span className="out">↑</span>
 									<span className="tip">{ lang === "fr" ? "Cet evenement est externe au Médialab" : "This event is external to Medialab" }</span>
 								</p> : ""
 							}
 
-					        <time className={`time ${timeCase}`} data-time="">
-					            <Link to={OneDay.permalink[lang]}>
-
-					            	{timeCase === "time-case1" && <span className="week">{format(getDay(OneDay.startDate), 'dddd', {locale: fr} )}</span> }
-					            	{timeCase === "time-case1" && <span className="day">{getDay(OneDay.startDate)}</span>}
-
-					            	{timeCase !== "time-case1" && // if note case 1
-					                    <>
-					                    <span className="start">
-					                    <span className="day">{getDay(OneDay.startDate)}</span>
-					                     {timeCase === "time-case3" && <span className="month">{getMonth(OneDay.startDate)} </span> }
-					                    </span>
-					                    <span className="between">⇥ </span>
-					                    </>
-					            	}
-					            	{timeCase === "time-case1" && <span className="month">{format(getMonth(OneDay.endDate), 'MMMM', {locale: timeLang} )}</span> }
-					            	{timeCase !== "time-case1" &&  // if note case 1
-					                    <span className="end">
-					                    	<span className="day">{getDay(OneDay.endDate)}</span>
-					                        <span className="month">{getMonth(OneDay.endDate)}</span>
-					                    </span>
-					            	}
-					                <span className="year">{getYear(OneDay.endDate)} </span>
-					            </Link>
-					        </time>
-
-					        <h1 data-level-1="title">
-					        	<Link to={OneDay.permalink[lang]}>
-					        		{lang === "fr" ? OneDay.title.fr : OneDay.title.en }
-					        	</Link>
-					        </h1>
-					        <h2 data-level-1="label">
-					        	<Link to={OneDay.permalink[lang]}>
-					        		{ OneDay.label && (lang === "fr" ? OneDay.label.fr : OneDay.label.en ) }
-					        	</Link>
-					        </h2>
-
-					        { timeCase === "time-case1" ? <p className="hours">{"◷ " + getHours(OneDay.startDate) + " ⇥ " + getHours(OneDay.startDate)}</p> : "" }
-					        <p className="place">{"✻ " + OneDay.place}</p>
-
+							<Link to={event.permalink[lang]}>
+			                    <DateNews startDate={event.startDate} endDate={event.endDate} lang={lang} />
+						        <h1 data-level-1="title">
+						        	{lang === "fr" ? event.title.fr : event.title.en }
+						        </h1>
+						        <h2 data-level-1="label">
+						        	{ event.label && (lang === "fr" ? event.label.fr : event.label.en ) }
+						        </h2>						        
+						        <TimeNews startDate={event.startDate} endDate={event.endDate} />
+						        {/*<p className="hours">{"◷ " + getHours(event.startDate) + " ⇥ " + getHours(event.startDate)}</p> : "" } */}
+						        <p className="place">{event.place}</p>
+							</Link>
 						</article>
 						</>
-						)}
+						)} 
 					</>
 				</div>
 			</div>
-		</section>
+		</section> 
 		</>
   	);
 }

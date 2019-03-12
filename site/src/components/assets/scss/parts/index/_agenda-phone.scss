@@ -40,9 +40,10 @@
             }
 
 
-            .time{ 
+            .date-news{ 
                 @include font-size-20-phone(); 
                 .week{ display: none; }
+                .year{ display: none; }
 
       
             }
@@ -57,7 +58,7 @@
                 padding-bottom: $baseline;  
             }
 
-            .place, .hours{ @include font-size-13-phone();  }
+            .place, .hours-news{ @include font-size-13-phone();  align-item: baseline;}
 
         }
 

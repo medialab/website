@@ -161,7 +161,7 @@
 
 
 /* si 6 rdv ------------------------------------------------------------------------------------------- */
-
+/*
 
 
 @include for-size(desktop) {
@@ -181,7 +181,7 @@
 }
 
 
-
+*/
 
 
 
@@ -189,7 +189,7 @@
 
 /* si 7 rdv ------------------------------------------------------------------------------------------- */
 
-/*
+
 
 
 @include for-size(desktop) {
@@ -210,7 +210,7 @@
     @include agenda-3caches();
 }
 
-*/
+
 
 
 
@@ -236,13 +236,4 @@
 }
 
 */
-
-
-
-
-/* à supprimer */
-
-// #agenda{ counter-reset: agenda; }
-// #agenda article h1{ counter-increment: agenda ;}
-// #agenda article h1::before{ content: counter(agenda); }
 

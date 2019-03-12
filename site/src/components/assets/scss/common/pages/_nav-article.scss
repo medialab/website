@@ -23,9 +23,16 @@ $width-main-image: calc( 80vw - #{$margins-desktop*2});
         .nav-inside-item{
             //height: $height-nav;
             height: $unite*3;
-            width:  $logo-column/2;
-            background-color: white;
-            border-bottom: $border;
+            width: $logo-column - $margins-desktop;
+            //background-color: white;
+            
+            &:after{
+                content: "";
+                width:  $logo-column/2;          
+                border-bottom: $border;
+                position: absolute;
+                bottom: 0;
+            }
             //fonts
             
             @include font-size-16();
@@ -33,7 +40,7 @@ $width-main-image: calc( 80vw - #{$margins-desktop*2});
             display: flex;
             align-items: center;
             &:first-of-type{
-                border-bottom: none;
+                &:after{border-bottom: none;}
                 //height: $height-top-bar - $margins-desktop;
                 height: calc(#{$unite*3} - 1px); 
                 align-items: flex-start;

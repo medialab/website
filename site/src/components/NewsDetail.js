@@ -6,6 +6,8 @@ import Nav from './fragments/Nav.js';
 import ToggleLang from './fragments/pages/ToggleLang.js';
 //import {PlaceHolder} from './helpers.js';
 //import './scss/page_objet.scss';
+import DateNews from './fragments/DateNews.js';
+import TimeNews from './fragments/TimeNews.js';
 
 import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
 import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
@@ -63,6 +65,10 @@ export const queryFragment = graphql`
       value
       type
     }
+    type
+    startDate
+    endDate  
+    place  
   }
 `;
 
@@ -122,10 +128,11 @@ export default function NewsDetail({lang, news}) {
           <ToggleLang lang={lang} content={news.content} />
           {/* Chapô FR */}
           <hgroup className="fr" lang="fr">
-            <h1>{news.title && (news.title.fr)}</h1>
-            <h2>{news.description && (news.description.fr)}</h2>
-            <p className="date">{news.endDate}</p>
-            <p className="type-objet">{news.type}</p>
+            <h1 data-type="title">{news.title && (news.title.fr)}</h1>
+            <h2 data-type="description">{news.description && (news.description.fr)}</h2>
+            <DateNews startDate={news.startDate} endDate={news.endDate} lang={lang} />
+            <TimeNews startDate={news.startDate} endDate={news.endDate} />
+            {news.type && (<p className="type-objet">news.type</p>) }
           </hgroup>
           {/* Article FR */}
           <div className="article-contenu fr" lang="fr">

@@ -30,6 +30,34 @@ const ActivitesAssociees = ({ lang, related, activities }) => {
               </Link>
             </li>
           ))}
+            {/* // POUR LES TESTS */}
+            
+            <li key="" data-type="activite" className="item">
+              <Link to="">
+                <h1 data-level-="baseline">Qui anime les conversations sur la Russie soviétique et post-soviétique en France ?</h1>
+                <h2 data-level-="name">Russia, made in France</h2>
+                <p className="type">Research</p>
+              </Link>
+            </li>
+            
+            <li key="" data-type="activite" className="item">
+              <Link to="">
+                <h1 data-level-="baseline">Les parlementaires font-ils la loi ?</h1>
+                <h2 data-level-="name">The Law Factory</h2>
+                <p className="type">Research</p>
+              </Link>
+            </li>
+            
+            <li key="" data-type="activite" className="item">
+              <Link to="">
+                <h1 data-level-="baseline">Qui anime les conversations sur la Russie soviétique et post-soviétique en France ?</h1>
+                <h2 data-level-="name">Politiques de la terre à l'épreuve de l'Anthropocène</h2>
+                <p className="type">Research</p>
+              </Link>
+            </li>
+
+            {/* // END  LES TESTS */}
+
         </ul>
       </div>
     </aside>

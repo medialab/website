@@ -70,7 +70,8 @@ const PublicationsAssociees = ({ lang, related, productions }) => {
 								<p className="type">Publication — Article</p>
 							</a>
 						</li>
-									
+						{/* // END  LES TESTS */}
+
 
 				</ul>
 			</div>

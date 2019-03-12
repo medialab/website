@@ -65,27 +65,70 @@
 		
 				p{
 					@include font-size-20();
+					letter-spacing: .2px;
 				}
 				.article-contenu{
 					
 					max-width: 900px;
 					
 					/* Regles de Base */
-					figure{
-						margin: $unite*4 0 $unite*2 0;
+					figure, img + img, p + img{
+						margin: $baseline*3 0 $baseline*4 0;
+						width: 90%;
+						margin-left: $unite;
 					}
 
-					h2{  /// Incoherent mais temporaire; Données sont rédigé en base h2 et non h3
+					iframe{
+						width: 100%;
+						min-height: 50vh;
+						margin: $baseline*3 0 $baseline*4 0;	
+						border: none;					
+					}
+
+					h1, h2{  /// Incoherent mais temporaire; Données sont rédigé en base h2 et non h3
 						@include font-size-20;
 						font-weight: bold;
-						margin-top: $baseline*2;
+						margin-top: $baseline*6;
+						margin-bottom: $baseline*1;
 					}
 					
 					h3{
 						@include font-size-20;
 						font-weight: bold;
 						margin-top: $baseline*3;
+						margin-bottom: $baseline*1;
 
+
+					}
+
+					a{
+						text-decoration: underline;
+						transition: .25s linear;
+
+						@supports(background: linear-gradient(#000, #000)) {
+							text-decoration: none;
+
+							&:after{
+								// Ne me demande pas pourquoi
+								content: "";
+								height: 1px;
+								background: black;
+								background: linear-gradient(to right,#888, #000, #888);
+								width: 100%;
+								position: absolute;
+								bottom: -3px;
+								left: 0;
+								border-radius: 2px;
+								transition: .25s linear;
+
+							}
+
+						}
+						&:hover{
+							color: $redlab;
+
+							&:after{background: linear-gradient(to right,$redlab, $redlab) }
+						}
 					}
 
 					//////////////////////////
@@ -93,34 +136,21 @@
 					/////////////////////////
 
 					/* if support of grid */
-					@supports(display: grid) {
-			            display: grid;
-			            grid-template-columns: repeat(2, 1fr);;
-			            grid-gap: $unite;
-			            *:not(.duo) { 	// Tous les éléments s'etire sur toute la largeur. Sauf les Images .Duo
-			                grid-column: 1 / 3;
-			            }
-			         	figure{
-							margin: $unite*3 0 $unite*2 0; // Si grid, diminnue les margins car Grid-gap s'ajoute à ces marges
-						}
-						h3{
-							margin-top: $baseline*2; // Si grid, diminnue les margins car Grid-gap s'ajoute à ces marges
-						}
-					}
+					@supports(display: flex) {
+			            @include flex;
+			            @include flex-wrap(wrap);
+			            @include flex-direction(column);
 
-					@supports (display: -ms-grid) {
-			            display: -ms-grid;
-			            -ms-grid-template-columns: repeat(2, 1fr);;
-			            //-ms-grid-template-rows: auto auto;
-			            grid-gap: $unite;
-			            *:not(.duo){
-			                grid-column: 1 / 3;
+
+			            *:not(.duo) { 	// Tous les éléments s'etire sur toute la largeur. Sauf les Images .Duo
+  							flex: 0 0 100%; /* Let it fill the entire space horizontally */
+  			                max-width: 100%;
 			            }
-			         	figure{
-							margin: $unite*3 0 $unite*2 0;
+			         	figure, p + img, img + img{
+							//margin: $unite*3 0 $unite*2 0; // Si grid, diminnue les margins car Grid-gap s'ajoute à ces marges
 						}
 						h3{
-							margin-top: $baseline*2;
+							//margin-top: $baseline*2; // Si grid, diminnue les margins car Grid-gap s'ajoute à ces marges
 						}
 					}
 

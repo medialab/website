@@ -14,6 +14,22 @@
 		display: none;
 	}
 
+	&::after {
+	    content: "";
+	    position: absolute;
+	    width: 100vw;
+	    height: calc(100% + 100px);
+	    min-height: 200px;
+	    background-color: rgba($text-color-light, 0.2);
+	    top: 50px;
+	    z-index: -1;
+	    left: calc(#{$logo-column} + #{$margins-desktop*2});
+
+	    &:last-of-type:after{
+	    	height: calc(100% + 100px + 40vw);
+	    }
+	}
+
 	ul.liste_objet{ 
 
 		// background-color: red;

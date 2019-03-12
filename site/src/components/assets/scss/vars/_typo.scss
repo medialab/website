@@ -67,13 +67,13 @@ html{
 @mixin font-size-20() {
     font-size: $font-size*2;
     font-weight: 300;
-    line-height: $baseline*1.8;
+    line-height: $baseline*2;
 }// ancien typo-list_title
 
 @mixin font-size-20-phone() {
     font-size: $font-size*2;
     font-weight: 400;
-    line-height: $baseline*1.8;
+    line-height: $baseline*2;
 }
 
 

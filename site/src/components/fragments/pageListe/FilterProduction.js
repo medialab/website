@@ -43,13 +43,6 @@ const FilterProduction = ({lang, group, types}) => {
 		grey = "Grey literature";
 	}
 
-	// <li><a href="linkProductions">{all}<span>〉</span></a></li>
-	// <li className="pageProduction_current">{publication} <span>〉</span></li>
-	// <li><a href="linkProductions/editionsweb">{webedition} <span>〉</span></a></li>
-	// <li><a href="linkProductions/tools">{tool} <span>〉</span></a></li>
-	// <li><a href="linkProductions/siautions">{situation} <span>〉</span></a></li>
-	// <li><a href="linkProductions/media">{media} <span>〉</span></a></li>
-
 	return (
 		<>
 				<h1 className="type_title" data-icon="production"><a href="#year-2018">{title}</a></h1>

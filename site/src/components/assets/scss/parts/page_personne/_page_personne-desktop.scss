@@ -3,7 +3,7 @@
 /////////////////////
 
 @include for-size(desktop) {
-
+ 
 	body.page-people{
 
 		#topbar{ 
@@ -78,7 +78,7 @@
 		
 				.biographie-contenu{
 					width: 100%;
-					max-width: 900px;
+					max-width: 720px;
 					min-width: calc( 700px - #{$logo-column});
 					@include for-size(desktop-1000) { 
 						min-width: 600px;

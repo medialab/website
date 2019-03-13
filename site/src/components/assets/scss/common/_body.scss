@@ -2,7 +2,7 @@
 
 @include for-size(phone) {
     body{
-        overflow-x: hidden;
+        overflow-x: inherit;
         background-color: $background-site;
     }
 }
@@ -11,7 +11,7 @@
     body{
         // max-width: 1800px;
         margin: 0 $margins-desktop!important;
-        overflow-x: hidden;
+        overflow-x: inherit;
         background-color: $background-site;
     }
 }
@@ -19,7 +19,9 @@
 [data-type="news"] .type::before, 
 [data-icon="news"]::before,
 [data-type="actualite"] .type::before, 
-[data-icon="actualite"]::before{
+[data-icon="actualite"]::before,
+[data-type="actualités"] .type::before, 
+[data-icon="actualités"]::before{
     content: $actualites;
 }
 [data-type="production"] .type::before, 
@@ -35,10 +37,17 @@
 [data-icon="activite"]::before{
     content: $activites;
 }
+
+[data-type="file"] .type::before, 
+[data-icon="file"]::before,
+[data-type="file"] .type::before, 
+[data-icon="file"]::before{
+    content: $files;
+}
+
 [data-type="git"] .type::before{
     //content: $git;
 }
-
 
 //a:hover{ color: $redlab; }
 

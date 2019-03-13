@@ -101,35 +101,6 @@
 
 					}
 
-					a{
-						text-decoration: underline;
-						transition: .25s linear;
-
-						@supports(background: linear-gradient(#000, #000)) {
-							text-decoration: none;
-
-							&:after{
-								// Ne me demande pas pourquoi
-								content: "";
-								height: 1px;
-								background: black;
-								background: linear-gradient(to right,#888, #000, #888);
-								width: 100%;
-								position: absolute;
-								bottom: -3px;
-								left: 0;
-								border-radius: 2px;
-								transition: .25s linear;
-
-							}
-
-						}
-						&:hover{
-							color: $redlab;
-
-							&:after{background: linear-gradient(to right,$redlab, $redlab) }
-						}
-					}
 
 					//////////////////////////
 					///        Grid 	/////

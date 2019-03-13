@@ -24,6 +24,10 @@ body.page-activity-list{
 				position: absolute; 
 				bottom: $baseline*1;
 				left: 10px;
+
+				// Proposition 
+				left: -60px;
+				font-size: 40px;
 			}
 			span{
 				background-color: white;
@@ -31,6 +35,12 @@ body.page-activity-list{
 				padding-right: $baseline/2;
 				padding-top: $baseline/2;
 				padding-bottom: $baseline/2;
+
+				// Proposition
+				padding-right: $baseline/3;
+				padding-top: 0;
+				margin-left: $baseline/3;
+				padding-left: $baseline/3;
 			}
 
 			&:first-of-type{

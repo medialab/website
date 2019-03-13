@@ -40,6 +40,14 @@ $width-main-image: calc( 80vw - #{$margins-desktop*2});
             display: flex;
             align-items: center;
             &:first-of-type{
+
+            // Fill the hole around
+            width: $unite*11;
+            left: $unite*-1;
+            padding: $unite 0 0 $unite;
+            height:  $unite*4;
+            top:  $unite*-1;
+
                 &:after{border-bottom: none;}
                 //height: $height-top-bar - $margins-desktop;
                 height: calc(#{$unite*3} - 1px); 
@@ -57,7 +65,9 @@ $width-main-image: calc( 80vw - #{$margins-desktop*2});
             // &[data-type="main-article"] a::before{
             //     content: $productions;
             // }
-
+            &[data-type="main-objet"] a::before{
+                content: $scrolltop;
+            } 
             &[data-type="productions-associes"] a::before{
                 content: $productions;
             }
@@ -69,6 +79,9 @@ $width-main-image: calc( 80vw - #{$margins-desktop*2});
             }
             &[data-type="membres-associes"] a::before{
                 content: $people;
+            } 
+            &[data-type="actu-associees"] a::before{
+                content: $actualites;
             }            
 
         }

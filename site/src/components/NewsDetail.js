@@ -8,6 +8,8 @@ import ToggleLang from './fragments/pages/ToggleLang.js';
 //import './scss/page_objet.scss';
 import DateNews from './fragments/DateNews.js';
 import TimeNews from './fragments/TimeNews.js';
+import { format as formatDate, getYear, parseISO } from 'date-fns';
+
 
 import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
 import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
@@ -97,7 +99,7 @@ export const queryFragment = graphql`
       fr: 'Activités en lien',
     },
     {
-      id: 'actualités-associes',
+      id: 'actu-associees',
       exist : ({news}) => Boolean(news),
       en: 'Related news',
       fr: 'Actualités associés'

@@ -87,7 +87,7 @@ const relatedElements = [
     fr: 'Activités en lien',
   },
   {
-    id: 'actualités-associes',
+    id: 'actu-associees',
     exist : ({news}) => Boolean(news),
     en: 'Related news',
     fr: 'Actualités associés'

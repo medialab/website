@@ -5,6 +5,10 @@ import {join} from './helpers';
 import Nav from './fragments/Nav.js';
 import ToggleLang from './fragments/pages/ToggleLang.js';
 
+import DateNews from './fragments/DateNews.js';
+import TimeNews from './fragments/TimeNews.js';
+import { format as formatDate, getYear, parseISO } from 'date-fns';
+
 import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
 import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
 import ActuAssociees from './fragments/pages/ActuAssociees.js';
@@ -93,7 +97,7 @@ export const queryFragment = graphql`
       fr: 'Membres en lien'
     },
     {
-      id: 'actualités-associes',
+      id: 'actu-associees',
       exist : ({news}) => Boolean(news),
       en: 'Related news',
       fr: 'Actualités associés'

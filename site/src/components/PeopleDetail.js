@@ -106,7 +106,7 @@ export const queryFragment = graphql`
       fr: 'Activités en lien',
     },
     {
-      id: 'actualités-associes',
+      id: 'actu-associees',
       exist : ({news}) => Boolean(news),
       en: 'Related news',
       fr: 'Actualités associés'
@@ -121,6 +121,10 @@ export default function PeopleDetail({lang, person}) {
   //const people = null; // is there related people ?
   const productions = person.mainProductions; // Sync mainProd
   const activities = person.mainActivities;  // Sync mainActivities
+
+  // Placeholder
+  if(typeof person.permalink != null){ person.permalink = "fake" };
+
 
 
   return (
@@ -140,8 +144,10 @@ export default function PeopleDetail({lang, person}) {
             <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
             <h2 data-level-2="role" data-type="role">{lang === "fr" ? person.role.fr : person.role.en}</h2>
             <p data-type="domaine">{lang === "fr" ? "Domaine" + String.fromCharCode(8239) +":" : "Domain:"} {person.domain}</p>
-            <p data-type="statut">{templateMembership(person)}</p>
-            <p data-type="activite">{person.status && (lang === "fr" ? person.status.fr : person.status.en)}</p>
+            <p data-type="membership">{templateMembership(person)}</p>
+            {/*<p data-type="status">{person.status && (lang === "fr" ? person.status.fr : person.status.en)}</p>*/}
+            <p data-type="status">Je touille la purée</p>
+
             <ul className="contact">
               {person.contacts.map(contact => <li data-type={contact.label}>
                 <Link to={contact.value}>{contact.label}</Link>
@@ -152,7 +158,7 @@ export default function PeopleDetail({lang, person}) {
             {person.bio && (lang === "fr" ? person.bio.fr && <RawHtml html={bio.fr} />  : person.bio.en && <RawHtml html={bio.en} />)}
           </div>
         </article>
-        <Highlight highlight={person.mainProductions} lang={lang}/>
+        {/*<Highlight highlight={person.mainProductions} lang={lang}/>*/}
         <PublicationsAssociees productions={person.productions} related={relatedElements[1]} lang={lang} />
         <ActivitesAssociees activities={person.activities} related={relatedElements[2]} lang={lang} />
         <ActuAssociees actu={person.activities} related={relatedElements[3]} lang={lang} />

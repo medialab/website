@@ -29,6 +29,18 @@
     -ms-flex-positive: $value;
 }
 
+@mixin flex-shrink($value) {
+    -webkit-flex-shrink: $value;   /* Safari  */
+    flex-shrink: $value;
+    -ms-flex-shrink: $value;
+}
+
+@mixin flex-basis($value) {
+    -webkit-flex-basis: $value;   /* Safari  */
+    flex-basis: $value;
+    -ms-flex-basis: $value;
+}
+
 @mixin flex-direction($value: row) {
 	@if $value == row-reverse {
 		-webkit-box-direction: reverse;

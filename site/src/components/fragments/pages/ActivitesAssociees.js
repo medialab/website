@@ -15,13 +15,16 @@ const ActivitesAssociees = ({ lang, related, activities }) => {
       accroche = related.en + ":";
   }
 
+  // Placeholder
+
+
   return (
     <aside className="container elements-associes-block" id="activites-associees">
       <h1><span data-icon="activite"></span> {accroche} </h1>
 
       <div className="contenu">
         <ul className="liste_objet">
-          {activities.map(a => (
+          {/*activities.map(a => (
             <li key={a.id} data-type="activite" className="item">
               <Link to={a.permalink[lang]}>
                 <h1 data-level-="baseline">{lang === 'fr' ? a.baseline.fr : a.baseline.en}</h1>
@@ -29,7 +32,7 @@ const ActivitesAssociees = ({ lang, related, activities }) => {
                 <p className="type">{a.type}</p>
               </Link>
             </li>
-          ))}
+          ))*/}
             {/* // POUR LES TESTS */}
             
             <li key="" data-type="activite" className="item">

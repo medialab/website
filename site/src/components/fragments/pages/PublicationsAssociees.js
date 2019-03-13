@@ -22,8 +22,8 @@ const PublicationsAssociees = ({ lang, related, productions }) => {
 					{/* {(productions || []).map(p => (
 						<li data-type="production" className="item">
 							<Link to={`/productions/${p.slugs[p.slugs.length - 1]}`}>
-								<h1 data-level-="title">{lang === "fr" ? p.description.fr : p.description.en}</h1>
-								<h2 data-level-="authors">{lang === "fr" ? p.title.fr : p.title.en}</h2>
+								<h1 data-level-="title">{lang === "fr" ? p.title.fr : p.title.en}</h1>
+								<h2 data-level-="authors">{lang === "fr" ? p.author.fr : p.author.en}</h2>
 								<p className="type">{lang === 'fr' ? p.groupLabel.fr : p.groupLabel.en} - {lang === 'fr' ? p.typeLabel.fr : p.typeLabel.en}</p>
 							</Link>
 						</li>
@@ -37,6 +37,10 @@ const PublicationsAssociees = ({ lang, related, productions }) => {
 								<h2 data-level-="authors">Bruno Latour</h2>
 								<p className="type">Publication - Article</p>
 							</a>
+
+							<a href="" className="complement">
+								<h2 data-level-="description">Cette Publication est centré autour de Ryan Gosling et des navets du Poitou</h2>
+							</a>
 						</li>
 
 						<li data-type="production" className="item">
@@ -45,6 +49,9 @@ const PublicationsAssociees = ({ lang, related, productions }) => {
 								<h2 data-level-="authors">Benjamin Ooghe, Mathieu Jacomy, Paul Girard, Guillaume Plique</h2>
 								<p className="type">Publication — Communication</p>
 							</a>
+							<a href="" className="complement">
+								<h2 data-level-="description">Cette Publication est centré autour de Ryan Gosling et des navets du Poitou</h2>
+							</a>							
 						</li>
 
 						<li data-type="production" className="item">
@@ -53,6 +60,9 @@ const PublicationsAssociees = ({ lang, related, productions }) => {
 								<h2 data-level-="authors">Peter Bearman, Jean-Philippe Cointet, Philipp Brandt, Mark Anthony Hoffman, Key, Department Of History Newton</h2>
 								<p className="type">Publication — Communication</p>
 							</a>
+							<a href="" className="complement">
+								<h2 data-level-="description">Cette Publication est centré autour de Ryan Gosling et des navets du Poitou</h2>
+							</a>						
 						</li>
 
 						<li data-type="production" className="item">
@@ -61,6 +71,9 @@ const PublicationsAssociees = ({ lang, related, productions }) => {
 								<h2 data-level-="authors">Kari De Pryck, François Gemenne</h2>
 								<p className="type">Publication — Article</p>
 							</a>
+							<a href="" className="complement">
+								<h2 data-level-="description">Cette Publication est centré autour de Ryan Gosling et des navets du Poitou</h2>
+							</a>					
 						</li>
 
 						<li data-type="production" className="item">
@@ -69,6 +82,9 @@ const PublicationsAssociees = ({ lang, related, productions }) => {
 								<h2 data-level-="authors">Kari De Pryck, François Gemenne</h2>
 								<p className="type">Publication — Article</p>
 							</a>
+							<a href="" className="complement">
+								<h2 data-level-="description">Cette Publication est centré autour de Ryan Gosling et des navets du Poitou</h2>
+							</a>							
 						</li>
 						{/* // END  LES TESTS */}
 

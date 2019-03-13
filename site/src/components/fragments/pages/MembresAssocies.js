@@ -20,7 +20,7 @@ const MembresAssocies = ({lang, related, people}) => {
       <h1>{accroche}</h1>
 
       <div className="contenu">
-        <ul className="liste_objet">
+        <ul className="liste_personne">
           {people.map(p => (
             <li key={p.id} data-type="people">
               <Link to={p.permalink[lang]}>

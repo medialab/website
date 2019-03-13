@@ -16,20 +16,46 @@ const ActuAssociees = ({ lang, related, actu }) => {
   }
 
   return (
-    <aside className="container elements-associes-block" id="activites-associees">
+    <aside className="container elements-associes-block" id="actu-associees">
       <h1><span data-icon="actualités"></span> {accroche} </h1>
 
       <div className="contenu">
         <ul className="liste_objet">
-          {actu.map(a => (
+          {/*actu.map(a => (
             <li key={a.id} data-type="activite" className="item">
               <Link to={a.permalink[lang]}>
-                <h1 data-level-="baseline">{lang === 'fr' ? a.baseline.fr : a.baseline.en}</h1>
-                <h2 data-level-="name">{lang === 'fr' ? a.name : a.name}</h2>
+                <h1 data-level-="title">{lang === 'fr' ? a.title.fr : a.title.en}</h1>
+                <h2 data-level-="description">{lang === 'fr' ? a.description.fr : a.description.en}</h2>
                 <p className="type">{a.type}</p>
               </Link>
             </li>
-          ))}
+          ))*/}
+          {/* Test */}
+
+            <li  data-type="activite" className="item">
+              <Link to="">
+                <h1 data-level-="title">Title</h1>
+                <h2 data-level-="description">description</h2>
+                <p className="type">News</p>
+              </Link>
+            </li>
+
+            <li  data-type="activite" className="item">
+              <Link to="">
+                <h1 data-level-="title">Title</h1>
+                <h2 data-level-="description">description</h2>
+                <p className="type">News</p>
+              </Link>
+            </li>
+
+            <li  data-type="activite" className="item">
+              <Link to="">
+                <h1 data-level-="title">Title</h1>
+                <h2 data-level-="description">description</h2>
+                <p className="type">News</p>
+              </Link>
+            </li>
+
         </ul>
       </div>
     </aside>

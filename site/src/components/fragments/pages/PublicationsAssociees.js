@@ -39,7 +39,7 @@ const PublicationsAssociees = ({ lang, related, productions }) => {
 							</a>
 
 							<a href="" className="complement">
-								<h2 data-level-="description">Cette Publication est centré autour de Ryan Gosling et des navets du Poitou</h2>
+								<h2 data-level-="description">Cette Publication est centrée autour de Ryan Gosling et des navets du Poitou</h2>
 							</a>
 						</li>
 
@@ -50,7 +50,7 @@ const PublicationsAssociees = ({ lang, related, productions }) => {
 								<p className="type">Publication — Communication</p>
 							</a>
 							<a href="" className="complement">
-								<h2 data-level-="description">Cette Publication est centré autour de Ryan Gosling et des navets du Poitou</h2>
+								<h2 data-level-="description">Cette Publication est centrée autour de Ryan Gosling et des navets du Poitou</h2>
 							</a>							
 						</li>
 
@@ -61,7 +61,7 @@ const PublicationsAssociees = ({ lang, related, productions }) => {
 								<p className="type">Publication — Communication</p>
 							</a>
 							<a href="" className="complement">
-								<h2 data-level-="description">Cette Publication est centré autour de Ryan Gosling et des navets du Poitou</h2>
+								<h2 data-level-="description">Cette Publication est centrée autour de Ryan Gosling et des navets du Poitou</h2>
 							</a>						
 						</li>
 
@@ -72,7 +72,7 @@ const PublicationsAssociees = ({ lang, related, productions }) => {
 								<p className="type">Publication — Article</p>
 							</a>
 							<a href="" className="complement">
-								<h2 data-level-="description">Cette Publication est centré autour de Ryan Gosling et des navets du Poitou</h2>
+								<h2 data-level-="description">Cette Publication est centrée autour de Ryan Gosling et des navets du Poitou</h2>
 							</a>					
 						</li>
 
@@ -83,7 +83,7 @@ const PublicationsAssociees = ({ lang, related, productions }) => {
 								<p className="type">Publication — Article</p>
 							</a>
 							<a href="" className="complement">
-								<h2 data-level-="description">Cette Publication est centré autour de Ryan Gosling et des navets du Poitou</h2>
+								<h2 data-level-="description">Cette Publication est centrée autour de Ryan Gosling et des navets du Poitou</h2>
 							</a>							
 						</li>
 						{/* // END  LES TESTS */}

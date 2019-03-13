@@ -37,7 +37,11 @@ const ActuAssociees = ({ lang, related, actu }) => {
                 <h1 data-level-="title">Title</h1>
                 <h2 data-level-="description">description</h2>
                 <p className="type">News</p>
+                <p className="date-news">22 janvier 2019</p>
               </Link>
+              <Link to="" className="complement">
+                <h2 data-level-="description"><span></span>Nuit de Folie</h2>
+              </Link>       
             </li>
 
             <li  data-type="activite" className="item">
@@ -45,7 +49,11 @@ const ActuAssociees = ({ lang, related, actu }) => {
                 <h1 data-level-="title">Title</h1>
                 <h2 data-level-="description">description</h2>
                 <p className="type">News</p>
+                <p className="date-news differentMonth">29 ⇥ 30 janvier 2019</p>
               </Link>
+              <Link to="" className="complement">
+                <h2 data-level-="description"><span></span>Nuit de Folie</h2>
+              </Link>  
             </li>
 
             <li  data-type="activite" className="item">
@@ -53,7 +61,11 @@ const ActuAssociees = ({ lang, related, actu }) => {
                 <h1 data-level-="title">Title</h1>
                 <h2 data-level-="description">description</h2>
                 <p className="type">News</p>
+                <p className="date-news">16 Mars 2019</p>
               </Link>
+              <Link to="" className="complement">
+                <h2 data-level-="description"><span></span>Nuit de Folie</h2>
+              </Link>  
             </li>
 
         </ul>

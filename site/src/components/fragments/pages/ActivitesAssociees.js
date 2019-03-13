@@ -34,13 +34,17 @@ const ActivitesAssociees = ({ lang, related, activities }) => {
             </li>
           ))*/}
             {/* // POUR LES TESTS */}
-            
+             
             <li key="" data-type="activite" className="item">
               <Link to="">
                 <h1 data-level-="baseline">Qui anime les conversations sur la Russie soviétique et post-soviétique en France ?</h1>
                 <h2 data-level-="name">Russia, made in France</h2>
                 <p className="type">Research</p>
+                <p className="period">[2008 - 2015]</p>
               </Link>
+              <Link to="" className="complement">
+                <h2 data-level-="description"><span>[2008 - 2015 ]</span>Cette activitée était un revival de Mars attack. Les aliens y étaient présentés comme gentils</h2>
+              </Link>              
             </li>
             
             <li key="" data-type="activite" className="item">
@@ -48,7 +52,11 @@ const ActivitesAssociees = ({ lang, related, activities }) => {
                 <h1 data-level-="baseline">Les parlementaires font-ils la loi ?</h1>
                 <h2 data-level-="name">The Law Factory</h2>
                 <p className="type">Research</p>
+                <p className="period">[2008 - 2015]</p>
               </Link>
+              <Link to="" className="complement">
+                <h2 data-level-="description"><span>[2008 - 2015 ]</span>Cette activitée était un revival de Mars attack. Les aliens y étaient présentés comme gentils</h2>
+              </Link>                
             </li>
             
             <li key="" data-type="activite" className="item">
@@ -57,6 +65,9 @@ const ActivitesAssociees = ({ lang, related, activities }) => {
                 <h2 data-level-="name">Politiques de la terre à l'épreuve de l'Anthropocène</h2>
                 <p className="type">Research</p>
               </Link>
+              <Link to="" className="complement">
+                <h2 data-level-="description"><span></span>Cette activitée est un revival de Mars attack. Les aliens y sont présentés comme gentils</h2>
+              </Link>                
             </li>
 
             {/* // END  LES TESTS */}

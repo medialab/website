@@ -69,25 +69,14 @@
 				h2{
 					@include font-size-20;
 					border: none;
+					padding: 15px 25px 15px 0;
 				}
-				
 			}
 
 			&:hover {
-
-				*{
-					transition-delay: .5s;
-					transition: .25s cubic-bezier(.86,0,.07,1);
-				}
-
-				*:not(.complement){
-					transform: translateY(200%);
-				}
-
-				.complement{
-					//transform: translateY(0%);
-				}
-
+				*{ transition-delay: .5s; transition: .25s cubic-bezier(.86,0,.07,1); }
+				*:not(.complement){ transform: translateY(200%); }
+				.complement{ /* Complement reste à sa place, ET son enfant hérite du déplacement */}
 			}
 
 
@@ -113,11 +102,19 @@
 					@include font-size-13();
 				}
 
-				.type{ 
+				.type, .period, .date-news{ 
 					color: $text-color-light; 
 					@include font-size-13();
 					padding-top: $baseline*0.5;
+					width: 50%;
+
+				}
+
+				.type{
 					text-align: right;
+					width: 50%;
+					right: 0;
+					float: right;
 				}
 
 				.image-pre{
@@ -187,7 +184,7 @@
 
 @include for-size(desktop) {
 	.elements-associes-block > h1{ 
-		@include font-size-24();
+		@include font-size-20();
 		font-weight: 600;
 		span{ font-weight: 300;}
 	}

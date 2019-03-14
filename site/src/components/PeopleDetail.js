@@ -3,6 +3,8 @@ import {graphql} from 'gatsby';
 import {Link} from 'gatsby';
 
 import Highlight from './fragments/pageEquipe/Highlight.js';
+import Highlight2 from './fragments/pageEquipe/Highlight2.js';
+
 import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
 import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
 import ActuAssociees from './fragments/pages/ActuAssociees.js';
@@ -135,30 +137,50 @@ export default function PeopleDetail({lang, person}) {
           <Link to="/people">
             <span>{lang === "fr" ? "L'équipe du Medialab" : "Medialab team"} </span>
           </Link>
-          <span className="personne">{person.lastname} {person.firstName}</span>
+          <span className="personne">{person.firstName} {person.lastName}</span>
         </p>
         <article id="biographie">
-          <figure><img src={person.coverImage ? person.coverImage.url : Img}   alt={lang === "fr" ? "Photo de profil de " + person.firstName + person.lastName : person.firstName + person.lastName + " profil picture"} /></figure>
+          <figure>
+            <div className="cache"><span>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/></span></div>
+            <img src={person.coverImage ? person.coverImage.url : Img}   alt={lang === "fr" ? "Photo de profil de " + person.firstName + person.lastName : person.firstName + person.lastName + " profil picture"} />
+          </figure>
           <header>
 
             <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
             <h2 data-level-2="role" data-type="role">{lang === "fr" ? person.role.fr : person.role.en}</h2>
-            <p data-type="domaine">{lang === "fr" ? "Domaine" + String.fromCharCode(8239) +":" : "Domain:"} {person.domain}</p>
+            <p data-type="domaine">{person.domain}</p>
             <p data-type="membership">{templateMembership(person)}</p>
             {/*<p data-type="status">{person.status && (lang === "fr" ? person.status.fr : person.status.en)}</p>*/}
             <p data-type="status">Je touille la purée</p>
+            
+            <div className="contact">
+              <p className="toContact">{lang === "fr" ? "Contact" : "Get in touch "}</p>
+              <ul>
+                {person.contacts.map(contact => <li data-type={contact.label}>
+                  <Link to={contact.value}>{contact.label}</Link>
+                  </li>)}
 
-            <ul className="contact">
-              {person.contacts.map(contact => <li data-type={contact.label}>
-                <Link to={contact.value}>{contact.label}</Link>
-                </li>)}
-            </ul>
+                  { /* TEST */ }
+                  <li data-type="twitter">
+                    <Link to="">Twitter</Link>
+                  </li>
+                  <li data-type="email">
+                    <Link to="">Email</Link>
+                  </li>
+                  <li data-type="CV">
+                    <Link to="">CV</Link>
+                  </li>                         
+              </ul>
+            </div>
           </header>
+
           <div className="biographie-contenu">
             {person.bio && (lang === "fr" ? person.bio.fr && <RawHtml html={bio.fr} />  : person.bio.en && <RawHtml html={bio.en} />)}
           </div>
         </article>
-        {/*<Highlight highlight={person.mainProductions} lang={lang}/>*/}
+        <Highlight highlight={person.mainProductions} lang={lang}/>
+        <Highlight2 highlight={person.mainProductions} lang={lang}/>
+
         <PublicationsAssociees productions={person.productions} related={relatedElements[1]} lang={lang} />
         <ActivitesAssociees activities={person.activities} related={relatedElements[2]} lang={lang} />
         <ActuAssociees actu={person.activities} related={relatedElements[3]} lang={lang} />

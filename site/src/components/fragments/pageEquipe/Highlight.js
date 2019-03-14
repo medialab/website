@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
-
+ 
 import DateNews from '../DateNews.js';
 import TimeNews from '../TimeNews.js';
 import ProcessedImage from '../../ProcessedImage.js';

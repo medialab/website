@@ -1,0 +1,94 @@
+#highlight2{
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    text-align: center;
+
+    .contenu{
+        position: relative;
+        width: 200%;
+        display: inline-block;
+        margin: $unite*2 0;
+        text-align: center;
+        border: 2px solid pink;
+        left: -50%;
+
+        // General
+        ul{
+            display: inline-block;
+            width: 25%;
+            transition: .5s ease-in;
+            text-align: left;
+
+            li.text{
+                border-bottom: $border-very-light;
+                height: $unite*4;
+                width: 100%;
+                background-color: $background-site;
+
+                h1{ @include font-size-20(); }
+                h2, .time{ @include font-size-13(); }
+
+                p{
+                    @include font-size-13();
+                }
+            }
+            li.accroche{
+                width: 50%;
+                height: 100%;
+                left: -50%;
+                position: absolute;
+                top: 0;
+                overflow: hidden;
+
+                z-index: -1;
+
+            }              
+
+        }
+
+        // Specific
+        ul:first-of-type{
+            &:hover{
+                width: 50%;
+                float: left;
+                transition: .5s ease-in;
+
+                li.text{
+                    width: 50%; // keep same width
+                }
+
+            }
+
+            // Specific li
+            @for $i from 0 through 5 {                
+                [data-item="#{$i}"]:hover ~ [data-item-accroche="#{$i}"]{ 
+                    left: 50%;
+                    transition: .5s ease-in;
+                }
+            }            
+        }
+
+        ul:last-of-type{
+            &:hover{
+                width: 50%;
+                float: right;
+                transition: .5s ease-in;
+
+                li.text{
+                    width: 50%; // keep same width
+                }
+
+            }
+
+            // Specific li
+            @for $i from 0 through 5 {                
+                [data-item="#{$i}"]:hover ~ [data-item-accroche="#{$i}"]{ 
+                    right: 50%;
+                    transition: .5s ease-in;
+                }
+            }            
+        }
+
+    }
+}

@@ -39,13 +39,14 @@ body.page-activity-list{
 				// Proposition
 				padding-right: $baseline/3;
 				padding-top: 0;
+				padding-bottom: 0;
 				margin-left: $baseline/3;
 				padding-left: $baseline/3;
 			}
 
 			&:first-of-type{
 				height: $baseline*3.5;
-				padding-top: $baseline
+				padding-top: $baseline;
 			}
 			
 		}

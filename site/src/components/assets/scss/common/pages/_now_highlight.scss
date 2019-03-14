@@ -1,5 +1,4 @@
-#now article,
-#highlight article{
+#now article{
 
     & > a{
         display: block;
@@ -39,8 +38,7 @@
 }
 
 @include for-size(desktop) {
-    #now article,
-    #highlight article{
+    #now article {
 
         .image-pre{
             font-size: 1.25vw; // if _50
@@ -109,8 +107,7 @@
 
 @include for-size(phone){
 
-    #now article,
-    #highlight article{
+    #now article {
 
         .image-pre{
             font-size: $font-size*2.3;
@@ -172,13 +169,12 @@
 
 
 @include for-size(phone){
-    #now .image-pre,
-    #highlight .image-pre{ 
+    #now .image-pre{ 
         height: $font-size*10; 
         border-bottom: $border-light;
     }
 }
 
 @include for-size(desktop){
-    #now .image-pre, #highlight .image-pre{ height: $font-size*20; }
+    #now .image-pre{ height: $font-size*20; }
 }

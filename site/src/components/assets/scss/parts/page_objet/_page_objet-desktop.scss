@@ -29,13 +29,24 @@
 				@include font-size-20();
 				position: sticky;
 				top: -1px;
-				width: 100%;
+				//width: 100%;
+				width: calc(100% + #{$unite});
 				height: 101px;
 				background-color: white;
 				z-index: 5;
 				padding-top: 50px;
 				font-weight: bold;
-				border-bottom: $border;
+				//border-bottom: $border;
+				
+				&::after{
+					content: "";
+					border-bottom: $border;
+					width: calc(100% - #{$unite});
+					position: absolute;
+					bottom: 0;
+					left: 0;
+
+				}
 			}
 
 			#article-contenu{

@@ -1,0 +1,195 @@
+#highlight {
+    .contenu{
+        article{
+
+            & > a{
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+            .type{
+                margin-bottom: $baseline/2;
+            }
+            h1{
+                border-bottom: $border-very-light;
+                padding-top: $baseline*1;
+                padding-bottom: $baseline*1;
+            }
+
+            h2{
+                border-bottom: $border-very-light;
+                padding-top: $baseline*0.5;
+                padding-bottom: $baseline*0.5;
+                color: $text-color-light; 
+            }
+
+            .more{
+                margin-top: $baseline/2!important;
+                text-align: right;
+            }
+
+            &:hover{
+                cursor: pointer;
+                color: $redlab;
+                h1, h2{ border-bottom: $border-redlab-very-light }
+                h2, .more{ color: $redlab-light; }
+                .image-pre{ border-top: $border-redlab-light; }
+                img{mix-blend-mode: screen; }
+            }
+        }
+    }
+}
+
+@include for-size(desktop) {
+    
+    --nbrHighlight: 10;
+    --nbrHighlightAffiche : 4;
+
+    #highlight {
+
+        .contenu{
+
+            color: yellow;
+            @include flex;
+            @include flex-direction(column);
+            @include flex-wrap(wrap);
+            @include flex-order(1);
+
+            article {
+                    
+                width: calc( 100% / var(--nbrHighlightAffiche) );
+                box-sizing: border-box;
+
+                .image-pre{
+                    font-size: $font-size*2.3;
+                    width: 100%;
+                    // height: $font-size*20;
+                    overflow: hidden;
+                    border-top: $border-light;
+                    height: $font-size*10; 
+                    border-bottom: $border-light;
+                }        
+
+                .type{ @include font-size-16(); }
+
+                h1{ @include font-size-20(); }
+                h2, .time{ @include font-size-13(); }
+
+                figure{ 
+                    width: 100%;
+                    height: $font-size*20;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    //-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+                    //filter: grayscale(100%);
+                    
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    &:hover{
+                        background-color: $redlab;
+                        mix-blend-mode: darken; // Pas certain...
+                    }
+
+                    a{ width: 100%; }
+
+                    img{
+                        
+                        opacity: 0.7;
+                        width: 100%;
+                        object-fit: contain;
+                        mix-blend-mode: multiply;
+                        -webkit-filter: grayscale(100%) contrast(1000%);
+                        filter: grayscale(100%) contrast(1000%);
+                    }
+
+                    &:hover{ 
+                        img{mix-blend-mode: screen; }
+                    }
+                    
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+@include for-size(phone){
+
+    #highlight article {
+
+        .image-pre{
+            font-size: $font-size*2.3;
+            width: 100%;
+            // height: $font-size*20;
+            overflow: hidden;
+            border-top: $border-light;
+        }
+
+        .type{ @include font-size-16-phone(); }
+        h1{ @include font-size-20-phone(); }
+        h2, .time{ @include font-size-13-phone(); }
+
+        figure{ 
+            width: 100%;
+            //height: $font-size*20;
+            position: absolute;
+            top: -50%;
+            left: 0;
+            //-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+            //filter: grayscale(100%);
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:hover{
+                background-color: $redlab;
+                mix-blend-mode: darken; // Pas certain...
+            }
+
+            a{ width: 100%; }
+
+            img{
+                
+                opacity: 0.9;
+
+                // max-width: 100%;
+                // max-height: 100%;
+                // border-radius: 50%;
+                // border: $border;
+
+                // height: 100%;
+                width: 100%;
+                object-fit: contain;
+                mix-blend-mode: screen;
+                -webkit-filter: grayscale(100%) contrast(1000%);
+                filter: grayscale(100%) contrast(1000%);
+            }
+
+            // &:hover{ mix-blend-mode: screen; }
+            
+        }
+
+
+    }/* end article*/
+
+}
+
+
+@include for-size(phone){
+    #highlight .image-pre,
+    #highlight .image-pre{ 
+        height: $font-size*10; 
+        border-bottom: $border-light;
+    }
+}
+
+@include for-size(desktop){
+    #highlight .image-pre, #highlight .image-pre{ height: $font-size*20; }
+}

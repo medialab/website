@@ -47,12 +47,12 @@
 					padding-bottom: $baseline*3;
 
 					h1{
-						@include font-size-27();
+						@include font-size-40();
 						font-weight: bold;
 					}
 			
 					h2{ 
-						@include font-size-27();
+						@include font-size-20();
 						padding-bottom: $baseline*1.5; 
 					}
 
@@ -64,6 +64,8 @@
 						padding: 0 $unite-phone 0 0;
 					}		
 
+					[data-type="domaine"]{ 
+					}
 					[data-type="activite"]{
 						margin: $unite-phone 0;
 					}

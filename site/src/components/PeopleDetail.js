@@ -178,7 +178,7 @@ export default function PeopleDetail({lang, person}) {
             {person.bio && (lang === "fr" ? person.bio.fr && <RawHtml html={bio.fr} />  : person.bio.en && <RawHtml html={bio.en} />)}
           </div>
         </article>
-        <Highlight highlight={person.mainProductions} lang={lang}/>
+        {/*<Highlight highlight={person.mainProductions} lang={lang}/>*/}
         <Highlight2 highlight={person.mainProductions} lang={lang}/>
 
         <PublicationsAssociees productions={person.productions} related={relatedElements[1]} lang={lang} />

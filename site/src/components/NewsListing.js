@@ -45,13 +45,13 @@ export default function NewsListing({lang, list}) {
         <p className="accroche-titre-phone">{accroche}</p>
         <ul className="liste_objet" id="liste-news">
           {Array.from(yearGroups.entries()).sort(byYear).map(([year, yearNews], index) => (
-            <>
+            <React.Fragment key={index}>
               <li id={`year-${year}`} className="list-year">
                 <span>{year}</span>
                 <pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
               </li>
-              {yearNews.map((news) => (
-                <>
+              {yearNews.map((news, i) => (
+                <React.Fragment key={i}>
                   <li data-item={nbNews} data-type={news.type} className={`list-item ${news.type}`}>
                     <Link to={news.permalink[lang]}>
                       <DateNews startDate={news.startDate} endDate={news.endDate} lang={lang} />
@@ -68,9 +68,9 @@ export default function NewsListing({lang, list}) {
                       <RawHTML html={lang === 'fr' ? news.description.fr : news.description.en} />
                     </Link>
                   </li>
-                </>
+                </React.Fragment>
             ))}
-            </>
+            </React.Fragment>
         ))}
           <li className="item_accroche accroche-titre">Description en une phrase de la catégorie.</li>
         </ul>

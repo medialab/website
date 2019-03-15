@@ -9,7 +9,7 @@ import DateNews from './fragments/DateNews.js';
 import TimeNews from './fragments/TimeNews.js';
 import {format as formatDate, getYear, parseISO} from 'date-fns';
 
-import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
+import ProductionsAssociees from './fragments/pages/ProductionsAssociees.js';
 import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
 import ActuAssociees from './fragments/pages/ActuAssociees.js';
 import MembresAssocies from './fragments/pages/MembresAssocies.js';
@@ -161,7 +161,7 @@ export default function ActivityDetail({lang, activity}) {
 
       </article>
       <MembresAssocies people={activity.people} related={relatedElements[1]} lang={lang} />
-      <PublicationsAssociees productions={activity.productions} related={relatedElements[2]} lang={lang} />
+      <ProductionsAssociees productions={activity.productions} related={relatedElements[2]} lang={lang} />
       <ActivitesAssociees activities={activity.activities} related={relatedElements[3]} lang={lang} />
       <FichiersAssocies attachments={activity.attachments} related={relatedElements[4]} lang={lang} />
     </main>

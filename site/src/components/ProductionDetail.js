@@ -2,7 +2,7 @@ import React from 'react';
 import {graphql} from 'gatsby';
 
 import Highlight from './fragments/pageEquipe/Highlight.js';
-import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
+import ProductionsAssociees from './fragments/pages/ProductionsAssociees.js';
 import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
 import ActuAssociees from './fragments/pages/ActuAssociees.js';
 import MembresAssocies from './fragments/pages/MembresAssocies.js';
@@ -47,16 +47,23 @@ export const queryFragment = graphql`
       type
     }
     productions {
-      id
-      description {
-        en
-        fr
-      }
       title {
         en
         fr
       }
-      type
+      authors
+      groupLabel {
+        en
+        fr
+      }
+      permalink {
+        en
+        fr
+      }
+      description {
+        en
+        fr
+      }
     }
     draft
   }
@@ -142,7 +149,7 @@ export default function ProductionDetail({lang, production}) {
           </ul>
         </div>
         <MembresAssocies people={production.people} related={relatedElements[1]} lang={lang} />
-        <PublicationsAssociees productions={production.productions} related={relatedElements[2]} lang={lang} />
+        <ProductionsAssociees productions={production.productions} related={relatedElements[2]} lang={lang} />
         <ActivitesAssociees activities={production.activities} related={relatedElements[3]} lang={lang} />
         <ActuAssociees actu={production.news} related={relatedElements[4]} lang={lang} />
         <FichiersAssocies attachments={production.attachments} related={relatedElements[5]} lang={lang} />

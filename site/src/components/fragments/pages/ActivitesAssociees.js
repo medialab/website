@@ -10,15 +10,13 @@ const ActivitesAssociees = ({lang, related, activities}) => {
 
   let accroche;
   if (lang === 'fr') {
-      accroche = related.fr + String.fromCharCode(8239) + ':';
+    accroche = related.fr + String.fromCharCode(8239) + ':';
   }
- else {
-      accroche = related.en + ':';
+  else {
+    accroche = related.en + ':';
   }
 
   // Placeholder
-
-
   return (
     <aside className="container elements-associes-block" id="activites-associees">
       <h1><span data-icon="activite" /> {accroche} </h1>

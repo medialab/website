@@ -7,7 +7,7 @@ import Highlight2 from './fragments/pageEquipe/Highlight2.js';
 import Highlight3 from './fragments/pageEquipe/Highlight3.js';
 
 
-import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
+import ProductionsAssociees from './fragments/pages/ProductionsAssociees.js';
 import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
 import ActuAssociees from './fragments/pages/ActuAssociees.js';
 
@@ -76,6 +76,14 @@ export const queryFragment = graphql`
     }
     activities {
       name
+      baseline {
+        en
+        fr
+      }
+      permalink {
+        en
+        fr
+      }
     }
     news {
       title {
@@ -194,7 +202,7 @@ export default function PeopleDetail({lang, person}) {
         <p style={{color: 'pink'}} >Alternative Highlight ↓ </p>
         <Highlight3 highlight={person.mainProductions} lang={lang} />
 
-        <PublicationsAssociees productions={person.productions} related={relatedElements[1]} lang={lang} />
+        <ProductionsAssociees productions={person.productions} related={relatedElements[1]} lang={lang} />
         <ActivitesAssociees activities={person.activities} related={relatedElements[2]} lang={lang} />
         <ActuAssociees actu={person.activities} related={relatedElements[3]} lang={lang} />
       </main>

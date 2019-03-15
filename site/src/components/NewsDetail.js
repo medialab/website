@@ -11,7 +11,7 @@ import TimeNews from './fragments/TimeNews.js';
 import {format as formatDate, getYear, parseISO} from 'date-fns';
 
 
-import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
+import ProductionsAssociees from './fragments/pages/ProductionsAssociees.js';
 import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
 import ActuAssociees from './fragments/pages/ActuAssociees.js';
 import MembresAssocies from './fragments/pages/MembresAssocies.js';
@@ -55,16 +55,23 @@ export const queryFragment = graphql`
       type
     }
     productions {
-      id
-      description {
-        en
-        fr
-      }
       title {
         en
         fr
       }
-      type
+      authors
+      groupLabel {
+        en
+        fr
+      }
+      permalink {
+        en
+        fr
+      }
+      description {
+        en
+        fr
+      }
     }
     attachments {
       label
@@ -73,8 +80,8 @@ export const queryFragment = graphql`
     }
     type
     startDate
-    endDate  
-    place  
+    endDate
+    place
   }
 `;
 
@@ -119,7 +126,6 @@ export default function NewsDetail({lang, news}) {
 
   //Placeholder
   news.attachments = [{label: 'Faux_files.xml', value: 'Faux_files', type: 'XML',}, {label: 'Faux_files.pdf', value: 'Faux_files', type: 'PDF',}];
-  news.productions = [{title: {fr: 'Faux', en: 'Fake'}, description: {fr: 'Fausse', en: 'Fake'}, permalink: {en: 'Faux permalink en', fr: 'Faux permalink fr'}}];
   news.activities = [{name: 'Fausse Activité', baseline: {fr: 'Fausse baseline', en: 'Fake Baseline'}, permalink: {en: 'Faux permalink en', fr: 'Faux permalink fr'}}];
   news.people = [{firstName: 'Bob', lastName: 'Morane', permalink: {en: 'Faux permalink en', fr: 'Faux permalink fr'}}];
   console.log(news);
@@ -161,7 +167,7 @@ export default function NewsDetail({lang, news}) {
 
         {/* Block Associes */}
         <MembresAssocies people={news.people} related={relatedElements[1]} lang={lang} />
-        <PublicationsAssociees productions={news.productions} related={relatedElements[2]} lang={lang} />
+        <ProductionsAssociees productions={news.productions} related={relatedElements[2]} lang={lang} />
         <ActivitesAssociees activities={news.activities} related={relatedElements[3]} lang={lang} />
         <FichiersAssocies attachments={news.attachments} related={relatedElements[4]} lang={lang} />
       </main>

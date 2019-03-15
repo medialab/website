@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
-const PublicationsAssociees = ({lang, related, productions}) => {
+const ProductionsAssociees = ({lang, related, productions}) => {
 
 	if (!productions || productions.length === 0)
     return null;
@@ -37,4 +37,4 @@ const PublicationsAssociees = ({lang, related, productions}) => {
 	);
 };
 
-export default PublicationsAssociees;
+export default ProductionsAssociees;

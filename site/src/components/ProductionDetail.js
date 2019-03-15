@@ -33,9 +33,19 @@ export const queryFragment = graphql`
       url
     }
     people {
-      id
       firstName
       lastName
+      role {
+        en
+        fr
+      }
+      permalink {
+        en
+        fr
+      }
+      coverImage {
+        url
+      }
     }
     activities {
       id
@@ -107,7 +117,7 @@ const relatedElements = [
 ];
 
 export default function ProductionDetail({lang, production}) {
-
+  console.log(production);
   return (
     <>
       <Nav lang={lang} object={production} related={relatedElements} />
@@ -142,12 +152,6 @@ export default function ProductionDetail({lang, production}) {
 
         </article>
 
-        <div>
-          {lang === 'fr' ? 'Personnes liées' + String.fromCharCode(8239) + ':' : 'Related people:'}
-          <ul>
-            {(production.people || []).map(p => <li key={p.id}>{p.firstName} {p.lastName}</li>)}
-          </ul>
-        </div>
         <MembresAssocies people={production.people} related={relatedElements[1]} lang={lang} />
         <ProductionsAssociees productions={production.productions} related={relatedElements[2]} lang={lang} />
         <ActivitesAssociees activities={production.activities} related={relatedElements[3]} lang={lang} />

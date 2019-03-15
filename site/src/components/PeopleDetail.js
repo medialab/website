@@ -45,6 +45,7 @@ export const queryFragment = graphql`
       fr
     }
     contacts {
+      type
       label
       value
     }
@@ -149,29 +150,23 @@ export default function PeopleDetail({lang, person}) {
           <header>
 
             <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
-            <h2 data-level-2="role" data-type="role">{lang === "fr" ? person.role.fr : person.role.en}</h2>
+            <h2 data-level-2="role" data-type="role">{person.role[lang]}</h2>
             <p data-type="domaine">{person.domain}</p>
             <p data-type="membership">{templateMembership(person)}</p>
             {/*<p data-type="status">{person.status && (lang === "fr" ? person.status.fr : person.status.en)}</p>*/}
-            <p data-type="status">Je touille la purée</p>
-            
+            {person.status && <p data-type="status">{person.status[lang] || ''}</p>}
+
             <div className="contact">
               <p className="toContact">{lang === "fr" ? "Contact" : "Get in touch "}</p>
               <ul>
-                {person.contacts.map(contact => <li data-type={contact.label}>
-                  <Link to={contact.value}>{contact.label}</Link>
-                  </li>)}
-
-                  { /* TEST */ }
-                  <li data-type="twitter">
-                    <Link to="">Twitter</Link>
+                {person.contacts && person.contacts.map((contact, i) => (
+                  <li key={i} data-type={contact.label}>
+                    {contact.type === 'url' ?
+                      <a href={contact.value}>{contact.label}</a> :
+                      contact.label
+                    }
                   </li>
-                  <li data-type="email">
-                    <Link to="">Email</Link>
-                  </li>
-                  <li data-type="CV">
-                    <Link to="">CV</Link>
-                  </li>                         
+                ))}
               </ul>
             </div>
           </header>

@@ -10,10 +10,10 @@ const FichiersAssocies = ({lang, related, attachments}) => {
   let accroche;
 
   if (lang === 'fr') {
-      accroche = related.fr + String.fromCharCode(8239) + ':';
+    accroche = related.fr + String.fromCharCode(8239) + ':';
   }
- else {
-      accroche = related.en + ':';
+  else {
+    accroche = related.en + ':';
   }
 
   return (

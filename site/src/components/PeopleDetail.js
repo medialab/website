@@ -80,10 +80,17 @@ export const queryFragment = graphql`
         en
         fr
       }
+      description {
+        en
+        fr
+      }
       permalink {
         en
         fr
       }
+      startDate
+      endDate
+      type
     }
     news {
       title {

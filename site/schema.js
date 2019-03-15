@@ -124,6 +124,7 @@ exports.graphQLSchemaAdditionFromJsonSchema = function(model, schema) {
       item[k] = addition;
   }
 
+  // Permalinks
   const PermalinkType = new GraphQLTypes.GraphQLObjectType({
     name: model + '__permalink',
     fields: {
@@ -138,6 +139,23 @@ exports.graphQLSchemaAdditionFromJsonSchema = function(model, schema) {
 
   item.permalink = {
     type: PermalinkType
+  };
+
+  // Specific cases
+  if (model === 'productions') {
+    item.groupLabel = {
+      type: new GraphQLTypes.GraphQLObjectType({
+        name: model + '__groupLabel',
+        fields: {
+          en: {
+            type: GraphQLTypes.GraphQLString
+          },
+          fr: {
+            type: GraphQLTypes.GraphQLString
+          }
+        }
+      })
+    }
   };
 
   return item;

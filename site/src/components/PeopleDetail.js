@@ -88,6 +88,19 @@ export const queryFragment = graphql`
         en
         fr
       }
+      authors
+      groupLabel {
+        en
+        fr
+      }
+      permalink {
+        en
+        fr
+      }
+      description {
+        en
+        fr
+      }
     }
   }
 `;

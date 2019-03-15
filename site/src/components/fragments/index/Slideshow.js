@@ -6,7 +6,6 @@ import {IsModel} from '../../helpers.js';
 import DateNews from '../DateNews.js';
 import TimeNews from '../TimeNews.js';
 import { format as formatDate, getYear, parseISO } from 'date-fns';
- 
 
 // Ici nous composons l'ensemble du caroussel
 const Slideshow = ({slider, lang}) => {
@@ -31,18 +30,17 @@ const Slideshow = ({slider, lang}) => {
  	}
 
 	return (
-		<>
 		<section className="slideshow" id="slideshow">
 			{slider.map((slide, index) =>
-				<>
+				<React.Fragment key={index}>
 				{/* index === 0 ? ( a = "3",  z = "2" ) :
 					index === 1 ? ( a = "1",  z = "3" ) :
 						index === 3 ? ( a = "2",  z = "4" ) : "" */}
 
 				{IsIndex(index)}
 
-				<input type="radio" name="ss1" id={`ss1-item-${index + 1}`} className="slideshow--bullet" checked="checked" />
-				<label className="slideshow--bullet-label" for={`ss1-item-${index + 1}`}>
+				<input type="radio" name="ss1" id={`ss1-item-${index + 1}`} className="slideshow--bullet" defaultChecked />
+				<label className="slideshow--bullet-label" htmlFor={`ss1-item-${index + 1}`}>
 					{slide.model === "activities" ?
 						slide.data.baseline && (lang === "fr" ? slide.data.baseline.fr : slide.data.baseline.en )
 						:
@@ -122,14 +120,13 @@ const Slideshow = ({slider, lang}) => {
 							</Link>
 						</div>
 					</article>
-					<label for={`ss1-item-${a}`} className="slideshow--nav slideshow--nav-previous">{lang === "fr" ? "Aller à la slide " + {a} : "Go to slide " + {a} }</label>
-					<label for={`ss1-item-${z}`} className="slideshow--nav slideshow--nav-next">{lang === "fr" ? "Aller à la slide " + {z} : "Go to slide " + {z} }</label>
+					<label htmlFor={`ss1-item-${a}`} className="slideshow--nav slideshow--nav-previous">{lang === "fr" ? "Aller à la slide " + {a} : "Go to slide " + {a} }</label>
+					<label htmlFor={`ss1-item-${z}`} className="slideshow--nav slideshow--nav-next">{lang === "fr" ? "Aller à la slide " + {z} : "Go to slide " + {z} }</label>
 				</div>
-				</>
+				</React.Fragment>
 			)}
 			<hr/>
 		</section>
-		</>
   	);
 }
 

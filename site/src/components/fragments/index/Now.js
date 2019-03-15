@@ -11,6 +11,7 @@ export default function Now({now, lang}) {
 
   	//const noww = now.map(({object}) => object);
 	//console.log(noww);
+	console.log(now)
 	return (
 		<>
 		<section id="now">
@@ -19,7 +20,7 @@ export default function Now({now, lang}) {
 
 			{now.map((item, index) =>
 
-				<>
+				<React.Fragment key={index}>
 				<article data-type={item.model}>
 				<Link to={item.data.permalink[lang]}>
 					<p className="type" data-type={item.model}>{IsModel(item.model, lang)}</p>
@@ -101,7 +102,7 @@ export default function Now({now, lang}) {
 						</hgroup>
 				</Link>
 				</article>
-				</>
+				</React.Fragment>
 
 	        )}
 

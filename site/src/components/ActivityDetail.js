@@ -38,7 +38,6 @@ export const queryFragment = graphql`
       fr
     }
     people {
-      id
       firstName
       lastName
       role {

@@ -26,7 +26,7 @@ const MembresAssocies = ({lang, related, people}) => {
           {people.map(p => (
             <li key={p.permalink.fr} data-type="people">
               <Link to={p.permalink[lang]}>
-                <figure><img src={p.coverImage.url} /></figure>
+                <figure><img src={p.coverImage && p.coverImage.url} /></figure>
                 <h2>{p.firstName} {p.lastName}</h2>
                 <h3 data-level-2="role" data-type="role">{p.role && (p.role[lang] || p.role.fr || p.role.en)}</h3>
               </Link>

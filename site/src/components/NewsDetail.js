@@ -36,12 +36,18 @@ export const queryFragment = graphql`
       fr
     }
     people {
-      id
       firstName
       lastName
-      role{
-        fr
+      role {
         en
+        fr
+      }
+      permalink {
+        en
+        fr
+      }
+      coverImage {
+        url
       }
     }
     draft
@@ -85,49 +91,44 @@ export const queryFragment = graphql`
   }
 `;
 
-  const relatedElements = [
-    {
-      id: 'main-objet',
-      en: 'Main article',
-      fr: 'Article principal',
-    },
-    {
-      id: 'membres-associes',
-      exist: ({people}) => Boolean(people),
-      en: 'Related people',
-      fr: 'Membres en lien'
-    },
-    {
-      id: 'productions-associes',
-      exist: ({productions}) => Boolean(productions),
-      en: 'Related poduction',
-      fr: 'Production en liens'
-    },
-    {
-      id: 'activites-associees',
-      exist: ({activities}) => Boolean(activities),
-      en: 'Related Activities',
-      fr: 'Activités en lien',
-    },
-    {
-      id: 'actu-associees',
-      exist: ({news}) => Boolean(news),
-      en: 'Related news',
-      fr: 'Actualités associés'
-    }, {
-      id: 'fichiers-associes',
-      exist: ({files}) => Boolean(files),
-      en: 'Related files',
-      fr: 'Fichier associés'
-    },
-  ];
+const relatedElements = [
+  {
+    id: 'main-objet',
+    en: 'Main article',
+    fr: 'Article principal',
+  },
+  {
+    id: 'membres-associes',
+    exist: ({people}) => Boolean(people) && people.length > 0,
+    en: 'Related people',
+    fr: 'Membres en lien'
+  },
+  {
+    id: 'productions-associes',
+    exist: ({productions}) => Boolean(productions) && productions.length > 0,
+    en: 'Related poduction',
+    fr: 'Production en liens'
+  },
+  {
+    id: 'activites-associees',
+    exist: ({activities}) => Boolean(activities) && activities.length > 0,
+    en: 'Related Activities',
+    fr: 'Activités en lien',
+  },
+  {
+    id: 'actu-associees',
+    exist: ({news}) => Boolean(news) && news.length > 0,
+    en: 'Related news',
+    fr: 'Actualités associés'
+  }, {
+    id: 'fichiers-associes',
+    exist: ({attachments}) => Boolean(attachments) && attachments.length > 0,
+    en: 'Related files',
+    fr: 'Fichier associés'
+  },
+];
 
 export default function NewsDetail({lang, news}) {
-
-  //Placeholder
-  news.attachments = [{label: 'Faux_files.xml', value: 'Faux_files', type: 'XML',}, {label: 'Faux_files.pdf', value: 'Faux_files', type: 'PDF',}];
-  news.activities = [{name: 'Fausse Activité', baseline: {fr: 'Fausse baseline', en: 'Fake Baseline'}, permalink: {en: 'Faux permalink en', fr: 'Faux permalink fr'}}];
-  news.people = [{firstName: 'Bob', lastName: 'Morane', permalink: {en: 'Faux permalink en', fr: 'Faux permalink fr'}}];
   console.log(news);
 
   return (
@@ -169,7 +170,7 @@ export default function NewsDetail({lang, news}) {
         <MembresAssocies people={news.people} related={relatedElements[1]} lang={lang} />
         <ProductionsAssociees productions={news.productions} related={relatedElements[2]} lang={lang} />
         <ActivitesAssociees activities={news.activities} related={relatedElements[3]} lang={lang} />
-        <FichiersAssocies attachments={news.attachments} related={relatedElements[4]} lang={lang} />
+        <FichiersAssocies attachments={news.attachments} related={relatedElements[5]} lang={lang} />
       </main>
     </>
   );

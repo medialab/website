@@ -24,7 +24,14 @@ const MembresAssocies = ({lang, related, people}) => {
           {people.map(p => (
             <li key={p.id} data-type="people">
               <Link to={p.permalink[lang]}>
-                {p.firstName} {p.lastName}
+                <>
+                <figure><img src={Img}   alt={lang === "fr" ? "Photo de profil de ": " profil picture"} /></figure>
+                <h2>{p.firstName} {p.lastName}</h2>
+                {lang === "fr" ?
+                    <h3 data-level-2="role" data-type="role" >{p.role && p.role.fr}</h3> :
+                    <h3 data-level-2="role" data-type="role" >{p.role && p.role.en}</h3>
+                }
+              </>
               </Link>
             </li>
           ))}
@@ -42,7 +49,14 @@ const MembresAssocies = ({lang, related, people}) => {
                       <h2>George Mathieu</h2>
                       <h3>Soliste</h3>
                     </Link>
-                  </li>                     
+                  </li> 
+                  <li key="99" data-type="people">
+                    <Link to="">
+                       <figure><img src={Img}   alt={lang === "fr" ? "Photo de profil de ": " profil picture"} /></figure>
+                      <h2>George Mathieu</h2>
+                      <h3>Soliste</h3>
+                    </Link>
+                  </li> 
                   {/* END TEST */}
         </ul>
       </div>

@@ -39,6 +39,10 @@ export const queryFragment = graphql`
       id
       firstName
       lastName
+      role{
+        fr
+        en
+      }
     }
     draft
     activities {

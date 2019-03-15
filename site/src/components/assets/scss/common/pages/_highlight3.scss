@@ -1,0 +1,144 @@
+
+
+#highlight3{
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    margin-top: $unite*4;
+
+    .contenu{
+        position: relative;
+        width: 100%;
+        margin: $unite*2 0 $unite*2 0;
+ 
+    }
+}
+
+
+
+/////////////////////
+//////// Flux desktop
+/////////////////////
+
+/* no support of grid */
+@include for-size(desktop){
+    #highlight3{
+        display: inline-block;
+        width: 100%;
+        margin-right: $margins-phone;
+        margin-bottom: $margins-phone;
+        vertical-align: top;
+    }
+
+}
+
+@include for-size(desktop-900) {
+}
+
+@include for-size(desktop-1300) {
+}
+
+@include for-size(desktop) {
+
+    #highlight3 {
+        
+        .contenu{
+            
+            margin-top: 45px;
+            overflow: hidden;
+
+            ul{
+            
+            width: 100%;
+
+                li{
+                    
+                    width: 100%;
+                    background: $background-site;
+                    text-align: left;
+                    height: 100px;
+                    margin: $baseline*2 0;
+
+                    @include flex();
+                    @include flex-direction(row);
+                    //@include align-items(baseline);
+
+                    .numero{
+                        @include font-size-13();
+                        font-weight: 100;
+                        text-align: right;
+                        height: $unite;
+                        width: $unite;
+                        margin: 0 $unite 0 0;
+                        top: $unite/2;
+                        //color: $text-color-light;
+
+                        flex: 1 1 20px;
+                        @include align-self(center);
+
+                    }
+
+                    .embleme{
+                        @include font-size-80();
+                        width: 70px;
+
+                        flex: 1 1 20px;
+
+
+                    }
+
+                    .type{
+                        @include font-size-80();
+                        @include flex();
+                        margin: 0 $unite 0 0;
+                        min-width: 10%;
+                        top: 5px;
+                    }
+
+
+                    h2{
+                        flex: 2 0 50%;
+                        @include font-size-27();
+                        font-weight: bold;
+                        padding: $baseline $unite;
+                        @include align-self(baseline);
+                    }
+
+                    h3{
+                        flex: 1 9 25%;
+                        @include font-size-20();
+                        padding: $baseline $unite;
+                        @include align-self(baseline);
+                    }
+
+
+                    .image-pre{
+                        flex: 1 3 25%;
+                        @include font-size-80();
+                        line-height: 90px;
+                        overflow: hidden;
+                    }
+                } 
+            }
+            
+        } /* End flux container*/
+        
+    } /* end #flux*/
+
+}
+
+
+/////////////////////
+//////// Flux phone
+/////////////////////
+
+/* no support of grid */
+@include for-size(phone){
+    #flux li{
+        display: inline-block;
+        width: 100%;
+        margin: 0 $margins-phone $margins-phone $margins-phone;
+        vertical-align: top;
+    }
+}

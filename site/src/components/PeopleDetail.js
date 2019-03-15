@@ -4,6 +4,8 @@ import {Link} from 'gatsby';
 
 import Highlight from './fragments/pageEquipe/Highlight.js';
 import Highlight2 from './fragments/pageEquipe/Highlight2.js';
+import Highlight3 from './fragments/pageEquipe/Highlight3.js';
+
 
 import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
 import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
@@ -180,6 +182,8 @@ export default function PeopleDetail({lang, person}) {
         </article>
         {/*<Highlight highlight={person.mainProductions} lang={lang}/>*/}
         <Highlight2 highlight={person.mainProductions} lang={lang}/>
+        <p style={{color: 'pink'}} >Alternative Highlight ↓ </p>
+        <Highlight3 highlight={person.mainProductions} lang={lang}/>
 
         <PublicationsAssociees productions={person.productions} related={relatedElements[1]} lang={lang} />
         <ActivitesAssociees activities={person.activities} related={relatedElements[2]} lang={lang} />

@@ -5,55 +5,60 @@ import React from 'react';
 
 const FilterActivity = ({lang}) => {
 
-let title, filtre, active, past, research, teaching; 
+let title, filtre, active, past, research, teaching;
 
 if (lang === 'fr') {
-	title = "Activités";
+	title = 'Activités';
 	filtre = 'Filtres';
-	active = "Actives";
-	past = "Passées";
-	research = "Recherche";
-	teaching = "Enseignement";
+	active = 'Actives';
+	past = 'Passées';
+	research = 'Recherche';
+	teaching = 'Enseignement';
 }
 else {
-	title = "Activities";
+	title = 'Activities';
 	filtre = 'Filters';
-	active = "Active";
-	past = "Past";
-	research = "Research";
-	teaching = "Teaching";
+	active = 'Active';
+	past = 'Past';
+	research = 'Research';
+	teaching = 'Teaching';
 }
-
 
 
 	return (
-		<>
-			<h1 className="type_title" data-icon="activite">{ title }</h1>
+  <>
+    <h1 className="type_title" data-icon="activite">{ title }</h1>
 
-			<input type="checkbox" className="toggle-filtre-phone" id="toggle-filtre-phone" name="toggle-filtre-phone" value="visible" hidden/>
-			<label for="toggle-filtre-phone" title="Découvrir les options de filtrage">
-				<p>{ filtre }<span></span></p>
-			</label>
+    <input
+      type="checkbox" className="toggle-filtre-phone" id="toggle-filtre-phone"
+      name="toggle-filtre-phone" value="visible" hidden />
+    <label htmlFor="toggle-filtre-phone" title="Découvrir les options de filtrage">
+      <p>{ filtre }<span /></p>
+    </label>
 
-			<div id="background-phone"></div>
+    <div id="background-phone" />
 
-			<ul className="link-activity-sort">
-				<li className="pageProduction_current"><a href="linkActivity/actives">{ active } <span>〉</span></a></li>
-				<li><a href="linkActivity/passees">{ past } <span>〉</span></a></li>
-			</ul>
+    <ul className="link-activity-sort">
+      <li className="pageProduction_current"><a href="linkActivity/actives">{ active } <span>〉</span></a></li>
+      <li><a href="linkActivity/passees">{ past } <span>〉</span></a></li>
+    </ul>
 
-		<input type="checkbox" id="filtre-activity_research" name="filtre-activity_research" className="input_filtre-activity" value="research" hidden  />
-		<label className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_research">{ research }</label>
-		<input type="checkbox" id="filtre-activity_teaching" name="filtre-activity_teaching" className="input_filtre-activity" value="teaching" hidden  />
-		<label className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_teaching">{ teaching }</label>
-		{/*  La classification methode a était retirée le 5 fevrier dernier 
+    <input
+      type="checkbox" id="filtre-activity_research" name="filtre-activity_research"
+      className="input_filtre-activity" value="research" hidden />
+    <label className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_research">{ research }</label>
+    <input
+      type="checkbox" id="filtre-activity_teaching" name="filtre-activity_teaching"
+      className="input_filtre-activity" value="teaching" hidden />
+    <label className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_teaching">{ teaching }</label>
+    {/*  La classification methode a était retirée le 5 fevrier dernier
 		<input type="checkbox" id="filtre-activity_method" name="filtre-activity_method" className="input_filtre-activity" value="method" hidden />
 		<label className="filtre-activity checkbox-medialab" for="filtre-activity_method">method</label>  */}
 
 
-		</>
+  </>
 	);
-}
+};
 
 export default FilterActivity;
 

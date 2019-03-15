@@ -3,8 +3,8 @@ import {Link} from 'gatsby';
 
 import FilterProduction from './fragments/pageListe/FilterProduction.js';
 import RawHTML from './RawHtml.js';
-import {format as formatDate, getYear, parseISO} from 'date-fns'
-import {en, fr} from 'date-fns/locale'
+import {format as formatDate, getYear, parseISO} from 'date-fns';
+import {en, fr} from 'date-fns/locale';
 
 /* import {templateMembership} from './helpers.js';  */
 //import './scss/page_liste.scss';
@@ -14,13 +14,13 @@ const byYear = ([yearA], [yearB]) => yearB - yearA;
 export default function ProductionListing({lang, list, group, types}) {
     const yearGroups = new Map();
 
-    let accroche
+    let accroche;
 
     if (lang === 'fr') {
-      accroche = "Issues des dynamiques de recherche du laboratoire combinant méthode, analyse et théorie, les productions du médialab constituent un panorama hétéroclite. Aux traditionnelles publications académiques s’ajoute un ensemble de réalisations techniques qui répondent à des problèmes de recherche récurrents. Récemment, les sites web et réalisations en situation se sont développés comme de nouvelles formes pour rendre compte des activités du laboratoire.";
+      accroche = 'Issues des dynamiques de recherche du laboratoire combinant méthode, analyse et théorie, les productions du médialab constituent un panorama hétéroclite. Aux traditionnelles publications académiques s’ajoute un ensemble de réalisations techniques qui répondent à des problèmes de recherche récurrents. Récemment, les sites web et réalisations en situation se sont développés comme de nouvelles formes pour rendre compte des activités du laboratoire.';
     }
     else {
-      accroche = "Description in english en une phrase de la catégorie production";
+      accroche = 'Description in english en une phrase de la catégorie production';
     }
 
 

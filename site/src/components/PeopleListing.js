@@ -14,23 +14,25 @@ export default function PeopleListing({lang, list}) {
 	console.log(lang, list);
 
 	return (
-		<>
-		<FiltreEquipe lang={lang} />
-		<section id="liste_equipe">
-		    <ul className="liste_equipe">
-			{list.map(p => (
-	          	<li key={p.id} data-item={p.id} data-domain={p.domain} data-active={p.active ? "yes" : "no"} data-member={p.membership === "member" ? "yes" : "no"}>
-				    <Link to={p.permalink[lang]}>
-		                <figure><img src={p.coverImage ? p.coverImage.url : Img} alt={lang === "fr" ? "Photo de profil de " + p.firstName + p.lastName : p.firstName + p.lastName + " profil picture"} /></figure>
-		                <hgroup>
-						    <h1 data-level-1="name">{p.firstName} {p.lastName}</h1>
-		                    <h2 data-level-2="role" data-type="role">{lang === "fr" ? p.role && p.role.fr : p.role && p.role.en}</h2>
-		                </hgroup>
-		            </Link>
-				</li>
+  <>
+    <FiltreEquipe lang={lang} />
+    <section id="liste_equipe">
+      <ul className="liste_equipe">
+        {list.map(p => (
+          <li
+            key={p.id} data-item={p.id} data-domain={p.domain}
+            data-active={p.active ? 'yes' : 'no'} data-member={p.membership === 'member' ? 'yes' : 'no'}>
+            <Link to={p.permalink[lang]}>
+              <figure><img src={p.coverImage ? p.coverImage.url : Img} alt={lang === 'fr' ? 'Photo de profil de ' + p.firstName + p.lastName : p.firstName + p.lastName + ' profil picture'} /></figure>
+              <hgroup>
+                <h1 data-level-1="name">{p.firstName} {p.lastName}</h1>
+                <h2 data-level-2="role" data-type="role">{lang === 'fr' ? p.role && p.role.fr : p.role && p.role.en}</h2>
+              </hgroup>
+            </Link>
+          </li>
 	        ))}
-			</ul>
-		</section>
-		</>
+      </ul>
+    </section>
+  </>
 	);
 }

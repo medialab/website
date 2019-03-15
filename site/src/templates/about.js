@@ -12,7 +12,7 @@ export default ({data, pageContext}) => {
       lang={pageContext.lang}
       className="page-about"
       permalinks={pageContext.permalinks}>
-      <About lang={pageContext.lang}/>
+      <About lang={pageContext.lang} />
     </Layout>
   );
 };

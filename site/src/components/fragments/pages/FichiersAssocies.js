@@ -1,23 +1,24 @@
 import React from 'react';
 import {Link, withPrefix} from 'gatsby';
- 
 
-const FichiersAssocies = ({ lang, related, attachments }) => {
-  
+
+const FichiersAssocies = ({lang, related, attachments}) => {
+
   // Si aucun fichier lié, retourne null
   if (!attachments || attachments.length === 0)
     return null;
   let accroche;
 
-  if (lang === "fr") {
-      accroche =  related.fr + String.fromCharCode(8239) +":";
-  } else {
-      accroche = related.en + ":";
+  if (lang === 'fr') {
+      accroche = related.fr + String.fromCharCode(8239) + ':';
+  }
+ else {
+      accroche = related.en + ':';
   }
 
   return (
     <aside className="container fichiers-associes-block" id="fichiers-associes">
-      <h1><span data-icon="file"></span> {accroche} </h1>
+      <h1><span data-icon="file" /> {accroche} </h1>
 
       <div className="contenu">
         <ul className="liste_objet">

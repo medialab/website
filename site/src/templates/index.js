@@ -15,6 +15,9 @@ export const query = graphql`
             ... on Activities {
               coverImage {
                 url
+                processed {
+                  medium
+                }
               }
               description {
                 en
@@ -33,6 +36,9 @@ export const query = graphql`
             ... on News {
               coverImage {
                 url
+                processed {
+                  medium
+                }
               }
               description {
                 en
@@ -50,6 +56,9 @@ export const query = graphql`
             ... on Productions {
               coverImage {
                 url
+                processed {
+                  medium
+                }
               }
               description {
                 en
@@ -74,6 +83,10 @@ export const query = graphql`
               name
               coverImage {
                 url
+                processed {
+                  large
+                  medium
+                }
               }
               baseline {
                 en
@@ -95,6 +108,10 @@ export const query = graphql`
             ... on News {
               coverImage {
                 url
+                processed {
+                  large
+                  medium
+                }
               }
               place
               startDate
@@ -115,6 +132,10 @@ export const query = graphql`
             ... on Productions {
               coverImage {
                 url
+                processed {
+                  large
+                  medium
+                }
               }
               description {
                 en
@@ -170,7 +191,9 @@ const IndexPage = ({data, pageContext}) => {
       lang={pageContext.lang}
       className="page-home"
       permalinks={pageContext.permalinks}>
-      <Home lang={pageContext.lang} grid={grid} slider={slider} rdv={rdv} />
+      <Home
+        lang={pageContext.lang} grid={grid} slider={slider}
+        rdv={rdv} />
     </Layout>
   );
 };

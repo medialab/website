@@ -25,7 +25,7 @@ export const query = graphql`
           }
           startDate
           endDate
-          internal
+          isInternal
           permalink {
             en
             fr

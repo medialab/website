@@ -7,7 +7,7 @@ import Highlight2 from './fragments/pageEquipe/Highlight2.js';
 import Highlight3 from './fragments/pageEquipe/Highlight3.js';
 
 
-import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
+import ProductionsAssociees from './fragments/pages/ProductionsAssociees.js';
 import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
 import ActuAssociees from './fragments/pages/ActuAssociees.js';
 
@@ -45,6 +45,7 @@ export const queryFragment = graphql`
       fr
     }
     contacts {
+      type
       label
       value
     }
@@ -75,15 +76,53 @@ export const queryFragment = graphql`
     }
     activities {
       name
+      baseline {
+        en
+        fr
+      }
+      description {
+        en
+        fr
+      }
+      permalink {
+        en
+        fr
+      }
+      startDate
+      endDate
+      type
     }
     news {
       title {
         en
         fr
       }
+      type
+      description {
+        en
+        fr
+      }
+      permalink {
+        en
+        fr
+      }
+      startDate
     }
     productions {
       title {
+        en
+        fr
+      }
+      authors
+      groupLabel {
+        en
+        fr
+      }
+      permalink {
+        en
+        fr
+      }
+      description {
         en
         fr
       }
@@ -99,19 +138,19 @@ export const queryFragment = graphql`
     },
     {
       id: 'productions-associes',
-      exist : ({productions}) => Boolean(productions),
+      exist: ({productions}) => Boolean(productions),
       en: 'Related poductions',
       fr: 'Productions en liens'
     },
     {
       id: 'activites-associees',
-      exist : ({activities}) => Boolean(activities),
+      exist: ({activities}) => Boolean(activities),
       en: 'Related Activities',
       fr: 'Activités en lien',
     },
     {
       id: 'actu-associees',
-      exist : ({news}) => Boolean(news),
+      exist: ({news}) => Boolean(news),
       en: 'Related news',
       fr: 'Actualités associés'
     }
@@ -122,14 +161,8 @@ export default function PeopleDetail({lang, person}) {
   console.log(lang, person);
 
   const bio = person.bio;
-  //const people = null; // is there related people ?
   const productions = person.mainProductions; // Sync mainProd
-  const activities = person.mainActivities;  // Sync mainActivities
-
-  // Placeholder
-  if(typeof person.permalink != null){ person.permalink = "fake" };
-
-
+  const activities = person.mainActivities; // Sync mainActivities
 
   return (
     <>
@@ -137,61 +170,52 @@ export default function PeopleDetail({lang, person}) {
       <main id="main-personne">
         <p className="titre-sticky">
           <Link to="/people">
-            <span>{lang === "fr" ? "L'équipe du Medialab" : "Medialab team"} </span>
+            <span>{lang === 'fr' ? "L'équipe du Medialab" : 'Medialab team'} </span>
           </Link>
           <span className="personne">{person.firstName} {person.lastName}</span>
         </p>
         <article id="biographie">
           <figure>
-            <div className="cache"><span>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/></span></div>
-            <img src={person.coverImage ? person.coverImage.url : Img}   alt={lang === "fr" ? "Photo de profil de " + person.firstName + person.lastName : person.firstName + person.lastName + " profil picture"} />
+            <div className="cache"><span>▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br /></span></div>
+            <img src={person.coverImage ? person.coverImage.url : Img} alt={lang === 'fr' ? 'Photo de profil de ' + person.firstName + person.lastName : person.firstName + person.lastName + ' profil picture'} />
           </figure>
           <header>
 
             <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
-            <h2 data-level-2="role" data-type="role">{lang === "fr" ? person.role.fr : person.role.en}</h2>
+            <h2 data-level-2="role" data-type="role">{person.role[lang]}</h2>
             <p data-type="domaine">{person.domain}</p>
             <p data-type="membership">{templateMembership(person)}</p>
             {/*<p data-type="status">{person.status && (lang === "fr" ? person.status.fr : person.status.en)}</p>*/}
-            <p data-type="status">Je touille la purée</p>
-            
-            <div className="contact">
-              <p className="toContact">{lang === "fr" ? "Contact" : "Get in touch "}</p>
-              <ul>
-                {person.contacts.map(contact => <li data-type={contact.label}>
-                  <Link to={contact.value}>{contact.label}</Link>
-                  </li>)}
+            {person.status && <p data-type="status">{person.status[lang] || ''}</p>}
 
-                  { /* TEST */ }
-                  <li data-type="twitter">
-                    <Link to="">Twitter</Link>
+            <div className="contact">
+              <p className="toContact">{lang === 'fr' ? 'Contact' : 'Get in touch '}</p>
+              <ul>
+                {person.contacts && person.contacts.map((contact, i) => (
+                  <li key={i} data-type={contact.label}>
+                    {contact.type === 'url' ?
+                      <a href={contact.value}>{contact.label}</a> :
+                      contact.label
+                    }
                   </li>
-                  <li data-type="email">
-                    <Link to="">Email</Link>
-                  </li>
-                  <li data-type="CV">
-                    <Link to="">CV</Link>
-                  </li>                         
+                ))}
               </ul>
             </div>
           </header>
 
           <div className="biographie-contenu">
-            {person.bio && (lang === "fr" ? person.bio.fr && <RawHtml html={bio.fr} />  : person.bio.en && <RawHtml html={bio.en} />)}
+            {person.bio && (lang === 'fr' ? person.bio.fr && <RawHtml html={bio.fr} /> : person.bio.en && <RawHtml html={bio.en} />)}
           </div>
         </article>
         {/*<Highlight highlight={person.mainProductions} lang={lang}/>*/}
-        <Highlight2 highlight={person.mainProductions} lang={lang}/>
+        <Highlight2 highlight={person.mainProductions} lang={lang} />
         <p style={{color: 'pink'}} >Alternative Highlight ↓ </p>
-        <Highlight3 highlight={person.mainProductions} lang={lang}/>
+        <Highlight3 highlight={person.mainProductions} lang={lang} />
 
-        <PublicationsAssociees productions={person.productions} related={relatedElements[1]} lang={lang} />
+        <ProductionsAssociees productions={person.productions} related={relatedElements[1]} lang={lang} />
         <ActivitesAssociees activities={person.activities} related={relatedElements[2]} lang={lang} />
-        <ActuAssociees actu={person.activities} related={relatedElements[3]} lang={lang} />
+        <ActuAssociees actu={person.news} related={relatedElements[3]} lang={lang} />
       </main>
     </>
   );
 }
-
-/* { contact.label + String.fromCharCode(8239) + ":"} <Link to={contact.value}>{contact.value}</Link>
-*/

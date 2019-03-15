@@ -1,25 +1,25 @@
 import React from 'react';
-import { Link } from 'gatsby';
- 
+import {Link} from 'gatsby';
+
 import DateNews from '../DateNews.js';
 import TimeNews from '../TimeNews.js';
 import ProcessedImage from '../../ProcessedImage.js';
-import { IsModel } from '../../helpers.js';
+import {IsModel} from '../../helpers.js';
 
 
-export default function Highlight2({ highlight, lang }) {
+export default function Highlight2({highlight, lang}) {
 
 
     return (
-        <>
-            <section id="highlight3">
-                <div className="contenu">
+      <>
+        <section id="highlight3">
+          <div className="contenu">
 
-                    {/* {highlight.map((item, index) =>
+            {/* {highlight.map((item, index) =>
 
                         <>
                         <ul className="Hprod" data-type="productions">
-                            
+
                             <li className="title"><h1 className="type">{lang === "fr" ? "Productions majeures" : "Main productions" } </h1></li>
 
                             {item.model === "productions" &&
@@ -30,7 +30,7 @@ export default function Highlight2({ highlight, lang }) {
                                             {lang === "fr" ?
                                                 <h2 data-level-1="title">{item.data.title && item.data.title.fr}</h2> :
                                                 <h2 data-level-1="title">{item.data.title && item.data.title.en}</h2>
-                                            }                                        
+                                            }
                                             <h3 data-type="author">
                                                 {(item.data.author || []).map(person => <span>{person.firstName} {person.lastName}</span>)}
                                             </h3>
@@ -55,7 +55,7 @@ export default function Highlight2({ highlight, lang }) {
 
                                 (item.data.title &&
                                     <>
-                                        <li className="text" data-item="1">  // 
+                                        <li className="text" data-item="1">  //
                                             {lang === "fr" ?
                                                 <h2 data-level-1="baseline">{item.data.baseline && item.data.baseline.fr}</h2> :
                                                 <h2 data-level-1="baseline">{item.data.baseline && item.data.baseline.en}</h2>
@@ -66,7 +66,7 @@ export default function Highlight2({ highlight, lang }) {
                                             {lang === "fr" ?
                                                 <p data-type="description">{item.data.description && item.data.description.fr}</p> :
                                                 <p data-type="description">{item.data.description && item.data.description.en}</p>
-                                            }                                            
+                                            }
                                             <div class="image-pre">
                                                 <ProcessedImage size="large" image=""  />
                                             </div>
@@ -78,7 +78,7 @@ export default function Highlight2({ highlight, lang }) {
                         </>
 
                     )} */}
-                    
+
                     {/* TEST */}
 
                     <h1 className="type">Productions majeurs</h1>
@@ -129,13 +129,13 @@ export default function Highlight2({ highlight, lang }) {
                                 </div>
                                 <ProcessedImage size="large" image="" />
                             </div>
-                        </li>                                                
+                        </li>
                     </ul>
                     {/* END TEST */}
+        
 
-                </div>
-            </section>
-        </>
+          </div>
+        </section>
+      </>
     );
 }
-

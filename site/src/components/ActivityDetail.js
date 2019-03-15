@@ -7,9 +7,9 @@ import ToggleLang from './fragments/pages/ToggleLang.js';
 
 import DateNews from './fragments/DateNews.js';
 import TimeNews from './fragments/TimeNews.js';
-import { format as formatDate, getYear, parseISO } from 'date-fns';
+import {format as formatDate, getYear, parseISO} from 'date-fns';
 
-import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
+import ProductionsAssociees from './fragments/pages/ProductionsAssociees.js';
 import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
 import ActuAssociees from './fragments/pages/ActuAssociees.js';
 import MembresAssocies from './fragments/pages/MembresAssocies.js';
@@ -86,25 +86,25 @@ export const queryFragment = graphql`
     },*/
     {
       id: 'activites-associees',
-      exist : ({activities}) => Boolean(activities),
+      exist: ({activities}) => Boolean(activities),
       en: 'Related Activities',
       fr: 'Activités en lien',
     },
     {
       id: 'membres-associes',
-      exist : ({people}) => Boolean(people),
+      exist: ({people}) => Boolean(people),
       en: 'Related people',
       fr: 'Membres en lien'
     },
     {
       id: 'actu-associees',
-      exist : ({news}) => Boolean(news),
+      exist: ({news}) => Boolean(news),
       en: 'Related news',
       fr: 'Actualités associés'
     },
     {
       id: 'fichiers-associes',
-      exist : ({attachments}) => Boolean(attachments),
+      exist: ({attachments}) => Boolean(attachments),
       en: 'Related files',
       fr: 'Fichier associés'
     }
@@ -144,7 +144,7 @@ export default function ActivityDetail({lang, activity}) {
         </hgroup>
         {/* Article FR */}
         <div className="article-contenu fr" lang="fr">
-          {activity.content && ( activity.content.fr && <RawHtml html={activity.content.fr} /> )}
+          {activity.content && (activity.content.fr && <RawHtml html={activity.content.fr} />)}
         </div>
 
         {/* Chapô EN */}
@@ -156,14 +156,14 @@ export default function ActivityDetail({lang, activity}) {
         </hgroup>
         {/* Article EN */}
         <div className="article-contenu en" lang="en">
-          {activity.content && ( activity.content.en && <RawHtml html={activity.content.en} /> )}
+          {activity.content && (activity.content.en && <RawHtml html={activity.content.en} />)}
         </div>
 
       </article>
       <MembresAssocies people={activity.people} related={relatedElements[1]} lang={lang} />
-      <PublicationsAssociees productions={activity.productions} related={relatedElements[2]} lang={lang} />
+      <ProductionsAssociees productions={activity.productions} related={relatedElements[2]} lang={lang} />
       <ActivitesAssociees activities={activity.activities} related={relatedElements[3]} lang={lang} />
-      <FichiersAssocies attachments={activity.attachments} related={relatedElements[4]} lang={lang}  />      
+      <FichiersAssocies attachments={activity.attachments} related={relatedElements[4]} lang={lang} />
     </main>
   );
 }

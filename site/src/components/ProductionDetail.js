@@ -70,30 +70,30 @@ const relatedElements = [
   },
   {
     id: 'membres-associes',
-    exist : ({people}) => Boolean(people),
+    exist: ({people}) => Boolean(people),
     en: 'Related people',
     fr: 'Membres en lien'
   },
   {
     id: 'productions-associes',
-    exist : ({productions}) => Boolean(productions),
+    exist: ({productions}) => Boolean(productions),
     en: 'Related poduction',
     fr: 'Production en liens'
   },
   {
     id: 'activites-associees',
-    exist : ({activities}) => Boolean(activities),
+    exist: ({activities}) => Boolean(activities),
     en: 'Related Activities',
     fr: 'Activités en lien',
   },
   {
     id: 'actu-associees',
-    exist : ({news}) => Boolean(news),
+    exist: ({news}) => Boolean(news),
     en: 'Related news',
     fr: 'Actualités associés'
-  },    {
+  }, {
     id: 'fichiers-associes',
-    exist : ({files}) => Boolean(files),
+    exist: ({files}) => Boolean(files),
     en: 'Related files',
     fr: 'Fichier associés'
   },
@@ -105,7 +105,7 @@ export default function ProductionDetail({lang, production}) {
     <>
       <Nav lang={lang} object={production} related={relatedElements} />
       <main id="main-objet">
-        <p className="titre-sticky">{production.title && (lang === "fr" ? production.title.fr : production.title.en ) }</p>
+        <p className="titre-sticky">{production.title && (lang === 'fr' ? production.title.fr : production.title.en) }</p>
         <article id="article-contenu">
           {/* Toggle Langue */}
           <ToggleLang lang={lang} content={production.content} />
@@ -118,7 +118,7 @@ export default function ProductionDetail({lang, production}) {
           </hgroup>
           {/* Article FR */}
           <div className="article-contenu fr" lang="fr">
-            {production.content && ( production.content.fr && <RawHtml html={production.content.fr} /> )}
+            {production.content && (production.content.fr && <RawHtml html={production.content.fr} />)}
           </div>
 
           {/* Chapô EN */}
@@ -130,13 +130,13 @@ export default function ProductionDetail({lang, production}) {
           </hgroup>
           {/* Article EN */}
           <div className="article-contenu en" lang="en">
-            {production.content && ( production.content.en && <RawHtml html={production.content.en} /> )}
+            {production.content && (production.content.en && <RawHtml html={production.content.en} />)}
           </div>
 
         </article>
 
         <div>
-          {lang === "fr" ? "Personnes liées" + String.fromCharCode(8239) +":"  : "Related people:"}
+          {lang === 'fr' ? 'Personnes liées' + String.fromCharCode(8239) + ':' : 'Related people:'}
           <ul>
             {(production.people || []).map(p => <li key={p.id}>{p.firstName} {p.lastName}</li>)}
           </ul>
@@ -145,7 +145,7 @@ export default function ProductionDetail({lang, production}) {
         <PublicationsAssociees productions={production.productions} related={relatedElements[2]} lang={lang} />
         <ActivitesAssociees activities={production.activities} related={relatedElements[3]} lang={lang} />
         <ActuAssociees actu={production.news} related={relatedElements[4]} lang={lang} />
-        <FichiersAssocies attachments={production.attachments} related={relatedElements[5]} lang={lang}  />   
+        <FichiersAssocies attachments={production.attachments} related={relatedElements[5]} lang={lang} />
       </main>
     </>
   );

@@ -19,10 +19,10 @@ export default function Nav({lang, object = {}, related = []}) {
 		// we shoudl probably use withPrefix instead of '/static/' string
 		// we haev tot ad processed image
 		coverImage = (
-    <div>
-      <img src={object.coverImage.url} alt={object.coverImage.url} />
-      <div className="image-generator" />
-    </div>
+  <div>
+    <img src={object.coverImage.url} alt={object.coverImage.url} />
+    <div className="image-generator" />
+  </div>
 		);
 	}
 

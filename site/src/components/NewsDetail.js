@@ -8,7 +8,7 @@ import ToggleLang from './fragments/pages/ToggleLang.js';
 //import './scss/page_objet.scss';
 import DateNews from './fragments/DateNews.js';
 import TimeNews from './fragments/TimeNews.js';
-import { format as formatDate, getYear, parseISO } from 'date-fns';
+import {format as formatDate, getYear, parseISO} from 'date-fns';
 
 
 import PublicationsAssociees from './fragments/pages/PublicationsAssociees.js';
@@ -86,30 +86,30 @@ export const queryFragment = graphql`
     },
     {
       id: 'membres-associes',
-      exist : ({people}) => Boolean(people),
+      exist: ({people}) => Boolean(people),
       en: 'Related people',
       fr: 'Membres en lien'
     },
     {
       id: 'productions-associes',
-      exist : ({productions}) => Boolean(productions),
+      exist: ({productions}) => Boolean(productions),
       en: 'Related poduction',
       fr: 'Production en liens'
     },
     {
       id: 'activites-associees',
-      exist : ({activities}) => Boolean(activities),
+      exist: ({activities}) => Boolean(activities),
       en: 'Related Activities',
       fr: 'Activités en lien',
     },
     {
       id: 'actu-associees',
-      exist : ({news}) => Boolean(news),
+      exist: ({news}) => Boolean(news),
       en: 'Related news',
       fr: 'Actualités associés'
-    },    {
+    }, {
       id: 'fichiers-associes',
-      exist : ({files}) => Boolean(files),
+      exist: ({files}) => Boolean(files),
       en: 'Related files',
       fr: 'Fichier associés'
     },
@@ -118,17 +118,17 @@ export const queryFragment = graphql`
 export default function NewsDetail({lang, news}) {
 
   //Placeholder
-  news.attachments = [{label: "Faux_files.xml", value: "Faux_files", type: 'XML',},{label: "Faux_files.pdf", value: "Faux_files", type: 'PDF',}];
-  news.productions = [{title: { fr: "Faux", en: "Fake"}, description: { fr: "Fausse", en: "Fake"}, permalink: {en: "Faux permalink en", fr: "Faux permalink fr"}}];
-  news.activities = [{name: "Fausse Activité", baseline: { fr: "Fausse baseline", en: "Fake Baseline"}, permalink: {en: "Faux permalink en", fr: "Faux permalink fr"}}];
-  news.people = [{firstName: "Bob", lastName: "Morane", permalink: {en: "Faux permalink en", fr: "Faux permalink fr"}}];
+  news.attachments = [{label: 'Faux_files.xml', value: 'Faux_files', type: 'XML',}, {label: 'Faux_files.pdf', value: 'Faux_files', type: 'PDF',}];
+  news.productions = [{title: {fr: 'Faux', en: 'Fake'}, description: {fr: 'Fausse', en: 'Fake'}, permalink: {en: 'Faux permalink en', fr: 'Faux permalink fr'}}];
+  news.activities = [{name: 'Fausse Activité', baseline: {fr: 'Fausse baseline', en: 'Fake Baseline'}, permalink: {en: 'Faux permalink en', fr: 'Faux permalink fr'}}];
+  news.people = [{firstName: 'Bob', lastName: 'Morane', permalink: {en: 'Faux permalink en', fr: 'Faux permalink fr'}}];
   console.log(news);
-  
+
   return (
     <>
       <Nav lang={lang} object={news} related={relatedElements} />
       <main id="main-objet">
-        <p className="titre-sticky">{news.title && (lang === "fr" ? news.title.fr : news.title.en ) }</p>
+        <p className="titre-sticky">{news.title && (lang === 'fr' ? news.title.fr : news.title.en) }</p>
         <article id="article-contenu">
           {/* Toggle Langue */}
           <ToggleLang lang={lang} content={news.content} />
@@ -142,7 +142,7 @@ export default function NewsDetail({lang, news}) {
           </hgroup>
           {/* Article FR */}
           <div className="article-contenu fr" lang="fr">
-            {news.content && ( news.content.fr && <RawHtml html={news.content.fr} /> )}
+            {news.content && (news.content.fr && <RawHtml html={news.content.fr} />)}
           </div>
 
           {/* Chapô EN */}
@@ -154,7 +154,7 @@ export default function NewsDetail({lang, news}) {
           </hgroup>
           {/* Article EN */}
           <div className="article-contenu en" lang="en">
-            {news.content && ( news.content.en && <RawHtml html={news.content.en} /> )}
+            {news.content && (news.content.en && <RawHtml html={news.content.en} />)}
           </div>
 
         </article>
@@ -163,7 +163,7 @@ export default function NewsDetail({lang, news}) {
         <MembresAssocies people={news.people} related={relatedElements[1]} lang={lang} />
         <PublicationsAssociees productions={news.productions} related={relatedElements[2]} lang={lang} />
         <ActivitesAssociees activities={news.activities} related={relatedElements[3]} lang={lang} />
-        <FichiersAssocies attachments={news.attachments} related={relatedElements[4]} lang={lang}  />
+        <FichiersAssocies attachments={news.attachments} related={relatedElements[4]} lang={lang} />
       </main>
     </>
   );

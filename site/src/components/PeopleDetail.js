@@ -100,19 +100,19 @@ export const queryFragment = graphql`
     },
     {
       id: 'productions-associes',
-      exist : ({productions}) => Boolean(productions),
+      exist: ({productions}) => Boolean(productions),
       en: 'Related poductions',
       fr: 'Productions en liens'
     },
     {
       id: 'activites-associees',
-      exist : ({activities}) => Boolean(activities),
+      exist: ({activities}) => Boolean(activities),
       en: 'Related Activities',
       fr: 'Activités en lien',
     },
     {
       id: 'actu-associees',
-      exist : ({news}) => Boolean(news),
+      exist: ({news}) => Boolean(news),
       en: 'Related news',
       fr: 'Actualités associés'
     }
@@ -125,11 +125,12 @@ export default function PeopleDetail({lang, person}) {
   const bio = person.bio;
   //const people = null; // is there related people ?
   const productions = person.mainProductions; // Sync mainProd
-  const activities = person.mainActivities;  // Sync mainActivities
+  const activities = person.mainActivities; // Sync mainActivities
 
   // Placeholder
-  if(typeof person.permalink != null){ person.permalink = "fake" };
-
+  if (typeof person.permalink !== null) {
+ person.permalink = 'fake';
+}
 
 
   return (
@@ -138,14 +139,14 @@ export default function PeopleDetail({lang, person}) {
       <main id="main-personne">
         <p className="titre-sticky">
           <Link to="/people">
-            <span>{lang === "fr" ? "L'équipe du Medialab" : "Medialab team"} </span>
+            <span>{lang === 'fr' ? "L'équipe du Medialab" : 'Medialab team'} </span>
           </Link>
           <span className="personne">{person.firstName} {person.lastName}</span>
         </p>
         <article id="biographie">
           <figure>
-            <div className="cache"><span>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/>▓▒░<br/></span></div>
-            <img src={person.coverImage ? person.coverImage.url : Img}   alt={lang === "fr" ? "Photo de profil de " + person.firstName + person.lastName : person.firstName + person.lastName + " profil picture"} />
+            <div className="cache"><span>▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br /></span></div>
+            <img src={person.coverImage ? person.coverImage.url : Img} alt={lang === 'fr' ? 'Photo de profil de ' + person.firstName + person.lastName : person.firstName + person.lastName + ' profil picture'} />
           </figure>
           <header>
 
@@ -157,7 +158,7 @@ export default function PeopleDetail({lang, person}) {
             {person.status && <p data-type="status">{person.status[lang] || ''}</p>}
 
             <div className="contact">
-              <p className="toContact">{lang === "fr" ? "Contact" : "Get in touch "}</p>
+              <p className="toContact">{lang === 'fr' ? 'Contact' : 'Get in touch '}</p>
               <ul>
                 {person.contacts && person.contacts.map((contact, i) => (
                   <li key={i} data-type={contact.label}>
@@ -172,13 +173,13 @@ export default function PeopleDetail({lang, person}) {
           </header>
 
           <div className="biographie-contenu">
-            {person.bio && (lang === "fr" ? person.bio.fr && <RawHtml html={bio.fr} />  : person.bio.en && <RawHtml html={bio.en} />)}
+            {person.bio && (lang === 'fr' ? person.bio.fr && <RawHtml html={bio.fr} /> : person.bio.en && <RawHtml html={bio.en} />)}
           </div>
         </article>
         {/*<Highlight highlight={person.mainProductions} lang={lang}/>*/}
-        <Highlight2 highlight={person.mainProductions} lang={lang}/>
+        <Highlight2 highlight={person.mainProductions} lang={lang} />
         <p style={{color: 'pink'}} >Alternative Highlight ↓ </p>
-        <Highlight3 highlight={person.mainProductions} lang={lang}/>
+        <Highlight3 highlight={person.mainProductions} lang={lang} />
 
         <PublicationsAssociees productions={person.productions} related={relatedElements[1]} lang={lang} />
         <ActivitesAssociees activities={person.activities} related={relatedElements[2]} lang={lang} />

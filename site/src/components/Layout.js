@@ -27,7 +27,7 @@ const Layout = ({children, lang, className, permalinks}) => {
             <body className={className} />
           </Helmet>
           <TopBar lang={lang} permalinks={permalinks} />
-            {children}
+          {children}
           <Footer />
         </>
       )} />

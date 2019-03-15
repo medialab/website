@@ -11,16 +11,16 @@ export function join(children, string) {
   return result;
 }
 
-export function templateMembership(person){
+export function templateMembership(person) {
   const isMember = person.membership === 'member';
   // active = boolean
 
-  if (isMember){
+  if (isMember) {
     if (!person.active)
       return 'Ancien membre';
   }
-  else{
-    if(person.active)
+  else {
+    if (person.active)
       return 'Membre associé';
     else
       return 'Ancien membre associé';
@@ -29,40 +29,41 @@ export function templateMembership(person){
   return ''; // membre actif
 }
 
-export function PlaceHolder(data){
- 
+export function PlaceHolder(data) {
+
   //if(typeof data.attachments != null){ data.attachments.push(attchmts); console.log(data.attachments); };
   //if(typeof data && data !== "undefined"){ return (data.label = "Faux_files.pdf", data.value = "Faux_file",  data.type = "fake") };
 
 }
 
 
-
-
-export function IsModel (item, lang){
+export function IsModel (item, lang) {
   let type;
 
-  if(item === "activities") {
-    if(lang === "fr") {
-      type = "Activités";
-    } else {
-      type = "Activities";
+  if (item === 'activities') {
+    if (lang === 'fr') {
+      type = 'Activités';
+    }
+ else {
+      type = 'Activities';
     }
   }
-  if(item === "productions") {
-    type = "Productions";
+  if (item === 'productions') {
+    type = 'Productions';
   }
-  if(item === "news") {
-    if(lang === "fr") {
-      type = "Actualités";
-    } else {
-      type = "News";
+  if (item === 'news') {
+    if (lang === 'fr') {
+      type = 'Actualités';
+    }
+ else {
+      type = 'News';
     }
   }
-  if(item === "people") {
-    if(lang === "fr") {
+  if (item === 'people') {
+    if (lang === 'fr') {
       type = "L'equipe";
-    } else {
+    }
+ else {
       type = "Medialab's Team";
     }
   }

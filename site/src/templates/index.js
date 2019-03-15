@@ -191,7 +191,9 @@ const IndexPage = ({data, pageContext}) => {
       lang={pageContext.lang}
       className="page-home"
       permalinks={pageContext.permalinks}>
-      <Home lang={pageContext.lang} grid={grid} slider={slider} rdv={rdv} />
+      <Home
+        lang={pageContext.lang} grid={grid} slider={slider}
+        rdv={rdv} />
     </Layout>
   );
 };

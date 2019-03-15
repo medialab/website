@@ -33,7 +33,7 @@ const relatedElements = () => {
     fr: 'Fichier associés'
   },
   ];
-)*/}
+)*/};
 
 
 export default relatedElements;

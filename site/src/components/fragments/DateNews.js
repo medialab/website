@@ -5,7 +5,7 @@ import {en, fr} from 'date-fns/locale';
 function DateNews(props) {
 
   const startDate = props.startDate;
-  const startDateString = startDate.toString()
+  const startDateString = startDate.toString();
   const endDate = props.endDate;
   const lang = props.lang;
 
@@ -35,18 +35,18 @@ function DateNews(props) {
               }
               else {
                   // different month
-                  dateNews = <p className="date-news differentMonth"><span className="startDate" >{startDateDayMonth} </span><span className="endDate">{iconBetween} {endDateFormat} <span className="year">{endDateYear}</span></span></p> ;
+                  dateNews = <p className="date-news differentMonth"><span className="startDate" >{startDateDayMonth} </span><span className="endDate">{iconBetween} {endDateFormat} <span className="year">{endDateYear}</span></span></p>;
               }
           }
           else {
               // different year
-              dateNews = <p className="date-news differentYear"><span className="startDate" >{startDateFormat} <span className="year">{startDateYear}</span></span><span className="endDate" >{iconBetween} {endDateFormat} <span className="year">{endDateYear}</span></span></p> ;
+              dateNews = <p className="date-news differentYear"><span className="startDate" >{startDateFormat} <span className="year">{startDateYear}</span></span><span className="endDate" >{iconBetween} {endDateFormat} <span className="year">{endDateYear}</span></span></p>;
           }
       }
   }
   else {
-      dateNews = <p className="date-news"><span className="startDate"><span className="day-name">{startDateDayName}</span> {startDateFormat} <span className="year">{startDateYear}</span></span></p>  
-      // dateNews = <p className="date-news"><span className="startDate"> {formatDate(startDateFormat, 'dd MMMM yyyy', en)}</span></p>     
+      dateNews = <p className="date-news"><span className="startDate"><span className="day-name">{startDateDayName}</span> {startDateFormat} <span className="year">{startDateYear}</span></span></p>;
+      // dateNews = <p className="date-news"><span className="startDate"> {formatDate(startDateFormat, 'dd MMMM yyyy', en)}</span></p>
   }
   return dateNews;
 }

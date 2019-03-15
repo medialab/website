@@ -2,22 +2,23 @@ import React from 'react';
 import {Link} from 'gatsby';
 
 
-const ActuAssociees = ({ lang, related, actu }) => {
+const ActuAssociees = ({lang, related, actu}) => {
 
   // Si aucune activitée liée, retourne null
   if (!actu || actu.length === 0)
     return null;
 
   let accroche;
-  if (lang === "fr") {
-      accroche =  related.fr + String.fromCharCode(8239) +":";
-  } else {
-      accroche = related.en + ":";
+  if (lang === 'fr') {
+      accroche = related.fr + String.fromCharCode(8239) + ':';
+  }
+ else {
+      accroche = related.en + ':';
   }
 
   return (
     <aside className="container elements-associes-block" id="actu-associees">
-      <h1><span data-icon="actualités"></span> {accroche} </h1>
+      <h1><span data-icon="actualités" /> {accroche} </h1>
 
       <div className="contenu">
         <ul className="liste_objet">
@@ -32,46 +33,46 @@ const ActuAssociees = ({ lang, related, actu }) => {
           ))*/}
           {/* Test */}
 
-            <li  data-type="activite" className="item">
-              <Link to="">
-                <h1 data-level-="title">Title</h1>
-                <h2 data-level-="description">description</h2>
-                <p className="type">News</p>
-                <p className="date-news">22 janvier 2019</p>
-              </Link>
-              <Link to="" className="complement">
-                <h2 data-level-="description"><span></span>Nuit de Folie</h2>
-              </Link>       
-            </li>
+          <li data-type="activite" className="item">
+            <Link to="">
+              <h1 data-level-="title">Title</h1>
+              <h2 data-level-="description">description</h2>
+              <p className="type">News</p>
+              <p className="date-news">22 janvier 2019</p>
+            </Link>
+            <Link to="" className="complement">
+              <h2 data-level-="description"><span />Nuit de Folie</h2>
+            </Link>
+          </li>
 
-            <li  data-type="activite" className="item">
-              <Link to="">
-                <h1 data-level-="title">Title</h1>
-                <h2 data-level-="description">description</h2>
-                <p className="type">News</p>
-                <p className="date-news differentMonth">29 ⇥ 30 janvier 2019</p>
-              </Link>
-              <Link to="" className="complement">
-                <h2 data-level-="description"><span></span>Nuit de Folie</h2>
-              </Link>  
-            </li>
+          <li data-type="activite" className="item">
+            <Link to="">
+              <h1 data-level-="title">Title</h1>
+              <h2 data-level-="description">description</h2>
+              <p className="type">News</p>
+              <p className="date-news differentMonth">29 ⇥ 30 janvier 2019</p>
+            </Link>
+            <Link to="" className="complement">
+              <h2 data-level-="description"><span />Nuit de Folie</h2>
+            </Link>
+          </li>
 
-            <li  data-type="activite" className="item">
-              <Link to="">
-                <h1 data-level-="title">Title</h1>
-                <h2 data-level-="description">description</h2>
-                <p className="type">News</p>
-                <p className="date-news">16 Mars 2019</p>
-              </Link>
-              <Link to="" className="complement">
-                <h2 data-level-="description"><span></span>Nuit de Folie</h2>
-              </Link>  
-            </li>
+          <li data-type="activite" className="item">
+            <Link to="">
+              <h1 data-level-="title">Title</h1>
+              <h2 data-level-="description">description</h2>
+              <p className="type">News</p>
+              <p className="date-news">16 Mars 2019</p>
+            </Link>
+            <Link to="" className="complement">
+              <h2 data-level-="description"><span />Nuit de Folie</h2>
+            </Link>
+          </li>
 
         </ul>
       </div>
     </aside>
-  )
-}
+  );
+};
 
 export default ActuAssociees;

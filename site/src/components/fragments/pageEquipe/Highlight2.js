@@ -60,7 +60,7 @@ yèu!                                        {item.model === "activities" &&
                     )} */}
 
             <ul className="Hprod" data-type="productions">
-              <li className="title"><h1 className="type">Productions majeurs</h1></li>
+              <li className="title"><h1 className="type">Productions majeures</h1></li>
               <li className="text" data-item="1">
                 <h2>Gaia 2.0 - Could humans add some level of self-awareness to Earth’s self-regulation?</h2>
                 <h3>Gaia</h3>

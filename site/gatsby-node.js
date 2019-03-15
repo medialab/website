@@ -198,6 +198,10 @@ const MODEL_READERS = {
       if (node)
         deleteNode({node});
 
+      // NOTE: renaming our `internal` prop because Gatsby does not like this very much...
+      news.isInternal = news.internal;
+      delete news.internal;
+
       // Processing HTML
       const content = template(pathPrefix, news.content);
 

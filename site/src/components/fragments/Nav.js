@@ -29,9 +29,9 @@ export default function Nav({lang, object = {}, related = []}) {
 	return (
   <nav id="nav-inside-article">
     <div className="nav-inside-item" data-type="main-article">
-      <Link to="#topbar">
+      <a href="#topbar">
         <Logo />
-      </Link>
+      </a>
     </div>
     <div className="nav-inside-item" id="img-article">
       {coverImage}

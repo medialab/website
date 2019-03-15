@@ -97,6 +97,16 @@ export const queryFragment = graphql`
         en
         fr
       }
+      type
+      description {
+        en
+        fr
+      }
+      permalink {
+        en
+        fr
+      }
+      startDate
     }
     productions {
       title {
@@ -151,15 +161,8 @@ export default function PeopleDetail({lang, person}) {
   console.log(lang, person);
 
   const bio = person.bio;
-  //const people = null; // is there related people ?
   const productions = person.mainProductions; // Sync mainProd
   const activities = person.mainActivities; // Sync mainActivities
-
-  // Placeholder
-  if (typeof person.permalink !== null) {
- person.permalink = 'fake';
-}
-
 
   return (
     <>
@@ -211,11 +214,8 @@ export default function PeopleDetail({lang, person}) {
 
         <ProductionsAssociees productions={person.productions} related={relatedElements[1]} lang={lang} />
         <ActivitesAssociees activities={person.activities} related={relatedElements[2]} lang={lang} />
-        <ActuAssociees actu={person.activities} related={relatedElements[3]} lang={lang} />
+        <ActuAssociees actu={person.news} related={relatedElements[3]} lang={lang} />
       </main>
     </>
   );
 }
-
-/* { contact.label + String.fromCharCode(8239) + ":"} <Link to={contact.value}>{contact.value}</Link>
-*/

@@ -4,16 +4,16 @@ import {Link} from 'gatsby';
 
 const ActuAssociees = ({lang, related, actu}) => {
 
-  // Si aucune activitée liée, retourne null
+  // Si aucune actu liée, retourne null
   if (!actu || actu.length === 0)
     return null;
 
   let accroche;
   if (lang === 'fr') {
-      accroche = related.fr + String.fromCharCode(8239) + ':';
+    accroche = related.fr + String.fromCharCode(8239) + ':';
   }
- else {
-      accroche = related.en + ':';
+  else {
+    accroche = related.en + ':';
   }
 
   return (
@@ -22,6 +22,16 @@ const ActuAssociees = ({lang, related, actu}) => {
 
       <div className="contenu">
         <ul className="liste_objet">
+          {actu.map(n => (
+            <li key={n.permalink.fr} data-type="activite" className="item">
+              <Link to={n.permalink[lang]}>
+                <h1 data-level-2="title">{n.title[lang] || n.title.fr || n.title.en}</h1>
+                <h2 data-level-2="description">{n.description && (n.description[lang] || n.description.fr || n.description.en)}</h2>
+                <p className="type">{n.type}</p>
+                <p className="date-news">{n.startDate}</p>
+              </Link>
+            </li>
+          ))}
           {/*actu.map(a => (
             <li key={a.id} data-type="activite" className="item">
               <Link to={a.permalink[lang]}>

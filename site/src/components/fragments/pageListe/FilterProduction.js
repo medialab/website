@@ -103,7 +103,7 @@ const FilterProduction = ({lang, group, types}) => {
 
     <input
       type="radio" id="radio_filtre-production_type" name="radio_filtre-production"
-      value="type" checked hidden />
+      value="type" defaultChecked hidden />
     <label htmlFor="radio_filtre-production_type">{type} <span>〉</span></label>
 
     <input

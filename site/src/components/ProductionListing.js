@@ -53,14 +53,14 @@ export default function ProductionListing({lang, list, group, types}) {
             si lien de page = productions/situations, renvoie uniquement les p.groupLabel = situations
             si lien de page = productions/media, renvoie uniquement les p.groupLabel = media */
             Array.from(yearGroups.entries()).sort(byYear).map(([year, yearList]) => (
-              <>
+              <React.Fragment key={year}>
                 <li id={year === 2008 ? 'years-before-2009' : `year-${year}`} className="list-year">
                   <span>{year}</span>
                   <pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
                 </li>
 
-                {yearList.map((p) => (
-                  <>
+                {yearList.map((p, i) => (
+                  <React.Fragment key={i}>
                     <li data-item={nbItem} data-type={p.type} className={`list-item ${p.type}`}>
                       <Link to={p.permalink[lang]}>
                         <h1 data-level-1="title">{lang === 'fr' ? p.title.fr : p.title.en}</h1>
@@ -78,9 +78,9 @@ export default function ProductionListing({lang, list, group, types}) {
                         <RawHTML html={lang === 'fr' ? p.description.fr : p.description.en} />
                       </Link>
                     </li>
-                  </>
+                  </React.Fragment>
                 ))}
-              </>
+              </React.Fragment>
             ))}
             <li className="item_accroche accroche-titre">Description en une phrase de la catégorie Production</li>
           </ul>

@@ -4,7 +4,6 @@ import {Link} from 'gatsby';
 import FilterProduction from './fragments/pageListe/FilterProduction.js';
 import RawHTML from './RawHtml.js';
 import {format as formatDate, getYear, parseISO} from 'date-fns';
-import {en, fr} from 'date-fns/locale';
 
 /* import {templateMembership} from './helpers.js';  */
 //import './scss/page_liste.scss';

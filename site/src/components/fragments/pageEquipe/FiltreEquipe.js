@@ -16,7 +16,7 @@ const FiltreEquipe = () => {
 
     <input
       type="checkbox" id="filtre_statut_actif" name="filtre_statut_actif"
-      value="statut_actif" hidden checked />
+      value="statut_actif" hidden defaultChecked />
     <label className="filtre_equipe filtre_statut checkbox-medialab checkbox-parent-medialab" htmlFor="filtre_statut_actif">Actives</label>
 
     <input

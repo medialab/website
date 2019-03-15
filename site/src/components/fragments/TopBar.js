@@ -76,9 +76,9 @@ if (lang === 'en') {
 
       <nav id="nav-option">
         <ul id="nav-home">
-          <li><Link to="#now">{ now }</Link></li>
-          <li><Link to="#agenda">{ agenda }</Link></li>
-          <li><Link to="#flux">{ flux }</Link></li>
+          <li><a href="#now">{now}</a></li>
+          <li><a href="#agenda">{agenda}</a></li>
+          <li><a href="#flux">{flux}</a></li>
         </ul>
         <ul id="nav-objet">
 

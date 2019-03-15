@@ -12,9 +12,9 @@ const Footer = () => {
     </div>
     <div className="contact">
       <ul>
-        <li><Link to="mailto:contact@medialab.sciencespo.fr">Mail</Link></li>
-        <li><Link to="https://twitter.com/medialab_scpo">Tweet</Link></li>
-        <li><Link to="https://github.com/medialab">Git</Link></li>
+        <li><a href="mailto:contact@medialab.sciencespo.fr">Mail</a></li>
+        <li><a href="https://twitter.com/medialab_scpo">Tweet</a></li>
+        <li><a href="https://github.com/medialab">Git</a></li>
       </ul>
     </div>
   </footer>

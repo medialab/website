@@ -52,10 +52,10 @@ const Slideshow = ({slider, lang}) => {
 					<article className="transition" data-type={slide.model}>
 						<Link to={slide.data.permalink[lang]}>
 							<div className="image-pre">
-								<ProcessedImage size="large" image="" />
+								<ProcessedImage size="large" image={slide.data.coverImage && slide.data.coverImage.processed.large} />
 							</div>
 							<div className="image-pre-phone">
-								<ProcessedImage size="medium" image=""  />
+								<ProcessedImage size="medium" image={slide.data.coverImage && slide.data.coverImage.processed.medium}  />
 							</div>
 						</Link>
 						<div className="contenu-slide">

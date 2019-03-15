@@ -25,7 +25,7 @@ export default function Now({now, lang}) {
 				<Link to={item.data.permalink[lang]}>
 					<p className="type" data-type={item.model}>{IsModel(item.model, lang)}</p>
 					<div className="image-pre">
-							<ProcessedImage size="medium" image="" />
+							<ProcessedImage size="medium" image={item.data.coverImage && item.data.coverImage.processed.medium} />
 					</div>
 						<hgroup>
 

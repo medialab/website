@@ -1,3 +1,6 @@
+// Hauteur d'un item
+$Hunite: $unite*5;
+
 #highlight2{
     width: 100%;
     overflow: hidden;
@@ -9,7 +12,7 @@
         position: relative;
         width: 100%;
         margin: $unite*2 0 $unite*2 0;
-        
+
         // General
         ul{
             display: inline-block;
@@ -34,11 +37,9 @@
 
             li.text{
                 border-bottom: $border-very-light;
-                height: $unite*5;
+                height: $Hunite;
                 width: 100%;
                 background-color: $background-site;
-
-                //@include text-overflow;
 
                 h2{ @include font-size-20(); }
                 h3, .time{ @include font-size-13(); }
@@ -51,20 +52,17 @@
                 &[data-item="1"]{ margin-top: $unite;}
             } 
         }  
-
-        ul:first-of-type{
-                    
-        }
-
-        ul:last-of-type{
-
-        }
     }
 }
 @include for-size(desktop) {
     #highlight2{
+        
+               .contenu{
+            @supports(display: flex){
+                @include flex;
+                @include flex-direction(row);
+            }
 
-        .contenu{
             &:hover{
                 ul{ 
                     //transition: .5s cubic-bezier(.77,0,.18,1);
@@ -82,6 +80,20 @@
             
             // General
             ul{
+                @supports(display: flex){
+                    @include flex;
+                    @include flex-direction(column);
+                    @include align-items(stretch);
+                }
+
+                min-height: $Hunite*2;
+
+                li.text{
+
+                    *{
+                        max-width: 90%;
+                    }
+                }
                 li.accroche{
                     width: $unite*2;
                     height: 100%;
@@ -106,7 +118,7 @@
                     //transition-property: left, right, transform, padding, margin;
                     
                     li.title, li.text{
-                        width: 50%;                
+                        width: calc(50%);                
                     }
                   
                     li.accroche{ 
@@ -220,7 +232,7 @@
 
                 & + ul{ margin-top: $unite*4; }
             }
-            
+
             &:hover{
                 ul{ 
                     //transition: .5s cubic-bezier(.77,0,.18,1);

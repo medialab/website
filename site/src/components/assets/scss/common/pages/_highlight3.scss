@@ -1,4 +1,5 @@
-
+// Hauteur d'un item
+$Hunite: $unite*5;
 
 #highlight3{
     width: 100%;
@@ -51,73 +52,123 @@
             ul{
             
             width: 100%;
+            
 
                 li{
                     
                     width: 100%;
                     background: $background-site;
                     text-align: left;
-                    height: 100px;
+                    height: $Hunite;
                     margin: $baseline*2 0;
-
+                    transition: .25s cubic-bezier(.77,0,.18,1);
+               
+                div:not(.image-pre) {
+                    width: 75%;
                     @include flex();
                     @include flex-direction(row);
                     //@include align-items(baseline);
+                    background: $background-site;
+                    z-index: 2;
 
-                    .numero{
-                        @include font-size-13();
-                        font-weight: 100;
-                        text-align: right;
-                        height: $unite;
-                        width: $unite;
-                        margin: 0 $unite 0 0;
-                        top: $unite/2;
-                        //color: $text-color-light;
+                        .numero{
+                            @include font-size-13();
+                            @include flex-grow(0);
+                            @include flex-shrink(1);
+                            @include flex-basis($unite); 
 
-                        flex: 1 1 20px;
-                        @include align-self(center);
+                            @include align-self(first baseline);
+                            @include justify-content(center);
 
+                        }
+
+                        .embleme{
+                            @include font-size-80();
+                            width: 70px;
+
+                            @include flex-grow(1);
+                            @include flex-shrink(1);
+                            @include flex-basis(20px); 
+                            z-index: 1;
+
+                        }
+
+                        .type{
+                            @include font-size-80();
+
+                            @include flex-grow(1);
+                            @include flex-shrink(1);
+                            @include flex-basis(40px); 
+                            z-index: 1;
+
+                        }
+
+
+                        h2{
+                            @include font-size-27();
+                            font-weight: bold;
+                            padding: $baseline $unite;
+                            @include align-self(baseline);
+
+                            @include flex-grow(2);
+                            @include flex-shrink(0);
+                            @include flex-basis(50%);
+                            z-index: 1;                       
+                        }
+
+                        h3{
+                            flex: 1 9 25%;
+                            @include font-size-20();
+                            padding: $baseline $unite;
+                            @include align-self(baseline);
+                            z-index: 1;
+
+                            @include flex-grow(1);
+                            @include flex-shrink(9);
+                            @include flex-basis(25%);                         
+                        }
                     }
-
-                    .embleme{
-                        @include font-size-80();
-                        width: 70px;
-
-                        flex: 1 1 20px;
-
-
-                    }
-
-                    .type{
-                        @include font-size-80();
-                        @include flex();
-                        margin: 0 $unite 0 0;
-                        min-width: 10%;
-                        top: 5px;
-                    }
-
-
-                    h2{
-                        flex: 2 0 50%;
-                        @include font-size-27();
-                        font-weight: bold;
-                        padding: $baseline $unite;
-                        @include align-self(baseline);
-                    }
-
-                    h3{
-                        flex: 1 9 25%;
-                        @include font-size-20();
-                        padding: $baseline $unite;
-                        @include align-self(baseline);
-                    }
-
 
                     .image-pre{
-                        flex: 1 3 25%;
-                        @include font-size-80();
-                        line-height: 90px;
+                        @include font-size-27();
+                        line-height: 30px;
                         overflow: hidden;
+                        width: 25%;
+                        height: 100%;
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+
+                        z-index:1;                       
+
+                        .complement{
+                            position: absolute;
+                            top: $Hunite;
+                            margin: $unite;
+                            padding: $baseline $unite/2;
+                            display: block;
+                            max-width: 75%;
+
+                            background: $background-site;
+
+                            [data-type="description"]{ @include font-size-20;}
+                            [data-type="time"]{ @include font-size-13; color: $text-color-light; }
+
+                        }
+                        pre{
+                            float: right;
+                        }                       
+                    }
+
+                    &:hover{
+                        height: $Hunite*4;
+                        transition: .5s cubic-bezier(.77,0,.18,1);
+
+                        
+                        .image-pre{
+                            width: 100%;
+
+                        }
                     }
                 } 
             }

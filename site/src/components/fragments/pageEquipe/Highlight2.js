@@ -59,7 +59,7 @@ yèu!                                        {item.model === "activities" &&
 
                     )} */}
 
-                    <ul className="Hprod" data-type="productions">
+                    <ul className="Hprod" data-type="productions" >
                         <li className="title"><h1 className="type">Productions majeurs</h1></li>
                         <li className="text" data-item="1">
                             <h2>Gaia 2.0 - Could humans add some level of self-awareness to Earth’s self-regulation?</h2>
@@ -83,28 +83,18 @@ yèu!                                        {item.model === "activities" &&
                                 <ProcessedImage size="medium" image=""  />
                             </div>
                         </li>
-                        <li className="text" data-item="1">
+                        <li className="text" data-item="3">
                             <h2>Gaia 2.0 - Could humans add some level of self-awareness to Earth’s self-regulation?</h2>
                             <h3>Gaia</h3>
                             <p class="more"><a href="#">En savoir plus</a></p>
                         </li>
-                        <li className="accroche" data-item-accroche="1">
+                        <li className="accroche" data-item-accroche="3">
                             <p data-type="description">Ces sujets de recherche sur l’analyse exploratoire de données complexes, l’usage du web comme terrain d’enquête et l’hybridation de la narration et de la visualisation de données dans la publication académique.</p>
                             <div class="image-pre">
                                 <ProcessedImage size="medium" image=""  />
                             </div>
                         </li>
-                        <li className="text" data-item="2">
-                            <h2>Une description un peu plus longue</h2>
-                            <h3>Machines à prédire</h3>
-                            <p class="more"><a href="#">En savoir plus</a></p>
-                        </li>
-                        <li className="accroche" data-item-accroche="2">
-                            <p data-type="description">L’analyse exploratoire de données complexes, l’usage du web comme terrain d’enquête et l’hybridation de la narration et de la visualisation de données dans la publication académique.</p>
-                            <div class="image-pre">
-                                <ProcessedImage size="medium" image=""  />
-                            </div>
-                        </li>                                                                
+                                                                
                     </ul>
                     <ul className="Hactivites" data-type="activities">
                         <li className="title"><h1 className="type">Activités majeures</h1></li>

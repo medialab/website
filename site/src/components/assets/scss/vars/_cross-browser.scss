@@ -23,23 +23,37 @@
     order: $value;                       /* NEW, Spec - Opera 12.1, Firefox 20+ */
 }
 
-@mixin flex-grow($value) {
-    -webkit-flex-grow: $value;   /* Safari  */
-    flex-grow: $value;
-    -ms-flex-positive: $value;
+// Flex grow factor
+// - applies to: flex items
+// <number>
+@mixin flex-grow($grow) {
+  -webkit-flex-grow: $grow;
+     -moz-flex-grow: $grow;
+      -ms-flex-grow: $grow;
+          flex-grow: $grow;
 }
 
-@mixin flex-shrink($value) {
-    -webkit-flex-shrink: $value;   /* Safari  */
-    flex-shrink: $value;
-    -ms-flex-shrink: $value;
+// Flex shrink
+// - applies to: flex item shrink factor
+// <number> 
+@mixin flex-shrink($shrink) {
+  -webkit-flex-shrink: $shrink;
+     -moz-flex-shrink: $shrink;
+      -ms-flex-shrink: $shrink;
+          flex-shrink: $shrink;
 }
 
-@mixin flex-basis($value) {
-    -webkit-flex-basis: $value;   /* Safari  */
-    flex-basis: $value;
-    -ms-flex-basis: $value;
+// Flex basis
+// - the initial main size of the flex item
+// - applies to: flex itemsnitial main size of the flex item
+// <width> 
+@mixin flex-basis($width) {
+  -webkit-flex-basis: $width;
+     -moz-flex-basis: $width;
+      -ms-flex-basis: $width;
+          flex-basis: $width;
 }
+
 
 @mixin flex-direction($value: row) {
 	@if $value == row-reverse {

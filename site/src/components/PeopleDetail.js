@@ -138,21 +138,21 @@ export const queryFragment = graphql`
     },
     {
       id: 'productions-associes',
-      exist: ({productions}) => Boolean(productions),
+      exist: ({productions}) => Boolean(productions) && productions.length > 0,
       en: 'Related poductions',
       fr: 'Productions en liens'
     },
     {
       id: 'activites-associees',
-      exist: ({activities}) => Boolean(activities),
+      exist: ({activities}) => Boolean(activities) && activities.length > 0,
       en: 'Related Activities',
       fr: 'Activités en lien',
     },
     {
       id: 'actu-associees',
-      exist: ({news}) => Boolean(news),
+      exist: ({news}) => Boolean(news) && news.length > 0,
       en: 'Related news',
-      fr: 'Actualités associés'
+      fr: 'Actualités associées'
     }
   ];
 

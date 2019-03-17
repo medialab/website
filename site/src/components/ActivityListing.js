@@ -27,7 +27,7 @@ export default function ActivityListing({lang, list}) {
           <p className="accroche-titre-phone">{accroche}</p>
           <ul className="liste_objet" id="liste-activity">
             {list.map((a, index) => (
-              <>
+              <React.Fragment key={index}>
                 <li data-item={index} data-type={a.type} className={`list-item ${a.type}`}>
                   <Link to={a.permalink[lang]}>
                     <h1 data-level-1="baseline">{a.baseline && (lang === 'fr' ? a.baseline.fr : a.baseline.en)}</h1>
@@ -43,7 +43,7 @@ export default function ActivityListing({lang, list}) {
                     <RawHTML html={lang === 'fr' ? a.description.fr : a.description.en} />}
                   </Link>
                 </li>
-              </>
+              </React.Fragment>
             ))}
             <li className="item_accroche accroche-titre">Description en une phrase de la catégorie.</li>
           </ul>

@@ -38,12 +38,18 @@ export const queryFragment = graphql`
       fr
     }
     people {
-      id
       firstName
       lastName
+      role {
+        en
+        fr
+      }
       permalink {
         en
         fr
+      }
+      coverImage {
+        url
       }
     }
     activities {
@@ -73,7 +79,7 @@ export const queryFragment = graphql`
 `;
 
   const relatedElements = [
-      {
+    {
       id: 'main-objet',
       en: 'Main article',
       fr: 'Article principal',
@@ -86,25 +92,25 @@ export const queryFragment = graphql`
     },*/
     {
       id: 'activites-associees',
-      exist: ({activities}) => Boolean(activities),
+      exist: ({activities}) => Boolean(activities) && activities.length > 0,
       en: 'Related Activities',
       fr: 'Activités en lien',
     },
     {
       id: 'membres-associes',
-      exist: ({people}) => Boolean(people),
+      exist: ({people}) => Boolean(people) && people.length > 0,
       en: 'Related people',
       fr: 'Membres en lien'
     },
     {
       id: 'actu-associees',
-      exist: ({news}) => Boolean(news),
+      exist: ({news}) => Boolean(news) && news.length > 0,
       en: 'Related news',
-      fr: 'Actualités associés'
+      fr: 'Actualités associées'
     },
     {
       id: 'fichiers-associes',
-      exist: ({attachments}) => Boolean(attachments),
+      exist: ({attachments}) => Boolean(attachments) && attachments.length > 0,
       en: 'Related files',
       fr: 'Fichier associés'
     }
@@ -160,7 +166,7 @@ export default function ActivityDetail({lang, activity}) {
         </div>
 
       </article>
-      <MembresAssocies people={activity.people} related={relatedElements[1]} lang={lang} />
+      <MembresAssocies people={activity.people} related={relatedElements[2]} lang={lang} />
       <ProductionsAssociees productions={activity.productions} related={relatedElements[2]} lang={lang} />
       <ActivitesAssociees activities={activity.activities} related={relatedElements[3]} lang={lang} />
       <FichiersAssocies attachments={activity.attachments} related={relatedElements[4]} lang={lang} />

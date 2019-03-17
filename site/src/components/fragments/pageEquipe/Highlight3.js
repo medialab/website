@@ -81,7 +81,7 @@ export default function Highlight2({highlight, lang}) {
 
                     {/* TEST */}
 
-                    <h1 className="type">Productions majeurs</h1>
+                    <h1 className="type">Productions majeures</h1>
                     <ul className="Hprod" data-type="productions">
                         <li className="text" data-item="1">
                             <div>

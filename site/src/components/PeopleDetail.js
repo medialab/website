@@ -208,8 +208,7 @@ export default function PeopleDetail({lang, person}) {
           </div>
         </article>
         {/*<Highlight highlight={person.mainProductions} lang={lang}/>*/}
-        <Highlight2 highlight={person.mainProductions} lang={lang} />
-        <p style={{color: 'pink'}} >Alternative Highlight ↓ </p>
+        {/*<Highlight2 highlight={person.mainProductions} lang={lang} />*/}
         <Highlight3 highlight={person.mainProductions} lang={lang} />
 
         <ProductionsAssociees productions={person.productions} related={relatedElements[1]} lang={lang} />

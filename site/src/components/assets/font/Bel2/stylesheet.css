@@ -2,9 +2,21 @@
 	font-family:'Bel';
     src: url('bel2.eot');
     src: url('bel2.eot?#iefix') format('embedded-opentype'),
-         /*url('bel.woff2') format('woff2'),*/
+         url('bel2.woff2') format('woff2'),
          url('bel2.woff') format('woff'),
          url('bel2.ttf') format('truetype');
 	font-weight:normal;
+	font-style:normal;
+}
+
+/* For Small Image */
+@font-face{
+	font-family:'Bel';
+    src: url('bel2-bold.eot');
+    src: url('bel2-bold.eot?#iefix') format('embedded-opentype'),
+         url('bel2-bold.woff2') format('woff2'),
+         url('bel2-bold.woff') format('woff'),
+         url('bel2-bold.ttf') format('truetype');
+	font-weight:bold;
 	font-style:normal;
 }

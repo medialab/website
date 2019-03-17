@@ -5,6 +5,7 @@ import {StaticQuery, graphql} from 'gatsby';
 import TopBar from './fragments/TopBar.js';
 import Footer from './fragments/Footer.js';
 import './assets/scss/global.scss';
+import './assets/font/Bel2/stylesheet.css';
 
 const Layout = ({children, lang, className, permalinks}) => {
 

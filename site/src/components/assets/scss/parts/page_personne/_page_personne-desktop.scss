@@ -64,7 +64,7 @@
 					//@include flex-wrap(wrap);
 					//@include flex-order(1);
 
-					& *{ transition: .5s ease-in-out;} // Manage Responsive
+					& *{ transition: .1s ease-in-out;} // Manage Responsive
 
 					width: 50%;
 					padding-top: $unite*2;

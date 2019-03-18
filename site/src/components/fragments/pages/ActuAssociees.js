@@ -24,17 +24,17 @@ const ActuAssociees = ({lang, related, actu}) => {
         <ul className="liste_objet">
           {actu.map(n => (
             <li key={n.permalink.fr} data-type="activite" className="item">
-              <Link to={n.permalink[lang]}>
+              <Link to={n.permalink[lang]} className="accroche">
                 <h1 data-level-2="title">{n.title[lang] || n.title.fr || n.title.en}</h1>
                 <h2 data-level-2="description">{n.description && (n.description[lang] || n.description.fr || n.description.en)}</h2>
-                <p className="type">{n.type}</p>
                 <p className="date-news">{n.startDate}</p>
+                <p className="type">{n.type}</p>
               </Link>
             </li>
           ))}
           {/*actu.map(a => (
             <li key={a.id} data-type="activite" className="item">
-              <Link to={a.permalink[lang]}>
+              <Link to={a.permalink[lang]} className="accroche">
                 <h1 data-level-="title">{lang === 'fr' ? a.title.fr : a.title.en}</h1>
                 <h2 data-level-="description">{lang === 'fr' ? a.description.fr : a.description.en}</h2>
                 <p className="type">{a.type}</p>
@@ -44,7 +44,7 @@ const ActuAssociees = ({lang, related, actu}) => {
           {/* Test */}
 
           <li data-type="activite" className="item">
-            <Link to="">
+            <Link to="" className="accroche">
               <h1 data-level-="title">Title</h1>
               <h2 data-level-="description">description</h2>
               <p className="type">News</p>
@@ -56,7 +56,7 @@ const ActuAssociees = ({lang, related, actu}) => {
           </li>
 
           <li data-type="activite" className="item">
-            <Link to="">
+            <Link to="" className="accroche">
               <h1 data-level-="title">Title</h1>
               <h2 data-level-="description">description</h2>
               <p className="type">News</p>
@@ -68,7 +68,7 @@ const ActuAssociees = ({lang, related, actu}) => {
           </li>
 
           <li data-type="activite" className="item">
-            <Link to="">
+            <Link to="" className="accroche">
               <h1 data-level-="title">Title</h1>
               <h2 data-level-="description">description</h2>
               <p className="type">News</p>

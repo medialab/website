@@ -21,7 +21,7 @@ const ProductionsAssociees = ({lang, related, productions}) => {
         <ul className="liste_objet">
           {productions.map(p => (
             <li key={p.permalink.fr} data-type="production" className="item">
-              <Link to={p.permalink[lang]}>
+              <Link to={p.permalink[lang]} className="accroche">
                 <h1 data-level-2="title">{p.title[lang] || p.title.fr || p.title.en}</h1>
                 <h2 data-level-2="title">{p.authors}</h2>
                 <p className="type">{p.groupLabel[lang]}</p>

@@ -25,11 +25,11 @@ const ActivitesAssociees = ({lang, related, activities}) => {
         <ul className="liste_objet">
           {activities.map(a => (
             <li key={a.permalink.fr} data-type="activite" className="item">
-              <Link to={a.permalink[lang]}>
+              <Link to={a.permalink[lang]} className="accroche">
                 <h1 data-level-2="baseline">{a.baseline && (a.baseline[lang] || a.baseline.fr || a.baseline.en)}</h1>
                 <h2 data-level-2="name">{a.name}</h2>
-                <p className="type">{a.type}</p>
                 <p className="period">[{a.startDate} - {a.endDate}]</p>
+                <p className="type">{a.type}</p>                
               </Link>
               <a href="" className="complement">
                 <h2 data-level-="description"><span>[{a.startDate} - {a.endDate}]</span>{a.description && (a.description[lang] || a.description.fr || a.description.en)}</h2>

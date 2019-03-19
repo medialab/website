@@ -15,13 +15,12 @@ export default function Nav({lang, object = {}, related = []}) {
 	// Néanmoins la logique serait :  Si et seulement si il existe une Image Générée créer cet élément
 	// Cet élément est composé d'une image lambda et de son corrolaire Image Générée
 	let coverImage = null;
+	console.log(object.coverImage)
 	if (object && object.coverImage) {
-		// we shoudl probably use withPrefix instead of '/static/' string
-		// we haev tot ad processed image
 		coverImage = (
   <div>
     <img src={object.coverImage.url} alt={object.coverImage.url} />
-    <div className="image-generator" />
+    <div className="image-generator">{object.coverImage.processed.small}</div>
   </div>
 		);
 	}

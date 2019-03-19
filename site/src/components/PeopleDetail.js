@@ -34,6 +34,9 @@ export const queryFragment = graphql`
     }
     coverImage {
       url
+      processed {
+        small
+      }
     }
     membership
     active
@@ -160,7 +163,6 @@ export const queryFragment = graphql`
 export default function PeopleDetail({lang, person}) {
   console.log(lang, person);
 
-  const bio = person.bio;
   const productions = person.mainProductions; // Sync mainProd
   const activities = person.mainActivities; // Sync mainActivities
 
@@ -204,7 +206,7 @@ export default function PeopleDetail({lang, person}) {
           </header>
 
           <div className="biographie-contenu">
-            {person.bio && (lang === 'fr' ? person.bio.fr && <RawHtml html={bio.fr} /> : person.bio.en && <RawHtml html={bio.en} />)}
+            {person.bio && person.bio[lang] ? <RawHtml html={person.bio[lang]} /> : null}
           </div>
         </article>
         {/*<Highlight highlight={person.mainProductions} lang={lang}/>*/}

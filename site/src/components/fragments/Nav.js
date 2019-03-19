@@ -20,7 +20,7 @@ export default function Nav({lang, object = {}, related = []}) {
 		coverImage = (
   <div>
     <img src={object.coverImage.url} alt={object.coverImage.url} />
-    <div className="image-generator">{object.coverImage.processed.small}</div>
+    <div className="image-generator">{object.coverImage.processed ? object.coverImage.processed.small : null}</div>
   </div>
 		);
 	}

@@ -41,7 +41,22 @@ export const query = graphql`
 export default ({data, pageContext}) => {
   console.log(data, pageContext);
 
-  const list = data.allNewsJson.edges.map(e => e.node);
+  const list = data.allNewsJson.edges
+    .map(e => e.node)
+    .sort(({startDate:aStart, endDate:aEnd}, {startDate:bStart, endDate:bEnd}) => {
+      if (bEnd && aEnd) {
+        return bEnd.localeCompare(aEnd)
+      }
+      else if (!bEnd && aEnd) {
+        return bStart.localeCompare(aEnd);
+      }
+      else if (bEnd && !aEnd) {
+        return bEnd.localeCompare(aStart);
+      }
+      else {
+        return bStart.localeCompare(aStart);
+      }
+    });
 
   return (
     <Layout

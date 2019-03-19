@@ -1,5 +1,5 @@
 /* all */
-body.page-home{
+.page-home{
     overflow-x: hidden;
     .time::before{
         content: "◷ ";
@@ -12,7 +12,7 @@ body.page-home{
 
 @include for-size(phone) {
 
-    body.page-home { 
+    .page-home { 
         #topbar{
             ul{
                 &#nav-home{
@@ -53,7 +53,7 @@ body.page-home{
 
 @include for-size(desktop) {
     
-    body.page-home{
+    .page-home{
     
         // #nav-home{ display: none; }
 

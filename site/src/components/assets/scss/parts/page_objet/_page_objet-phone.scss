@@ -5,9 +5,9 @@
 
 @include for-size(phone) {
 
-	body.page-production, 
-	body.page-news, 
-	body.page-activity{
+	.page-production, 
+	.page-news, 
+	.page-activity{
 
 		main{
 			margin-left: $margins-phone;

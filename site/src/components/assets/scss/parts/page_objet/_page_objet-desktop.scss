@@ -4,9 +4,9 @@
 
 @include for-size(desktop) {
 
-	body.page-production, 
-	body.page-news, 
-	body.page-activity{
+	.page-production, 
+	.page-news, 
+	.page-activity{
 
 		#topbar{
 	        &:after{

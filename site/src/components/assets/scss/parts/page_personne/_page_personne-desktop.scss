@@ -4,7 +4,7 @@
 
 @include for-size(desktop) {
  
-	body.page-people{
+	.page-people{
 
 		#topbar{ 
 	        &:after{ // Si Titre-Sticky. Topbar herite de la Border-bottom
@@ -160,7 +160,7 @@
 
 @media screen and (min-width: 700px) and (max-width: 1000px) {
 
-	body.page-people #biographie {
+	.page-people #biographie {
 		figure{
 
 		}
@@ -175,7 +175,7 @@
 
 @media screen and (min-width: 1000px) and (max-width: 1080px) {
 
-	body.page-people #biographie header{
+	.page-people #biographie header{
 		h1{@include font-size-27(); padding-bottom: $baseline;}
 		h2{@include font-size-20(); padding-bottom: $baseline;}
 	}
@@ -184,7 +184,7 @@
 
 @media screen and (min-width: 1080px) {
 
-	body.page-people #biographie header{
+	.page-people #biographie header{
 		h1{ @include font-size-40(); padding-bottom: $baseline*1.5; }
 		h2{ @include font-size-20(); padding-bottom: $baseline*1; }
 	}
@@ -195,7 +195,7 @@
 
 @media screen and (min-width: 1000px) {
 
-	body.page-people #biographie{					
+	.page-people #biographie{					
 
 		figure{
 			float: right;
@@ -213,7 +213,7 @@
 
 
 @media screen and (min-width: 1200px) {
-	body.page-people #biographie { 
+	.page-people #biographie { 
 		header{ min-height: 350px; }
 		figure{ width: 500px; }
 	}
@@ -221,7 +221,7 @@
 
 @media screen and (min-width: 1600px) {
 
-	body.page-people #biographie{
+	.page-people #biographie{
 
 		max-width: 1500px;
 
@@ -237,5 +237,5 @@
 }
 
 @media screen and (min-width: 1800px) {
-	body.page-people #biographie figure{ width: 505px; }
+	.page-people #biographie figure{ width: 505px; }
 }

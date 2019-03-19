@@ -15,9 +15,9 @@ a:hover{
 
 
 
-body.page-production, 
-body.page-news, 
-body.page-activity{
+.page-production, 
+.page-news, 
+.page-activity{
 	
 	.titre-sticky{
 		@include text-overflow;

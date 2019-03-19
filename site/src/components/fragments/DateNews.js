@@ -13,7 +13,7 @@ function DateNews(props) {
   let dateNews = null;
   const startDateFormat = formatDate(parseISO(startDate), 'd MMMM', {locale: lang === 'fr' ? fr : en});
   const startDateDay = formatDate(parseISO(startDate), 'd', {locale: lang === 'fr' ? fr : en});
-  const startDateDayName = formatDate(parseISO(startDate), 'dddd', {locale: lang === 'fr' ? fr : en});
+  const startDateDayName = formatDate(parseISO(startDate), 'EEEE', {locale: lang === 'fr' ? fr : en});
   const startDateYear = formatDate(parseISO(startDate), 'yyyy', {locale: lang === 'fr' ? fr : en});
   const startDateDayMonth = formatDate(parseISO(startDate), 'd MMMM', {locale: lang === 'fr' ? fr : en});
 

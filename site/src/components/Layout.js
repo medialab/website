@@ -25,11 +25,12 @@ const Layout = ({children, lang, className, permalinks}) => {
           <Helmet
             title={data.site.siteMetadata.title}>
             <html lang={lang} />
-            <body className={className} />
           </Helmet>
-          <TopBar lang={lang} permalinks={permalinks} />
-          {children}
-          <Footer />
+          <div className={className}>
+            <TopBar lang={lang} permalinks={permalinks} />
+            {children}
+            <Footer />
+          </div>
         </>
       )} />
   );

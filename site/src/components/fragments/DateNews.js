@@ -5,7 +5,6 @@ import * as locales from 'date-fns/locale';
 function DateNews(props) {
 
   const startDate = parseISO(props.startDate);
-  const endDate = parseISO(props.endDate);
   const lang = props.lang;
   const locale = locales[lang];
 
@@ -18,7 +17,8 @@ function DateNews(props) {
 
   const iconBetween = <span className="between">⇥</span>;
 
-  if (endDate) {
+  if (props.endDate) {
+      const endDate = parseISO(props.endDate);
       const endDateFormat = formatDate(endDate, 'd MMMM', {locale});
       const endDateYear = formatDate(endDate, 'yyyy', {locale});
 

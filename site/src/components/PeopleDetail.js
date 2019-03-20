@@ -166,6 +166,43 @@ export default function PeopleDetail({lang, person}) {
   const productions = person.mainProductions; // Sync mainProd
   const activities = person.mainActivities; // Sync mainActivities
 
+  let domaine;
+/*
+  if (person.domain === 'tech' ) {
+    if (lang === 'fr') {
+      domaine = 'Technique';
+    } else {
+      domaine = 'Technical';
+    }
+  }
+  if (person.domain === 'admin' ) {
+    if (lang === 'fr') {
+      domaine = 'Administratif';
+    } else {
+      domaine = 'Administration';
+    }
+  }
+  if (person.domain === 'academic' ) {
+    if (lang === 'fr') {
+      domaine = 'Académique';
+    } else {
+      domaine = 'Academic';
+    }
+  }
+  if (person.domain === 'Design' ) {
+    domaine = "Design";
+  }
+  if (person.domain === 'pedagogy' ) {
+    if (lang === 'fr') {
+      domaine = 'Padagogie';
+    } else {
+      domaine = 'Pedagogy';
+    }
+  }
+  else {
+    domaine = '';
+  }  */
+
   return (
     <>
       <Nav lang={lang} object={person} related={relatedElements} />
@@ -185,7 +222,7 @@ export default function PeopleDetail({lang, person}) {
 
             <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
             <h2 data-level-2="role" data-type="role">{person.role[lang]}</h2>
-            <p data-type="domaine">{person.domain}</p>
+            <p data-type="domaine">{ person.domain }</p>
             <p data-type="membership">{templateMembership(person)}</p>
             {/*<p data-type="status">{person.status && (lang === "fr" ? person.status.fr : person.status.en)}</p>*/}
             {person.status && <p data-type="status">{person.status[lang] || ''}</p>}

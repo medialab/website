@@ -6,7 +6,7 @@ const ROWS = {
   large: 150
 };
 
-const PLACEHOLDER_CHARACTER = '░▒▓▓▒░';
+const PLACEHOLDER_CHARACTERS = '░▒▓▓▒░';
 
 export default function ProcessedImage({image, size}) {
 
@@ -17,9 +17,11 @@ export default function ProcessedImage({image, size}) {
   return (
     <>
       {Array.from(new Array(rows), (_, i) => {
+        const offset = i * rows;
+
         const row = needPlaceholder ?
-          PLACEHOLDER_CHARACTER.repeat(rows / 7) : // Je divise par deux car j'ai ajouté un caractère
-          image.slice(i, i + rows);
+          PLACEHOLDER_CHARACTERS.repeat(rows / PLACEHOLDER_CHARACTERS.length) :
+          image.slice(offset , offset + rows);
 
         return (
           <pre key={i}>{row}</pre>

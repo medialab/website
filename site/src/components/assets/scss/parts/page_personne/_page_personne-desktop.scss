@@ -66,13 +66,13 @@
 
 					& *{ transition: .1s ease-in-out;} // Manage Responsive
 
-					width: 50%;
 					padding-top: $unite*2;
 					margin-bottom: $unite*2;
 
 
 					h1{
-						max-width: 1100px;
+						width: 80%;
+						max-width: 550px;
 						font-weight: bold;
 						display: inline-block;
 						//@include flex-order(1);
@@ -88,14 +88,7 @@
 					p{
 						@include font-size-20();
 					}
-
-					[data-type="domaine"]{
-						position: absolute;
-						right: 0;
-						top: calc(#{$unite*2} + #{$baseline});
-						width: auto;
-						padding-right: 25px;
-					}	
+	
 
 					[data-type="status"]{
 						//@include flex-order(3);
@@ -106,6 +99,7 @@
 					}
 
 					.contact{
+
 						.toContact{  }
 
 						//@include flex-order(4);
@@ -162,8 +156,10 @@
 
 		}
 		header{
-			h1{ @include font-size-27(); padding-bottom: $baseline; }
-			h2{ @include font-size-20(); padding-bottom: $baseline; }
+			width: 100%;
+			h1{ @include font-size-27(); margin-bottom: $baseline; }
+			h2{ @include font-size-20(); margin-bottom: $baseline; }
+			.situation { top: calc(#{$unite*1.75});}
 		}
 		
 	}
@@ -173,8 +169,9 @@
 @media screen and (min-width: 1000px) and (max-width: 1080px) {
 
 	.page-people #biographie header{
-		h1{@include font-size-27(); padding-bottom: $baseline;}
-		h2{@include font-size-20(); padding-bottom: $baseline;}
+		h1{@include font-size-27(); margin-bottom: $baseline;}
+		h2{@include font-size-20(); margin-bottom: $baseline;}
+		.situation { top: calc(#{$unite*1.75});}
 	}
 
 }
@@ -182,8 +179,9 @@
 @media screen and (min-width: 1080px) {
 
 	.page-people #biographie header{
-		h1{ @include font-size-40(); padding-bottom: $baseline*1.5; }
-		h2{ @include font-size-20(); padding-bottom: $baseline*1; }
+		h1{ @include font-size-40(); margin-bottom: $baseline*1.5; }
+		h2{ @include font-size-20(); margin-bottom: $baseline*1; }
+		.situation { top: calc(#{$unite*2} + 3px);}
 	}
 
 }
@@ -193,7 +191,6 @@
 @media screen and (min-width: 1000px) {
 
 	.page-people #biographie{					
-
 		figure{
 			float: right;
 			width: 350px;
@@ -201,8 +198,9 @@
 		}
 
 		header{
-			min-height: 250px; 
-			margin-bottom: $baseline*3;	
+			min-height: 250px;
+			width: 50%;
+			margin-bottom: $baseline*3;
 		}
 	}
 }
@@ -211,9 +209,14 @@
 
 @media screen and (min-width: 1200px) {
 	.page-people #biographie { 
-		header{ min-height: 350px; }
+		header{ 
+			min-height: 350px; 
+			.contact{ position: absolute; bottom: 0; }		
+		}
 		figure{ width: 500px; }
 	}
+
+	.situation{ left: 575px; }
 }
 
 @media screen and (min-width: 1600px) {
@@ -228,7 +231,7 @@
 			padding-bottom: $baseline*1;
 		}
 
-		header{ min-height: auto!important; }
+		header{ /*min-height: auto!important;*/ }
 
 	} 
 }

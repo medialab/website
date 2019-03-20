@@ -26,7 +26,7 @@ export default function Highlight2({highlight, lang}) {
 
                                 (item.data.title &&
                                     <>
-                                        <li className="text" data-item="1"> // Data item a besoin d'un numero unique par liste
+                                        <li data-item="1"> // Data item a besoin d'un numero unique par liste
                                             {lang === "fr" ?
                                                 <h2 data-level-1="title">{item.data.title && item.data.title.fr}</h2> :
                                                 <h2 data-level-1="title">{item.data.title && item.data.title.en}</h2>
@@ -55,7 +55,7 @@ export default function Highlight2({highlight, lang}) {
 
                                 (item.data.title &&
                                     <>
-                                        <li className="text" data-item="1">  //
+                                        <li data-item="1">  //
                                             {lang === "fr" ?
                                                 <h2 data-level-1="baseline">{item.data.baseline && item.data.baseline.fr}</h2> :
                                                 <h2 data-level-1="baseline">{item.data.baseline && item.data.baseline.en}</h2>
@@ -83,51 +83,49 @@ export default function Highlight2({highlight, lang}) {
 
                     <h1 className="type">Productions majeures</h1>
                     <ul className="Hprod" data-type="productions">
-                        <li className="text" data-item="1">
-                            <div>
+                        <li data-item="1">
+                            <div className="texte">
                                 <p data-item="1" className="numero">1</p>
                                 <div class="type"> </div>
-                                <h2>Gaia 2.0 - Could humans add some level of self-awareness to Earth’s self-regulation?</h2>
+                                <Link to="/"><h2>Gaia 2.0 - Could humans add some level of self-awareness to Earth’s self-regulation?</h2></Link>
                                 <h3>Authors</h3>
                             </div>
                             <div className="image-pre">
-                                <div className="complement">
-                                    <p data-type="description">Ces sujets de recherche sur l’analyse exploratoire de données complexes, l’usage du web comme terrain d’enquête et l’hybridation de la narration et de la visualisation de données dans la publication académique.</p>
-                                    <p data-type="time"> 2008 - 2018</p>
-                                </div>
                                 <ProcessedImage size="large" image="" />
+                            </div>
+                            <div className="complement">
+                                <p data-type="description">Ces sujets de recherche sur l’analyse exploratoire de données complexes, l’usage du web comme terrain d’enquête et l’hybridation de la narration et de la visualisation de données dans la publication académique.</p>
+                                <p data-type="time"> 2008 - 2018</p>
                             </div>
                         </li>
-                        <li className="text" data-item="2">
-                            <div>
-                                <p data-item="1" className="numero">1</p>
+                        <li data-item="2">
+                            <div className="texte">
+                                <p data-item="2" className="numero">2</p>
                                 <div class="type"> </div>
-
-                                <h2>Gaia 2.0 - Could humans add some level of self-awareness to Earth’s self-regulation?</h2>
-                                <h3>Authors</h3>
+                                <Link to="/"><h2>Gaia 2.0 - Could humans add some level of self-awareness to Earth’s self-regulation?</h2></Link>
+                                <h3>Authors</h3> 
                             </div>
                             <div className="image-pre">
-                                <div className="complement">
-                                    <p data-type="description">Ces sujets de recherche sur l’analyse exploratoire de données complexes, l’usage du web comme terrain d’enquête et l’hybridation de la narration et de la visualisation de données dans la publication académique.</p>
-                                    <p data-type="time"> 2008 - 2018</p>
-                                </div>
                                 <ProcessedImage size="large" image="" />
                             </div>
+                            <div className="complement">
+                                <p data-type="description">Ces sujets de recherche sur l’analyse exploratoire de données complexes, l’usage du web comme terrain d’enquête et l’hybridation de la narration et de la visualisation de données dans la publication académique.</p>
+                                <p data-type="time"> 2008 - 2018</p>
+                            </div>                           
                         </li>
-                        <li className="text" data-item="3">
-                            <div>
-                                <p data-item="1" className="numero">1</p>
+                        <li data-item="3">
+                            <div className="texte">
+                                <p data-item="3" className="numero">3</p>
                                 <div class="type"> </div>
-
-                                <h2>Gaia 2.0 - Could humans add some level of self-awareness to Earth’s self-regulation?</h2>
+                                <Link to="/"><h2>Gaia 2.0 - Could humans add some level of self-awareness to Earth’s self-regulation?</h2></Link>
                                 <h3>Authors</h3>
                             </div>
                             <div className="image-pre">
-                                <div className="complement">
-                                    <p data-type="description">Ces sujets de recherche sur l’analyse exploratoire de données complexes, l’usage du web comme terrain d’enquête et l’hybridation de la narration et de la visualisation de données dans la publication académique.</p>
-                                    <p data-type="time"> 2008 - 2018</p>
-                                </div>
                                 <ProcessedImage size="large" image="" />
+                            </div>
+                            <div className="complement">
+                                <p data-type="description">Ces sujets de recherche sur l’analyse exploratoire de données complexes, l’usage du web comme terrain d’enquête et l’hybridation de la narration et de la visualisation de données dans la publication académique.</p>
+                                <p data-type="time"> 2008 - 2018</p>
                             </div>
                         </li>
                     </ul>

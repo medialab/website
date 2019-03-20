@@ -20,7 +20,7 @@
 			&:before{
 				content: " / ";
 			}
-		}
+		} 
 	}
 
 	#biographie{
@@ -42,11 +42,37 @@
 			& *{
 				//width: 100%;
 			}
+			.situation{
+				position: absolute;
+				left: 80%;
+				width: 20%;
+				padding-right: 0;
+				height: 40px;
+				top: $unite;
 
-			[data-type="domaine"]{
-				color: $text-color-light;
-				text-transform: capitalize;
+				.container{
+					height: auto;
+					bottom: 0;
+					position: absolute;					
+					
+					.slash{
+						border-right: $border-very-light;
+						height: 100%;
+						width: 1px;
+						position: absolute;
+						left: $unite*-.5;
+						//transform: rotate(45deg);
+					}
+
+					[data-type="domaine"], [data-type="membership"]{
+						color: $text-color-light;
+						text-transform: capitalize;
+						@include font-size-13;
+					}
+				}
 			}
+
+
 			[data-type="status"]{
 				color: $text-color-light;
 				&:before{

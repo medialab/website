@@ -1,5 +1,5 @@
 // Hauteur d'un item
-$Hunite: $unite*5;
+$Hunite: $unite*4;
 
 #highlight3{
     width: 100%;
@@ -17,59 +17,50 @@ $Hunite: $unite*5;
 }
 
 
-
-/////////////////////
-//////// Flux desktop
-/////////////////////
-
 /* no support of grid */
-@include for-size(desktop){
-    #highlight3{
-        display: inline-block;
-        width: 100%;
-        margin-right: $margins-phone;
-        margin-bottom: $margins-phone;
-        vertical-align: top;
-    }
 
+#highlight3{
+    display: inline-block;
+    width: 100%;
+    margin-right: $margins-phone;
+    margin-bottom: $margins-phone;
+    vertical-align: top;
 }
 
-@include for-size(desktop-900) {
-}
 
-@include for-size(desktop-1300) {
-}
-
-@include for-size(desktop) {
-
-    #highlight3 {
+#highlight3 {
+    
+    .contenu{
         
-        .contenu{
-            
-            margin-top: 45px;
-            overflow: hidden;
+        margin-top: 45px;
+        overflow: hidden;
 
-            ul{
-            
-            width: 100%;
-            
+        h1{
+            margin-bottom: $baseline*2;
+        }
 
-                li{
-                    
-                    width: 100%;
-                    background: $background-site;
-                    text-align: left;
-                    height: $Hunite;
-                    margin: $baseline*2 0;
-                    transition: .25s cubic-bezier(.77,0,.18,1);
-               
-                div:not(.image-pre) {
-                    width: 75%;
+        ul{
+        
+        width: 100%;
+        
+
+            li{
+                
+                width: 100%;
+                background: $background-site;
+                text-align: left;
+                margin: $baseline*2 0;
+                transition: .5s cubic-bezier(.77,0,.18,1);
+                overflow: hidden;
+
+                .texte {
                     @include flex();
                     @include flex-direction(row);
                     //@include align-items(baseline);
                     background: $background-site;
                     z-index: 2;
+                    height: 100%;
+                    overflow: hidden;
 
                         .numero{
                             @include font-size-13();
@@ -95,6 +86,8 @@ $Hunite: $unite*5;
 
                         .type{
                             @include font-size-80();
+                            line-height: 80px;
+                            height: 80px;
 
                             @include flex-grow(1);
                             @include flex-shrink(1);
@@ -105,23 +98,26 @@ $Hunite: $unite*5;
 
 
                         h2{
-                            @include font-size-27();
                             font-weight: bold;
-                            padding: $baseline $unite;
+                            padding: $unite/2 $unite/2 0 $unite/2;
                             @include align-self(baseline);
 
                             @include flex-grow(2);
                             @include flex-shrink(0);
                             @include flex-basis(50%);
-                            z-index: 1;                       
+                            z-index: 1;
+                            word-break: keep-all;
+                            max-height: $Hunite;                     
+                            overflow: hidden;
+
                         }
 
                         h3{
                             flex: 1 9 25%;
-                            @include font-size-20();
-                            padding: $baseline $unite;
+                            padding: $unite/2 $unite/2 0 $unite/2;
                             @include align-self(baseline);
                             z-index: 1;
+                            word-break: keep-all;
 
                             @include flex-grow(1);
                             @include flex-shrink(9);
@@ -130,8 +126,8 @@ $Hunite: $unite*5;
                     }
 
                     .image-pre{
-                        @include font-size-27();
-                        line-height: 30px;
+                        font-size: 80px;
+                        line-height: 90px;
                         overflow: hidden;
                         width: 25%;
                         height: 100%;
@@ -141,55 +137,103 @@ $Hunite: $unite*5;
 
                         z-index:1;                       
 
-                        .complement{
-                            position: absolute;
-                            top: $Hunite;
-                            margin: $unite;
-                            padding: $baseline $unite/2;
-                            display: block;
-                            max-width: 75%;
-
-                            background: $background-site;
-
-                            [data-type="description"]{ @include font-size-20;}
-                            [data-type="time"]{ @include font-size-13; color: $text-color-light; }
-
-                        }
                         pre{
                             float: right;
                         }                       
                     }
+                   
+                    .complement{
+                        position: absolute;
+                        top: $Hunite;
+                        display: block;
+                        z-index: 3;
+                        color: $text-color-light;
+                    }
 
                     &:hover{
-                        height: $Hunite*4;
-                        transition: .5s cubic-bezier(.77,0,.18,1);
-
+                        transition: 0.5s 0.05s cubic-bezier(1,0,0,1);
                         
                         .image-pre{
                             width: 100%;
+                            font-size: 1vw;
+                            line-height: 1.15vw;
+                            transition: 0.5s 0.05s cubic-bezier(1,0,0,1);
+
+                        }
+                        .complement{
 
                         }
                     }
-                } 
-            }
+                }
             
-        } /* End flux container*/
+        }
         
-    } /* end #flux*/
+    } /* End flux container*/
+}   
+
+@media screen and (min-width: 700px) {
+    h2{ @include font-size-20();}
+    h3{ @include font-size-16();}        
+}
+
+@media screen and (min-width: 1000px) {}
+
+@media screen and (min-width: 1200px) {
 
 }
 
+@media screen and (min-width: 1600px) {
+    h2{ @include font-size-27();}
+    h3{ @include font-size-20();}        
+}
 
-/////////////////////
-//////// Flux phone
-/////////////////////
+@media screen and (min-width: 1800px) {}            
+
+
+
+@include for-size(desktop){
+    #highlight3 {
+        .contenu{
+            li{ height: $Hunite;}
+            li:hover{ height: $Hunite*3; }
+
+            .texte{
+                width: 75%;
+            }
+            .image-pre{
+                width: 25%;
+                display: block;
+            }
+            .complement{
+                width: 75%;
+                padding: $baseline/2 $unite ;
+                [data-type="description"]{ @include font-size-20;}
+                [data-type="time"]{ @include font-size-13; margin: $baseline 0;}
+            
+            }            
+        }
+    }
+}
 
 /* no support of grid */
 @include for-size(phone){
-    #flux li{
-        display: inline-block;
-        width: 100%;
-        margin: 0 $margins-phone $margins-phone $margins-phone;
-        vertical-align: top;
+    #highlight3 {
+        .contenu{
+            li{ height: $Hunite; min-height: $Hunite;}
+            li:hover{ height: auto; min-height: $Hunite*3;}
+
+            .texte{
+                width: 100%;
+            }
+            .image-pre{
+                display: none;
+            }
+            .complement{
+                width: 100%;
+                padding: 0 $unite ;
+                [data-type="description"]{ @include font-size-16;}
+                [data-type="time"]{ @include font-size-13; margin: $baseline 0;}
+            }
+        }
     }
 }

@@ -67,6 +67,12 @@ export const queryFragment = graphql`
         fr
       }
       type
+      coverImage {
+        url
+        processed {
+          medium
+        }
+      }
     }
     mainActivities {
       id
@@ -76,6 +82,12 @@ export const queryFragment = graphql`
       }
       name
       type
+      coverImage {
+        url
+        processed {
+          medium
+        }
+      }
     }
     activities {
       name
@@ -167,7 +179,7 @@ export default function PeopleDetail({lang, person}) {
   const activities = person.mainActivities; // Sync mainActivities
 
   let domaine;
-/*
+
   if (person.domain === 'tech' ) {
     if (lang === 'fr') {
       domaine = 'Technique';
@@ -194,14 +206,14 @@ export default function PeopleDetail({lang, person}) {
   }
   if (person.domain === 'pedagogy' ) {
     if (lang === 'fr') {
-      domaine = 'Padagogie';
+      domaine = 'Pédagogie';
     } else {
       domaine = 'Pedagogy';
     }
   }
   else {
-    domaine = '';
-  }  */
+    domaine = 'Domaine';
+  }
 
   return (
     <>
@@ -215,15 +227,20 @@ export default function PeopleDetail({lang, person}) {
         </p>
         <article id="biographie">
           <figure>
-            <div className="cache"><span>▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br />▓▒░<br /></span></div>
             <img src={person.coverImage ? person.coverImage.url : Img} alt={lang === 'fr' ? 'Photo de profil de ' + person.firstName + person.lastName : person.firstName + person.lastName + ' profil picture'} />
           </figure>
           <header>
 
             <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
             <h2 data-level-2="role" data-type="role">{person.role[lang]}</h2>
-            <p data-type="domaine">{ person.domain }</p>
-            <p data-type="membership">{templateMembership(person)}</p>
+            <div className="situation">
+              <div className="container">
+                <span className="slash">&nbsp;</span>
+                <p data-type="domaine">{ domaine }</p>
+                <p data-type="membership">{templateMembership(person)}</p>
+              </div>
+            </div>
+            
             {/*<p data-type="status">{person.status && (lang === "fr" ? person.status.fr : person.status.en)}</p>*/}
             {person.status && <p data-type="status">{person.status[lang] || ''}</p>}
 

@@ -44,6 +44,7 @@
 					h1{
 						@include font-size-40();
 						font-weight: bold;
+						padding-bottom: $baseline*1.5; 
 					}
 			
 					h2{ 
@@ -64,15 +65,33 @@
 					[data-type="activite"]{
 						margin: $unite-phone 0;
 					}
+					
+					.situation{
 
-					.contact {
-						margin-top: $unite-phone*2;	
+						top: $unite;
+
 					}
+
+					.contact{
+						
+						margin-top: $unite-phone*2;	
+						
+						.toContact{  }
+
+						//@include flex-order(4);
+						margin: $baseline*2 0;
+
+						li{
+							width: 5vw;
+							min-width: 60px;
+							display: inline-block;
+						}
+					}					
 				}
 		
 				.biographie-contenu{
 					width: 100%;
-					p, li{ @include font-size-16-phone();}
+					p, li{ @include font-size-20;}
 				}
 			}		
 			#highlight{ margin-top: $height-top-bar-phone + $baseline*2; }

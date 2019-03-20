@@ -60,7 +60,14 @@
 	.contact {
 
 		width: 100%;
-		
+
+		.toContact{ 
+			@include font-size-13;
+			color: $text-color-light;
+			padding: $baseline*1 0 $baseline/2 0;
+			//display: inline-block;
+		}	
+
 		.toContact{ }
 		
 		li{

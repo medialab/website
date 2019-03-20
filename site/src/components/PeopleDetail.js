@@ -191,7 +191,7 @@ export default function PeopleDetail({lang, person}) {
             {person.status && <p data-type="status">{person.status[lang] || ''}</p>}
 
             <div className="contact">
-              <p className="toContact">{lang === 'fr' ? 'Contact' : 'Get in touch '}</p>
+              <h3 className="toContact">{lang === 'fr' ? 'Contact' : 'Get in touch '}</h3>
               <ul>
                 {person.contacts && person.contacts.map((contact, i) => (
                   <li key={i} data-type={contact.label}>

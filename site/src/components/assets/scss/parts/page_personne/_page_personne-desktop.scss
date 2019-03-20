@@ -106,10 +106,7 @@
 					}
 
 					.contact{
-						& >p { 
-							@include font-size-13; 
-							padding: $baseline*1 0; 
-						}
+						.toContact{  }
 
 						//@include flex-order(4);
 						margin: $baseline*2 0;

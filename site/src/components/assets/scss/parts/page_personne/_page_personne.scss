@@ -1,97 +1,99 @@
-#topbar{
-	z-index: 30;
-	background-color: $background-site;
+.page-people{
+	#topbar{
+		z-index: 30;
+		background-color: $background-site;
 
-}
-
-#nav-inside-article #img-article {
-    visibility: hidden !important;
-}
-
-.titre-sticky{
-
-	.retour{
-		padding-right: $unite/2;
 	}
 
-	.personne{
-		font-weight: 100;
-		&:before{
-			content: " / ";
-		}
-	}
-}
-
-#biographie{
-	figure{
-		max-height: auto;
-		overflow: hidden;
-
-		img{
-			width: 100%;
-			filter: grayscale(1);
-		}
-		figcaption{
-			margin-top: $baseline*1;
-		}
+	#nav-inside-article #img-article {
+	    visibility: hidden !important;
 	}
 
-	header{
+	.titre-sticky{
 
-		& *{
-			//width: 100%;
+		.retour{
+			padding-right: $unite/2;
 		}
 
-		[data-type="domaine"]{
-			color: $text-color-light;
-			text-transform: capitalize;
-		}
-		[data-type="status"]{
-			color: $text-color-light;
+		.personne{
+			font-weight: 100;
 			&:before{
-				content: '“';
-			}
-			&:after{
-				content: '”';
+				content: " / ";
 			}
 		}
 	}
 
-	.contact {
+	#biographie{
+		figure{
+			max-height: auto;
+			overflow: hidden;
 
-		width: 100%;
+			img{
+				width: 100%;
+				filter: grayscale(1);
+			}
+			figcaption{
+				margin-top: $baseline*1;
+			}
+		}
 
-		.toContact{ 
-			@include font-size-13;
-			color: $text-color-light;
-			padding: $baseline*1 0 $baseline/2 0;
-			//display: inline-block;
-		}	
+		header{
 
-		.toContact{ }
-		
-		li{
-			@include font-size-13();
-			
-			display: inline-block;
-			padding-bottom: $baseline/2;
-			padding-top: $baseline/2;
-			border-right: $border-very-light;
-			border-bottom: $border-very-light;
-			border-top: $border-very-light;
-			text-align: center;
-
-
-
-			&:last-of-type{
-				border-right: none;
+			& *{
+				//width: 100%;
 			}
 
-			&:hover{	
-				color: $redlab;
-				border-color: $border-light;
-				cursor: pointer;
-				z-index: 99;
+			[data-type="domaine"]{
+				color: $text-color-light;
+				text-transform: capitalize;
+			}
+			[data-type="status"]{
+				color: $text-color-light;
+				&:before{
+					content: '“';
+				}
+				&:after{
+					content: '”';
+				}
+			}
+		}
+
+		.contact {
+
+			width: 100%;
+
+			.toContact{ 
+				@include font-size-13;
+				color: $text-color-light;
+				padding: $baseline*1 0 $baseline/2 0;
+				//display: inline-block;
+			}	
+
+			.toContact{ }
+			
+			li{
+				@include font-size-13();
+				
+				display: inline-block;
+				padding-bottom: $baseline/2;
+				padding-top: $baseline/2;
+				border-right: $border-very-light;
+				border-bottom: $border-very-light;
+				border-top: $border-very-light;
+				text-align: center;
+
+
+
+				&:last-of-type{
+					border-right: none;
+				}
+
+				&:hover{	
+					color: $redlab;
+					border-color: $border-light;
+					cursor: pointer;
+					z-index: 99;
+				}
 			}
 		}
 	}

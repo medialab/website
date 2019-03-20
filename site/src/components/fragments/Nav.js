@@ -1,5 +1,7 @@
 import React from 'react';
 import {Link, withPrefix} from 'gatsby';
+import ProcessedImage from '../ProcessedImage.js';
+
 
 import Logo from '../assets/svg/logo_medialab.svg';
 
@@ -20,7 +22,8 @@ export default function Nav({lang, object = {}, related = []}) {
 		coverImage = (
   <div>
     <img src={object.coverImage.url} alt={object.coverImage.url} />
-    <div className="image-generator">{object.coverImage.processed ? object.coverImage.processed.small : null}</div>
+     <ProcessedImage size="large" image={object.coverImage.processed ? object.coverImage.processed.large : null} />
+
   </div>
 		);
 	}

@@ -31,6 +31,10 @@ export const queryFragment = graphql`
     }
     coverImage {
       url
+      processed {
+        medium
+        large
+      }
     }
     people {
       firstName

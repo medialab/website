@@ -2,6 +2,8 @@ import React from 'react';
 import {graphql} from 'gatsby';
 import RawHTML from './RawHtml.js';
 
+import {SECTIONS} from './fragments/sections';
+
 import {join} from './helpers';
 import Nav from './fragments/Nav.js';
 import ToggleLang from './fragments/pages/ToggleLang.js';
@@ -87,44 +89,6 @@ export const queryFragment = graphql`
   }
 `;
 
-  const relatedElements = [
-    {
-      id: 'main-objet',
-      en: 'Main article',
-      fr: 'Article principal',
-    },
-    /*{
-      id: 'productions-associes',
-      exist : ({productions}) => Boolean(productions),
-      en: 'Related poduction',
-      fr: 'Production en liens'
-    },*/
-    {
-      id: 'activites-associees',
-      exist: ({activities}) => Boolean(activities) && activities.length > 0,
-      en: 'Related Activities',
-      fr: 'Activités en lien',
-    },
-    {
-      id: 'membres-associes',
-      exist: ({people}) => Boolean(people) && people.length > 0,
-      en: 'Related people',
-      fr: 'Membres en lien'
-    },
-    {
-      id: 'actu-associees',
-      exist: ({news}) => Boolean(news) && news.length > 0,
-      en: 'Related news',
-      fr: 'Actualités associées'
-    },
-    {
-      id: 'fichiers-associes',
-      exist: ({attachments}) => Boolean(attachments) && attachments.length > 0,
-      en: 'Related files',
-      fr: 'Fichier associés'
-    }
-  ];
-
 export default function ActivityDetail({lang, activity}) {
   console.log(lang, activity);
 
@@ -145,7 +109,7 @@ export default function ActivityDetail({lang, activity}) {
 
   return (
     <main id="main-objet">
-      <Nav lang={lang} object={activity} related={relatedElements} />
+      <Nav lang={lang} data={activity} order={['main', 'people', 'productions', 'activities', 'attachments']} />
       <p className="titre-sticky">{activity.name}</p>
       <article id="main">
         {/* Toggle Langue */}
@@ -176,10 +140,10 @@ export default function ActivityDetail({lang, activity}) {
         </div>
 
       </article>
-      <MembresAssocies people={activity.people} related={relatedElements[2]} lang={lang} />
-      <ProductionsAssociees productions={activity.productions} related={relatedElements[2]} lang={lang} />
-      <ActivitesAssociees activities={activity.activities} related={relatedElements[3]} lang={lang} />
-      <FichiersAssocies attachments={activity.attachments} related={relatedElements[4]} lang={lang} />
+      <MembresAssocies people={activity.people} related={SECTIONS.people} lang={lang} />
+      <ProductionsAssociees productions={activity.productions} related={SECTIONS.productions} lang={lang} />
+      <ActivitesAssociees activities={activity.activities} related={SECTIONS.activities} lang={lang} />
+      <FichiersAssocies attachments={activity.attachments} related={SECTIONS.attachments} lang={lang} />
     </main>
   );
 }

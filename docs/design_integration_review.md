@@ -3,10 +3,9 @@ Il vise à faire le point sur l'état de l'intégration page par page.
 
 # Comment faire des revues ?
 
-- revue : ajouter le label revue
 Puis ajouter un de ces trois labels
 - BUG : ne marche pas comme ça devrait 
-- design : ne sert pas l'usage
+- UX-UI : ne sert pas l'usage
 - esthétiques : ne plaît pas ou incohérences
 
 # menu

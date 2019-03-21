@@ -1,7 +1,7 @@
 // Hauteur d'un item
 $Hunite: $unite*4;
 
-#highlight3{
+#highlights{
     width: 100%;
     overflow: hidden;
     position: relative;
@@ -19,7 +19,7 @@ $Hunite: $unite*4;
 
 /* no support of grid */
 
-#highlight3{
+#highlights{
     display: inline-block;
     width: 100%;
     margin-right: $margins-phone;
@@ -28,7 +28,7 @@ $Hunite: $unite*4;
 }
 
 
-#highlight3 {
+#highlights {
     
     .contenu{
         
@@ -195,7 +195,7 @@ $Hunite: $unite*4;
 
 
 @include for-size(desktop){
-    #highlight3 {
+    #highlights {
         .contenu{
             li{ height: $Hunite;}
             li:hover{ height: $Hunite*3; }
@@ -220,7 +220,7 @@ $Hunite: $unite*4;
 
 /* no support of grid */
 @include for-size(phone){
-    #highlight3 {
+    #highlights {
         .contenu{
             li{ height: $Hunite; min-height: $Hunite;}
             li:hover{ height: auto; min-height: $Hunite*3;}

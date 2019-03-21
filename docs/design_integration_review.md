@@ -1,6 +1,13 @@
 L'objectif de ce document est de préparer la phase de revue de l'intégration.
 Il vise à faire le point sur l'état de l'intégration page par page.
 
+# Comment faire des revues ?
+
+Puis ajouter un de ces trois labels
+- BUG : ne marche pas comme ça devrait 
+- UX-UI : ne sert pas l'usage
+- esthétiques : ne plaît pas ou incohérences
+
 # menu
 
 Complètement intégré prêt pour revue
@@ -21,22 +28,21 @@ Complètement intégré prêt pour revue
 
 ## Agenda
 
-- Filtrer les données sur les dates futures
-- boutons gauche droite manquants ? 
+Complètement intégré prêt pour revue (bug de flèche)
 
 ## flux
 
-Complètement à faire : données et intégration. 
+Complètement à faire : données et intégration.
+A discuter en atelier
 
 # people listing
 
-Complètement intégré prêt pour revue
+Complètement intégré prêt pour revue.
 Filtrage : ne fonctionne pas correctement, à regarder.
 
 # people details
 
-Intégration terminée ?
-Dynamisation des données "Mise en avant" non faite.
+Complètement intégré prêt pour revue.
 
 # activities listing
 
@@ -58,10 +64,15 @@ Complètement intégré prêt pour revue
 
 # productions listing
 
-Complètement intégré prêt pour revue
-Filtrage par sous-type à adapter au type.
+NON TERMINÉE
 
 # production details
+
+raw html pour la description.
+
+# gestion des langues
+
+bon pour revue
 
 # A propos
 
@@ -69,4 +80,8 @@ Filtrage par sous-type à adapter au type.
 
 # outils
 
+atelier convergence design
+
 # archives
+
+on en reparle

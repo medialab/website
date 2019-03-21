@@ -128,7 +128,7 @@ function sharpToString(img, crop, options) {
     img
       .resize({
         width: options.rows,
-        height: options.rows * ASCII_WIDTH / ratio / ASCII_HEIGHT
+        height: (options.rows * ASCII_WIDTH / ratio / ASCII_HEIGHT) | 0
       })
       .raw()
       .toBuffer((err, buffer) => {

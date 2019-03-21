@@ -82,45 +82,50 @@
 					content: '”';
 				}
 			}
-		}
 
-		.contact {
+			.contact {
 
-			width: 100%;
+				width: 100%;
 
-			.toContact{ 
-				@include font-size-13;
-				color: $text-color-light;
-				padding: $baseline*1 0 $baseline/2 0;
-				//display: inline-block;
-			}	
+				.toContact{ 
+					@include font-size-13;
+					color: $text-color-light;
+					padding: $baseline*1 0 $baseline/2 0;
+					//display: inline-block;
+				}	
 
-			.toContact{ }
-			
-			li{
-				@include font-size-13();
+				.toContact{ }
 				
-				display: inline-block;
-				padding-bottom: $baseline/2;
-				padding-top: $baseline/2;
-				border-right: $border-very-light;
-				border-bottom: $border-very-light;
-				border-top: $border-very-light;
-				text-align: center;
+				li{
+					@include font-size-13();
+					
+					display: inline-block;
+					padding-bottom: $baseline/2;
+					padding-top: $baseline/2;
+					border-right: $border-very-light;
+					border-bottom: $border-very-light;
+					border-top: $border-very-light;
+					text-align: center;
 
 
 
-				&:last-of-type{
-					border-right: none;
+					&:last-of-type{
+						border-right: none;
+					}
+
+					&:hover{	
+						color: $redlab;
+						border-color: $border-light;
+						cursor: pointer;
+						z-index: 99;
+					}
 				}
-
-				&:hover{	
-					color: $redlab;
-					border-color: $border-light;
-					cursor: pointer;
-					z-index: 99;
-				}
-			}
+			}			
 		}
+
+		.biographie-contenu{			
+			p + p {  margin-top: $baseline*2; }
+		}
+
 	}
 }

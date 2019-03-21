@@ -51,13 +51,6 @@
 
 			#article-contenu{
 
-				.date, .type-objet{
-					display: inline-block;
-					padding-bottom: $baseline*4;
-					// font-weight: bold;
-				}
-				//.type-objet:before{ content: " – "}
-		
 				hgroup {
 
 					h1{
@@ -72,9 +65,21 @@
 						@include font-size-27();
 						max-width: 1100px;
 					}
+
+					.type-objet{
+						max-width: 250px;
+					}
+
+					.time, .type-objet{
+						width: 50%;
+						display: inline-block;
+						vertical-align: top;
+						margin: $baseline*2 0 $baseline*4 0;
+					}
+
 				}
 		
-				p{
+				p, li{
 					@include font-size-20();
 					line-height: $baseline*2.3;
 
@@ -110,10 +115,9 @@
 						font-weight: bold;
 						margin-top: $baseline*3;
 						margin-bottom: $baseline*1;
-
-
 					}
 
+					& > h3, & > div > h3 { margin-top: 0; }
 
 					//////////////////////////
 					///        Grid 	/////

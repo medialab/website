@@ -47,7 +47,40 @@ a:hover{
 
 				}
 			}
+
+			p + p {  margin-top: $baseline*2; }
+
 		}
+
+		hgroup{
+
+			.time, .type-objet{
+				color: $text-color-light;					
+			}
+
+			.date-news{ text-transform: capitalize; }	
+
+		}
+
+
 		.toggle-lang{ @include flex-order(3); max-width:900px;}
+	}
+}
+
+
+
+.page-activity{
+	.date-news{ 
+		.day-num, .day-name{ display: none;}
+	}
+}
+
+.page-news{
+
+}
+
+.page-production{
+	.date-news{ 
+		.day-num, .day-name{ display: none;}
 	}
 }

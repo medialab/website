@@ -8,7 +8,7 @@ import RawHTML from './RawHtml.js';
 /* import {templateMembership} from './helpers.js';  */
 //import './scss/page_liste.scss';
 
-export default function ActivityListing({lang, list}) {
+export default function ActivityListing({lang, list, status, statuses}) {
   console.log(lang, list);
 
   let accroche;
@@ -22,7 +22,7 @@ export default function ActivityListing({lang, list}) {
 
     return (
       <>
-        <FilterActivity lang={lang} />
+        <FilterActivity lang={lang} status={status} statuses={statuses} />
         <section id="liste">
           <p className="accroche-titre-phone">{accroche}</p>
           <ul className="liste_objet" id="liste-activity">

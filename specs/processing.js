@@ -128,14 +128,16 @@ function sharpToString(img, crop, options) {
     img
       .resize({
         width: options.rows,
-        height: options.rows * ASCII_WIDTH / ratio / ASCII_HEIGHT
+        height: (options.rows * ASCII_WIDTH / ratio / ASCII_HEIGHT) | 0
       })
       .raw()
-      .toBuffer((err, buffer) => {
+      .toBuffer((err, buffer, info) => {
         if (err)
           return reject(err);
 
-        resolve(pixelsToString(new Uint8ClampedArray(buffer), {...options, noAlpha: true}));
+        const data = pixelsToString(new Uint8ClampedArray(buffer), {...options, noAlpha: info.channels === 3});
+
+        resolve(data);
       });
   });
 }

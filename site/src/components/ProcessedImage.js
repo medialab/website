@@ -14,9 +14,13 @@ export default function ProcessedImage({image, size}) {
 
   const rows = ROWS[size];
 
+  const length = image ? image.length : ((rows * 3 / 4) | 0) * rows;
+
+  const b = (length / rows) | 0;
+
   return (
     <>
-      {Array.from(new Array(rows), (_, i) => {
+      {Array.from(new Array(b), (_, i) => {
         const offset = i * rows;
 
         const row = needPlaceholder ?

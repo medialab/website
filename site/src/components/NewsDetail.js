@@ -59,7 +59,6 @@ export const queryFragment = graphql`
     }
     draft
     activities {
-      id
       description {
         en
         fr
@@ -102,43 +101,6 @@ export const queryFragment = graphql`
   }
 `;
 
-const relatedElements = [
-  {
-    id: 'main-objet',
-    en: 'Main article',
-    fr: 'Article principal',
-  },
-  {
-    id: 'membres-associes',
-    exist: ({people}) => Boolean(people) && people.length > 0,
-    en: 'Related people',
-    fr: 'Membres en lien'
-  },
-  {
-    id: 'productions-associes',
-    exist: ({productions}) => Boolean(productions) && productions.length > 0,
-    en: 'Related poduction',
-    fr: 'Production en liens'
-  },
-  {
-    id: 'activites-associees',
-    exist: ({activities}) => Boolean(activities) && activities.length > 0,
-    en: 'Related Activities',
-    fr: 'Activités en lien',
-  },
-  {
-    id: 'actu-associees',
-    exist: ({news}) => Boolean(news) && news.length > 0,
-    en: 'Related news',
-    fr: 'Actualités associés'
-  }, {
-    id: 'fichiers-associes',
-    exist: ({attachments}) => Boolean(attachments) && attachments.length > 0,
-    en: 'Related files',
-    fr: 'Fichier associés'
-  },
-];
-
 export default function NewsDetail({lang, news}) {
   console.log(news);
 
@@ -172,8 +134,8 @@ export default function NewsDetail({lang, news}) {
 
   return (
     <>
-      <Nav lang={lang} object={news} related={relatedElements} />
-      <main id="main-objet">
+      <Nav lang={lang} data={news} order={['main', 'people', 'productions', 'activities', 'news', 'attachments']} />
+      <main id="main">
         <p className="titre-sticky">{news.title && (lang === 'fr' ? news.title.fr : news.title.en) }</p>
         <article id="article-contenu">
           {/* Toggle Langue */}
@@ -209,10 +171,10 @@ export default function NewsDetail({lang, news}) {
         </article>
 
         {/* Block Associes */}
-        <MembresAssocies people={news.people} related={relatedElements[1]} lang={lang} />
-        <ProductionsAssociees productions={news.productions} related={relatedElements[2]} lang={lang} />
-        <ActivitesAssociees activities={news.activities} related={relatedElements[3]} lang={lang} />
-        <FichiersAssocies attachments={news.attachments} related={relatedElements[5]} lang={lang} />
+        <MembresAssocies people={news.people} lang={lang} />
+        <ProductionsAssociees productions={news.productions} lang={lang} />
+        <ActivitesAssociees activities={news.activities} lang={lang} />
+        <FichiersAssocies attachments={news.attachments} lang={lang} />
       </main>
     </>
   );

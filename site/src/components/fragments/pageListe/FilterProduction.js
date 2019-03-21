@@ -64,7 +64,7 @@ const FilterProduction = ({lang, group, types}) => {
     <ul className="link-productions-sort">
       {types.map(g => {
 						return (
-  <li key={g.label.fr}>
+  <li key={g.id}>
     <Link
       className={cls(g.id === group && 'pageProduction_current')}
       to={g.permalink[lang]}>

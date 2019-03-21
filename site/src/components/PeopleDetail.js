@@ -2,16 +2,13 @@ import React from 'react';
 import {graphql} from 'gatsby';
 import {Link} from 'gatsby';
 
-import Highlight from './fragments/pageEquipe/Highlight.js';
-import Highlight2 from './fragments/pageEquipe/Highlight2.js';
-import Highlight3 from './fragments/pageEquipe/Highlight3.js';
+import Highlights from './fragments/pageEquipe/Highlights.js';
 
 
 import ProductionsAssociees from './fragments/pages/ProductionsAssociees.js';
 import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
 import ActuAssociees from './fragments/pages/ActuAssociees.js';
 
-import RelatedElements from './fragments/pages/RelatedElements.js';
 import Nav from './fragments/Nav.js';
 
 import RawHtml from './RawHtml';
@@ -57,7 +54,6 @@ export const queryFragment = graphql`
       fr
     }
     mainProductions {
-      id
       description {
         en
         fr
@@ -66,26 +62,40 @@ export const queryFragment = graphql`
         en
         fr
       }
+      permalink {
+        en
+        fr
+      }
       type
+      authors
       coverImage {
         url
         processed {
-          medium
+          large
         }
       }
     }
     mainActivities {
-      id
       description {
         en
         fr
       }
+      baseline {
+        en
+        fr
+      }
+      permalink {
+        en
+        fr
+      }
+      startDate
+      endDate
       name
       type
       coverImage {
         url
         processed {
-          medium
+          large
         }
       }
     }
@@ -145,33 +155,6 @@ export const queryFragment = graphql`
   }
 `;
 
-  const relatedElements = [
-    {
-      id: 'main-objet',
-      en: 'Main article',
-      fr: 'Article principal',
-    },
-    {
-      id: 'productions-associes',
-      exist: ({productions}) => Boolean(productions) && productions.length > 0,
-      en: 'Related poductions',
-      fr: 'Productions en liens'
-    },
-    {
-      id: 'activites-associees',
-      exist: ({activities}) => Boolean(activities) && activities.length > 0,
-      en: 'Related Activities',
-      fr: 'Activités en lien',
-    },
-    {
-      id: 'actu-associees',
-      exist: ({news}) => Boolean(news) && news.length > 0,
-      en: 'Related news',
-      fr: 'Actualités associées'
-    }
-  ];
-
-
 export default function PeopleDetail({lang, person}) {
   console.log(lang, person);
 
@@ -217,8 +200,8 @@ export default function PeopleDetail({lang, person}) {
 
   return (
     <>
-      <Nav lang={lang} object={person} related={relatedElements} />
-      <main id="main-personne">
+      <Nav lang={lang} data={person} order={['main', 'productions', 'activities', 'news']} />
+      <main id="main">
         <p className="titre-sticky">
           <Link to="/people">
             <span>{lang === 'fr' ? "L'équipe du Medialab" : 'Medialab team'} </span>
@@ -240,7 +223,7 @@ export default function PeopleDetail({lang, person}) {
                 <p data-type="membership">{templateMembership(person)}</p>
               </div>
             </div>
-            
+
             {/*<p data-type="status">{person.status && (lang === "fr" ? person.status.fr : person.status.en)}</p>*/}
             {person.status && <p data-type="status">{person.status[lang] || ''}</p>}
 
@@ -263,13 +246,11 @@ export default function PeopleDetail({lang, person}) {
             {person.bio && person.bio[lang] ? <RawHtml html={person.bio[lang]} /> : null}
           </div>
         </article>
-        {/*<Highlight highlight={person.mainProductions} lang={lang}/>*/}
-        {/*<Highlight2 highlight={person.mainProductions} lang={lang} />*/}
-        <Highlight3 highlight={person.mainProductions} lang={lang} />
+        <Highlights people={person} lang={lang} />
 
-        <ProductionsAssociees productions={person.productions} related={relatedElements[1]} lang={lang} />
-        <ActivitesAssociees activities={person.activities} related={relatedElements[2]} lang={lang} />
-        <ActuAssociees actu={person.news} related={relatedElements[3]} lang={lang} />
+        <ProductionsAssociees productions={person.productions} lang={lang} />
+        <ActivitesAssociees activities={person.activities} lang={lang} />
+        <ActuAssociees actu={person.news} lang={lang} />
       </main>
     </>
   );

@@ -29,7 +29,7 @@ const Layout = ({children, lang, className, permalinks}) => {
           <div className={className}>
             <TopBar lang={lang} permalinks={permalinks} />
             {children}
-            <Footer />
+            <Footer lang={lang} />
           </div>
         </>
       )} />

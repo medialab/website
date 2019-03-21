@@ -1,29 +1,23 @@
 import React from 'react';
-/*import {graphql} from 'gatsby';*/
-/* import {Link} from 'gatsby'; */
-//import {Link} from 'gatsby';
+import {Link} from 'gatsby';
+import cls from 'classnames';
 
-const FilterActivity = ({lang}) => {
+const FilterActivity = ({lang, status, statuses}) => {
 
-let title, filtre, active, past, research, teaching;
+let title, filtre, research, teaching;
 
 if (lang === 'fr') {
 	title = 'Activités';
 	filtre = 'Filtres';
-	active = 'Actives';
-	past = 'Passées';
 	research = 'Recherche';
 	teaching = 'Enseignement';
 }
 else {
 	title = 'Activities';
 	filtre = 'Filters';
-	active = 'Active';
-	past = 'Past';
 	research = 'Research';
 	teaching = 'Teaching';
 }
-
 
 	return (
   <>
@@ -39,8 +33,13 @@ else {
     <div id="background-phone" />
 
     <ul className="link-activity-sort">
-      <li className="pageProduction_current"><a href="linkActivity/actives">{ active } <span>〉</span></a></li>
-      <li><a href="linkActivity/passees">{ past } <span>〉</span></a></li>
+      {statuses.map(s => {
+        return (
+          <li key={s.id} className={cls(s.id === status && 'pageProduction_current')}>
+            <Link to={s.permalink[lang]}>{s.label[lang]} <span>〉</span></Link>
+          </li>
+        );
+      })}
     </ul>
 
     <input

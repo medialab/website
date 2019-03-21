@@ -1,7 +1,10 @@
 import React from 'react';
 import {Link} from 'gatsby';
+import {SECTIONS} from '../sections';
 
-const MembresAssocies = ({lang, related, people}) => {
+const MembresAssocies = ({lang, people}) => {
+
+  const related = SECTIONS.people;
 
   // Si aucun fichier lié, retourne null
   if (!people || people.length === 0)
@@ -18,7 +21,7 @@ const MembresAssocies = ({lang, related, people}) => {
   }
 
   return (
-    <aside className="container personnes-associees-block" id="membres-associes">
+    <aside className="container personnes-associees-block" id="people">
       <h1>{accroche}</h1>
 
       <div className="contenu">

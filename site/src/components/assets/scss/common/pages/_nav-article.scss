@@ -6,8 +6,8 @@ $width-main-image: calc( 80vw - #{$margins-desktop*2});
         padding-bottom: $margins-desktop;
         height: 100%;
 
-        
-        position: fixed; 
+
+        position: fixed;
         top: 0;
         left: $margins-desktop;
         z-index: 10;
@@ -25,24 +25,24 @@ $width-main-image: calc( 80vw - #{$margins-desktop*2});
             height: $unite*3;
             width: $logo-column - $margins-desktop;
             //background-color: white;
-            
+
             &:after{
                 content: "";
-                width:  $logo-column/2;          
+                width:  $logo-column/2;
                 border-bottom: $border;
                 position: absolute;
                 bottom: 0;
             }
             //fonts
-            
+
             @include font-size-16();
-            
+
             display: flex;
             align-items: center;
             &:first-of-type{
 
                 //height: $height-top-bar - $margins-desktop;
-                //height: calc(#{$unite*3} - 1px); 
+                //height: calc(#{$unite*3} - 1px);
                 align-items: flex-start;
 
                 // Fill the hole around
@@ -52,13 +52,13 @@ $width-main-image: calc( 80vw - #{$margins-desktop*2});
                 height:  $unite*4;
                 top:  $unite*-1;
                 background-color: $background-site;
-                height: calc(#{$unite*4} - 1px); 
+                height: calc(#{$unite*4} - 1px);
 
 
                 &:after{border-bottom: none;}
 
-                img, svg{ 
-                    width: $logo-column/3 + $unite/2; 
+                img, svg{
+                    width: $logo-column/3 + $unite/2;
                     margin: calc(#{$unite} + 5px) 0 5px 0;
                     fill: $text-color; }
             }
@@ -66,32 +66,32 @@ $width-main-image: calc( 80vw - #{$margins-desktop*2});
             a{
                 width: $logo-column/3;
             }
-            
+
             // &[data-type="main-article"] a::before{
             //     content: $productions;
             // }
-            &[data-type="main-objet"] a::before{
+            &[data-type="main"] a::before{
                 content: $scrolltop;
-            } 
-            &[data-type="productions-associes"] a::before{
+            }
+            &[data-type="productions"] a::before{
                 content: $productions;
             }
-            &[data-type="activites-associees"] a::before{
+            &[data-type="activities"] a::before{
                 content: $activites;
             }
-            &[data-type="fichiers-associes"] a::before{
+            &[data-type="attachments"] a::before{
                 content: $files;
             }
-            &[data-type="membres-associes"] a::before{
+            &[data-type="people"] a::before{
                 content: $people;
-            } 
-            &[data-type="actu-associees"] a::before{
+            }
+            &[data-type="news"] a::before{
                 content: $actualites;
-            }            
+            }
 
         }
 
-        
+
 
         #img-article{
             //border-top: 1px solid black;
@@ -107,8 +107,8 @@ $width-main-image: calc( 80vw - #{$margins-desktop*2});
                 //background-color: white;
                 position: relative;
                 top: 0;
-                left: 0;            
-                img{ 
+                left: 0;
+                img{
                     position: absolute;
                     width: #{$width-main-image};
                     height: auto;
@@ -119,15 +119,15 @@ $width-main-image: calc( 80vw - #{$margins-desktop*2});
                     //filter: blur(3px);
                 }
 
-                .image-generator{ 
+                .image-generator{
                     transition: opacity 1s linear;
                     position: relative;
                     z-index: 1;
-                    
+
                     pre{
                         font-size: 2vw !important;
                     }
-                }               
+                }
             }
 
             &:hover{

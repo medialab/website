@@ -1,14 +1,17 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
-const Footer = () => {
+const Footer = ({lang}) => {
+
+  const relLang = lang === 'en' ? '/en' : '';
+
 	return (
   <footer>
     <div className="logo" />
     <div className="mentions">
       <p>Medialab Science Po<br />
 				27 rue St Guillaume, Paris VII<br />
-        <Link to="/">Mentions legales</Link></p>
+        <Link to={`${relLang}/legal`}>Mentions legales</Link></p>
     </div>
     <div className="contact">
       <ul>

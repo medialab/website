@@ -302,6 +302,30 @@ exports.sourceNodes = function(args) {
 
   // Some faceted enums for templating convenience
   const facetedEnums = {
+    activityStatuses: [
+      {
+        id: 'current',
+        label: {
+          en: 'Active',
+          fr: 'Actives'
+        },
+        permalink: {
+          en: '/en/activities/current',
+          fr: '/activities/current'
+        }
+      },
+      {
+        id: 'past',
+        label: {
+          en: 'Past',
+          fr: 'Passées'
+        },
+        permalink: {
+          en: '/en/activities/past',
+          fr: '/activities/past'
+        }
+      }
+    ],
     productionTypes: ENUMS.productionTypes.groupOrder.map(group => {
       const e = ENUMS.productionTypes.groups[group];
 
@@ -354,6 +378,16 @@ exports.createPages = function({graphql, actions}) {
   });
 
   createI18nPage(createPage, {
+    path: '/about',
+    component: path.resolve('./src/templates/about.js')
+  });
+
+  createI18nPage(createPage, {
+    path: '/legal',
+    component: path.resolve('./src/templates/legal.js')
+  });
+
+  createI18nPage(createPage, {
     path: '/404.html',
     component: path.resolve('./src/templates/error.js'),
     context: {
@@ -361,16 +395,41 @@ exports.createPages = function({graphql, actions}) {
     }
   });
 
+  // Activities
   createI18nPage(createPage, {
     path: '/activities',
-    component: path.resolve('./src/templates/activity-list.js')
+    component: path.resolve('./src/templates/activity-list.js'),
+    context: {
+      status: 'all',
+      allowedStatuses: [true, false]
+    }
   });
 
+  createI18nPage(createPage, {
+    path: '/activities/current',
+    component: path.resolve('./src/templates/activity-list.js'),
+    context: {
+      status: 'current',
+      allowedStatuses: [true]
+    }
+  });
+
+  createI18nPage(createPage, {
+    path: '/activities/past',
+    component: path.resolve('./src/templates/activity-list.js'),
+    context: {
+      status: 'past',
+      allowedStatuses: [false]
+    }
+  });
+
+  // News
   createI18nPage(createPage, {
     path: '/news',
     component: path.resolve('./src/templates/news-list.js')
   });
 
+  // Productions
   createI18nPage(createPage, {
     path: '/productions',
     component: path.resolve('./src/templates/production-list.js'),
@@ -391,14 +450,10 @@ exports.createPages = function({graphql, actions}) {
     });
   }
 
+  // People
   createI18nPage(createPage, {
     path: '/people',
     component: path.resolve('./src/templates/people-list.js')
-  });
-
-  createI18nPage(createPage, {
-    path: '/about',
-    component: path.resolve('./src/templates/about.js')
   });
 
   // Chaining promises

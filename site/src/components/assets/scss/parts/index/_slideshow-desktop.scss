@@ -45,8 +45,8 @@
 
 				.image-pre{
 					width: 100%;
-					font-size: 1vw;
-					line-height: 1.15vw;
+					font-size: calc(((100vw - #{$unite*2})/150)*1.71);
+					line-height: calc(((100vw - #{$unite*2})/150)*1.89); //(((Ecran - Marge*2) / Nbr de Block par ligne)*Ratio Hauteur par largeur du glyphe)
 					height: 100%;
 					background-color: $background-site;
 					overflow: hidden;

@@ -383,6 +383,11 @@ exports.createPages = function({graphql, actions}) {
   });
 
   createI18nPage(createPage, {
+    path: '/legal',
+    component: path.resolve('./src/templates/legal.js')
+  });
+
+  createI18nPage(createPage, {
     path: '/404.html',
     component: path.resolve('./src/templates/error.js'),
     context: {

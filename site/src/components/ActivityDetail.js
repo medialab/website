@@ -1,5 +1,6 @@
 import React from 'react';
 import {graphql} from 'gatsby';
+import RawHTML from './RawHtml.js';
 
 import {join} from './helpers';
 import Nav from './fragments/Nav.js';
@@ -44,7 +45,7 @@ export const queryFragment = graphql`
         medium
         large
       }
-    }    
+    }
     people {
       firstName
       lastName
@@ -86,44 +87,6 @@ export const queryFragment = graphql`
   }
 `;
 
-  const relatedElements = [
-    {
-      id: 'main-objet',
-      en: 'Main article',
-      fr: 'Article principal',
-    },
-    /*{
-      id: 'productions-associes',
-      exist : ({productions}) => Boolean(productions),
-      en: 'Related poduction',
-      fr: 'Production en liens'
-    },*/
-    {
-      id: 'activites-associees',
-      exist: ({activities}) => Boolean(activities) && activities.length > 0,
-      en: 'Related Activities',
-      fr: 'Activités en lien',
-    },
-    {
-      id: 'membres-associes',
-      exist: ({people}) => Boolean(people) && people.length > 0,
-      en: 'Related people',
-      fr: 'Membres en lien'
-    },
-    {
-      id: 'actu-associees',
-      exist: ({news}) => Boolean(news) && news.length > 0,
-      en: 'Related news',
-      fr: 'Actualités associées'
-    },
-    {
-      id: 'fichiers-associes',
-      exist: ({attachments}) => Boolean(attachments) && attachments.length > 0,
-      en: 'Related files',
-      fr: 'Fichier associés'
-    }
-  ];
-
 export default function ActivityDetail({lang, activity}) {
   console.log(lang, activity);
 
@@ -144,18 +107,18 @@ export default function ActivityDetail({lang, activity}) {
 
   return (
     <main id="main-objet">
-      <Nav lang={lang} object={activity} related={relatedElements} />
+      <Nav lang={lang} data={activity} order={['main', 'people', 'productions', 'activities', 'attachments']} />
       <p className="titre-sticky">{activity.name}</p>
-      <article id="article-contenu">
+      <article id="main">
         {/* Toggle Langue */}
         <ToggleLang lang={lang} content={activity.content} />
         {/* Chapô FR */}
         <hgroup className="fr" lang="fr">
           <h1>{activity.name}</h1>
-          <h2>{activity.description && (activity.description.fr)}</h2>
-            <DateNews startDate={activity.startDate} endDate={activity.endDate} lang={lang} />
-            <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
-            <p className="type-objet">{activity.type}</p>
+          <h2 data-type="description"><RawHTML html={activity.description && activity.description.fr} /></h2>
+          <DateNews startDate={activity.startDate} endDate={activity.endDate} lang={lang} />
+          <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
+          <p className="type-objet">{activity.type}</p>
         </hgroup>
         {/* Article FR */}
         <div className="article-contenu fr" lang="fr">
@@ -165,7 +128,7 @@ export default function ActivityDetail({lang, activity}) {
         {/* Chapô EN */}
         <hgroup className="en" lang="en">
           <h1>{activity.title && (activity.title.en)}</h1>
-          <h2>{activity.description && (activity.description.en)}</h2>
+          <h2 data-type="description"><RawHTML html={activity.description && activity.description.en} /></h2>
           <p className="date">{activity.endDate}</p>
           <p className="type-objet">{activity.type}</p>
         </hgroup>
@@ -175,10 +138,10 @@ export default function ActivityDetail({lang, activity}) {
         </div>
 
       </article>
-      <MembresAssocies people={activity.people} related={relatedElements[2]} lang={lang} />
-      <ProductionsAssociees productions={activity.productions} related={relatedElements[2]} lang={lang} />
-      <ActivitesAssociees activities={activity.activities} related={relatedElements[3]} lang={lang} />
-      <FichiersAssocies attachments={activity.attachments} related={relatedElements[4]} lang={lang} />
+      <MembresAssocies people={activity.people} lang={lang} />
+      <ProductionsAssociees productions={activity.productions} lang={lang} />
+      <ActivitesAssociees activities={activity.activities} lang={lang} />
+      <FichiersAssocies attachments={activity.attachments} lang={lang} />
     </main>
   );
 }

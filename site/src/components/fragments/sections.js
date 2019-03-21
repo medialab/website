@@ -1,0 +1,51 @@
+const exists = key => object => !!(object[key] && object[key].length > 0);
+
+const SECTIONS = {
+  main: {
+    id: 'main',
+    en: 'Main article',
+    fr: 'Article principal',
+    exists: () => true
+  },
+  people: {
+    id: 'people',
+    en: 'Related people',
+    fr: 'Membres en lien',
+    exists: exists('people')
+  },
+  productions: {
+    id: 'productions',
+    en: 'Related productions',
+    fr: 'Productions en lien',
+    exists: exists('productions')
+  },
+  activities: {
+    id: 'activities',
+    en: 'Related activities',
+    fr: 'Activités en lien',
+    exists: exists('activities')
+  },
+  news: {
+    id: 'news',
+    en: 'Related news',
+    fr: 'Actualités en lien',
+    exists: exists('news')
+  },
+  attachments: {
+    id: 'attachments',
+    en: 'Attached files',
+    fr: 'Fichiers associés',
+    exists: exists('attachments')
+  }
+};
+
+const DEFAULT_SECTIONS_ORDER = [
+  'main',
+  'people',
+  'productions',
+  'activities',
+  'news',
+  'attachments'
+];
+
+export {SECTIONS, DEFAULT_SECTIONS_ORDER};

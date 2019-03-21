@@ -1,8 +1,11 @@
 import React from 'react';
 import {Link} from 'gatsby';
+import {SECTIONS} from '../sections';
 
 
-const ActuAssociees = ({lang, related, actu}) => {
+const ActuAssociees = ({lang, actu}) => {
+
+  const related = SECTIONS.news;
 
   // Si aucune actu liée, retourne null
   if (!actu || actu.length === 0)
@@ -17,7 +20,7 @@ const ActuAssociees = ({lang, related, actu}) => {
   }
 
   return (
-    <aside className="container elements-associes-block" id="actu-associees">
+    <aside className="container elements-associes-block" id="news">
       <h1><span data-icon="actualités" /> {accroche} </h1>
 
       <div className="contenu">

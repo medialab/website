@@ -1,8 +1,11 @@
 import React from 'react';
 import {Link, withPrefix} from 'gatsby';
+import {SECTIONS} from '../sections';
 
 
-const FichiersAssocies = ({lang, related, attachments}) => {
+const FichiersAssocies = ({lang, attachments}) => {
+
+  const related = SECTIONS.attachments;
 
   // Si aucun fichier lié, retourne null
   if (!attachments || attachments.length === 0)
@@ -17,7 +20,7 @@ const FichiersAssocies = ({lang, related, attachments}) => {
   }
 
   return (
-    <aside className="container fichiers-associes-block" id="fichiers-associes">
+    <aside className="container fichiers-associes-block" id="attachments">
       <h1><span data-icon="file" /> {accroche} </h1>
 
       <div className="contenu">

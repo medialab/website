@@ -5,8 +5,8 @@ import Layout from '../components/Layout';
 import ActivityListing from '../components/ActivityListing';
 
 export const query = graphql`
-  {
-    allActivitiesJson {
+  query($allowedStatuses: [Boolean]!) {
+    allActivitiesJson(filter: {active: {in: $allowedStatuses}}) {
       edges {
         node {
           id
@@ -32,6 +32,20 @@ export const query = graphql`
         }
       }
     }
+
+    facetedEnumsJson {
+      activityStatuses {
+        id
+        label {
+          en
+          fr
+        }
+        permalink {
+          en
+          fr
+        }
+      }
+    }
   }
 `;
 
@@ -39,13 +53,18 @@ export default ({data, pageContext}) => {
   console.log(data, pageContext);
 
   const list = data.allActivitiesJson.edges.map(e => e.node);
+  const statuses = data.facetedEnumsJson.activityStatuses;
 
   return (
     <Layout
       lang={pageContext.lang}
       className="page-activity-list"
       permalinks={pageContext.permalinks}>
-      <ActivityListing lang={pageContext.lang} list={list} />
+      <ActivityListing
+        lang={pageContext.lang}
+        list={list}
+        status={pageContext.status}
+        statuses={statuses} />
     </Layout>
   );
 };

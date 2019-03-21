@@ -14,7 +14,7 @@ export default function ProcessedImage({image, size}) {
 
   const rows = ROWS[size];
 
-  const length = image ? image.length : rows / PLACEHOLDER_CHARACTERS.length;
+  const length = image ? image.length : ((rows * 3 / 4) | 0) * rows;
 
   const b = (length / rows) | 0;
 

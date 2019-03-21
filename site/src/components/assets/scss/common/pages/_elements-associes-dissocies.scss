@@ -21,13 +21,13 @@
 	&::before {  
 	    content: "";
 	    position: absolute;
-	    width: calc(100vw - 3px);
+	    width: 100vw;
 	    height: calc(100% + 50px);
 	    min-height: 200px;
 	    background-color: $background-grey;
 	    top: 50px;
 	    z-index: -1;
-	    left: calc(#{$logo-column*-1} - #{$margins-desktop*2});
+	    left: calc(#{$logo-column*-1} - #{$margins-desktop*1});
 
 		/*left: 0;
 		width: 100%;

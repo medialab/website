@@ -31,6 +31,7 @@ export const queryFragment = graphql`
       en
       fr
     }
+    startDate
     endDate
     type
     content {
@@ -152,8 +153,9 @@ export default function ActivityDetail({lang, activity}) {
         <hgroup className="fr" lang="fr">
           <h1>{activity.name}</h1>
           <h2>{activity.description && (activity.description.fr)}</h2>
-          <p className="date">{activity.endDate}</p>
-          <p className="type-objet">{activity.type}</p>
+            <DateNews startDate={activity.startDate} endDate={activity.endDate} lang={lang} />
+            <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
+            <p className="type-objet">{activity.type}</p>
         </hgroup>
         {/* Article FR */}
         <div className="article-contenu fr" lang="fr">

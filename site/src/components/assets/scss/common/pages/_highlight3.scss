@@ -131,9 +131,11 @@ $Hunite: $unite*4;
                         overflow: hidden;
                         width: 25%;
                         height: 100%;
+                        max-height: 80px;
                         position: absolute;
                         top: 0;
                         right: 0;
+                        transition: 0.25s cubic-bezier(1,0,0,1); // Transition to Normal
 
                         z-index:1;                       
 
@@ -155,6 +157,7 @@ $Hunite: $unite*4;
                         
                         .image-pre{
                             width: 100%;
+                            max-height: inherit;
                             font-size: 1vw;
                             line-height: 1.15vw;
                             transition: 0.5s 0.05s cubic-bezier(1,0,0,1);

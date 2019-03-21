@@ -6,7 +6,6 @@ import Nav from './fragments/Nav.js';
 import ToggleLang from './fragments/pages/ToggleLang.js';
 import {IsModel} from './helpers.js';
 
-
 import Highlight from './fragments/pageEquipe/Highlight.js';
 import ProductionsAssociees from './fragments/pages/ProductionsAssociees.js';
 import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
@@ -22,6 +21,7 @@ export const queryFragment = graphql`
       fr
     }
     type
+    date
     description {
       en
       fr
@@ -141,8 +141,7 @@ export default function ProductionDetail({lang, production}) {
             <h2 data-type="description"><RawHtml html={production.description && (production.description.fr)} /></h2>
             <p className="type-objet">{IsModel(production.type, "fr")}</p>
             <div className="time">
-              <DateNews startDate={production.startDate} endDate={production.endDate} lang={lang} />
-              <TimeNews startDate={production.startDate} endDate={production.endDate} />
+              <p className="date-news">{production.date}</p>
             </div>            
           </hgroup>
           {/* Article FR */}

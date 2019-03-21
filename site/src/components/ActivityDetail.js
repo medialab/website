@@ -90,21 +90,6 @@ export const queryFragment = graphql`
 export default function ActivityDetail({lang, activity}) {
   console.log(lang, activity);
 
-  //Placeholder
-  // activity.attachments = [{label: "Faux_files.xml", value: "Faux_files", type: 'XML',},{label: "Faux_files.pdf", value: "Faux_files", type: 'PDF',}];
-  // activity.activities = [{name: "Fausse Activité", baseline: { fr: "Fausse baseline", en: "Fake Baseline"}, slugs: "fakeslug"}];
-  // activity.people = [{firstName: "Bob", lastName: "Morane", slugs: "fakeslug"}];
-  // console.log(activity);
-  //activity.attachments = [{label: "Faux_files.pdf", value: "Faux_files", type: 'Fake',}];
-
-
-  // related Elements
-  const files = activity.attachments;
-  const people = activity.people.map(p => {
-    return <span key={p.id}>{p.firstName} {p.lastName}</span>;
-  });
-
-
   return (
     <main id="main-objet">
       <Nav lang={lang} data={activity} order={['main', 'people', 'productions', 'activities', 'attachments']} />

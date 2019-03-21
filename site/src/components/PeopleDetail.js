@@ -191,7 +191,7 @@ export default function PeopleDetail({lang, person}) {
 
   return (
     <>
-      <Nav lang={lang} data={person} />
+      <Nav lang={lang} data={person} order={['main', 'productions', 'activities', 'news']} />
       <main id="main">
         <p className="titre-sticky">
           <Link to="/people">

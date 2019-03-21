@@ -1,12 +1,12 @@
 import React from 'react';
 import ProcessedImage from '../ProcessedImage.js';
-import {SECTIONS, DEFAULT_SECTIONS_ORDER} from './sections';
+import {SECTIONS} from './sections';
 
 
 import Logo from '../assets/svg/logo_medialab.svg';
 
-const getRelatedElements = (data) => {
-	return DEFAULT_SECTIONS_ORDER.filter(id => {
+const getRelatedElements = (order, data) => {
+	return order.filter(id => {
     const spec = SECTIONS[id];
 
     return spec.exists(data);
@@ -14,7 +14,7 @@ const getRelatedElements = (data) => {
 };
 
 
-export default function Nav({lang, data = {}}) {
+export default function Nav({lang, data = {}, order = []}) {
 	//Je pense que nous n'avons pas assez de donnée dans le CMS pour mener à bien cette fonction
 	// Néanmoins la logique serait :  Si et seulement si il existe une Image Générée créer cet élément
 	// Cet élément est composé d'une image lambda et de son corrolaire Image Générée
@@ -40,7 +40,7 @@ export default function Nav({lang, data = {}}) {
     <div className="nav-inside-item" id="img-article">
       {coverImage}
     </div>
-    {(getRelatedElements(data)).map(related => (
+    {(getRelatedElements(order, data)).map(related => (
       <div key={related.id} className="nav-inside-item" data-type={related.id}>
         <p>
           <a href={`#${related.id}`}>{related[lang]}</a>

@@ -1,8 +1,11 @@
 import React from 'react';
 import {Link} from 'gatsby';
+import {SECTIONS} from '../sections';
 
 
-const ActivitesAssociees = ({lang, related, activities}) => {
+const ActivitesAssociees = ({lang, activities}) => {
+
+  const related = SECTIONS.activities;
 
   // Si aucune activitée liée, retourne null
   if (!activities || activities.length === 0)

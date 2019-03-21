@@ -1,7 +1,10 @@
 import React from 'react';
 import {Link} from 'gatsby';
+import {SECTIONS} from '../sections';
 
-const ProductionsAssociees = ({lang, related, productions}) => {
+const ProductionsAssociees = ({lang, productions}) => {
+
+  const related = SECTIONS.productions;
 
 	if (!productions || productions.length === 0)
     return null;

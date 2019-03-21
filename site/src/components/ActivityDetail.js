@@ -2,8 +2,6 @@ import React from 'react';
 import {graphql} from 'gatsby';
 import RawHTML from './RawHtml.js';
 
-import {SECTIONS} from './fragments/sections';
-
 import {join} from './helpers';
 import Nav from './fragments/Nav.js';
 import ToggleLang from './fragments/pages/ToggleLang.js';
@@ -140,10 +138,10 @@ export default function ActivityDetail({lang, activity}) {
         </div>
 
       </article>
-      <MembresAssocies people={activity.people} related={SECTIONS.people} lang={lang} />
-      <ProductionsAssociees productions={activity.productions} related={SECTIONS.productions} lang={lang} />
-      <ActivitesAssociees activities={activity.activities} related={SECTIONS.activities} lang={lang} />
-      <FichiersAssocies attachments={activity.attachments} related={SECTIONS.attachments} lang={lang} />
+      <MembresAssocies people={activity.people} lang={lang} />
+      <ProductionsAssociees productions={activity.productions} lang={lang} />
+      <ActivitesAssociees activities={activity.activities} lang={lang} />
+      <FichiersAssocies attachments={activity.attachments} lang={lang} />
     </main>
   );
 }

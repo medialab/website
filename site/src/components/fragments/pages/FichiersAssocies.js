@@ -1,8 +1,11 @@
 import React from 'react';
 import {Link, withPrefix} from 'gatsby';
+import {SECTIONS} from '../sections';
 
 
-const FichiersAssocies = ({lang, related, attachments}) => {
+const FichiersAssocies = ({lang, attachments}) => {
+
+  const related = SECTIONS.attachments;
 
   // Si aucun fichier lié, retourne null
   if (!attachments || attachments.length === 0)

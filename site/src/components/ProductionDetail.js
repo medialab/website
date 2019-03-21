@@ -2,8 +2,6 @@ import React from 'react';
 import {graphql} from 'gatsby';
 import RawHTML from './RawHtml.js';
 
-import {SECTIONS} from './fragments/sections';
-
 import Highlight from './fragments/pageEquipe/Highlight.js';
 import ProductionsAssociees from './fragments/pages/ProductionsAssociees.js';
 import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
@@ -127,11 +125,11 @@ export default function ProductionDetail({lang, production}) {
 
         </article>
 
-        <MembresAssocies people={production.people} related={SECTIONS.people} lang={lang} />
-        <ProductionsAssociees productions={production.productions} related={SECTIONS.productions} lang={lang} />
-        <ActivitesAssociees activities={production.activities} related={SECTIONS.activities} lang={lang} />
-        <ActuAssociees actu={production.news} related={SECTIONS.news} lang={lang} />
-        <FichiersAssocies attachments={production.attachments} related={SECTIONS.files} lang={lang} />
+        <MembresAssocies people={production.people} lang={lang} />
+        <ProductionsAssociees productions={production.productions} lang={lang} />
+        <ActivitesAssociees activities={production.activities} lang={lang} />
+        <ActuAssociees actu={production.news} lang={lang} />
+        <FichiersAssocies attachments={production.attachments} lang={lang} />
       </main>
     </>
   );

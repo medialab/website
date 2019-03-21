@@ -2,8 +2,6 @@ import React from 'react';
 import {graphql} from 'gatsby';
 import RawHTML from './RawHtml.js';
 
-import {SECTIONS} from './fragments/sections';
-
 import Nav from './fragments/Nav.js';
 import ToggleLang from './fragments/pages/ToggleLang.js';
 //import {PlaceHolder} from './helpers.js';
@@ -144,10 +142,10 @@ export default function NewsDetail({lang, news}) {
         </article>
 
         {/* Block Associes */}
-        <MembresAssocies people={news.people} related={SECTIONS.people} lang={lang} />
-        <ProductionsAssociees productions={news.productions} related={SECTIONS.productions} lang={lang} />
-        <ActivitesAssociees activities={news.activities} related={SECTIONS.activities} lang={lang} />
-        <FichiersAssocies attachments={news.attachments} related={SECTIONS.attachments} lang={lang} />
+        <MembresAssocies people={news.people} lang={lang} />
+        <ProductionsAssociees productions={news.productions} lang={lang} />
+        <ActivitesAssociees activities={news.activities} lang={lang} />
+        <FichiersAssocies attachments={news.attachments} lang={lang} />
       </main>
     </>
   );

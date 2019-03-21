@@ -2,8 +2,6 @@ import React from 'react';
 import {graphql} from 'gatsby';
 import {Link} from 'gatsby';
 
-import {SECTIONS} from './fragments/sections';
-
 import Highlight from './fragments/pageEquipe/Highlight.js';
 import Highlight2 from './fragments/pageEquipe/Highlight2.js';
 import Highlight3 from './fragments/pageEquipe/Highlight3.js';
@@ -241,9 +239,9 @@ export default function PeopleDetail({lang, person}) {
         {/*<Highlight2 highlight={person.mainProductions} lang={lang} />*/}
         <Highlight3 highlight={person.mainProductions} lang={lang} />
 
-        <ProductionsAssociees productions={person.productions} related={SECTIONS.productions} lang={lang} />
-        <ActivitesAssociees activities={person.activities} related={SECTIONS.activities} lang={lang} />
-        <ActuAssociees actu={person.news} related={SECTIONS.news} lang={lang} />
+        <ProductionsAssociees productions={person.productions} lang={lang} />
+        <ActivitesAssociees activities={person.activities} lang={lang} />
+        <ActuAssociees actu={person.news} lang={lang} />
       </main>
     </>
   );

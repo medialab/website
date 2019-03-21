@@ -1,8 +1,11 @@
 import React from 'react';
 import {Link} from 'gatsby';
+import {SECTIONS} from '../sections';
 
 
-const ActuAssociees = ({lang, related, actu}) => {
+const ActuAssociees = ({lang, actu}) => {
+
+  const related = SECTIONS.news;
 
   // Si aucune actu liée, retourne null
   if (!actu || actu.length === 0)

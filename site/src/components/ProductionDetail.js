@@ -57,6 +57,10 @@ export const queryFragment = graphql`
         en
         fr
       }
+      permalink {
+        en
+        fr
+      }
       name
       type
     }

@@ -82,7 +82,7 @@ export default function Now({now, lang}) {
       <TimeNews startDate={item.data.startDate && item.data.startDate} endDate={item.data.endDate} />
     </>
 									}
-    <h2 data-level-2="label">{item.data.label.en}</h2>
+    <h2 data-level-2="label">{item.data.label && item.data.label.en}</h2>
   </>
 								)
 							}

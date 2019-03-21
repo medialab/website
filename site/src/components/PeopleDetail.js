@@ -2,9 +2,7 @@ import React from 'react';
 import {graphql} from 'gatsby';
 import {Link} from 'gatsby';
 
-import Highlight from './fragments/pageEquipe/Highlight.js';
-import Highlight2 from './fragments/pageEquipe/Highlight2.js';
-import Highlight3 from './fragments/pageEquipe/Highlight3.js';
+import Highlights from './fragments/pageEquipe/Highlights.js';
 
 
 import ProductionsAssociees from './fragments/pages/ProductionsAssociees.js';
@@ -66,11 +64,16 @@ export const queryFragment = graphql`
         en
         fr
       }
+      permalink {
+        en
+        fr
+      }
       type
+      authors
       coverImage {
         url
         processed {
-          medium
+          large
         }
       }
     }
@@ -80,12 +83,22 @@ export const queryFragment = graphql`
         en
         fr
       }
+      baseline {
+        en
+        fr
+      }
+      permalink {
+        en
+        fr
+      }
+      startDate
+      endDate
       name
       type
       coverImage {
         url
         processed {
-          medium
+          large
         }
       }
     }
@@ -263,9 +276,7 @@ export default function PeopleDetail({lang, person}) {
             {person.bio && person.bio[lang] ? <RawHtml html={person.bio[lang]} /> : null}
           </div>
         </article>
-        {/*<Highlight highlight={person.mainProductions} lang={lang}/>*/}
-        {/*<Highlight2 highlight={person.mainProductions} lang={lang} />*/}
-        <Highlight3 highlight={person.mainProductions} lang={lang} />
+        <Highlights people={person} lang={lang} />
 
         <ProductionsAssociees productions={person.productions} related={relatedElements[1]} lang={lang} />
         <ActivitesAssociees activities={person.activities} related={relatedElements[2]} lang={lang} />

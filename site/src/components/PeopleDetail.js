@@ -54,7 +54,6 @@ export const queryFragment = graphql`
       fr
     }
     mainProductions {
-      id
       description {
         en
         fr
@@ -77,7 +76,6 @@ export const queryFragment = graphql`
       }
     }
     mainActivities {
-      id
       description {
         en
         fr

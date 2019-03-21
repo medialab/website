@@ -9,7 +9,6 @@ export const query = graphql`
     settingsJson {
       home {
         grid {
-          id
           model
           data {
             ... on Activities {
@@ -76,7 +75,6 @@ export const query = graphql`
           }
         }
         slider {
-          id
           model
           data {
             ... on Activities {

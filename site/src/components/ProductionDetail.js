@@ -53,7 +53,6 @@ export const queryFragment = graphql`
       }
     }
     activities {
-      id
       description {
         en
         fr

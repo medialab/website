@@ -59,7 +59,6 @@ export const queryFragment = graphql`
     }
     draft
     activities {
-      id
       description {
         en
         fr

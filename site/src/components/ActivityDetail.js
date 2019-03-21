@@ -62,7 +62,6 @@ export const queryFragment = graphql`
       }
     }
     activities {
-      id
       name
       type
       baseline {

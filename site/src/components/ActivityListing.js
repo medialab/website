@@ -45,7 +45,7 @@ export default function ActivityListing({lang, list}) {
                 </li>
               </React.Fragment>
             ))}
-            <li className="item_accroche accroche-titre">Description en une phrase de la catégorie.</li>
+            <li className="item_accroche accroche-titre">{accroche}</li>
           </ul>
         </section>
       </>

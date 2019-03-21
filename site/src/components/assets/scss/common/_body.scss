@@ -1,8 +1,10 @@
 /* assets/scss/common/body.scss */
 
+html{ overflow-x: hidden}
+body{ overflow-x: visible}
+
 @include for-size(phone) {
     body{
-        overflow-x: inherit;
         background-color: $background-site;
     }
 }
@@ -11,7 +13,6 @@
     body{
         // max-width: 1800px;
         margin: 0 $margins-desktop!important;
-        overflow-x: inherit;
         background-color: $background-site;
     }
 }

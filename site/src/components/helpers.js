@@ -43,8 +43,7 @@ export function IsModel (item, lang) {
   if (item === 'activities') {
     if (lang === 'fr') {
       type = 'Activités';
-    }
- else {
+    } else {
       type = 'Activities';
     }
   }
@@ -54,18 +53,153 @@ export function IsModel (item, lang) {
   if (item === 'news') {
     if (lang === 'fr') {
       type = 'Actualités';
-    }
- else {
+    } else {
       type = 'News';
     }
   }
   if (item === 'people') {
     if (lang === 'fr') {
       type = "L'equipe";
-    }
- else {
+    } else {
       type = "Medialab's Team";
     }
   }
+  // Activity
+  if (item === 'research' ) {
+    if (lang === 'fr') {
+      type = 'Recherche';
+    } else {
+      type = 'Research';
+    }
+  }
+  if (item === 'teaching' ) {
+    if (lang === 'fr') {
+      type = 'Enseignement';
+    } else {
+      type = 'Teaching';
+    }
+  }
+  if (item === 'method' ) {
+    if (lang === 'fr') {
+      type = 'Méthode';
+    } else {
+      type = 'Method';
+    }
+  }
+  // News
+  if (item === 'event' ) {
+    if (lang === 'fr') {
+      type = 'Évenement';
+    } else {
+      type = 'Event';
+    }
+  }
+  if (item === 'post' ) {
+    if (lang === 'fr') {
+      type = 'Publication';
+    } else {
+      type = 'Post';
+    }
+  }
+  if (item === 'notice' ) {
+    if (lang === 'fr') {
+      type = 'Annonce';
+    } else {
+      type = 'Notice';
+    }
+  }
+
+  // Production
+  if (item === 'article' ) {
+      type = 'Article';
+  }
+  if (item === 'book' ) {
+    if (lang === 'fr') {
+      type = 'Livre';
+    } else {
+      type = 'Book';
+    }
+  }
+  if (item === 'communication' ) {
+      type = 'Communication';
+  }  
+  if (item === 'thesis' ) {
+    if (lang === 'fr') {
+      type = 'Thèse';
+    } else {
+      type = 'thesis';
+    }
+  }
+  if (item === 'grey' ) {
+    if (lang === 'fr') {
+      type = 'Littérature grise';
+    } else {
+      type = 'Grey literature';
+    }
+  }
+  if (item === 'datascape' ) {
+    if (lang === 'fr') {
+      type = 'Datascape';
+    } else {
+      type = 'Datascape';
+    }
+  }  if (item === 'website' ) {
+    if (lang === 'fr') {
+      type = 'Site Web';
+    } else {
+      type = 'Website';
+    }
+  }
+  if (item === 'software' ) {
+    if (lang === 'fr') {
+      type = 'Logiciel';
+    } else {
+      type = 'Software';
+    }
+  }
+  if (item === 'Code' ) {
+    if (lang === 'fr') {
+      type = 'Code';
+    } else {
+      type = 'Code';
+    }
+  }  
+
+  if (item === 'exhibition' ) {
+    if (lang === 'fr') {
+      type = 'Exposition';
+    } else {
+      type = 'Exhibition';
+    }
+  }
+  if (item === 'simulation' ) {
+    if (lang === 'fr') {
+      type = 'Simuation';
+    } else {
+      type = 'Simulation';
+    }
+  }  
+
+  if (item === 'workshop' ) {
+    if (lang === 'fr') {
+      type = 'Atelier';
+    } else {
+      type = 'Workshop';
+    }
+  }
+  if (item === 'conference' ) {
+    if (lang === 'fr') {
+      type = 'Conférence';
+    } else {
+      type = 'Conference';
+    }
+  }    
+  if (item === 'media' ) {
+    if (lang === 'fr') {
+      type = 'Media';
+    } else {
+      type = 'Media';
+    }
+  }    
    return type;
 }

@@ -33,55 +33,11 @@ const ActuAssociees = ({lang, actu}) => {
                 <p className="date-news">{n.startDate}</p>
                 <p className="type">{n.type}</p>
               </Link>
+              <a href="" className="complement">
+                <h2 data-level-="description">{n.description && (n.description[lang] || n.description.fr || n.description.en)}</h2>
+              </a>
             </li>
           ))}
-          {/*actu.map(a => (
-            <li key={a.id} data-type="activite" className="item">
-              <Link to={a.permalink[lang]} className="accroche">
-                <h1 data-level-="title">{lang === 'fr' ? a.title.fr : a.title.en}</h1>
-                <h2 data-level-="description">{lang === 'fr' ? a.description.fr : a.description.en}</h2>
-                <p className="type">{a.type}</p>
-              </Link>
-            </li>
-          ))*/}
-          {/* Test */}
-
-          <li data-type="activite" className="item">
-            <Link to="" className="accroche">
-              <h1 data-level-="title">Title</h1>
-              <h2 data-level-="description">description</h2>
-              <p className="type">News</p>
-              <p className="date-news">22 janvier 2019</p>
-            </Link>
-            <Link to="" className="complement">
-              <h2 data-level-="description"><span />Nuit de Folie</h2>
-            </Link>
-          </li>
-
-          <li data-type="activite" className="item">
-            <Link to="" className="accroche">
-              <h1 data-level-="title">Title</h1>
-              <h2 data-level-="description">description</h2>
-              <p className="type">News</p>
-              <p className="date-news differentMonth">29 ⇥ 30 janvier 2019</p>
-            </Link>
-            <Link to="" className="complement">
-              <h2 data-level-="description"><span />Nuit de Folie</h2>
-            </Link>
-          </li>
-
-          <li data-type="activite" className="item">
-            <Link to="" className="accroche">
-              <h1 data-level-="title">Title</h1>
-              <h2 data-level-="description">description</h2>
-              <p className="type">News</p>
-              <p className="date-news">16 Mars 2019</p>
-            </Link>
-            <Link to="" className="complement">
-              <h2 data-level-="description"><span />Nuit de Folie</h2>
-            </Link>
-          </li>
-
         </ul>
       </div>
     </aside>

@@ -145,7 +145,7 @@ export default function NewsDetail({lang, news}) {
   return (
     <>
       <Nav lang={lang} object={news} related={relatedElements} />
-      <main id="main-objet">
+      <main id="main">
         <p className="titre-sticky">{news.title && (lang === 'fr' ? news.title.fr : news.title.en) }</p>
         <article id="article-contenu">
           {/* Toggle Langue */}

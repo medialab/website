@@ -18,7 +18,7 @@ const ActivitesAssociees = ({lang, related, activities}) => {
 
   // Placeholder
   return (
-    <aside className="container elements-associes-block" id="activites-associees">
+    <aside className="container elements-associes-block" id="activities">
       <h1><span data-icon="activite" /> {accroche} </h1>
 
       <div className="contenu">
@@ -29,7 +29,7 @@ const ActivitesAssociees = ({lang, related, activities}) => {
                 <h1 data-level-2="baseline">{a.baseline && (a.baseline[lang] || a.baseline.fr || a.baseline.en)}</h1>
                 <h2 data-level-2="name">{a.name}</h2>
                 <p className="period">[{a.startDate} - {a.endDate}]</p>
-                <p className="type">{a.type}</p>                
+                <p className="type">{a.type}</p>
               </Link>
               <a href="" className="complement">
                 <h2 data-level-="description"><span>[{a.startDate} - {a.endDate}]</span>{a.description && (a.description[lang] || a.description.fr || a.description.en)}</h2>

@@ -1,28 +1,30 @@
 import React from 'react';
-import {Link, withPrefix} from 'gatsby';
 import ProcessedImage from '../ProcessedImage.js';
+import {SECTIONS, DEFAULT_SECTIONS_ORDER} from './sections';
 
 
 import Logo from '../assets/svg/logo_medialab.svg';
 
-const getRelatedElements = (relatedElements, object) => {
-	return relatedElements.filter(({exist}) => {
-		return !(typeof exist === 'function') || exist(object);
-	});
+const getRelatedElements = (data) => {
+	return DEFAULT_SECTIONS_ORDER.filter(id => {
+    const spec = SECTIONS[id];
+
+    return spec.exists(data);
+	}).map(id => SECTIONS[id]);
 };
 
 
-export default function Nav({lang, object = {}, related = []}) {
+export default function Nav({lang, data = {}}) {
 	//Je pense que nous n'avons pas assez de donnée dans le CMS pour mener à bien cette fonction
 	// Néanmoins la logique serait :  Si et seulement si il existe une Image Générée créer cet élément
 	// Cet élément est composé d'une image lambda et de son corrolaire Image Générée
 	let coverImage = null;
-	console.log(object.coverImage)
-	if (object && object.coverImage) {
+
+	if (data && data.coverImage) {
 		coverImage = (
   <div>
-    <img src={object.coverImage.url} alt={object.coverImage.url} />
-     <ProcessedImage size="large" image={object.coverImage.processed ? object.coverImage.processed.large : null} />
+    <img src={data.coverImage.url} alt={data.coverImage.url} />
+     <ProcessedImage size="large" image={data.coverImage.processed ? data.coverImage.processed.large : null} />
 
   </div>
 		);
@@ -38,7 +40,7 @@ export default function Nav({lang, object = {}, related = []}) {
     <div className="nav-inside-item" id="img-article">
       {coverImage}
     </div>
-    {(getRelatedElements(related, object)).map(related => (
+    {(getRelatedElements(data)).map(related => (
       <div key={related.id} className="nav-inside-item" data-type={related.id}>
         <p>
           <a href={`#${related.id}`}>{related[lang]}</a>

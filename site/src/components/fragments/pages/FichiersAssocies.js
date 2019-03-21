@@ -17,7 +17,7 @@ const FichiersAssocies = ({lang, related, attachments}) => {
   }
 
   return (
-    <aside className="container fichiers-associes-block" id="fichiers-associes">
+    <aside className="container fichiers-associes-block" id="attachments">
       <h1><span data-icon="file" /> {accroche} </h1>
 
       <div className="contenu">

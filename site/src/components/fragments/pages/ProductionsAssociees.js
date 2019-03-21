@@ -15,7 +15,7 @@ const ProductionsAssociees = ({lang, related, productions}) => {
 	}
 
 	return (
-    <aside className="container elements-associes-block" id="productions-associes">
+    <aside className="container elements-associes-block" id="productions">
       <h1><span data-icon="production" /> {accroche}</h1>
       <div className="contenu">
         <ul className="liste_objet">

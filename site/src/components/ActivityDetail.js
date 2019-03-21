@@ -45,7 +45,7 @@ export const queryFragment = graphql`
         medium
         large
       }
-    }    
+    }
     people {
       firstName
       lastName
@@ -147,7 +147,7 @@ export default function ActivityDetail({lang, activity}) {
     <main id="main-objet">
       <Nav lang={lang} object={activity} related={relatedElements} />
       <p className="titre-sticky">{activity.name}</p>
-      <article id="article-contenu">
+      <article id="main">
         {/* Toggle Langue */}
         <ToggleLang lang={lang} content={activity.content} />
         {/* Chapô FR */}

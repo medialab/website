@@ -17,7 +17,7 @@ const ActuAssociees = ({lang, related, actu}) => {
   }
 
   return (
-    <aside className="container elements-associes-block" id="actu-associees">
+    <aside className="container elements-associes-block" id="news">
       <h1><span data-icon="actualités" /> {accroche} </h1>
 
       <div className="contenu">

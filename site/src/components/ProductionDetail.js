@@ -130,7 +130,7 @@ export default function ProductionDetail({lang, production}) {
   return (
     <>
       <Nav lang={lang} object={production} related={relatedElements} />
-      <main id="main-objet">
+      <main id="main">
         <p className="titre-sticky">{production.title && (lang === 'fr' ? production.title.fr : production.title.en) }</p>
         <article id="article-contenu">
           {/* Toggle Langue */}
@@ -139,7 +139,7 @@ export default function ProductionDetail({lang, production}) {
           <hgroup className="fr" lang="fr">
             <h1>{production.title && (production.title.fr)}</h1>
             <h2 data-type="description"><RawHTML html={production.description && (production.description.fr)} /></h2>
-            
+
             <p className="date">{production.endDate}</p>
             <p className="type-objet">{production.type}</p>
           </hgroup>

@@ -18,7 +18,7 @@ const MembresAssocies = ({lang, related, people}) => {
   }
 
   return (
-    <aside className="container personnes-associees-block" id="membres-associes">
+    <aside className="container personnes-associees-block" id="people">
       <h1>{accroche}</h1>
 
       <div className="contenu">

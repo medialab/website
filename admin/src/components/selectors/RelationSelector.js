@@ -1,4 +1,4 @@
-import React, {Component, useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {SortableContainer, SortableElement, SortableHandle} from 'react-sortable-hoc';
 import Select from 'react-select';
 import keyBy from 'lodash/keyBy';
@@ -20,7 +20,7 @@ const noOptionsMessages = {
 const labelSearchModel = {
   activities: 'activités',
   people: 'membres',
-  productions: 'productions' 
+  productions: 'productions'
 }
 
 const DragHandle = SortableHandle(() => (
@@ -112,7 +112,7 @@ const RelationSelectorContainer = (BaseComponent) => {
 
     return (
       <div>
-        
+
         <div className="columns">
           <div className={'column is-4'}>
             <BaseComponent

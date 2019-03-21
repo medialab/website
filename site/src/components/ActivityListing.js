@@ -4,6 +4,7 @@ import {Link} from 'gatsby';
 
 import FilterActivity from './fragments/pageListe/FilterActivity.js';
 import RawHTML from './RawHtml.js';
+import {IsModel} from './helpers.js';
 
 /* import {templateMembership} from './helpers.js';  */
 //import './scss/page_liste.scss';
@@ -19,7 +20,7 @@ export default function ActivityListing({lang, list}) {
   else {
     accroche = 'Description in english en une phrase de la catégorie activité';
   }
-
+  
     return (
       <>
         <FilterActivity lang={lang} />
@@ -32,8 +33,7 @@ export default function ActivityListing({lang, list}) {
                   <Link to={a.permalink[lang]}>
                     <h1 data-level-1="baseline">{a.baseline && (lang === 'fr' ? a.baseline.fr : a.baseline.en)}</h1>
                     <h2 data-level-2="title">{a.name}</h2>
-                    <p className="type">{a.type}</p>
-                    {/* <p className="type">{lang === 'fr' ? a.type.fr : a.type.en}</p> */}
+                    <p className="type">{IsModel(a.type, lang)}</p>
                     <p className="go-to-object"><span>〉</span></p>
                   </Link>
                 </li>

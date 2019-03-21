@@ -1,6 +1,11 @@
 import React from 'react';
 import {graphql} from 'gatsby';
-import RawHTML from './RawHtml.js';
+import RawHtml from './RawHtml.js';
+
+import Nav from './fragments/Nav.js';
+import ToggleLang from './fragments/pages/ToggleLang.js';
+import {IsModel} from './helpers.js';
+
 
 import Highlight from './fragments/pageEquipe/Highlight.js';
 import ProductionsAssociees from './fragments/pages/ProductionsAssociees.js';
@@ -8,11 +13,6 @@ import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
 import ActuAssociees from './fragments/pages/ActuAssociees.js';
 import MembresAssocies from './fragments/pages/MembresAssocies.js';
 import FichiersAssocies from './fragments/pages/FichiersAssocies.js';
-
-import Nav from './fragments/Nav.js';
-import ToggleLang from './fragments/pages/ToggleLang.js';
-
-import RawHtml from './RawHtml';
 //import './scss/page_objet.scss';
 
 export const queryFragment = graphql`
@@ -138,10 +138,12 @@ export default function ProductionDetail({lang, production}) {
           {/* Chapô FR */}
           <hgroup className="fr" lang="fr">
             <h1>{production.title && (production.title.fr)}</h1>
-            <h2 data-type="description"><RawHTML html={production.description && (production.description.fr)} /></h2>
-            
-            <p className="date">{production.endDate}</p>
-            <p className="type-objet">{production.type}</p>
+            <h2 data-type="description"><RawHtml html={production.description && (production.description.fr)} /></h2>
+            <p className="type-objet">{IsModel(production.type, "fr")}</p>
+            <div className="time">
+              <DateNews startDate={production.startDate} endDate={production.endDate} lang={lang} />
+              <TimeNews startDate={production.startDate} endDate={production.endDate} />
+            </div>            
           </hgroup>
           {/* Article FR */}
           <div className="article-contenu fr" lang="fr">
@@ -151,9 +153,9 @@ export default function ProductionDetail({lang, production}) {
           {/* Chapô EN */}
           <hgroup className="en" lang="en">
             <h1>{production.title && (production.title.en)}</h1>
-            <h2 data-type="description"><RawHTML html={production.description && (production.description.en)} /></h2>
+            <h2 data-type="description"><RawHtml html={production.description && (production.description.en)} /></h2>
             <p className="date">{production.endDate}</p>
-            <p className="type-objet">{production.type}</p>
+            <p className="type-objet">{IsModel(production.type, "fr")}</p>
           </hgroup>
           {/* Article EN */}
           <div className="article-contenu en" lang="en">

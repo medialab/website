@@ -1,5 +1,6 @@
 import React from 'react';
 import {graphql} from 'gatsby';
+import RawHTML from './RawHtml.js';
 
 import Highlight from './fragments/pageEquipe/Highlight.js';
 import ProductionsAssociees from './fragments/pages/ProductionsAssociees.js';
@@ -137,7 +138,8 @@ export default function ProductionDetail({lang, production}) {
           {/* Chapô FR */}
           <hgroup className="fr" lang="fr">
             <h1>{production.title && (production.title.fr)}</h1>
-            <h2>{production.description && (production.description.fr)}</h2>
+            <h2 data-type="description"><RawHTML html={production.description && (production.description.fr)} /></h2>
+            
             <p className="date">{production.endDate}</p>
             <p className="type-objet">{production.type}</p>
           </hgroup>
@@ -149,7 +151,7 @@ export default function ProductionDetail({lang, production}) {
           {/* Chapô EN */}
           <hgroup className="en" lang="en">
             <h1>{production.title && (production.title.en)}</h1>
-            <h2>{production.description && (production.description.en)}</h2>
+            <h2 data-type="description"><RawHTML html={production.description && (production.description.en)} /></h2>
             <p className="date">{production.endDate}</p>
             <p className="type-objet">{production.type}</p>
           </hgroup>

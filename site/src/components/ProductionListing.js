@@ -82,7 +82,7 @@ export default function ProductionListing({lang, list, group, types}) {
                 ))}
               </React.Fragment>
             ))}
-            <li className="item_accroche accroche-titre">Description en une phrase de la catégorie Production</li>
+            <li className="item_accroche accroche-titre">{accroche}</li>
           </ul>
         </section>
       </>

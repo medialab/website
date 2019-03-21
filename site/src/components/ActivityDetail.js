@@ -1,5 +1,6 @@
 import React from 'react';
 import {graphql} from 'gatsby';
+import RawHTML from './RawHtml.js';
 
 import {join} from './helpers';
 import Nav from './fragments/Nav.js';
@@ -152,10 +153,10 @@ export default function ActivityDetail({lang, activity}) {
         {/* Chapô FR */}
         <hgroup className="fr" lang="fr">
           <h1>{activity.name}</h1>
-          <h2>{activity.description && (activity.description.fr)}</h2>
-            <DateNews startDate={activity.startDate} endDate={activity.endDate} lang={lang} />
-            <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
-            <p className="type-objet">{activity.type}</p>
+          <h2 data-type="description"><RawHTML html={activity.description && activity.description.fr} /></h2>
+          <DateNews startDate={activity.startDate} endDate={activity.endDate} lang={lang} />
+          <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
+          <p className="type-objet">{activity.type}</p>
         </hgroup>
         {/* Article FR */}
         <div className="article-contenu fr" lang="fr">
@@ -165,7 +166,7 @@ export default function ActivityDetail({lang, activity}) {
         {/* Chapô EN */}
         <hgroup className="en" lang="en">
           <h1>{activity.title && (activity.title.en)}</h1>
-          <h2>{activity.description && (activity.description.en)}</h2>
+          <h2 data-type="description"><RawHTML html={activity.description && activity.description.en} /></h2>
           <p className="date">{activity.endDate}</p>
           <p className="type-objet">{activity.type}</p>
         </hgroup>

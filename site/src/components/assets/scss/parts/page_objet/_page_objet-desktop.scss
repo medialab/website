@@ -76,6 +76,8 @@
 		
 				p{
 					@include font-size-20();
+					line-height: $baseline*2.3;
+
 					letter-spacing: .2px;
 				}
 				.article-contenu{

@@ -71,7 +71,7 @@ const determineOptions = cond([[
     property('categories'),
     map(
       (category) => ({
-        value: category.fr,
+        value: category.en,
         label: category.fr
       })
     )
@@ -92,7 +92,7 @@ const PopupSelector = props => {
   });
 
   const onSelectChange = useCallback(value => {
-    if (some(category => category.fr === value.value, props.categories)) {
+    if (some(category => category.en === value.value, props.categories)) {
       return setSelectedCategory(value.value);
     }
     setPopupOpen(false);

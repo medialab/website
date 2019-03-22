@@ -1,14 +1,15 @@
-import React, {useState, useCallback, useMemo} from 'react';
+import React, {useState, useCallback} from 'react';
 import Select, {components} from 'react-select';
 import cond from 'lodash/fp/cond';
 import property from 'lodash/fp/property';
 import pipe from 'lodash/fp/pipe';
 import filter from 'lodash/fp/filter';
-import some from 'lodash/fp/some';
 import stubTrue from 'lodash/fp/stubTrue';
 import map from 'lodash/fp/map';
 import Button from '../misc/Button';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
+
+const mapObj = map.convert({cap: false});
 
 const MenuList = props => {
   let header;
@@ -56,7 +57,6 @@ const Control = props => (
     <components.Control {...props} />
   </span>
 );
-
 const determineOptions = cond([[
   property('selectedCategory'),
   ({selectedCategory, options}) => filter(
@@ -69,12 +69,10 @@ const determineOptions = cond([[
 ], [
   stubTrue, pipe(
     property('categories'),
-    map(
-      (category) => ({
-        value: category.en,
-        label: category.fr
-      })
-    )
+    mapObj((category, label) => ({
+      value: label,
+      label: category.fr,
+    })),
   )
 ]]);
 
@@ -92,11 +90,13 @@ const PopupSelector = props => {
   });
 
   const onSelectChange = useCallback(value => {
-    if (some(category => category.en === value.value, props.categories)) {
-      return setSelectedCategory(value.value);
+    if (value.value in props.categories) {
+      setSelectedCategory(value.value);
     }
-    setPopupOpen(false);
-    props.onChange(value);
+    else {
+      setPopupOpen(false);
+      props.onChange(value);
+    }
   }, [props.categories, props.onChange]);
   const onClickBack = useCallback(() => setSelectedCategory(null));
   const toggleOpen = useCallback(() => setPopupOpen(true));

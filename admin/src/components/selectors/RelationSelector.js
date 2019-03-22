@@ -21,7 +21,7 @@ const labelSearchModel = {
   activities: 'activités',
   people: 'membres',
   productions: 'productions'
-}
+};
 
 const DragHandle = SortableHandle(() => (
   <span className="handle" style={{marginTop: '5px', marginRight: '5px'}}>
@@ -67,6 +67,10 @@ const useFetchModel = (model, mapper) => {
   }, [model]);
   return [data, loading];
 };
+    
+function getKeyByValue(object, value) {
+  return Object.keys(object).find(key => object[key] === value);
+}
 
 const RelationSelectorContainer = (BaseComponent) => {
   return (props) => {
@@ -88,10 +92,13 @@ const RelationSelectorContainer = (BaseComponent) => {
 
     const mapForProductions = item => ({
       ...mapGeneric(item),
-      type: find(
-        group => group.values.includes(item.type),
-        enums.productionTypes.groups
-      ).en,
+      type: getKeyByValue(
+        enums.productionTypes.groups,
+        find(
+          group => group.values.includes(item.type),
+          enums.productionTypes.groups
+        )
+      ),
     });
 
     const [options, loading] = useFetchModel(model, props.categories ? mapForProductions : mapGeneric);
@@ -112,7 +119,6 @@ const RelationSelectorContainer = (BaseComponent) => {
 
     return (
       <div>
-
         <div className="columns">
           <div className={'column is-4'}>
             <BaseComponent
@@ -123,7 +129,7 @@ const RelationSelectorContainer = (BaseComponent) => {
               options={filteredOptions.filter(o => !selectedSet.has(o.value))}
               isLoading={loading}
               menuPlacement="top"
-              placeholder={"rechercher dans les " + labelSearchModel[model]}
+              placeholder={'rechercher dans les ' + labelSearchModel[model]}
               noOptionsMessage={noOptionsMessages[model]}
               styles={{menu: provided => ({...provided, zIndex: 1000})}} />
           </div>

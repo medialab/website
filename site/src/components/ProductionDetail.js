@@ -6,7 +6,6 @@ import Nav from './fragments/Nav.js';
 import ToggleLang from './fragments/pages/ToggleLang.js';
 import {IsModel} from './helpers.js';
 
-import Highlight from './fragments/pageEquipe/Highlight.js';
 import ProductionsAssociees from './fragments/pages/ProductionsAssociees.js';
 import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
 import ActuAssociees from './fragments/pages/ActuAssociees.js';

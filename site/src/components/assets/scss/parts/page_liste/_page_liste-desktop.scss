@@ -32,6 +32,8 @@
 			.liste_objet{
 
 				margin-bottom: 40vh;
+				min-height: calc(100vh - 40vh - #{$height-top-bar-phone});
+
 
 				[data-item], .list-year{ width: calc((100vw - #{$logo-column} - #{$margins-desktop*2})/5*2 ); }
 

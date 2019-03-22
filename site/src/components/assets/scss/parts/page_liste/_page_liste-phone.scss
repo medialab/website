@@ -8,7 +8,6 @@
 	
 	@media (max-width: 1000px)  {
 
-
 		#liste .liste_objet{
 
 				[data-item], .list-year, .accroche-titre-phone{ width: calc(100vw - #{$logo-column} - #{$margins-desktop*3}); }
@@ -109,6 +108,8 @@
 				width: $mobile-container-width;
 				height: auto;
 				margin-bottom: 50vh;
+				min-height: calc(100vh - 50vh - #{$height-top-bar-phone});
+
 
 				[data-item], .list-year{ 
 					width: 100%; 				

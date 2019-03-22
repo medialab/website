@@ -93,7 +93,7 @@ export default function ActivityDetail({lang, activity}) {
     <main id="main-objet">
       <Nav lang={lang} data={activity} order={['main', 'people', 'productions', 'activities', 'attachments']} />
       <p className="titre-sticky">{activity.name}</p>
-      <article id="main">
+      <article id="article-contenu">
         {/* Toggle Langue */}
         <ToggleLang lang={lang} content={activity.content} />
         {/* Chapô FR */}

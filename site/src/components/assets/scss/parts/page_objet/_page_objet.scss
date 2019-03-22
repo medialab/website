@@ -21,6 +21,7 @@ a:hover{
 	
 	.titre-sticky{
 		@include text-overflow;
+		&:first-letter{ text-transform: uppercase;}
 	}
 	
 	#article-contenu{
@@ -29,7 +30,12 @@ a:hover{
 		@include flex();
 		@include flex-direction(column);
 
-		hgroup{ @include flex-order(1); }
+		hgroup{ 
+			@include flex-order(1); 
+			h1{ 
+				&:first-letter{ text-transform: uppercase;}
+			}
+		}
 		.article-contenu{ 
 
 			@include flex-order(2); 

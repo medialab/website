@@ -66,8 +66,8 @@ export default function Agenda({rdv, lang}) {
             <article className="past" data-count="2">
 
               <p>{lang === 'fr' ?
-							'Voir les rendez-vous déjà passés dans ' + <Link to="/news">Actualités</Link> :
-							'Have a look to past appoitement in actuality ' + <Link to="/en/news">Actuality</Link>
+							<Link to="/news">Voir les rendez-vous déjà passés dans <span>Actualités</span></Link> :
+							<Link to="/news">'Have a look to past appoitement in <span>Actuality</span></Link>
 							}
               </p>
 

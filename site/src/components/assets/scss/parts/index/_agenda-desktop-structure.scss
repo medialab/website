@@ -71,7 +71,7 @@ $width-agenda-nav: 50px;
             align-items: center;
             justify-content: center;
             font-size: 4rem;  
-            span{ padding: 3rem;}
+            //span{ padding: 3rem;}
             &:hover{ color: $redlab; }
         }
 
@@ -81,7 +81,7 @@ $width-agenda-nav: 50px;
             left: - $margins-desktop;
             border-right: $border-light;
             span{ 
-                left: -18px; 
+                //left: -18px; 
                 letter-spacing: -30px;
             }
         }
@@ -92,7 +92,7 @@ $width-agenda-nav: 50px;
             width: $width-agenda-nav + 1px;
             right: - $margins-desktop;
             border-left: $border-light;
-            span{ left: 8px; }
+            span{ left: -5px; }
         }
         
 

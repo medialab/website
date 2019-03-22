@@ -56,6 +56,11 @@ a:hover{
 
 			p{ margin-bottom: $baseline*2; }
 
+			li{ 
+				left: $unite;
+				&:before{ content: "⧆"; left: -5px;}
+			}
+
 		}
 
 		hgroup{

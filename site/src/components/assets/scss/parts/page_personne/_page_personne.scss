@@ -125,6 +125,11 @@
 
 		.biographie-contenu{			
 			p + p {  margin-top: $baseline*2; }
+			
+			li{ 
+				left: $unite;
+				&:before{ content: "⧆"; left: -5px;}
+			}
 		}
 
 	}

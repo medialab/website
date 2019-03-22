@@ -32,15 +32,15 @@ function DateNews(props) {
       else {
           if (isSameYear(startDate, endDate)) {
               if (isSameMonth(startDate, endDate)) {
-                  dateNews = <p className="date-news"><span className="startDate startDate_sameMonth" >{startDateDay} </span><span className="endDate endDate_sameMonth" >{iconBetween}  <span className="day-num">{endDateDay }</span> <span className="month-name">{endDateMonthName}</span> <span className="year">{endDateYear}</span></span></p>;
+                  dateNews = <p className="date-news"><span className="startDate startDate_sameMonth" >{startDateDay} </span> {iconBetween} <span className="endDate endDate_sameMonth" ><span className="day-num">{endDateDay }</span> <span className="month-name">{endDateMonthName}</span> <span className="year">{endDateYear}</span></span></p>;
               }
               else {
-                  dateNews = <p className="date-news differentMonth"><span className="startDate" ><span className="day-num">{startDateDay }</span> <span className="month-name">{startDateMonthName}</span></span><span className="endDate"> {iconBetween} <span className="day-num">{endDateDay }</span> <span className="month-name">{endDateMonthName}</span> <span className="year">{endDateYear}</span></span></p>;
+                  dateNews = <p className="date-news differentMonth"><span className="startDate" ><span className="day-num">{startDateDay }</span> <span className="month-name">{startDateMonthName}</span></span> {iconBetween} <span className="endDate"><span className="day-num">{endDateDay }</span> <span className="month-name">{endDateMonthName}</span> <span className="year">{endDateYear}</span></span></p>;
               }
           }
           // different year
           else {
-              dateNews = <p className="date-news differentYear"><span className="startDate" ><span className="day-num">{startDateDay }</span> <span className="month-name">{startDateMonthName}</span> <span className="year">{startDateYear}</span></span><span className="endDate" > {iconBetween} <span className="day-num">{endDateDay }</span> <span className="month-name">{endDateMonthName}</span>  <span className="year">{endDateYear}</span></span></p>;
+              dateNews = <p className="date-news differentYear"><span className="startDate" ><span className="day-num">{startDateDay }</span> <span className="month-name">{startDateMonthName}</span> <span className="year">{startDateYear}</span></span> {iconBetween} <span className="endDate" ><span className="day-num">{endDateDay }</span> <span className="month-name">{endDateMonthName}</span>  <span className="year">{endDateYear}</span></span></p>;
           }
       }
   }

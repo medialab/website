@@ -73,11 +73,11 @@
 				}
 
 				h3{
-					@include article_h3();
-					margin-top: $baseline*2;			
+					@include font-size-20;
+					font-weight: bold;
+					margin-bottom: $baseline*2;			
 				}
 
-				& > h3, & > div > h3 { margin-top: 0; }
 
 				figure{
 

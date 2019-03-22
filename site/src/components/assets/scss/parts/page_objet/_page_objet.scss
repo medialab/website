@@ -48,7 +48,7 @@ a:hover{
 				}
 			}
 
-			p + p {  margin-top: $baseline*2; }
+			p{ margin-bottom: $baseline*2; }
 
 		}
 
@@ -58,7 +58,11 @@ a:hover{
 				color: $text-color-light;					
 			}
 
-			.date-news{ text-transform: capitalize; }	
+			.date-news{ 
+				text-transform: capitalize;
+				
+				.endDate, .startDate{ white-space: nowrap;}
+			}	
 
 		}
 

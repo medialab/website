@@ -22,9 +22,16 @@ $height-slideshow-phone: 500px;
 			overflow: hidden;
 
 			.image-pre-phone{ 
-			position: absolute; 
+				position: absolute; 
 				top: 0;
-			font-size: calc(10px + 3vw);
+				//font-size: calc(10px + 3vw);
+
+				pre{ 
+                    font-weight: bold;
+                    font-size: calc(((100vw - #{$unite*2})/150)*1.89);
+                    line-height: calc(((100vw - #{$unite*2})/150)*1.45); //(((Ecran - Marge*2) / Nbr de Block par ligne)*Ratio Hauteur par largeur du glyphe)
+                    overflow: hidden;
+				}
 			}
 
 			.image-pre{ display: none; }

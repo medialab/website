@@ -119,14 +119,11 @@ $width-main-image: calc( 80vw - #{$margins-desktop*2});
                     //filter: blur(3px);
                 }
 
-                .image-generator{
-                    transition: opacity 1s linear;
-                    position: relative;
-                    z-index: 1;
-
-                    pre{
-                        font-size: 2vw !important;
-                    }
+                pre{ 
+                    font-weight: bold;
+                    font-size: calc(((100vw - #{$unite*2})/150)*1.89);
+                    line-height: calc(((100vw - #{$unite*2})/150)*1.5); //(((Ecran - Marge*2) / Nbr de Block par ligne)*Ratio Hauteur par largeur du glyphe)
+                    overflow: hidden;
                 }
             }
 

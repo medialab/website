@@ -45,14 +45,17 @@
 
 				.image-pre{
 					width: 100%;
-					font-size: calc(((100vw - #{$unite*2})/150)*1.71);
-					line-height: calc(((100vw - #{$unite*2})/150)*1.89); //(((Ecran - Marge*2) / Nbr de Block par ligne)*Ratio Hauteur par largeur du glyphe)
 					height: 100%;
 					background-color: $background-site;
 					overflow: hidden;
         			border: none;
 
-        			pre{ font-weight: bold}
+        			pre{ 
+	                    font-weight: bold;
+	                    font-size: calc(((100vw - #{$unite*2})/150)*1.89);
+	                    line-height: calc(((100vw - #{$unite*2})/150)*1.5); //(((Ecran - Marge*2) / Nbr de Block par ligne)*Ratio Hauteur par largeur du glyphe)
+	                    overflow: hidden;
+        			}
 				}
 
 				.image-pre-phone{ display: none; }

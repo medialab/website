@@ -125,7 +125,10 @@
 				span{ display: none; }
 		 }
 	 
-		 #radio_filtre-production_group:checked ~ .link-productions-sort .pageProduction_current{ font-weight: 600!important; }
+		 #radio_filtre-production_group:checked ~ .link-productions-sort .pageProduction_current{ 
+			 font-weight: 600!important; 
+		}
+
 	 
 		
 		#radio_filtre-production_year + label{ 

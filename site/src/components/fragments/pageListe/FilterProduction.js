@@ -41,11 +41,12 @@ const FilterProduction = ({lang, group, types}) => {
     <label htmlFor="radio_filtre-production_group"><span>〉</span></label>
 
     <ul className="link-productions-sort">
+    <li>{lang === 'fr' ? 'Toutes les productions' : 'All productions'}</li>
       {types.map(g => {
 						return (
-  <li key={g.id}>
+  <li key={g.id} className={cls(g.id === group && 'pageProduction_current')}>
     <Link
-      className={cls(g.id === group && 'pageProduction_current')}
+      
       to={g.permalink[lang]}>
       {g.label[lang]} <span>〉</span>
     </Link>

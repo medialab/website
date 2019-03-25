@@ -6,41 +6,20 @@ import cls from 'classnames';
 const FilterProduction = ({lang, group, types}) => {
 
 
-	let title, filter, all, publication, webedition, tool, situation, media, year, type, article, communication, book, thesis, grey;
+	let title, filter, all,  year;
 
 	if (lang === 'fr') {
 		title = 'Productions';
 		filter = 'Filtres';
 		all = 'Toutes les productions';
-		publication = 'Publications';
-		webedition = 'webEditions';
-		tool = 'Outils';
-		situation = 'Situations';
-		media = 'Media';
 		year = "Aller à l'année…";
-		type = 'Type de publication';
-		article = 'Article';
-		communication = 'Communication';
-		book = 'Livre';
-		thesis = 'Thèse';
-		grey = 'Littérature grise';
+	
 	}
 	else {
 		title = 'Productions';
 		filter = 'Filters';
 		all = 'All productions';
-		publication = 'Publications';
-		webedition = 'webEditions';
-		tool = 'Tools';
-		situation = 'Situations';
-		media = 'Media';
 		year = 'Go to year…';
-		type = "Publication's type";
-		article = 'Article';
-		communication = 'Communication';
-		book = 'Book';
-		thesis = 'Thesis';
-		grey = 'Grey literature';
 	}
 
 	return (
@@ -100,40 +79,137 @@ const FilterProduction = ({lang, group, types}) => {
       </ul>
     </div>
 
-
-    <input
-      type="radio" id="radio_filtre-production_type" name="radio_filtre-production"
-      value="type" defaultChecked hidden />
-    <label htmlFor="radio_filtre-production_type">{type} <span>〉</span></label>
-
-    <input
-      type="checkbox" id="filtre-production_article" name="filtre-production_article"
-      className="input_filtre-production" value="article" hidden />
-    <label className="filtre-production checkbox-medialab" htmlFor="filtre-production_article">{article}</label>
-
-    <input
-      type="checkbox" id="filtre-production_communication" name="filtre-production_communication"
-      className="input_filtre-production" value="communication" hidden />
-    <label className="filtre-production checkbox-medialab" htmlFor="filtre-production_communication">{communication}</label>
-
-    <input
-      type="checkbox" id="filtre-production_book" name="filtre-production_book"
-      className="input_filtre-production" value="book" hidden />
-    <label className="filtre-production checkbox-medialab" htmlFor="filtre-production_book">{book}</label>
-
-    <input
-      type="checkbox" id="filtre-production_thesis" name="filtre-production_thesis"
-      className="input_filtre-production" value="thesis" hidden />
-    <label className="filtre-production checkbox-medialab" htmlFor="filtre-production_thesis">{thesis}</label>
-
-    <input
-      type="checkbox" id="filtre-production_grey" name="filtre-production_grey"
-      className="input_filtre-production" value="grey" hidden />
-    <label className="filtre-production checkbox-medialab" htmlFor="filtre-production_grey">{grey}</label>
-
+    <InputFiltresType lang={lang} group={group} />
 
   </>
 	);
 };
 
 export default FilterProduction;
+
+
+
+
+
+
+
+
+
+
+
+
+function InputFiltresType(values){
+
+  const lang = values.lang;
+  const group = values.group;
+
+  let  typePublications, typeWebEditions, typeTools, typeSituations, article, communication, book, thesis, grey, software, website, exhibition, conference;
+
+  if (lang === 'fr') {
+    typePublications = 'Type de publications';
+    typeWebEditions = 'Type d‘éditions web' ;
+    typeTools = 'Type d‘outils' ;
+    typeSituations = 'Type de situations';
+
+    article = 'Articles';
+    communication = 'Communications';
+    book = 'Livres';
+    thesis = 'Thèses';
+    grey = 'Littérature grise';
+    software = 'Logiciels';
+    website = 'Sites web';
+    exhibition = 'Expositions';
+    conference = 'Conférences';
+  }
+  else {
+    typePublications = "Publications‘ type";
+    typeWebEditions = "Web Editions‘ type";
+    typeTools = 'Tools‘ type' ;
+    typeSituations = 'Situations‘ type' ;
+   
+    article = 'Articles';
+    communication = 'Communications';
+    book = 'Books';
+    thesis = 'Thesis';
+    grey = 'Grey literature';
+    software = 'Software';
+    website = 'Websites';
+    exhibition = 'Exhibitions';
+    conference = 'Conferences';
+  }
+
+
+  if(group === 'publications'){
+    return (
+      <>
+      <input type="radio" id="radio_filtre-production_type" name="radio_filtre-production" className="input_filtre-production" value="type" defaultChecked hidden />
+      <label htmlFor="radio_filtre-production_type">{typePublications} <span>〉</span></label>
+      
+      <input type="checkbox" id="filtre-production_article" name="filtre-production_article" className="input_filtre-production" value="article" hidden />
+      <label className="filtre-production checkbox-medialab" htmlFor="filtre-production_article">{article}</label>
+  
+      <input type="checkbox" id="filtre-production_communication" name="filtre-production_communication" className="input_filtre-production" value="communication" hidden />
+      <label className="filtre-production checkbox-medialab" htmlFor="filtre-production_communication">{communication}</label>
+  
+      <input  type="checkbox" id="filtre-production_book" name="filtre-production_book" className="input_filtre-production" value="book" hidden />
+      <label className="filtre-production checkbox-medialab" htmlFor="filtre-production_book">{book}</label>
+  
+      <input type="checkbox" id="filtre-production_thesis" name="filtre-production_thesis" className="input_filtre-production" value="thesis" hidden />
+      <label className="filtre-production checkbox-medialab" htmlFor="filtre-production_thesis">{thesis}</label>
+  
+      <input type="checkbox" id="filtre-production_grey" name="filtre-production_grey" className="input_filtre-production" value="grey" hidden />
+      <label className="filtre-production checkbox-medialab" htmlFor="filtre-production_grey">{grey}</label>
+      </>
+    );
+  }else if(group === 'tools'){
+    return (
+      <>
+      <input type="radio" id="radio_filtre-production_type" name="radio_filtre-production" className="input_filtre-production" value="type" defaultChecked hidden />
+      <label htmlFor="radio_filtre-production_type">{typeTools} <span>〉</span></label>
+      
+      <input type="checkbox" id="filtre-production_software" name="filtre-production_software" className="input_filtre-production" value="software" hidden />
+      <label className="filtre-production checkbox-medialab"  htmlFor="filtre-production_software">{software}</label>
+
+      <input type="checkbox" id="filtre-production_code" name="filtre-production_code" className="input_filtre-production" value="code" hidden />
+      <label className="filtre-production checkbox-medialab"  htmlFor="filtre-production_code">Code</label>
+      </>
+    );
+  }else if(group === 'webEditions'){
+    return (
+      <>
+      <input type="radio" id="radio_filtre-production_type" name="radio_filtre-production" className="input_filtre-production" value="type" defaultChecked hidden />
+      <label htmlFor="radio_filtre-production_type">{typeWebEditions} <span>〉</span></label>
+      
+      <input type="checkbox" id="filtre-production_datascape" name="filtre-production_datascape" className="input_filtre-production" value="datascape" hidden />
+      <label className="filtre-production checkbox-medialab"  htmlFor="filtre-production_datascape">Datascape</label>
+
+      <input type="checkbox" id="filtre-production_website" name="filtre-production_website" className="input_filtre-production" value="website" hidden />
+      <label className="filtre-production checkbox-medialab"  htmlFor="filtre-production_website">{website}</label>
+      </>
+    );
+  }else if(group === 'situations'){
+    return (
+      <>
+      <input type="radio" id="radio_filtre-production_type" name="radio_filtre-production" className="input_filtre-production" value="type" defaultChecked hidden />
+      <label htmlFor="radio_filtre-production_type">{typeSituations} <span>〉</span></label>
+      
+      <input type="checkbox" id="filtre-production_exhibition" name="filtre-production_exhibition" className="input_filtre-production" value="exhibition" hidden />
+      <label className="filtre-production checkbox-medialab" htmlFor="filtre-production_exhibition">{exhibition}</label>
+
+      <input type="checkbox" id="filtre-production_workshop" name="filtre-production_workshop" className="input_filtre-production" value="workshop" hidden />
+      <label className="filtre-production checkbox-medialab" htmlFor="filtre-production_workshop">Workshops</label>
+
+      <input type="checkbox" id="filtre-production_simulation" name="filtre-production_simulation" className="input_filtre-production" value="simulation" hidden />
+      <label className="filtre-production checkbox-medialab" htmlFor="filtre-production_simulation">Simulations</label>
+
+      <input type="checkbox" id="filtre-production_conference" name="filtre-production_conference" className="input_filtre-production" value="conference" hidden />
+      <label className="filtre-production checkbox-medialab" htmlFor="filtre-production_conference">{conference}</label>
+      </>
+    );
+  }else{
+    return ( <> </>)
+  }
+
+}
+  
+

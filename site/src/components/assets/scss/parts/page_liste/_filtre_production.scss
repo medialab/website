@@ -222,8 +222,25 @@
 	//////// PRODUCTIONS - filtres méthodes
 	/////////////////////
 
-	input.input_filtre-production:checked ~ #liste #liste-productions .list-item,
-	input.input_filtre-activity:checked ~ #liste #liste-activity .list-item{display: none !important;}
+
+	input#filtre-production_article:checked ~ #liste,
+	input#filtre-production_communication:checked ~ #liste,
+	input#filtre-production_book:checked ~ #liste,
+	input#filtre-production_thesis:checked ~ #liste,
+	input#filtre-production_grey:checked ~ #liste,
+	input#filtre-production_datascape:checked ~ #liste,
+	input#filtre-production_website:checked ~ #liste,
+	input#filtre-production_software:checked ~ #liste,
+	input#filtre-production_code:checked ~ #liste,
+	input#filtre-production_exhibition:checked ~ #liste,
+	input#filtre-production_workshop:checked ~ #liste,
+	input#filtre-production_simulation:checked ~ #liste,
+	input#filtre-production_conference:checked ~ #liste,
+	input#filtre-production_media:checked ~ #liste,
+	input#filtre-production_thesis:checked ~ #liste{
+		#liste-productions .list-item{ display: none !important; }
+	}
+
 
 	input#filtre-production_article:checked ~ #liste #liste-productions .article{ display: block!important; }
 	input#filtre-production_communication:checked ~ #liste #liste-productions .communication{ display: block!important; }

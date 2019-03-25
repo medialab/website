@@ -16,7 +16,7 @@ const ProductionsAssociees = ({lang, productions}) => {
   else {
     accroche = related.en + ':';
 	}
-  console.log('PPP', productions)
+
 	return (
     <aside className="container elements-associes-block" id="productions">
       <h1><span data-icon="production" /> {accroche}</h1>

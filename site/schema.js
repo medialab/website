@@ -297,7 +297,7 @@ exports.addBacklinkToGraphQLSchema = function(getNodes, schemas, source, target)
     return;
 
   const BacklinkType = new GraphQLTypes.GraphQLObjectType({
-    name: target + '__backlink',
+    name: source + '__' + target + '__backlink',
     fields: {
       ...schemas[target],
       id: {

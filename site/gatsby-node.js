@@ -584,6 +584,18 @@ exports.setFieldsOnGraphQLNodeType = function({type, getNode, getNodesByType, pa
 
   else if (type.name === 'ActivitiesJson') {
     patchGraphQLSchema(GRAPHQL_SCHEMAS, 'activities', type, SCHEMAS.activities, settings);
+    addBacklinkToGraphQLSchema(
+      getNodesByType.bind(null, 'ProductionsJson'),
+      GRAPHQL_SCHEMAS,
+      'activities',
+      'productions'
+    );
+    addBacklinkToGraphQLSchema(
+      getNodesByType.bind(null, 'NewsJson'),
+      GRAPHQL_SCHEMAS,
+      'activities',
+      'news'
+    );
     return GRAPHQL_SCHEMAS.activities;
   }
 

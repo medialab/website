@@ -76,6 +76,12 @@ const MODEL_READERS = {
       if (node)
         deleteNode({node});
 
+      // Solving enums
+      activity.typeLabel = {
+        en: ENUMS.activityTypes.en[activity.type],
+        fr: ENUMS.activityTypes.fr[activity.type]
+      };
+
       // Processing HTML
       const content = template(pathPrefix, activity.content);
 
@@ -162,6 +168,11 @@ const MODEL_READERS = {
         fr: relevantGroupInfo.fr
       };
 
+      production.typeLabel = {
+        en: ENUMS.productionTypes.en[production.type],
+        fr: ENUMS.productionTypes.fr[production.type]
+      };
+
       // Processing HTML
       const content = template(pathPrefix, production.content);
 
@@ -201,6 +212,12 @@ const MODEL_READERS = {
       // NOTE: renaming our `internal` prop because Gatsby does not like this very much...
       news.isInternal = news.internal;
       delete news.internal;
+
+      // Solving enums
+      news.typeLabel = {
+        en: ENUMS.newsTypes.en[news.type],
+        fr: ENUMS.newsTypes.fr[news.type]
+      };
 
       // Processing HTML
       const content = template(pathPrefix, news.content);

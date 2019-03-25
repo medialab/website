@@ -73,6 +73,41 @@ export const queryFragment = graphql`
         fr
       }
     }
+    productions {
+      title {
+        en
+        fr
+      }
+      authors
+      groupLabel {
+        en
+        fr
+      }
+      permalink {
+        en
+        fr
+      }
+      description {
+        en
+        fr
+      }
+    }
+    news {
+      title {
+        en
+        fr
+      }
+      type
+      description {
+        en
+        fr
+      }
+      permalink {
+        en
+        fr
+      }
+      startDate
+    }
     attachments {
       type
     }
@@ -91,7 +126,7 @@ export default function ActivityDetail({lang, activity}) {
 
   return (
     <main id="main-objet">
-      <Nav lang={lang} data={activity} order={['main', 'people', 'productions', 'activities', 'attachments']} />
+      <Nav lang={lang} data={activity} order={['main', 'people', 'productions', 'activities', 'news', 'attachments']} />
       <p className="titre-sticky">{activity.name}</p>
       <article id="article-contenu">
         {/* Toggle Langue */}
@@ -127,6 +162,7 @@ export default function ActivityDetail({lang, activity}) {
       <MembresAssocies people={activity.people} lang={lang} />
       <ProductionsAssociees productions={activity.productions} lang={lang} />
       <ActivitesAssociees activities={activity.activities} lang={lang} />
+      <ActuAssociees actu={activity.news} lang={lang} />
       <FichiersAssocies attachments={activity.attachments} lang={lang} />
     </main>
   );

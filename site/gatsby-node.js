@@ -76,6 +76,12 @@ const MODEL_READERS = {
       if (node)
         deleteNode({node});
 
+      // Solving enums
+      activity.typeLabel = {
+        en: ENUMS.activityTypes.en[activity.type],
+        fr: ENUMS.activityTypes.fr[activity.type]
+      };
+
       // Processing HTML
       const content = template(pathPrefix, activity.content);
 
@@ -162,6 +168,11 @@ const MODEL_READERS = {
         fr: relevantGroupInfo.fr
       };
 
+      production.typeLabel = {
+        en: ENUMS.productionTypes.en[production.type],
+        fr: ENUMS.productionTypes.fr[production.type]
+      };
+
       // Processing HTML
       const content = template(pathPrefix, production.content);
 
@@ -202,12 +213,27 @@ const MODEL_READERS = {
       news.isInternal = news.internal;
       delete news.internal;
 
+      // Solving enums
+      news.typeLabel = {
+        en: ENUMS.newsTypes.en[news.type],
+        fr: ENUMS.newsTypes.fr[news.type]
+      };
+
       // Processing HTML
       const content = template(pathPrefix, news.content);
 
       const hash = hashNode(news);
 
       const slug = _.last(news.slugs);
+
+      // Computing expiry
+      let expiry = news.startDate;
+
+      if (news.endDate)
+        expiry = news.endDate;
+
+      if (expiry)
+        news.expiry = +(new Date(expiry)) / 1000;
 
       createNode({
         ...news,
@@ -368,12 +394,16 @@ exports.sourceNodes = function(args) {
 exports.createPages = function({graphql, actions}) {
   const {createPage} = actions;
 
+  // TODO: CHANGE THIS WHEN IN PROD!
+  // const yesterday = +(new Date()) / 1000;
+  const yesterday = +(new Date('2010-02-01T16:30')) / 1000;
+
   // Creating basic pages
   createI18nPage(createPage, {
     path: '/',
     component: path.resolve('./src/templates/index.js'),
     context: {
-      today: (new Date()).toISOString().split('T')[0]
+      yesterday
     }
   });
 
@@ -571,6 +601,18 @@ exports.setFieldsOnGraphQLNodeType = function({type, getNode, getNodesByType, pa
 
   else if (type.name === 'ActivitiesJson') {
     patchGraphQLSchema(GRAPHQL_SCHEMAS, 'activities', type, SCHEMAS.activities, settings);
+    addBacklinkToGraphQLSchema(
+      getNodesByType.bind(null, 'ProductionsJson'),
+      GRAPHQL_SCHEMAS,
+      'activities',
+      'productions'
+    );
+    addBacklinkToGraphQLSchema(
+      getNodesByType.bind(null, 'NewsJson'),
+      GRAPHQL_SCHEMAS,
+      'activities',
+      'news'
+    );
     return GRAPHQL_SCHEMAS.activities;
   }
 

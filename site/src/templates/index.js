@@ -5,7 +5,7 @@ import Layout from '../components/Layout';
 import Home from '../components/Home';
 
 export const query = graphql`
-  {
+  query($yesterday: Int!) {
     settingsJson {
       home {
         grid {
@@ -153,7 +153,7 @@ export const query = graphql`
         }
       }
     }
-    rdv: allNewsJson(limit: 7) {
+    rdv: allNewsJson(limit: 7, filter: {expiry: {gte: $yesterday}}, sort: {fields: [expiry], order: [DESC]}) {
       edges {
         node {
           title {
@@ -182,7 +182,7 @@ const IndexPage = ({data, pageContext}) => {
 
   const grid = data.settingsJson.home.grid;
   const slider = data.settingsJson.home.slider;
-  const rdv = data.rdv.edges.map(({node}) => node);
+  const rdv = data.rdv ? data.rdv.edges.map(({node}) => node) : [];
 
   return (
     <Layout

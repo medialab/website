@@ -29,9 +29,9 @@ const ProductionsAssociees = ({lang, productions}) => {
                 <h2 data-level-2="title">{p.authors}</h2>
                 <p className="type">{p.groupLabel[lang]}</p>
               </Link>
-              <a href="" className="complement">
+              <Link to={p.permalink[lang]} className="complement">
                 <h2 data-level-2="description">{p.description[lang] || p.description.fr || p.description.en}</h2>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

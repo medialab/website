@@ -50,10 +50,6 @@ else {
       type="checkbox" id="filtre-activity_teaching" name="filtre-activity_teaching"
       className="input_filtre-activity" value="teaching" hidden />
     <label className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_teaching">{ teaching }</label>
-    {/*  La classification methode a était retirée le 5 fevrier dernier
-		<input type="checkbox" id="filtre-activity_method" name="filtre-activity_method" className="input_filtre-activity" value="method" hidden />
-		<label className="filtre-activity checkbox-medialab" for="filtre-activity_method">method</label>  */}
-
 
   </>
 	);

@@ -3,6 +3,18 @@ const sharp = require('sharp');
 const path = require('path');
 const _ = require('lodash');
 
+const GraphQLTranslatedString = new GraphQLTypes.GraphQLObjectType({
+  name: 'TranslatedString',
+  fields: {
+    en: {
+      type: GraphQLTypes.GraphQLString
+    },
+    fr: {
+      type: GraphQLTypes.GraphQLString
+    }
+  }
+});
+
 exports.graphQLSchemaAdditionForSettings = function(schemas, getNode) {
 
   const relationTypes = {};
@@ -125,38 +137,36 @@ exports.graphQLSchemaAdditionFromJsonSchema = function(model, schema) {
   }
 
   // Permalinks
-  const PermalinkType = new GraphQLTypes.GraphQLObjectType({
-    name: model + '__permalink',
-    fields: {
-      en: {
-        type: GraphQLTypes.GraphQLString
-      },
-      fr: {
-        type: GraphQLTypes.GraphQLString
-      }
-    }
-  });
-
   item.permalink = {
-    type: PermalinkType
+    type: GraphQLTranslatedString
   };
 
   // Specific cases
-  if (model === 'productions') {
+  if (model === 'activities') {
+    item.typeLabel = {
+      type: GraphQLTranslatedString
+    };
+  }
+
+  else if (model === 'news') {
+    item.expiry = {
+      type: GraphQLTypes.GraphQLInt
+    };
+
+    item.typeLabel = {
+      type: GraphQLTranslatedString
+    };
+  }
+
+  else if (model === 'productions') {
     item.groupLabel = {
-      type: new GraphQLTypes.GraphQLObjectType({
-        name: model + '__groupLabel',
-        fields: {
-          en: {
-            type: GraphQLTypes.GraphQLString
-          },
-          fr: {
-            type: GraphQLTypes.GraphQLString
-          }
-        }
-      })
-    }
-  };
+      type: GraphQLTranslatedString
+    };
+
+    item.typeLabel = {
+      type: GraphQLTranslatedString
+    };
+  }
 
   return item;
 };
@@ -291,7 +301,7 @@ exports.addBacklinkToGraphQLSchema = function(getNodes, schemas, source, target)
     return;
 
   const BacklinkType = new GraphQLTypes.GraphQLObjectType({
-    name: target + '__backlink',
+    name: source + '__' + target + '__backlink',
     fields: {
       ...schemas[target],
       id: {

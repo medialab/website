@@ -209,6 +209,15 @@ const MODEL_READERS = {
 
       const slug = _.last(news.slugs);
 
+      // Computing expiry
+      let expiry = news.startDate;
+
+      if (news.endDate)
+        expiry = news.endDate;
+
+      if (expiry)
+        news.expiry = +(new Date(expiry)) / 1000;
+
       createNode({
         ...news,
         content: content,

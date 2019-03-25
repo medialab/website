@@ -142,7 +142,13 @@ exports.graphQLSchemaAdditionFromJsonSchema = function(model, schema) {
   };
 
   // Specific cases
-  if (model === 'productions') {
+  if (model === 'news') {
+    item.expiry = {
+      type: GraphQLTypes.GraphQLInt
+    };
+  }
+
+  else if (model === 'productions') {
     item.groupLabel = {
       type: new GraphQLTypes.GraphQLObjectType({
         name: model + '__groupLabel',
@@ -156,7 +162,7 @@ exports.graphQLSchemaAdditionFromJsonSchema = function(model, schema) {
         }
       })
     }
-  };
+  }
 
   return item;
 };

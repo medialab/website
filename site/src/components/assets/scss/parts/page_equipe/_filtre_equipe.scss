@@ -2,6 +2,9 @@
 //////// Equipes
 /////////////////////
 
+$first-filter-equipe: $baseline*5.5;
+$margin-filter-equipe: $baseline;
+
 .page-people-list{
 
 	input:checked + .filtre_equipe{ 
@@ -13,17 +16,17 @@
 
 	@include for-size(desktop) {
 
-		.filtre_equipe:nth-of-type(2){ top: $height-top-bar + $baseline* 2.5 + $baseline* 2.5 * 1; }
-		.filtre_equipe:nth-of-type(3){ top: $height-top-bar + $baseline* 2.5 + $baseline* 2.5 * 2; }
-		.filtre_domaine_title{ top: $height-top-bar + $baseline* 2.5 * 4.5;}
-		.filtre_equipe:nth-of-type(4){ top: $height-top-bar + $baseline* 2.5 + $baseline* 2.5 * 4.5; }
-		.filtre_equipe:nth-of-type(5){ top: $height-top-bar + $baseline* 2.5 + $baseline* 2.5 * 5.5; }
-		.filtre_equipe:nth-of-type(6){ top: $height-top-bar + $baseline* 2.5 + $baseline* 2.5 * 6.5; }
-		.filtre_equipe:nth-of-type(7){ top: $height-top-bar + $baseline* 2.5 + $baseline* 2.5 * 7.5; }
-		.filtre_equipe:nth-of-type(8){ top: $height-top-bar + $baseline* 2.5 + $baseline* 2.5 * 8.5; }
-		.filtre_membre_title{ top: $height-top-bar + $baseline* 2.5 * 11;}
-		.filtre_equipe:nth-of-type(9){ top: $height-top-bar + $baseline* 2.5 + $baseline* 2.5 * 11; }
-		.filtre_equipe:nth-of-type(10){ top: $height-top-bar + $baseline* 2.5 + $baseline* 2.5 * 12; }
+		.filtre_equipe:nth-of-type(2){ top: $height-top-bar + $first-filter-equipe }
+		.filtre_equipe:nth-of-type(3){ top: $height-top-bar + $first-filter-equipe + $baseline*2.5; }
+		.filtre_membre_title{ top: $height-top-bar + $first-filter-equipe + $margin-filter-equipe + ($baseline*2.5)*2;}
+		.filtre_equipe:nth-of-type(4){ top: $height-top-bar + $first-filter-equipe + $margin-filter-equipe + ($baseline*2.5)*3;}
+		.filtre_equipe:nth-of-type(5){ top: $height-top-bar + $first-filter-equipe + $margin-filter-equipe + ($baseline*2.5)*4;}
+		.filtre_domaine_title{ top: $height-top-bar + $first-filter-equipe + $margin-filter-equipe*2 + ($baseline*2.5)*5;}
+		.filtre_equipe:nth-of-type(6){ top: $height-top-bar + $first-filter-equipe + $margin-filter-equipe*2 + ($baseline*2.5)*6;}
+		.filtre_equipe:nth-of-type(7){ top: $height-top-bar + $first-filter-equipe + $margin-filter-equipe*2 + ($baseline*2.5)*7;}
+		.filtre_equipe:nth-of-type(8){ top: $height-top-bar + $first-filter-equipe + $margin-filter-equipe*2 + ($baseline*2.5)*8;}
+		.filtre_equipe:nth-of-type(9){ top: $height-top-bar + $first-filter-equipe + $margin-filter-equipe*2 + ($baseline*2.5)*9;}
+		.filtre_equipe:nth-of-type(10){ top: $height-top-bar + $first-filter-equipe + $margin-filter-equipe*2 + ($baseline*2.5)*10;}
 		.filtre_equipe{ z-index: 10; }
 
 	}

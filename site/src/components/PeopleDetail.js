@@ -219,7 +219,7 @@ export default function PeopleDetail({lang, person}) {
             <div className="situation">
               <div className="container">
                 <span className="slash">&nbsp;</span>
-                <p data-type="domaine">{ domaine }</p>
+                <p data-type="domaine">{domaine}</p>
                 <p data-type="membership">{templateMembership(person)}</p>
               </div>
             </div>

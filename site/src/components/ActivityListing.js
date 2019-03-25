@@ -5,6 +5,7 @@ import {Link} from 'gatsby';
 import FilterActivity from './fragments/pageListe/FilterActivity.js';
 import RawHTML from './RawHtml.js';
 import {IsModel} from './helpers.js';
+import {templateMembership} from './helpers.js';
 
 /* import {templateMembership} from './helpers.js';  */
 //import './scss/page_liste.scss';

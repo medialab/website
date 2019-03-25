@@ -111,14 +111,14 @@ input:checked + label{
 
 
 input:checked + .checkbox-medialab{
-    font-weight: 600;
+    font-weight: 600!important;
     &:before{ border: 5px solid $text-color;}
 }
 
 input:checked + .checkbox-medialab:hover{
-    font-weight: 600;
-    color: $text-color;
-    &:before{ border: 5px solid $text-color;}
+    font-weight: 600!important;
+    color: $text-color!important;
+    &:before{ border: 5px solid $text-color!important;}
 }
 
 

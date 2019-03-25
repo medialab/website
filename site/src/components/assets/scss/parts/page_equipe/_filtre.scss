@@ -42,7 +42,7 @@
 		}
 
 		[data-active="no"]{
-			opacity: .8;
+			opacity: .4;
 
 		}
 	}
@@ -149,42 +149,22 @@
 		}
 	}
 
-	///////////////
-	/// Global ////
-	///////////////
 
-	/* Actif / Passif */
-	#filtre_statut_actif:checked ~ #liste_equipe [data-active="no"],
-	#filtre_statut_passif:checked ~ #liste_equipe [data-active="yes"]{
-		display:none;
-	}
 
-	#filtre_statut_actif:checked ~ #liste_equipe [data-active="yes"],
-	#filtre_statut_passif:checked ~ #liste_equipe [data-active="no"]{
-		display:block;
-	}
 
-	/* Domaine */ 
-	.filtre_domaine:checked ~ #liste_equipe [data-domain]{
-		display: none;
-	}
 
-	#domaine_academique:checked ~ #liste_equipe [data-domain="academic"],
-	#domaine_technique:checked ~ #liste_equipe [data-domain="tech"],
-	#domaine_design:checked ~ #liste_equipe [data-domain="design"],
-	#domaine_pedagogie:checked ~ #liste_equipe [data-domain="pedagogy"],
-	#domaine_administratif:checked ~ #liste_equipe [data-domain="admin"]{
-		display:block;
-	}
 
-	/* Membre */
-	#filtre_membre:checked ~ #liste_equipe [data-member="no"],
-	#filtre_non_membre:checked ~ #liste_equipe [data-member="yes"]{
-		display:none;
-	}
 
-	#filtre_membre:checked ~ #liste_equipe [data-member="yes"],
-	#filtre_non_membre:checked ~ #liste_equipe [data-member="no"]{
-		display:block;
-	}
+
+
+	
+	
+
+	
+
+
+
+
+
+	
 }

@@ -30,11 +30,11 @@
 				flex-basis: 100%;
 
 				h1{
-					@include font-size-60();
-					padding-bottom: $baseline*1;
-					margin-top: $baseline*3;
-					max-width: 1100px;
+					@include font-size-40();
+					font-weight: bold;
+					margin: $baseline*3 0 $baseline*3 0;
 				}
+
 
 				h2{ 
 					padding-bottom: $baseline*1.5; 
@@ -49,10 +49,10 @@
 			}	
 
 			h3{
-				padding-top: $baseline*3;
-				margin-bottom: $baseline*2.5;
 				@include font-size-27();
 				font-weight: bold;
+				padding-top: $baseline*3;
+				margin-bottom: $baseline*2.5;				
 			}
 
 			p, li{

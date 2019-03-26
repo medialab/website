@@ -30,7 +30,7 @@ export default function ActivityListing({lang, list, status, statuses}) {
           <ul className="liste_objet" id="liste-activity">
             {list.map((a, index) => (
               <React.Fragment key={index}>
-                <li data-item={index} data-type={a.type} className={`list-item ${a.type}`}>
+                <li data-item={index} data-type={a.type} className={`list-item ${a.type}-${a.active ? 'active' : 'past'}`}>
                   <Link to={a.permalink[lang]}>
                     <h1 data-level-1="baseline">{a.baseline && (lang === 'fr' ? a.baseline.fr : a.baseline.en)}</h1>
                     <h2 data-level-2="title">{a.name}</h2>
@@ -58,3 +58,5 @@ export default function ActivityListing({lang, list, status, statuses}) {
   {(p.people || []).map(person => <span>{person.firstName} {person.lastName}</span>)}
 </h2>
 */
+
+

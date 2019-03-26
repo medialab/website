@@ -4,19 +4,23 @@ import cls from 'classnames';
 
 const FilterActivity = ({lang, status, statuses}) => {
 
-let title, filtre, research, teaching;
+let title, filtre, research, teaching, active, past;
 
 if (lang === 'fr') {
 	title = 'Activités';
 	filtre = 'Filtres';
 	research = 'Recherche';
-	teaching = 'Enseignement';
+  teaching = 'Enseignement';
+  active = 'Actives';
+  past = 'Passées';
 }
 else {
 	title = 'Activities';
 	filtre = 'Filters';
 	research = 'Research';
-	teaching = 'Teaching';
+  teaching = 'Teaching';
+  active = 'Active';
+  past = 'Past';
 }
 
 	return (
@@ -32,7 +36,7 @@ else {
 
     <div id="background-phone" />
 
-    <ul className="link-activity-sort">
+    {/* <ul className="link-activity-sort">
       {statuses.map(s => {
         return (
           <li key={s.id} className={cls(s.id === status && 'pageProduction_current')}>
@@ -40,15 +44,25 @@ else {
           </li>
         );
       })}
-    </ul>
+    </ul> */}
+
+  <input
+      type="checkbox" id="filtre-activity_active" name="filtre-activity_active"
+      className="input_filtre-activity filtre-activity_statut" value="active" hidden />
+    <label className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_active">{ active }</label>
+
+    <input
+      type="checkbox" id="filtre-activity_past" name="filtre-activity_past"
+      className="input_filtre-activity filtre-activity_statut" value="past" hidden />
+    <label className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_past">{ past }</label>
 
     <input
       type="checkbox" id="filtre-activity_research" name="filtre-activity_research"
-      className="input_filtre-activity" value="research" hidden />
+      className="input_filtre-activity filtre-activity_type" value="research" hidden />
     <label className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_research">{ research }</label>
     <input
       type="checkbox" id="filtre-activity_teaching" name="filtre-activity_teaching"
-      className="input_filtre-activity" value="teaching" hidden />
+      className="input_filtre-activity filtre-activity_type" value="teaching" hidden />
     <label className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_teaching">{ teaching }</label>
 
   </>

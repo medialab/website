@@ -50,6 +50,8 @@ body{ overflow-x: visible}
     //content: $git;
 }
 
+.GoTo::after{ content: $goto; }
+
 //a:hover{ color: $redlab; }
 
 label{

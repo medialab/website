@@ -37,13 +37,13 @@
 				h1{
 					@include font-size-40();
 					font-weight: bold;
-					padding: $baseline 0 $baseline*3 0;
+					margin: $baseline*3 0 $baseline*3 0;
 				}
 
 				h2{
 					@include font-size-27();
 					font-weight: normal;
-					padding-bottom: $baseline*1.5;;
+					margin-bottom: $baseline*1.5;;
 				}				
 
 				.time, .type-objet{

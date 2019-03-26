@@ -9,7 +9,7 @@
 	font-style:normal;
 }
 
-/* For Small Image */
+/* For large Image */
 @font-face{
 	font-family:'Bel';
     src: url('bel2-bold.eot');
@@ -19,4 +19,17 @@
          url('bel2-bold.ttf') format('truetype');
 	font-weight:bold;
 	font-style:normal;
+}
+
+/* For Extra Large Image */
+@font-face {
+    font-family: 'Bel';
+    src: url('bel2-black.eot');
+    src: url('bel2-black.eot?#iefix') format('embedded-opentype'),
+         url('bel2-black.woff2') format('woff2'),
+         url('bel2-black.woff') format('woff'),
+         url('bel2-black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+
 }

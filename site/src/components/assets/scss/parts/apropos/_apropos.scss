@@ -1,10 +1,11 @@
 /* all */
 
-////////////////////////
-//////    color    /////
-////////////////////////
 .page-about{
-	
+	/*
+
+	////////////////////////
+	//////    color    /////
+	////////////////////////
 	background-color: #fc424e; 
 
 	::selection, ::-moz-selection{
@@ -50,7 +51,7 @@
 		a:hover { color: $background-site !important; }
 		*{ color: $text-color !important; }
 
-	}
+	}*/
 
 
 	////////////////////////
@@ -66,7 +67,7 @@
 	////////////////////////
 
 	/* Masquer image dans Navbar */
-	#nav-inside-article #img-article { visibility: hidden !important; }
+	//#nav-inside-article #img-article { visibility: hidden !important; }
 
 	////////////////////////
 	////// Hidden part /////
@@ -86,4 +87,22 @@
 	input.minify{display: none;}
 	input.minify{cursor:pointer; &+label{cursor:pointer; padding: 0 $unite 0 0;}}
 	input.minify:checked ~ .minified{display: block !important;}
+
+	.about-contenu{
+		p{ margin-bottom: $baseline*2; }
+
+		a{
+			text-decoration: underline;
+			text-decoration-skip-ink: auto;
+			text-decoration-color: $text-color-light;
+			text-decoration-style: dotted;
+			transition: .25s linear;
+
+			&:hover{
+				color: $redlab;
+				text-decoration-color: $redlab;
+
+			}
+		}
+	}
 }

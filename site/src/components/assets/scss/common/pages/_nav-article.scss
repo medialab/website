@@ -25,6 +25,7 @@ $width-main-image: calc( 80vw - #{$margins-desktop*2});
             height: $unite*3;
             width: $logo-column - $margins-desktop;
             //background-color: white;
+            transition: .1s linear;
 
             &:after{
                 content: "";
@@ -33,6 +34,15 @@ $width-main-image: calc( 80vw - #{$margins-desktop*2});
                 position: absolute;
                 bottom: 0;
             }
+
+            &:hover{
+                transition: .1s linear;
+                height: $unite*3.5;
+                &::after {
+                    //width: 150px !important;
+                }                
+            }
+
             //fonts
 
             @include font-size-16();

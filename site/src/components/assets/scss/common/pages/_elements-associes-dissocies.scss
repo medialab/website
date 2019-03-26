@@ -1,6 +1,6 @@
 
 ///// Global 
-.elements-associes-block, .personnes-associees-block{
+.elements-associes-block, .personnes-associees-block, .fichiers-associes-block{
 
 	padding-top: $sticky-height + $baseline*2;
 
@@ -175,7 +175,9 @@
 			}
 		}
 	}
+}
 
+.personnes-associees-block{
 	.liste_personne{
 
 		@include flex;
@@ -214,12 +216,46 @@
 	}
 }
 
+.fichiers-associes-block{
+    .icon{
+    border: $border;
+    font-size: 30px;
+    letter-spacing: -4px;
+    left: 0px;
+    overflow: hidden;
+    line-height: 20px;
+
+        span{
+
+            &:first-of-type{
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                left: 60%;
+                top: -50px;
+                float: right;
+                border: $border;
+                background: white;
+                transform: rotate(-45deg);            
+            }
+            &:last-of-type{
+                bottom: 2px;
+                right: 9px;
+                font-size: 15px;
+                letter-spacing: 0px;
+            }
+        }
+    }
+
+    li.item{ border-bottom: none !important;}
+}
+
 
 
 ///// Responsive
 
 @include for-size(phone) {
-	.elements-associes-block, .personnes-associees-block{
+	.elements-associes-block, .personnes-associees-block, .fichiers-associes-block{
 
 		&::before { 
 		    height: calc(100% + 50px);
@@ -242,10 +278,28 @@
 		h2{ @include font-size-13-phone(); }
 		.type{ @include font-size-13-phone(); }
 	}
+	.fichiers-associes-block{
+        li.item{ 
+            @include font-size-20();
+            margin-bottom: $margins-desktop;
+            @include text-overflow();
+            svg, p{ 
+                display: inline-block;
+                vertical-align: middle;
+            }
+            p.name{ 
+                margin-left: $margins-desktop;
+                @include font-size-20();
+            }
+            svg{ 
+                width: 50px;
+            }
+        }       
+    } 
 }
 
 @include for-size(desktop) {
-	.elements-associes-block, .personnes-associees-block{
+	.elements-associes-block, .personnes-associees-block, .fichiers-associes-block{
 
 		&::before { 
 		    height: calc(100% + 50px);
@@ -259,16 +313,37 @@
 	    }
 	}
 
-	.elements-associes-block > h1{ 
+	.elements-associes-block > h1,
+	.personnes-associees-block > h1,
+	.fichiers-associes-block > h1{ 
 		@include font-size-20();
 		font-weight: 600;
 		span{ font-weight: 300;}
 	}
+
 	.elements-associes-block .liste_objet{
 		h1{ @include font-size-20(); }				
 		h2{ @include font-size-13(); }
 		.type{ @include font-size-13(); }
 	}
+
+	.fichiers-associes-block{
+        li{ 
+            @include font-size-20();
+            margin-bottom: $margins-desktop;
+            svg, p{ 
+                display: inline-block;
+                vertical-align: middle;
+            }
+            p.name{ 
+                margin-left: $margins-desktop;
+                @include font-size-20();
+            }
+            svg{ 
+                width: 50px;
+            }
+        }       
+    }
 }
 
 @media screen and (max-width: 1000px){
@@ -284,7 +359,7 @@
 
 @media screen and (min-width: 1000px){
 
-	.elements-associes-block{
+	.elements-associes-block, .fichiers-associes-block{
 		ul.liste_objet{ 		
 			// @include flex;
 			// @include flex-wrap(wrap);			
@@ -304,7 +379,7 @@
 
 @media screen and (min-width: 1600px) {
 
-	.elements-associes-block{
+	.elements-associes-block, .fichiers-associes-block{
 
 		ul.liste_objet{ 		
 			max-width: 1500px;

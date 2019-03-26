@@ -11,47 +11,42 @@ export default function About({lang}) {
 
   return (
     <>
-      <Nav />
-      <main id="main-objet">
+      <Nav lang={lang} data='' order={['main', 'people', 'productions', 'activities', 'news', 'attachments']} />
+      <main id="main">
         <hgroup>
           <h1>Le medialab</h1>
-          <h2>Dire quelque chose d'intelligent</h2>
+          <h2>Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des sciences sociales.</h2>
         </hgroup>
-        <div className="contenu">
-          <h3>Blabla</h3>
-          <p>Dixième centre de recherche de <span className="totip">Sciences Po<span className="tip">Science Po est la maison Mère.</span></span>, le médialab a été créé en 2009 pour aider les sciences sociales et humaines à tirer le meilleur profit de la masse de données rendues disponibles par la numérisation.
-        Il a trois missions principales fortement intégrées: méthodologie, analyse, théorie.</p>
-          <p> La première est d’être au service des différents centres de Sciences Po pour aider les chercheurs qui se trouvent aux prises avec des données nouvelles pour lesquelles il n’existe pas encore de méthodologie bien établie.
-        La deuxième mission consiste à analyser en quoi la numérisation modifie les médias et les médiations qui sont l’objet des sciences sociales et humaines, particulièrement en économie, en sciences politiques, en histoire et en sociologie.
-        La troisième est de repérer en quoi la numérisation ne se contente pas de multiplier les données et de modifier les pratiques existantes, mais quelle nouvelle prise elle apporte sur les questions fondamentales de la théorie sociale .
-        Méthodes numériques (digital methods), études des médias (media studies), théorie sociale (social theory) forment ainsi les trois piliers du médialab. C’est cette combinaison exceptionnelle entre méthode, analyse et théorie, qui explique l’originalité de son organisation. En effet, contrairement aux autres centres de Sciences Po, il est composé d’un petit nombre d’universitaires et d’un nombre important d’ingénieurs, qui sont tous considérés comme publiants (qu’il s’agisse d’articles, de logiciels, ou de méthodes). En ce sens, il emprunte davantage son modèle d’organisation à un laboratoire d’istrumentation entifique.</p>
-          <section>
-            <input type="checkbox" id="section_a" className="minify" />
-            <label htmlFor="section_a"><h3>Il existe aussi un contenu contingent</h3></label>
-            <div className="minified">
-              <p> L’autre originalité du médialab en terme d’organisation est de s’appuyer à parts égales sur trois métiers: sciences du social, ingénierie des données numériques et design de l’information, ce dernier métier étant devenu indispensable du fait de la masse et de l’hétérogénéité des données qui bouleversent les habitudes de lecture.
-            Le médialab s’est particulièrement consacré au cours des années passées à domestiquer les données numériques pour qu’elles deviennent utilisables pour les trois missions qu’il s’était fixé au départ</p>
-            </div>
-          </section>
-          <section>
-            <input type="checkbox" id="section_b" className="minify" />
-            <label htmlFor="section_b"><h3>Il existe aussi un contenu contingent</h3></label>
-            <div className="minified">
-              <p> L’autre originalité du médialab en terme d’organisation est de s’appuyer à parts égales sur trois métiers: sciences du social, ingénierie des données numériques et design de l’information, ce dernier métier étant devenu indispensable du fait de la masse et de l’hétérogénéité des données qui bouleversent les habitudes de lecture.
-            Le médialab s’est particulièrement consacré au cours des années passées à domestiquer les données numériques pour qu’elles deviennent utilisables pour les trois missions qu’il s’était fixé au départ</p>
-            </div>
-          </section>
-          <section>
-            <input type="checkbox" id="section_c" className="minify" />
-            <label htmlFor="section_c"><h3>Il existe aussi un contenu contingent</h3></label>
-            <div className="minified">
-              <p> L’autre originalité du médialab en terme d’organisation est de s’appuyer à parts égales sur trois métiers: sciences du social, ingénierie des données numériques et design de l’information, ce dernier métier étant devenu indispensable du fait de la masse et de l’hétérogénéité des données qui bouleversent les habitudes de lecture.
-            Le médialab s’est particulièrement consacré au cours des années passées à domestiquer les données numériques pour qu’elles deviennent utilisables pour les trois missions qu’il s’était fixé au départ</p>
-            </div>
-          </section>
+        <div className="about-contenu">
+
+          <h3>La recherche au médialab</h3>
+
+          <p>Central dans les réflexions du médialab depuis sa <span className="totip">création<span className="tip">BlaBla</span></span>, le numérique y est envisagé tant comme un objet d’étude que comme un moyen de recherche en sciences sociales. Les transformations engendrées par les technologies numériques sont sources de rapports complexes que les travaux du médialab visent à analyser et à représenter.
+          Le changement de paradigme dans notre rapport au monde induit par ces nouvelles articulations  centrent les recherches autour de grands défis contemporains qui se répartissent en quatre thèmes : “espace public numérique”, “transition énergétique”, “futurs technologiques”, et “Quantitatives Cultural studies”.</p>
+
+          <p>Chaque projet de recherche développe une approche pluridisciplinaire qui mobilise des compétences variées. Irrigués par les sciences sociales et les STS, ces projets se nourrissent au besoin de l'ingénierie informatique, ancrée dans l’ADN du médialab, pour affiner les enquêtes utilisant le web, mais aussi des nouvelles formes de mises en situation explorées par le design. </p>
+          <p>--
+          Faire le lien avec pédagogie: 
+          Un lien fort avec les activités de pédagogie
+          Les nouvelles formes de pédagogie entrent pleinement
+          --</p>
+
+          <h3>Equipe</h3>
+          <p>Composée d’hommes et de femmes aux compétences complémentaires, l’équipe du médialab est plurielle. Membres ou associés au laboratoire, ces profils académiques, techniques, en design, ou encore en pédagogie se combinent et travaillent ensemble pour aviver la force des activités du laboratoire.</p>
+          <p><Link to="/people" className="GoTo">Découvrir les membres de l'équipe</Link></p>
+
+          <h3>Activités</h3>
+          <p>A la fois objet de recherche et outils au service des projets, les méthodes numériques sont au coeur des activités du médialab et contribuent à nourrir la réflexion sur les enjeux contemporains tant en sociologie qu’en STS. </p>
+          <p>Organisées entre recherche, enseignement et méthodes, ces activités étudient notamment la
+          montée des populismes, les futurs écologiques ou encore de l’histoire de l’art numérique.</p>
+          <p><Link to="/activities" className="GoTo">Voir la liste des activités</Link></p>
+
+          <h3>Productions</h3>
+          <p>Issues des dynamiques de recherche du laboratoire combinant méthode, analyse et théorie, les productions du médialab constituent un panorama hétéroclite. Aux traditionnelles publications académiques s’ajoute un ensemble de réalisations techniques qui répondent à des problèmes de recherche récurrents. Récemment, les sites web et réalisations en situation se sont développés comme de nouvelles formes pour rendre compte des activités du laboratoire.</p>
+          <p><Link to="/Productions" className="GoTo">Voir la liste des productions</Link></p>
 
         </div>
-        <aside id="inshort">
+        {/*  <aside id="inshort">
           <h3>Side chose</h3>
           <p>L’autre originalité du médialab en terme d’organisation est de s’appuyer à parts égales sur trois métiers</p>
           <ul>
@@ -59,7 +54,7 @@ export default function About({lang}) {
             <li>B</li>
             <li>C</li>
           </ul>
-        </aside>
+        </aside>*/}
       </main>
     </>
   );

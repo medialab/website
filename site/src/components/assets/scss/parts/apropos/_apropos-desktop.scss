@@ -39,11 +39,11 @@
 				h2{ 
 					padding-bottom: $baseline*1.5; 
 					@include font-size-27();
-					max-width: 1100px;
+					max-width: 900px;
 				}
 			}
 
-			.contenu{
+			.about-contenu{
 				max-width: 900px;
 				margin-right: $unite*2;
 			}	
@@ -55,8 +55,8 @@
 				font-weight: bold;
 			}
 
-			p{
-				@include font-size-27;
+			p, li{
+				@include font-size-20;
 			}
 		}		
 		

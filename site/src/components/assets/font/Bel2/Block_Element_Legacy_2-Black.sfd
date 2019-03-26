@@ -126,7 +126,7 @@ EndChar
 StartChar: dkshade
 Encoding: 3 9619 2
 Width: 1229
-Flags: HWO
+Flags: W
 LayerCount: 2
 Back
 SplineSet
@@ -242,6 +242,7 @@ SplineSet
  1.06581410364e-014 1319.5 l 1
  -5.06539254985e-016 164.5 l 1
 EndSplineSet
+Validated: 524297
 EndChar
 
 StartChar: block

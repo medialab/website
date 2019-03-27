@@ -1,4 +1,4 @@
-$width-main-image: calc( 80vw - #{$margins-desktop*2});
+$width-main-image: calc( 100vw - #{$margins-desktop*2});
 
 @include for-size(desktop) {
     #nav-inside-article{
@@ -10,7 +10,7 @@ $width-main-image: calc( 80vw - #{$margins-desktop*2});
         position: fixed;
         top: 0;
         left: $margins-desktop;
-        z-index: 10;
+        z-index: 4;
         display: flex;
         flex-direction: column;
         justify-content: stretch;
@@ -131,14 +131,17 @@ $width-main-image: calc( 80vw - #{$margins-desktop*2});
 
                 pre{ 
                     font-weight: bold;
-                    font-size: calc(((100vw - #{$unite*2})/150)*1.89);
-                    line-height: calc(((100vw - #{$unite*2})/150)*1.5); //(((Ecran - Marge*2) / Nbr de Block par ligne)*Ratio Hauteur par largeur du glyphe)
+                    font-size: calc(((100vw - #{$unite*2})/250)*2.50); // Should change with width
+                    line-height: calc(((100vw - #{$unite*2})/250)*1.89);
                     overflow: hidden;
+                    //background: white;                    
                 }
             }
 
             &:hover{
                 width: $width-main-image;
+                overflow: inherit;
+
 
                 &:before{
                     content:"";
@@ -152,7 +155,7 @@ $width-main-image: calc( 80vw - #{$margins-desktop*2});
                 img{
                     width: #{$width-main-image};
                     //height: auto;
-                    opacity: 1;
+                    opacity: 0;
                     transition: all .25s cubic-bezier(.76,.05,.86,.06);
                     //transform: translateY(-50%);
                     //top: 50%;

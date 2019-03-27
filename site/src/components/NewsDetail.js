@@ -95,6 +95,10 @@ export const queryFragment = graphql`
       type
     }
     type
+    typeLabel {
+      en
+      fr
+    }
     startDate
     endDate
     place

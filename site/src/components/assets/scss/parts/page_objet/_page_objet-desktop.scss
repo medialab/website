@@ -13,15 +13,6 @@ $hack-sticky: 54px;
 		#topbar{
 			position: absolute!important; 
 			top: calc(#{$hack-sticky}*-1);
-	        // &:after{
-	        //     content:"";
-	        //     border-bottom: $border;
-	        //     margin-left: $logo-column;
-	        //     width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
-	        //     position: absolute;
-	        //     bottom: 0;
-	        //     z-index: 10;
-	        // }
 		}
 
 	
@@ -31,7 +22,7 @@ $hack-sticky: 54px;
 			top: -1px;
 			// width: calc(100% - #{$margins-desktop*1});
 			width: 100%;
-			height: $height-top-bar - $hack-sticky + 1px;
+			height: $height-top-bar - $hack-sticky;
 			background-color: $background-site;
 			z-index: 5;
 			border-bottom: $border;

@@ -2,50 +2,67 @@
 ////////  Desktop 
 /////////////////////
 
+
+
+$hack-sticky: 54px;
+
+
+
+		
 @include for-size(desktop) {
  
 	.page-people{
 
-		#topbar{ 
-	        &:after{ // Si Titre-Sticky. Topbar herite de la Border-bottom
-	            content:"";
-	            border-bottom: $border;
-	            margin-left: $logo-column;
-	            width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
-	            position: absolute;
-	            bottom: 0;
-	            z-index: 10;
-	        }
+		#topbar{
+			position: absolute!important; 
+			top: calc(#{$hack-sticky}*-1);
 		}
 		main{
 			margin-left: $logo-column;
 			margin-bottom: 40vh;
 			transition: .25s ease-in-out;
-
-	
-
+			margin-top: $hack-sticky; /* set sticky title */
+			
 			.titre-sticky{
 				@include font-size-20();
-				position: sticky;
-				top: -1px;
-				//width: 100%;
-				width: calc(100% + #{$unite});
-				height: 101px;
-				background-color: white;
-				z-index: 5;
-				padding-top: 50px;
 				font-weight: bold;
-				//border-bottom: $border;
+				position: sticky;
+
+				top: -1px;
+				// width: calc(100% - #{$margins-desktop*1});
+				width: 100%;
+				height: $height-top-bar - $hack-sticky;
+				background-color: $background-site;
+				z-index: 5;
+				border-bottom: $border;
+				white-space: nowrap;
+				padding-top: $baseline*2;
 				
-				&::after{
-					content: "";
-					border-bottom: $border;
-					width: calc(100% - #{$unite});
-					position: absolute;
-					bottom: 0;
-					left: 0;
-				}
+	
 			}
+	
+	
+
+			// .titre-sticky{
+			// 	@include font-size-20();
+			// 	position: sticky;
+			// 	top: -1px;
+			// 	width: calc(100% + #{$unite});
+			// 	height: 101px;
+			// 	background-color: white;
+			// 	z-index: 5;
+			// 	padding-top: 50px;
+			// 	font-weight: bold;
+				
+			// 	&::after{
+			// 		content: "";
+			// 		border-bottom: $border;
+			// 		width: calc(100% - #{$unite});
+			// 		position: absolute;
+			// 		bottom: 0;
+			// 		left: 0;
+			// 	}
+			// }
 
 			 .cache{
 			 	position: absolute;

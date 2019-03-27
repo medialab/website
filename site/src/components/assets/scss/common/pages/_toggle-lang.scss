@@ -1,30 +1,52 @@
-.toggle-lang{
+.toggle-lang{ 
+    @include flex-order(2); 
     border: dotted 1px $text-color;
-    padding: $baseline*2 $unite*2;
-    margin-top: $baseline*3;
+    max-width:900px;
 
-        @include font-size-16();
-
-        span{
-            border-bottom: $border; 
-            white-space: nowrap;
-            cursor: pointer;
-            &:hover{ 
-                color: $redlab;
-                border-bottom: $border-redlab;
-            }
+    span{
+        border-bottom: $border; 
+        white-space: nowrap;
+        cursor: pointer;
+        &:hover{ 
+            color: $redlab;
+            border-bottom: $border-redlab;
         }
+    }
 
 }
 
+@include for-size(phone) {
 
-#fr-to-en:checked + label { color: red;}
-#en-to-fr:checked + label { color: red;}
-
-#fr-to-en:checked ~ .fr{
-  display: none !important; 
+    .toggle-lang{
+   
+        padding: $baseline*1 $margins-phone;
+        margin-top: $baseline*2;
+        @include font-size-16();
+    
+           
+    }
+    
 }
 
-#en-to-fr:checked ~ .en{
-    display: none !important; 
-  }
+
+
+@include for-size(desktop) {
+
+    .toggle-lang{
+   
+        padding: $baseline*2 $unite*2;
+        margin-top: $baseline*3;
+        @include font-size-16();
+    
+           
+    }
+    
+}
+
+
+
+
+
+#fr-to-en:checked ~ .fr{ display: none !important; }
+
+#en-to-fr:checked ~ .en{ display: none !important; }

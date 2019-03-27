@@ -20,8 +20,9 @@
 	// Grey Background
 	&::before {  
 	    content: "";
-	    position: absolute;
-	    width: 100vw;
+		position: absolute;
+		width: 100vw;
+		
 	    background-color: $background-grey;
 	    z-index: -1;
 

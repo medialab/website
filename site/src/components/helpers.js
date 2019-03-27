@@ -109,6 +109,34 @@ export function IsModel (item, lang) {
     }
   }
 
+  // Production group
+  if (item === 'publications' ) {
+    type = 'Publication';
+  }
+  if (item === 'tools' ) {
+    if (lang === 'fr') {
+      type = 'Outil';
+    } else {
+      type = 'Tool';
+    }
+  }
+  if (item === 'webEditions' ) {
+    if (lang === 'fr') {
+      type = 'Édition web';
+    } else {
+      type = 'Web Edition';
+    }
+  }
+  if (item === 'media' ) {
+    if (lang === 'fr') {
+      type = 'Média';
+    } else {
+      type = 'Media';
+    }
+  }
+  if (item === 'situations' ) {
+    type = 'Situations';
+  }
   // Production
   if (item === 'article' ) {
       type = 'Article';

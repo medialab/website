@@ -18,65 +18,72 @@
 
 			
 			.titre-sticky{
-				position: relative;
-				width: 100%;
-				height: 101px;
-				background-color: white;
-				z-index: 5;
-				padding-top: 50px;
-				font-weight: bold;
-				border-bottom: $border;
-
-				@include font-size-20-phone();
-
+				display: none;
 			}
 
 
 			hgroup {
-
+				margin: $baseline*2 0;
 				h1{
-					@include font-size-40();
-					font-weight: bold;
-					margin: $baseline*3 0 $baseline*3 0;
+					@include font-size-20-phone();
+					font-weight: 600;
+					margin-bottom: $baseline;
 				}
 
 				h2{
-					@include font-size-27();
-					font-weight: normal;
+					@include font-size-20-phone();
 					margin-bottom: $baseline*1.5;;
 				}				
-
-				.time, .type-objet{
-					@include font-size-20-phone();
-				}
-
-				.type-objet{
-					margin-top: $baseline*2;
-				}
-				.time{
-					margin-bottom: $baseline*3;
-				}
 			
 
 			}
+
+			.details{
+				@include font-size-16-phone();
+				.date{ border-top: $border-light;}
+				p{ padding: $baseline/2 0;}
+			}
 			
 			.article-contenu{
-				max-width: 900px;
-			
-				h2{
-					@include font-size-27-phone();
-				}
+				margin-top: $baseline*2;
 
-				p, li{
-					@include font-size-20-phone();
-
-				}
-
-				h3{
-					@include font-size-20;
+				h1, h2, h3, h4, h5{
+					@include font-size-16-phone;
 					font-weight: bold;
-					margin-bottom: $baseline*2;			
+					margin-top: $baseline*4;
+					margin-bottom: $baseline*1.5;
 				}
+
+
+				.title-style-level-1{
+					@include font-size-16-phone;
+					font-weight: bold;
+					text-transform: uppercase;
+					margin-top: $baseline*4;
+					margin-bottom: $baseline*1.5;
+				}
+
+				.title-style-level-2{
+					@include font-size-16-phone;
+					font-weight: bold;
+					margin-top: $baseline*3;
+					margin-bottom: $baseline*1.5;
+				}
+
+				.title-style-level-3{
+					@include font-size-16-phone;
+					font-weight: 300;
+					font-style: italic;
+					margin-top: $baseline*3;
+					margin-bottom: $baseline*1.5;
+				}
+
+				h3 + h4, .title-style-level-1 + .title-style-level-2{ margin-top: 0;}
+
+				
+				p{ margin-bottom: $baseline*1.5;}
+
+				p, li{ @include font-size-16-phone(); }
 
 
 				figure{
@@ -102,6 +109,8 @@
 					}
 				}
 			}
+
+			.toggle-lang{ @include font-size-13-phone(); }
 		}
 	}
 

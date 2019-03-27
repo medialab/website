@@ -34,28 +34,60 @@
         width: 100%;
         margin: auto;
         text-align: center;
-        padding-bottom: $baseline*5;
+
+        overflow: hidden;
+        height: $baseline*4;
+        transition: .2s cubic-bezier(1,0,0,1);
+
+        & > * { transition: .2s cubic-bezier(1,0,0,1); transform: translateY(-98px); }
+
+
+        h1{
+            text-align: center;
+            margin-top: $baseline*4;
+            margin-bottom: $baseline*1;
+            padding-right: $unite;
+        }
 
         a{
             @include font-size-16();
             margin-top: $baseline*1;
             color: $text-color-light;
             text-decoration: underline;
-            display: none;
+            //display: none;
         }
 
-        p{
-            @include font-size-20();
-            max-width: 610px;
-            z-index: 9;
-            margin: 0 auto;
-            // padding: 2rem 0px;
-            // font-style: italic;
-            transition: 0.2s;
-            &:hover{
+        .container{
+            @include font-size-27();
+            @include text-overflow;
+            overflow: hidden;
+            width: 100%;
+            margin: 0;
+
+        }
+
+        &:hover{
+            height: auto;
+            
+            & > * { transform: translateY(0); }
+            
+            h1{
+
+                min-width: 100%;
+            }
+               
+            .container{
                 @include font-size-40();
-                max-width: 1000px;
-                a{ display: block;}
+                
+                overflow: inherit;
+                word-wrap: inherit;
+                white-space: inherit;
+
+                width: 80%;
+                max-width: 900px;
+                margin: 0 auto;
+                
+                //a{ display: block;}
             }
         }
     }/* end #introduction */

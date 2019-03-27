@@ -37,8 +37,9 @@ export default function Nav({lang, data = {}, order = []}) {
         <Logo />
       </a>
     </div>
+    
     <div className="nav-inside-item" id="img-article">
-      {coverImage}
+    { coverImage && coverImage}
     </div>
     {(getRelatedElements(order, data)).map(related => (
       <div key={related.id} className="nav-inside-item" data-type={related.id}>

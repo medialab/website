@@ -112,7 +112,8 @@ $hack-sticky: 54px;
 					}
 
 
-					.title-style-level-1{
+					.title-style-level-1,
+					[data-style-level="1"]{
 						@include font-size-20;
 						font-weight: bold;
 						text-transform: uppercase;
@@ -120,14 +121,16 @@ $hack-sticky: 54px;
 						margin-bottom: $baseline*2;
 					}
 
-					.title-style-level-2{
+					.title-style-level-2,
+					[data-style-level="2"]{
 						@include font-size-20;
 						font-weight: bold;
 						margin-top: $baseline*4;
 						margin-bottom: $baseline*2;
 					}
 
-					.title-style-level-3{
+					.title-style-level-3,
+					[data-style-level="3"]{
 						@include font-size-20;
 						font-weight: 300;
 						font-style: italic;
@@ -135,7 +138,8 @@ $hack-sticky: 54px;
 						margin-bottom: $baseline*2;
 					}
 
-					.title-style-level-1 + .title-style-level-2{ margin-top: 0;}
+					.title-style-level-1 + .title-style-level-2,
+					[data-style-level="1"] + [data-style-level="3"]{ margin-top: 0;}
 
 
 				

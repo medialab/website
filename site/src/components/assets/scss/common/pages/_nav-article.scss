@@ -110,7 +110,7 @@ $width-main-image: calc( 80vw - #{$margins-desktop*2});
             font-size: $font-size*1.3!important;
             line-height: 1.15!important;
             font-weight: bold;
-            background-color: $background-site;
+            
 
             div{
                 //background-color: white;
@@ -138,6 +138,7 @@ $width-main-image: calc( 80vw - #{$margins-desktop*2});
 
             &:hover{
                 width: $width-main-image;
+                div{background-color: $background-site;}
 
                 &:before{
                     content:"";

@@ -33,8 +33,9 @@ const ActuAssociees = ({lang, actu}) => {
                 <p className="date-news">{n.startDate}</p>
                 <p className="type">{n.type}</p>
               </Link>
-              <Link to={n.permalink[lang]} className="complement">
-                <h2 data-level-="description">{n.description && (n.description[lang] || n.description.fr || n.description.en)}</h2>
+              <Link to={n.permalink[lang]} className="complement">              
+                <p>{n.description && (n.description[lang] || n.description.fr || n.description.en)}</p>
+                {/* <p className="go-to-object"><span>〉</span></p> */}
               </Link>
             </li>
           ))}

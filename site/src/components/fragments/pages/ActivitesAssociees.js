@@ -35,7 +35,7 @@ const ActivitesAssociees = ({lang, activities}) => {
                 <p className="type">{a.type}</p>
               </Link>
               <Link to={a.permalink[lang]} className="complement">
-                <h2 data-level-="description"><span>[{a.startDate} - {a.endDate}]</span>{a.description && (a.description[lang] || a.description.fr || a.description.en)}</h2>
+                <p>{a.description && (a.description[lang] || a.description.fr || a.description.en)}</p>
               </Link>
             </li>
           ))}

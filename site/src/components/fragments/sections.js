@@ -9,8 +9,8 @@ const SECTIONS = {
   },
   people: {
     id: 'people',
-    en: 'Related people',
-    fr: 'Membres en lien',
+    en: 'Team',
+    fr: 'Équipe',
     exists: exists('people')
   },
   productions: {

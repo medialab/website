@@ -6,6 +6,7 @@
 
 	& > h1{
 		margin-bottom: $baseline*2;
+		
 	}
 	
 	& > p{
@@ -63,7 +64,6 @@
 
 			.complement{
 				position: absolute;
-
 				top: 0;
 				opacity: 0;
 				width: 100%;
@@ -76,7 +76,7 @@
 
 				// Prevent overflow - Not perfect besause hide content by default after line 3
 				overflow: hidden;
-    			max-height: 103px;
+    			// max-height: 103px;
 					
 				h2{
 					@include font-size-20;
@@ -317,9 +317,10 @@
 	.elements-associes-block > h1,
 	.personnes-associees-block > h1,
 	.fichiers-associes-block > h1{ 
-		@include font-size-20();
-		font-weight: 600;
-		span{ font-weight: 300;}
+		@include font-size-40();
+		span{ padding-right: $unite/2;}
+		// font-weight: 600;
+		// span{ font-weight: 300;}
 	}
 
 	.elements-associes-block .liste_objet{
@@ -378,7 +379,7 @@
 }
 
 
-@media screen and (min-width: 1600px) {
+@media screen and (min-width: 1400px) {
 
 	.elements-associes-block, .fichiers-associes-block{
 

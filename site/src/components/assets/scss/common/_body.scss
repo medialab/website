@@ -46,6 +46,11 @@ body{ overflow-x: visible}
     content: $files;
 }
 
+[data-icon="people"]::before{
+    content: $people;
+}
+
+
 [data-type="git"] .type::before{
     //content: $git;
 }

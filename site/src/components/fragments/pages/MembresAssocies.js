@@ -14,15 +14,15 @@ const MembresAssocies = ({lang, people}) => {
   let accroche;
 
   if (lang === 'fr') {
-    accroche = related.fr + String.fromCharCode(8239) + ':';
+    accroche = related.fr + String.fromCharCode(8239);
   }
   else {
-    accroche = related.en + ':';
+    accroche = related.en;
   }
 
   return (
     <aside className="container personnes-associees-block" id="people">
-      <h1>{accroche}</h1>
+      <h1><span data-icon="people" />{accroche}</h1>
 
       <div className="contenu">
         <ul className="liste_personne">

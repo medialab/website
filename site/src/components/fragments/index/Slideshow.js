@@ -25,7 +25,7 @@ const Slideshow = ({slider, lang}) => {
  		}
   		if (index === 2) {
  			a = '2';
- 			z = '4';
+ 			z = '1';
  		}
  	}
 
@@ -33,9 +33,6 @@ const Slideshow = ({slider, lang}) => {
   <section className="slideshow" id="slideshow">
     {slider.map((slide, index) =>
       (<React.Fragment key={index}>
-        {/* index === 0 ? ( a = "3",  z = "2" ) :
-					index === 1 ? ( a = "1",  z = "3" ) :
-						index === 3 ? ( a = "2",  z = "4" ) : "" */}
 
         {IsIndex(index)}
 

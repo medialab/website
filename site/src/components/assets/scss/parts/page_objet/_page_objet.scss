@@ -35,23 +35,23 @@ a:hover{
 
 		.details{
 			width: 100%;
-			border-top: $border-light;
-			border-bottom: $border-light;
+			border-top: $border-very-light;
+			border-bottom:$border-very-light;
 			color: $text-color-light;
 
-			.production-ref{ border-top: $border-light; }
+			.production-ref{ border-top: $border-very-light; }
 
 			[data-icon]{ padding-right: $unite/2;}
 
 			.date-news-block{ 
 				width: 100%;
-				border-bottom: $border-light;
+				border-bottom: $border-very-light;
 				p{ display: inline-block; }
 				.date-news{ margin-right: $unite; }
 				.hours-news{ 
 					white-space: nowrap; 
 					padding-left: $unite;
-					border-left: $border-light;
+					border-left: $border-very-light;
 				};
 				.hours-news::before{ content:$time; }		
 				.endDate, .startDate{ white-space: nowrap;}
@@ -59,7 +59,9 @@ a:hover{
 
 		}
 
-		hgroup, .details{ max-width: 1300px; }
+		hgroup{ max-width: 1300px; }
+
+		.details{ max-width: 900px; }
 		
 		
 		.article-contenu{ 

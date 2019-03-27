@@ -213,27 +213,25 @@ export default function PeopleDetail({lang, person}) {
             <img src={person.coverImage ? person.coverImage.url : Img} alt={lang === 'fr' ? 'Photo de profil de ' + person.firstName + person.lastName : person.firstName + person.lastName + ' profil picture'} />
           </figure>
           <header>
-
+            <hgroup>
             <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
             <h2 data-level-2="role" data-type="role">{person.role[lang]}</h2>
+            </hgroup>
             <div className="situation">
-              <div className="container">
-                <span className="slash">&nbsp;</span>
-                <p data-type="domaine">{domaine}</p>
+                <p data-type="domaine">{lang === "fr" ? "Domaine" + String.fromCharCode(8239) +":" : "Domain:"} {person.domain}</p>
                 <p data-type="membership">{templateMembership(person)}</p>
-              </div>
             </div>
 
             {/*<p data-type="status">{person.status && (lang === "fr" ? person.status.fr : person.status.en)}</p>*/}
             {person.status && <p data-type="status">{person.status[lang] || ''}</p>}
 
             <div className="contact">
-              <h3 className="toContact">{lang === 'fr' ? 'Contact' : 'Get in touch '}</h3>
+              {/* <h3 className="toContact">{lang === 'fr' ? 'Contact' : 'Get in touch '}</h3> */}
               <ul>
                 {person.contacts && person.contacts.map((contact, i) => (
                   <li key={i} data-type={contact.label}>
                     {contact.type === 'url' ?
-                      <a href={contact.value}>{contact.label}</a> :
+                      <a href={contact.value}>{contact.label}: {contact.value}</a> :
                       contact.label
                     }
                   </li>

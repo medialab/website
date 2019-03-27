@@ -61,7 +61,7 @@ $hack-sticky: 54px;
 					padding: $baseline*1 0;
 
 					p{ 
-						@include font-size-20(); 
+						@include font-size-16(); 
 						display: inline-block; 
 					}
 
@@ -74,7 +74,7 @@ $hack-sticky: 54px;
 					.date{ 
 						margin-left: $unite;
 						padding-left: $unite;
-						border-left: $border-light;
+						border-left: $border-very-light;
 					}
 
 					.date-news-block{

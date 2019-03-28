@@ -91,7 +91,7 @@ Présente l'ensemble des activités
 - **type** : recherche/enseignement/méthodes
 
 Par défaut, le filtre **active** est sélectionnée sur true (les activités passées ne sont pas affichées).
-Le filtrage est précompilé par le build et propose donc une page spécifique pour chaque combinaison de modalité.
+Le filtrage est fait en dynamique par css.
 
 ## Tri
 une selection est épinglée en haut de liste en fonction du booléen "important", le reste de la liste est ordonnée et indexée alphabétiquement sur **name**.

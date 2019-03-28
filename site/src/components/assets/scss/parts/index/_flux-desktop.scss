@@ -2,15 +2,85 @@
 //////// Flux desktop
 /////////////////////
 
-/* no support of grid */
 @include for-size(desktop){
-    #flux{
-        display: inline-block;
-        width: 100%;
-        margin-right: $margins-phone;
-        margin-bottom: $margins-phone;
-        vertical-align: top;
-    }
+
+    /* no support of flex */
+	#flux{
+        #flux-container{
+    		display: inline-block;
+    		width: 100%;
+
+    		@include column-count(4);
+    		@include column-gap($unite);
+    		@include column-fill(balance);					
+    		
+    		article{ 
+    			break-inside: avoid
+    		}
+        }
+	}
+
+	#flux {
+		
+		#flux-container{
+
+            @include flex();
+            @include flex-wrap(wrap);
+            @include flex-direction(column);
+            height: 100vh;
+
+			
+            article {
+				width:25%;
+                height: 20%;
+
+                .image-background{
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    overflow: hidden;
+
+                }
+			}
+			article:nth-child(4n+1){
+				order:1;
+			}
+			article:nth-child(4n+2){
+				order:2;
+			}
+			article:nth-child(4n+3){
+				order:3;
+			}
+			article:nth-child(4n){
+				order:4;
+			}
+
+			article {
+				border-bottom: $border-very-light;
+				padding:10px;
+				box-sizing:border-box;
+			}
+
+			article:nth-child(5n){
+				height:40%;
+			}
+			article:nth-child(5n+1){
+				height:30%;
+			}
+			article:nth-child(5n+2){
+				height:20%;
+			}
+			article:nth-child(5n+2){
+				height:10%;
+			}
+			article:nth-child(5n+2){
+				height:15%;
+			}
+			
+		} /* End flux container*/
+		
+	} /* end #flux*/
 
 }
 
@@ -18,18 +88,4 @@
 }
 
 @include for-size(desktop-1300) {
-}
-
-@include for-size(desktop) {
-
-    #flux {
-        
-        #flux-container{
- 
-
-            
-        } /* End flux container*/
-        
-    } /* end #flux*/
-
 }

@@ -1,12 +1,14 @@
 @include for-size(desktop){
     #follow{
         width: 100%;
-        padding: $unite 0;
-
+        padding: 0;
+        height: $baseline*4;
         p{
-            font-size: 3.5vw;
-            text-align: justify;
-
+            @include font-size-27();
+            @include text-overflow;
+            width: 100%;
+            text-align: center;
+            padding-top: $baseline;
         }
     }
 }

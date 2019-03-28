@@ -44,9 +44,17 @@ const Flux = () => {
 					<ul className="details">
 						<li className="update">Since a week</li>
 					</ul>
-                	<ProcessedImage size="medium" image="" />
+                	<div className="image-background"><ProcessedImage size="medium" image="" /></div>
 
-				</article>							
+				</article>
+				
+				<article></article>							
+				<article></article>							
+				<article></article>							
+				<article></article>							
+				<article></article>							
+				<article></article>							
+
 			</div>
 			
 		</section>

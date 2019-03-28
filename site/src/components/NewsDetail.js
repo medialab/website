@@ -144,19 +144,23 @@ export default function NewsDetail({lang, news}) {
         <article id="article-contenu">
           {/* Toggle Langue */}
           <ToggleLang lang={lang} content={news.content} />
-          {/* Chapô FR */}
-          <hgroup className="fr" lang="fr">
-            <h1 data-type="title">{news.title && (news.title.fr)}</h1>
-            <h2 data-type="description"><RawHtml html={news.description && (news.description.fr)} /></h2>
-            {news.type && <p className="type-objet">{IsModel(news.type, "fr")}</p> }
-            <div className="time">
-              <DateNews startDate={news.startDate} endDate={news.endDate} lang={lang} />
-              <TimeNews startDate={news.startDate} endDate={news.endDate} />
+
+          {/* FR */}
+          <div className="block-lang fr" lang="fr">
+            <hgroup>
+              <h1 data-type="title">{news.title && (news.title.fr)}</h1>
+              <h2 data-type="description"><RawHtml html={news.description && (news.description.fr)} /></h2>
+            </hgroup>
+            <div className="details">
+              <div className="date-news-block">
+                <DateNews startDate={news.startDate} endDate={news.endDate} lang={lang} />
+                <TimeNews startDate={news.startDate} endDate={news.endDate} />
+              </div>
+              <p className="type-objet"><span data-icon="news"></span> {IsModel(news.type, "fr")}</p>
             </div>
-          </hgroup>
-          {/* Article FR */}
-          <div className="article-contenu fr" lang="fr">
-            {news.content && (news.content.fr && <RawHtml html={news.content.fr} />)}
+            <div className="article-contenu">
+              {news.content && (news.content.fr && <RawHtml html={news.content.fr} />)}
+            </div>
           </div>
 
           {/* Chapô EN */}

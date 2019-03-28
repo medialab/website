@@ -19,6 +19,8 @@ export const queryFragment = graphql`
       en
       fr
     }
+    authors
+    group
     type
     date
     description {
@@ -92,34 +94,42 @@ export default function ProductionDetail({lang, production}) {
     <>
       <Nav lang={lang} data={production} order={['main', 'people', 'productions', 'activities', 'news', 'attachments']} />
       <main id="main">
-        <p className="titre-sticky">{production.title && (lang === 'fr' ? production.title.fr : production.title.en) }</p>
+        <p className="titre-sticky"><a href="#main-objet"><span data-icon="production"></span><span className="title">{production.title && (lang === 'fr' ? production.title.fr : production.title.en) }</span></a></p>
         <article id="article-contenu">
           {/* Toggle Langue */}
           <ToggleLang lang={lang} content={production.content} />
-          {/* Chapô FR */}
-          <hgroup className="fr" lang="fr">
-            <h1>{production.title && (production.title.fr)}</h1>
-            <h2 data-type="description"><RawHtml html={production.description && (production.description.fr)} /></h2>
-            <p className="type-objet">{IsModel(production.type, "fr")}</p>
-            <div className="time">
-              <p className="date-news">{production.date}</p>
-            </div>            
-          </hgroup>
-          {/* Article FR */}
-          <div className="article-contenu fr" lang="fr">
+
+
+          {/* FR */}
+          <div className="block-lang fr" lang="fr">
+            <hgroup>
+              <h1 data-level-1="title">{production.title.fr}</h1>
+              {production.authors && <h2 data-level-2="authors"><span>{production.authors}</span></h2>}
+            </hgroup>
+            <div class="details">             
+              <p className="type-objet"><span data-icon="production"></span> {IsModel(production.group, "fr")} – {IsModel(production.type, "fr")}</p>
+              <p className="date">{production.date}</p>  
+              <p className="production-ref"><RawHtml html={production.description && (production.description.fr)} /></p>        
+            </div>
+            <div className="article-contenu">
             {production.content && (production.content.fr && <RawHtml html={production.content.fr} />)}
+            </div>
           </div>
 
-          {/* Chapô EN */}
-          <hgroup className="en" lang="en">
-            <h1>{production.title && (production.title.en)}</h1>
-            <h2 data-type="description"><RawHtml html={production.description && (production.description.en)} /></h2>
-            <p className="date">{production.endDate}</p>
-            <p className="type-objet">{IsModel(production.type, "fr")}</p>
-          </hgroup>
-          {/* Article EN */}
-          <div className="article-contenu en" lang="en">
-            {production.content && (production.content.en && <RawHtml html={production.content.en} />)}
+          {/* EN */}
+          <div className="block-lang en" lang="en">
+            <hgroup>
+              <h1 data-level-1="title">{production.title.en}</h1>
+              {production.authors && <h2 data-level-2="authors"><span>{production.authors}</span></h2>}
+            </hgroup>   
+            <div class="details">
+              <p className="type-objet"><span data-icon="production"></span> {IsModel(production.group, "en")} – {IsModel(production.type, "en")}</p>
+              <p className="date">{production.date}</p>  
+              <p className="production-ref"><RawHtml html={production.description && (production.description.en)} /></p>   
+            </div>
+            <div className="article-contenu">                
+              {production.content && (production.content.en && <RawHtml html={production.content.en} />)}
+            </div>
           </div>
 
         </article>

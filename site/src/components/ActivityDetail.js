@@ -127,35 +127,47 @@ export default function ActivityDetail({lang, activity}) {
   return (
     <main id="main-objet">
       <Nav lang={lang} data={activity} order={['main', 'people', 'productions', 'activities', 'news', 'attachments']} />
-      <p className="titre-sticky">{activity.name}</p>
+      <p className="titre-sticky"><a href="#main-objet"><span data-icon="activite"></span><span className="title">{activity.name}</span></a></p>
       <article id="article-contenu">
         {/* Toggle Langue */}
         <ToggleLang lang={lang} content={activity.content} />
-        {/* Chapô FR */}
-        <hgroup className="fr" lang="fr">
-          <h1>{activity.name}</h1>
-          <h2 data-type="description"><RawHtml html={activity.description && activity.description.fr} /></h2>
-          <p className="type-objet">{IsModel(activity.type, "fr")}</p>
-          <div className="time">
-            <DateNews startDate={activity.startDate} endDate={activity.endDate} lang={lang} />
-            <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
+
+        {/* FR */}
+        <div className="block-lang fr" lang="fr">
+          <hgroup>
+            <h1  data-level-2="baseline">{activity.name}</h1>
+            <h2  className="h2-bold" data-level-2="baseline">{activity.baseline.fr}</h2>
+            <h3  data-level-3="description"><RawHtml html={activity.description && activity.description.fr} /></h3>
+          </hgroup>
+          <div class="details">
+            <p className="type-objet"><span data-icon="activite"></span> {IsModel(activity.type, "fr")}</p>
+            <p className="date">
+              <DateNews startDate={activity.startDate} endDate={activity.endDate} lang="fr" />
+              <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
+            </p>
           </div>
-        </hgroup>
-        {/* Article FR */}
-        <div className="article-contenu fr" lang="fr">
-          {activity.content && (activity.content.fr && <RawHtml html={activity.content.fr} />)}
+          <div className="article-contenu">
+            {activity.content && (activity.content.fr && <RawHtml html={activity.content.fr} />)}
+          </div>
         </div>
 
-        {/* Chapô EN */}
-        <hgroup className="en" lang="en">
-          <h1>{activity.title && (activity.title.en)}</h1>
-          <h2 data-type="description"><RawHtml html={activity.description && activity.description.en} /></h2>
-          <p className="date">{activity.endDate}</p>
-          <p className="type-objet">{IsModel(activity.type, "en")}</p>
-        </hgroup>
-        {/* Article EN */}
-        <div className="article-contenu en" lang="en">
-          {activity.content && (activity.content.en && <RawHtml html={activity.content.en} />)}
+        {/* FR */}
+        <div className="block-lang en" lang="en">
+          <hgroup>
+            <h1  data-level-2="baseline">{activity.name}</h1>
+            <h2  className="h2-bold" data-level-2="baseline">{activity.baseline.en}</h2>
+            <h3  data-level-3="description"><RawHtml html={activity.description && activity.description.en} /></h3>
+          </hgroup>
+          <div class="details">
+            <p className="type-objet"><span data-icon="activite"></span> {IsModel(activity.type, "en")}</p>
+            <p className="date">
+              <DateNews startDate={activity.startDate} endDate={activity.endDate} lang="en" />
+              <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
+            </p>
+          </div>
+          <div className="article-contenu">
+            {activity.content && (activity.content.en && <RawHtml html={activity.content.en} />)}
+          </div>
         </div>
 
       </article>

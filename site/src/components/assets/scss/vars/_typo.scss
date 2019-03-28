@@ -90,7 +90,7 @@ html{
 
 @mixin font-size-16-phone() {
     font-size: $font-size*1.6;
-    line-height: $baseline*1.4;
+    line-height: $baseline*1.5;
     font-weight: 300;
 }
 

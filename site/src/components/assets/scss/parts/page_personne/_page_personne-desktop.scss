@@ -2,50 +2,43 @@
 ////////  Desktop 
 /////////////////////
 
+
+
+$hack-sticky: 54px;
+
+
 @include for-size(desktop) {
  
 	.page-people{
 
-		#topbar{ 
-	        &:after{ // Si Titre-Sticky. Topbar herite de la Border-bottom
-	            content:"";
-	            border-bottom: $border;
-	            margin-left: $logo-column;
-	            width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
-	            position: absolute;
-	            bottom: 0;
-	            z-index: 10;
-	        }
+		#topbar{
+			position: absolute!important; 
+			top: calc(#{$hack-sticky}*-1);
 		}
 		main{
 			margin-left: $logo-column;
 			margin-bottom: 40vh;
 			transition: .25s ease-in-out;
-
-	
-
+			margin-top: $hack-sticky; /* set sticky title */
+			
 			.titre-sticky{
 				@include font-size-20();
-				position: sticky;
-				top: -1px;
-				//width: 100%;
-				width: calc(100% + #{$unite});
-				height: 101px;
-				background-color: white;
-				z-index: 5;
-				padding-top: 50px;
 				font-weight: bold;
-				//border-bottom: $border;
-				
-				&::after{
-					content: "";
-					border-bottom: $border;
-					width: calc(100% - #{$unite});
-					position: absolute;
-					bottom: 0;
-					left: 0;
-				}
+				position: sticky;
+
+				top: -1px;
+				// width: calc(100% - #{$margins-desktop*1});
+				width: 100%;
+				height: $height-top-bar - $hack-sticky;
+				background-color: $background-site;
+				z-index: 5;
+				border-bottom: $border;
+				white-space: nowrap;
+				padding-top: $baseline*2;		
+	
 			}
+	
+	
 
 			 .cache{
 			 	position: absolute;
@@ -54,84 +47,43 @@
 				color: white;
 			 }
 			
-			#biographie{
+			 #biographie{
 				
 				
 				header{
+					@include flex-order(1);
+
 					
-					//@include flex;
-					//@include flex-direction(column);
-					//@include flex-wrap(wrap);
-					//@include flex-order(1);
-
-					& *{ transition: .1s ease-in-out;} // Manage Responsive
-
-					padding-top: $unite*2;
-					margin-bottom: $unite*2;
-
 
 					h1{
-						width: 80%;
-						max-width: 550px;
-						font-weight: bold;
-						display: inline-block;
-						//@include flex-order(1);
-						//@include flex-grow(3);
-
+						max-width: 1100px;
+						// font-weight: bold;
 					}
 			
 					h2{ 
 						max-width: 1100px;
-						//@include flex-order(2);
+						padding-bottom: $baseline*1.5; 
 					}
 
 					p{
 						@include font-size-20();
-						line-height: $baseline*2.3;
-
-					}
-	
-
-					[data-type="status"]{
-						//@include flex-order(3);
-					}		
-
-					[data-type="membership"]{
-						//@include flex-order(3);
 					}
 
-					.contact{
-
-						.toContact{  }
-
-						//@include flex-order(4);
-						margin: $baseline*2 0;
-
-						li{
-							width: 5vw;
-							min-width: 60px;
-							display: inline-block;
-						}
-					}
-				}
-
-				figure{
-					margin-top: $baseline*4;
-					margin-bottom: $baseline*2;
+			
+					
 				}
 		
 				.biographie-contenu{
 					width: 100%;
-					max-width: 720px;
+					max-width: 900px;
 					min-width: calc( 700px - #{$logo-column});
 					@include for-size(desktop-1000) { 
 						min-width: 600px;
 					}
 
-					p, li{
+					p{
 						@include font-size-20();
 					}
-
 				}
 
 			
@@ -152,39 +104,69 @@
 
 
 
-@media screen and (min-width: 700px) and (max-width: 1000px) {
+@media screen and (min-width: 700px) {
 
 	.page-people #biographie {
 		figure{
-
+			float: right;
+			width: 300px;
+			padding-left: $baseline*2;
+			padding-left: $unite;
+			background-color: $background-site;
 		}
 		header{
 			width: 100%;
-			h1{ @include font-size-27(); margin-bottom: $baseline; }
+			hgroup{ 
+				min-height: 200px; 
+				max-width: 900px;
+			}
+			h1{ 
+				@include font-size-27(); 
+				padding-top: $baseline*2;
+				margin-top: $baseline*1;
+				margin-bottom: $baseline/2;
+			}
 			h2{ @include font-size-20(); margin-bottom: $baseline; }
-			.situation { top: calc(#{$unite*1.75});}
 		}
 		
 	}
 
 }
 
-@media screen and (min-width: 1000px) and (max-width: 1080px) {
+// @media screen and (min-width: 1000px) and (max-width: 1080px) {
 
-	.page-people #biographie header{
-		h1{@include font-size-27(); margin-bottom: $baseline;}
-		h2{@include font-size-20(); margin-bottom: $baseline;}
-		.situation { top: calc(#{$unite*1.75});}
-	}
+// 	.page-people #biographie header{
+// 		h1{@include font-size-27(); margin-bottom: $baseline;}
+// 		h2{@include font-size-20(); margin-bottom: $baseline;}
+// 	}
 
-}
+// }
 
-@media screen and (min-width: 1080px) {
+@media screen and (min-width: 1200px) {
 
-	.page-people #biographie header{
-		h1{ @include font-size-40(); margin-bottom: $baseline*1.5; }
-		h2{ @include font-size-20(); margin-bottom: $baseline*1; }
-		.situation { top: calc(#{$unite*2} + 3px);}
+	.page-people #biographie{
+		figure{
+			width: 400px;
+
+		}
+		header{
+			min-height: 250px;
+			max-width: 1300px;
+			margin-bottom: $baseline*3;
+			hgroup{ min-height: 300px; }
+			h1{ 
+				@include font-size-60(); 
+				// margin-bottom: $baseline*0.5; 
+				padding-top: $baseline*2;
+				margin-top: $baseline*2;
+			}
+			h2{ 
+				@include font-size-27(); 
+				margin-bottom: $baseline*1; 
+			}
+			
+		}
+		
 	}
 
 }
@@ -194,33 +176,13 @@
 @media screen and (min-width: 1000px) {
 
 	.page-people #biographie{					
-		figure{
-			float: right;
-			width: 350px;
-			padding-left: $baseline*2;
-		}
+		
 
-		header{
-			min-height: 250px;
-			width: 50%;
-			margin-bottom: $baseline*3;
-		}
+		
 	}
 }
 
 
-
-@media screen and (min-width: 1200px) {
-	.page-people #biographie { 
-		header{ 
-			min-height: 350px; 
-			.contact{ position: absolute; bottom: 0; }		
-		}
-		figure{ width: 500px; }
-	}
-
-	.situation{ left: 575px; }
-}
 
 @media screen and (min-width: 1600px) {
 
@@ -234,7 +196,6 @@
 			padding-bottom: $baseline*1;
 		}
 
-		header{ /*min-height: auto!important;*/ }
 
 	} 
 }

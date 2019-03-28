@@ -5,8 +5,8 @@
 }
 
 a:hover{
-	color: #E6142D;
-	svg{ fill: #E6142D; }
+	color: $color-hover;
+	svg{ fill: $color-hover; }
 	img{
 		//background-color: #E6142D;
 		//mix-blend-mode: color-burn;
@@ -18,11 +18,9 @@ a:hover{
 .page-production, 
 .page-news, 
 .page-activity{
+
 	
-	.titre-sticky{
-		@include text-overflow;
-		&:first-letter{ text-transform: uppercase;}
-	}
+	
 	
 	#article-contenu{
 
@@ -30,15 +28,47 @@ a:hover{
 		@include flex();
 		@include flex-direction(column);
 
-		hgroup{ 
-			@include flex-order(1); 
-			h1{ 
-				&:first-letter{ text-transform: uppercase;}
-			}
+		
+		hgroup{
+			h1:first-letter{ text-transform: uppercase;}	
 		}
+
+		.details{
+			width: 100%;
+			border-top: $border-very-light;
+			border-bottom:$border-very-light;
+			color: $text-color-light;
+
+			.production-ref{ border-top: $border-very-light; }
+
+			[data-icon]{ padding-right: $unite/2;}
+
+			.date-news-block{ 
+				width: 100%;
+				border-bottom: $border-very-light;
+				p{ display: inline-block; }
+				.date-news{ margin-right: $unite; }
+				.hours-news{ 
+					white-space: nowrap; 
+					padding-left: $unite;
+					border-left: $border-very-light;
+				};
+				.hours-news::before{ content:$time; }		
+				.endDate, .startDate{ white-space: nowrap;}
+			}	
+
+		}
+
+		hgroup{ max-width: 1300px; }
+
+		.details{ max-width: 900px; }
+		
+		
 		.article-contenu{ 
 
-			@include flex-order(2); 
+			@include flex-order(1); 
+				max-width: 900px;
+		
 			
 			a{
 				text-decoration: underline;
@@ -54,7 +84,6 @@ a:hover{
 				}
 			}
 
-			p{ margin-bottom: $baseline*2; }
 
 			li{ 
 				left: $unite;
@@ -63,39 +92,11 @@ a:hover{
 
 		}
 
-		hgroup{
-
-			.time, .type-objet{
-				color: $text-color-light;					
-			}
-
-			.date-news{ 
-				text-transform: capitalize;
-				
-				.endDate, .startDate{ white-space: nowrap;}
-			}	
-
-		}
+		
 
 
-		.toggle-lang{ @include flex-order(3); max-width:900px;}
+		
 	}
 }
 
 
-
-.page-activity{
-	.date-news{ 
-		.day-num, .day-name{ display: none;}
-	}
-}
-
-.page-news{
-
-}
-
-.page-production{
-	.date-news{ 
-		.day-num, .day-name{ display: none;}
-	}
-}

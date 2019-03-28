@@ -27,7 +27,7 @@
 		figure{
 			max-height: auto;
 			overflow: hidden;
-
+	
 			img{
 				width: 100%;
 				filter: grayscale(1);
@@ -36,92 +36,90 @@
 				margin-top: $baseline*1;
 			}
 		}
-
+	
 		header{
+	
+			// & *{
+			// 	width: 100%;
+			// }
+	
+			// [data-type="domaine"],[data-type="statut"]{
+			// 	@include font-size-13();
+			// 	width: inherit;
+			// 	display: inline;
+			// }
+	
+			// [data-type="activite"]{
+			// 	@include font-size-20();
+			// 	margin: $unite 0;
+			// 	font-style:italic;
+	
+			// 	&:before{
+			// 		content: '“';
+			// 	}
+			// 	&:after{
+			// 		content: '”';
+			// 	}
+			// }
+		
 
-			& *{
-				//width: 100%;
-			}
-			.situation{
-				position: absolute;
-				left: 80%;
-				width: 20%;
-				padding-right: 0;
-				height: 40px;
-				top: $unite;
-
-				.container{
-					height: auto;
-					bottom: 0;
-					position: absolute;					
-					
-					.slash{
-						border-right: $border-very-light;
-						height: 100%;
-						width: 1px;
-						position: absolute;
-						left: $unite*-.5;
-						//transform: rotate(45deg);
-					}
-
-					[data-type="domaine"], [data-type="membership"]{
-						color: $text-color-light;
-						text-transform: capitalize;
-						@include font-size-13;
-					}
-				}
-			}
-
-
-			[data-type="status"]{
+			.situation, .contact{ max-width: 900px; }
+		.situation{ 
+			border-top: $border-very-light;
+			border-bottom: $border-very-light;
+			padding-top: $baseline;
+			padding-bottom: $baseline;
+			p{ 
+				@include font-size-16(); 
+				display: inline-block;
 				color: $text-color-light;
-				&:before{
-					content: '“';
+				// height: auto;
+			}
+			[data-type="domaine"]{ 
+				margin-right: $unite/2; 
+				display: inline-block;
+			}
+			[data-type="membership"]{ 
+				display: inline-block;
+				border-left: $border-very-light;
+				padding-left: $unite/2; 
+			}
+		}
+	
+		.contact {
+
+			border-bottom: $border-very-light;
+			padding-top: $baseline;
+			padding-bottom: $baseline;
+	
+			li{
+				@include font-size-16();
+				color: $text-color-light;
+				border-right: $border-very-light;
+				padding: 0 $unite/1.5;
+				width: auto;
+				color: $text-color-light;
+				text-align: center;
+				display: inline-block;
+				margin-right: -4px;
+	
+				&:first-of-type{
+					padding-left: 0;
 				}
-				&:after{
-					content: '”';
+				&:last-of-type{
+					border-right: none;
+				}
+	
+				&:hover{	
+					color: $redlab;
+					border-left: $border-light;
+					cursor: pointer;
+					z-index: 99;
 				}
 			}
-
-			.contact {
-
-				width: 100%;
-
-				.toContact{ 
-					@include font-size-13;
-					color: $text-color-light;
-					padding: $baseline*1 0 $baseline/2 0;
-					//display: inline-block;
-				}	
-
-				.toContact{ }
-				
-				li{
-					@include font-size-13();
-					
-					display: inline-block;
-					padding-bottom: $baseline/2;
-					padding-top: $baseline/2;
-					border-right: $border-very-light;
-					border-bottom: $border-very-light;
-					border-top: $border-very-light;
-					text-align: center;
-
-
-
-					&:last-of-type{
-						border-right: none;
-					}
-
-					&:hover{	
-						color: $redlab;
-						border-color: $border-light;
-						cursor: pointer;
-						z-index: 99;
-					}
-				}
-			}			
 		}
+	}
+	
 
 		.biographie-contenu{			
 			p + p {  margin-top: $baseline*2; }

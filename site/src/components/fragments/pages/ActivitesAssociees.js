@@ -13,10 +13,10 @@ const ActivitesAssociees = ({lang, activities}) => {
 
   let accroche;
   if (lang === 'fr') {
-    accroche = related.fr + String.fromCharCode(8239) + ':';
+    accroche = related.fr + String.fromCharCode(8239);
   }
   else {
-    accroche = related.en + ':';
+    accroche = related.en;
   }
 
   // Placeholder
@@ -35,7 +35,7 @@ const ActivitesAssociees = ({lang, activities}) => {
                 <p className="type">{a.type}</p>
               </Link>
               <Link to={a.permalink[lang]} className="complement">
-                <h2 data-level-="description"><span>[{a.startDate} - {a.endDate}]</span>{a.description && (a.description[lang] || a.description.fr || a.description.en)}</h2>
+                <p>{a.description && (a.description[lang] || a.description.fr || a.description.en)}</p>
               </Link>
             </li>
           ))}

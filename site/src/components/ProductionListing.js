@@ -68,7 +68,7 @@ export default function ProductionListing({lang, list, group, types}) {
                         {p.date && <p className="date">{p.date}</p>}
                         {/* {p.date && <p className="date">{formatDate(p.date, 'dd MMMM yyyy', {locale: lang === "fr" ? fr : en})}</p>} */}
                         <p className="type">
-                          {lang === 'fr' ? p.groupLabel.fr : p.groupLabel.en} - {lang === 'fr' ? p.typeLabel.fr : p.typeLabel.en}
+                          {lang === 'fr' ? p.groupLabel.fr : p.groupLabel.en} - {p.typeLabel !== 'media' && lang === 'fr' ? p.typeLabel.fr : p.typeLabel.en}
                         </p>
                         <p className="go-to-object"><span>〉</span></p>
                       </Link>

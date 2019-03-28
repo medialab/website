@@ -15,7 +15,7 @@
     #topbar{
         padding: $margins-desktop 0;
         //width: 100%;
-        width: calc( 100vw - #{$margins-desktop*3});
+        width:calc(100vw - #{$margins-desktop*2});
         height: $height-top-bar;
         // @include font-size-16();
         color: $text-color;

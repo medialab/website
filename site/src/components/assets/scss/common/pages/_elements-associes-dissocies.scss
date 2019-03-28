@@ -1,11 +1,14 @@
 
 ///// Global 
-.elements-associes-block, .personnes-associees-block, .fichiers-associes-block{
+.elements-associes-block, 
+.personnes-associees-block, 
+.fichiers-associes-block{
 
 	padding-top: $sticky-height + $baseline*2;
 
 	& > h1{
 		margin-bottom: $baseline*2;
+		
 	}
 	
 	& > p{
@@ -20,74 +23,59 @@
 	// Grey Background
 	&::before {  
 	    content: "";
-	    position: absolute;
-	    width: 100vw;
+		position: absolute;
+		width: 100vw;
+		
 	    background-color: $background-grey;
 	    z-index: -1;
 
 	}
 
-	///////////////
-	// Common ////
-	/////////////
 
 	ul.liste_objet{ 
 
-		// background-color: red;
 
 		li.item{
 			box-sizing: border-box;
-			
 			padding-bottom: $baseline/2;
-			// margin-right: $unite*3;
 			border-bottom: $border-light;
 			overflow: hidden;
 			background: $background-grey;
-			//z-index: 2;
 			opacity: 1;
 			cursor: pointer;
 			
 
-			// Hover !
 			.accroche {
 				display: block;
-				//background: #fcf0ff;
-				//transition-delay: .25s;
-				-webkit-transition: .25s cubic-bezier(.86,0,.07,1); 
-				-moz-transition: .25s cubic-bezier(.86,0,.07,1); 
-				-ms-transition: .25s cubic-bezier(.86,0,.07,1); 
-				-o-transition: .25s cubic-bezier(.86,0,.07,1); 
-				transition: .25s cubic-bezier(.86,0,.07,1);
 			}
 
 			.complement{
 				position: absolute;
-
 				top: 0;
 				opacity: 0;
 				width: 100%;
-				//background: yellow;
 				-webkit-transition: .25s cubic-bezier(.86,0,.07,1); 
 				-moz-transition: .25s cubic-bezier(.86,0,.07,1); 
 				-ms-transition: .25s cubic-bezier(.86,0,.07,1); 
 				-o-transition: .25s cubic-bezier(.86,0,.07,1); 
 				transition: .25s cubic-bezier(.86,0,.07,1); 
-
-				// Prevent overflow - Not perfect besause hide content by default after line 3
-				overflow: hidden;
-    			max-height: 103px;
 					
-				h2{
+				p{
 					@include font-size-20;
 					word-break: break-word;
 					border: none;
-					padding: 15px 25px 15px 0;
+					padding: 15px $baseline*1 15px 0;
 				}
+
+			
 			}
 
 			&:hover {
 
-				//z-index: 1;
+				color: $color-hover;
+				h2, p { color: $color-hover!important; }
+				// h1, h2{ border-bottom: $border-redlab-very-light;}
+
 
 				.accroche, .complement{ 
 					-webkit-transition: .25s cubic-bezier(.86,0,.07,1); 
@@ -95,12 +83,9 @@
 					-ms-transition: .25s cubic-bezier(.86,0,.07,1); 
 					-o-transition: .25s cubic-bezier(.86,0,.07,1); 
 					transition: .25s cubic-bezier(.86,0,.07,1); 
-
-
 				}
 				 				
-				.accroche {
-										
+				.accroche {										
 					opacity: 0;
 					color: red;
 					-webkit-transform: translateY(100%); 
@@ -110,9 +95,7 @@
 					transform: translateY(100%);
 				}
 
-				.complement{ 
-					opacity: 1;
-				}
+				.complement{ opacity: 1; }
 			}
 
 
@@ -250,6 +233,25 @@
     li.item{ border-bottom: none !important;}
 }
 
+#productions{
+					 
+	.accroche {										
+		opacity: 1;
+		-webkit-transform: translateY(0); 
+		-moz-transform: translateY(0); 
+		-ms-transform: translateY(0); 
+		-o-transform: translateY(0); 
+		transform: translateY(0);
+
+		&:hover {
+
+			color: $color-hover;
+			h2, p { color: $color-hover!important; }
+			h1, h2{ border-bottom: $border-redlab-very-light;}
+		}
+	}
+}
+
 
 
 ///// Responsive
@@ -316,9 +318,10 @@
 	.elements-associes-block > h1,
 	.personnes-associees-block > h1,
 	.fichiers-associes-block > h1{ 
-		@include font-size-20();
-		font-weight: 600;
-		span{ font-weight: 300;}
+		@include font-size-40();
+		span{ padding-right: $unite/2;}
+		// font-weight: 600;
+		// span{ font-weight: 300;}
 	}
 
 	.elements-associes-block .liste_objet{
@@ -377,7 +380,7 @@
 }
 
 
-@media screen and (min-width: 1600px) {
+@media screen and (min-width: 1400px) {
 
 	.elements-associes-block, .fichiers-associes-block{
 

@@ -27,18 +27,12 @@ function processHtml(pathPrefix, html) {
   });
 
   // Finding highest title
-  let titleOffset = 0;
-
-  if (!$('h1').length)
-    titleOffset = 1;
-
-  if (!$('h2').length)
-    titleOffset = 2;
+  const h2level = $('h1').length ? 4 : 3;
 
   const titleMap = {
-    h1: 3 - titleOffset,
-    h2: 4 - titleOffset,
-    h3: 5 - titleOffset
+    h1: 3,
+    h2: h2level,
+    h3: $('h2').length ? (h2level + 1) : ($('h1').length ? 4 : 3)
   };
 
   // Building custom output
@@ -68,7 +62,7 @@ function processHtml(pathPrefix, html) {
 
       const level = titleMap[h];
 
-      output += `<h${level}>${$this.html()}</h${level}>`;
+      output += `<h${level} data-style-level="${level - 2}">${$this.html()}</h${level}>`;
     }
 
     // Lists
@@ -146,3 +140,14 @@ exports.resolveAttachments = function resolveAttachments(pathPrefix, attachments
     return a;
   });
 };
+
+// Testing
+if (require.main === module) {
+  console.log(processHtml('', '<h1>Test1</h1>'));
+  console.log(processHtml('', '<h1>Test1</h1><h2>Test2</h2>'));
+  console.log(processHtml('', '<h1>Test1</h1><h2>Test2</h2><h3>Test3</h3>'));
+  console.log(processHtml('', '<h2>Test1</h2><h3>Test2</h3>'));
+  console.log(processHtml('', '<h1>Test1</h1><h3>Test2</h3>'));
+  console.log(processHtml('', '<h2>Test1</h2>'));
+  console.log(processHtml('', '<h3>Test1</h3>'));
+}

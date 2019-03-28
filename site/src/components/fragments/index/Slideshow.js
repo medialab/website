@@ -25,7 +25,7 @@ const Slideshow = ({slider, lang}) => {
  		}
   		if (index === 2) {
  			a = '2';
- 			z = '4';
+ 			z = '1';
  		}
  	}
 
@@ -41,7 +41,7 @@ const Slideshow = ({slider, lang}) => {
 
         <input
           type="radio" name="ss1" id={`ss1-item-${index + 1}`}
-          className="slideshow--bullet" defaultChecked />
+          className="slideshow--bullet" defaultChecked={index === 0 } />
         <label className="slideshow--bullet-label" htmlFor={`ss1-item-${index + 1}`}>
           {slide.model === 'activities' ?
 						slide.data.baseline && (lang === 'fr' ? slide.data.baseline.fr : slide.data.baseline.en)

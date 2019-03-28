@@ -128,14 +128,12 @@ $width-main-image: calc( 100vw - #{$margins-desktop*0});
                 font-size: $font-size*1.3!important;
                 line-height: 1.15!important;
                 font-weight: bold;
-                border: 1px solid yellow;
 
 
 
                 .container{
                     width: $logo-column - $margins-desktop*2;
                     height: 100%;
-                    border: 1px solid red;
 
                     div{
                         position: absolute;
@@ -143,7 +141,6 @@ $width-main-image: calc( 100vw - #{$margins-desktop*0});
                         height: 100vh;                     
                         top: calc(#{$height-top-bar*-1} - #{$unite});
                         left: calc(#{$unite*-1} - 3px);
-                        border: 1px solid blue;
 
                         img{ display: none;}
 

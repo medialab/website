@@ -11,6 +11,7 @@ export const query = graphql`
         node {
           id
           name
+          active
           description {
             en
             fr

@@ -37,9 +37,16 @@ export default function Nav({lang, data = {}, order = []}) {
         <Logo />
       </a>
     </div>
-    
-    <div className="nav-inside-item" id="img-article">
-    { coverImage && coverImage}
+
+    <div className="nav-inside-item" id="img-container">
+      <div id="activator">
+      </div>
+      <div id="img-article">
+        <div className="container">
+          { coverImage && coverImage}
+        </div>
+      </div>
+
     </div>
     {(getRelatedElements(order, data)).map(related => (
       <div key={related.id} className="nav-inside-item" data-type={related.id}>

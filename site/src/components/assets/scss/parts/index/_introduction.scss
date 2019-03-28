@@ -36,10 +36,13 @@
         text-align: center;
 
         overflow: hidden;
-        height: $baseline*4;
+        max-height: $baseline*4;
         transition: .2s cubic-bezier(1,0,0,1);
 
-        & > * { transition: .2s cubic-bezier(1,0,0,1); transform: translateY(-98px); }
+        & > * { 
+            transition-delay: 0.5s; 
+            transform: translateY(-98px); 
+        }
 
 
         h1{
@@ -63,13 +66,13 @@
             overflow: hidden;
             width: 100%;
             margin: 0;
-
+            max-width: inherit;
         }
 
         &:hover{
-            height: auto;
+            max-height: 100vh;
             
-            & > * { transform: translateY(0); }
+            & > * {transform: translateY(0); }
             
             h1{
 
@@ -84,7 +87,7 @@
                 white-space: inherit;
 
                 width: 80%;
-                max-width: 900px;
+                max-width: 1000px;
                 margin: 0 auto;
                 
                 //a{ display: block;}

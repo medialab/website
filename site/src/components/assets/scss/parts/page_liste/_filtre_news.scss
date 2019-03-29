@@ -1,22 +1,34 @@
 /////////////////////
 //////// NEWS — filtres
 /////////////////////
-.page-production-list, .page-news-list, .page-activity-list{
+.page-news-list{
 
 	@include for-size(desktop) {
-		
 
 		#go-to-year_news{ 
-			top: $height-top-bar + $baseline * 3.5;
+			top: $height-top-bar + $baseline * 3.5 + $baseline* 2.5 * 0;
 			.current-year{ 
 				padding-right: $baseline*1.75; 
 			}
 		}
 
+		#radio_filtre-actu_type + label{ top: $height-top-bar + $baseline * 3.5  + $baseline * 2.5 * 2;  }
+		#filtre-actu_event + label{ top: $height-top-bar + $baseline * 3.5 + $baseline * 2.5 * 3 ; }
+		#filtre-actu_post + label{ top: $height-top-bar + $baseline * 3.5 + $baseline * 2.5 * 4; }
+	    #filtre-actu_notice + label{ top: $height-top-bar + $baseline * 3.5 + $baseline * 2.5 * 5; }
+
+		//Deploy filter
+
+	    #radio_filtre-actu_year ~ .go-to-year ul{ max-height: 0vh; }
+	    #radio_filtre-actu_year:checked ~ .go-to-year ul{ max-height: 100vh; }
+	    #radio_filtre-actu_year:checked ~ #radio_filtre-actu_type + label { top: $height-top-bar + $baseline * 3.5 + $baseline*2.5 * 5;}
+
+	    #radio_filtre-actu_type ~ .filtre-actu{ max-height: 0px; }
+	    #radio_filtre-actu_type:checked ~ .filtre-actu{ max-height: 100vh; }
+
 	}
 
 	@include for-size(phone) {
-
 
 		#toggle-filtre-phone:checked ~ #go-to-year_news{ 		
 			top: $top-filtre-phone-open + $baseline*3.5;
@@ -29,6 +41,101 @@
 			transition: 0.6s top;
 			.current-year{ padding-right: $baseline*1.75; }
 		}
+
+		#radio_filtre-actu_year + label{ 
+			z-index: 40; 
+		}
+
+		////////
+		//close
+		//////
+		#toggle-filtre-phone ~ #radio_filtre-actu_year + label{
+			top: calc(100vh + 1px);
+			transition: 0.6s top;
+		}
+		#toggle-filtre-phone ~ #radio_filtre-actu_type + label{
+			top: calc(100vh + #{$baseline}*1.5 + #{$baseline}* 2.5 * 1); 
+			transition: 0.6s top;
+		}
+		#toggle-filtre-phone ~ #filtre-actu_event + label{
+			top: calc(100vh + #{$baseline}*1.5 + #{$baseline}* 2.5 * 2); 
+			transition: 0.6s top;
+		}
+		#toggle-filtre-phone ~ #filtre-actu_post + label{
+			top: calc(100vh + #{$baseline}*1.5 + #{$baseline}* 2.5 * 3); 
+			transition: 0.6s top;
+		}
+		#toggle-filtre-phone ~ #filtre-actu_notice + label{
+			top: calc(100vh + #{$baseline}*1.5 + #{$baseline}* 2.5 * 4); 
+			transition: 0.6s top;
+		}
+		////////
+		// Open
+		//////
+		#toggle-filtre-phone:checked ~ #radio_filtre-actu_year + label{
+			top: $top-filtre-phone-open + $baseline * 2.5 + $baseline*2;
+		}
+
+		#toggle-filtre-phone:checked ~ #radio_filtre-actu_type + label{
+			top: $top-filtre-phone-open + $baseline * 2.5 * 3.5;
+		}
+
+		#toggle-filtre-phone:checked ~ #filtre-actu_event + label{
+			top: $top-filtre-phone-open + $baseline * 2.5 * 4.5;
+		}
+
+		#toggle-filtre-phone:checked ~ #filtre-actu_post + label{
+			top: $top-filtre-phone-open + $baseline * 2.5 * 5.5;
+		}
+
+		#toggle-filtre-phone:checked ~ #filtre-actu_notice + label{
+			top: $top-filtre-phone-open + $baseline * 2.5 * 6.5;
+		}
+
+
+		//Deploy filter
+	    #toggle-filtre-phone:checked ~ #radio_filtre-actu_year ~ .go-to-year ul{ max-height: 0vh; }
+	    #toggle-filtre-phone:checked ~ #radio_filtre-actu_year:checked ~ .go-to-year ul{ max-height: 100vh !important; }
+	    #toggle-filtre-phone:checked ~ #radio_filtre-actu_year:checked ~ #radio_filtre-actu_type + label { top: $top-filtre-phone-open + $baseline*2.5 * 6.5;}
+
+	    #toggle-filtre-phone:checked ~ #radio_filtre-actu_type ~ .filtre-actu{ max-height: 0vh; }
+	    #toggle-filtre-phone:checked ~ #radio_filtre-actu_type:checked ~ .filtre-actu{ max-height: 100vh !important; }
+
+
+
+		/*
+		#toggle-filtre-phone:checked ~ #radio_filtre-production_year ~ .go-to-year ul{ max-height: 0vh; }
+		#toggle-filtre-phone:checked ~ #radio_filtre-production_year:checked ~ .go-to-year ul{ max-height: 100vh!important; }
+
+		#toggle-filtre-phone:checked ~ #radio_filtre-production_group:checked ~ #go-to-year_production{
+	        top: $top-filtre-phone-open + $baseline*18;
+	    }
+		
+		#toggle-filtre-phone:checked ~ #radio_filtre-production_group:checked ~ #radio_filtre-production_year + label{
+			top: $top-filtre-phone-open + $baseline*19;	
+		}
+		
+		#toggle-filtre-phone:checked ~ #radio_filtre-production_type ~ .filtre-production{ max-height: 0px; }
+		#toggle-filtre-phone:checked ~ #radio_filtre-production_type:checked ~ .filtre-production{ max-height: 100vh; }
+		
+		#toggle-filtre-phone:checked ~ #radio_filtre-production_year ~ #radio_filtre-production_type + label{ top: $top-filtre-phone-open + $height-filtres-productions_medium + $baseline*5; }
+		#toggle-filtre-phone:checked ~ #radio_filtre-production_group:checked ~ #radio_filtre-production_type + label{ top: $top-filtre-phone-open + $height-filtres-productions_medium_year-checked + $baseline*7; }
+	    #toggle-filtre-phone:checked ~ #radio_filtre-production_year:checked ~ #radio_filtre-production_type + label{ top: $top-filtre-phone-open + $height-filtres-productions_medium_year-checked + $baseline*5; }
+		*/
 	}
 }
 
+
+/////////////////////
+//////// NEWS - filtre Type
+/////////////////////
+
+input#filtre-actu_event:checked ~ #liste,
+input#filtre-actu_post:checked ~ #liste,
+input#filtre-actu_notice:checked ~ #liste{
+	#liste-news .list-item{ display: none !important; }
+}
+
+input#filtre-actu_event:checked ~ #liste #liste-news .event{ display: block!important; }
+input#filtre-actu_post:checked ~ #liste #liste-news .post{ display: block!important; }
+input#filtre-actu_notice:checked ~ #liste #liste-news .notice{ display: block!important; }

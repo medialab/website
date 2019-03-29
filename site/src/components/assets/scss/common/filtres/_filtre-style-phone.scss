@@ -82,6 +82,9 @@ $top-filtre-phone-open: $height-top-bar-phone + $baseline*3.5;
 	.go-to-year, 
 	#radio_filtre-production_year + label,
 	#radio_filtre-production_type + label,
+	#radio_filtre-actu_year + label,
+	#radio_filtre-actu_type + label,
+	.filtre-actu, 
 	.filtre-production, 
 	.link-activity-sort, 
 	.filtre-activity{

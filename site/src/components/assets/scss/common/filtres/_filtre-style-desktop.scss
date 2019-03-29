@@ -4,6 +4,8 @@ $height-filtres-productions_medium: $baseline * 7;
 $height-filtres-productions_medium_group-checked: $baseline * 18;
 $height-filtres-productions_medium_year-checked: $baseline * 16;
 $height-filtres-activites: $baseline * 5.5;
+$height-filtres-actu: $baseline * 3.5;
+
 
 @include for-size(desktop) {
 
@@ -14,7 +16,9 @@ $height-filtres-activites: $baseline * 5.5;
     .link-activity-sort,
     .go-to-year,
     #radio_filtre-production_year + label,
-    #radio_filtre-production_type + label{
+    #radio_filtre-production_type + label,
+    #radio_filtre-actu_year + label,
+    #radio_filtre-actu_type + label{
         left: $margins-desktop;
         width: $logo-column - $margins-desktop;   
     }
@@ -22,7 +26,8 @@ $height-filtres-activites: $baseline * 5.5;
     .type_title{ top: $height-top-bar ; } 
 
     .link-productions-sort,
-	.link-activity-sort{
+	.link-activity-sort
+    .link-news-sort{
         top: $height-top-bar + $baseline*4;
     }
 
@@ -35,15 +40,23 @@ $height-filtres-activites: $baseline * 5.5;
     }
 
     
-    #radio_filtre-production_year + label{
+    #radio_filtre-production_year + label,
+    #radio_filtre-production_year + label{   
         position: fixed;
         width: $logo-column - $margins-desktop; 
         top: $height-top-bar + $height-filtres-productions + $baseline;
     }
 
+    #radio_filtre-actu_year + label,
+    #radio_filtre-actu_year + label{   
+        position: fixed;
+        width: $logo-column - $margins-desktop; 
+        top: $height-top-bar + $height-filtres-actu + $baseline;
+    }
+
 
     /* sort type */
-    .filtre-production, .filtre-activity{ 
+    .filtre-production, .filtre-activity, .filtre-actu{ 
         width: $logo-column - $margins-desktop;
     
     }

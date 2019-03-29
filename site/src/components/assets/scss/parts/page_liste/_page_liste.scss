@@ -150,8 +150,6 @@
 					text-align: right;
 				}
 				.hours-news::before{ content: $time; }
-
-				.type::before{ content: $actualites; }
 			}
 
 		}

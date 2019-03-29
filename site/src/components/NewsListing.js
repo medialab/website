@@ -59,7 +59,9 @@ export default function NewsListing({lang, list}) {
                       <TimeNews startDate={news.startDate} endDate={news.endDate} />
                       <h1 data-level-1="baseline">{news.title && (lang === 'fr' ? news.title.fr : news.title.en)}</h1>
                       {news.name && <h2 data-level-2="title"><span>{news.name}</span></h2>}
-                      <p className="type">{news.label && (lang === 'fr' ? news.label.fr : news.label.en)}</p>
+                      <p className="type">
+                        {lang === 'fr' ? news.typeLabel.fr : news.typeLabel.en} - {news.label && (lang === 'fr' ? news.label.fr : news.label.en)}
+                      </p>
                       <p className="go-to-object"><span>〉</span></p>
                     </Link>
                   </li>

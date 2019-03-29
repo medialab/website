@@ -51,9 +51,8 @@ body{ overflow-x: visible}
 }
 
 
-[data-type="git"] .type::before{
-    //content: $git;
-}
+[data-icon="git"]::before{ content: $git; }
+[data-icon="tweet"]::before{ content: $tweet; }
 
 .GoTo::after{ content: $goto; }
 

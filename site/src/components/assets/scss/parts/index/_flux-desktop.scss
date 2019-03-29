@@ -1,8 +1,39 @@
-/////////////////////
-//////// Flux desktop
-/////////////////////
 
-@include for-size(desktop){
+/* General */
+#flux{
+    #flux-container{
+		
+		article{ 
+			width: 100%;
+			break-inside: avoid;
+			position: relative;
+			padding-right: $unite;
+    		//background-color: #f2f2f2;
+
+			//&:nth-child(2n){ background-color:#f4f4f4;}
+			//&:nth-child(3n){ background-color:#f9f9f9;}			
+            
+            &::after{ 
+            	content:" ";
+            	border-bottom: $border-very-light;
+				padding: $baseline $unite/2;
+				box-sizing:border-box;
+				width: calc(100% - #{$unite});
+				position: absolute;
+				bottom: 0;
+			}
+               
+            .image-background{
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                overflow: hidden;
+
+            }	        	
+		}
+    }
+}	
 
     /* no support of flex */
 	#flux{
@@ -15,77 +46,149 @@
     		@include column-fill(balance);					
     		
     		article{ 
-    			break-inside: avoid
+    			width: 100%;
+    			break-inside: avoid;
+
+
+
     		}
         }
 	}
+
+/////////////////////
+//////// Flux desktop
+/////////////////////
+
+@include for-size(desktop){
 
 	#flux {
 		
 		#flux-container{
 
+			// Inherit
+			@include column-count(inherit);
+    		@include column-gap(inherit);
+
             @include flex();
             @include flex-wrap(wrap);
-            @include flex-direction(column);
-            height: 100vh;
+            @include flex-direction(row);
 
-			
-            article {
-				width:25%;
-                height: 20%;
 
-                .image-background{
-                    width: 100%;
-                    height: 100%;
-                    position: absolute;
-                    top: 0;
-                    overflow: hidden;
 
-                }
-			}
-			article:nth-child(4n+1){
-				order:1;
-			}
-			article:nth-child(4n+2){
-				order:2;
-			}
-			article:nth-child(4n+3){
-				order:3;
-			}
-			article:nth-child(4n){
-				order:4;
-			}
+			article{
 
-			article {
-				border-bottom: $border-very-light;
-				padding:10px;
-				box-sizing:border-box;
-			}
+	            // Get control on order
+				@for $i from 0 through 30 {				
+					&:not(.disclaimer):nth-child(#{$i}){
+						order:#{$i};
+					}
+				}
 
-			article:nth-child(5n){
-				height:40%;
-			}
-			article:nth-child(5n+1){
-				height:30%;
-			}
-			article:nth-child(5n+2){
-				height:20%;
-			}
-			article:nth-child(5n+2){
-				height:10%;
-			}
-			article:nth-child(5n+2){
-				height:15%;
-			}
-			
-		} /* End flux container*/
-		
-	} /* end #flux*/
+		        .type{
+					@include font-size-16;
+					margin-bottom: $baseline/2;                	
+		        }				
+	        	ul.details{
 
+		            @include flex();
+		            @include flex-wrap(wrap);
+		            @include flex-direction(row);
+
+					width: calc(100% - #{$unite});
+	        		position: absolute;
+	        		bottom: $baseline;
+	        		
+	        		li{
+	        			flex: 0 1 25%;
+	        			@include text-overflow;
+	        			color: $text-color-light;
+
+	        		}
+	        	}
+		        &[data-type="tweet"]{					
+					h2{
+						@include font-size-20;
+						margin: $baseline 0;
+
+						.hashtag{ color: $redlab;}
+
+					}      	
+		        }
+
+		        &[data-type="git"]{
+					h2{
+						@include font-size-20;
+						margin: $baseline 0;
+					}
+
+					h3{
+						@include font-size-16;
+						margin: $baseline 0;
+					}
+		        }
+
+		        &[data-type="post"]{
+		        	h2{
+		        		@include font-size-60;
+						text-align: center;
+						top: 40%;
+						transform: translateY(-50%);
+						z-index: 999;
+		        	}
+		        }
+
+			    .image-background{
+			    	pre{
+		                font-size: calc(((25vw - #{$unite*0})/25)*3.10);
+		                line-height: calc(((25vw - #{$unite*0})/25)*2.89);
+		                overflow: hidden;
+		            }
+			    }		        
+			}	
+		} 
+	}
 }
 
 @include for-size(desktop-900) {
+	#flux article {
+	    flex: 1 1 33%;
+	    height: 250px;
+
+        &[data-type="tweet"]{
+        	flex: 1 1 66%;
+        	ul.details li { flex: 1 1 25%; }
+		}  
+	}	
 }
 
-@include for-size(desktop-1300) {
+@include for-size(desktop-1200) {
+	#flux article {
+	    flex: 1 1 25%;
+	    height: 250px;
+
+        &[data-type="tweet"]{
+        	flex: 1 1 50%;
+        	ul.details li { flex: 1 1 25%; }
+		 }
+
+		 &[data-type="git"]{
+			[data-icon="git"]::before {
+			    display: block;
+			    font-size: 40px;
+			    vertical-align: middle;
+			}
+		 } 
+	}	
+}
+
+@include for-size(desktop-1900) {
+	#flux article {
+	    flex: 1 1 20%;
+	    height: 250px;
+
+        &[data-type="tweet"]{
+        	flex: 1 1 40%;
+        	ul.details li { flex: 1 1 25%; }
+		}   
+	}	
 }

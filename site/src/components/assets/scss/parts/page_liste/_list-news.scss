@@ -1,0 +1,96 @@
+/* list-news */
+
+
+.page-news-list{
+    
+    @include for-size(desktop) {
+        #liste [data-item]{
+
+            .date-time{
+                padding-top: $baseline;
+                padding-bottom: $baseline/2;
+                border-bottom: $border-very-light;
+                width: 100%;
+
+                .day-name{ display: none; }
+
+                p{
+                    display: inline-block;
+                    @include font-size-13();
+                    // font-weight: 600; 
+                }
+
+                .date-news{ font-weight: 600; }
+
+                .hours-news{
+                    margin-left: $baseline*1;
+                    padding-left: $baseline*1;
+                    border-left: $border-very-light;
+                    &::before{ content: $time; }
+                }
+
+            }
+
+ 
+			
+            .title-group, .accroche{ display: inline-block; }
+
+            .title-group{
+                width: 50%;
+                padding-bottom: $baseline*3;
+                h1{ margin-top: $baseline*2; }
+            }
+
+            .details{
+                padding-top: $baseline/2;
+                border-top: $border-very-light;
+                position: absolute;
+                bottom: $baseline;
+                width: calc(50% - #{$unite});
+                
+                p{ 
+                    display: inline-block; 
+                    vertical-align: top;
+                    @include font-size-13;
+                }
+                .type-news{
+                    // span:first-of-type{ text-transform: uppercase; }
+                    span:nth-of-type(2){
+                        border-left: $border-very-light;
+                        margin-left: $unite/2;
+                        padding-left: $unite/2;
+                    }
+                }
+            
+            }
+
+            .accroche{
+                width: 50%;
+                position: relative;
+                overflow: hidden;
+                
+                .accroche-paragraphe{
+                    @include font-size-20;
+                    margin-top: $baseline;
+                    margin-bottom: $baseline;
+                    padding-left: $unite;
+                    border-left: $border-very-light;
+                    height: calc(100% - #{$baseline*2});
+                }
+
+                .image-pre{
+                    display: none;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    background-color: $background-site;
+                    font-size: 1.5vw;
+                }
+                
+            }
+
+
+        }
+    }
+
+}

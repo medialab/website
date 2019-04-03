@@ -35,10 +35,8 @@ export default function ActivityListing({lang, list, status, statuses}) {
               <React.Fragment key={index}>
                 <li data-item={index} data-type={a.type} className={`list-item ${a.type}-${a.active ? 'active' : 'past'}`}>
                   <Link to={a.permalink[lang]}>
-             
                     <div className="title-group">
                       <h1 data-icon="activite" data-level-1="baseline" >{a.baseline && (lang === 'fr' ? a.baseline.fr : a.baseline.en)}</h1>
-                      
                     </div>
                     <div className="details">
                       <p className="type-activity">{IsModel(a.type, lang)}</p>

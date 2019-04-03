@@ -43,6 +43,7 @@ export default function ProductionListing({lang, list, group, types}) {
       <>
         <FilterProduction lang={lang} group={group} types={types} />
         <section id="liste">
+          <p className="accroche-titre">{accroche}</p>
           <p className="accroche-titre-phone">{accroche}</p>
           <ul className="liste_objet" id="liste-productions">
             {/*-- en fonction du lien de page, doit renvoyer différentes listes:
@@ -55,34 +56,33 @@ export default function ProductionListing({lang, list, group, types}) {
             Array.from(yearGroups.entries()).sort(byYear).map(([year, yearList]) => (
               <React.Fragment key={year}>
                 <li id={year === 2008 ? 'years-before-2009' : `year-${year}`} className="list-year">
-                  <span>{year}</span>
-                  <pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre>
+                  {/* <span>{year}</span>
+                  <pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre> */}
                 </li>
 
                 {yearList.map((p, i) => (
                   <React.Fragment key={i}>
                     <li data-item={nbItem} data-type={p.type} className={`list-item ${p.type}`}>
                       <Link to={p.permalink[lang]}>
-                        <h1 data-level-1="title">{lang === 'fr' ? p.title.fr : p.title.en}</h1>
-                        {p.authors && <h2 data-level-2="authors"><span>{p.authors}</span></h2>}
-                        {p.date && <p className="date">{p.date}</p>}
-                        {/* {p.date && <p className="date">{formatDate(p.date, 'dd MMMM yyyy', {locale: lang === "fr" ? fr : en})}</p>} */}
-                        <p className="type">
-                          {lang === 'fr' ? p.groupLabel.fr : p.groupLabel.en} - {p.typeLabel !== 'media' && lang === 'fr' ? p.typeLabel.fr : p.typeLabel.en}
-                        </p>
-                        <p className="go-to-object"><span>〉</span></p>
+                        <div className="title-group">
+                          <h1 data-icon="production" data-level-1="title" >{lang === 'fr' ? p.title.fr : p.title.en}</h1>
+                        </div>
+                        <div className="details">
+                          <p className="type-production"> <span>{lang === 'fr' ? p.groupLabel.fr : p.groupLabel.en}</span> {p.typeLabel !== 'media' && lang === 'fr' ? <span>{p.typeLabel.fr}</span> : <span>{p.typeLabel.en}</span>}</p>
+                          <p className="date-production">{p.date}</p>
+                        </div>
+                        <div className="authors">
+                          <p className="authors-paragraphe">
+                          {p.authors}
+                          </p>
+                        </div>
                       </Link>
                     </li>
-                    <li className="item_accroche description" data-item-accroche={nbItem++}>
-                      <Link to={p.permalink[lang]}>
-                        <RawHTML html={lang === 'fr' ? p.description.fr : p.description.en} />
-                      </Link>
-                    </li>
+                  
                   </React.Fragment>
                 ))}
               </React.Fragment>
             ))}
-            <li className="item_accroche accroche-titre">{accroche}</li>
           </ul>
         </section>
       </>

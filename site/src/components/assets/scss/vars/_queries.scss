@@ -12,6 +12,8 @@
 		@media (min-width: 1200px) { @content; }
 	} @else if $size == desktop-1300 {
 		@media (min-width: 1300px) { @content; }
+	} @else if $size == desktop-1500 {
+		@media (min-width: 1500px) { @content; }		
 	} @else if $size == desktop-1800 {
 		@media (min-width: 1800px) { @content; }
 	}
@@ -23,4 +25,5 @@
 @include for-size(desktop-1000) {}
 @include for-size(desktop-1200) {}
 @include for-size(desktop-1300) {}
+@include for-size(desktop-1500) {}
 @include for-size(desktop-1800) {}

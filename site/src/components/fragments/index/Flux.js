@@ -10,6 +10,17 @@ const Flux = () => {
 		<section id="flux">
 
 			<h1>À chaud</h1>
+
+	        <input
+	          type="radio" name="flux_layout" value="grid"
+	          id="flux_layout-grid"   defaultChecked hidden />
+	        <label className="flux_layout-button" for="flux_layout-grid"><span>⊞</span></label>
+
+	        <input
+	          type="radio" name="flux_layout" value="linear"
+	          id="flux_layout-linear" hidden />
+	        <label className="flux_layout-button" for="flux_layout-linear"><span>⊟</span></label>
+
 			<div id="flux-container">
 				{/*if type=git (bon modèle pour les liens) */}
 				<article data-type="git">
@@ -54,11 +65,10 @@ const Flux = () => {
 				</article>
 
 				<article data-type="post" >
-					<p className="type">site</p>
-					<h2 data-level-1="title">+ 3<span>posts</span></h2>					
-					<ul className="details">
-						<li className="update">Since a week</li>
-					</ul>
+					<div>
+						<h2 data-level-1="title"><span>+ 3</span>posts</h2>					
+						<p className="since">Since a week</p>
+					</div>
                 	{/*<div className="image-background"><ProcessedImage size="small" image="" /></div>*/}
 
 				</article>

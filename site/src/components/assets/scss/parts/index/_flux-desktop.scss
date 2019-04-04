@@ -2,6 +2,21 @@
 
 /* General */
 #flux{
+
+	label.flux_layout-button{ 
+		font-size: 30px;
+		color: $text-color-light;
+		font-weight: 100;
+		text-align: right;
+		cursor: pointer;
+		
+		position: absolute;
+		top: 0;
+		right: 0;
+		&:first-of-type{ right: $unite;}
+	}
+
+
     #flux-container{
 		
 		article{ 
@@ -22,6 +37,7 @@
 				width: calc(100% - #{$unite});
 				position: absolute;
 				bottom: 0;
+				left: 0;
 			}
  				// Get control on order
 				@for $i from 0 through 30 {				
@@ -54,92 +70,28 @@
 	        	}
 		        &[data-type="tweet"]{					
 					.hashtag{ color: $redlab;}    	
-		        }
-
-		        &[data-type="git"]{
-					h2{	}
-
-					h3{	}
-		        }
-
-		        &[data-type="post"]{
-		        	h2{ }
-		        }
-
-			    .image-background{
-			    	pre{  }
-			    }		        
-	            .image-background{
-	                width: 100%;
-	                height: 100%;
-	                position: absolute;
-	                top: 0;
-	                overflow: hidden;
-
-	            }	        	
+		        }        	
 		}
     }
 }	
-@include for-size(desktop){
-    /* no support of flex */
-	#flux{
-        #flux-container{
-    		display: inline-block;
-    		width: 100%;
 
-    		@include column-count(4);
-    		@include column-gap($unite);
-    		@include column-fill(balance);					
-    		
-    		article{ 
-    			width: 100%;
-    			break-inside: avoid;	           
-			}
-        }
-	}
-}
 /////////////////////
 //////// Flux desktop
 /////////////////////
 
 @include for-size(desktop){
 
-	#flux {
-		
-		#flux-container{
-
-			// Inherit
-			@include column-count(inherit);
-    		@include column-gap(inherit);
-
-            @include flex();
-            @include flex-wrap(wrap);
-            @include flex-direction(row);
-
-
-
+	#flux{
+        #flux-container{
+   	//GENERAL
 			article{
 
 		        .type{ @include font-size-16; margin-bottom: $baseline/2;  }	
 		        .update{ @include font-size-16; margin-bottom: $baseline/2; }	
+		        //@include stroke_hover(ul, top);
+		        li{ @include font-size-13; }
 
-		        @include stroke_hover(ul, top);
-								
-	        	ul.details{
-
-		            @include flex();
-		            @include flex-wrap(wrap);
-		            @include flex-direction(row);
-        		
-	        		li{
-	        			flex: 0 1 25%;
-						@include font-size-13;
-
-	        			&:not(:first-of-type){	}
-
-	        		}
-	        	}
-		        &[data-type="tweet"]{					
+				&[data-type="tweet"]{					
 					h2{
 						@include font-size-20;
 						margin: $baseline 0;
@@ -148,7 +100,7 @@
 
 		        &[data-type="git"]{
 					h2{
-						@include font-size-40;
+						@include font-size-20; 
 						font-weight: 400;
 						margin: $baseline 0 0 0 ;
 					}
@@ -158,69 +110,191 @@
 						margin: $baseline/2 $unite*1.5 $baseline 0;
 					}
 		        }
+				&[data-type="post"]{
+					div{
+						h2{
+			        		@include font-size-20; 
+			        		text-align: center; 
+			        		font-weight: 400;
+			        		z-index: 999; 
+							span{ 
+								@include font-size-80; 
+								font-weight: 100;
+
+								//&::first-letter{ color: red; letter-spacing: -15px;}
+							}
+			        	}
+			        	p.since{ color: $text-color; @include font-size-20;}
+			        }
+		        }
+			}
+		}
+		/////// 		/////// 		///////
+   		// GRID      	// GRID      	// GRID
+   		///////			///////			///////
+
+        input#flux_layout-grid:checked ~ #flux-container{
+	    	/* no support of flex */
+	   		display: inline-block;
+	    		width: 100%;
+
+	    		@include column-count(4);
+	    		@include column-gap($unite);
+	    		@include column-fill(balance);					
+	    		
+	    		article{ 
+	    			width: 100%;
+	    			break-inside: avoid;	           
+				}
+
+	   		// flex 
+	   		@supports(display: flex) {
+
+				// Inherit
+				@include column-count(inherit);
+	    		@include column-gap(inherit);
+
+	            @include flex();
+	            @include flex-wrap(wrap);
+	            @include flex-direction(row);
+
+				article{
+									
+		        	ul.details{
+
+			            @include flex();
+			            @include flex-wrap(wrap);
+			            @include flex-direction(row);
+	        		
+		        		li{ flex: 0 1 25%; }
+		        	}
+			        &[data-type="tweet"]{ }
+
+			        &[data-type="git"]{ }
+
+			        &[data-type="post"]{
+
+			        	div{
+				        	text-align: center;
+				        	margin: auto;
+				        	top: 40%;
+							transform: translateY(-50%);
+							span{ display: block;}
+				        }
+			        }		        
+				}
+
+				@include for-size(desktop-900) {
+					article {
+					    flex: 1 1 33%;
+					    height: 250px;
+
+				        &[data-type="tweet"]{
+				        	flex: 1 1 66%;
+				        	ul.details li { flex: 1 1 25%; }
+						}  
+					}	
+				}
+
+				@include for-size(desktop-1200) {
+					article {
+					    flex: 1 1 25%;
+					    height: 250px;
+
+				        &[data-type="tweet"]{
+				        	flex: 1 1 50%;
+				        	ul.details li { flex: 1 1 25%; }
+						 }
+
+						 &[data-type="git"]{ } 
+					}	
+				}
+
+				@include for-size(desktop-1500) {
+					article {
+					    flex: 1 1 20%;
+					    height: 250px;
+
+				        &[data-type="tweet"]{
+				        	flex: 1 1 40%;
+				        	ul.details li { flex: 1 1 25%; }
+						}   
+					}	
+				}				
+			} 
+		}
+		/////// 		/////// 		///////
+   		// LINE      	// LINE      	// LINE
+   		///////			///////			///////
+        input#flux_layout-linear:checked ~ #flux-container{
+   		
+   			display: inline-block;
+    		width: 100%;
+    		color: red !important;	
+    		
+    		article{ 
+    			width: 100%;
+			    height: 50px;
+    			break-inside: avoid;
+    			overflow: hidden;
+
+    			&:hover{
+    				background-color: rgba($text-color-light, 0.1);
+    				}           
+										
+	        	ul.details{
+
+		            @include flex();
+		            @include flex-wrap(wrap);
+		            @include flex-direction(row);
+        		
+	        		li{ flex: 0 1 25%; }
+	        	}
+		        &[data-type="tweet"]{ }
+
+		        &[data-type="git"]{ }
 
 		        &[data-type="post"]{
-		        	h2{
-		        		@include font-size-60;
-						text-align: center;
-						top: 40%;
-						transform: translateY(-50%);
-						z-index: 999;
-		        	}
-		        }
 
-			    .image-background{
-			    	pre{
-		                font-size: calc(((25vw - #{$unite*0})/25)*3.10);
-		                line-height: calc(((25vw - #{$unite*0})/25)*2.89);
-		                overflow: hidden;
-		            }
-			    }		        
-			}	
-		} 
-	}
-}
+		        	div{
 
-@include for-size(desktop-900) {
-	#flux article {
-	    flex: 1 1 33%;
-	    height: 250px;
+			        }
+		        }		        
+				
 
-        &[data-type="tweet"]{
-        	flex: 1 1 66%;
-        	ul.details li { flex: 1 1 25%; }
-		}  
-	}	
-}
+				@include for-size(desktop-900) {
+					article {
+					    height: 100px;
+				        &[data-type="tweet"]{
+				        	ul.details li { flex: 1 1 25%; }
+						}  
+					}	
+				}
 
-@include for-size(desktop-1200) {
-	#flux article {
-	    flex: 1 1 25%;
-	    height: 250px;
+				@include for-size(desktop-1200) {
+					article {
+						height: 125px;
+				        &[data-type="tweet"]{
+				        	ul.details li { flex: 1 1 25%; }
+						 }
 
-        &[data-type="tweet"]{
-        	flex: 1 1 50%;
-        	ul.details li { flex: 1 1 25%; }
-		 }
+						 &[data-type="git"]{
+							
+						 } 
+					}	
+				}
 
-		 &[data-type="git"]{
-			[data-icon="git"]::before {
-			    display: block;
-			    font-size: 40px;
-			    vertical-align: middle;
-			}
-		 } 
-	}	
-}
+				@include for-size(desktop-1500) {
+					article {
+					    height: 50px;
 
-@include for-size(desktop-1500) {
-	#flux article {
-	    flex: 1 1 20%;
-	    height: 250px;
-
-        &[data-type="tweet"]{
-        	flex: 1 1 40%;
-        	ul.details li { flex: 1 1 25%; }
-		}   
-	}	
+				        &[data-type="tweet"]{
+				        	ul.details li { flex: 1 1 25%; }
+						}   
+					}	
+				}				
+			} 
+		   		
+		}
+   	}
 }

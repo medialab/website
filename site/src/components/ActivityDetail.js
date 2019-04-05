@@ -136,7 +136,7 @@ export default function ActivityDetail({lang, activity}) {
         <div className="block-lang fr" lang="fr">
           <hgroup>
             <h1  data-level-2="baseline">{activity.name}</h1>
-            <h2  className="h2-bold" data-level-2="baseline">{activity.baseline.fr}</h2>
+            <h2  className="h2-bold" data-level-2="baseline">{activity.baseline && (activity.baseline.fr || activity.baseline.en)}</h2>
             <h3  data-level-3="description"><RawHtml html={activity.description && activity.description.fr} /></h3>
           </hgroup>
           <div class="details">
@@ -155,7 +155,7 @@ export default function ActivityDetail({lang, activity}) {
         <div className="block-lang en" lang="en">
           <hgroup>
             <h1  data-level-2="baseline">{activity.name}</h1>
-            <h2  className="h2-bold" data-level-2="baseline">{activity.baseline.en}</h2>
+            <h2  className="h2-bold" data-level-2="baseline">{activity.baseline && (activity.baseline.en || activity.baseline.fr)}</h2>
             <h3  data-level-3="description"><RawHtml html={activity.description && activity.description.en} /></h3>
           </hgroup>
           <div class="details">

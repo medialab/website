@@ -13,18 +13,18 @@ const FilterNews = ({lang, years}) => {
     year = 'Aller à l\'année…';
     filters = 'Filtres';
     typeNews = "Type d'actualités";
-    event = 'Évenement';
-    post = 'Publication';
-    notice = 'Annonce';
+    event = 'Rendez-vous';
+    post = 'Chroniques';
+    notice = 'Annonces';
   }
   else {
     title = 'News';
     year = 'Go to year…';
     filters = 'Filters';
     typeNews = "News‘ type";    
-    event = 'Event';
-    post = 'Post';
-    notice = 'Notice';
+    event = 'Events';
+    post = 'Posts';
+    notice = 'Notices';
   }
   let suppYears = false;
 

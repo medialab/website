@@ -156,7 +156,11 @@ export default function NewsDetail({lang, news}) {
                 <DateNews startDate={news.startDate} endDate={news.endDate} lang={lang} />
                 <TimeNews startDate={news.startDate} endDate={news.endDate} />
               </div>
-              <p className="type-objet"><span data-icon="news"></span> {IsModel(news.type, "fr")}</p>
+              <p className="type-objet">
+              <span data-icon="news"></span> 
+              <span className="type-news">{IsModel(news.type, "fr")} </span>
+              {news.label && (lang === 'fr' ? <span>, {news.label.fr}</span> : <span>, {news.label.en}</span>)}
+              </p>
             </div>
             <div className="article-contenu">
               {news.content && (news.content.fr && <RawHtml html={news.content.fr} />)}

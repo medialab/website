@@ -1,0 +1,69 @@
+/* list-activity */
+
+
+.page-production-list{
+    
+    @include for-size(desktop) {
+        #liste [data-item]{
+            // background-color: yellow;
+
+
+            .title-group, .authors{ display: inline-block; }
+
+            .title-group{
+                width: 70%;
+                padding-top: $baseline*2;
+                padding-bottom: $baseline*4;
+            }
+
+
+            .details{
+                padding-top: $baseline/2;
+                border-top: $border-very-light;
+                position: absolute;
+                bottom: $baseline;
+                width: calc(70% - #{$unite});
+                
+                p{ 
+                    display: inline-block; 
+                    vertical-align: top;
+                    @include font-size-13;
+                }
+                .type-production{
+                    span:first-of-type{ text-transform: uppercase; }
+                    span:nth-of-type(2){
+                        border-left: $border-very-light;
+                        margin-left: $unite/2;
+                        padding-left: $unite/2;
+                    }
+                }
+                .date-production{
+                    margin-left: $unite/2;
+                    border-left: $border-very-light;
+                    padding-left: $unite/2;
+                }
+            
+            }
+
+            .authors{
+                width: 30%;
+                position: relative;
+                overflow: hidden;
+                
+                .authors-paragraphe{
+                    @include font-size-20;
+                    margin-top: $baseline;
+                    margin-bottom: $baseline;
+                    padding-left: $unite;
+                    border-left: $border-very-light;
+                    height: calc(100% - #{$baseline*2});
+                }
+                
+            }
+
+            
+
+        }
+    }
+
+}

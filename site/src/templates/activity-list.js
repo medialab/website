@@ -28,7 +28,13 @@ export const query = graphql`
             en
             fr
           }
-          type
+          coverImage {
+            url
+            processed {
+              medium
+            }
+          }          
+          type          
           lastUpdated
         }
       }

@@ -35,6 +35,12 @@ export const query = graphql`
             en
             fr
           }
+          coverImage {
+            url
+            processed {
+              medium
+            }
+          }          
           lastUpdated
         }
       }

@@ -89,14 +89,14 @@ export function IsModel (item, lang) {
   // News
   if (item === 'event' ) {
     if (lang === 'fr') {
-      type = 'Évenement';
+      type = 'Rendez-vous';
     } else {
       type = 'Event';
     }
   }
   if (item === 'post' ) {
     if (lang === 'fr') {
-      type = 'Publication';
+      type = 'Chronique';
     } else {
       type = 'Post';
     }

@@ -15,6 +15,8 @@ a:hover{
 
 
 
+
+
 .page-production, 
 .page-news, 
 .page-activity{
@@ -40,6 +42,7 @@ a:hover{
 			color: $text-color-light;
 
 			.production-ref{ border-top: $border-very-light; }
+			.type-news{ text-transform: uppercase; }
 
 			[data-icon]{ padding-right: $unite/2;}
 

@@ -8,6 +8,8 @@ $hack-sticky: 54px;
 
 
 @include for-size(desktop) {
+
+	
  
 	.page-people{
 
@@ -69,6 +71,22 @@ $hack-sticky: 54px;
 						@include font-size-20();
 					}
 
+					.status{
+						
+						font-style: italic;
+						margin-left: calc(100% - 350px);
+						text-align: right;
+						width: 350px;
+						margin-bottom: $baseline*1;
+						&::before{
+							content: "“";
+						}
+						&::after{
+							content: "”";
+						}
+
+					}
+
 			
 					
 				}
@@ -89,6 +107,18 @@ $hack-sticky: 54px;
 			
 
 			}	
+
+			#highlights{
+				width: 100%;
+				overflow: hidden;
+				position: relative;
+				margin-top: $baseline*6;
+				h1{
+					@include font-size-27();
+					margin-bottom: $baseline*3;
+				}
+			}
+			
 			
 
 		} /* end main */
@@ -117,6 +147,8 @@ $hack-sticky: 54px;
 		header{
 			width: 100%;
 			hgroup{ 
+				width: calc(100% - 300px);
+				// background-color: red;
 				min-height: 200px; 
 				max-width: 900px;
 			}
@@ -127,6 +159,8 @@ $hack-sticky: 54px;
 				margin-bottom: $baseline/2;
 			}
 			h2{ @include font-size-20(); margin-bottom: $baseline; }
+			
+
 		}
 		
 	}

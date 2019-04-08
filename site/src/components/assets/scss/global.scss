@@ -24,16 +24,16 @@
 
 @import 'parts/index/follow';
 
+@import 'common/item-list/list-all';
+@import 'common/item-list/list-activities';
+@import 'common/item-list/list-news';
+@import 'common/item-list/list-productions';
+
+
 // Page Liste
 
-// @import 'parts/page_liste/page_liste';
-// @import 'parts/page_liste/page_liste-desktop';
+@import 'parts/page_liste/page_liste-desktop';
 @import 'parts/page_liste/page_liste-phone';
-@import 'parts/page_liste/list-all';
-@import 'parts/page_liste/list-activities';
-@import 'parts/page_liste/list-news';
-@import 'parts/page_liste/list-productions';
-
 
 @import 'common/filtres/filtre';
 @import 'common/filtres/filtre-style-desktop';
@@ -71,7 +71,7 @@
 @import 'common/pages/toggle-lang';
 @import 'common/pages/nav-article';
 @import 'common/pages/now_highlight';
-@import 'common/pages/highlights';
+// @import 'common/pages/highlights';
 
 
 // Page About

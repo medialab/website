@@ -1,20 +1,17 @@
-/* list-activity */
+/* list-productions */
 
 
-.page-activity-list{
     
     @include for-size(desktop) {
-        #liste [data-item]{
-
-            [data-icon]::before{            
-                font-size: 60px!important;
-            }
+        #highlights-list-production,
+        .page-production-list #liste [data-item]{
+            // background-color: yellow;
 
 
-            .title-group, .accroche{ display: inline-block; }
+            .title-group, .authors{ display: inline-block; }
 
             .title-group{
-                width: 50%;
+                width: 70%;
                 padding-top: $baseline*2;
                 padding-bottom: $baseline*4;
             }
@@ -25,45 +22,41 @@
                 border-top: $border-very-light;
                 position: absolute;
                 bottom: $baseline;
-                width: calc(50% - #{$unite});
+                width: calc(70% - #{$unite});
                 
                 p{ 
                     display: inline-block; 
                     vertical-align: top;
                     @include font-size-13;
                 }
-                .type-activity{
-                    width: $unite*4;
+                .type-production{
+                    span:first-of-type{ text-transform: uppercase; }
+                    span:nth-of-type(2){
+                        border-left: $border-very-light;
+                        margin-left: $unite/2;
+                        padding-left: $unite/2;
+                    }
                 }
-                .title{
-                    width: calc(100% - #{$unite*4});
+                .date-production{
+                    margin-left: $unite/2;
                     border-left: $border-very-light;
                     padding-left: $unite/2;
                 }
             
             }
 
-            .accroche{
-                width: 50%;
+            .authors{
+                width: 30%;
                 position: relative;
                 overflow: hidden;
                 
-                .accroche-paragraphe{
+                .authors-paragraphe{
                     @include font-size-20;
                     margin-top: $baseline;
                     margin-bottom: $baseline;
                     padding-left: $unite;
                     border-left: $border-very-light;
                     height: calc(100% - #{$baseline*2});
-                }
-
-                .image-pre{
-                    display: none;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    background-color: $background-site;
-                    font-size: 1.2vw;
                 }
                 
             }
@@ -73,4 +66,3 @@
         }
     }
 
-}

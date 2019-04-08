@@ -216,15 +216,14 @@ export default function PeopleDetail({lang, person}) {
             <hgroup>
             <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
             <h2 data-level-2="role" data-type="role">{person.role[lang]}</h2>
+            <p class="status" data-type="status">{person.status && (lang === "fr" ? person.status.fr : person.status.en)}</p>
             </hgroup>
             <div className="situation">
                 <p data-type="domaine">{lang === "fr" ? "Domaine" + String.fromCharCode(8239) +":" : "Domain:"} {person.domain}</p>
                 <p data-type="membership">{templateMembership(person)}</p>
             </div>
 
-            {/*<p data-type="status">{person.status && (lang === "fr" ? person.status.fr : person.status.en)}</p>*/}
-            {person.status && <p data-type="status">{person.status[lang] || ''}</p>}
-
+          
             <div className="contact">
               {/* <h3 className="toContact">{lang === 'fr' ? 'Contact' : 'Get in touch '}</h3> */}
               <ul>

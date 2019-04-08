@@ -1,0 +1,75 @@
+/* list-activity */
+
+
+
+@include for-size(desktop) {
+    .page-activity-list #liste [data-item],
+    #highlights-list-activity li{
+
+        [data-icon]::before{            
+            font-size: 60px!important;
+        }
+
+
+        .title-group, .accroche{ display: inline-block; }
+
+        .title-group{
+            width: 50%;
+            padding-top: $baseline*2;
+            padding-bottom: $baseline*4;
+        }
+
+
+        .details{
+            padding-top: $baseline/2;
+            border-top: $border-very-light;
+            position: absolute;
+            bottom: $baseline;
+            width: calc(50% - #{$unite});
+            
+            p{ 
+                display: inline-block; 
+                vertical-align: top;
+                @include font-size-13;
+            }
+            .type-activity{
+                width: $unite*4;
+            }
+            .title{
+                width: calc(100% - #{$unite*4});
+                border-left: $border-very-light;
+                padding-left: $unite/2;
+            }
+        
+        }
+
+        .accroche{
+            width: 50%;
+            position: relative;
+            overflow: hidden;
+            
+            .accroche-paragraphe{
+                @include font-size-20;
+                margin-top: $baseline;
+                margin-bottom: $baseline;
+                padding-left: $unite;
+                border-left: $border-very-light;
+                height: calc(100% - #{$baseline*2});
+            }
+
+            .image-pre{
+                display: none;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: $background-site;
+                font-size: 1.2vw;
+            }
+            
+        }
+
+        
+
+    }
+}
+

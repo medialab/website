@@ -1,3 +1,5 @@
+$hunit: 4vh;
+
 /* all */
 .page-home{
     overflow-x: hidden;
@@ -5,8 +7,6 @@
         content: "◷ ";
     }
 }
-
-
 
 
 
@@ -52,7 +52,8 @@
 
 
 @include for-size(desktop) {
-    
+
+   
     .page-home{
     
         // #nav-home{ display: none; }

@@ -13,11 +13,14 @@
 		position: absolute;
 		top: 0;
 		right: 0;
-		&:first-of-type{ right: $unite;}
+		&:nth-of-type(2){ right: $unite;}
+		&:nth-of-type(3){ right: $unite*2;}		
 	}
 
 
     #flux-container{
+
+    	margin-top: $baseline*4;
 		
 		article{ 
 			width: 100%;
@@ -77,8 +80,12 @@
 
 	#flux{
         #flux-container{
-   	//GENERAL
+   			//GENERAL
 			article{
+
+       			width: 100%;
+    			break-inside: avoid;           
+
 
 		        .type{ @include font-size-16; margin-bottom: $baseline/2;  }	
 		        .update{ @include font-size-16; margin-bottom: $baseline/2; }	
@@ -86,14 +93,14 @@
 
 				&[data-type="tweet"]{					
 					h2{
-						@include font-size-20;
+						@include font-size-16;
 						margin: $baseline 0;
 					}      	
 		        }
 
 		        &[data-type="git"]{
 					h2{
-						@include font-size-20; 
+						@include font-size-16; 
 						font-weight: 400;
 						margin: $baseline 0 0 0 ;
 					}
@@ -106,7 +113,7 @@
 				&[data-type="post"]{
 					div{
 						h2{
-			        		@include font-size-20; 
+			        		@include font-size-16; 
 			        		text-align: center; 
 			        		font-weight: 400;
 			        		z-index: 999; 
@@ -117,7 +124,7 @@
 								//&::first-letter{ color: red; letter-spacing: -15px;}
 							}
 			        	}
-			        	p.since{ color: $text-color; @include font-size-20;}
+			        	p.since{ color: $text-color; @include font-size-16;}
 			        }
 		        }
 
@@ -131,6 +138,72 @@
 		        }
 			}
 		}
+		//Global Rules for modular layout
+		input#flux_layout-grid:checked ~ #flux-container,
+		input#flux_layout-timeline:checked ~ #flux-container {
+			article{
+
+			    &[data-type="post"]{
+
+			    	div{
+			        	text-align: center;
+			        	margin: auto;
+			        	top: 40%;
+						transform: translateY(-50%);
+						span{ display: block;}
+			        }
+			    }
+				h2, h3 {padding-right: $unite;}	
+
+				ul.details{
+			        @include flex();
+			        @include flex-wrap(wrap);
+			        @include flex-direction(row);
+				
+					li{ flex: 0 1 25%; }
+
+					position: absolute;
+					bottom: $baseline/2;
+					width: 100%;
+				}
+			}
+
+			@include for-size(desktop-900) {
+				article {
+
+			        &[data-type="tweet"]{
+			        	ul.details li { flex: 1 1 25%; }
+					}  
+				}	
+			}
+
+			@include for-size(desktop-1200) {
+				article {
+			        &[data-type="tweet"]{
+			        	ul.details li { flex: 1 1 25%; }
+					 }
+
+					 &[data-type="git"]{ } 
+				}	
+			}
+
+			@include for-size(desktop-1500) {
+				article {
+
+			        &[data-type="tweet"]{
+			        	flex: 1 1 40%;
+			        	ul.details li { flex: 1 1 25%; }
+					}   
+				}	
+			}
+		}
+
+		input#flux_layout-linear:checked ~ #timeline-hoverline,
+		input#flux_layout-linear:checked ~ #timeline-button, 
+		input#flux_layout-linear:checked ~ #timeline-buoy,
+		.hoverline_border{ 
+			display: none;}
+
 		/////// 		/////// 		///////
    		// GRID      	// GRID      	// GRID
    		///////			///////			///////
@@ -138,18 +211,11 @@
         input#flux_layout-grid:checked ~ #flux-container{
 	    	/* no support of flex */
 	   		display: inline-block;
-	    		width: 100%;
+    		width: 100%;
 
-	    		@include column-count(4);
-	    		@include column-gap($unite);
-	    		@include column-fill(balance);					
-	    		
-	    		article{ 
-	    			width: 100%;
-	    			break-inside: avoid;
-					padding-right: $unite;
-	           
-				}
+    		@include column-count(4);
+    		@include column-gap($unite);
+    		@include column-fill(balance);					
 
 	   		// flex 
 	   		@supports(display: flex) {
@@ -162,33 +228,6 @@
 	            @include flex-wrap(wrap);
 	            @include flex-direction(row);
 
-				article{
-
-			        &[data-type="tweet"]{ }
-
-			        &[data-type="git"]{ }
-
-			        &[data-type="post"]{
-
-			        	div{
-				        	text-align: center;
-				        	margin: auto;
-				        	top: 40%;
-							transform: translateY(-50%);
-							span{ display: block;}
-				        }
-			        }		        
-									
-		        	ul.details{
-
-			            @include flex();
-			            @include flex-wrap(wrap);
-			            @include flex-direction(row);
-	        		
-		        		li{ flex: 0 1 25%; }
-		        	}
-				}
-
 				@include for-size(desktop-900) {
 					article {
 					    flex: 1 1 33%;
@@ -196,8 +235,8 @@
 
 				        &[data-type="tweet"]{
 				        	flex: 1 1 66%;
-				        	ul.details li { flex: 1 1 25%; }
-						}  
+						}
+						ul.details{ width: 100%;}
 					}	
 				}
 
@@ -208,10 +247,7 @@
 
 				        &[data-type="tweet"]{
 				        	flex: 1 1 50%;
-				        	ul.details li { flex: 1 1 25%; }
 						 }
-
-						 &[data-type="git"]{ } 
 					}	
 				}
 
@@ -222,12 +258,17 @@
 
 				        &[data-type="tweet"]{
 				        	flex: 1 1 40%;
-				        	ul.details li { flex: 1 1 25%; }
 						}   
 					}	
-				}				
-			} 
+				}
+			}
 		}
+		input#flux_layout-grid:checked ~ label.timeline_moving_left,
+		input#flux_layout-grid:checked ~ label.hoverline, 
+		input#flux_layout-grid:checked ~ #timeline-buoy,
+		.hoverline_border{ 
+			display: none;}		
+
 		/////// 		/////// 		///////
    		// LINE      	// LINE      	// LINE
    		///////			///////			///////
@@ -235,12 +276,28 @@
    		
    			display: inline-block;
     		width: 100%;
-    		
+
+			@include flex();
+	        @include flex-wrap(wrap);
+	        @include flex-direction(row);
+
     		article{ 
+    			//width: calc(100% - #{$unite});
     			width: 100%;
 			    height: 50px;
-    			break-inside: avoid;
     			overflow: hidden;
+
+    			flex: 1 1 100%;
+    			padding-right: 0;
+    			&::after{ width: 100%; }
+
+				@include for-size(desktop-900) { 
+					flex: 1 1 50%;
+    				padding-right: $unite/2; 
+    				&:nth-of-type(2){ padding-left: $unite/2; padding-right: 0;}
+ 					&::after{ width: calc(100% - #{$unite/2}); }
+				}
+
 
     			&:hover{
     				background-color: rgba($text-color-light, 0.1);
@@ -248,15 +305,11 @@
 
     			*{ display: inline-block;}
 
-    			.type{ width: 90px; }
-    			.update{ width: 210px; }
-		        &[data-type="tweet"]{ 
-		        	h2{ width: calc(100% - 250px);vertical-align: top;}
-    			}
-		        &[data-type="git"]{ 
-		        	h2{ width: calc(100% - 250px);vertical-align: top;}
-    				h3{ width: 100%;}
-		        }
+    			.type{ width: 60px; vertical-align: top;}
+    			.update{ width: 110px;  vertical-align: top;}
+
+    			h2, .type, .update, .details { padding-top: $baseline; }
+
 	        	ul.details{
 	        		width: 100%;
 	        		@include flex();
@@ -265,24 +318,21 @@
         		
 	        		li{ flex: 0 1 25%; }
 	        	}
-
-
-		        &[data-type="post"]{
-
-		        	div{
-
-			        }
-		        }		        
 				
+				&[data-type="tweet"]{ display: none; }
+		        &[data-type="post"]{display: none;  }		        
+
+		        &[data-type="git"]{ 
+		        	h2{ width: calc(100% - 170px);vertical-align: top; margin: 0; }
+    				h3{ width: 100%;}
+		        }				
 
 				@include for-size(desktop-900) {
-	    			.type{ width: 90px; }
-	    			.update{ width: 210px; }
 			        &[data-type="tweet"]{ 
-			        	h2{ width: calc(60% - 250px);}
+			        	h2{ width: calc(60% - 170px);}
 	    			}
 			        &[data-type="git"]{ 
-			        	h2{ width: calc(60% - 250px);}
+			        	h2{ width: calc(60% - 170px);}
 	    				h3{ width: 100%;}
 			        }
 		        	ul.details{
@@ -303,8 +353,135 @@
 				@include for-size(desktop-1500) {
  					
 				}				
-			} 
-		   		
+			}		
+		}
+
+		input#flux_layout-linear:checked ~ label.timeline_moving_left,
+		input#flux_layout-linear:checked ~ label.hoverline, 
+		input#flux_layout-linear:checked ~ #timeline-buoy,
+		.hoverline_border{ 
+			display: none;
+		}
+
+		/////// 		/////// 		///////
+   		// TIME      	// TIME      	// TIME
+   		///////			///////			///////
+
+    	$number-day : 20;
+    	$number-item-line: 4;
+    	$witem: calc( 33.333vw - ( #{$unite*2} / 2 ) );
+
+
+        input#flux_layout-timeline:checked ~ #flux-container{
+
+	   		display: inline-block;
+    		width: calc( (100vw - #{$unite*2}) * #{$number-day});
+    		background: $background-grey;
+
+	   		// flex 
+	   		//@supports(display: flex) {
+
+	            //@include flex();
+	            //@include flex-wrap(nowrap);
+	            //@include flex-direction(row);
+	            //}
+			article{ 
+		        width: $witem;
+		        display: inline-block;
+		        height: 40vh;
+				vertical-align: top;
+				background: $background-site;
+
+		        h2, h3 {padding-right: $unite;}	        			
+			}
+		}
+ 
+		input#flux_layout-timeline:checked ~ .hoverline_border{ display: block; }
+		
+		.hoverline_border{ 
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			height: 1px;
+			border-bottom: $border-light;
+		}
+
+		input#flux_layout-timeline:checked ~ label.hoverline{
+			display: inline-block;
+			//width: 100%;
+			//height: $baseline*4;
+			position: absolute;
+			bottom: 0;
+			//height: $baseline*4;
+			overflow: hidden;
+			cursor: pointer;
+			background: $background-site;
+
+			span{ 
+				//font-size: calc(((100vw - #{$unite*2}) / #{$number-item})*0.52910);
+				//line-height: calc(((100vw - #{$unite*2}) / #{$number-item})*0.52910);
+				font-size: calc(((100vw - #{$unite*2}) / #{$number-day})*1.5907);
+				line-height: calc(((100vw - #{$unite*2}) / #{$number-day})*1.5907);					
+			}
+		}
+
+		@for $i from 0 through 20 {				
+
+			input#hoverline-#{$i}{ 
+				//left: calc(((100vw - #{$unite*2})/20)*#{$i});
+
+				&:checked ~ #flux-container{
+					right: calc( ( #{$witem} * 3 ) * #{$i});
+				}
+
+				+ label { 
+					transition: .25s linear;
+					left: calc(((100vw - #{$unite*2})/20)*#{$i});
+
+					&:hover {
+
+						span{ color: black; }
+
+						& ~ #flux-container{
+							transition: .5s linear;
+							right: calc( ( #{$witem} * 3 ) * #{$i});
+
+						}
+					
+						& ~ #timeline-buoy span{
+							left: calc(((100vw - #{$unite*2})/20)*#{$i});
+
+						}
+					}
+				}
+			}
+		}
+		
+		input#flux_layout-timeline:checked ~ #timeline-buoy{
+			position: relative;
+			display: inline-block;
+
+			width: 100%;
+			//height: $baseline*4;
+			height: 0;
+			padding-top: calc(((100vw - #{$unite*2}) / #{$number-day})*1.5907);
+			//top: calc(((100vw - #{$unite*2}) / #{$number-day})*1.5907);
+			//top: calc(((100vw - 50px) / 20)*1.35);
+			//background: $background-site;
+			z-index: -1;
+			border-top: $border-light;
+			transition: .1s ease-in-out;
+
+			span{ 
+				position: absolute;
+				left: 0;
+				transition: .25s ease-in-out;
+				width: 1px;
+				height: calc(((100vw - #{$unite*2}) / #{$number-day})*1.5907 + #{$baseline} );
+				border: $border-light;
+				bottom: 0;
+				transform: translateY(7px);
+			}
 		}
    	}
 }

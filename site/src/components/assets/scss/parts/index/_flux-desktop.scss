@@ -23,7 +23,6 @@
 			width: 100%;
 			break-inside: avoid;
 			position: relative;
-			padding-right: $unite;
     		//background-color: #f2f2f2;
 
 			//&:nth-child(2n){ background-color:#f4f4f4;}
@@ -51,11 +50,6 @@
 		        .update{ color: $text-color-light; margin-bottom: $baseline/2; padding-left: $unite/2 }		
 
 	        	ul.details{
-	        		position: absolute;
-					width: calc(100% - #{$unite});
-					padding-top: $baseline/2;
-					border-top: $border-very-light;
-	        		bottom: $baseline;
 
 	        		li{
 	        			@include text-overflow;
@@ -89,7 +83,6 @@
 		        .type{ @include font-size-16; margin-bottom: $baseline/2;  }	
 		        .update{ @include font-size-16; margin-bottom: $baseline/2; }	
 		        //@include stroke_hover(ul, top);
-		        li{ @include font-size-13; }
 
 				&[data-type="tweet"]{					
 					h2{
@@ -127,6 +120,15 @@
 			        	p.since{ color: $text-color; @include font-size-20;}
 			        }
 		        }
+
+		        ul.detail{
+		        	position: absolute;
+					width: calc(100% - #{$unite});
+					padding-top: $baseline/2;
+					border-top: $border-very-light;
+	        		bottom: $baseline;
+			        li{ @include font-size-13; }
+		        }
 			}
 		}
 		/////// 		/////// 		///////
@@ -144,7 +146,9 @@
 	    		
 	    		article{ 
 	    			width: 100%;
-	    			break-inside: avoid;	           
+	    			break-inside: avoid;
+					padding-right: $unite;
+	           
 				}
 
 	   		// flex 
@@ -159,15 +163,7 @@
 	            @include flex-direction(row);
 
 				article{
-									
-		        	ul.details{
 
-			            @include flex();
-			            @include flex-wrap(wrap);
-			            @include flex-direction(row);
-	        		
-		        		li{ flex: 0 1 25%; }
-		        	}
 			        &[data-type="tweet"]{ }
 
 			        &[data-type="git"]{ }
@@ -182,6 +178,15 @@
 							span{ display: block;}
 				        }
 			        }		        
+									
+		        	ul.details{
+
+			            @include flex();
+			            @include flex-wrap(wrap);
+			            @include flex-direction(row);
+	        		
+		        		li{ flex: 0 1 25%; }
+		        	}
 				}
 
 				@include for-size(desktop-900) {
@@ -230,7 +235,6 @@
    		
    			display: inline-block;
     		width: 100%;
-    		color: red !important;	
     		
     		article{ 
     			width: 100%;
@@ -240,19 +244,28 @@
 
     			&:hover{
     				background-color: rgba($text-color-light, 0.1);
-    				}           
-										
-	        	ul.details{
+    				} 
 
-		            @include flex();
+    			*{ display: inline-block;}
+
+    			.type{ width: 90px; }
+    			.update{ width: 210px; }
+		        &[data-type="tweet"]{ 
+		        	h2{ width: calc(100% - 250px);vertical-align: top;}
+    			}
+		        &[data-type="git"]{ 
+		        	h2{ width: calc(100% - 250px);vertical-align: top;}
+    				h3{ width: 100%;}
+		        }
+	        	ul.details{
+	        		width: 100%;
+	        		@include flex();
 		            @include flex-wrap(wrap);
 		            @include flex-direction(row);
         		
 	        		li{ flex: 0 1 25%; }
 	        	}
-		        &[data-type="tweet"]{ }
 
-		        &[data-type="git"]{ }
 
 		        &[data-type="post"]{
 
@@ -263,35 +276,32 @@
 				
 
 				@include for-size(desktop-900) {
-					article {
-					    height: 100px;
-				        &[data-type="tweet"]{
-				        	ul.details li { flex: 1 1 25%; }
-						}  
-					}	
+	    			.type{ width: 90px; }
+	    			.update{ width: 210px; }
+			        &[data-type="tweet"]{ 
+			        	h2{ width: calc(60% - 250px);}
+	    			}
+			        &[data-type="git"]{ 
+			        	h2{ width: calc(60% - 250px);}
+	    				h3{ width: 100%;}
+			        }
+		        	ul.details{
+		        		@include justify-content(flex-end);
+		        		width: 40%;
+						position: absolute;
+						right: 0;
+						top: 26px;
+	        		
+		        		li{ flex: 0 1 25%; }
+		        	}						
 				}
 
 				@include for-size(desktop-1200) {
-					article {
-						height: 125px;
-				        &[data-type="tweet"]{
-				        	ul.details li { flex: 1 1 25%; }
-						 }
 
-						 &[data-type="git"]{
-							
-						 } 
-					}	
-				}
+	        	}
 
 				@include for-size(desktop-1500) {
-					article {
-					    height: 50px;
-
-				        &[data-type="tweet"]{
-				        	ul.details li { flex: 1 1 25%; }
-						}   
-					}	
+ 					
 				}				
 			} 
 		   		

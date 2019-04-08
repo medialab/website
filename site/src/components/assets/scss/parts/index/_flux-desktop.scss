@@ -395,7 +395,30 @@
 		        h2, h3 {padding-right: $unite;}	        			
 			}
 		}
- 
+		
+		input#flux_layout-timeline:checked ~ #timeline-buoy{
+			position: relative;
+			display: inline-block;
+
+			width: 100%;
+			height: 0;
+			margin-top: calc(((100vw - #{$unite*2}) / #{$number-day})*1.5907);
+			z-index: 1;
+			border-top: $border-light;
+			transition: .1s ease-in-out;
+
+			span{ 
+				position: absolute;
+				left: 0;
+				transition: .25s ease-in-out;
+				width: 1px;
+				height: calc(((100vw - #{$unite*2}) / #{$number-day})*1.5907 + #{$baseline} );
+				border: $border-light;
+				bottom: 0;
+				transform: translateY(7px);
+			}
+		}
+		 
 		input#flux_layout-timeline:checked ~ .hoverline_border{ display: block; }
 		
 		.hoverline_border{ 
@@ -421,18 +444,27 @@
 				//font-size: calc(((100vw - #{$unite*2}) / #{$number-item})*0.52910);
 				//line-height: calc(((100vw - #{$unite*2}) / #{$number-item})*0.52910);
 				font-size: calc(((100vw - #{$unite*2}) / #{$number-day})*1.5907);
-				line-height: calc(((100vw - #{$unite*2}) / #{$number-day})*1.5907);					
+				line-height: calc(((100vw - #{$unite*2}) / #{$number-day})*1.5907);
+				transform: translateY(-5%); // Compenser le 10% de dépassement				
 			}
 		}
+
 
 		@for $i from 0 through 20 {				
 
 			input#hoverline-#{$i}{ 
 				//left: calc(((100vw - #{$unite*2})/20)*#{$i});
 
-				&:checked ~ #flux-container{
-					right: calc( ( #{$witem} * 3 ) * #{$i});
-				}
+				&:checked {
+
+					& ~ #flux-container{
+						right: calc( ( #{$witem} * 3 ) * #{$i});
+					}
+					
+					& ~ #timeline-buoy span{
+						left: calc(((100vw - #{$unite*2})/20)*#{$i});
+					}					
+				}	
 
 				+ label { 
 					transition: .25s linear;
@@ -450,37 +482,9 @@
 					
 						& ~ #timeline-buoy span{
 							left: calc(((100vw - #{$unite*2})/20)*#{$i});
-
 						}
 					}
-				}
-			}
-		}
-		
-		input#flux_layout-timeline:checked ~ #timeline-buoy{
-			position: relative;
-			display: inline-block;
-
-			width: 100%;
-			//height: $baseline*4;
-			height: 0;
-			padding-top: calc(((100vw - #{$unite*2}) / #{$number-day})*1.5907);
-			//top: calc(((100vw - #{$unite*2}) / #{$number-day})*1.5907);
-			//top: calc(((100vw - 50px) / 20)*1.35);
-			//background: $background-site;
-			z-index: -1;
-			border-top: $border-light;
-			transition: .1s ease-in-out;
-
-			span{ 
-				position: absolute;
-				left: 0;
-				transition: .25s ease-in-out;
-				width: 1px;
-				height: calc(((100vw - #{$unite*2}) / #{$number-day})*1.5907 + #{$baseline} );
-				border: $border-light;
-				bottom: 0;
-				transform: translateY(7px);
+				}		
 			}
 		}
    	}

@@ -291,7 +291,7 @@ exports.sourceNodes = function(args) {
 
   // Handling assets
   chokidar
-    .watch(ASSETS_GLOB)
+    .watch(ASSETS_GLOB, {awaitWriteFinish: true})
     .on('add', copyAsset)
     .on('unlink', deleteAsset);
 
@@ -300,7 +300,7 @@ exports.sourceNodes = function(args) {
     MODEL_READERS[model](args);
 
   chokidar
-    .watch(DB_GLOB)
+    .watch(DB_GLOB, {awaitWriteFinish: true})
     .on('change', p => {
       const model = path.basename(p, '.json');
 

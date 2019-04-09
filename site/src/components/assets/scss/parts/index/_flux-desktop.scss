@@ -449,16 +449,30 @@
 			}
 		}
 
-
 		@for $i from 0 through 20 {				
 
 			input#hoverline-#{$i}{ 
 				//left: calc(((100vw - #{$unite*2})/20)*#{$i});
+				
+				
+
+				$previous-days: 0;
+
+				@if ($i == 1) {$previous-days: var(--h-0); }
+				
+				@if ($i > 1) {
+					$i-moins-un : $i - 1;
+					@for $is from 0 through $i-moins-un {
+					    $previous-days: $previous-days + " + " + var(--h-#{$is});
+					}
+				}
+
 
 				&:checked {
 
 					& ~ #flux-container{
-						right: calc( ( #{$witem} * 3 ) * #{$i});
+						//right: calc( ( #{$witem} * 3 ) * #{$i});
+						right: calc( #{$witem} * ( #{$previous-days} ) );
 					}
 					
 					& ~ #timeline-buoy span{
@@ -476,8 +490,8 @@
 
 						& ~ #flux-container{
 							transition: .5s linear;
-							right: calc( ( #{$witem} * 3 ) * #{$i});
-
+							//right: calc( ( #{$witem} * 3 ) * #{$i});
+							right: calc( #{$witem} * ( #{$previous-days} ) );
 						}
 					
 						& ~ #timeline-buoy span{

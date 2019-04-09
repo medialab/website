@@ -114,7 +114,7 @@ export default function flux() {
 			{/* Timeline Buttons */}
 			<buttonsL />
 
-			<div id="flux-container" style={{ '--h-1': 2, '--h-2': 2, '--h-3': 1, '--h-4': 1}}>
+			<div id="flux-container" style={{ '--h-0': 2, '--h-1': 2, '--h-2': 1, '--h-3': 1}}>
 				{/*if type=git (bon modèle pour les liens) */}
 				<article data-type="git" data-day="0">
 					<p className="type">Git</p>

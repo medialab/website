@@ -2,6 +2,7 @@
 //////// item_accroche: Desktop 
 /////////////////////
 
+
 @include for-size(desktop) {
 
 	.page-people-list{
@@ -31,19 +32,37 @@
 
 			ul{
 				display: inline-block;
-	            width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
+				width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
+				@supports(display: grid) {
+					display: grid;
+					grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+					// grid-gap: $unite*1;
+				}
 				li{
-					/* No support of grid */ 
-					float: left;
-					width: calc( 25% - #{$unite*1.5} );
+					margin-bottom: $baseline*2;
+		
+					a{
+						padding: $unite/2;
+						@include flex();
+						
+					}
+
+					.description{
+						width: 52%;
+						height: 100%!important;
+						vertical-align: top;
+						padding-left: $unite*1;
+						display: inline-flex;
+						@include flex-direction(column);
+						@include justify-content(space-between);
+						@include align-items(stretch);
 					
-					&:not(:nth-of-type(4n)){
-						margin-right: $unite*2;
 					}
 
 					figure{
-						width: 100%;
-						overflow: hidden;
+						width: 48%;
+						display: inline-block; 
+						vertical-align: top;
 
 						img{
 							width: 100%;
@@ -52,16 +71,47 @@
 					}
 
 					hgroup{
-						padding: $baseline*1 0;
+						// padding: $baseline*1 0;
 
 						h1{
-							@include font-size-20;
-							font-weight: bold;
+							@include font-size-27;
+							margin-bottom: $baseline;
 
 						}
 
-						h2{
-							@include font-size-20;
+					
+						
+
+						.status{ 
+							@include font-size-16; 
+							font-style: italic;
+							&::before{ content: "“"; }
+							&::after{ content: "”"; }
+						}
+					}
+
+					.details{
+						align-self: bottom;
+						margin-top: $baseline;
+						border-top: $border-very-light;
+						border-bottom: $border-very-light;
+						padding: $baseline/2 0;
+						@include font-size-13;
+						
+						.role{
+							border-bottom: $border-very-light;
+							padding-bottom: $baseline/2;
+							margin-bottom: $baseline/2;
+							color: $text-color-light;
+						}
+						.member, .domaine{
+							display: inline-block;
+							color: $text-color-light;
+						}
+						.member{
+							padding-right: $unite/2;
+							margin-right: $unite/2;
+							border-right: $border-very-light;
 						}
 					}
 
@@ -76,47 +126,49 @@
 			///        Grid 	/////
 			/////////////////////////	
 
-			/* if support of grid */
-			@supports(display: grid) {
-				ul{
-					width: inherit; // désarmocer régles précédente si GRID support
-					display: grid;
-				    grid-template-columns: repeat(2, 1fr);
-				    @include for-size(desktop-1000) {grid-template-columns: repeat(2, 1fr);}
-				    @include for-size(desktop-1200) {grid-template-columns: repeat(3, 1fr); }
-				    @include for-size(desktop-1300) {grid-template-columns: repeat(4, 1fr); }
-				    @include for-size(desktop-1800) {grid-template-columns: repeat(4, 1fr); }
-				    grid-gap: $unite*2;
+			// @supports(display: grid) {
+			// 	ul{
+			// 		width: inherit; 
+			// 		display: grid;
+			// 	    grid-template-columns: repeat(2, 1fr);
+			// 	    @include for-size(desktop-1000) {grid-template-columns: repeat(2, 1fr);}
+			// 	    @include for-size(desktop-1200) {grid-template-columns: repeat(3, 1fr); }
+			// 	    @include for-size(desktop-1300) {grid-template-columns: repeat(4, 1fr); }
+			// 	    @include for-size(desktop-1800) {grid-template-columns: repeat(4, 1fr); }
+			// 	    grid-gap: $unite*2;
 		            
-					li{
-						float: inherit;
-						width: inherit;
+			// 		li{
+			// 			float: inherit;
+			// 			width: inherit;
 						
-						&:not(:nth-of-type(4n)){
-							margin-right: inherit;
-						}
-					}		   	
-				}
-			}
+			// 			&:not(:nth-of-type(4n)){
+			// 				margin-right: inherit;
+			// 			}
+			// 		}		   	
+			// 	}
+			// }
 
-			@supports (display: -ms-grid) {
-				width: inherit; // désarmocer régles précédente si GRID support
-			    display: -ms-grid;
-			    -ms-grid-template-columns: repeat(3, 1fr);
-			    @include for-size(desktop-1000) {-ms-grid-template-columns: repeat(2, 1fr);}
-			    @include for-size(desktop-1200) {-ms-grid-template-columns: repeat(3, 1fr); }
-			    @include for-size(desktop-1300) {-ms-grid-template-columns: repeat(4, 1fr); }
-			    @include for-size(desktop-1800) {-ms-grid-template-columns: repeat(4, 1fr); }
-			    -ms-grid-gap: $unite*2;
-				li{
-					float: inherit;
-					width: inherit;
+			// @supports (display: -ms-grid) {
+			// 	width: inherit; /
+			//     display: -ms-grid;
+			//     -ms-grid-template-columns: repeat(3, 1fr);
+			//     @include for-size(desktop-1000) {-ms-grid-template-columns: repeat(2, 1fr);}
+			//     @include for-size(desktop-1200) {-ms-grid-template-columns: repeat(3, 1fr); }
+			//     @include for-size(desktop-1300) {-ms-grid-template-columns: repeat(4, 1fr); }
+			//     @include for-size(desktop-1800) {-ms-grid-template-columns: repeat(4, 1fr); }
+			//     -ms-grid-gap: $unite*2;
+			// 	li{
+			// 		float: inherit;
+			// 		width: inherit;
 					
-					&:not(:nth-of-type(4n)){
-						margin-right: inherit;
-					}
-				}
-			} // End grid
+			// 		&:not(:nth-of-type(4n)){
+			// 			margin-right: inherit;
+			// 		}
+			// 	}
+			// } 
+
+
+
 		}// end liste
 
 		footer{

@@ -3,6 +3,9 @@ import React from 'react';
 import {Link} from 'gatsby';*/
 
 const FiltreEquipe = () => {
+
+  let filterpast;
+  
 	return (
   <>
     <h1 className="type_title" id="activite_title">Membres</h1>
@@ -17,12 +20,12 @@ const FiltreEquipe = () => {
     <input
       type="radio" id="filtre_statut_actif" name="filtre_statut" className="input_statut"
       value="statut_actif" hidden defaultChecked />
-    <label className="filtre_equipe checkbox-medialab" htmlFor="filtre_statut_actif">Actives</label>
+    <label className="filtre_equipe checkbox-medialab" htmlFor="filtre_statut_actif" hidden>Actives</label>
 
     <input
       type="checkbox" id="filtre_statut_past" name="filtre_statut" className="input_statut_past"
       value="statut_past" hidden />
-    <label className="filtre_equipe checkbox-medialab" htmlFor="filtre_statut_past">Passées</label>
+    <label className="filtre_equipe checkbox-medialab" htmlFor="filtre_statut_past">Afficher aussi les anciens membres</label>
 
     <h2 className="filtre_membre_title">Filtrer par appartenance</h2>
 

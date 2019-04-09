@@ -27,13 +27,20 @@ export default function PeopleListing({lang, list}) {
             className={(p.active ? 'active' : 'past') + "-" + (p.membership === 'member' ? 'member' : 'associate') + "-" + p.domain}>
             <Link to={p.permalink[lang]}>
               <figure><img src={p.coverImage ? p.coverImage.url : Img} alt={lang === 'fr' ? 'Photo de profil de ' + p.firstName + p.lastName : p.firstName + p.lastName + ' profil picture'} /></figure>
-              <hgroup>
-                <h1 data-level-1="name">{p.firstName} {p.lastName}</h1>
-                <h2 data-level-2="role" data-type="role">{lang === 'fr' ? p.role && p.role.fr : p.role && p.role.en}</h2>
-                <p>{p.membership === 'member' ? 'Membre' : 'Associé'}</p>
-                <p>{p.active ? 'Actifs' : 'Passés'}</p>
-                <p>{p.domain}</p>
-              </hgroup>
+              <div class="description">
+                <hgroup>
+                  <h1 data-level-1="name">{p.firstName} {p.lastName}</h1>
+                  
+                  <p class="status">{p.status && (lang === "fr" ? p.status.fr : p.status.en)}</p>
+                
+                </hgroup>
+                <div class="details">
+                  <p class="role">{lang === 'fr' ? p.role && p.role.fr : p.role && p.role.en}</p>
+                  <p class="member">{p.membership === 'member' ? 'Membre' : 'Associé'}</p>
+                  {/* <p>{p.active ? 'Actifs' : 'Passés'}</p> */}
+                  <p class="domaine">{p.domain}</p>
+                </div>
+              </div>
             </Link>
           </li>
 	        ))}

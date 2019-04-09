@@ -155,6 +155,19 @@ $width-main-image: calc( 100vw - #{$margins-desktop*0});
                     }
                 }            
             }
+
+            .caption{
+                color: $text-color;
+                @include font-size-16;
+                @include text-background( 3px 6px);
+
+                position: absolute;
+                bottom: $baseline*2;
+                left: $unite;
+                z-index: 9;
+
+
+            }
         }
 
     }

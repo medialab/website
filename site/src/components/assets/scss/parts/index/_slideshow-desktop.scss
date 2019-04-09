@@ -9,7 +9,6 @@
 --------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------
 */
-
 @include for-size(desktop) {
 
 	#slideshow{
@@ -84,40 +83,52 @@
 					text-align: left;
 					background: $background-site;
 
+					/*> a{
+						@include flex; 
+						@include flex-direction(column); // Pour preserver les margins si text background
+						@include align-items(flex-start);
+						 width: 100% 
+					}*/
+
 					&:hover{
 						color: $redlab;
 						cursor: pointer;
 						.more{ color: $redlab-light!important;}
 					}
 
-         
+         			
 					.nomenclature{
 						text-align: left;
 						margin-bottom: $baseline*2;
 						@include font-size-16();
+						@include text-background(5px);
 					}
-
+					
+					.type:before{ display: inline; background: $background-site; padding: 5px;}
 				
 
 					h1{
 						@include font-size-40();
 						margin-bottom: $baseline*2;
+						@include text-background(5px);
 					}
 		
 					h2{
 						@include font-size-20();
 						margin-bottom: $baseline*1;
-						
+						@include text-background(5px);				
 					}
 
 					.date-news{
 						@include font-size-20();
 						.year{display: none}
 						//.year:last-of-type{display: inline;}
+						@include text-background(5px);
 					}
 
 					.description{
 						@include font-size-16();
+						@include text-background(5px);
 					 }
 
 					 .more{
@@ -125,6 +136,10 @@
 						margin-top: $baseline*1;
 						color: $text-color-light;
 						text-decoration: underline;	
+
+						@include text-background(5px);
+
+
 					 }
 
 

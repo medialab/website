@@ -83,3 +83,13 @@ $goto: " ⤤";
 		}
 	}
 }
+
+
+@mixin text-background($padding: 0 0 0 0, $couleur: $background-site){
+	span{
+		display: inline;
+		background: $couleur;
+		padding: $padding;
+	}
+	//&:after{content: "\A"; white-space: pre;}
+}

@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
-import FilterProduction from './fragments/FilterProduction.js';
-import RawHTML from '../helpers/RawHtml.js';
+import FilterProduction from './pages_list/FilterProduction.js';
+import RawHTML from './helpers/RawHtml.js';
 import {format as formatDate, getYear, parseISO} from 'date-fns';
 
 

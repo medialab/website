@@ -1,21 +1,21 @@
 import React from 'react';
 import {graphql} from 'gatsby';
-import RawHtml from '../helpers/RawHtml.js';
+import RawHtml from './helpers/RawHtml.js';
 
-import {join} from '../helpers/helpers';
-import Nav from '../common/Nav.js';
-import ToggleLang from '../helpers/ToggleLang.js';
+import {join} from './helpers/helpers';
+import Nav from './common/Nav.js';
+import ToggleLang from './helpers/ToggleLang.js';
 
-import DateNews from '../helpers/DateNews.js';
-import TimeNews from '../helpers/TimeNews.js';
+import DateNews from './helpers/DateNews.js';
+import TimeNews from './helpers/TimeNews.js';
 import {format as formatDate, getYear, parseISO} from 'date-fns';
-import {IsModel} from '../helpers/helpers.js';
+import {IsModel} from './helpers/helpers.js';
 
-import ProductionsAssociees from './fragments/ProductionsAssociees.js';
-import ActivitesAssociees from './fragments/ActivitesAssociees.js';
-import ActuAssociees from './fragments/ActuAssociees.js';
-import MembresAssocies from './fragments/MembresAssocies.js';
-import FichiersAssocies from './fragments/FichiersAssocies.js';
+import ProductionsAssociees from './pages_list/ProductionsAssociees.js';
+import ActivitesAssociees from './pages_list/ActivitesAssociees.js';
+import ActuAssociees from './pages_list/ActuAssociees.js';
+import MembresAssocies from './pages_list/MembresAssocies.js';
+import FichiersAssocies from './pages_list/FichiersAssocies.js';
 
 //import './scss/page_objet.scss';
 

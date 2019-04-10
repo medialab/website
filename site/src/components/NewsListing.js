@@ -1,12 +1,12 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
-import FilterNews from './fragments/FilterNews.js';
-import DateNews from '../helpers/DateNews.js';
-import TimeNews from '../helpers/TimeNews.js';
-import ProcessedImage from '../helpers/ProcessedImage.js';
-import {IsModel} from '../helpers/helpers.js';
-import RawHTML from '../helpers/RawHtml.js';
+import FilterNews from './pages_list/FilterNews.js';
+import DateNews from './helpers/DateNews.js';
+import TimeNews from './helpers/TimeNews.js';
+import ProcessedImage from './helpers/ProcessedImage.js';
+import {IsModel} from './helpers/helpers.js';
+import RawHTML from './helpers/RawHtml.js';
 import {format as formatDate, getYear, parseISO} from 'date-fns';
 
 const byYear = ([yearA], [yearB]) => yearB - yearA;

@@ -2,11 +2,11 @@ import React from 'react';
 import {Link} from 'gatsby';
 
 
-import FilterActivity from './fragments/FilterActivity.js';
-import RawHTML from '../helpers/RawHtml.js';
-import {IsModel} from '../helpers/helpers.js';
-import ProcessedImage from '../helpers/ProcessedImage.js';
-import {templateMembership} from '../helpers/helpers.js';
+import FilterActivity from './pages_list/FilterActivity.js';
+import RawHTML from './helpers/RawHtml.js';
+import {IsModel} from './helpers/helpers.js';
+import ProcessedImage from './helpers/ProcessedImage.js';
+import {templateMembership} from './helpers/helpers.js';
 
 export default function ActivityListing({lang, list, status, statuses}) {
   console.log(lang, list);

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'gatsby';
-import {SECTIONS} from '../helpers/sections';
+import {SECTIONS} from '../../helpers/sections';
 
 const ProductionsAssociees = ({lang, productions}) => {
 

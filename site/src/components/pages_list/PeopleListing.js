@@ -2,10 +2,10 @@ import React from 'react';
 /*import {graphql} from 'gatsby';*/
 import {Link} from 'gatsby';
 
-import FiltreEquipe from './pages_list/FiltreEquipe.js';
+import FiltreEquipe from './fragments/FiltreEquipe.js';
 
 
-import Img from './assets/images/sample/D-Cardon-bis.jpg';
+import Img from '../assets/images/sample/D-Cardon-bis.jpg';
 
 export default function PeopleListing({lang, list}) {
   console.log(lang, list);

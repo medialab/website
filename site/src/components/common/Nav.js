@@ -1,6 +1,6 @@
 import React from 'react';
 import ProcessedImage from '../helpers/ProcessedImage.js';
-import {SECTIONS} from './sections';
+import {SECTIONS} from '../helpers/sections';
 
 
 import Logo from '../assets/svg/logo_medialab.svg';

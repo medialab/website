@@ -2,20 +2,20 @@ import React from 'react';
 import {graphql} from 'gatsby';
 import {Link} from 'gatsby';
 
-import Highlights from './pages_list/Highlights.js';
+import Highlights from './fragments/Highlights.js';
 
 
-import ProductionsAssociees from './pages_list/ProductionsAssociees.js';
-import ActivitesAssociees from './pages_list/ActivitesAssociees.js';
-import ActuAssociees from './pages_list/ActuAssociees.js';
+import ProductionsAssociees from './fragments/ProductionsAssociees.js';
+import ActivitesAssociees from './fragments/ActivitesAssociees.js';
+import ActuAssociees from './fragments/ActuAssociees.js';
 
-import Nav from './common/Nav.js';
+import Nav from '../common/Nav.js';
 
-import RawHtml from './helpers/RawHtml';
-import {templateMembership} from './helpers/helpers.js';
+import RawHtml from '../helpers/RawHtml';
+import {templateMembership} from '../helpers/helpers.js';
 //import './scss/page_personne.scss';
 
-import Img from './assets/images/sample/D-Cardon-bis.jpg';
+import Img from '../assets/images/sample/D-Cardon-bis.jpg';
 
 export const queryFragment = graphql`
   fragment PeopleDetail on PeopleJson {

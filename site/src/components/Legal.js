@@ -1,5 +1,5 @@
 import React from 'react';
-import Nav from './fragments/Nav.js';
+import Nav from './common/Nav.js';
 
 export default function Legal({lang}) {
   console.log(lang);

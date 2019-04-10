@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, withPrefix} from 'gatsby';
-import {SECTIONS} from '../sections';
+import {SECTIONS} from '../../helpers/sections';
 
 
 const FichiersAssocies = ({lang, attachments}) => {

@@ -2,7 +2,7 @@ import React from 'react';
 import {graphql} from 'gatsby';
 
 import Layout from '../components/Layout';
-import Home from '../components/Home';
+import Home from '../components/home/Home';
 
 export const query = graphql`
   query($yesterday: Int!) {

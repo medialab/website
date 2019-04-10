@@ -1,10 +1,10 @@
 import React from 'react';
 import {Link} from 'gatsby';
-import {IsModel} from '../../helpers.js';
-import RawHTML from '../../RawHtml.js';
+import {IsModel} from '../../helpers/helpers.js';
+import RawHTML from '../../helpers/RawHtml.js';
 
-import DateNews from '../DateNews.js';
-import ProcessedImage from '../../ProcessedImage.js';
+import DateNews from '../../helpers/DateNews.js';
+import ProcessedImage from '../../helpers/ProcessedImage.js';
 
 
 export default function highlights({people, lang}) {

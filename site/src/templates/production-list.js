@@ -2,7 +2,7 @@ import React from 'react';
 import {graphql} from 'gatsby';
 
 import Layout from '../components/Layout';
-import ProductionListing from '../components/ProductionListing';
+import ProductionListing from '../components/pages_list/ProductionListing';
 
 // TODO: is the groupLabel necessary here?
 export const query = graphql`

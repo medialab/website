@@ -2,7 +2,7 @@ import React from 'react';
 import {graphql} from 'gatsby';
 
 import Layout from '../components/Layout';
-import ProductionDetail from '../components/ProductionDetail';
+import ProductionDetail from '../components/pages_object/ProductionDetail';
 
 export const query = graphql`
   query($identifier: String!) {

@@ -4,7 +4,6 @@ import {Link} from 'gatsby';
 import Nav from './common/Nav.js';
 
 import RawHtml from './helpers/RawHtml';
-//import './scss/apropos.scss';
 
 export default function Archive({lang, activities, news, productions}) {
   console.log(lang);

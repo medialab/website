@@ -1,9 +1,0 @@
-///// Global 
-
-///// Filtre
-// chekbox elements
-input.filtre_objet{cursor:pointer; &+label{cursor:pointer; padding: 0 $unite 0 5px;}}
-input.filtre_objet:checked ~ .contenu article{display: none !important;}
-input#filtre_equipe:checked ~ .contenu article.people{ display: block !important; }
-input#filtre_production:checked ~ .contenu article.production{ display: block !important; }
-input#filtre_activite:checked ~ .contenu article.activite{ display: block !important; }

@@ -3,8 +3,7 @@
 
 
 @include for-size(desktop) {
-    .page-activity-list #liste [data-item],
-    #highlights-list-activity li{
+    .page-activity-list #liste [data-item]{
 
         [data-icon]::before{            
             font-size: 60px!important;

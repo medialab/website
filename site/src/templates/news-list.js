@@ -2,7 +2,7 @@ import React from 'react';
 import {graphql} from 'gatsby';
 
 import Layout from '../components/Layout';
-import NewsListing from '../components/NewsListing';
+import NewsListing from '../components/pages_list/NewsListing';
 
 export const query = graphql`
   {

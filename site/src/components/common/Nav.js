@@ -1,5 +1,5 @@
 import React from 'react';
-import ProcessedImage from '../ProcessedImage.js';
+import ProcessedImage from '../helpers/ProcessedImage.js';
 import {SECTIONS} from './sections';
 
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
-import DateNews from '../../helpers/DateNews.js';
-import TimeNews from '../../helpers/imeNews.js';
-import ProcessedImage from '../../helpers/ProcessedImage.js';
-import {IsModel} from '../../helpers/helpers.js';
+import DateNews from '../helpers/DateNews.js';
+import TimeNews from '../helpers/imeNews.js';
+import ProcessedImage from '../helpers/ProcessedImage.js';
+import {IsModel} from '../helpers/helpers.js';
 
 
 export default function Now({now, lang}) {

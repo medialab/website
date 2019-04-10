@@ -3,10 +3,10 @@ import React from 'react';
 import {graphql} from 'gatsby';
 import {Link} from 'gatsby';
 
-import Slideshow from './fragments/Slideshow.js';
-import Now from './fragments/Now.js';
-import Agenda from './fragments/Agenda.js';
-import Flux from './fragments/Flux.js';
+import Slideshow from './home/Slideshow.js';
+import Now from './home/Now.js';
+import Agenda from './home/Agenda.js';
+import Flux from './home/Flux.js';
 
 /*import RawHtml from './RawHtml';*/
 

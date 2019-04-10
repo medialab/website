@@ -51,14 +51,20 @@
                 }
 
                 .embleme{
-                    @include font-size-80();
+                    font-size: $font-size*8;
+    font-weight: 100;
+    line-height: $baseline*7.5;
+    letter-spacing: -1px;
                     width: 70px;
 
 
                 }
 
                 .type{
-                    @include font-size-80();
+                    font-size: $font-size*8;
+    font-weight: 100;
+    line-height: $baseline*7.5;
+    letter-spacing: -1px;
                     @include flex();
                     margin: 0 $unite 0 0;
                     min-width: 10%;
@@ -114,7 +120,10 @@
                 }
 
                 pre.end{
-                    @include font-size-80();
+                    font-size: $font-size*8;
+    font-weight: 100;
+    line-height: $baseline*7.5;
+    letter-spacing: -1px;
                     @include text-overflow(clip);
                     @include flex-grow(1);
                     flex: 1;

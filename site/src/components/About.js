@@ -1,10 +1,9 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
-import Nav from './fragments/Nav.js';
+import Nav from './common/Nav.js';
 
-import RawHtml from './RawHtml';
-//import './scss/apropos.scss';
+import RawHtml from './helpers/RawHtml';
 
 export default function About({lang}) {
   console.log(lang);

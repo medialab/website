@@ -1,0 +1,184 @@
+/////////////////////
+//////// item_accroche: Desktop 
+/////////////////////
+
+
+@include for-size(desktop) {
+
+	.page-people-list{
+
+		#topbar{ 
+			//position: fixed!important; 
+			top: 0;
+			width: calc(100vw - #{$margins-desktop*2});
+
+			&:after{ // Si Titre-Sticky. Topbar herite de la Border-bottom
+	            content:"";
+	            border-bottom: $border;
+	            margin-left: $logo-column;
+	            width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
+	            position: absolute;
+	            bottom: 0;
+	            z-index: 10;
+	        }
+
+		}
+
+		#liste_equipe{        
+			margin-top: $height-top-bar;
+			margin-left: $logo-column;
+			min-height: calc( 100vh - #{$height-top-bar} - #{$unite*9} - 3px); //unite*9 correspond a la hauteur du footer
+			max-width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
+
+			ul{
+				display: inline-block;
+				width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
+				@supports(display: grid) {
+					display: grid;
+					grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+					// grid-gap: $unite*1;
+				}
+				li{
+					margin-bottom: $baseline*2;
+		
+					a{
+						padding: $unite/2;
+						@include flex();
+						
+					}
+
+					.description{
+						width: 52%;
+						height: 100%!important;
+						vertical-align: top;
+						padding-left: $unite*1;
+						display: inline-flex;
+						@include flex-direction(column);
+						@include justify-content(space-between);
+						@include align-items(stretch);
+					
+					}
+
+					figure{
+						width: 48%;
+						display: inline-block; 
+						vertical-align: top;
+
+						img{
+							width: 100%;
+							filter: grayscale(1);
+						}
+					}
+
+					hgroup{
+						// padding: $baseline*1 0;
+
+						h1{
+							@include font-size-27;
+							margin-bottom: $baseline;
+
+						}
+
+					
+						
+
+						.status{ 
+							@include font-size-16; 
+							font-style: italic;
+							&::before{ content: "“"; }
+							&::after{ content: "”"; }
+						}
+					}
+
+					.details{
+						align-self: bottom;
+						margin-top: $baseline;
+						border-top: $border-very-light;
+						border-bottom: $border-very-light;
+						padding: $baseline/2 0;
+						@include font-size-13;
+						
+						.role{
+							border-bottom: $border-very-light;
+							padding-bottom: $baseline/2;
+							margin-bottom: $baseline/2;
+							color: $text-color-light;
+						}
+						.member, .domaine{
+							display: inline-block;
+							color: $text-color-light;
+						}
+						.member{
+							padding-right: $unite/2;
+							margin-right: $unite/2;
+							border-right: $border-very-light;
+						}
+					}
+
+					[data-type="activite"]{
+						display: none ;
+						@include font-size-16;
+					}
+				}		   	
+			}
+
+			//////////////////////////
+			///        Grid 	/////
+			/////////////////////////	
+
+			// @supports(display: grid) {
+			// 	ul{
+			// 		width: inherit; 
+			// 		display: grid;
+			// 	    grid-template-columns: repeat(2, 1fr);
+			// 	    @include for-size(desktop-1000) {grid-template-columns: repeat(2, 1fr);}
+			// 	    @include for-size(desktop-1200) {grid-template-columns: repeat(3, 1fr); }
+			// 	    @include for-size(desktop-1300) {grid-template-columns: repeat(4, 1fr); }
+			// 	    @include for-size(desktop-1800) {grid-template-columns: repeat(4, 1fr); }
+			// 	    grid-gap: $unite*2;
+		            
+			// 		li{
+			// 			float: inherit;
+			// 			width: inherit;
+						
+			// 			&:not(:nth-of-type(4n)){
+			// 				margin-right: inherit;
+			// 			}
+			// 		}		   	
+			// 	}
+			// }
+
+			// @supports (display: -ms-grid) {
+			// 	width: inherit; /
+			//     display: -ms-grid;
+			//     -ms-grid-template-columns: repeat(3, 1fr);
+			//     @include for-size(desktop-1000) {-ms-grid-template-columns: repeat(2, 1fr);}
+			//     @include for-size(desktop-1200) {-ms-grid-template-columns: repeat(3, 1fr); }
+			//     @include for-size(desktop-1300) {-ms-grid-template-columns: repeat(4, 1fr); }
+			//     @include for-size(desktop-1800) {-ms-grid-template-columns: repeat(4, 1fr); }
+			//     -ms-grid-gap: $unite*2;
+			// 	li{
+			// 		float: inherit;
+			// 		width: inherit;
+					
+			// 		&:not(:nth-of-type(4n)){
+			// 			margin-right: inherit;
+			// 		}
+			// 	}
+			// } 
+
+
+
+		}// end liste
+
+		footer{
+			margin-left: $logo-column;
+			width: calc( 100% - /*#{$margins-desktop*2} -*/ #{$logo-column});
+			margin-bottom: 2px;
+		}
+	}
+}
+
+
+
+

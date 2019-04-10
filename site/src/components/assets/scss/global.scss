@@ -2,88 +2,113 @@
 
 // Index
 
-@import 'parts/index/index';
-
-@import 'parts/index/slideshow-phone';
-@import 'parts/index/slideshow-desktop';
-@import 'parts/index/slideshow-nav';
-
-@import 'parts/index/introduction';
-
-@import 'parts/index/now-desktop';
-@import 'parts/index/now-phone';
+@import 'pages/index/index';
 
 
-@import 'parts/index/_agenda-phone';
-@import 'parts/index/_agenda-desktop-slider';
-@import 'parts/index/agenda-desktop-structure'; 
-@import 'parts/index/agenda-desktop-style'; 
-
-@import 'parts/index/flux-desktop';
-@import 'parts/index/flux-phone';
-
-@import 'parts/index/follow';
-
-@import 'common/item-list/list-all';
-@import 'common/item-list/list-activities';
-@import 'common/item-list/list-news';
-@import 'common/item-list/list-productions';
 
 
-// Page Liste
 
-@import 'parts/page_liste/page_liste-desktop';
-@import 'parts/page_liste/page_liste-phone';
+@import 'fragments/miniatures/index_now-desktop';
+@import 'fragments/miniatures/index_now-phone';
+@import 'fragments/miniatures/index_now';
+@import 'fragments/miniatures/people_highlight';
+@import 'fragments/elements-associes';
+@import 'fragments/toggle-lang';
+@import 'fragments/nav';
 
-@import 'common/filtres/filtre';
-@import 'common/filtres/filtre-style-desktop';
-@import 'common/filtres/filtre-style-phone';
 
-@import 'parts/page_liste/filtre_production';
-@import 'parts/page_liste/filtre_activite';
-@import 'parts/page_liste/filtre_news';
 
-// Page Equipe
 
-@import 'parts/page_equipe/page_equipe';
-@import 'parts/page_equipe/page_equipe-desktop';
-@import 'parts/page_equipe/page_equipe-phone';
-@import 'parts/page_equipe/filtre';
-@import 'parts/page_equipe/filtre_equipe';
-@import 'parts/page_equipe/filtre_equipe_pattern';
-
-// Page_Personne
-@import 'parts/page_personne/page_personne';
-@import 'parts/page_personne/page_personne-desktop';
-@import 'parts/page_personne/page_personne-phone';
-
-@import 'common/pages/implications';
-
-// Page Objet
-
-@import 'parts/page_objet/page_objet';
-@import 'parts/page_objet/page_objet-desktop';
-@import 'parts/page_objet/page_objet-phone';
-
-// Pages
-@import 'common/pages/elements-associes-dissocies';
-//@import 'common/pages/elements-associes';
-@import 'common/pages/toggle-lang';
-@import 'common/pages/nav-article';
-@import 'common/pages/now_highlight';
 // @import 'common/pages/highlights';
+
+
+
+// HOME ///////////////////////////////////////////////
+
+@import 'pages/index/slideshow/slideshow-phone';
+@import 'pages/index/slideshow/slideshow-desktop';
+@import 'pages/index/slideshow/slideshow-nav';
+
+@import 'pages/index/introduction';
+
+@import 'pages/index/agenda/agenda-phone';
+@import 'pages/index/agenda/agenda-desktop-slider';
+@import 'pages/index/agenda/agenda-desktop-structure'; 
+@import 'pages/index/agenda/agenda-desktop-style'; 
+
+@import 'pages/index/flux/flux-desktop';
+@import 'pages/index/flux/flux-phone';
+
+@import 'pages/index/flux/follow';
+
+
+// PAGES LIST ///////////////////////////////////////////////
+
+@import 'pages/pages_list/page_liste-desktop';
+@import 'pages/pages_list/page_liste-phone';
+
+
+@import 'pages/pages_list/item-list/list-all';
+@import 'pages/pages_list/item-list/list-activities';
+@import 'pages/pages_list/item-list/list-news';
+@import 'pages/pages_list/item-list/list-productions';
+
+@import 'pages/pages_list/filtres/filtre';
+@import 'pages/pages_list/filtres/filtre-style-desktop';
+@import 'pages/pages_list/filtres/filtre-style-phone';
+
+@import 'pages/pages_list/filtres/filtre_production';
+@import 'pages/pages_list/filtres/filtre_activite';
+@import 'pages/pages_list/filtres/filtre_news';
+
+
+
+// PAGES EQUIPE ///////////////////////////////////////////////
+
+@import 'pages/page_equipe/page_equipe';
+@import 'pages/page_equipe/page_equipe-desktop';
+@import 'pages/page_equipe/page_equipe-phone';
+@import 'pages/page_equipe/filtre';
+@import 'pages/page_equipe/filtre_equipe';
+@import 'pages/page_equipe/filtre_equipe_pattern';
+
+
+// PAGES OBJET ///////////////////////////////////////////////
+
+@import 'pages/pages_objet/page_objet';
+@import 'pages/pages_objet/page_objet-desktop';
+@import 'pages/pages_objet/page_objet-phone';
+
+
+
+
+
+
+// PAGES PEOPLE ///////////////////////////////////////////////
+
+@import 'pages/pages_people/page_people';
+@import 'pages/pages_people/page_people-desktop';
+@import 'pages/pages_people/page_people-phone';
+
+
+
+
+
+
+
+
 
 
 // Page About
 
-@import 'parts/apropos/apropos';
-@import 'parts/apropos/apropos-desktop';
-@import 'parts/apropos/apropos-phone';
+@import 'pages/apropos/apropos';
+@import 'pages/apropos/apropos-desktop';
+@import 'pages/apropos/apropos-phone';
 
 
 
 // Archive
 
-//@import 'parts/archive/_archive';
-//@import 'parts/archive/_archive-desktop';
-//@import 'parts/archive/_archive-phone';
+//@import 'pages/archive/_archive';
+//@import 'pages/archive/_archive-desktop';
+//@import 'pages/archive/_archive-phone';

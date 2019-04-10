@@ -1,0 +1,33 @@
+/* all */
+
+.page-people-list{
+	#liste_equipe{
+	    
+		position: relative;
+		
+		a{
+			display: block;
+			width: 100%;
+			height: 100%;
+			
+			&:hover{ 
+				background-color: $background-grey;
+				color: currentColor; 
+				img{ 
+					// mix-blend-mode: color-burn;
+					// filter: grayscale(1) 
+					// contrast(2);
+				}
+			}
+			
+		}
+	        
+	        
+	    // a:hover{
+	    //     figure{
+	    //         background-color: $redlab;
+	    //         img{ mix-blend-mode: screen; filter: grayscale(1) contrast(2);}
+	    //     }
+	    // }
+	}
+}

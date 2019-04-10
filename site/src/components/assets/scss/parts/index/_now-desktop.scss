@@ -48,17 +48,19 @@
 }
 
 @include for-size(desktop-900) {
-    #now .contenu article, #elements-associes .contenu article{  width: 30%; }
+    //#now .contenu article, #elements-associes .contenu article{  width: 30%; }
 }
 
 @include for-size(desktop-1300) {
-    #now .contenu article, #elements-associes .contenu article{  width: 22%; }
+    //#now .contenu article, #elements-associes .contenu article{  width: 22%; }
 }
 
 
 
 
 @include for-size(desktop) {
+
+    #now{ padding-bottom: 0 !important;}
 
     #now > h1{ display: none; }
 
@@ -71,26 +73,37 @@
             //@include justify-content(flex-start);
 
             display: inline-block;
+            width: 100%;
 
             article{ 
                 width: inherit;
                 margin: 0;
-                width: 25%; 
-                &:nth-of-type(1), &:nth-of-type(2) {width: 50%;}
-                &:nth-of-type(3), &:nth-of-type(4), &:nth-of-type(5) { width: 33.333%;}
-                &:nth-of-type(6), &:nth-of-type(7), &:nth-of-type(8), &:nth-of-type(9) { width: 25%;}
+                width: 50%;
+                @include for-size(desktop-900) { 
+                    width: 33.3333%; 
+
+                    &:nth-of-type(4), &:nth-of-type(5), &:nth-of-type(6) {
+                        hgroup{ order: 3;}
+                        .type { left: calc(50% - 75px);}
+                        .type, hgroup{ padding-left: $unite/3;}
+                    }
+                }
+
+                //&:nth-of-type(1), &:nth-of-type(2) {width: 50%;}
+                //&:nth-of-type(3), &:nth-of-type(4), &:nth-of-type(5) { width: 33.333%;}
+                //&:nth-of-type(6), &:nth-of-type(7), &:nth-of-type(8), &:nth-of-type(9) { width: 25%;}
 
                 //Padding;
-                &:nth-of-type(1), &:nth-of-type(3), &:nth-of-type(6){padding-right: $unite/2;}
-                &:nth-of-type(2), &:nth-of-type(5), &:nth-of-type(8){padding-left: $unite/2;}
-                &:nth-of-type(4), &:nth-of-type(7), &:nth-of-type(8){padding: 0 $unite/2;}
+                &:nth-of-type(1), &:nth-of-type(4), &:nth-of-type(7){padding-right: $unite/2;}
+                &:nth-of-type(2), &:nth-of-type(5), &:nth-of-type(8){padding: 0 $unite/2;}
+                &:nth-of-type(3), &:nth-of-type(6), &:nth-of-type(9){padding-left: $unite/2;}
 
                 // Image
-                &:nth-of-type(6), &:nth-of-type(7), &:nth-of-type(8), &:nth-of-type(9) { .image-pre{ display: none;} }
+                //&:nth-of-type(6), &:nth-of-type(7), &:nth-of-type(8), &:nth-of-type(9) { .image-pre{ display: none;} }
                 
                 // Border
                 //&:nth-of-type(1), &:nth-of-type(3), &:nth-of-type(4), &:nth-of-type(6), &:nth-of-type(7), &:nth-of-type(8){ border-right: $border-light; }
-                &:nth-of-type(1), &:nth-of-type(2), &:nth-of-type(3), &:nth-of-type(4), &:nth-of-type(5) { border-bottom: $border-light; }
+                &:nth-of-type(1), &:nth-of-type(2), &:nth-of-type(3), &:nth-of-type(4), &:nth-of-type(5), &:nth-of-type(6) { border-bottom: $border-light; }
                 // Layout
                 & > a {
                     @include flex();
@@ -124,6 +137,7 @@
 
                     hgroup{ 
                         order: 2;
+                        height: 100%;
 
                         h2{
                             bottom: 0; 
@@ -141,7 +155,7 @@
                 }
 
 
-                &:nth-of-type(1) > a, &:nth-of-type(2) > a {
+                /*&:nth-of-type(1) > a, &:nth-of-type(2) > a {
 
                     height: 40vh;
                     min-height: 350px;
@@ -156,12 +170,12 @@
                         h1{ @include font-size-27();  }
 
                     }
-                }
+                }*/
 
-                &:nth-of-type(3) > a, &:nth-of-type(4) > a , &:nth-of-type(5) > a { 
+                //&:nth-of-type(3) > a, &:nth-of-type(4) > a , &:nth-of-type(5) > a { 
                   
                     height: 25vh;
-                    min-height: 250px;
+                    min-height: 350px;
 
                     .image-pre{ 
                         flex: 0 1 calc(50% - #{$unite*3}); 
@@ -172,8 +186,8 @@
                         flex: 1 1 calc(33.333% - #{$unite*0});
                         h1{ @include font-size-27();  }
                     }
-                }
-                &:nth-of-type(6) > a, &:nth-of-type(7) > a, &:nth-of-type(8) > a, &:nth-of-type(9) > a { 
+                //}
+                /*&:nth-of-type(6) > a, &:nth-of-type(7) > a, &:nth-of-type(8) > a, &:nth-of-type(9) > a { 
                   
                     height: 15vh;
                     min-height: 200px;
@@ -182,7 +196,7 @@
                         height: 100%;
                         h1{ @include font-size-20();  }
                     }
-                }
+                }*/
 
             }
 

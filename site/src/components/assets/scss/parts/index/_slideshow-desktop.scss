@@ -21,7 +21,7 @@
 		height: calc(60vh - #{$height-top-bar} - 2rem);
 		height: 40vh;
 		height: $hunit*10;
-		//min-height: 600px;
+		min-height: 350px;
 		max-height: 800px;
 
 		margin: 0 auto;
@@ -84,6 +84,7 @@
 					z-index: 90;
 					text-align: left;
 					background: $background-site;
+					overflow: hidden;
 
 					/*> a{
 						@include flex; 

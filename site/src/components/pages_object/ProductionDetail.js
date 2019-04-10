@@ -1,16 +1,16 @@
 import React from 'react';
 import {graphql} from 'gatsby';
-import RawHtml from './RawHtml.js';
+import RawHtml from '../helpers/RawHtml.js';
 
-import Nav from './fragments/Nav.js';
-import ToggleLang from './fragments/pages/ToggleLang.js';
-import {IsModel} from './helpers.js';
+import Nav from '../common/Nav.js';
+import ToggleLang from './fragments/ToggleLang.js';
+import {IsModel} from '../helpers/helpers.js';
 
-import ProductionsAssociees from './fragments/pages/ProductionsAssociees.js';
-import ActivitesAssociees from './fragments/pages/ActivitesAssociees.js';
-import ActuAssociees from './fragments/pages/ActuAssociees.js';
-import MembresAssocies from './fragments/pages/MembresAssocies.js';
-import FichiersAssocies from './fragments/pages/FichiersAssocies.js';
+import ProductionsAssociees from './fragments/ProductionsAssociees.js';
+import ActivitesAssociees from './fragments/ActivitesAssociees.js';
+import ActuAssociees from './fragments/ActuAssociees.js';
+import MembresAssocies from './fragments/MembresAssocies.js';
+import FichiersAssocies from './fragments/FichiersAssocies.js';
 //import './scss/page_objet.scss';
 
 export const queryFragment = graphql`

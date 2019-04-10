@@ -1,10 +1,10 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
-import ProcessedImage from '../../ProcessedImage.js';
-import {IsModel} from '../../helpers.js';
-import DateNews from '../DateNews.js';
-import TimeNews from '../TimeNews.js';
+import ProcessedImage from '../../helpers/ProcessedImage.js';
+import {IsModel} from '../../helpers/helpers.js';
+import DateNews from '../../helpers/DateNews.js';
+import TimeNews from '../../helpers/TimeNews.js';
 import {format as formatDate, getYear, parseISO} from 'date-fns';
 
 // Ici nous composons l'ensemble du caroussel

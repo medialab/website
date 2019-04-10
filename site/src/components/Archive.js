@@ -1,9 +1,9 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
-import Nav from './fragments/Nav.js';
+import Nav from './common/Nav.js';
 
-import RawHtml from './RawHtml';
+import RawHtml from './helpers/RawHtml';
 //import './scss/apropos.scss';
 
 export default function Archive({lang, activities, news, productions}) {

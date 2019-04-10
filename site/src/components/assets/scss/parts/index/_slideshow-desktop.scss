@@ -54,10 +54,12 @@
         			border: none;
 
         			pre{ 
-	                    font-weight: 900;
-	                    font-size: calc(((100vw - #{$unite*2})/250)*1.89);
+	                    font-weight: bold;
+	                    font-size: calc(((100vw - #{$unite*2})/250)*2.5);
 	                    line-height: calc(((100vw - #{$unite*2})/250)*1.89); //(((Ecran - Marge*2) / Nbr de Block par ligne)*Ratio Hauteur par largeur du glyphe)
 	                    overflow: hidden;
+	                    top: -50%;
+	                    transform: translateY(50%);
         			}
 				}
 

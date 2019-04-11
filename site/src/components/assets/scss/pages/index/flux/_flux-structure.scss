@@ -12,7 +12,6 @@
 
             //height
             min-height: $unite*2;
-            padding-bottom: $baseline*2;
 
 
             *{ 
@@ -43,6 +42,12 @@
                     &:not(:first-of-type){ padding-left: $unite/5;}
                 }
             }
+        }
+        @include for-size(phone) {
+            width: inherit; 
+            margin: 0 $margins-phone; // structure rules !!
+
+            article h2{ width: 100% !important;}
         }
 
         @include for-size(desktop-900) {

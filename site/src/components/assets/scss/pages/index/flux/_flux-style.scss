@@ -8,12 +8,30 @@
         article{ 
 
             border-bottom: $border-very-light;
-           
-            &:hover{ background-color: $background-grey;}
+            padding: $baseline*1.5 0 $baseline*2.5 0;
+
+            &:hover{
+
+                /*@include for-size(phone) {
+                    &::after {
+                        content: "";
+                        background: $background-grey;;
+                        position: absolute;
+                        width: calc(100% + #{$margins-phone*2});
+                        height: 100%;
+                        left: $margins-phone*-1;
+                        z-index: -1;
+                    }
+                }
+
+                @include for-size(desktop) {
+                    background: $background-grey;
+                }*/
+            }
 
             //.type{ margin-bottom: $baseline/2; }
             //.update{ color: $text-color-light; margin-bottom: $baseline/2; padding-left: $unite/2 }     
-            & > * { margin: $baseline/2 0;}
+            & > * { padding: $baseline/2 0;}
             
             h2{ 
                 @include font-size-16;
@@ -25,6 +43,8 @@
 
             ul.details{
 
+                border-top: $border-very-light;
+
                 li{
                     color: $text-color-light;
 
@@ -35,7 +55,8 @@
             }
 
             @include for-size(desktop-900) {
-
+                article ul.details{ border-top: inherit;
+}
                 // when Two column
                 //&:not(:nth-of-type(2n)){ margin-right: $unite/2;}
                 //&:nth-of-type(2n){ margin-left: $unite/2;}
@@ -47,7 +68,7 @@
 
                 // when detail is in line
                 ul.details{
-                    padding-top: $baseline/2;
+                    padding-top: $baseline*0.6666667;
                 }
             } 
         }

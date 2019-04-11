@@ -100,7 +100,7 @@ $width-image-pre-listing: 120px;
 
             h1{
                 padding-top: $baseline*1;
-                padding-bottom: $baseline*1;
+                padding-bottom: $baseline*1.5;
                  @include font-size-40; 
             }
 
@@ -130,5 +130,9 @@ $width-image-pre-listing: 120px;
         }
 
     }
+
+
+    
+
 
 }

@@ -54,8 +54,7 @@ export default function ProductionListing({lang, list, group, types}) {
             Array.from(yearGroups.entries()).sort(byYear).map(([year, yearList]) => (
               <React.Fragment key={year}>
                 <li id={year === 2008 ? 'years-before-2009' : `year-${year}`} className="list-year">
-                  {/* <span>{year}</span>
-                  <pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre> */}
+                  {/* <span>{year}</span>*/}
                 </li>
 
                 {yearList.map((p, i) => (
@@ -63,10 +62,11 @@ export default function ProductionListing({lang, list, group, types}) {
                     <li data-item={nbItem} data-type={p.type} className={`list-item ${p.type}`}>
                       <Link to={p.permalink[lang]}>
                         <div className="title-group">
-                          <h1 data-icon="production" data-level-1="title" >{lang === 'fr' ? p.title.fr : p.title.en}</h1>
+                          <h1 data-level-1="title" >{lang === 'fr' ? p.title.fr : p.title.en}</h1>
                         </div>
                         <div className="details">
-                          <p className="type-production"> <span>{lang === 'fr' ? p.groupLabel.fr : p.groupLabel.en}</span> {p.typeLabel !== 'media' && lang === 'fr' ? <span>{p.typeLabel.fr}</span> : <span>{p.typeLabel.en}</span>}</p>
+                          <p className="type-production" data-icon="production"> {lang === 'fr' ? p.groupLabel.fr : p.groupLabel.en}</p> 
+                          <p className="subtype-production">{p.typeLabel !== 'media' && lang === 'fr' ? <span>{p.typeLabel.fr}</span> : <span>{p.typeLabel.en}</span>}</p>
                           <p className="date-production">{p.date}</p>
                         </div>
                         <div className="authors">

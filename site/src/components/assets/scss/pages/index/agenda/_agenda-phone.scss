@@ -13,7 +13,7 @@
         }
 
         article{
-            margin: 0 $margins-phone;
+            //margin: 0 $margins-phone;
             // margin-bottom: $baseline*2;
             border-top: $border-light;
             padding: $baseline*2 0;
@@ -49,7 +49,7 @@
             }
 
             h1{ 
-                @include font-size-20-phone();
+                @include font-size-16-phone();
                 padding-top: $baseline;
                 &::first-letter { text-transform: capitalize; }  
             }
@@ -60,7 +60,7 @@
                 &::first-letter { text-transform: capitalize; }  
             }
 
-            .place, .hours-news{ @include font-size-13-phone();  align-items: baseline;}
+            .place, .hours-news{ @include font-size-13-phone(); color: $text-color-light;  align-items: baseline;}
 
         }
 

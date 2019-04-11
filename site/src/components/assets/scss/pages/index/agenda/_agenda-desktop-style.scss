@@ -15,7 +15,7 @@
 
 
             border-right: $border-light;
-            padding: 0 $margins-desktop;
+            padding: $baseline $margins-desktop $baseline*2.5 $margins-desktop;
             &:first-of-type{ border-left: $border-light; }
             cursor: pointer;
 

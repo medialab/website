@@ -34,7 +34,9 @@ $activites: "⋇ ";
 $people: "= ";
 $files: "¤ ";
 $git: "⊶ ";
+$tweet: "☄ ";
 $time: "◷ ";
+$place: "⌂ ";
 $scrolltop: "↸ ";
 $goto: " ⤤";
 
@@ -57,3 +59,41 @@ $goto: " ⤤";
 	overflow: hidden;
 }
 
+////////////////
+//// EXPERIMENTAL
+///////////////
+
+@mixin stroke_hover($balise: &, $placement : top, $colorstroke: $redlab){
+	#{$balise}::after {
+		border: none;
+	    border-#{$placement}: 1px solid transparent;
+	    box-sizing: border-box;
+	    content: '';
+	    pointer-events: none;
+	    position: absolute;
+	    width: 0; height: 0;
+	    left: 0; 
+	    #{$placement} : 0;
+
+	}
+	&:hover {
+		#{$balise}::after {
+			border-color: $colorstroke;
+			transition: border-color 0s, width .25s, height .25s;
+			width: 100%;
+			height: 100%;
+			left: 0; 
+			#{$placement} : 0;
+		}
+	}
+}
+
+
+@mixin text-background($padding: 0 0 0 0, $couleur: $background-site){
+	span{
+		display: inline;
+		background: $couleur;
+		padding: $padding;
+	}
+	//&:after{content: "\A"; white-space: pre;}
+}

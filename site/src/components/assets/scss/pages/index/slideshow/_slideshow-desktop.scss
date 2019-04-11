@@ -9,7 +9,6 @@
 --------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------
 */
-
 @include for-size(desktop) {
 
 	#slideshow{
@@ -19,8 +18,10 @@
 		height: 600px;
 		height: -webkit-calc(100vh - #{$height-top-bar} - 2rem);
 		height: -moz-calc(100vh - #{$height-top-bar} - 2rem);
-		height: calc(100vh - #{$height-top-bar} - 2rem);
-		min-height: 600px;
+		height: calc(60vh - #{$height-top-bar} - 2rem);
+		height: 40vh;
+		height: $hunit*10;
+		min-height: 350px;
 		max-height: 800px;
 
 		margin: 0 auto;
@@ -29,6 +30,8 @@
 		border-top: $border;
 		// border-bottom: $border;
 
+		width: 100%;
+		margin-left: 0;
 		
 
 		.slideshow--item{
@@ -52,9 +55,11 @@
 
         			pre{ 
 	                    font-weight: bold;
-	                    font-size: calc(((100vw - #{$unite*2})/150)*1.89);
-	                    line-height: calc(((100vw - #{$unite*2})/150)*1.5); //(((Ecran - Marge*2) / Nbr de Block par ligne)*Ratio Hauteur par largeur du glyphe)
+	                    font-size: calc(((100vw - #{$unite*2})/250)*2.5);
+	                    line-height: calc(((100vw - #{$unite*2})/250)*1.89); //(((Ecran - Marge*2) / Nbr de Block par ligne)*Ratio Hauteur par largeur du glyphe)
 	                    overflow: hidden;
+	                    top: -50%;
+	                    transform: translateY(50%);
         			}
 				}
 
@@ -62,17 +67,31 @@
 
 				.contenu-slide{
 					width: 50%;
-					height: 85%;
-					height: -webkit-calc(100% - 1.7vw*4);
-					height: -moz-calc(100% - 1.7vw*4);
-					height: calc(100% - 1.7vw*4);
+					//height: 85%;
+					//height: -webkit-calc(100% - 1.7vw*4);
+					//height: -moz-calc(100% - 1.7vw*4);
+					//height: calc(100% - 1.7vw*4);
+					
+					height: -webkit-calc(100% - #{$unite*2});
+					height: -moz-calc(100% - #{$unite*2});
+					height: calc(100% - #{$unite*2});
+
 					position: absolute;
-					top: 1.7vw*2;
+					//top: 1.7vw*2;
+					top: $unite;
 					left: $unite*5;
 					padding: $unite $unite;
 					z-index: 90;
 					text-align: left;
 					background: $background-site;
+					overflow: hidden;
+
+					/*> a{
+						@include flex; 
+						@include flex-direction(column); // Pour preserver les margins si text background
+						@include align-items(flex-start);
+						 width: 100% 
+					}*/
 
 					&:hover{
 						color: $redlab;
@@ -80,34 +99,39 @@
 						.more{ color: $redlab-light!important;}
 					}
 
-         
+         			
 					.nomenclature{
 						text-align: left;
-						margin-bottom: $baseline*3;
+						margin-bottom: $baseline*2;
 						@include font-size-16();
+						@include text-background(5px);
 					}
-
+					
+					.type:before{ display: inline; background: $background-site; padding: 5px;}
 				
 
 					h1{
 						@include font-size-40();
-						margin-bottom: $baseline*3;
+						margin-bottom: $baseline*2;
+						@include text-background(5px);
 					}
 		
 					h2{
 						@include font-size-20();
 						margin-bottom: $baseline*1;
-						
+						@include text-background(5px);				
 					}
 
 					.date-news{
 						@include font-size-20();
 						.year{display: none}
 						//.year:last-of-type{display: inline;}
+						@include text-background(5px);
 					}
 
 					.description{
 						@include font-size-16();
+						@include text-background(5px);
 					 }
 
 					 .more{
@@ -115,6 +139,10 @@
 						margin-top: $baseline*1;
 						color: $text-color-light;
 						text-decoration: underline;	
+
+						@include text-background(5px);
+
+
 					 }
 
 
@@ -197,19 +225,21 @@ changement navigation */
 
 	#slideshow{
 		margin: 0;
-		margin-left: $unite*7;
-		width: 86%;
-		width: -webkit-calc(100% - #{$unite}*7);
-		width: -moz-calc(100% - #{$unite}*7);
-		width: calc(100% - #{$unite}*7);
+		//margin-left: $unite*7;
+		//width: 86%;
+		//width: -webkit-calc(100% - #{$unite}*7);
+		//width: -moz-calc(100% - #{$unite}*7);
+		//width: calc(100% - #{$unite}*7);
+		
+		width: 100%;
+		margin-left: 0;
 		
 
 		.slideshow--bullet{ 
 			display: none;
 		}
 
-		.slideshow--bullet-label{ 
-			display: block; 
+		.slideshow--bullet-label{
 			width: $unite*6;
 			min-height: $unite*5;
 			left: $unite*-7;
@@ -219,6 +249,7 @@ changement navigation */
 			@include font-size-16();
 			display: flex;
 			align-items: center;
+			display: none;
 			&:last-of-type{ border-bottom: $border; }
 			&:hover{ 
 				color: $redlab;

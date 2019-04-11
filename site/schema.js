@@ -275,11 +275,11 @@ exports.patchGraphQLSchema = function(current, model, type, schema, settings) {
                   gamma: cover.gamma
                 }),
                 settings.processing(img(), cover.crop, {
-                  rows: 75,
+                  rows: 125,
                   gamma: cover.gamma
                 }),
                 settings.processing(img(), cover.crop, {
-                  rows: 150,
+                  rows: 250,
                   gamma: cover.gamma
                 })
               ]).then(([small, medium, large]) => {

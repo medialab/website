@@ -32,7 +32,7 @@ export default function flux() {
 					<p className="update">Today</p>
 					{/*<h2 data-level-1="title">Tic et Toc</h2>*/}
 					<h2 data-level-2="description">
-						Faire vivre la #démocratie exige que nous ayons #confiance envers les #medias. Comment y parvenir dans un univers où <span className="hashtag">#trolls</span>, <span className="hashtag">#FakeNews</span> et concurrence au nb de <span className="hashtag">clics</span> polluent le paysage ? Réponses le 16 avril lors du 1er rdv de <span className="mention">@ScPoResearch</span> ✍ <Link to="/">https://bit.ly/2UQmrZI</Link>
+						Faire vivre la #démocratie exige que nous ayons <span className="hashtag">#confiance</span> envers les <span className="hashtag">#medias</span>. Comment y parvenir dans un univers où <span className="hashtag">#trolls</span>, <span className="hashtag">#FakeNews</span> et concurrence au nb de <span className="hashtag">clics</span> polluent le paysage ? Réponses le 16 avril lors du 1er rdv de <span className="mention">@ScPoResearch</span> ✍ <Link to="/">https://bit.ly/2UQmrZI</Link>
 					</h2>			
 					<ul className="details">
 						<li className="account">@medialab_ScPo</li>
@@ -71,7 +71,7 @@ export default function flux() {
 					<p className="update">4 days ago</p>
 					{/*<h2 data-level-1="title">Tic et Toc</h2>*/}
 					<h2 data-level-2="description">
-						Le médialab accueille @VBeaudouin pour parler de son travail de #cartographie du web de la grande guerre.
+						Le médialab accueille <span className="mention">@VBeaudouin</span> pour parler de son travail de #cartographie du web de la grande guerre.
 					</h2>			
 					<ul className="details">
 						<li className="account">@medialab_ScPo</li>

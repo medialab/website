@@ -1,0 +1,55 @@
+/* General */
+#flux{
+
+    #flux-container{
+
+        //margin-top: $baseline*4;
+        
+        article{ 
+
+            border-bottom: $border-very-light;
+           
+            &:hover{ background-color: $background-grey;}
+
+            //.type{ margin-bottom: $baseline/2; }
+            //.update{ color: $text-color-light; margin-bottom: $baseline/2; padding-left: $unite/2 }     
+            & > * { margin: $baseline/2 0;}
+            
+            h2{ 
+                @include font-size-16;
+            }
+
+            .type, .update { @include font-size-13; }
+            .update{ color: $text-color-light;}
+            &[data-type="tweet"] .hashtag{ color: $redlab;}               
+
+            ul.details{
+
+                li{
+                    color: $text-color-light;
+
+                    &:not(:first-of-type){
+                        border-left: $border-very-light;
+                    }
+                }
+            }
+
+            @include for-size(desktop-900) {
+
+                // when Two column
+                //&:not(:nth-of-type(2n)){ margin-right: $unite/2;}
+                //&:nth-of-type(2n){ margin-left: $unite/2;}
+
+
+            }           
+
+            @include for-size(desktop-1800) {
+
+                // when detail is in line
+                ul.details{
+                    padding-top: $baseline/2;
+                }
+            } 
+        }
+    }
+}   

@@ -1,0 +1,60 @@
+#flux{
+
+    #flux-container{
+
+        width: 100%;
+
+        article{ 
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            break-inside: avoid;
+
+            //height
+            min-height: $unite*2;
+            &[data-lenght="140"] { min-height: $unite * 4;}
+            &[data-lenght="280"] { min-height: $unite * 6;}
+
+            *{ 
+                display: inline-block;
+                vertical-align: top;
+            }
+
+            .type{ width: $unite*3;}
+            .update{ width: $unite*3.5;}
+            h2 { width: calc( 100% - #{$unite*6.5} ); }
+            [data-type="git"] h2 { @include text-overflow; }
+
+            h3{ display: none;}
+
+            ul.details{
+
+                width: calc( 50% - #{$unite*6.5} );
+                width: 100%;
+
+                li{ 
+                    display: inline-block;
+                    width: 25%;
+                }
+            }
+        }
+
+        @include for-size(desktop-900) {
+            //width: calc( 50% - #{$unite/2});
+            @include column-count(2);
+            @include column-gap();
+            //@include column-width(50%);
+        }
+
+        @include for-size(desktop-1300) {
+        }            
+
+        @include for-size(desktop-1800) {
+            article {
+                h2 {width: 50%}
+                ul.details{ width: calc( 50% - #{$unite*6.5} ); }
+            }           
+        }
+    }
+}   
+        

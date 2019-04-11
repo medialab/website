@@ -15,7 +15,7 @@
         @include font-size-20();
         background-color: $background-site;
         border-bottom: $border;
-        z-index: 90;
+        z-index: 99;
     }
 
             
@@ -24,7 +24,7 @@
         color: $redlab;
         width: 100%;
         height: calc(#{$height-top-bar-phone} - #{$margins-phone*2});
-        z-index: 90;
+        z-index: 99;
         #logo-medialab svg{
             height: $unite-phone*3;
             fill: $text-color;

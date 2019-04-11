@@ -6,10 +6,13 @@
 
     #introduction{
         @include font-size-16-phone();
-        text-align: center;
-        margin: 0 $margins-phone;
+        text-align: left;
+        //margin: 0 $margins-phone;
+        padding-top: $baseline*2;
+        padding-bottom: $baseline*2;
+
+        h1{ display: none;}
         p{ 
-            margin: 0 $margins-phone;
             a{
                 @include font-size-13-phone();
                 display: block;
@@ -32,9 +35,12 @@
         
     #introduction{
         width: 100%;
-        margin: auto;
-        text-align: center;
+        //margin: auto;
+        text-align: left;
+        padding-top: $baseline*2;
         padding-bottom: $baseline*5;
+
+        h1{ display: none;}
 
         a{
             @include font-size-16();
@@ -45,10 +51,10 @@
         }
 
         p{
-            @include font-size-20();
-            max-width: 610px;
+            @include font-size-27();
             z-index: 9;
-            margin: 0 auto;
+            max-width: 800px; 
+            //margin: 0 auto;
             // padding: 2rem 0px;
             // font-style: italic;
             transition: 0.2s;

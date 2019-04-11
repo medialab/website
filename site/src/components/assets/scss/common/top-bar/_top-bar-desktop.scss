@@ -11,6 +11,18 @@
         position: fixed !important;
     }
 
+    // full width topbar
+    .page-production, .page-activity, .page-news, .page-people{
+        #topbar{
+            width: calc(100% + #{$unite*2});
+            left: $unite*-1;
+        }
+
+        #topbar-content{
+            margin: 0 $unite;
+        }
+    }
+
 
     #topbar{
         padding: $margins-desktop 0;
@@ -24,6 +36,7 @@
         letter-spacing: 0.2px;
         background-color: $background-site;
         z-index: 999;
+
     }
 
     #topbar label{ 

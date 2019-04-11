@@ -53,10 +53,15 @@
                     }
                 }
             }
+            @include for-size(phone) {
+                article .type, .update { @include font-size-13-phone; }
+                article h2{ @include font-size-16-phone;}
+                article:first-of-type{ padding-top: 0; }
+            }
 
             @include for-size(desktop-900) {
                 article ul.details{ border-top: inherit;
-}
+                }
                 // when Two column
                 //&:not(:nth-of-type(2n)){ margin-right: $unite/2;}
                 //&:nth-of-type(2n){ margin-left: $unite/2;}

@@ -1,7 +1,7 @@
 /* page_list all */
 
 
-
+$width-image-pre-listing: 120px;
 
 
 @include for-size(desktop) {
@@ -14,10 +14,13 @@
         
         margin-bottom: 40vh;
         min-height: calc(100vh - 40vh - #{$height-top-bar-phone});
+
         [data-item]{
             border-bottom: $border-light;
             width: calc(100vw - #{$logo-column} - #{$margins-desktop*2}); 
             &:first-of-type{ border-top: $border-light; }
+            position: relative;
+            height: auto;
 
             a{ 
                 width: 100%;
@@ -25,60 +28,104 @@
                 display: inline-block;
                 @include flex();
                 @include flex-direction(row);
-            
             }
 
-            .title-group{
-                padding-right: $unite;
-            
-            
-                h1{ 
-                    @include font-size-40;
-                    padding-bottom: $baseline*2;
-                    padding-left: $unite*2;
+
+            .image-pre{
+                position: absolute;
+                max-width: $width-image-pre-listing;
+                height: 100%;
+                overflow: hidden;
+                transition: max-width 0.5s ease-in-out;
+                font-size: 1.1vw;
+                &:hover{ max-width: calc(#{$width-image-pre-listing} + (100% - #{$width-image-pre-listing})/2); }
+            }
+
+
+            .bandeau{
+                position: absolute;
+                width: calc(100% - #{$width-image-pre-listing} - #{$unite});
+                left: calc(#{$width-image-pre-listing} + #{$unite});           
+                border-bottom: $border-very-light;
+                padding: $baseline/2 0;
+                @include text-overflow();
+                p{ 
+                    @include font-size-13; 
+                    display: inline-block; 
                     vertical-align: top;
                 }
+                /* activities */
+                .title{ 
+                    @include text-overflow();
+                    padding-left: $unite/2;
+                    margin-left: $unite/2;
+                    border-left: $border-very-light;
+                    font-weight: 600!important;
+                }
+                /* news */
+                .date-news, .hours-news{
+                    margin-left: $baseline*1;
+                    padding-left: $baseline*1;
+                    border-left: $border-very-light;
+                }
+                .date-news{ 
+                    font-weight: 600; 
+                    margin-left: $baseline*1;
+                    padding-left: $baseline*1;
+                    border-left: $border-very-light;
+                }
+                .hours-news::before{ content: $time; }
+                .label-news{
+                    // @include font-size-13-uppercase; 
+                    position: absolute; 
+                    right: 0;
+                }
+                
 
             }
 
-            [data-icon]::before{            
-                // @include font-size-60;
-                @include font-size-40;
-                line-height: 0;
-                display: block;
-                position: absolute;
-                top: $baseline*1.5;
-                $left: 0;
-                left: $unite* -0.2;
+            hgroup, .accroche{
+                display: inline-block;
+                vertical-align: top;
+                width: calc((100% - #{$width-image-pre-listing})/2);
+                // height: 100%;
+                left: $width-image-pre-listing;
+                margin-top: $baseline*3.5;
+                margin-bottom: $baseline;
+                padding: 0 $unite;
+                
+                
             }
+
+
+            h1{
+                padding-top: $baseline*1;
+                padding-bottom: $baseline*1;
+                 @include font-size-40; 
+            }
+
+            .accroche{ 
+                border-left: $border-very-light; 
+                p{ @include font-size-20; }
+            }
+
+      
+
+
+
+
 
             &:hover{
-                background-color: $background-grey;
-                color: $text-color;
-                .date-time{ color: $text-color; }
-                h1{ color: $text-color; }
-                .details p{ color: $text-color; }
-                .accroche{ border-bottom: $border-light; }
-                .authors-paragraphe{ color: $text-color; }
-                .image-pre{ 
-                    display: block; 
-                    color: $text-color;
-                }
+                background-color: $background-grey;              
             }
 
-        }/* end [data-item]*/
+
+        }
 
         .list-year{ 
-            // @include font-size-20();
-            // font-weight: 600; 
-            // padding: $baseline 0;
             padding-top: 3px;
             border-bottom: $border-light;
             overflow: hidden;
-            // &:first-of-type{ 
-            //     border-bottom: none;
-            //     padding-top: 0px;
-            // }
             &:target{ padding-top: $height-top-bar + 3px;  }
         }
 

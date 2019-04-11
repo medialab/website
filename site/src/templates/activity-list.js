@@ -32,6 +32,7 @@ export const query = graphql`
             url
             processed {
               medium
+              large
             }
           }          
           type          

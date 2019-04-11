@@ -180,8 +180,8 @@
 
 #agenda {
     .date-news::before{ content: none; }
-    .place::before{ content: "✻ "; padding-right: 5px;}
-    .hours-news::before{ content: "◷ "; padding-right: 5px;}    
+    .place::before{ content: $place; padding-right: 5px;}
+    .hours-news::before{ content: $time; padding-right: 5px;}    
 }
 
 #agenda article:hover{

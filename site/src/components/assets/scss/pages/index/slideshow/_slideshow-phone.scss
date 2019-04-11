@@ -28,9 +28,11 @@ $height-slideshow-phone: 500px;
 
 				pre{ 
                     font-weight: bold;
-                    font-size: calc(((100vw - #{$unite*2})/150)*1.89);
-                    line-height: calc(((100vw - #{$unite*2})/150)*1.45); //(((Ecran - Marge*2) / Nbr de Block par ligne)*Ratio Hauteur par largeur du glyphe)
+					font-size: calc(((100vw - #{$margins-phone*2})/125)*2.5);
+					line-height: calc(((100vw - #{$margins-phone*2})/125)*1.45);
                     overflow: hidden;
+                    top: -50%;
+	                transform: translateY(50%);
 				}
 			}
 

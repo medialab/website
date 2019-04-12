@@ -1,3 +1,6 @@
+$width-image-pre-listing: 120px;
+
+
 .page-production-list,
 .page-activity-list,
 .page-news-list{
@@ -14,27 +17,33 @@
 	        
 			margin-top: $height-top-bar;
             margin-left: $logo-column;
+           
 
 			&:before{
 				content: "";
 				display: block; 
-				width: calc(100vw - #{$logo-column} - #{$margins-desktop*3});
+				width: calc(100vw - #{$logo-column} - #{$margins-desktop*2});
                 position: fixed;
                 top: $height-top-bar;
                 border-top: $border-light;
                 z-index: 99;
 			}
 
-            .accroche-titre-phone{ display: none; }
             
             .accroche-titre{
-                @include font-size-20;
-                font-weight: 500;
-                text-align: center;
-                padding-top: $baseline*3;
-                padding-bottom: $baseline*4;
-                max-width: 800px;
-                margin: 0 auto;
+                
+                // font-weight: 500;
+                text-align: left;
+                padding-top: $baseline*1.5;
+                padding-bottom: $baseline*2;
+                width: 100%;
+                color: $redlab;
+                // background-color: $background-grey;
+                p{
+                    @include font-size-20;
+                    max-width: 800px;
+                    // padding-left: $unite;
+                }
             }
 			
 			
@@ -42,4 +51,11 @@
 	  }/* end #liste */
     }
     
+}
+
+
+/* hack first year */
+.page-production-list{
+    #liste{ top: -3px; }
+    #liste .accroche-titre{ top: 3px; }
 }

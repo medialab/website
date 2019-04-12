@@ -37,8 +37,17 @@ export function PlaceHolder(data) {
 }
 
 
+
 export function IsModel (item, lang) {
   let type;
+
+  if (item === 'filters') {
+    if (lang === 'fr') {
+      type = 'Filtres';
+    } else {
+      type = 'Filters';
+    }
+  }
 
   if (item === 'activities') {
     if (lang === 'fr') {
@@ -229,5 +238,37 @@ export function IsModel (item, lang) {
       type = 'Media';
     }
   }    
+  // domain people
+  if (item === 'academic' ) {
+    if (lang === 'fr') {
+      type = 'Académique';
+    } else {
+      type = 'Academic';
+    }
+  }  
+  if (item === 'tech' ) {
+    if (lang === 'fr') {
+      type = 'Technique';
+    } else {
+      type = 'Technical';
+    }
+  } 
+  if (item === 'design' ) {
+      type = 'Design';  
+  }   
+  if (item === 'pedagogy' ) {
+    if (lang === 'fr') {
+      type = 'Pédagogie';
+    } else {
+      type = 'Pedagogy';
+    }
+  } 
+  if (item === 'admin' ) {
+    if (lang === 'fr') {
+      type = 'Administratif';
+    } else {
+      type = 'Administrative';
+    }
+  } 
    return type;
 }

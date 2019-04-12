@@ -2,15 +2,20 @@
 //////// Activités
 /////////////////////
 
-.page-production-list, .page-news-list, .page-activity-list{
+
+$height-filtres-activites: $baseline * 5;
+
+.page-activity-list{
 
 
 	@include for-size(desktop) {
 
-		#filtre-activity_active + label{ top: $height-top-bar + $height-filtres-activites ; }
-		#filtre-activity_past + label{ top: $height-top-bar + $height-filtres-activites + $baseline* 2.5; }
-		#filtre-activity_research + label{ top: $height-top-bar + $height-filtres-activites + $baseline + $baseline* 2.5 * 2; }
-	    #filtre-activity_teaching + label{ top: $height-top-bar + $height-filtres-activites + $baseline + $baseline* 2.5 * 3; }
+		.h2_filtre:nth-of-type(1){top: $height-top-bar + $height-filtres-activites ;  }
+		#filtre-activity_active + label{ top: $height-top-bar + $height-filtres-activites + $baseline* 2.5; }
+		#filtre-activity_past + label{ top: $height-top-bar + $height-filtres-activites + $baseline* 2.5 * 2; }
+		.h2_filtre:nth-of-type(2){top: $height-top-bar + $height-filtres-activites + $baseline + $baseline* 2.5 * 3;}
+		#filtre-activity_research + label{ top: $height-top-bar + $height-filtres-activites + $baseline + $baseline* 2.5 * 4; }
+	    #filtre-activity_teaching + label{ top: $height-top-bar + $height-filtres-activites + $baseline + $baseline* 2.5 * 5; }
 
 	}
 
@@ -42,7 +47,9 @@
 	}
 
 
-	/* statut only */
+	/// PATTERN //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	.filtre-activity_statut:checked ~ #liste #liste-activity {
 		.list-item{ display: none; }
 	}

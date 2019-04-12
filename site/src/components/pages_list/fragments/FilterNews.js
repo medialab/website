@@ -48,7 +48,7 @@ const FilterNews = ({lang, years}) => {
       
       {/* YEAR */}
       <input
-        type="radio" id="radio_filtre-actu_year" name="radio_filtre-actu"
+        type="checkbox" id="radio_filtre-actu_year" name="radio_filtre-actu"
         value="year" hidden />
       <label htmlFor="radio_filtre-actu_year"><span>〉</span></label>
 
@@ -66,8 +66,7 @@ const FilterNews = ({lang, years}) => {
       </div>   
       
       {/* TYPE */}
-      <input type="radio" id="radio_filtre-actu_type" name="radio_filtre-actu" className="input_filtre-actu" value="type" defaultChecked hidden />
-      <label htmlFor="radio_filtre-actu_type">{typeNews} <span>〉</span></label>
+      <h2 className="title_news_type h2_filtre">Filtrer par type </h2>
 
       <input type="checkbox" id="filtre-actu_event" name="filtre-actu_event" className="input_filtre-actu" value="event" hidden />
       <label className="filtre-actu checkbox-medialab"  htmlFor="filtre-actu_event">{event}</label>

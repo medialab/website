@@ -67,15 +67,6 @@ input:checked + label{
     .span-checked{ display: block; }
 }
 
-.nomenclature p{
-    display: inline; 
-    & + p::before{
-        content: " / "
-    }
-}
-
-
-
 /* virgules après les auteurs. ATTENTION = il faut plutôt le mettre depuis le CMS car au copier/coller les éléments after ne restent pas*/
 .author span{ 
     white-space: nowrap;
@@ -137,8 +128,8 @@ input:checked + .checkbox-medialab:hover{
 ///////////////////////////
 
 .more{
-    margin-top: $baseline*1;
-    margin-bottom: $baseline*1;
+    //margin-top: $baseline*1;
+    //margin-bottom: $baseline*1;
     @include font-size-13();
     color: $text-color-light;
     text-decoration: underline; 

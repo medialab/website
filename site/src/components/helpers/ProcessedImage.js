@@ -6,7 +6,20 @@ const ROWS = {
   large: 250
 };
 
-const PLACEHOLDER_CHARACTERS = '░▒▓▓▒░';
+
+
+
+function makeid(length) {
+  var text = "";
+  var possible = "░▒▓";
+
+  for (var i = 0; i < length; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
+
+const PLACEHOLDER_CHARACTERS = makeid(12);
 
 export default function ProcessedImage({image, size}) {
 
@@ -24,7 +37,7 @@ export default function ProcessedImage({image, size}) {
         const offset = i * rows;
 
         const row = needPlaceholder ?
-          PLACEHOLDER_CHARACTERS.repeat(rows / PLACEHOLDER_CHARACTERS.length) :
+          PLACEHOLDER_CHARACTERS.repeat( rows / PLACEHOLDER_CHARACTERS.length )  :
           image.slice(offset , offset + rows);
 
         return (

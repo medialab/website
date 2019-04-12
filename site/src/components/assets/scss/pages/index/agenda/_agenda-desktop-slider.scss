@@ -191,7 +191,6 @@
 
 
 
-
 @include for-size(desktop) {
     :root{
         --nbr-rdv-affiche: 3;
@@ -201,13 +200,22 @@
     @include agenda-4caches();
 }
 
-@include for-size(desktop-1300) {
+@include for-size(desktop-1000) {
     :root{
         --nbr-rdv-affiche: 4;
         --nbr-rdv: 7;
     }
 
     @include agenda-3caches();
+}
+
+@include for-size(desktop-1300) {
+    :root{
+        --nbr-rdv-affiche: 5;
+        --nbr-rdv: 7;
+    }
+
+    @include agenda-2caches();
 }
 
 

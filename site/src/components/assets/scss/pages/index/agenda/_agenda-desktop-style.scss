@@ -7,15 +7,15 @@
     #agenda {
 
         #agenda-contenu{ 
-            margin-top: $baseline*4;
-            margin-bottom: $baseline*4;
+            margin-top: $baseline*2;
+            margin-bottom: $baseline*0;
         }
 
         article{
 
 
             border-right: $border-light;
-            padding: 0 $margins-desktop;
+            padding: $baseline $margins-desktop $baseline*2.5 $margins-desktop;
             &:first-of-type{ border-left: $border-light; }
             cursor: pointer;
 
@@ -89,7 +89,7 @@
 
             h2{ 
                 @include font-size-13();  
-                margin-bottom: $baseline*2;
+                //margin-bottom: $baseline*2;
                 
 
                 &::first-letter { text-transform: capitalize; }
@@ -98,6 +98,7 @@
             .details{ 
                 width: 100%;
                 padding-right: $unite;
+                padding-bottom: $baseline/3;
 
 
                 .place, .hours-news{ 
@@ -122,19 +123,19 @@
         article{
 
             .year-main{
-                @include font-size-16(); 
+                @include font-size-13(); 
                 color: $text-color-light;
                 
             }
 
             .date-news{
                 padding-top: $baseline*1;
-                @include font-size-40();
-                .day-name { @include font-size-27(); display: block; }
+                @include font-size-27();
+                .day-name { @include font-size-20(); display: block; }
                 .year, .week{ display: none; }
                 .between{ 
-                    @include font-size-27();
-                    top: -5px;
+                    @include font-size-20();
+                    top: -2px;
                 }                
             }
 
@@ -144,25 +145,25 @@
         
             h1{
                 padding-top: $baseline*1;
-                @include font-size-27();
+                @include font-size-16();
                 font-weight: 400;
             }
 
             h2{
-                @include font-size-16();
+                @include font-size-13();
                 padding-top: $baseline*0.5;
                 padding-bottom: $baseline*1.5;
             }
 
             .place, .hours-news{ 
-                @include font-size-16();
+                @include font-size-13();
                 align-items: baseline;
             }
    
         }/* end article*/
 
         .past p{ 
-            @include font-size-16(); 
+            @include font-size-13(); 
             a{ 
                 text-decoration: underline; 
                 &::before{ content: ""}

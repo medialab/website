@@ -2,8 +2,8 @@ import React from 'react';
 
 const ROWS = {
   small: 25,
-  medium: 75,
-  large: 150
+  medium: 125,
+  large: 250
 };
 
 const PLACEHOLDER_CHARACTERS = '░▒▓▓▒░';

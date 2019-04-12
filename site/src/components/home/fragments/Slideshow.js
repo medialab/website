@@ -63,21 +63,25 @@ const Slideshow = ({slider, lang}) => {
             <div className="contenu-slide">
               <Link to={slide.data.permalink[lang]}>
 
-                <div className="nomenclature">
+                <div className="bandeau">
                   <p className="type">{IsModel(slide.model, lang)}</p>
-                  {/* Sur cette derniere ligne ? Comment trouver le sous-type ?*/}
-                  {/* <p className="sous-type"><a href="#">Communication</a></p> */}
+                  { slide.data.name && <p className="name">{slide.data.name}</p> }
+                  {slide.model === 'activities' && 
+                      ( lang === 'fr' ? 
+                        <p className="label">{slide.data.label && slide.data.label.fr}</p>
+                        : <p className="label">{slide.data.label && slide.data.label.en}</p>
+                      )
+                    }
                 </div>
 
                 {/* If Activité */}
                 {slide.model === 'activities' &&
                 <>
-                { lang === 'fr' ?
-                <h1 data-level-1="baseline">{slide.data.baseline && slide.data.baseline.fr}</h1> :
-										console.log(lang)
-									}
-                <h2 data-level-2="name">{slide.data.name}</h2>
-              </>
+                  { lang === 'fr' ?
+                    <h1 data-level-1="baseline">{slide.data.baseline && slide.data.baseline.fr}</h1> :
+    								<h1 data-level-1="baseline">{slide.data.baseline && slide.data.baseline.en}</h1>
+                  }
+                </>
 								}
 
                 {/* If Production */}
@@ -86,7 +90,7 @@ const Slideshow = ({slider, lang}) => {
                 { lang === 'fr' ?
                 <h1 data-level-1="title">{slide.data.title && slide.data.title.fr }</h1>
 											:
-              <h1 data-level-1="title">{slide.data.title && slide.data.title.en }</h1>
+                <h1 data-level-1="title">{slide.data.title && slide.data.title.en }</h1>
 										}
                 <h2 data-level-2="author" className="author">
                 <ul>
@@ -99,20 +103,18 @@ const Slideshow = ({slider, lang}) => {
                 {/* if News */}
                 {slide.model === 'news' &&
 									(lang === 'fr' ?
-  <>
-    <h1 data-level-1="title">{slide.data.title && slide.data.title.fr}</h1>
-    <DateNews startDate={slide.data.startDate} endDate={slide.data.endDate} lang="fr" />
-    <TimeNews startDate={slide.data.startDate} endDate={slide.data.endDate} />
+                    <>
+                      <h1 data-level-1="title">{slide.data.title && slide.data.title.fr}</h1>
+                      <DateNews startDate={slide.data.startDate} endDate={slide.data.endDate} lang="fr" />
+                      <TimeNews startDate={slide.data.startDate} endDate={slide.data.endDate} />
 
-    <h2 data-level-2="label">{slide.data.label && slide.data.label.fr}</h2>
-  </>
-										:
-  <>
-    <h1 data-level-1="title">{slide.data.title && slide.data.title.en}</h1>
-    <DateNews startDate={slide.data.startDate} endDate={slide.data.endDate} lang="fr" />
-    <TimeNews startDate={slide.data.startDate} endDate={slide.data.endDate} />
-    <h2 data-level-2="label">{slide.data.label && slide.data.label.en}</h2>
-  </>
+                    </>
+                  										:
+                    <>
+                      <h1 data-level-1="title">{slide.data.title && slide.data.title.en}</h1>                    
+                      <DateNews startDate={slide.data.startDate} endDate={slide.data.endDate} lang="fr" />
+                      <TimeNews startDate={slide.data.startDate} endDate={slide.data.endDate} />                    
+                    </>
 									)
 								}
 

@@ -5,7 +5,7 @@
 
 
 
-/* Query: min 900px ------------------------------------------------------------------------------------------------
+/* Query: min 700px ------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------
 */
@@ -66,7 +66,7 @@
 				.image-pre-phone{ display: none; }
 
 				.contenu-slide{
-					width: 50%;
+					width: 65%;
 					//height: 85%;
 					//height: -webkit-calc(100% - 1.7vw*4);
 					//height: -moz-calc(100% - 1.7vw*4);
@@ -79,8 +79,8 @@
 					position: absolute;
 					//top: 1.7vw*2;
 					top: $unite;
-					left: $unite*5;
-					padding: $unite $unite;
+					left: $unite*3;
+					padding: $baseline $unite/2;
 					z-index: 90;
 					text-align: left;
 					background: $background-site;
@@ -99,50 +99,55 @@
 						.more{ color: $redlab-light!important;}
 					}
 
+					a{ height: 100%; position: relative; display: inline-block;}
          			
-					.nomenclature{
+					.bandeau{
 						text-align: left;
 						margin-bottom: $baseline*2;
-						@include font-size-16();
-						@include text-background(5px);
+						@include font-size-13();
+
+						p{ 
+							padding-right: $unite/2;
+							display: inline-block;
+						}
 					}
 					
 					.type:before{ display: inline; background: $background-site; padding: 5px;}
 				
 
 					h1{
-						@include font-size-40();
+						@include font-size-27();
 						margin-bottom: $baseline*2;
-						@include text-background(5px);
+						min-height: $baseline* 5; // Parions sur 2 ligne minimum de titre - Permet une harmonie entre slide
 					}
 		
 					h2{
-						@include font-size-20();
+						@include font-size-16();
 						margin-bottom: $baseline*1;
-						@include text-background(5px);				
 					}
 
 					.date-news{
-						@include font-size-20();
+						@include font-size-16();
+						font-weight: 600;
 						.year{display: none}
 						//.year:last-of-type{display: inline;}
-						@include text-background(5px);
 					}
 
 					.description{
 						@include font-size-16();
-						@include text-background(5px);
+						max-height: $baseline*6;
+
 					 }
 
 					 .more{
-						@include font-size-16();
+						@include font-size-13();
 						margin-top: $baseline*1;
 						color: $text-color-light;
-						text-decoration: underline;	
+						text-decoration: underline;
 
-						@include text-background(5px);
-
-
+						position: absolute;
+						bottom: 0;
+						left: 0;
 					 }
 
 
@@ -200,7 +205,7 @@
 		.slideshow--bullet {
 			position: relative;
 			top: calc(100% - 1.7vw*4);
-			left: 52%;
+			left: 65%;
 		}
 
 		.slideshow--bullet-label, hr{ display: none; }
@@ -209,10 +214,26 @@
 
 	}/* end slideshow*/
 
-}/* end query 900 */
+}/* end query 700 */
 
+/* Query: min 1000px -----------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+changement navigation */
 
+@include for-size(desktop-1000) {
 
+	#slideshow{
+		.slideshow--item .contenu-slide{
+			width: 50% !important;
+			left: $unite*5 !important;
+		}
+		.slideshow--bullet {
+			//top: calc(100% - 1.7vw*4);
+			left: 52%;
+		}		
+	}
+}
 
 
 /* Query: min 1200px -----------------------------------------------------------------------------------------------
@@ -233,7 +254,6 @@ changement navigation */
 		
 		width: 100%;
 		margin-left: 0;
-		
 
 		.slideshow--bullet{ 
 			display: none;
@@ -277,9 +297,7 @@ changement navigation */
 
 	}/* end slideshow*/
 
-	
-
-}/* end query 900 */
+}/* end query 1200 */
 
 
 

@@ -9,8 +9,8 @@
 		main{
 			margin: $height-top-bar-phone $margins-phone;
 		
-		
 			.titre-sticky{
+				display: none;
 				@include font-size-20-phone;
 				position: relative;
 				width: 100%;
@@ -28,70 +28,29 @@
 			 	display: none;
 			 }
 
+
 			#biographie{
 
-				figure{
-					margin-top: $baseline;
-					margin-bottom: $baseline;
+				figure{ 
+					margin-bottom: $baseline; 
+					width: 100%;
+					img{ width: 100%; }
 				}
 
 				header{
 					@include flex-order(1);
 					min-width: 50%;
 					padding-top: $baseline*1.5;
-					padding-bottom: $baseline*3;
+					margin-bottom: $baseline*2.5;
 
-					h1{
-						@include font-size-40();
-						font-weight: bold;
-						padding-bottom: $baseline*1.5; 
-					}
-			
-					h2{ 
-						@include font-size-20();
-						padding-bottom: $baseline*1.5; 
-					}
-
-					p{
-						@include font-size-20();
-					}
-
-					[data-type="domaine"],[data-type="statut"]{
-						padding: 0 $unite-phone 0 0;
-					}		
-
-					[data-type="domaine"]{ 
-					}
-					[data-type="activite"]{
-						margin: $unite-phone 0;
-					}
-					
-					.bandeau{
-
-						top: $unite;
-
-					}
-
-					.contact{
-						
-						margin-top: $unite-phone*2;	
-						
-						.toContact{  }
-
-						//@include flex-order(4);
-						margin: $baseline*2 0;
-
-						li{
-							width: 5vw;
-							min-width: 60px;
-							display: inline-block;
-						}
-					}					
+					h1{@include font-size-40();}
+					.status{ @include font-size-20(); }
+				
 				}
 		
 				.biographie-contenu{
 					width: 100%;
-					p, li{ @include font-size-20;}
+					p, li{ @include font-size-16;}
 				}
 			}		
 			#highlight{ margin-top: $height-top-bar-phone + $baseline*2; }

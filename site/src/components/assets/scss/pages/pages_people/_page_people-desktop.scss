@@ -29,7 +29,6 @@ $hack-sticky: 54px;
 				position: sticky;
 
 				top: -1px;
-				// width: calc(100% - #{$margins-desktop*1});
 				width: 100%;
 				height: $height-top-bar - $hack-sticky;
 				background-color: $background-site;
@@ -51,66 +50,34 @@ $hack-sticky: 54px;
 			
 			 #biographie{
 				
-				max-width: 1500px;
+				max-width: 900px;
+
 				header{
 					@include flex-order(1);
+					margin-bottom: $baseline*2;
 
 					figure, hgroup{
 						display: inline-block;
 						vertical-align: top;
 					}
 
-					figure{					
-						width: 300px;
-						img{ width: 100%; }
-					}
+					figure img{ width: 100%; }
+					
 
-					hgroup{ 
-						width: calc(100% - 300px); 
+					hgroup{ 					
 						padding-left: $unite;
+						margin-bottom: $baseline;
 					}
 
 					
-
-			
-					h2{ 
-						padding-bottom: $baseline*1.5; 
-					}
-
-					p{ @include font-size-20(); }
-
-					.status{
-						
-						font-style: italic;
-						// margin-left: calc(100% - 350px);
-						// text-align: right;
-						width: 350px;
-						margin-bottom: $baseline*1;
-						&::before{
-							content: "“";
-						}
-						&::after{
-							content: "”";
-						}
-
-					}
-
+					.status{ max-width: 400px; }
 			
 					
 				}
-		
-				.biographie-contenu{
-					width: 100%;
-					max-width: 900px;
-					min-width: calc( 700px - #{$logo-column});
-					@include for-size(desktop-1000) { 
-						min-width: 600px;
-					}
 
-					p{
-						@include font-size-20();
-					}
-				}
+
+	
+				
 
 			
 
@@ -145,14 +112,35 @@ $hack-sticky: 54px;
 @media screen and (min-width: 700px) {
 
 	.page-people #biographie {
-		header{
-			h1{ @include font-size-27(); }
+		header{		
+			figure{ width: 200px; }
+			hgroup{ 
+				width: calc(100% - 200px);  
+				.status{ @include font-size-16(); }
+			}			
+			h1{ @include font-size-40(); }
 			h2{ @include font-size-20(); }
 		}	
+		.biographie-contenu p, .biographie-contenu li{ @include font-size-16();}
 	}
 
 }
 
+
+@media screen and (min-width: 900px) {
+
+	.page-people #biographie {
+		header{
+			figure{ width: 300px; }
+			hgroup{ 
+				width: calc(100% - 300px);  
+				.status{ @include font-size-20(); }
+			}
+		}
+		.biographie-contenu p, .biographie-contenu li{ @include font-size-20();}
+	}
+
+}
 
 
 @media screen and (min-width: 1100px) {

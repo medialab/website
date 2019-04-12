@@ -10,7 +10,7 @@
 
 		#liste .liste_objet{
 
-				[data-item], .list-year, .accroche-titre-phone{ width: calc(100vw - #{$logo-column} - #{$margins-desktop*3}); }
+				[data-item], .list-year, .accroche-titre{ width: calc(100vw - #{$logo-column} - #{$margins-desktop*3}); }
 			
 			
 				[data-item] ~ [data-item-accroche]{ 
@@ -33,7 +33,6 @@
 					border-bottom: $border-light; 
 				}
 			
-				.accroche-titre{ display: none; }
 
 				
 				@for $i from 0 through 500 {
@@ -64,16 +63,16 @@
 
 		} /* end #liste */
 
-		#liste .accroche-titre-phone{
-			display: block;
-			height: auto;
-			border-top: none!important; 
-			@include font-size-27();
-			text-align: center;	
-			padding-top: $baseline*2;
-			padding-bottom: $baseline*2;
-			border-bottom: $border-light;
-		}
+		// #liste .accroche-titre-phone{
+		// 	display: block;
+		// 	height: auto;
+		// 	border-top: none!important; 
+		// 	@include font-size-27();
+		// 	text-align: center;	
+		// 	padding-top: $baseline*2;
+		// 	padding-bottom: $baseline*2;
+		// 	border-bottom: $border-light;
+		// }
 
 		
 		
@@ -138,10 +137,10 @@
 
 		} /* end #liste */
 
-		#liste .accroche-titre-phone{ 
-			width: $mobile-container-width; 
-			@include font-size-27-phone();
-		}
+		// #liste .accroche-titre-phone{ 
+		// 	width: $mobile-container-width; 
+		// 	@include font-size-27-phone();
+		// }
 
 	}
 

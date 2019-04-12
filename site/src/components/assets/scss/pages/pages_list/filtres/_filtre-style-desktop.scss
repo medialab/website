@@ -3,7 +3,7 @@ $height-filtres-productions_year-checked: $baseline * 28;
 $height-filtres-productions_medium: $baseline * 7;
 $height-filtres-productions_medium_group-checked: $baseline * 18;
 $height-filtres-productions_medium_year-checked: $baseline * 16;
-$height-filtres-activites: $baseline * 5.5;
+
 $height-filtres-actu: $baseline * 3.5;
 
 
@@ -60,6 +60,15 @@ $height-filtres-actu: $baseline * 3.5;
         width: $logo-column - $margins-desktop;
     
     }
+
+    .h2_filtre{
+        position: fixed;
+        left: $margins-desktop;
+        width: $logo-column - $margins-desktop; 
+        @include font-size-13();
+        font-weight: 400;
+    }
+    
 
 
 }

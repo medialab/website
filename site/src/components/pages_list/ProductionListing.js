@@ -41,21 +41,13 @@ export default function ProductionListing({lang, list, group, types}) {
       <>
         <FilterProduction lang={lang} group={group} types={types} />
         <section id="liste">
-          <p className="accroche-titre">{accroche}</p>
-          <p className="accroche-titre-phone">{accroche}</p>
+        <div className="accroche-titre"><p>{accroche}</p></div>
           <ul className="liste_objet" id="liste-productions">
-            {/*-- en fonction du lien de page, doit renvoyer différentes listes:
-            si le lien de page = /productions, renvoie toutes les productions
-            si lien de page = productions/publications, renvoie uniquement les p.groupLabel = publications
-            si lien de page = productions/editionsweb, renvoie uniquement les p.groupLabel = editionsweb
-            si lien de page = productions/tools, renvoie uniquement les p.groupLabel = tools
-            si lien de page = productions/situations, renvoie uniquement les p.groupLabel = situations
-            si lien de page = productions/media, renvoie uniquement les p.groupLabel = media */
+            {
             Array.from(yearGroups.entries()).sort(byYear).map(([year, yearList]) => (
               <React.Fragment key={year}>
                 <li id={year === 2008 ? 'years-before-2009' : `year-${year}`} className="list-year">
-                  {/* <span>{year}</span>
-                  <pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre> */}
+                  {/* <span>{year}</span>*/}
                 </li>
 
                 {yearList.map((p, i) => (
@@ -63,10 +55,11 @@ export default function ProductionListing({lang, list, group, types}) {
                     <li data-item={nbItem} data-type={p.type} className={`list-item ${p.type}`}>
                       <Link to={p.permalink[lang]}>
                         <div className="title-group">
-                          <h1 data-icon="production" data-level-1="title" >{lang === 'fr' ? p.title.fr : p.title.en}</h1>
+                          <h1 data-level-1="title" >{lang === 'fr' ? p.title.fr : p.title.en}</h1>
                         </div>
                         <div className="details">
-                          <p className="type-production"> <span>{lang === 'fr' ? p.groupLabel.fr : p.groupLabel.en}</span> {p.typeLabel !== 'media' && lang === 'fr' ? <span>{p.typeLabel.fr}</span> : <span>{p.typeLabel.en}</span>}</p>
+                          <p className="type-production" data-icon="production"> {lang === 'fr' ? p.groupLabel.fr : p.groupLabel.en}</p> 
+                          <p className="subtype-production">{p.typeLabel !== 'media' && lang === 'fr' ? <span>{p.typeLabel.fr}</span> : <span>{p.typeLabel.en}</span>}</p>
                           <p className="date-production">{p.date}</p>
                         </div>
                         <div className="authors">

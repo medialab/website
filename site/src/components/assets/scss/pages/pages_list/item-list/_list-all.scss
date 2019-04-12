@@ -15,7 +15,7 @@ $width-image-pre-listing: 120px;
         margin-bottom: 40vh;
         min-height: calc(100vh - 40vh - #{$height-top-bar-phone});
 
-        [data-item]{
+        li{
             border-bottom: $border-light;
             width: calc(100vw - #{$logo-column} - #{$margins-desktop*2}); 
             &:first-of-type{ border-top: $border-light; }
@@ -38,6 +38,8 @@ $width-image-pre-listing: 120px;
                 overflow: hidden;
                 transition: max-width 0.5s ease-in-out;
                 font-size: 1.1vw;
+                background-color: $background-site;
+                pre{ color: $color-img; }
                 &:hover{ max-width: calc(#{$width-image-pre-listing} + (100% - #{$width-image-pre-listing})/2); }
             }
 
@@ -60,7 +62,8 @@ $width-image-pre-listing: 120px;
                     padding-left: $unite/2;
                     margin-left: $unite/2;
                     border-left: $border-very-light;
-                    font-weight: 600!important;
+                    color: $redlab;
+                    // font-weight: 600!important;
                 }
                 /* news */
                 .date-news, .hours-news{
@@ -69,7 +72,8 @@ $width-image-pre-listing: 120px;
                     border-left: $border-very-light;
                 }
                 .date-news{ 
-                    font-weight: 600; 
+                    // font-weight: 600; 
+                    color: $redlab;
                     margin-left: $baseline*1;
                     padding-left: $baseline*1;
                     border-left: $border-very-light;
@@ -100,7 +104,7 @@ $width-image-pre-listing: 120px;
 
             h1{
                 padding-top: $baseline*1;
-                padding-bottom: $baseline*1;
+                padding-bottom: $baseline*1.5;
                  @include font-size-40; 
             }
 
@@ -130,5 +134,9 @@ $width-image-pre-listing: 120px;
         }
 
     }
+
+
+    
+
 
 }

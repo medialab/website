@@ -31,18 +31,25 @@
         height: $height-top-bar;
         // @include font-size-16();
         color: $text-color;
-        @include font-size-13();
-        text-transform: uppercase;
+        @include font-size-13-uppercase();
         letter-spacing: 0.2px;
         background-color: $background-site;
         z-index: 999;
+       
+    }
 
+    .nav-objet li::before{
+        font-size: 13px;
+        color: pink;
+        
     }
 
     #topbar label{ 
         display: none;
         cursor: pointer;
- }
+       
+
+    }
         
     #topbar-content{
         height: 100%;

@@ -95,16 +95,7 @@ input:checked + label{
     border: $border-light; 
 }
 
-.checkbox-medialab:hover:before{
-    border: 5px solid $text-color; 
-}
 
-.checkbox-medialab:hover{
-    font-weight: 600;
-    color: $color-hover;
-    cursor: pointer;
-    &:before{ border: 5x solid $color-hover;}
-}
 
 
 input:checked + .checkbox-medialab{
@@ -112,14 +103,17 @@ input:checked + .checkbox-medialab{
     &:before{ border: 5px solid $text-color;}
 }
 
-input:checked + .checkbox-medialab:hover{
-    font-weight: 600!important;
-    color: $text-color!important;
-    &:before{ border: 5px solid $text-color!important;}
+.checkbox-medialab:hover{
+    font-weight: 600;
+    color: $text-color-light;
+    cursor: pointer;
+    &:before{ border: 5px solid $text-color-light!important;}
 }
 
 
-
+input:checked + .checkbox-medialab:hover{
+    &:before{ border: 5px solid $text-color-light!important;}
+}
 
 
 

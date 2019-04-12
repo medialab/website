@@ -1,121 +1,51 @@
 /* list-productions */
 
+.page-production-list #liste [data-item]{
 
-    
-    @include for-size(desktop) {
-        .page-production-list #liste [data-item]{
-
-
-            [data-item]{
-            border-bottom: $border-light;
-            width: calc(100vw - #{$logo-column} - #{$margins-desktop*2}); 
-            &:first-of-type{ border-top: $border-light; }
-
-            a{ 
-                width: 100%;
-                height: 100%;
-                display: inline-block;
-                @include flex();
-                @include flex-direction(row);
-            
-            }
-
-            .title-group{
-                padding-right: $unite;
-            
-            
-                h1{ 
-                    @include font-size-40;
-                    padding-bottom: $baseline*2;
-                    padding-left: $unite*2;
-                    vertical-align: top;
-                }
-
-            }
-
-            [data-icon]::before{            
-                // @include font-size-60;
-                @include font-size-40;
-                line-height: 0;
-                display: block;
-                position: absolute;
-                top: $baseline*1.5;
-                $left: 0;
-                left: $unite* -0.2;
-            }
-
-            &:hover{
-                background-color: $background-grey;
-                color: $text-color;
-                .date-time{ color: $text-color; }
-                h1{ color: $text-color; }
-                .details p{ color: $text-color; }
-                .accroche{ border-bottom: $border-light; }
-                .authors-paragraphe{ color: $text-color; }
-                .image-pre{ 
-                    display: block; 
-                    color: $text-color;
-                }
-            }
-
-        }/* end [data-item]*/
-
-
-            .title-group, .authors{ display: inline-block; }
-
-            .title-group{
-                width: 70%;
-                padding-top: $baseline*2;
-                padding-bottom: $baseline*4;
-            }
-
-
-            .details{
-                padding-top: $baseline/2;
-                border-top: $border-very-light;
-                position: absolute;
-                bottom: $baseline;
-                width: calc(70% - #{$unite});
-                
-                p{ 
-                    display: inline-block; 
-                    vertical-align: top;
-                    @include font-size-13;
-                }
-                .type-production{
-                    span:first-of-type{ text-transform: uppercase; }
-                    span:nth-of-type(2){
-                        border-left: $border-very-light;
-                        margin-left: $unite/2;
-                        padding-left: $unite/2;
-                    }
-                }
-                .date-production{
-                    margin-left: $unite/2;
-                    border-left: $border-very-light;
-                    padding-left: $unite/2;
-                }
-            
-            }
-
-            .authors{
-                width: 30%;
-                position: relative;
-                overflow: hidden;
-                
-                .authors-paragraphe{
-                    @include font-size-20;
-                    margin-top: $baseline;
-                    margin-bottom: $baseline;
-                    padding-left: $unite;
-                    border-left: $border-very-light;
-                    height: calc(100% - #{$baseline*2});
-                }
-                
-            }
-
-            
-
+    .details{
+        padding-top: $baseline/2;
+        border-top: $border-very-light;
+        position: absolute;
+        bottom: $baseline/2;
+        width: calc(70% - #{$unite});
+        
+        p{ 
+            display: inline-block; 
+            vertical-align: top;
+            @include font-size-13;
         }
+
+        .subtype-production{
+            border-left: $border-very-light;
+            margin-left: $unite/2;
+            padding-left: $unite/2;
+            color: $redlab;
+        }
+        .date-production{
+            margin-left: $unite/2;
+            border-left: $border-very-light;
+            padding-left: $unite/2;
+        }
+    
     }
 
+
+
+    .title-group{
+        width: 70%;
+        margin-top: $baseline*1;
+        margin-bottom: $baseline*3;
+        padding-right: $unite;
+    }
+
+    .authors{
+        width: 30%;
+        border-left: $border-very-light;
+        margin: $baseline 0;
+        // padding-top: $baseline*2;
+        padding-left: $unite;           
+        .authors-paragraphe{ @include font-size-20; }          
+    }
+
+
+}

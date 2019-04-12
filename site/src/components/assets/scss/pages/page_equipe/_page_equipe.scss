@@ -13,21 +13,48 @@
 			&:hover{ 
 				background-color: $background-grey;
 				color: currentColor; 
-				img{ 
-					// mix-blend-mode: color-burn;
-					// filter: grayscale(1) 
-					// contrast(2);
-				}
 			}
 			
 		}
+
+		#display-people-past + label{
+			@include font-size-27;
+			display: block;
+			border-top: $border-light;
+			color: $text-color-light;
+			padding-top: $baseline*1.5;
+			margin-bottom: $baseline*1.5;
+			@include flex();
+			@include justify-content(space-between);
+			span{ 
+				display: block;
+				margin-left: $unite/2; 
+				text-align: right;
+			}
+			&:hover{ color: $text-color; }
+		}
+
+		#liste_equipe_past{ 
+			display: none; 
+			border-top: $border-light;
+			padding-top: $baseline*2;
+		}
+
+		#display-people-past:checked + label span{
+			transform: rotate(90deg);
+			transform-origin: center center;
+			position: relative;
+			top: 5px;
+		}
+
+		#display-people-past:checked ~ #liste_equipe_past{ 
+			display: block;
+			@supports(display: grid) {
+				display: grid;
+			}
+		}
+
 	        
-	        
-	    // a:hover{
-	    //     figure{
-	    //         background-color: $redlab;
-	    //         img{ mix-blend-mode: screen; filter: grayscale(1) contrast(2);}
-	    //     }
-	    // }
+	 
 	}
 }

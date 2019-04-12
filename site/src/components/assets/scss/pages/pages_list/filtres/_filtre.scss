@@ -20,9 +20,8 @@
 .link-activity-sort,
 .link-actu-sort{
 	position: fixed;
-	@include font-size-13();
-	font-weight: 300;
-	text-transform: uppercase;
+	@include font-size-13-uppercase();
+
 	padding-top: $baseline * 1.5;
 	padding-bottom: $baseline * 1;
 	border-bottom: $border-very-light;
@@ -90,8 +89,8 @@
 #radio_filtre-production_type + label,
 #radio_filtre-actu_type + label{
 	position: fixed;
-	@include font-size-13;
-	text-transform: uppercase;
+	@include font-size-13-uppercase();
+	// text-transform: uppercase;
 	text-align: left;
 	// transition: 0.5s top;
 	span{ display: none; }

@@ -25,14 +25,14 @@ export default function ActivityListing({lang, list, status, statuses}) {
         <FilterActivity lang={lang} status={status} statuses={statuses} />
        
         <section id="liste">
-          <p className="accroche-titre">{accroche}</p>
+          <div className="accroche-titre"><p>{accroche}</p></div>
           <ul className="liste_objet" id="liste-activity">
+           
             {list.map((a, index) => (
               <React.Fragment key={index}>
-                <li data-item={index} data-type={a.type} className={`list-item ${a.type}-${a.active ? 'active' : 'past'}`}>
+                <li data-type={a.type} className={`list-item ${a.type}-${a.active ? 'active' : 'past'}`}>
                   <Link to={a.permalink[lang]}>
                     <div className="image-pre">
-                        {/* <ProcessedImage size="large" image={a.coverImage && a.coverImage.processed.large} /> */}
                         <ProcessedImage size="medium" image={a.coverImage && a.coverImage.processed.medium} />
                       </div>
                     <div className="bandeau">
@@ -50,7 +50,9 @@ export default function ActivityListing({lang, list, status, statuses}) {
                   </Link>
                 </li>
               </React.Fragment>
-            ))}        
+              
+            ))}   
+              
           </ul>
         </section>
       </>

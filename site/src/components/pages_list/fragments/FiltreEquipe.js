@@ -1,11 +1,27 @@
 import React from 'react';
 /*import {graphql} from 'gatsby';
 import {Link} from 'gatsby';*/
+import {IsModel} from '../../helpers/helpers.js';
 
-const FiltreEquipe = () => {
+const FiltreEquipe = ({lang}) => {
 
-  let filterpast;
+  let member, associate, filterDomain, filterMember;
+
+  if (lang === 'fr') {
+	  member = 'Membres';
+    associate = 'Associés';
+    filterDomain = 'Filtrer par domaine';
+    filterMember = 'Filtrer par appartenance';
+	
+	}
+	else {
+		member = 'Members'
+    associate = 'Associates'
+    filterDomain = 'Filter by domain';
+    filterMember = 'Filter by membership';
+  }
   
+
 	return (
   <>
     <h1 className="type_title" id="activite_title">Membres</h1>
@@ -17,54 +33,45 @@ const FiltreEquipe = () => {
       <p>Filtre<span>⋀</span>	</p>
     </label>
 
-    <input
-      type="radio" id="filtre_statut_actif" name="filtre_statut" className="input_statut"
-      value="statut_actif" hidden defaultChecked />
-    <label className="filtre_equipe checkbox-medialab" htmlFor="filtre_statut_actif" hidden>Actives</label>
+
+    <h2 className="filtre_membre_title">{ filterMember }</h2>
 
     <input
-      type="checkbox" id="filtre_statut_past" name="filtre_statut" className="input_statut_past"
-      value="statut_past" hidden />
-    <label className="filtre_equipe checkbox-medialab" htmlFor="filtre_statut_past">Afficher aussi les anciens membres</label>
+      type="checkbox" id="filtre_membre" name="filtre_membre" className="input_member"
+      value="membre" hidden />
+    <label className="filtre_equipe checkbox-medialab" htmlFor="filtre_membre">{member}</label>
 
-    <h2 className="filtre_membre_title">Filtrer par appartenance</h2>
+    <input
+      type="checkbox" id="filtre_non_membre" name="filtre_non_membre" className="input_member"
+      value="non_membre" hidden />
+    <label className="filtre_equipe checkbox-medialab" htmlFor="filtre_non_membre">{associate}</label>
 
-<input
-  type="checkbox" id="filtre_membre" name="filtre_membre" className="input_member"
-  value="membre" hidden />
-<label className="filtre_equipe checkbox-medialab" htmlFor="filtre_membre">Membres</label>
-
-<input
-  type="checkbox" id="filtre_non_membre" name="filtre_non_membre" className="input_member"
-  value="non_membre" hidden />
-<label className="filtre_equipe checkbox-medialab" htmlFor="filtre_non_membre">Associés</label>
-
-    <h2 className="filtre_domaine_title">Filtrer par domaine</h2>
+    <h2 className="filtre_domaine_title">{ filterDomain }</h2>
 
     <input
       type="checkbox" id="domaine_academique" name="domaine_academique" className="input_domaine"
       value="academique" hidden />
-    <label className="filtre_equipe checkbox-medialab" htmlFor="domaine_academique">Académique</label>
+    <label className="filtre_equipe checkbox-medialab" htmlFor="domaine_academique">{IsModel('academic', lang)}</label>
 
     <input
       type="checkbox" id="domaine_technique" name="domaine_technique" className="input_domaine"
       value="technique" hidden />
-    <label className="filtre_equipe checkbox-medialab" htmlFor="domaine_technique">Technique</label>
+    <label className="filtre_equipe checkbox-medialab" htmlFor="domaine_technique">{IsModel('tech', lang)}</label>
 
     <input
       type="checkbox" id="domaine_design" name="domaine_design" className="input_domaine"
       value="design" hidden />
-    <label className="filtre_equipe checkbox-medialab" htmlFor="domaine_design">Design</label>
+    <label className="filtre_equipe checkbox-medialab" htmlFor="domaine_design">{IsModel('design', lang)}</label>
 
     <input
       type="checkbox" id="domaine_pedagogie" name="domaine_pedagogie" className="input_domaine"
       value="pedagogie" hidden />
-    <label className="filtre_equipe checkbox-medialab" htmlFor="domaine_pedagogie">Pédagogie</label>
+    <label className="filtre_equipe checkbox-medialab" htmlFor="domaine_pedagogie">{IsModel('pedagogy', lang)}</label>
 
     <input
       type="checkbox" id="domaine_administratif" name="domaine_administratif" className="input_domaine"
       value="administratif" hidden />
-    <label className="filtre_equipe checkbox-medialab" htmlFor="domaine_administratif">Administratif</label>
+    <label className="filtre_equipe checkbox-medialab" htmlFor="domaine_administratif">{IsModel('admin', lang)}</label>
 
     
   </>

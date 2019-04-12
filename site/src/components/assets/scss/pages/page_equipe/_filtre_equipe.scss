@@ -2,8 +2,7 @@
 //////// Equipes
 /////////////////////
 
-$first-filter-equipe: $baseline*4.5;
-$margin-filter-equipe: $baseline;
+$margin-filter-equipe: $baseline/2;
 
 .page-people-list{
 
@@ -16,30 +15,16 @@ $margin-filter-equipe: $baseline;
 
 	@include for-size(desktop) {
 
-		// .filtre_equipe:nth-of-type(2){ top: $height-top-bar + $first-filter-equipe ; }
-		// .filtre_equipe:nth-of-type(3){ top: $height-top-bar + $first-filter-equipe + $baseline*2.5; }
-		#filtre_statut_actif + label{ display: none!important; }
-		#filtre_statut_past + label{ 
-			top: $height-top-bar + $baseline*5.5 ;
-			padding-left: 25px;
-			// display: block!important;
-			&::before{
-				position: absolute;
-				top: 2px;
-				left: 0px;
-			}
-			// max-width: 120px;
-		}
-		
-		.filtre_membre_title{ top: $height-top-bar + $first-filter-equipe + $margin-filter-equipe + ($baseline*2.5)*2;}
-		.filtre_equipe:nth-of-type(4){ top: $height-top-bar + $first-filter-equipe + $margin-filter-equipe + ($baseline*2.5)*3;}
-		.filtre_equipe:nth-of-type(5){ top: $height-top-bar + $first-filter-equipe + $margin-filter-equipe + ($baseline*2.5)*4;}
-		.filtre_domaine_title{ top: $height-top-bar + $first-filter-equipe + $margin-filter-equipe*2 + ($baseline*2.5)*5;}
-		.filtre_equipe:nth-of-type(6){ top: $height-top-bar + $first-filter-equipe + $margin-filter-equipe*2 + ($baseline*2.5)*6;}
-		.filtre_equipe:nth-of-type(7){ top: $height-top-bar + $first-filter-equipe + $margin-filter-equipe*2 + ($baseline*2.5)*7;}
-		.filtre_equipe:nth-of-type(8){ top: $height-top-bar + $first-filter-equipe + $margin-filter-equipe*2 + ($baseline*2.5)*8;}
-		.filtre_equipe:nth-of-type(9){ top: $height-top-bar + $first-filter-equipe + $margin-filter-equipe*2 + ($baseline*2.5)*9;}
-		.filtre_equipe:nth-of-type(10){ top: $height-top-bar + $first-filter-equipe + $margin-filter-equipe*2 + ($baseline*2.5)*10;}
+	
+		.filtre_membre_title{ top: $height-top-bar + ($baseline*2.5)*2;}
+		.filtre_equipe:nth-of-type(2){ top: $height-top-bar + ($baseline*2.5)*3;}
+		.filtre_equipe:nth-of-type(3){ top: $height-top-bar + ($baseline*2.5)*4;}
+		.filtre_domaine_title{ top: $height-top-bar+ $margin-filter-equipe*2 + ($baseline*2.5)*5;}
+		.filtre_equipe:nth-of-type(4){ top: $height-top-bar+ $margin-filter-equipe*2 + ($baseline*2.5)*6;}
+		.filtre_equipe:nth-of-type(5){ top: $height-top-bar+ $margin-filter-equipe*2 + ($baseline*2.5)*7;}
+		.filtre_equipe:nth-of-type(6){ top: $height-top-bar+ $margin-filter-equipe*2 + ($baseline*2.5)*8;}
+		.filtre_equipe:nth-of-type(7){ top: $height-top-bar+ $margin-filter-equipe*2 + ($baseline*2.5)*9;}
+		.filtre_equipe:nth-of-type(8){ top: $height-top-bar+ $margin-filter-equipe*2 + ($baseline*2.5)*10;}
 		.filtre_equipe{ z-index: 10; }
 
 	}

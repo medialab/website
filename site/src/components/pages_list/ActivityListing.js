@@ -26,26 +26,26 @@ export default function ActivityListing({lang, list, status, statuses}) {
        
         <section id="liste">
           <p className="accroche-titre">{accroche}</p>
-          <p className="accroche-titre-phone">{accroche}</p>
           <ul className="liste_objet" id="liste-activity">
             {list.map((a, index) => (
               <React.Fragment key={index}>
                 <li data-item={index} data-type={a.type} className={`list-item ${a.type}-${a.active ? 'active' : 'past'}`}>
                   <Link to={a.permalink[lang]}>
-                    <div className="title-group">
-                      <h1 data-icon="activite" data-level-1="baseline" >{a.baseline && (lang === 'fr' ? a.baseline.fr : a.baseline.en)}</h1>
-                    </div>
-                    <div className="details">
-                      <p className="type-activity">{IsModel(a.type, lang)}</p>
+                    <div className="image-pre">
+                        {/* <ProcessedImage size="large" image={a.coverImage && a.coverImage.processed.large} /> */}
+                        <ProcessedImage size="medium" image={a.coverImage && a.coverImage.processed.medium} />
+                      </div>
+                    <div className="bandeau">
+                      <p data-icon="activite" className="type-activity">{IsModel(a.type, lang)}</p>
                       <p className="title" data-level-2="title">{a.name}</p>
                     </div>
+                    <hgroup>
+                      <h1 data-level-1="baseline" >{a.baseline && (lang === 'fr' ? a.baseline.fr : a.baseline.en)}</h1>
+                    </hgroup>                   
                     <div className="accroche">
                       <p className="accroche-paragraphe">
                         {a.description && <RawHTML html={lang === 'fr' ? a.description.fr : a.description.en} />}
-                      </p>
-                      <div className="image-pre">
-                        <ProcessedImage size="medium" image={a.coverImage && a.coverImage.processed.medium} />
-                      </div>
+                      </p>                     
                     </div>
                   </Link>
                 </li>

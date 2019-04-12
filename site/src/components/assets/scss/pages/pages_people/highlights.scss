@@ -1,0 +1,18 @@
+// Manage global structure and responsive. 
+// For details see fragments/miniatures
+
+.page-people #highlights {
+	
+	@include for-size(desktop) {
+
+		max-width: 900px;
+		margin-bottom: $baseline*10;
+
+	}
+
+	
+	@include for-size(phone) {
+
+		
+	}	
+}

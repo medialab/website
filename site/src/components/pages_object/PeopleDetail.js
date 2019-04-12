@@ -71,9 +71,17 @@ export const queryFragment = graphql`
       coverImage {
         url
         processed {
-          large
+          medium
         }
       }
+      groupLabel {
+        en
+        fr
+      }
+      typeLabel {
+        en
+        fr
+      }      
     }
     mainActivities {
       description {
@@ -95,7 +103,7 @@ export const queryFragment = graphql`
       coverImage {
         url
         processed {
-          large
+          medium
         }
       }
     }

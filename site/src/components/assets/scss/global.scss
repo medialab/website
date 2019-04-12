@@ -8,10 +8,9 @@
 
 
 
-@import 'fragments/miniatures/index_now-desktop';
-@import 'fragments/miniatures/index_now-phone';
-@import 'fragments/miniatures/index_now';
-@import 'fragments/miniatures/people_highlight';
+@import 'fragments/miniatures/miniatures-all';
+@import 'fragments/miniatures/miniatures-highlight';
+@import 'fragments/miniatures/miniatures-now';
 @import 'fragments/elements-associes';
 @import 'fragments/toggle-lang';
 @import 'fragments/nav';
@@ -77,16 +76,12 @@
 @import 'pages/pages_objet/page_objet-desktop';
 @import 'pages/pages_objet/page_objet-phone';
 
-
-
-
-
-
 // PAGES PEOPLE ///////////////////////////////////////////////
 
 @import 'pages/pages_people/page_people';
 @import 'pages/pages_people/page_people-desktop';
 @import 'pages/pages_people/page_people-phone';
+@import 'pages/pages_people/highlights';
 
 
 

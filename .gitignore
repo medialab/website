@@ -4,3 +4,6 @@ build
 config/local.json
 data
 dump
+site/package-lock.json
+package-lock.json
+admin/package-lock.json

@@ -15,7 +15,7 @@ $width-image-pre-listing: 120px;
         margin-bottom: 40vh;
         min-height: calc(100vh - 40vh - #{$height-top-bar-phone});
 
-        [data-item]{
+        li{
             border-bottom: $border-light;
             width: calc(100vw - #{$logo-column} - #{$margins-desktop*2}); 
             &:first-of-type{ border-top: $border-light; }

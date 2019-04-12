@@ -25,9 +25,9 @@ html{
 
 
 @mixin font-size-60() {
-    font-size: $font-size*6;
+    font-size: $font-size*5.6;
     font-weight: 100;
-    line-height: $baseline*5.5;
+    line-height: $baseline*4.5;
     letter-spacing: -0.5px;
 }
 

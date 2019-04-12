@@ -51,31 +51,39 @@ $hack-sticky: 54px;
 			
 			 #biographie{
 				
-				
+				max-width: 1500px;
 				header{
 					@include flex-order(1);
 
+					figure, hgroup{
+						display: inline-block;
+						vertical-align: top;
+					}
+
+					figure{					
+						width: 300px;
+						img{ width: 100%; }
+					}
+
+					hgroup{ 
+						width: calc(100% - 300px); 
+						padding-left: $unite;
+					}
+
 					
 
-					h1{
-						max-width: 1100px;
-						// font-weight: bold;
-					}
 			
 					h2{ 
-						max-width: 1100px;
 						padding-bottom: $baseline*1.5; 
 					}
 
-					p{
-						@include font-size-20();
-					}
+					p{ @include font-size-20(); }
 
 					.status{
 						
 						font-style: italic;
-						margin-left: calc(100% - 350px);
-						text-align: right;
+						// margin-left: calc(100% - 350px);
+						// text-align: right;
 						width: 350px;
 						margin-bottom: $baseline*1;
 						&::before{
@@ -137,103 +145,27 @@ $hack-sticky: 54px;
 @media screen and (min-width: 700px) {
 
 	.page-people #biographie {
-		figure{
-			float: right;
-			width: 300px;
-			padding-left: $baseline*2;
-			padding-left: $unite;
-			background-color: $background-site;
-		}
 		header{
-			width: 100%;
-			hgroup{ 
-				width: calc(100% - 300px);
-				// background-color: red;
-				min-height: 200px; 
-				max-width: 900px;
-			}
-			h1{ 
-				@include font-size-27(); 
-				padding-top: $baseline*2;
-				margin-top: $baseline*1;
-				margin-bottom: $baseline/2;
-			}
-			h2{ @include font-size-20(); margin-bottom: $baseline; }
-			
-
-		}
-		
+			h1{ @include font-size-27(); }
+			h2{ @include font-size-20(); }
+		}	
 	}
 
 }
 
-// @media screen and (min-width: 1000px) and (max-width: 1080px) {
 
-// 	.page-people #biographie header{
-// 		h1{@include font-size-27(); margin-bottom: $baseline;}
-// 		h2{@include font-size-20(); margin-bottom: $baseline;}
-// 	}
 
-// }
-
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1100px) {
 
 	.page-people #biographie{
-		figure{
-			width: 400px;
-
-		}
 		header{
-			min-height: 250px;
-			max-width: 1300px;
-			margin-bottom: $baseline*3;
-			hgroup{ min-height: 300px; }
-			h1{ 
-				@include font-size-60(); 
-				// margin-bottom: $baseline*0.5; 
-				padding-top: $baseline*2;
-				margin-top: $baseline*2;
-			}
-			h2{ 
-				@include font-size-27(); 
-				margin-bottom: $baseline*1; 
-			}
-			
-		}
-		
+			h1{ @include font-size-60(); }
+			h2{ @include font-size-27(); }
+		}		
 	}
 
 }
 
 
 
-@media screen and (min-width: 1000px) {
 
-	.page-people #biographie{					
-		
-
-		
-	}
-}
-
-
-
-@media screen and (min-width: 1600px) {
-
-	.page-people #biographie{
-
-		max-width: 1500px;
-
-		figure{
-			float: right;
-			width: 33%;
-			padding-bottom: $baseline*1;
-		}
-
-
-	} 
-}
-
-@media screen and (min-width: 1800px) {
-	.page-people #biographie figure{ width: 505px; }
-}

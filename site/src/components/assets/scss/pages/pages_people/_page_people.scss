@@ -34,32 +34,12 @@
 	
 		header{
 	
-			// & *{
-			// 	width: 100%;
-			// }
-	
-			// [data-type="domaine"],[data-type="statut"]{
-			// 	@include font-size-13();
-			// 	width: inherit;
-			// 	display: inline;
-			// }
-	
-			// [data-type="activite"]{
-			// 	@include font-size-20();
-			// 	margin: $unite 0;
-			// 	font-style:italic;
-	
-			// 	&:before{
-			// 		content: '“';
-			// 	}
-			// 	&:after{
-			// 		content: '”';
-			// 	}
-			// }
+		
 		
 
-			.situation, .contact{ max-width: 900px; }
-		.situation{ 
+		.bandeau, .contact{ max-width: 900px; }
+
+		.bandeau{ 
 			border-top: $border-very-light;
 			border-bottom: $border-very-light;
 			padding-top: $baseline;
@@ -70,9 +50,15 @@
 				color: $text-color-light;
 				// height: auto;
 			}
+			[data-type="role"]{
+				color: $redlab;
+			}
 			[data-type="domaine"]{ 
 				margin-right: $unite/2; 
 				display: inline-block;
+				padding-left: $unite/2;
+				margin-left: $unite/2;
+				border-left: $border-very-light;
 			}
 			[data-type="membership"]{ 
 				display: inline-block;

@@ -19,6 +19,7 @@
 	}
 
 	#biographie{
+		
 		figure{
 			max-height: auto;
 			overflow: hidden;
@@ -34,45 +35,41 @@
 	
 		header{
 	
-			// & *{
-			// 	width: 100%;
-			// }
-	
-			// [data-type="domaine"],[data-type="statut"]{
-			// 	@include font-size-13();
-			// 	width: inherit;
-			// 	display: inline;
-			// }
-	
-			// [data-type="activite"]{
-			// 	@include font-size-20();
-			// 	margin: $unite 0;
-			// 	font-style:italic;
-	
-			// 	&:before{
-			// 		content: '“';
-			// 	}
-			// 	&:after{
-			// 		content: '”';
-			// 	}
-			// }
+		
+		
+			.status{
+				margin-top: $baseline/2;
+				font-style: italic;					
+				&::before{ content: "“"; }
+				&::after{ content: "”"; }
+
+			}
+
+
 		
 
-			.situation, .contact{ max-width: 900px; }
-		.situation{ 
+
+		.bandeau{ 
 			border-top: $border-very-light;
 			border-bottom: $border-very-light;
-			padding-top: $baseline;
-			padding-bottom: $baseline;
+			margin-top: $baseline;
+			padding-top: $baseline/2;
+			padding-bottom: $baseline/2;
+			
 			p{ 
-				@include font-size-16(); 
 				display: inline-block;
 				color: $text-color-light;
-				// height: auto;
+				@include font-size-13(); 
+			}
+			[data-type="role"]{
+				color: $redlab;
 			}
 			[data-type="domaine"]{ 
 				margin-right: $unite/2; 
 				display: inline-block;
+				padding-left: $unite/2;
+				margin-left: $unite/2;
+				border-left: $border-very-light;
 			}
 			[data-type="membership"]{ 
 				display: inline-block;
@@ -84,33 +81,21 @@
 		.contact {
 
 			border-bottom: $border-very-light;
-			padding-top: $baseline;
-			padding-bottom: $baseline;
-	
-			li{
-				@include font-size-16();
+			padding-top: $baseline/2;
+			padding-bottom: $baseline/2;
+		
+			li{ 
+				@include font-size-13();
 				color: $text-color-light;
 				border-right: $border-very-light;
-				padding: 0 $unite/1.5;
-				width: auto;
-				color: $text-color-light;
-				text-align: center;
+				padding-right: $unite/2;
+				margin-right:  $unite/2;
 				display: inline-block;
-				margin-right: -4px;
 	
-				&:first-of-type{
-					padding-left: 0;
-				}
-				&:last-of-type{
-					border-right: none;
-				}
 	
-				&:hover{	
-					color: $redlab;
-					border-left: $border-light;
-					cursor: pointer;
-					z-index: 99;
-				}
+				&:last-of-type{ border-right: none; }
+	
+				
 			}
 		}
 	}

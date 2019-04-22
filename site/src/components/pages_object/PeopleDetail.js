@@ -217,16 +217,17 @@ export default function PeopleDetail({lang, person}) {
           <span className="personne">{person.firstName} {person.lastName}</span>
         </p>
         <article id="biographie">
-          <figure>
-            <img src={person.coverImage ? person.coverImage.url : Img} alt={lang === 'fr' ? 'Photo de profil de ' + person.firstName + person.lastName : person.firstName + person.lastName + ' profil picture'} />
-          </figure>
+          
           <header>
+            <figure>
+              <img src={person.coverImage ? person.coverImage.url : Img} alt={lang === 'fr' ? 'Photo de profil de ' + person.firstName + person.lastName : person.firstName + person.lastName + ' profil picture'} />
+            </figure>
             <hgroup>
-            <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
-            <h2 data-level-2="role" data-type="role">{person.role[lang]}</h2>
-            <p class="status" data-type="status">{person.status && (lang === "fr" ? person.status.fr : person.status.en)}</p>
+              <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>        
+              <p class="status" data-type="status">{person.status && (lang === "fr" ? person.status.fr : person.status.en)}</p>
             </hgroup>
-            <div className="situation">
+            <div className="bandeau">
+            <p className="role" data-type="role">{person.role[lang]}</p>
                 <p data-type="domaine">{lang === "fr" ? "Domaine" + String.fromCharCode(8239) +":" : "Domain:"} {person.domain}</p>
                 <p data-type="membership">{templateMembership(person)}</p>
             </div>

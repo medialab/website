@@ -114,7 +114,21 @@ $width-image-pre-listing: 90px;
                 p{ @include font-size-20; }
             }
 
-      
+            // Ces règles s'appliquent aux écran dont la hauteur d'écran dne permet pas d'afficher plus 3 item par écran
+            @media screen and ( max-height: 800px ){
+                h1 { 
+                    @include font-size-20;  
+                    padding-top: 0; 
+                    padding-bottom: $baseline/2;
+                }
+                .accroche p{ 
+                    @include font-size-13; 
+                    margin-top: $baseline*.5;
+                    height: calc( 2 * #{$baseline*1.5} ); // Show 2 lines;
+                    overflow: hidden;
+                }
+                
+            }
 
 
 

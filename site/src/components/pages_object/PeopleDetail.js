@@ -33,6 +33,7 @@ export const queryFragment = graphql`
       url
       processed {
         small
+
       }
     }
     membership
@@ -71,6 +72,7 @@ export const queryFragment = graphql`
       coverImage {
         url
         processed {
+          small
           medium
         }
       }
@@ -103,6 +105,7 @@ export const queryFragment = graphql`
       coverImage {
         url
         processed {
+          small
           medium
         }
       }

@@ -40,7 +40,6 @@ $width-image-pre-listing: 120px;
                 font-size: 1.1vw;
                 background-color: $background-site;
                 pre{ color: $color-img; }
-                &:hover{ max-width: calc(#{$width-image-pre-listing} + (100% - #{$width-image-pre-listing})/2); }
             }
 
 
@@ -119,11 +118,15 @@ $width-image-pre-listing: 120px;
 
 
 
+
             &:hover{
-                background-color: $background-grey;              
+                background-color: $background-grey;
+                .image-pre{ 
+                    max-width: calc(#{$width-image-pre-listing} + (100% - #{$width-image-pre-listing})/2); 
+                    transition-duration: .15s;
+                }
+                .bandeau .date-news{ color: $text-color; transition: color .15s cubic-bezier(1,0,0,1);}
             }
-
-
         }
 
         .list-year{ 

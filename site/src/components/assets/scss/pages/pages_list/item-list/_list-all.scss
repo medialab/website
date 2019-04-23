@@ -82,6 +82,8 @@ $width-image-pre-listing: 120px;
                     // @include font-size-13-uppercase; 
                     position: absolute; 
                     right: 0;
+                    text-align: right;
+                    @include for-size( desktop-1200) { left: calc( 50% + #{$unite/2} ); text-align: left; }
                 }
                 
 

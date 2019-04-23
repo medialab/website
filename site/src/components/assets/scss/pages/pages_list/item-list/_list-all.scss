@@ -1,7 +1,7 @@
 /* page_list all */
 
 
-$width-image-pre-listing: 120px;
+$width-image-pre-listing: 90px;
 
 
 @include for-size(desktop) {
@@ -46,7 +46,7 @@ $width-image-pre-listing: 120px;
             .bandeau{
                 position: absolute;
                 width: calc(100% - #{$width-image-pre-listing} - #{$unite});
-                left: calc(#{$width-image-pre-listing} + #{$unite});           
+                left: calc(#{$width-image-pre-listing} + #{$unite/2});           
                 border-bottom: $border-very-light;
                 padding: $baseline/2 0;
                 @include text-overflow();
@@ -97,7 +97,7 @@ $width-image-pre-listing: 120px;
                 left: $width-image-pre-listing;
                 margin-top: $baseline*3.5;
                 margin-bottom: $baseline;
-                padding: 0 $unite;
+                padding: 0 $unite/2;
                 
                 
             }

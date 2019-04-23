@@ -39,7 +39,13 @@ $width-image-pre-listing: 90px;
                 transition: max-width 0.25s cubic-bezier(1,0,0,1);
                 font-size: 1.1vw;
                 background-color: $background-site;
-                pre{ color: $color-img; }
+                pre{ 
+                    color: $color-img;
+                    font-size: calc((( ((100vw - #{$unite*2}) - #{$logo-column} ) /2 ) /125 )*1.89 ); // Should change with width
+                    line-height: calc((( ((100vw - #{$unite*2}) - #{$logo-column} ) /2 ) /125 )*1.50 );
+                    top: -50%;
+                    transform: translateY(50%);
+                }
             }
 
 

@@ -142,7 +142,17 @@ $width-image-pre-listing: 90px;
 
 
             &:hover{
-                background-color: $background-grey;
+                &:after{
+                    content: "";
+                    position: absolute;
+                    z-index: -1;
+                    top: 0;
+                    right: 0;
+                    width: calc(((100vw - #{$unite*2}) - #{$logo-column} - #{$width-image-pre-listing} ) /2  );
+                    height: 100%;
+                    background-color: $background-grey;
+
+                }
                 .image-pre{ 
                     max-width: calc(#{$width-image-pre-listing} + (100% - #{$width-image-pre-listing})/2); 
                     transition-duration: .15s;

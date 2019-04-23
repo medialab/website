@@ -34,23 +34,7 @@
 				}
 			
 
-				
-				@for $i from 0 through 500 {
-					[data-item="#{$i}"]:hover *,
-					[data-item="#{$i}"]:active *{
-						color: $redlab !important;
-					}
-		
-					[data-item="#{$i}"]:hover ~ [data-item-accroche="#{$i}"],
-					[data-item="#{$i}"]:active ~ [data-item-accroche="#{$i}"],
-					[data-item-accroche="#{$i}"]:hover, 
-					[data-item-accroche="#{$i}"]:active{ 
-						// transition: .5s ease-in-out;
-						// transition-property: max-height;
-						max-height: 180px;
-					}
 
-				}
 		
 				.item_accroche{
 					@include font-size-13();

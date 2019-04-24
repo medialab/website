@@ -47,10 +47,7 @@ export default function highlights({people, lang}) {
                     <Link to={p.permalink[lang]}>
                       <div className="image-pre">
                           <ProcessedImage size="small" image={p.coverImage && p.coverImage.processed.small} />
-                      </div>                    
-                      <hgroup>
-                        <h1 data-level-1="title" >{lang === 'fr' ? p.title.fr : p.title.en}</h1>
-                      </hgroup>
+                      </div>
                       <div className="bandeau">
                         <p className="type-production" data-icon="production"> {p.groupLabel[lang]}</p> 
                         {p.typeLabel !== 'media' && 
@@ -58,6 +55,9 @@ export default function highlights({people, lang}) {
                         }
                         { p.date && <p className="date-production">{p.date}</p> }
                       </div>
+                      <hgroup>
+                        <h1 data-level-1="title" >{lang === 'fr' ? p.title.fr : p.title.en}</h1>
+                      </hgroup>
                       {/*<div className="authors">
                         <p className="authors-paragraphe">
                         {p.authors}

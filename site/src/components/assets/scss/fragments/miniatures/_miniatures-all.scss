@@ -6,7 +6,7 @@
 
 	@include for-size(desktop) {
 
-        min-height: calc(100vh - 40vh - #{$height-top-bar-phone});
+        //min-height: calc(100vh - 40vh - #{$height-top-bar-phone});
 
         li{
             border-bottom: $border-light;

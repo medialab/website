@@ -15,45 +15,48 @@ $width-image-pre-highlight: ( 100% / 75 ) * 2;
 				margin-bottom: $baseline*2;
 			}
 
-			li{
-				&:first-of-type{ border-top: $border-light; }
-				.image-pre{
-					max-width: calc(#{$width-image-pre-highlight});
-					pre{ 
-						font-size: calc(( ((100vw - #{$unite*2}) - #{$logo-column})  /75 )*1.89 ); // Should change with width
-						//line-height: calc(( ((100vw - #{$unite*4}) - #{$logo-column})  /75 )*1.89 );
-						@include for-size(desktop-900){ font-size: calc( ( 900px / 75 ) * 1.89); } // fit with highlight container
-						line-height: normal;
-					}
-		            &:hover{ max-width: calc(#{$width-image-pre-highlight} + (100% - #{$width-image-pre-highlight})); }
-	            }
-				.bandeau{
-	                width: calc(100% - #{$width-image-pre-highlight} - #{$unite/2});
-	                left: calc(#{$width-image-pre-highlight} + #{$unite/2});
-				}
-				hgroup, .accroche{
-	                left: calc(#{$width-image-pre-highlight});
-					width: calc( 100% - #{$width-image-pre-highlight} );
-					padding: 0 $unite/2;
-				}			
-				h1{
-	                @include font-size-20; 			
-					//margin-bottom: $baseline*.5;
-					min-height: $baseline*4;
-	                padding-top: $baseline*.5;
-					//padding-bottom: $baseline;
+			ul{
 
-					@include for-size( desktop-900){
-						min-height: inherit;
-						@include text-overflow;
+				&:first-of-type li:first-of-type{ border-top: $border-light; }
+				li{
+					.image-pre{
+						max-width: calc(#{$width-image-pre-highlight});
+						pre{ 
+							font-size: calc(( ((100vw - #{$unite*2}) - #{$logo-column})  /75 )*1.89 ); // Should change with width
+							//line-height: calc(( ((100vw - #{$unite*4}) - #{$logo-column})  /75 )*1.89 );
+							@include for-size(desktop-900){ font-size: calc( ( 900px / 75 ) * 1.89); } // fit with highlight container
+							line-height: normal;
+						}
+			            &:hover{ max-width: calc(#{$width-image-pre-highlight} + (100% - #{$width-image-pre-highlight})); }
+		            }
+					.bandeau{
+		                width: calc(100% - #{$width-image-pre-highlight} - #{$unite/2});
+		                left: calc(#{$width-image-pre-highlight} + #{$unite/2});
 					}
-				}
+					hgroup, .accroche{
+		                left: calc(#{$width-image-pre-highlight});
+						width: calc( 100% - #{$width-image-pre-highlight} );
+						padding: 0 $unite/2;
+					}			
+					h1{
+		                @include font-size-20; 			
+						//margin-bottom: $baseline*.5;
+						min-height: $baseline*4;
+		                padding-top: $baseline*.5;
+						//padding-bottom: $baseline;
 
-				&:hover{
-					.image-pre{ 
-				    	max-width: 100%;
+						@include for-size( desktop-900){
+							min-height: inherit;
+							@include text-overflow;
+						}
 					}
-				}				
+
+					&:hover{
+						.image-pre{ 
+					    	max-width: 100%;
+						}
+					}				
+				}
 			}
 		}
 	}

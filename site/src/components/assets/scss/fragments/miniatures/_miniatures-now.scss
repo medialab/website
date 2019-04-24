@@ -32,7 +32,7 @@ $width-image-pre-now: 90px;
 						width: calc( 100% / 2 );
 						flex: 0 1 calc(100% / 2 );
 
-						@include for-size(desktop-1200) { 
+						@include for-size(desktop-1400) { 
 							width: calc( 100% / 3 );
 							flex: 0 1 calc(100% / 3 );
 						}

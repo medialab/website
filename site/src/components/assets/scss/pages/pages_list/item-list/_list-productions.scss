@@ -47,5 +47,6 @@
         .authors-paragraphe{ @include font-size-20; }          
     }
 
+    &:hover:after{ width: 100% !important; } // if no image process, adapt hover
 
 }

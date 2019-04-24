@@ -1,13 +1,11 @@
 /* page_list all */
 
 
-$width-image-pre-listing: 90px;
-
+//$width-image-pre-listing: 90px;
+$width-image-pre-listing: ( ( 100% / 125 ) * 10 );
 
 @include for-size(desktop) {
 
-
-    
     .page-production-list #liste .liste_objet,
     .page-activity-list #liste .liste_objet,
     .page-news-list #liste .liste_objet{
@@ -33,7 +31,8 @@ $width-image-pre-listing: 90px;
 
             .image-pre{
                 position: absolute;
-                max-width: $width-image-pre-listing;
+                //max-width: $width-image-pre-listing;
+                max-width: calc(#{$width-image-pre-listing});
                 height: 100%;
                 overflow: hidden;
                 transition: max-width 0.25s cubic-bezier(1,0,0,1);
@@ -41,8 +40,10 @@ $width-image-pre-listing: 90px;
                 background-color: $background-site;
                 pre{ 
                     color: $color-img;
-                    font-size: calc((( ((100vw - #{$unite*2}) - #{$logo-column} ) /2 ) /125 )*1.89 ); // Should change with width
-                    line-height: calc((( ((100vw - #{$unite*2}) - #{$logo-column} ) /2 ) /125 )*1.50 );
+                    //font-size: calc((( ((100vw - #{$unite*2}) - #{$logo-column} ) /2 ) /125 )*1.89 ); // Should change with width
+                    //line-height: calc((( ((100vw - #{$unite*2}) - #{$logo-column} ) /2 ) /125 )*1.50 );
+                    font-size: calc(( ((100vw - #{$unite*2}) - #{$logo-column})  /125 )*1.89 ); 
+                    line-height: normal;                    
                     top: -50%;
                     transform: translateY(50%);
                 }
@@ -100,7 +101,7 @@ $width-image-pre-listing: 90px;
                 vertical-align: top;
                 width: calc((100% - #{$width-image-pre-listing})/2);
                 // height: 100%;
-                left: $width-image-pre-listing;
+                left: calc(#{$width-image-pre-listing});
                 margin-top: $baseline*3.5;
                 margin-bottom: $baseline;
                 padding: 0 $unite/2;

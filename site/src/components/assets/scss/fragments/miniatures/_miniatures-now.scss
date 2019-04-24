@@ -45,8 +45,9 @@ $width-image-pre-now: 90px;
 						pre{ 
 						    font-size: calc(( ((100vw - 50px) / 1.5 ) / 125 )*1.89);
 						    line-height: normal;
+						    top: -50%;
 						    left: -50%;
-						    transform: translateX(50%);
+						    transform: translate(50%);
 
 						}
 			            &:hover{ max-width: calc(#{$width-image-pre-now} + (100% - #{$width-image-pre-now})); }

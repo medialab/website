@@ -47,49 +47,7 @@
 			.article-contenu{
 				margin-top: $baseline*2;
 
-				h1, h2, h3, h4, h5{
-					@include font-size-16-phone;
-					font-weight: bold;
-					margin-top: $baseline*4;
-					margin-bottom: $baseline*1.5;
-				}
-
-
-				.title-style-level-1,
-				[data-style-level="1"]{
-					@include font-size-16-phone;
-					font-weight: bold;
-					text-transform: uppercase;
-					margin-top: $baseline*4;
-					margin-bottom: $baseline*1.5;
-				}
-
-				.title-style-level-2,
-				[data-style-level="2"]{
-					@include font-size-16-phone;
-					font-weight: bold;
-					margin-top: $baseline*3;
-					margin-bottom: $baseline*1.5;
-				}
-
-				.title-style-level-3,
-				[data-style-level="3"]{
-					@include font-size-16-phone;
-					font-weight: 300;
-					font-style: italic;
-					margin-top: $baseline*3;
-					margin-bottom: $baseline*1.5;
-				}
-
-				h3 + h4, 
-				.title-style-level-1 + .title-style-level-2,
-				[data-style-level="1"] + [data-style-level="2"]{ margin-top: 0;}
-
-				
-				p{ margin-bottom: $baseline*1.5;}
-
-				p, li{ @include font-size-16-phone(); }
-
+				// Regles typo (communes à toutes les pges de contenu) transférées dans common/pages/* 
 
 				figure{
 

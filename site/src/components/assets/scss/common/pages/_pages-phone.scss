@@ -1,0 +1,71 @@
+/* Regles typographique de bases communes à toutes les pages de contenu */
+
+
+@include for-size(phone) {
+
+	.page-production, 
+	.page-news, 
+	.page-activity, 
+	.page-people,
+	.page-about{
+
+		.article-contenu, 
+		.biographie-contenu,
+		.about-contenu {
+							
+			/* Regles de Base */
+
+			h1, h2, h3, h4, h5{
+				@include font-size-16-phone;
+				font-weight: bold;
+				margin-top: $baseline*4;
+				margin-bottom: $baseline*1.5;
+			}
+
+
+			.title-style-level-1,
+			[data-style-level="1"]{
+				@include font-size-16-phone;
+				font-weight: bold;
+				text-transform: uppercase;
+				margin-top: $baseline*4;
+				margin-bottom: $baseline*1.5;
+			}
+
+			.title-style-level-2,
+			[data-style-level="2"]{
+				@include font-size-16-phone;
+				font-weight: bold;
+				margin-top: $baseline*3;
+				margin-bottom: $baseline*1.5;
+			}
+
+			.title-style-level-3,
+			[data-style-level="3"]{
+				@include font-size-16-phone;
+				font-weight: 300;
+				font-style: italic;
+				margin-top: $baseline*3;
+				margin-bottom: $baseline*1.5;
+			}
+
+			h3 + h4, 
+			.title-style-level-1 + .title-style-level-2,
+			[data-style-level="1"] + [data-style-level="2"]{ margin-top: 0;}
+
+
+			p + p {  margin-top: $baseline*2; }
+
+			p, li{ 
+				@include font-size-16-phone(); 
+				margin-bottom: $baseline*2;
+			}
+					
+			li{ 
+				left: $unite;
+				text-indent: $unite*-.7;
+				&:before{ content: "⧆"; left: $unite/-2;}
+			}
+		}
+	}
+}

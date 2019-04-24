@@ -89,65 +89,7 @@ $hack-sticky: 54px;
 		
 				.article-contenu{
 										
-					/* Regles de Base */
-					figure, img + img, p + img{
-						margin: $baseline*3 0 $baseline*4 0;
-						width: 90%;
-						margin-left: $unite;
-					}
-
-					iframe{
-						width: 100%;
-						min-height: 50vh;
-						margin: $baseline*3 0 $baseline*4 0;	
-						border: none;					
-					}
-
-					
-					h1, h2, h3, h4, h5{
-						@include font-size-20;
-						font-weight: bold;
-						margin-top: $baseline*4;
-						margin-bottom: $baseline*2;
-					}
-
-
-					.title-style-level-1,
-					[data-style-level="1"]{
-						@include font-size-20;
-						font-weight: bold;
-						text-transform: uppercase;
-						margin-top: $baseline*6;
-						margin-bottom: $baseline*2;
-					}
-
-					.title-style-level-2,
-					[data-style-level="2"]{
-						@include font-size-20;
-						font-weight: bold;
-						margin-top: $baseline*4;
-						margin-bottom: $baseline*2;
-					}
-
-					.title-style-level-3,
-					[data-style-level="3"]{
-						@include font-size-20;
-						font-weight: 300;
-						font-style: italic;
-						margin-top: $baseline*4;
-						margin-bottom: $baseline*2;
-					}
-
-					.title-style-level-1 + .title-style-level-2,
-					[data-style-level="1"] + [data-style-level="3"]{ margin-top: 0;}
-
-
-				
-
-					p, li{ 
-						@include font-size-20(); 
-						margin-bottom: $baseline*2;
-					}
+					// Regles typo (communes à toutes les pges de contenu) transférées dans common/pages/* 
 
 					//////////////////////////
 					///        Grid 	/////

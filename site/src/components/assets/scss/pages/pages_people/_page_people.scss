@@ -49,64 +49,54 @@
 		
 
 
-		.bandeau{ 
-			border-top: $border-very-light;
-			border-bottom: $border-very-light;
-			margin-top: $baseline;
-			padding-top: $baseline/2;
-			padding-bottom: $baseline/2;
-			
-			p{ 
-				display: inline-block;
-				color: $text-color-light;
-				@include font-size-13(); 
-			}
-			[data-type="role"]{
-				color: $redlab;
-			}
-			[data-type="domaine"]{ 
-				margin-right: $unite/2; 
-				display: inline-block;
-				padding-left: $unite/2;
-				margin-left: $unite/2;
-				border-left: $border-very-light;
-			}
-			[data-type="membership"]{ 
-				display: inline-block;
-				border-left: $border-very-light;
-				padding-left: $unite/2; 
-			}
-		}
-	
-		.contact {
-
-			border-bottom: $border-very-light;
-			padding-top: $baseline/2;
-			padding-bottom: $baseline/2;
-		
-			li{ 
-				@include font-size-13();
-				color: $text-color-light;
-				border-right: $border-very-light;
-				padding-right: $unite/2;
-				margin-right:  $unite/2;
-				display: inline-block;
-	
-	
-				&:last-of-type{ border-right: none; }
-	
+			.bandeau{ 
+				border-top: $border-very-light;
+				border-bottom: $border-very-light;
+				margin-top: $baseline;
+				padding-top: $baseline/2;
+				padding-bottom: $baseline/2;
 				
+				p{ 
+					display: inline-block;
+					color: $text-color-light;
+					@include font-size-13(); 
+				}
+				[data-type="role"]{
+					color: $redlab;
+				}
+				[data-type="domaine"]{ 
+					margin-right: $unite/2; 
+					display: inline-block;
+					padding-left: $unite/2;
+					margin-left: $unite/2;
+					border-left: $border-very-light;
+				}
+				[data-type="membership"]{ 
+					display: inline-block;
+					border-left: $border-very-light;
+					padding-left: $unite/2; 
+				}
 			}
-		}
-	}
-	
+		
+			.contact {
 
-		.biographie-contenu{			
-			p + p {  margin-top: $baseline*2; }
+				border-bottom: $border-very-light;
+				padding-top: $baseline/2;
+				padding-bottom: $baseline/2;
 			
-			li{ 
-				left: $unite;
-				&:before{ content: "⧆"; left: -5px;}
+				li{ 
+					@include font-size-13();
+					color: $text-color-light;
+					border-right: $border-very-light;
+					padding-right: $unite/2;
+					margin-right:  $unite/2;
+					display: inline-block;
+		
+		
+					&:last-of-type{ border-right: none; }
+		
+					
+				}
 			}
 		}
 

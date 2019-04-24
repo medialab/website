@@ -74,28 +74,7 @@ $hack-sticky: 54px;
 			
 					
 				}
-
-
-	
-				
-
-			
-
 			}	
-
-			#highlights{
-				width: 100%;
-				overflow: hidden;
-				position: relative;
-				margin-top: $baseline*6;
-				h1{
-					@include font-size-27();
-					margin-bottom: $baseline*3;
-				}
-			}
-			
-			
-
 		} /* end main */
 
 

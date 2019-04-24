@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ROWS = {
-  small: 25,
+  small: 75,
   medium: 125,
   large: 250
 };

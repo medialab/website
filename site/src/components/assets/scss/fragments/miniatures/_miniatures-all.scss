@@ -1,12 +1,8 @@
 /* miniature all */
 
-
-$width-image-pre-listing: 120px;
-
-
 .page-people #highlights #highlights-list-activity, 
 .page-people #highlights #highlights-list-production, 
-.page-home #now #now-list {
+.page-home #now {
 
 	@include for-size(desktop) {
 
@@ -14,7 +10,6 @@ $width-image-pre-listing: 120px;
 
         li{
             border-bottom: $border-light;
-            &:first-of-type{ border-top: $border-light; }
             position: relative;
             height: auto;
             width: 100%;
@@ -23,31 +18,29 @@ $width-image-pre-listing: 120px;
                 width: 100%;
                 height: 100%;
                 display: inline-block;
-                @include flex();
-                @include flex-direction(row);
             }
 
 
             .image-pre{
                 position: absolute;
-                max-width: $width-image-pre-listing;
                 height: 100%;
                 overflow: hidden;
-                transition: max-width 0.5s ease-in-out;
-                font-size: 1.1vw;
+                transition: max-width 0.25s ease-in-out;
                 background-color: $background-site;
-                pre{ color: $color-img; }
-                &:hover{ max-width: calc(#{$width-image-pre-listing} + (100% - #{$width-image-pre-listing})); }
+                pre{ 
+                    color: $color-img;
+                    top: -50%;
+                    transform: translateY(50%);
+                }
             }
 
 
             .bandeau{
-                position: absolute;
-                width: calc(100% - #{$width-image-pre-listing} - #{$unite});
-                left: calc(#{$width-image-pre-listing} + #{$unite});           
+                position: absolute;     
                 border-bottom: $border-very-light;
                 padding: $baseline/2 0;
                 @include text-overflow();
+
                 p{ 
                     @include font-size-13; 
                     display: inline-block; 
@@ -66,7 +59,8 @@ $width-image-pre-listing: 120px;
                 .type-production {}
 
 				.subtype-production, 
-				.date-production{
+				.date-production
+                .date-news{
                     @include text-overflow();
                     padding-left: $unite/2;
                     margin-left: $unite/2;
@@ -74,33 +68,35 @@ $width-image-pre-listing: 120px;
    				}
             }
 
+            .bandeau, hgroup{ 
+                z-index: 3;
+            }
+
             hgroup, .accroche{
                 display: inline-block;
                 vertical-align: top;
-                width: calc( 100% - #{$width-image-pre-listing} );
                 // height: 100%;
-                left: $width-image-pre-listing;
                 margin-top: $baseline*2;
                 margin-bottom: $baseline;
-                padding: 0 $unite;               
             }
 
 
-            h1{
-                padding-top: $baseline*.5;
-                padding-bottom: $baseline;
-                 @include font-size-27; 
-            }
+            h1{ }
 
-            /*.accroche{ 
-                border-left: $border-very-light; 
+            .accroche{ 
+                //border-left: $border-very-light; 
                 p{ @include font-size-16; }
-            }*/
+            }
 
             &:hover{
                 background-color: $background-grey;              
-            }
 
+                .image-pre{ 
+                    max-width: 100%; 
+                    transition-duration: .25s;
+                }
+                .bandeau .date-news{ color: $text-color; transition: color .15s cubic-bezier(1,0,0,1);}
+            }
 
         }
 
@@ -112,9 +108,4 @@ $width-image-pre-listing: 120px;
         }
 
     }
-
-
-    
-
-
 }

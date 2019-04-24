@@ -1,1 +1,88 @@
 /* Miniature Now */
+
+$width-image-pre-now: 90px;
+
+@include for-size(desktop) {
+	.page-home{
+
+		#now{
+			width: 100%;
+			overflow: hidden;
+			position: relative;
+			//margin-top: $baseline*6;
+			border-bottom: none;
+
+			ul{
+
+				display: inline-block;
+
+				@supports(display: flex){
+					@include flex();
+	                @include flex-direction(row);
+	                @include flex-wrap(wrap);
+	            }
+
+				li{
+
+					width: 100%;
+
+
+					@supports(display: flex){
+
+						width: calc( 100% / 2 );
+						flex: 0 1 calc(100% / 2 );
+
+						@include for-size(desktop-1200) { 
+							width: calc( 100% / 3 );
+							flex: 0 1 calc(100% / 3 );
+						}
+
+
+					}
+
+					.image-pre{
+						max-width: $width-image-pre-now;
+						pre{ 
+						    font-size: calc(( ((100vw - 50px) / 1.5 ) / 125 )*1.89);
+						    line-height: normal;
+						    left: -50%;
+						    transform: translateX(50%);
+
+						}
+			            &:hover{ max-width: calc(#{$width-image-pre-now} + (100% - #{$width-image-pre-now})); }
+		            }
+					.bandeau{
+		                width: calc(100% - #{$width-image-pre-now} - #{$unite});
+		                left: calc(#{$width-image-pre-now} + #{$unite});
+					}
+					hgroup, .accroche{
+		                left: $width-image-pre-now;
+						width: calc( 100% - #{$width-image-pre-now} );
+						padding: 0 $unite/2;
+					}
+					.accroche{ 
+						padding-bottom: $baseline*3; 
+						max-width: 900px;
+					}	
+					h1{
+						//margin-bottom: $baseline*3;
+						padding: $baseline*2 0 $baseline 0;
+		                @include font-size-27;
+					}
+					.more{ 
+						left: $width-image-pre-now; 
+						padding: $baseline $unite/2;
+						position: absolute;
+						bottom: 0;
+					}
+
+					&:hover{
+						.image-pre{ 
+					    	max-width: 100%;
+						}
+					}
+				}				
+			}
+		}
+	}
+}

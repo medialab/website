@@ -21,7 +21,7 @@ export default function highlights({people, lang}) {
                 <li data-type={a.type} className="list-item" key={index}>
                   <Link to={a.permalink[lang]}>
                     <div className="image-pre">
-                        <ProcessedImage size="medium" image={a.coverImage && a.coverImage.processed.medium} />
+                        <ProcessedImage size="small" image={a.coverImage && a.coverImage.processed.small} />
                     </div>
                     <div className="bandeau">
                       <p className="type-activity" data-icon="activite">{IsModel(a.type, lang)}</p>
@@ -46,7 +46,7 @@ export default function highlights({people, lang}) {
                   <li data-type={p.type} className="list-item" key={index}>
                     <Link to={p.permalink[lang]}>
                       <div className="image-pre">
-                          <ProcessedImage size="medium" image={p.coverImage && p.coverImage.processed.medium} />
+                          <ProcessedImage size="small" image={p.coverImage && p.coverImage.processed.small} />
                       </div>                    
                       <hgroup>
                         <h1 data-level-1="title" >{lang === 'fr' ? p.title.fr : p.title.en}</h1>

@@ -31,6 +31,7 @@ export const query = graphql`
                 en
                 fr
               }
+              type
             }
             ... on News {
               coverImage {
@@ -51,6 +52,9 @@ export const query = graphql`
                 en
                 fr
               }
+              type
+              startDate
+              endDate
             }
             ... on Productions {
               coverImage {
@@ -68,6 +72,11 @@ export const query = graphql`
                 fr
               }
               permalink {
+                en
+                fr
+              }
+              type
+              typeLabel {
                 en
                 fr
               }

@@ -1,10 +1,12 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
+
 import DateNews from '../../helpers/DateNews.js';
 import TimeNews from '../../helpers/TimeNews.js';
 import ProcessedImage from '../../helpers/ProcessedImage.js';
 import {IsModel} from '../../helpers/helpers.js';
+import RawHTML from '../../helpers/RawHtml.js';
 
 
 export default function Now({now, lang}) {
@@ -16,97 +18,127 @@ export default function Now({now, lang}) {
   <>
     <section id="now">
       <h1>À la une</h1>
-      <div className="contenu">
+      <ul className="contenu">
+      {now.map((item, index) =>
 
-        {now.map((item, index) =>
-
-          (<React.Fragment key={index}>
-            <article data-type={item.model}>
-              <Link to={item.data.permalink[lang]}>
-                <p className="type" data-type={item.model}>{IsModel(item.model, lang)}</p>
-                <div className="image-pre">
-                  <ProcessedImage size="medium" image={item.data.coverImage && item.data.coverImage.processed.medium} />
+        (<React.Fragment key={index}>
+        <li data-type={item.model} className="now-item" key={index}>
+          <Link to={item.data.permalink[lang]}>
+            <div className="image-pre">
+                <ProcessedImage size="medium" image={item.data.coverImage && item.data.coverImage.processed.medium} />
+            </div>
+              {/* If Production*/}
+              {item.model === 'productions' &&
+								<>
+                <div className="bandeau">
+                  <p className="type-production" data-icon="production">{IsModel(item.data.type, lang)}</p>
+                  <p className="subtype-production">{item.data.typeLabel !== 'media' && lang === 'fr' ? <span>{item.data.typeLabel.fr}</span> : <span>{item.data.typeLabel.en}</span>}</p>
+                  <p className="date-production">{item.data.date}</p>               
                 </div>
                 <hgroup>
-
-                  {/* If Production*/}
-                  {item.model === 'productions' &&
-
-								(item.data.title &&
-									<>
-  {lang === 'fr' ?
-    <h1 data-level-1="title">{item.data.title.fr}</h1> :
-    <h1 data-level-1="title">{item.data.title.en}</h1>
-									}
-  <h2 data-level-2="author" className="author">
-    {(item.data.author || []).map(person => <span>{person.firstName} {person.lastName}</span>)}
-  </h2>
-									</>
-								)
-							}
-
-                  {/* If People*/}
-                  {item.model === 'people' &&
-								(lang === 'fr' ?
-  <>
-    <h1 data-level-1="name">{item.data.name && item.data.name.fr}</h1>
-    <h2 data-level-2="role">{item.data.title && item.data.title.en}</h2>
-  </>
-									:
-  <>
-    <h1 data-level-1="name">{item.data.name && item.data.name.en}</h1>
-    <h2 data-level-2="role">{item.data.title && item.data.title.en}</h2>
-  </>
-								)
-							}
-
-                  {/* If News */}
-                  {item.model === 'news' &&
-								(lang === 'fr' ?
-  <>
-    <h1 data-level-1="title">{item.data.title && item.data.title.fr}</h1>
-    { item.data.date &&
-    <>
-      <DateNews startDate={item.data.startDate} endDate={item.data.endDate} />
-      <TimeNews startDate={item.data.startDate} endDate={item.data.endDate} />
-    </>
-									}
-    <h2 data-level-2="label">{item.data.label && item.data.label.fr}</h2>
-  </>
-									:
-  <>
-    <h1 data-level-1="title">{item.data.label && item.data.title.en}</h1>
-    { item.data.date &&
-    <>
-      <DateNews startDate={item.data.startDate && item.data.startDate} endDate={item.data.endDate} />
-      <TimeNews startDate={item.data.startDate && item.data.startDate} endDate={item.data.endDate} />
-    </>
-									}
-    <h2 data-level-2="label">{item.data.label && item.data.label.en}</h2>
-  </>
-								)
-							}
-
-                  {/* If Activity */}
-                  {item.model === 'activities' &&
-                <>
-                {lang === 'fr' ?
-                <h1 data-level-1="baseline">{item.data.baseline && item.data.baseline.fr}</h1> :
-              <h1 data-level-1="baseline">{item.data.baseline && item.data.baseline.en}</h1>
-								}
-                <h2 data-level-2="name">{item.data.name}</h2>
-              </>
-							}
-
-                  <p className="more"><Link to={item.data.permalink[lang]}>{lang === 'fr' ? 'En savoir plus' : 'Get more about it'}</Link></p>
+                (item.data.title &&
+                  {lang === 'fr' ?
+                    <h1 data-level-1="title">{item.data.title.fr}</h1> :
+                    <h1 data-level-1="title">{item.data.title.en}</h1>
+                	}
+                  <h2 data-level-2="author" className="author">
+                    {(item.data.author || []).map(person => <span>{person.firstName} {person.lastName}</span>)}
+                  </h2>
+                  )
                 </hgroup>
-              </Link>
-            </article>
-          </React.Fragment>)
+							  </>
+							}
 
-	        )}
+              {/* If People*/}
+              {item.model === 'people' &&
+                <>
+                <div className="bandeau">
+                  <p className="type-people" data-icon="people">{ lang === 'fr' ? "Membre du labo" : "Labo member"}</p>
+                </div>
+                <hgroup>
+							  (lang === 'fr' ?
+                    <>
+                      <h1 data-level-1="name">{item.data.name && item.data.name.fr}</h1>
+                      <h2 data-level-2="role">{item.data.title && item.data.title.en}</h2>
+                    </>
+                  									:
+                    <>
+                      <h1 data-level-1="name">{item.data.name && item.data.name.en}</h1>
+                      <h2 data-level-2="role">{item.data.title && item.data.title.en}</h2>
+                    </>
+  								)
+                </hgroup>
+                </> 
+							}
 
-      </div>
+              {/* If News */}
+              {item.model === 'news' &&
+                <>
+                <div className="bandeau">
+                    <p data-icon="news" className="type-news">{IsModel(item.data.type, lang)}</p>
+                    <DateNews startDate={item.data.startDate} endDate={item.data.endDate} lang={lang} />
+                    <TimeNews startDate={item.data.startDate} endDate={item.data.endDate} />
+                    <p className="label-news">{item.data.label && (lang === 'fr' ? <span>{item.data.label.fr}</span> : <span>{item.data.label.en}</span>)}</p>
+                </div>
+                <hgroup>
+						    {lang === 'fr' ?
+                  <>
+                    <h1 data-level-1="title">{item.data.title && item.data.title.fr}</h1>
+                    { item.data.date &&
+                    <>
+                      <DateNews startDate={item.data.startDate} endDate={item.data.endDate} />
+                      <TimeNews startDate={item.data.startDate} endDate={item.data.endDate} />
+                    </>
+                									}
+                    <h2 data-level-2="label">{item.data.label && item.data.label.fr}</h2>
+                  </>
+                									:
+                  <>
+                    <h1 data-level-1="title">{item.data.label && item.data.title.en}</h1>
+                    { item.data.date &&
+                    <>
+                      <DateNews startDate={item.data.startDate && item.data.startDate} endDate={item.data.endDate} />
+                      <TimeNews startDate={item.data.startDate && item.data.startDate} endDate={item.data.endDate} />
+                    </>
+              			}
+                  <h2 data-level-2="label">{item.data.label && item.data.label.en}</h2>
+                </>
+								}
+                </hgroup>
+                </>
+							}
+
+              {/* If Activity */}
+              {item.model === 'activities' &&
+                <>
+                  <div className="bandeau">
+                    <p className="type-activity" data-icon="activite">{IsModel(item.data.type, lang)}</p>
+                    <p className="title" data-level-2="title">{item.data.name}</p>
+                  </div>
+                  <hgroup>
+                    {lang === 'fr' ?
+                      <h1 data-level-1="baseline">{item.data.baseline && item.data.baseline.fr}</h1> :
+                      <h1 data-level-1="baseline">{item.data.baseline && item.data.baseline.en}</h1>
+                      }
+                  </hgroup>
+                </>
+							}
+              {item.data.description &&
+                <div className="accroche">
+                  <p className="accroche-paragraphe">
+                    <RawHTML html={lang === 'fr' ? item.data.description.fr : item.data.description.en} />
+                  </p>                     
+                </div>
+              }
+
+              <p className="more"><Link to={item.data.permalink[lang]}>{lang === 'fr' ? 'En savoir plus' : 'Get more about it'}</Link></p>
+
+            </Link>
+          </li>
+        </React.Fragment>)
+
+        )}
+      </ul>
     </section>
   </>
 	);

@@ -31,7 +31,7 @@ export default function Nav({lang, data = {}, order = []}) {
   return (
   <nav id="nav-inside-article">
     <div className="nav-inside-item" data-type="main-article">
-      <a href="#topbar">
+      <a href="/">
         <Logo />
       </a>
     </div>

@@ -15,7 +15,7 @@ $hack-sticky: 54px;
 			width: calc(100% + #{$margins-desktop});
 			height: $height-top-bar - $hack-sticky;
 			background-color: $background-site;
-			z-index: 5;
+            z-index: 9; // So gets upon fullscreen Image Process in nav
 			white-space: nowrap;
 			padding-top: $baseline*2;
 

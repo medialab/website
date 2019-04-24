@@ -63,6 +63,7 @@ $width-main-image: calc( 100vw - #{$margins-desktop*0});
                 height: 82px;
                 width: calc( 100% + 25px );
                 background: $background-site;
+                z-index: 9; // So gets upon fullscreen Image Process in nav
 
 
                 &:after{border-bottom: none;}

@@ -1,6 +1,7 @@
 /* Miniature Now */
 
-$width-image-pre-now: 90px;
+//$width-image-pre-now: 90px;
+$width-image-pre-now: (( 100% / 125 ) * 20);
 
 @include for-size(desktop) {
 	.page-home{
@@ -16,48 +17,27 @@ $width-image-pre-now: 90px;
 
 				display: inline-block;
 
-				@supports(display: flex){
-					@include flex();
-	                @include flex-direction(row);
-	                @include flex-wrap(wrap);
-	            }
-
 				li{
 
 					width: 100%;
 
-
-					@supports(display: flex){
-
-						width: calc( 100% / 2 );
-						flex: 0 1 calc(100% / 2 );
-
-						@include for-size(desktop-1400) { 
-							width: calc( 100% / 3 );
-							flex: 0 1 calc(100% / 3 );
-						}
-
-
-					}
-
 					.image-pre{
-						max-width: $width-image-pre-now;
+						max-width: calc(#{$width-image-pre-now});
+			            &:hover{ max-width: calc(#{$width-image-pre-now} + (100% - #{$width-image-pre-now})); }
 						pre{ 
-						    font-size: calc(( ((100vw - 50px) / 1.5 ) / 125 )*1.89);
+						    font-size: calc(( ((100vw - #{$unite*2}) * 1 ) / 125 )*1.89);
 						    line-height: normal;
 						    top: -50%;
 						    left: -50%;
 						    transform: translate(50%);
-
 						}
-			            &:hover{ max-width: calc(#{$width-image-pre-now} + (100% - #{$width-image-pre-now})); }
 		            }
 					.bandeau{
 		                width: calc(100% - #{$width-image-pre-now} - #{$unite});
 		                left: calc(#{$width-image-pre-now} + #{$unite});
 					}
 					hgroup, .accroche{
-		                left: $width-image-pre-now;
+		                left: calc(#{$width-image-pre-now});
 						width: calc( 100% - #{$width-image-pre-now} );
 						padding: 0 $unite/2;
 					}
@@ -71,7 +51,7 @@ $width-image-pre-now: 90px;
 		                @include font-size-27;
 					}
 					.more{ 
-						left: $width-image-pre-now; 
+						left: calc(#{$width-image-pre-now}); 
 						padding: $baseline $unite/2;
 						position: absolute;
 						bottom: 0;
@@ -82,7 +62,28 @@ $width-image-pre-now: 90px;
 					    	max-width: 100%;
 						}
 					}
-				}				
+				}	
+
+				//////////////////////////
+				///        Flex 	/////
+				/////////////////////////
+
+				//  Responsive Flex		
+				@supports(display: flex){
+					@include flex();
+	                @include flex-direction(row);
+	                @include flex-wrap(wrap);
+
+	                li{ 
+						width: calc( 100% / 2 );
+						flex: 0 1 calc(100% / 2 );
+
+						@include for-size(desktop-1400) { 
+							width: calc( 100% / 3 );
+							flex: 0 1 calc(100% / 3 );
+						}
+	                }
+	            }
 			}
 		}
 	}

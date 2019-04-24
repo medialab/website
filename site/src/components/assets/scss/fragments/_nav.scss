@@ -57,10 +57,12 @@ $width-main-image: calc( 100vw - #{$margins-desktop*0});
                 // Fill the hole around
                 width: 100%;
                 left: $unite*-1;
-                padding: $unite 0 0 $unite;
-                height:  $unite*4;
+                padding: $unite*.8 0 0 $unite;
+                //height:  $unite*4;
                 top:  $unite*-1;
-                height: calc(#{$unite*4} - 1px);
+                height: 82px;
+                width: calc( 100% + 25px );
+                background: $background-site;
 
 
                 &:after{border-bottom: none;}

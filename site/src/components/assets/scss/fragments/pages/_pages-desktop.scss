@@ -1,7 +1,7 @@
 /* Regles typographique de bases communes à toutes les pages de contenu */
 
 
-@include for-size(phone) {
+@include for-size(desktop) {
 
 	.page-production, 
 	.page-news, 
@@ -14,57 +14,70 @@
 		.about-contenu {
 							
 			/* Regles de Base */
+			figure, img + img, p + img{
+				margin: $baseline*3 0 $baseline*4 0;
+				width: 90%;
+				margin-left: $unite;
+			}
 
+			iframe{
+				width: 100%;
+				min-height: 50vh;
+				margin: $baseline*3 0 $baseline*4 0;	
+				border: none;					
+			}
+
+			
 			h1, h2, h3, h4, h5{
-				@include font-size-16-phone;
+				@include font-size-20;
 				font-weight: bold;
 				margin-top: $baseline*4;
-				margin-bottom: $baseline*1.5;
+				margin-bottom: $baseline*2;
 			}
 
 
 			.title-style-level-1,
 			[data-style-level="1"]{
-				@include font-size-16-phone;
+				@include font-size-20;
 				font-weight: bold;
 				text-transform: uppercase;
-				margin-top: $baseline*4;
-				margin-bottom: $baseline*1.5;
+				margin-top: $baseline*6;
+				margin-bottom: $baseline*2;
 			}
 
 			.title-style-level-2,
 			[data-style-level="2"]{
-				@include font-size-16-phone;
+				@include font-size-20;
 				font-weight: bold;
-				margin-top: $baseline*3;
-				margin-bottom: $baseline*1.5;
+				margin-top: $baseline*4;
+				margin-bottom: $baseline*2;
 			}
 
 			.title-style-level-3,
 			[data-style-level="3"]{
-				@include font-size-16-phone;
+				@include font-size-20;
 				font-weight: 300;
 				font-style: italic;
-				margin-top: $baseline*3;
-				margin-bottom: $baseline*1.5;
+				margin-top: $baseline*4;
+				margin-bottom: $baseline*2;
 			}
 
-			h3 + h4, 
 			.title-style-level-1 + .title-style-level-2,
-			[data-style-level="1"] + [data-style-level="2"]{ margin-top: 0;}
+			[data-style-level="1"] + [data-style-level="3"]{ margin-top: 0;}
+
 
 
 			p + p {  margin-top: $baseline*2; }
 
 			p, li{ 
-				@include font-size-16-phone(); 
+				@include font-size-20(); 
 				margin-bottom: $baseline*2;
 			}
 					
 			li{ 
-				left: $unite;
-				text-indent: $unite*-.7;
-				&:before{ content: "⧆"; left: $unite/-2;}
+				left: $unite*1.5;
+				text-indent: -15px;
+				&:before{ content: "⧆"; left: -15px;}
 			}
 		}
 	}

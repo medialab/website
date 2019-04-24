@@ -1,0 +1,51 @@
+$hack-sticky: 54px;
+
+@include for-size(desktop) {
+
+	.page-production, 
+	.page-news, 
+	.page-activity, 
+	.page-people,
+	.page-about{
+
+		.titre-sticky{
+			@include font-size-20();
+			position: sticky;
+			top: -1px;
+			width: calc(100% + #{$margins-desktop});
+			height: $height-top-bar - $hack-sticky;
+			background-color: $background-site;
+			z-index: 5;
+			white-space: nowrap;
+			padding-top: $baseline*2;
+
+			&:after{
+				content: "";
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				width: calc(100% - #{$margins-desktop});
+				border-bottom: $border;
+
+			}
+
+			span{ 
+				display: inline-block;
+				vertical-align: top;			
+			}
+			
+			[data-icon]{ 
+				padding-right: $unite/2;
+			}
+
+			.title{ 			
+				font-weight: bold;
+				@include text-overflow;
+				width: 90%;	
+				max-width: 900px;
+						
+			}
+		}	
+	}
+
+}

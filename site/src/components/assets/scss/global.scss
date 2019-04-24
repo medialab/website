@@ -71,9 +71,9 @@
 
 // PAGES  ///////////////////////////////////////////////
 
-//Règles typo communes
-@import 'common/pages/pages-desktop';
-@import 'common/pages/pages-phone';
+@import 'fragments/pages/pages-desktop';
+@import 'fragments/pages/pages-phone';
+@import 'fragments/pages/titre_sticky';
 
 // PAGES OBJET ///////////////////////////////////////////////
 

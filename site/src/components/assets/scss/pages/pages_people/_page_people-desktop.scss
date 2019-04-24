@@ -3,13 +3,7 @@
 /////////////////////
 
 
-
-$hack-sticky: 54px;
-
-
 @include for-size(desktop) {
-
-	
  
 	.page-people{
 
@@ -23,24 +17,6 @@ $hack-sticky: 54px;
 			transition: .25s ease-in-out;
 			margin-top: $hack-sticky; /* set sticky title */
 			
-			.titre-sticky{
-				@include font-size-20();
-				font-weight: bold;
-				position: sticky;
-
-				top: -1px;
-				width: 100%;
-				height: $height-top-bar - $hack-sticky;
-				background-color: $background-site;
-				z-index: 5;
-				border-bottom: $border;
-				white-space: nowrap;
-				padding-top: $baseline*2;		
-	
-			}
-	
-	
-
 			 .cache{
 			 	position: absolute;
 				left: -1px;

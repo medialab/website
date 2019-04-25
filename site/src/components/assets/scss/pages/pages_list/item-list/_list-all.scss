@@ -45,7 +45,7 @@ $width-image-pre-listing: ( ( 100% / 125 ) * 10 );
                     color: $color-img;
                     //font-size: calc((( ((100vw - #{$unite*2}) - #{$logo-column} ) /2 ) /125 )*1.89 ); // Should change with width
                     //line-height: calc((( ((100vw - #{$unite*2}) - #{$logo-column} ) /2 ) /125 )*1.50 );
-                    font-size: calc(( ((100vw - #{$unite*2}) - #{$logo-column})  /125 )*1.89 ); 
+                    font-size: calc(( (((100vw - #{$unite*2}) - #{$logo-column}) / 2 )  /125 )*1.89 ); 
                     line-height: normal;                    
                     top: -50%;
                     transform: translateY(50%);

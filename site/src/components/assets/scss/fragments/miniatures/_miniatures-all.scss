@@ -4,108 +4,106 @@
 .page-people #highlights #highlights-list-production, 
 .page-home #now {
 
-	@include for-size(desktop) {
 
-        //min-height: calc(100vh - 40vh - #{$height-top-bar-phone});
 
-        li{
-            border-bottom: $border-light;
-            position: relative;
-            height: auto;
+    //min-height: calc(100vh - 40vh - #{$height-top-bar-phone});
+
+    li{
+        border-bottom: $border-light;
+        position: relative;
+        height: auto;
+        width: 100%;
+
+        a{ 
             width: 100%;
-
-            a{ 
-                width: 100%;
-                height: 100%;
-                display: inline-block;
-            }
-
-
-            .image-pre{
-                position: absolute;
-                height: 100%;
-                overflow: hidden;
-                transition: max-width 0.25s ease-in-out;
-                background-color: $background-site;
-                pre{ 
-                    color: $color-img;
-                    top: -50%;
-                    transform: translateY(50%);
-                }
-            }
-
-
-            .bandeau{
-                position: absolute;     
-                border-bottom: $border-very-light;
-                padding: $baseline/2 0;
-                @include text-overflow();
-
-                p{ 
-                    @include font-size-13; 
-                    display: inline-block; 
-                    vertical-align: top;
-                }
-                /* activities */
-                .title{ 
-                    @include text-overflow();
-                    padding-left: $unite/2;
-                    margin-left: $unite/2;
-                    border-left: $border-very-light;
-                    color: $redlab;
-                    // font-weight: 600!important;
-                }
-                /* production */
-                .type-production {}
-
-				.subtype-production, 
-				.date-production
-                .date-news{
-                    @include text-overflow();
-                    padding-left: $unite/2;
-                    margin-left: $unite/2;
-                    border-left: $border-very-light;
-   				}
-            }
-
-            .bandeau, hgroup{ 
-                z-index: 3;
-            }
-
-            hgroup, .accroche{
-                display: inline-block;
-                vertical-align: top;
-                // height: 100%;
-                margin-top: $baseline*2;
-                margin-bottom: $baseline;
-            }
-
-
-            h1{ }
-
-            .accroche{ 
-                //border-left: $border-very-light; 
-                p{ @include font-size-16; }
-            }
-
-            &:hover{
-                background-color: $background-grey;              
-
-                .image-pre{ 
-                    max-width: 100%; 
-                    transition-duration: .25s;
-                }
-                .bandeau .date-news{ color: $text-color; transition: color .15s cubic-bezier(1,0,0,1);}
-            }
-
+            height: 100%;
+            display: inline-block;
         }
 
-        .list-year{ 
-            padding-top: 3px;
-            border-bottom: $border-light;
+
+        .image-pre{
+            position: absolute;
+            height: 100%;
             overflow: hidden;
-            &:target{ padding-top: $height-top-bar + 3px;  }
+            transition: max-width 0.25s ease-in-out;
+            background-color: $background-site;
+            pre{ 
+                color: $color-img;
+                top: -50%;
+                transform: translateY(50%);
+            }
+        }
+
+
+        .bandeau{
+            position: absolute;     
+            border-bottom: $border-very-light;
+            padding: $baseline/2 0;
+            @include text-overflow();
+
+            p{ 
+                @include font-size-13; 
+                display: inline-block; 
+                vertical-align: top;
+            }
+            /* activities */
+            .title{ 
+                @include text-overflow();
+                padding-left: $unite/2;
+                margin-left: $unite/2;
+                border-left: $border-very-light;
+                color: $redlab;
+                // font-weight: 600!important;
+            }
+            /* production */
+            .type-production {}
+
+			.subtype-production, 
+			.date-production
+            .date-news{
+                @include text-overflow();
+                padding-left: $unite/2;
+                margin-left: $unite/2;
+                border-left: $border-very-light;
+				}
+        }
+
+        .bandeau, hgroup{ 
+            z-index: 3;
+        }
+
+        hgroup, .accroche{
+            display: inline-block;
+            vertical-align: top;
+            // height: 100%;
+            margin-top: $baseline*2;
+            margin-bottom: $baseline;
+        }
+
+
+        h1{ }
+
+        .accroche{ 
+            //border-left: $border-very-light; 
+            p{ @include font-size-16; }
+        }
+
+        &:hover{
+            background-color: $background-grey;              
+
+            .image-pre{ 
+                max-width: 100%; 
+                transition-duration: .25s;
+            }
+            .bandeau .date-news{ color: $text-color; transition: color .15s cubic-bezier(1,0,0,1);}
         }
 
     }
+
+    .list-year{ 
+        padding-top: 3px;
+        border-bottom: $border-light;
+        overflow: hidden;
+        &:target{ padding-top: $height-top-bar + 3px;  }
+    }   
 }

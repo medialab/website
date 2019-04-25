@@ -162,50 +162,84 @@
 .personnes-associees-block{
 	.liste_personne{
 
-		@include flex;
-		@include flex-direction(row);
-		@include flex-wrap(wrap);
-		@include justify-content
+		//@include flex;
+		//@include flex-direction(row);
+		//@include flex-wrap(wrap);
+		//@include justify-content
+		display: inline-block;
+		max-width: 900px;
+
+		$personne_associees_image_width:  100px; 
 
 		[data-type="people"]{
 			
 			//flex: 0 0 25%;
 			//max-width: calc( 25% - #{$unite*2} );
-			margin: 0 $unite 0 0 ;
+			//margin: 0 $unite 0 0 ;
 			//width: 25%;
-
-			figure, hgroup {
-				display: inline-block;
-				vertical-align: top;
-			}
+			display: inline-block;
+			box-sizing: border-box;
+			height: 100%;
+			width: 50%;
 			
-			figure{ 
-				filter: grayscale(1) contrast(1.25);
-				mix-blend-mode: multiply;
-				overflow: hidden;
-				//margin-bottom: $baseline;
-				//width: 50%;
-				width: 100px;
-				vertical-align: top;
+			a{
+				margin: $unite/4;
+				height: 100%;
+				display: block;
 
-				img{ width: 100%; display: block; }
+				figure, hgroup {
+					display: inline-block;
+					vertical-align: top;
+				}
+				
+				figure{ 
+					filter: grayscale(1) contrast(1.25);
+					mix-blend-mode: multiply;
+					overflow: hidden;
+					//margin-bottom: $baseline;
+					//width: 50%;
+					width: $personne_associees_image_width;
+					vertical-align: top;
+
+					img{ width: 100%; display: block; }
+				}
+
+				hgroup{
+
+					margin: 0 $unite/2;
+					width: calc( 100% - 100px - #{$unite} );
+					min-height: $personne_associees_image_width*.75;
+
+					h2{
+						@include font-size-20();
+					}
+
+					h3{
+						@include font-size-13();
+						color: $text-color-light;
+						position: absolute;
+						width: 100%;
+						bottom: 0;
+						padding: 2px 0;
+						border-top: $border-light;
+						border-bottom: $border-light;
+					}
+				}
 			}
 
-			hgroup{
+			&:hover{
+				background: rgba($background-site, 0.5);
 
-				padding: 0 $unite/2;
-
-				h2{
-					@include font-size-20();
-				}
-
-				h3{
-					@include font-size-13();
-					color: $text-color-light; 
-				}
 			}
 		}
-
+		///////
+		// QUERY
+		//////
+		@include for-size( desktop-1400){ 
+			max-width: 1500px;
+			[data-type="people"]{width: 33.333%}
+		}
+	
 	}
 }
 

@@ -152,7 +152,7 @@ $width-main-image: calc( 100vw - #{$margins-desktop*0});
                             font-size: calc(((100vw - #{$unite*2})/250)*2.50); // Should change with width
                             line-height: calc(((100vw - #{$unite*2})/250)*1.89);
                             overflow: hidden;
-                            background: $background-site;
+                            //background: $background-site;
                             
                         }
                     }

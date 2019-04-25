@@ -20,7 +20,7 @@ export default function Nav({lang, data = {}, order = []}) {
   if (data && data.coverImage) {
     coverImage = (
   <div>
-    <p className="caption"><span>Je suis une légende</span> <span> 2019 — Image Créative Common.</span></p>
+    {/*<p className="caption"><span>Je suis une légende</span> <span> 2019 — Image Créative Common.</span></p>*/}
     <img src={data.coverImage.url} alt={data.coverImage.url} />
      <ProcessedImage size="large" image={data.coverImage.processed ? data.coverImage.processed.large : null} />
 

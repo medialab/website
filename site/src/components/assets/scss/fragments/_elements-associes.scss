@@ -168,6 +168,7 @@
 		//@include justify-content
 		display: inline-block;
 		max-width: 900px;
+		width: 100%;
 
 		$personne_associees_image_width:  100px; 
 
@@ -235,8 +236,8 @@
 		///////
 		// QUERY
 		//////
-		@include for-size( desktop-1400){ 
-			max-width: 1500px;
+		@include for-size( desktop-1300){ 
+			max-width: 1300px;
 			[data-type="people"]{width: 33.333%}
 		}
 	

@@ -26,6 +26,13 @@ function processHtml(pathPrefix, html) {
     $a.attr('href', withPrefix(href));
   });
 
+  $('a').each(function() {
+    const $a = $(this);
+
+    $a.attr('target', '_blank');
+    $a.attr('rel', 'noopener');
+  });
+
   // Finding highest title
   const h2level = $('h1').length ? 4 : 3;
 

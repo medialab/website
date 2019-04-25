@@ -37,7 +37,7 @@ $width-image-pre-listing: 90px;
                 padding-top: $baseline*1.5;
                 padding-bottom: $baseline*2;
                 width: 100%;
-                color: $redlab;
+                color: $text-color;
                 // background-color: $background-grey;
                 p{
                     @include font-size-20;

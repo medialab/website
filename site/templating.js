@@ -44,12 +44,19 @@ function processHtml(pathPrefix, html) {
 
   // Building custom output
   let output = '';
+  let inRawText = false;
 
   $('body').contents().each(function() {
 
     // Raw text
     if (this.type === 'text') {
-      output += `<p>${this.data.trim()}</p>`;
+      if (!inRawText) {
+        inRawText = true;
+        output += '<p>';
+      }
+
+      output += this.data;
+      return;
     }
 
     if (this.type !== 'tag')
@@ -57,6 +64,16 @@ function processHtml(pathPrefix, html) {
 
     const $this = $(this);
     const tag = $this.prop('tagName');
+
+    // Root links
+    if (tag === 'A') {
+      output += `<a href="${$this.attr('href')}" target="_blank" rel="noopener">${$this.text()}</a>`;
+      return;
+    }
+    else if (inRawText) {
+      inRawText = false;
+      output += '</p>';
+    }
 
     // Paragraphs
     if (tag === 'P') {
@@ -118,7 +135,10 @@ function processHtml(pathPrefix, html) {
     }
   });
 
-  return output;
+  if (inRawText)
+    output += '</p>';
+
+  return output.trim();
 }
 
 exports.template = function template(pathPrefix, content) {

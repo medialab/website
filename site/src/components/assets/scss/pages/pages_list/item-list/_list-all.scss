@@ -121,23 +121,6 @@ $width-image-pre-listing: ( ( 100% / 125 ) * 10 );
                 p{ @include font-size-20; }
             }
 
-            // Ces règles s'appliquent aux écran dont la hauteur d'écran dne permet pas d'afficher plus 3 item par écran
-            @media screen and ( max-height: 800px ){
-                h1 { 
-                    @include font-size-20;  
-                    padding-top: 0; 
-                    padding-bottom: $baseline/2;
-                }
-                .accroche p{ 
-                    @include font-size-13; 
-                    margin-top: $baseline*.5;
-                    height: calc( 2 * #{$baseline*1.5} ); // Show 2 lines;
-                    overflow: hidden;
-                }
-                
-            }
-
-
 
 
 
@@ -160,6 +143,72 @@ $width-image-pre-listing: ( ( 100% / 125 ) * 10 );
                 }
                 .bandeau .date-news{ color: $text-color; transition: color .15s cubic-bezier(1,0,0,1);}
             }
+
+
+
+
+
+
+            ////////////////////////
+            /// QUIERY
+            //////////////////////
+
+            /* 
+            Ces règles s'appliquent aux écran dont la hauteur d'écran dne permet pas d'afficher plus 3 item par écran
+            Par facilité, la logique des quieries est ici inversé. 
+            Les règles s'applique "jusqu'à" et non "à partir de"... 
+            */
+
+            @media screen and ( max-height: 770px ){
+                // Divide image width
+                .image-pre{
+                    max-width: calc(#{$width-image-pre-listing/2});
+                }
+                .bandeau{
+                    width: calc(100% - #{$width-image-pre-listing/2} - #{$unite});
+                    left: calc(#{$width-image-pre-listing/2} + #{$unite/2});  
+                }
+                hgroup, .accroche{
+                    width: calc((100% - #{$width-image-pre-listing/2})/2);
+                    left: calc(#{$width-image-pre-listing/2});
+                    margin-top: $baseline*3;
+                    margin-bottom: $baseline/2;
+                }
+                &:hover{
+                    &:after{
+                        width: calc(((100vw - #{$unite*2}) - #{$logo-column} - #{$width-image-pre-listing / 2 } ) /2  );
+                    }
+                    .image-pre{ 
+                        max-width: calc(#{$width-image-pre-listing / 2 } + (100% - #{$width-image-pre-listing / 2 })/2); 
+                    }
+                }
+
+                h1 { 
+                    @include font-size-20;  
+                    padding-top: 0; 
+                    padding-bottom: $baseline/2;
+                }
+                .accroche p{ 
+                    @include font-size-13; 
+                    margin-top: $baseline*.5;
+                    height: calc( 2 * #{$baseline*1.5} ); // Show 2 lines;
+                    overflow: hidden;
+                }
+            }
+
+            @media screen and ( max-height: 901px ){
+                h1 { 
+                    @include font-size-20;  
+                    padding-top: 0; 
+                    padding-bottom: $baseline/2;
+                }
+                .accroche p{ 
+                    @include font-size-13; 
+                    margin-top: $baseline*.5;
+                    height: calc( 2 * #{$baseline*1.5} ); // Show 2 lines;
+                    overflow: hidden;
+                }
+            }            
         }
 
         .list-year{ 

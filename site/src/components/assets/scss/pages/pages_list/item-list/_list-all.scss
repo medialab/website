@@ -12,11 +12,12 @@ $width-image-pre-listing: ( ( 100% / 125 ) * 10 );
         
         margin-bottom: 40vh;
         min-height: calc(100vh - 40vh - #{$height-top-bar-phone});
+        border-top: $border-light;
 
         li{
             border-bottom: $border-light;
-            width: calc(100vw - #{$logo-column} - #{$margins-desktop*2}); 
-            &:first-of-type{ border-top: $border-light; }
+            //width: calc(100vw - #{$logo-column} - #{$margins-desktop*2}); 
+            width: 100%;
             position: relative;
             height: auto;
 

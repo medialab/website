@@ -37,7 +37,7 @@ else {
 
     <input
       type="checkbox" id="filtre-activity_active" name="filtre-activity_active"
-      className="input_filtre-activity filtre-activity_statut" value="active" hidden />
+      className="input_filtre-activity filtre-activity_statut" value="active" defaultChecked hidden />
     <label className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_active">{ activeActivity }</label>
 
     <input

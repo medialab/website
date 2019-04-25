@@ -21,6 +21,7 @@ $width-image-pre-listing: ( ( 100% / 125 ) * 10 );
             position: relative;
             height: auto;
 
+
             a{ 
                 width: 100%;
                 height: 100%;
@@ -39,6 +40,7 @@ $width-image-pre-listing: ( ( 100% / 125 ) * 10 );
                 transition: max-width 0.25s cubic-bezier(1,0,0,1);
                 font-size: 1.1vw;
                 background-color: $background-site;
+                z-index: -1;
                 pre{ 
                     color: $color-img;
                     //font-size: calc((( ((100vw - #{$unite*2}) - #{$logo-column} ) /2 ) /125 )*1.89 ); // Should change with width
@@ -133,7 +135,9 @@ $width-image-pre-listing: ( ( 100% / 125 ) * 10 );
                     z-index: -1;
                     top: 0;
                     right: 0;
-                    width: calc(((100vw - #{$unite*2}) - #{$logo-column} - #{$width-image-pre-listing} ) /2  );
+                    //width: calc(((100vw - #{$unite*2}) - #{$logo-column} - #{$width-image-pre-listing} ) /2  );
+                    //width: calc( 100% - (#{$width-image-pre-listing} + (100% - #{$width-image-pre-listing})/2) );
+                    width: calc( 100% - ( (100% - #{$width-image-pre-listing} ) / 2 + #{$width-image-pre-listing} ) );
                     height: 100%;
                     background-color: $background-grey;
 
@@ -177,7 +181,8 @@ $width-image-pre-listing: ( ( 100% / 125 ) * 10 );
                 }
                 &:hover{
                     &:after{
-                        width: calc(((100vw - #{$unite*2}) - #{$logo-column} - #{$width-image-pre-listing / 2 } ) /2  );
+                        //width: calc(((100vw - #{$unite*2}) - #{$logo-column} - #{$width-image-pre-listing / 2 } ) /2  );
+                        width: calc( 100% - ( (100% - #{$width-image-pre-listing / 2 } ) / 2 + #{$width-image-pre-listing / 2 } ) )
                     }
                     .image-pre{ 
                         max-width: calc(#{$width-image-pre-listing / 2 } + (100% - #{$width-image-pre-listing / 2 })/2); 

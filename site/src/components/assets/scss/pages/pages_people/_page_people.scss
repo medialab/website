@@ -100,5 +100,21 @@
 			}
 		}
 
+		.biographie-contenu{
+			a{
+				text-decoration: underline;
+				text-decoration-skip-ink: auto;
+				text-decoration-color: $text-color-light;
+				text-decoration-style: dotted;
+				transition: .25s linear;
+
+				&:hover{
+					color: $redlab;
+					text-decoration-color: $redlab;
+
+				}
+			}
+		}
+
 	}
 }

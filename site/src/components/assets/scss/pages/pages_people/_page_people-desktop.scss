@@ -31,6 +31,8 @@
 				header{
 					@include flex-order(1);
 					margin-bottom: $baseline*2;
+					border-top: $border-very-light;
+					padding-top: $baseline;
 
 					figure, hgroup{
 						display: inline-block;

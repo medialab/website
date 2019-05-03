@@ -45,6 +45,16 @@ $hack-sticky: 54px;
 				max-width: 900px;
 						
 			}
+
+			&:after{
+				content: '';
+				width: 100vw;
+				border-bottom: $border-very-light;
+				position: fixed;
+				left: 0;
+				height: 0px;
+				top: $height-top-bar - $hack-sticky - 1px;
+			}
 		}	
 	}
 

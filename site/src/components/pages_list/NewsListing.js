@@ -70,7 +70,7 @@ export default function NewsListing({lang, list}) {
                       <p className="accroche-paragraphe">
                         <RawHTML html={lang === 'fr' ? news.description.fr : news.description.en} />
                       </p>                     
-                    </div>
+                    </div> 
 
                     </Link>
                   </li>

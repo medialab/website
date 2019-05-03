@@ -46,7 +46,7 @@ export default function ActivityListing({lang, list, status, statuses}) {
                       <p className="accroche-paragraphe">
                         {a.description && <RawHTML html={lang === 'fr' ? a.description.fr : a.description.en} />}
                       </p>                     
-                    </div>
+                    </div> 
                   </Link>
                 </li>
               </React.Fragment>

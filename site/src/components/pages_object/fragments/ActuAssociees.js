@@ -2,6 +2,10 @@ import React from 'react';
 import {Link} from 'gatsby';
 import {SECTIONS} from '../../helpers/sections';
 
+import DateNews from '../../helpers/DateNews.js';
+import TimeNews from '../../helpers/TimeNews.js';
+import {IsModel} from '../../helpers/helpers.js';
+
 
 const ActuAssociees = ({lang, actu}) => {
 
@@ -29,13 +33,15 @@ const ActuAssociees = ({lang, actu}) => {
             <li key={n.permalink.fr} data-type="activite" className="item">
               <Link to={n.permalink[lang]} className="accroche">
                 <h1 data-level-2="title">{n.title[lang] || n.title.fr || n.title.en}</h1>
-                <h2 data-level-2="description">{n.description && (n.description[lang] || n.description.fr || n.description.en)}</h2>
+                {/* <h2 data-level-2="description">{n.description && (n.description[lang] || n.description.fr || n.description.en)}</h2>
                 <p className="date-news">{n.startDate}</p>
-                <p className="type">{n.type}</p>
-              </Link>
-              <Link to={n.permalink[lang]} className="complement">              
-                <p>{n.description && (n.description[lang] || n.description.fr || n.description.en)}</p>
-                {/* <p className="go-to-object"><span>〉</span></p> */}
+                <p className="type">{n.type}</p> */}
+
+              {/* <h2 data-level-2="news-date"> */}
+                <DateNews startDate={n.startDate} endDate={n.endDate} lang={lang} />
+                <TimeNews startDate={n.startDate} endDate={n.endDate} />
+              {/* </h2> */}
+              <p data-icon="news" className="type">{IsModel(n.type, lang)} <span>{n.label && (lang === 'fr' ? n.label.fr : n.label.en)}</span></p>
               </Link>
             </li>
           ))}

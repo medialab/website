@@ -12,6 +12,7 @@
 		.article-contenu, 
 		.biographie-contenu,
 		.about-contenu {
+
 							
 			/* Regles de Base */
 			figure, img + img, p + img{
@@ -62,8 +63,11 @@
 				margin-bottom: $baseline*2;
 			}
 
+			
+
 			.title-style-level-1 + .title-style-level-2,
 			[data-style-level="1"] + [data-style-level="3"]{ margin-top: 0;}
+
 
 
 

@@ -3,26 +3,28 @@
 /////////////////////
 
 
+
+
 @include for-size(desktop) {
 
 	.page-people-list{
 
-		#topbar{ 
-			//position: fixed!important; 
-			top: 0;
-			width: calc(100vw - #{$margins-desktop*2});
+		// #topbar{ 
+		// 	//position: fixed!important; 
+		// 	top: 0;
+		// 	width: calc(100vw - #{$margins-desktop*2});
 
-			&:after{ // Si Titre-Sticky. Topbar herite de la Border-bottom
-	            content:"";
-	            border-bottom: $border;
-	            margin-left: $logo-column;
-	            width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
-	            position: absolute;
-	            bottom: 0;
-	            z-index: 10;
-	        }
+		// 	&:after{ 
+	    //         content:"";
+	    //         border-bottom: $border;
+	    //         margin-left: $logo-column;
+	    //         width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
+	    //         position: absolute;
+	    //         bottom: 0;
+	    //         z-index: 10;
+	    //     }
 
-		}
+		// }
 
 		#liste_equipe{        
 			margin-top: $height-top-bar;
@@ -179,11 +181,7 @@
 
 		}// end liste
 
-		footer{
-			margin-left: $logo-column;
-			width: calc( 100% - /*#{$margins-desktop*2} -*/ #{$logo-column});
-			margin-bottom: 2px;
-		}
+		
 	}
 }
 

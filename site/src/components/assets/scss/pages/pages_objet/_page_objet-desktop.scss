@@ -3,6 +3,9 @@
 /////////////////////
 
 
+
+
+
 @include for-size(desktop) {
 
 	.page-production, 
@@ -20,13 +23,13 @@
 			margin-top: $hack-sticky; /* set sticky title */
 
 			hgroup{ 
-				border-top: $border-very-light;
+				// border-top: $border-very-light;
 				// max-width: 1300px; 
 				max-width: 900px; 
 			}
 
 			#article-contenu{
-
+				
 				.details {
 
 					padding: $baseline*1 0;
@@ -34,6 +37,7 @@
 					p{ 
 						@include font-size-16(); 
 						display: inline-block; 
+						
 					}
 
 					.production-ref{
@@ -59,7 +63,7 @@
 				}
 		
 				.article-contenu{
-										
+					p:first-of-type{ margin-top: $baseline*3; }			
 					// Regles typo (communes à toutes les pges de contenu) transférées dans common/pages/* 
 
 					//////////////////////////
@@ -126,11 +130,7 @@
 			}/* #article-contenu */
 		} /* main */
 
-		footer{
-			margin-left: $logo-column;
-			width: calc( 100% - /*#{$margins-desktop*2} -*/ #{$logo-column});
-			margin-bottom: 2px;
-		}
+		
 	}
 }
 
@@ -141,7 +141,8 @@
  	#article-contenu {
  		hgroup{
 			
-			padding: $baseline*2 0;
+			padding-top: $baseline*3;
+			padding-bottom: $baseline*2;
 			h1{ @include font-size-40(); }
 			h2, h3{ 
 				@include font-size-27(); 
@@ -149,7 +150,7 @@
 				margin-right: 80px;
 			}
 		}
-		.article-contenu{ margin-top: $baseline*3 }
+		// .article-contenu div{ margin-top: $baseline*3 }
 		
 	}
 
@@ -160,14 +161,14 @@
 
  	#article-contenu {
  		hgroup{
-			padding: $baseline*2 0;
+			// padding: $baseline*2 0;
 			h1{ @include font-size-60(); }
 			h2, h3{ 
 				@include font-size-27();
 				margin-top: $baseline*1.5;
 			}
 		}
-		.article-contenu{ margin-top: $baseline*4 }
+		// .article-contenu div{ margin-top: $baseline*4 }
 	}	
 }
 

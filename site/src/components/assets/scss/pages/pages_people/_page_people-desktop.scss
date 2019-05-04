@@ -3,6 +3,7 @@
 /////////////////////
 
 
+
 @include for-size(desktop) {
  
 	.page-people{
@@ -31,7 +32,7 @@
 				header{
 					@include flex-order(1);
 					margin-bottom: $baseline*2;
-					border-top: $border-very-light;
+					// border-top: $border-very-light;
 					padding-top: $baseline;
 
 					figure, hgroup{
@@ -56,11 +57,7 @@
 		} /* end main */
 
 
-		footer{
-			margin-left: $logo-column;
-			width: calc( 100% - #{$margins-desktop*2} - #{$logo-column});
-			margin-bottom: 2px;
-		}
+		
 	}
 }
 

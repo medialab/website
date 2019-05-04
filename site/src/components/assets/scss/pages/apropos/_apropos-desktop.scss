@@ -2,20 +2,22 @@
 ////////  Desktop 
 /////////////////////
 
+
+
 @include for-size(desktop) {
 	.page-about{
 
-		#topbar{
-	        &:after{
-	            content:"";
-	            border-bottom: $border;
-	            margin-left: $logo-column;
-	            width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
-	            position: absolute;
-	            bottom: 0;
-	            z-index: 10;
-	        }
-		}
+		// #topbar{
+	    //     &:after{
+	    //         content:"";
+	    //         border-bottom: $border;
+	    //         margin-left: $logo-column;
+	    //         width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
+	    //         position: absolute;
+	    //         bottom: 0;
+	    //         z-index: 10;
+	    //     }
+		// }
 
 		main{
 			
@@ -69,10 +71,6 @@
 			}
 		}	
 
-		footer{
-			margin-left: $logo-column;
-			width: calc( 100% - #{$margins-desktop*2} - #{$logo-column});
-			margin-bottom: 2px;
-		}
+		
 	}
 }

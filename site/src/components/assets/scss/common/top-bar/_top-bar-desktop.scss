@@ -4,39 +4,48 @@
 
 @include for-size(desktop) {
 
-    .page-news-liste #topbar, 
-    .page-production-liste #topbar, 
-    .page-activity-liste #topbar, 
-    .page-people-list #topbar {
-        position: fixed !important;
-    }
+   
 
     // full width topbar
-    .page-production, .page-activity, .page-news, .page-people{
-        #topbar{
-            width: calc(100% + #{$unite*2});
-            left: $unite*-1;
-        }
+    // .page-production, .page-activity, .page-news, .page-people{
+    //     #topbar{
+    //         width: calc(100% + #{$unite*2});
+    //         left: $unite*-1;
+    //     }
 
-        #topbar-content{
-            margin: 0 $unite;
-        }
-    }
+    //     #topbar-content{
+    //         margin: 0 $unite;
+    //     }
+    // }
 
 
     #topbar{
-        padding: $margins-desktop 0;
-        //width: 100%;
-        width:calc(100vw - #{$margins-desktop*2});
+        padding: $margins-desktop $margins-desktop;
+        width: 100vw;
+        // width:calc(100vw - #{$margins-desktop*2});
         height: $height-top-bar;
+        left: $margins-desktop * -1;
         // @include font-size-16();
         color: $text-color;
         @include font-size-13-uppercase();
         letter-spacing: 0.2px;
         background-color: $background-site;
         z-index: 999;
+        border-bottom: $border;
        
     }
+
+    .page-production-list #topbar, 
+    .page-activity-list #topbar, 
+    .page-news-list #topbar,
+    .page-people-list #topbar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0!important
+    }
+
+
+
 
     .nav-objet li::before{
         font-size: 13px;

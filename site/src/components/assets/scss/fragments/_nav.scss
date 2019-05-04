@@ -141,8 +141,9 @@ $width-main-image: calc( 100vw - #{$margins-desktop*0});
                     div{
                         position: absolute;
                         width: $width-main-image;
-                        height: 100vh;                     
-                        top: calc(#{$height-top-bar*-1} - #{$unite});
+                        height: 100vh;                                           
+                        // top: calc(#{$height-top-bar*-1} - #{$unite});
+                        top: -50px;
                         left: calc(#{$unite*-1} - 3px);
 
                         img{ display: none;}

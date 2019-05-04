@@ -19,6 +19,12 @@
 			margin-bottom: 40vh;	
 			margin-top: $hack-sticky; /* set sticky title */
 
+			hgroup{ 
+				border-top: $border-very-light;
+				// max-width: 1300px; 
+				max-width: 900px; 
+			}
+
 			#article-contenu{
 
 				.details {
@@ -134,7 +140,8 @@
 
  	#article-contenu {
  		hgroup{
-			padding: $baseline*3 0;
+			
+			padding: $baseline*2 0;
 			h1{ @include font-size-40(); }
 			h2, h3{ 
 				@include font-size-27(); 
@@ -153,7 +160,7 @@
 
  	#article-contenu {
  		hgroup{
-			padding: $baseline*4 0;
+			padding: $baseline*2 0;
 			h1{ @include font-size-60(); }
 			h2, h3{ 
 				@include font-size-27();

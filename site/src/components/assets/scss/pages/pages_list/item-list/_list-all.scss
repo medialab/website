@@ -39,8 +39,8 @@ $width-image-pre-listing: ( ( 100% / 125 ) * 10 );
                 overflow: hidden;
                 transition: max-width 0.25s cubic-bezier(1,0,0,1);
                 font-size: 1.1vw;
-                background-color: $background-site;
-                z-index: -1;
+                
+                z-index: 0;
                 pre{ 
                     color: $color-img;
                     //font-size: calc((( ((100vw - #{$unite*2}) - #{$logo-column} ) /2 ) /125 )*1.89 ); // Should change with width
@@ -50,6 +50,13 @@ $width-image-pre-listing: ( ( 100% / 125 ) * 10 );
                     top: -50%;
                     transform: translateY(50%);
                 }
+            
+            }
+
+            .image-pre:hover{ 
+                max-width: calc(#{$width-image-pre-listing} + (100% - #{$width-image-pre-listing})/2)!important; 
+                transition-duration: .15s;
+                background-color: $background-site;
             }
 
 
@@ -125,30 +132,12 @@ $width-image-pre-listing: ( ( 100% / 125 ) * 10 );
             }
 
 
+            &:hover{ background-color: $background-grey; }
 
 
 
-            &:hover{
-                &:after{
-                    content: "";
-                    position: absolute;
-                    z-index: -1;
-                    top: 0;
-                    right: 0;
-                    //width: calc(((100vw - #{$unite*2}) - #{$logo-column} - #{$width-image-pre-listing} ) /2  );
-                    //width: calc( 100% - (#{$width-image-pre-listing} + (100% - #{$width-image-pre-listing})/2) );
-                    width: calc( 100% - ( (100% - #{$width-image-pre-listing} ) / 2 + #{$width-image-pre-listing} ) );
-                    height: 100%;
-                    background-color: $background-grey;
 
-                }
-                .image-pre{ 
-                    max-width: calc(#{$width-image-pre-listing} + (100% - #{$width-image-pre-listing})/2); 
-                    transition-duration: .15s;
-                }
-                .bandeau .date-news{ color: $text-color; transition: color .15s cubic-bezier(1,0,0,1);}
-            }
-
+    
 
 
 
@@ -179,15 +168,13 @@ $width-image-pre-listing: ( ( 100% / 125 ) * 10 );
                     margin-top: $baseline*3;
                     margin-bottom: $baseline/2;
                 }
-                &:hover{
-                    &:after{
-                        //width: calc(((100vw - #{$unite*2}) - #{$logo-column} - #{$width-image-pre-listing / 2 } ) /2  );
-                        width: calc( 100% - ( (100% - #{$width-image-pre-listing / 2 } ) / 2 + #{$width-image-pre-listing / 2 } ) )
-                    }
-                    .image-pre{ 
-                        max-width: calc(#{$width-image-pre-listing / 2 } + (100% - #{$width-image-pre-listing / 2 })/2); 
-                    }
-                }
+                // &:hover{
+                //     &:after{
+                //         //width: calc(((100vw - #{$unite*2}) - #{$logo-column} - #{$width-image-pre-listing / 2 } ) /2  );
+                //         width: calc( 100% - ( (100% - #{$width-image-pre-listing / 2 } ) / 2 + #{$width-image-pre-listing / 2 } ) )
+                //     }
+                    
+                // }
 
                 h1 { 
                     @include font-size-20;  
@@ -218,10 +205,18 @@ $width-image-pre-listing: ( ( 100% / 125 ) * 10 );
         }
 
         .list-year{ 
-            padding-top: 3px;
+            display: none;
+            height: 0;
+            padding-top: 0px;
             border-bottom: $border-light;
             overflow: hidden;
-            &:target{ padding-top: $height-top-bar + 3px;  }
+            &:target{ 
+                display: block;
+                padding-top: $height-top-bar + 0px;  
+            }
+            &:hover{ 
+                background-color: $background-site; 
+            }
         }
 
     }

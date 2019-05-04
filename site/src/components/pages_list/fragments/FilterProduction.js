@@ -26,6 +26,8 @@ const FilterProduction = ({lang, group, types}) => {
   <>
     <h1 className="type_title" data-icon="production"><a href="#year-2018">{title}</a></h1>
 
+
+
     <input
       type="checkbox" id="toggle-filtre-phone" name="toggle-filtre-phone"
       value="visible" hidden />
@@ -35,31 +37,11 @@ const FilterProduction = ({lang, group, types}) => {
 
     <div id="background-phone" />
 
-    <input
-      type="radio" id="radio_filtre-production_group" name="radio_filtre-production"
-      value="group" hidden />
-    <label htmlFor="radio_filtre-production_group"><span>〉</span></label>
-
-    <ul className="link-productions-sort">
-    <li><Link to="/productions">{lang === 'fr' ? 'Toutes les productions' : 'All productions'}</Link></li>
-      {types.map(g => {
-						return (
-  <li key={g.id} className={cls(g.id === group && 'pageProduction_current')}>
-    <Link
-      
-      to={g.permalink[lang]}>
-      {g.label[lang]} <span>〉</span>
-    </Link>
-  </li>
-						);
-					})}
-    </ul>
-
 
     <input
-      type="radio" id="radio_filtre-production_year" name="radio_filtre-production"
+      type="checkbox" id="checkbox_filtre-production_year" name="radio_filtre-production"
       value="year" hidden />
-    <label htmlFor="radio_filtre-production_year"><span>〉</span></label>
+    <label htmlFor="checkbox_filtre-production_year"><span>〉</span></label>
 
     <div className="go-to-year" id="go-to-year_production">
       <p>{year}</p>
@@ -79,6 +61,36 @@ const FilterProduction = ({lang, group, types}) => {
         <li><a href="#years-before-2009">&lt; 2009</a></li>
       </ul>
     </div>
+
+
+    {/* <input
+      type="checkbox" id="checkbox_filtre-production_group" name="radio_filtre-production"
+      value="group" hidden />
+    <label htmlFor="checkbox_filtre-production_group"><span>〉</span></label> */}
+
+      <input type="checkbox" id={'checkbox_' + group} ame="checkbox_publication" value="checkbox_publication" hidden/>
+      <label  id={'label_checkbox_' + group} htmlFor={'checkbox_' + group}><span>〉</span></label>
+   
+
+    <ul id={'list-' + group + '_current'} className="link-productions-sort">
+    <li>
+      <Link to="/productions">{lang === 'fr' ? 'Toutes les productions' : 'All productions'}</Link>
+    </li>
+      {types.map(g => {
+						return (
+          <li key={g.id} id={ 'li-filter-' + g.id} className={cls(g.id === group && 'pageProduction_current')}>
+            <Link to={g.permalink[lang]}>
+              {g.label[lang]} 
+              <span>〉</span>
+            </Link>
+            
+          </li>
+						);
+					})}
+    </ul>
+
+
+
 
     <InputFiltresType lang={lang} group={group} />
 
@@ -143,9 +155,7 @@ function InputFiltresType(values){
   if(group === 'publications'){
     return (
       <>
-      <input type="radio" id="radio_filtre-production_type" name="radio_filtre-production" className="input_filtre-production" value="type" defaultChecked hidden />
-      <label htmlFor="radio_filtre-production_type">{typePublications} <span>〉</span></label>
-      
+     
       <input type="checkbox" id="filtre-production_article" name="filtre-production_article" className="input_filtre-production" value="article" hidden />
       <label className="filtre-production checkbox-medialab" htmlFor="filtre-production_article">{article}</label>
   
@@ -165,9 +175,7 @@ function InputFiltresType(values){
   }else if(group === 'tools'){
     return (
       <>
-      <input type="radio" id="radio_filtre-production_type" name="radio_filtre-production" className="input_filtre-production" value="type" defaultChecked hidden />
-      <label htmlFor="radio_filtre-production_type">{typeTools} <span>〉</span></label>
-      
+
       <input type="checkbox" id="filtre-production_software" name="filtre-production_software" className="input_filtre-production" value="software" hidden />
       <label className="filtre-production checkbox-medialab"  htmlFor="filtre-production_software">{software}</label>
 
@@ -178,9 +186,7 @@ function InputFiltresType(values){
   }else if(group === 'webEditions'){
     return (
       <>
-      <input type="radio" id="radio_filtre-production_type" name="radio_filtre-production" className="input_filtre-production" value="type" defaultChecked hidden />
-      <label htmlFor="radio_filtre-production_type">{typeWebEditions} <span>〉</span></label>
-      
+
       <input type="checkbox" id="filtre-production_datascape" name="filtre-production_datascape" className="input_filtre-production" value="datascape" hidden />
       <label className="filtre-production checkbox-medialab"  htmlFor="filtre-production_datascape">Datascape</label>
 
@@ -191,9 +197,7 @@ function InputFiltresType(values){
   }else if(group === 'situations'){
     return (
       <>
-      <input type="radio" id="radio_filtre-production_type" name="radio_filtre-production" className="input_filtre-production" value="type" defaultChecked hidden />
-      <label htmlFor="radio_filtre-production_type">{typeSituations} <span>〉</span></label>
-      
+
       <input type="checkbox" id="filtre-production_exhibition" name="filtre-production_exhibition" className="input_filtre-production" value="exhibition" hidden />
       <label className="filtre-production checkbox-medialab" htmlFor="filtre-production_exhibition">{exhibition}</label>
 

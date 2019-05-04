@@ -10,7 +10,7 @@
 
 		#liste .liste_objet{
 
-				[data-item], .list-year, .accroche-titre{ width: calc(100vw - #{$logo-column} - #{$margins-desktop*3}); }
+				[data-item], .list-year, .accroche-titre{ width: calc(100vw - #{$logo-column} - #{$margins-desktop*2}); }
 			
 			
 				[data-item] ~ [data-item-accroche]{ 

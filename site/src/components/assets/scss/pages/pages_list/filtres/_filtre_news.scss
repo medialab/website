@@ -108,25 +108,7 @@ $height-news-filter-year: $baseline*8;
 
 
 
-		/*
-		#toggle-filtre-phone:checked ~ #radio_filtre-production_year ~ .go-to-year ul{ max-height: 0vh; }
-		#toggle-filtre-phone:checked ~ #radio_filtre-production_year:checked ~ .go-to-year ul{ max-height: 100vh!important; }
 
-		#toggle-filtre-phone:checked ~ #radio_filtre-production_group:checked ~ #go-to-year_production{
-	        top: $top-filtre-phone-open + $baseline*18;
-	    }
-		
-		#toggle-filtre-phone:checked ~ #radio_filtre-production_group:checked ~ #radio_filtre-production_year + label{
-			top: $top-filtre-phone-open + $baseline*19;	
-		}
-		
-		#toggle-filtre-phone:checked ~ #radio_filtre-production_type ~ .filtre-production{ max-height: 0px; }
-		#toggle-filtre-phone:checked ~ #radio_filtre-production_type:checked ~ .filtre-production{ max-height: 100vh; }
-		
-		#toggle-filtre-phone:checked ~ #radio_filtre-production_year ~ #radio_filtre-production_type + label{ top: $top-filtre-phone-open + $height-filtres-productions_medium + $baseline*5; }
-		#toggle-filtre-phone:checked ~ #radio_filtre-production_group:checked ~ #radio_filtre-production_type + label{ top: $top-filtre-phone-open + $height-filtres-productions_medium_year-checked + $baseline*7; }
-	    #toggle-filtre-phone:checked ~ #radio_filtre-production_year:checked ~ #radio_filtre-production_type + label{ top: $top-filtre-phone-open + $height-filtres-productions_medium_year-checked + $baseline*5; }
-		*/
 	}
 }
 

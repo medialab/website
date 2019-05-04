@@ -16,34 +16,6 @@
 }
 
 
-.link-productions-sort,
-.link-activity-sort,
-.link-actu-sort{
-	position: fixed;
-	@include font-size-13-uppercase();
-
-	padding-top: $baseline * 1.5;
-	padding-bottom: $baseline * 1;
-	border-bottom: $border-very-light;
-	li, a{
-		// transition: 1s max-height;
-		overflow: hidden;
-		height: $baseline*2;
-		display: block;
-		width: 100%;
-		span{
-			position: absolute;
-			right: 0;
-			display: none;
-		}
-	}
-
-	.pageProduction_current{
-		font-weight: 600!important;
-		span{ display: inline; }
-	}
-	
-}
 
 
 
@@ -105,8 +77,8 @@
 }
 
 
-#radio_filtre-production_group + label,
-#radio_filtre-production_year + label, 
+#checkbox_filtre-production_group + label,
+#checkbox_filtre-production_year + label, 
 #radio_filtre-production_type + label,
 #radio_filtre-actu_group + label,
 #radio_filtre-actu_year + label, 
@@ -117,8 +89,8 @@
 }
 
 
-#radio_filtre-production_group + label span,
-#radio_filtre-production_year + label span, 
+#checkbox_filtre-production_group + label span,
+#checkbox_filtre-production_year + label span, 
 #radio_filtre-production_type + label span,
 #radio_filtre-actu_group + label span,
 #radio_filtre-actu_year + label span, 
@@ -131,7 +103,7 @@
 	top: 0;	
 }
 
-#radio_filtre-production_year + label,
+#checkbox_filtre-production_year + label,
 #radio_filtre-actu_year + label{
 	padding-top: $baseline * 0.25;
 }
@@ -141,8 +113,8 @@
 
 /* flêches ouvrantes/fermantes */
 
-#radio_filtre-production_group + label span,
-#radio_filtre-production_year + label span,
+#checkbox_filtre-production_group + label span,
+#checkbox_filtre-production_year + label span,
 #radio_filtre-production_type + label span,
 #radio_filtre-actu_group + label span,
 #radio_filtre-actu_year + label span,
@@ -153,8 +125,8 @@
 }
 
 
-#radio_filtre-production_group:checked + label span,
-#radio_filtre-production_year:checked + label span,
+#checkbox_filtre-production_group:checked + label span,
+#checkbox_filtre-production_year:checked + label span,
 #radio_filtre-production_type:checked + label span,
 #radio_filtre-actu_group:checked + label span,
 #radio_filtre-actu_year:checked + label span,
@@ -165,7 +137,7 @@
 }
 
 
-#radio_filtre-production_year + label span,
+#checkbox_filtre-production_year + label span,
 #radio_filtre-actu_year + label span{
 	margin-top: $baseline*0.25;
 }

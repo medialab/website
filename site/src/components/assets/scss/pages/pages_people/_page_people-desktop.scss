@@ -27,7 +27,7 @@
 			
 			 #biographie{
 				
-				max-width: 900px;
+				max-width: $max-width-article;
 
 				header{
 					@include flex-order(1);

@@ -45,13 +45,13 @@
 
 		
 
-		.details{ max-width: 900px; }
+		.details{ max-width: $max-width-article; }
 		
 		
 		.article-contenu{ 
 
 			@include flex-order(1); 
-				max-width: 900px;
+				max-width: $max-width-article;
 		
 			
 			a{

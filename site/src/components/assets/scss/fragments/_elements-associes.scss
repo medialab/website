@@ -145,23 +145,14 @@
 
 .personnes-associees-block{
 	.liste_personne{
-
-		//@include flex;
-		//@include flex-direction(row);
-		//@include flex-wrap(wrap);
-		//@include justify-content
 		display: inline-block;
-		max-width: 900px;
+		max-width: $max-width-article;
 		width: 100%;
 
 		$personne_associees_image_width:  100px; 
 
 		[data-type="people"]{
 			
-			//flex: 0 0 25%;
-			//max-width: calc( 25% - #{$unite*2} );
-			//margin: 0 $unite 0 0 ;
-			//width: 25%;
 			display: inline-block;
 			box-sizing: border-box;
 			height: 100%;

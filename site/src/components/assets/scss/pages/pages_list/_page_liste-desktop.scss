@@ -1,51 +1,31 @@
 $width-image-pre-listing: 90px;
 
 
-.page-production-list,
-.page-activity-list,
-.page-news-list{
-
-    @include for-size(desktop) {
 
 
 
-		#liste{
-	        
-			margin-top: $height-top-bar;
-            margin-left: $logo-column;
-           
 
-
-
-	
-
-            
-            // .accroche-titre{
-                
-            //     // font-weight: 500;
-            //     text-align: left;
-            //     padding-top: $baseline*1.5;
-            //     padding-bottom: $baseline*2;
-            //     width: 100%;
-            //     color: $text-color;
-            //     // background-color: $background-grey;
-            //     p{
-            //         @include font-size-20;
-            //         max-width: 800px;
-            //         // padding-left: $unite;
-            //     }
-            // }
-			
-			
-			
-	  }/* end #liste */
+@media screen and (min-width: 700px) and (max-width: 1080px){
+    .page-production-list,
+    .page-activity-list,
+    .page-news-list{
+        #liste{
+                margin-top: $height-top-bar;
+                margin-left: $logo-column-medium;
+        }
     }
-    
+
+   
 }
 
+@media screen and (min-width: 1080px){
+    .page-production-list,
+    .page-activity-list,
+    .page-news-list{
+        #liste{
+                margin-top: $height-top-bar;
+                margin-left: $logo-column;
+        }
+    }
 
-/* hack first year */
-.page-production-list{
-    #liste{ top: -3px; }
-    #liste .accroche-titre{ top: 3px; }
 }

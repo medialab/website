@@ -3,18 +3,23 @@
 /////////////////////
 .page-people-list{
 
+	@media screen and (min-width: 700px) and (max-width: 1080px){
+		label.filtre_equipe{ width: $logo-column-medium - $margins-desktop; }
+	}
+	
+	@media screen and (min-width: 1080px){
+		label.filtre_equipe{ width: $logo-column - $margins-desktop; }
+	}
+
+
+
 	@include for-size(desktop) {
-
-		// .filtre_title, .toggle-filtre-phone{
-		// 	display: none;
-		// }
-
 
 		label.filtre_equipe{
 
 			position: fixed;
 			left: $margins-desktop;
-			width: $logo-column - $margins-desktop;
+			
 			@include font-size-13();
 		
 		}

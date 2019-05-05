@@ -42,7 +42,7 @@ $hack-sticky: 54px;
 				font-weight: bold;
 				@include text-overflow;
 				width: 90%;	
-				max-width: 900px;
+				max-width: $max-width-article;
 						
 			}
 

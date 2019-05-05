@@ -5,15 +5,27 @@ $height-desktop-filter-title: $baseline * 4;
 $height-gotoyear-desktop: $baseline*2.5;
 $first-filter-desktop: $height-top-bar + $height-desktop-filter-title + $height-gotoyear-desktop - 3px;
 
-
-
 $height-filtres-actu: $baseline * 3.5;
 
 
-@include for-size(desktop) {
 
-	#toggle-filtre-phone + label{ display: none; }
+@media screen and (min-width: 700px) and (max-width: 1080px){
+    .type_title,
+    .link-productions-sort,
+    .link-activity-sort,
+    .go-to-year,
+    #checkbox_filtre-production_year + label,
+    #checkbox_filtre-actu_year + label{
+        left: $margins-desktop;
+        width: $logo-column-medium - $margins-desktop;   
+    }
+    .accroche-title-list{ left: $logo-column-medium + $margins-desktop ; }
+    .filtre-production, .filtre-activity, .filtre-actu{ width: $logo-column-medium - $margins-desktop; }
+    .h2_filtre{  width: $logo-column-medium - $margins-desktop; }
+   
+}
 
+@media screen and (min-width: 1080px){
     .type_title,
     .link-productions-sort,
     .link-activity-sort,
@@ -23,6 +35,20 @@ $height-filtres-actu: $baseline * 3.5;
         left: $margins-desktop;
         width: $logo-column - $margins-desktop;   
     }
+    .accroche-title-list{ left: $logo-column + $margins-desktop ; }
+    .filtre-production, .filtre-activity, .filtre-actu{ width: $logo-column - $margins-desktop; }
+    .h2_filtre{  width: $logo-column - $margins-desktop; }
+}
+
+
+
+
+
+@include for-size(desktop) {
+
+	#toggle-filtre-phone + label{ display: none; }
+
+    
 
     .type_title{ 
         top: $height-top-bar ; 
@@ -35,7 +61,7 @@ $height-filtres-actu: $baseline * 3.5;
         box-sizing: content-box!important;
         position: fixed;
         top: -100vh;
-        left: $logo-column + $margins-desktop ;
+        
         background-color: $background-site;
         z-index: 90;
         @include font-size-20;
@@ -84,15 +110,11 @@ $height-filtres-actu: $baseline * 3.5;
 
 
     /* sort type */
-    .filtre-production, .filtre-activity, .filtre-actu{ 
-        width: $logo-column - $margins-desktop;
     
-    }
 
     .h2_filtre{
         position: fixed;
         left: $margins-desktop;
-        width: $logo-column - $margins-desktop; 
         @include font-size-13-uppercase();
         // font-weight: 400;
     }

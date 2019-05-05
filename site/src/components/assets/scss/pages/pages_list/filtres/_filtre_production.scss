@@ -10,6 +10,37 @@
 
 	#list-all_current li:first-of-type{ font-weight: 600!important;}
 
+
+	@media screen and (min-width: 700px) and (max-width: 1080px){
+		#checkbox_filtre-production_year + label{   width: $logo-column-medium - $margins-desktop; }
+		#label_checkbox_publications,
+		#label_checkbox_tools,
+		#label_checkbox_webEditions,
+		#label_checkbox_situations{
+			position: fixed;
+			display:block;
+			width: $logo-column-medium - $margins-desktop; 
+		} 
+		
+	}
+
+	@media screen and (min-width: 1080px){
+		#checkbox_filtre-production_year + label{   width: $logo-column - $margins-desktop; }
+		#label_checkbox_publications,
+		#label_checkbox_tools,
+		#label_checkbox_webEditions,
+		#label_checkbox_situations{
+			position: fixed;
+			display:block;
+			width: $logo-column - $margins-desktop; 
+		} 
+	}
+
+
+
+
+
+
 	@include for-size(desktop) {
 
 
@@ -23,7 +54,6 @@
 
 		#checkbox_filtre-production_year + label{   
 			position: fixed;
-			width: $logo-column - $margins-desktop; 
 			top: $height-top-bar + $height-desktop-filter-title + $baseline*0.25;
 		}
 		
@@ -88,7 +118,6 @@
 		#label_checkbox_situations{
 			position: fixed;
 			display:block;
-			width: $logo-column - $margins-desktop;  
 			height: $baseline*1.5;
 			top: $baseline * -2 ;
 			z-index: 99;

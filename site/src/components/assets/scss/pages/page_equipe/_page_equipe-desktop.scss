@@ -5,36 +5,39 @@
 
 
 
+
+@media screen and (min-width: 700px) and (max-width: 1080px){
+    .page-people-list{
+		#liste_equipe{ 
+			margin-left: $logo-column-medium; 
+			ul{ width: calc( 100vw - #{$logo-column-medium} - #{$margins-desktop*2} ); }
+		}
+    }
+}
+
+@media screen and (min-width: 1080px){
+    .page-people-list{
+		#liste_equipe{ 
+			margin-left: $logo-column; 
+			ul{ width: calc( 100vw - #{$logo-column} - #{$margins-desktop*2} ); }
+		}
+    }
+}
+
+
+
 @include for-size(desktop) {
 
 	.page-people-list{
 
-		// #topbar{ 
-		// 	//position: fixed!important; 
-		// 	top: 0;
-		// 	width: calc(100vw - #{$margins-desktop*2});
-
-		// 	&:after{ 
-	    //         content:"";
-	    //         border-bottom: $border;
-	    //         margin-left: $logo-column;
-	    //         width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
-	    //         position: absolute;
-	    //         bottom: 0;
-	    //         z-index: 10;
-	    //     }
-
-		// }
 
 		#liste_equipe{        
 			margin-top: $height-top-bar;
-			margin-left: $logo-column;
 			min-height: calc( 100vh - #{$height-top-bar} - #{$unite*9} - 3px); //unite*9 correspond a la hauteur du footer
-			// max-width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
 
 			ul{
 				display: inline-block;
-				width: calc( 100vw - #{$logo-column} - #{$margins-desktop*2} );
+				
 				@supports(display: grid) {
 					display: grid;
 					grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));

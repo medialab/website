@@ -3,25 +3,22 @@
 /////////////////////
 
 
+@media screen and (min-width: 700px) and (max-width: 1080px){
+	.page-about main{ margin-left: $logo-column-medium; }
+}
+
+@media screen and (min-width: 1080px){
+	.page-about main{ margin-left: $logo-column; }
+}
+
 
 @include for-size(desktop) {
 	.page-about{
 
-		// #topbar{
-	    //     &:after{
-	    //         content:"";
-	    //         border-bottom: $border;
-	    //         margin-left: $logo-column;
-	    //         width: calc( 100vw - #{$logo-column} - #{$margins-desktop*3} );
-	    //         position: absolute;
-	    //         bottom: 0;
-	    //         z-index: 10;
-	    //     }
-		// }
 
 		main{
 			
-			margin-left: $logo-column;
+			
 			margin-bottom: 40vh;
 
 			@include flex;
@@ -41,12 +38,12 @@
 				h2{ 
 					padding-bottom: $baseline*1.5; 
 					@include font-size-27();
-					max-width: 900px;
+					max-width: $max-width-article;
 				}
 			}
 
 			.about-contenu{
-				max-width: 900px;
+				max-width: $max-width-article;
 				margin-right: $unite*2;
 			}	
 

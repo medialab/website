@@ -18,23 +18,7 @@
 	    svg{ fill:$background-site !important;}
 	}
 
-	#topbar,{ background-color:  #fc424e !important; }
 
-	@include for-size(phone) { // Exeption car couleur
-		#topbar{ 
-			background-color:  #fc424e !important;
-	        #logo-medialab svg, label svg{ fill: $text-color !important;}
-
-			#topbar-content{
-				background-color:  #fc424e !important;
-				*{ color: $text-color !important;}
-				
-				ul{ border-color: $text-color;
-					li{ color: $text-color; }
-				}
-			}
-		}
-	}
 
 	nav, nav .nav-inside-item{
 		background-color:  #fc424e !important;

@@ -6,6 +6,24 @@
 
 
 
+@media screen and (min-width: 700px) and (max-width: 1080px){
+    .page-production, 
+	.page-news, 
+	.page-activity{
+		main{ margin-left: $logo-column-medium;}
+	}
+
+}
+
+@media screen and (min-width: 1080px){
+    .page-production, 
+	.page-news, 
+	.page-activity{
+		main{ margin-left: $logo-column;}
+	}
+}
+
+
 @include for-size(desktop) {
 
 	.page-production, 
@@ -18,14 +36,13 @@
 		}
 
 		main{
-			margin-left: $logo-column;
 			margin-bottom: 40vh;	
 			margin-top: $hack-sticky; /* set sticky title */
 
 			hgroup{ 
 				// border-top: $border-very-light;
 				// max-width: 1300px; 
-				max-width: 900px; 
+				max-width: $max-width-article; 
 			}
 
 			#article-contenu{

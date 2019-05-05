@@ -2,30 +2,45 @@
 //////// Top bar desktop
 /////////////////////
 
+
+@media screen and (min-width: 700px) and (max-width: 1080px){
+    #topbar{ 
+        background-color: green;
+        #logo-medialab svg,
+        #logo-medialab img{ 
+            width: $unite*5;
+            margin-right: $unite*3; 
+        }
+
+        #topbar-content nav ul{width: $unite*6.5; }
+    
+    }
+}
+
+@media screen and (min-width: 1080px){
+    #topbar{ 
+        background-color: yellow;
+        #logo-medialab svg,
+        #logo-medialab img{ 
+            width: $unite*6;
+            margin-right: $unite*4;         
+        }
+        #topbar-content nav ul{width: $unite*8; }
+    
+    }
+}
+
+
+
+
+
 @include for-size(desktop) {
-
-   
-
-    // full width topbar
-    // .page-production, .page-activity, .page-news, .page-people{
-    //     #topbar{
-    //         width: calc(100% + #{$unite*2});
-    //         left: $unite*-1;
-    //     }
-
-    //     #topbar-content{
-    //         margin: 0 $unite;
-    //     }
-    // }
-
 
     #topbar{
         padding: $margins-desktop $margins-desktop;
         width: 100vw;
-        // width:calc(100vw - #{$margins-desktop*2});
         height: $height-top-bar;
         left: $margins-desktop * -1;
-        // @include font-size-16();
         color: $text-color;
         @include font-size-13-uppercase();
         letter-spacing: 0.2px;
@@ -45,19 +60,9 @@
     }
 
 
-
-
-    .nav-objet li::before{
-        font-size: 13px;
-        color: pink;
-        
-    }
-
     #topbar label{ 
         display: none;
-        cursor: pointer;
-       
-
+        cursor: pointer;     
     }
         
     #topbar-content{
@@ -65,10 +70,11 @@
         @include flex();
         @include justify-content(stretch);
 
+
         #logo-medialab svg, #logo-medialab img{
-            width: $unite*6;
+            
             fill: $text-color;
-            margin-right: $unite*4;
+            
             top: 70%;
             transform: translateY(-50%);  
         }
@@ -85,8 +91,9 @@
             @include flex();
             @include align-items(flex-end);
             ul{ 
-                width: $unite*8; 
+                
                 li{ margin-top: $baseline/4; }
+                &:last-of-type{ width: 80px!important;}
             }
         }
 
@@ -109,4 +116,5 @@
     }/* end #topbar-content */
 
 }/* end desktop */
+
 

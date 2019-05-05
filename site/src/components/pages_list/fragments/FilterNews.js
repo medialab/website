@@ -48,9 +48,9 @@ const FilterNews = ({lang, years}) => {
       
       {/* YEAR */}
       <input
-        type="checkbox" id="radio_filtre-actu_year" name="radio_filtre-actu"
+        type="checkbox" id="checkbox_filtre-actu_year" name="radio_filtre-actu"
         value="year" hidden />
-      <label htmlFor="radio_filtre-actu_year"><span>〉</span></label>
+      <label htmlFor="checkbox_filtre-actu_year"><span>〉</span></label>
 
       <div className="go-to-year" id="go-to-year_news">
         <p>{ year }</p>

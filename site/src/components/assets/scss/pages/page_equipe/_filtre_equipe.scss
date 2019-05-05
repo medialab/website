@@ -18,13 +18,21 @@ $margin-filter-equipe: $baseline/2;
 	
 		.filtre_membre_title{ top: $height-top-bar + ($baseline*2.5)*2;}
 		.filtre_equipe:nth-of-type(2){ top: $height-top-bar + ($baseline*2.5)*3;}
-		.filtre_equipe:nth-of-type(3){ top: $height-top-bar + ($baseline*2.5)*4;}
+		.filtre_equipe:nth-of-type(3){ 
+			top: $height-top-bar + ($baseline*2.5)*4;
+			padding-bottom: $baseline;
+			border-bottom: $border-very-light;
+		}
 		.filtre_domaine_title{ top: $height-top-bar+ $margin-filter-equipe*2 + ($baseline*2.5)*5;}
 		.filtre_equipe:nth-of-type(4){ top: $height-top-bar+ $margin-filter-equipe*2 + ($baseline*2.5)*6;}
 		.filtre_equipe:nth-of-type(5){ top: $height-top-bar+ $margin-filter-equipe*2 + ($baseline*2.5)*7;}
 		.filtre_equipe:nth-of-type(6){ top: $height-top-bar+ $margin-filter-equipe*2 + ($baseline*2.5)*8;}
 		.filtre_equipe:nth-of-type(7){ top: $height-top-bar+ $margin-filter-equipe*2 + ($baseline*2.5)*9;}
-		.filtre_equipe:nth-of-type(8){ top: $height-top-bar+ $margin-filter-equipe*2 + ($baseline*2.5)*10;}
+		.filtre_equipe:nth-of-type(8){ 
+			top: $height-top-bar+ $margin-filter-equipe*2 + ($baseline*2.5)*10;
+			padding-bottom: $baseline;
+			border-bottom: $border-very-light;
+		}
 		.filtre_equipe{ z-index: 10; }
 
 	}

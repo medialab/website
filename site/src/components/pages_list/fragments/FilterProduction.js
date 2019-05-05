@@ -6,25 +6,35 @@ import cls from 'classnames';
 const FilterProduction = ({lang, group, types}) => {
 
 
-	let title, filter, all,  year;
+	let title, filter, all,  year, accroche;
 
 	if (lang === 'fr') {
 		title = 'Productions';
 		filter = 'Filtres';
 		all = 'Toutes les productions';
-		year = "Aller à l'année…";
+    year = "Aller à l'année…";
+    accroche = 'Issues des dynamiques de recherche du laboratoire combinant méthode, analyse et théorie, les productions du médialab constituent un panorama hétéroclite. Aux traditionnelles publications académiques s’ajoute un ensemble de réalisations techniques qui répondent à des problèmes de recherche récurrents. Récemment, les sites web et réalisations en situation se sont développés comme de nouvelles formes pour rendre compte des activités du laboratoire.';
+
 	
 	}
 	else {
 		title = 'Productions';
 		filter = 'Filters';
 		all = 'All productions';
-		year = 'Go to year…';
-	}
+    year = 'Go to year…';
+    accroche = 'Description in english en une phrase de la catégorie production';
+
+  }
+  
+
 
 	return (
   <>
-    <h1 className="type_title" data-icon="production"><a href="#year-2018">{title}</a></h1>
+    <h1 className="type_title" data-icon="production" >
+      <a href="#year-2018">{title}</a>
+    </h1>
+
+    <p class="accroche-title-list">{accroche}</p>
 
 
 
@@ -63,10 +73,6 @@ const FilterProduction = ({lang, group, types}) => {
     </div>
 
 
-    {/* <input
-      type="checkbox" id="checkbox_filtre-production_group" name="radio_filtre-production"
-      value="group" hidden />
-    <label htmlFor="checkbox_filtre-production_group"><span>〉</span></label> */}
 
       <input type="checkbox" id={'checkbox_' + group} ame="checkbox_publication" value="checkbox_publication" hidden/>
       <label  id={'label_checkbox_' + group} htmlFor={'checkbox_' + group}><span>〉</span></label>

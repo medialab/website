@@ -11,15 +11,7 @@ const byYear = ([yearA], [yearB]) => yearB - yearA;
 export default function ProductionListing({lang, list, group, types}) {
     const yearGroups = new Map();
 
-    let accroche;
-
-    if (lang === 'fr') {
-      accroche = 'Issues des dynamiques de recherche du laboratoire combinant méthode, analyse et théorie, les productions du médialab constituent un panorama hétéroclite. Aux traditionnelles publications académiques s’ajoute un ensemble de réalisations techniques qui répondent à des problèmes de recherche récurrents. Récemment, les sites web et réalisations en situation se sont développés comme de nouvelles formes pour rendre compte des activités du laboratoire.';
-    }
-    else {
-      accroche = 'Description in english en une phrase de la catégorie production';
-    }
-
+ 
 
     list.filter(p => p.date).sort((a, b) => b.date.localeCompare(a.date)).forEach(production => {
       let year = getYear(parseISO(production.date));
@@ -41,7 +33,7 @@ export default function ProductionListing({lang, list, group, types}) {
       <>
         <FilterProduction lang={lang} group={group} types={types} />
         <section id="liste">
-        <div className="accroche-titre"><p>{accroche}</p></div>
+        {/* <div className="accroche-titre"><p>{accroche}</p></div> */}
           <ul className="liste_objet" id="liste-productions">
             {
             Array.from(yearGroups.entries()).sort(byYear).map(([year, yearList]) => (

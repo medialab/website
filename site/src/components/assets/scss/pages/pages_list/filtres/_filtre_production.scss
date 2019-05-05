@@ -1,7 +1,7 @@
 /////////////////////
 //////// PRODUCTIONS - filtres positions
 /////////////////////
-$height-desktop-filter-year: $baseline*10.5 - 5px;
+
 
 .page-production-list,
 .page-news-list,
@@ -16,23 +16,23 @@ $height-desktop-filter-year: $baseline*10.5 - 5px;
 		#checkbox_filtre-production_group + label{ display: none; } /* phone only ? */
 
 		
-		#go-to-year_production{ top: $height-top-bar + $baseline * 3;}
+		#go-to-year_production{ 
+			top: $height-top-bar + $height-desktop-filter-title ;
+		}
 		#checkbox_filtre-production_year ~ .go-to-year ul{ max-height: 0vh; }
 
-		#checkbox_filtre-production_year + label,
 		#checkbox_filtre-production_year + label{   
 			position: fixed;
 			width: $logo-column - $margins-desktop; 
-			top: $height-top-bar + $baseline*4;
+			top: $height-top-bar + $height-desktop-filter-title + $baseline*0.25;
 		}
 		
 
 
 		.link-productions-sort{
 			position: fixed;
-			top: $height-top-bar + $baseline*6.5 - 1px; 
+			top: $first-filter-desktop; 
 			@include font-size-13-uppercase();
-			border-top: $border;
 			padding-top: $baseline * 0.25;
 			li{
 				border-bottom: $border-very-light;
@@ -46,7 +46,19 @@ $height-desktop-filter-year: $baseline*10.5 - 5px;
 					span{
 						position: absolute;
 						right: 0;
+						width: 15px;
+						height: 15px;
+						text-align: center;
 						// display: none;
+					}
+					&:hover{ 
+						font-weight: 600;
+						color: $text-color-light;
+						
+						span{
+							transform: rotate(90deg);
+							top: 6px;
+						}
 					}
 				}
 			}
@@ -68,6 +80,7 @@ $height-desktop-filter-year: $baseline*10.5 - 5px;
 			cursor: default;
 		}
 		
+		#label_checkbox_all, #label_checkbox_media{ display: none; }
 
 		#label_checkbox_publications,
 		#label_checkbox_tools,
@@ -114,12 +127,12 @@ $height-desktop-filter-year: $baseline*10.5 - 5px;
 		/* si got-to-year est déployé*/
 		#checkbox_filtre-production_year:checked ~ .go-to-year ul{ max-height: 100vh; }
 
-		#checkbox_filtre-production_year:checked ~ .link-productions-sort{ top: $height-top-bar + $height-desktop-filter-year + $baseline*6.5; }
+		#checkbox_filtre-production_year:checked ~ .link-productions-sort{ top: $height-top-bar + $height-desktop-filter-year-open + $baseline*6.5; }
 
-		#checkbox_filtre-production_year:checked ~ #label_checkbox_publications{ top: $height-top-bar + $height-desktop-filter-year + $baseline*9.75; }
-		#checkbox_filtre-production_year:checked ~ #label_checkbox_tools{ top: $height-top-bar + $height-desktop-filter-year + $baseline*12.25; }
-		#checkbox_filtre-production_year:checked ~ #label_checkbox_webEditions{ top: $height-top-bar + $height-desktop-filter-year + $baseline*14.75; }
-		#checkbox_filtre-production_year:checked ~ #label_checkbox_situations{ top: $height-top-bar + $height-desktop-filter-year + $baseline*19.75; }
+		#checkbox_filtre-production_year:checked ~ #label_checkbox_publications{ top: $height-top-bar + $height-desktop-filter-year-open + $baseline*9.75; }
+		#checkbox_filtre-production_year:checked ~ #label_checkbox_tools{ top: $height-top-bar + $height-desktop-filter-year-open + $baseline*12.25; }
+		#checkbox_filtre-production_year:checked ~ #label_checkbox_webEditions{ top: $height-top-bar + $height-desktop-filter-year-open + $baseline*14.75; }
+		#checkbox_filtre-production_year:checked ~ #label_checkbox_situations{ top: $height-top-bar + $height-desktop-filter-year-open + $baseline*19.75; }
 
 		
 		/* si PUBLICATION est déployé */
@@ -127,7 +140,7 @@ $height-desktop-filter-year: $baseline*10.5 - 5px;
 
 		@for $a from 4 through 9 {	
 			#list-publications_current ~ .filtre-production:nth-of-type(#{$a}){ top: $height-top-bar + $baseline*4.5 + $baseline* 2.5 * ($a - 1); }
-			#checkbox_filtre-production_year:checked ~ #list-publications_current ~ .filtre-production:nth-of-type(#{$a}){ top: $height-top-bar + $height-desktop-filter-year + $baseline*4.5 + $baseline* 2.5 * ($a - 1); }
+			#checkbox_filtre-production_year:checked ~ #list-publications_current ~ .filtre-production:nth-of-type(#{$a}){ top: $height-top-bar + $height-desktop-filter-year-open + $baseline*4.5 + $baseline* 2.5 * ($a - 1); }
 			
 		}
 		
@@ -137,7 +150,7 @@ $height-desktop-filter-year: $baseline*10.5 - 5px;
 
 		@for $a from 4 through 6 {	
 			#list-tools_current ~ .filtre-production:nth-of-type(#{$a}){ top: $height-top-bar + $baseline*7 + $baseline* 2.5 * ($a - 1); }
-			#checkbox_filtre-production_year:checked ~ #list-tools_current ~ .filtre-production:nth-of-type(#{$a}){ top: $height-top-bar + $height-desktop-filter-year + $baseline*7 + $baseline* 2.5 * ($a - 1); }		
+			#checkbox_filtre-production_year:checked ~ #list-tools_current ~ .filtre-production:nth-of-type(#{$a}){ top: $height-top-bar + $height-desktop-filter-year-open + $baseline*7 + $baseline* 2.5 * ($a - 1); }		
 		}
 
 		
@@ -148,7 +161,7 @@ $height-desktop-filter-year: $baseline*10.5 - 5px;
 
 		@for $a from 4 through 6 {	
 			#list-webEditions_current ~ .filtre-production:nth-of-type(#{$a}){ top: $height-top-bar + $baseline*9.5 + $baseline* 2.5 * ($a - 1); }
-			#checkbox_filtre-production_year:checked ~ #list-webEditions_current ~ .filtre-production:nth-of-type(#{$a}){ top: $height-top-bar + $height-desktop-filter-year + $baseline*9.5 + $baseline* 2.5 * ($a - 1); }		
+			#checkbox_filtre-production_year:checked ~ #list-webEditions_current ~ .filtre-production:nth-of-type(#{$a}){ top: $height-top-bar + $height-desktop-filter-year-open + $baseline*9.5 + $baseline* 2.5 * ($a - 1); }		
 		}
 
 
@@ -158,7 +171,7 @@ $height-desktop-filter-year: $baseline*10.5 - 5px;
 
 		@for $a from 4 through 7 {	
 			#list-situations_current ~ .filtre-production:nth-of-type(#{$a}){ top: $height-top-bar + $baseline*14.5 + $baseline* 2.5 * ($a - 1); }
-			#checkbox_filtre-production_year:checked ~ #list-situations_current ~ .filtre-production:nth-of-type(#{$a}){ top: $height-top-bar + $height-desktop-filter-year + $baseline*14.5 + $baseline* 2.5 * ($a - 1); }		
+			#checkbox_filtre-production_year:checked ~ #list-situations_current ~ .filtre-production:nth-of-type(#{$a}){ top: $height-top-bar + $height-desktop-filter-year-open + $baseline*14.5 + $baseline* 2.5 * ($a - 1); }		
 		}
 
 
@@ -186,71 +199,6 @@ $height-desktop-filter-year: $baseline*10.5 - 5px;
 	}
 
 
-
-
-	// @media screen and (min-width: 700px) and (max-height: 700px){
-
-	//     #checkbox_filtre-production_group + label{
-	//         position: fixed;
-	//         left: $margins-desktop;
-	//         top: $height-top-bar + $baseline*4.5;
-	//         width: $logo-column - $margins-desktop;
-	//         display: block;
-	//     }
-
-
-	//     #checkbox_filtre-production_group:checked + label{ display: none; }
-
-	//     #checkbox_filtre-production_group ~ .link-productions-sort li{ max-height: 0; }
-	//     #checkbox_filtre-production_group:checked ~ .link-productions-sort li{ max-height: 100px; }
-
-	//     #checkbox_filtre-production_group ~ .link-productions-sort{
-	//         min-height: $baseline*3.5;
-	//         top: $height-top-bar + $baseline*3.5;
-	//         padding-top: $baseline*1;
-	//         padding-bottom: 0;
-	//     }
-
-	//     #checkbox_filtre-production_group:checked ~ .link-productions-sort{
-	//         padding-top: $baseline * 1.5;
-	// 	    padding-bottom: $baseline * 1;
-	//     }  
-
-	//     #checkbox_filtre-production_group ~ .link-productions-sort .pageProduction_current{ 
-	//         max-height: 100px; 
-	//         font-weight: 300!important;
-	//         span{ display: none; }
-	//     }
-
-	//     #checkbox_filtre-production_group:checked ~ .link-productions-sort .pageProduction_current{ font-weight: 600!important; }
-
-	//     #go-to-year_production{
-	//         top: $height-top-bar + $baseline*7;
-	//     }
-
-	//     #checkbox_filtre-production_year + label{
-	//         top: $height-top-bar + $baseline*8;
-	//     }
-
-	//     #checkbox_filtre-production_year ~ #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions_medium + $baseline*5; }
-	  
-	//     #checkbox_filtre-production_group:checked ~ #go-to-year_production{
-	//         top: $height-top-bar + $baseline*18;
-	//     }
-
-	//     #checkbox_filtre-production_group:checked ~ #checkbox_filtre-production_year + label{
-	//         top: $height-top-bar + $baseline*19;
-	//     }
-
-	//     @for $i from 5 through 10 {				  
-	//         #checkbox_filtre-production_year ~ .filtre-production:nth-of-type(#{$i}){ top: $height-top-bar + $baseline*4.5 + $baseline* 2.5 * ($i - 1); }
-	//     }
-	    
-	//     #checkbox_filtre-production_group:checked ~ #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions_medium_group-checked + $baseline*5; }
-
-	//     #checkbox_filtre-production_year:checked ~ #radio_filtre-production_type + label{ top: $height-top-bar + $height-filtres-productions_medium_year-checked + $baseline*5; }
-		   
-	// }
 
 
 
@@ -311,10 +259,7 @@ $height-desktop-filter-year: $baseline*10.5 - 5px;
 			transition: 0.6s top;
 		}
 		
-		#toggle-filtre-phone ~ #radio_filtre-production_type + label{
-			top: calc(100vh - #{$baseline}*3.5 + #{$baseline}*11.5);
-			transition: 0.6 top;
-		}
+	
 
 		@for $a from 5 through 10 {	
 			#toggle-filtre-phone ~ #checkbox_filtre-production_year ~ .filtre-production:nth-of-type(#{$a}){ 
@@ -366,10 +311,9 @@ $height-desktop-filter-year: $baseline*10.5 - 5px;
 		#toggle-filtre-phone:checked ~ #radio_filtre-production_type ~ .filtre-production{ max-height: 0px; }
 		#toggle-filtre-phone:checked ~ #radio_filtre-production_type:checked ~ .filtre-production{ max-height: 100vh; }
 		
-		#toggle-filtre-phone:checked ~ #checkbox_filtre-production_year ~ #radio_filtre-production_type + label{ top: $top-filtre-phone-open + $height-filtres-productions_medium + $baseline*5; }
-		#toggle-filtre-phone:checked ~ #checkbox_filtre-production_group:checked ~ #radio_filtre-production_type + label{ top: $top-filtre-phone-open + $height-filtres-productions_medium_year-checked + $baseline*7; }
-	    #toggle-filtre-phone:checked ~ #checkbox_filtre-production_year:checked ~ #radio_filtre-production_type + label{ top: $top-filtre-phone-open + $height-filtres-productions_medium_year-checked + $baseline*5; }
-
+		#toggle-filtre-phone:checked ~ #checkbox_filtre-production_year ~ #radio_filtre-production_type + label{ top: $top-filtre-phone-open + $baseline * 7 + $baseline*5; }
+		#toggle-filtre-phone:checked ~ #checkbox_filtre-production_group:checked ~ #radio_filtre-production_type + label{ top: $top-filtre-phone-open + $baseline * 16 + $baseline*7; }
+	    #toggle-filtre-phone:checked ~ #checkbox_filtre-production_year:checked ~ #radio_filtre-production_type + label{ top: $top-filtre-phone-open + $baseline * 16 + $baseline*5; }
 
 		@for $i from 5 through 10 {	
 	        #toggle-filtre-phone:checked ~ #checkbox_filtre-production_year ~ .filtre-production:nth-of-type(#{$i}){ top: $top-filtre-phone-open + $baseline*4.5 + $baseline* 2.5 * ($i - 1); transition: 0.6 top;}

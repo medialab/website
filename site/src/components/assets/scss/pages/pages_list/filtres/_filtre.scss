@@ -9,10 +9,7 @@
 	@include font-size-16();
 	text-transform: uppercase;
 	font-weight: 600;
-	border-top: $border-light;
-	border-bottom: $border-light;
-	padding-top: $baseline * 1;
-	height: $baseline * 3.5;
+	
 }
 
 
@@ -24,9 +21,7 @@
 .go-to-year{  
 	position: fixed;    
 	@include font-size-13;
-	padding-top: $baseline * 1.25;
-	border-bottom: $border-very-light;
-	height: $baseline * 3.5;
+	
 
 
 	.current-year{
@@ -34,7 +29,7 @@
 		padding-right: $margins-desktop*1.5;
 		position: absolute;
 		right: 0;
-		top: $baseline * 1.25;
+		top: $baseline * 0.5;
 	}
 
 	ul{
@@ -58,15 +53,53 @@
 	
 }/* end .go-to-year */
 
-#radio_filtre-production_type + label,
-#radio_filtre-actu_type + label{
-	position: fixed;
-	@include font-size-13-uppercase();
-	// text-transform: uppercase;
-	text-align: left;
-	// transition: 0.5s top;
-	span{ display: none; }
+
+#checkbox_filtre-production_year + label, 
+#checkbox_filtre-actu_year + label{
+	height: $baseline*2;
+	z-index: 99;
+	padding-top: $baseline * 0.25;
+	cursor: pointer; 
+	span{
+		display: inline-block; 
+		width: $baseline;
+		height: $baseline;
+		@include font-size-13;
+		position: absolute;
+		text-align: right;
+		right: 0;
+		top: $baseline*0.25;	
+	}
 }
+
+
+
+
+#checkbox_filtre-production_year + label:hover,
+#checkbox_filtre-actu_year + label:hover{ 
+	& ~ .go-to-year{
+		 color: $text-color-light;
+		 ul{ color: $text-color;}
+	 }
+	 span{
+		transform: rotate(90deg);
+		transform-origin: center center;
+		top: $baseline*0.25 + 6px;
+	 }
+ }
+
+ #checkbox_filtre-production_year:checked + label,
+ #checkbox_filtre-actu_year:checked + label{
+	span{
+		transform: rotate(90deg);
+		transform-origin: center center;
+		top: $baseline*0.25 + 6px;
+	 }
+ }
+ 
+
+
+
 
 .filtre-production, .filtre-activity, .filtre-actu{ 
 	position: fixed;
@@ -77,67 +110,6 @@
 }
 
 
-#checkbox_filtre-production_group + label,
-#checkbox_filtre-production_year + label, 
-#radio_filtre-production_type + label,
-#radio_filtre-actu_group + label,
-#radio_filtre-actu_year + label, 
-#radio_filtre-actu_type + label{
-	height: $baseline*2;
-	z-index: 99;
-	cursor: pointer; 
-}
-
-
-#checkbox_filtre-production_group + label span,
-#checkbox_filtre-production_year + label span, 
-#radio_filtre-production_type + label span,
-#radio_filtre-actu_group + label span,
-#radio_filtre-actu_year + label span, 
-#radio_filtre-actu_type + label span{
-	// padding-top: $baseline * 0.5;
-	@include font-size-13;
-	position: absolute;
-	text-align: right;
-	right: 0;
-	top: 0;	
-}
-
-#checkbox_filtre-production_year + label,
-#radio_filtre-actu_year + label{
-	padding-top: $baseline * 0.25;
-}
 
 
 
-
-/* flêches ouvrantes/fermantes */
-
-#checkbox_filtre-production_group + label span,
-#checkbox_filtre-production_year + label span,
-#radio_filtre-production_type + label span,
-#radio_filtre-actu_group + label span,
-#radio_filtre-actu_year + label span,
-#radio_filtre-actu_type + label span{
-	display: inline-block; 
-	width: $baseline;
-	height: $baseline;
-}
-
-
-#checkbox_filtre-production_group:checked + label span,
-#checkbox_filtre-production_year:checked + label span,
-#radio_filtre-production_type:checked + label span,
-#radio_filtre-actu_group:checked + label span,
-#radio_filtre-actu_year:checked + label span,
-#radio_filtre-actu_type:checked + label span{
-	transform: rotate(90deg);
-	transform-origin: center center;
-	// top: -3px;
-}
-
-
-#checkbox_filtre-production_year + label span,
-#radio_filtre-actu_year + label span{
-	margin-top: $baseline*0.25;
-}

@@ -7,11 +7,7 @@ $width-image-pre-listing: 90px;
 
     @include for-size(desktop) {
 
-		#topbar{ 
-			position: fixed!important; 
-			top: 0;
-			width: calc(100vw - #{$margins-desktop*2});
-		}
+
 
 		#liste{
 	        
@@ -19,32 +15,26 @@ $width-image-pre-listing: 90px;
             margin-left: $logo-column;
            
 
-			&:before{
-				content: "";
-				display: block; 
-				width: calc(100vw - #{$logo-column} - #{$margins-desktop*2});
-                position: fixed;
-                top: $height-top-bar;
-                border-top: $border-light;
-                z-index: 99;
-			}
+
+
+	
 
             
-            .accroche-titre{
+            // .accroche-titre{
                 
-                // font-weight: 500;
-                text-align: left;
-                padding-top: $baseline*1.5;
-                padding-bottom: $baseline*2;
-                width: 100%;
-                color: $text-color;
-                // background-color: $background-grey;
-                p{
-                    @include font-size-20;
-                    max-width: 800px;
-                    // padding-left: $unite;
-                }
-            }
+            //     // font-weight: 500;
+            //     text-align: left;
+            //     padding-top: $baseline*1.5;
+            //     padding-bottom: $baseline*2;
+            //     width: 100%;
+            //     color: $text-color;
+            //     // background-color: $background-grey;
+            //     p{
+            //         @include font-size-20;
+            //         max-width: 800px;
+            //         // padding-left: $unite;
+            //     }
+            // }
 			
 			
 			

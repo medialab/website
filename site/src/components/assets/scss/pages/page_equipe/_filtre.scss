@@ -5,32 +5,10 @@
 
 	@include for-size(desktop) {
 
-		.filtre_title, .toggle-filtre-phone{
-			display: none;
-		}
+		// .filtre_title, .toggle-filtre-phone{
+		// 	display: none;
+		// }
 
-		h1.type_title{ 
-			left: $margins-desktop;
-			top: $height-top-bar ;
-			// width: calc( #{$logo-column} - #{$margins-desktop});
-			width: $logo-column - $margins-desktop;
-			border-top: $border-light;
-			border-bottom: $border-light;
-			padding-top: $baseline * 1;
-			padding-bottom: $baseline * 1;
-			@include font-size-13();
-			text-transform: uppercase;
-			font-weight: 400;
-			height: $baseline*3.5;
-		}
-		
-		h2.filtre_domaine_title,
-		h2.filtre_membre_title{
-			position: fixed;
-			left: $margins-desktop;
-			@include font-size-13();
-			font-weight: 400;
-		}
 
 		label.filtre_equipe{
 

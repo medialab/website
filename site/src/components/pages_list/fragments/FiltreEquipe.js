@@ -5,9 +5,10 @@ import {IsModel} from '../../helpers/helpers.js';
 
 const FiltreEquipe = ({lang}) => {
 
-  let member, associate, filterDomain, filterMember;
+  let title, member, associate, filterDomain, filterMember;
 
   if (lang === 'fr') {
+    title = 'L‘équipe';
 	  member = 'Membres';
     associate = 'Associés';
     filterDomain = 'Filtrer par domaine';
@@ -15,6 +16,7 @@ const FiltreEquipe = ({lang}) => {
 	
 	}
 	else {
+    title = "The Team"
 		member = 'Members'
     associate = 'Associates'
     filterDomain = 'Filter by domain';
@@ -24,7 +26,7 @@ const FiltreEquipe = ({lang}) => {
 
 	return (
   <>
-    <h1 className="type_title" id="activite_title">Membres</h1>
+    <h1 className="type_title" id="activite_title">{title}</h1>
 
     <input
       type="checkbox" className="toggle-filtre-phone" id="toggle-filtre-phone"
@@ -34,7 +36,7 @@ const FiltreEquipe = ({lang}) => {
     </label>
 
 
-    <h2 className="filtre_membre_title">{ filterMember }</h2>
+    <h2 className="filtre_membre_title h2_filtre">{ filterMember }</h2>
 
     <input
       type="checkbox" id="filtre_membre" name="filtre_membre" className="input_member"
@@ -46,7 +48,7 @@ const FiltreEquipe = ({lang}) => {
       value="non_membre" hidden />
     <label className="filtre_equipe checkbox-medialab" htmlFor="filtre_non_membre">{associate}</label>
 
-    <h2 className="filtre_domaine_title">{ filterDomain }</h2>
+    <h2 className="filtre_domaine_title h2_filtre">{ filterDomain }</h2>
 
     <input
       type="checkbox" id="domaine_academique" name="domaine_academique" className="input_domaine"

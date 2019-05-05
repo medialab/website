@@ -1,8 +1,11 @@
-$height-filtres-productions: $baseline * 18.5;
-$height-filtres-productions_year-checked: $baseline * 28;
-$height-filtres-productions_medium: $baseline * 7;
-$height-filtres-productions_medium_group-checked: $baseline * 18;
-$height-filtres-productions_medium_year-checked: $baseline * 16;
+
+
+$height-desktop-filter-year-open: $baseline*10.5 - 4px;
+$height-desktop-filter-title: $baseline * 4;
+$height-gotoyear-desktop: $baseline*2.5;
+$first-filter-desktop: $height-top-bar + $height-desktop-filter-title + $height-gotoyear-desktop - 3px;
+
+
 
 $height-filtres-actu: $baseline * 3.5;
 
@@ -16,14 +19,45 @@ $height-filtres-actu: $baseline * 3.5;
     .link-activity-sort,
     .go-to-year,
     #checkbox_filtre-production_year + label,
-    #radio_filtre-production_type + label,
-    #radio_filtre-actu_year + label,
-    #radio_filtre-actu_type + label{
+    #checkbox_filtre-actu_year + label{
         left: $margins-desktop;
         width: $logo-column - $margins-desktop;   
     }
 
-    .type_title{ top: $height-top-bar ; } 
+    .type_title{ 
+        top: $height-top-bar ; 
+        border-bottom: $border-light;
+        padding-top: $baseline * 1.25;
+        height: $height-desktop-filter-title;
+    } 
+
+    .accroche-title-list{
+        box-sizing: content-box!important;
+        position: fixed;
+        top: -100vh;
+        left: $logo-column + $margins-desktop ;
+        background-color: $background-site;
+        z-index: 90;
+        @include font-size-20;
+        color: $redlab;
+        padding-top: $baseline*0.75;
+        padding-bottom: $baseline;
+        border-bottom: $border-redlab;
+        padding-right: $margins-desktop;
+        margin-right: $margins-desktop;
+        overflow: hidden;
+        transition: top .3s;
+     
+        
+    }
+
+    .type_title:hover{ 
+            color: $redlab;
+        & + .accroche-title-list {
+            top: $height-top-bar;  
+        }
+    } 
+
 
     // .link-productions-sort,
 	.link-activity-sort
@@ -34,20 +68,19 @@ $height-filtres-actu: $baseline * 3.5;
     /* sort year */
 
     .go-to-year{
+  
+            padding-top: $baseline * 0.5;
+            border-bottom: $border-very-light;
+            height: $height-gotoyear-desktop;
+        
         ul{ width: 100%; }
         ul li{ width: 33%; }
         li:nth-of-type(3n){ border-right: none; }
+        
     }
 
-    
+
    
-
-    #radio_filtre-actu_year + label,
-    #radio_filtre-actu_year + label{   
-        position: fixed;
-        width: $logo-column - $margins-desktop; 
-        top: $height-top-bar + $height-filtres-actu + $baseline;
-    }
 
 
     /* sort type */
@@ -60,8 +93,8 @@ $height-filtres-actu: $baseline * 3.5;
         position: fixed;
         left: $margins-desktop;
         width: $logo-column - $margins-desktop; 
-        @include font-size-13();
-        font-weight: 400;
+        @include font-size-13-uppercase();
+        // font-weight: 400;
     }
     
 

@@ -38,7 +38,7 @@
 		li.item{
 			box-sizing: border-box;
 			padding-bottom: $baseline/2;
-			border-bottom: $border-light;
+			border-bottom: $border;
 			overflow: hidden;
 			background: $background-grey;
 			opacity: 1;
@@ -357,7 +357,7 @@
 
 		ul.liste_objet{ 
 			// li{ width: 100%; }
-			li:first-of-type{ border-top: $border-light; }
+			li:first-of-type{ border-top: $border; }
 		}
 	}
 }

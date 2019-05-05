@@ -10,7 +10,6 @@
 
 @import 'fragments/miniatures/miniatures-all';
 @import 'fragments/miniatures/miniatures-highlight';
-@import 'fragments/miniatures/miniatures-now';
 @import 'fragments/elements-associes';
 @import 'fragments/toggle-lang';
 @import 'fragments/nav';
@@ -30,10 +29,10 @@
 
 @import 'pages/index/introduction';
 
+@import 'pages/index/now';
+
 @import 'pages/index/agenda/agenda-phone';
-@import 'pages/index/agenda/agenda-desktop-slider';
-@import 'pages/index/agenda/agenda-desktop-structure'; 
-@import 'pages/index/agenda/agenda-desktop-style'; 
+@import 'pages/index/agenda/agenda-desktop'; 
 
 @import 'pages/index/flux/flux-structure';
 @import 'pages/index/flux/flux-style';

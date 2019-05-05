@@ -19,64 +19,10 @@ $width-image-pre-highlight: ( 100% / 75 ) * 4;
 		ul{
 
 			&:first-of-type { 
-				border-top: $border-light; 
+				border-top: $border; 
 				padding-top: 1px;
 			}
-			li{
-				.image-pre{
-					max-width: calc(#{$width-image-pre-highlight});
-					height: 100%;
-					pre{ 
-						font-size: calc(( ((100vw - #{$unite*2}) - #{$logo-column})  /75 )*1.89 ); // Should change with width
-						//line-height: calc(( ((100vw - #{$unite*4}) - #{$logo-column})  /75 )*1.89 );
-						@include for-size(desktop-900){ font-size: calc( ( 900px / 75 ) * 1.89); } // fit with highlight container
-						line-height: normal;
-					}
-		            &:hover{ 
-						max-width: calc(#{$width-image-pre-highlight} + (100% - #{$width-image-pre-highlight})); 
-						background-color: $background-grey;
-						pre{ background-color: $background-grey; }
-					}
-	            }
-				.bandeau{
-	                width: calc(100% - #{$width-image-pre-highlight} - #{$unite/2});
-	                left: calc(#{$width-image-pre-highlight} + #{$unite/2});
-				}
-				hgroup, .accroche{
-	                left: calc(#{$width-image-pre-highlight});
-					width: calc( 100% - #{$width-image-pre-highlight} );
-					padding: 0 $unite/2;
-				}			
-				h1{
-	                @include font-size-20; 			
-					//margin-bottom: $baseline*.5;
-					min-height: $baseline*4;
-	                padding-top: $baseline*1.5;
-					//padding-bottom: $baseline;
-
-					// @include for-size( desktop-900){
-					// 	min-height: inherit;
-					// 	@include text-overflow;
-					// }
-				}
-				&:hover{
-					background-color: $background-site;
-					.image-pre{ max-width: calc(#{$width-image-pre-highlight} + (100% - #{$width-image-pre-highlight})); }
-				}
-				// &:hover{
-				// 	background-color: $background-grey;
-				// 	.image-pre{ background-color: $background-grey; }
-				// 	pre{ background-color: $background-grey; }
-				// }
-				// .image-pre:hover{ 
-				// 	max-width: calc(#{$width-image-pre-highlight} + (100% - #{$width-image-pre-highlight})); 
-				// 	background-color: $background-site;
-				// 	pre{ background-color: $background-site; }
-				// }				
-			}
+	
 		}
 	}
-}
-@include for-size(desktop) {
-
 }

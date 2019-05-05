@@ -8,7 +8,7 @@
         width: 100vw;
         left: $margins-desktop * -1;
         padding: 0 $margins-desktop;
-        border-top: $border-light;
+        border-top: $border;
       
 
         @include font-size-16();
@@ -110,7 +110,7 @@
         margin: $unite-phone $margins-phone 0 $margins-phone;
         padding: $unite-phone 0;
         width: calc( 100% - #{$margins-phone*2} );
-        border-top: $border-light;
+        border-top: $border;
 
         @include flex();
         @include flex-direction(column);

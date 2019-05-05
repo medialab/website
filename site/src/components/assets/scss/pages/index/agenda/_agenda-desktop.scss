@@ -1,0 +1,91 @@
+/////////////////////
+//////// Agenda style
+/////////////////////
+
+@include for-size(desktop) {
+
+    #agenda {
+
+       
+
+        article{
+
+            cursor: pointer;
+            border-bottom: $border;
+
+   
+            &> a{
+                display: block;
+                height: 100%;
+                width: 100%;
+            }
+
+       
+            .date-news{
+                @include font-size-20();
+                color: $redlab;
+                padding: $baseline/2 0;
+                border-bottom: $border-very-light;
+                .week{ display: none; }         
+            }
+            
+            h1{ 
+                @include font-size-20();  
+                padding-top: $baseline;
+                padding-bottom: $baseline*1.5;
+                &::first-letter { text-transform: capitalize; }
+            }
+
+
+            
+            aside.divers{
+                @include font-size-13();
+                p{ display: inline-block; }
+                border-bottom: $border-very-light;
+                padding: $baseline/2 0;
+                
+                .internal{ 
+                    position: absolute;
+                    right: 0;
+                }
+            }
+
+
+            aside.details{ 
+                width: 100%;
+               
+                @include font-size-13();
+
+                p:first-of-type{
+                    border-top: $border-very-light;
+                    padding-top: $baseline/2;
+                }
+
+                p:last-of-type{
+                    padding-bottom: $baseline/2;
+                }
+            }
+
+
+        } /* end article */
+    } /* end #agenda */
+
+}/* end query desktop */
+
+
+
+
+
+// all queries
+
+#agenda {
+    .date-news::before{ content: none; }
+    .place::before{ content: $place; padding-right: 5px;}
+    .hours-news::before{ content: $time; padding-right: 5px;}    
+}
+
+#agenda article:hover{
+    background-color: $background-grey;
+
+}
+

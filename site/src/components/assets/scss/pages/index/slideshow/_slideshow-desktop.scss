@@ -15,23 +15,33 @@
 
 
 		width: 100%;
+		max-width: $max-width-article;
 		height: 600px;
 		height: -webkit-calc(100vh - #{$height-top-bar} - 2rem);
 		height: -moz-calc(100vh - #{$height-top-bar} - 2rem);
 		height: calc(60vh - #{$height-top-bar} - 2rem);
-		height: 40vh;
+		height: 60vh;
 		height: $hunit*10;
-		min-height: 350px;
-		max-height: 800px;
+		min-height: 400px;
+		max-height: 550px;
 
 		margin: 0 auto;
 		// overflow-y: hidden;
 
-		border-top: $border;
+		border-bottom: $border;
 		// border-bottom: $border;
 
 		width: 100%;
 		margin-left: 0;
+
+		&:after{
+			content:'';
+			width: 100%;
+			border-bottom: $border;
+			position: absolute;
+			bottom: -1px;
+			left: 0;
+		}
 		
 
 		.slideshow--item{
@@ -59,13 +69,15 @@
 	                    line-height: calc(((100vw - #{$unite*2})/250)*1.89); //(((Ecran - Marge*2) / Nbr de Block par ligne)*Ratio Hauteur par largeur du glyphe)
 	                    overflow: hidden;
 	                    top: -50%;
-	                    transform: translateY(50%);
+						transform: translateY(50%);
+						color: $color-img;
         			}
 				}
 
 				.image-pre-phone{ display: none; }
 
 				.contenu-slide{
+					color: $redlab;
 					width: 65%;
 					//height: 85%;
 					//height: -webkit-calc(100% - 1.7vw*4);
@@ -94,9 +106,9 @@
 					}*/
 
 					&:hover{
-						color: $redlab;
+						background-color: $background-grey;
 						cursor: pointer;
-						.more{ color: $redlab-light!important;}
+						// .more{ color: $redlab-light!important;}
 					}
 
 					a{ height: 100%; position: relative; display: inline-block;}
@@ -171,8 +183,8 @@
 			display: flex;
 			align-items: center;
 			padding: 1.4rem;
-			border-top: $border-light;
-			border-bottom: $border-light;
+			border-top: $border;
+			border-bottom: $border;
 			&:hover{ color: $redlab!important; }
 		}
 

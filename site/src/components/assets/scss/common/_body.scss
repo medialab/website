@@ -93,7 +93,7 @@ input:checked + label{
     width: $baseline;
     height: $baseline;
     background: $background-site;
-    border: $border-light; 
+    border: $border; 
 }
 
 
@@ -174,7 +174,6 @@ span.tip{
 
     padding: 0.6rem 0.8rem;
     margin: .5rem $unite/2;    
-    //border: $border-light;
     background: $text-color;
     color: $background-site;
     @include font-size-16();

@@ -1,6 +1,7 @@
 @include for-size(desktop){
     #follow{
         width: 100%;
+        max-width: $max-width-article;
         padding: 0;
         height: $baseline*4;
         p{

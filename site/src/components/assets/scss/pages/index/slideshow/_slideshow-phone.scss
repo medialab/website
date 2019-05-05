@@ -134,8 +134,8 @@ $height-slideshow-phone: calc(100vh - #{$topbar-phone});
 			display: flex;
 			align-items: center;
 			padding: 1.4rem;
-			border-top: $border-light;
-			border-bottom: $border-light;
+			border-top: $border;
+			border-bottom: $border;
 			&:hover{ color: $redlab!important; }
 			
 		}

@@ -1,9 +1,11 @@
 #flux{
 
+    width: 100%;
+		max-width: $max-width-article;
+
     #flux-container{
 
         width: 100%;
-
         article{ 
             position: relative;
             display: inline-block;

@@ -15,8 +15,9 @@ export default function Home({lang, grid, slider, rdv}) {
 
   return (
     <>
-      <Slideshow slider={slider} lang={lang} />
+      
       <main>
+        <Slideshow slider={slider} lang={lang} />
         <section id="introduction">
           <h1>Le médialab</h1>
           <p> Laboratoire de recherche interdisciplinaire, le&nbsp;médialab est un lieu de conception, de développement et d'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et&nbsp;sociales.</p>
@@ -24,9 +25,9 @@ export default function Home({lang, grid, slider, rdv}) {
         </section>
         <Now now={grid} lang={lang} />
         <Agenda rdv={rdv} lang={lang} />
-        <section id="follow">
+        {/* <section id="follow">
           <p>Vous pouvez suivre les activité du Medialab sur <a href="https://twitter.com/medialab_scpo" title="twitter">⟐</a> ou sur <a href="https://github.com/medialab" title="Github">⊶</a></p>
-        </section>
+        </section> */}
         <Flux />
       </main>
     </>

@@ -43,8 +43,9 @@
     #introduction{
         width: 100%;
         text-align: left;
+        max-width: $max-width-article;
         padding-top: $baseline*2;
-        padding-bottom: $baseline*5;
+        padding-bottom: $baseline*2;
 
         h1{ display: none;}
 
@@ -64,9 +65,7 @@
 
             a{
                 @include font-size-13();
-                //margin-top: $baseline*1;
-                color: $text-color-light;
-                text-decoration: underline;
+                @include linktext();
                 display: block;
             }
         }        

@@ -12,7 +12,6 @@ $hunit: 4vh;
 
 
 
-
 @include for-size(phone) {
 
     .page-home { 
@@ -36,7 +35,7 @@ $hunit: 4vh;
         }
         
         #introduction, #now, #agenda, #follow{
-            border-bottom: $border-bold;
+            border-bottom: $border;
             padding-bottom: $baseline*4;
             margin-left: $margins-phone;
             margin-right: $margins-phone;
@@ -61,22 +60,32 @@ $hunit: 4vh;
         // #nav-home{ display: none; }
 
         #introduction, #now, #agenda, #follow{
-            border-bottom: $border-bold;
-            padding-bottom: $baseline*2;
+            border-bottom: $border;
+            // padding-bottom: $baseline*2;
         }
 
         #slideshow{
-            border-bottom: $border-bold;
+            border-bottom: $border;
             // padding-bottom: $baseline*4;
         }
         
 
         section > h1{
-            @include font-size-27;
-            margin-bottom: $baseline*1;
-            margin-top: $baseline*4;
-            text-align: center;
+            @include font-size-20;
+            text-transform: uppercase; 
+            font-weight: 500;
+            border-bottom: $border;
+            padding: $baseline*1 0;
         }
+
+        #agenda{
+            width: calc(100vw - #{$max-width-article} - #{$margins-desktop*3});
+            position: absolute;
+            right: 0;
+            top: 0;
+        
+        }
+        
 
        
     }

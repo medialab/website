@@ -25,7 +25,7 @@ export default function Now({now, lang}) {
         <li data-type={item.model} className="now-item" key={index}>
           <Link to={item.data.permalink[lang]}>
             <div className="image-pre">
-                <ProcessedImage size="medium" image={item.data.coverImage && item.data.coverImage.processed.medium} />
+                <ProcessedImage size="small" image={item.data.coverImage && item.data.coverImage.processed.small} />
             </div>
               {/* If Production*/}
               {item.model === 'productions' &&
@@ -33,7 +33,7 @@ export default function Now({now, lang}) {
                 <div className="bandeau">
                   <p className="type-production" data-icon="production">{IsModel(item.data.type, lang)}</p>
                   <p className="subtype-production">{item.data.typeLabel !== 'media' && lang === 'fr' ? <span>{item.data.typeLabel.fr}</span> : <span>{item.data.typeLabel.en}</span>}</p>
-                  <p className="date-production">{item.data.date}</p>               
+                  <p className="authors">{item.data.authors}</p>               
                 </div>
                 <hgroup>
                 (item.data.title &&
@@ -47,7 +47,11 @@ export default function Now({now, lang}) {
                   )
                 </hgroup>
 							  </>
-							}
+              }
+       
+
+
+
 
               {/* If People*/}
               {item.model === 'people' &&
@@ -75,35 +79,12 @@ export default function Now({now, lang}) {
               {item.model === 'news' &&
                 <>
                 <div className="bandeau">
-                    <p data-icon="news" className="type-news">{IsModel(item.data.type, lang)}</p>
+                    <p data-icon="news" className="type-news">{IsModel(item.data.type, lang)}{item.data.label && (lang === 'fr' ? <span>, {item.data.label.fr}</span> : <span>, {item.data.label.en}</span>)}</p>
                     <DateNews startDate={item.data.startDate} endDate={item.data.endDate} lang={lang} />
-                    <TimeNews startDate={item.data.startDate} endDate={item.data.endDate} />
-                    <p className="label-news">{item.data.label && (lang === 'fr' ? <span>{item.data.label.fr}</span> : <span>{item.data.label.en}</span>)}</p>
+                    <TimeNews startDate={item.data.startDate} endDate={item.data.endDate} />          
                 </div>
                 <hgroup>
-						    {lang === 'fr' ?
-                  <>
-                    <h1 data-level-1="title">{item.data.title && item.data.title.fr}</h1>
-                    { item.data.date &&
-                    <>
-                      <DateNews startDate={item.data.startDate} endDate={item.data.endDate} />
-                      <TimeNews startDate={item.data.startDate} endDate={item.data.endDate} />
-                    </>
-                									}
-                    <h2 data-level-2="label">{item.data.label && item.data.label.fr}</h2>
-                  </>
-                									:
-                  <>
-                    <h1 data-level-1="title">{item.data.label && item.data.title.en}</h1>
-                    { item.data.date &&
-                    <>
-                      <DateNews startDate={item.data.startDate && item.data.startDate} endDate={item.data.endDate} />
-                      <TimeNews startDate={item.data.startDate && item.data.startDate} endDate={item.data.endDate} />
-                    </>
-              			}
-                  <h2 data-level-2="label">{item.data.label && item.data.label.en}</h2>
-                </>
-								}
+						    {lang === 'fr' ? <h1 data-level-1="title">{item.data.title && item.data.title.fr}</h1> : <h1 data-level-1="title">{item.data.label && item.data.title.en}</h1>}
                 </hgroup>
                 </>
 							}
@@ -123,15 +104,13 @@ export default function Now({now, lang}) {
                   </hgroup>
                 </>
 							}
-              {item.data.description &&
-                <div className="accroche">
-                  <p className="accroche-paragraphe">
-                    <RawHTML html={lang === 'fr' ? item.data.description.fr : item.data.description.en} />
-                  </p>                     
-                </div>
-              }
+              
 
-              <p className="more"><Link to={item.data.permalink[lang]}>{lang === 'fr' ? 'En savoir plus' : 'Get more about it'}</Link></p>
+
+
+
+
+              {/* <p className="more"><Link to={item.data.permalink[lang]}>{lang === 'fr' ? 'En savoir plus' : 'Get more about it'}</Link></p> */}
 
             </Link>
           </li>

@@ -1,4 +1,4 @@
-$hack-sticky: 54px;
+$height-sticky: $baseline*5;
 
 @include for-size(desktop) {
 
@@ -9,34 +9,48 @@ $hack-sticky: 54px;
 	.page-about{
 
 		.titre-sticky{
-			@include font-size-20();
-			position: sticky;
+			
+			position: fixed;
 			top: -1px;
-			width: calc(100% + #{$margins-desktop});
-			height: $height-top-bar - $hack-sticky;
+			left: 0;
+			width: 100vw;
+			height: $height-sticky;
 			background-color: $background-site;
             z-index: 9; // So gets upon fullscreen Image Process in nav
 			white-space: nowrap;
-			padding-top: $baseline*2;
+			border-bottom: $border-very-light;
 
-			&:after{
-				content: "";
-				position: absolute;
-				left: 0;
-				bottom: 0;
-				width: calc(100% - #{$margins-desktop});
-				border-bottom: $border;
-
-			}
-
-			span{ 
+			#logo-sticky, p{ 
 				display: inline-block;
-				vertical-align: top;			
+				vertical-align: top;
 			}
+
+			#logo-sticky{
+				width: $logo-column + $margins-desktop;
+				svg{
+                    width: $logo-column/3 + $unite/2;
+                    margin: calc(#{$unite} + 5px) 0 5px $margins-desktop;
+					fill: $text-color; 
+				}
+			}
+
+			p{
+				@include font-size-20();
+				white-space: nowrap;
+				margin-top: $baseline*2;
+				[data-icon]{ 
+					padding-right: $unite/2;
+				}
+				span{ 
+					display: inline-block;
+					vertical-align: top;			
+				}
+				
+			}
+
+		
 			
-			[data-icon]{ 
-				padding-right: $unite/2;
-			}
+			
 
 			.title{ 			
 				font-weight: bold;
@@ -46,15 +60,7 @@ $hack-sticky: 54px;
 						
 			}
 
-			&:after{
-				content: '';
-				width: 100vw;
-				border-bottom: $border-very-light;
-				position: fixed;
-				left: 0;
-				height: 0px;
-				top: $height-top-bar - $hack-sticky - 1px;
-			}
+			
 		}	
 	}
 

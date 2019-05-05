@@ -17,7 +17,7 @@
 		display: none;
 	}
     &:first-of-type{
-    	margin-top: 10vh;
+    	margin-top: $baseline*4;
     }	
 
 	// Grey Background
@@ -40,22 +40,14 @@
 			padding-bottom: $baseline/2;
 			border-bottom: $border-light;
 			overflow: hidden;
-			background: $background-grey;
 			opacity: 1;
 			cursor: pointer;
-			
-
-			// .accroche {
-			// 	display: block;
-			// }
-
 			
 
 
 
 			a{
 
-				// *{ @include text-overflow(); }
 
 				h1{
 					@include font-size-20();

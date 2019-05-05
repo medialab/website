@@ -4,11 +4,13 @@
 
 @include for-size(desktop) {
     footer{
+        margin-top: $baseline*10;
         height: $unite*7;
         width: 100vw;
         left: $margins-desktop * -1;
         padding: 0 $margins-desktop;
         border-top: $border-light;
+        background-color: $background-site;
       
 
         @include font-size-16();

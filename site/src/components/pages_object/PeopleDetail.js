@@ -3,6 +3,7 @@ import {graphql} from 'gatsby';
 import {Link} from 'gatsby';
 
 import Highlights from './fragments/Highlights.js';
+import Logo from '../assets/svg/logo_medialab.svg';
 
 
 import ProductionsAssociees from './fragments/ProductionsAssociees.js';
@@ -213,12 +214,21 @@ export default function PeopleDetail({lang, person}) {
     <>
       <Nav lang={lang} data={person} order={['main', 'activities', 'productions', 'news']} />
       <main id="main">
-        <p className="titre-sticky">
+
+
+        <div className="titre-sticky">
+          <div id="logo-sticky"><a href="/"><Logo /></a></div>
+          <p>
           <Link to="/people">
             <span>{lang === 'fr' ? "L'équipe du Medialab" : 'Medialab team'} </span>
           </Link>
-          <span className="personne">{person.firstName} {person.lastName}</span>
+          <span className="personne"><a href="#topbar">{person.firstName} {person.lastName}</a></span>
         </p>
+
+        </div>
+
+
+
         <article id="biographie">
           
           <header>

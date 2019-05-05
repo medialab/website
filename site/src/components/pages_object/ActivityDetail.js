@@ -6,6 +6,10 @@ import {join} from '../helpers/helpers.js';
 import Nav from '../common/Nav.js';
 import ToggleLang from './fragments/ToggleLang.js';
 
+import Logo from '../assets/svg/logo_medialab.svg';
+import ProcessedImage from '../helpers/ProcessedImage.js';
+
+
 import DateNews from '../helpers/DateNews.js';
 import TimeNews from '../helpers/TimeNews.js';
 import {format as formatDate, getYear, parseISO} from 'date-fns';
@@ -122,12 +126,31 @@ export const queryFragment = graphql`
 `;
 
 export default function ActivityDetail({lang, activity}) {
-  console.log(lang, activity);
+
+  let coverImage = null;
+
+  if (activity.coverImage) {
+    coverImage = (
+      <ProcessedImage size="large" image={activity.coverImage.processed ? activity.coverImage.processed.large : null} />
+    );
+  }
+
 
   return (
-    <main id="main-objet">
-      <Nav lang={lang} data={activity} order={['main', 'people', 'attachments', 'activities', 'productions', 'news' ]} />
-      <p className="titre-sticky"><a href="#main-objet"><span data-icon="activite"></span><span className="title">{activity.name}</span></a></p>
+    <main id="main-objet">      
+      
+      <div className="titre-sticky">
+        <div id="logo-sticky"><a href="/"><Logo /></a></div>
+        <p><a href="#topbar"><span data-icon="activite"></span><span className="title">{activity.name}</span></a></p>
+      </div>
+
+
+      <div id="img-article">
+        <div class="activator"></div>
+        <div className="container">{coverImage}</div>
+      </div>
+
+
       <article id="article-contenu">
         {/* Toggle Langue */}
         <ToggleLang lang={lang} content={activity.content} />

@@ -4,6 +4,20 @@
 
 
 
+#activator{
+	display: block;
+	position: absolute;
+	width: $logo-column - $margins-desktop*2;
+	height: 100%;
+	z-index: 9;
+
+	&:hover{
+		
+		& + #img-article{
+			overflow: inherit;
+		}
+	}        
+}
 
 
 @media screen and (min-width: 700px) and (max-width: 1080px){
@@ -31,6 +45,7 @@
 	.page-activity{
 
 		
+
 
 		main{
 			margin-bottom: 40vh;	

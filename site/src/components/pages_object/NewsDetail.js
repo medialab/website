@@ -9,6 +9,9 @@ import TimeNews from '../helpers/TimeNews.js';
 import {format as formatDate, getYear, parseISO} from 'date-fns';
 import {IsModel} from '../helpers/helpers.js';
 
+import Logo from '../assets/svg/logo_medialab.svg';
+import ProcessedImage from '../helpers/ProcessedImage.js';
+
 import ProductionsAssociees from './fragments/ProductionsAssociees.js';
 import ActivitesAssociees from './fragments/ActivitesAssociees.js';
 import MembresAssocies from './fragments/MembresAssocies.js';
@@ -103,15 +106,32 @@ export const queryFragment = graphql`
 `;
 
 export default function NewsDetail({lang, news}) {
-  console.log(news);
+  
+  let coverImage = null;
 
+  if (news.coverImage) {
+    coverImage = (
+      <ProcessedImage size="large" image={news.coverImage.processed ? news.coverImage.processed.large : null} />
+    );
+  }
 
 
   return (
     <>
-      <Nav lang={lang} data={news} order={['main', 'people', 'attachments', 'activities', 'productions', 'news']} />
       <main id="main">
-        <p className="titre-sticky">{news.title && (lang === 'fr' ? news.title.fr : news.title.en) }</p>
+
+        <div className="titre-sticky">
+          <div id="logo-sticky"><a href="/"><Logo /></a></div>
+          <p><a href="#topbar"><span data-icon="news"></span>{news.title && (lang === 'fr' ? news.title.fr : news.title.en) }</a></p>
+        </div>
+
+        <div id="img-article">
+          <div class="activator"></div>
+          <div className="container">{coverImage}{coverImage}</div>
+          
+        </div>
+
+
         <article id="article-contenu">
           {/* Toggle Langue */}
           <ToggleLang lang={lang} content={news.content} />

@@ -12,7 +12,7 @@
 			margin-left: $logo-column;
 			margin-bottom: 40vh;
 			transition: .25s ease-in-out;
-			margin-top: $hack-sticky; /* set sticky title */
+			padding-top: $height-top-bar;
 			
 			 .cache{
 			 	position: absolute;

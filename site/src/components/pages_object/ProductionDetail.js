@@ -6,6 +6,10 @@ import Nav from '../common/Nav.js';
 import ToggleLang from './fragments/ToggleLang.js';
 import {IsModel} from '../helpers/helpers.js';
 
+import Logo from '../assets/svg/logo_medialab.svg';
+import ProcessedImage from '../helpers/ProcessedImage.js';
+
+
 import ProductionsAssociees from './fragments/ProductionsAssociees.js';
 import ActivitesAssociees from './fragments/ActivitesAssociees.js';
 import ActuAssociees from './fragments/ActuAssociees.js';
@@ -89,12 +93,33 @@ export const queryFragment = graphql`
 `;
 
 export default function ProductionDetail({lang, production}) {
-  console.log(production);
+  
+  
+  let coverImage = null;
+
+  if (production.coverImage) {
+    coverImage = (
+      <ProcessedImage size="large" image={production.coverImage.processed ? production.coverImage.processed.large : null} />
+    );
+  }
+
+
   return (
     <>
-      <Nav lang={lang} data={production} order={['main', 'people', 'attachments', 'activities', 'productions', 'news']} />
       <main id="main">
-        <p className="titre-sticky"><a href="#main-objet"><span data-icon="production"></span><span className="title">{production.title && (lang === 'fr' ? production.title.fr : production.title.en) }</span></a></p>
+
+      <div className="titre-sticky">
+        <div id="logo-sticky"><a href="/"><Logo /></a></div>
+        <p><a href="#topbar"><span data-icon="production"></span><span className="title">{production.title && (lang === 'fr' ? production.title.fr : production.title.en) }</span></a></p>
+      </div>
+
+      <div id="img-article">
+        <div class="activator"></div>
+        <div className="container">{ coverImage}</div>
+      </div>
+
+
+       
         <article id="article-contenu">
           {/* Toggle Langue */}
           <ToggleLang lang={lang} content={production.content} />

@@ -13,9 +13,15 @@
 		.personne{
 			font-weight: 100;
 			&:before{
-				content: " / ";
+				content: "/";
+				padding-left: $unite/2;
+				padding-right: $unite/2;
 			}
 		} 
+		span:hover{ 
+			color: $text-color-light;
+			&:before{ color: $text-color;}
+		}
 	}
 
 	#biographie{

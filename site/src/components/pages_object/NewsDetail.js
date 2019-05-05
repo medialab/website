@@ -105,37 +105,11 @@ export const queryFragment = graphql`
 export default function NewsDetail({lang, news}) {
   console.log(news);
 
-  /*let type;
-
-  if (news.type === 'event' ) {
-      type = [
-        fr = 'Evenement',
-        en = 'Event'
-      ]
-  }
-  if (news.type === 'post' ) {
-      type = [
-        fr = 'Publication',
-        en = 'Post'
-      ]
-  }
-  if (news.type === 'notice' ) {
-      type = [
-        fr = 'Annonce',
-        en = 'Notice'
-        ]
-  }
-  else {
-      type = [
-        fr = 'OK',
-        en = ''
-      ]
-  }*/
 
 
   return (
     <>
-      <Nav lang={lang} data={news} order={['main', 'people', 'productions', 'activities', 'news', 'attachments']} />
+      <Nav lang={lang} data={news} order={['main', 'people', 'attachments', 'activities', 'productions', 'news']} />
       <main id="main">
         <p className="titre-sticky">{news.title && (lang === 'fr' ? news.title.fr : news.title.en) }</p>
         <article id="article-contenu">
@@ -150,13 +124,13 @@ export default function NewsDetail({lang, news}) {
             </hgroup>
             <div className="details">
               <div className="date-news-block">
-                <DateNews startDate={news.startDate} endDate={news.endDate} lang={lang} />
+                <DateNews startDate={news.startDate} endDate={news.endDate} lang="fr" />
                 <TimeNews startDate={news.startDate} endDate={news.endDate} />
               </div>
               <p className="type-objet">
               <span data-icon="news"></span> 
-              <span className="type-news">{IsModel(news.type, "fr")} </span>
-              {news.label && (lang === 'fr' ? <span>, {news.label.fr}</span> : <span>, {news.label.en}</span>)}
+              <span className="type-news">{IsModel(news.type, "fr")}</span>
+              {news.label ? <span>, {news.label.fr}</span> : ''}
               </p>
             </div>
             <div className="article-contenu">
@@ -165,25 +139,38 @@ export default function NewsDetail({lang, news}) {
           </div>
 
           {/* Chapô EN */}
-          <hgroup className="en" lang="en">
-            <h1>{news.title && (news.title.en)}</h1>
-            <h2 data-type="description"><RawHtml html={news.description && (news.description.en)} /></h2>
-
-            <p className="date">{news.endDate}</p>
-            <p className="type-objet">{IsModel(news.type, "en")}</p>
-          </hgroup>
-          {/* Article EN */}
-          <div className="article-contenu en" lang="en">
+          <div className="block-lang en" lang="en">
+          <hgroup>
+              <h1 data-type="title">{news.title && (news.title.en)}</h1>
+              <h2 data-type="description"><RawHtml html={news.description && (news.description.en)} /></h2>
+            </hgroup>
+            <div className="details">
+              <div className="date-news-block">
+                <DateNews startDate={news.startDate} endDate={news.endDate} lang="en"/>
+                <TimeNews startDate={news.startDate} endDate={news.endDate} />
+              </div>
+              <p className="type-objet">
+              <span data-icon="news"></span> 
+              <span className="type-news">{IsModel(news.type, "en")}</span>
+              {news.label ? <span>, {news.label.en}</span> : ''}
+              </p>
+            </div>
+            <div className="article-contenu">
             {news.content && (news.content.en && <RawHtml html={news.content.en} />)}
+            </div>
           </div>
+         
+          
 
         </article>
 
         {/* Block Associes */}
         <MembresAssocies people={news.people} lang={lang} />
-        <ProductionsAssociees productions={news.productions} lang={lang} />
-        <ActivitesAssociees activities={news.activities} lang={lang} />
         <FichiersAssocies attachments={news.attachments} lang={lang} />
+        <ActivitesAssociees activities={news.activities} lang={lang} />
+        <ProductionsAssociees productions={news.productions} lang={lang} />
+       
+        
       </main>
     </>
   );

@@ -33,7 +33,7 @@
 					@include flex-order(1);
 					margin-bottom: $baseline*2;
 					// border-top: $border-very-light;
-					padding-top: $baseline;
+					padding-top: $baseline*2;
 
 					figure, hgroup{
 						display: inline-block;
@@ -43,7 +43,8 @@
 					figure img{ width: 100%; }
 					
 
-					hgroup{ 					
+					hgroup{ 
+											
 						padding-left: $unite;
 						margin-bottom: $baseline;
 					}

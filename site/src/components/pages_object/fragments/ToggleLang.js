@@ -8,16 +8,16 @@ export default function Footer ({lang, content}) {
   en = 'This article is also in english. ';
 
   if (content.fr.length < content.en.length) {
-    fr = 'Cette article pourrait être plus complet en anglais. ';
+    fr = '⚐ Cet article pourrait être plus complet en anglais. ';
       if (content.fr.length < 50) {
-        fr = 'Cette article est plus complet en anglais. ';
+        fr = '⚐ Cet article est plus complet en anglais. ';
       }
   }
 
   if (content.en.length < content.fr.length) {
-    en = 'This article could be more substantial in french. ';
+    en = '⚐ This article could be more substantial in french. ';
       if (content.en.length < 50) {
-        en = 'This article is more substantial in english. ';
+        en = '⚐ This article could be more substantial in french. ';
       }
   }
 

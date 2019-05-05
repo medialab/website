@@ -126,7 +126,7 @@ export default function ActivityDetail({lang, activity}) {
 
   return (
     <main id="main-objet">
-      <Nav lang={lang} data={activity} order={['main', 'people', 'productions', 'activities', 'news', 'attachments']} />
+      <Nav lang={lang} data={activity} order={['main', 'people', 'attachments', 'activities', 'productions', 'news' ]} />
       <p className="titre-sticky"><a href="#main-objet"><span data-icon="activite"></span><span className="title">{activity.name}</span></a></p>
       <article id="article-contenu">
         {/* Toggle Langue */}
@@ -172,10 +172,11 @@ export default function ActivityDetail({lang, activity}) {
 
       </article>
       <MembresAssocies people={activity.people} lang={lang} />
-      <ProductionsAssociees productions={activity.productions} lang={lang} />
-      <ActivitesAssociees activities={activity.activities} lang={lang} />
-      <ActuAssociees actu={activity.news} lang={lang} />
       <FichiersAssocies attachments={activity.attachments} lang={lang} />
+      <ActivitesAssociees activities={activity.activities} lang={lang} />
+      <ProductionsAssociees productions={activity.productions} lang={lang} />
+      <ActuAssociees actu={activity.news} lang={lang} />
+      
     </main>
   );
 }

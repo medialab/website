@@ -211,7 +211,7 @@ export default function PeopleDetail({lang, person}) {
 
   return (
     <>
-      <Nav lang={lang} data={person} order={['main', 'productions', 'activities', 'news']} />
+      <Nav lang={lang} data={person} order={['main', 'activities', 'productions', 'news']} />
       <main id="main">
         <p className="titre-sticky">
           <Link to="/people">
@@ -256,10 +256,10 @@ export default function PeopleDetail({lang, person}) {
           </div>
         </article>
         <Highlights people={person} lang={lang} />
-
-        <ProductionsAssociees productions={person.productions} lang={lang} />
         <ActivitesAssociees activities={person.activities} lang={lang} />
+        <ProductionsAssociees productions={person.productions} lang={lang} />
         <ActuAssociees actu={person.news} lang={lang} />
+        
       </main>
     </>
   );

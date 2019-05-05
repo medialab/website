@@ -59,6 +59,14 @@ $goto: " ⤤";
 	overflow: hidden;
 }
 
+
+@mixin linktext(){
+	text-decoration: underline;
+	text-decoration-skip-ink: auto;
+	text-decoration-color: currentColor;
+	text-decoration-style: dotted;
+}
+
 ////////////////
 //// EXPERIMENTAL
 ///////////////

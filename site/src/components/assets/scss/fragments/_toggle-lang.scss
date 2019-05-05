@@ -1,15 +1,16 @@
 .toggle-lang{ 
     @include flex-order(2); 
-    border: dotted 1px $text-color;
+    border-top: $border-very-light;
+    border-bottom: $border-very-light;
     max-width:900px;
+    color: $text-color-light;
 
     span{
-        border-bottom: $border; 
+        @include linktext();
         white-space: nowrap;
         cursor: pointer;
         &:hover{ 
             color: $redlab;
-            border-bottom: $border-redlab;
         }
     }
 
@@ -34,9 +35,9 @@
 
     .toggle-lang{
    
-        padding: $baseline*2 $unite*2;
-        margin-top: $baseline*3;
-        @include font-size-16();
+        padding: $baseline*1.5 0;
+        margin-top: $baseline;
+        @include font-size-20();
     
            
     }

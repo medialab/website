@@ -102,10 +102,7 @@
 
 		.biographie-contenu{
 			a{
-				text-decoration: underline;
-				text-decoration-skip-ink: auto;
-				text-decoration-color: $text-color-light;
-				text-decoration-style: dotted;
+				@include linktext();
 				transition: .25s linear;
 
 				&:hover{

@@ -92,7 +92,7 @@ export default function ProductionDetail({lang, production}) {
   console.log(production);
   return (
     <>
-      <Nav lang={lang} data={production} order={['main', 'people', 'productions', 'activities', 'news', 'attachments']} />
+      <Nav lang={lang} data={production} order={['main', 'people', 'attachments', 'activities', 'productions', 'news']} />
       <main id="main">
         <p className="titre-sticky"><a href="#main-objet"><span data-icon="production"></span><span className="title">{production.title && (lang === 'fr' ? production.title.fr : production.title.en) }</span></a></p>
         <article id="article-contenu">
@@ -135,10 +135,11 @@ export default function ProductionDetail({lang, production}) {
         </article>
 
         <MembresAssocies people={production.people} lang={lang} />
-        <ProductionsAssociees productions={production.productions} lang={lang} />
-        <ActivitesAssociees activities={production.activities} lang={lang} />
-        <ActuAssociees actu={production.news} lang={lang} />
         <FichiersAssocies attachments={production.attachments} lang={lang} />
+        <ActivitesAssociees activities={production.activities} lang={lang} />
+        <ProductionsAssociees productions={production.productions} lang={lang} />     
+        <ActuAssociees actu={production.news} lang={lang} />
+        
       </main>
     </>
   );

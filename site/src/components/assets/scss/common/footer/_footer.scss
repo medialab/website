@@ -27,7 +27,7 @@
         .mentions{ margin-top: $baseline*2;}
         .mentions a{
             padding-top: $baseline;
-            border-bottom: 1px dotted $text-color-light; 
+            @include linktext();
            
         }
 

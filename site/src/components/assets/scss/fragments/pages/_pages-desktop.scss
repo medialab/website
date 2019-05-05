@@ -42,7 +42,7 @@
 				@include font-size-20;
 				font-weight: bold;
 				text-transform: uppercase;
-				margin-top: $baseline*6;
+				margin-top: $baseline*4;
 				margin-bottom: $baseline*2;
 			}
 
@@ -59,8 +59,18 @@
 				@include font-size-20;
 				font-weight: 300;
 				font-style: italic;
-				margin-top: $baseline*4;
-				margin-bottom: $baseline*2;
+				margin-top: $baseline*2;
+				margin-bottom: $baseline*1;
+			}
+
+
+			.title-style-level-1 + p,
+			[data-style-level="1"] + p,
+			.title-style-level-2 + p,
+			[data-style-level="2"] + p,
+			.title-style-level-3 + p,
+			[data-style-level="3"] + p{
+				margin-top: 0!important;
 			}
 
 			

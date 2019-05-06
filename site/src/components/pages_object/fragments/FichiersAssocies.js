@@ -27,7 +27,7 @@ const FichiersAssocies = ({lang, attachments}) => {
         <ul className="liste_objet">
           {(attachments || []).map(file => (
             <li key={file.value} data-type="files" className="item">
-              <p className="icon">⦚⦚⦚⦚⦚⦚⦚⦚⦚⦚⦚⦚⦚⦚<span>&nbsp;</span><span>{file.type}</span></p>
+              <p className="icon">▒▒▒▒<span>{file.type}</span></p>
               <p className="name">
                 {file.type === 'attachment' &&
                   <Link to={file.value}>{file.label}</Link>

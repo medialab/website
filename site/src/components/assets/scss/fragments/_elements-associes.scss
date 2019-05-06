@@ -221,31 +221,24 @@
 
 .fichiers-associes-block{
     .icon{
-    border: $border;
+    border-top: $border-light;
+    border-bottom: $border-light;
     font-size: 30px;
     letter-spacing: -4px;
     left: 0px;
+    height: 30px;
     overflow: hidden;
     line-height: 20px;
 
         span{
 
-            &:first-of-type{
-                position: absolute;
-                width: 100px;
-                height: 100px;
-                left: 60%;
-                top: -50px;
-                float: right;
-                border: $border;
-                background: $background-grey;
-                transform: rotate(-45deg);            
-            }
             &:last-of-type{
-                bottom: 2px;
-                right: 9px;
-                font-size: 15px;
-                letter-spacing: 0px;
+			    font-size: 15px;
+			    line-height: 15px;
+			    font-weight: 400 !important;
+			    //float: right;
+			    padding: $baseline/2 $unite/2;
+			    letter-spacing: 0;
             }
         }
     }

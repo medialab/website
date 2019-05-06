@@ -12,7 +12,6 @@
 
 
 	@media screen and (min-width: 700px) and (max-width: 1080px){
-		#checkbox_filtre-production_year + label{   width: $logo-column-medium - $margins-desktop; }
 		#label_checkbox_publications,
 		#label_checkbox_tools,
 		#label_checkbox_webEditions,
@@ -25,7 +24,6 @@
 	}
 
 	@media screen and (min-width: 1080px){
-		#checkbox_filtre-production_year + label{   width: $logo-column - $margins-desktop; }
 		#label_checkbox_publications,
 		#label_checkbox_tools,
 		#label_checkbox_webEditions,

@@ -1,81 +1,65 @@
 /* General */
-#flux{
+//#flux{
 
-    #flux-container{
+//     #flux-container{
 
-        //margin-top: $baseline*4;
+//         //margin-top: $baseline*4;
         
-        article{ 
+//         article{ 
 
-            border-bottom: $border-very-light;
-            padding: $baseline*1.5 0 $baseline*2.5 0;
+//             border-bottom: $border-very-light;
+//             padding: $baseline*1.5 0 $baseline*2.5 0;
 
-            &:hover{
+//             &:hover{
 
-                /*@include for-size(phone) {
-                    &::after {
-                        content: "";
-                        background: $background-grey;;
-                        position: absolute;
-                        width: calc(100% + #{$margins-phone*2});
-                        height: 100%;
-                        left: $margins-phone*-1;
-                        z-index: -1;
-                    }
-                }
-
-                @include for-size(desktop) {
-                    background: $background-grey;
-                }*/
-            }
-
-            //.type{ margin-bottom: $baseline/2; }
-            //.update{ color: $text-color-light; margin-bottom: $baseline/2; padding-left: $unite/2 }     
-            & > * { padding: $baseline/2 0;}
+               
+//             }
+   
+//             & > * { padding: $baseline/2 0;}
             
-            h2{ 
-                @include font-size-16;
-            }
+//             h2{ 
+//                 @include font-size-16;
+//             }
 
-            .type, .update { @include font-size-13; }
-            .update{ color: $text-color-light;}
-            &[data-type="tweet"] .hashtag{ color: $redlab;}               
+//             .type, .update { @include font-size-13; }
+//             .update{ color: $text-color-light;}
+//             &[data-type="tweet"] .hashtag{ color: $redlab;}               
 
-            ul.details{
+//             ul.details{
 
-                border-top: $border-very-light;
+//                 border-top: $border-very-light;
 
-                li{
-                    color: $text-color-light;
+//                 li{
+//                     color: $text-color-light;
 
-                    &:not(:first-of-type){
-                        border-left: $border-very-light;
-                    }
-                }
-            }
-            @include for-size(phone) {
-                article .type, .update { @include font-size-13-phone; }
-                article h2{ @include font-size-16-phone;}
-                article:first-of-type{ padding-top: 0; }
-            }
+//                     &:not(:first-of-type){
+//                         border-left: $border-very-light;
+//                     }
+//                 }
+//             }
+//             @include for-size(phone) {
+//                 article .type, .update { @include font-size-13-phone; }
+//                 article h2{ @include font-size-16-phone;}
+//                 article:first-of-type{ padding-top: 0; }
+//             }
 
-            @include for-size(desktop-900) {
-                article ul.details{ border-top: inherit;
-                }
-                // when Two column
-                //&:not(:nth-of-type(2n)){ margin-right: $unite/2;}
-                //&:nth-of-type(2n){ margin-left: $unite/2;}
+//             @include for-size(desktop-900) {
+//                 article ul.details{ border-top: inherit;
+//                 }
+//                 // when Two column
+//                 //&:not(:nth-of-type(2n)){ margin-right: $unite/2;}
+//                 //&:nth-of-type(2n){ margin-left: $unite/2;}
 
 
-            }           
+//             }           
 
-            @include for-size(desktop-1800) {
+//             @include for-size(desktop-1800) {
 
-                // when detail is in line
-                ul.details{
-                    padding-top: $baseline*0.6666667;
-                }
-            } 
-        }
-    }
-}   
+//                 // when detail is in line
+//                 ul.details{
+//                     padding-top: $baseline*0.6666667;
+//                 }
+//             } 
+//         }
+//     }
+// }   

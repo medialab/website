@@ -65,6 +65,8 @@
     }
         
     #topbar-content{
+        max-width: $max-width-main;
+        margin: 0 auto;
         height: 100%;
         @include flex();
         @include justify-content(stretch);

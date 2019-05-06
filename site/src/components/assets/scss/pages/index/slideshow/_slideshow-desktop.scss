@@ -47,7 +47,7 @@
 					z-index: 90;
 					text-align: left;
 					background: $background-site;
-					overflow: scroll;
+					overflow: hidden;
 
 					&:hover{
 						background-color: $background-grey;

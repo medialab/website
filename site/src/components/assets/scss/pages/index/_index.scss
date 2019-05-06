@@ -130,7 +130,7 @@ $hunit: 4vh;
 
     #slideshow, #introduction, #now, #flux{ width: $max-width-article; }
 
-    #agenda{  width: calc(100vw - #{$max-width-article} - #{$margins-desktop*4}); }
+    #agenda{  width: calc(100vw - #{$max-width-article} - #{$margins-desktop*3}); }
 
    
 

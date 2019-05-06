@@ -157,8 +157,9 @@ $width-main-image: calc( 100vw - #{$margins-desktop*0});
 
                         pre{
                             font-weight: bold;
-                            font-size: calc(((100vw - #{$unite*2})/250)*2.50); // Should change with width
-                            line-height: calc(((100vw - #{$unite*2})/250)*1.89);
+                            font-size: calc(((100vw - #{$unite*2})/240)*1.89); // Should change with width
+                            line-height: normal;
+                            line-height: 95%; 
                             overflow: hidden;
                             //background: $background-site;
                             

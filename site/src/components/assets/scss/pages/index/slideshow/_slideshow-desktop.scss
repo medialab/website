@@ -55,9 +55,11 @@
 
         			pre{ 
 	                    font-weight: bold;
-	                    font-size: calc(((100vw - #{$unite*2})/250)*2.5);
-	                    line-height: calc(((100vw - #{$unite*2})/250)*1.89); //(((Ecran - Marge*2) / Nbr de Block par ligne)*Ratio Hauteur par largeur du glyphe)
-	                    overflow: hidden;
+	                    font-size: calc(((100vw - #{$unite*2})/240)*1.89);
+	                    line-height: normal;
+	                    line-height: 95%; 
+
+                        overflow: hidden;
 	                    top: -50%;
 	                    transform: translateY(50%);
         			}

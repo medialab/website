@@ -1,6 +1,6 @@
 /* Miniature highlight */
 
-$width-image-pre-highlight: ( 100% / 75 ) * 4;
+$width-image-pre-highlight: ( 100% / 75 ) * 1.1338 * 4;
 
 
 .page-people{
@@ -27,10 +27,10 @@ $width-image-pre-highlight: ( 100% / 75 ) * 4;
 					max-width: calc(#{$width-image-pre-highlight});
 					height: 100%;
 					pre{ 
-						font-size: calc(( ((100vw - #{$unite*2}) - #{$logo-column})  /75 )*1.89 ); // Should change with width
-						//line-height: calc(( ((100vw - #{$unite*4}) - #{$logo-column})  /75 )*1.89 );
-						@include for-size(desktop-900){ font-size: calc( ( 900px / 75 ) * 1.89); } // fit with highlight container
-						line-height: normal;
+						font-size: calc(( ((100vw - #{$unite*2}) - #{$logo-column})  /60 )*1.89 ); // Should change with width
+						//line-height: calc(( ((100vw - #{$unite*4}) - #{$logo-column})  /60 )*1.89 );
+						@include for-size(desktop-900){ font-size: calc( ( 900px / 60 ) * 1.89); } // fit with highlight container
+						line-height: 95%;
 					}
 		            &:hover{ 
 						max-width: calc(#{$width-image-pre-highlight} + (100% - #{$width-image-pre-highlight})); 

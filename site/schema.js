@@ -271,15 +271,15 @@ exports.patchGraphQLSchema = function(current, model, type, schema, settings) {
             if (cover.processed) {
               Promise.all([
                 settings.processing(img(), cover.crop, {
-                  rows: 75,
+                  rows: 60,
                   gamma: cover.gamma
                 }),
                 settings.processing(img(), cover.crop, {
-                  rows: 125,
+                  rows: 120,
                   gamma: cover.gamma
                 }),
                 settings.processing(img(), cover.crop, {
-                  rows: 250,
+                  rows: 240,
                   gamma: cover.gamma
                 })
               ]).then(([small, medium, large]) => {

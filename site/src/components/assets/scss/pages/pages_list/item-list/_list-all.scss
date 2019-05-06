@@ -2,7 +2,7 @@
 
 
 //$width-image-pre-listing: 90px;
-$width-image-pre-listing: ( ( 100% / 125 ) * 10 );
+$width-image-pre-listing: ( ( 100% / 120 ) * 1.1338 * 10 );
 
 @include for-size(desktop) {
 
@@ -43,10 +43,11 @@ $width-image-pre-listing: ( ( 100% / 125 ) * 10 );
                 z-index: 0;
                 pre{ 
                     color: $color-img;
-                    //font-size: calc((( ((100vw - #{$unite*2}) - #{$logo-column} ) /2 ) /125 )*1.89 ); // Should change with width
-                    //line-height: calc((( ((100vw - #{$unite*2}) - #{$logo-column} ) /2 ) /125 )*1.50 );
-                    font-size: calc(( (((100vw - #{$unite*2}) - #{$logo-column}) / 2 )  /125 )*1.89 ); 
-                    line-height: normal;                    
+                    //font-size: calc((( ((100vw - #{$unite*2}) - #{$logo-column} ) /2 ) /120 )*1.89 ); // Should change with width
+                    //line-height: calc((( ((100vw - #{$unite*2}) - #{$logo-column} ) /2 ) /120 )*1.50 );
+                    font-size: calc(( (((100vw - #{$unite*2}) - #{$logo-column}) / 2 )  /120 )*1.89 ); 
+                    line-height: normal;
+                    line-height: 95%;                    
                     top: -50%;
                     transform: translateY(50%);
                 }

@@ -1,7 +1,7 @@
 /* Miniature Now */
 
 //$width-image-pre-now: 90px;
-$width-image-pre-now: (( 100% / 125 ) * 20);
+$width-image-pre-now: (( 100% / 120 ) *1.1338 * 20);
 
 @include for-size(desktop) {
 	.page-home{
@@ -25,8 +25,9 @@ $width-image-pre-now: (( 100% / 125 ) * 20);
 						max-width: calc(#{$width-image-pre-now});
 			            &:hover{ max-width: calc(#{$width-image-pre-now} + (100% - #{$width-image-pre-now})); }
 						pre{ 
-						    font-size: calc(( ((100vw - #{$unite*2}) * 1 ) / 125 )*1.89);
+						    font-size: calc(( ((100vw - #{$unite*2}) * 1 ) / 120 )*1.89);
 						    line-height: normal;
+						    line-height: 95%;
 						    top: -50%;
 						    left: -50%;
 						    transform: translate(50%);

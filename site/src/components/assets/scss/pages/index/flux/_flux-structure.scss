@@ -22,6 +22,10 @@
         width: 260px;
         @include font-size-27();
         margin-top: $baseline/2;
+        &:hover{
+            cursor: pointer;
+            color: $text-color-light;
+        }
     }
     .date{
         position: absolute;
@@ -47,6 +51,14 @@
 
     .tweet-inside{
         padding: $baseline 0;
+        .link-external-tweet, .hashtag, .mention{ color: $redlab;}
+        img{
+            margin-top: $baseline/2;
+            width: 100%;
+            min-height: $baseline*12;
+            max-height: $baseline*24;
+            background-color: $background-grey;
+        }
     }
 
     .details{

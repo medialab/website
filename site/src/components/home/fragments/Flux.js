@@ -13,7 +13,7 @@ export default function flux() {
 			<div id="flux-container">
 
 				<article className="git" data-type="git">			
-					<p className="type">Git</p>
+					<p className="type"><Link to="/">Git</Link></p>
 					<p className="date last-update"><span>Last update: </span>23/10/2018</p>
 					<div class="content content-git">
 						<h1 data-level-1="title">Tic et Toc</h1>
@@ -27,12 +27,13 @@ export default function flux() {
 				</article>
 
 				<article className="item-tweet" data-type="tweet">			
-					<p className="type">Tweet</p>
+					<p className="type"><Link to="/">Tweet</Link></p>
 					<p className="date"><span>Publié le </span>23/10/2018</p>					
 					<div class="content content-tweet">
 						<div className="tweet-inside">
 						<p>
-							Faire vivre la #démocratie exige que nous ayons <span className="hashtag">#confiance</span> envers les <span className="hashtag">#medias</span>. Comment y parvenir dans un univers où <span className="hashtag">#trolls</span>, <span className="hashtag">#FakeNews</span> et concurrence au nb de <span className="hashtag">clics</span> polluent le paysage ? Réponses le 16 avril lors du 1er rdv de <span className="mention">@ScPoResearch</span> ✍ <Link to="/">https://bit.ly/2UQmrZI</Link>
+							Faire vivre la #démocratie exige que nous ayons <span className="hashtag">#confiance</span> envers les <span className="hashtag">#medias</span>. Comment y parvenir dans un univers où <span className="hashtag">#trolls</span>, 
+							<span className="hashtag">#FakeNews</span> et concurrence au nb de clics polluent le paysage ? Réponses le 16 avril lors du 1er rdv de <span className="mention">@ScPoResearch</span> ✍ <Link className="link-external-tweet" to="/">https://bit.ly/2UQmrZI</Link>
 						</p>
 						</div>
 						<ul className="details">
@@ -43,7 +44,7 @@ export default function flux() {
 
 
 				<article className="git" data-type="git">			
-					<p className="type">Git</p>
+					<p className="type"><Link to="/">Git</Link></p>
 					<p className="date last-update"><span>Last update: </span>23/10/2018</p>
 					<div class="content content-git">
 						<h1 data-level-1="title">Bröder &amp; Walter</h1>
@@ -57,7 +58,7 @@ export default function flux() {
 				</article>
 
 				<article className="git" data-type="git">			
-					<p className="type">Git</p>
+					<p className="type"><Link to="/">Git</Link></p>
 					<p className="date last-update"><span>Last update: </span>23/10/2018</p>
 					<div class="content content-git">
 						<h1 data-level-1="title">Website</h1>
@@ -72,11 +73,11 @@ export default function flux() {
 
 
 				<article className="item-tweet" data-type="tweet">			
-					<p className="type">Tweet</p>
+					<p className="type"><Link to="/">Tweet</Link></p>
 					<p className="date"><span>Publié le </span>23/10/2018</p>					
 					<div class="content content-tweet">
 						<div className="tweet-inside">
-							<p>Le médialab accueille <span className="mention">@VBeaudouin</span> pour parler de son travail de #cartographie du web de la grande guerre.</p>
+							<p>Le médialab accueille <span className="mention">@VBeaudouin</span> pour parler de son travail de <span className="hashtag">#cartographie</span> du web de la grande guerre.</p>
 							<img src="/" />
 						</div>
 						<ul className="details">

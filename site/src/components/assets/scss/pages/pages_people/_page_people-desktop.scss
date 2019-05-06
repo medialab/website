@@ -8,10 +8,6 @@
  
 	.page-people{
 
-		#topbar{
-			position: absolute!important; 
-			top: calc(#{$hack-sticky}*-1);
-		}
 		main{
 			margin-left: $logo-column;
 			margin-bottom: 40vh;

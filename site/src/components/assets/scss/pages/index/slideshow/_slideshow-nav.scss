@@ -99,9 +99,9 @@
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
-	background: $background-site;
-	border-radius: 0.5rem;
-	transition: .3s ease-out background,
+	// background: $background-site;
+	// border-radius: 0.5rem;
+	transition: .3s ease-out background-color,
 				.3s ease-out transform;
 	cursor: pointer;
 	&:hover{ color: $redlab!important; }
@@ -109,9 +109,9 @@
 
 
 .slideshow--bullet::after{
-	content: "◾";
-	font-size: 2rem;
-	color: $text-color-light;
+	content: "●";
+	font-size: 2.5rem;
+	color: $redlab-light;
 }
 
-.slideshow--bullet:checked::after{ color: $text-color; }
+.slideshow--bullet:checked::after{ color: $redlab; }

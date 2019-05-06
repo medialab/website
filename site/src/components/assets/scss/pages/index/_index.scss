@@ -57,18 +57,23 @@ $hunit: 4vh;
     
     .page-home{
     
-        // #nav-home{ display: none; }
-
-        #introduction, #now, #agenda, #follow{
-            border-bottom: $border;
-            // padding-bottom: $baseline*2;
+        main{ 
+           
+            max-width: $max-width-main;
+            margin: 0 auto;
+            margin-top: $height-top-bar;
         }
-
-        #slideshow{
-            border-bottom: $border;
-            // padding-bottom: $baseline*4;
-        }
+        #slideshow, #introduction, #now, #agenda, #follow{ border-bottom: $border; }
         
+
+        #agenda{
+            position: absolute;
+            right: 0;
+            top: 0;
+            max-height: 100%;
+            overflow: scroll;
+        }
+
 
         section > h1{
             @include font-size-20;
@@ -78,16 +83,61 @@ $hunit: 4vh;
             padding: $baseline*1 0;
         }
 
-        #agenda{
-            width: calc(100vw - #{$max-width-article} - #{$margins-desktop*3});
+        #slideshow:after{
+            content:'';
+            width: 100%;
+            border-bottom: $border;
             position: absolute;
-            right: 0;
-            top: 0;
-        
-        }
-        
+            bottom: -1px;
+            left: 0;
 
-       
+        }
+
     }
 }
 
+
+
+
+
+
+
+@media screen and (min-width: 1000px) and (max-width: 1200px){
+
+    #slideshow, #introduction, #now, #flux{ width: 700px; }
+
+    #agenda{  width: calc(100vw - 700px - #{$margins-desktop*3}); }
+
+    
+
+}
+
+
+
+@media screen and (min-width: 1200px) and (max-width: 1350px){
+
+    #slideshow, #introduction, #now, #flux{ width: 800px; }
+
+    #agenda{  width: calc(100vw - 800px - #{$margins-desktop*3}); }
+
+    
+
+}
+
+
+
+@media screen and (min-width: 1350px){
+
+    #slideshow, #introduction, #now, #flux{ width: $max-width-article; }
+
+    #agenda{  width: calc(100vw - #{$max-width-article} - #{$margins-desktop*4}); }
+
+   
+
+
+}
+
+
+@media screen and (min-width: 1650px){
+    #agenda{  width: calc(100% - #{$max-width-article} - #{$margins-desktop*2}); }
+}

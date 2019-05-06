@@ -21,13 +21,7 @@
             }
 
        
-            .date-news{
-                @include font-size-20();
-                color: $redlab;
-                padding: $baseline/2 0;
-                border-bottom: $border-very-light;
-                .week{ display: none; }         
-            }
+           
             
             h1{ 
                 @include font-size-20();  
@@ -43,6 +37,18 @@
                 p{ display: inline-block; }
                 border-bottom: $border-very-light;
                 padding: $baseline/2 0;
+
+                .label{
+                    border-right: $border-very-light;
+                    margin-right: $unite/2;
+                    padding-right: $unite/2;
+                }
+
+                .date-news{
+                    color: $redlab;
+                    .week{ display: none; }   
+                    &::first-letter{ text-transform: capitalize; }    
+                }
                 
                 .internal{ 
                     position: absolute;

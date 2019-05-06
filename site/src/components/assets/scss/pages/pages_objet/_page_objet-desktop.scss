@@ -30,10 +30,7 @@
 	.page-news, 
 	.page-activity{
 
-		#topbar{
-			position: absolute!important; 
-			top: calc(#{$hack-sticky}*-1);
-		}
+		
 
 		main{
 			margin-bottom: 40vh;	

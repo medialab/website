@@ -41,25 +41,20 @@
 @include for-size(desktop) {
         
     #introduction{
-        width: 100%;
         text-align: left;
-        max-width: $max-width-article;
         padding-top: $baseline*2;
         padding-bottom: $baseline*2;
 
         h1{ display: none;}
 
         p:first-of-type{
-            @include font-size-27();
+            @include font-size-20();
             z-index: 9;
             //max-width: 800px; 
         }
 
 
         p:nth-of-type(2){
-            //position: absolute;
-            //right: 0;
-            //bottom: 0;
             text-align: right;
             padding-right: $unite;
 
@@ -73,4 +68,8 @@
 
 }
 
+
+@media screen and (min-width: 1350px){
+    #introduction p:first-of-type{ @include font-size-27(); }
+}
 

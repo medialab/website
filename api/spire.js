@@ -1,7 +1,5 @@
 /* eslint no-console: 0 */
 const config = require('config'),
-      path = require('path'),
-      fs = require('fs-extra'),
       Ajv = require('ajv'),
       async = require('async'),
       request = require('request'),
@@ -17,9 +15,6 @@ models.forEach(model => {
   const ajv = new Ajv();
   VALIDATORS[model] = ajv.compile(require(`../specs/schemas/${model}.json`));
 });
-
-
-const DATA_PATH = config.get('data');
 
 const spireTypes = require('../specs/spireProductionsTypes.json');
 
@@ -38,12 +33,8 @@ const title = record => (record.title_non_sort ? record.title_non_sort : '') + r
 const translators = {
   'type': record => spireTypes[record.spire_document_type],
   'date': record => record.date_issued,
-  'title.en': record => {
-    return record.languages[0] === 'en' ? title(record) : '';
-  },
-  'title.fr': record => {
-    return record.languages[0] === 'fr' ? title(record) : '';
-  },
+  'title.en': record => title(record),
+  'title.fr': record => title(record),
   'content': record => {
     const content = {};
     if (record.descriptions) {
@@ -77,7 +68,7 @@ function translateRecord(record) {
 
 module.exports.translators = translators;
 
-module.exports.aSPIRE = function aSPIRE(dataDir = DATA_PATH, callback) {
+module.exports.aSPIRE = function aSPIRE(callback) {
   async.waterfall([
     // load indeces of existing prod and authors
     getRefDone => {
@@ -85,7 +76,7 @@ module.exports.aSPIRE = function aSPIRE(dataDir = DATA_PATH, callback) {
         people: fetchPeopleDone => {
           request.get(`http://localhost:${config.port}/people/people`, {json: true}, (err, result) => {
             if (err) fetchPeopleDone(err);
-            fetchPeopleDone(null, _.keyBy(result.body.filter(p => !!p.spire), p => p.spire.id));
+            fetchPeopleDone(null, _.keyBy(result.body, p => p.slugs[0]));
           });
         },
         productions: fetchProductionsDone => {
@@ -99,113 +90,149 @@ module.exports.aSPIRE = function aSPIRE(dataDir = DATA_PATH, callback) {
         getRefDone(null, indeces);
       });
     },
-    (indeces, done) => {
-      console.log(_.values(indeces.people).length);
-      async.parallelLimit(
-        // call SPIRE APRE
-        _.values(indeces.people).map(people => {
-          return (donePeopleSpire) => {
-            let resultOffset = 0;
-            async.doUntil(
-              (apiDone) => {
-                // request spire API
-                const body = {jsonrpc: '2.0', method: 'search', id: 1,
-                params: ['corpus', {
-                  filter_class: 'Document',
-                  result_batch_size: 2000,
-                  result_citation_styles: ['chicago'],
-                  search_terms: {
-                      index: 'creator_id',
-                      operator: '=',
-                      value: people.spire.id},
-                  result_offset: resultOffset
-                }]};
-                console.debug(`request to spire ${people.lastName} - ${resultOffset} ${body}`);
-                request.post(config.spire.api, {body, json: true}, apiDone);
-              },
-              (response) => {
-                // pagination control
-                const r = response.body.result;
-                console.debug(`got ${r.result_batch_size}`);
-                // test if a new page is needed
-                if (r.result_batch_size < resultPerPage) {
-                  // we are done
-                  return true;
-                }
-                // need more results
-                resultOffset += resultPerPage;
-                return false;
-              },
-              // return Spire result
-              (err, response) => {
-                if (err) {
-                  donePeopleSpire(err);
-                }
-                donePeopleSpire(null, response.body.result.records);
-              });
-          };
-        }
-        ),
-        10,
-        (err, records) => {
-          // flatten and uniq productions which are duplicated cause of co-authorship
-          const uniqRecords = _.uniq(_.flatten(records), false, p => p.rec_id);
-
+    (indeces, doneAPISpire) => {
+      let resultOffset = 0;
+      let spireRecords = []
+      async.doUntil(
+        (apiPageDone) => {
+          // request spire API
+          const body = {jsonrpc: '2.0', method: 'search', id: 1,
+          params: ['corpus', {
+            filter_class: 'Document',
+            result_batch_size: resultPerPage,
+            result_citation_styles: ['chicago'],
+            search_terms: {
+                index: 'affiliation_id',
+                operator: '=',
+                value: '2441/53r60a8s3kup1vc9kf4j86q90'},
+            result_offset: resultOffset
+          }]};
+          console.debug(`request to spire ${resultOffset}`);
+          request.post(config.spire.api, {body, json: true}, apiPageDone);
+        },
+        (response) => {
+          // store result
+          spireRecords = spireRecords.concat(response.body.result.records)
+          // pagination control
+          const r = response.body.result;
+          console.debug(`got ${r.result_batch_size}`);
+          // test if a new page is needed
+          if (r.result_batch_size < resultPerPage) {
+            // we are done
+            return true;
+          }
+          // need more results
+          resultOffset += resultPerPage;
+          return false;
+        },
+        // manage Spire result
+        (err) => {
+          if (err) {
+            doneAPISpire(err);
+          }
+          console.debug(`got ${spireRecords.length}`);
+     
           // common queue to process the writing requests
-          const apiQueue = async.queue(({method, production}, cb) => {
-            if (!VALIDATORS.productions(production)) {
-              console.error('productions', production, VALIDATORS.productions.errors);
-              cb(new Error(VALIDATORS.productions.errors));
+          const websiteApiQueue = async.queue(({method, model, object}, cb) => {
+            if (!VALIDATORS[model](object)) {
+              console.error(model, object, VALIDATORS[model].errors);
+              cb(new Error(VALIDATORS[model].errors));
             }
-            const url = method === 'PUT' ? `http://localhost:${config.port}/productions/productions/${production.id}` : `http://localhost:${config.port}/productions/productions/`;
-            request({url, method, body: production, json: true}, (reqErr) => {
+            const url = method === 'PUT' ? `http://localhost:${config.port}/${model}/${model}/${object.id}` : `http://localhost:${config.port}/${model}/${model}/`;
+            console.debug(`API CALL ${model} ${method} ${object.id}`);
+            request({url, method, body: object, json: true}, (reqErr) => {
               if (reqErr) {
-                console.error(`error ${method} ${production.id}`, err);
+                console.error(`error ${method} ${model} ${object.id}`, err);
                 cb(reqErr);
               }
-              cb(null);
+              else
+                cb(null);
             });
           }, 2);
 
+          const spireAuthors = _.keyBy(_.values(indeces.people).filter(p => !!p.spire), p => p.spire.id);
+          // find authors and detect missing ones
+          const missingLabAuthors = _.keyBy(_.flatten(spireRecords.map(
+            // only author (not organisators)
+            r => r.creators.filter(c => (c.role === 'aut' &&
+            // which were at that time affiliated to the lab 
+            c.affiliation && c.affiliation.rec_id === '2441/53r60a8s3kup1vc9kf4j86q90')
+            // which is a person which is not registered as a spire authors in our data
+            && c.agent && c.agent.rec_class === 'Person' && !spireAuthors[c.agent.rec_id])
+            .map(c => c.agent))), c => c.rec_id);
+          // let's try to reconcile with slugs
+          const peopleToResolve = [];
+          _.forEach(missingLabAuthors, (aut, idSpire) => {
+            // simple true match on slug
+            const match = indeces.people[slugify(`${aut.name_given} ${aut.name_family}`)];
+            if (match) {
+              spireAuthors[idSpire] = {spire: {id: idSpire}, ...match}
+              websiteApiQueue.push({method: 'PUT', model: 'people', object: {spire: {id: idSpire}, ...match}}, (e) => {
+                if (e) console.error(e);
+              });
+            }
+            else {
+              peopleToResolve.push(aut);
+            }
+          });
+          // log what left to be resolved
+          if (peopleToResolve.length > 0)
+            console.debug(`missing spire authors in data ${peopleToResolve.map(aut => `${aut.name_given} ${aut.name_family}`)}`);
+
+          // control variables
           const modifiedProductionIds = [];
           let nbNewProductions = 0;
+          const tooRecentProductionsId = [];
+
           //treat records
-          async.each(uniqRecords,
+          async.each(spireRecords,
             (record, d) => {
-              // TO CHANGE !!!!
-              const p = null; //indeces.productions[record.rec_id];
+
+              // create the object by translating it to our data model
+              const newProduction = translateRecord(record);
+              newProduction.lastUpdated = Date.now();
+              // meta
+              newProduction.spire = {
+                id: record.rec_id,
+                lastUpdated: newProduction.lastUpdated,
+                meta: record
+              };
+              // reuse ref for description
+              newProduction.description = {fr: newProduction.ref, en: newProduction.ref};
+              // link to author people
+              const people = record.creators
+                // filter authors who are person
+                .filter(c => c.role === 'aut' && c.agent && c.agent.rec_class === 'Person')
+                .map(c => spireAuthors[c.agent.rec_id] && spireAuthors[c.agent.rec_id].id)
+                .filter(c => !!c);
+              newProduction.people = people;
+
+              const p = indeces.productions[record.rec_id];
               // do we already have this one ?
-              // has the content changed ?
-              if (p && p.spire.meta.rec_modified_date !== record.rec_modified_date) {
-                // yes and yes, let's update the meta
-                p.spire.meta = record;
-                apiQueue.push({method: 'PUT', production: p}, (e) => {
+              // has the content changed from last spire update ? (default last spire => 2019/01/11)
+              if (p && (p.lastUpdated <= (p.spire.lastUpdated || 1547290000000))) {
+                // We should put this condition back to limit futile updates && p.spire.meta.rec_modified_date !== record.rec_modified_date) {
+                // flash the data from spire.
+                websiteApiQueue.push({method: 'PUT', model: 'productions', object: {...p, ...newProduction}}, (e) => {
                   if (e) console.error(e);
                 });
                 modifiedProductionIds.push(p.id);
               }
+              else
+                if (p) {
+                  console.debug(p.id, new Date(p.lastUpdated), new Date(p.spire.lastUpdated || 1547290000000));
+                  tooRecentProductionsId.push(p.id);
+                }
               // if new publication + if type is not translated to null
               if (!p && spireTypes[record.spire_document_type]) {
-                // create the object by translating it to our data model
-                const newProduction = translateRecord(record);
                 newProduction.id = uuid();
                 // draft by default
                 newProduction.draft = true;
-                // meta
-                newProduction.spire = {
-                  id: record.rec_id,
-                  meta: record
-                };
                 // slugs
                 newProduction.slugs = [slugify(newProduction.title ? (newProduction.title.fr || newProduction.title.en || '') : '')];
-                // reuse ref for description
-                newProduction.description = {fr: newProduction.ref, en: newProduction.ref};
-                // people
-                const people = record.creators.map(c => indeces.people[c.agent.rec_id] && indeces.people[c.agent.rec_id].id).filter(c => !!c);
-                newProduction.people = people;
+
                 // lastUpdated
-                newProduction.lastUpdated = new Date(record.rec_modified_date).getTime();
-                apiQueue.push({method: 'POST', production: newProduction}, (e) => {
+                websiteApiQueue.push({method: 'POST', model: 'productions', object: newProduction}, (e) => {
                   if (e) console.error(e);
                 });
                 nbNewProductions += 1;
@@ -213,12 +240,12 @@ module.exports.aSPIRE = function aSPIRE(dataDir = DATA_PATH, callback) {
               d(null);
             },
             (r) => {
-              if (r) done(r);
-              if (apiQueue.idle())
-                done(null, {nbNewProductions, modifiedProductionIds});
+              if (r) doneAPISpire(r);
+              if (websiteApiQueue.idle())
+                doneAPISpire(null, {nbNewProductions, modifiedProductionIds, tooRecentProductionsId, peopleToResolve});
               else
-                apiQueue.drain = () => {
-                  done(null, {nbNewProductions, modifiedProductionIds});
+                websiteApiQueue.drain = () => {
+                  doneAPISpire(null, {nbNewProductions, modifiedProductionIds, tooRecentProductionsId, peopleToResolve});
                 };
             }
           );

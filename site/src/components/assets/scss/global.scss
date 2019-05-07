@@ -34,10 +34,10 @@
 @import 'pages/index/agenda/agenda-phone';
 @import 'pages/index/agenda/agenda-desktop'; 
 
-@import 'pages/index/flux/flux-structure';
-@import 'pages/index/flux/flux-style';
-
-@import 'pages/index/flux/follow';
+@import 'pages/index/flux/flux';
+@import 'pages/index/flux/flux_style_agenda';
+@import 'pages/index/flux/flux_style_git';
+@import 'pages/index/flux/flux_style_tweet';
 
 
 // PAGES LIST ///////////////////////////////////////////////

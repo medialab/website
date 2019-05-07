@@ -1,96 +1,41 @@
 import React from 'react';
 import {Link} from 'gatsby';
-import ProcessedImage from '../../helpers/ProcessedImage.js';
 
-export default function flux() {
+import Agenda from './flux/Agenda.js';
+import Git from './flux/Git.js';
+import Tweet from './flux/Tweet.js';
+
+export default function flux({rdv, lang}) {
 	return (
 		<>
 		
 		<section id="flux">
 
-			<h1>À chaud</h1>
+	        <input
+	          type="radio" name="flux_selection" id="flux_selection-agenda"
+	          className="flux_selection" hidden defaultChecked />
+	        <label className="flux_selection-label" htmlFor="flux_selection-agenda">
+	        	{lang === 'fr' ? 'Les rendez-vous ' : 'The agenda'}
+	        </label>
 
-			<div id="flux-container">
+	        <input
+	          type="radio" name="flux_selection" id="flux_selection-git"
+	          className="flux_selection" hidden />
+	        <label className="flux_selection-label" htmlFor="flux_selection-git">
+	        	{lang === 'fr' ? 'Projets Git ' : 'Git project'}
+	        </label>
 
-				<article className="git" data-type="git">			
-					<p className="type"><Link to="/">Git</Link></p>
-					<p className="date last-update"><span>Last update: </span>23/10/2018</p>
-					<div class="content content-git">
-						<h1 data-level-1="title">Tic et Toc</h1>
-						<p className="description">Outils composé de 0 ou de 1, de $ ou de , enfin plein de machin pas si complexe.</p>
-						<ul className="details">
-							<li className="language">Python</li>
-							<li className="contrib">3 contributeurs</li>
-							<li className="licence">LGPL-3.0</li>
-						</ul>
-					</div>
-				</article>
+	        <input
+	          type="radio" name="flux_selection" id="flux_selection-tweet"
+	          className="flux_selection" hidden />
+	        <label className="flux_selection-label" htmlFor="flux_selection-tweet">
+	        	{lang === 'fr' ? 'Dernier tweets ' : 'Last tweets'}
+	        </label>
 
-				<article className="item-tweet" data-type="tweet">			
-					<p className="type"><Link to="/">Tweet</Link></p>
-					<p className="date"><span>Publié le </span>23/10/2018</p>					
-					<div class="content content-tweet">
-						<div className="tweet-inside">
-						<p>
-							Faire vivre la #démocratie exige que nous ayons <span className="hashtag">#confiance</span> envers les <span className="hashtag">#medias</span>. Comment y parvenir dans un univers où <span className="hashtag">#trolls</span>, 
-							<span className="hashtag">#FakeNews</span> et concurrence au nb de clics polluent le paysage ? Réponses le 16 avril lors du 1er rdv de <span className="mention">@ScPoResearch</span> ✍ <Link className="link-external-tweet" to="/">https://bit.ly/2UQmrZI</Link>
-						</p>
-						</div>
-						<ul className="details">
-							<li className="language">@medialab_ScPo</li>
-						</ul>
-					</div>				
-				</article>
-
-
-				<article className="git" data-type="git">			
-					<p className="type"><Link to="/">Git</Link></p>
-					<p className="date last-update"><span>Last update: </span>23/10/2018</p>
-					<div class="content content-git">
-						<h1 data-level-1="title">Bröder &amp; Walter</h1>
-						<p className="description">Never gonna give you up</p>
-						<ul className="details">
-							<li className="language">TypeScript</li>
-							<li className="contrib">10 contributeurs</li>
-							<li className="licence">MIT licence</li>
-						</ul>
-					</div>
-				</article>
-
-				<article className="git" data-type="git">			
-					<p className="type"><Link to="/">Git</Link></p>
-					<p className="date last-update"><span>Last update: </span>23/10/2018</p>
-					<div class="content content-git">
-						<h1 data-level-1="title">Website</h1>
-						<p className="description">The lab's static website and its admin.</p>
-						<ul className="details">
-							<li className="language">Javascript</li>
-							<li className="contrib">10 contributeurs</li>
-							<li className="licence">MIT licence</li>
-						</ul>
-					</div>
-				</article>
-
-
-				<article className="item-tweet" data-type="tweet">			
-					<p className="type"><Link to="/">Tweet</Link></p>
-					<p className="date"><span>Publié le </span>23/10/2018</p>					
-					<div class="content content-tweet">
-						<div className="tweet-inside">
-							<p>Le médialab accueille <span className="mention">@VBeaudouin</span> pour parler de son travail de <span className="hashtag">#cartographie</span> du web de la grande guerre.</p>
-							<img src="/" />
-						</div>
-						<ul className="details">
-							<li className="language">@medialab_ScPo</li>
-						</ul>
-					</div>				
-				</article>
-
-						
-
-			</div>
-
-			</section>
+			<Agenda rdv={rdv} lang={lang} />
+			<Git lang={lang} />
+			<Tweet lang={lang} />
+		</section>
 		
 		</>
   	);

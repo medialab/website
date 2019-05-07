@@ -1,5 +1,8 @@
 #flux{
 
+	background: $background-site;
+	z-index: 9;
+
 	////////////////
 	/// Input
 	///////////////
@@ -36,9 +39,13 @@
 
 	input#flux_selection-tweet + label{ border-right: none;}
 
+
+
+
 	////////////////
 	/// Structure
 	///////////////
+
 
 	#agenda, #git, #tweet{
 		display: none;
@@ -48,6 +55,7 @@
 	#flux_selection-git:checked ~ #git,
 	#flux_selection-tweet:checked ~ #tweet{
 		display: inline-block !important;
+		padding-bottom: 25vh;
 	}
 
 }

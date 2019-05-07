@@ -19,7 +19,7 @@
 
     .type{
         width: 260px;
-        @include font-size-27();
+        @include font-size-13();
         margin-top: $baseline/2;
         &:hover{
             cursor: pointer;

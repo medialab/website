@@ -78,6 +78,7 @@ $hunit: 4vh;
                 width: 100%;
                 height: 100%;                
                 padding-right: $unite;
+                margin-bottom: $height-footer;
                 box-sizing: content-box;
                 overflow-y: scroll;
                 max-height: calc( 100vh - #{$height-top-bar} );
@@ -103,7 +104,6 @@ $hunit: 4vh;
             left: 0;
 
         }
-
     }
 }
 

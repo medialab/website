@@ -4,11 +4,12 @@
 
 @include for-size(desktop) {
     footer{
-        height: $unite*7;
+        height: $height-footer;
         width: 100vw;
         left: $margins-desktop * -1;
         padding: 0 $margins-desktop;
         border-top: $border;
+        z-index: 9;
       
 
         @include font-size-16();
@@ -49,6 +50,7 @@
             }           
         }
     }
+    .page-home footer{ background: $background-site;}
 }
 
 

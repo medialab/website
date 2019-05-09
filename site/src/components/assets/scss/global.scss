@@ -23,9 +23,9 @@
 
 // HOME ///////////////////////////////////////////////
 
+@import 'pages/index/slideshow/slideshow-structure';
 @import 'pages/index/slideshow/slideshow-phone';
 @import 'pages/index/slideshow/slideshow-desktop';
-@import 'pages/index/slideshow/slideshow-nav';
 
 @import 'pages/index/introduction';
 
@@ -34,10 +34,10 @@
 @import 'pages/index/agenda/agenda-phone';
 @import 'pages/index/agenda/agenda-desktop'; 
 
-@import 'pages/index/flux/flux-structure';
-@import 'pages/index/flux/flux-style';
-
-@import 'pages/index/flux/follow';
+@import 'pages/index/flux/flux';
+@import 'pages/index/flux/flux_style_agenda';
+@import 'pages/index/flux/flux_style_git';
+@import 'pages/index/flux/flux_style_tweet';
 
 
 // PAGES LIST ///////////////////////////////////////////////

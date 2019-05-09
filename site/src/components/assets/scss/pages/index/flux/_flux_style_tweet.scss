@@ -1,0 +1,77 @@
+#tweet article{
+    border-bottom: $border;
+    padding: $baseline/2 0;
+    
+
+    .tweet-inside, h1, .description{ max-width: 520px; }
+
+    .content{
+        
+        p{ @include font-size-20(); }
+               
+    }
+
+    .type, .date, .content{ 
+        display: inline-block;
+        vertical-align: top;
+    }
+
+
+    .type{
+        width: 260px;
+        @include font-size-13();
+        margin-top: $baseline/2;
+        &:hover{
+            cursor: pointer;
+            color: $text-color-light;
+        }
+    }
+    .date{
+
+        @include font-size-20();
+        margin-top: $baseline;
+        @include font-size-13();
+        color: $text-color-light;
+        span{ display: none; }
+        
+    }
+
+
+
+    h1{ 
+        @include font-size-27();
+        margin-top: $baseline/2;
+        margin-bottom: $baseline/2; 
+    }
+
+    .description{ padding-bottom: $baseline; }
+
+    .tweet-inside{
+        padding: $baseline 0;
+        .link-external-tweet, .hashtag, .mention{ color: $redlab;}
+        img{
+            margin-top: $baseline/2;
+            width: 100%;
+            min-height: $baseline*12;
+            max-height: $baseline*24;
+            background-color: $background-grey;
+        }
+    }
+
+    .details{
+        border-top: $border-very-light;
+        padding-top: $baseline/2;
+        width: 100%;
+        color: $text-color-light;
+        li{
+            display: inline-block;
+            @include font-size-13();
+            border-right: $border-very-light;
+            padding-right: $unite/2;
+            margin-right: $unite/2;
+            &:last-of-type{ border-right: none; }
+        }
+    }
+}
+
+

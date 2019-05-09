@@ -5,7 +5,6 @@ import {Link} from 'gatsby';
 
 import Slideshow from './fragments/Slideshow.js';
 import Now from './fragments/Now.js';
-import Agenda from './fragments/Agenda.js';
 import Flux from './fragments/Flux.js';
 
 
@@ -24,11 +23,7 @@ export default function Home({lang, grid, slider, rdv}) {
           <p><a href="#">En savoir plus</a></p>
         </section>
         <Now now={grid} lang={lang} />
-        <Agenda rdv={rdv} lang={lang} />
-        {/* <section id="follow">
-          <p>Vous pouvez suivre les activité du Medialab sur <a href="https://twitter.com/medialab_scpo" title="twitter">⟐</a> ou sur <a href="https://github.com/medialab" title="Github">⊶</a></p>
-        </section> */}
-        <Flux />
+        <Flux rdv={rdv} lang={lang} />
       </main>
     </>
   );

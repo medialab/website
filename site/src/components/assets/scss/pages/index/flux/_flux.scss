@@ -1,0 +1,61 @@
+#flux{
+
+	background: $background-site;
+	z-index: 9;
+
+	////////////////
+	/// Input
+	///////////////
+
+	input#flux_selection-agenda,
+	input#flux_selection-git,
+	input#flux_selection-tweet{
+
+		 + label{
+
+			width: 33.3333333%;
+			display: inline-block;
+			padding: $baseline $unite/2;
+
+			@include font-size-13;
+			color: $text-color-light;
+			background-color: $background-grey;
+			cursor: pointer;
+			border-bottom: $border-very-light;
+			border-right: $border-very-light;
+
+			&:hover{ 
+				background: $background-site;
+				 
+			}
+		}
+
+		&:checked + label{ 
+			background: $background-site;
+			color: $text-color;
+		}
+
+	}
+
+	input#flux_selection-tweet + label{ border-right: none;}
+
+
+
+
+	////////////////
+	/// Structure
+	///////////////
+
+
+	#agenda, #git, #tweet{
+		display: none;
+	}
+
+	#flux_selection-agenda:checked ~ #agenda,
+	#flux_selection-git:checked ~ #git,
+	#flux_selection-tweet:checked ~ #tweet{
+		display: inline-block !important;
+		padding-bottom: 25vh;
+	}
+
+}

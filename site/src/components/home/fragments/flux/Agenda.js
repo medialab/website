@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'gatsby';
-import DateNews from '../../helpers/DateNews.js';
-import TimeNews from '../../helpers/TimeNews.js';
+import DateNews from '../../../helpers/DateNews.js';
+import TimeNews from '../../../helpers/TimeNews.js';
 import {format as formatDate, getYear, parseISO} from 'date-fns';
 
 export default function Agenda({rdv, lang}) {
@@ -12,7 +12,6 @@ export default function Agenda({rdv, lang}) {
 	return (
   <>
     <section id="agenda" /* style={nbRdv} */>
-      <h1>{lang === 'fr' ? 'Les rendez-vous ' : 'The agenda'} </h1>
 
       <div id="agenda-container">
 

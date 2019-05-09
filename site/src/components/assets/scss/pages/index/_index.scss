@@ -72,6 +72,7 @@ $hunit: 4vh;
             top: $height-top-bar;
             max-height: 100%;
             overflow: hidden;
+            padding-right: $margins-desktop;
 
 
             .container{
@@ -115,9 +116,9 @@ $hunit: 4vh;
 
 @media screen and (min-width: 1000px) and (max-width: 1200px){
 
-    #slideshow, #introduction, #now, #flux{ width: 700px; }
+    #slideshow, #introduction, #now { width: 700px; }
 
-    #flux{  width: calc(100vw - 700px - #{$margins-desktop*3}); }
+    #flux{ width: calc(100vw - 700px - #{$margins-desktop*2}); }
 
     
 
@@ -127,9 +128,9 @@ $hunit: 4vh;
 
 @media screen and (min-width: 1200px) and (max-width: 1350px){
 
-    #slideshow, #introduction, #now, #flux{ width: 800px; }
+    #slideshow, #introduction, #now { width: 800px; }
 
-    #flux{  width: calc(100vw - 800px - #{$margins-desktop*3}); }
+    #flux{ width: calc(100vw - 800px - #{$margins-desktop*2}); }
 
     
 
@@ -141,7 +142,7 @@ $hunit: 4vh;
 
     #slideshow, #introduction, #now, #flux{ width: $max-width-article; }
 
-    #flux{  width: calc(100vw - #{$max-width-article} - #{$margins-desktop*3}); }
+    #flux{  width: calc(100vw - #{$max-width-article} - #{$margins-desktop*2}); }
 
    
 

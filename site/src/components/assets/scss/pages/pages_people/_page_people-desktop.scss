@@ -8,6 +8,10 @@
  
 	.page-people{
 
+		#topbar{
+			position: absolute!important; 
+			top: 0;
+		}
 		main{
 			margin-left: $logo-column;
 			margin-bottom: 40vh;

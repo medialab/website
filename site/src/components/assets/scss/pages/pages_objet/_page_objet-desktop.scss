@@ -4,22 +4,36 @@ $hack-sticky: 54px;
 ////////  Desktop 
 /////////////////////
 
+#img-article{
 
+	
+	left: 0;
+	top: 0;
+	position: fixed;
 
-#activator{
-	display: block;
-	position: absolute;
-	width: $logo-column - $margins-desktop*2;
-	height: 100%;
-	z-index: 9;
+	.activator{
+		display: block;
+		position: absolute;
+		width: $logo-column - $margins-desktop*2;
+		height: 100%;
+		z-index: 9;
 
-	&:hover{
-		
-		& + #img-article{
-			overflow: inherit;
-		}
-	}        
+		&:hover{
+			
+			& + .container{
+				overflow: inherit;
+			}
+		}        
+	}	
+
+	.container{
+		width: $logo-column - $margins-desktop*2;
+		overflow: hidden;
+	}
 }
+
+
+
 
 
 @media screen and (min-width: 700px) and (max-width: 1080px){

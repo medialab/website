@@ -52,7 +52,7 @@ $hack-sticky: 54px;
 
 		main{
 			margin-bottom: 40vh;	
-			margin-top: $hack-sticky; /* set sticky title */
+			margin-top: $height-top-bar; /* set sticky title */
 
 			hgroup{ 
 				// border-top: $border-very-light;

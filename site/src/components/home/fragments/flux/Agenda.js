@@ -27,7 +27,7 @@ export default function Agenda({rdv, lang}) {
                   <aside className="divers">
                     <p className="label" data-icon="news">{ event.label && (lang === 'fr' ? event.label.fr : event.label.en) }</p>
                     <DateNews startDate={event.startDate} endDate={event.endDate} lang={lang} />
-                    { event.external && (event.external === true) ? '' : <p className="internal" aria-label="evenement interne au medialab">⌂</p>}
+                    { event.external && (event.external === true) ? '' : <p className="internal" aria-label="evenement interne au medialab" title={lang === 'fr' ? "Cet évenement est organisé par le Medialab" : "The event is hosted by Medialab"} >⌂</p>}
                   </aside>
 
                   

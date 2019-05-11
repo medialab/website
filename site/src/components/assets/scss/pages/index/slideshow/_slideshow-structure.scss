@@ -80,14 +80,14 @@
 
 /* Calculate AUTOPLAY for SLIDES */
 @keyframes slide {
-  0%, 25.203252032520325%	{ margin-left: 0; }
-  33.333333333333336%, 58.53658536585366%	{ margin-left: -100%; }
-  66.66666666666667%, 91.869918699187%	{ margin-left: -200%; }
+  0%, 29%	{ margin-left: 0; }
+  33.333333333333336%, 62%	{ margin-left: -100%; }
+  66.66666666666667%, 96%	{ margin-left: -200%; }
 }
 
 
 #slide-bullet-0:checked ~  .slideshow-inner {
-  animation: slide 12300ms infinite;	
+  animation: slide 18450ms infinite;	
 }
 /* Calculate AUTOPLAY for SLIDES - END */
 
@@ -105,20 +105,20 @@
   }
 }
 
-
+/* FOR FLECHE */
 #slide-bullet-0:checked ~ .nav .label:nth-child(1),
 #slide-bullet-0:checked ~ .nav .label:nth-child(2) {
-  animation: caption 12300ms infinite -1000ms;
+  animation: caption 18450ms infinite -1000ms;
 }
 
 #slide-bullet-0:checked ~ .nav .label:nth-child(3),
 #slide-bullet-0:checked ~ .nav .label:nth-child(4) {
-  animation: caption 12300ms infinite 3100ms;	
+  animation: caption 18450ms infinite 4650ms;	
 }
 
 #slide-bullet-0:checked ~ .nav .label:nth-child(5),
 #slide-bullet-0:checked ~ .nav .label:nth-child(6) {
-  animation: caption 12300ms infinite 7200ms;	
+  animation: caption 18450ms infinite 9300ms;	
 }
 /* Calculate AUTOPLAY for CAPTION - END */
 

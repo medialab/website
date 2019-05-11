@@ -7,37 +7,40 @@
 	/// Input
 	///////////////
 
-	input#flux_selection-agenda,
-	input#flux_selection-git,
-	input#flux_selection-tweet{
+	.flux_selection_container{
 
-		 + label{
+		position: sticky;
+		width: 100%;
+		top: 0;
+		z-index: 9;
+		background-color: $background-site;
+		border-bottom: $border-very-light;
 
-			width: 33.3333333%;
-			display: inline-block;
-			padding: $baseline $unite/2;
+		label.flux_selection-label{
 
-			@include font-size-13;
+			@include font-size-16;
 			color: $text-color-light;
-			background-color: $background-grey;
+			display: inline-block;
+			padding: $baseline $unite/2;		
 			cursor: pointer;
-			border-bottom: $border-very-light;
-			border-right: $border-very-light;
 
-			&:hover{ 
-				background: $background-site;
-				 
-			}
+			&:hover{  }
 		}
-
-		&:checked + label{ 
-			background: $background-site;
-			color: $text-color;
-		}
-
 	}
 
-	input#flux_selection-tweet + label{ border-right: none;}
+	// Comportement si Checké 
+	#flux_selection-agenda:checked ~ .flux_selection_container label.for_agenda,
+	#flux_selection-git:checked ~ .flux_selection_container label.for_git,
+	#flux_selection-tweet:checked ~ .flux_selection_container label.for_tweet{
+			color: $text-color;
+			font-weight: 600;
+	}
+
+	input#flux_selection-agenda + label:after{
+		width: 100%;
+		border-bottom: 1px solid black;
+	}
+	//input#flux_selection-tweet + label{ border-right: none;}
 
 
 
@@ -56,6 +59,7 @@
 	#flux_selection-tweet:checked ~ #tweet{
 		display: inline-block !important;
 		padding-bottom: 25vh;
+		padding-left: $unite/2;
 		width: 100%;
 	}
 

@@ -70,7 +70,8 @@ $hunit: 4vh;
             position: fixed;
             right: 0;
             top: $height-top-bar;
-            max-height: 100%;
+            //max-height: 100%;
+            max-height: calc( 100vh - #{$height-top-bar} );
             overflow: hidden;
             padding-right: $margins-desktop;
 
@@ -118,9 +119,7 @@ $hunit: 4vh;
 
     #slideshow, #introduction, #now { width: 700px; }
 
-    #flux{ width: calc(100vw - 700px - #{$margins-desktop*2}); }
-
-    
+    #flux{ width: calc(100vw - 700px - #{$margins-desktop*2}); }  
 
 }
 
@@ -130,9 +129,7 @@ $hunit: 4vh;
 
     #slideshow, #introduction, #now { width: 800px; }
 
-    #flux{ width: calc(100vw - 800px - #{$margins-desktop*2}); }
-
-    
+    #flux{ width: calc(100vw - 800px - #{$margins-desktop*2}); }   
 
 }
 
@@ -151,5 +148,11 @@ $hunit: 4vh;
 
 
 @media screen and (min-width: 1650px){
-    #flux{  width: calc(100% - #{$max-width-article} - #{$margins-desktop*2}); }
+    // When Main container width hit the $max-width-main limit
+    #flux{  
+        //width: calc(100% - #{$max-width-article} - #{$margins-desktop*2}); 
+        //width: 700px;
+        width: calc( #{$max-width-main} - #{$max-width-article} );
+        right: calc( ( 100vw - #{$margins-desktop*2} - #{$max-width-main} ) /2 ) !important;
+    }
 }

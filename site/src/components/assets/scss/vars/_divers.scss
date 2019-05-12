@@ -2,11 +2,13 @@
 $unite: 25px;
 // $height-top-bar: $unite*6;
 $height-top-bar: $unite*5;
+$height-footer: $unite*7;
 $margins-desktop: $unite;
 $logo-column: $unite*10;
 $logo-column-medium: $unite*8;
-$sticky-height: 101px;
+$height-sticky: 75px;
 $max-width-article: 900px;
+$max-width-main: 1600px;
 
 
 /*  phone  */
@@ -19,10 +21,7 @@ $mobile-container-width : calc(100vw - #{$margins-phone*3});
 
 /*  bordures  */
 $border: 0.5px solid #9e9d9d;
-$border-light: 0.5px solid #9e9d9d;
 $border-very-light: 0.5px solid rgb(235, 235, 235);
-//$border-bold: 3px double; // Pas un paragon de simplicité, On peut en discuter ?
-$border-bold: 1px solid $text-color;
 $border-redlab: 0.5px solid $redlab;
 $border-redlab-light: 0.5px solid $redlab-light;
 $border-redlab-very-light: 0.5px solid #fad5d8;
@@ -36,9 +35,9 @@ $activites: "⋇ ";
 $people: "= ";
 $files: "¤ ";
 $git: "⊶ ";
-$tweet: "☄ ";
+$tweet: "⟐ ";
 $time: "◷ ";
-$place: "⌂ ";
+$place: "⦿ ";
 $scrolltop: "↸ ";
 $goto: " ⤤";
 

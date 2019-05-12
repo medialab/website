@@ -12,7 +12,6 @@ $hunit: 4vh;
 
 
 
-
 @include for-size(phone) {
 
     .page-home { 
@@ -35,8 +34,8 @@ $hunit: 4vh;
 
         }
         
-        #introduction, #now, #agenda, #follow{
-            border-bottom: $border-bold;
+        #introduction, #now, #flux{
+            border-bottom: $border;
             padding-bottom: $baseline*4;
             margin-left: $margins-phone;
             margin-right: $margins-phone;
@@ -58,27 +57,102 @@ $hunit: 4vh;
     
     .page-home{
     
-        // #nav-home{ display: none; }
-
-        #introduction, #now, #agenda, #follow{
-            border-bottom: $border-bold;
-            padding-bottom: $baseline*2;
+        main{ 
+           
+            max-width: $max-width-main;
+            margin: 0 auto;
+            margin-top: $height-top-bar;
         }
-
-        #slideshow{
-            border-bottom: $border-bold;
-            // padding-bottom: $baseline*4;
-        }
+        #slideshow, #introduction, #flux{ border-bottom: $border; }
         
 
-        section > h1{
-            @include font-size-27;
-            margin-bottom: $baseline*1;
-            margin-top: $baseline*4;
-            text-align: center;
+        #flux{
+            position: fixed;
+            right: 0;
+            top: $height-top-bar;
+            //max-height: 100%;
+            max-height: calc( 100vh - #{$height-top-bar} );
+            overflow: hidden;
+            padding-right: $margins-desktop;
+
+
+            .container{
+                width: 100%;
+                height: 100%;                
+                padding-right: $unite;
+                margin-bottom: $height-footer;
+                box-sizing: content-box;
+                overflow-y: scroll;
+                max-height: calc( 100vh - #{$height-top-bar} );
+
+            }            
         }
 
-       
+
+        section > h1{
+            @include font-size-20;
+            text-transform: uppercase; 
+            font-weight: 500;
+            border-bottom: $border;
+            padding: $baseline*1 0;
+        }
+
+        #slideshow:after{
+            content:'';
+            width: 100%;
+            border-bottom: $border;
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+
+        }
     }
 }
 
+
+
+
+
+
+
+@media screen and (min-width: 1000px) and (max-width: 1200px){
+
+    #slideshow, #introduction, #now { width: 700px; }
+
+    #flux{ width: calc(100vw - 700px - #{$margins-desktop*2}); }  
+
+}
+
+
+
+@media screen and (min-width: 1200px) and (max-width: 1350px){
+
+    #slideshow, #introduction, #now { width: 800px; }
+
+    #flux{ width: calc(100vw - 800px - #{$margins-desktop*2}); }   
+
+}
+
+
+
+@media screen and (min-width: 1350px){
+
+    #slideshow, #introduction, #now, #flux{ width: $max-width-article; }
+
+    #flux{  width: calc(100vw - #{$max-width-article} - #{$margins-desktop*2}); }
+
+   
+
+
+}
+
+
+@media screen and (min-width: 1650px){
+    // When Main container width hit the $max-width-main limit
+    #flux{  
+        //width: calc(100% - #{$max-width-article} - #{$margins-desktop*2}); 
+        //width: 700px;
+        width: calc( #{$max-width-main} - #{$max-width-article} );
+        right: calc( ( 100vw - #{$margins-desktop*2} - #{$max-width-main} ) /2 ) !important;
+    }
+}

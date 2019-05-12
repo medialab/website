@@ -1,0 +1,142 @@
+/////////////////////
+//////// Flux style
+/////////////////////
+
+@include for-size(desktop) {
+
+    #agenda, #git, #tweet {
+
+        article{
+
+            cursor: pointer;
+            border-bottom: $border;
+            padding-left: $unite/2;
+
+   
+            &> a{
+                display: block;
+                height: 100%;
+                width: 100%;
+            }
+
+       
+           
+            
+            h1{ 
+                @include font-size-20();  
+                padding-top: $baseline;
+                padding-bottom: $baseline*1.5;
+                &::first-letter { text-transform: capitalize; }
+            }
+            
+            h2{ 
+                @include font-size-20();  
+                font-weight: 100;
+                padding-bottom: $baseline*1;
+            }
+
+            
+            aside.divers{
+                @include font-size-13();
+                p{ display: inline-block; }
+                border-bottom: $border-very-light;
+                padding: $baseline/2 0;
+
+                .label{
+                    border-right: $border-very-light;
+                    margin-right: $unite/2;
+                    padding-right: $unite/2;
+                }
+
+                .date-news{
+                    .week{ display: none; }   
+                    &::first-letter{ text-transform: capitalize; }    
+                }
+            }
+
+
+            aside.details{ 
+                width: 100%;
+               
+                @include font-size-13();
+
+            }
+
+
+        }
+    } 
+
+}
+
+
+
+
+
+// all queries
+#agenda .date-news::before,
+#git .date-news::before,
+#tweet .date-news::before{ 
+    content: none; 
+}
+
+
+#agenda article:hover,
+#git article:hover,
+#tweet article:hover{
+    background-color: $background-grey;
+}
+
+
+/////////////////////
+//////// Flux style
+/////////////////////
+
+@include for-size(phone) {
+
+    .agenda_moving_left, .agenda_moving_right, .past{ display: none; }
+
+    #agenda, #git, #tweet {
+
+        #agenda-contenu,
+        #git-contenu,
+        #tweet-contenu{
+            margin-top: $baseline*4;
+            margin-bottom: $baseline*0;
+        }
+
+     
+
+        article{
+
+            border-top: $border;
+            padding: $baseline*2 0;
+
+
+            .date-news{ 
+                @include font-size-13-phone();
+                font-weight: 600;
+                .week{ display: none; }
+                .year{ display: none; }
+
+      
+            }
+
+            h1{ 
+                @include font-size-16-phone();
+                padding: $baseline 0 $baseline/2 0;
+                &::first-letter { text-transform: capitalize; }  
+            }
+
+            h2{ 
+                @include font-size-13-phone();
+                padding-bottom: $baseline;
+
+                &::first-letter { text-transform: capitalize; }  
+            }
+
+        }
+
+    } /* end agenda*/
+
+} /* end phone*/
+

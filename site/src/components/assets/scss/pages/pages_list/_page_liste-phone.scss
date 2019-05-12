@@ -30,7 +30,7 @@
 		
 				[data-item]:hover ~ [data-item-accroche],
 				[data-item-accroche]:hover{
-					border-bottom: $border-light; 
+					border-bottom: $border; 
 				}
 			
 
@@ -55,7 +55,6 @@
 		// 	text-align: center;	
 		// 	padding-top: $baseline*2;
 		// 	padding-bottom: $baseline*2;
-		// 	border-bottom: $border-light;
 		// }
 
 		
@@ -76,7 +75,7 @@
 			padding-bottom: $baseline*1!important;
 			background-color: $background-site!important;		
 			border-top: none!important; 
-			border-bottom: $border-bold!important; 
+			border-bottom: $border!important; 
 			z-index: 15!important;
 		}
 

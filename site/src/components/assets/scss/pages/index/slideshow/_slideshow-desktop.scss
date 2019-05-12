@@ -13,297 +13,259 @@
 
 	#slideshow{
 
+		.slideshow-container{
+			
+			.slideshow-inner{
 
-		width: 100%;
-		height: 600px;
-		height: -webkit-calc(100vh - #{$height-top-bar} - 2rem);
-		height: -moz-calc(100vh - #{$height-top-bar} - 2rem);
-		height: calc(60vh - #{$height-top-bar} - 2rem);
-		height: 40vh;
-		height: $hunit*10;
-		min-height: 350px;
-		max-height: 800px;
+				.slideshow-item{
+			
+					article{
+						height: 100%;
+						width: 100%;
+						margin-left: 0;
 
-		margin: 0 auto;
-		// overflow-y: hidden;
-
-		border-top: $border;
-		// border-bottom: $border;
-
-		width: 100%;
-		margin-left: 0;
-		
-
-		.slideshow--item{
-			width: 100%;
-			height: 100%;
-	
-			article{
-				height: 100%;
-				// width: calc(100% - #{$unite*8});
-				width: 100%;
-				// margin-left: $unite*4;
-				margin-left: 0;
-
-
-				.image-pre{
-					width: 100%;
-					height: 100%;
-					background-color: $background-site;
-					overflow: hidden;
-        			border: none;
-
-        			pre{ 
-	                    font-weight: bold;
-	                    font-size: calc(((100vw - #{$unite*2})/240)*1.89);
-	                    line-height: normal;
-	                    line-height: 95%; 
-
-                        overflow: hidden;
-	                    top: -50%;
-	                    transform: translateY(50%);
-        			}
-				}
-
-				.image-pre-phone{ display: none; }
-
-				.contenu-slide{
-					width: 65%;
-					//height: 85%;
-					//height: -webkit-calc(100% - 1.7vw*4);
-					//height: -moz-calc(100% - 1.7vw*4);
-					//height: calc(100% - 1.7vw*4);
-					
-					height: -webkit-calc(100% - #{$unite*2});
-					height: -moz-calc(100% - #{$unite*2});
-					height: calc(100% - #{$unite*2});
-
-					position: absolute;
-					//top: 1.7vw*2;
-					top: $unite;
-					left: $unite*3;
-					padding: $baseline $unite/2;
-					z-index: 90;
-					text-align: left;
-					background: $background-site;
-					overflow: hidden;
-
-					/*> a{
-						@include flex; 
-						@include flex-direction(column); // Pour preserver les margins si text background
-						@include align-items(flex-start);
-						 width: 100% 
-					}*/
-
-					&:hover{
-						color: $redlab;
-						cursor: pointer;
-						.more{ color: $redlab-light!important;}
-					}
-
-					a{ height: 100%; position: relative; display: inline-block;}
-         			
-					.bandeau{
-						text-align: left;
-						margin-bottom: $baseline*2;
-						@include font-size-13();
-
-						p{ 
-							padding-right: $unite/2;
-							display: inline-block;
+						.image-pre{
+							width: 100%;
+							height: 100%;
+							background-color: $background-site;
+							overflow: hidden;
+		        			border: none;
+		        			pre{ 
+			                    font-weight: bold;                
+			                    overflow: hidden;
+								color: $color-img;
+		        			}
 						}
+
+						.image-pre-phone{ display: none; }
+
+						.contenu-slide{
+							color: $redlab;
+							position: absolute;
+							top: $unite;
+							left: $unite*3;
+							padding: $baseline/2 $unite/2;
+							z-index: 90;
+							text-align: left;
+							background: $background-site;
+							overflow: hidden;
+
+							&:hover{
+								background-color: $background-grey;
+								cursor: pointer;
+							}
+
+							a{ 
+								height: 100%; 
+								position: relative; 
+								display: inline-block;}
+		         			
+							.bandeau{
+								width: 100%;
+								border-bottom: $border-redlab-very-light;
+								padding-bottom: $baseline/2;
+								text-align: left;
+								@include font-size-13();
+								.type:before{ display: inline; padding: 5px;}
+								.label-news, .subtype-production, .title{
+									padding-left: $unite/2;
+									margin-left: $unite/2;
+									border-left: $border-redlab-very-light;
+								}
+								p{ display: inline-block;}
+							}
+							
+							
+							.date{
+								padding: $baseline  0;
+								border-bottom: $border-redlab-very-light;						
+								.date-news, .hours-news{		
+									display: inline-block;
+									&::first-letter{ text-transform: capitalize; }
+								}
+			
+								.hours-news{
+									padding-left: $unite/2;
+									margin-left: $unite/2;
+									border-left: $border-redlab-very-light;
+								}
+			
+							}
+						
+
+							h1{
+								
+								margin-top: $baseline*1.5;
+								margin-bottom: $baseline*2;
+								&::first-letter{ text-transform: capitalize; }
+							}
+
+
+							
+							
+
+							 .more{
+								@include font-size-13();
+								color: $redlab;
+								@include linktext();
+
+								position: absolute;
+								bottom: 0;
+								left: 0;
+								&:hover{ color: $redlab-light;}
+							 }
+
+
+						}
+					}/* end article*/
+
+				}/* end slideshow-item*/
+
+				/* Navigatin slideshow flêches ----------------------------------------------- */
+
+				.slideshow--nav:after {
+					font-size: 4rem;
+					color: $redlab;
+					bottom: $unite;
+					right: 0px;
+					background: $background-site;
+					padding: 2.0vh .75vh;
+					width: $unite*1.5;
+					margin-top: $unite*(-1.5/2);
+					height: $unite*3;
+					display: flex;
+					align-items: center;
+					padding: 1.4rem;
+					border-top: $border-redlab;
+					border-bottom: $border-redlab;
+					&:hover{ 
+						background-color: $background-grey;
 					}
-					
-					.type:before{ display: inline; background: $background-site; padding: 5px;}
-				
-
-					h1{
-						@include font-size-27();
-						margin-bottom: $baseline*2;
-						min-height: $baseline* 5; // Parions sur 2 ligne minimum de titre - Permet une harmonie entre slide
-					}
-		
-					h2{
-						@include font-size-16();
-						margin-bottom: $baseline*1;
-					}
-
-					.date-news{
-						@include font-size-16();
-						font-weight: 600;
-						.year{display: none}
-						//.year:last-of-type{display: inline;}
-					}
-
-					.description{
-						@include font-size-16();
-						max-height: $baseline*6;
-
-					 }
-
-					 .more{
-						@include font-size-13();
-						margin-top: $baseline*1;
-						color: $text-color-light;
-						text-decoration: underline;
-
-						position: absolute;
-						bottom: 0;
-						left: 0;
-					 }
-
-
 				}
-			}/* end article*/
-
-		}/* end slideshow-item*/
-
-		/* Navigatin slideshow flêches ----------------------------------------------- */
-
-		.slideshow--nav:after {
-			font-size: 4rem;
-			color: $text-color;
-			top: 50%;
-			right: 0px;
-			background: $background-site;
-			padding: 2.0vh .75vh;
-			width: $unite*1.5;
-			margin-top: $unite*(-1.5/2);
-			height: $unite*3;
-			display: flex;
-			align-items: center;
-			padding: 1.4rem;
-			border-top: $border-light;
-			border-bottom: $border-light;
-			&:hover{ color: $redlab!important; }
-		}
 
 
-		.slideshow--nav{
-			top: 0;
-			bottom: 0;
-			width: $unite*3;
-			&:hover:after{ color: $redlab; }
-		}
+				.slideshow--nav{
+					top: 0;
+					bottom: 0;
+					width: $unite*3;
+					&:hover:after{ background-color: $background-grey; }
+				}
 
 
-		.slideshow--nav-previous {
-			left: 0;
-		}
+				.slideshow--nav-previous {
+					left: 0;
+				}
 
-		.slideshow--nav-previous:after {
-			right: auto;
-			left: 0px;
-		}
+				.slideshow--nav-previous:after {
+					right: auto;
+					left: 0px;
+				}
 
-		.slideshow--nav-next {
-			right: 0;
-		}
-
-
-		/* Navigatin slideshow bullets ----------------------------------------------- */
+				.slideshow--nav-next {
+					right: 0;
+				}
 
 
-		.slideshow--bullet {
-			position: relative;
-			top: calc(100% - 1.7vw*4);
-			left: 65%;
-		}
+				/* Navigatin slideshow bullets ----------------------------------------------- */
 
-		.slideshow--bullet-label, hr{ display: none; }
+
+				.slideshow--bullet {
+					position: relative;
+					top: calc(100% - #{$unite} - #{$baseline*2});
+					left: 55%;
+				}
+
+				.slideshow--bullet-label, hr{ display: none; }
 
 
 
-	}/* end slideshow*/
+			}/* end slideshow*/
 
-}/* end query 700 */
-
-/* Query: min 1000px -----------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------------
-changement navigation */
-
-@include for-size(desktop-1000) {
-
-	#slideshow{
-		.slideshow--item .contenu-slide{
-			width: 50% !important;
-			left: $unite*5 !important;
-		}
-		.slideshow--bullet {
-			//top: calc(100% - 1.7vw*4);
-			left: 52%;
-		}		
+		}/* end query 700 */
 	}
 }
 
 
-/* Query: min 1200px -----------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------------------
-changement navigation */
 
 
-@include for-size(desktop-1200) {
 
+
+@mixin ratioImgHome($value){
+	font-size: -webkit-calc((#{$value}/250)*2.5);
+	font-size: -moz-calc((#{$value}e/250)*2.5);
+	font-size: calc((#{$value}/250)*2.5);
+	line-height: -webkit-calc((#{$value}/250)*1.89); 
+	line-height: -moz-calc((#{$value}/250)*1.89); 
+	line-height: calc((#{$value}/250)*1.89); 
+}
+
+
+
+
+
+@media screen and (min-width: 1000px) and (max-width: 1200px){
 	#slideshow{
-		margin: 0;
-		//margin-left: $unite*7;
-		//width: 86%;
-		//width: -webkit-calc(100% - #{$unite}*7);
-		//width: -moz-calc(100% - #{$unite}*7);
-		//width: calc(100% - #{$unite}*7);
+
+		height: $baseline*26;
+
+        .contenu-slide{
+            width: 55%;					
+            height: -webkit-calc(100% - #{$unite*2});
+            height: -moz-calc(100% - #{$unite*2});
+			height: calc(100% - #{$unite*2});
+			h1{ @include font-size-27(); }
+			.date{ @include font-size-16(); }
+			.accroche, .authors{ @include font-size-16(); }
+		}
 		
-		width: 100%;
-		margin-left: 0;
+		.image-pre{ @include ratioImgHome(700px);}
 
-		.slideshow--bullet{ 
-			display: none;
+	}
+}
+
+
+
+@media screen and (min-width: 1200px) and (max-width: 1350px){
+	#slideshow{
+
+		height: $baseline*30;
+
+		.contenu-slide{
+			width: 62%;					
+			height: -webkit-calc(100% - #{$unite*2});
+			height: -moz-calc(100% - #{$unite*2});
+			height: calc(100% - #{$unite*2});
+			h1{ @include font-size-40(); }
+			.date{ @include font-size-20(); }
+			.accroche, .authors{ @include font-size-20(); }
 		}
+		
+		.image-pre{ @include ratioImgHome(800px);}
 
-		.slideshow--bullet-label{
-			width: $unite*6;
-			min-height: $unite*5;
-			left: $unite*-7;
-			top: -1px;
-			border-top: $border;
-			padding: $baseline 0;
-			@include font-size-16();
-			display: flex;
-			align-items: center;
-			display: none;
-			&:last-of-type{ border-bottom: $border; }
-			&:hover{ 
-				color: $redlab;
-			}
+	}
+}
+
+
+
+@media screen and (min-width: 1350px){
+	#slideshow{
+
+		height: $baseline*30;
+
+		.contenu-slide{
+			width: 55%;					
+			height: -webkit-calc(100% - #{$unite*2});
+			height: -moz-calc(100% - #{$unite*2});
+			height: calc(100% - #{$unite*2});
+			h1{ @include font-size-40(); }
+			.date{ @include font-size-20(); }
+			.accroche, .authors{ @include font-size-20(); }
 		}
+		
+		.image-pre{ @include ratioImgHome(900px);}
 
-		.slideshow--bullet:checked + .slideshow--bullet-label:before{ content: '〉'; }
-		.slideshow--bullet-label:hover:before{ content: '〉'; }
-
-		hr{
-			display: block;
-			width: $unite*6;
-			height: 1px;
-			border: none;
-			border-bottom: $border;
-			position: absolute; 
-			left: $unite*-7;
-			bottom: 0;
-		}
-
-		.slideshow--nav:after{
-			top: auto;
-			bottom: -1px;
-		}
-
-	}/* end slideshow*/
-
-}/* end query 1200 */
-
-
-
-
+	}
+}
 
 
 

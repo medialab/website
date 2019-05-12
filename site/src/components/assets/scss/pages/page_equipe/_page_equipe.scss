@@ -20,7 +20,7 @@
 		#display-people-past + label{
 			@include font-size-27;
 			display: block;
-			border-top: $border-light;
+			border-top: $border;
 			color: $text-color-light;
 			padding-top: $baseline*1.5;
 			margin-bottom: $baseline*1.5;
@@ -36,7 +36,7 @@
 
 		#liste_equipe_past{ 
 			display: none; 
-			border-top: $border-light;
+			border-top: $border;
 			padding-top: $baseline*2;
 		}
 

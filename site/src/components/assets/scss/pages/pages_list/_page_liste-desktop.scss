@@ -11,7 +11,7 @@ $width-image-pre-listing: 90px;
     .page-news-list{
         #liste{
                 margin-top: $height-top-bar;
-                margin-left: $logo-column-medium;
+                padding-left: $logo-column-medium;
         }
     }
 
@@ -23,8 +23,10 @@ $width-image-pre-listing: 90px;
     .page-activity-list,
     .page-news-list{
         #liste{
+                max-width: $max-width-main;
+                margin: 0 auto;
                 margin-top: $height-top-bar;
-                margin-left: $logo-column;
+                padding-left: $logo-column;
         }
     }
 

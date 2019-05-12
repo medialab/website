@@ -40,7 +40,7 @@
 
 			.details{
 				@include font-size-16-phone();
-				.date{ border-top: $border-light;}
+				.date{ border-top: $border;}
 				p{ padding: $baseline/2 0;}
 			}
 			

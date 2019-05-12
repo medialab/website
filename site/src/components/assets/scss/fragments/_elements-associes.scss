@@ -1,10 +1,9 @@
 
 ///// Global 
 .elements-associes-block, 
-.personnes-associees-block, 
-.fichiers-associes-block{
+.personnes-associees-block{ 
 
-	padding-top: $sticky-height + $baseline*2;
+	padding-top: $height-sticky + $baseline*2;
 
 	& > h1{
 		margin-bottom: $baseline*2;
@@ -17,7 +16,7 @@
 		display: none;
 	}
     &:first-of-type{
-    	margin-top: 10vh;
+    	margin-top: $baseline*4;
     }	
 
 	// Grey Background
@@ -38,24 +37,16 @@
 		li.item{
 			box-sizing: border-box;
 			padding-bottom: $baseline/2;
-			border-bottom: $border-light;
+			border-bottom: $border;
 			overflow: hidden;
-			background: $background-grey;
 			opacity: 1;
 			cursor: pointer;
-			
-
-			// .accroche {
-			// 	display: block;
-			// }
-
 			
 
 
 
 			a{
 
-				// *{ @include text-overflow(); }
 
 				h1{
 					@include font-size-20();
@@ -219,41 +210,12 @@
 	}
 }
 
-.fichiers-associes-block{
-    .icon{
-    border-top: $border-light;
-    border-bottom: $border-light;
-    font-size: 30px;
-    letter-spacing: -4px;
-    left: 0px;
-    height: 30px;
-    overflow: hidden;
-    line-height: 20px;
-
-        span{
-
-            &:last-of-type{
-			    font-size: 15px;
-			    line-height: 15px;
-			    font-weight: 400 !important;
-			    //float: right;
-			    padding: $baseline/2 $unite/2;
-			    letter-spacing: 0;
-            }
-        }
-    }
-
-    li.item{ border-bottom: none !important;}
-}
-
-
-
 
 
 ///// Responsive
 
 @include for-size(phone) {
-	.elements-associes-block, .personnes-associees-block, .fichiers-associes-block{
+	.elements-associes-block, .personnes-associees-block{
 
 		&::before { 
 		    height: calc(100% + 50px);
@@ -276,28 +238,10 @@
 		h2{ @include font-size-13-phone(); }
 		.type{ @include font-size-13-phone(); }
 	}
-	.fichiers-associes-block{
-        li.item{ 
-            @include font-size-20();
-            margin-bottom: $margins-desktop;
-            @include text-overflow();
-            svg, p{ 
-                display: inline-block;
-                vertical-align: middle;
-            }
-            p.name{ 
-                margin-left: $margins-desktop;
-                @include font-size-20();
-            }
-            svg{ 
-                width: 50px;
-            }
-        }       
-    } 
 }
 
 @include for-size(desktop) {
-	.elements-associes-block, .personnes-associees-block, .fichiers-associes-block{
+	.elements-associes-block, .personnes-associees-block{
 
 		&::before { 
 		    height: calc(100% + 50px);
@@ -312,8 +256,7 @@
 	}
 
 	.elements-associes-block > h1,
-	.personnes-associees-block > h1,
-	.fichiers-associes-block > h1{ 
+	.personnes-associees-block > h1{ 
 		@include font-size-40();
 		span{ padding-right: $unite/2;}
 		// font-weight: 600;
@@ -321,77 +264,10 @@
 	}
 
 	.elements-associes-block .liste_objet{
+		max-width: $max-width-article;
 		h1{ @include font-size-20(); }				
 		h2{ @include font-size-13(); }
 		.type{ @include font-size-13(); }
 	}
-
-	.fichiers-associes-block{
-        li{ 
-            @include font-size-20();
-            margin-bottom: $margins-desktop;
-            svg, p{ 
-                display: inline-block;
-                vertical-align: middle;
-            }
-            p.name{ 
-                margin-left: $margins-desktop;
-                @include font-size-20();
-            }
-            svg{ 
-                width: 50px;
-            }
-        }       
-    }
 }
-
-@media screen and (max-width: 1000px){
-	.elements-associes-block{
-
-		ul.liste_objet{ 
-			// li{ width: 100%; }
-			li:first-of-type{ border-top: $border-light; }
-		}
-	}
-}
-
-
-@media screen and (min-width: 1000px){
-
-	.elements-associes-block, .fichiers-associes-block{
-		ul.liste_objet{ 		
-			// @include flex;
-			// @include flex-wrap(wrap);			
-			// li{ width: calc( ( 100% - #{$unite*3*2} ) / 2 ); }
-			
-			@include column-count(2);
-			@include column-gap($unite*1.5);
-			@include column-fill(balance);
-
-			margin-right: $unite*1;	
-			li{ break-inside: avoid}
-
-		}		
-	}
-}
-
-
-@media screen and (min-width: 1400px) {
-
-	.elements-associes-block, .fichiers-associes-block{
-
-		ul.liste_objet{ 		
-			max-width: 1500px;
-			// @include flex;
-			// @include flex-wrap(wrap);			
-			// li{ width: calc( ( 100% - #{$unite*3*3} ) / 3 ); }
-
-			@include column-count(3);
-			@include column-gap($unite*3);
-			@include column-fill(balance);			
-			@include column-rule($border-very-light);
-			li{ break-inside: avoid}
-		}		
-	}
-}
-
+ 

@@ -4,6 +4,23 @@
 //$width-image-pre-listing: 90px;
 $width-image-pre-listing: ( ( 100% / 120 ) * 1.1338 * 10 );
 
+
+.page-production-list #liste .liste_objet,
+.page-activity-list #liste .liste_objet,
+.page-news-list #liste .liste_objet{
+
+    li{
+        a{ 
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+        }
+        h1{ 
+            &::first-letter{ text-transform: capitalize; }
+        }
+    }
+}
+
 @include for-size(desktop) {
 
     .page-production-list #liste .liste_objet,
@@ -12,10 +29,9 @@ $width-image-pre-listing: ( ( 100% / 120 ) * 1.1338 * 10 );
         
         margin-bottom: 40vh;
         min-height: calc(100vh - 40vh - #{$height-top-bar-phone});
-        // border-top: $border-light;
 
         li{
-            border-bottom: $border-light;
+            border-bottom: $border;
             //width: calc(100vw - #{$logo-column} - #{$margins-desktop*2}); 
             width: 100%;
             position: relative;
@@ -23,9 +39,7 @@ $width-image-pre-listing: ( ( 100% / 120 ) * 1.1338 * 10 );
 
 
             a{ 
-                width: 100%;
-                height: 100%;
-                display: inline-block;
+
                 @include flex();
                 @include flex-direction(row);
             }
@@ -209,7 +223,7 @@ $width-image-pre-listing: ( ( 100% / 120 ) * 1.1338 * 10 );
             display: none;
             height: 0;
             padding-top: 0px;
-            border-bottom: $border-light;
+            border-bottom: $border;
             overflow: hidden;
             &:target{ 
                 display: block;

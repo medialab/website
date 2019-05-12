@@ -1,5 +1,7 @@
 /* miniature all */
 
+$width-image-pre-highlight: ( 100% / 75 ) * 6;
+
 .page-people #highlights #highlights-list-activity, 
 .page-people #highlights #highlights-list-production, 
 .page-home #now {
@@ -9,7 +11,7 @@
     //min-height: calc(100vh - 40vh - #{$height-top-bar-phone});
 
     li{
-        border-bottom: $border-light;
+        border-bottom: $border;
         position: relative;
         height: auto;
         width: 100%;
@@ -17,7 +19,7 @@
         a{ 
             width: 100%;
             height: 100%;
-            display: inline-block;
+            display: block;
             overflow: hidden;
         }
 
@@ -28,10 +30,21 @@
             overflow: hidden;
             transition: max-width 0.25s ease-in-out;
             background-color: $background-site;
+            max-width: calc(#{$width-image-pre-highlight});
+			height: 100%;
             pre{ 
                 color: $color-img;
                 top: -50%;
                 transform: translateY(50%);
+                font-size: calc(( ((100vw - #{$unite*2}) - #{$logo-column})  /75 )*1.89 ); // Should change with width
+                //line-height: calc(( ((100vw - #{$unite*4}) - #{$logo-column})  /75 )*1.89 );
+                @include for-size(desktop-900){ font-size: calc( ( 900px / 75 ) * 1.89); } // fit with highlight container
+                line-height: normal;
+            }
+            &:hover{ 
+                max-width: calc(#{$width-image-pre-highlight} + (100% - #{$width-image-pre-highlight})); 
+                background-color: $background-grey;
+                pre{ background-color: $background-grey; }
             }
         }
 
@@ -40,7 +53,8 @@
             position: absolute;     
             border-bottom: $border-very-light;
             padding: $baseline/2 0;
-            // @include text-overflow();
+            width: calc(100% - #{$width-image-pre-highlight} - #{$unite/2});
+	        left: calc(#{$width-image-pre-highlight} + #{$unite/2});
 
             p{ 
                 @include font-size-13; 
@@ -50,7 +64,7 @@
 
 
             /* activities */
-            .title{ 
+            .title, .date-news{ 
                 @include text-overflow();
                 padding-left: $unite/2;
                 margin-left: $unite/2;
@@ -77,31 +91,35 @@
             z-index: 3;
         }
 
-        hgroup, .accroche{
+        hgroup{
             display: inline-block;
             vertical-align: top;
             margin-top: $baseline*2;
             margin-bottom: $baseline;
+            left: calc(#{$width-image-pre-highlight});
+            width: calc( 100% - #{$width-image-pre-highlight} );
+            padding: 0 $unite/2;
         }
 
-
-
-        &:hover{
-            // background-color: $background-grey;              
-
-            .image-pre{ 
-                max-width: 100%; 
-                transition-duration: .25s;
-            }
-            .bandeau .date-news{ color: $text-color; transition: color .15s cubic-bezier(1,0,0,1);}
+        h1{
+            @include font-size-20; 			
+            min-height: $baseline*4;
+            padding-top: $baseline*1.5;
+            
         }
+
+        &:hover{ background-color: $background-grey; }
+
+
 
     }
 
     .list-year{ 
         padding-top: 3px;
-        border-bottom: $border-light;
+        border-bottom: $border;
         overflow: hidden;
         &:target{ padding-top: $height-top-bar + 3px;  }
     }   
 }
+
+

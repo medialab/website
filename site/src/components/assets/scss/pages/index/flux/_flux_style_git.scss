@@ -1,0 +1,65 @@
+/////////////////////
+//////// git style
+/////////////////////
+
+@include for-size(desktop) {
+
+    #git {
+
+        article{
+             
+            aside.divers{
+
+                .date-news{
+                }
+ 
+
+            }
+
+
+            aside.details{ 
+                
+                border-top: $border-very-light;
+                padding: $baseline/2 0;
+
+                .language, .contributors{
+                    display: inline-block;
+                    padding-right: $unite/2;
+                }
+
+                .language{ border-right: $border-very-light; }
+
+                .contributors { padding-left: $unite/2;}
+
+            }
+
+
+        }
+    } 
+
+}
+
+
+
+
+// all queries
+
+#git {
+ 
+}
+
+
+@include for-size(phone) {
+
+
+    #git{
+    
+
+        article{
+ 
+        }
+
+    } /* end git*/
+
+} /* end phone*/
+

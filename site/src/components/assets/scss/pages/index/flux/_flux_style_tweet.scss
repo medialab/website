@@ -1,0 +1,67 @@
+/////////////////////
+//////// tweet style
+/////////////////////
+
+@include for-size(desktop) {
+
+    #tweet {
+
+        article{
+             
+            aside.divers{
+
+                .date-news{
+                }
+ 
+
+            }
+
+
+            aside.details{ 
+                 
+                border-top: $border-very-light;
+                padding: $baseline/2 0;
+
+            }
+        }
+    } 
+
+}
+
+
+
+
+// all queries
+
+#tweet {
+ 
+    h1{
+        .hashtag,
+        .mention{
+            color: $redlab;
+        }
+
+        .link-external-tweet{ color: $text-color-light;}
+    }
+
+
+    .account{
+        color: $redlab;
+    }
+}
+
+
+@include for-size(phone) {
+
+
+    #tweet{
+    
+
+        article{
+ 
+        }
+
+    } /* end tweet*/
+
+} /* end phone*/
+

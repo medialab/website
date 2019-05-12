@@ -19,7 +19,7 @@ $width-image-pre-highlight: ( 100% / 75 ) * 1.1338 * 4;
 		ul{
 
 			&:first-of-type { 
-				border-top: $border-light; 
+				border-top: $border; 
 				padding-top: 1px;
 			}
 			li{
@@ -77,6 +77,15 @@ $width-image-pre-highlight: ( 100% / 75 ) * 1.1338 * 4;
 		}
 	}
 }
-@include for-size(desktop) {
 
+
+
+
+@media screen and (min-width: 1350px){
+	#now li hgroup h1{
+        @include font-size-27();
+            font-size: $font-size*2.7!important;
+            font-weight: 100!important;
+            line-height: $baseline*2.5!important;
+	}
 }

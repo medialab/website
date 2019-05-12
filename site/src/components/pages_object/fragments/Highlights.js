@@ -30,11 +30,7 @@ export default function highlights({people, lang}) {
                     <hgroup>
                       <h1 data-level-1="baseline" >{a.baseline && (lang === 'fr' ? a.baseline.fr : a.baseline.en)}</h1>
                     </hgroup>                   
-                    {/*<div className="accroche">
-                      <p className="accroche-paragraphe">
-                        {a.description && <RawHTML html={lang === 'fr' ? a.description.fr : a.description.en} />}
-                      </p>                     
-                    </div>*/}
+      
                   </Link>
                 </li>              
               ))          
@@ -59,11 +55,7 @@ export default function highlights({people, lang}) {
                       <hgroup>
                         <h1 data-level-1="title" >{lang === 'fr' ? p.title.fr : p.title.en}</h1>
                       </hgroup>
-                      {/*<div className="authors">
-                        <p className="authors-paragraphe">
-                        {p.authors}
-                        </p>
-                      </div>*/}
+  
                     </Link>
                   </li>
               ))

@@ -146,6 +146,7 @@ export default function NewsDetail({lang, news}) {
               <div className="date-news-block">
                 <DateNews startDate={news.startDate} endDate={news.endDate} lang="fr" />
                 <TimeNews startDate={news.startDate} endDate={news.endDate} />
+                <FichiersAssocies attachments={news.attachments} lang="fr" />
               </div>
               <p className="type-objet">
               <span data-icon="news"></span> 
@@ -168,6 +169,7 @@ export default function NewsDetail({lang, news}) {
               <div className="date-news-block">
                 <DateNews startDate={news.startDate} endDate={news.endDate} lang="en"/>
                 <TimeNews startDate={news.startDate} endDate={news.endDate} />
+                <FichiersAssocies attachments={news.attachments} lang="en" />
               </div>
               <p className="type-objet">
               <span data-icon="news"></span> 
@@ -186,7 +188,6 @@ export default function NewsDetail({lang, news}) {
 
         {/* Block Associes */}
         <MembresAssocies people={news.people} lang={lang} />
-        <FichiersAssocies attachments={news.attachments} lang={lang} />
         <ActivitesAssociees activities={news.activities} lang={lang} />
         <ProductionsAssociees productions={news.productions} lang={lang} />
        

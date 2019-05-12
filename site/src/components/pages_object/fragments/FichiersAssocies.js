@@ -13,22 +13,22 @@ const FichiersAssocies = ({lang, attachments}) => {
   let accroche;
 
   if (lang === 'fr') {
-    accroche = related.fr + String.fromCharCode(8239);
+    accroche = related.fr + String.fromCharCode(8239) + ":";
   }
   else {
-    accroche = related.en;
+    accroche = related.en + ":";
   }
 
   return (
-    <aside className="container fichiers-associes-block" id="attachments">
-      <h1><span data-icon="file" /> {accroche} </h1>
+    <aside className="fichiers-associes" id="attachments">
+        
+        <h1 >{ accroche }</h1>
 
-      <div className="contenu">
-        <ul className="liste_objet">
+        <ul>
+
           {(attachments || []).map(file => (
-            <li key={file.value} data-type="files" className="item">
-              <p className="icon">⦚⦚⦚⦚⦚⦚⦚⦚⦚⦚⦚⦚⦚⦚<span>&nbsp;</span><span>{file.type}</span></p>
-              <p className="name">
+            <li key={file.value} data-type="files" className="files">
+             
                 {file.type === 'attachment' &&
                   <Link to={file.value}>{file.label}</Link>
                 }
@@ -38,11 +38,12 @@ const FichiersAssocies = ({lang, attachments}) => {
                 {file.type === 'label' &&
                   <span>{file.label}</span>
                 }
-              </p>
+
             </li>
           ))}
+
         </ul>
-      </div>
+
     </aside>
   );
 };

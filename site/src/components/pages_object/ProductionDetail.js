@@ -134,7 +134,9 @@ export default function ProductionDetail({lang, production}) {
             <div class="details">             
               <p className="type-objet"><span data-icon="production"></span> {IsModel(production.group, "fr")} – {IsModel(production.type, "fr")}</p>
               <p className="date">{production.date}</p>  
-              <p className="production-ref"><RawHtml html={production.description && (production.description.fr)} /></p>        
+              <p className="production-ref"><RawHtml html={production.description && (production.description.fr)} /></p>
+              <FichiersAssocies attachments={production.attachments} lang="fr" />
+        
             </div>
             <div className="article-contenu">
             {production.content && (production.content.fr && <RawHtml html={production.content.fr} />)}
@@ -151,6 +153,7 @@ export default function ProductionDetail({lang, production}) {
               <p className="type-objet"><span data-icon="production"></span> {IsModel(production.group, "en")} – {IsModel(production.type, "en")}</p>
               <p className="date">{production.date}</p>  
               <p className="production-ref"><RawHtml html={production.description && (production.description.en)} /></p>   
+              <FichiersAssocies attachments={production.attachments} lang="en" />            
             </div>
             <div className="article-contenu">                
               {production.content && (production.content.en && <RawHtml html={production.content.en} />)}
@@ -160,7 +163,6 @@ export default function ProductionDetail({lang, production}) {
         </article>
 
         <MembresAssocies people={production.people} lang={lang} />
-        <FichiersAssocies attachments={production.attachments} lang={lang} />
         <ActivitesAssociees activities={production.activities} lang={lang} />
         <ProductionsAssociees productions={production.productions} lang={lang} />     
         <ActuAssociees actu={production.news} lang={lang} />

@@ -168,13 +168,16 @@ export default function ActivityDetail({lang, activity}) {
               <DateNews startDate={activity.startDate} endDate={activity.endDate} lang="fr" />
               <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
             </p>
+            <FichiersAssocies attachments={activity.attachments} lang="fr" />
           </div>
+
+
           <div className="article-contenu">
             {activity.content && (activity.content.fr && <RawHtml html={activity.content.fr} />)}
           </div>
         </div>
 
-        {/* FR */}
+        {/* EN */}
         <div className="block-lang en" lang="en">
           <hgroup>
             <h1  data-level-2="baseline">{activity.name}</h1>
@@ -187,6 +190,7 @@ export default function ActivityDetail({lang, activity}) {
               <DateNews startDate={activity.startDate} endDate={activity.endDate} lang="en" />
               <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
             </p>
+            <FichiersAssocies attachments={activity.attachments} lang="en" />
           </div>
           <div className="article-contenu">
             {activity.content && (activity.content.en && <RawHtml html={activity.content.en} />)}
@@ -195,7 +199,6 @@ export default function ActivityDetail({lang, activity}) {
 
       </article>
       <MembresAssocies people={activity.people} lang={lang} />
-      <FichiersAssocies attachments={activity.attachments} lang={lang} />
       <ActivitesAssociees activities={activity.activities} lang={lang} />
       <ProductionsAssociees productions={activity.productions} lang={lang} />
       <ActuAssociees actu={activity.news} lang={lang} />

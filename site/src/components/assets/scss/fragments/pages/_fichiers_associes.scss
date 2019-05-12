@@ -1,0 +1,36 @@
+$height-sticky: $baseline*5;
+
+@include for-size(desktop) {
+
+	.page-production, 
+	.page-news, 
+	.page-activity, 
+	.page-people,
+	.page-about{
+
+		.fichiers-associes{
+
+			margin-top: $baseline;
+			padding-top: $baseline;
+			border-top: $border-very-light;
+
+
+			h1{
+				@include font-size-16;
+				font-weight: 100;
+				padding-right: $unite/2;
+				display: inline-block;
+			}
+			ul{
+				display: inline-block;
+				li{
+					@include font-size-16;
+					display: inline-block;
+					&:not(:last-of-type):after{ content: ", "}
+				}				
+			}
+
+		}
+	}
+
+}

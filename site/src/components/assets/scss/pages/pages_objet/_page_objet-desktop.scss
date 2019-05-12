@@ -1,4 +1,4 @@
-$hack-sticky: 54px;
+//$hack-sticky: 54px;
 
 /////////////////////
 ////////  Desktop 
@@ -9,6 +9,7 @@ $hack-sticky: 54px;
 	
 	left: 0;
 	top: 0;
+	top: $height-sticky;
 	position: fixed;
 
 	.activator{
@@ -21,7 +22,7 @@ $hack-sticky: 54px;
 		&:hover{
 			
 			& + .container{
-				overflow: inherit;
+				width: 100vw;
 			}
 		}        
 	}	
@@ -29,9 +30,17 @@ $hack-sticky: 54px;
 	.container{
 		width: $logo-column - $margins-desktop*2;
 		overflow: hidden;
+		transition: width 0.25s ease-in-out;
 	}
 
-	pre{ color: $redlab;}
+	pre{ 
+		color: $redlab;
+        font-weight: bold;
+        font-size: calc(((100vw - #{$unite*2})/240)*1.89); // Should change with width
+        line-height: 95%;
+        overflow: hidden;
+    
+	}
 }
 
 

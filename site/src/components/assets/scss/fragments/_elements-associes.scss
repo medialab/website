@@ -4,7 +4,7 @@
 .personnes-associees-block, 
 .fichiers-associes-block{
 
-	padding-top: $sticky-height + $baseline*2;
+	padding-top: $height-sticky + $baseline*2;
 
 	& > h1{
 		margin-bottom: $baseline*2;

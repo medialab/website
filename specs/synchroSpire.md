@@ -1,3 +1,30 @@
+# séparation stricte User/Spire
+
+Pour gérer les conflits de version entre les données SPIRE et les données de production du CMS, il est nécessaire de séparer strictement les données qui viennent de Spire de celles entrées par les utilisateurs.
+Cette proposition va dans cette direction en chageant les principes de gestion des données SPIRE comme suite : 
+- Les données SPIRE sont stockées dans un champs spécifique spire.meta (inchangé)
+- Les champs des objets productions (title, description...) ne sont pas impactés par les imports SPIRE
+- Pour chaque champs impacté par SPIRE, le formulaire production du CMS présente la valeure générée par SPIRE en plus du champs qui permet à l'utilisateur.rice de surcharger
+- Au build du site, les champs vides des productions qui ont des données SPIRE sont générés à la volée
+- Dans le listing productions du CMS, chaque production est identifiable par les données générées et non les champs
+- Dans l'espace monitoring du CMS (home ?) on ajoute la liste des productions qui ont des champs en conflit avec SPIRE
+
+
+Avec ce système on identifie très facilement les cas où l'utilisateur a modifié un champs d'une production de SPIRE.
+On ne peut pas cependant détecter avec certitude un conflit (tel que définit ci-dessous) car les dates de modification sont attachées aux objets et non aux champs que ce soit pour le CMS ou pour SPIRE.
+
+Si on ne peut garantir la détection on peut filtrer pour sûr les cas où les valeurs de SPIRE n'ont pas été modifiées après l'update côté CMS :
+
+```javascript
+production.champs && lastUpdated > spire.meta.lastUpdated
+```
+
+Autrement dit toute production éditée dans le CMS puis dans SPIRE doit être revue.
+Nous verrons à l'usage si il est nécessaire d'ajouter un système de flag pour signifier que ces cas ont été passés en revue.
+
+
+
+# deprecated
 
 ## dates
 Il faut ajouter un *lastUpdatedBySpire* dans l'objet pour distinguer la date de dernière modification par le processus spire de celle faite par un utilisateur.

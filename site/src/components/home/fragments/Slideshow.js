@@ -55,7 +55,7 @@ const Slideshow = ({slider, lang}) => {
 
         <div className="slideshow-inner">
         {slider.map((slide, index) =>
-          (<React.Fragment key={index}>        
+          (<React.Fragment key={index}>
             {/* Content */}
             <div className="slideshow-item" data-item={ index + 1 }>
               <article data-type={slide.model}>
@@ -68,16 +68,16 @@ const Slideshow = ({slider, lang}) => {
                   </div>
                 </Link>
                 <div className="bullets-slide">
-                  <label className="slideshow-bullet-label" data-type={ (index + 1) === 1 ? "active" : "passive" } htmlFor="slide-bullet-1"></label>                
-                  <label className="slideshow-bullet-label" data-type={ (index + 1) === 2 ? "active" : "passive" } htmlFor="slide-bullet-2"></label>                
-                  <label className="slideshow-bullet-label" data-type={ (index + 1) === 3 ? "active" : "passive" } htmlFor="slide-bullet-3"></label>                
+                  <label className="slideshow-bullet-label" data-type={ (index + 1) === 1 ? "active" : "passive" } htmlFor="slide-bullet-1"></label>
+                  <label className="slideshow-bullet-label" data-type={ (index + 1) === 2 ? "active" : "passive" } htmlFor="slide-bullet-2"></label>
+                  <label className="slideshow-bullet-label" data-type={ (index + 1) === 3 ? "active" : "passive" } htmlFor="slide-bullet-3"></label>
 
                 </div>
                 <div className="contenu-slide">
                   <Link to={slide.data.permalink[lang]}>
 
 
-            
+
                     {/* if Activité */}
                     {slide.model === 'activities' &&
     									(lang === 'fr' ?
@@ -89,7 +89,7 @@ const Slideshow = ({slider, lang}) => {
                           <h1 data-level-1="baseline" >{slide.data.baseline.fr}</h1>
                           <p className="accroche">
                             {slide.data.description && <RawHTML html={slide.data.description.fr} />}
-                          </p>  
+                          </p>
                         </>
                       										:
                         <>
@@ -101,13 +101,13 @@ const Slideshow = ({slider, lang}) => {
                         <h1 data-level-1="baseline" >{slide.data.baseline.en}</h1>
                         <p className="accroche">
                           {slide.data.description && <RawHTML html={slide.data.description.en} />}
-                        </p>  
+                        </p>
                       </>
                       )
     								}
-                    
 
-                    
+
+
 
 
 
@@ -127,7 +127,7 @@ const Slideshow = ({slider, lang}) => {
                                         :
                       <>
                       <aside className="bandeau">
-                        <p data-icon="productinos" className="type">{IsModel(slide.model, "en")}</p>
+                        <p data-icon="productions" className="type">{IsModel(slide.model, "en")}</p>
                         {/* Don't work : */}{/* {slide.data.typeLabel !== 'media' ? <p className="subtype-production"><span>{slide.data.typeLabel.en}</span></p> : '' } */}
                         {/* To delete when is work : */}<p className="subtype-production"><span>Article</span></p>
                         <p className="date-production">{slide.data.date}</p>
@@ -158,8 +158,8 @@ const Slideshow = ({slider, lang}) => {
 
                           <p className="accroche">
                             {/* don't work : */}{/* {slide.data.description && <RawHTML html={slide.data.description.fr} />} */}
-                            {/* To delete when is work : */}Axel Meunier présentera une première version de la contribution d'Algoglitch au numéro 72 de Techniques&amp;Culture intitulé "En cas de panne".                        
-                          </p>  
+                            {/* To delete when is work : */}Axel Meunier présentera une première version de la contribution d'Algoglitch au numéro 72 de Techniques&amp;Culture intitulé "En cas de panne".
+                          </p>
 
                         </>
                       										:
@@ -176,7 +176,7 @@ const Slideshow = ({slider, lang}) => {
                           <p className="accroche">
                             {/* don't work : */}{/* {slide.data.description && <RawHTML html={slide.data.description.en} />} */}
                             {/* To delete when is work : */}Axel Meunier présentera une première version de la contribution d'Algoglitch au numéro 72 de Techniques&amp;Culture intitulé "En cas de panne".
-                          </p>  
+                          </p>
                         </>
     									)
     								}
@@ -195,7 +195,7 @@ const Slideshow = ({slider, lang}) => {
 
         <div className="nav">
           {slider.map((slide, index) =>
-            (<React.Fragment key={index}> 
+            (<React.Fragment key={index}>
               {/* label */}
                 <label htmlFor={`slide-${a}`} className="slideshow--nav slideshow--nav-previous">{lang === 'fr' ? 'Aller à la slide ' + {a} : 'Go to slide ' + {a} }</label>
                 <label htmlFor={`slide-${z}`} className="slideshow--nav slideshow--nav-next">{lang === 'fr' ? 'Aller à la slide ' + {z} : 'Go to slide ' + {z} }</label>

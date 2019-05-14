@@ -6,10 +6,11 @@ import {IsModel} from '../../helpers/helpers.js';
 import DateNews from '../../helpers/DateNews.js';
 import TimeNews from '../../helpers/TimeNews.js';
 import {format as formatDate, getYear, parseISO} from 'date-fns';
-import RawHTML from '../../helpers/RawHtml.js';
 
 // Ici nous composons l'ensemble du caroussel
 const Slideshow = ({slider, lang}) => {
+
+  const otherLang = lang === 'fr' ? 'en' : 'fr';
 
 	let a, z;
 	a = 3;
@@ -76,110 +77,51 @@ const Slideshow = ({slider, lang}) => {
                 <div className="contenu-slide">
                   <Link to={slide.data.permalink[lang]}>
 
-
-
                     {/* if Activité */}
-                    {slide.model === 'activities' &&
-    									(lang === 'fr' ?
-                        <>
-                          <aside className="bandeau">
-                            <p data-icon="activities" className="type">{IsModel(slide.model, "fr")}</p>
-                            <p className="title">{slide.data.name}</p>
-                          </aside>
-                          <h1 data-level-1="baseline" >{slide.data.baseline.fr}</h1>
-                          <p className="accroche">
-                            {slide.data.description && <RawHTML html={slide.data.description.fr} />}
-                          </p>
-                        </>
-                      										:
-                        <>
-                        { /* les acitivités ne s'affichent pas en anglais, je n'ai pas trouvé pourquoi (les données ne sont pas remplies ?) */}
+                    {slide.model === 'activities' && (
+                      <>
                         <aside className="bandeau">
-                          <p data-icon="activities" className="type">{IsModel(slide.model, "en")}</p>
-                          <p className="title" >{slide.data.name}</p>
+                          <p data-icon="activities" className="type">{IsModel(slide.model, lang)}</p>
+                          <p className="title">{slide.data.name}</p>
                         </aside>
-                        <h1 data-level-1="baseline" >{slide.data.baseline.en}</h1>
+                        <h1 data-level-1="baseline" >{slide.data.baseline[lang] || slide.data.baseline[otherLang]}</h1>
                         <p className="accroche">
-                          {slide.data.description && <RawHTML html={slide.data.description.en} />}
+                          {slide.data.description && (slide.data.description[lang] || slide.data.description[otherLang])}
                         </p>
                       </>
-                      )
-    								}
-
-
-
-
-
+                    )}
 
                     {/* if Productions */}
-                    {slide.model === 'productions' &&
-                    (lang === 'fr' ?
+                    {slide.model === 'productions' && (
                       <>
                         <aside className="bandeau">
-                          <p data-icon="productions" className="type">{IsModel(slide.model, "fr")}</p>
-                          {/* Don't work : */}{/* {slide.data.typeLabel !== 'media' ? <p className="subtype-production"><span>{slide.data.typeLabel.fr}</span></p> : '' } */}
-                          {/* To delete when is work : */}<p className="subtype-production"><span>Article</span></p>
+                          <p data-icon="productions" className="type">{IsModel(slide.model, lang)}</p>
+                          <p className="subtype-production"><span>{slide.data.typeLabel[lang]}</span></p>
                           <p className="date-production">{slide.data.date}</p>
                         </aside>
-                          <h1 data-level-1="title">{slide.data.title.fr}</h1>
-                          <h2 data-level-1="authors" className="authors">{slide.data.authors}</h2>
-                      </>
-                                        :
-                      <>
-                      <aside className="bandeau">
-                        <p data-icon="productions" className="type">{IsModel(slide.model, "en")}</p>
-                        {/* Don't work : */}{/* {slide.data.typeLabel !== 'media' ? <p className="subtype-production"><span>{slide.data.typeLabel.en}</span></p> : '' } */}
-                        {/* To delete when is work : */}<p className="subtype-production"><span>Article</span></p>
-                        <p className="date-production">{slide.data.date}</p>
-                      </aside>
-                        <h1 data-level-1="title">{slide.data.title.en}</h1>
+                        <h1 data-level-1="title">{slide.data.title[lang] || slide.data.title[otherLang]}</h1>
                         <h2 data-level-1="authors" className="authors">{slide.data.authors}</h2>
                       </>
-                    )
-                    }
-
-
-
-
+                    )}
 
                     {/* if News */}
-                    {slide.model === 'news' &&
-    									(lang === 'fr' ?
-                        <>
-                           <div className="bandeau">
-                            <p data-icon="news" className="type">{IsModel(slide.model, "fr")}</p>
-                            <p className="label-news"><span>{slide.data.label.fr}</span></p>
-                          </div>
-                          <div className="date">
-                            <DateNews startDate={slide.data.startDate} endDate={slide.data.endDate} lang="fr" />
-                            <TimeNews startDate={slide.data.startDate} endDate={slide.data.endDate} />
-                          </div>
-                          <h1 data-level-1="baseline" >{slide.data.title.fr}</h1>
+                    {slide.model === 'news' && (
+                      <>
+                        <div className="bandeau">
+                          <p data-icon="news" className="type">{IsModel(slide.model, lang)}</p>
+                          <p className="label-news"><span>{slide.data.label[lang] || slide.data.label[otherLang]}</span></p>
+                        </div>
+                        <div className="date">
+                          <DateNews startDate={slide.data.startDate} endDate={slide.data.endDate} lang={lang} />
+                          <TimeNews startDate={slide.data.startDate} endDate={slide.data.endDate} />
+                        </div>
+                        <h1 data-level-1="baseline" >{slide.data.title[lang] || slide.data.title[otherLang]}</h1>
 
-                          <p className="accroche">
-                            {/* don't work : */}{/* {slide.data.description && <RawHTML html={slide.data.description.fr} />} */}
-                            {/* To delete when is work : */}Axel Meunier présentera une première version de la contribution d'Algoglitch au numéro 72 de Techniques&amp;Culture intitulé "En cas de panne".
-                          </p>
-
-                        </>
-                      										:
-                        <>
-                           <div className="bandeau">
-                            <p data-icon="news" className="type">{IsModel(slide.model, "en")}</p>
-                              <p className="label-news"><span>{slide.data.label.en}</span></p>
-                          </div>
-                          <div className="date">
-                            <DateNews startDate={slide.data.startDate} endDate={slide.data.endDate} lang="en" />
-                            <TimeNews startDate={slide.data.startDate} endDate={slide.data.endDate} />
-                          </div>
-                          <h1 data-level-1="baseline" >{slide.data.title.en}</h1>
-                          <p className="accroche">
-                            {/* don't work : */}{/* {slide.data.description && <RawHTML html={slide.data.description.en} />} */}
-                            {/* To delete when is work : */}Axel Meunier présentera une première version de la contribution d'Algoglitch au numéro 72 de Techniques&amp;Culture intitulé "En cas de panne".
-                          </p>
-                        </>
-    									)
-    								}
+                        <p className="accroche">
+                          {slide.data.description[lang] || slide.data.description[otherLang]}
+                        </p>
+                      </>
+                    )}
 
                     {/* Default */}
                     <p className="more">En savoir plus</p>

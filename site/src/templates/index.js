@@ -135,6 +135,10 @@ export const query = graphql`
                 en
                 fr
               }
+              description {
+                en
+                fr
+              }
             }
             ... on Productions {
               coverImage {
@@ -154,6 +158,10 @@ export const query = graphql`
                 fr
               }
               permalink {
+                en
+                fr
+              }
+              typeLabel {
                 en
                 fr
               }

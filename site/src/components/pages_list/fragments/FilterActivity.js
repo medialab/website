@@ -29,7 +29,7 @@ else {
   <>
     <h1 className="type_title" data-icon="activite">{IsModel('activities', lang)}</h1>
 
-    <p class="accroche-title-list">{accroche}</p>
+    <p className="accroche-title-list">{accroche}</p>
 
     <input
       type="checkbox" className="toggle-filtre-phone" id="toggle-filtre-phone"

@@ -2,7 +2,7 @@
 // NOTE: for tips, check this url and the DraftUtils from draftail:
 // https://github.com/springload/draftail/blob/master/examples/sources/ImageSource.js
 import React, {Component} from 'react';
-import {AtomicBlockUtils, EditorState} from 'draft-js';
+import {AtomicBlockUtils, EditorState, SelectionState} from 'draft-js';
 import {ENTITY_TYPE} from 'draftail';
 import Dropzone from 'react-dropzone';
 
@@ -84,9 +84,20 @@ class ImageSource extends Component {
       'change-block-data'
     );
 
+    const block = content.getBlockMap().find(block => {
+      return block.getEntityAt(0) === entityKey;
+    });
+
+    const selection = new SelectionState({
+      anchorKey: block.getKey(),
+      anchorOffset: 0,
+      focusKey: block.getKey(),
+      focusOffset: block.getLength()
+    });
+
     nextState = EditorState.forceSelection(
       nextState,
-      editorState.getSelection()
+      selection
     );
 
     return onComplete(nextState);

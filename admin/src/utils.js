@@ -26,13 +26,18 @@ function entityStyleFn(entity) {
   if (type === 'IMAGE') {
     const data = entity.getData();
 
+    const attributes = {
+      'src': data.src,
+      'data-width': data.width,
+      'data-height': data.height
+    };
+
+    if (data.credits)
+      attributes['data-credits'] = data.credits;
+
     return {
       element: 'img',
-      attributes: {
-        'src': data.src,
-        'data-width': data.width,
-        'data-height': data.height
-      }
+      attributes
     };
   }
 
@@ -69,9 +74,15 @@ function customInlineFn(element, {Entity}) {
   if (element.tagName === 'IMG') {
     const width = +element.getAttribute('data-width'),
           height = +element.getAttribute('data-height'),
-          src = element.getAttribute('src');
+          src = element.getAttribute('src'),
+          credits = element.getAttribute('data-credits');
 
-    return Entity('IMAGE', {src, width, height});
+    const data = {src, width, height};
+
+    if (credits)
+      data.credits = credits;
+
+    return Entity('IMAGE', data);
   }
 }
 

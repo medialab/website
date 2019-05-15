@@ -14,7 +14,8 @@ import ImageIcon from 'material-icons-svg/components/baseline/InsertPhoto';
 class ImageSource extends Component {
   state = {
     loading: false,
-    file: null
+    file: null,
+    credits: ''
   };
 
   addEntity = (option) => {
@@ -25,10 +26,20 @@ class ImageSource extends Component {
     getImageDimensions(resolvedSrc, (width, height) => {
 
       const content = editorState.getCurrentContent();
+
+      const data = {
+        src: option.src,
+        width,
+        height
+      };
+
+      if (option.credits)
+        data.credits = option.credits;
+
       const contentWithEntity = content.createEntity(
         entityType.type,
         'IMMUTABLE',
-        {src: option.src, width, height}
+        data
       );
 
       const entityKey = contentWithEntity.getLastCreatedEntityKey();
@@ -54,8 +65,18 @@ class ImageSource extends Component {
 
     client.upload(this.state.file, result => {
       this.setState({loading: false});
-      this.addEntity({src: result.name});
+
+      const options = {src: result.name};
+
+      if (this.state.credits)
+        options.credits = this.state.credits;
+
+      this.addEntity(options);
     });
+  };
+
+  handleCredits = e => {
+    this.setState({credits: e.target.value});
   };
 
   handleCancel = () => {
@@ -67,24 +88,42 @@ class ImageSource extends Component {
   render() {
     const {
       loading,
-      file
+      file,
+      credits
     } = this.state;
 
     return (
-      <CardModal onClose={this.handleCancel}>
+      <CardModal large onClose={this.handleCancel}>
         {[
 
           // Title
           'Importing an image',
 
           // Body
-          !file ?
-            <Dropzone key="body" onDrop={this.handleDrop} /> :
-            (
-              <div key="body">
-                <img src={URL.createObjectURL(file)} style={{height: '200px'}} />
+          <div key="body" className="columns">
+            <div className="column is-4">
+              {!file ?
+                <Dropzone onDrop={this.handleDrop} /> :
+                (
+                  <div>
+                    <img src={URL.createObjectURL(file)} style={{height: '200px'}} />
+                  </div>
+                )}
+            </div>
+            <div className="column is-8">
+              <div className="field">
+                <label className="label">Crédits</label>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    value={credits}
+                    onChange={this.handleCredits}
+                    placeholder="..." />
+                </div>
               </div>
-            ),
+            </div>
+          </div>,
 
           // Footer
           (
@@ -106,7 +145,7 @@ class ImageSource extends Component {
 // Block
 function ImageBlock(props) {
   const blockProps = props.blockProps;
-  const {src} = blockProps.entity.getData();
+  const {credits, src} = blockProps.entity.getData();
 
   // NOTE: can access mutators here
 
@@ -114,7 +153,10 @@ function ImageBlock(props) {
 
   return (
     <div className="editor image-container">
-      <img src={url} />
+      <div>
+        <img src={url} />
+      </div>
+      {credits && <div><small><em>{credits}</em></small></div>}
     </div>
   );
 }
@@ -126,6 +168,7 @@ const IMAGE = {
   source: ImageSource,
   block: ImageBlock,
   attributes: [
+    'credits',
     'height',
     'width',
     'src'

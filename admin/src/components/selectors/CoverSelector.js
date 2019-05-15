@@ -179,6 +179,30 @@ export default class CoverSelector extends Component {
     });
   };
 
+  handleCredits = e => {
+    const credits = e.target.value;
+
+    // Same credits
+    if (credits === this.props.cover.credits)
+      return;
+
+    // Deleting credits
+    if (!credits) {
+      const {
+        credits,
+        ...cover
+      } = this.props.cover;
+
+      return this.props.onChange(cover);
+    }
+
+    // Updating or adding credits
+    this.props.onChange({
+      ...this.props.cover,
+      credits: e.target.value
+    });
+  };
+
   handleClear = () => {
     this.setState({
       crop: null,
@@ -273,6 +297,21 @@ export default class CoverSelector extends Component {
             )}
           </div>
         </div>
+        <div className="columns">
+          <div className="column is-6">
+            <div className="field">
+              <div><small>Crédits :</small></div>
+              <div className="control">
+                <input
+                  type="text"
+                  className="input is-small"
+                  value={cover.credits || ''}
+                  onChange={this.handleCredits}
+                  placeholder="..." />
+              </div>
+            </div>
+          </div>
+        </div>
         {processing && pixelCrop && cover && (
           <>
             <div className="columns">
@@ -313,7 +352,7 @@ export default class CoverSelector extends Component {
             <div className="columns">
               <div className="column">
                 <div className="field">
-                  <div><small>paramètre Gamma pour le traitement de l'image : ({cover.gamma})</small></div>
+                  <div><small>Paramètre gamma pour le traitement de l'image : ({cover.gamma})</small></div>
                   <Slider value={cover.gamma} onChange={this.handleGamma} min={-255 * 3} max={255  * 3} />
                </div>
               </div>

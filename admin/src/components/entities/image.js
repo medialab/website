@@ -1,6 +1,8 @@
 /* global API_URL */
+// NOTE: for tips, check this url and the DraftUtils from draftail:
+// https://github.com/springload/draftail/blob/master/examples/sources/ImageSource.js
 import React, {Component} from 'react';
-import {AtomicBlockUtils} from 'draft-js';
+import {AtomicBlockUtils, EditorState} from 'draft-js';
 import {ENTITY_TYPE} from 'draftail';
 import Dropzone from 'react-dropzone';
 
@@ -12,11 +14,17 @@ import ImageIcon from 'material-icons-svg/components/baseline/InsertPhoto';
 
 // Source
 class ImageSource extends Component {
-  state = {
-    loading: false,
-    file: null,
-    credits: ''
-  };
+  constructor(props, context) {
+    super(props, context);
+
+    const data = props.entity ? props.entity.get('data') : null;
+
+    this.state = {
+      loading: false,
+      file: null,
+      credits: data ? data.credits : ''
+    };
+  }
 
   addEntity = (option) => {
     const {editorState, entityType, onComplete} = this.props;
@@ -53,11 +61,41 @@ class ImageSource extends Component {
     });
   };
 
+  updateEntity = () => {
+    const {entity, entityKey, editorState, onComplete} = this.props;
+
+    const content = editorState.getCurrentContent();
+
+    const data = {...entity.get('data')};
+
+    if (this.state.credits)
+      data.credits = this.state.credits;
+    else
+      delete data.credits;
+
+    const nextContent = content.replaceEntityData(
+      entityKey,
+      data
+    );
+
+    const nextState = EditorState.push(
+      editorState,
+      nextContent,
+      'change-block-data'
+    );
+
+    return onComplete(nextState);
+  };
+
   handleDrop = acceptedFiles => {
     this.setState({file: acceptedFiles[0]});
   };
 
   handleSubmit = () => {
+    if (this.props.entityKey) {
+      return this.updateEntity();
+    }
+
     if (!this.state.file)
       return;
 
@@ -92,21 +130,28 @@ class ImageSource extends Component {
       credits
     } = this.state;
 
+    const entityKey = this.props.entityKey;
+
+    let src = null;
+
+    if (entityKey)
+      src = `${API_URL}/assets/${this.props.entity.get('data').src}`;
+
     return (
       <CardModal large onClose={this.handleCancel}>
         {[
 
           // Title
-          'Importing an image',
+          entityKey ? 'Editing an image' : 'Importing an image',
 
           // Body
           <div key="body" className="columns">
             <div className="column is-4">
-              {!file ?
+              {(!file && !entityKey) ?
                 <Dropzone onDrop={this.handleDrop} /> :
                 (
                   <div>
-                    <img src={URL.createObjectURL(file)} style={{height: '200px'}} />
+                    <img src={entityKey ? src : URL.createObjectURL(file)} style={{height: '200px'}} />
                   </div>
                 )}
             </div>
@@ -129,10 +174,10 @@ class ImageSource extends Component {
           (
             <Button
               key="footer"
-              disabled={!file}
+              disabled={!file && !entityKey}
               loading={loading}
               onClick={this.handleSubmit}>
-              Upload & Insert
+              {entityKey ? 'Update' :'Upload & Insert'}
             </Button>
           )
         ]}
@@ -157,6 +202,13 @@ function ImageBlock(props) {
         <img src={url} />
       </div>
       {credits && <div><small><em>{credits}</em></small></div>}
+      <div>
+        <small
+          style={{textDecoration: 'underline', cursor: 'pointer'}}
+          onClick={() => blockProps.onEditEntity(blockProps.entityKey)}>
+          edit
+        </small>
+      </div>
     </div>
   );
 }

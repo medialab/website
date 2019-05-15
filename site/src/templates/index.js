@@ -170,7 +170,11 @@ export const query = graphql`
         }
       }
     }
-    rdv: allNewsJson(limit: 7, filter: {expiry: {gte: $yesterday}}, sort: {fields: [expiry], order: [DESC]}) {
+    rdv: allNewsJson(
+      limit: 7,
+      filter: {expiry: {gte: $yesterday}, type: {eq: "event"}},
+      sort: {fields: [expiry], order: [DESC]}
+    ) {
       edges {
         node {
           title {

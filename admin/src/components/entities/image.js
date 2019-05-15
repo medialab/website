@@ -78,10 +78,15 @@ class ImageSource extends Component {
       data
     );
 
-    const nextState = EditorState.push(
+    let nextState = EditorState.push(
       editorState,
       nextContent,
       'change-block-data'
+    );
+
+    nextState = EditorState.forceSelection(
+      nextState,
+      editorState.getSelection()
     );
 
     return onComplete(nextState);

@@ -88,11 +88,13 @@ class ImageSource extends Component {
       return block.getEntityAt(0) === entityKey;
     });
 
-    const selection = new SelectionState({
+    let selection = SelectionState.createEmpty();
+    selection = selection.merge({
       anchorKey: block.getKey(),
       anchorOffset: 0,
       focusKey: block.getKey(),
-      focusOffset: block.getLength()
+      focusOffset: 0,
+      hasFocus: true
     });
 
     nextState = EditorState.forceSelection(

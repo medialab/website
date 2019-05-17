@@ -6,14 +6,13 @@
 
     #agenda {
 
+        padding-top: $baseline* 3.5;
+
         article{
              
             aside.divers{
 
-                .date-news{
-                    color: $redlab;
-                }
-                
+                .date-news{ color: $redlab; }
                 .internal{ 
                     position: absolute;
                     right: 0;
@@ -30,9 +29,7 @@
                     padding-top: $baseline/2;
                 }
 
-                p:last-of-type{
-                    padding-bottom: $baseline/2;
-                }
+                p:last-of-type{ padding-bottom: $baseline/2; }
 
             }
 

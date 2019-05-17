@@ -13,9 +13,7 @@ export default function Agenda({rdv, lang}) {
   <>
     <section id="agenda" /* style={nbRdv} */>
 
-      <div id="agenda-container">
-
-        <div id="agenda-contenu" data-attribute="agenda">
+    <h1>Rendez-vous</h1>
           <>
 
             {rdv.map((event, i) =>
@@ -44,8 +42,7 @@ export default function Agenda({rdv, lang}) {
               </React.Fragment>)
 						)}
           </>
-        </div>
-      </div>
+   
     </section>
   </>
   	);

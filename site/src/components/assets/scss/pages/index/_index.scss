@@ -33,6 +33,8 @@ $hunit: 4vh;
             }
 
         }
+
+   
         
         #introduction, #now, #flux{
             border-bottom: $border;
@@ -63,29 +65,31 @@ $hunit: 4vh;
             margin: 0 auto;
             margin-top: $height-top-bar;
         }
+
+
+    
         #slideshow, #introduction, #flux{ border-bottom: $border; }
         
 
         #flux{
-            position: fixed;
-            right: 0;
-            top: $height-top-bar;
+          
+            // top: $height-top-bar;
             //max-height: 100%;
-            max-height: calc( 100vh - #{$height-top-bar} );
-            overflow: hidden;
-            padding-right: $margins-desktop;
+            // max-height: calc( 100vh - #{$height-top-bar} );
+            // overflow: hidden;
+            // padding-right: $margins-desktop;
 
 
-            .container{
-                width: 100%;
-                height: 100%;                
-                padding-right: $unite;
-                margin-bottom: $height-footer;
-                box-sizing: content-box;
-                overflow-y: scroll;
-                max-height: calc( 100vh - #{$height-top-bar} );
+            // .container{
+            //     width: 100%;
+            //     height: 100%;                
+            //     padding-right: $unite;
+            //     margin-bottom: $height-footer;
+            //     box-sizing: content-box;
+            //     overflow-y: scroll;
+            //     max-height: calc( 100vh - #{$height-top-bar} );
 
-            }            
+            // }            
         }
 
 
@@ -113,13 +117,22 @@ $hunit: 4vh;
 
 
 
-
+@media screen and (min-width: 1000px) {
+    #home{
+        position: fixed;
+        top: $height-top-bar;
+        height: calc(100vh - #{$height-top-bar});
+        overflow-y: scroll;
+        padding-bottom: $height-footer;
+    }
+}
 
 @media screen and (min-width: 1000px) and (max-width: 1200px){
-
+    #home{ width: 700px + $size-scrollbar; }
     #slideshow, #introduction, #now { width: 700px; }
 
-    #flux{ width: calc(100vw - 700px - #{$margins-desktop*2}); }  
+    #flux{ margin-left: 700px + $margins-desktop; }  
+   .flux_selection_container{ width: calc(100vw - 700px - #{$margins-desktop*3}); }
 
 }
 
@@ -127,9 +140,11 @@ $hunit: 4vh;
 
 @media screen and (min-width: 1200px) and (max-width: 1350px){
 
+    #home{ width: 800px + $size-scrollbar; }
     #slideshow, #introduction, #now { width: 800px; }
 
-    #flux{ width: calc(100vw - 800px - #{$margins-desktop*2}); }   
+    #flux{ margin-left: 800px + $margins-desktop; }  
+    .flux_selection_container{ width: calc(100vw - 800px - #{$margins-desktop*3}); }
 
 }
 
@@ -137,22 +152,15 @@ $hunit: 4vh;
 
 @media screen and (min-width: 1350px){
 
+    #home{ width: $max-width-article + $size-scrollbar; }
     #slideshow, #introduction, #now, #flux{ width: $max-width-article; }
 
-    #flux{  width: calc(100vw - #{$max-width-article} - #{$margins-desktop*2}); }
-
-   
-
+    #flux{ margin-left: $max-width-article + $margins-desktop; }  
+    .flux_selection_container{ width: calc(100vw - #{$max-width-article} - #{$margins-desktop*3}); }
 
 }
 
 
 @media screen and (min-width: 1650px){
-    // When Main container width hit the $max-width-main limit
-    #flux{  
-        //width: calc(100% - #{$max-width-article} - #{$margins-desktop*2}); 
-        //width: 700px;
-        width: calc( #{$max-width-main} - #{$max-width-article} );
-        right: calc( ( 100vw - #{$margins-desktop*2} - #{$max-width-main} ) /2 ) !important;
-    }
+    #flux, .flux_selection_container{ width: $max-width-main - $max-width-article - $margins-desktop; }  
 }

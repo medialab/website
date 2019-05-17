@@ -9,57 +9,41 @@
 
 	.flux_selection_container{
 
-		position: sticky;
-		width: 100%;
-		top: 0;
+		position: fixed;
+		top: $height-top-bar;
 		z-index: 9;
 		background-color: $background-site;
-		border-bottom: $border-very-light;
+		border-bottom: $border;
+		padding: $baseline 0;
+		height: $baseline*3.5;
 
-		label.flux_selection-label{
+		li{
 
-			@include font-size-16;
-			color: $text-color-light;
+			@include font-size-13-uppercase;
+			color: $text-color;
 			display: inline-block;
-			padding: $baseline $unite/2;		
+			padding-right: $unite/2;
+			margin-right: $unite/2;	
+			border-right: $border;	
 			cursor: pointer;
-
-			&:hover{  }
+			&:hover{ @include linktext(); }
 		}
 	}
 
-	// Comportement si Checké 
-	#flux_selection-agenda:checked ~ .flux_selection_container label.for_agenda,
-	#flux_selection-git:checked ~ .flux_selection_container label.for_git,
-	#flux_selection-tweet:checked ~ .flux_selection_container label.for_tweet{
-			color: $text-color;
-			font-weight: 600;
+	section > h1 a{
+		@include linktext();
+		&:hover{ color: $redlab-light; }
 	}
 
-	input#flux_selection-agenda + label:after{
-		width: 100%;
-		border-bottom: 1px solid black;
-	}
-	//input#flux_selection-tweet + label{ border-right: none;}
 
 
 
-
-	////////////////
-	/// Structure
-	///////////////
-
-
-	#agenda, #git, #tweet{
-		display: none;
+	section:target > h1{
+		padding-top: $height-top-bar + $baseline*4.5;
 	}
 
-	#flux_selection-agenda:checked ~ #agenda,
-	#flux_selection-git:checked ~ #git,
-	#flux_selection-tweet:checked ~ #tweet{
-		display: inline-block !important;
-		padding-bottom: 25vh;
-		width: 100%;
+	#agenda:target > h1{
+		padding-top: $height-top-bar + $baseline*1;
 	}
 
 }

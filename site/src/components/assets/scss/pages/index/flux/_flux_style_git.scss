@@ -4,38 +4,40 @@
 
 @include for-size(desktop) {
 
-    #git {
+    #git article{
 
-        article{
-             
-            aside.divers{
-
-                .date-news{
-                }
- 
-
-            }
-
-
-            aside.details{ 
-                
-                border-top: $border-very-light;
-                padding: $baseline/2 0;
-
-                .language, .contributors{
-                    display: inline-block;
-                    padding-right: $unite/2;
-                }
-
-                .language{ border-right: $border-very-light; }
-
-                .contributors { padding-left: $unite/2;}
-
-            }
-
-
+        h1{ 
+            @include font-size-20();
+            padding-top: $baseline;
+     
         }
+
+        h2{ 
+            @include font-size-20();
+            padding-bottom: $baseline;
+        }
+
+        aside.details{ 
+        
+            border-top: $border-very-light;
+            padding: $baseline/2 0;
+    
+            .language, .contributors{
+                display: inline-block;
+                padding-right: $unite/2;
+            }
+    
+            .language{ border-right: $border-very-light; }
+    
+            .contributors { padding-left: $unite/2;}
+    
+           
+            
+        } 
+
     } 
+    
+   
 
 }
 
@@ -46,6 +48,13 @@
 
 #git {
  
+    article h1{ color: $redlab;}
+
+    article h1::first-letter,
+    article h2::first-letter{ 
+        text-transform: capitalize; 
+    }
+
 }
 
 

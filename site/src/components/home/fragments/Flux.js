@@ -11,27 +11,13 @@ export default function flux({rdv, lang}) {
 		
 		<section id="flux">
 			<div className="container">
-		        <input
-		          type="radio" name="flux_selection" id="flux_selection-agenda"
-		          className="flux_selection" hidden defaultChecked />
-		        <input
-		          type="radio" name="flux_selection" id="flux_selection-git"
-		          className="flux_selection" hidden />
-		        <input
-		          type="radio" name="flux_selection" id="flux_selection-tweet"
-		          className="flux_selection" hidden />
+		   
 
-		        <div className="flux_selection_container">
-			        <label className="flux_selection-label for_agenda" htmlFor="flux_selection-agenda">
-			        	{lang === 'fr' ? 'Les rendez-vous ' : 'The agenda'}
-			        </label>
-			        <label className="flux_selection-label for_git" htmlFor="flux_selection-git">
-			        	{lang === 'fr' ? 'Projets Git ' : 'Git project'}
-			        </label>		          
-			        <label className="flux_selection-label for_tweet" htmlFor="flux_selection-tweet">
-			        	{lang === 'fr' ? 'Dernier tweets ' : 'Last tweets'}
-			        </label>
-			    </div>
+		      <ul className="flux_selection_container">
+			        <li><a href="#agenda">Rendez-vous</a></li>
+							<li><a href="#git">Projets Git</a></li>
+							<li><a href="#tweet">Tweet</a></li>
+			    </ul>
 
 				<Agenda rdv={rdv} lang={lang} />
 				<Git lang={lang} />
@@ -42,6 +28,7 @@ export default function flux({rdv, lang}) {
 		</>
   	);
 }
+
 
 //export default Flux;
 

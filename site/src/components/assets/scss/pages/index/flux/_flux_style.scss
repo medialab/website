@@ -20,22 +20,7 @@
             }
 
        
-           
-            
-            h1{ 
-                @include font-size-20();  
-                padding-top: $baseline;
-                padding-bottom: $baseline*1.5;
-                &::first-letter { text-transform: capitalize; }
-            }
-            
-            h2{ 
-                @include font-size-20();  
-                font-weight: 100;
-                padding-bottom: $baseline*1;
-            }
 
-            
             aside.divers{
                 @include font-size-13();
                 p{ display: inline-block; }
@@ -121,18 +106,7 @@
       
             }
 
-            h1{ 
-                @include font-size-16-phone();
-                padding: $baseline 0 $baseline/2 0;
-                &::first-letter { text-transform: capitalize; }  
-            }
 
-            h2{ 
-                @include font-size-13-phone();
-                padding-bottom: $baseline;
-
-                &::first-letter { text-transform: capitalize; }  
-            }
 
         }
 

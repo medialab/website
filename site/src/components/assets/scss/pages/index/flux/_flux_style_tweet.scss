@@ -4,25 +4,21 @@
 
 @include for-size(desktop) {
 
-    #tweet {
-
-        article{
+    #tweet article{
              
-            aside.divers{
+        .tweet-content{
+            @include font-size-20();  
+            padding-top: $baseline;
+            padding-bottom: $baseline*1.5;
+            &::first-letter { text-transform: capitalize; }
+        }
 
-                .date-news{
-                }
- 
 
-            }
+        aside.details{ 
+                
+            border-top: $border-very-light;
+            padding: $baseline/2 0;
 
-
-            aside.details{ 
-                 
-                border-top: $border-very-light;
-                padding: $baseline/2 0;
-
-            }
         }
     } 
 
@@ -35,7 +31,7 @@
 
 #tweet {
  
-    h1{
+    .tweet-content{
         .hashtag,
         .mention{
             color: $redlab;

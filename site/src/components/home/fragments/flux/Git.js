@@ -6,9 +6,7 @@ export default function git() {
 		<>
 	    <section id="git"> 
 
-	      <div id="git-container">
-
-	        <div id="git-contenu">
+				<h1>Le médialab sur <span data-icon="git"><a href="https://github.com/medialab">Github</a></span></h1>
 
 					<article className="git" data-type="git">			
 						<aside className="divers">
@@ -33,9 +31,7 @@ export default function git() {
 						</aside>
 					</article>
 
-				</div>
 
-			</div>
 
 		</section>
 		

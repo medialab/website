@@ -6,9 +6,7 @@ export default function tweet() {
 		<>
 	    <section id="tweet">
 
-		    <div id="tweet-container">
-
-		        <div id="tweet-contenu" data-attribute="tweet">
+		<h1>Le médialab sur <span data-icon="tweet"><a href="https://twitter.com/medialab_scpo">Twitter</a></span></h1>
 
 					<article className="tweet" data-type="tweet">			
 						<aside className="divers">
@@ -16,13 +14,13 @@ export default function tweet() {
 							{/* PLACEHOLDER DATENEWS */}<p className="date-news">mercredi 6 mars 2019</p>					
 						</aside>
 
-						<h1 data-level-1="tweet-content">
+						<p className="tweet-content">
 							Faire vivre la #démocratie exige que nous ayons <span className="hashtag">#confiance</span> envers les <span className="hashtag">#medias</span>. Comment y parvenir dans un univers où <span className="hashtag">#trolls</span>, 
 							<span className="hashtag">#FakeNews</span> et concurrence au nb de clics polluent le paysage ? Réponses le 16 avril lors du 1er rdv de <span className="mention">@ScPoResearch</span> ✍ <Link className="link-external-tweet" to="/">https://bit.ly/2UQmrZI</Link>
-						</h1>
+						</p>
 
 						<aside className="details">
-							<p className="account">@medialab_ScPo</p>
+							<p className="account"><a href="link/to/tweet">@medialab_ScPo</a></p>
 						</aside>
 					</article>
 					
@@ -33,13 +31,13 @@ export default function tweet() {
 							{/* PLACEHOLDER DATENEWS */}<p className="date-news">mercredi 6 mars 2019</p>					
 						</aside>
 
-						<h1 data-level-1="tweet-content">
+						<p className="tweet-content">
 							Faire vivre la #démocratie exige que nous ayons <span className="hashtag">#confiance</span> envers les <span className="hashtag">#medias</span>. Comment y parvenir dans un univers où <span className="hashtag">#trolls</span>, 
 							<span className="hashtag">#FakeNews</span> et concurrence au nb de clics polluent le paysage ? Réponses le 16 avril lors du 1er rdv de <span className="mention">@ScPoResearch</span> ✍ <Link className="link-external-tweet" to="/">https://bit.ly/2UQmrZI</Link>
-						</h1>
+						</p>
 
 						<aside className="details">
-							<p className="account">@medialab_ScPo</p>
+							<p className="account"><a href="link/to/tweet">@medialab_ScPo</a></p>
 						</aside>
 					</article>
 
@@ -50,13 +48,13 @@ export default function tweet() {
 							{/* PLACEHOLDER DATENEWS */}<p className="date-news">mercredi 6 mars 2019</p>					
 						</aside>
 
-						<h1 data-level-1="tweet-content">
+						<p className="tweet-content">
 							Faire vivre la #démocratie exige que nous ayons <span className="hashtag">#confiance</span> envers les <span className="hashtag">#medias</span>. Comment y parvenir dans un univers où <span className="hashtag">#trolls</span>, 
 							<span className="hashtag">#FakeNews</span> et concurrence au nb de clics polluent le paysage ? Réponses le 16 avril lors du 1er rdv de <span className="mention">@ScPoResearch</span> ✍ <Link className="link-external-tweet" to="/">https://bit.ly/2UQmrZI</Link>
-						</h1>
+						</p>
 
 						<aside className="details">
-							<p className="account">@medialab_ScPo</p>
+							<p className="account"><a href="link/to/tweet">@medialab_ScPo</a></p>
 						</aside>
 					</article>
 
@@ -67,13 +65,13 @@ export default function tweet() {
 							{/* PLACEHOLDER DATENEWS */}<p className="date-news">mercredi 6 mars 2019</p>					
 						</aside>
 
-						<h1 data-level-1="tweet-content">
+						<p className="tweet-content">
 							Faire vivre la #démocratie exige que nous ayons <span className="hashtag">#confiance</span> envers les <span className="hashtag">#medias</span>. Comment y parvenir dans un univers où <span className="hashtag">#trolls</span>, 
 							<span className="hashtag">#FakeNews</span> et concurrence au nb de clics polluent le paysage ? Réponses le 16 avril lors du 1er rdv de <span className="mention">@ScPoResearch</span> ✍ <Link className="link-external-tweet" to="/">https://bit.ly/2UQmrZI</Link>
-						</h1>
+						</p>
 
 						<aside className="details">
-							<p className="account">@medialab_ScPo</p>
+							<p className="account"><a href="link/to/tweet">@medialab_ScPo</a></p>
 						</aside>
 					</article>
 
@@ -84,18 +82,16 @@ export default function tweet() {
 							{/* PLACEHOLDER DATENEWS */}<p className="date-news">mercredi 6 mars 2019</p>					
 						</aside>
 
-						<h1 data-level-1="tweet-content">
+						<p className="tweet-content">
 							Faire vivre la #démocratie exige que nous ayons <span className="hashtag">#confiance</span> envers les <span className="hashtag">#medias</span>. Comment y parvenir dans un univers où <span className="hashtag">#trolls</span>, 
 							<span className="hashtag">#FakeNews</span> et concurrence au nb de clics polluent le paysage ? Réponses le 16 avril lors du 1er rdv de <span className="mention">@ScPoResearch</span> ✍ <Link className="link-external-tweet" to="/">https://bit.ly/2UQmrZI</Link>
-						</h1>
+						</p>
 
 						<aside className="details">
-							<p className="account">@medialab_ScPo</p>
+							<p className="account"><a href="link/to/tweet">@medialab_ScPo</a></p>
 						</aside>
 					</article>
 
-				</div>
-			</div>
 		</section>
 		
 		</>

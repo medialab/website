@@ -194,10 +194,12 @@ export default function ActivityDetail({lang, activity}) {
         </div>
 
       </article>
+      <aside id="all-aside">
       <MembresAssocies people={activity.people} lang={lang} />
       <ActivitesAssociees activities={activity.activities} lang={lang} />
       <ProductionsAssociees productions={activity.productions} lang={lang} />
       <ActuAssociees actu={activity.news} lang={lang} />
+      </aside>
       
     </main>
   );

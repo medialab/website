@@ -41,8 +41,7 @@
 			overflow: hidden;
 			opacity: 1;
 			cursor: pointer;
-			
-
+			&:first-of-type{ border-top: $border; }
 
 
 			a{
@@ -204,7 +203,7 @@
 		//////
 		@include for-size( desktop-1300){ 
 			max-width: 1300px;
-			[data-type="people"]{width: 33.333%}
+			[data-type="people"]{ width: 33.333% }
 		}
 	
 	}
@@ -271,3 +270,45 @@
 	}
 }
  
+
+
+/* ÉLÉMENTS ASSOCIÉS pour les pages objets larges  -------------------------------------------------------------------------------- */
+
+
+
+
+@media screen and (min-width: 1560px){
+    .page-production, 
+	.page-news, 
+	.page-activity{
+		main{ 
+			display: flex;
+		}
+		#article-contenu, #all-aside{ 
+			display: inline-block; 
+			vertical-align: top;
+		}
+		#all-aside{
+			background-color:  $background-grey;
+			width: calc(100% - #{$max-width-article} - #{$unite*2});
+			height: auto;
+			margin-left: $unite*2;
+			margin-top: $baseline*4;
+			padding: $baseline*2 $unite*1.5;
+			& > aside{
+				margin-top: 0;
+				padding-top: 0;
+				margin-bottom: $baseline*5;
+				&::before{ display: none; content: none; }
+				& > h1 {
+					@include font-size-27();
+				}
+			}
+			.liste_personne li[data-type="people"]{
+				width: 100%;
+				margin-bottom: $baseline*1.5;
+			}
+		}
+		
+	}
+}

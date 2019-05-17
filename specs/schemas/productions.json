@@ -194,10 +194,25 @@
           "title": "Metadonnées SPIRE",
           "type": "object",
           "properties": {
-            "title": {
+            "rec_id" : {
+              "title": "Identifiant SPIRE",
               "type": "string"
             }
           }
+        },
+        "generatedFields": {
+          "title": "champs de générés depuis SPIRE",
+          "type": "object",
+          "properties": {
+            "authors" : {
+              "title": "liste des auteurs",
+              "type": "string"
+            }
+          } 
+        },
+        "lastUpdated": {
+          "title": "Timestamp of last update",
+          "type": "number"
         }
       }
     }

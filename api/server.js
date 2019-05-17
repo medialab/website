@@ -173,6 +173,7 @@ app.get('/reboot-gatsby', (req, res) => {
 
 // Migration routes
 const MIGRATION_SCHEMES = {
+  'move-generatedFields-productions': require('./migrations/move-generatedFields-productions.js'),
   'drop-important': require('./migrations/drop-important.js'),
   'fix-dates': require('./migrations/fix-dates.js'),
   'fix-minutes': require('./migrations/fix-minutes.js'),

@@ -25,9 +25,17 @@ function slugify(text) {
 }
 
 const resultPerPage = 2000;
+const labIdSpire = '2441/53r60a8s3kup1vc9kf4j86q90';
 
 const title = record => (record.title_non_sort ? record.title_non_sort : '') + record.title + (record.title_sub ? ' - ' + record.title_sub : '');
-
+const description = record => {
+  if (record.resources && record.resources.length >= 1) {
+    return record.citation.html.chicago.replace(/href=".*?"/g, `href="${record.resources[0].url}"`);
+  }
+  else {
+    return record.citation.html.chicago;
+  }
+};
 // translation functions stored by object path.
 // translation function returns false is ther is nothing to update for the path.
 const translators = {
@@ -35,6 +43,8 @@ const translators = {
   'date': record => record.date_issued,
   'title.en': record => title(record),
   'title.fr': record => title(record),
+  'description.en': record => record.citations.html.chicago,
+  'description.fr': record => record.citations.html.chicago,
   'content': record => {
     const content = {};
     if (record.descriptions) {
@@ -53,20 +63,42 @@ const translators = {
       return record.resources[0].url;
     else
       return config.spire.front + record.rec_id;
-  }
+  },
+  // link to author people
+  'people': (record, spireAuthors) => record.creators
+    // filter authors who are person
+    .filter(c => c.role === 'aut' && c.agent && c.agent.rec_class === 'Person')
+    .map(c => spireAuthors[c.agent.rec_id] && spireAuthors[c.agent.rec_id].id)
+    .filter(c => !!c)
 };
 
-function translateRecord(record) {
+function translateRecord(record, spireAuthors) {
   const newO = {};
   for (const field in translators) {
-    const v = translators[field](record);
+    const v = translators[field](record, spireAuthors);
     if (v !== false)
       _.set(newO, field, v);
   }
   return newO;
 }
 
-module.exports.translators = translators;
+module.exports.translateRecord = translateRecord;
+
+// finds Authors which should be attached to a people object
+// tries to resolve through firstname.name slug  
+function missingLabAuthors(spireRecords, existingSpireAuthors) {
+  // find authors and detect missing ones
+  return _.keyBy(_.flatten(spireRecords.map(
+    // only author (not organisators)
+    r => r.creators.filter(c => (c.role === 'aut' &&
+    // which were at that time affiliated to the lab 
+    c.affiliation && c.affiliation.rec_id === labIdSpire)
+    // which is a person which is not registered as a spire authors in our data
+    && c.agent && c.agent.rec_class === 'Person' && !existingSpireAuthors.includes(c.agent.rec_id))
+    .map(c => c.agent))), c => c.rec_id);
+}
+
+module.exports.missingLabAuthors = missingLabAuthors;
 
 module.exports.aSPIRE = function aSPIRE(callback) {
   async.waterfall([
@@ -92,7 +124,7 @@ module.exports.aSPIRE = function aSPIRE(callback) {
     },
     (indeces, doneAPISpire) => {
       let resultOffset = 0;
-      let spireRecords = []
+      let spireRecords = [];
       async.doUntil(
         (apiPageDone) => {
           // request spire API
@@ -104,15 +136,22 @@ module.exports.aSPIRE = function aSPIRE(callback) {
             search_terms: {
                 index: 'affiliation_id',
                 operator: '=',
-                value: '2441/53r60a8s3kup1vc9kf4j86q90'},
+                value: labIdSpire},
             result_offset: resultOffset
           }]};
           console.debug(`request to spire ${resultOffset}`);
-          request.post(config.spire.api, {body, json: true}, apiPageDone);
+          request.post(config.spire.api, {body, json: true}, (e, r) => {
+            if (e || r.statusCode !== 200) {
+              console.debug(`erreur ${r.statusCode} \n` + r.body);
+              doneAPISpire(e || `erreur ${r.statusCode} \n` + r.body);
+            }
+            else
+              apiPageDone(null, r);
+          });
         },
         (response) => {
           // store result
-          spireRecords = spireRecords.concat(response.body.result.records)
+          spireRecords = spireRecords.concat(response.body.result.records);
           // pagination control
           const r = response.body.result;
           console.debug(`got ${r.result_batch_size}`);
@@ -131,7 +170,6 @@ module.exports.aSPIRE = function aSPIRE(callback) {
             doneAPISpire(err);
           }
           console.debug(`got ${spireRecords.length}`);
-     
           // common queue to process the writing requests
           const websiteApiQueue = async.queue(({method, model, object}, cb) => {
             if (!VALIDATORS[model](object)) {
@@ -149,20 +187,10 @@ module.exports.aSPIRE = function aSPIRE(callback) {
                 cb(null);
             });
           }, 2);
-
           const spireAuthors = _.keyBy(_.values(indeces.people).filter(p => !!p.spire), p => p.spire.id);
-          // find authors and detect missing ones
-          const missingLabAuthors = _.keyBy(_.flatten(spireRecords.map(
-            // only author (not organisators)
-            r => r.creators.filter(c => (c.role === 'aut' &&
-            // which were at that time affiliated to the lab 
-            c.affiliation && c.affiliation.rec_id === '2441/53r60a8s3kup1vc9kf4j86q90')
-            // which is a person which is not registered as a spire authors in our data
-            && c.agent && c.agent.rec_class === 'Person' && !spireAuthors[c.agent.rec_id])
-            .map(c => c.agent))), c => c.rec_id);
           // let's try to reconcile with slugs
           const peopleToResolve = [];
-          _.forEach(missingLabAuthors, (aut, idSpire) => {
+          _.forEach(missingLabAuthors(spireRecords, _.keys(spireAuthors)), (aut, idSpire) => {
             // simple true match on slug
             const match = indeces.people[slugify(`${aut.name_given} ${aut.name_family}`)];
             if (match) {
@@ -188,54 +216,42 @@ module.exports.aSPIRE = function aSPIRE(callback) {
           async.each(spireRecords,
             (record, d) => {
 
-              // create the object by translating it to our data model
-              const newProduction = translateRecord(record);
-              newProduction.lastUpdated = Date.now();
               // meta
-              newProduction.spire = {
+              const spire = {
                 id: record.rec_id,
-                lastUpdated: newProduction.lastUpdated,
-                meta: record
+                lastUpdated: Date.now(),
+                meta: record,
+                // create the generated version of the object by translating Spire meta to our data model
+                generatedFields: translateRecord(record, spireAuthors)
               };
-              // reuse ref for description
-              newProduction.description = {fr: newProduction.ref, en: newProduction.ref};
-              // link to author people
-              const people = record.creators
-                // filter authors who are person
-                .filter(c => c.role === 'aut' && c.agent && c.agent.rec_class === 'Person')
-                .map(c => spireAuthors[c.agent.rec_id] && spireAuthors[c.agent.rec_id].id)
-                .filter(c => !!c);
-              newProduction.people = people;
 
               const p = indeces.productions[record.rec_id];
-              // do we already have this one ?
-              // has the content changed from last spire update ? (default last spire => 2019/01/11)
-              if (p && (p.lastUpdated <= (p.spire.lastUpdated || 1547290000000))) {
-                // We should put this condition back to limit futile updates && p.spire.meta.rec_modified_date !== record.rec_modified_date) {
+              // do we already have this one ? and has spire content changed
+              if (p && p.spire.meta.rec_modified_date !== record.rec_modified_date) {
                 // flash the data from spire.
-                websiteApiQueue.push({method: 'PUT', model: 'productions', object: {...p, ...newProduction}}, (e) => {
+                websiteApiQueue.push({method: 'PUT', model: 'productions', object: {...p, ...{spire}}}, (e) => {
                   if (e) console.error(e);
                 });
                 modifiedProductionIds.push(p.id);
               }
-              else
-                if (p) {
-                  console.debug(p.id, new Date(p.lastUpdated), new Date(p.spire.lastUpdated || 1547290000000));
-                  tooRecentProductionsId.push(p.id);
+              else {
+                // if new publication + if type is not translated to null
+                if (!p && spireTypes[record.spire_document_type]) {
+                  const newProduction = {
+                    id: uuid(),
+                    // draft by default
+                    draft: true,
+                    // slugs
+                    slugs: [slugify(spire.generatedFields.title ? (spire.generatedFields.title.fr || spire.generatedFields.title.en || '') : '')],
+                    spire
+                    // lastUpdated
+                  };
+                  websiteApiQueue.push({method: 'POST', model: 'productions', object: newProduction}, (e) => {
+                    if (e) console.error(e);
+                  });
+                  nbNewProductions += 1;
                 }
-              // if new publication + if type is not translated to null
-              if (!p && spireTypes[record.spire_document_type]) {
-                newProduction.id = uuid();
-                // draft by default
-                newProduction.draft = true;
-                // slugs
-                newProduction.slugs = [slugify(newProduction.title ? (newProduction.title.fr || newProduction.title.en || '') : '')];
-
-                // lastUpdated
-                websiteApiQueue.push({method: 'POST', model: 'productions', object: newProduction}, (e) => {
-                  if (e) console.error(e);
-                });
-                nbNewProductions += 1;
+                // else, nothing change, nothing to do
               }
               d(null);
             },

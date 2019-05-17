@@ -47,22 +47,8 @@
 
 
 
-@media screen and (min-width: 700px) and (max-width: 1080px){
-    .page-production, 
-	.page-news, 
-	.page-activity{
-		main{ margin-left: $logo-column-medium;}
-	}
 
-}
 
-@media screen and (min-width: 1080px){
-    .page-production, 
-	.page-news, 
-	.page-activity{
-		main{ margin-left: $logo-column;}
-	}
-}
 
 
 @include for-size(desktop) {
@@ -77,6 +63,7 @@
 
 		main{
 			margin-bottom: 40vh;	
+			max-width: $max-width-main;
 			//margin-top: $height-top-bar; /* set sticky title */
 
 			hgroup{ 
@@ -91,7 +78,7 @@
 
 					padding: $baseline*1 0;
 
-					p{ 
+					p, li{ 
 						@include font-size-16(); 
 						display: inline-block; 
 						
@@ -103,17 +90,18 @@
 						padding-top: $baseline*1;
 					}
 
-					.date{ 
+					.date-news, .hours-news, .date{ 
 						margin-left: $unite;
 						padding-left: $unite;
 						border-left: $border-very-light;
 					}
 
-					.date-news-block{
-						margin-bottom: $baseline*1;
-						padding-bottom: $baseline*1;
+					.fichiers-associes, #attachments{
+						margin-top: $baseline*1;
+						padding-top: $baseline*1;
 					}
 
+				
 					
 
 
@@ -218,19 +206,63 @@
 
  	#article-contenu {
  		hgroup{
-			// padding: $baseline*2 0;
 			h1{ @include font-size-60(); }
 			h2, h3{ 
 				@include font-size-27();
 				margin-top: $baseline*1.5;
 			}
 		}
-		// .article-contenu div{ margin-top: $baseline*4 }
 	}	
 }
 
-@media screen and (min-width: 1200px) { }
 
-@media screen and (min-width: 1600px) { }
 
-@media screen and (min-width: 1800px) { }
+
+
+
+@media screen and (min-width: 700px) and (max-width: 1080px){
+    .page-production, 
+	.page-news, 
+	.page-activity{
+		main{ margin-left: $logo-column-medium;}
+	}
+
+}
+
+@media screen and (min-width: 1080px){
+    .page-production, 
+	.page-news, 
+	.page-activity{
+		main{ margin-left: $logo-column;}
+	}
+}
+
+
+@media screen and (min-width: 2060px) { 
+	.page-production, 
+	.page-news, 
+	.page-activity{
+		main{ 
+			margin-left: 0;
+			margin: 0 auto;
+		}
+	}
+}
+
+
+
+/* ÉLÉMENTS ASSOCIÉS -------------------------------------------------------------------------------- */
+
+
+
+
+@media screen and (min-width: 1080px){
+    .page-production, 
+	.page-news, 
+	.page-activity{
+		.personnes-associees-block,
+		.elements-associes-block{
+			
+		}
+	}
+}

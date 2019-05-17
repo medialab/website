@@ -27,23 +27,39 @@
 
 			[data-icon]{ padding-right: $unite/2;}
 
-			.date-news-block{ 
-				width: 100%;
-				border-bottom: $border-very-light;
-				p{ display: inline-block; }
-				.date-news{ margin-right: $unite; }
-				.hours-news{ 
-					white-space: nowrap; 
-					padding-left: $unite;
-					border-left: $border-very-light;
-				};
-				.hours-news::before{ content:$time; }		
-				.endDate, .startDate{ white-space: nowrap;}
+			
+			.date-news, .date{ 
+				white-space: nowrap; 
+				&::first-letter{ text-transform: capitalize; }
 			}	
+			.hours-news{ 
+				white-space: nowrap;
+				color: $redlab;
+			 }
+			.hours-news::before{ content:$time; }	
 
 		}
 
-		
+		.fichiers-associes, #attachments{
+			width: 100%;
+			border-top: $border-very-light;
+			li{ 
+				a{ 
+					// @include linktext(); 
+					border-bottom: 2px dotted currentColor;
+					&:hover{ color: $redlab!important; }
+				}
+				&::after{ 
+					content: '–'; 
+					padding-left: $unite/2;
+					padding-right: $unite/2;
+				}
+				&:last-of-type::after{ content: none; }
+				
+			}
+			
+
+		}
 
 		.details{ max-width: $max-width-article; }
 		
@@ -81,3 +97,15 @@
 }
 
 
+/* ctivity only */
+.page-activity .date-news .day-name,  
+.page-activity .date-news .day-num{
+	display: none;
+}
+
+.page-activity .date-news .month-name{ text-transform: capitalize; }
+.page-activity .block-lang hgroup h2{ color: $redlab; }
+
+
+/*  news only */
+.page-news .date-news{ color: $redlab; }

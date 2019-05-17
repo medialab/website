@@ -143,16 +143,14 @@ export default function NewsDetail({lang, news}) {
               <h2 data-type="description"><RawHtml html={news.description && (news.description.fr)} /></h2>
             </hgroup>
             <div className="details">
-              <div className="date-news-block">
-                <DateNews startDate={news.startDate} endDate={news.endDate} lang="fr" />
-                <TimeNews startDate={news.startDate} endDate={news.endDate} />
-                <FichiersAssocies attachments={news.attachments} lang="fr" />
-              </div>
               <p className="type-objet">
-              <span data-icon="news"></span> 
-              <span className="type-news">{IsModel(news.type, "fr")}</span>
-              {news.label ? <span>, {news.label.fr}</span> : ''}
+                <span data-icon="news"></span> 
+                <span className="type-news">{IsModel(news.type, "fr")}</span>
+                {news.label ? <span>, {news.label.fr}</span> : ''}
               </p>
+              <DateNews startDate={news.startDate} endDate={news.endDate} lang="fr" />              
+              <TimeNews startDate={news.startDate} endDate={news.endDate} />
+              <FichiersAssocies attachments={news.attachments} lang="fr" />
             </div>
             <div className="article-contenu">
               {news.content && (news.content.fr && <RawHtml html={news.content.fr} />)}
@@ -166,16 +164,14 @@ export default function NewsDetail({lang, news}) {
               <h2 data-type="description"><RawHtml html={news.description && (news.description.en)} /></h2>
             </hgroup>
             <div className="details">
-              <div className="date-news-block">
-                <DateNews startDate={news.startDate} endDate={news.endDate} lang="en"/>
-                <TimeNews startDate={news.startDate} endDate={news.endDate} />
-                <FichiersAssocies attachments={news.attachments} lang="en" />
-              </div>
               <p className="type-objet">
-              <span data-icon="news"></span> 
-              <span className="type-news">{IsModel(news.type, "en")}</span>
-              {news.label ? <span>, {news.label.en}</span> : ''}
+                <span data-icon="news"></span> 
+                <span className="type-news">{IsModel(news.type, "en")}</span>
+                {news.label ? <span>, {news.label.en}</span> : ''}
               </p>
+              <DateNews startDate={news.startDate} endDate={news.endDate} lang="en" />              
+              <TimeNews startDate={news.startDate} endDate={news.endDate} />
+              <FichiersAssocies attachments={news.attachments} lang="en" />
             </div>
             <div className="article-contenu">
             {news.content && (news.content.en && <RawHtml html={news.content.en} />)}

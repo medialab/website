@@ -158,16 +158,14 @@ export default function ActivityDetail({lang, activity}) {
         {/* FR */}
         <div className="block-lang fr" lang="fr">
           <hgroup>
-            <h1  data-level-2="baseline">{activity.name}</h1>
-            <h2  className="h2-bold" data-level-2="baseline">{activity.baseline && (activity.baseline.fr || activity.baseline.en)}</h2>
+            <h1  data-level-2="title">{activity.name}</h1>
+            <h2  data-level-2="baseline">{activity.baseline && (activity.baseline.fr || activity.baseline.en)}</h2>
             <h3  data-level-3="description"><RawHtml html={activity.description && activity.description.fr} /></h3>
           </hgroup>
           <div class="details">
             <p className="type-objet"><span data-icon="activite"></span> {IsModel(activity.type, "fr")}</p>
-            <p className="date">
-              <DateNews startDate={activity.startDate} endDate={activity.endDate} lang="fr" />
-              <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
-            </p>
+            <DateNews startDate={activity.startDate} endDate={activity.endDate} lang="fr" />
+            <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
             <FichiersAssocies attachments={activity.attachments} lang="fr" />
           </div>
 
@@ -180,16 +178,14 @@ export default function ActivityDetail({lang, activity}) {
         {/* EN */}
         <div className="block-lang en" lang="en">
           <hgroup>
-            <h1  data-level-2="baseline">{activity.name}</h1>
-            <h2  className="h2-bold" data-level-2="baseline">{activity.baseline && (activity.baseline.en || activity.baseline.fr)}</h2>
+            <h1  data-level-2="title">{activity.name}</h1>
+            <h2   data-level-2="baseline">{activity.baseline && (activity.baseline.en || activity.baseline.fr)}</h2>
             <h3  data-level-3="description"><RawHtml html={activity.description && activity.description.en} /></h3>
           </hgroup>
           <div class="details">
             <p className="type-objet"><span data-icon="activite"></span> {IsModel(activity.type, "en")}</p>
-            <p className="date">
-              <DateNews startDate={activity.startDate} endDate={activity.endDate} lang="en" />
-              <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
-            </p>
+            <DateNews startDate={activity.startDate} endDate={activity.endDate} lang="en" />
+            <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
             <FichiersAssocies attachments={activity.attachments} lang="en" />
           </div>
           <div className="article-contenu">

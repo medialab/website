@@ -29,16 +29,14 @@ const ActivitesAssociees = ({lang, activities}) => {
           {activities.map(a => (
             <li key={a.permalink.fr} data-type="activite" className="item">
               <Link to={a.permalink[lang]}>
-                <h1 data-level-2="baseline">{a.baseline && (a.baseline[lang] || a.baseline.fr || a.baseline.en)}</h1>
-                <h2 data-level-2="name">{a.name}</h2>
-                {/* <p className="period">[{a.startDate} - {a.endDate}]</p> */}
-                <p className="type">
-                {IsModel(a.type, lang)}
-                {/* {a.label && (lang === 'fr' ? <span>{a.label.fr}</span> : <span>{a.label.en}</span>)} */}
-                </p>
-              </Link>
-          
-          
+                <div className="bandeau">
+                  <p className="type-activity" data-icon="activite">{IsModel(a.type, lang)}</p>
+                  <p className="title" data-level-2="title">{a.name}</p>
+                </div>
+                <hgroup>
+                  <h1 data-level-1="baseline" >{a.baseline && (lang === 'fr' ? a.baseline.fr : a.baseline.en)}</h1>
+                </hgroup>                   
+              </Link>         
             </li>
           ))}
         </ul>

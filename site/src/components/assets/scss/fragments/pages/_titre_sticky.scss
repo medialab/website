@@ -64,4 +64,29 @@ $height-sticky: $baseline*5;
 		}	
 	}
 
+	
+		/* Page People --------------------------------------------------------------- 
+		------------------------------------------------------------------------------ */
+		
+		.page-people .titre-sticky{
+	
+			.retour{
+				padding-right: $unite/2;
+			}
+	
+			.personne{
+				font-weight: 100;
+				&:before{
+					content: "/";
+					padding-left: $unite/2;
+					padding-right: $unite/2;
+				}
+			} 
+			span:hover{ 
+				color: $text-color-light;
+				&:before{ color: $text-color;}
+			}
+		}
+	
+
 }

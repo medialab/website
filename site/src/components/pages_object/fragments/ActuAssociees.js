@@ -32,16 +32,14 @@ const ActuAssociees = ({lang, actu}) => {
           {actu.map(n => (
             <li key={n.permalink.fr} data-type="activite" className="item">
               <Link to={n.permalink[lang]} className="accroche">
-                <h1 data-level-2="title">{n.title[lang] || n.title.fr || n.title.en}</h1>
-                {/* <h2 data-level-2="description">{n.description && (n.description[lang] || n.description.fr || n.description.en)}</h2>
-                <p className="date-news">{n.startDate}</p>
-                <p className="type">{n.type}</p> */}
-
-              {/* <h2 data-level-2="news-date"> */}
-                <DateNews startDate={n.startDate} endDate={n.endDate} lang={lang} />
-                <TimeNews startDate={n.startDate} endDate={n.endDate} />
-              {/* </h2> */}
-              <p data-icon="news" className="type">{IsModel(n.type, lang)} <span>{n.label && (lang === 'fr' ? n.label.fr : n.label.en)}</span></p>
+                <div className="bandeau">
+                  <p data-icon="news" className="type">{IsModel(n.type, lang)} <span>{n.label && (lang === 'fr' ? n.label.fr : n.label.en)}</span></p>         
+                  <DateNews startDate={n.startDate} endDate={n.endDate} lang={lang} />
+                  <TimeNews startDate={n.startDate} endDate={n.endDate} />
+                </div>
+                <hgroup>
+                  <h1 data-level-2="title">{n.title[lang] || n.title.fr || n.title.en}</h1>
+                </hgroup>
               </Link>
             </li>
           ))}

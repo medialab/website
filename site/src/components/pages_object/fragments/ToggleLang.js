@@ -5,7 +5,7 @@ export default function Footer ({lang, content}) {
   let fr, en;
 
   fr = '⚐ Cette article existe aussi en anglais. ';
-  en = '⚐ This article is also in english. ';
+  en = '⚐ This article is also in french. ';
 
   if (content.fr.length < content.en.length) {
     fr = '⚐ Cet article pourrait être plus complet en anglais. ';

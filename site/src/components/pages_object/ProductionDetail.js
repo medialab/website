@@ -162,10 +162,12 @@ export default function ProductionDetail({lang, production}) {
 
         </article>
 
-        <MembresAssocies people={production.people} lang={lang} />
-        <ActivitesAssociees activities={production.activities} lang={lang} />
-        <ProductionsAssociees productions={production.productions} lang={lang} />     
-        <ActuAssociees actu={production.news} lang={lang} />
+        <aside id="all-aside">
+          <MembresAssocies people={production.people} lang={lang} />
+          <ActivitesAssociees activities={production.activities} lang={lang} />
+          <ProductionsAssociees productions={production.productions} lang={lang} />     
+          <ActuAssociees actu={production.news} lang={lang} />
+        </aside>
         
       </main>
     </>

@@ -182,10 +182,11 @@ export default function NewsDetail({lang, news}) {
 
         </article>
 
-        {/* Block Associes */}
-        <MembresAssocies people={news.people} lang={lang} />
-        <ActivitesAssociees activities={news.activities} lang={lang} />
-        <ProductionsAssociees productions={news.productions} lang={lang} />
+        <aside id="all-aside">
+          <MembresAssocies people={news.people} lang={lang} />
+          <ActivitesAssociees activities={news.activities} lang={lang} />
+          <ProductionsAssociees productions={news.productions} lang={lang} />
+        </aside>
        
         
       </main>

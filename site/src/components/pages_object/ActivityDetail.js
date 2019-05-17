@@ -195,10 +195,10 @@ export default function ActivityDetail({lang, activity}) {
 
       </article>
       <aside id="all-aside">
-      <MembresAssocies people={activity.people} lang={lang} />
-      <ActivitesAssociees activities={activity.activities} lang={lang} />
-      <ProductionsAssociees productions={activity.productions} lang={lang} />
-      <ActuAssociees actu={activity.news} lang={lang} />
+        <MembresAssocies people={activity.people} lang={lang} />
+        <ActivitesAssociees activities={activity.activities} lang={lang} />
+        <ProductionsAssociees productions={activity.productions} lang={lang} />
+        <ActuAssociees actu={activity.news} lang={lang} />
       </aside>
       
     </main>

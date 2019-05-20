@@ -25,5 +25,6 @@ module.exports = function(req, dbs, next) {
 
   dbs.news.setState(state);
 
-  dbs.news.write().then(() => next());
+  dbs.news.write();
+  return next();
 };

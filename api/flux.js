@@ -174,7 +174,27 @@ exports.retrieveTwitterFluxData = function(callback) {
 
       repliedTweets.forEach(t => (repliedTweetIndex[t.id_str] = t));
 
-      return callback(null, null);
+      // TODO: il manque les retweeted
+      const result = tweets.map(t => {
+        const item = {
+          id: t.id_str,
+          text: t.text,
+          date: t.created_at
+        };
+
+        if (t.in_reply_to_status_id_str) {
+          const repliedTweet = repliedTweetIndex[t.in_reply_to_status_id_str];
+
+          item.repliedId = repliedTweet.id;
+          item.repliedText = repliedTweet.text;
+          item.repliedScreenName = repliedTweet.user.screen_name;
+          item.repliedName = repliedTweet.user.name;
+        }
+
+        return item;
+      });
+
+      return callback(null, result);
     });
   });
 };

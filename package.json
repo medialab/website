@@ -35,6 +35,7 @@
   "dependencies": {
     "ajv": "^6.10.0",
     "async": "^2.6.2",
+    "cached-request": "^1.1.4",
     "cheerio": "^1.0.0-rc.2",
     "config": "^3.0.1",
     "express": "^4.16.4",

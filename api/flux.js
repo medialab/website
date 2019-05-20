@@ -1,9 +1,17 @@
 const async = require('async');
 const Twitter = require('twitter');
 const config = require('config');
-const request = require('request');
+let request = require('request');
+const cachedRequest = require('cached-request');
 const range = require('lodash/range');
 const MultiMap = require('mnemonist/multi-map');
+
+const DEV = process.env.NODE_ENV !== 'production';
+
+if (DEV) {
+  request = cachedRequest(request);
+  request.setCacheDirectory('./.cache');
+}
 
 /**
  * GitHub.

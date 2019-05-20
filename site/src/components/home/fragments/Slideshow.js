@@ -134,17 +134,17 @@ const Slideshow = ({slider, lang}) => {
         </div>
 
 
-
-        <div className="nav">
+        {/* label pour controler le caroussel*/}
+        <nav className="slideshow-controls">
           {slider.map((slide, index) =>
             (<React.Fragment key={index}>
-              {/* label */}
-                <label htmlFor={`slide-${a}`} className="slideshow--nav slideshow--nav-previous">{lang === 'fr' ? 'Aller à la slide ' + {a} : 'Go to slide ' + {a} }</label>
-                <label htmlFor={`slide-${z}`} className="slideshow--nav slideshow--nav-next">{lang === 'fr' ? 'Aller à la slide ' + {z} : 'Go to slide ' + {z} }</label>
-            }
+                {IsIndex(index)}
+                <label htmlFor={`slide-bullet-${a}`} className="slide_controls slide_controls-previous" alt={lang === 'fr' ? 'Aller à la slide ' + a : 'Go to slide ' + a }></label>
+                <label htmlFor={`slide-bullet-${z}`} className="slide_controls slide_controls-next" alt={lang === 'fr' ? 'Aller à la slide ' + z : 'Go to slide ' + z }></label>
             </React.Fragment>)
           )}
-        </div>
+          <span className="controls"></span>
+        </nav>
 
 
 

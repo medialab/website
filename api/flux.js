@@ -1,4 +1,6 @@
 const async = require('async');
+const Twitter = require('twitter');
+const config = require('config');
 const request = require('request');
 const range = require('lodash/range');
 const MultiMap = require('mnemonist/multi-map');
@@ -55,4 +57,15 @@ exports.retrieveGithubFluxData = function(callback) {
       );
     });
   });
+};
+
+/**
+ * Twitter.
+ */
+console.log(config.get('twitter'));
+const TWITTER_CLIENT = new Twitter(config.get('twitter'));
+
+// Function retrieving Twitter events and formatting them into our flux
+exports.retrieveTwitterFluxData = function(callback) {
+
 };

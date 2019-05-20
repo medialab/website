@@ -8,5 +8,11 @@
     "path": "./build",
     "repository": "git@repo"
   },
-  "port": 3000
+  "port": 3000,
+  "twitter": {
+    "consumerKey": "",
+    "consumerSecret": "",
+    "accessTokenKey": "",
+    "accessTokenSecret": ""
+  }
 }

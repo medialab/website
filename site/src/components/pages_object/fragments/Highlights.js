@@ -26,6 +26,7 @@ export default function highlights({people, lang}) {
                     <div className="bandeau">
                       <p className="type-activity" data-icon="activite">{IsModel(a.type, lang)}</p>
                       <p className="title" data-level-2="title">{a.name}</p>
+                      {/* a.external && (a.external === true) ? <p className="external" aria-label="production exterieure au medialab" title={lang === 'fr' ? "Ce lien renvoi à une page exterieure au Medialab" : "This linked is external to Medialab"} >⎈</p> : '' */}
                     </div>
                     <hgroup>
                       <h1 data-level-1="baseline" >{a.baseline && (lang === 'fr' ? a.baseline.fr : a.baseline.en)}</h1>
@@ -50,6 +51,7 @@ export default function highlights({people, lang}) {
                           <p className="subtype-production"> {lang === 'fr' ? <span>{p.typeLabel.fr}</span> : <span>{p.typeLabel.en}</span>}</p> 
                         }
                         {/* { p.date && <p className="date-production">{p.date}</p> } */}
+                        {/* p.external && (p.external === true) ? <p className="external" aria-label="production exterieure au medialab" title={lang === 'fr' ? "Ce lien renvoi à une page exterieure au Medialab" : "This linked is external to Medialab"} >⎈</p> : '' */}
                         <p className="authors">{p.authors}</p>
                       </div>
                       <hgroup>

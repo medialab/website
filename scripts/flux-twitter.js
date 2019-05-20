@@ -1,3 +1,8 @@
 const {retrieveTwitterFluxData} = require('../api/flux.js');
 
-retrieveTwitterFluxData(err => console.error(err));
+retrieveTwitterFluxData((err, data) => {
+  if (err)
+    return console.error(err);
+
+  console.log(JSON.stringify(data, null, 2));
+});

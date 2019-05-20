@@ -164,6 +164,17 @@ exports.retrieveTwitterFluxData = function(callback) {
     if (err)
       return callback(err);
 
-    return callback(null, tweets);
+    // Aggregating replying tweets
+    const repliedTweetIds = tweets
+      .filter(t => t.in_reply_to_status_id_str)
+      .map(t => t.in_reply_to_status_id_str);
+
+    return TWITTER_CLIENT.get('statuses/lookup', {id: repliedTweetIds.join(',')}, (err, repliedTweets) => {
+      const repliedTweetIndex = {};
+
+      repliedTweets.forEach(t => (repliedTweetIndex[t.id_str] = t));
+
+      return callback(null, null);
+    });
   });
 };

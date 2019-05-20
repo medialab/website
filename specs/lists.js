@@ -310,20 +310,8 @@ module.exports = {
 
           const persons = p.people
             .map(id => people[id])
-            .filter(person => person.membership === 'member')
             .map(person => person.lastName)
-            .sort((a, b) => {
-              const na = normalize(a),
-                    nb = normalize(b);
-
-              if (na < nb)
-                return - 1;
-              if (na > nb)
-                return 1;
-
-              return 0;
-            });
-
+            
           // NOTE: this is bad but it gets shit done
           p.relations = persons.join(',');
 

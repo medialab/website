@@ -55,7 +55,7 @@ const translators = {
     }
     return content === {} ? false : content;
   },
-  'authors': record => record.creators.filter(c => c.role === 'aut' && c.agent.rec_class === 'Person').map(c => `${c.agent.name_given} ${c.agent.name_family}`).join(', '),
+  'authors': record => record.creators.filter(c => c.agent.rec_class === 'Person').map(c => `${c.agent.name_given} ${c.agent.name_family}`).join(', '),
   // people:
   'ref': record => record.citations.html.chicago,
   'url': record => {
@@ -67,7 +67,7 @@ const translators = {
   // link to author people
   'people': (record, spireAuthors) => record.creators
     // filter authors who are person
-    .filter(c => c.role === 'aut' && c.agent && c.agent.rec_class === 'Person')
+    .filter(c =>  c.agent && c.agent.rec_class === 'Person')
     .map(c => spireAuthors[c.agent.rec_id] && spireAuthors[c.agent.rec_id].id)
     .filter(c => !!c)
 };
@@ -90,7 +90,7 @@ function missingLabAuthors(spireRecords, existingSpireAuthors) {
   // find authors and detect missing ones
   return _.keyBy(_.flatten(spireRecords.map(
     // only author (not organisators)
-    r => r.creators.filter(c => (c.role === 'aut' &&
+    r => r.creators.filter(c => (
     // which were at that time affiliated to the lab 
     c.affiliation && c.affiliation.rec_id === labIdSpire)
     // which is a person which is not registered as a spire authors in our data

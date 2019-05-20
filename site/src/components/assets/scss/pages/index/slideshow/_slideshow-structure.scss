@@ -148,10 +148,10 @@
       
       &:before, &:after{
         position: absolute;
-        border-top: $border;
-        border-bottom: $border;
+        //border-top: $border;
+        //border-bottom: $border;
         background: $background-site;
-        padding: $baseline $unite/2;
+        padding: $baseline*1.25 $unite/4;
         font-size: 20px;
         top: 50%;
         transform: translateY(-50%);
@@ -162,12 +162,12 @@
 
       &:before{
         content: "❬";
-        left: 0;
+        left: -1px;
       }
 
       &:after{
         content: "❭";
-        right: 0;
+        right: -1px;
       }
     }
   }

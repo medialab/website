@@ -101,7 +101,7 @@ $hunit: 4vh;
             padding: $baseline*1 0;
         }
 
-        #slideshow:after{
+        /*#slideshow:after{
             content:'';
             width: 100%;
             border-bottom: $border;
@@ -109,7 +109,9 @@ $hunit: 4vh;
             bottom: -1px;
             left: 0;
 
-        }
+        }*/
+
+        hr{ border: none; }
     }
 }
 

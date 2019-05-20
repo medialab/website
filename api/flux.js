@@ -62,10 +62,25 @@ exports.retrieveGithubFluxData = function(callback) {
 /**
  * Twitter.
  */
-console.log(config.get('twitter'));
-const TWITTER_CLIENT = new Twitter(config.get('twitter'));
+const TWITTER_CONFIG = config.get('twitter');
+
+const TWITTER_CLIENT = new Twitter({
+  consumer_key: TWITTER_CONFIG.consumerKey,
+  consumer_secret: TWITTER_CONFIG.consumerSecret,
+  access_token_key: TWITTER_CONFIG.accessTokenKey,
+  access_token_secret: TWITTER_CONFIG.accessTokenSecret
+});
 
 // Function retrieving Twitter events and formatting them into our flux
 exports.retrieveTwitterFluxData = function(callback) {
+  const params = {
+    screen_name: 'medialab_ScPo'
+  };
 
+  TWITTER_CLIENT.get('statuses/user_timeline', params, (err, tweets) => {
+    if (err)
+      return callback(err);
+
+    return callback(null, tweets);
+  });
 };

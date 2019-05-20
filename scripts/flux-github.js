@@ -1,3 +1,3 @@
 const {retrieveGithubFluxData} = require('../api/flux.js');
 
-retrieveGithubFluxData();
+retrieveGithubFluxData(err => console.error(err));

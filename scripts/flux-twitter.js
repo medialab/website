@@ -1,3 +1,3 @@
 const {retrieveTwitterFluxData} = require('../api/flux.js');
 
-retrieveTwitterFluxData();
+retrieveTwitterFluxData(err => console.error(err));

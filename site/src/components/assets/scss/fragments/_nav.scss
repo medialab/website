@@ -113,7 +113,7 @@ $width-main-image: calc( 100vw - #{$margins-desktop*0});
 
         }
 
-        #img-container{
+        /*#img-container{
             flex-grow: 1;
             position: relative;
 
@@ -182,7 +182,7 @@ $width-main-image: calc( 100vw - #{$margins-desktop*0});
             }
 
             &:hover{ color: currentColor!important;}
-        }
+        }*/
 
     }
 }

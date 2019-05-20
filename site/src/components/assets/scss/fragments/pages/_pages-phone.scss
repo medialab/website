@@ -10,6 +10,26 @@
 	.page-about{
 		top: 0!important;
 
+
+		/// Typo Header hgroup
+		#article-contenu, 
+		#biographie,
+		#about-contenu {
+
+
+			hgroup {
+				margin: $baseline*2 0;
+				h1{
+					@include font-size-40();
+					font-weight: 600;
+					margin-bottom: $baseline*1.5;
+				}
+				h2, h3{ @include font-size-20-phone();}
+				h2 { margin-bottom: $baseline*1; }
+				h3 { margin-bottom: $baseline*3; }
+			}
+		}
+
 		.article-contenu, 
 		.biographie-contenu,
 		.about-contenu {
@@ -58,7 +78,7 @@
 			p + p {  margin-top: $baseline*2; }
 
 			p, li{ 
-				@include font-size-16-phone(); 
+				@include font-size-20-phone(); 
 				margin-bottom: $baseline*2;
 			}
 					
@@ -67,6 +87,21 @@
 				text-indent: -15px;
 				&:before{ content: "⁘"; left: -15px;}
 			}
+
+			
+			hgroup{
+				padding-top: $baseline*1;
+				padding-bottom: $baseline*2;
+
+				h1{
+					@include font-size-27(); 
+					&:first-letter{ text-transform: uppercase;}
+				}
+				h2, h3{ 
+					@include font-size-20(); 
+					margin-top: $baseline*.5;
+				}		
+			}			
 		}
 	}
 }

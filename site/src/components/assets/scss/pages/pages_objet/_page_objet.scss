@@ -3,96 +3,96 @@
 .page-activity{
 
 	
-	
-	
-	#article-contenu{
+	main{
+		#img-article{
 
-		// flex permet de mettre le choix de la langue en dernier (alors qu'il doit être en premier dans l'HTML pour pouvoir marcher)
-		@include flex();
-		@include flex-direction(column);
-
-		
-		hgroup{
-			h1:first-letter{ text-transform: uppercase;}	
-		}
-
-		.details{
-			width: 100%;
-			border-top: $border-very-light;
-			border-bottom:$border-very-light;
-			color: $text-color-light;
-
-			.production-ref{ border-top: $border-very-light; }
-			.type-news{ text-transform: uppercase; }
-
-			[data-icon]{ padding-right: $unite/2;}
-
-			
-			.date-news, .date{ 
-				white-space: nowrap; 
-				&::first-letter{ text-transform: capitalize; }
-			}	
-			.hours-news{ 
-				white-space: nowrap;
+			pre{ 
 				color: $redlab;
-			 }
-			.hours-news::before{ content:$time; }	
+		        font-weight: bold;
+		        overflow: hidden;
+			}
+		}	
 
-		}
+		#article-contenu{
 
-		.fichiers-associes, #attachments{
-			width: 100%;
-			border-top: $border-very-light;
-			li{ 
-				a{ 
-					// @include linktext(); 
-					border-bottom: 2px dotted currentColor;
-					&:hover{ color: $redlab!important; }
-				}
-				&::after{ 
-					content: '–'; 
-					padding-left: $unite/2;
-					padding-right: $unite/2;
-				}
-				&:last-of-type::after{ content: none; }
+			// flex permet de mettre le choix de la langue en dernier (alors qu'il doit être en premier dans l'HTML pour pouvoir marcher)
+			@include flex();
+			@include flex-direction(column);
+
+
+			.details{
+				width: 100%;
+				border-top: $border-very-light;
+				border-bottom:$border-very-light;
+				color: $text-color-light;
+
+				.production-ref{ border-top: $border-very-light; }
+				.type-news{ text-transform: uppercase; }
+
+				[data-icon]{ padding-right: $unite/2;}
+
 				
-			}
-			
-
-		}
-
-		.details{ max-width: $max-width-article; }
-		
-		
-		.article-contenu{ 
-
-			@include flex-order(1); 
-				max-width: $max-width-article;
-		
-			
-			a{
-				@include linktext();
-				transition: .25s linear;
-
-				&:hover{
+				.date-news, .date{ 
+					white-space: nowrap; 
+					&::first-letter{ text-transform: capitalize; }
+				}	
+				.hours-news{ 
+					white-space: nowrap;
 					color: $redlab;
-					text-decoration-color: $redlab;
+				 }
+				.hours-news::before{ content:$time; }	
 
+			}
+
+			.fichiers-associes, #attachments{
+				width: 100%;
+				border-top: $border-very-light;
+				li{ 
+					a{ 
+						// @include linktext(); 
+						border-bottom: 2px dotted currentColor;
+						&:hover{ color: $redlab!important; }
+					}
+					&::after{ 
+						content: '–'; 
+						padding-left: $unite/2;
+						padding-right: $unite/2;
+					}
+					&:last-of-type::after{ content: none; }
+					
 				}
+				
+
 			}
 
+			.details{ max-width: $max-width-article; }
+			
+			
+			.article-contenu{ 
 
-			li{ 
-				left: $unite;
-				&:before{ content: "⧆"; left: -5px;}
-			}
+				@include flex-order(1); 
+					max-width: $max-width-article;
+			
+				
+				a{
+					@include linktext();
+					transition: .25s linear;
 
-		}
+					&:hover{
+						color: $redlab;
+						text-decoration-color: $redlab;
 
-		
+					}
+				}
 
 
-		
+				li{ 
+					left: $unite;
+					&:before{ content: "⧆"; left: -5px;}
+				}
+
+			}		
+		}		
 	}
 }
 

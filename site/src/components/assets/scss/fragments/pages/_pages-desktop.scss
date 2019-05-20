@@ -9,6 +9,39 @@
 	.page-people,
 	.page-about{
 
+
+		/// Typo Header hgroup
+		#article-contenu, 
+		#biographie,
+		#about-contenu {
+
+			@media screen and (min-width: 700px) { 
+				hgroup{			
+					h1{ @include font-size-40(); }
+					h2, h3{ 
+						@include font-size-27();
+						margin-top: $baseline*1.5;
+						margin-right: 80px;
+					}
+				}	
+			}
+
+
+			@media screen and (min-width: 900px) {
+
+			}
+
+			@media screen and (min-width: 1080px) {
+				hgroup{
+					h1{ @include font-size-60(); }				
+					h2, h3{ 
+						@include font-size-27();
+						margin-top: $baseline*1.5;
+					}
+				}		
+			}
+		}
+
 		.article-contenu, 
 		.biographie-contenu,
 		.about-contenu {

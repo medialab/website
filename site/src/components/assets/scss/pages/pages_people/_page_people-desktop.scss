@@ -44,27 +44,29 @@
 					
 
 					hgroup{ 
-											
 						padding-left: $unite;
 						margin-bottom: $baseline;
 					}
 
 					
 					.status{ max-width: 400px; }
-			
+					
+					.contact{
+						li{
+							border-right: $border-very-light;
+						}
+					}
 					
 				}
 			}	
-		} /* end main */
-
-
-		
+		} /* end main */		
 	}
 }
 
 
+// Les comportement Typographiques commun à toutes les pages sont definit à assets/scss/fragments/pages/
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 700px) { 
 
 	.page-people #biographie {
 		header{		
@@ -73,8 +75,6 @@
 				width: calc(100% - 200px);  
 				.status{ @include font-size-16(); }
 			}			
-			h1{ @include font-size-40(); }
-			h2{ @include font-size-20(); }
 		}	
 		.biographie-contenu p, .biographie-contenu li{ @include font-size-16();}
 	}
@@ -98,16 +98,7 @@
 }
 
 
-@media screen and (min-width: 1100px) {
-
-	.page-people #biographie{
-		header{
-			h1{ @include font-size-60(); }
-			h2{ @include font-size-27(); }
-		}		
-	}
-
-}
+@media screen and (min-width: 1100px) {}
 
 
 

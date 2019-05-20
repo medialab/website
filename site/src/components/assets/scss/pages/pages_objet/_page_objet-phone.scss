@@ -21,27 +21,35 @@
 				display: none;
 			}
 
+			
+			#img-article{
 
-			hgroup {
-				margin: $baseline*2 0;
-				h1{
-					@include font-size-20-phone();
-					font-weight: 600;
-					margin-bottom: $baseline;
+				left: $margins-phone*-1;
+				top: 0;
+				position: relative;
+				z-index: 9;
+
+				.activator{
+					display: none;       
+				}	
+
+				.container{
+					width: $logo-column - $margins-desktop*2;
+					width: 100vw;
+					overflow: hidden;
 				}
 
-				h2{
-					@include font-size-20-phone();
-					margin-bottom: $baseline*1.5;;
-				}				
-			
-
+				pre{ 
+			        font-size: calc(((100vw - #{$unite*2})/240)*1.89); // Should change with width
+			        line-height: 95%;
+				}
 			}
 
 			.details{
 				@include font-size-16-phone();
 				.date{ border-top: $border;}
-				p{ padding: $baseline/2 0;}
+				p, li{ padding: $baseline/2 0;}
+
 			}
 			
 			.article-contenu{

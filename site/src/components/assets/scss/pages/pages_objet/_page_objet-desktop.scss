@@ -4,75 +4,56 @@
 ////////  Desktop 
 /////////////////////
 
-#img-article{
-
-	
-	left: 0;
-	top: 0;
-	top: $height-sticky;
-	position: fixed;
-	z-index: 99;
-
-	.activator{
-		display: block;
-		position: absolute;
-		width: $logo-column - $margins-desktop*2;
-		height: 100%;
-		z-index: 9;
-
-		&:hover{
-			
-			& + .container{
-				width: 100vw;
-			}
-		}        
-	}	
-
-	.container{
-		width: $logo-column - $margins-desktop*2;
-		overflow: hidden;
-		transition: width 0.25s ease-in-out;
-	}
-
-	pre{ 
-		color: $redlab;
-        font-weight: bold;
-        font-size: calc(((100vw - #{$unite*2})/240)*1.89); // Should change with width
-        line-height: 95%;
-        overflow: hidden;
-    
-	}
-}
-
-
-
-
-
-
-
-
-
 @include for-size(desktop) {
 
 	.page-production, 
 	.page-news, 
 	.page-activity{
 
-		
-
-
-
 		main{
 			margin-bottom: 40vh;	
 			max-width: $max-width-main;
-			//margin-top: $height-top-bar; /* set sticky title */
 
 			hgroup{ 
-				// border-top: $border-very-light;
-				// max-width: 1300px; 
 				max-width: $max-width-article; 
 			}
+			
+			#img-article{
 
+				
+				left: 0;
+				top: 0;
+				top: $height-sticky;
+				position: fixed;
+				z-index: 99;
+
+				.activator{
+					display: block;
+					position: absolute;
+					width: $logo-column - $margins-desktop*2;
+					height: 100%;
+					z-index: 9;
+
+					&:hover{
+						
+						& + .container{
+							width: 100vw;
+						}
+					}        
+				}	
+
+				.container{
+					width: $logo-column - $margins-desktop*2;
+					overflow: hidden;
+					transition: width 0.25s ease-in-out;
+				}
+
+				pre{ 
+			        font-size: calc(((100vw - #{$unite*2})/240)*1.89); // Should change with width
+			        line-height: 95%;
+				}
+			}
+			
 			#article-contenu{
 				
 				.details {
@@ -185,16 +166,9 @@
 @media screen and (min-width: 700px) {
 
  	#article-contenu {
- 		hgroup{
-			
+ 		hgroup{			
 			padding-top: $baseline*3;
 			padding-bottom: $baseline*2;
-			h1{ @include font-size-40(); }
-			h2, h3{ 
-				@include font-size-27(); 
-				margin-top: $baseline*1.5;
-				margin-right: 80px;
-			}
 		}
 		// .article-contenu div{ margin-top: $baseline*3 }
 		
@@ -203,23 +177,7 @@
 }
 @media screen and (min-width: 1000px) { }
 
-@media screen and (min-width: 1080px) {
-
- 	#article-contenu {
- 		hgroup{
-			h1{ @include font-size-60(); }
-			h2, h3{ 
-				@include font-size-27();
-				margin-top: $baseline*1.5;
-			}
-		}
-	}	
-}
-
-
-
-
-
+@media screen and (min-width: 1080px) {}
 
 @media screen and (min-width: 700px) and (max-width: 1080px){
     .page-production, 

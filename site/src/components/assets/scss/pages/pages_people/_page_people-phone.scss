@@ -43,14 +43,21 @@
 					padding-top: $baseline*1.5;
 					margin-bottom: $baseline*2.5;
 
-					h1{@include font-size-40();}
 					.status{ @include font-size-20(); }
-				
+					li{  }
+					
+					.contact{
+						li{
+							padding: $baseline/2 0;
+							&:not(:last-of-type){
+								border-bottom: $border-very-light;
+							}
+						}
+					}
 				}
 		
 				.biographie-contenu{
 					width: 100%;
-					p, li{ @include font-size-16;}
 				}
 			}		
 			#highlight{ margin-top: $height-top-bar-phone + $baseline*2; }

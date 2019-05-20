@@ -25,12 +25,12 @@ export default function Agenda({rdv, lang}) {
                   <aside className="divers">
                     <p className="label" data-icon="news">{ event.label && (lang === 'fr' ? event.label.fr : event.label.en) }</p>
                     <DateNews startDate={event.startDate} endDate={event.endDate} lang={lang} />
-                    { event.internal && (event.internal === true) ? <p className="internal" aria-label="evenement interne au medialab" title={lang === 'fr' ? "Cet évenement est organisé par le Medialab" : "The event is hosted by Medialab"} >⌂</p> : ''}
+                    {event.isInternal && <p className="internal" aria-label="evenement interne au medialab" title={lang === 'fr' ? "Cet évenement est organisé par le Medialab" : "The event is hosted by Medialab"} >⌂</p>}
                   </aside>
 
-                  
+
                   <h1 data-level-1="title">{lang === 'fr' ? event.title.fr : event.title.en }</h1>
- 
+
                   <aside className="details">
                     <TimeNews startDate={event.startDate} endDate={event.endDate} />
                     { event.place && <p className="place">{event.place}</p> }
@@ -42,7 +42,7 @@ export default function Agenda({rdv, lang}) {
               </React.Fragment>)
 						)}
           </>
-   
+
     </section>
   </>
   	);

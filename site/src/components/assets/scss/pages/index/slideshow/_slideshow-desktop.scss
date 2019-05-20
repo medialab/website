@@ -45,7 +45,7 @@
 							top: $unite;
 							left: $unite*3;
 							padding: $baseline/2 $unite/2;
-							z-index: 90;
+							z-index: 9;
 							text-align: left;
 							background: $background-site;
 							overflow: hidden;
@@ -120,51 +120,6 @@
 					}/* end article*/
 
 				}/* end slideshow-item*/
-
-				/* Navigatin slideshow flêches ----------------------------------------------- */
-
-				.slideshow--nav:after {
-					font-size: 4rem;
-					color: $redlab;
-					bottom: $unite;
-					right: 0px;
-					background: $background-site;
-					padding: 2.0vh .75vh;
-					width: $unite*1.5;
-					margin-top: $unite*(-1.5/2);
-					height: $unite*3;
-					display: flex;
-					align-items: center;
-					padding: 1.4rem;
-					border-top: $border-redlab;
-					border-bottom: $border-redlab;
-					&:hover{ 
-						background-color: $background-grey;
-					}
-				}
-
-
-				.slideshow--nav{
-					top: 0;
-					bottom: 0;
-					width: $unite*3;
-					&:hover:after{ background-color: $background-grey; }
-				}
-
-
-				.slideshow--nav-previous {
-					left: 0;
-				}
-
-				.slideshow--nav-previous:after {
-					right: auto;
-					left: 0px;
-				}
-
-				.slideshow--nav-next {
-					right: 0;
-				}
-
 
 				/* Navigatin slideshow bullets ----------------------------------------------- */
 

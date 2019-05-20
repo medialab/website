@@ -1,125 +1,211 @@
-.slideshow-container {
-  overflow: hidden;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-}
-.slideshow-inner {
-  width: 500%;
-  height: 100%;
-  transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
-  transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
-}
-.slideshow-item {
-  width: 20%;
-  height: 100%;
-  float: left;
-}
-.slideshow-item{
-  transition: all 0.5s ease-out;
-}
+#home{
 
-
-
-
-/* Move slides overflowed container */
-#slide-bullet-1:checked ~ .slideshow-inner {
-  margin-left: 0;
-}
-#slide-bullet-2:checked ~ .slideshow-inner {
-  margin-left: -100%;
-}
-#slide-bullet-3:checked ~ .slideshow-inner {
-  margin-left: -200%;
-}
-
-
-
-////////////////////
-//// Bullet
-//////////////////
-.bullets-slide{
-  position: absolute;
-  top: 89%;
-  left: calc( ( #{$unite * 3} + 62% ) - #{$unite*3.5} );
-  
-  @media screen and (min-width: 1000px) and (max-width: 1200px){
-      left: calc( ( #{$unite * 3} + 55% ) - #{$unite*3.5} );
+  .slideshow-container {
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
   }
-  @media screen and (min-width: 1200px) and (max-width: 1350px){
+  .slideshow-inner {
+    width: 500%;
+    height: 100%;
+    transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
+    transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
+  }
+  .slideshow-item {
+    width: 20%;
+    height: 100%;
+    float: left;
+  }
+  .slideshow-item{
+    transition: all 0.5s ease-out;
+  }
+
+
+
+
+  /* Move slides overflowed container */
+  #slide-bullet-1:checked ~ .slideshow-inner {
+    margin-left: 0;
+  }
+  #slide-bullet-2:checked ~ .slideshow-inner {
+    margin-left: -100%;
+  }
+  #slide-bullet-3:checked ~ .slideshow-inner {
+    margin-left: -200%;
+  }
+
+
+
+  ////////////////////
+  //// Bullet
+  //////////////////
+  .bullets-slide{
+    position: absolute;
+    top: 89%;
     left: calc( ( #{$unite * 3} + 62% ) - #{$unite*3.5} );
+    
+    @media screen and (min-width: 1000px) and (max-width: 1200px){
+        left: calc( ( #{$unite * 3} + 55% ) - #{$unite*3.5} );
+    }
+    @media screen and (min-width: 1200px) and (max-width: 1350px){
+      left: calc( ( #{$unite * 3} + 62% ) - #{$unite*3.5} );
+    }
+
+    @media screen and (min-width: 1350px){
+        left: calc( ( #{$unite * 3} + 55% ) - #{$unite*3.5} );
+    }  
+
+    .slideshow-bullet-label{
+      background: $redlab;
+      opacity: .3;
+
+      width: 15px;
+      height: 15px;
+      display: inline-block;
+      cursor: pointer;
+      margin: 0 5px;
+      z-index: 99;
+      border-radius: 15px;
+
+      &:nth-of-type(2){  }
+
+      &[data-type="active"]{
+        opacity: 1;
+      }
+    }
   }
 
-  @media screen and (min-width: 1350px){
-      left: calc( ( #{$unite * 3} + 55% ) - #{$unite*3.5} );
-  }  
 
-  .slideshow-bullet-label{
-    background: $redlab;
-    opacity: .3;
+  /* Calculate AUTOPLAY for SLIDES */
+  @keyframes slide {
+    0%, 29%	{ margin-left: 0; }
+    33.333333333333336%, 62%	{ margin-left: -100%; }
+    66.66666666666667%, 96%	{ margin-left: -200%; }
+  }
 
-    width: 15px;
-    height: 15px;
-    display: inline-block;
-    cursor: pointer;
-    margin: 0 5px;
-    z-index: 99;
-    border-radius: 15px;
 
-    &:nth-of-type(2){  }
+  #slide-bullet-0:checked ~  .slideshow-inner {
+    animation: slide 18450ms infinite;
+    will-change: auto;
+  }
+  /* Calculate AUTOPLAY for SLIDES - END */
 
-    &[data-type="active"]{
-      opacity: 1;
+
+  //////////////
+  ///// Controls 
+  /////////////
+
+  @keyframes slideshow-controls-animation {
+    0%, 33.32333333333334%  {
+      //opacity: 1;
+      //visibility: visible;
+      z-index: 11;
+    }
+    33.333333333333336%, 100% {
+      //opacity: 0;
+      //visibility: collapse;
+      z-index: -1;
+    }
+  }
+
+  nav.slideshow-controls {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;    
+
+      .slide_controls{
+        width: $unite*2;
+        height: 100%;
+
+        position: absolute;
+        top: 0;
+        cursor: pointer;
+        will-change: z-index;
+
+        &.slide_controls-previous{
+          left: 0;
+        }
+        &.slide_controls-next{
+          right: 0;
+        }
+        &.slide_controls-previous:hover ~ span.controls:before, 
+        &.slide_controls-next:hover ~ span.controls:after{
+          background: $background-grey !important;
+        }
+      }
+
+    // Les boutons visibles sont des pseudo éléments sur lequels vont et viennent les labels actionnable. Raison : economiser des performance navigateur
+    span.controls{
+
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      
+      &:before, &:after{
+        position: absolute;
+        border-top: $border;
+        border-bottom: $border;
+        background: $background-site;
+        padding: $baseline $unite/2;
+        font-size: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 9;
+
+        &:hover{ background: $background-grey;}
+      }
+
+      &:before{
+        content: "❬";
+        left: 0;
+      }
+
+      &:after{
+        content: "❭";
+        right: 0;
+      }
+    }
+  }
+
+
+  #slide-bullet-0:checked ~ .slideshow-controls label{
+    // Le Radio 0 se contente d'agir sur l'appartition / disparition de tous les labels Nav
+    display: block;
+
+    &:nth-of-type(1), &:nth-of-type(2){
+      animation: slideshow-controls-animation 18450ms infinite 0ms; // -1000ms
+    }
+    &:nth-of-type(3), &:nth-of-type(4){
+      animation: slideshow-controls-animation 18450ms infinite 5719ms; 
+    }
+    &:nth-of-type(5), &:nth-of-type(6){
+      animation: slideshow-controls-animation 18450ms infinite 11800ms; 
+    }
+  }
+
+  #slide-bullet-1:checked ~ .slideshow-controls label{
+      z-index: -1;
+    &:nth-of-type(1), &:nth-of-type(2){
+      z-index: 11;
+    }
+  }
+
+  #slide-bullet-2:checked ~ .slideshow-controls label{
+      z-index: -1;
+    &:nth-of-type(3), &:nth-of-type(4){
+      z-index: 11;
+    }
+  }
+
+  #slide-bullet-3:checked ~ .slideshow-controls label{
+      z-index: -1;
+    &:nth-of-type(5), &:nth-of-type(6){
+      z-index: 11;
     }
   }
 }
-
-
-/* Calculate AUTOPLAY for SLIDES */
-@keyframes slide {
-  0%, 29%	{ margin-left: 0; }
-  33.333333333333336%, 62%	{ margin-left: -100%; }
-  66.66666666666667%, 96%	{ margin-left: -200%; }
-}
-
-
-#slide-bullet-0:checked ~  .slideshow-inner {
-  animation: slide 18450ms infinite;	
-}
-/* Calculate AUTOPLAY for SLIDES - END */
-
-
-
-
-
-/* Calculate AUTOPLAY for CAPTION */
-@keyframes caption {
-  0%, 33.32333333333334%	{
-    opacity: 1;
-  }
-  33.333333333333336%, 100% {
-    opacity: 0;
-  }
-}
-
-/* FOR FLECHE */
-#slide-bullet-0:checked ~ .nav .label:nth-child(1),
-#slide-bullet-0:checked ~ .nav .label:nth-child(2) {
-  animation: caption 18450ms infinite -1000ms;
-}
-
-#slide-bullet-0:checked ~ .nav .label:nth-child(3),
-#slide-bullet-0:checked ~ .nav .label:nth-child(4) {
-  animation: caption 18450ms infinite 4650ms;	
-}
-
-#slide-bullet-0:checked ~ .nav .label:nth-child(5),
-#slide-bullet-0:checked ~ .nav .label:nth-child(6) {
-  animation: caption 18450ms infinite 9300ms;	
-}
-/* Calculate AUTOPLAY for CAPTION - END */
-
-

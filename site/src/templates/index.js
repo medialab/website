@@ -188,7 +188,7 @@ export const query = graphql`
             fr
           }
           place
-          internal
+          isInternal
           permalink {
             en
             fr

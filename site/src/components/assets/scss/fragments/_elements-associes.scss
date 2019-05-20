@@ -53,8 +53,7 @@
 			display: inline-block;
 			box-sizing: border-box;
 			height: 100%;
-			width: 50%;
-			
+
 			a{
 				margin: $unite/4;
 				height: 100%;
@@ -140,6 +139,12 @@
 		span{ font-weight: 300;}
 	}
 
+	.personnes-associees-block{
+		[data-type="people"]{
+			width: 100%;
+		}
+	}
+
 }
 
 @include for-size(desktop) {
@@ -164,7 +169,12 @@
 		// font-weight: 600;
 		// span{ font-weight: 300;}
 	}
-
+	
+	.personnes-associees-block{
+		[data-type="people"]{
+			width: 50%;
+		}
+	}
 
 }
  

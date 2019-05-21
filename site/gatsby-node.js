@@ -266,6 +266,8 @@ const MODEL_READERS = {
       deleteNode({node});
     });
 
+    // TODO: faire les permaliens vers la personne (faire gaffe au schéma)
+
     data.forEach((event, i) => {
       const hash = hashNode(event);
 

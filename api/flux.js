@@ -213,7 +213,7 @@ exports.retrieveTwitterFluxData = function(callback) {
         resolveTweetUrls(t);
 
         const item = {
-          id: t.id_str,
+          tweet: t.id_str,
           text: t.full_text,
           html: convertTweetTextToHtml(t.full_text),
           date: (new Date(t.created_at)).toISOString(),

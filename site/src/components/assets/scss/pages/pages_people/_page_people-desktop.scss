@@ -2,8 +2,6 @@
 ////////  Desktop 
 /////////////////////
 
-
-
 @include for-size(desktop) {
  
 	.page-people{
@@ -13,17 +11,15 @@
 			top: 0;
 		}
 		main{
-			margin-left: $logo-column;
-			margin-bottom: 40vh;
 			transition: .25s ease-in-out;
 			padding-top: $height-top-bar;
-			
-			 .cache{
+			margin-bottom: $height-footer + $baseline*8;
+			 /*.cache{
 			 	position: absolute;
 				left: -1px;
 				font-size: 1vw;
 				color: white;
-			 }
+			 }*/
 			
 			 #biographie{
 				
@@ -32,7 +28,6 @@
 				header{
 					@include flex-order(1);
 					margin-bottom: $baseline*2;
-					// border-top: $border-very-light;
 					padding-top: $baseline*2;
 
 					figure, hgroup{
@@ -53,10 +48,17 @@
 					
 					.contact{
 						li{
-							border-right: $border-very-light;
+							&:not(:last-of-type):after{
+								content: "";
+								width: 1px;
+								height: calc(100% - #{$baseline});
+								position: absolute;
+								top: $baseline/2;								
+								right: 0;
+								border-right: $border-very-light;
+							}
 						}
-					}
-					
+					}					
 				}
 			}	
 		} /* end main */		
@@ -78,7 +80,6 @@
 		}	
 		.biographie-contenu p, .biographie-contenu li{ @include font-size-16();}
 	}
-
 }
 
 
@@ -94,11 +95,7 @@
 		}
 		.biographie-contenu p, .biographie-contenu li{ @include font-size-20();}
 	}
-
 }
-
-
-@media screen and (min-width: 1100px) {}
 
 
 

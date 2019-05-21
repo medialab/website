@@ -18,7 +18,7 @@
 
 
 			hgroup {
-				margin: $baseline*2 0;
+				margin: $baseline*1 0 $baseline*2 0;
 				h1{
 					@include font-size-40();
 					font-weight: 600;
@@ -37,7 +37,7 @@
 			/* Regles de Base */
 
 			h1, h2, h3, h4, h5{
-				@include font-size-16-phone;
+				@include font-size-20-phone;
 				font-weight: bold;
 				margin-top: $baseline*4;
 				margin-bottom: $baseline*1.5;
@@ -78,30 +78,16 @@
 			p + p {  margin-top: $baseline*2; }
 
 			p, li{ 
-				@include font-size-20-phone(); 
+				@include font-size-16-phone(); 
 				margin-bottom: $baseline*2;
 			}
 					
 			li{ 
-				left: $unite*1.5;
-				text-indent: -15px;
-				&:before{ content: "⁘"; left: -15px;}
-			}
-
-			
-			hgroup{
-				padding-top: $baseline*1;
-				padding-bottom: $baseline*2;
-
-				h1{
-					@include font-size-27(); 
-					&:first-letter{ text-transform: uppercase;}
-				}
-				h2, h3{ 
-					@include font-size-20(); 
-					margin-top: $baseline*.5;
-				}		
-			}			
+				left: $unite-phone*2.5;
+				text-indent: #{$unite-phone*-1};
+				width: calc(100% - #{$unite-phone*2.5});
+				&:before{ content: "⁘"; left: #{$unite-phone*-1.5};}
+			}	
 		}
 	}
 }

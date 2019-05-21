@@ -14,8 +14,9 @@ import EnumSelector from '../selectors/EnumSelector';
 import UrlInput from '../selectors/UrlInput';
 import PreviewLink from '../misc/PreviewLink';
 
-
+import client from '../../client';
 import Button from '../misc/Button';
+import keyBy from 'lodash/keyBy';
 
 function validate(data) {
   if (!data.title || !data.title.fr)
@@ -79,16 +80,53 @@ const HANDLERS = {
   }
 };
 
-const SpireGeneratedField = (props) => {
-  console.log(props.children);
+class SpireGeneratedField extends Component {
+  constructor(props, context) {
+    super(props, context);
 
-  return (<div>
-    <div className='tag is-medium'>{props.spireValue}</div>
-      {(!props.humanValue && props.humanValue !== "") && <Button kind='text' onClick={() => {props.init();}}>Modifier la valeur générée depuis SPIRE</Button>}
-    {(props.humanValue || props.humanValue === '') && props.children} 
-    {(props.humanValue || props.humanValue === '') && <Button kind='text' onClick={() => {props.cancel();}}>Annuler et restaurer la valeur générée depuis spire </Button>}
-  </div>);
-};
+    this.state = {
+      loading: true,
+      peopleLabels: []
+    };
+  }
+
+  componentDidMount() {
+    if (this.props.model) {
+      client.list({params: {model: this.props.model}}, (err, response) => {
+        if (err) {
+          console.error(err.message);
+          this.setState({loading: false, peopleLabels: {}});
+          return;
+        }
+        const peopleLabels = keyBy(response.map(p => ({id: p.id, label: `${p.firstName} ${p.lastName}`})), p => p.id);
+        this.setState({loading: false, peopleLabels});
+      });
+    }
+    else
+      this.setState({loading: false, peopleLabels: {}});
+  }
+
+  render() {
+
+    const {peopleLabels, loading} = this.state;
+    const {humanValue, spireValue, children, init, cancel, model} = this.props;
+
+    let spireLabel = spireValue;
+    if (loading)
+      spireLabel = 'loading...';
+    else
+      if (this.props.model === 'people') {
+        spireLabel = spireValue.map(sv => peopleLabels[sv].label).join(', ');
+      }
+    return (<div>
+      <div className='notification is-medium'>{spireLabel}</div>
+      {(!humanValue && humanValue !== "") && <Button kind='text' onClick={() => {init();}}>Modifier la valeur générée depuis SPIRE</Button>}
+      {(humanValue || humanValue === '') && children} 
+      {(humanValue || humanValue === '') && <Button kind='text' onClick={() => {cancel();}}>Annuler et restaurer la valeur générée depuis spire </Button>}
+    </div>);
+  };
+
+}
 
 function renderProductionForm(props) {
   const {
@@ -341,7 +379,8 @@ function renderProductionForm(props) {
                   spireValue={data.spire && data.spire.generatedFields.people}
                   humanValue={data.people}
                   init={() => handlers.people.add([])}
-                  cancel={() => handlers.people.empty()}>
+                  cancel={() => handlers.people.empty()}
+                  model="people">
                   <RelationSelector
                     model="people"
                     selected={data.people}
@@ -374,7 +413,7 @@ function renderProductionForm(props) {
 
       <div className="form-group is-important">
         <div className="field">
-          <label className="label title is-4">{'"' + (data.title && data.title.en || '') + '"' || 'Publication'} page's production status</label>
+          <label className="label title is-4">{'"' + ((data.title && data.title.en) || data.spire.generatedFields.title.fr) + '"' || 'Publication'} page's production status</label>
           <div className="control">
             <BooleanSelector
               value={!data.draft}

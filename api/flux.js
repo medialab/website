@@ -154,10 +154,38 @@ const TWITTER_CLIENT = new Twitter({
   access_token_secret: TWITTER_CONFIG.accessTokenSecret
 });
 
+const URL_REGEX = /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b(?:[-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
+const HANDLE_REGEX = /(?<=^|(?<=[^a-zA-Z0-9-_\.]))@([A-Za-z]+[A-Za-z0-9-_]+)/gi;
+const HASHTAG_REGEX = /\B#(\w*[a-zA-Z]+\w*)/gi;
+
+// Helpers
+function resolveTweetUrls(tweet) {
+  if (tweet.entities && tweet.entities.urls) {
+    tweet.entities.urls.forEach(({url, expanded_url}) => {
+      tweet.full_text = tweet.full_text.replace(url, expanded_url);
+    });
+  }
+
+  if (tweet.extended_entities && tweet.extended_entities.media) {
+    tweet.extended_entities.media.forEach(({url, expanded_url}) => {
+      tweet.full_text = tweet.full_text.replace(url, expanded_url);
+    });
+  }
+}
+
+function convertTweetTextToHtml(text) {
+  return text
+    .replace(URL_REGEX, '<a href="$&" target="_blank" rel="noopener">$&</a>')
+    .replace(HANDLE_REGEX, '<a href="https://twitter.com/$1" target="_blank" rel="noopener">$&</a>')
+    .replace(HASHTAG_REGEX, '<a href="https://twitter.com/hashtag/$1" target="_blank" rel="noopener">$&</a>');
+}
+
 // Function retrieving Twitter events and formatting them into our flux
 exports.retrieveTwitterFluxData = function(callback) {
   const params = {
-    screen_name: 'medialab_ScPo'
+    include_entities: true,
+    screen_name: 'medialab_ScPo',
+    tweet_mode: 'extended'
   };
 
   TWITTER_CLIENT.get('statuses/user_timeline', params, (err, tweets) => {
@@ -169,26 +197,65 @@ exports.retrieveTwitterFluxData = function(callback) {
       .filter(t => t.in_reply_to_status_id_str)
       .map(t => t.in_reply_to_status_id_str);
 
-    return TWITTER_CLIENT.get('statuses/lookup', {id: repliedTweetIds.join(',')}, (err, repliedTweets) => {
+    const repliedParams = {
+      id: repliedTweetIds.join(','),
+      include_entities: true,
+      tweet_mode: 'extended'
+    };
+
+    return TWITTER_CLIENT.get('statuses/lookup', repliedParams, (err, repliedTweets) => {
       const repliedTweetIndex = {};
 
       repliedTweets.forEach(t => (repliedTweetIndex[t.id_str] = t));
 
-      // TODO: il manque les retweeted
       const result = tweets.map(t => {
+
+        resolveTweetUrls(t);
+
         const item = {
-          id: t.id_str,
-          text: t.text,
-          date: t.created_at
+          tweet: t.id_str,
+          text: t.full_text,
+          html: convertTweetTextToHtml(t.full_text),
+          date: (new Date(t.created_at)).toISOString(),
+          retweets: t.retweet_count,
+          favorites: t.favorite_count,
+          type: 'normal'
         };
 
+        // Replies
         if (t.in_reply_to_status_id_str) {
           const repliedTweet = repliedTweetIndex[t.in_reply_to_status_id_str];
 
+          resolveTweetUrls(repliedTweet);
+
           item.repliedId = repliedTweet.id;
-          item.repliedText = repliedTweet.text;
+          item.repliedText = repliedTweet.full_text;
+          item.repliedHtml = convertTweetTextToHtml(repliedTweet.full_text);
           item.repliedScreenName = repliedTweet.user.screen_name;
           item.repliedName = repliedTweet.user.name;
+          item.type = 'reply';
+        }
+
+        // Retweets
+        if (t.retweeted_status) {
+          resolveTweetUrls(t.retweeted_status);
+
+          item.retweetedText = t.retweeted_status.full_text;
+          item.retweetedHtml = convertTweetTextToHtml(t.retweeted_status.full_text);
+          item.retweetedScreenName = t.retweeted_status.user.screen_name;
+          item.retweetedName = t.retweeted_status.user.name;
+          item.type = 'retweet';
+        }
+
+        // Quotes
+        if (t.quoted_status) {
+          resolveTweetUrls(t.quoted_status);
+
+          item.quotedText = t.quoted_status.full_text;
+          item.quotedHtml = convertTweetTextToHtml(t.quoted_status.full_text);
+          item.quotedScreenName = t.quoted_status.user.screen_name;
+          item.quotedName = t.quoted_status.user.name;
+          item.type = 'quote';
         }
 
         return item;

@@ -52,6 +52,9 @@ MODELS.forEach(model => {
 
 MODELS_PATHS.settings = path.join(DB_PATH, 'settings.json');
 
+MODELS_PATHS.github = path.join(DB_PATH, 'github.json');
+MODELS_PATHS.twitter = path.join(DB_PATH, 'twitter.json');
+
 function solveEnum(e, target, o) {
   const k = target + 'Label';
 
@@ -245,6 +248,60 @@ const MODEL_READERS = {
         identifier: news.id,
         internal: {
           type: 'NewsJson',
+          contentDigest: hash,
+          mediaType: 'application/json'
+        }
+      });
+    });
+  },
+
+  github({actions: {createNode, deleteNode}, getNodesByType}) {
+    if (!fs.existsSync(MODELS_PATHS.github))
+      return;
+
+    const rawData = fs.readFileSync(MODELS_PATHS.github, 'utf-8');
+    const data = JSON.parse(rawData);
+
+    getNodesByType('GithubJson').forEach(node => {
+      deleteNode({node});
+    });
+
+    // TODO: faire les permaliens vers la personne (faire gaffe au schéma)
+
+    data.forEach((event, i) => {
+      const hash = hashNode(event);
+
+      createNode({
+        ...event,
+        id: `github-${i}`,
+        internal: {
+          type: 'GithubJson',
+          contentDigest: hash,
+          mediaType: 'application/json'
+        }
+      });
+    });
+  },
+
+  twitter({actions: {createNode, deleteNode}, getNodesByType}) {
+    if (!fs.existsSync(MODELS_PATHS.twitter))
+      return;
+
+    const rawData = fs.readFileSync(MODELS_PATHS.twitter, 'utf-8');
+    const data = JSON.parse(rawData);
+
+    getNodesByType('TwitterJson').forEach(node => {
+      deleteNode({node});
+    });
+
+    data.forEach((tweet, i) => {
+      const hash = hashNode(tweet);
+
+      createNode({
+        ...tweet,
+        id: `twitter-${i}`,
+        internal: {
+          type: 'TwitterJson',
           contentDigest: hash,
           mediaType: 'application/json'
         }

@@ -297,21 +297,23 @@ export default class CoverSelector extends Component {
             )}
           </div>
         </div>
-        <div className="columns">
-          <div className="column is-6">
-            <div className="field">
-              <div><small>Crédits :</small></div>
-              <div className="control">
-                <input
-                  type="text"
-                  className="input is-small"
-                  value={cover.credits || ''}
-                  onChange={this.handleCredits}
-                  placeholder="..." />
+        {cover && (
+          <div className="columns">
+            <div className="column is-6">
+              <div className="field">
+                <div><small>Crédits :</small></div>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input is-small"
+                    value={cover.credits || ''}
+                    onChange={this.handleCredits}
+                    placeholder="..." />
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
         {processing && pixelCrop && cover && (
           <>
             <div className="columns">

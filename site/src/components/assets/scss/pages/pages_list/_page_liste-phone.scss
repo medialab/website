@@ -6,11 +6,11 @@
 .page-news-list,
 .page-activity-list{
 	
-	@media (max-width: 1000px)  {
+	@media (max-width: 1080px)  {
 
 		#liste .liste_objet{
 
-				[data-item], .list-year, .accroche-titre{ width: calc(100vw - #{$logo-column} - #{$margins-desktop*2}); }
+				[data-item], .list-year, .accroche-titre{ width: calc(100vw - #{$logo-column-medium} - #{$margins-desktop*2}); }
 			
 			
 				[data-item] ~ [data-item-accroche]{ 
@@ -73,6 +73,7 @@
 			margin: 0!important;
 			padding-top: $baseline*1!important;
 			padding-bottom: $baseline*1!important;
+			padding-left: $margins-phone;
 			background-color: $background-site!important;		
 			border-top: none!important; 
 			border-bottom: $border!important; 

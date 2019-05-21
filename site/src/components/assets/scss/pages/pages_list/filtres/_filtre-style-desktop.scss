@@ -54,17 +54,6 @@ $height-filtres-actu: $baseline * 3.5;
     } 
 
     .accroche-title-list{
-        box-sizing: content-box!important;
-        position: fixed;
-        top: -100vh;
-        
-        background-color: $background-site;
-        z-index: 90;
-        @include font-size-20;
-        color: $redlab;
-        padding-top: $baseline*0.75;
-        padding-bottom: $baseline;
-        border-bottom: $border-redlab;
         padding-right: $margins-desktop;
         margin-right: $margins-desktop;
         overflow: hidden;
@@ -73,11 +62,8 @@ $height-filtres-actu: $baseline * 3.5;
         
     }
 
-    .type_title:hover{ 
-            color: $redlab;
-        & + .accroche-title-list {
+    .type_title:hover + .accroche-title-list {
             top: $height-top-bar;  
-        }
     } 
 
 
@@ -134,8 +120,8 @@ $height-filtres-actu: $baseline * 3.5;
         z-index: 90;
     }
 
-    .accroche-title-list{ left: $logo-column + $margins-desktop ; }
-
+    .accroche-title-list{ left: $logo-column-medium + $margins-desktop ; }
+    @media screen and (min-width: 1080px){ .accroche-title-list{ left: $logo-column + $margins-desktop ; } }
     #checkbox_filtre-production_year + label,
     #checkbox_filtre-actu_year + label{
         z-index: 99;

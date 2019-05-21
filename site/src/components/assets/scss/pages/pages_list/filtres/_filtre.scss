@@ -9,6 +9,7 @@
 	@include font-size-16();
 	text-transform: uppercase;
 	font-weight: 600;
+	z-index: 15;
 
 	&:after{
 		content: "ⓘ";
@@ -19,14 +20,26 @@
 		cursor: help;
 
 	}
-	
 }
 
+.accroche-title-list{
+    box-sizing: content-box!important;
+    position: fixed;
+    z-index: 14;
+    top: -100vh;
+    background-color: $background-site;
+    @include font-size-16;
+    color: $redlab;
+    padding-top: $baseline*0.75;
+    padding-bottom: $baseline;
+    border-bottom: $border-redlab;
+    overflow: hidden;
+    transition: top .3s;     
+}
 
-
-
-
-
+.type_title:hover{ 
+        color: $redlab;
+}
 
 .go-to-year{  
 	position: fixed;    

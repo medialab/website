@@ -46,14 +46,14 @@ export default function ProductionListing({lang, list, group, types}) {
                   <React.Fragment key={i}>
                     <li data-item={nbItem} data-type={p.type} className={`list-item ${p.type}`}>
                       <Link to={p.permalink[lang]}>
-                        <div className="title-group">
-                          <h1 data-level-1="title" >{lang === 'fr' ? p.title.fr : p.title.en}</h1>
-                        </div>
-                        <div className="details">
+                        <div className="bandeau">
                           <p className="type-production" data-icon="production"> {lang === 'fr' ? p.groupLabel.fr : p.groupLabel.en}</p> 
                           <p className="subtype-production">{p.typeLabel !== 'media' && lang === 'fr' ? <span>{p.typeLabel.fr}</span> : <span>{p.typeLabel.en}</span>}</p>
                           <p className="date-production">{p.date}</p>
                         </div>
+                        <hgroup>
+                          <h1 data-level-1="title" >{lang === 'fr' ? p.title.fr : p.title.en}</h1>
+                        </hgroup> 
                         <div className="authors">
                           <p className="authors-paragraphe">
                           {p.authors}

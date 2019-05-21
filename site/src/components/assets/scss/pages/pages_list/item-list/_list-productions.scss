@@ -2,12 +2,10 @@
 
 .page-production-list #liste [data-item]{
 
-    .details{
+    .bandeau{
+        width: 100% !important; 
+        left: 0 !important;
         padding-top: $baseline/2;
-        border-top: $border-very-light;
-        position: absolute;
-        bottom: $baseline/2;
-        width: calc(70% - #{$unite});
         
         p{ 
             display: inline-block; 
@@ -26,27 +24,55 @@
             border-left: $border-very-light;
             padding-left: $unite/2;
         }
-    
     }
 
-
-
-    .title-group{
-        width: 70%;
-        margin-top: $baseline*1;
-        margin-bottom: $baseline*3;
-        padding-right: $unite;
-    }
-
-    .authors{
-        width: 30%;
-        border-left: $border-very-light;
-        margin: $baseline 0;
-        // padding-top: $baseline*2;
-        padding-left: $unite;           
-        .authors-paragraphe{ @include font-size-20; }          
+    hgroup, .authors{
+        left: 0 !important;
     }
 
     &:hover:after{ width: 100% !important; } // if no image process, adapt hover
 
+    @include for-size(desktop) {
+
+        .bandeau{
+            width: calc(70% - #{$unite});
+        }
+        hgroup, .authors{
+            display: inline-block;
+        }
+        hgroup{
+            width: 70%;
+            margin-top: $baseline*1;
+            margin-bottom: $baseline*3;
+            padding-right: $unite;
+        }
+
+        .authors{
+            width: 30%;
+            border-left: $border-very-light;
+            margin: $baseline/2 0;
+            padding-left: $unite;           
+            .authors-paragraphe{ @include font-size-20; }          
+        }
+    }
+    
+    @include for-size(phone) {
+
+        hgroup, .authors{
+            width: 100%;
+            margin: $baseline/2 0;
+            padding: 0 !important;
+            width: 100%;
+        }
+
+        .authors{
+            max-height: 0;
+            overflow: hidden;
+            transition: .25s .5s ease-in-out;
+            .authors-paragraphe{ @include font-size-16-phone; }          
+        }
+
+        hgroup:hover + .authors { max-height: 100vh; transition: .1s 0s ease-in-out; }
+
+    }
 }

@@ -2,6 +2,15 @@ $top-filtre-phone-open: $height-top-bar-phone + $baseline*3.5;
 
 @include for-size(phone) {
 
+
+    .accroche-title-list{
+        padding: $baseline $margins-phone;
+    }
+
+    .type_title:hover + .accroche-title-list {
+            top: $top-filtre-phone-open;  
+    }
+
 	#background-phone{
 		position: fixed;
 		background-color: $background-site;

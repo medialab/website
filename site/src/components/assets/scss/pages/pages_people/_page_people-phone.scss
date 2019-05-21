@@ -24,9 +24,9 @@
 				span.personne{ display: none; }
 			}
 
-			 .cache{
+			 /*.cache{
 			 	display: none;
-			 }
+			 }*/
 
 
 			#biographie{
@@ -44,13 +44,17 @@
 					margin-bottom: $baseline*2.5;
 
 					.status{ @include font-size-20(); }
-					li{  }
 					
 					.contact{
 						li{
-							padding: $baseline/2 0;
-							&:not(:last-of-type){
-								border-bottom: $border-very-light;
+							&:not(:last-of-type):after{
+								content: "";
+								width: 1px;
+								height: calc(100% - #{$baseline});
+								position: absolute;
+								top: $baseline/2;								
+								right: 0;
+								border-right: $border-very-light;
 							}
 						}
 					}
@@ -60,10 +64,8 @@
 					width: 100%;
 				}
 			}		
-			#highlight{ margin-top: $height-top-bar-phone + $baseline*2; }
+			#highlight{ margin-top: $baseline*8; }
 		} /* main */
-
-
 	}
 }
 

@@ -64,20 +64,14 @@
 			.contact {
 
 				border-bottom: $border-very-light;
-				padding-top: $baseline/2;
-				padding-bottom: $baseline/2;
+
 			
 				li{ 
 					@include font-size-16();
 					color: $text-color-light;
-					padding-right: $unite/2;
+					padding: $baseline/2 $unite/2 $baseline/2 0;
 					margin-right:  $unite/2;
 					display: inline-block;
-		
-		
-					&:last-of-type{ border-right: none; }
-		
-					
 				}
 			}
 		}

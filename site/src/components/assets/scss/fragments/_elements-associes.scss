@@ -15,9 +15,6 @@
 		color: $text-color-light;
 		display: none;
 	}
-    &:first-of-type{
-    	margin-top: $baseline*4;
-    }	
 
 	// Grey Background
 	&::before {  
@@ -89,12 +86,12 @@
 					h3{
 						@include font-size-13();
 						color: $text-color-light;
-						position: absolute;
 						width: 100%;
 						bottom: 0;
 						padding: $unite/6 0;
 						border-top: $border-very-light;
 						border-bottom: $border-very-light;
+						margin-top: 13px;
 					}
 				}
 			}
@@ -150,15 +147,23 @@
 @include for-size(desktop) {
 	.elements-associes-block, .personnes-associees-block{
 
+	    &:first-of-type{
+	    	margin-top: $baseline*4;
+	    }
+	    	
 		&::before { 
 		    height: calc(100% + 50px);
 		    min-height: 200px;
 		    top: 50px;
-		    left: calc(#{$logo-column*-1} - #{$margins-desktop*1});
+		    left: calc(#{$logo-column-medium*-1} - #{$margins-desktop*1});
+
+		    @media screen and (min-width: 1080px){ 
+				left: calc(#{$logo-column*-1} - #{$margins-desktop*1});
+		    }
 
 		}
 	    &:last-of-type::before{
-	    	height: calc(100% + 40vh - #{$unite*2});
+	    	height: calc(100% + #{$height-footer + $baseline*8} - #{$unite*2});
 	    }
 	}
 

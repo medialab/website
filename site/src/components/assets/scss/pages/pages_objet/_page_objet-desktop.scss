@@ -11,8 +11,8 @@
 	.page-activity{
 
 		main{
-			margin-bottom: 40vh;	
 			max-width: $max-width-main;
+			margin-bottom: $height-footer + $baseline*8;
 
 			hgroup{ 
 				max-width: $max-width-article; 
@@ -30,7 +30,7 @@
 				.activator{
 					display: block;
 					position: absolute;
-					width: $logo-column - $margins-desktop*2;
+					width: $logo-column-medium;
 					height: 100%;
 					z-index: 9;
 
@@ -59,6 +59,8 @@
 				.details {
 
 					padding: $baseline*1 0;
+					border-top: $border-very-light;
+					border-bottom:$border-very-light;
 
 					p, li{ 
 						@include font-size-16(); 
@@ -179,34 +181,7 @@
 
 @media screen and (min-width: 1080px) {}
 
-@media screen and (min-width: 700px) and (max-width: 1080px){
-    .page-production, 
-	.page-news, 
-	.page-activity{
-		main{ margin-left: $logo-column-medium;}
-	}
 
-}
-
-@media screen and (min-width: 1080px){
-    .page-production, 
-	.page-news, 
-	.page-activity{
-		main{ margin-left: $logo-column;}
-	}
-}
-
-
-@media screen and (min-width: 2060px) { 
-	.page-production, 
-	.page-news, 
-	.page-activity{
-		main{ 
-			margin-left: 0;
-			margin: 0 auto;
-		}
-	}
-}
 
 
 

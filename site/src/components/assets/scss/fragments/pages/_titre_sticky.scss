@@ -55,7 +55,7 @@ $height-sticky: $baseline*5;
 			.title{ 			
 				font-weight: bold;
 				@include text-overflow;
-				width: 90%;	
+				//width: 90%;	
 				max-width: $max-width-article;
 						
 			}

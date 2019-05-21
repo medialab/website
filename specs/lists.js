@@ -298,8 +298,8 @@ module.exports = {
         important: true,
         icon: {
           type: 'productionGroups',
-          property: p => productionTypeToGroup[p.type],
-          label: p => enums.productionTypes.groups[productionTypeToGroup[p.type]].fr
+          property: p => productionTypeToGroup[p.type || enums.productionTypes.default],
+          label: p => enums.productionTypes.groups[productionTypeToGroup[p.type || enums.productionTypes.default]].fr
         }
       },
       {

@@ -110,20 +110,24 @@ class SpireGeneratedField extends Component {
 
     const {peopleLabels, loading} = this.state;
     const {humanValue, spireValue, children, init, cancel, model} = this.props;
-
-    let spireLabel = spireValue;
-    if (loading)
-      spireLabel = 'loading...';
+    if (spireValue) {
+      let spireLabel = spireValue;
+      if (loading)
+        spireLabel = 'loading...';
+      else
+        if (this.props.model === 'people') {
+          spireLabel = spireValue.map(sv => peopleLabels[sv].label).join(', ');
+        }
+      return (<div>
+        <div className='notification is-medium'>{spireLabel}</div>
+        {(!humanValue && humanValue !== "") && <Button kind='text' onClick={() => {init();}}>Modifier la valeur générée depuis SPIRE</Button>}
+        {(humanValue || humanValue === '') && children} 
+        {(humanValue || humanValue === '') && <Button kind='text' onClick={() => {cancel();}}>Annuler et restaurer la valeur générée depuis spire </Button>}
+      </div>);
+    }
     else
-      if (this.props.model === 'people') {
-        spireLabel = spireValue.map(sv => peopleLabels[sv].label).join(', ');
-      }
-    return (<div>
-      <div className='notification is-medium'>{spireLabel}</div>
-      {(!humanValue && humanValue !== "") && <Button kind='text' onClick={() => {init();}}>Modifier la valeur générée depuis SPIRE</Button>}
-      {(humanValue || humanValue === '') && children} 
-      {(humanValue || humanValue === '') && <Button kind='text' onClick={() => {cancel();}}>Annuler et restaurer la valeur générée depuis spire </Button>}
-    </div>);
+      return children;
+
   };
 
 }
@@ -410,19 +414,19 @@ function renderProductionForm(props) {
         </div>
 
       </div>
-
-      <div className="form-group is-important">
-        <div className="field">
-          <label className="label title is-4">{'"' + ((data.title && data.title.en) || data.spire.generatedFields.title.fr) + '"' || 'Publication'} page's production status</label>
-          <div className="control">
-            <BooleanSelector
-              value={!data.draft}
-              labels={['published', 'draft']}
-              onChange={handlers.published} />
+      { (data.title || data.spire) &&
+        <div className="form-group is-important">
+          <div className="field">
+            <label className="label title is-4">{'"' + ((data.title && (data.title.fr || data.title.en)) || (data.spire && data.spire.generatedFields.title.fr)|| '') + '"' || 'Publication'} page's production status</label>
+            <div className="control">
+              <BooleanSelector
+                value={!data.draft}
+                labels={['published', 'draft']}
+                onChange={handlers.published} />
+            </div>
           </div>
         </div>
-      </div>
-
+      }
     </div>
   );
 }

@@ -216,16 +216,17 @@ export default function PeopleDetail({lang, person}) {
       <main id="main">
 
 
-        <div className="titre-sticky">
-          <div id="logo-sticky"><a href="/"><Logo /></a></div>
-          <p>
-          <Link to="/people">
-            <span>{lang === 'fr' ? "L'équipe du Medialab" : 'Medialab team'} </span>
-          </Link>
-          <span className="personne"><a href="#topbar">{person.firstName} {person.lastName}</a></span>
-        </p>
-
+        <header id="titre-sticky">
+          <div id="container-titre-sticky">
+            <div id="logo-sticky"><a href="/"><Logo /></a></div>
+            <p>
+            <Link to="/people">
+              <span>{lang === 'fr' ? "L'équipe du Medialab" : 'Medialab team'} </span>
+            </Link>
+            <span className="personne"><a href="#topbar">{person.firstName} {person.lastName}</a></span>
+          </p>
         </div>
+        </header>
 
 
 

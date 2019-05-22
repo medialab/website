@@ -6,10 +6,6 @@
  
 	.page-people{
 
-		#topbar{
-			position: absolute!important; 
-			top: 0;
-		}
 		main{
 			transition: .25s ease-in-out;
 			padding-top: $height-top-bar;
@@ -102,9 +98,9 @@
 
 
 
+/* mettre les hightlights sur le côté pour les très grand écran */
 
-
-@media screen and (min-width: 1620px){
+@media screen and (min-width: 1800px){
 
 	.page-people #biographie{
 		display: flex;

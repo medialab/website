@@ -83,12 +83,11 @@
 		#liste{
 			margin: 0 $margins-phone;
 			margin-top: $height-top-bar-phone + $baseline*3.5;
-			width: $mobile-container-width;
-			
+			width: $mobile-container-width;			
 
 			.liste_objet{
 
-				width: $mobile-container-width;
+				width: 100%;
 				height: auto;
 				margin-bottom: 50vh;
 				min-height: calc(100vh - 50vh - #{$height-top-bar-phone});
@@ -107,7 +106,7 @@
 
 				.item_accroche{
 					@include font-size-13-phone();
-					width: $mobile-container-width!important;
+					width: 100%;
 				}
 
 			}

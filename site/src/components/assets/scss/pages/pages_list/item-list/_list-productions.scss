@@ -68,11 +68,11 @@
         .authors{
             max-height: 0;
             overflow: hidden;
-            transition: .25s .5s ease-in-out;
+            transition: .1s 0s ease-in-out;
             .authors-paragraphe{ @include font-size-16-phone; }          
         }
 
-        hgroup:hover + .authors { max-height: 100vh; transition: .1s 0s ease-in-out; }
+        hgroup:hover + .authors { max-height: 100vh; transition: .25s .5s ease-in-out; }
 
     }
 }

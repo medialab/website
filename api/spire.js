@@ -28,23 +28,35 @@ const resultPerPage = 2000;
 const labIdSpire = '2441/53r60a8s3kup1vc9kf4j86q90';
 
 const title = record => (record.title_non_sort ? record.title_non_sort : '') + record.title + (record.title_sub ? ' - ' + record.title_sub : '');
-const description = record => {
-  if (record.resources && record.resources.length >= 1) {
-    return record.citation.html.chicago.replace(/href=".*?"/g, `href="${record.resources[0].url}"`);
+const ref = record => {
+  const resourcesFiltered = record.resources ? record.resources.filter(p => p.relation_type !== 'frontCover') : [];
+  if (resourcesFiltered.length >= 1) {
+    return record.citations ? record.citations.html.chicago.replace(/href=".*?"/g, `href="${resourcesFiltered[0].url}"`) : false;
   }
   else {
-    return record.citation.html.chicago;
+    return record.citations ? record.citations.html.chicago : false;
   }
 };
 // translation functions stored by object path.
 // translation function returns false is ther is nothing to update for the path.
 const translators = {
   'type': record => spireTypes[record.spire_document_type],
-  'date': record => record.date_issued,
+  'date': record => {
+    if (record.date_issued || record.date_created) {
+      let date = record.date_issued || record.date_created;
+      //sometimes the format is YYYYMMDD and not YYYY-MM-DD ....
+      if (date.length === 8 && !date.includes('-'))
+        date = `${date.slice(0, 4)}-${date.slice(4, 6)}-${date.slice(6, 8)}`;
+      return date;
+    }
+    else
+      if (record.is_part_ofs && record.is_part_ofs.length > 0)
+        return record.is_part_ofs.find(ipo => ipo.date_issued).date_issued
+  },
   'title.en': record => title(record),
   'title.fr': record => title(record),
-  'description.en': record => record.citations.html.chicago,
-  'description.fr': record => record.citations.html.chicago,
+  'description.en': record => ref(record),
+  'description.fr': record => ref(record),
   'content': record => {
     const content = {};
     if (record.descriptions) {
@@ -57,10 +69,10 @@ const translators = {
   },
   'authors': record => record.creators.filter(c => c.agent.rec_class === 'Person').map(c => `${c.agent.name_given} ${c.agent.name_family}`).join(', '),
   // people:
-  'ref': record => record.citations.html.chicago,
+  'ref': record => ref(record),
   'url': record => {
-    if (record.resources && record.resources.length >= 1)
-      return record.resources[0].url;
+    if (record.resources && record.resources.filter(r => r.relation_type !== 'frontCover') && record.resources.filter(r => r.relation_type !== 'frontCover').length >= 1)
+      return record.resources.filter(r => r.relation_type !== 'frontCover')[0].url;
     else
       return config.spire.front + record.rec_id;
   },

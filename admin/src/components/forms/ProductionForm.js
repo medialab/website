@@ -282,7 +282,7 @@ function renderProductionForm(props) {
               <label className="label">French Description</label>
               <div className="control">
                 <SpireGeneratedField
-                  spireValue={data.spire && data.spire.generatedFields.description.fr}
+                  spireValue={data.spire && data.spire.generatedFields.description && data.spire.generatedFields.description.fr}
                   humanValue={data.description && data.description.fr}
                   init={() => handlers.frenchDescription({target: {value: ''}})}
                   cancel={() => handlers.frenchDescription({target: {value: undefined}})}>
@@ -302,7 +302,7 @@ function renderProductionForm(props) {
               <label className="label">English Description</label>
               <div className="control">
                 <SpireGeneratedField
-                  spireValue={data.spire && data.spire.generatedFields.description.en}
+                  spireValue={data.spire && data.spire.generatedFields.description && data.spire.generatedFields.description.en}
                   humanValue={data.description && data.description.en}
                   init={() => handlers.englishDescription({target: {value: ''}})}
                   cancel={() => handlers.englishDescription({target: {value: undefined}})}>

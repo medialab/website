@@ -87,7 +87,15 @@
 				text-indent: #{$unite-phone*-1};
 				width: calc(100% - #{$unite-phone*2.5});
 				&:before{ content: "⁘"; left: #{$unite-phone*-1.5};}
-			}	
+			}
+
+			iframe{
+				max-width: 100%;
+				//height: auto;
+				margin-bottom: $baseline;
+			}
+
+			img, figure{ max-width: 100%;}
 		}
 	}
 }

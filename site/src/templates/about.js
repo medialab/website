@@ -10,7 +10,7 @@ export default ({data, pageContext}) => {
   return (
     <Layout
       lang={pageContext.lang}
-      className="page-about"
+      className="body-page page-about"
       permalinks={pageContext.permalinks}>
       <About lang={pageContext.lang} />
     </Layout>

@@ -1,3 +1,16 @@
+/* Coller le footer en bas de toutes les pages */
+
+.body-page{
+	min-height:100vh; 
+	@include flex();
+	@include flex-direction(column);
+}
+
+main{
+	@include flex-grow(1); 
+}
+
+
 /* Regles typographique de bases communes à toutes les pages de contenu */
 
 

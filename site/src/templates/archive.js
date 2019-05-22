@@ -62,7 +62,7 @@ export default ({data, pageContext}) => {
   return (
     <Layout
       lang={pageContext.lang}
-      className="page-archive"
+      className="page-archive body-page"
       permalinks={pageContext.permalinks}>
       <Archive
         lang={pageContext.lang}

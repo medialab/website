@@ -12,7 +12,7 @@ const ErrorPage = ({data, pageContext}) => {
   const permalink = `${code}.html`;
 
   return (
-    <Layout lang={pageContext.lang} className="page-error" permalink={permalink}>
+    <Layout lang={pageContext.lang} className="page-error body-page" permalink={permalink}>
       <Page code={code} lang={pageContext.lang} />
     </Layout>
   );

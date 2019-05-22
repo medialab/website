@@ -2,6 +2,9 @@ import React from 'react';
 import {Link} from 'gatsby';
 import {SECTIONS} from '../../helpers/sections';
 
+import Img from '../../assets/images/sample/default-people.png';
+
+
 const MembresAssocies = ({lang, people}) => {
 
   const related = SECTIONS.people;
@@ -29,7 +32,7 @@ const MembresAssocies = ({lang, people}) => {
           {people.map(p => (
             <li key={p.permalink.fr} data-type="people">
               <Link to={p.permalink[lang]}>
-                <figure><img src={p.coverImage && p.coverImage.url} /></figure>
+                <figure><img src={p.coverImage ? p.coverImage.url : Img} alt={lang === 'fr' ? 'Photo de profil de ' + p.firstName + p.lastName : p.firstName + p.lastName + ' profil picture'} /></figure>
                 <hgroup>
                   <h2>{p.firstName} {p.lastName}</h2>
                   <h3 data-level-2="role" data-type="role">{p.role && (p.role[lang] || p.role.fr || p.role.en)}</h3>

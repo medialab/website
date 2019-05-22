@@ -29,23 +29,13 @@ export default function Nav({lang, data = {}, order = []}) {
   }
 
   return (
+  <>
+  {/*<div className="nav-inside-item" data-type="main-article">
+    <a href="/">
+      <Logo />
+    </a>
+  </div>*/}
   <nav id="nav-inside-article">
-    <div className="nav-inside-item" data-type="main-article">
-      <a href="/">
-        <Logo />
-      </a>
-    </div>
-
-    <div className="nav-inside-item" id="img-container">
-      <div id="activator">
-      </div>
-      <div id="img-article">
-        <div className="container">
-          { coverImage && coverImage}
-        </div>
-      </div>
-
-    </div>
     {(getRelatedElements(order, data)).map(related => (
       <div key={related.id} className="nav-inside-item" data-type={related.id}>
         <p>
@@ -54,5 +44,6 @@ export default function Nav({lang, data = {}, order = []}) {
       </div>)
     )}
   </nav>
+  </>
   );
 }

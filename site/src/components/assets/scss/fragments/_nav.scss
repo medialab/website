@@ -6,12 +6,8 @@ $width-main-image: calc( 100vw - #{$margins-desktop*0});
     #nav-inside-article{
         width: $logo-column-medium;
         .nav-inside-item{
-            img, svg{ width: $logo-column-medium/3 + $unite/2; }
             a{ width: $logo-column-medium/3;}
         }
-        #activator{ width: $logo-column-medium - $margins-desktop*2; }
-        #img-article{  width: $logo-column-medium - $margins-desktop*2; }
-        #img-article .container{ width: $logo-column-medium - $margins-desktop*2; }
     }
 }
 
@@ -19,12 +15,8 @@ $width-main-image: calc( 100vw - #{$margins-desktop*0});
     #nav-inside-article{
         width: $logo-column;
         .nav-inside-item{
-            img, svg{ width: $logo-column/3 + $unite/2; }
             a{ width: $logo-column/3;}
         }
-        #activator{ width: $logo-column - $margins-desktop*2; }
-        #img-article{  width: $logo-column - $margins-desktop*2; }
-        #img-article .container{ width: $logo-column - $margins-desktop*2; }
     }
 }
 
@@ -33,22 +25,11 @@ $width-main-image: calc( 100vw - #{$margins-desktop*0});
 
 @include for-size(desktop) {
     #nav-inside-article{
-        padding-top:$margins-desktop/2;
         padding-bottom: $margins-desktop*1;
-        height: 100%;
-
         position: fixed;
-        top: 0;
+        bottom: 0;
         left: $margins-desktop;
         z-index: 6;
-        display: flex;
-        flex-direction: column;
-        justify-content: stretch;
-        align-content: stretch;
-
-       #img-container + .nav-inside-item{
-           padding-top: $baseline!important;
-       }
 
         .nav-inside-item{
            
@@ -60,34 +41,7 @@ $width-main-image: calc( 100vw - #{$margins-desktop*0});
             //fonts
 
             @include font-size-13();
-
-            display: flex;
-            align-items: center;
-            &:first-of-type{
-
-                align-items: flex-start;
-
-                // Fill the hole around
-                width: 100%;
-                left: $unite*-1;
-                padding: $unite*.8 0 0 $unite;
-                //height:  $unite*4;
-                top:  $unite*-1;
-                height: 82px;
-                width: calc( 100% + 25px );
-                background: $background-site;
-                z-index: 9; // So gets upon fullscreen Image Process in nav
-
-
-                &:after{border-bottom: none;}
-
-                img, svg{
-                    margin: calc(#{$unite} + 5px) 0 5px 0;
-                    fill: $text-color; }
-            }
-
-
-
+            
             &[data-type="main"] a::before{
                 content: $scrolltop;
             }
@@ -112,78 +66,6 @@ $width-main-image: calc( 100vw - #{$margins-desktop*0});
             }
 
         }
-
-        /*#img-container{
-            flex-grow: 1;
-            position: relative;
-
-
-            #activator{
-                display: block;
-                position: absolute;
-                height: 100%;
-                z-index: 9;
-
-                &:hover{
-                    
-                    & + #img-article{
-                        overflow: inherit;
-                    }
-                }        
-            }
-
-            #img-article{
-                overflow: hidden;
-                display: inline-block;
-                height: 100%;
-                top: $height-sticky;
-                transition: all .25s cubic-bezier(.76,.05,.86,.06);
-                font-size: $font-size*1.3!important;
-                line-height: 1.15!important;
-                font-weight: bold;
-                color: $color-img;
-
-                .container{
-                    height: 100%;
-
-                    div{
-                        position: absolute;
-                        width: $width-main-image;
-                        height: 100vh;                                           
-                        // top: calc(#{$height-top-bar*-1} - #{$unite});
-                        top: -50px;
-                        left: calc(#{$unite*-1} - 3px);
-
-                        img{ display: none;}
-
-                        pre{
-                            font-weight: bold;
-                            font-size: calc(((100vw - #{$unite*2})/240)*1.89); // Should change with width
-                            line-height: 95%;
-                            overflow: hidden;
-                            //background: $background-site;
-                            
-                        }
-                    }
-                }            
-            }
-
-            .caption{
-                color: $text-color;
-                @include font-size-16;
-                @include text-background( 3px 6px);
-
-                position: absolute;
-                bottom: $baseline*2;
-                left: $unite;
-                z-index: 9;
-
-
-            }
-
-            &:hover{ color: currentColor!important;}
-        }*/
-
     }
 }
 

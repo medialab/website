@@ -16,7 +16,7 @@ import RawHtml from '../helpers/RawHtml';
 import {templateMembership} from '../helpers/helpers.js';
 //import './scss/page_personne.scss';
 
-import Img from '../assets/images/sample/D-Cardon-bis.jpg';
+import Img from '../assets/images/sample/default-people.png';
 
 export const queryFragment = graphql`
   fragment PeopleDetail on PeopleJson {

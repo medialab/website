@@ -50,8 +50,8 @@ MODELS.forEach(model => {
   GRAPHQL_SCHEMAS[model] = graphQLSchemaAdditionFromJsonSchema(model, SCHEMAS[model]);
 });
 
+// Specifics schemas & models
 MODELS_PATHS.settings = path.join(DB_PATH, 'settings.json');
-
 MODELS_PATHS.github = path.join(DB_PATH, 'github.json');
 MODELS_PATHS.twitter = path.join(DB_PATH, 'twitter.json');
 

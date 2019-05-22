@@ -85,6 +85,10 @@
               "type": "number"
             }
           }
+        },
+        "credits": {
+          "title": "Crédits",
+          "type": "string"
         }
       }
     },

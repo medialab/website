@@ -9,14 +9,40 @@
 	@include font-size-16();
 	text-transform: uppercase;
 	font-weight: 600;
-	
+	z-index: 15;
+
+	&:after{
+		content: "ⓘ";
+		padding-left: $unite/3;
+		color: $text-color-light;
+		text-transform: lowercase;
+		font-weight: 100;
+		cursor: help;
+		display: inline-block;
+		position: absolute; 
+		right: 0;
+	}
 }
 
+.accroche-title-list{
+    box-sizing: content-box!important;
+    position: fixed;
+    z-index: 14;
+    top: -100vh;
+	background-color: $background-site;
+	@include font-size-16;
+	@media screen and (min-width: 1200px){ @include font-size-20; } 
+    color: $redlab;
+    padding-top: $baseline*0.75;
+    padding-bottom: $baseline;
+    border-bottom: $border-redlab;
+    overflow: hidden;
+    transition: top .3s;     
+}
 
-
-
-
-
+.type_title:hover{ 
+        color: $redlab;
+}
 
 .go-to-year{  
 	position: fixed;    

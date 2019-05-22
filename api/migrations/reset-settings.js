@@ -8,5 +8,6 @@ module.exports = function(req, dbs, next) {
     }
   });
 
-  dbs.settings.write().then(() => next());
+  dbs.settings.write();
+  return next();
 };

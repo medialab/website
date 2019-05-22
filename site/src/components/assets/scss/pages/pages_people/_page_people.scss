@@ -4,21 +4,11 @@
 	    visibility: hidden !important;
 	}
 
-	.titre-sticky{
-
-		.retour{
-			padding-right: $unite/2;
-		}
-
-		.personne{
-			font-weight: 100;
-			&:before{
-				content: " / ";
-			}
-		} 
-	}
 
 	#biographie{
+
+		/* HEADER --------------------------------------------------------------- 
+		 ------------------------------------------------------------------------ */
 		
 		figure{
 			max-height: auto;
@@ -35,19 +25,12 @@
 	
 		header{
 	
-		
-		
 			.status{
 				margin-top: $baseline/2;
 				font-style: italic;					
 				&::before{ content: "“"; }
 				&::after{ content: "”"; }
-
 			}
-
-
-		
-
 
 			.bandeau{ 
 				border-top: $border-very-light;
@@ -59,7 +42,7 @@
 				p{ 
 					display: inline-block;
 					color: $text-color-light;
-					@include font-size-13(); 
+					@include font-size-16(); 
 				}
 				[data-type="role"]{
 					color: $redlab;
@@ -81,26 +64,23 @@
 			.contact {
 
 				border-bottom: $border-very-light;
-				padding-top: $baseline/2;
-				padding-bottom: $baseline/2;
+
 			
 				li{ 
-					@include font-size-13();
+					@include font-size-16();
 					color: $text-color-light;
-					border-right: $border-very-light;
-					padding-right: $unite/2;
+					padding: $baseline/2 $unite/2 $baseline/2 0;
 					margin-right:  $unite/2;
 					display: inline-block;
-		
-		
-					&:last-of-type{ border-right: none; }
-		
-					
 				}
 			}
 		}
 
-		.biographie-contenu{
+
+		/* CONTENU --------------------------------------------------------------- 
+		 ------------------------------------------------------------------------ */
+
+		.biographie-content{
 			a{
 				@include linktext();
 				transition: .25s linear;
@@ -108,10 +88,32 @@
 				&:hover{
 					color: $redlab;
 					text-decoration-color: $redlab;
-
 				}
 			}
 		}
 
 	}
+
+	/* HIGHLIGHT --------------------------------------------------------------- 
+		------------------------------------------------------------------------ */
+
+	#highlights{
+		width: 100%;
+		overflow: hidden;
+		position: relative;
+		margin-top: $baseline*6;
+
+		> h1{
+			margin-bottom: $baseline*2;
+			@include font-size-40();
+		}
+
+		ul:first-of-type { 
+				border-top: $border; 
+				padding-top: 1px;
+		}
+	}
+
+
+
 }

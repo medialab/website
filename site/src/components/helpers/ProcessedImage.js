@@ -1,9 +1,9 @@
 import React from 'react';
 
 const ROWS = {
-  small: 75,
-  medium: 125,
-  large: 250
+  small: 60,
+  medium: 120,
+  large: 240
 };
 
 

@@ -4,12 +4,18 @@
 
 @include for-size(desktop) {
     footer{
-        height: $unite*7;
+        height: $height-footer;
         width: 100vw;
-        left: $margins-desktop * -1;
+        background: $background-site;
+        left: 0;
         padding: 0 $margins-desktop;
-        border-top: $border-light;
-      
+        border-top: $border;
+        z-index: 99;   
+        
+        #container-footer{
+            max-width: $max-width-main + $margins-desktop*2;
+            margin: 0 auto;
+        }
 
         @include font-size-16();
 
@@ -18,7 +24,7 @@
 
             color: $text-color-light;
             width: 240px;
-            margin-left: calc(100% - 240px);
+            margin-left: $margins-desktop;
             margin-top: $baseline;
             a:hover{ color: $redlab;}
 
@@ -32,73 +38,19 @@
         }
 
         .contact{
-            ul{
-                // @include flex();
-                // @include flex-wrap(wrap);
-                // @include justify-content(flex-end);
-                // width: 100%;
-
-                li{
+            li{
                     display: inline-block;
                     &:not(:last-of-type):after{
                         content: "/";
                         padding: 0 $unite;
                     }
-
-                }
             }           
         }
+
+
     }
+    //.page-home footer{ background: $background-site;}
 }
-
-
-// @include for-size(desktop) {
-// 	.page-about{
-
-// 		footer{
-// 			margin-left: $logo-column;
-// 			width: calc( 100% - #{$margins-desktop*2} - #{$logo-column});
-// 			margin-bottom: 2px;
-// 		}
-//     }
-    
-//     .page-home{
-
-//         footer{
-//             width: 100%;
-//             margin-left: 0;
-//         }
-//     }
-
-//     .page-people-list{
-//         footer{
-//             margin-left: $logo-column;
-//             width: calc( 100% - /*#{$margins-desktop*2} -*/ #{$logo-column});
-//             margin-bottom: 2px;
-//         }
-//     }
-
-//     .page-production, 
-//     .page-news, 
-//     .page-activity{
-//         footer{
-//             margin-left: $logo-column;
-//             width: calc( 100% - /*#{$margins-desktop*2} -*/ #{$logo-column});
-//             margin-bottom: 2px;
-//         }
-//     }
-
-//     .page-people{
-//         footer{
-//             margin-left: $logo-column;
-//             width: calc( 100% - #{$margins-desktop*2} - #{$logo-column});
-//             margin-bottom: 2px;
-//         }
-//     }
-
-    
-// }
-
 
 
 /////////////////////
@@ -110,7 +62,7 @@
         margin: $unite-phone $margins-phone 0 $margins-phone;
         padding: $unite-phone 0;
         width: calc( 100% - #{$margins-phone*2} );
-        border-top: $border-light;
+        border-top: $border;
 
         @include flex();
         @include flex-direction(column);

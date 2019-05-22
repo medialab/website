@@ -1,3 +1,84 @@
+/* Coller le footer en bas de toutes les pages */
+
+.body-page{
+	min-height:100vh; 
+	@include flex();
+	@include flex-direction(column);
+}
+
+main{
+	@include flex-grow(1);  
+	
+}
+
+
+/* MAIN DE TOUTES LES PAGES RESPONSIVE  */
+
+@include for-size(phone) {
+
+	main{
+		width: 100%;
+		padding: 0 $margins-phone;
+	}
+
+}
+
+
+@include for-size(desktop){
+	main{
+		width: 100%;
+		max-width: $max-width-main + $margins-desktop*2;
+		padding: 0 $margins-desktop;
+		margin-bottom: $height-footer + $baseline*8;
+	}
+}
+
+
+
+	.page-people main,
+	.page-production main, 
+	.page-news main, 
+	.page-activity main{ 
+		@media screen and (min-width: 700px) and (max-width: 1080px){
+			margin-left: $logo-column-medium;
+		}
+		@media screen and (min-width: 1080px){
+			margin-left: $logo-column;
+		}
+	}
+
+
+
+
+@media screen and (min-width: 2060px) { 
+	main{ 
+		margin-left: 0!important;
+		margin: 0 auto!important;
+	}
+}	
+
+
+/* ??????????? */
+
+@include for-size(desktop){
+	.page-about main{
+		/* ? */
+		margin-bottom: 40vh;
+		@include flex;
+		@include flex-wrap(wrap);
+	}
+}
+
+@media screen and (min-width: 700px) and (max-width: 1080px){
+	.page-about main{ margin-left: $logo-column-medium; }
+}
+
+@media screen and (min-width: 1080px){
+	.page-about main{ margin-left: $logo-column; }
+}
+
+
+
 /* Regles typographique de bases communes à toutes les pages de contenu */
 
 
@@ -9,8 +90,41 @@
 	.page-people,
 	.page-about{
 
+
+		/// Typo Header hgroup
+		#article-contenu, 
+		#biographie,
+		#about-contenu {
+
+			@media screen and (min-width: 700px) { 
+				hgroup{			
+					h1{ @include font-size-40(); }
+					h2, h3{ 
+						@include font-size-27();
+						margin-top: $baseline*1.5;
+						margin-right: 80px;
+					}
+				}	
+			}
+
+
+			@media screen and (min-width: 900px) {
+
+			}
+
+			@media screen and (min-width: 1080px) {
+				hgroup{
+					h1{ @include font-size-60(); }				
+					h2, h3{ 
+						@include font-size-27();
+						margin-top: $baseline*1.5;
+					}
+				}		
+			}
+		}
+
 		.article-contenu, 
-		.biographie-contenu,
+		.biographie-content,
 		.about-contenu {
 
 							
@@ -37,7 +151,6 @@
 			}
 
 
-			.title-style-level-1,
 			[data-style-level="1"]{
 				@include font-size-20;
 				font-weight: bold;
@@ -46,7 +159,6 @@
 				margin-bottom: $baseline*2;
 			}
 
-			.title-style-level-2,
 			[data-style-level="2"]{
 				@include font-size-20;
 				font-weight: bold;
@@ -54,7 +166,6 @@
 				margin-bottom: $baseline*2;
 			}
 
-			.title-style-level-3,
 			[data-style-level="3"]{
 				@include font-size-20;
 				font-weight: 300;
@@ -64,21 +175,18 @@
 			}
 
 
-			.title-style-level-1 + p,
 			[data-style-level="1"] + p,
-			.title-style-level-2 + p,
 			[data-style-level="2"] + p,
-			.title-style-level-3 + p,
-			[data-style-level="3"] + p{
+			[data-style-level="3"] + p,
+			[data-style-level="1"] + ul,
+			[data-style-level="2"] + ul,
+			[data-style-level="3"] + ul,
+			[data-style-level="1"] + figure,
+			[data-style-level="2"] + figure,
+			[data-style-level="3"] + figure,
+			[data-style-level="1"] + [data-style-level="3"]{
 				margin-top: 0!important;
 			}
-
-			
-
-			.title-style-level-1 + .title-style-level-2,
-			[data-style-level="1"] + [data-style-level="3"]{ margin-top: 0;}
-
-
 
 
 			p + p {  margin-top: $baseline*2; }
@@ -91,8 +199,10 @@
 			li{ 
 				left: $unite*1.5;
 				text-indent: -15px;
-				&:before{ content: "⧆"; left: -15px;}
+				&:before{ content: "⁘"; left: -15px;}
 			}
 		}
+
+	
 	}
 }

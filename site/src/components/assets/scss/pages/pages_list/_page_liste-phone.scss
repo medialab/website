@@ -6,11 +6,11 @@
 .page-news-list,
 .page-activity-list{
 	
-	@media (max-width: 1000px)  {
+	@media (max-width: 1080px)  {
 
 		#liste .liste_objet{
 
-				[data-item], .list-year, .accroche-titre{ width: calc(100vw - #{$logo-column} - #{$margins-desktop*2}); }
+				[data-item], .list-year, .accroche-titre{ width: calc(100vw - #{$logo-column-medium} - #{$margins-desktop*2}); }
 			
 			
 				[data-item] ~ [data-item-accroche]{ 
@@ -30,7 +30,7 @@
 		
 				[data-item]:hover ~ [data-item-accroche],
 				[data-item-accroche]:hover{
-					border-bottom: $border-light; 
+					border-bottom: $border; 
 				}
 			
 
@@ -55,7 +55,6 @@
 		// 	text-align: center;	
 		// 	padding-top: $baseline*2;
 		// 	padding-bottom: $baseline*2;
-		// 	border-bottom: $border-light;
 		// }
 
 		
@@ -74,21 +73,21 @@
 			margin: 0!important;
 			padding-top: $baseline*1!important;
 			padding-bottom: $baseline*1!important;
+			padding-left: $margins-phone;
 			background-color: $background-site!important;		
 			border-top: none!important; 
-			border-bottom: $border-bold!important; 
+			border-bottom: $border!important; 
 			z-index: 15!important;
 		}
 
 		#liste{
 			margin: 0 $margins-phone;
 			margin-top: $height-top-bar-phone + $baseline*3.5;
-			width: $mobile-container-width;
-			
+			width: $mobile-container-width;			
 
 			.liste_objet{
 
-				width: $mobile-container-width;
+				width: 100%;
 				height: auto;
 				margin-bottom: 50vh;
 				min-height: calc(100vh - 50vh - #{$height-top-bar-phone});
@@ -107,7 +106,7 @@
 
 				.item_accroche{
 					@include font-size-13-phone();
-					width: $mobile-container-width!important;
+					width: 100%;
 				}
 
 			}

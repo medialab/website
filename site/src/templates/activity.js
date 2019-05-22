@@ -20,7 +20,7 @@ export default ({data, pageContext}) => {
   return (
     <Layout
       lang={pageContext.lang}
-      className="page-activity"
+      className="page-activity body-page"
       permalinks={pageContext.permalinks}>
       <ActivityDetail lang={pageContext.lang} activity={activity} />
     </Layout>

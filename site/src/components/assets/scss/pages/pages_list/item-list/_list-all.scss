@@ -2,7 +2,105 @@
 
 
 //$width-image-pre-listing: 90px;
-$width-image-pre-listing: ( ( 100% / 125 ) * 10 );
+$width-image-pre-listing: ( ( 100% / 120 ) * 1.1338 * 10 );
+$width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
+
+.page-production-list #liste .liste_objet,
+.page-activity-list #liste .liste_objet,
+.page-news-list #liste .liste_objet{
+
+    li{
+        border-bottom: $border;
+        width: 100%;
+        position: relative;
+        height: auto;
+
+
+        a{ 
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+        }
+
+        .image-pre{
+            position: absolute;
+            left: 0;
+            height: 100%;
+            overflow: hidden;
+            transition: max-width 0.25s cubic-bezier(1,0,0,1);
+            font-size: 1.1vw;
+            
+            z-index: 0;
+            pre{ 
+                color: $color-img;
+                line-height: 95%;                    
+                //top: -50%;
+                //transform: translateY(50%);
+            }
+        
+        }
+
+        .image-pre:hover{ 
+            transition-duration: .15s;
+            background-color: $background-site;
+        }
+
+
+        .bandeau{
+            //position: absolute;
+            border-bottom: $border-very-light;
+            padding: $baseline/2 0;
+            @include text-overflow();
+            p{ 
+                @include font-size-13; 
+                display: inline-block; 
+                vertical-align: top;
+            }
+            /* activities */
+            .title{ 
+                @include text-overflow();
+                padding-left: $unite/2;
+                margin-left: $unite/2;
+                border-left: $border-very-light;
+                color: $redlab;
+                // font-weight: 600!important;
+            }
+            /* news */
+            .date-news, .hours-news{
+                margin-left: $baseline*1;
+                padding-left: $baseline*1;
+                border-left: $border-very-light;
+            }
+            .date-news{ 
+                // font-weight: 600; 
+                color: $redlab;
+                margin-left: $baseline*1;
+                padding-left: $baseline*1;
+                border-left: $border-very-light;
+            }
+            .hours-news::before{ content: $time; }
+            .label-news{
+                // @include font-size-13-uppercase; 
+                position: absolute; 
+                right: 0;
+                text-align: right;
+                @include for-size( desktop-1200) { left: calc( 50% + #{$unite/2} ); text-align: left; }
+            }
+            
+
+        }
+
+        hgroup, .accroche{
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        h1::first-letter{ text-transform: capitalize; }
+
+        &:hover{ background-color: $background-grey; }
+
+    }
+}
 
 @include for-size(desktop) {
 
@@ -10,115 +108,34 @@ $width-image-pre-listing: ( ( 100% / 125 ) * 10 );
     .page-activity-list #liste .liste_objet,
     .page-news-list #liste .liste_objet{
         
-        margin-bottom: 40vh;
-        min-height: calc(100vh - 40vh - #{$height-top-bar-phone});
-        // border-top: $border-light;
+        margin-bottom: $height-footer;
+        min-height: calc(100vh - #{$height-footer} - #{$height-top-bar});
 
         li{
-            border-bottom: $border-light;
-            //width: calc(100vw - #{$logo-column} - #{$margins-desktop*2}); 
-            width: 100%;
-            position: relative;
-            height: auto;
-
-
-            a{ 
-                width: 100%;
-                height: 100%;
-                display: inline-block;
-                @include flex();
-                @include flex-direction(row);
+            a{
+                //@include flex();
+                //@include flex-direction(row);
             }
-
 
             .image-pre{
-                position: absolute;
-                //max-width: $width-image-pre-listing;
-                max-width: calc(#{$width-image-pre-listing});
-                height: 100%;
-                overflow: hidden;
-                transition: max-width 0.25s cubic-bezier(1,0,0,1);
-                font-size: 1.1vw;
-                
-                z-index: 0;
+                max-width: $width-image-pre-listing;
+                &:hover{ max-width: calc( ( 100% + #{$width-image-pre-listing/2} )/2)!important;}
                 pre{ 
-                    color: $color-img;
-                    //font-size: calc((( ((100vw - #{$unite*2}) - #{$logo-column} ) /2 ) /125 )*1.89 ); // Should change with width
-                    //line-height: calc((( ((100vw - #{$unite*2}) - #{$logo-column} ) /2 ) /125 )*1.50 );
-                    font-size: calc(( (((100vw - #{$unite*2}) - #{$logo-column}) / 2 )  /125 )*1.89 ); 
-                    line-height: normal;                    
-                    top: -50%;
-                    transform: translateY(50%);
+                    font-size: calc((((( 100vw - #{$unite*2}) - #{$logo-column}) / 2 )  /120 ) *1.89 ); 
                 }
-            
             }
-
-            .image-pre:hover{ 
-                max-width: calc(#{$width-image-pre-listing} + (100% - #{$width-image-pre-listing})/2)!important; 
-                transition-duration: .15s;
-                background-color: $background-site;
-            }
-
-
             .bandeau{
-                position: absolute;
                 width: calc(100% - #{$width-image-pre-listing} - #{$unite});
-                left: calc(#{$width-image-pre-listing} + #{$unite/2});           
-                border-bottom: $border-very-light;
-                padding: $baseline/2 0;
-                @include text-overflow();
-                p{ 
-                    @include font-size-13; 
-                    display: inline-block; 
-                    vertical-align: top;
-                }
-                /* activities */
-                .title{ 
-                    @include text-overflow();
-                    padding-left: $unite/2;
-                    margin-left: $unite/2;
-                    border-left: $border-very-light;
-                    color: $redlab;
-                    // font-weight: 600!important;
-                }
-                /* news */
-                .date-news, .hours-news{
-                    margin-left: $baseline*1;
-                    padding-left: $baseline*1;
-                    border-left: $border-very-light;
-                }
-                .date-news{ 
-                    // font-weight: 600; 
-                    color: $redlab;
-                    margin-left: $baseline*1;
-                    padding-left: $baseline*1;
-                    border-left: $border-very-light;
-                }
-                .hours-news::before{ content: $time; }
-                .label-news{
-                    // @include font-size-13-uppercase; 
-                    position: absolute; 
-                    right: 0;
-                    text-align: right;
-                    @include for-size( desktop-1200) { left: calc( 50% + #{$unite/2} ); text-align: left; }
-                }
-                
-
+                left: calc(#{$width-image-pre-listing} + #{$unite/2});
             }
-
             hgroup, .accroche{
-                display: inline-block;
-                vertical-align: top;
+
                 width: calc((100% - #{$width-image-pre-listing})/2);
-                // height: 100%;
-                left: calc(#{$width-image-pre-listing});
-                margin-top: $baseline*3.5;
+                left: $width-image-pre-listing;
+                margin-top: $baseline*.5;
                 margin-bottom: $baseline;
                 padding: 0 $unite/2;
-                
-                
             }
-
 
             h1{
                 padding-top: $baseline*1;
@@ -130,18 +147,6 @@ $width-image-pre-listing: ( ( 100% / 125 ) * 10 );
                 border-left: $border-very-light; 
                 p{ @include font-size-20; }
             }
-
-
-            &:hover{ background-color: $background-grey; }
-
-
-
-
-    
-
-
-
-
 
             ////////////////////////
             /// QUIERY
@@ -156,7 +161,7 @@ $width-image-pre-listing: ( ( 100% / 125 ) * 10 );
             @media screen and ( max-height: 770px ){
                 // Divide image width
                 .image-pre{
-                    max-width: calc(#{$width-image-pre-listing/2});
+                    max-width: $width-image-pre-listing/2;
                 }
                 .bandeau{
                     width: calc(100% - #{$width-image-pre-listing/2} - #{$unite});
@@ -165,16 +170,8 @@ $width-image-pre-listing: ( ( 100% / 125 ) * 10 );
                 hgroup, .accroche{
                     width: calc((100% - #{$width-image-pre-listing/2})/2);
                     left: calc(#{$width-image-pre-listing/2});
-                    margin-top: $baseline*3;
                     margin-bottom: $baseline/2;
                 }
-                // &:hover{
-                //     &:after{
-                //         //width: calc(((100vw - #{$unite*2}) - #{$logo-column} - #{$width-image-pre-listing / 2 } ) /2  );
-                //         width: calc( 100% - ( (100% - #{$width-image-pre-listing / 2 } ) / 2 + #{$width-image-pre-listing / 2 } ) )
-                //     }
-                    
-                // }
 
                 h1 { 
                     @include font-size-20;  
@@ -201,14 +198,14 @@ $width-image-pre-listing: ( ( 100% / 125 ) * 10 );
                     height: calc( 2 * #{$baseline*1.5} ); // Show 2 lines;
                     overflow: hidden;
                 }
-            }            
+            }
         }
 
         .list-year{ 
             display: none;
             height: 0;
             padding-top: 0px;
-            border-bottom: $border-light;
+            border-bottom: $border;
             overflow: hidden;
             &:target{ 
                 display: block;
@@ -218,11 +215,68 @@ $width-image-pre-listing: ( ( 100% / 125 ) * 10 );
                 background-color: $background-site; 
             }
         }
-
     }
+}
+
+@include for-size(phone) {
+
+    .page-production-list #liste .liste_objet,
+    .page-activity-list #liste .liste_objet,
+    .page-news-list #liste .liste_objet{
+        
+        margin-bottom: $height-footer;
+        min-height: calc(100vh - #{$height-footer} - #{$height-top-bar-phone});
 
 
+
+        li{
+
+            a{
+                display: inline-block;
+            }
+            .image-pre{
+                max-width: $width-image-pre-listing-phone;
+                &:hover{ max-width: 100% !important;}
+                pre{ 
+                    font-size: calc((( 100vw - #{$unite*2}) /120 ) *1.89 ); 
+                }                
+            }
+            .bandeau{
+                width: calc(100% - #{$width-image-pre-listing-phone} - #{$unite/2});
+                left: calc(#{$width-image-pre-listing-phone} + #{$unite/2});
+
+                .day-name{ display: none;}
+            }
+
+            hgroup, .accroche{
+
+                width: calc((100% - #{$width-image-pre-listing-phone}));
+                left: $width-image-pre-listing-phone;
+                padding: 0 $unite/2;
+            }
+            hgroup{ margin-top: $baseline*1; }
     
+            h1{
+                 @include font-size-16; 
+            }
 
+            .accroche{
+                max-height: 0;
+                overflow: hidden;
+                transition: .25s .5s ease-in-out;
+                border-left: $border-very-light; 
+                p{ @include font-size-16; }
+            }
 
+            hgroup:hover ~ .accroche {
+                max-height: 100vh;
+                transition: .1s 0s ease-in-out;
+                margin: $baseline 0;                
+            }
+            .image-pre:hover ~ .accroche { 
+                max-height: 0 !important;
+                transition: .1s 0s ease-in-out;
+            }
+        }
+    }
 }

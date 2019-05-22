@@ -42,6 +42,12 @@ function processHtml(pathPrefix, html) {
     h3: $('h2').length ? (h2level + 1) : ($('h1').length ? 4 : 3)
   };
 
+  const onlyOneTitleLevel = (
+    !!$('h1').length +
+    !!$('h2').length +
+    !!$('h3').length
+  ) === 1;
+
   // Building custom output
   let output = '';
   let inRawText = false;
@@ -86,7 +92,7 @@ function processHtml(pathPrefix, html) {
 
       const level = titleMap[h];
 
-      output += `<h${level} data-style-level="${level - 2}">${$this.html()}</h${level}>`;
+      output += `<h${level} data-style-level="${onlyOneTitleLevel ? 2 : level - 2}">${$this.html()}</h${level}>`;
     }
 
     // Lists

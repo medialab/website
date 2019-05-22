@@ -1,28 +1,8 @@
+//$hack-sticky: 54px;
+
 /////////////////////
 ////////  Desktop 
 /////////////////////
-
-
-
-
-
-@media screen and (min-width: 700px) and (max-width: 1080px){
-    .page-production, 
-	.page-news, 
-	.page-activity{
-		main{ margin-left: $logo-column-medium;}
-	}
-
-}
-
-@media screen and (min-width: 1080px){
-    .page-production, 
-	.page-news, 
-	.page-activity{
-		main{ margin-left: $logo-column;}
-	}
-}
-
 
 @include for-size(desktop) {
 
@@ -30,28 +10,55 @@
 	.page-news, 
 	.page-activity{
 
-		#topbar{
-			position: absolute!important; 
-			top: calc(#{$hack-sticky}*-1);
-		}
-
-		main{
-			margin-bottom: 40vh;	
-			margin-top: $hack-sticky; /* set sticky title */
-
 			hgroup{ 
-				// border-top: $border-very-light;
-				// max-width: 1300px; 
 				max-width: $max-width-article; 
 			}
+			
+			#img-article{
 
+				
+				left: 0;
+				top: 0;
+				top: $height-sticky;
+				position: fixed;
+				z-index: 99;
+
+				.activator{
+					display: block;
+					position: absolute;
+					width: $logo-column-medium;
+					height: 100%;
+					z-index: 9;
+
+					&:hover{
+						
+						& + .container{
+							width: 100vw;
+						}
+					}        
+				}	
+
+				.container{
+					width: $logo-column - $margins-desktop*2;
+					overflow: hidden;
+					transition: width 0.25s ease-in-out;
+				}
+
+				pre{ 
+			        font-size: calc(((100vw - #{$unite*2})/240)*1.89); // Should change with width
+			        line-height: 95%;
+				}
+			}
+			
 			#article-contenu{
 				
 				.details {
 
 					padding: $baseline*1 0;
+					border-top: $border-very-light;
+					border-bottom:$border-very-light;
 
-					p{ 
+					p, li{ 
 						@include font-size-16(); 
 						display: inline-block; 
 						
@@ -63,17 +70,18 @@
 						padding-top: $baseline*1;
 					}
 
-					.date{ 
+					.date-news, .hours-news, .date{ 
 						margin-left: $unite;
 						padding-left: $unite;
 						border-left: $border-very-light;
 					}
 
-					.date-news-block{
-						margin-bottom: $baseline*1;
-						padding-bottom: $baseline*1;
+					.fichiers-associes, #attachments{
+						margin-top: $baseline*1;
+						padding-top: $baseline*1;
 					}
 
+				
 					
 
 
@@ -145,7 +153,6 @@
 					}
 				}
 			}/* #article-contenu */
-		} /* main */
 
 		
 	}
@@ -156,16 +163,9 @@
 @media screen and (min-width: 700px) {
 
  	#article-contenu {
- 		hgroup{
-			
+ 		hgroup{			
 			padding-top: $baseline*3;
 			padding-bottom: $baseline*2;
-			h1{ @include font-size-40(); }
-			h2, h3{ 
-				@include font-size-27(); 
-				margin-top: $baseline*1.5;
-				margin-right: 80px;
-			}
 		}
 		// .article-contenu div{ margin-top: $baseline*3 }
 		
@@ -174,23 +174,24 @@
 }
 @media screen and (min-width: 1000px) { }
 
-@media screen and (min-width: 1080px) {
+@media screen and (min-width: 1080px) {}
 
- 	#article-contenu {
- 		hgroup{
-			// padding: $baseline*2 0;
-			h1{ @include font-size-60(); }
-			h2, h3{ 
-				@include font-size-27();
-				margin-top: $baseline*1.5;
-			}
+
+@media screen and (min-width: 700px) and (max-aspect-ratio:1/1) { 
+	#img-article{
+		pre{ 
+	        font-size: calc(((100vw - #{$unite*2})/240)*4) !important; // Should change with width
+			left: -50%;
+			transform: translateX(50%);	        
 		}
-		// .article-contenu div{ margin-top: $baseline*4 }
-	}	
+	}
 }
 
-@media screen and (min-width: 1200px) { }
+@media screen and (min-aspect-ratio:1/1) and (max-aspect-ratio:9/6) {
+	#img-article{
+		pre{ 
+	        font-size: calc(((100vw - #{$unite*2})/240)*2.75) !important; // Should change with width
+		}
+	}
+}
 
-@media screen and (min-width: 1600px) { }
-
-@media screen and (min-width: 1800px) { }

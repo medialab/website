@@ -54,10 +54,10 @@ module.exports = function(req, dbs, next) {
   if (dryRun)
     return next(null, edits);
 
-  Promise.all([
-    dbs.activities.write(),
-    dbs.news.write(),
-    dbs.people.write(),
-    dbs.productions.write()
-  ]).then(() => next(null, edits));
+  dbs.activities.write();
+  dbs.news.write();
+  dbs.people.write();
+  dbs.productions.write();
+
+  return next(null, edits);
 };

@@ -1,0 +1,75 @@
+/////////////////////
+//////// git style
+/////////////////////
+
+@include for-size(desktop) {
+
+    #git article{
+
+        h1{ 
+            @include font-size-20();
+            padding-top: $baseline;
+     
+        }
+
+        h2, .description{ 
+            @include font-size-20();
+            padding-bottom: $baseline;
+        }
+
+        aside.details{ 
+        
+            border-top: $border-very-light;
+            padding: $baseline/2 0;
+    
+            .language, .contributors{
+                display: inline-block;
+                padding-right: $unite/2;
+            }
+    
+            .language{ border-right: $border-very-light; }
+    
+            .contributors { padding-left: $unite/2;}
+    
+           
+            
+        } 
+
+    } 
+    
+   
+
+}
+
+
+
+
+// all queries
+
+#git {
+ 
+    article h1{ color: $redlab;}
+
+    article h1::first-letter,
+    article h2::first-letter
+    article .description::first-letter{ 
+        text-transform: capitalize; 
+    }
+
+}
+
+
+@include for-size(phone) {
+
+
+    #git{
+    
+
+        article{
+ 
+        }
+
+    } /* end git*/
+
+} /* end phone*/
+

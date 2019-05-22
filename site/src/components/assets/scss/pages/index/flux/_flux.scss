@@ -1,0 +1,49 @@
+#flux{
+
+	background: $background-site;
+	z-index: 9;
+
+	////////////////
+	/// Input
+	///////////////
+
+	.flux_selection_container{
+
+		position: fixed;
+		top: $height-top-bar;
+		z-index: 9;
+		background-color: $background-site;
+		border-bottom: $border;
+		padding: $baseline 0;
+		height: $baseline*3.5;
+
+		li{
+
+			@include font-size-13-uppercase;
+			color: $text-color;
+			display: inline-block;
+			padding-right: $unite/2;
+			margin-right: $unite/2;	
+			border-right: $border;	
+			cursor: pointer;
+			&:hover{ @include linktext(); }
+		}
+	}
+
+	section > h1 a{
+		@include linktext();
+		&:hover{ color: $redlab-light; }
+	}
+
+
+
+
+	section:target > h1{
+		padding-top: $height-top-bar + $baseline*4.5;
+	}
+
+	#agenda:target > h1{
+		padding-top: $height-top-bar + $baseline*1;
+	}
+
+}

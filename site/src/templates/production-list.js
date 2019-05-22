@@ -74,7 +74,7 @@ export default ({data, pageContext}) => {
   return (
     <Layout
       lang={pageContext.lang}
-      className="page-production-list"
+      className="page-production-list body-page"
       permalinks={pageContext.permalinks}>
       <ProductionListing
         lang={pageContext.lang}

@@ -14,6 +14,7 @@ export default function ActivityListing({lang, list, status, statuses}) {
  
     return (
       <>
+      <main>
         <FilterActivity lang={lang} status={status} statuses={statuses} />
        
         <section id="liste">
@@ -46,6 +47,7 @@ export default function ActivityListing({lang, list, status, statuses}) {
               
           </ul>
         </section>
+      </main>
       </>
    );
 }

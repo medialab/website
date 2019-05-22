@@ -15,6 +15,7 @@ export default function PeopleListing({lang, list}) {
 
 	return (
   <>
+  <main>
     <FiltreEquipe lang={lang} />
     <section id="liste_equipe">
 
@@ -85,6 +86,7 @@ export default function PeopleListing({lang, list}) {
 
 
     </section>
+  </main>
   </>
 
 	);

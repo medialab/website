@@ -6,6 +6,10 @@ import {join} from '../helpers/helpers.js';
 import Nav from '../common/Nav.js';
 import ToggleLang from './fragments/ToggleLang.js';
 
+import Logo from '../assets/svg/logo_medialab.svg';
+import ProcessedImage from '../helpers/ProcessedImage.js';
+
+
 import DateNews from '../helpers/DateNews.js';
 import TimeNews from '../helpers/TimeNews.js';
 import {format as formatDate, getYear, parseISO} from 'date-fns';
@@ -122,12 +126,33 @@ export const queryFragment = graphql`
 `;
 
 export default function ActivityDetail({lang, activity}) {
-  console.log(lang, activity);
+
+  let coverImage = null;
+
+  if (activity.coverImage) {
+    coverImage = (
+      <ProcessedImage size="large" image={activity.coverImage.processed ? activity.coverImage.processed.large : null} />
+    );
+  }
+
 
   return (
-    <main id="main-objet">
-      <Nav lang={lang} data={activity} order={['main', 'people', 'attachments', 'activities', 'productions', 'news' ]} />
-      <p className="titre-sticky"><a href="#main-objet"><span data-icon="activite"></span><span className="title">{activity.name}</span></a></p>
+    <main id="main-objet">      
+      
+      <header id="titre-sticky">
+        <div id="container-titre-sticky">
+          <div id="logo-sticky"><a href="/"><Logo /></a></div>
+          <p><a href="#topbar"><span data-icon="activite"></span><span className="title">{activity.name}</span></a></p>
+        </div>
+      </header>
+
+
+      <div id="img-article">
+        <div class="activator"></div>
+        <div className="container">{coverImage}</div>
+      </div>
+
+
       <article id="article-contenu">
         {/* Toggle Langue */}
         <ToggleLang lang={lang} content={activity.content} />
@@ -135,35 +160,35 @@ export default function ActivityDetail({lang, activity}) {
         {/* FR */}
         <div className="block-lang fr" lang="fr">
           <hgroup>
-            <h1  data-level-2="baseline">{activity.name}</h1>
-            <h2  className="h2-bold" data-level-2="baseline">{activity.baseline && (activity.baseline.fr || activity.baseline.en)}</h2>
+            <h1  data-level-2="title">{activity.name}</h1>
+            <h2  data-level-2="baseline">{activity.baseline && (activity.baseline.fr || activity.baseline.en)}</h2>
             <h3  data-level-3="description"><RawHtml html={activity.description && activity.description.fr} /></h3>
           </hgroup>
           <div class="details">
             <p className="type-objet"><span data-icon="activite"></span> {IsModel(activity.type, "fr")}</p>
-            <p className="date">
-              <DateNews startDate={activity.startDate} endDate={activity.endDate} lang="fr" />
-              <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
-            </p>
+            <DateNews startDate={activity.startDate} endDate={activity.endDate} lang="fr" />
+            <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
+            <FichiersAssocies attachments={activity.attachments} lang="fr" />
           </div>
+
+
           <div className="article-contenu">
             {activity.content && (activity.content.fr && <RawHtml html={activity.content.fr} />)}
           </div>
         </div>
 
-        {/* FR */}
+        {/* EN */}
         <div className="block-lang en" lang="en">
           <hgroup>
-            <h1  data-level-2="baseline">{activity.name}</h1>
-            <h2  className="h2-bold" data-level-2="baseline">{activity.baseline && (activity.baseline.en || activity.baseline.fr)}</h2>
+            <h1  data-level-2="title">{activity.name}</h1>
+            <h2   data-level-2="baseline">{activity.baseline && (activity.baseline.en || activity.baseline.fr)}</h2>
             <h3  data-level-3="description"><RawHtml html={activity.description && activity.description.en} /></h3>
           </hgroup>
           <div class="details">
             <p className="type-objet"><span data-icon="activite"></span> {IsModel(activity.type, "en")}</p>
-            <p className="date">
-              <DateNews startDate={activity.startDate} endDate={activity.endDate} lang="en" />
-              <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
-            </p>
+            <DateNews startDate={activity.startDate} endDate={activity.endDate} lang="en" />
+            <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
+            <FichiersAssocies attachments={activity.attachments} lang="en" />
           </div>
           <div className="article-contenu">
             {activity.content && (activity.content.en && <RawHtml html={activity.content.en} />)}
@@ -171,11 +196,12 @@ export default function ActivityDetail({lang, activity}) {
         </div>
 
       </article>
-      <MembresAssocies people={activity.people} lang={lang} />
-      <FichiersAssocies attachments={activity.attachments} lang={lang} />
-      <ActivitesAssociees activities={activity.activities} lang={lang} />
-      <ProductionsAssociees productions={activity.productions} lang={lang} />
-      <ActuAssociees actu={activity.news} lang={lang} />
+      <aside id="all-aside">
+        <MembresAssocies people={activity.people} lang={lang} />
+        <ActivitesAssociees activities={activity.activities} lang={lang} />
+        <ProductionsAssociees productions={activity.productions} lang={lang} />
+        <ActuAssociees actu={activity.news} lang={lang} />
+      </aside>
       
     </main>
   );

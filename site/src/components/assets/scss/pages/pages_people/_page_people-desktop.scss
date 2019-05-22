@@ -2,37 +2,17 @@
 ////////  Desktop 
 /////////////////////
 
-
-
 @include for-size(desktop) {
  
 	.page-people{
-
-		#topbar{
-			position: absolute!important; 
-			top: calc(#{$hack-sticky}*-1);
-		}
-		main{
-			margin-left: $logo-column;
-			margin-bottom: 40vh;
-			transition: .25s ease-in-out;
-			margin-top: $hack-sticky; /* set sticky title */
-			
-			 .cache{
-			 	position: absolute;
-				left: -1px;
-				font-size: 1vw;
-				color: white;
-			 }
-			
+			 
 			 #biographie{
+				#container-biographie, #highlights{ max-width: $max-width-article; }
 				
-				max-width: $max-width-article;
 
 				header{
 					@include flex-order(1);
 					margin-bottom: $baseline*2;
-					// border-top: $border-very-light;
 					padding-top: $baseline*2;
 
 					figure, hgroup{
@@ -44,27 +24,35 @@
 					
 
 					hgroup{ 
-											
 						padding-left: $unite;
 						margin-bottom: $baseline;
 					}
 
 					
 					.status{ max-width: 400px; }
-			
 					
+					.contact{
+						li{
+							&:not(:last-of-type):after{
+								content: "";
+								width: 1px;
+								height: calc(100% - #{$baseline});
+								position: absolute;
+								top: $baseline/2;								
+								right: 0;
+								border-right: $border-very-light;
+							}
+						}
+					}					
 				}
 			}	
-		} /* end main */
-
-
-		
 	}
 }
 
 
+// Les comportement Typographiques commun à toutes les pages sont definit à assets/scss/fragments/pages/
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 700px) { 
 
 	.page-people #biographie {
 		header{		
@@ -73,12 +61,9 @@
 				width: calc(100% - 200px);  
 				.status{ @include font-size-16(); }
 			}			
-			h1{ @include font-size-40(); }
-			h2{ @include font-size-20(); }
 		}	
-		.biographie-contenu p, .biographie-contenu li{ @include font-size-16();}
+		.biographie-content p, .biographie-content li{ @include font-size-16();}
 	}
-
 }
 
 
@@ -92,23 +77,37 @@
 				.status{ @include font-size-20(); }
 			}
 		}
-		.biographie-contenu p, .biographie-contenu li{ @include font-size-20();}
+		.biographie-content p, .biographie-content li{ @include font-size-20();}
 	}
-
 }
 
 
-@media screen and (min-width: 1100px) {
+
+
+/* mettre les hightlights sur le côté pour les très grand écran */
+
+@media screen and (min-width: 1800px){
 
 	.page-people #biographie{
-		header{
-			h1{ @include font-size-60(); }
-			h2{ @include font-size-27(); }
-		}		
+		display: flex;
+
+		#container-biographie, #highlights{
+			display: inline-block; 
+			vertical-align: top;
+			z-index: 0;
+		}
+
+		#highlights{
+			width: calc(100% - #{$max-width-article} - #{$unite*2});
+			height: auto;
+			margin-left: $unite*2;
+			margin-top: $baseline*1.5;
+			padding: $baseline*2 $unite*1.5;
+			& > h1 {
+				@include font-size-27();
+			}
+		}
 	}
-
 }
-
-
 
 

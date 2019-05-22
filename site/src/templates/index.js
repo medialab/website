@@ -135,6 +135,10 @@ export const query = graphql`
                 en
                 fr
               }
+              description {
+                en
+                fr
+              }
             }
             ... on Productions {
               coverImage {
@@ -157,12 +161,20 @@ export const query = graphql`
                 en
                 fr
               }
+              typeLabel {
+                en
+                fr
+              }
             }
           }
         }
       }
     }
-    rdv: allNewsJson(limit: 7, filter: {expiry: {gte: $yesterday}}, sort: {fields: [expiry], order: [DESC]}) {
+    rdv: allNewsJson(
+      limit: 7,
+      filter: {expiry: {gte: $yesterday}, type: {eq: "event"}},
+      sort: {fields: [expiry], order: [DESC]}
+    ) {
       edges {
         node {
           title {
@@ -176,6 +188,7 @@ export const query = graphql`
             fr
           }
           place
+          isInternal
           permalink {
             en
             fr
@@ -196,7 +209,7 @@ const IndexPage = ({data, pageContext}) => {
   return (
     <Layout
       lang={pageContext.lang}
-      className="page-home"
+      className="page-home body-page"
       permalinks={pageContext.permalinks}>
       <Home
         lang={pageContext.lang} grid={grid} slider={slider}

@@ -3,6 +3,7 @@ import {graphql} from 'gatsby';
 import {Link} from 'gatsby';
 
 import Highlights from './fragments/Highlights.js';
+import Logo from '../assets/svg/logo_medialab.svg';
 
 
 import ProductionsAssociees from './fragments/ProductionsAssociees.js';
@@ -15,7 +16,7 @@ import RawHtml from '../helpers/RawHtml';
 import {templateMembership} from '../helpers/helpers.js';
 //import './scss/page_personne.scss';
 
-import Img from '../assets/images/sample/D-Cardon-bis.jpg';
+import Img from '../assets/images/sample/default-people.png';
 
 export const queryFragment = graphql`
   fragment PeopleDetail on PeopleJson {
@@ -211,54 +212,71 @@ export default function PeopleDetail({lang, person}) {
 
   return (
     <>
-      <Nav lang={lang} data={person} order={['main', 'activities', 'productions', 'news']} />
+      
       <main id="main">
-        <p className="titre-sticky">
-          <Link to="/people">
-            <span>{lang === 'fr' ? "L'équipe du Medialab" : 'Medialab team'} </span>
-          </Link>
-          <span className="personne">{person.firstName} {person.lastName}</span>
-        </p>
+        <Nav lang={lang} data={person} order={['main', 'activities', 'productions', 'news']} />
+
+        <header id="titre-sticky">
+          <div id="container-titre-sticky">
+            <div id="logo-sticky"><a href="/"><Logo /></a></div>
+            <p>
+            <Link to="/people">
+              <span>{lang === 'fr' ? "L'équipe du Medialab" : 'Medialab team'} </span>
+            </Link>
+            <span className="personne"><a href="#topbar">{person.firstName} {person.lastName}</a></span>
+          </p>
+        </div>
+        </header>
+
+
+
         <article id="biographie">
-          
-          <header>
-            <figure>
-              <img src={person.coverImage ? person.coverImage.url : Img} alt={lang === 'fr' ? 'Photo de profil de ' + person.firstName + person.lastName : person.firstName + person.lastName + ' profil picture'} />
-            </figure>
-            <hgroup>
-              <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>        
-              <p class="status" data-type="status">{person.status && (lang === "fr" ? person.status.fr : person.status.en)}</p>
-            </hgroup>
-            <div className="bandeau">
-            <p className="role" data-type="role">{person.role[lang]}</p>
-                <p data-type="domaine">{lang === "fr" ? "Domaine" + String.fromCharCode(8239) +":" : "Domain:"} {person.domain}</p>
-                <p data-type="membership">{templateMembership(person)}</p>
-            </div>
+          <div id="container-biographie">
+            <header>
+              <figure>
+                <img src={person.coverImage ? person.coverImage.url : Img} alt={lang === 'fr' ? 'Photo de profil de ' + person.firstName + person.lastName : person.firstName + person.lastName + ' profil picture'} />
+              </figure>
+              <hgroup>
+                <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>        
+                <p class="status" data-type="status">{person.status && (lang === "fr" ? person.status.fr : person.status.en)}</p>
+              </hgroup>
+              <div className="bandeau">
+              <p className="role" data-type="role">{person.role[lang]}</p>
+                  <p data-type="domaine">{lang === "fr" ? "Domaine" + String.fromCharCode(8239) +":" : "Domain:"} {person.domain}</p>
+                  <p data-type="membership">{templateMembership(person)}</p>
+              </div>
 
-          
-            <div className="contact">
-              {/* <h3 className="toContact">{lang === 'fr' ? 'Contact' : 'Get in touch '}</h3> */}
-              <ul>
-                {person.contacts && person.contacts.map((contact, i) => (
-                  <li key={i} data-type={contact.label}>
-                    {contact.type === 'url' ?
-                      <a href={contact.value}>{contact.label}: {contact.value}</a> :
-                      contact.label
-                    }
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </header>
+            
+              <div className="contact">
+                {/* <h3 className="toContact">{lang === 'fr' ? 'Contact' : 'Get in touch '}</h3> */}
+                <ul>
+                  {person.contacts && person.contacts.map((contact, i) => (
+                    <li key={i} data-type={contact.label}>
+                      {contact.type === 'url' ?
+                        <a href={contact.value}>{contact.label}: {contact.value}</a> :
+                        contact.label
+                      }
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </header>
 
-          <div className="biographie-contenu">
-            {person.bio && person.bio[lang] ? <RawHtml html={person.bio[lang]} /> : null}
+            <div className="biographie-content">
+              {person.bio && person.bio[lang] ? <RawHtml html={person.bio[lang]} /> : null}
+            </div>
           </div>
+          
+          
+          <Highlights people={person} lang={lang} />
         </article>
-        <Highlights people={person} lang={lang} />
-        <ActivitesAssociees activities={person.activities} lang={lang} />
-        <ProductionsAssociees productions={person.productions} lang={lang} />
-        <ActuAssociees actu={person.news} lang={lang} />
+        
+
+        <aside id="all-aside">
+          <ActivitesAssociees activities={person.activities} lang={lang} />
+          <ProductionsAssociees productions={person.productions} lang={lang} />
+          <ActuAssociees actu={person.news} lang={lang} />
+        </aside>
         
       </main>
     </>

@@ -9,5 +9,6 @@ module.exports = function(req, dbs, next) {
 
   dbs.activities.setState(state);
 
-  dbs.activities.write().then(() => next());
+  dbs.activities.write();
+  return next();
 };

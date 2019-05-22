@@ -17,9 +17,7 @@
 
 		label.filtre_equipe{
 
-			position: fixed;
-			left: $margins-desktop;
-			
+			position: fixed;			
 			@include font-size-13();
 		
 		}
@@ -31,8 +29,7 @@
 
 		h1.type_title{
 			margin-top: $height-top-bar-phone + $baseline;
-			//border-top: $border-light;
-			border-bottom: $border-light;
+			border-bottom: $border;
 			padding-top: $baseline * .5;
 			padding-bottom: $baseline * 1;
 			@include font-size-13();
@@ -54,7 +51,7 @@
 			width: 100vw;
 			@include font-size-16-phone();
 			text-align: center;
-			border-top: $border-bold;
+			border-top: $border;
 			background-color: $background-site;
 			cursor: pointer;
 			z-index: 50;

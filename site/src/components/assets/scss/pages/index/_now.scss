@@ -1,27 +1,30 @@
 // Manage global structure and responsive. 
 // For details see fragments/miniatures
 
-.page-home #now #now-list {
+
+
+
+
+@include for-size(desktop) {
+	#now{
 	
-	@include for-size(desktop) {
+		overflow: hidden;
+		position: relative;
+		border-bottom: none;
 
-		max-width: 900px;
-		
-		.contenu{
-			ul{
-
-				@include for-size(desktop-1200) {
-		            //2 columns
-		            @include column-count(2);
-		            @include column-gap();
-		        }
-			}
-		}
+		// li:last-of-type{
+		// 	border-bottom: none;
+		// }
 	}
 
-	
-	@include for-size(phone) {
+}
 
-		
-	}	
-}		
+
+@media screen and (min-width: 1350px){
+	#now li hgroup h1{
+        @include font-size-27();
+            font-size: $font-size*2.7!important;
+            font-weight: 100!important;
+            line-height: $baseline*2.5!important;
+	}
+}

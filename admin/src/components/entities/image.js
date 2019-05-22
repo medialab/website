@@ -1,6 +1,8 @@
 /* global API_URL */
+// NOTE: for tips, check this url and the DraftUtils from draftail:
+// https://github.com/springload/draftail/blob/master/examples/sources/ImageSource.js
 import React, {Component} from 'react';
-import {AtomicBlockUtils} from 'draft-js';
+import {AtomicBlockUtils, EditorState, SelectionState} from 'draft-js';
 import {ENTITY_TYPE} from 'draftail';
 import Dropzone from 'react-dropzone';
 
@@ -12,10 +14,17 @@ import ImageIcon from 'material-icons-svg/components/baseline/InsertPhoto';
 
 // Source
 class ImageSource extends Component {
-  state = {
-    loading: false,
-    file: null
-  };
+  constructor(props, context) {
+    super(props, context);
+
+    const data = props.entity ? props.entity.get('data') : null;
+
+    this.state = {
+      loading: false,
+      file: null,
+      credits: data ? data.credits : ''
+    };
+  }
 
   addEntity = (option) => {
     const {editorState, entityType, onComplete} = this.props;
@@ -25,10 +34,20 @@ class ImageSource extends Component {
     getImageDimensions(resolvedSrc, (width, height) => {
 
       const content = editorState.getCurrentContent();
+
+      const data = {
+        src: option.src,
+        width,
+        height
+      };
+
+      if (option.credits)
+        data.credits = option.credits;
+
       const contentWithEntity = content.createEntity(
         entityType.type,
         'IMMUTABLE',
-        {src: option.src, width, height}
+        data
       );
 
       const entityKey = contentWithEntity.getLastCreatedEntityKey();
@@ -42,11 +61,59 @@ class ImageSource extends Component {
     });
   };
 
+  updateEntity = () => {
+    const {entity, entityKey, editorState, onComplete} = this.props;
+
+    const content = editorState.getCurrentContent();
+
+    const data = {...entity.get('data')};
+
+    if (this.state.credits)
+      data.credits = this.state.credits;
+    else
+      delete data.credits;
+
+    const nextContent = content.replaceEntityData(
+      entityKey,
+      data
+    );
+
+    let nextState = EditorState.push(
+      editorState,
+      nextContent,
+      'change-block-data'
+    );
+
+    const block = content.getBlockMap().find(block => {
+      return block.getEntityAt(0) === entityKey;
+    });
+
+    let selection = SelectionState.createEmpty();
+    selection = selection.merge({
+      anchorKey: block.getKey(),
+      anchorOffset: 0,
+      focusKey: block.getKey(),
+      focusOffset: 0,
+      hasFocus: true
+    });
+
+    nextState = EditorState.forceSelection(
+      nextState,
+      selection
+    );
+
+    return onComplete(nextState);
+  };
+
   handleDrop = acceptedFiles => {
     this.setState({file: acceptedFiles[0]});
   };
 
   handleSubmit = () => {
+    if (this.props.entityKey) {
+      return this.updateEntity();
+    }
+
     if (!this.state.file)
       return;
 
@@ -54,8 +121,18 @@ class ImageSource extends Component {
 
     client.upload(this.state.file, result => {
       this.setState({loading: false});
-      this.addEntity({src: result.name});
+
+      const options = {src: result.name};
+
+      if (this.state.credits)
+        options.credits = this.state.credits;
+
+      this.addEntity(options);
     });
+  };
+
+  handleCredits = e => {
+    this.setState({credits: e.target.value});
   };
 
   handleCancel = () => {
@@ -67,33 +144,58 @@ class ImageSource extends Component {
   render() {
     const {
       loading,
-      file
+      file,
+      credits
     } = this.state;
 
+    const entityKey = this.props.entityKey;
+
+    let src = null;
+
+    if (entityKey)
+      src = `${API_URL}/assets/${this.props.entity.get('data').src}`;
+
     return (
-      <CardModal onClose={this.handleCancel}>
+      <CardModal large onClose={this.handleCancel}>
         {[
 
           // Title
-          'Importing an image',
+          entityKey ? 'Editing an image' : 'Importing an image',
 
           // Body
-          !file ?
-            <Dropzone key="body" onDrop={this.handleDrop} /> :
-            (
-              <div key="body">
-                <img src={URL.createObjectURL(file)} style={{height: '200px'}} />
+          <div key="body" className="columns">
+            <div className="column is-4">
+              {(!file && !entityKey) ?
+                <Dropzone onDrop={this.handleDrop} /> :
+                (
+                  <div>
+                    <img src={entityKey ? src : URL.createObjectURL(file)} style={{height: '200px'}} />
+                  </div>
+                )}
+            </div>
+            <div className="column is-8">
+              <div className="field">
+                <label className="label">Crédits</label>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    value={credits}
+                    onChange={this.handleCredits}
+                    placeholder="..." />
+                </div>
               </div>
-            ),
+            </div>
+          </div>,
 
           // Footer
           (
             <Button
               key="footer"
-              disabled={!file}
+              disabled={!file && !entityKey}
               loading={loading}
               onClick={this.handleSubmit}>
-              Upload & Insert
+              {entityKey ? 'Update' :'Upload & Insert'}
             </Button>
           )
         ]}
@@ -106,7 +208,7 @@ class ImageSource extends Component {
 // Block
 function ImageBlock(props) {
   const blockProps = props.blockProps;
-  const {src} = blockProps.entity.getData();
+  const {credits, src} = blockProps.entity.getData();
 
   // NOTE: can access mutators here
 
@@ -114,7 +216,17 @@ function ImageBlock(props) {
 
   return (
     <div className="editor image-container">
-      <img src={url} />
+      <div>
+        <img src={url} />
+      </div>
+      {credits && <div><small><em>{credits}</em></small></div>}
+      <div>
+        <small
+          style={{textDecoration: 'underline', cursor: 'pointer'}}
+          onClick={() => blockProps.onEditEntity(blockProps.entityKey)}>
+          edit
+        </small>
+      </div>
     </div>
   );
 }
@@ -126,6 +238,7 @@ const IMAGE = {
   source: ImageSource,
   block: ImageBlock,
   attributes: [
+    'credits',
     'height',
     'width',
     'src'

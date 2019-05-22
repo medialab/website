@@ -10,14 +10,34 @@
 	.page-about{
 		top: 0!important;
 
+
+		/// Typo Header hgroup
+		#article-contenu, 
+		#biographie,
+		#about-contenu {
+
+
+			hgroup {
+				margin: $baseline*1 0 $baseline*2 0;
+				h1{
+					@include font-size-40();
+					font-weight: 600;
+					margin-bottom: $baseline*1.5;
+				}
+				h2, h3{ @include font-size-20-phone();}
+				h2 { margin-bottom: $baseline*1; }
+				h3 { margin-bottom: $baseline*3; }
+			}
+		}
+
 		.article-contenu, 
-		.biographie-contenu,
+		.biographie-content,
 		.about-contenu {
 							
 			/* Regles de Base */
 
 			h1, h2, h3, h4, h5{
-				@include font-size-16-phone;
+				@include font-size-20-phone;
 				font-weight: bold;
 				margin-top: $baseline*4;
 				margin-bottom: $baseline*1.5;
@@ -63,10 +83,19 @@
 			}
 					
 			li{ 
-				left: $unite*1.5;
-				text-indent: -15px;
-				&:before{ content: "⧆"; left: -15px;}
+				left: $unite-phone*2.5;
+				text-indent: #{$unite-phone*-1};
+				width: calc(100% - #{$unite-phone*2.5});
+				&:before{ content: "⁘"; left: #{$unite-phone*-1.5};}
 			}
+
+			iframe{
+				max-width: 100%;
+				//height: auto;
+				margin-bottom: $baseline;
+			}
+
+			img, figure{ max-width: 100%;}
 		}
 	}
 }

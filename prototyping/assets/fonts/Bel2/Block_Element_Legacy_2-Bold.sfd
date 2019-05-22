@@ -1,0 +1,366 @@
+SplineFontDB: 3.0
+FontName: Bel
+FullName: Bel
+FamilyName: Bel
+Weight: Bold
+Copyright: Copyright (c) 2019, B
+UComments: "2019-1-28: Created with FontForge (http://fontforge.org)"
+Version: 001.000
+ItalicAngle: 0
+UnderlinePosition: -519
+UnderlineWidth: 98
+Ascent: 1638
+Descent: 410
+InvalidEm: 0
+LayerCount: 2
+Layer: 0 0 "Arri+AOgA-re" 1
+Layer: 1 0 "Avant" 0
+XUID: [1021 90 -1258502218 32764]
+FSType: 0
+OS2Version: 0
+OS2_WeightWidthSlopeOnly: 0
+OS2_UseTypoMetrics: 1
+CreationTime: 1548665833
+ModificationTime: 1553253225
+PfmFamily: 17
+TTFWeight: 700
+TTFWidth: 5
+LineGap: 184
+VLineGap: 0
+OS2TypoAscent: 0
+OS2TypoAOffset: 1
+OS2TypoDescent: 0
+OS2TypoDOffset: 1
+OS2TypoLinegap: 184
+OS2WinAscent: 0
+OS2WinAOffset: 1
+OS2WinDescent: 0
+OS2WinDOffset: 1
+HheadAscent: 0
+HheadAOffset: 1
+HheadDescent: 0
+HheadDOffset: 1
+OS2Vendor: 'PfEd'
+MarkAttachClasses: 2
+"" 0 
+DEI: 91125
+LangName: 1033 "" "" "" "" "" "" "" "" "" "" "" "" "" "Copyright (c) 2019, B (<URL|email>),+AAoA-with Reserved Font Name Untitled1.+AAoACgAA-This Font Software is licensed under the SIL Open Font License, Version 1.1.+AAoA-This license is copied below, and is also available with a FAQ at:+AAoA-http://scripts.sil.org/OFL+AAoACgAK------------------------------------------------------------+AAoA-SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007+AAoA------------------------------------------------------------+AAoACgAA-PREAMBLE+AAoA-The goals of the Open Font License (OFL) are to stimulate worldwide+AAoA-development of collaborative font projects, to support the font creation+AAoA-efforts of academic and linguistic communities, and to provide a free and+AAoA-open framework in which fonts may be shared and improved in partnership+AAoA-with others.+AAoACgAA-The OFL allows the licensed fonts to be used, studied, modified and+AAoA-redistributed freely as long as they are not sold by themselves. The+AAoA-fonts, including any derivative works, can be bundled, embedded, +AAoA-redistributed and/or sold with any software provided that any reserved+AAoA-names are not used by derivative works. The fonts and derivatives,+AAoA-however, cannot be released under any other type of license. The+AAoA-requirement for fonts to remain under this license does not apply+AAoA-to any document created using the fonts or their derivatives.+AAoACgAA-DEFINITIONS+AAoAIgAA-Font Software+ACIA refers to the set of files released by the Copyright+AAoA-Holder(s) under this license and clearly marked as such. This may+AAoA-include source files, build scripts and documentation.+AAoACgAi-Reserved Font Name+ACIA refers to any names specified as such after the+AAoA-copyright statement(s).+AAoACgAi-Original Version+ACIA refers to the collection of Font Software components as+AAoA-distributed by the Copyright Holder(s).+AAoACgAi-Modified Version+ACIA refers to any derivative made by adding to, deleting,+AAoA-or substituting -- in part or in whole -- any of the components of the+AAoA-Original Version, by changing formats or by porting the Font Software to a+AAoA-new environment.+AAoACgAi-Author+ACIA refers to any designer, engineer, programmer, technical+AAoA-writer or other person who contributed to the Font Software.+AAoACgAA-PERMISSION & CONDITIONS+AAoA-Permission is hereby granted, free of charge, to any person obtaining+AAoA-a copy of the Font Software, to use, study, copy, merge, embed, modify,+AAoA-redistribute, and sell modified and unmodified copies of the Font+AAoA-Software, subject to the following conditions:+AAoACgAA-1) Neither the Font Software nor any of its individual components,+AAoA-in Original or Modified Versions, may be sold by itself.+AAoACgAA-2) Original or Modified Versions of the Font Software may be bundled,+AAoA-redistributed and/or sold with any software, provided that each copy+AAoA-contains the above copyright notice and this license. These can be+AAoA-included either as stand-alone text files, human-readable headers or+AAoA-in the appropriate machine-readable metadata fields within text or+AAoA-binary files as long as those fields can be easily viewed by the user.+AAoACgAA-3) No Modified Version of the Font Software may use the Reserved Font+AAoA-Name(s) unless explicit written permission is granted by the corresponding+AAoA-Copyright Holder. This restriction only applies to the primary font name as+AAoA-presented to the users.+AAoACgAA-4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font+AAoA-Software shall not be used to promote, endorse or advertise any+AAoA-Modified Version, except to acknowledge the contribution(s) of the+AAoA-Copyright Holder(s) and the Author(s) or with their explicit written+AAoA-permission.+AAoACgAA-5) The Font Software, modified or unmodified, in part or in whole,+AAoA-must be distributed entirely under this license, and must not be+AAoA-distributed under any other license. The requirement for fonts to+AAoA-remain under this license does not apply to any document created+AAoA-using the Font Software.+AAoACgAA-TERMINATION+AAoA-This license becomes null and void if any of the above conditions are+AAoA-not met.+AAoACgAA-DISCLAIMER+AAoA-THE FONT SOFTWARE IS PROVIDED +ACIA-AS IS+ACIA, WITHOUT WARRANTY OF ANY KIND,+AAoA-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF+AAoA-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT+AAoA-OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE+AAoA-COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,+AAoA-INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL+AAoA-DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING+AAoA-FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM+AAoA-OTHER DEALINGS IN THE FONT SOFTWARE." "http://scripts.sil.org/OFL"
+Encoding: Custom
+UnicodeInterp: none
+NameList: AGL For New Fonts
+DisplaySize: -72
+AntiAlias: 1
+FitToEm: 0
+WinInfo: 0 20 8
+BeginPrivate: 0
+EndPrivate
+TeXData: 1 0 0 346030 173015 115343 0 -1048576 115343 783286 444596 497025 792723 393216 433062 380633 303038 157286 324010 404750 52429 2506097 1059062 262144
+BeginChars: 32 6
+
+StartChar: ltshade
+Encoding: 1 9617 0
+Width: 1229
+Flags: W
+HStem: -410.5 185<99.5 305.5 715.5 921.5> -35.5 194<408.5 614.5 1021.5 1227.5> 351.5 194<102.5 308.5 715.5 921.5> 740.5 194<408.5 614.5 1021.5 1227.5> 1126.5 194<102.5 308.5 715.5 921.5> 1515.5 194<408.5 614.5 1021.5 1227.5>
+VStem: 102.5 206<-410.5 -225.5 351.5 545.5 1126.5 1320.5> 408.5 206<-35.5 158.5 740.5 934.5 1515.5 1709.5> 715.5 206<-412.5 -227.5 351.5 545.5 1126.5 1320.5> 1021.5 206<-38.5 155.5 737.5 931.5 1512.5 1706.5>
+LayerCount: 2
+Fore
+SplineSet
+715.5 1126.5 m 1
+ 715.5 1320.5 l 1
+ 921.5 1320.5 l 1
+ 921.5 1126.5 l 1
+ 715.5 1126.5 l 1
+408.5 1515.5 m 1
+ 408.5 1709.5 l 1
+ 614.5 1709.5 l 1
+ 614.5 1515.5 l 1
+ 408.5 1515.5 l 1
+1021.5 1512.5 m 1
+ 1021.5 1706.5 l 1
+ 1227.5 1706.5 l 1
+ 1227.5 1512.5 l 1
+ 1021.5 1512.5 l 1
+715.5 351.5 m 1
+ 715.5 545.5 l 1
+ 921.5 545.5 l 1
+ 921.5 351.5 l 1
+ 715.5 351.5 l 1
+408.5 740.5 m 1
+ 408.5 934.5 l 1
+ 614.5 934.5 l 1
+ 614.5 740.5 l 1
+ 408.5 740.5 l 1
+1021.5 737.5 m 1
+ 1021.5 931.5 l 1
+ 1227.5 931.5 l 1
+ 1227.5 737.5 l 1
+ 1021.5 737.5 l 1
+715.5 -412.5 m 1
+ 715.5 -227.5 l 1
+ 921.5 -227.5 l 1
+ 921.5 -412.5 l 1
+ 715.5 -412.5 l 1
+408.5 -35.5 m 1
+ 408.5 158.5 l 1
+ 614.5 158.5 l 1
+ 614.5 -35.5 l 1
+ 408.5 -35.5 l 1
+1021.5 -38.5 m 1
+ 1021.5 155.5 l 1
+ 1227.5 155.5 l 1
+ 1227.5 -38.5 l 1
+ 1021.5 -38.5 l 1
+102.5 1126.5 m 1
+ 102.5 1320.5 l 1
+ 308.5 1320.5 l 1
+ 308.5 1126.5 l 1
+ 102.5 1126.5 l 1
+102.5 351.5 m 1
+ 102.5 545.5 l 1
+ 308.5 545.5 l 1
+ 308.5 351.5 l 1
+ 102.5 351.5 l 1
+99.5 -410.5 m 1
+ 99.5 -225.5 l 1
+ 305.5 -225.5 l 1
+ 305.5 -410.5 l 1
+ 99.5 -410.5 l 1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: shade
+Encoding: 2 9618 1
+Width: 1229
+Flags: W
+HStem: -409.5 184<0.5 204.5 410.5 616.5 820.5 1026.5> -33.5 194<204.5 410.5 614.5 820.5 1024.5 1230.5> 352.5 194<0.5 206.5 410.5 616.5 820.5 1026.5> 740.5 194<204.5 410.5 614.5 820.5 1024.5 1230.5> 1126.5 194<0.5 206.5 410.5 616.5 820.5 1026.5> 1512.5 194<204.5 410.5 614.5 820.5 1024.5 1230.5>
+VStem: 0.5 206<-409.5 -225.5 352.5 546.5 1126.5 1320.5> 204.5 206<-33.5 160.5 740.5 934.5 1512.5 1706.5> 410.5 206<-409.5 -225.5 352.5 546.5 1126.5 1320.5> 614.5 206<-33.5 160.5 740.5 934.5 1512.5 1706.5> 820.5 206<-409.5 -225.5 352.5 546.5 1126.5 1320.5> 1024.5 206<-33.5 160.5 740.5 934.5 1512.5 1706.5>
+LayerCount: 2
+Fore
+SplineSet
+204.5 160.5 m 1xfd
+ 410.5 160.5 l 1
+ 410.5 -33.5 l 1
+ 204.5 -33.5 l 1
+ 204.5 160.5 l 1xfd
+614.5 160.5 m 1xfc40
+ 820.5 160.5 l 1
+ 820.5 -33.5 l 1
+ 614.5 -33.5 l 1
+ 614.5 160.5 l 1xfc40
+1024.5 160.5 m 1xfc10
+ 1230.5 160.5 l 1
+ 1230.5 -33.5 l 1
+ 1024.5 -33.5 l 1
+ 1024.5 160.5 l 1xfc10
+0.5 546.5 m 1xfe
+ 206.5 546.5 l 1
+ 206.5 352.5 l 1
+ 0.5 352.5 l 1
+ 0.5 546.5 l 1xfe
+410.5 546.5 m 1xfc80
+ 616.5 546.5 l 1
+ 616.5 352.5 l 1
+ 410.5 352.5 l 1
+ 410.5 546.5 l 1xfc80
+820.5 546.5 m 1xfc20
+ 1026.5 546.5 l 1
+ 1026.5 352.5 l 1
+ 820.5 352.5 l 1
+ 820.5 546.5 l 1xfc20
+204.5 934.5 m 1xfd
+ 410.5 934.5 l 1
+ 410.5 740.5 l 1
+ 204.5 740.5 l 1
+ 204.5 934.5 l 1xfd
+614.5 934.5 m 1xfc40
+ 820.5 934.5 l 1
+ 820.5 740.5 l 1
+ 614.5 740.5 l 1
+ 614.5 934.5 l 1xfc40
+1024.5 934.5 m 1xfc10
+ 1230.5 934.5 l 1
+ 1230.5 740.5 l 1
+ 1024.5 740.5 l 1
+ 1024.5 934.5 l 1xfc10
+0.5 1320.5 m 1xfe
+ 206.5 1320.5 l 1
+ 206.5 1126.5 l 1
+ 0.5 1126.5 l 1
+ 0.5 1320.5 l 1xfe
+410.5 1320.5 m 1xfc80
+ 616.5 1320.5 l 1
+ 616.5 1126.5 l 1
+ 410.5 1126.5 l 1
+ 410.5 1320.5 l 1xfc80
+820.5 1320.5 m 1xfc20
+ 1026.5 1320.5 l 1
+ 1026.5 1126.5 l 1
+ 820.5 1126.5 l 1
+ 820.5 1320.5 l 1xfc20
+204.5 1706.5 m 1xfd
+ 410.5 1706.5 l 1
+ 410.5 1512.5 l 1
+ 204.5 1512.5 l 1
+ 204.5 1706.5 l 1xfd
+614.5 1706.5 m 1xfc40
+ 820.5 1706.5 l 1
+ 820.5 1512.5 l 1
+ 614.5 1512.5 l 1
+ 614.5 1706.5 l 1xfc40
+1024.5 1706.5 m 1xfc10
+ 1230.5 1706.5 l 1
+ 1230.5 1512.5 l 1
+ 1024.5 1512.5 l 1
+ 1024.5 1706.5 l 1xfc10
+0.5 -225.5 m 1xfe
+ 204.5 -225.5 l 1
+ 204.5 -409.5 l 1xfd
+ 0.5 -409.5 l 1
+ 0.5 -225.5 l 1xfe
+410.5 -225.5 m 1xfc80
+ 616.5 -225.5 l 1
+ 616.5 -409.5 l 1
+ 410.5 -409.5 l 1
+ 410.5 -225.5 l 1xfc80
+820.5 -225.5 m 1xfc20
+ 1026.5 -225.5 l 1
+ 1026.5 -409.5 l 1
+ 820.5 -409.5 l 1
+ 820.5 -225.5 l 1xfc20
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: dkshade
+Encoding: 3 9619 2
+Width: 1229
+Flags: HW
+LayerCount: 2
+Fore
+SplineSet
+1229 1511.5 m 1
+ 1023.5 1511.5 l 1
+ 1021.5 1705.16699219 l 1
+ 817.5 1705.33300781 l 1
+ 817.5 1511.5 l 1
+ 611.5 1511.5 l 1
+ 611.5 1705.5 l 1
+ 612 1705.5 l 1
+ 407.950195312 1705.66601562 l 1
+ 407.5 1511.5 l 1
+ 201.5 1511.5 l 1
+ 201.951171875 1705.83398438 l 1
+ 0 1706 l 1
+ 0.4765625 1577.16699219 -0.984375 1448.33300781 -0.4111328125 1319.5 c 1
+ 203.5 1319.5 l 1
+ 203.5 1125.5 l 1
+ 0.4736328125 1125.5 l 1
+ 1.3720703125 932.166992188 -0.6865234375 738.833007812 0.1962890625 545.5 c 1
+ 203.5 545.5 l 1
+ 203.5 351.5 l 1
+ 0.0595703125 351.5 l 1
+ 0.8896484375 158.833007812 -0.37109375 -33.8330078125 0.1796875 -226.5 c 1
+ 201.5 -226.5 l 1
+ 201.5 -416.5 l 5
+ -0.35546875 -416.5 l 5
+ -0.208984375 -484 -0.0888671875 -546.5 0 -614 c 1
+ 1229 -615 l 1
+ 1229 -34.5 l 1
+ 1021.5 -34.5 l 1
+ 1021.5 159.5 l 1
+ 1229 159.5 l 1
+ 1229 739.5 l 1
+ 1021.5 739.5 l 1
+ 1021.5 933.5 l 1
+ 1229 933.5 l 1
+ 1229 1511.5 l 1
+817.5 -226.5 m 1
+ 1023.5 -226.5 l 1
+ 1023.5 -416.5 l 5
+ 817.5 -416.5 l 5
+ 817.5 -226.5 l 1
+407.5 -226.5 m 1
+ 613.5 -226.5 l 1
+ 613.5 -416.5 l 5
+ 407.5 -416.5 l 5
+ 407.5 -226.5 l 1
+817.5 1319.5 m 1
+ 1023.5 1319.5 l 1
+ 1023.5 1125.5 l 1
+ 817.5 1125.5 l 1
+ 817.5 1319.5 l 1
+407.5 1319.5 m 1
+ 613.5 1319.5 l 1
+ 613.5 1125.5 l 1
+ 407.5 1125.5 l 1
+ 407.5 1319.5 l 1
+611.5 933.5 m 1
+ 817.5 933.5 l 1
+ 817.5 739.5 l 1
+ 611.5 739.5 l 1
+ 611.5 933.5 l 1
+201.5 933.5 m 1
+ 407.5 933.5 l 1
+ 407.5 739.5 l 1
+ 201.5 739.5 l 1
+ 201.5 933.5 l 1
+817.5 545.5 m 1
+ 1023.5 545.5 l 1
+ 1023.5 351.5 l 1
+ 817.5 351.5 l 1
+ 817.5 545.5 l 1
+407.5 545.5 m 1
+ 613.5 545.5 l 1
+ 613.5 351.5 l 1
+ 407.5 351.5 l 1
+ 407.5 545.5 l 1
+611.5 159.5 m 1
+ 817.5 159.5 l 1
+ 817.5 -34.5 l 1
+ 611.5 -34.5 l 1
+ 611.5 159.5 l 1
+201.5 159.5 m 1
+ 407.5 159.5 l 1
+ 407.5 -34.5 l 1
+ 201.5 -34.5 l 1
+ 201.5 159.5 l 1
+EndSplineSet
+EndChar
+
+StartChar: block
+Encoding: 4 9608 3
+Width: 1229
+Flags: HW
+VStem: 0 1229<-604 1705>
+LayerCount: 2
+Fore
+SplineSet
+0 -615 m 1
+ 0 1705 l 1
+ 1229 1705 l 1
+ 1229 -615 l 1
+ 0 -615 l 1
+EndSplineSet
+EndChar
+
+StartChar: uni00A0
+Encoding: 0 160 4
+Width: 1229
+Flags: W
+LayerCount: 2
+Fore
+Validated: 1
+EndChar
+
+StartChar: space
+Encoding: 5 32 5
+Width: 1229
+Flags: W
+LayerCount: 2
+Fore
+Validated: 1
+EndChar
+EndChars
+EndSplineFont

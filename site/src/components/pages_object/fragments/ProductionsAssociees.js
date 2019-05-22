@@ -25,11 +25,16 @@ const ProductionsAssociees = ({lang, productions}) => {
           {productions.map(p => (
             <li key={p.permalink.fr} data-type="production" className="item">
               <Link to={p.permalink[lang]}>
-                <h1 data-level-2="title">{p.title[lang] || p.title.fr || p.title.en}</h1>
-                <h2 data-level-2="title">{p.authors}</h2>
-                <p className="type">{p.groupLabel[lang]} 
-                {/* <span>{p.typeLabel[lang]}</span> */}
-                </p>
+                <div className="bandeau">
+                  <p className="type-production" data-icon="production"> {p.groupLabel[lang]}</p> 
+                  {/* {p.typeLabel !== 'media' && 
+                    <p className="subtype-production"> {lang === 'fr' ? <span>{p.typeLabel.fr}</span> : <span>{p.typeLabel.en}</span>}</p> 
+                  } */}
+                  <p className="authors">{p.authors}</p>
+                </div>
+                <hgroup>
+                  <h1 data-level-1="title" >{lang === 'fr' ? p.title.fr : p.title.en}</h1>
+                </hgroup>
               </Link>
             </li>
           ))}

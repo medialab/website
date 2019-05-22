@@ -1,0 +1,63 @@
+/////////////////////
+//////// tweet style
+/////////////////////
+
+@include for-size(desktop) {
+
+    #tweet article{
+             
+        .tweet-content{
+            @include font-size-20();  
+            padding-top: $baseline;
+            padding-bottom: $baseline*1.5;
+            &::first-letter { text-transform: capitalize; }
+        }
+
+
+        aside.details{ 
+                
+            border-top: $border-very-light;
+            padding: $baseline/2 0;
+
+        }
+    } 
+
+}
+
+
+
+
+// all queries
+
+#tweet {
+ 
+    .tweet-content{
+        .hashtag,
+        .mention{
+            color: $redlab;
+        }
+
+        .link-external-tweet{ color: $text-color-light;}
+    }
+
+
+    .account{
+        color: $redlab;
+    }
+}
+
+
+@include for-size(phone) {
+
+
+    #tweet{
+    
+
+        article{
+ 
+        }
+
+    } /* end tweet*/
+
+} /* end phone*/
+

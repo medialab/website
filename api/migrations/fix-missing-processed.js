@@ -27,10 +27,10 @@ module.exports = function(req, dbs, next) {
     dbs[plural].setState(state);
   });
 
-  Promise.all([
-    dbs.activities.write(),
-    dbs.news.write(),
-    dbs.people.write(),
-    dbs.productions.write()
-  ]).then(() => next());
+  dbs.activities.write();
+  dbs.news.write();
+  dbs.people.write();
+  dbs.productions.write();
+
+  return next();
 };

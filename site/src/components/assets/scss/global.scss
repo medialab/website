@@ -6,17 +6,11 @@
 
 
 
-
-
-@import 'fragments/miniatures/miniatures-all';
+@import 'fragments/miniatures-all';
 @import 'fragments/elements-associes';
 @import 'fragments/toggle-lang';
 @import 'fragments/nav';
-
-
-
-
-// @import 'common/pages/highlights';
+@import 'fragments/titre_sticky';
 
 
 
@@ -68,11 +62,11 @@
 @import 'pages/page_equipe/filtre_equipe';
 @import 'pages/page_equipe/filtre_equipe_pattern';
 
-// PAGES  ///////////////////////////////////////////////
+// PAGE CONTENT TYPO  ///////////////////////////////////////////////
 
-@import 'fragments/pages/pages-desktop';
-@import 'fragments/pages/pages-phone';
-@import 'fragments/pages/titre_sticky';
+@import 'fragments/content-typo/content-typo-desktop';
+@import 'fragments/content-typo/content-typo-phone';
+
 
 // PAGES OBJET ///////////////////////////////////////////////
 

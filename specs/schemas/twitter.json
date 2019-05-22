@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Tweets",
+  "description": "Les tweets liés au compte @medialab_ScPo.",
+  "additionalProperties": false,
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "tweet": {
+        "title": "Id du tweet",
+        "type": "string"
+      },
+      "text": {
+        "title": "Texte complet du tweet",
+        "type": "string"
+      },
+      "html": {
+        "title": "Text complet du tweet formatté en HTML",
+        "type": "string"
+      },
+      "date": {
+        "title": "Date du tweet au format ISO",
+        "type": "string"
+      },
+      "retweets": {
+        "title": "Nombre de retweets",
+        "type": "integer"
+      },
+      "favorites": {
+        "title": "Nombre de favorites",
+        "type": "integer"
+      },
+      "type": {
+        "title": "Type de tweet",
+        "type": "string",
+        "enum": [
+          "normal",
+          "retweet",
+          "quote",
+          "reply"
+        ]
+      },
+      "quotedText": {
+        "title": "Text complet du tweet cité",
+        "type": "string"
+      },
+      "quotedHtml": {
+        "title": "Text complet du tweet cité formatté en HTML",
+        "type": "string"
+      },
+      "quotedScreenName": {
+        "title": "Screen name du compte ayant émis le tweet cité",
+        "type": "string"
+      },
+      "quotedName": {
+        "title": "Name du compte ayant émis le tweet cité",
+        "type": "string"
+      },
+      "retweetedText": {
+        "title": "Text complet du tweet retweeté",
+        "type": "string"
+      },
+      "retweetedHtml": {
+        "title": "Text complet du tweet retweeté formatté en HTML",
+        "type": "string"
+      },
+      "retweetedScreenName": {
+        "title": "Screen name du compte ayant émis le tweet retweeté",
+        "type": "string"
+      },
+      "retweetedName": {
+        "title": "Name du compte ayant émis le tweet retweeté",
+        "type": "string"
+      },
+      "repliedText": {
+        "title": "Text complet du tweet auquel on a répondu",
+        "type": "string"
+      },
+      "repliedHtml": {
+        "title": "Text complet du tweet auquel on a répondu formatté en HTML",
+        "type": "string"
+      },
+      "repliedScreenName": {
+        "title": "Screen name du compte ayant émis le tweet auquel on a répondu",
+        "type": "string"
+      },
+      "repliedName": {
+        "title": "Name du compte ayant émis le tweet auquel on a répondu",
+        "type": "string"
+      }
+    }
+  }
+}

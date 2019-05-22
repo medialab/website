@@ -155,7 +155,7 @@ $hunit: 4vh;
 @media screen and (min-width: 1350px){
 
     #home{ width: $max-width-article + $size-scrollbar; }
-    #slideshow, #introduction, #now, #flux{ width: $max-width-article; }
+    #slideshow, #introduction, #now { width: $max-width-article; }
 
     #flux{ margin-left: $max-width-article + $margins-desktop; }  
     .flux_selection_container{ width: calc(100vw - #{$max-width-article} - #{$margins-desktop*3}); }

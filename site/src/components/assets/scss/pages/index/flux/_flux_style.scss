@@ -6,11 +6,14 @@
 
     #agenda, #git, #tweet {
 
+        width: 100%;
+
         article{
 
             cursor: pointer;
             border-bottom: $border;
             padding-left: $unite/2;
+            padding-right: $unite/2;
 
    
             &> a{

@@ -20,10 +20,10 @@ export default function git() {
 							{/*lang === 'fr' ? git.title.fr : git.title.en */}
 						</h1>
 
-						<h2 data-level-2="description"> 
+						<p data-level-2="description" className="description"> 
 							Outils composé de 0 ou de 1, de $ ou de , enfin plein de machin pas si complexe.
 							{/*lang === 'fr' ? git.description.fr : git.description.en */}
-						</h2>
+						</p>
 
 						<aside className="details">
 							<p className="language">Python</p>

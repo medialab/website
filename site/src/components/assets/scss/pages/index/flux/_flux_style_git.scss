@@ -12,7 +12,7 @@
      
         }
 
-        h2{ 
+        h2, .description{ 
             @include font-size-20();
             padding-bottom: $baseline;
         }
@@ -51,7 +51,8 @@
     article h1{ color: $redlab;}
 
     article h1::first-letter,
-    article h2::first-letter{ 
+    article h2::first-letter
+    article .description::first-letter{ 
         text-transform: capitalize; 
     }
 

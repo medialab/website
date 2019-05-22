@@ -1,9 +1,11 @@
 
 ///// Global 
-.elements-associes-block, 
-.personnes-associees-block{ 
+
+
+#all-aside aside{ 
 
 	padding-top: $height-sticky + $baseline*2;
+	max-width: $max-width-main;
 
 	& > h1{
 		margin-bottom: $baseline*2;
@@ -117,7 +119,7 @@
 ///// Responsive
 
 @include for-size(phone) {
-	.elements-associes-block, .personnes-associees-block{
+	#all-aside aside{
 
 		&::before { 
 		    height: calc(100% + 50px);
@@ -145,7 +147,7 @@
 }
 
 @include for-size(desktop) {
-	.elements-associes-block, .personnes-associees-block{
+	#all-aside aside{
 
 	    &:first-of-type{
 	    	margin-top: $baseline*4;
@@ -153,13 +155,10 @@
 	    	
 		&::before { 
 		    height: calc(100% + 50px);
-		    min-height: 200px;
+			min-height: 200px;
+			width: 200vw;
 		    top: 50px;
-		    left: calc(#{$logo-column-medium*-1} - #{$margins-desktop*1});
-
-		    @media screen and (min-width: 1080px){ 
-				left: calc(#{$logo-column*-1} - #{$margins-desktop*1});
-		    }
+		    left: -100vw;
 
 		}
 	    &:last-of-type::before{
@@ -207,7 +206,7 @@
 			width: calc(100% - #{$max-width-article} - #{$unite*2});
 			height: auto;
 			margin-left: $unite*2;
-			margin-top: $baseline*4;
+			// margin-top: $baseline*4;
 			padding: $baseline*2 $unite*1.5;
 			& > aside{
 				margin-top: 0;

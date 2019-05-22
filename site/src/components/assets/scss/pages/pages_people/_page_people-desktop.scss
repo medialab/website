@@ -14,6 +14,8 @@
 			transition: .25s ease-in-out;
 			padding-top: $height-top-bar;
 			margin-bottom: $height-footer + $baseline*8;
+			max-width: $max-width-main;
+			// margin: 0 auto;
 			 /*.cache{
 			 	position: absolute;
 				left: -1px;
@@ -22,8 +24,8 @@
 			 }*/
 			
 			 #biographie{
+				#container-biographie, #highlights{ max-width: $max-width-article; }
 				
-				max-width: $max-width-article;
 
 				header{
 					@include flex-order(1);
@@ -78,7 +80,7 @@
 				.status{ @include font-size-16(); }
 			}			
 		}	
-		.biographie-contenu p, .biographie-contenu li{ @include font-size-16();}
+		.biographie-content p, .biographie-content li{ @include font-size-16();}
 	}
 }
 
@@ -93,10 +95,71 @@
 				.status{ @include font-size-20(); }
 			}
 		}
-		.biographie-contenu p, .biographie-contenu li{ @include font-size-20();}
+		.biographie-content p, .biographie-content li{ @include font-size-20();}
 	}
 }
 
 
+
+
+
+
+@media screen and (min-width: 1620px){
+
+	.page-people #biographie{
+		display: flex;
+
+		#container-biographie, #highlights{
+			display: inline-block; 
+			vertical-align: top;
+			z-index: 0;
+		}
+
+		#highlights{
+			width: calc(100% - #{$max-width-article} - #{$unite*2});
+			height: auto;
+			margin-left: $unite*2;
+			margin-top: $baseline*1.5;
+			padding: $baseline*2 $unite*1.5;
+			& > h1 {
+				@include font-size-27();
+			}
+		}
+	}
+    // .page-production, 
+	// .page-news, 
+	// .page-activity{
+	// 	main{ 
+	// 		display: flex;
+	// 	}
+	// 	#article-contenu, #all-aside{ 
+	// 		display: inline-block; 
+	// 		vertical-align: top;
+	// 		z-index: 0;
+	// 	}
+	// 	#all-aside{
+	// 		background-color:  $background-grey;
+	// 		width: calc(100% - #{$max-width-article} - #{$unite*2});
+	// 		height: auto;
+	// 		margin-left: $unite*2;
+	// 		// margin-top: $baseline*4;
+	// 		padding: $baseline*2 $unite*1.5;
+	// 		& > aside{
+	// 			margin-top: 0;
+	// 			padding-top: 0;
+	// 			margin-bottom: $baseline*5;
+	// 			&::before{ display: none; content: none; }
+	// 			& > h1 {
+	// 				@include font-size-27();
+	// 			}
+	// 		}
+	// 		.liste_personne li[data-type="people"]{
+	// 			width: 100%;
+	// 			margin-bottom: $baseline*1.5;
+	// 		}
+	// 	}
+		
+	// }
+}
 
 

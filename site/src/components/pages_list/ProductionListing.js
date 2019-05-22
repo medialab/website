@@ -31,6 +31,7 @@ export default function ProductionListing({lang, list, group, types}) {
 
     return (
       <>
+      <main>
         <FilterProduction lang={lang} group={group} types={types} />
         <section id="liste">
         {/* <div className="accroche-titre"><p>{accroche}</p></div> */}
@@ -68,6 +69,7 @@ export default function ProductionListing({lang, list, group, types}) {
             ))}
           </ul>
         </section>
+      </main>
       </>
    );
 }

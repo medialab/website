@@ -12,7 +12,7 @@ body{ overflow-x: visible}
 @include for-size(desktop) {
     body{
         // max-width: 1800px;
-        margin: 0 $margins-desktop!important;
+        // margin: 0 $margins-desktop!important;
         background-color: $background-site;
         top: 0!important;
     }

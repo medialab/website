@@ -10,10 +10,6 @@
 	.page-news, 
 	.page-activity{
 
-		main{
-			max-width: $max-width-main;
-			margin-bottom: $height-footer + $baseline*8;
-
 			hgroup{ 
 				max-width: $max-width-article; 
 			}
@@ -157,7 +153,6 @@
 					}
 				}
 			}/* #article-contenu */
-		} /* main */
 
 		
 	}

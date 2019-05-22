@@ -212,9 +212,9 @@ export default function PeopleDetail({lang, person}) {
 
   return (
     <>
-      <Nav lang={lang} data={person} order={['main', 'activities', 'productions', 'news']} />
+      
       <main id="main">
-
+        <Nav lang={lang} data={person} order={['main', 'activities', 'productions', 'news']} />
 
         <header id="titre-sticky">
           <div id="container-titre-sticky">

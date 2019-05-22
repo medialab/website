@@ -133,7 +133,6 @@ export default function NewsDetail({lang, news}) {
           
         </div>
 
-
         <article id="article-contenu">
           {/* Toggle Langue */}
           <ToggleLang lang={lang} content={news.content} />

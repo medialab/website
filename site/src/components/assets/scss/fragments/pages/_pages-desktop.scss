@@ -7,8 +7,76 @@
 }
 
 main{
-	@include flex-grow(1); 
+	@include flex-grow(1);  
+	
 }
+
+
+/* MAIN DE TOUTES LES PAGES RESPONSIVE  */
+
+@include for-size(phone) {
+
+	main{
+		width: 100%;
+		padding: 0 $margins-phone;
+	}
+
+}
+
+
+@include for-size(desktop){
+	main{
+		width: 100%;
+		max-width: $max-width-main + $margins-desktop*2;
+		padding: 0 $margins-desktop;
+		margin-bottom: $height-footer + $baseline*8;
+	}
+}
+
+
+
+	.page-people main,
+	.page-production main, 
+	.page-news main, 
+	.page-activity main{ 
+		@media screen and (min-width: 700px) and (max-width: 1080px){
+			margin-left: $logo-column-medium;
+		}
+		@media screen and (min-width: 1080px){
+			margin-left: $logo-column;
+		}
+	}
+
+
+
+
+@media screen and (min-width: 2060px) { 
+	main{ 
+		margin-left: 0!important;
+		margin: 0 auto!important;
+	}
+}	
+
+
+/* ??????????? */
+
+@include for-size(desktop){
+	.page-about main{
+		/* ? */
+		margin-bottom: 40vh;
+		@include flex;
+		@include flex-wrap(wrap);
+	}
+}
+
+@media screen and (min-width: 700px) and (max-width: 1080px){
+	.page-about main{ margin-left: $logo-column-medium; }
+}
+
+@media screen and (min-width: 1080px){
+	.page-about main{ margin-left: $logo-column; }
+}
+
 
 
 /* Regles typographique de bases communes à toutes les pages de contenu */
@@ -135,23 +203,6 @@ main{
 			}
 		}
 
-		//////////////
-		// Layout : Barre laterale 
-		/////////////
-		@media screen and (min-width: 700px) and (max-width: 1080px){
-			main{ margin-left: $logo-column-medium;}
-		}
-
-		@media screen and (min-width: 1080px){
-			main{ margin-left: $logo-column;}
-		}
-
-
-		@media screen and (min-width: 2060px) { 
-			main{ 
-				margin-left: 0;
-				margin: 0 auto!important;
-			}
-		}		
+	
 	}
 }

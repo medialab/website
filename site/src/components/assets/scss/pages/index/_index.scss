@@ -42,7 +42,7 @@ $hunit: 4vh;
     
         main{ 
            
-            max-width: $max-width-main;
+            max-width: $max-width-main + $margins-desktop*2;
             margin: 0 auto;
             margin-top: $height-top-bar;
         }

@@ -38,7 +38,8 @@
         padding: $margins-desktop $margins-desktop;
         width: 100vw;
         height: $height-top-bar;
-        left: $margins-desktop * -1;
+        left: 0;
+        top: 0;
         color: $text-color;
         @include font-size-13-uppercase();
         letter-spacing: 0.2px;
@@ -54,14 +55,13 @@
     .page-people-list #topbar,
     .page-home #topbar {
         position: fixed !important;
-        top: 0 !important;
-        left: 0!important
+
     }
 
-    .page-people #topbar{
-        position: absolute!important; 
-        top: 0;
-    }
+    // .page-people #topbar{
+    //     position: absolute!important; 
+    //     top: 0;
+    // }
 
 
     #topbar label{ 

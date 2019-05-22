@@ -5,20 +5,7 @@
 @include for-size(desktop) {
  
 	.page-people{
-
-		main{
-			transition: .25s ease-in-out;
-			padding-top: $height-top-bar;
-			margin-bottom: $height-footer + $baseline*8;
-			max-width: $max-width-main;
-
-			/*.cache{
-			 	position: absolute;
-				left: -1px;
-				font-size: 1vw;
-				color: white;
-			 }*/
-			
+			 
 			 #biographie{
 				#container-biographie, #highlights{ max-width: $max-width-article; }
 				
@@ -59,7 +46,6 @@
 					}					
 				}
 			}	
-		} /* end main */		
 	}
 }
 

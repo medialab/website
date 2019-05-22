@@ -18,7 +18,9 @@
 		text-transform: lowercase;
 		font-weight: 100;
 		cursor: help;
-
+		display: inline-block;
+		position: absolute; 
+		right: 0;
 	}
 }
 
@@ -27,8 +29,9 @@
     position: fixed;
     z-index: 14;
     top: -100vh;
-    background-color: $background-site;
-    @include font-size-16;
+	background-color: $background-site;
+	@include font-size-16;
+	@media screen and (min-width: 1200px){ @include font-size-20; } 
     color: $redlab;
     padding-top: $baseline*0.75;
     padding-bottom: $baseline;

@@ -112,7 +112,7 @@ function missingLabAuthors(spireRecords, existingSpireAuthors) {
 
 module.exports.missingLabAuthors = missingLabAuthors;
 
-module.exports.aSPIRE = function aSPIRE(callback) {
+module.exports.aSPIRE = function aSPIRE(doneCallback, emitCallback = console.debug) {
   async.waterfall([
     // load indeces of existing prod and authors
     getRefDone => {
@@ -120,12 +120,14 @@ module.exports.aSPIRE = function aSPIRE(callback) {
         people: fetchPeopleDone => {
           request.get(`http://localhost:${config.port}/people/people`, {json: true}, (err, result) => {
             if (err) fetchPeopleDone(err);
+            emitCallback('Récupération des People terminée');
             fetchPeopleDone(null, _.keyBy(result.body, p => p.slugs[0]));
           });
         },
         productions: fetchProductionsDone => {
           request.get(`http://localhost:${config.port}/productions/productions`, {json: true}, (err, result) => {
             if (err) fetchProductionsDone(err);
+            emitCallback('Récupération des Productions terminée');
             fetchProductionsDone(null, _.keyBy(result.body.filter(p => !!p.spire), p => p.spire.id));
           });
         }
@@ -152,6 +154,7 @@ module.exports.aSPIRE = function aSPIRE(callback) {
             result_offset: resultOffset
           }]};
           console.debug(`request to spire ${resultOffset}`);
+          emitCallback(`Requête #${resultOffset + 1} à l'API Spire`);
           request.post(config.spire.api, {body, json: true}, (e, r) => {
             if (e || r.statusCode !== 200) {
               console.debug(`erreur ${r.statusCode} \n` + r.body);
@@ -181,6 +184,7 @@ module.exports.aSPIRE = function aSPIRE(callback) {
           if (err) {
             doneAPISpire(err);
           }
+          emitCallback(`Récupération Spire terminée : ${spireRecords.length} publications`);
           console.debug(`got ${spireRecords.length}`);
           // common queue to process the writing requests
           const websiteApiQueue = async.queue(({method, model, object}, cb) => {
@@ -206,23 +210,28 @@ module.exports.aSPIRE = function aSPIRE(callback) {
             // simple true match on slug
             const match = indeces.people[slugify(`${aut.name_given} ${aut.name_family}`)];
             if (match) {
-              spireAuthors[idSpire] = {spire: {id: idSpire}, ...match}
-              websiteApiQueue.push({method: 'PUT', model: 'people', object: {spire: {id: idSpire}, ...match}}, (e) => {
-                if (e) console.error(e);
-              });
+              spireAuthors[idSpire] = {spire: {id: idSpire}, ...match};
+              emitCallback(`Ajout de l'id Spire à ${match.firstName} ${match.lastName} : ${idSpire}`);
+              if (!match.spire)
+                // this test is to prevent uneeded update when the match already have a spire ID : duplicated authors in spire
+                websiteApiQueue.push({method: 'PUT', model: 'people', object: {spire: {id: idSpire}, ...match}}, (e) => {
+                  if (e) console.error(e);
+                });
             }
             else {
               peopleToResolve.push(aut);
             }
           });
           // log what left to be resolved
-          if (peopleToResolve.length > 0)
-            console.debug(`missing spire authors in data ${peopleToResolve.map(aut => `${aut.name_given} ${aut.name_family}`)}`);
-
+          if (peopleToResolve.length > 0) {
+            const nameList = peopleToResolve.map(aut => `${aut.name_given} ${aut.name_family}`)
+            console.debug(`missing spire authors in data ${nameList}`);
+            emitCallback(`${peopleToResolve.length} auteurs Spire non trouvés dans People : ${nameList}`);
+          }
           // control variables
           const modifiedProductionIds = [];
           let nbNewProductions = 0;
-          const tooRecentProductionsId = [];
+          let nbUnchangedProductions = 0;
 
           //treat records
           async.each(spireRecords,
@@ -263,24 +272,28 @@ module.exports.aSPIRE = function aSPIRE(callback) {
                   });
                   nbNewProductions += 1;
                 }
-                // else, nothing change, nothing to do
+                else
+                  // else, nothing change, nothing to do
+                  nbUnchangedProductions += 1;
               }
               d(null);
             },
             (r) => {
               if (r) doneAPISpire(r);
-              if (websiteApiQueue.idle())
-                doneAPISpire(null, {nbNewProductions, modifiedProductionIds, tooRecentProductionsId, peopleToResolve});
-              else
+              if (websiteApiQueue.idle()) {
+                emitCallback(`importation des données spire terminée : ${nbNewProductions} nouvelle.s production.s, ${modifiedProductionIds.length} modifiée.s, ${nbUnchangedProductions} inchangée.s`);
+                doneAPISpire(null, {nbNewProductions, modifiedProductionIds, nbUnchangedProductions, peopleToResolve});
+              }else
                 websiteApiQueue.drain = () => {
-                  doneAPISpire(null, {nbNewProductions, modifiedProductionIds, tooRecentProductionsId, peopleToResolve});
+                  emitCallback(`importation des données spire terminée : ${nbNewProductions} nouvelle.s production.s, ${modifiedProductionIds.length} modifiée.s, ${nbUnchangedProductions} inchangée.s`);
+                  doneAPISpire(null, {nbNewProductions, modifiedProductionIds, nbUnchangedProductions, peopleToResolve});
                 };
             }
           );
         }
       );
     }
-  ], callback);
+  ], doneCallback);
 };
 
 module.exports.aspireAuthors = function aspireAuthors(callback) {

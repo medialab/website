@@ -2,6 +2,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Deployment from './Deployment';
+import Aspire from './Aspire';
 
 export default function Home() {
   return (
@@ -18,6 +19,9 @@ export default function Home() {
       <hr />
       <div>
         <Deployment />
+      </div>
+      <div>
+        <Aspire />
       </div>
     </div>
   );

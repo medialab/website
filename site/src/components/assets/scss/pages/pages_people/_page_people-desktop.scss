@@ -15,8 +15,8 @@
 			padding-top: $height-top-bar;
 			margin-bottom: $height-footer + $baseline*8;
 			max-width: $max-width-main;
-			// margin: 0 auto;
-			 /*.cache{
+
+			/*.cache{
 			 	position: absolute;
 				left: -1px;
 				font-size: 1vw;
@@ -126,40 +126,6 @@
 			}
 		}
 	}
-    // .page-production, 
-	// .page-news, 
-	// .page-activity{
-	// 	main{ 
-	// 		display: flex;
-	// 	}
-	// 	#article-contenu, #all-aside{ 
-	// 		display: inline-block; 
-	// 		vertical-align: top;
-	// 		z-index: 0;
-	// 	}
-	// 	#all-aside{
-	// 		background-color:  $background-grey;
-	// 		width: calc(100% - #{$max-width-article} - #{$unite*2});
-	// 		height: auto;
-	// 		margin-left: $unite*2;
-	// 		// margin-top: $baseline*4;
-	// 		padding: $baseline*2 $unite*1.5;
-	// 		& > aside{
-	// 			margin-top: 0;
-	// 			padding-top: 0;
-	// 			margin-bottom: $baseline*5;
-	// 			&::before{ display: none; content: none; }
-	// 			& > h1 {
-	// 				@include font-size-27();
-	// 			}
-	// 		}
-	// 		.liste_personne li[data-type="people"]{
-	// 			width: 100%;
-	// 			margin-bottom: $baseline*1.5;
-	// 		}
-	// 	}
-		
-	// }
 }
 
 

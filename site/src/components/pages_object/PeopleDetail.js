@@ -84,7 +84,7 @@ export const queryFragment = graphql`
       typeLabel {
         en
         fr
-      }      
+      }
     }
     mainActivities {
       description {
@@ -212,9 +212,9 @@ export default function PeopleDetail({lang, person}) {
 
   return (
     <>
-      
+
       <main>
-        
+
         <Nav lang={lang} data={person} order={['main', 'activities', 'productions', 'news']} />
 
         <header id="titre-sticky">
@@ -228,7 +228,7 @@ export default function PeopleDetail({lang, person}) {
           </p>
         </div>
         </header>
-        
+
         <div className="main-container">
 
           <article id="biographie">
@@ -238,8 +238,8 @@ export default function PeopleDetail({lang, person}) {
                   <img src={person.coverImage ? person.coverImage.url : Img} alt={lang === 'fr' ? 'Photo de profil de ' + person.firstName + person.lastName : person.firstName + person.lastName + ' profil picture'} />
                 </figure>
                 <hgroup>
-                  <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>        
-                  <p class="status" data-type="status">{person.status && (lang === "fr" ? person.status.fr : person.status.en)}</p>
+                  <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
+                  <p className="status" data-type="status">{person.status && (lang === "fr" ? person.status.fr : person.status.en)}</p>
                 </hgroup>
                 <div className="bandeau">
                 <p className="role" data-type="role">{person.role[lang]}</p>
@@ -247,7 +247,7 @@ export default function PeopleDetail({lang, person}) {
                     <p data-type="membership">{templateMembership(person)}</p>
                 </div>
 
-              
+
                 <div className="contact">
                   {/* <h3 className="toContact">{lang === 'fr' ? 'Contact' : 'Get in touch '}</h3> */}
                   <ul>
@@ -267,11 +267,11 @@ export default function PeopleDetail({lang, person}) {
                 {person.bio && person.bio[lang] ? <RawHtml html={person.bio[lang]} /> : null}
               </div>
             </div>
-            
-            
+
+
             <Highlights people={person} lang={lang} />
           </article>
-          
+
 
           <aside id="all-aside">
             <ActivitesAssociees activities={person.activities} lang={lang} />
@@ -283,8 +283,8 @@ export default function PeopleDetail({lang, person}) {
 
 
 
-      
-        
+
+
       </main>
     </>
   );

@@ -205,9 +205,6 @@ app.get('/migrate/:scheme', (req, res) => {
   });
 });
 
-// Starting gatsby
-gatsby.start();
-
 // Creating server
 const server = http.Server(app);
 
@@ -345,3 +342,6 @@ ws.on('connection', socket => {
 // Listening
 console.log(`Listening on port ${PORT}...`);
 server.listen(PORT);
+
+// Starting gatsby
+gatsby.start();

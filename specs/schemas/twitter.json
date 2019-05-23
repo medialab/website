@@ -41,53 +41,41 @@
           "reply"
         ]
       },
-      "quotedText": {
-        "title": "Text complet du tweet cité",
-        "type": "string"
-      },
-      "quotedHtml": {
-        "title": "Text complet du tweet cité formatté en HTML",
-        "type": "string"
-      },
-      "quotedScreenName": {
-        "title": "Screen name du compte ayant émis le tweet cité",
-        "type": "string"
-      },
-      "quotedName": {
-        "title": "Name du compte ayant émis le tweet cité",
-        "type": "string"
-      },
-      "retweetedText": {
-        "title": "Text complet du tweet retweeté",
-        "type": "string"
-      },
-      "retweetedHtml": {
-        "title": "Text complet du tweet retweeté formatté en HTML",
-        "type": "string"
-      },
-      "retweetedScreenName": {
-        "title": "Screen name du compte ayant émis le tweet retweeté",
-        "type": "string"
-      },
-      "retweetedName": {
-        "title": "Name du compte ayant émis le tweet retweeté",
-        "type": "string"
-      },
-      "repliedText": {
-        "title": "Text complet du tweet auquel on a répondu",
-        "type": "string"
-      },
-      "repliedHtml": {
-        "title": "Text complet du tweet auquel on a répondu formatté en HTML",
-        "type": "string"
-      },
-      "repliedScreenName": {
-        "title": "Screen name du compte ayant émis le tweet auquel on a répondu",
-        "type": "string"
-      },
-      "repliedName": {
-        "title": "Name du compte ayant émis le tweet auquel on a répondu",
-        "type": "string"
+      "originalTweet":{
+        "title" : "Tweet retweeté ou origine de la réponse",
+        "type": "object",
+        "properties": {
+          "tweet": {
+            "title": "Id du tweet",
+            "type": "string"
+          },
+          "text": {
+            "title": "Texte complet du tweet",
+            "type": "string"
+          },
+          "html": {
+            "title": "Text complet du tweet formatté en HTML",
+            "type": "string"
+          },
+          "screenName": {
+            "title": "Screen name du compte ayant émis le tweet cité",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name du compte ayant émis le tweet cité",
+            "type": "string"
+          },
+          "type": {
+            "title": "Type de tweet",
+            "type": "string",
+            "enum": [
+              "normal",
+              "retweet",
+              "quote",
+              "reply"
+            ]
+          }
+        }
       }
     }
   }

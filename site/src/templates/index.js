@@ -196,6 +196,23 @@ export const query = graphql`
         }
       }
     }
+    tweets: allTwitterJson {
+      edges {
+        node {
+          tweet
+          text
+          date
+          type
+          originalTweet {
+            tweet
+            text
+            type
+            name
+            screenName
+           }
+        }
+      }
+    }
   }
 `;
 

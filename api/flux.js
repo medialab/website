@@ -227,34 +227,43 @@ exports.retrieveTwitterFluxData = function(callback) {
           const repliedTweet = repliedTweetIndex[t.in_reply_to_status_id_str];
 
           resolveTweetUrls(repliedTweet);
-
-          item.repliedId = repliedTweet.id;
-          item.repliedText = repliedTweet.full_text;
-          item.repliedHtml = convertTweetTextToHtml(repliedTweet.full_text);
-          item.repliedScreenName = repliedTweet.user.screen_name;
-          item.repliedName = repliedTweet.user.name;
+          
+          item.originalTweet = {
+            tweet: repliedTweet.id_str,
+            text: repliedTweet.full_text,
+            html: convertTweetTextToHtml(repliedTweet.full_text),
+            screenName: repliedTweet.user.screen_name,
+            name: repliedTweet.user.name,
+            type: 'tweet'
+          };
           item.type = 'reply';
         }
 
         // Retweets
-        if (t.retweeted_status) {
+        if (t.retweeted_status) {
           resolveTweetUrls(t.retweeted_status);
-
-          item.retweetedText = t.retweeted_status.full_text;
-          item.retweetedHtml = convertTweetTextToHtml(t.retweeted_status.full_text);
-          item.retweetedScreenName = t.retweeted_status.user.screen_name;
-          item.retweetedName = t.retweeted_status.user.name;
+          item.originalTweet = {
+            tweet: t.retweeted_status.id_str,
+            text: t.retweeted_status.full_text,
+            html: convertTweetTextToHtml(t.retweeted_status.full_text),
+            screenName: t.retweeted_status.user.screen_name,
+            name: t.retweeted_status.user.name,
+            type: 'tweet'
+          };
           item.type = 'retweet';
         }
 
         // Quotes
-        if (t.quoted_status) {
+        if (t.quoted_status) {
           resolveTweetUrls(t.quoted_status);
-
-          item.quotedText = t.quoted_status.full_text;
-          item.quotedHtml = convertTweetTextToHtml(t.quoted_status.full_text);
-          item.quotedScreenName = t.quoted_status.user.screen_name;
-          item.quotedName = t.quoted_status.user.name;
+          item.originalTweet = {
+            tweet: t.quoted_status.id_str,
+            text: t.quoted_status.full_text,
+            html: convertTweetTextToHtml(t.quoted_status.full_text),
+            screenName: t.quoted_status.user.screen_name,
+            name: t.quoted_status.user.name,
+            type: 'tweet'
+          };
           item.type = 'quote';
         }
 

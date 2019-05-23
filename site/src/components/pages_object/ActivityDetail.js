@@ -137,8 +137,8 @@ export default function ActivityDetail({lang, activity}) {
 
 
   return (
-    <main id="main-objet">      
-      
+    <main id="main-objet">
+
       <header id="titre-sticky">
         <div id="container-titre-sticky">
           <div id="logo-sticky"><a href="/"><Logo /></a></div>
@@ -148,7 +148,7 @@ export default function ActivityDetail({lang, activity}) {
 
 
       <div id="img-article">
-        <div class="activator"></div>
+        <div className="activator"></div>
         <div className="container">{coverImage}</div>
       </div>
 
@@ -164,7 +164,7 @@ export default function ActivityDetail({lang, activity}) {
             <h2  data-level-2="baseline">{activity.baseline && (activity.baseline.fr || activity.baseline.en)}</h2>
             <h3  data-level-3="description"><RawHtml html={activity.description && activity.description.fr} /></h3>
           </hgroup>
-          <div class="details">
+          <div className="details">
             <p className="type-objet"><span data-icon="activite"></span> {IsModel(activity.type, "fr")}</p>
             <DateNews startDate={activity.startDate} endDate={activity.endDate} lang="fr" />
             <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
@@ -184,7 +184,7 @@ export default function ActivityDetail({lang, activity}) {
             <h2   data-level-2="baseline">{activity.baseline && (activity.baseline.en || activity.baseline.fr)}</h2>
             <h3  data-level-3="description"><RawHtml html={activity.description && activity.description.en} /></h3>
           </hgroup>
-          <div class="details">
+          <div className="details">
             <p className="type-objet"><span data-icon="activite"></span> {IsModel(activity.type, "en")}</p>
             <DateNews startDate={activity.startDate} endDate={activity.endDate} lang="en" />
             <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
@@ -202,7 +202,7 @@ export default function ActivityDetail({lang, activity}) {
         <ProductionsAssociees productions={activity.productions} lang={lang} />
         <ActuAssociees actu={activity.news} lang={lang} />
       </aside>
-      
+
     </main>
   );
 }

@@ -280,7 +280,7 @@ class ImageSource extends Component {
 function ImageBlock(props) {
   const blockProps = props.blockProps;
   const {credits, src, format = DEFAULT_FORMAT} = blockProps.entity.getData();
-  console.log(blockProps.entity.getData())
+
   const formatLabel = FORMAT_OPTIONS.find(o => o.value === format).label;
 
   // NOTE: can access mutators here

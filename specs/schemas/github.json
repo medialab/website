@@ -3,59 +3,57 @@
   "title": "GitHub Events",
   "description": "Les événements GitHub à afficher dans le flux du site.",
   "additionalProperties": false,
-  "type": "array",
-  "items": {
-    "type": "object",
-    "properties": {
-      "repo": {
-        "title": "Nom du dépôt GitHub",
-        "type": "string"
-      },
-      "language": {
-        "title": "Langage de programmation principal du dépôt",
-        "type": "string"
-      },
-      "url": {
-        "title": "Url du dépôt sur GitHub",
-        "type": "string"
-      },
-      "date": {
-        "title": "Date du dernier événement au format ISO",
-        "type": "string"
-      },
-      "count": {
-        "title": "Nombre d'événement sur la période en cours",
-        "type": "integer"
-      },
-      "description": {
-        "title": "Description du dépôt",
-        "type": "string"
-      },
-      "license": {
-        "title": "License du projet",
-        "type": "string"
-      },
-      "authors": {
-        "title": "Comptes GitHub ayant participé à l'événement",
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "title": "Nom du compte GitHub",
-              "type": "string"
-            },
-            "url": {
-              "title": "Url du compte GitHub",
-              "type": "string"
-            },
-            "slug": {
-              "title": "Slug de la personne dans les données du CMS",
-              "type": "string"
-            }
+  "type": "object",
+  "properties": {
+    "repo": {
+      "title": "Nom du dépôt GitHub",
+      "type": "string"
+    },
+    "language": {
+      "title": "Langage de programmation principal du dépôt",
+      "type": "string"
+    },
+    "url": {
+      "title": "Url du dépôt sur GitHub",
+      "type": "string"
+    },
+    "date": {
+      "title": "Date du dernier événement au format ISO",
+      "type": "string"
+    },
+    "count": {
+      "title": "Nombre d'événement sur la période en cours",
+      "type": "integer"
+    },
+    "description": {
+      "title": "Description du dépôt",
+      "type": "string"
+    },
+    "license": {
+      "title": "License du projet",
+      "type": "string"
+    },
+    "authors": {
+      "title": "Comptes GitHub ayant participé à l'événement",
+      "type": "array",
+      "items": {
+        "title": "Compte GitHub",
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Nom du compte GitHub",
+            "type": "string"
           },
-          "required": ["name", "url"]
-        }
+          "url": {
+            "title": "Url du compte GitHub",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug de la personne dans les données du CMS",
+            "type": "string"
+          }
+        },
+        "required": ["name", "url"]
       }
     }
   }

@@ -3,78 +3,75 @@
   "title": "Tweets",
   "description": "Les tweets liés au compte @medialab_ScPo.",
   "additionalProperties": false,
-  "type": "array",
-  "items": {
-    "type": "object",
-    "properties": {
-      "tweet": {
-        "title": "Id du tweet",
-        "type": "string"
-      },
-      "text": {
-        "title": "Texte complet du tweet",
-        "type": "string"
-      },
-      "html": {
-        "title": "Text complet du tweet formatté en HTML",
-        "type": "string"
-      },
-      "date": {
-        "title": "Date du tweet au format ISO",
-        "type": "string"
-      },
-      "retweets": {
-        "title": "Nombre de retweets",
-        "type": "integer"
-      },
-      "favorites": {
-        "title": "Nombre de favorites",
-        "type": "integer"
-      },
-      "type": {
-        "title": "Type de tweet",
-        "type": "string",
-        "enum": [
-          "normal",
-          "retweet",
-          "quote",
-          "reply"
-        ]
-      },
-      "originalTweet":{
-        "title" : "Tweet retweeté ou origine de la réponse",
-        "type": "object",
-        "properties": {
-          "tweet": {
-            "title": "Id du tweet",
-            "type": "string"
-          },
-          "text": {
-            "title": "Texte complet du tweet",
-            "type": "string"
-          },
-          "html": {
-            "title": "Text complet du tweet formatté en HTML",
-            "type": "string"
-          },
-          "screenName": {
-            "title": "Screen name du compte ayant émis le tweet cité",
-            "type": "string"
-          },
-          "name": {
-            "title": "Name du compte ayant émis le tweet cité",
-            "type": "string"
-          },
-          "type": {
-            "title": "Type de tweet",
-            "type": "string",
-            "enum": [
-              "normal",
-              "retweet",
-              "quote",
-              "reply"
-            ]
-          }
+  "type": "object",
+  "properties": {
+    "tweet": {
+      "title": "Id du tweet",
+      "type": "string"
+    },
+    "text": {
+      "title": "Texte complet du tweet",
+      "type": "string"
+    },
+    "html": {
+      "title": "Text complet du tweet formatté en HTML",
+      "type": "string"
+    },
+    "date": {
+      "title": "Date du tweet au format ISO",
+      "type": "string"
+    },
+    "retweets": {
+      "title": "Nombre de retweets",
+      "type": "integer"
+    },
+    "favorites": {
+      "title": "Nombre de favorites",
+      "type": "integer"
+    },
+    "type": {
+      "title": "Type de tweet",
+      "type": "string",
+      "enum": [
+        "normal",
+        "retweet",
+        "quote",
+        "reply"
+      ]
+    },
+    "originalTweet":{
+      "title" : "Tweet retweeté ou origine de la réponse",
+      "type": "object",
+      "properties": {
+        "tweet": {
+          "title": "Id du tweet",
+          "type": "string"
+        },
+        "text": {
+          "title": "Texte complet du tweet",
+          "type": "string"
+        },
+        "html": {
+          "title": "Text complet du tweet formatté en HTML",
+          "type": "string"
+        },
+        "screenName": {
+          "title": "Screen name du compte ayant émis le tweet cité",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name du compte ayant émis le tweet cité",
+          "type": "string"
+        },
+        "type": {
+          "title": "Type de tweet",
+          "type": "string",
+          "enum": [
+            "normal",
+            "retweet",
+            "quote",
+            "reply"
+          ]
         }
       }
     }

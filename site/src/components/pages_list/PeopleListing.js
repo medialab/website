@@ -9,7 +9,7 @@ import {IsModel} from '../helpers/helpers.js';
 import Img from '../assets/images/sample/default-people.png';
 
 export default function PeopleListing({lang, list}) {
-  console.log(lang, list);
+  // console.log(lang, list);
 
 
 

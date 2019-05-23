@@ -6,11 +6,11 @@ import Nav from './common/Nav.js';
 import RawHtml from './helpers/RawHtml';
 
 export default function About({lang}) {
-  console.log(lang);
+  // console.log(lang);
 
   return (
     <>
-      
+
       <main>
       <Nav lang={lang} data='' order={['main', 'people', 'productions', 'activities', 'news', 'attachments']} />
         <article id="about-contenu" className="main-container">
@@ -27,7 +27,7 @@ export default function About({lang}) {
 
             <p>Chaque projet de recherche développe une approche pluridisciplinaire qui mobilise des compétences variées. Irrigués par les sciences sociales et les STS, ces projets se nourrissent au besoin de l'ingénierie informatique, ancrée dans l’ADN du médialab, pour affiner les enquêtes utilisant le web, mais aussi des nouvelles formes de mises en situation explorées par le design. </p>
             <p>--
-            Faire le lien avec pédagogie: 
+            Faire le lien avec pédagogie:
             Un lien fort avec les activités de pédagogie
             Les nouvelles formes de pédagogie entrent pleinement
             --</p>

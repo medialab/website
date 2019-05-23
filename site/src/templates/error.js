@@ -6,7 +6,7 @@ import Page from '../components/ErrorPage';
 
 
 const ErrorPage = ({data, pageContext}) => {
-  console.log(data, pageContext);
+  // console.log(data, pageContext);
 
   const {code} = pageContext;
   const permalink = `${code}.html`;

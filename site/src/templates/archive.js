@@ -53,7 +53,7 @@ export const query = graphql`
 const getNode = ({node}) => node;
 
 export default ({data, pageContext}) => {
-  console.log(data, pageContext);
+  // console.log(data, pageContext);
 
   const activities = data.allActivitiesJson.edges.map(getNode),
         news = data.allNewsJson.edges.map(getNode),

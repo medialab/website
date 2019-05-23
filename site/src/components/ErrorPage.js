@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function Home({lang, code}) {
-  console.log(code);
+  // console.log(code);
 
   return (
     <div>

@@ -5,7 +5,7 @@ import Layout from '../components/Layout';
 import Legal from '../components/Legal';
 
 export default ({data, pageContext}) => {
-  console.log(data, pageContext);
+  // console.log(data, pageContext);
 
   return (
     <Layout

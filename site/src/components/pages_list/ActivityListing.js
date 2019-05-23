@@ -9,19 +9,19 @@ import ProcessedImage from '../helpers/ProcessedImage.js';
 import {templateMembership} from '../helpers/helpers.js';
 
 export default function ActivityListing({lang, list, status, statuses}) {
-  console.log(lang, list);
+  // console.log(lang, list);
 
- 
+
     return (
       <>
       <main>
         <FilterActivity lang={lang} status={status} statuses={statuses} />
         <section className="main-filters">
         </section>
-       
+
         <section id="liste" className="main-container">
           <ul className="liste_objet" id="liste-activity">
-           
+
             {list.map((a, index) => (
               <React.Fragment key={index}>
                 <li data-type={a.type} className={`list-item ${a.type}-${a.active ? 'active' : 'past'}`}>
@@ -35,18 +35,18 @@ export default function ActivityListing({lang, list, status, statuses}) {
                     </div>
                     <hgroup>
                       <h1 data-level-1="baseline" >{a.baseline && (lang === 'fr' ? a.baseline.fr : a.baseline.en)}</h1>
-                    </hgroup>                   
+                    </hgroup>
                     <div className="accroche">
                       <p className="accroche-paragraphe">
                         {a.description && <RawHTML html={lang === 'fr' ? a.description.fr : a.description.en} />}
-                      </p>                     
-                    </div> 
+                      </p>
+                    </div>
                   </Link>
                 </li>
               </React.Fragment>
-              
-            ))}   
-              
+
+            ))}
+
           </ul>
         </section>
       </main>

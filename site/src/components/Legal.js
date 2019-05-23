@@ -2,7 +2,7 @@ import React from 'react';
 import Nav from './common/Nav.js';
 
 export default function Legal({lang}) {
-  console.log(lang);
+  // console.log(lang);
 
   return (
     <>

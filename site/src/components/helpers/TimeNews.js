@@ -3,6 +3,9 @@ import {format as formatDate} from 'date-fns';
 
 function TimeNews(news) {
 
+    if (!news.startDate)
+        return null;
+
     let timeNews = null;
 
     const startDate = news.startDate;

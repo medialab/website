@@ -8,7 +8,7 @@
     "build": "gatsby build",
     "clean": "rm -rf .cache public",
     "dev": "npm run clean && gatsby develop",
-    "postinstall": "gatsby telemetry --disable"
+    "postinstall": "gatsby telemetry --disable || true"
   },
   "contributors": [
     {

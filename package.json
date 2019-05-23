@@ -42,7 +42,7 @@
     "express": "^4.17.0",
     "express-fileupload": "^1.1.4",
     "fs-extra": "^8.0.1",
-    "gatsby-cli": "^2.6.0",
+    "gatsby-cli": "^2.6.2",
     "json-server": "^0.15.0",
     "json-stable-stringify": "^1.0.1",
     "lodash": "^4.17.11",

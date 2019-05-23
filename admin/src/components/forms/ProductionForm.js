@@ -19,6 +19,9 @@ import Button from '../misc/Button';
 import keyBy from 'lodash/keyBy';
 
 function validate(data) {
+  if (data.spire)
+    return;
+
   if (!data.title || !data.title.fr)
     return 'Need at least a French title';
 }
@@ -121,7 +124,7 @@ class SpireGeneratedField extends Component {
       return (<div>
         <div className='notification is-medium'>{spireLabel}</div>
         {(!humanValue && humanValue !== "") && <Button kind='text' onClick={() => {init();}}>Modifier la valeur générée depuis SPIRE</Button>}
-        {(humanValue || humanValue === '') && children} 
+        {(humanValue || humanValue === '') && children}
         {(humanValue || humanValue === '') && <Button kind='text' onClick={() => {cancel();}}>Annuler et restaurer la valeur générée depuis spire </Button>}
       </div>);
     }

@@ -42,7 +42,7 @@ const FORMAT_OPTIONS = [
     img: illustrationBlockImg
   },
   {
-    value: 'logo',
+    value: 'figure-logo',
     label: 'Logo',
     img: logoFormatImg
   }

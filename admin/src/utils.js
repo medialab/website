@@ -35,6 +35,9 @@ function entityStyleFn(entity) {
     if (data.credits)
       attributes['data-credits'] = data.credits;
 
+    if (data.format)
+      attributes['data-format'] = data.format;
+
     return {
       element: 'img',
       attributes
@@ -75,12 +78,16 @@ function customInlineFn(element, {Entity}) {
     const width = +element.getAttribute('data-width'),
           height = +element.getAttribute('data-height'),
           src = element.getAttribute('src'),
-          credits = element.getAttribute('data-credits');
+          credits = element.getAttribute('data-credits'),
+          format = element.getAttribute('data-format');
 
     const data = {src, width, height};
 
     if (credits)
       data.credits = credits;
+
+    if (format)
+      data.format = format;
 
     return Entity('IMAGE', data);
   }

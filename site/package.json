@@ -7,7 +7,7 @@
   "scripts": {
     "build": "gatsby build",
     "clean": "rm -rf .cache public",
-    "dev": "gatsby develop",
+    "dev": "npm run clean && gatsby develop",
     "postinstall": "gatsby telemetry --disable"
   },
   "contributors": [

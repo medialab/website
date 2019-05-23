@@ -222,6 +222,7 @@ const IndexPage = ({data, pageContext}) => {
   const grid = data.settingsJson.home.grid;
   const slider = data.settingsJson.home.slider;
   const rdv = data.rdv ? data.rdv.edges.map(({node}) => node) : [];
+  const tweets = data.tweets ? data.tweets.edges.map(({node}) => node) : [];
 
   return (
     <Layout
@@ -230,7 +231,8 @@ const IndexPage = ({data, pageContext}) => {
       permalinks={pageContext.permalinks}>
       <Home
         lang={pageContext.lang} grid={grid} slider={slider}
-        rdv={rdv} />
+        rdv={rdv}
+        tweets={tweets} />
     </Layout>
   );
 };

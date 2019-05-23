@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
-export default function tweet() {
+export default function tweet({tweets}) {
 	return (
 		<>
 	    <section id="tweet">

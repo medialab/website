@@ -1,74 +1,69 @@
-$width-main-image: calc( 100vw - #{$margins-desktop*0});
 
 
 
-@media screen and (min-width: 700px) and (max-width: 1080px){
-    #nav-inside-article{
-        width: $logo-column-medium;
-        .nav-inside-item{
-            a{ width: $logo-column-medium/3;}
+#nav-inside-article{
+
+    ul li{
+        
+        &[data-type="main"] a::before{
+            content: $scrolltop;
         }
+        &[data-type="productions"] a::before{
+            content: $productions;
+        }
+        &[data-type="activities"] a::before{
+            content: $activites;
+        }
+        &[data-type="attachments"] a::before{
+            content: $files;
+        }
+        &[data-type="people"] a::before{
+            content: $people;
+        }
+        &[data-type="news"] a::before{
+            content: $actualites;
+        }
+
+        &:hover{
+            color: $text-color-light;
+        }
+
     }
+
 }
 
-@media screen and (min-width: 1080px){
-    #nav-inside-article{
-        width: $logo-column;
-        .nav-inside-item{
-            a{ width: $logo-column/3;}
-        }
-    }
+
+
+
+@include for-size(phone) {
+    .main-nav{ display: none;}
 }
-
-
 
 
 @include for-size(desktop) {
-    #nav-inside-article{
-        padding-bottom: $margins-desktop*1;
-        position: fixed;
-        bottom: 0;
-        left: $margins-desktop;
-        z-index: 6;
 
-        .nav-inside-item{
-           
+    /* la largeur de la navigation est dans le modèle global des pages */
+    .main-nav{
+        position: sticky;
+        height: calc(100vh - #{$height-footer});
+        position: sticky;
+        top: $height-sticky*2;
+        left: 0;
+        padding-right: $margins-desktop;
+
+        ul{
+            position: absolute;
+            bottom: 0;
+            margin-bottom: $baseline;
+        }
+
+        ul li{
             padding-top: $baseline/2;
             width: 100%;
             transition: .1s linear;
-
-
-            //fonts
-
             @include font-size-13();
-            
-            &[data-type="main"] a::before{
-                content: $scrolltop;
-            }
-            &[data-type="productions"] a::before{
-                content: $productions;
-            }
-            &[data-type="activities"] a::before{
-                content: $activites;
-            }
-            &[data-type="attachments"] a::before{
-                content: $files;
-            }
-            &[data-type="people"] a::before{
-                content: $people;
-            }
-            &[data-type="news"] a::before{
-                content: $actualites;
-            }
-
-            &:hover{
-                color: $text-color-light;
-            }
-
         }
-    }
-}
 
-@include for-size(phone) {
-    #nav-inside-article{ display: none;}
+        
+    }
 }

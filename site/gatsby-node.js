@@ -159,11 +159,14 @@ const MODEL_READERS = {
       if (node)
         deleteNode({node});
 
+      if (production.spire) {
+        // use spire.generatedFields for empty object fields
+        production = {...production.spire.generatedFields, ...production};
+      }
       // Solving enums
       solveEnum(ENUMS.productionTypes, 'type', production);
 
-      production.group = PRODUCTION_TYPE_TO_GROUP[production.type];
-
+      production.group = PRODUCTION_TYPE_TO_GROUP[production.type || ENUMS.productionTypes.default];
       const relevantGroupInfo = ENUMS.productionTypes.groups[production.group];
 
       production.groupLabel = {
@@ -172,8 +175,8 @@ const MODEL_READERS = {
       };
 
       production.typeLabel = {
-        en: ENUMS.productionTypes.en[production.type],
-        fr: ENUMS.productionTypes.fr[production.type]
+        en: ENUMS.productionTypes.en[production.type || ENUMS.productionTypes.default],
+        fr: ENUMS.productionTypes.fr[production.type || ENUMS.productionTypes.default]
       };
 
       // Processing HTML

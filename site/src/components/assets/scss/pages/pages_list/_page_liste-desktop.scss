@@ -1,33 +1,15 @@
 $width-image-pre-listing: 90px;
 
 
+@include for-size(desktop){
 
-
-
-
-@media screen and (min-width: 700px) and (max-width: 1080px){
     .page-production-list,
     .page-activity-list,
     .page-news-list{
         #liste{
                 margin-top: $height-top-bar;
-                padding-left: $logo-column-medium;
         }
     }
-
-   
 }
 
-@media screen and (min-width: 1080px){
-    .page-production-list,
-    .page-activity-list,
-    .page-news-list{
-        #liste{
-                max-width: $max-width-main;
-                margin: 0 auto;
-                margin-top: $height-top-bar;
-                padding-left: $logo-column;
-        }
-    }
 
-}

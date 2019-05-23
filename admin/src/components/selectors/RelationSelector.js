@@ -67,7 +67,7 @@ const useFetchModel = (model, mapper) => {
   }, [model]);
   return [data, loading];
 };
-    
+
 function getKeyByValue(object, value) {
   return Object.keys(object).find(key => object[key] === value);
 }
@@ -90,12 +90,22 @@ const RelationSelectorContainer = (BaseComponent) => {
       label: labels[model](item),
     });
 
+    const extractProductionData = item => {
+      if (item.spire)
+        return {
+          ...item.spire.generatedFields,
+          ...item
+        };
+
+      return item;
+    };
+
     const mapForProductions = item => ({
-      ...mapGeneric(item),
+      ...mapGeneric(extractProductionData(item)),
       type: getKeyByValue(
         enums.productionTypes.groups,
         find(
-          group => group.values.includes(item.type),
+          group => group.values.includes(item.type || item.spire.generatedFields.type),
           enums.productionTypes.groups
         )
       ),

@@ -5,6 +5,7 @@
 
 @media screen and (min-width: 700px) and (max-width: 1080px){
     #topbar{ 
+        #logo-medialab{ width: $logo-column-medium + $margins-desktop; }
         #logo-medialab svg,
         #logo-medialab img{ 
             width: $unite*5;
@@ -18,6 +19,7 @@
 
 @media screen and (min-width: 1080px){
     #topbar{ 
+        #logo-medialab{ width: $logo-column + $margins-desktop; }
         #logo-medialab svg,
         #logo-medialab img{ 
             width: $unite*6;
@@ -27,6 +29,14 @@
     
     }
 }
+
+
+
+
+    
+
+
+   
 
 
 

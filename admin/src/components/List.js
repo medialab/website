@@ -193,11 +193,19 @@ export default class List extends Component {
       tasks.push(next => client.list({params: {model: 'people'}}, next));
 
     parallel(tasks, (err, [data, people]) => {
-      const newState = {data, filteredData: this.filter(data)};
+      const newState = {data};
 
-      if (model === 'productions')
+      if (model === 'productions') {
+        // fill the object with spire generatedFields when empty
+        newState.data = data.map(p => {
+          if (p.spire)
+            return {...p.spire.generatedFields, ...p};
+          else
+            return p;
+        });
         newState.relations = {people: keyBy(people, 'id')};
-
+      }
+      newState.filteredData = this.filter(newState.data);
       this.setState(newState);
     });
   }

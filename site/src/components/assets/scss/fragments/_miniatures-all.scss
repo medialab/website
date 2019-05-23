@@ -20,10 +20,8 @@
     }
 
     .bandeau{
-        position: absolute;     
         border-bottom: $border-very-light;
         padding: $baseline/2 0;
-        width: 100%;
 
         p{ 
             @include font-size-13; 
@@ -65,7 +63,9 @@
     hgroup{
         display: inline-block;
         vertical-align: top;
-        margin-top: $baseline*2;
+    
+        margin-top: $baseline*-0.5;
+        // margin-top: $baseline*2;
         margin-bottom: $baseline;
         padding-right: $unite;
         
@@ -78,6 +78,7 @@
         @include font-size-20; 			
         min-height: $baseline*4;
         padding-top: $baseline*1.5;
+        &::first-letter{ text-transform: uppercase; }
         
     }
 

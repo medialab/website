@@ -1,7 +1,5 @@
 /* eslint no-console: 0 */
 const config = require('config'),
-      path = require('path'),
-      fs = require('fs-extra'),
       Ajv = require('ajv'),
       async = require('async'),
       request = require('request'),
@@ -18,9 +16,6 @@ models.forEach(model => {
   VALIDATORS[model] = ajv.compile(require(`../specs/schemas/${model}.json`));
 });
 
-
-const DATA_PATH = config.get('data');
-
 const spireTypes = require('../specs/spireProductionsTypes.json');
 
 const DEFAULT_MAX_SLUG_TOKENS = 6;
@@ -30,16 +25,38 @@ function slugify(text) {
 }
 
 const resultPerPage = 2000;
+const labIdSpire = '2441/53r60a8s3kup1vc9kf4j86q90';
 
-const title = record => record.title + (record.title_sub ? ' - ' + record.title_sub : '');
-
+const title = record => (record.title_non_sort ? record.title_non_sort : '') + record.title + (record.title_sub ? ' - ' + record.title_sub : '');
+const ref = record => {
+  const resourcesFiltered = record.resources ? record.resources.filter(p => p.relation_type !== 'frontCover') : [];
+  if (resourcesFiltered.length >= 1) {
+    return record.citations ? record.citations.html.chicago.replace(/href=".*?"/g, `href="${resourcesFiltered[0].url}"`) : false;
+  }
+  else {
+    return record.citations ? record.citations.html.chicago : false;
+  }
+};
 // translation functions stored by object path.
 // translation function returns false is ther is nothing to update for the path.
 const translators = {
   'type': record => spireTypes[record.spire_document_type],
-  'date': record => record.date_issued,
-  'title.en': title,
-  'title.fr': title,
+  'date': record => {
+    if (record.date_issued || record.date_created) {
+      let date = record.date_issued || record.date_created;
+      //sometimes the format is YYYYMMDD and not YYYY-MM-DD ....
+      if (date.length === 8 && !date.includes('-'))
+        date = `${date.slice(0, 4)}-${date.slice(4, 6)}-${date.slice(6, 8)}`;
+      return date;
+    }
+    else
+      if (record.is_part_ofs && record.is_part_ofs.length > 0)
+        return record.is_part_ofs.find(ipo => ipo.date_issued).date_issued
+  },
+  'title.en': record => title(record),
+  'title.fr': record => title(record),
+  'description.en': record => ref(record),
+  'description.fr': record => ref(record),
   'content': record => {
     const content = {};
     if (record.descriptions) {
@@ -50,30 +67,52 @@ const translators = {
     }
     return content === {} ? false : content;
   },
-  'authors': record => record.creators.filter(c => c.role === 'aut' && c.agent.rec_class === 'Person').map(c => `${c.agent.name_given} ${c.agent.name_family}`).join(', '),
+  'authors': record => record.creators.filter(c => c.agent.rec_class === 'Person').map(c => `${c.agent.name_given} ${c.agent.name_family}`).join(', '),
   // people:
-  'ref': record => record.citations.html.chicago,
+  'ref': record => ref(record),
   'url': record => {
-    if (record.resources && record.resources.length >= 1)
-      return record.resources[0].url;
+    if (record.resources && record.resources.filter(r => r.relation_type !== 'frontCover') && record.resources.filter(r => r.relation_type !== 'frontCover').length >= 1)
+      return record.resources.filter(r => r.relation_type !== 'frontCover')[0].url;
     else
       return config.spire.front + record.rec_id;
-  }
+  },
+  // link to author people
+  'people': (record, spireAuthors) => record.creators
+    // filter authors who are person
+    .filter(c =>  c.agent && c.agent.rec_class === 'Person')
+    .map(c => spireAuthors[c.agent.rec_id] && spireAuthors[c.agent.rec_id].id)
+    .filter(c => !!c)
 };
 
-function translateRecord(record) {
+function translateRecord(record, spireAuthors) {
   const newO = {};
   for (const field in translators) {
-    const v = translators[field](record);
-    if (v)
+    const v = translators[field](record, spireAuthors);
+    if (v !== false)
       _.set(newO, field, v);
   }
   return newO;
 }
 
-module.exports.translators = translators;
+module.exports.translateRecord = translateRecord;
 
-module.exports.aSPIRE = function aSPIRE(dataDir = DATA_PATH, callback) {
+// finds Authors which should be attached to a people object
+// tries to resolve through firstname.name slug  
+function missingLabAuthors(spireRecords, existingSpireAuthors) {
+  // find authors and detect missing ones
+  return _.keyBy(_.flatten(spireRecords.map(
+    // only author (not organisators)
+    r => r.creators.filter(c => (
+    // which were at that time affiliated to the lab 
+    c.affiliation && c.affiliation.rec_id === labIdSpire)
+    // which is a person which is not registered as a spire authors in our data
+    && c.agent && c.agent.rec_class === 'Person' && !existingSpireAuthors.includes(c.agent.rec_id))
+    .map(c => c.agent))), c => c.rec_id);
+}
+
+module.exports.missingLabAuthors = missingLabAuthors;
+
+module.exports.aSPIRE = function aSPIRE(doneCallback, emitCallback = console.debug) {
   async.waterfall([
     // load indeces of existing prod and authors
     getRefDone => {
@@ -81,12 +120,14 @@ module.exports.aSPIRE = function aSPIRE(dataDir = DATA_PATH, callback) {
         people: fetchPeopleDone => {
           request.get(`http://localhost:${config.port}/people/people`, {json: true}, (err, result) => {
             if (err) fetchPeopleDone(err);
-            fetchPeopleDone(null, _.keyBy(result.body.filter(p => !!p.spire), p => p.spire.id));
+            emitCallback('Récupération des People terminée');
+            fetchPeopleDone(null, _.keyBy(result.body, p => p.slugs[0]));
           });
         },
         productions: fetchProductionsDone => {
           request.get(`http://localhost:${config.port}/productions/productions`, {json: true}, (err, result) => {
             if (err) fetchProductionsDone(err);
+            emitCallback('Récupération des Productions terminée');
             fetchProductionsDone(null, _.keyBy(result.body.filter(p => !!p.spire), p => p.spire.id));
           });
         }
@@ -95,118 +136,164 @@ module.exports.aSPIRE = function aSPIRE(dataDir = DATA_PATH, callback) {
         getRefDone(null, indeces);
       });
     },
-    // call SPIRE APRE
-    (indeces, done) => {
+    (indeces, doneAPISpire) => {
       let resultOffset = 0;
+      let spireRecords = [];
       async.doUntil(
-        (apiDone) => {
-        // request spire API
-        const body = {jsonrpc: '2.0', method: 'search', id: 1,
-        params: ['corpus', {
-          filter_class: 'Document',
-          result_batch_size: 2000,
-          result_citation_styles: ['chicago'],
-          search_terms: {
-              index: 'affiliation_id',
-              operator: '=',
-              value: '2441/53r60a8s3kup1vc9kf4j86q90'},
-          result_offset: resultOffset
-        }]};
-        console.debug('request to spire', resultOffset);
-        request.post(config.spire.api, {body, json: true}, apiDone);
-      },
-      (response) => {
-        const r = response.body.result;
-        console.debug(`got ${r.result_batch_size}`);
-        // test if a new page is needed
-        if (r.result_batch_size < resultPerPage) {
-          // we are done
-          return true;
-        }
-        // need more results
-        resultOffset += resultPerPage;
-        return false;
-      },
-      // Treat Spire result
-      (err, response) => {
-        const spireData = response.body.result;
-        if (err) {
-          done(err);
-        }
-
-        // common queue to process the writing requests
-        const apiQueue = async.queue(({method, production}, cb) => {
-          if (!VALIDATORS.productions(production)) {
-            console.error('productions', production, VALIDATORS.productions.errors);
-            cb(new Error(VALIDATORS.productions.errors));
-          }
-          const url = method === 'PUT' ? `http://localhost:${config.port}/productions/productions/${production.id}` : `http://localhost:${config.port}/productions/productions/`
-          request({url, method, body: production, json: true}, (reqErr) => {
-            if (reqErr) {
-              console.error(`error ${method} ${production.id}`, err);
-              cb(reqErr);
+        (apiPageDone) => {
+          // request spire API
+          const body = {jsonrpc: '2.0', method: 'search', id: 1,
+          params: ['corpus', {
+            filter_class: 'Document',
+            result_batch_size: resultPerPage,
+            result_citation_styles: ['chicago'],
+            search_terms: {
+                index: 'affiliation_id',
+                operator: '=',
+                value: labIdSpire},
+            result_offset: resultOffset
+          }]};
+          console.debug(`request to spire ${resultOffset}`);
+          emitCallback(`Requête #${resultOffset + 1} à l'API Spire`);
+          request.post(config.spire.api, {body, json: true}, (e, r) => {
+            if (e || r.statusCode !== 200) {
+              console.debug(`erreur ${r.statusCode} \n` + r.body);
+              doneAPISpire(e || `erreur ${r.statusCode} \n` + r.body);
             }
-            cb(null);
-          });
-        }, 2);
-
-        const modifiedProductionIds = [];
-        let nbNewProductions = 0;
-        //treat records
-        async.each(spireData.records,
-          (record, d) => {
-            const p = indeces.productions[record.rec_id];
-            // do we already have this one ?
-            // has the content changed ?
-            if (p && p.spire.meta.rec_modified_date !== record.rec_modified_date) {
-              // yes and yes, let's update the meta
-              p.spire.meta = record;
-              apiQueue.push({method: 'PUT', production: p}, (e) => {
-                if (e) console.error(e);
-              });
-              modifiedProductionIds.push(p.id);
-            }
-            // if new publication + if type is not translated to null
-            if (!p && spireTypes[record.spire_document_type]) {
-              // create the object by translating it to our data model
-              const newProduction = translateRecord(record);
-              newProduction.id = uuid();
-              // draft by default
-              newProduction.draft = true;
-              // meta
-              newProduction.spire = {
-                id: record.rec_id,
-                meta: record
-              };
-              // slugs
-              newProduction.slugs = [slugify(newProduction.title ? (newProduction.title.fr || newProduction.title.en || '') : '')];
-              // reuse ref for description
-              newProduction.description = {fr: newProduction.ref, en: newProduction.ref};
-              // people
-              const people = record.creators.map(c => indeces.people[c.agent.rec_id] && indeces.people[c.agent.rec_id].id).filter(c => !!c);
-              newProduction.people = people;
-              // lastUpdated
-              newProduction.lastUpdated = new Date(record.rec_modified_date).getTime();
-              apiQueue.push({method: 'POST', production: newProduction}, (e) => {
-                if (e) console.error(e);
-              });
-              nbNewProductions += 1;
-            }
-            d(null);
-          },
-          (r) => {
-            if (r) done(r);
-            if (apiQueue.idle())
-              done(null, {nbNewProductions, modifiedProductionIds});
             else
-              apiQueue.drain = () => {
-                done(null, {nbNewProductions, modifiedProductionIds});
-              };
+              apiPageDone(null, r);
+          });
+        },
+        (response) => {
+          // store result
+          spireRecords = spireRecords.concat(response.body.result.records);
+          // pagination control
+          const r = response.body.result;
+          console.debug(`got ${r.result_batch_size}`);
+          // test if a new page is needed
+          if (r.result_batch_size < resultPerPage) {
+            // we are done
+            return true;
           }
-        );
-      });
+          // need more results
+          resultOffset += resultPerPage;
+          return false;
+        },
+        // manage Spire result
+        (err) => {
+          if (err) {
+            doneAPISpire(err);
+          }
+          emitCallback(`Récupération Spire terminée : ${spireRecords.length} publications`);
+          console.debug(`got ${spireRecords.length}`);
+          // common queue to process the writing requests
+          const websiteApiQueue = async.queue(({method, model, object}, cb) => {
+            if (!VALIDATORS[model](object)) {
+              console.error(model, object, VALIDATORS[model].errors);
+              cb(new Error(VALIDATORS[model].errors));
+            }
+            const url = method === 'PUT' ? `http://localhost:${config.port}/${model}/${model}/${object.id}` : `http://localhost:${config.port}/${model}/${model}/`;
+            console.debug(`API CALL ${model} ${method} ${object.id}`);
+            request({url, method, body: object, json: true}, (reqErr) => {
+              if (reqErr) {
+                console.error(`error ${method} ${model} ${object.id}`, err);
+                cb(reqErr);
+              }
+              else
+                cb(null);
+            });
+          }, 2);
+          const spireAuthors = _.keyBy(_.values(indeces.people).filter(p => !!p.spire), p => p.spire.id);
+          // let's try to reconcile with slugs
+          const peopleToResolve = [];
+          _.forEach(missingLabAuthors(spireRecords, _.keys(spireAuthors)), (aut, idSpire) => {
+            // simple true match on slug
+            const match = indeces.people[slugify(`${aut.name_given} ${aut.name_family}`)];
+            if (match) {
+              spireAuthors[idSpire] = {spire: {id: idSpire}, ...match};
+              emitCallback(`Ajout de l'id Spire à ${match.firstName} ${match.lastName} : ${idSpire}`);
+              if (!match.spire)
+                // this test is to prevent uneeded update when the match already have a spire ID : duplicated authors in spire
+                websiteApiQueue.push({method: 'PUT', model: 'people', object: {spire: {id: idSpire}, ...match}}, (e) => {
+                  if (e) console.error(e);
+                });
+            }
+            else {
+              peopleToResolve.push(aut);
+            }
+          });
+          // log what left to be resolved
+          if (peopleToResolve.length > 0) {
+            const nameList = peopleToResolve.map(aut => `${aut.name_given} ${aut.name_family}`)
+            console.debug(`missing spire authors in data ${nameList}`);
+            emitCallback(`${peopleToResolve.length} auteurs Spire non trouvés dans People : ${nameList}`);
+          }
+          // control variables
+          const modifiedProductionIds = [];
+          let nbNewProductions = 0;
+          let nbUnchangedProductions = 0;
+
+          //treat records
+          async.each(spireRecords,
+            (record, d) => {
+
+              // meta
+              const spire = {
+                id: record.rec_id,
+                lastUpdated: Date.now(),
+                meta: record,
+                // create the generated version of the object by translating Spire meta to our data model
+                generatedFields: translateRecord(record, spireAuthors)
+              };
+
+              const p = indeces.productions[record.rec_id];
+              // do we already have this one ? and has spire content changed
+              if (p && p.spire.meta.rec_modified_date !== record.rec_modified_date) {
+                // flash the data from spire.
+                websiteApiQueue.push({method: 'PUT', model: 'productions', object: {...p, ...{spire}}}, (e) => {
+                  if (e) console.error(e);
+                });
+                modifiedProductionIds.push(p.id);
+              }
+              else {
+                // if new publication + if type is not translated to null
+                if (!p && spireTypes[record.spire_document_type]) {
+                  const newProduction = {
+                    id: uuid(),
+                    // draft by default
+                    draft: true,
+                    // slugs
+                    slugs: [slugify(spire.generatedFields.title ? (spire.generatedFields.title.fr || spire.generatedFields.title.en || '') : '')],
+                    spire
+                    // lastUpdated
+                  };
+                  websiteApiQueue.push({method: 'POST', model: 'productions', object: newProduction}, (e) => {
+                    if (e) console.error(e);
+                  });
+                  nbNewProductions += 1;
+                }
+                else
+                  // else, nothing change, nothing to do
+                  nbUnchangedProductions += 1;
+              }
+              d(null);
+            },
+            (r) => {
+              if (r) doneAPISpire(r);
+              if (websiteApiQueue.idle()) {
+                emitCallback(`importation des données spire terminée : ${nbNewProductions} nouvelle.s production.s, ${modifiedProductionIds.length} modifiée.s, ${nbUnchangedProductions} inchangée.s`);
+                doneAPISpire(null, {nbNewProductions, modifiedProductionIds, nbUnchangedProductions, peopleToResolve});
+              }else
+                websiteApiQueue.drain = () => {
+                  emitCallback(`importation des données spire terminée : ${nbNewProductions} nouvelle.s production.s, ${modifiedProductionIds.length} modifiée.s, ${nbUnchangedProductions} inchangée.s`);
+                  doneAPISpire(null, {nbNewProductions, modifiedProductionIds, nbUnchangedProductions, peopleToResolve});
+                };
+            }
+          );
+        }
+      );
     }
-  ], callback);
+  ], doneCallback);
 };
 
 module.exports.aspireAuthors = function aspireAuthors(callback) {

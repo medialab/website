@@ -53,6 +53,12 @@ export function createDropRelationHandler(scope, key) {
   };
 }
 
+export function createEmptyRelationHandler(scope, key) {
+  return () => {
+    scope.setState(set(key, undefined, scope.state));
+  };
+}
+
 export function createArrayMoveHandler(scope, key) {
   return ({oldIndex, newIndex}) => {
     let currentList = get(key, scope.state);
@@ -83,7 +89,8 @@ export function createHandlers(scope, specs, root = 'data') {
       handler = {
         add: createAddRelationHandler(scope, field),
         drop: createDropRelationHandler(scope, field),
-        move: createArrayMoveHandler(scope, field)
+        move: createArrayMoveHandler(scope, field),
+        empty: createEmptyRelationHandler(scope, field)
       };
     else
       handler = createHandler(scope, field);

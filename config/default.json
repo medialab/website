@@ -1,7 +1,7 @@
 {
   "data": "./data",
   "spire": {
-    "api": "http://spire.sciencespo.fr/dissemination/json-rpc",
+    "api": "https://spire.sciencespo.fr/dissemination/json-rpc",
     "front": "http://spire.sciencespo.fr/hdl:/"
   },
   "build": {

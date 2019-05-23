@@ -1,11 +1,12 @@
 
 ///// Global 
 
-
+#all-aside{ margin-bottom: 20vh; }
 #all-aside aside{ 
 
 	padding-top: $height-sticky + $baseline*2;
-	max-width: $max-width-main;
+	max-width: $max-width-article;
+	
 
 	& > h1{
 		margin-bottom: $baseline*2;
@@ -16,6 +17,11 @@
 		@include font-size-13;
 		color: $text-color-light;
 		display: none;
+	}
+
+	ul li{
+		padding-left: $unite/2;
+		padding-right: $unite/2;
 	}
 
 	// Grey Background

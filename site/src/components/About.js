@@ -10,10 +10,10 @@ export default function About({lang}) {
 
   return (
     <>
+      
+      <main>
       <Nav lang={lang} data='' order={['main', 'people', 'productions', 'activities', 'news', 'attachments']} />
-      <main id="main">
-        <article id="about-contenu">
-
+        <article id="about-contenu" className="main-container">
           <hgroup>
             <h1>Le medialab</h1>
             <h2>Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des sciences sociales.</h2>

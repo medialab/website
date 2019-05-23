@@ -12,6 +12,64 @@ import Button from '../misc/Button';
 import CardModal from '../misc/CardModal';
 import ImageIcon from 'material-icons-svg/components/baseline/InsertPhoto';
 
+import logoFormatImg from '../../../img/formats/figure-logo.png';
+import illustrationBlockImg from '../../../img/formats/illustration-block.png';
+import serieImg from '../../../img/formats/serie.png';
+import vignetteBlockImg from '../../../img/formats/vignette-block.png';
+import vignetteInlineImg from '../../../img/formats/vignette-inline.png';
+
+const DEFAULT_FORMAT = 'vignette-inline';
+
+const FORMAT_OPTIONS = [
+  {
+    value: 'vignette-inline',
+    label: 'Vignette en ligne',
+    img: vignetteInlineImg
+  },
+  {
+    value: 'vignette-block',
+    label: 'Vignette en bloc',
+    img: vignetteBlockImg
+  },
+  {
+    value: 'serie',
+    label: 'Image en série',
+    img: serieImg
+  },
+  {
+    value: 'illustration',
+    label: 'Illustration',
+    img: illustrationBlockImg
+  },
+  {
+    value: 'figure-logo',
+    label: 'Logo',
+    img: logoFormatImg
+  }
+];
+
+// Format selector
+function FormatSelector({selected, onChange}) {
+
+  return (
+    <div>
+      {FORMAT_OPTIONS.map(o => {
+        const borderColor = o.value === selected ? 'black' : 'white';
+
+        return (
+          <div
+            key={o.value}
+            title={o.label}
+            onClick={() => onChange(o.value)}
+            style={{display: 'inline-block', border: `1px solid ${borderColor}`}}>
+            <img alt={o.label} style={{cursor: 'pointer'}} src={o.img} />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 // Source
 class ImageSource extends Component {
   constructor(props, context) {
@@ -22,7 +80,8 @@ class ImageSource extends Component {
     this.state = {
       loading: false,
       file: null,
-      credits: data ? data.credits : ''
+      credits: data ? data.credits : '',
+      format: data && data.format ? data.format : DEFAULT_FORMAT
     };
   }
 
@@ -37,6 +96,7 @@ class ImageSource extends Component {
 
       const data = {
         src: option.src,
+        format: option.format,
         width,
         height
       };
@@ -72,6 +132,8 @@ class ImageSource extends Component {
       data.credits = this.state.credits;
     else
       delete data.credits;
+
+    data.format = this.state.format;
 
     const nextContent = content.replaceEntityData(
       entityKey,
@@ -122,7 +184,7 @@ class ImageSource extends Component {
     client.upload(this.state.file, result => {
       this.setState({loading: false});
 
-      const options = {src: result.name};
+      const options = {src: result.name, format: this.state.format};
 
       if (this.state.credits)
         options.credits = this.state.credits;
@@ -135,6 +197,10 @@ class ImageSource extends Component {
     this.setState({credits: e.target.value});
   };
 
+  handleFormat = format => {
+    this.setState({format});
+  };
+
   handleCancel = () => {
     const {onClose} = this.props;
 
@@ -145,7 +211,8 @@ class ImageSource extends Component {
     const {
       loading,
       file,
-      credits
+      credits,
+      format
     } = this.state;
 
     const entityKey = this.props.entityKey;
@@ -185,6 +252,10 @@ class ImageSource extends Component {
                     placeholder="..." />
                 </div>
               </div>
+              <div className="field">
+              <label className="label">Gabarit d'image</label>
+                <FormatSelector selected={format} onChange={this.handleFormat} />
+              </div>
             </div>
           </div>,
 
@@ -208,7 +279,9 @@ class ImageSource extends Component {
 // Block
 function ImageBlock(props) {
   const blockProps = props.blockProps;
-  const {credits, src} = blockProps.entity.getData();
+  const {credits, src, format = DEFAULT_FORMAT} = blockProps.entity.getData();
+
+  const formatLabel = FORMAT_OPTIONS.find(o => o.value === format).label;
 
   // NOTE: can access mutators here
 
@@ -220,6 +293,9 @@ function ImageBlock(props) {
         <img src={url} />
       </div>
       {credits && <div><small><em>{credits}</em></small></div>}
+      <div>
+        <small><em>format:</em> {formatLabel}</small>
+      </div>
       <div>
         <small
           style={{textDecoration: 'underline', cursor: 'pointer'}}
@@ -239,6 +315,7 @@ const IMAGE = {
   block: ImageBlock,
   attributes: [
     'credits',
+    'format',
     'height',
     'width',
     'src'

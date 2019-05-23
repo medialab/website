@@ -6,6 +6,36 @@ const entities = new Entities();
 
 const TITLE = /^H[123456]$/;
 
+function getImageOrientation(width, height) {
+
+  if (!width || !height)
+    return 'paysage';
+
+  // TODO: What about squares?
+  // TODO: keep with and height to help with browser rendering
+  return width >= height ? 'paysage' : 'portrait';
+}
+
+function getImageClassName(format, width, height, even) {
+  if (!format || format === 'vignette-inline') {
+    const orientation = getImageOrientation(width, height);
+
+    return `vignette-inline-${orientation}`;
+  }
+
+  if (
+    format === 'vignette-block' ||
+    format === 'illustration-block' ||
+    format === 'figure-logo'
+  )
+    return format;
+
+  if (format === 'serie')
+    return even ? 'serie-pair' : 'serie-impair';
+
+  throw new Error('Unkown image format: ' + format);
+}
+
 // TODO: iframe allowfullscreen & frameborder
 
 function processHtml(pathPrefix, html) {
@@ -51,8 +81,10 @@ function processHtml(pathPrefix, html) {
   // Building custom output
   let output = '';
   let inRawText = false;
+  let evenImage = true;
+  let previousImageIndex = 0;
 
-  $('body').contents().each(function() {
+  $('body').contents().each(function(i) {
 
     // Raw text
     if (this.type === 'text') {
@@ -117,11 +149,21 @@ function processHtml(pathPrefix, html) {
 
         const src = $img.attr('src'),
               width = $img.data('width'),
-              height = $img.data('height');
+              height = $img.data('height'),
+              format = $img.data('format');
 
-        // TODO: What about squares?
-        // TODO: keep with and height to help with browser rendering
-        const className = width > height ? 'landscape' : 'portrait';
+        if (previousImageIndex !== i - 1)
+          evenImage = true;
+
+        const className = getImageClassName(
+          format,
+          width,
+          height,
+          evenImage
+        );
+
+        evenImage = !evenImage;
+        previousImageIndex = i;
 
         output += `<img class="${className}" src="${withPrefix(src)}" />`;
       }

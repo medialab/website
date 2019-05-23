@@ -298,8 +298,8 @@ module.exports = {
         important: true,
         icon: {
           type: 'productionGroups',
-          property: p => productionTypeToGroup[p.type],
-          label: p => enums.productionTypes.groups[productionTypeToGroup[p.type]].fr
+          property: p => productionTypeToGroup[p.type || enums.productionTypes.default],
+          label: p => enums.productionTypes.groups[productionTypeToGroup[p.type || enums.productionTypes.default]].fr
         }
       },
       {
@@ -310,20 +310,8 @@ module.exports = {
 
           const persons = p.people
             .map(id => people[id])
-            .filter(person => person.membership === 'member')
             .map(person => person.lastName)
-            .sort((a, b) => {
-              const na = normalize(a),
-                    nb = normalize(b);
-
-              if (na < nb)
-                return - 1;
-              if (na > nb)
-                return 1;
-
-              return 0;
-            });
-
+            
           // NOTE: this is bad but it gets shit done
           p.relations = persons.join(',');
 

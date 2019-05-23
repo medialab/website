@@ -14,9 +14,12 @@ export default function ActivityListing({lang, list, status, statuses}) {
  
     return (
       <>
+      <main>
         <FilterActivity lang={lang} status={status} statuses={statuses} />
+        <section className="main-filters">
+        </section>
        
-        <section id="liste">
+        <section id="liste" className="main-container">
           <ul className="liste_objet" id="liste-activity">
            
             {list.map((a, index) => (
@@ -46,6 +49,7 @@ export default function ActivityListing({lang, list, status, statuses}) {
               
           </ul>
         </section>
+      </main>
       </>
    );
 }

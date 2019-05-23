@@ -1,3 +1,5 @@
+
+
 /* Regles typographique de bases communes à toutes les pages de contenu */
 
 
@@ -43,7 +45,7 @@
 		}
 
 		.article-contenu, 
-		.biographie-contenu,
+		.biographie-content,
 		.about-contenu {
 
 							
@@ -122,23 +124,6 @@
 			}
 		}
 
-		//////////////
-		// Layout : Barre laterale 
-		/////////////
-		@media screen and (min-width: 700px) and (max-width: 1080px){
-			main{ margin-left: $logo-column-medium;}
-		}
-
-		@media screen and (min-width: 1080px){
-			main{ margin-left: $logo-column;}
-		}
-
-
-		@media screen and (min-width: 2060px) { 
-			main{ 
-				margin-left: 0;
-				margin: 0 auto;
-			}
-		}		
+	
 	}
 }

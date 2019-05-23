@@ -40,8 +40,12 @@ export default function NewsListing({lang, list}) {
   let nbNews = 0;
   return (
     <>
+    <main>
       <FilterNews lang={lang} years={Array.from(yearGroups.keys()).sort(byYear)} />
-      <section id="liste">
+      <section className="main-filters">
+      </section>
+
+      <section id="liste" className="main-container">
 
         <ul className="liste_objet" id="liste-news">
           {Array.from(yearGroups.entries()).sort(byYear).map(([year, yearNews], index) => (
@@ -80,6 +84,7 @@ export default function NewsListing({lang, list}) {
         ))}
         </ul>
       </section>
+    </main>
     </>
 	);
 }

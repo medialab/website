@@ -44,7 +44,7 @@ export default ({data, pageContext}) => {
   return (
     <Layout
       lang={pageContext.lang}
-      className="page-people-list"
+      className="page-people-list body-page"
       permalinks={pageContext.permalinks}>
       <PeopleListing lang={pageContext.lang} list={list} />
     </Layout>

@@ -108,10 +108,12 @@ export default function ProductionDetail({lang, production}) {
     <>
       <main id="main">
 
-      <div className="titre-sticky">
-        <div id="logo-sticky"><a href="/"><Logo /></a></div>
-        <p><a href="#topbar"><span data-icon="production"></span><span className="title">{production.title && (lang === 'fr' ? production.title.fr : production.title.en) }</span></a></p>
-      </div>
+      <header id="titre-sticky">
+        <div id="container-titre-sticky">
+          <div id="logo-sticky"><a href="/"><Logo /></a></div>
+          <p><a href="#topbar"><span data-icon="production"></span><span className="title">{production.title && (lang === 'fr' ? production.title.fr : production.title.en) }</span></a></p>
+        </div>
+      </header>
 
       <div id="img-article">
         <div class="activator"></div>

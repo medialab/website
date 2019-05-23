@@ -6,34 +6,12 @@
 
 
 
-@media screen and (min-width: 700px) and (max-width: 1080px){
-    .page-people-list{
-		#liste_equipe{ 
-			padding-left: $logo-column-medium; 
-			ul{ width: calc( 100vw - #{$logo-column-medium} - #{$margins-desktop*2} ); }
-		}
-    }
-}
-
-@media screen and (min-width: 1080px){
-    .page-people-list{
-		#liste_equipe{ 
-			padding-left: $logo-column; 
-			ul{ width: calc( 100vw - #{$logo-column} - #{$margins-desktop*2} ); }
-		}
-    }
-}
-
-
-
 @include for-size(desktop) {
 
 	.page-people-list{
 
 
 		#liste_equipe{   
-			width: 100%;
-			max-width: $max-width-main;     
 			margin: 0 auto;
 			margin-top: $height-top-bar;
 			min-height: calc( 100vh - #{$height-top-bar} - #{$unite*9} - 3px); //unite*9 correspond a la hauteur du footer

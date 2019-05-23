@@ -120,17 +120,18 @@ export default function NewsDetail({lang, news}) {
     <>
       <main id="main">
 
-        <div className="titre-sticky">
+      <header id="titre-sticky">
+        <div id="container-titre-sticky">
           <div id="logo-sticky"><a href="/"><Logo /></a></div>
           <p><a href="#topbar"><span data-icon="news"></span>{news.title && (lang === 'fr' ? news.title.fr : news.title.en) }</a></p>
         </div>
+      </header>
 
         <div id="img-article">
           <div class="activator"></div>
           <div className="container">{coverImage}{coverImage}</div>
           
         </div>
-
 
         <article id="article-contenu">
           {/* Toggle Langue */}

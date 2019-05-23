@@ -3,26 +3,11 @@
 /////////////////////
 
 
-@media screen and (min-width: 700px) and (max-width: 1080px){
-	.page-about main{ margin-left: $logo-column-medium; }
-}
-
-@media screen and (min-width: 1080px){
-	.page-about main{ margin-left: $logo-column; }
-}
 
 
 @include for-size(desktop) {
 	.page-about{
 
-
-		main{
-			
-			
-			margin-bottom: 40vh;
-
-			@include flex;
-			@include flex-wrap(wrap);
 
 			hgroup{
 				
@@ -57,7 +42,7 @@
 			p, li{
 				@include font-size-20;
 			}*/
-		}		
+				
 		
 		#inshort{
 			display: block;

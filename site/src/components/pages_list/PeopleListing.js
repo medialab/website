@@ -15,9 +15,12 @@ export default function PeopleListing({lang, list}) {
 
 	return (
   <>
+  <main>
     <FiltreEquipe lang={lang} />
-    <section id="liste_equipe">
+    <section className="main-filters">
+    </section>
 
+    <section id="liste_equipe" className="main-container">
 
       <ul className="liste_equipe" id="liste_equipe_active">
         {list.map(p => (
@@ -85,6 +88,7 @@ export default function PeopleListing({lang, list}) {
 
 
     </section>
+  </main>
   </>
 
 	);

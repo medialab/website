@@ -66,7 +66,7 @@ export default ({data, pageContext}) => {
   return (
     <Layout
       lang={pageContext.lang}
-      className="page-activity-list"
+      className="page-activity-list body-page"
       permalinks={pageContext.permalinks}>
       <ActivityListing
         lang={pageContext.lang}

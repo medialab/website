@@ -7,10 +7,15 @@
         height: $height-footer;
         width: 100vw;
         background: $background-site;
-        left: $margins-desktop * -1;
+        left: 0;
         padding: 0 $margins-desktop;
         border-top: $border;
         z-index: 99;   
+        
+        #container-footer{
+            max-width: $max-width-main + $margins-desktop*2;
+            margin: 0 auto;
+        }
 
         @include font-size-16();
 
@@ -19,7 +24,7 @@
 
             color: $text-color-light;
             width: 240px;
-            margin-left: calc(100% - 240px);
+            margin-left: $margins-desktop;
             margin-top: $baseline;
             a:hover{ color: $redlab;}
 
@@ -33,22 +38,16 @@
         }
 
         .contact{
-            ul{
-                // @include flex();
-                // @include flex-wrap(wrap);
-                // @include justify-content(flex-end);
-                // width: 100%;
-
-                li{
+            li{
                     display: inline-block;
                     &:not(:last-of-type):after{
                         content: "/";
                         padding: 0 $unite;
                     }
-
-                }
             }           
         }
+
+
     }
     //.page-home footer{ background: $background-site;}
 }

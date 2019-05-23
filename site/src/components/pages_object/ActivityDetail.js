@@ -139,10 +139,12 @@ export default function ActivityDetail({lang, activity}) {
   return (
     <main id="main-objet">      
       
-      <div className="titre-sticky">
-        <div id="logo-sticky"><a href="/"><Logo /></a></div>
-        <p><a href="#topbar"><span data-icon="activite"></span><span className="title">{activity.name}</span></a></p>
-      </div>
+      <header id="titre-sticky">
+        <div id="container-titre-sticky">
+          <div id="logo-sticky"><a href="/"><Logo /></a></div>
+          <p><a href="#topbar"><span data-icon="activite"></span><span className="title">{activity.name}</span></a></p>
+        </div>
+      </header>
 
 
       <div id="img-article">

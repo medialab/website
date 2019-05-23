@@ -10,10 +10,6 @@
 	.page-news, 
 	.page-activity{
 
-		main{
-			max-width: $max-width-main;
-			margin-bottom: $height-footer + $baseline*8;
-
 			hgroup{ 
 				max-width: $max-width-article; 
 			}
@@ -157,7 +153,6 @@
 					}
 				}
 			}/* #article-contenu */
-		} /* main */
 
 		
 	}
@@ -182,6 +177,21 @@
 @media screen and (min-width: 1080px) {}
 
 
+@media screen and (min-width: 700px) and (max-aspect-ratio:1/1) { 
+	#img-article{
+		pre{ 
+	        font-size: calc(((100vw - #{$unite*2})/240)*4) !important; // Should change with width
+			left: -50%;
+			transform: translateX(50%);	        
+		}
+	}
+}
 
-
+@media screen and (min-aspect-ratio:1/1) and (max-aspect-ratio:9/6) {
+	#img-article{
+		pre{ 
+	        font-size: calc(((100vw - #{$unite*2})/240)*2.75) !important; // Should change with width
+		}
+	}
+}
 

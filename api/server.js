@@ -22,6 +22,7 @@ const middlewares = require('./middlewares.js');
 const GatsbyProcess = require('./gatsby.js');
 
 const MODELS = require('../specs/models.json');
+const spire = require('./spire.js');
 
 // Constants
 const PORT = config.get('port');
@@ -178,7 +179,8 @@ const MIGRATION_SCHEMES = {
   // 'fix-minutes': require('./migrations/fix-minutes.js'),
   // 'fix-missing-processed': require('./migrations/fix-missing-processed.js'),
   'reset-settings': require('./migrations/reset-settings.js'),
-  'reslugify': require('./migrations/reslugify.js')
+  'reslugify': require('./migrations/reslugify.js'),
+  'move-generatedFields-productions': require('./migrations/move-generatedFields-productions.js')
 };
 
 app.get('/migrate/:scheme', (req, res) => {
@@ -213,12 +215,18 @@ const server = http.Server(app);
 const ws = io(server, {path: '/sockets'});
 
 const LOCKS = {
-  deployStatus: 'free'
+  deployStatus: 'free',
+  spireStatus: 'free'
 };
 
 const changeDeployStatus = (newStatus) => {
   LOCKS.deployStatus = newStatus;
   ws.emit('deployStatusChanged', newStatus);
+};
+
+const changeSpireStatus = (newStatus) => {
+  LOCKS.spireStatus = newStatus;
+  ws.emit('spireStatusChanged', newStatus);
 };
 
 ws.on('connection', socket => {
@@ -316,6 +324,21 @@ ws.on('connection', socket => {
 
       setTimeout(() => changeDeployStatus('free'), 1000);
     });
+  });
+
+  // When retrieving spire status
+  socket.on('getSpireStatus', (data, callback) => {
+    callback(null, {status: LOCKS.spireStatus});
+  });
+
+  // When triggering spire
+  socket.on('aspire', () => {
+
+    spire.aSPIRE((err) => {
+      if (err)
+        console.error(err);
+      changeSpireStatus('free');
+    }, changeSpireStatus);
   });
 });
 

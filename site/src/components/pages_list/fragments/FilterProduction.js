@@ -15,7 +15,7 @@ const FilterProduction = ({lang, group, types}) => {
     year = "Aller à l'année…";
     accroche = 'Issues des dynamiques de recherche du laboratoire combinant méthode, analyse et théorie, les productions du médialab constituent un panorama hétéroclite. Aux traditionnelles publications académiques s’ajoute un ensemble de réalisations techniques qui répondent à des problèmes de recherche récurrents. Récemment, les sites web et réalisations en situation se sont développés comme de nouvelles formes pour rendre compte des activités du laboratoire.';
 
-	
+
 	}
 	else {
 		title = 'Productions';
@@ -25,7 +25,7 @@ const FilterProduction = ({lang, group, types}) => {
     accroche = 'Description in english en une phrase de la catégorie production';
 
   }
-  
+
 
 
 	return (
@@ -34,7 +34,7 @@ const FilterProduction = ({lang, group, types}) => {
       <a href="#year-2018">{title}</a>
     </h1>
 
-    <p class="accroche-title-list">{accroche}</p>
+    <p className="accroche-title-list">{accroche}</p>
 
 
 
@@ -76,7 +76,7 @@ const FilterProduction = ({lang, group, types}) => {
 
       <input type="checkbox" id={'checkbox_' + group} ame="checkbox_publication" value="checkbox_publication" hidden/>
       <label  id={'label_checkbox_' + group} htmlFor={'checkbox_' + group}><span>〉</span></label>
-   
+
 
     <ul id={'list-' + group + '_current'} className="link-productions-sort">
     <li>
@@ -86,10 +86,10 @@ const FilterProduction = ({lang, group, types}) => {
 						return (
           <li key={g.id} id={ 'li-filter-' + g.id} className={cls(g.id === group && 'pageProduction_current')}>
             <Link to={g.permalink[lang]}>
-              {g.label[lang]} 
+              {g.label[lang]}
               <span>〉</span>
             </Link>
-            
+
           </li>
 						);
 					})}
@@ -161,19 +161,19 @@ function InputFiltresType(values){
   if(group === 'publications'){
     return (
       <>
-     
+
       <input type="checkbox" id="filtre-production_article" name="filtre-production_article" className="input_filtre-production" value="article" hidden />
       <label className="filtre-production checkbox-medialab" htmlFor="filtre-production_article">{article}</label>
-  
+
       <input type="checkbox" id="filtre-production_communication" name="filtre-production_communication" className="input_filtre-production" value="communication" hidden />
       <label className="filtre-production checkbox-medialab" htmlFor="filtre-production_communication">{communication}</label>
-  
+
       <input  type="checkbox" id="filtre-production_book" name="filtre-production_book" className="input_filtre-production" value="book" hidden />
       <label className="filtre-production checkbox-medialab" htmlFor="filtre-production_book">{book}</label>
-  
+
       <input type="checkbox" id="filtre-production_thesis" name="filtre-production_thesis" className="input_filtre-production" value="thesis" hidden />
       <label className="filtre-production checkbox-medialab" htmlFor="filtre-production_thesis">{thesis}</label>
-  
+
       <input type="checkbox" id="filtre-production_grey" name="filtre-production_grey" className="input_filtre-production" value="grey" hidden />
       <label className="filtre-production checkbox-medialab" htmlFor="filtre-production_grey">{grey}</label>
       </>
@@ -222,5 +222,5 @@ function InputFiltresType(values){
   }
 
 }
-  
+
 

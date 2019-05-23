@@ -168,7 +168,7 @@ export const queryFragment = graphql`
 `;
 
 export default function PeopleDetail({lang, person}) {
-  console.log(lang, person);
+  // console.log(lang, person);
 
   const productions = person.mainProductions; // Sync mainProd
   const activities = person.mainActivities; // Sync mainActivities

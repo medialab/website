@@ -1,12 +1,5 @@
 import React from 'react';
 import {Link} from 'gatsby';
-/*
-import RawHtml from './RawHtml';
-
-
-export default function ActivityDetail({lang, data}) {
-  console.log(lang, data);
-*/
 import Logo from '../assets/svg/logo_medialab.svg';
 import MenuCircle from '../assets/svg/menu-circle.svg';
 import CloseCircle from '../assets/svg/close-circle.svg';
@@ -94,7 +87,7 @@ const TopBar = ({permalinks, lang}) => {
           </ul>
           <ul id="nav-archive">
             {/*<li><Link to={`${relLang}/outils`}>{tool}</Link></li>*/}
-            <li><a href="http://tools.medialab.sciences-po.fr">{tool}</a></li>            
+            <li><a href="http://tools.medialab.sciences-po.fr">{tool}</a></li>
             <li><Link to={`${relLang}/archive`}>{archive}</Link></li>
           </ul>
         </nav>

@@ -40,7 +40,7 @@ export const query = graphql`
             processed {
               medium
             }
-          }          
+          }
           lastUpdated
         }
       }
@@ -49,7 +49,7 @@ export const query = graphql`
 `;
 
 export default ({data, pageContext}) => {
-  console.log(data, pageContext);
+  // console.log(data, pageContext);
 
   const list = data.allNewsJson.edges
     .map(e => e.node)

@@ -93,8 +93,8 @@ export const queryFragment = graphql`
 `;
 
 export default function ProductionDetail({lang, production}) {
-  
-  
+
+
   let coverImage = null;
 
   if (production.coverImage) {
@@ -116,12 +116,12 @@ export default function ProductionDetail({lang, production}) {
       </header>
 
       <div id="img-article">
-        <div class="activator"></div>
+        <div className="activator"></div>
         <div className="container">{ coverImage}</div>
       </div>
 
 
-       
+
         <article id="article-contenu">
           {/* Toggle Langue */}
           <ToggleLang lang={lang} content={production.content} />
@@ -133,12 +133,12 @@ export default function ProductionDetail({lang, production}) {
               <h1 data-level-1="title">{production.title.fr}</h1>
               {production.authors && <h2 data-level-2="authors"><span>{production.authors}</span></h2>}
             </hgroup>
-            <div class="details">             
+            <div className="details">
               <p className="type-objet"><span data-icon="production"></span> {IsModel(production.group, "fr")} – {IsModel(production.type, "fr")}</p>
-              <p className="date">{production.date}</p>  
+              <p className="date">{production.date}</p>
               <p className="production-ref"><RawHtml html={production.description && (production.description.fr)} /></p>
               <FichiersAssocies attachments={production.attachments} lang="fr" />
-        
+
             </div>
             <div className="article-contenu">
             {production.content && (production.content.fr && <RawHtml html={production.content.fr} />)}
@@ -150,14 +150,14 @@ export default function ProductionDetail({lang, production}) {
             <hgroup>
               <h1 data-level-1="title">{production.title.en}</h1>
               {production.authors && <h2 data-level-2="authors"><span>{production.authors}</span></h2>}
-            </hgroup>   
-            <div class="details">
+            </hgroup>
+            <div className="details">
               <p className="type-objet"><span data-icon="production"></span> {IsModel(production.group, "en")} – {IsModel(production.type, "en")}</p>
-              <p className="date">{production.date}</p>  
-              <p className="production-ref"><RawHtml html={production.description && (production.description.en)} /></p>   
-              <FichiersAssocies attachments={production.attachments} lang="en" />            
+              <p className="date">{production.date}</p>
+              <p className="production-ref"><RawHtml html={production.description && (production.description.en)} /></p>
+              <FichiersAssocies attachments={production.attachments} lang="en" />
             </div>
-            <div className="article-contenu">                
+            <div className="article-contenu">
               {production.content && (production.content.en && <RawHtml html={production.content.en} />)}
             </div>
           </div>
@@ -167,10 +167,10 @@ export default function ProductionDetail({lang, production}) {
         <aside id="all-aside">
           <MembresAssocies people={production.people} lang={lang} />
           <ActivitesAssociees activities={production.activities} lang={lang} />
-          <ProductionsAssociees productions={production.productions} lang={lang} />     
+          <ProductionsAssociees productions={production.productions} lang={lang} />
           <ActuAssociees actu={production.news} lang={lang} />
         </aside>
-        
+
       </main>
     </>
   );

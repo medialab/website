@@ -12,7 +12,7 @@ import {format as formatDate, getYear, parseISO} from 'date-fns';
 const byYear = ([yearA], [yearB]) => yearB - yearA;
 
 export default function NewsListing({lang, list}) {
-	console.log(lang, list);
+	// console.log(lang, list);
 	const yearGroups = new Map();
 
 
@@ -69,12 +69,12 @@ export default function NewsListing({lang, list}) {
                     </div>
                     <hgroup>
                       <h1 data-level-1="baseline" >{news.title && (lang === 'fr' ? news.title.fr : news.title.en)}</h1>
-                    </hgroup>                   
+                    </hgroup>
                     <div className="accroche">
                       <p className="accroche-paragraphe">
                         <RawHTML html={lang === 'fr' ? news.description.fr : news.description.en} />
-                      </p>                     
-                    </div> 
+                      </p>
+                    </div>
 
                     </Link>
                   </li>

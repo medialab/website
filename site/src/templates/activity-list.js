@@ -34,8 +34,8 @@ export const query = graphql`
               medium
               large
             }
-          }          
-          type          
+          }
+          type
           lastUpdated
         }
       }
@@ -58,7 +58,7 @@ export const query = graphql`
 `;
 
 export default ({data, pageContext}) => {
-  console.log(data, pageContext);
+  // console.log(data, pageContext);
 
   const list = data.allActivitiesJson.edges.map(e => e.node);
   const statuses = data.facetedEnumsJson.activityStatuses;

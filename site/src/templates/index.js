@@ -217,7 +217,7 @@ export const query = graphql`
 `;
 
 const IndexPage = ({data, pageContext}) => {
-  console.log(data, pageContext);
+  // console.log(data, pageContext);
 
   const grid = data.settingsJson.home.grid;
   const slider = data.settingsJson.home.slider;

@@ -4,6 +4,9 @@ import * as locales from 'date-fns/locale';
 
 function DateNews(props) {
 
+  if (!props.startDate)
+    return null;
+
   const startDate = parseISO(props.startDate);
   const lang = props.lang;
   const locale = locales[lang];

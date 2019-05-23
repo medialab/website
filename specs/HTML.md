@@ -63,7 +63,7 @@ QUESTIONS: toujours internes? Quid des références, le alt suffit?
 
 ```html
 <figure>
-  <img src="image.png" data-width="400" data-height="600">
+  <img src="image.png" data-width="400" data-height="600" data-credits="Crédits de l'image..." data-format="figure-logo">
 </figure>
 ```
 

@@ -11,7 +11,11 @@ import Img from '../assets/images/sample/default-people.png';
 export default function PeopleListing({lang, list}) {
   // console.log(lang, list);
 
+  var randomList = list.sort(randomiser);
 
+  function randomiser(a, b) {  
+    return 0.5 - Math.random();
+  }
 
 	return (
   <>
@@ -23,7 +27,8 @@ export default function PeopleListing({lang, list}) {
     <section id="liste_equipe" className="main-container">
 
       <ul className="liste_equipe" id="liste_equipe_active">
-        {list.map(p => (
+      
+        {randomList.map(p => (
          p.active ?
          <React.Fragment key={p.permalink.fr}>
           <li

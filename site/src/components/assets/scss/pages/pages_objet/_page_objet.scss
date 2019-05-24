@@ -48,15 +48,20 @@
 				li{ 
 					a{ 
 						// @include linktext(); 
-						border-bottom: 2px dotted currentColor;
+						//border-bottom: 2px dotted currentColor;
 						&:hover{ color: $redlab!important; }
 					}
-					&::after{ 
+					/*&::after{ 
 						content: '–'; 
 						padding-left: $unite/2;
 						padding-right: $unite/2;
-					}
-					&:last-of-type::after{ content: none; }
+					}*/
+
+					border-right: $border-very-light;
+					padding-right: $unite/2;
+					margin-right: $unite/2;
+
+					&:last-of-type { border-right: none; }
 					
 				}
 				

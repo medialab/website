@@ -133,8 +133,10 @@
 
 		}
 	    &:last-of-type::before{
-	    	height: calc(100% + 20px);
+	    	height: calc(100% + 70px + 1px);
 	    }
+	}
+	.personnes-associees-block, .elements-associes-block{
 	}
 	.elements-associes-block > h1{ 
 		@include font-size-16-phone();

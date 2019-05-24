@@ -251,14 +251,16 @@ export default function PeopleDetail({lang, person}) {
                     <p data-type="membership">{templateMembership(person)}</p>
                 </div>
 
-                {person.contacts && person.contacts.length > 0 &&
+                { person.contacts && person.contacts.length > 0 &&
                   <div className="contact">
                     <ul>
                     { person.contacts.map((contact, i) => (
                       <li key={i} data-type={contact.label}>
-                        {contact.type === 'url' ?
+                        {contact.type === 'url' && contact.label !== 'CV' ?
                           <a href={contact.value}>{contact.label}: {contact.value}</a> :
-                          contact.label }
+                            ( contact.label === 'Mail' ?
+                              <p data-domain="@sciencepo.fr">{contact.label}: NEED_SUBSTRING</p> :
+                                <a href={contact.value}>{contact.label}</a> ) }
                       </li>
                     ))}
                     </ul>

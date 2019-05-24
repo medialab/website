@@ -239,7 +239,11 @@ export default function PeopleDetail({lang, person}) {
                 </figure>
                 <hgroup>
                   <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
-                  <p className="status" data-type="status">{person.status && (lang === "fr" ? person.status.fr : person.status.en)}</p>
+                 {person.status && 
+                   <p className="status" data-type="status">
+                      { lang === "fr" ? person.status.fr : person.status.en}
+                    </p>
+                  }
                 </hgroup>
                 <div className="bandeau">
                 <p className="role" data-type="role">{person.role[lang]}</p>

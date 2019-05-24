@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
-export default function git() {
+export default function git(lang) {
 	return (
 		<>
 	    <section id="git"> 

@@ -257,7 +257,7 @@ export default function PeopleDetail({lang, person}) {
                     { person.contacts.map((contact, i) => (
                       <li key={i} data-type={contact.label}>
                         {contact.type === 'url' && contact.label !== 'CV' ?
-                          <a href={contact.value}>{contact.label}: {contact.value}</a> :
+                          <a href={contact.value} title={ lang === 'fr' ? "Lien vers le CV de " + person.firstName + " " + person.lastName : "Link to " + person.firstName + " " + person.lastName + "resume"} target="_blank" rel="noopener">{contact.label}: {contact.value}</a> :
                             ( contact.label === 'Mail' ?
                               <p data-domain="@sciencepo.fr">{contact.label}: NEED_SUBSTRING</p> :
                                 <a href={contact.value}>{contact.label}</a> ) }

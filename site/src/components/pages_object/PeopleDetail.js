@@ -251,20 +251,18 @@ export default function PeopleDetail({lang, person}) {
                     <p data-type="membership">{templateMembership(person)}</p>
                 </div>
 
-
-                <div className="contact">
-                  {/* <h3 className="toContact">{lang === 'fr' ? 'Contact' : 'Get in touch '}</h3> */}
-                  <ul>
-                    {person.contacts && person.contacts.map((contact, i) => (
+                {person.contacts && person.contacts.length > 0 &&
+                  <div className="contact">
+                    <ul>
+                    { person.contacts.map((contact, i) => (
                       <li key={i} data-type={contact.label}>
                         {contact.type === 'url' ?
                           <a href={contact.value}>{contact.label}: {contact.value}</a> :
-                          contact.label
-                        }
+                          contact.label }
                       </li>
                     ))}
-                  </ul>
-                </div>
+                    </ul>
+                  </div>}
               </header>
 
               <div className="biographie-content">

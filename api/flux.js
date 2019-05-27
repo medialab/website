@@ -154,30 +154,29 @@ const TWITTER_CLIENT = new Twitter({
   access_token_secret: TWITTER_CONFIG.accessTokenSecret
 });
 
-const URL_REGEX = /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b(?:[-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
-const HANDLE_REGEX = /(?<=^|(?<=[^a-zA-Z0-9-_\.]))@([A-Za-z]+[A-Za-z0-9-_]+)/gi;
-const HASHTAG_REGEX = /\B#(\w*[a-zA-Z]+\w*)/gi;
-
 // Helpers
-function resolveTweetUrls(tweet) {
+function resolveTweetUrls(tweet, html = false) {
+  const ahref = url => `<a href="${url}" target="_blank" rel="noopener">${url}</a>`;
+  let fullText = tweet.full_text;
+
   if (tweet.entities && tweet.entities.urls) {
     tweet.entities.urls.forEach(({url, expanded_url}) => {
-      tweet.full_text = tweet.full_text.replace(url, expanded_url);
+      fullText = fullText.replace(url, html ? ahref(expanded_url) : expanded_url);
     });
   }
 
   if (tweet.extended_entities && tweet.extended_entities.media) {
     tweet.extended_entities.media.forEach(({url, expanded_url}) => {
-      tweet.full_text = tweet.full_text.replace(url, expanded_url);
+      fullText = fullText.replace(url, html ? ahref(expanded_url) : expanded_url);
     });
   }
+  return fullText;
 }
 
-function convertTweetTextToHtml(text) {
-  return text
-    .replace(URL_REGEX, '<a href="$&" target="_blank" rel="noopener">$&</a>')
-    .replace(HANDLE_REGEX, '<a href="https://twitter.com/$1" target="_blank" rel="noopener">$&</a>')
-    .replace(HASHTAG_REGEX, '<a href="https://twitter.com/hashtag/$1" target="_blank" rel="noopener">$&</a>');
+function convertTweetTextToHtml(tweet) {
+  return resolveTweetUrls(tweet, true)
+    .replace(new RegExp(`(@(${tweet.entities.user_mentions.map(m => m.screen_name).join('|')}))`, 'gi'), '<a href="https://twitter.com/$1" class="mention" target="_blank" rel="noopener">$&</a>')
+    .replace(new RegExp(`(#(${tweet.entities.hashtags.map(h => h.text).join('|')}))`, 'gi'), '<a href="https://twitter.com/hashtag/$1" class="hashtag" target="_blank" rel="noopener">$&</a>');
 }
 
 // Function retrieving Twitter events and formatting them into our flux
@@ -210,28 +209,26 @@ exports.retrieveTwitterFluxData = function(callback) {
 
       const result = tweets.map(t => {
 
-        resolveTweetUrls(t);
 
         const item = {
           tweet: t.id_str,
-          text: t.full_text,
-          html: convertTweetTextToHtml(t.full_text),
+          text: resolveTweetUrls(t),
+          html: convertTweetTextToHtml(t),
           date: (new Date(t.created_at)).toISOString(),
           retweets: t.retweet_count,
           favorites: t.favorite_count,
-          type: 'normal'
+          type: 'tweet'
         };
 
         // Replies
         if (t.in_reply_to_status_id_str) {
           const repliedTweet = repliedTweetIndex[t.in_reply_to_status_id_str];
 
-          resolveTweetUrls(repliedTweet);
           
           item.originalTweet = {
             tweet: repliedTweet.id_str,
-            text: repliedTweet.full_text,
-            html: convertTweetTextToHtml(repliedTweet.full_text),
+            text: resolveTweetUrls(repliedTweet),
+            html: convertTweetTextToHtml(repliedTweet),
             screenName: repliedTweet.user.screen_name,
             name: repliedTweet.user.name,
             type: 'tweet'
@@ -241,11 +238,11 @@ exports.retrieveTwitterFluxData = function(callback) {
 
         // Retweets
         if (t.retweeted_status) {
-          resolveTweetUrls(t.retweeted_status);
+          
           item.originalTweet = {
             tweet: t.retweeted_status.id_str,
-            text: t.retweeted_status.full_text,
-            html: convertTweetTextToHtml(t.retweeted_status.full_text),
+            text: resolveTweetUrls(t.retweeted_status),
+            html: convertTweetTextToHtml(t.retweeted_status),
             screenName: t.retweeted_status.user.screen_name,
             name: t.retweeted_status.user.name,
             type: 'tweet'
@@ -255,11 +252,11 @@ exports.retrieveTwitterFluxData = function(callback) {
 
         // Quotes
         if (t.quoted_status) {
-          resolveTweetUrls(t.quoted_status);
+          
           item.originalTweet = {
             tweet: t.quoted_status.id_str,
-            text: t.quoted_status.full_text,
-            html: convertTweetTextToHtml(t.quoted_status.full_text),
+            text: resolveTweetUrls(t.quoted_status),
+            html: convertTweetTextToHtml(t.quoted_status),
             screenName: t.quoted_status.user.screen_name,
             name: t.quoted_status.user.name,
             type: 'tweet'

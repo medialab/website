@@ -13,7 +13,7 @@ export default function Now({now, lang}) {
 
   	//const noww = now.map(({object}) => object);
 	//console.log(noww);
-	console.log(now);
+	// console.log(now);
 	return (
   <>
     <section id="now">
@@ -33,7 +33,7 @@ export default function Now({now, lang}) {
                 <div className="bandeau">
                   <p className="type-production" data-icon="production">{IsModel(item.data.type, lang)}</p>
                   <p className="subtype-production">{item.data.typeLabel !== 'media' && lang === 'fr' ? <span>{item.data.typeLabel.fr}</span> : <span>{item.data.typeLabel.en}</span>}</p>
-                  <p className="authors">{item.data.authors}</p>               
+                  <p className="authors">{item.data.authors}</p>
                 </div>
                 <hgroup>
                 (item.data.title &&
@@ -48,7 +48,7 @@ export default function Now({now, lang}) {
                 </hgroup>
 							  </>
               }
-       
+
 
 
 
@@ -72,7 +72,7 @@ export default function Now({now, lang}) {
                     </>
   								)
                 </hgroup>
-                </> 
+                </>
 							}
 
               {/* If News */}
@@ -81,7 +81,7 @@ export default function Now({now, lang}) {
                 <div className="bandeau">
                     <p data-icon="news" className="type-news">{IsModel(item.data.type, lang)}{item.data.label && (lang === 'fr' ? <span>, {item.data.label.fr}</span> : <span>, {item.data.label.en}</span>)}</p>
                     <DateNews startDate={item.data.startDate} endDate={item.data.endDate} lang={lang} />
-                    <TimeNews startDate={item.data.startDate} endDate={item.data.endDate} />          
+                    <TimeNews startDate={item.data.startDate} endDate={item.data.endDate} />
                 </div>
                 <hgroup>
 						    {lang === 'fr' ? <h1 data-level-1="title">{item.data.title && item.data.title.fr}</h1> : <h1 data-level-1="title">{item.data.label && item.data.title.en}</h1>}
@@ -104,7 +104,7 @@ export default function Now({now, lang}) {
                   </hgroup>
                 </>
 							}
-              
+
 
 
 

@@ -201,11 +201,13 @@ export const query = graphql`
         node {
           tweet
           text
+          html
           date
           type
           originalTweet {
             tweet
             text
+            html
             type
             name
             screenName

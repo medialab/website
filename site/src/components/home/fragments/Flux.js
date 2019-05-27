@@ -5,7 +5,7 @@ import Agenda from './flux/Agenda.js';
 import Git from './flux/Git.js';
 import Tweet from './flux/Tweet.js';
 
-export default function flux({rdv, lang}) {
+export default function flux({rdv, lang, tweets}) {
 	return (
 		<>
 		
@@ -21,7 +21,7 @@ export default function flux({rdv, lang}) {
 
 				<Agenda rdv={rdv} lang={lang} />
 				<Git lang={lang} />
-				<Tweet lang={lang} />
+				<Tweet lang={lang} tweets={tweets} />
 			</div>
 		</section>
 		

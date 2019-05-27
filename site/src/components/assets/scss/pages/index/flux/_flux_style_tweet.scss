@@ -4,7 +4,7 @@
 
 @include for-size(desktop) {
 
-    #tweet article{
+    #tweet article {
              
         .tweet-content{
             @include font-size-20();  
@@ -20,8 +20,12 @@
             padding: $baseline/2 0;
 
         }
-    } 
 
+        .original-tweet {
+            margin-left: 20px;
+        }
+    } 
+   
 }
 
 
@@ -33,7 +37,8 @@
  
     .tweet-content{
         .hashtag,
-        .mention{
+        .mention
+        {
             color: $redlab;
         }
 

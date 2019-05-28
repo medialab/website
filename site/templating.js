@@ -150,7 +150,8 @@ function processHtml(pathPrefix, html) {
         const src = $img.attr('src'),
               width = $img.data('width'),
               height = $img.data('height'),
-              format = $img.data('format');
+              format = $img.data('format'),
+              credits = $img.data('credits') || '';
 
         if (previousImageIndex !== i - 1)
           evenImage = true;
@@ -165,7 +166,9 @@ function processHtml(pathPrefix, html) {
         evenImage = !evenImage;
         previousImageIndex = i;
 
-        output += `<img class="${className}" src="${withPrefix(src)}" />`;
+        output += `<figure class="${className}">
+          <img src="${withPrefix(src)}" alt="${credits}"/>`
+          + (credits !== '' ? `<figcaption>${credits}</figcaption></figure>` : '</figure>');
       }
 
       // Iframes

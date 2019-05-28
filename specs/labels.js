@@ -6,6 +6,9 @@ module.exports = {
     return p.firstName + ' ' + p.lastName;
   },
   productions: function(p) {
+    if (p.spire)
+      p = p.spire.generatedFields;
+
     return p.title.en || p.title.fr;
   },
   news: function(n) {

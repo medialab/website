@@ -96,6 +96,14 @@
 			}
 
 			img, figure{ max-width: 100%;}
+
+			.figure-logo {
+				max-width: 25% !important;
+			    padding: $baseline $unite/2;
+			    max-height: $baseline*6;
+			    vertical-align: middle;
+				margin: 0;				    
+			}
 		}
 	}
 }

@@ -239,7 +239,11 @@ export default function PeopleDetail({lang, person}) {
                 </figure>
                 <hgroup>
                   <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
-                  <p className="status" data-type="status">{person.status && (lang === "fr" ? person.status.fr : person.status.en)}</p>
+                 {person.status && 
+                   <p className="status" data-type="status">
+                      { lang === "fr" ? person.status.fr : person.status.en}
+                    </p>
+                  }
                 </hgroup>
                 <div className="bandeau">
                 <p className="role" data-type="role">{person.role[lang]}</p>
@@ -247,20 +251,20 @@ export default function PeopleDetail({lang, person}) {
                     <p data-type="membership">{templateMembership(person)}</p>
                 </div>
 
-
-                <div className="contact">
-                  {/* <h3 className="toContact">{lang === 'fr' ? 'Contact' : 'Get in touch '}</h3> */}
-                  <ul>
-                    {person.contacts && person.contacts.map((contact, i) => (
+                { person.contacts && person.contacts.length > 0 &&
+                  <div className="contact">
+                    <ul>
+                    { person.contacts.map((contact, i) => (
                       <li key={i} data-type={contact.label}>
-                        {contact.type === 'url' ?
-                          <a href={contact.value}>{contact.label}: {contact.value}</a> :
-                          contact.label
-                        }
+                        {contact.type === 'url' && contact.label !== 'CV' ?
+                          <a href={contact.value} title={ lang === 'fr' ? "Lien vers le CV de " + person.firstName + " " + person.lastName : "Link to " + person.firstName + " " + person.lastName + "resume"} target="_blank" rel="noopener">{contact.label}: {contact.value}</a> :
+                            ( contact.label === 'Mail' ?
+                              <p data-domain="@sciencepo.fr">{contact.label}: NEED_SUBSTRING</p> :
+                                <a href={contact.value}>{contact.label}</a> ) }
                       </li>
                     ))}
-                  </ul>
-                </div>
+                    </ul>
+                  </div>}
               </header>
 
               <div className="biographie-content">

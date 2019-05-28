@@ -10,8 +10,9 @@
 	text-transform: uppercase;
 	font-weight: 600;
 	z-index: 15;
+}
 
-	&:after{
+.body-page:not(.page-news-list ) .type_title:after{
 		content: "ⓘ";
 		padding-left: $unite/3;
 		color: $text-color-light;
@@ -22,7 +23,6 @@
 		position: absolute; 
 		right: 0;
 	}
-}
 
 .accroche-title-list{
     box-sizing: content-box!important;

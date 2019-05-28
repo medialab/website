@@ -68,12 +68,6 @@ const Slideshow = ({slider, lang}) => {
                     <ProcessedImage size="medium" image={slide.data.coverImage && slide.data.coverImage.processed.medium} />
                   </div>
                 </Link>
-                <div className="bullets-slide">
-                  <label className="slideshow-bullet-label" data-type={ (index + 1) === 1 ? "active" : "passive" } htmlFor="slide-bullet-1"></label>
-                  <label className="slideshow-bullet-label" data-type={ (index + 1) === 2 ? "active" : "passive" } htmlFor="slide-bullet-2"></label>
-                  <label className="slideshow-bullet-label" data-type={ (index + 1) === 3 ? "active" : "passive" } htmlFor="slide-bullet-3"></label>
-
-                </div>
                 <div className="contenu-slide">
                   <Link to={slide.data.permalink[lang]}>
 
@@ -133,6 +127,12 @@ const Slideshow = ({slider, lang}) => {
     			)}
         </div>
 
+        {/* bullet pour controler le caroussel*/}
+        <nav className="bullets-slide">
+          <label className="slideshow-bullet-label" data-slide="1" htmlFor="slide-bullet-1"></label>
+          <label className="slideshow-bullet-label" data-slide="2" htmlFor="slide-bullet-2"></label>
+          <label className="slideshow-bullet-label" data-slide="3" htmlFor="slide-bullet-3"></label>
+        </nav>
 
         {/* label pour controler le caroussel*/}
         <nav className="slideshow-controls">
@@ -145,11 +145,6 @@ const Slideshow = ({slider, lang}) => {
           )}
           <span className="controls"></span>
         </nav>
-
-
-
-
-
     </div>
     <hr />
   </section>

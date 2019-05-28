@@ -20,6 +20,7 @@ export default function Home() {
       <div>
         <Deployment />
       </div>
+      <br />
       <div>
         <Aspire />
       </div>

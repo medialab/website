@@ -21,10 +21,6 @@ const FichiersAssocies = ({lang, attachments}) => {
 
   return (
     <>
-    {/* <div className="fichiers-associes" id="attachments"> */}
-        
-        {/* <p>{ accroche }</p> */}
-
         <ul className="fichiers-associes" id="attachments">
 
           {(attachments || []).map(file => (
@@ -34,7 +30,9 @@ const FichiersAssocies = ({lang, attachments}) => {
                   <Link to={file.value}>{file.label}</Link>
                 }
                 {file.type === 'url' &&
-                  <a href={withPrefix(file.value)}>{file.label}</a>
+                  <a 
+                    title={ lang === 'fr' ? "Lien vers le site " + file.value : "Link to "  + file.value } 
+                    href={withPrefix(file.value)} target="_blank" rel="noopener">{file.label}</a>
                 }
                 {file.type === 'label' &&
                   <span>{file.label}</span>

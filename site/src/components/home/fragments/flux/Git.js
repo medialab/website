@@ -3,7 +3,7 @@ import {Link} from 'gatsby';
 import DateNews from '../../../helpers/DateNews.js';
 
 export default function git({github, lang}) {
-  console.log(github);
+
   return (
     <>
       <section id="git">

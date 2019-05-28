@@ -69,6 +69,12 @@
 					padding: $baseline/2 $unite/2 $baseline/2 0;
 					margin-right:  $unite/2;
 					display: inline-block;
+
+					&[data-type="Mail"]{
+						p::after {
+							content: attr(data-domain);
+						}
+					}
 				}
 			}
 		}

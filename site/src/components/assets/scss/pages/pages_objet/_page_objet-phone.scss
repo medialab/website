@@ -10,15 +10,9 @@
 	.page-activity{
 
 		main{
-			margin-left: $margins-phone;
-			margin-right: $margins-phone;
-			margin-bottom: 40vh;
 
-			margin: $height-top-bar-phone $margins-phone;
+			margin: $height-top-bar-phone 0;
 
-			
-	
-			
 			#img-article{
 
 				left: $margins-phone*-1;
@@ -37,7 +31,7 @@
 				}
 
 				pre{ 
-			        font-size: calc(((100vw - #{$unite*2})/240)*1.89); // Should change with width
+			        font-size: calc(((100vw - #{$margins-phone*2})/240)*1.89); // Should change with width
 			        line-height: 95%;
 				}
 			}

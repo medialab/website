@@ -122,6 +122,16 @@
 				text-indent: -15px;
 				&:before{ content: "⁘"; left: -15px;}
 			}
+
+			.figure-logo {
+				max-width: 100px !important;
+				width: auto;				
+			    max-height: $baseline*12;
+			    vertical-align: middle;
+			    padding: $baseline $unite/2;
+				margin: 0;			    
+
+			}			
 		}
 
 	

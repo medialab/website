@@ -5,6 +5,7 @@ let request = require('request');
 const cachedRequest = require('cached-request');
 const range = require('lodash/range');
 const maxBy = require('lodash/maxBy');
+const minBy = require('lodash/minBy');
 const MultiMap = require('mnemonist/multi-map');
 
 const DEV = process.env.NODE_ENV !== 'production';
@@ -54,7 +55,7 @@ exports.retrieveGithubFluxData = function(people, callback) {
 
     const handle = extractGithubHandle(contact.value)
 
-    peopleIndex[handle] = p.slugs[p.slugs.length - 1];
+    peopleIndex[handle] = {slug: p.slugs[p.slugs.length - 1], name: `${p.firstName} ${p.lastName}`};
   });
 
   // 1) Retrieving events data, paginated
@@ -101,7 +102,8 @@ exports.retrieveGithubFluxData = function(people, callback) {
           repo: data.name,
           language: data.language,
           url: data.html_url,
-          date: maxBy(events, event => event.created_at).created_at,
+          endDate: maxBy(events, event => event.created_at).created_at,
+          startDate: minBy(events, event => event.created_at).created_at,
           count: events.length
         };
 
@@ -120,17 +122,17 @@ exports.retrieveGithubFluxData = function(people, callback) {
         });
 
         item.authors = Array.from(authors, login => {
-          const author = {
-            name: login,
+          let author = {
+            nickname: login,
             url: GITHUB_URL + login
           };
 
           // Attempting to match
           const match = peopleIndex[login.toLowerCase()];
 
-          if (match)
-            author.slug = match;
-
+          if (match) 
+            author = {...author, ...match};
+          
           return author;
         });
 

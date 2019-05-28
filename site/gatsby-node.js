@@ -366,7 +366,7 @@ exports.sourceNodes = function(args) {
       language: String
       url: String
       startDate: String
-      minDate: String
+      endDate: String
       count: Int
       description: String
       license: String

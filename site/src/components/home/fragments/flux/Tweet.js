@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'gatsby';
-import RawHtml from '../../../helpers/RawHtml.js';
 
 import {format as formatDate, parseISO} from 'date-fns';
 import * as locales from 'date-fns/locale';
@@ -13,14 +12,14 @@ const formatDateTime = (isoDate, lang) => {
 
 const originalTweetIntro = {
   fr: {
-    reply: "en réponse à",
-    quote: "retweet de",
-    retweet: "retweet de"
+    reply: 'en réponse à',
+    quote: 'retweet de',
+    retweet: 'retweet de'
   },
   en: {
-    reply: "a response to",
-    quote: "retweet of",
-    retweet: "retweet of"
+    reply: 'a response to',
+    quote: 'retweet of',
+    retweet: 'retweet of'
   },
 
 }
@@ -31,7 +30,7 @@ return (
     <section id="tweet">
       <h1>Le médialab sur <span data-icon="tweet"><a href="https://twitter.com/medialab_scpo">Twitter</a></span></h1>
       { tweets.map(t =>
-          (<article key={t.id} className="tweet" data-type="tweet">			
+          (<article className="tweet" data-type="tweet" key={t.tweet.toString()} >	
             <aside className="divers">
               {
                 //<p className="label" data-icon="tweet">{t.type}</p>
@@ -40,9 +39,9 @@ return (
               <p>{formatDateTime(t.date, lang)}</p>
             </aside>
             {t.type !== 'retweet' &&
-              <p className="tweet-content">
-                <a href={`https://twitter.com/medialab_ScPo/status/${t.tweet}`} target="_blank" rel="noopener noreferrer"><RawHtml html={t.html}/></a>
-              </p>
+              <a href={`https://twitter.com/medialab_ScPo/status/${t.tweet}`} target="_blank" rel="noopener noreferrer">
+                <p className="tweet-content" dangerouslySetInnerHTML={{__html: t.html}} />
+              </a>
             }
             {t.originalTweet &&
               <div className="original-tweet">
@@ -50,9 +49,9 @@ return (
                   <p className="label" data-icon="tweet">{originalTweetIntro[lang][t.type]}</p>
                   <p className="account"><a href={`https://twitter.com/${t.originalTweet.screenName}`} target="_blank" rel="noopener noreferrer">{t.originalTweet.name} @{t.originalTweet.screenName}</a></p>
                 </aside>
-                <p className="tweet-content">
-                  <a href={`https://twitter.com/medialab_ScPo/status/${t.originalTweet.tweet}`} target="_blank" rel="noopener noreferrer"><RawHtml html={t.originalTweet.html}/></a>
-                </p>
+                <a href={`https://twitter.com/medialab_ScPo/status/${t.originalTweet.tweet}`} target="_blank" rel="noopener noreferrer">
+                  <p className="tweet-content" dangerouslySetInnerHTML={{__html: t.originalTweet.html}} />
+                </a>
               </div>
             }
           </article>)

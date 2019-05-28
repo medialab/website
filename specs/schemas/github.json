@@ -41,6 +41,10 @@
         "type": "object",
         "properties": {
           "name": {
+            "title": "Nom",
+            "type": "string"
+          },
+          "nickname": {
             "title": "Nom du compte GitHub",
             "type": "string"
           },
@@ -53,7 +57,7 @@
             "type": "string"
           }
         },
-        "required": ["name", "url"]
+        "required": ["nickname", "url"]
       }
     }
   }

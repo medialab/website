@@ -215,6 +215,29 @@ export const query = graphql`
         }
       }
     }
+    github:allGithubJson {
+      edges {
+        node {
+          repo,
+          language,
+          url,
+          startDate,
+          endDate,
+          count,
+          description,
+          authors {
+            nickname,
+            url,
+            slug,
+            name,
+            permalink {
+              fr,
+              en
+            }
+          }
+        }
+      }
+    }
   }
 `;
 
@@ -225,6 +248,7 @@ const IndexPage = ({data, pageContext}) => {
   const slider = data.settingsJson.home.slider;
   const rdv = data.rdv ? data.rdv.edges.map(({node}) => node) : [];
   const tweets = data.tweets ? data.tweets.edges.map(({node}) => node) : [];
+  const github = data.github ? data.github.edges.map(({node}) => node) : [];
 
   return (
     <Layout
@@ -234,7 +258,8 @@ const IndexPage = ({data, pageContext}) => {
       <Home
         lang={pageContext.lang} grid={grid} slider={slider}
         rdv={rdv}
-        tweets={tweets} />
+        tweets={tweets}
+        github={github} />
     </Layout>
   );
 };

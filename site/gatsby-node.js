@@ -269,11 +269,19 @@ const MODEL_READERS = {
       deleteNode({node});
     });
 
-    // TODO: faire les permaliens vers la personne (faire gaffe au schéma)
-
     data.forEach((event, i) => {
       const hash = hashNode(event);
-
+      event.authors = event.authors.map(a => {
+        if (a.slug)
+          return {...a,
+            permalink: {
+              fr: `/people/${a.slug}`,
+              en: `/en/people/${a.slug}`
+            }
+          };
+        else
+          return a;
+      });
       createNode({
         ...event,
         id: `github-${i}`,
@@ -341,16 +349,24 @@ exports.sourceNodes = function(args) {
   // TODO: fix this dirty hack!
   createTypes(`
     type GithubAuthor {
-      name: String!
+      nickname: String!
       url: String!
       slug: String
+      name: String
+      permalink: Permalink
+    }
+
+    type Permalink {
+      fr: String
+      en: String
     }
 
     type GithubJson implements Node @infer {
-      repo: String
+      repo: String!
       language: String
       url: String
-      date: String
+      startDate: String
+      minDate: String
       count: Int
       description: String
       license: String

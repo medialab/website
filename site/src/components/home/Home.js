@@ -9,12 +9,11 @@ import Flux from './fragments/Flux.js';
 
 
 
-export default function Home({lang, grid, slider, rdv, tweets}) {
+export default function Home({lang, grid, slider, rdv, tweets, github}) {
   //console.log(grid, slider, rdv);
 
   return (
     <>
-      
       <main>
         <section id="home">
           <Slideshow slider={slider} lang={lang} />
@@ -25,7 +24,7 @@ export default function Home({lang, grid, slider, rdv, tweets}) {
           </section>
           <Now now={grid} lang={lang} />
         </section>
-        <Flux rdv={rdv} tweets={tweets} lang={lang} />
+        <Flux rdv={rdv} tweets={tweets} github={github} lang={lang} />
       </main>
     </>
   );

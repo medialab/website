@@ -12,7 +12,15 @@
 @include for-size(desktop) {
 
 	#slideshow{
-
+        
+        &:after{
+            content: "";
+            position: absolute;
+            bottom: 4px;
+            border-bottom: $border-very-light;
+            width: 100%;
+        }
+        
 		.slideshow-container{
 			
 			.slideshow-inner{

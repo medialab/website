@@ -47,31 +47,9 @@ $hunit: 4vh;
             margin-top: $height-top-bar;
         }
 
+        #introduction, #flux{ border-bottom: $border; }
 
-    
-        #slideshow, #introduction, #flux{ border-bottom: $border; }
-        
-
-        #flux{
-          
-            // top: $height-top-bar;
-            //max-height: 100%;
-            // max-height: calc( 100vh - #{$height-top-bar} );
-            // overflow: hidden;
-            // padding-right: $margins-desktop;
-
-
-            // .container{
-            //     width: 100%;
-            //     height: 100%;                
-            //     padding-right: $unite;
-            //     margin-bottom: $height-footer;
-            //     box-sizing: content-box;
-            //     overflow-y: scroll;
-            //     max-height: calc( 100vh - #{$height-top-bar} );
-
-            // }            
-        }
+        #home{ overflow-x: hidden; }
 
 
         section > h1{

@@ -12,20 +12,22 @@ export default function git({github, lang}) {
         (<article key={r.repo} className="git" data-type="git">
           <aside className="divers">
             <p className="label" data-icon="git">Git</p>
-            <DateNews startDate={r.startDate} endDate={r.endDate} />
-            <p>&nbsp;{r.count} contribution{r.count > 1 ? 's' : ''}</p>
+            <p className="language">{r.language}</p>       
           </aside>
 
-          <h1 data-level-1="title"> 
-            {r.repo}
-          </h1>
+          <a href={r.url} target="_blank" rel="noopener noreferrer">
+            <h1 data-level-1="title">
+              {r.repo}
+            </h1>
+          </a> 
 
           <p data-level-2="description" className="description"> 
             {r.description}
           </p>
 
           <aside className="details">
-            <p className="language">{r.language}</p>
+            <DateNews startDate={r.startDate} endDate={r.endDate} lang={lang}/>
+            <p className="contribution">&nbsp;{r.count} contribution{r.count > 1 ? 's' : ''}</p>
             {r.authors &&
               <p className="contributors">
                 {r.authors.map((a, i) => {
@@ -42,7 +44,7 @@ export default function git({github, lang}) {
                   })}
 
               </p>
-            }
+            }     
           </aside>
         </article>)
         )}

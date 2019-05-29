@@ -6,6 +6,9 @@
 
     #git article{
 
+        aside.divers{
+        }
+
         h1{ 
             @include font-size-20();
             padding-top: $baseline;
@@ -21,18 +24,19 @@
         
             border-top: $border-very-light;
             padding: $baseline/2 0;
-    
-            .language, .contributors{
+
+            .date-news, .contribution, .contributors{
                 display: inline-block;
-                padding-right: $unite/2;
             }
-    
-            .language{ border-right: $border-very-light; }
-    
-            .contributors { padding-left: $unite/2;}
-    
-           
-            
+
+            .date-news, .contribution{
+                padding-right: $unite/2;
+                margin-right: $unite/2;
+                border-right: $border-very-light;                
+            }
+            .date-news{ 
+                .year{display: none; }
+            }  
         } 
 
     } 

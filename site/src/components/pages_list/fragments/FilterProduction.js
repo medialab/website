@@ -2,6 +2,10 @@ import React from 'react';
 /*import {graphql} from 'gatsby';*/
 import {Link} from 'gatsby';
 import cls from 'classnames';
+import {SearchInput} from '../../helpers/SearchInput.js';
+
+
+
 
 const FilterProduction = ({lang, group, types}) => {
 
@@ -40,7 +44,8 @@ const FilterProduction = ({lang, group, types}) => {
         <input type="checkbox" className="toggle-filtre-phone" id="toggle-filtre-phone" name="toggle-filtre-phone" value="visible" hidden />
         <label id="toggle-filtre-phone-label" htmlFor="toggle-filtre-phone" title="Découvrir les options de filtrage"><p>{ filters }<span /></p></label>
 
-        
+        <SearchInput lang={lang} />
+  
         <div className="go-to-year">
         <input type="checkbox" id="checkbox_filtre_year" name="radio_filtre-actu" value="year" hidden />
         <label htmlFor="checkbox_filtre_year"><span>〉</span></label>

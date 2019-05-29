@@ -1,6 +1,7 @@
 import React from 'react';
 /*import {graphql} from 'gatsby';*/ 
 //import {Link} from 'gatsby';
+import {SearchInput} from '../../helpers/SearchInput.js';
 
 const MAX_NB_FILTER_ITEMS = 12;
 
@@ -36,6 +37,7 @@ const FilterNews = ({lang, years}) => {
   return (
     <>
       <h1 className="type_title" data-icon="actualite"><a href="#year-2019">{title}</a></h1>
+
       
       <input type="checkbox" id="filtre-actu_event" name="filtre-actu_event" className="input_filtre-actu" value="event" hidden />
       <input type="checkbox" id="filtre-actu_post" name="filtre-actu_post" className="input_filtre-actu" value="post" hidden />
@@ -46,6 +48,7 @@ const FilterNews = ({lang, years}) => {
         <input type="checkbox" className="toggle-filtre-phone" id="toggle-filtre-phone" name="toggle-filtre-phone" value="visible" hidden />
         <label id="toggle-filtre-phone-label" htmlFor="toggle-filtre-phone" title="Découvrir les options de filtrage"><p>{ filters }<span /></p></label>
 
+        <SearchInput lang={lang} />
         
         <div className="go-to-year">
         <input type="checkbox" id="checkbox_filtre_year" name="radio_filtre-actu" value="year" hidden />

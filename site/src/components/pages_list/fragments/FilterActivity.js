@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import cls from 'classnames';
 import { IsModel } from '../../helpers/helpers.js';
+import {SearchInput} from '../../helpers/SearchInput.js';
 
 const FilterActivity = ({ lang, status, statuses }) => {
 
@@ -29,6 +30,7 @@ const FilterActivity = ({ lang, status, statuses }) => {
 
       <h1 className="type_title" data-icon="activite">{IsModel('activities', lang)}</h1>
       <p className="accroche-title-list">{accroche}</p> 
+      
 
      
       <input
@@ -50,6 +52,8 @@ const FilterActivity = ({ lang, status, statuses }) => {
 
         <input type="checkbox" className="toggle-filtre-phone" id="toggle-filtre-phone" name="toggle-filtre-phone" value="visible" hidden />
         <label id="toggle-filtre-phone-label" htmlFor="toggle-filtre-phone" title="Découvrir les options de filtrage"><p>{IsModel('filters', lang)}<span /></p></label>
+
+        <SearchInput lang={lang} />
 
         <div className="filter-group">
           <h1>{filterStatus}</h1>

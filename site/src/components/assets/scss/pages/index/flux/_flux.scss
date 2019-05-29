@@ -35,15 +35,8 @@
 		&:hover{ color: $redlab-light; }
 	}
 
-
-
-
-	section:target > h1{
-		padding-top: $height-top-bar + $baseline*4.5;
-	}
-
-	#agenda:target > h1{
-		padding-top: $height-top-bar + $baseline*1;
-	}
+	//#agenda:target > h1 { margin-bottom: $baseline*8; }
+	//#tweet:target > h1 { margin-bottom: $baseline*10; }
+	//#git:target > h1 { margin-bottom: $baseline*8; }
 
 }

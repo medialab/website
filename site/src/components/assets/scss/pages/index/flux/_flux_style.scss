@@ -8,6 +8,13 @@
 
         width: 100%;
 
+        > h1{
+            position: sticky;
+            top: $height-top-bar + $baseline*3.5;
+            background: $background-site;
+            z-index: 8;
+        }
+
         article{
 
             cursor: pointer;

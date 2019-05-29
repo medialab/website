@@ -45,30 +45,13 @@ return (
               <div className="original-tweet">
                 <aside className="divers">
                   <p className="label" data-icon="tweet">{originalTweetIntro[lang][t.type]}</p>
-                  <p className="account"><a href={`https://twitter.com/${t.originalTweet.screenName}`} target="_blank" rel="noopener noreferrer">{t.originalTweet.name} @{t.originalTweet.screenName}</a></p>
+                  <p className="account">{t.originalTweet.name} (<a href={`https://twitter.com/${t.originalTweet.screenName}`} target="_blank" rel="noopener noreferrer">@{t.originalTweet.screenName}</a>)</p>
                 </aside>
                   <p className="tweet-content" dangerouslySetInnerHTML={{__html: t.originalTweet.html}} />
               </div>
             }
           </article>)
         )
-      }
-      {
-      // <article className="tweet" data-type="tweet">			
-      //   <aside className="divers">
-      //     <p className="label" data-icon="tweet">Tweet</p>
-      //     {/* PLACEHOLDER DATENEWS */}<p className="date-news">mercredi 6 mars 2019</p>					
-      //   </aside>
-
-      //   <p className="tweet-content">
-      //     Faire vivre la #démocratie exige que nous ayons <span className="hashtag">#confiance</span> envers les <span className="hashtag">#medias</span>. Comment y parvenir dans un univers où <span className="hashtag">#trolls</span>, 
-      //     <span className="hashtag">#FakeNews</span> et concurrence au nb de clics polluent le paysage ? Réponses le 16 avril lors du 1er rdv de <span className="mention">@ScPoResearch</span> ✍ <Link className="link-external-tweet" to="/">https://bit.ly/2UQmrZI</Link>
-      //   </p>
-
-      //   <aside className="details">
-      //     <p className="account"><a href="link/to/tweet">@medialab_ScPo</a></p>
-      //   </aside>
-      // </article>
       }
     </section>
   </>

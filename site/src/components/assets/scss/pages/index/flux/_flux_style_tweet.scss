@@ -43,13 +43,22 @@
     }
 
 
-    .account{
+    .account a{
         color: $redlab;
     }
 
     .original-tweet{
 
         margin-left: $unite;
+
+        aside.divers{
+            letter-spacing: 0.15px; // Much text, so few letter spacing
+            p.label{
+                border: none;
+                margin-right: 0;
+                padding-right: 3px;
+            }
+        }
 
         &:before{
             content: "↳";

@@ -22,8 +22,16 @@
             &:last-of-type:not(.mention):not(.hashtag){
 
                 color: $text-color-light;
+                font-size: 0;
                 
 
+                &:after{
+
+                    content: "🔗\00FE0E";
+                    @include font-size-20(); 
+                    color: $text-color-light;
+
+                }
             }
         }
         a.hashtag,

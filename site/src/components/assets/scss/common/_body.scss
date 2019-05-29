@@ -97,13 +97,6 @@ input:checked + label{
 }
 
 
-
-
-input:checked + .checkbox-medialab{
-    font-weight: 600!important;
-    &:before{ border: 5px solid $text-color;}
-}
-
 .checkbox-medialab:hover{
     font-weight: 600;
     color: $text-color-light;
@@ -111,6 +104,11 @@ input:checked + .checkbox-medialab{
     &:before{ border: 5px solid $text-color-light!important;}
 }
 
+
+input:checked + .checkbox-medialab{
+    font-weight: 600!important;
+    &:before{ border: 5px solid $text-color;}
+}
 
 input:checked + .checkbox-medialab:hover{
     &:before{ border: 5px solid $text-color-light!important;}

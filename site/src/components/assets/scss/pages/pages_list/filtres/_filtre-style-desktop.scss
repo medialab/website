@@ -9,155 +9,72 @@ $height-filtres-actu: $baseline * 3.5;
 
 
 
-@media screen and (min-width: 700px) and (max-width: 1080px){
-    .type_title,
-    .link-productions-sort,
-    .link-activity-sort,
-    .go-to-year,
-    #checkbox_filtre-production_year + label,
-    #checkbox_filtre-actu_year + label{
-        width: $logo-column-medium - $margins-desktop;   
-    }
-    .filtre-production, .filtre-activity, .filtre-actu{ width: $logo-column-medium - $margins-desktop; }
-    .h2_filtre{  width: $logo-column-medium - $margins-desktop; }
-   
-}
-
-@media screen and (min-width: 1080px){
-    .type_title,
-    .link-productions-sort,
-    .link-activity-sort,
-    .go-to-year,
-    #checkbox_filtre-production_year + label,
-    #checkbox_filtre-actu_year + label{
-        width: $logo-column - $margins-desktop;   
-    }
-    .filtre-production, .filtre-activity, .filtre-actu{ width: $logo-column - $margins-desktop; }
-    .h2_filtre{  width: $logo-column - $margins-desktop; }
-}
-
-
-
 
 
 @include for-size(desktop) {
 
-	#toggle-filtre-phone + label{ display: none; }
-
-    
+    #toggle-filtre-phone-label{ display: none; }
 
     .type_title{ 
-        top: $height-top-bar ; 
+        position: fixed; 
+        top: $height-top-bar; 
         border-bottom: $border;
         padding-top: $baseline * 1.25;
         height: $height-desktop-filter-title;
     } 
 
     .accroche-title-list{
+        position: fixed;
+        top: -100vh;
+        transition: top .3s;   
         padding-right: $margins-desktop;
         margin-right: $margins-desktop;
         overflow: hidden;
         transition: top .3s;
-     
-        
+        padding-top: $baseline*0.75;
+        padding-bottom: $baseline;
+        border-bottom: $border-redlab;
     }
 
     .type_title:hover + .accroche-title-list {
             top: $height-top-bar;  
     } 
 
-
-    // .link-productions-sort,
-	.link-activity-sort
-    .link-news-sort{
-        top: $height-top-bar + $baseline*4;
+    .aside-filters{
+        position: fixed; 
+        top: $height-top-bar + $height-desktop-filter-title; 
+        z-index: 99;
     }
 
-    /* sort year */
-
-    .go-to-year{
-  
-            padding-top: $baseline * 0.5;
-            border-bottom: $border-very-light;
-            height: $height-gotoyear-desktop;
-        
+    .go-to-year{ 
         ul{ width: 100%; }
         ul li{ width: 33%; }
         li:nth-of-type(3n){ border-right: none; }
-        
     }
-
-
-   
-
-
-    /* sort type */
-    
-
-    .h2_filtre{
-        position: fixed;
-        @include font-size-13-uppercase();
-    }
-
-
-    .type_title,
-    .link-productions-sort,
-    .link-activity-sort,
-    .go-to-year,
-    #checkbox_filtre-production_year + label,
-    #checkbox_filtre-actu_year + label,
-    .h2_filtre,
-    .filtre-production,
-    #label_checkbox_publications,
-    #label_checkbox_tools,
-    #label_checkbox_webEditions,
-    #label_checkbox_media,
-    #label_checkbox_situations,
-    .filtre-actu,
-    .filtre-activity,
-    .filtre_equipe{
-        left: $margins-desktop;
-        z-index: 90;
-    }
-
-    .accroche-title-list{ left: $logo-column-medium + $margins-desktop ; }
-    @media screen and (min-width: 1080px){ .accroche-title-list{ left: $logo-column + $margins-desktop ; } }
-    #checkbox_filtre-production_year + label,
-    #checkbox_filtre-actu_year + label{
-        z-index: 99;
-    }
-    
-
 
 }
 
 
 
 
+@media screen and (min-width: 700px) and (max-width: 1080px){
+    .type_title, .aside-filters{ width: $logo-column-medium - $margins-desktop; }
+    .accroche-title-list{ left: $logo-column-medium + $margins-desktop ; }
+}  
 
+@media screen and (min-width: 1080px){
+    .type_title, .aside-filters{ width: $logo-column - $margins-desktop; }
+    .accroche-title-list{ left: $logo-column + $margins-desktop ; }
+} 
 
 
 @media screen and (min-width: 1650px){
-    .type_title,
-    .link-productions-sort,
-    .link-activity-sort,
-    .go-to-year,
-    #checkbox_filtre-production_year + label,
-    #checkbox_filtre-actu_year + label,
-    .h2_filtre,
-    .filtre-production,
-    #label_checkbox_publications,
-    #label_checkbox_tools,
-    #label_checkbox_webEditions,
-    #label_checkbox_media,
-    #label_checkbox_situations,
-    .filtre-actu,
-    .filtre-activity,
-    .filtre_equipe{
-        left: calc((100vw - 1600px)/2);
-    }
-
+    .type_title, .aside-filters{ left: calc((100vw - 1600px)/2); }
     .accroche-title-list{ left: calc((100vw - 1600px)/2 + #{$logo-column}); }
-
-  
 }
+
+
+
+
+
+

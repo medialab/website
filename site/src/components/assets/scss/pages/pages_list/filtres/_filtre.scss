@@ -5,11 +5,12 @@
 
 
 .type_title{
-	position: fixed;
 	@include font-size-16();
 	text-transform: uppercase;
 	font-weight: 600;
 	z-index: 15;
+	cursor: pointer;
+	&:hover{ color: $redlab; }
 }
 
 .body-page:not(.page-news-list ) .type_title:after{
@@ -26,45 +27,100 @@
 
 .accroche-title-list{
     box-sizing: content-box!important;
-    position: fixed;
     z-index: 14;
-    top: -100vh;
 	background-color: $background-site;
 	@include font-size-16;
 	@media screen and (min-width: 1200px){ @include font-size-20; } 
     color: $redlab;
-    padding-top: $baseline*0.75;
-    padding-bottom: $baseline;
-    border-bottom: $border-redlab;
-    overflow: hidden;
-    transition: top .3s;     
+	overflow: hidden;
+	max-width: 1325px;
 }
 
-.type_title:hover{ 
-        color: $redlab;
+
+
+.aside-filters{
+
+	.filter-group{
+		border-bottom: $border-very-light;
+		padding: $baseline 0;
+		label{ 
+			@include font-size-13;
+			padding: $baseline/2 0;
+		}
+	}
+	
+	.filter-group > h1{ 
+		@include font-size-13-uppercase(); 
+		padding-bottom: $baseline/2;
+	}
+
+
 }
+
+/* span arrows */
+
+.link-productions-sort li a span,
+#checkbox_filtre_year + label span,
+#checkbox_groupFilter_label span{
+	@include font-size-13;
+	display: block; 
+	width: $baseline;
+	height: $baseline;
+	margin-top: $baseline/2;
+	position: absolute;
+	text-align: right;
+	right: -5px;
+	top: 0;
+}
+
+.link-productions-sort li a:hover span,
+#checkbox_filtre_year:checked + label span,
+#checkbox_filtre_year + label:hover span,
+#checkbox_groupFilter:checked + #checkbox_groupFilter_label span,
+#checkbox_groupFilter + #checkbox_groupFilter_label:hover span{
+	transform: rotate(90deg);
+	transform-origin: center center;
+	top: 4px;
+}
+
+
+
+
+/* go-to-year */
+
+#checkbox_filtre_year ~ ul{ max-height: 0vh; }
+#checkbox_filtre_year:checked ~ ul{ max-height: 100vh; }
 
 .go-to-year{  
-	position: fixed;    
-	@include font-size-13;
-	
 
+	@include font-size-13;
+
+	#checkbox_filtre_year + label{
+		position: absolute;
+		width: 100%;
+		height: $baseline*2.5;
+		z-index:99;
+		cursor: pointer;
+	}
+
+
+	p{
+		width: 100%;
+		padding: $baseline/2 0;
+		border-bottom: $border-very-light;
+	}
 
 	.current-year{
 		font-weight: 600;
-		padding-right: $margins-desktop*1.5;
-		position: absolute;
-		right: 0;
-		top: $baseline * 0.5;
+		position: absolute; 
+		right: $baseline*1.5;
 	}
 
 	ul{
 		background-color: $background-site;       
 		@include font-size-13;
-		// transition: 1.5s;
 		overflow: hidden;
-		margin-top: $baseline;
-
+		
 		li{
 			display: inline-block;              
 			padding-bottom: $baseline/2;
@@ -72,70 +128,9 @@
 			border-right: $border-very-light;
 			border-bottom: $border-very-light;
 			text-align: center;
+			&:hover{ font-weight: 600; }
 		}
 		
 	}
 
-	
-}/* end .go-to-year */
-
-
-#checkbox_filtre-production_year + label, 
-#checkbox_filtre-actu_year + label{
-	height: $baseline*2;
-	z-index: 99;
-	padding-top: $baseline * 0.25;
-	cursor: pointer; 
-	span{
-		display: inline-block; 
-		width: $baseline;
-		height: $baseline;
-		@include font-size-13;
-		position: absolute;
-		text-align: right;
-		right: 0;
-		top: $baseline*0.25;	
-	}
 }
-
-
-
-
-#checkbox_filtre-production_year + label:hover,
-#checkbox_filtre-actu_year + label:hover{ 
-	& ~ .go-to-year{
-		 color: $text-color-light;
-		 ul{ color: $text-color;}
-	 }
-	 span{
-		transform: rotate(90deg);
-		transform-origin: center center;
-		top: $baseline*0.25 + 6px;
-	 }
- }
-
- #checkbox_filtre-production_year:checked + label,
- #checkbox_filtre-actu_year:checked + label{
-	span{
-		transform: rotate(90deg);
-		transform-origin: center center;
-		top: $baseline*0.25 + 6px;
-	 }
- }
- 
-
-
-
-
-.filtre-production, .filtre-activity, .filtre-actu{ 
-	position: fixed;
-	overflow: hidden;
-	@include font-size-13;
-	font-weight: 300;
-	// transition: top 0.5s, max-height 0.5s;
-}
-
-
-
-
-

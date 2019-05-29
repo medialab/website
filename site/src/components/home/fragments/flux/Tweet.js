@@ -36,7 +36,7 @@ return (
                 //<p className="label" data-icon="tweet">{t.type}</p>
               }
               <p className="account"><a href="https://twitter.com/medialab_ScPo" target="blank">@medialab_ScPo</a></p>
-              <p>{formatDateTime(t.date, lang)}</p>
+              <p className="date">{formatDateTime(t.date, lang)}</p>
             </aside>
             {t.type !== 'retweet' &&
               <a href={`https://twitter.com/medialab_ScPo/status/${t.tweet}`} target="_blank" rel="noopener noreferrer">

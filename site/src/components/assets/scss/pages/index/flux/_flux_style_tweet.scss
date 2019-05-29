@@ -2,6 +2,66 @@
 //////// tweet style
 /////////////////////
 
+// all queries
+
+#tweet {
+
+    .divers{
+        .date{
+            padding-left: $unite/2;
+            margin-left: $unite/2;
+            border-left: $border-very-light;
+        }
+    }
+ 
+    .tweet-content{
+
+        a{
+            color: $redlab;
+
+            &:last-of-type:not(.mention):not(.hashtag){
+
+                color: $text-color-light;
+                
+
+            }
+        }
+        a.hashtag,
+        a.mention {
+            color: $redlab;
+        }
+
+        .link-external-tweet{ color: $text-color-light;}
+    }
+
+
+    .account{
+        color: $redlab;
+    }
+
+    .original-tweet{
+
+        margin-left: $unite;
+
+        &:before{
+            content: "↳";
+            position: absolute;
+            left: $unite*-1;
+            top: $baseline;
+            font-size: 25px;
+            line-height: 0;              
+            color: rgb(235, 235, 235);
+        }
+    }
+    .tweet-content + .orginal-tweet { border-top: $border-very-light; } // Exclude simple RT
+
+}
+
+
+
+
+
+
 @include for-size(desktop) {
 
     #tweet article {
@@ -20,36 +80,12 @@
             padding: $baseline/2 0;
 
         }
-
-        .original-tweet {
-            margin-left: 20px;
-        }
     } 
    
 }
 
 
 
-
-// all queries
-
-#tweet {
- 
-    .tweet-content{
-        .hashtag,
-        .mention
-        {
-            color: $redlab;
-        }
-
-        .link-external-tweet{ color: $text-color-light;}
-    }
-
-
-    .account{
-        color: $redlab;
-    }
-}
 
 
 @include for-size(phone) {

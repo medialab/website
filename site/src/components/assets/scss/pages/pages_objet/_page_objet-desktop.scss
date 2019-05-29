@@ -177,7 +177,21 @@
 @media screen and (min-width: 1080px) {}
 
 
-@media screen and (min-width: 700px) and (max-aspect-ratio:1/1) { 
+//////////////////
+/// image sur toute la hauteur (même si l'image est coupée)
+////////////////
+
+@media screen and (min-width: 700px) and (max-width: 899px) and (max-aspect-ratio:1/1) { 
+	#img-article{
+		pre{ 
+	        font-size: calc(((100vw - #{$unite*2})/240)*4.5) !important; // Should change with width
+			left: -50%;
+			transform: translateX(50%);	        
+		}
+	}
+}
+
+@media screen and (min-width: 900px) and (max-aspect-ratio:1/1) { 
 	#img-article{
 		pre{ 
 	        font-size: calc(((100vw - #{$unite*2})/240)*4) !important; // Should change with width

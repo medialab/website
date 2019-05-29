@@ -39,9 +39,7 @@ return (
               <p className="date">{formatDateTime(t.date, lang)}</p>
             </aside>
             {t.type !== 'retweet' &&
-              <a href={`https://twitter.com/medialab_ScPo/status/${t.tweet}`} target="_blank" rel="noopener noreferrer">
                 <p className="tweet-content" dangerouslySetInnerHTML={{__html: t.html}} />
-              </a>
             }
             {t.originalTweet &&
               <div className="original-tweet">
@@ -49,9 +47,7 @@ return (
                   <p className="label" data-icon="tweet">{originalTweetIntro[lang][t.type]}</p>
                   <p className="account"><a href={`https://twitter.com/${t.originalTweet.screenName}`} target="_blank" rel="noopener noreferrer">{t.originalTweet.name} @{t.originalTweet.screenName}</a></p>
                 </aside>
-                <a href={`https://twitter.com/medialab_ScPo/status/${t.originalTweet.tweet}`} target="_blank" rel="noopener noreferrer">
                   <p className="tweet-content" dangerouslySetInnerHTML={{__html: t.originalTweet.html}} />
-                </a>
               </div>
             }
           </article>)

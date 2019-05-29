@@ -17,7 +17,6 @@
 
         article{
 
-            cursor: pointer;
             border-bottom: $border;
             padding-left: $unite/2;
             padding-right: $unite/2;
@@ -27,6 +26,7 @@
                 display: block;
                 height: 100%;
                 width: 100%;
+                cursor: pointer;
             }
 
        

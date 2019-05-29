@@ -1,7 +1,7 @@
 import React from 'react';
 /*import {graphql} from 'gatsby';*/ 
 //import {Link} from 'gatsby';
-import {SearchInput} from '../../helpers/SearchInput.js';
+import SearchInput from '../../helpers/SearchInput.js';
 
 const MAX_NB_FILTER_ITEMS = 12;
 

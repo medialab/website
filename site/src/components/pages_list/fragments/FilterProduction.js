@@ -2,7 +2,7 @@ import React from 'react';
 /*import {graphql} from 'gatsby';*/
 import {Link} from 'gatsby';
 import cls from 'classnames';
-import {SearchInput} from '../../helpers/SearchInput.js';
+import SearchInput from '../../helpers/SearchInput.js';
 
 
 

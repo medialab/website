@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import cls from 'classnames';
 import { IsModel } from '../../helpers/helpers.js';
-import {SearchInput} from '../../helpers/SearchInput.js';
+import SearchInput from '../../helpers/SearchInput.js';
 
 const FilterActivity = ({ lang, status, statuses }) => {
 

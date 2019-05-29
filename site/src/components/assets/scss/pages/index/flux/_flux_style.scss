@@ -3,7 +3,6 @@
 /////////////////////
 
 @include for-size(desktop) {
-
     #agenda, #git, #tweet {
 
         width: 100%;
@@ -60,7 +59,9 @@
 
         }
     } 
-
+    #agenda, #git{
+        margin-bottom: $baseline*8;
+    }
 }
 
 

@@ -1,0 +1,147 @@
+/////////////////////
+//////// Desktop
+/////////////////////
+.page-people-list{
+
+	@media screen and (min-width: 700px) and (max-width: 1080px){
+		label.filtre_equipe{ width: $logo-column-medium - $margins-desktop; }
+	}
+	
+	@media screen and (min-width: 1080px){
+		label.filtre_equipe{ width: $logo-column - $margins-desktop; }
+	}
+
+
+
+	@include for-size(desktop) {
+
+		label.filtre_equipe{
+
+			position: fixed;			
+			@include font-size-13();
+		
+		}
+
+	
+	}
+
+	@include for-size(phone) {
+
+		h1.type_title{
+			margin-top: $height-top-bar-phone + $baseline;
+			border-bottom: $border;
+			padding-top: $baseline * .5;
+			padding-bottom: $baseline * 1;
+			@include font-size-13();
+			text-transform: uppercase;
+			font-weight: 400;
+			text-align: center;
+			height: $baseline*3.5;
+		}
+
+		h2.filtre_membre_title, 
+		h2.filtre_domaine_title
+		{ display: none; }
+
+		label.toggle-filtre-phone{
+			height: $baseline*3;
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 100vw;
+			@include font-size-16-phone();
+			text-align: center;
+			border-top: $border;
+			background-color: $background-site;
+			cursor: pointer;
+			z-index: 50;
+
+			span{
+					transform: rotate(0deg);
+					transition: .25s ease-in-out;
+					position: absolute;
+				}			
+		}
+
+		input.toggle-filtre-phone:checked {
+
+			&+ label.toggle-filtre-phone{
+
+				height: $baseline*8;
+
+				span{
+					transform: rotate(180deg);
+				}
+			}
+
+			&~ .filtre_equipe{
+				visibility: visible;
+
+			}
+		}
+
+		input.filtre_equipe{
+			display: none;
+		}
+
+		label.filtre_equipe{
+			visibility: hidden;
+			position: fixed;
+			width: calc(#{$mobile-container-width/2} - #{$unite-phone});
+			@include text-overflow();
+			@include font-size-13-phone();
+			text-align: center;
+			left: $margins-phone;
+			bottom: $unite;
+			cursor: pointer;
+			border: $border;
+			padding-top: 2px;
+			background-color: $background-site;
+			z-index:51;
+			//transition: .25s;
+		}
+
+
+		@for $i from 1 through 13 {
+			input.filtre_equipe:nth-of-type(#{$i}), label.filtre_equipe:nth-of-type(#{$i}){ 
+				bottom: $baseline * $i - $baseline;
+			}
+
+			@if $i % 2 == 0 {  //use $i for calculating mod here than #{$i}
+				input.filtre_equipe:nth-of-type(#{$i}), label.filtre_equipe:nth-of-type(#{$i}){ 
+					bottom: $baseline * $i;
+
+				}
+			}
+		}
+
+		input.filtre_equipe:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone}); }
+		label.filtre_equipe:nth-of-type(2n){ left: calc(#{$mobile-container-width/4} * 2 + #{$margins-phone});}
+		
+		input.filtre_equipe:checked + label.filtre_equipe{ 
+			font-weight: bold;
+			color: $redlab;
+			border-color: $redlab;
+			transition-delay: inherit;
+		}
+	}
+
+
+
+
+
+
+
+
+
+	
+	
+
+	
+
+
+
+
+
+	
+}

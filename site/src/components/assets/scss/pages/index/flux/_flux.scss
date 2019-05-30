@@ -35,8 +35,9 @@
 		&:hover{ color: $redlab-light; }
 	}
 
-	//#agenda:target > h1 { margin-bottom: $baseline*8; }
-	//#tweet:target > h1 { margin-bottom: $baseline*10; }
-	//#git:target > h1 { margin-bottom: $baseline*8; }
+	section:target article:first-of-type{
+		margin-top: $baseline*8.5;
+	}
+
 
 }

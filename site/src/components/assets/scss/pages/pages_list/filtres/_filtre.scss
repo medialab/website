@@ -31,7 +31,6 @@
 	background-color: $background-site;
 	@include font-size-16;
 	@media screen and (min-width: 1200px){ @include font-size-20; } 
-    color: $redlab;
 	overflow: hidden;
 	max-width: 1325px;
 }
@@ -91,9 +90,14 @@
 #checkbox_filtre_year ~ ul{ max-height: 0vh; }
 #checkbox_filtre_year:checked ~ ul{ max-height: 100vh; }
 
+
 .go-to-year{  
 
 	@include font-size-13;
+
+	ul{ width: 100%; }
+	ul li{ width: 33%; }
+	li:nth-of-type(3n){ border-right: none; }
 
 	#checkbox_filtre_year + label{
 		position: absolute;

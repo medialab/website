@@ -2,10 +2,12 @@ import React from 'react';
 import { Link } from 'gatsby';
 import cls from 'classnames';
 import { IsModel } from '../../helpers/helpers.js';
+import { Icons } from '../../helpers/Icons.js';
+
 
 const FilterActivity = ({ lang, status, statuses }) => {
 
-  let filterType, filterStatus, activeActivity, pastActivity, accroche;
+  let filterType, filterStatus, activeActivity, pastActivity, accroche, filtersAlt, infosAlt,  closeAlt, filtresTitle;
 
   if (lang === 'fr') {
     filterType = 'Filter par type';
@@ -13,7 +15,10 @@ const FilterActivity = ({ lang, status, statuses }) => {
     activeActivity = 'En cours';
     pastActivity = 'Terminée';
     accroche = 'A la fois objet de recherche et outils au service des projets, les méthodes numériques sont au coeur des activités du médialab et contribuent à nourrir la réflexion sur les enjeux contemporains tant en sociologie qu’en STS. Organisées entre recherche, enseignement et méthodes, ces activités étudient notamment la montée des populismes, les futurs écologiques ou encore de l’histoire de l’art numérique.';
-
+    filtersAlt = 'Afficher les filtres de la page';
+    infosAlt = 'Informations à propos des activités';
+    filtresTitle = 'Filtres des activités';
+    closeAlt = "Revenir aux activités";
   }
   else {
     filterType = 'Filter by type';
@@ -21,6 +26,10 @@ const FilterActivity = ({ lang, status, statuses }) => {
     activeActivity = 'Current';
     pastActivity = 'Closed';
     accroche = 'Description in english en une phrase de la catégorie activité';
+    filtersAlt = 'Show page filters';
+    infosAlt = 'Informations about the activities';
+    filtresTitle = 'Filters of activities';
+    closeAlt = "Back to activities";
 
   }
 
@@ -28,7 +37,22 @@ const FilterActivity = ({ lang, status, statuses }) => {
     <>
 
       <h1 className="type_title" data-icon="activite">{IsModel('activities', lang)}</h1>
-      <p className="accroche-title-list">{accroche}</p> 
+
+      <input type="radio" id="radio-phone-filters" name="radio-phone" value="filters" hidden />
+      <label htmlFor="radio-phone-filters" title={filtersAlt} arial-label={filtersAlt}><Icons icon='search-filter' /></label>
+
+      <input type="radio" id="radio-phone-infos" name="radio-phone" value="infos" hidden />
+      <label htmlFor="radio-phone-infos" title={infosAlt} arial-label={infosAlt}><Icons icon='infos' /></label>
+
+      <input type="radio" id="radio-phone-close" name="radio-phone" value="close" hidden />
+      <label htmlFor="radio-phone-close" title={closeAlt} arial-label={closeAlt}>✕</label>
+      
+
+      <aside className="accroche-title-list">
+        <h1 class="aside-title" data-icon="activite">{IsModel('activities', lang)}</h1>
+        <p>{accroche}</p>
+      </aside>
+
 
      
       <input
@@ -48,8 +72,7 @@ const FilterActivity = ({ lang, status, statuses }) => {
 
       <aside className="aside-filters">
 
-        <input type="checkbox" className="toggle-filtre-phone" id="toggle-filtre-phone" name="toggle-filtre-phone" value="visible" hidden />
-        <label id="toggle-filtre-phone-label" htmlFor="toggle-filtre-phone" title="Découvrir les options de filtrage"><p>{IsModel('filters', lang)}<span /></p></label>
+      <h1 class="aside-title">{filtresTitle}</h1>
 
         <div className="filter-group">
           <h1>{filterStatus}</h1>

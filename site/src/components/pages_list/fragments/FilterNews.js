@@ -1,12 +1,14 @@
 import React from 'react';
 /*import {graphql} from 'gatsby';*/ 
 //import {Link} from 'gatsby';
+import { Icons } from '../../helpers/Icons.js';
+
 
 const MAX_NB_FILTER_ITEMS = 12;
 
 const FilterNews = ({lang, years}) => {
 
-  let title, yearTitle, filters, event, post, notice, typeNews;
+  let title, yearTitle, filters, event, post, notice, typeNews, filtersAlt, filtresTitle, closeAlt;
   years = years.sort().reverse();
   if (lang === 'fr') {
     title = 'Actualités';
@@ -16,6 +18,9 @@ const FilterNews = ({lang, years}) => {
     event = 'Rendez-vous';
     post = 'Chroniques';
     notice = 'Annonces';
+    filtersAlt = 'Afficher les filtres de la page';
+    filtresTitle = "Filtres des actualités";
+    closeAlt = "Revenir aux actualités";
   }
   else {
     title = 'News';
@@ -25,6 +30,9 @@ const FilterNews = ({lang, years}) => {
     event = 'Events';
     post = 'Posts';
     notice = 'Notices';
+    filtersAlt = 'Show page filters';
+    filtresTitle = "Filters of news";
+    closeAlt = "Back to news";
   }
   let suppYears = false;
 
@@ -36,17 +44,24 @@ const FilterNews = ({lang, years}) => {
   return (
     <>
       <h1 className="type_title" data-icon="actualite"><a href="#year-2019">{title}</a></h1>
+
+      <input type="radio" id="radio-phone-filters" name="radio-phone" value="filters" hidden />
+      <label htmlFor="radio-phone-filters" title={filtersAlt} arial-label={filtersAlt}><Icons icon='search-filter' /></label>
+
+      <input type="radio" id="radio-phone-close" name="radio-phone" value="close" hidden />
+      <label htmlFor="radio-phone-close" title={closeAlt} arial-label={closeAlt}>✕</label>
       
+
+
+
       <input type="checkbox" id="filtre-actu_event" name="filtre-actu_event" className="input_filtre-actu" value="event" hidden />
       <input type="checkbox" id="filtre-actu_post" name="filtre-actu_post" className="input_filtre-actu" value="post" hidden />
       <input type="checkbox" id="filtre-actu_notice" name="filtre-actu_notice" className="input_filtre-actu" value="notice" hidden />
     
       <aside className="aside-filters">
 
-        <input type="checkbox" className="toggle-filtre-phone" id="toggle-filtre-phone" name="toggle-filtre-phone" value="visible" hidden />
-        <label id="toggle-filtre-phone-label" htmlFor="toggle-filtre-phone" title="Découvrir les options de filtrage"><p>{ filters }<span /></p></label>
+        <h1 class="aside-title">{filtresTitle}</h1>
 
-        
         <div className="go-to-year">
         <input type="checkbox" id="checkbox_filtre_year" name="radio_filtre-actu" value="year" hidden />
         <label htmlFor="checkbox_filtre_year"><span>〉</span></label>

@@ -2,11 +2,12 @@ import React from 'react';
 /*import {graphql} from 'gatsby';*/
 import {Link} from 'gatsby';
 import cls from 'classnames';
+import { Icons } from '../../helpers/Icons.js';
 
 const FilterProduction = ({lang, group, types}) => {
 
 
-	let title, filters, all,  yearTitle, accroche;
+  let title, filters, all,  yearTitle, accroche, filtersAlt, infosAlt, closeAlt, filtresTitle;
 
 	if (lang === 'fr') {
 		title = 'Productions';
@@ -14,7 +15,10 @@ const FilterProduction = ({lang, group, types}) => {
 		all = 'Toutes les productions';
     yearTitle = "Aller à l'année…";
     accroche = 'Issues des dynamiques de recherche du laboratoire combinant méthode, analyse et théorie, les productions du médialab constituent un panorama hétéroclite. Aux traditionnelles publications académiques s’ajoute un ensemble de réalisations techniques qui répondent à des problèmes de recherche récurrents. Récemment, les sites web et réalisations en situation se sont développés comme de nouvelles formes pour rendre compte des activités du laboratoire.';
-
+    filtersAlt = 'Afficher les filtres de la page';
+    infosAlt = 'Informations à propos des productions';
+    closeAlt = "Revenir aux productions";
+    filtresTitle = 'Filtre des productions'
 
 	}
 	else {
@@ -23,7 +27,10 @@ const FilterProduction = ({lang, group, types}) => {
 		all = 'All productions';
     yearTitle = 'Go to year…';
     accroche = 'Description in english en une phrase de la catégorie production';
-
+    filtersAlt = 'Show page filters';
+    infosAlt = 'Informations about the productions';
+    closeAlt = "Back to productions";
+    filtresTitle = 'Filters of productions';
   }
 
 
@@ -31,16 +38,33 @@ const FilterProduction = ({lang, group, types}) => {
 	return (
   <>
     <h1 className="type_title" data-icon="production" ><a href="#year-2019">{title}</a></h1>
-    <p className="accroche-title-list">{accroche}</p>
+    
+    <input type="radio" id="radio-phone-filters" name="radio-phone" value="filters" hidden />
+    <label htmlFor="radio-phone-filters" title={filtersAlt} arial-label={filtersAlt}><Icons icon='search-filter' /></label>
+
+    <input type="radio" id="radio-phone-infos" name="radio-phone" value="infos" hidden />
+    <label htmlFor="radio-phone-infos" title={infosAlt} arial-label={infosAlt}><Icons icon='infos' /></label>
+
+    <input type="radio" id="radio-phone-close" name="radio-phone" value="close" hidden />
+    <label htmlFor="radio-phone-close" title={closeAlt} arial-label={closeAlt}>✕</label>
+    
+
+    <aside className="accroche-title-list">
+      <h1 class="aside-title" data-icon="production">Productions</h1>
+      <p>{accroche}</p>
+    </aside>
 
     <InputFiltresType lang={lang} group={group} />
 
+    
+
+    {/* <input type="checkbox" className="toggle-filtre-phone" id="toggle-filtre-phone" name="toggle-filtre-phone" value="visible" hidden />
+    <label id="toggle-filtre-phone-label" htmlFor="toggle-filtre-phone" title="Découvrir les options de filtrage"><p>{ filters }<span /></p></label> */}
+
     <aside className="aside-filters">
 
-        <input type="checkbox" className="toggle-filtre-phone" id="toggle-filtre-phone" name="toggle-filtre-phone" value="visible" hidden />
-        <label id="toggle-filtre-phone-label" htmlFor="toggle-filtre-phone" title="Découvrir les options de filtrage"><p>{ filters }<span /></p></label>
+        <h1 class="aside-title">{filtresTitle}</h1>
 
-        
         <div className="go-to-year">
         <input type="checkbox" id="checkbox_filtre_year" name="radio_filtre-actu" value="year" hidden />
         <label htmlFor="checkbox_filtre_year"><span>〉</span></label>

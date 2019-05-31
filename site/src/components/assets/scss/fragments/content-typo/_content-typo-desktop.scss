@@ -50,12 +50,6 @@
 
 							
 			/* Regles de Base */
-			figure, img + img, p + img{
-				margin: $baseline*3 0 $baseline*4 0;
-				width: 90%;
-				margin-left: $unite;
-			}
-
 			iframe{
 				width: 100%;
 				min-height: 50vh;
@@ -128,7 +122,8 @@
 			/////////////////////////
 
 			figure{
-
+				
+				// default
 				img{
 					height: auto;
 					max-height: 80vh;
@@ -156,22 +151,79 @@
 					    max-height: $baseline*6;						
 					}
 				}
-
 				&.serie-pair{
+					display: inline-block;
+					padding: $baseline 0 $baseline $unite;
+					width: 33%;
 
 				}
 
+				&.serie-pair + p{ display: none; }
+				
+				&.vignette-block, &.vignette-inline-paysage{
+					
+					transition: .25s ease-in-out;						
+					cursor: pointer;
+
+					&:hover img{ }
+
+					&:after{
+						content: "🔎\00FE0E";
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%);
+						position: absolute;
+						opacity: 0;
+						font-size: 30px;
+						color: $redlab;						
+						transition: 0.1s 0s ease-in-out;
+						line-height: 0;
+					}
+					&:hover:after{
+						opacity: 1;
+						transition: .25s ease-in-out;
+					}				
+				}
 				&.vignette-block{
+					text-align: center;
+					display: block;
+					padding: $baseline*3 $unite $baseline*6 $unite;
+
+					img{
+						max-width: 300px;
+						max-height: 300px;
+					}
 				}
 
 				&.vignette-inline-paysage{
+					text-align: center;
+					display: inline-block;
+					padding: $baseline*3 0 $baseline*6 0;
+					width: 100%;
+					vertical-align: middle;
 
+					@include for-size(desktop-900){
+						width: 50%;
+						padding: $baseline*3 0 $baseline*6 $unite;
+					}
+
+					@include for-size(desktop-1200){
+						width: 33%;
+					}
+
+
+					img{
+						max-width: 300px;
+						max-height: 300px;
+					}
 				}
+				&.vignette-inline-paysage + p{ display: none;}
 
 				&.illustration{
-
+					width: 100%;
+					display: inline-block;
+					padding: $baseline*3 0 $baseline*6 $unite; 
 				}
-
 			}
 		}	
 	}

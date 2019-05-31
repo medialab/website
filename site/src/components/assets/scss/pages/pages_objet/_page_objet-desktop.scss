@@ -90,31 +90,6 @@
 				.article-contenu{
 					p:first-of-type{ margin-top: $baseline*3; }			
 					// Regles typo (communes à toutes les pges de contenu) transférées dans common/pages/* 
-
-					//////////////////////////
-					///        Grid 	/////
-					/////////////////////////
-
-					/* if support of grid */
-					@supports(display: flex) {
-			            @include flex;
-			            @include flex-wrap(wrap);
-			            @include flex-direction(column);
-
-
-			            *:not(.duo) { 	// Tous les éléments s'etire sur toute la largeur. Sauf les Images .Duo
-  							flex: 0 0 100%; /* Let it fill the entire space horizontally */
-  			                max-width: 100%;
-			            }
-			         	figure, p + img, img + img{
-							//margin: $unite*3 0 $unite*2 0; // Si grid, diminnue les margins car Grid-gap s'ajoute à ces marges
-						}
-						h3{
-							//margin-top: $baseline*2; // Si grid, diminnue les margins car Grid-gap s'ajoute à ces marges
-						}
-					}
-
-					/* End Support */
 				}
 			}/* #article-contenu */
 

@@ -66,28 +66,6 @@
 				margin-top: $baseline*2;
 
 				// Regles typo (communes à toutes les pges de contenu) transférées dans common/pages/* 
-
-				figure{
-
-					margin-top: $baseline*2;
-					margin-bottom: $baseline*2;
-					max-width: 600px;
-					text-align: center;
-
-					figcaption{
-						@include font-size-13;
-						color: $text-color-light;
-						text-align: left;
-					}
-
-					img{
-						width: 100%;
-						margin-left: 2px;
-					}
-					figcaption{
-						margin-top: $baseline*1;
-					}
-				}
 			}
 
 			.toggle-lang{ @include font-size-13-phone(); }

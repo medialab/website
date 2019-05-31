@@ -115,42 +115,6 @@
 					}
 
 					/* End Support */
-
-					//////////////////////////
-					///        Image 	/////
-					/////////////////////////
-
-					figure{
-
-						text-align: left;
-
-	  					figcaption{
-	  						@include font-size-13;
-	  						color: $text-color-light;
-	  					}
-
-						&.duo{
-							flex: 1;
-						}
-
-						&.vertical{
-
-						}
-
-						&.horizontal{
-						}
-
-						img{
-							height: auto;
-							max-height: 80vh;
-							width: auto;
-							max-width: 100%;
-							box-shadow: 0 0 0 1px #888;
-						}
-						figcaption{
-							margin-top: $baseline*1;
-						}
-					}
 				}
 			}/* #article-contenu */
 

@@ -96,13 +96,55 @@
 			}
 
 			img, figure{ max-width: 100%;}
+ 
+			//////////////////////////
+			///        Image 	/////
+			/////////////////////////
 
-			.figure-logo {
-				max-width: 25% !important;
-			    padding: $baseline $unite/2;
-			    max-height: $baseline*6;
-			    vertical-align: middle;
-				margin: 0;				    
+			figure{
+
+				img{
+					height: auto;
+					max-height: 80vh;
+					width: auto;
+					max-width: 100%;
+				}
+
+				figcaption{
+					@include font-size-13;
+					color: $text-color-light;
+					margin-top: $baseline*1;
+				}
+
+				&.figure-logo{
+					display: inline-block;
+					max-width: 33% !important;
+					width: auto;
+				    vertical-align: middle;
+					text-align: center;
+				    padding: $baseline $unite*1.5 $baseline 0;
+					margin: 0;
+
+					img{
+						max-width: $unite*4 !important;
+					    max-height: $baseline*6;						
+					}
+				}
+
+				&.serie-pair{
+
+				}
+
+				&.vignette-block{
+				}
+
+				&.vignette-inline-paysage{
+
+				}
+
+				&.illustration{
+
+				}			
 			}
 		}
 	}

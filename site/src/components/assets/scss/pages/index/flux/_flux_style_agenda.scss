@@ -52,8 +52,6 @@
 
 @include for-size(phone) {
 
-    .agenda_moving_left, .agenda_moving_right, .past{ display: none; }
-
     #agenda{   
 
         article{

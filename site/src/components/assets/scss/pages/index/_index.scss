@@ -7,6 +7,13 @@ $hunit: 4vh;
     .time::before{
         content: "◷ ";
     }
+
+    #introduction{ border-bottom: $border; }
+
+    #home{ overflow-x: hidden; }
+    
+    hr{ border: none; }
+
 }
 
 
@@ -16,12 +23,13 @@ $hunit: 4vh;
 
     .page-home { 
 
+        main{ 
+            margin: $topbar-phone auto 0 auto;
+        }   
         
         #introduction, #now, #flux{
             border-bottom: $border;
             padding-bottom: $baseline*4;
-            margin-left: $margins-phone;
-            margin-right: $margins-phone;
         }
         
 
@@ -47,11 +55,6 @@ $hunit: 4vh;
             margin-top: $height-top-bar;
         }
 
-        #introduction{ border-bottom: $border; }
-
-        #home{ overflow-x: hidden; }
-
-
         section > h1{
             @include font-size-20;
             text-transform: uppercase; 
@@ -69,8 +72,6 @@ $hunit: 4vh;
             left: 0;
 
         }*/
-
-        hr{ border: none; }
     }
 }
 

@@ -3,14 +3,13 @@
 	background: $background-site;
 	z-index: 9;
 
+
 	////////////////
 	/// Input
 	///////////////
 
 	.flux_selection_container{
 
-		position: fixed;
-		top: $height-top-bar;
 		z-index: 9;
 		background-color: $background-site;
 		border-bottom: $border;
@@ -38,6 +37,16 @@
 	section:target article:first-of-type{
 		margin-top: $baseline*8.5;
 	}
+	@include for-size(desktop) {
+		.flux_selection_container{
+			position: fixed;
+			top: $height-top-bar;
+		}
+	}
 
-
+	@include for-size(phone) {
+		.flux_selection_container{
+			position: relative;
+		}
+	}
 }

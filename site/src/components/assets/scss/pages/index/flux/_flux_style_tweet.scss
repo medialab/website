@@ -108,14 +108,23 @@
 @include for-size(phone) {
 
 
-    #tweet{
-    
-
-        article{
- 
+    #tweet article {
+             
+        .tweet-content{
+            @include font-size-20();  
+            padding-top: $baseline;
+            padding-bottom: $baseline*1.5;
+            &::first-letter { text-transform: capitalize; }
         }
 
-    } /* end tweet*/
+
+        aside.details{ 
+                
+            border-top: $border-very-light;
+            padding: $baseline/2 0;
+
+        }
+    } 
 
 } /* end phone*/
 

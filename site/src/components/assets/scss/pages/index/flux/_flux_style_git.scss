@@ -66,14 +66,43 @@
 @include for-size(phone) {
 
 
-    #git{
-    
+    #git article{
 
-        article{
- 
+        aside.divers{
         }
 
-    } /* end git*/
+        h1{ 
+            @include font-size-20();
+            padding-top: $baseline;
+     
+        }
+
+        h2, .description{ 
+            @include font-size-20();
+            padding-bottom: $baseline;
+        }
+
+        aside.details{ 
+        
+            border-top: $border-very-light;
+            padding: $baseline/2 0;
+
+            .date-news, .contribution, .contributors{
+                display: inline-block;
+            }
+
+            .date-news, .contribution{
+                padding-right: $unite/2;
+                margin-right: $unite/2;
+                border-right: $border-very-light;                
+            }
+            .date-news{ 
+                .year{display: none; }
+            }  
+        } 
+
+    } 
+    
 
 } /* end phone*/
 

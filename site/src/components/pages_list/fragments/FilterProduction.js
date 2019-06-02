@@ -3,6 +3,8 @@ import React from 'react';
 import {Link} from 'gatsby';
 import cls from 'classnames';
 import { Icons } from '../../helpers/Icons.js';
+import { SearchInput } from '../../helpers/SearchInput.js';
+
 
 const FilterProduction = ({lang, group, types}) => {
 
@@ -64,6 +66,8 @@ const FilterProduction = ({lang, group, types}) => {
     <aside className="aside-filters">
 
         <h1 class="aside-title">{filtresTitle}</h1>
+
+        <SearchInput lang={lang}/>
 
         <div className="go-to-year">
         <input type="checkbox" id="checkbox_filtre_year" name="radio_filtre-actu" value="year" hidden />

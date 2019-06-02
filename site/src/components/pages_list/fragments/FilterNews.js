@@ -2,6 +2,7 @@ import React from 'react';
 /*import {graphql} from 'gatsby';*/ 
 //import {Link} from 'gatsby';
 import { Icons } from '../../helpers/Icons.js';
+import { SearchInput } from '../../helpers/SearchInput.js';
 
 
 const MAX_NB_FILTER_ITEMS = 12;
@@ -61,6 +62,9 @@ const FilterNews = ({lang, years}) => {
       <aside className="aside-filters">
 
         <h1 class="aside-title">{filtresTitle}</h1>
+
+        <SearchInput lang={lang}/>
+
 
         <div className="go-to-year">
         <input type="checkbox" id="checkbox_filtre_year" name="radio_filtre-actu" value="year" hidden />

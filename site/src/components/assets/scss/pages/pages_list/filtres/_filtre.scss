@@ -42,6 +42,7 @@
 	.filter-group{
 		border-bottom: $border-very-light;
 		padding: $baseline 0;
+
 		label{ 
 			@include font-size-13;
 			padding: $baseline/2 0;
@@ -54,6 +55,34 @@
 	}
 
 
+}
+
+/* Search input */
+
+#search{
+	border-bottom: $border-very-light;
+	height: $baseline*2.5;
+	display: none;
+	label{
+		@include font-size-16;
+		placehorlder{ @include font-size-16; }
+		position: absolute;
+		top: $baseline*0.25;
+		left: 0;
+		svg{ 
+			fill: $text-color;
+			width: $unite*1.25;
+			height: $unite*1.25;
+			padding: $unite*0.25;
+		}
+	}
+	input{
+		margin-left: $unite*1.5;
+		width: calc(100% - #{$unite*1.5});
+		height: 100%;
+		border: none;
+	}
+	
 }
 
 /* span arrows */

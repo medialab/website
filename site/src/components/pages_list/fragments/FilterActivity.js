@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 import cls from 'classnames';
 import { IsModel } from '../../helpers/helpers.js';
 import { Icons } from '../../helpers/Icons.js';
+import { SearchInput } from '../../helpers/SearchInput.js';
 
 
 const FilterActivity = ({ lang, status, statuses }) => {
@@ -73,6 +74,8 @@ const FilterActivity = ({ lang, status, statuses }) => {
       <aside className="aside-filters">
 
       <h1 class="aside-title">{filtresTitle}</h1>
+
+      <SearchInput lang={lang} />
 
         <div className="filter-group">
           <h1>{filterStatus}</h1>

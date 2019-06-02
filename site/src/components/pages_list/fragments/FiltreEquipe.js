@@ -2,6 +2,7 @@ import React from 'react';
 /*import {graphql} from 'gatsby';
 import {Link} from 'gatsby';*/
 import {IsModel} from '../../helpers/helpers.js';
+import { SearchInput } from '../../helpers/SearchInput.js';
 
 const FiltreEquipe = ({lang}) => {
 
@@ -55,6 +56,11 @@ const FiltreEquipe = ({lang}) => {
 
 
     <aside className="aside-filters">
+
+    <h1 class="aside-title">{filtresTitle}</h1>
+
+      <SearchInput lang={lang} type={title} />
+
 
       <input type="checkbox" className="toggle-filtre-phone" id="toggle-filtre-phone" name="toggle-filtre-phone" value="visible" hidden />
       <label id="toggle-filtre-phone-label" htmlFor="toggle-filtre-phone" title="Découvrir les options de filtrage"><p>{IsModel('filters', lang)}<span /></p></label>

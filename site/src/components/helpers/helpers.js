@@ -49,6 +49,24 @@ export function IsModel (item, lang) {
     }
   }
 
+  if (item === 'gotoyear') {
+    if (lang === 'fr') {
+      type = "Aller à l'année…";
+    } else {
+      type = 'Go to year…';
+    }
+  }
+
+  if (item === 'filtersAlt') {
+    if (lang === 'fr') {
+      type = 'Afficher les filtres de la page';
+    } else {
+      type =  'Show page filters';
+    }
+  }
+
+  
+
   if (item === 'activities') {
     if (lang === 'fr') {
       type = 'Activités';
@@ -117,6 +135,7 @@ export function IsModel (item, lang) {
       type = 'Notice';
     }
   }
+  
 
   // Production group
   if (item === 'publications' ) {

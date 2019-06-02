@@ -2,6 +2,7 @@ import React from 'react';
 /*import {graphql} from 'gatsby';*/
 import {Link} from 'gatsby';
 import cls from 'classnames';
+import { IsModel } from '../../helpers/helpers.js';
 import { Icons } from '../../helpers/Icons.js';
 import { SearchInput } from '../../helpers/SearchInput.js';
 
@@ -9,27 +10,17 @@ import { SearchInput } from '../../helpers/SearchInput.js';
 const FilterProduction = ({lang, group, types}) => {
 
 
-  let title, filters, all,  yearTitle, accroche, filtersAlt, infosAlt, closeAlt, filtresTitle;
+  let accroche, infosAlt, closeAlt, filtresTitle;
 
 	if (lang === 'fr') {
-		title = 'Productions';
-		filters = 'Filtres';
-		all = 'Toutes les productions';
-    yearTitle = "Aller à l'année…";
     accroche = 'Issues des dynamiques de recherche du laboratoire combinant méthode, analyse et théorie, les productions du médialab constituent un panorama hétéroclite. Aux traditionnelles publications académiques s’ajoute un ensemble de réalisations techniques qui répondent à des problèmes de recherche récurrents. Récemment, les sites web et réalisations en situation se sont développés comme de nouvelles formes pour rendre compte des activités du laboratoire.';
-    filtersAlt = 'Afficher les filtres de la page';
     infosAlt = 'Informations à propos des productions';
     closeAlt = "Revenir aux productions";
     filtresTitle = 'Filtre des productions'
 
 	}
 	else {
-		title = 'Productions';
-		filters = 'Filters';
-		all = 'All productions';
-    yearTitle = 'Go to year…';
     accroche = 'Description in english en une phrase de la catégorie production';
-    filtersAlt = 'Show page filters';
     infosAlt = 'Informations about the productions';
     closeAlt = "Back to productions";
     filtresTitle = 'Filters of productions';
@@ -39,10 +30,10 @@ const FilterProduction = ({lang, group, types}) => {
 
 	return (
   <>
-    <h1 className="type_title" data-icon="production" ><a href="#year-2019">{title}</a></h1>
+    <h1 className="type_title" data-icon="production" ><a href="#year-2019">Productions</a></h1>
     
     <input type="radio" id="radio-phone-filters" name="radio-phone" value="filters" hidden />
-    <label htmlFor="radio-phone-filters" title={filtersAlt} arial-label={filtersAlt}><Icons icon='search-filter' /></label>
+    <label htmlFor="radio-phone-filters" title={IsModel('filtersAlt', lang)} arial-label={IsModel('filtersAlt', lang)}><Icons icon='search-filter' /></label>
 
     <input type="radio" id="radio-phone-infos" name="radio-phone" value="infos" hidden />
     <label htmlFor="radio-phone-infos" title={infosAlt} arial-label={infosAlt}><Icons icon='infos' /></label>
@@ -58,11 +49,6 @@ const FilterProduction = ({lang, group, types}) => {
 
     <InputFiltresType lang={lang} group={group} />
 
-    
-
-    {/* <input type="checkbox" className="toggle-filtre-phone" id="toggle-filtre-phone" name="toggle-filtre-phone" value="visible" hidden />
-    <label id="toggle-filtre-phone-label" htmlFor="toggle-filtre-phone" title="Découvrir les options de filtrage"><p>{ filters }<span /></p></label> */}
-
     <aside className="aside-filters">
 
         <h1 class="aside-title">{filtresTitle}</h1>
@@ -72,7 +58,7 @@ const FilterProduction = ({lang, group, types}) => {
         <div className="go-to-year">
         <input type="checkbox" id="checkbox_filtre_year" name="radio_filtre-actu" value="year" hidden />
         <label htmlFor="checkbox_filtre_year"><span>〉</span></label>
-          <p>{ yearTitle } <span className="current-year">2019</span></p>          
+          <p>{IsModel('gotoyear', lang)}<span className="current-year">2019</span></p>          
           <ul>
             <li><a href="#year-2019">2019</a></li>
             <li><a href="#year-2018">2018</a></li>

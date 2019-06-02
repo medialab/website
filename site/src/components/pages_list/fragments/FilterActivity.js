@@ -40,10 +40,10 @@ const FilterActivity = ({ lang, status, statuses }) => {
       <h1 className="type_title" data-icon="activite">{IsModel('activities', lang)}</h1>
 
       <input type="radio" id="radio-phone-filters" name="radio-phone" value="filters" hidden />
-      <label htmlFor="radio-phone-filters" title={filtersAlt} arial-label={filtersAlt}><Icons icon='search-filter' /></label>
+      <label htmlFor="radio-phone-filters" title={IsModel('filtersAlt', lang)} arial-label={filtersAlt}><Icons icon='search-filter' /></label>
 
       <input type="radio" id="radio-phone-infos" name="radio-phone" value="infos" hidden />
-      <label htmlFor="radio-phone-infos" title={infosAlt} arial-label={infosAlt}><Icons icon='infos' /></label>
+      <label htmlFor="radio-phone-infos" title={infosAlt} arial-label={IsModel('filtersAlt', lang)}><Icons icon='infos' /></label>
 
       <input type="radio" id="radio-phone-close" name="radio-phone" value="close" hidden />
       <label htmlFor="radio-phone-close" title={closeAlt} arial-label={closeAlt}>✕</label>

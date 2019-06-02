@@ -53,9 +53,6 @@
     }
 } 
 
-#agenda, #git{
-    margin-bottom: $baseline*8;
-}
 
 // all queries
 #agenda .date-news::before,
@@ -74,6 +71,12 @@
 
 
 @include for-size(desktop) {
+
+
+    #agenda, #git{
+        margin-bottom: $baseline*8;
+    }
+
     #agenda, #git, #tweet {
         > h1{
             position: sticky;
@@ -86,6 +89,19 @@
 
 @include for-size(phone) {
     #agenda, #git, #tweet {
+
+        margin: 0;
+
+        > h1{ display: none }
+
+        label.responsive-flux{ 
+
+            position: sticky;
+            top: $height-top-bar-phone;
+            background: $background-site;
+            z-index: 8;
+        }
+
     }
 } /* end phone*/
 

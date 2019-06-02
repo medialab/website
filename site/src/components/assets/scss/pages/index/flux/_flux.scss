@@ -47,6 +47,21 @@
 	@include for-size(phone) {
 		.flux_selection_container{
 			position: relative;
+			display: none;
+		}
+
+		#agenda, #git, #tweet{
+			article{ display: none;}
+		}
+		#radio_agenda:checked ~ article{
+			display: block !important;
+		}
+
+		#radio_git:checked ~ article{
+			display: block !important;
+		}	
+		#radio_tweet:checked ~ article{
+			display: block !important;
 		}
 	}
 }

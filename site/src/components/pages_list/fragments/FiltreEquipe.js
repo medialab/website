@@ -2,34 +2,58 @@ import React from 'react';
 /*import {graphql} from 'gatsby';
 import {Link} from 'gatsby';*/
 import {IsModel} from '../../helpers/helpers.js';
+import { Icons } from '../../helpers/Icons.js';
 import { SearchInput } from '../../helpers/SearchInput.js';
 
 const FiltreEquipe = ({lang}) => {
 
-  let title, member, associate, filterDomain, filterMember, accroche;
+  let title, member, associate, filterDomain, filterMember, accroche, filtersAlt, infosAlt, filtresTitle, closeAlt;
 
   if (lang === 'fr') {
-    title = 'L‘équipe';
 	  member = 'Membres';
     associate = 'Associés';
     filterDomain = 'Filtrer par domaine';
     filterMember = 'Filtrer par appartenance';
     accroche = 'Composée d’hommes et de femmes aux compétences complémentaires, l’équipe du médialab est plurielle. Membres ou associés au laboratoire, ces profils académiques, techniques, en design, ou encore en pédagogie se combinent et travaillent ensemble pour aviver la force des activités du laboratoire.';
-	}
+    filtersAlt = 'Afficher les filtres de la page';
+    infosAlt = "Informations à propos de l'équipe";
+    filtresTitle = "Filtres de l'équipe";
+    closeAlt = "Revenir à la liste des membres";
+  }
 	else {
-    title = "The Team"
 		member = 'Members'
     associate = 'Associates'
     filterDomain = 'Filter by domain';
     filterMember = 'Filter by membership';
     accroche = 'Composée d’hommes et de femmes aux compétences complémentaires, l’équipe du médialab est plurielle. Membres ou associés au laboratoire, ces profils académiques, techniques, en design, ou encore en pédagogie se combinent et travaillent ensemble pour aviver la force des activités du laboratoire.';
+    filtersAlt = 'Show page filters';
+    infosAlt = 'Informations about the team';
+    filtresTitle = 'Filters of the team';
+    closeAlt = "Back to the members list";
   }
   
 
 	return (
   <>
-    <h1 className="type_title" id="activite_title">{title}</h1>
-    <p className="accroche-title-list">{accroche}</p>
+    <h1 className="type_title"><a href="#liste_equipe">{IsModel('people', lang)}</a></h1>
+
+    
+      <input type="radio" id="radio-phone-filters" name="radio-phone" value="filters" hidden />
+      <label htmlFor="radio-phone-filters" title={filtersAlt} arial-label={filtersAlt}><Icons icon='search-filter' /></label>
+
+      <input type="radio" id="radio-phone-infos" name="radio-phone" value="infos" hidden />
+      <label htmlFor="radio-phone-infos" title={infosAlt} arial-label={infosAlt}><Icons icon='infos' /></label>
+
+      <input type="radio" id="radio-phone-close" name="radio-phone" value="close" hidden />
+      <label htmlFor="radio-phone-close" title={closeAlt} arial-label={closeAlt}>✕</label>
+      
+
+      <aside className="accroche-title-list">
+        <h1 class="aside-title" data-icon="activite">{IsModel('people', lang)}</h1>
+        <p>{accroche}</p>
+      </aside>
+
+
 
     <input
       type="checkbox" id="filtre_membre" name="filtre_membre" className="input_member"
@@ -60,10 +84,6 @@ const FiltreEquipe = ({lang}) => {
     <h1 class="aside-title">{filtresTitle}</h1>
 
       <SearchInput lang={lang} type={title} />
-
-
-      <input type="checkbox" className="toggle-filtre-phone" id="toggle-filtre-phone" name="toggle-filtre-phone" value="visible" hidden />
-      <label id="toggle-filtre-phone-label" htmlFor="toggle-filtre-phone" title="Découvrir les options de filtrage"><p>{IsModel('filters', lang)}<span /></p></label>
 
       <div className="filter-group">
         <h1>{ filterMember }</h1>

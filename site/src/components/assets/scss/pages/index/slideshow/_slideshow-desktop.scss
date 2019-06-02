@@ -152,20 +152,6 @@
 
 
 
-
-@mixin ratioImgHome($value){
-	font-size: -webkit-calc((#{$value}/250)*2.5);
-	font-size: -moz-calc((#{$value}e/250)*2.5);
-	font-size: calc((#{$value}/250)*2.5);
-	line-height: -webkit-calc((#{$value}/250)*1.89); 
-	line-height: -moz-calc((#{$value}/250)*1.89); 
-	line-height: calc((#{$value}/250)*1.89); 
-}
-
-
-
-
-
 @media screen and (min-width: 1000px) and (max-width: 1200px){
 	#slideshow{
 
@@ -181,7 +167,7 @@
 			.accroche, .authors{ @include font-size-16(); }
 		}
 		
-		.image-pre{ @include ratioImgHome(700px);}
+		.image-pre{ @include ratioImg240(700px);}
 
 	}
 }
@@ -203,7 +189,7 @@
 			.accroche, .authors{ @include font-size-20(); }
 		}
 		
-		.image-pre{ @include ratioImgHome(800px);}
+		.image-pre{ @include ratioImg240(800px);}
 
 	}
 }
@@ -225,7 +211,7 @@
 			.accroche, .authors{ @include font-size-20(); }
 		}
 		
-		.image-pre{ @include ratioImgHome(900px);}
+		.image-pre{ @include ratioImg240(900px);}
 
 	}
 }

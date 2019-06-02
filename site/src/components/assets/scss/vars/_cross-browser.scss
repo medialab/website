@@ -187,3 +187,35 @@
   -moz-column-rule: $value; 
    column-rule: $value;
 }
+
+
+
+
+
+
+
+
+
+@mixin ratioImg240($value){
+  font-size: -webkit-calc((#{$value}/240)*1.89);
+  font-size: -moz-calc((#{$value}e/240)*1.89);
+  font-size: calc((#{$value}/240)*1.89);
+  //line-height: -webkit-calc((#{$value}/240)*1.89); 
+  //line-height: -moz-calc((#{$value}/240)*1.89); 
+  //line-height: calc((#{$value}/240)*1.89);
+  line-height: 94%;
+}
+
+@mixin ratioImg120($value){
+  font-size: -webkit-calc((#{$value}/120)*1.89);
+  font-size: -moz-calc((#{$value}e/120)*1.89);
+  font-size: calc((#{$value}/120)*1.89);
+  line-height: 94%;
+}
+
+@mixin ratioImg60($value){
+  font-size: -webkit-calc((#{$value}/60)*1.89);
+  font-size: -moz-calc((#{$value}e/60)*1.89);
+  font-size: calc((#{$value}/60)*1.89);
+  line-height: 94%;
+}

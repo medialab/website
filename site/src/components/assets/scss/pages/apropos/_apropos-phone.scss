@@ -6,7 +6,9 @@
 	.page-about{
 		main{
 			
-			margin: $height-top-bar-phone $margins-phone;
+			margin-top: $height-top-bar-phone;
+
+			#about-contenu{ padding: 0 $margins-phone; }
 
 			hgroup{
 					padding-top: $baseline*1.5;

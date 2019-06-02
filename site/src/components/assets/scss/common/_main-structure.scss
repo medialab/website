@@ -1,8 +1,8 @@
 @include for-size(phone) {
 
 	main{
-		width: 100%;
-		padding: 0 $margins-phone;
+		width: 100vw;
+		// padding: 0 $margins-phone;
 	}
 
 }

@@ -13,9 +13,21 @@
 
 			margin: $height-top-bar-phone 0;
 
+			#article-contenu, #all-aside{
+				width: 100%;
+				padding: 0 $margins-phone;
+			}
+
+			#article-contenu{
+				margin-top: $baseline*2;
+
+				// Regles typo (communes à toutes les pges de contenu) transférées dans common/pages/* 
+			}
+
+
 			#img-article{
 
-				left: $margins-phone*-1;
+				left: 0;
 				top: 0;
 				position: relative;
 				z-index: 9;
@@ -62,12 +74,7 @@
 				}
 			}
 			
-			.article-contenu{
-				margin-top: $baseline*2;
-
-				// Regles typo (communes à toutes les pges de contenu) transférées dans common/pages/* 
-			}
-
+		
 			.toggle-lang{ @include font-size-13-phone(); }
 		}
 	}

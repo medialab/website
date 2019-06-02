@@ -17,7 +17,8 @@ export default function Now({now, lang}) {
 	return (
   <>
     <section id="now">
-      <h1>À la une</h1>
+      <h1>{ lang === "fr" ? "À la une" : "Headlines"}</h1>
+     
       <ul className="contenu">
       {now.map((item, index) =>
 

@@ -14,9 +14,9 @@ export default function flux({rdv, lang, tweets, github}) {
 		   
 
 		      <ul className="flux_selection_container">
-			        <li><a href="#agenda">Rendez-vous</a></li>
-							<li><a href="#git">Projets Git</a></li>
-							<li><a href="#tweet">Tweet</a></li>
+			        <li><a href="#agenda">{ lang === "fr" ? "Rendez-vous" : "Meeting"}</a></li>
+					<li><a href="#git">{ lang === "fr" ? "Projets Git" : "Git projects"}</a></li>
+					<li><a href="#tweet">Tweets</a></li>
 			    </ul>
 
 				<Agenda rdv={rdv} lang={lang} />

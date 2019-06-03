@@ -90,13 +90,13 @@
 .link-productions-sort li a span,
 #checkbox_filtre_year + label span,
 #checkbox_groupFilter_label span{
-	@include font-size-13;
+
 	display: block; 
-	width: $baseline;
-	height: $baseline;
+	width: $baseline*0.75;
+	height: $baseline*0.75;
 	margin-top: $baseline/2;
 	position: absolute;
-	text-align: right;
+	// text-align: right;
 	right: -5px;
 	top: 0;
 }
@@ -106,9 +106,13 @@
 #checkbox_filtre_year + label:hover span,
 #checkbox_groupFilter:checked + #checkbox_groupFilter_label span,
 #checkbox_groupFilter + #checkbox_groupFilter_label:hover span{
-	transform: rotate(90deg);
-	transform-origin: center center;
-	top: 4px;
+
+	svg{
+		transform: rotate(90deg);
+		transform-origin: center center;
+	}
+	
+	top: 2px;
 }
 
 

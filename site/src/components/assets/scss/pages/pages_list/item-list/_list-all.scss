@@ -15,39 +15,23 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
         position: relative;
         height: auto;
 
-
         a{ 
             width: 100%;
             height: 100%;
-            display: inline-block;
+            display: block;
         }
 
         .image-pre{
-            position: absolute;
-            left: 0;
-            height: 100%;
-            overflow: hidden;
-            transition: max-width 0.25s cubic-bezier(1,0,0,1);
-            font-size: 1.1vw;
-            
             z-index: 0;
             pre{ 
                 color: $color-img;
-                line-height: 95%;                    
-                //top: -50%;
-                //transform: translateY(50%);
+                line-height: 95%;          
             }
         
         }
 
-        .image-pre:hover{ 
-            transition-duration: .15s;
-            background-color: $background-site;
-        }
-
 
         .bandeau{
-            //position: absolute;
             border-bottom: $border-very-light;
             padding: $baseline/2 0;
             @include text-overflow();
@@ -63,30 +47,15 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
                 margin-left: $unite/2;
                 border-left: $border-very-light;
                 color: $redlab;
-                // font-weight: 600!important;
             }
             /* news */
-            .date-news, .hours-news{
+            .hours-news{
                 margin-left: $baseline*1;
                 padding-left: $baseline*1;
                 border-left: $border-very-light;
             }
-            .date-news{ 
-                // font-weight: 600; 
-                color: $redlab;
-                margin-left: $baseline*1;
-                padding-left: $baseline*1;
-                border-left: $border-very-light;
-            }
+            .date-news{ color: $redlab; }
             .hours-news::before{ content: $time; }
-            .label-news{
-                // @include font-size-13-uppercase; 
-                position: absolute; 
-                right: 0;
-                text-align: right;
-                @include for-size( desktop-1200) { left: calc( 50% + #{$unite/2} ); text-align: left; }
-            }
-            
 
         }
 
@@ -112,24 +81,43 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
         min-height: calc(100vh - #{$height-footer} - #{$height-top-bar});
 
         li{
-            a{
-                //@include flex();
-                //@include flex-direction(row);
-            }
 
             .image-pre{
+                position: absolute;
+                left: 0;
+                height: 100%;
+                overflow: hidden;
+                transition: max-width 0.25s cubic-bezier(1,0,0,1);
+                font-size: 1.1vw;
                 max-width: $width-image-pre-listing;
-                &:hover{ max-width: calc( ( 100% + #{$width-image-pre-listing/2} )/2)!important;}
                 pre{ 
                     font-size: calc((((( 100vw - #{$unite*2}) - #{$logo-column}) / 2 )  /120 ) *1.89 ); 
+                }
+                &:hover{ 
+                    max-width: calc( ( 100% + #{$width-image-pre-listing/2} )/2)!important;
+                    transition-duration: .15s;
+                    background-color: $background-site;
                 }
             }
             .bandeau{
                 width: calc(100% - #{$width-image-pre-listing} - #{$unite});
                 left: calc(#{$width-image-pre-listing} + #{$unite/2});
+                div{
+                    display: inline-block;
+                    vertical-align: top;
+                }
+                .date-news{
+                    margin-left: $baseline*1;
+                    padding-left: $baseline*1;
+                    border-left: $border-very-light;
+                }
+                .label-news{
+                    position: absolute; 
+                    right: 0;
+                    text-align: right;
+                }
             }
             hgroup, .accroche{
-
                 width: calc((100% - #{$width-image-pre-listing})/2);
                 left: $width-image-pre-listing;
                 margin-top: $baseline*.5;
@@ -218,6 +206,45 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
     }
 }
 
+@media screen and (max-width: 870px){
+    .page-production-list #liste .liste_objet,
+    .page-activity-list #liste .liste_objet,
+    .page-news-list #liste .liste_objet{
+        .bandeau{
+           
+            .day-name{ display: none;}
+            .label-news{
+                position: relative!important;
+                text-align: left;
+                margin-left: $baseline*1;
+                padding-left: $baseline*1;
+                border-left: $border-very-light;
+            }
+            div{ 
+                margin-top: $baseline/2;
+                padding-top: $baseline/2;
+                border-top: $border-very-light; 
+                display: block!important;
+            }
+            .date-news{
+                margin-left: 0!important;
+                padding-left: 0!important;
+                border-left: none!important;
+            }
+            .hours-news{
+                border-bottom: none;
+                padding-top: 0;
+                padding-bottom: 0;
+                margin-left: $baseline*1!important;
+                padding-left: $baseline*1!important;
+                border-left: $border-very-light!important;
+            }
+          
+        }
+    }
+
+}
+
 @include for-size(phone) {
 
     .page-production-list #liste .liste_objet,
@@ -227,56 +254,44 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
         margin-bottom: $height-footer;
         min-height: calc(100vh - #{$height-footer} - #{$height-top-bar-phone});
 
-
-
-        li{
-
-            a{
-                display: inline-block;
-            }
+         li{
+            width: 100vw!important;
             .image-pre{
-                max-width: $width-image-pre-listing-phone;
-                &:hover{ max-width: 100% !important;}
+                width: 100vw;
+                height: $baseline*4.5;
+                overflow: hidden;
+                border-bottom: $border-very-light;
                 pre{ 
-                    font-size: calc((( 100vw - #{$unite*2}) /120 ) *1.89 ); 
+                    //font-size: calc((( 100vw - #{$unite*2}) /120 ) *1.89 ); 
+                    font-size: calc((100vw /120 ) *1.89 );   
                 }                
             }
             .bandeau{
-                width: calc(100% - #{$width-image-pre-listing-phone} - #{$unite/2});
-                left: calc(#{$width-image-pre-listing-phone} + #{$unite/2});
-
-                .day-name{ display: none;}
+                width: calc(100vw - #{$margins-phone*2});
+                margin: 0 $margins-phone;          
             }
 
             hgroup, .accroche{
-
-                width: calc((100% - #{$width-image-pre-listing-phone}));
-                left: $width-image-pre-listing-phone;
-                padding: 0 $unite/2;
+                width: calc(100vw - #{$margins-phone*2});
+                margin: 0 $margins-phone;
             }
             hgroup{ margin-top: $baseline*1; }
     
             h1{
-                 @include font-size-16; 
+                 @include font-size-20; 
+                 padding-bottom: $baseline;
+                 margin-top: 0;
             }
 
             .accroche{
-                max-height: 0;
-                overflow: hidden;
-                transition: .25s .5s ease-in-out;
-                border-left: $border-very-light; 
-                p{ @include font-size-16; }
+                padding-bottom: $baseline;
+                
+                p{ 
+                    @include font-size-13; 
+                    line-height: $baseline*1.4;
+                }
             }
 
-            hgroup:hover ~ .accroche {
-                max-height: 100vh;
-                transition: .1s 0s ease-in-out;
-                margin: $baseline 0;                
-            }
-            .image-pre:hover ~ .accroche { 
-                max-height: 0 !important;
-                transition: .1s 0s ease-in-out;
-            }
-        }
+       }
     }
 }

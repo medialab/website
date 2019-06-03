@@ -63,9 +63,11 @@ export default function NewsListing({lang, list}) {
                     </div>
                     <div className="bandeau">
                       <p data-icon="news" className="type-news">{IsModel(news.type, lang)}</p>
+                      <p className="label-news">{news.label && (lang === 'fr' ? <span>{news.label.fr}</span> : <span>{news.label.en}</span>)}</p>
+                      <div>
                         <DateNews startDate={news.startDate} endDate={news.endDate} lang={lang} />
                         <TimeNews startDate={news.startDate} endDate={news.endDate} />
-                        <p className="label-news">{news.label && (lang === 'fr' ? <span>{news.label.fr}</span> : <span>{news.label.en}</span>)}</p>
+                        </div>
                     </div>
                     <hgroup>
                       <h1 data-level-1="baseline" >{news.title && (lang === 'fr' ? news.title.fr : news.title.en)}</h1>

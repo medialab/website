@@ -1,78 +1,83 @@
 /* list-productions */
 
-.page-production-list #liste [data-item]{
-
-    .bandeau{
-        width: 100% !important; 
-        left: 0 !important;
-        padding-top: $baseline/2;
-        
-        p{ 
-            display: inline-block; 
-            vertical-align: top;
-            @include font-size-13;
-        }
-
-        .subtype-production{
-            border-left: $border-very-light;
-            margin-left: $unite/2;
-            padding-left: $unite/2;
-            color: $redlab;
-        }
-        .date-production{
-            margin-left: $unite/2;
-            border-left: $border-very-light;
-            padding-left: $unite/2;
-        }
-    }
-
-    hgroup, .authors{
-        left: 0 !important;
-    }
-
-    &:hover:after{ width: 100% !important; } // if no image process, adapt hover
-
-    @include for-size(desktop) {
+    .page-production-list #liste [data-item]{
 
         .bandeau{
-            width: calc(70% - #{$unite});
-        }
-        hgroup, .authors{
-            display: inline-block;
-        }
-        hgroup{
-            width: 70%;
-            margin-top: $baseline*1;
-            margin-bottom: $baseline*3;
-            padding-right: $unite;
+            width: 100% !important; 
+            left: 0 !important;
+            padding-top: $baseline/2;
+            
+            p{ 
+                display: inline-block; 
+                vertical-align: top;
+                @include font-size-13;
+            }
+
+            .subtype-production{
+                border-left: $border-very-light;
+                margin-left: $unite/2;
+                padding-left: $unite/2;
+                color: $redlab;
+            }
+            .date-production{
+                margin-left: $unite/2;
+                border-left: $border-very-light;
+                padding-left: $unite/2;
+            }
         }
 
-        .authors{
-            width: 30%;
-            border-left: $border-very-light;
-            margin: $baseline/2 0;
-            padding-left: $unite;           
-            .authors-paragraphe{ @include font-size-20; }          
-        }
-    }
+        @include for-size(desktop) {
+
+           
     
-    @include for-size(phone) {
+            hgroup, .authors{
+                left: 0 !important;
+            }
+    
+            &:hover:after{ width: 100% !important; } // if no image process, adapt hover
+    
 
-        hgroup, .authors{
-            width: 100%;
-            margin: $baseline/2 0;
-            padding: 0 !important;
-            width: 100%;
+            .bandeau{
+                width: calc(70% - #{$unite});
+            }
+            hgroup, .authors{
+                display: inline-block;
+            }
+            hgroup{
+                width: 70%!important;
+                margin-top: $baseline*1;
+                margin-bottom: $baseline*3;
+                padding-right: $unite;
+            }
+
+            .authors{
+                width: 30%;
+                border-left: $border-very-light;
+                margin: $baseline/2 0;
+                padding-left: $unite;           
+                .authors-paragraphe{ @include font-size-20; }          
+            }
         }
+        
+        @include for-size(phone) {
 
-        .authors{
-            max-height: 0;
-            overflow: hidden;
-            transition: .1s 0s ease-in-out;
-            .authors-paragraphe{ @include font-size-16-phone; }          
+            width: 100vw!important;
+
+            .bandeau{ width: calc(100vw - #{$margins-phone*2})!important; }
+
+            hgroup, .authors{
+                width: calc(100vw - #{$margins-phone*2});
+                margin: 0 $margins-phone;
+            }
+
+            .authors p{
+                @include font-size-16; 
+                margin-bottom: $baseline;
+                padding-top: $baseline;
+                color: $text-color-light;
+                border-top: $border-very-light;
+            }
+       
+
         }
-
-        hgroup:hover + .authors { max-height: 100vh; transition: .25s .5s ease-in-out; }
-
     }
-}

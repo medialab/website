@@ -19,7 +19,6 @@
 					max-height: 0;
 					overflow: hidden;
 					transition: .5s max-height;
-					// transition-property: max-height;
 					width: calc((100vw - #{$logo-column} - #{$margins-desktop*3}) ); 			
 					& > a{
 						display: block;
@@ -84,36 +83,36 @@
 		#liste{
 			margin-top: $height-top-bar-phone + $baseline*3.5;
 
-			.liste_objet{
+			// .liste_objet{
 
-				width: 100%;
-				height: auto;
-				margin-bottom: 50vh;
-				min-height: calc(100vh - 50vh - #{$height-top-bar-phone});
-
-
-				[data-item], .list-year{ 
-					width: 100%; 				
-				}
-
-				[data-item]{
-					h1{ @include font-size-20-phone(); }
-					h2{ @include font-size-13-phone(); }
-					.date, .type, .go-to-object{ @include font-size-13-phone(); }
-				}
+			// 	width: 100%;
+			// 	height: auto;
+			// 	margin-bottom: 50vh;
+			// 	min-height: calc(100vh - 50vh - #{$height-top-bar-phone});
 
 
-				.item_accroche{
-					@include font-size-13-phone();
-					width: 100%;
-				}
+			// 	[data-item], .list-year{ 
+			// 		width: 100%; 				
+			// 	}
 
-			}
+			// 	[data-item]{
+			// 		h1{ @include font-size-20-phone(); }
+			// 		h2{ @include font-size-13-phone(); }
+			// 		.date, .type, .go-to-object{ @include font-size-13-phone(); }
+			// 	}
 
-			#liste-news .date-news, #liste-news .hours-news{
-				@include font-size-13-phone();
-				font-weight: 600;
-			}	
+
+			// 	.item_accroche{
+			// 		@include font-size-13-phone();
+			// 		width: 100%;
+			// 	}
+
+			// }
+
+			// #liste-news .date-news, #liste-news .hours-news{
+			// 	@include font-size-13-phone();
+			// 	font-weight: 600;
+			// }	
 
 			
 

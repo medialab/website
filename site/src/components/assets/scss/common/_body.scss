@@ -188,3 +188,15 @@ span.tip{
   overflow: hidden !important;
   clip: rect(0, 0, 0, 0) !important;
 }
+
+//////////////
+// ARROWS
+//////////////
+
+.arrow polyline{
+    fill:none;
+    stroke: $text-color;
+    stroke-linecap:round;
+    stroke-miterlimit:10;
+    stroke-width:1px;
+}

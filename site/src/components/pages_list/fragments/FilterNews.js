@@ -61,7 +61,7 @@ const FilterNews = ({lang, years}) => {
 
         <div className="go-to-year">
         <input type="checkbox" id="checkbox_filtre_year" name="radio_filtre-actu" value="year" hidden />
-        <label htmlFor="checkbox_filtre_year"><span>〉</span></label>
+        <label htmlFor="checkbox_filtre_year"><span><Icons icon='arrow' /></span></label>
           <p>{IsModel('gotoyear', lang)} <span className="current-year">{years[0]}</span></p>          
           <ul>
             {years.map(y => (

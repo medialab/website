@@ -57,7 +57,7 @@ const FilterProduction = ({lang, group, types}) => {
 
         <div className="go-to-year">
         <input type="checkbox" id="checkbox_filtre_year" name="radio_filtre-actu" value="year" hidden />
-        <label htmlFor="checkbox_filtre_year"><span>〉</span></label>
+        <label htmlFor="checkbox_filtre_year"><span><Icons icon='arrow' /></span></label>
           <p>{IsModel('gotoyear', lang)}<span className="current-year">2019</span></p>          
           <ul>
             <li><a href="#year-2019">2019</a></li>
@@ -85,12 +85,12 @@ const FilterProduction = ({lang, group, types}) => {
               <li key={g.id} id={ 'li-filter-' + g.id} className={cls(g.id === group && 'pageProduction_current')}>
                 <Link to={g.permalink[lang]}>
                   {g.label[lang]}
-                  <span>〉</span>
+                  <span><Icons icon='arrow' /></span>
                 </Link>
                 {(g.id === group && 
                 <>
                   <input type="checkbox" id="checkbox_groupFilter" name="checkbox_groupFilter" value={group} hidden defaultChecked/>
-                  <label  id="checkbox_groupFilter_label" htmlFor="checkbox_groupFilter"><span>〉</span></label>
+                  <label  id="checkbox_groupFilter_label" htmlFor="checkbox_groupFilter"><span><Icons icon='arrow' /></span></label>
                   <LabelFiltresType lang={lang} group={group} />
                 </>
                 )}

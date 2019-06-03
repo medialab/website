@@ -59,14 +59,8 @@ body{ overflow-x: visible}
 
 //a:hover{ color: $redlab; }
 
-label{
-    .span-nochecked{ display: block; }
-    .span-checked{ display: none; }
-}
-input:checked + label{
-    .span-nochecked{ display: none; }
-    .span-checked{ display: block; }
-}
+
+
 
 /* virgules après les auteurs. ATTENTION = il faut plutôt le mettre depuis le CMS car au copier/coller les éléments after ne restent pas*/
 .author span{ 

@@ -88,7 +88,7 @@ const TopBar = ({permalinks, lang}) => {
           <ul id="nav-archive">
             {/*<li><Link to={`${relLang}/outils`}>{tool}</Link></li>*/}
             <li><a href="http://tools.medialab.sciences-po.fr" target="_blank" rel="noopener">{tool}</a></li>
-            <li><Link to={`${relLang}/archive`}>{archive}</Link></li>
+            {/* <li><Link to={`${relLang}/archive`}>{archive}</Link></li> */}
           </ul>
         </nav>
 

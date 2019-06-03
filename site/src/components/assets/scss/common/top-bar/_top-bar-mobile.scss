@@ -10,94 +10,81 @@
         width: 100%;
         top: 0;
         left: 0;
-        padding: $margins-phone $margins-phone;
         color: $text-color;
         @include font-size-20();
         background-color: $background-site;
         border-bottom: $border;
         z-index: 99;
+
+        label span svg{
+            width: $unite*1.5;
+            height: $unite*1.5;
+        }
+
     }
 
-    
-        
-
-            
     #topbar-content{
         background-color: $background-site;
-        color: $redlab;
         width: 100%;
-        height: calc(#{$height-top-bar-phone} - #{$margins-phone*2});
-        z-index: 99;
-        #logo-medialab svg{
-            height: $unite-phone*3;
-            fill: $text-color;
-            
+        height: $height-top-bar-phone;
+        overflow: hidden;
+        transition: height 0.5s;
+
+        #logo-medialab{
+            padding: $margins-phone;
+            height:$height-top-bar-phone;
+            a{
+                display: block;
+                height: 100%;
+                padding: 4px 0; 
+            }
+            svg{
+                height: $height-top-bar-phone - $margins-phone*2 - 10px;
+                fill: $text-color;   
+            }  
         }
-        ul{ 
-            padding-top: $baseline*2;
-            padding-bottom: $baseline*1.5;
-            border-bottom: $border-redlab;
 
-            &#nav-home{
-                display: none;
-            }
-
-            li{ margin-bottom: $baseline*0.5; }
-            li::before{
-                display: inline-block;
-                text-align: center;
-                // display: none;
-                width: $baseline*1;
-                margin-right: $baseline*1;
-            }
-
-            &:nth-of-type(2){
-                margin-top: $baseline*0.5;
-                border-top: $border-redlab;
+        #nav-option{
+            border-top: $border;
+            ul{
+                padding: 0 $margins-phone;
+                li{
+                    padding-top: $baseline;
+                    padding-bottom: $baseline;
+                    border-bottom: $border-very-light;
+                    padding-left: $unite*1.2;
+                    &::before{ 
+                        display: block;
+                        width: $unite*0.75;
+                        position: absolute; 
+                        left: 0;
+                        text-align: center;
+                    }
+                }
             }
         }
 
         #langue{
-            padding-top: $baseline*2;
             text-align: right;
-
-            .active{
-                border-bottom: $border;
-                border-color: $redlab;
-            }
+            padding: $baseline $margins-phone;
+            margin-bottom: 20vh;
         }
-    }/* end topbar-content */
-
-
-
-    #topbar-content nav, #topbar-content #langue{ display: none}
-    #topbar input:checked ~  #topbar-content{ height: 100vh; }
-    #topbar input:checked ~  #topbar-content svg{ fill: $redlab; }
-    #topbar input:checked + label svg{ fill: $redlab; }
-
-    #topbar input:checked ~  #topbar-content nav, 
-    #topbar input:checked ~ #topbar-content #langue{
-        display: block; 
     }
-    
-    
-    .page-home #topbar{
-        ul{
-            &#nav-home{
-                display: block !important;
-            }
 
-            &:first-of-type {
-                margin-top: $baseline*0.5;
-                border-top: $border-redlab;
-            }
 
-            &:nth-of-type(2){
-                margin-top: inherit;
-                border-top: inherit;
-            }
+    #topbar{
+        label{
+            .span-nochecked{ display: block; }
+            .span-checked{ display: none; }
         }
-
+        input:checked + label{
+            .span-nochecked{ display: none; }
+            .span-checked{ display: block; }
+        }
+        input:checked ~  #topbar-content{
+            height: 100vh;
+            overflow-y: scroll;
+        }
     }
     
 }

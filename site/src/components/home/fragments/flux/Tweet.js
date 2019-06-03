@@ -28,7 +28,15 @@ export default function tweet({lang, tweets}) {
 return (
   <>
     <section id="tweet">
-      <h1>Le médialab sur <span data-icon="tweet"><a href="https://twitter.com/medialab_scpo">Twitter</a></span></h1>
+      <h1>{lang ==="fr" ? "Le médialab sur " : "Medialab on" }<span data-icon="tweet"><a href="https://twitter.com/medialab_scpo">Twitter</a></span></h1>
+      <input
+      type="radio" name="radio_flux" id="radio_tweet"
+      hidden />
+      <label className="responsive-flux" htmlFor="radio_tweet">
+        {lang ==="fr" ? "Le médialab sur " : "Medialab on" }<span data-icon="tweet"><a href="https://twitter.com/medialab_scpo">Twitter</a></span>
+      </label>
+
+          
       { tweets.map(t =>
           (<article className="tweet" data-type="tweet" key={t.tweet.toString()} >	
             <aside className="divers">

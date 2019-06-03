@@ -17,7 +17,13 @@ export default function Now({now, lang}) {
 	return (
   <>
     <section id="now">
-      <h1>À la une</h1>
+      <h1>{ lang === "fr" ? "À la une" : "Headlines"}</h1>
+      <input
+        type="checkbox" name="checkbox_now" id="checkbox_now"
+        hidden />
+      <label className="responsive-now" htmlFor="checkbox_now">
+        { lang === "fr" ? "À la une" : "Headlines"}
+      </label>      
       <ul className="contenu">
       {now.map((item, index) =>
 

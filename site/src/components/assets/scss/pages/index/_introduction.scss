@@ -21,7 +21,7 @@
         p:nth-of-type(2){
 
             a{
-                @include font-size-13-phone();
+                @include linktext();
                 display: block;
                 margin-top: $baseline;
                 color: $text-color-light;

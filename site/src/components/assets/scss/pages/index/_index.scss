@@ -7,6 +7,13 @@ $hunit: 4vh;
     .time::before{
         content: "◷ ";
     }
+
+    #introduction{ border-bottom: $border; }
+
+    #home{ overflow-x: hidden; }
+    
+    hr{ border: none; }
+
 }
 
 
@@ -16,20 +23,35 @@ $hunit: 4vh;
 
     .page-home { 
 
+        main{ 
+            margin: $topbar-phone auto 0 auto;
+        }   
         
-        #introduction, #now, #flux{
+        #introduction, #flux{
             border-bottom: $border;
             padding-bottom: $baseline*4;
             // margin-left: $margins-phone;
             // margin-right: $margins-phone;
         }
-        
 
-        section > h1{
-            @include font-size-27-phone;
-            margin-bottom: $baseline*1;
-            margin-top: $baseline*4;
+        section#now > h1,
+        section#agenda > h1,
+        section#git > h1,
+        section#tweet > h1 { 
+            display: none;
+        }
+
+        section label.responsive-now,
+        section label.responsive-flux{
+            @include font-size-20-phone;
+            margin-bottom: $baseline/2;
+            margin-top: $baseline/2;
             text-align: center;
+            width: 100%;
+            display: block;
+            cursor: pointer;
+            padding: $baseline/2 0;
+            border-bottom: $border;    
         }
     }
 }
@@ -47,11 +69,6 @@ $hunit: 4vh;
             margin-top: $height-top-bar;
         }
 
-        #introduction{ border-bottom: $border; }
-
-        #home{ overflow-x: hidden; }
-
-
         section > h1{
             @include font-size-20;
             text-transform: uppercase; 
@@ -59,6 +76,12 @@ $hunit: 4vh;
             border-bottom: $border;
             padding: $baseline*1 0;
         }
+
+        section label.responsive-now,
+        section label.responsive-flux{
+            display: none;
+        }
+
 
         /*#slideshow:after{
             content:'';
@@ -69,8 +92,6 @@ $hunit: 4vh;
             left: 0;
 
         }*/
-
-        hr{ border: none; }
     }
 }
 

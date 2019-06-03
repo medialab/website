@@ -45,10 +45,9 @@
   //////////////////
   .bullets-slide{
     position: absolute;
-    top: calc(100% - 5px);
-    left: 0;
     width: 100%;
     height: 5px;
+    z-index: 9;
 
     .slideshow-bullet-label{
       background: $background-site;
@@ -157,17 +156,13 @@
 
       position: absolute;
       width: 100%;
-      height: 100%;
       
       &:before, &:after{
         position: absolute;
         //border-top: $border;
         //border-bottom: $border;
         background: $background-site;
-        padding: $baseline*1.25 $unite/4;
         font-size: 20px;
-        top: 50%;
-        transform: translateY(-50%);
         z-index: 9;
 
         &:hover{ background: $background-grey;}

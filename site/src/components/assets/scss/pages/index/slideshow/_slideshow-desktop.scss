@@ -20,10 +20,24 @@
             border-bottom: $border-very-light;
             width: 100%;
         }
-        
+
 		.slideshow-container{
-			
-			.slideshow-inner{
+
+	    	span.controls{
+	      		height: 100%;
+	     		&:before, &:after{        
+	     			padding: $baseline*1.25 $unite/4;
+	        		top: 50%;
+	        		transform: translateY(-50%);        
+	        	}
+	        }
+
+	        .bullets-slide{
+	       		top: calc(100% - 5px);
+	       		left: 0;
+	        }
+
+        	.slideshow-inner{
 
 				.slideshow-item{
 			
@@ -130,36 +144,11 @@
 				}/* end slideshow-item*/
 
 				/* Navigatin slideshow bullets ----------------------------------------------- */
-
-
-				.slideshow--bullet {
-					position: relative;
-					top: calc(100% - #{$unite} - #{$baseline*2});
-					left: 55%;
-				}
-
-				.slideshow--bullet-label, hr{ display: none; }
-
-
-
+				hr{display: none;}
 			}/* end slideshow*/
 
 		}/* end query 700 */
 	}
-}
-
-
-
-
-
-
-@mixin ratioImgHome($value){
-	font-size: -webkit-calc((#{$value}/250)*2.5);
-	font-size: -moz-calc((#{$value}e/250)*2.5);
-	font-size: calc((#{$value}/250)*2.5);
-	line-height: -webkit-calc((#{$value}/250)*1.89); 
-	line-height: -moz-calc((#{$value}/250)*1.89); 
-	line-height: calc((#{$value}/250)*1.89); 
 }
 
 
@@ -181,7 +170,7 @@
 			.accroche, .authors{ @include font-size-16(); }
 		}
 		
-		.image-pre{ @include ratioImgHome(700px);}
+		.image-pre{ @include ratioImg240(700px);}
 
 	}
 }
@@ -203,7 +192,7 @@
 			.accroche, .authors{ @include font-size-20(); }
 		}
 		
-		.image-pre{ @include ratioImgHome(800px);}
+		.image-pre{ @include ratioImg240(800px);}
 
 	}
 }
@@ -225,7 +214,7 @@
 			.accroche, .authors{ @include font-size-20(); }
 		}
 		
-		.image-pre{ @include ratioImgHome(900px);}
+		.image-pre{ @include ratioImg240(900px);}
 
 	}
 }

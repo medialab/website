@@ -2,70 +2,56 @@
 //////// Flux style
 /////////////////////
 
-@include for-size(desktop) {
-    #agenda, #git, #tweet {
+#agenda, #git, #tweet {
 
-        width: 100%;
+    width: 100%;
 
-        > h1{
-            position: sticky;
-            top: $height-top-bar + $baseline*3.5;
-            background: $background-site;
-            z-index: 8;
+
+    article{
+
+        border-bottom: $border;
+        padding-left: $unite/2;
+        padding-right: $unite/2;
+
+
+        &> a{
+            display: block;
+            height: 100%;
+            width: 100%;
+            cursor: pointer;
         }
-
-        article{
-
-            border-bottom: $border;
-            padding-left: $unite/2;
-            padding-right: $unite/2;
 
    
-            &> a{
-                display: block;
-                height: 100%;
-                width: 100%;
-                cursor: pointer;
+
+        aside.divers{
+            @include font-size-13();
+            p{ display: inline-block; }
+            border-bottom: $border-very-light;
+            padding: $baseline/2 0;
+
+            .label{
+                border-right: $border-very-light;
+                margin-right: $unite/2;
+                padding-right: $unite/2;
             }
 
-       
-
-            aside.divers{
-                @include font-size-13();
-                p{ display: inline-block; }
-                border-bottom: $border-very-light;
-                padding: $baseline/2 0;
-
-                .label{
-                    border-right: $border-very-light;
-                    margin-right: $unite/2;
-                    padding-right: $unite/2;
-                }
-
-                .date-news{
-                    .week{ display: none; }   
-                    &::first-letter{ text-transform: capitalize; }    
-                }
+            .date-news{
+                .week{ display: none; }   
+                &::first-letter{ text-transform: capitalize; }    
             }
+        }
 
 
-            aside.details{ 
-                width: 100%;
-               
-                @include font-size-13();
-
-            }
-
+        aside.details{ 
+            width: 100%;
+           
+            @include font-size-13();
 
         }
-    } 
-    #agenda, #git{
-        margin-bottom: $baseline*8;
+
+
     }
-}
-
-
-
+} 
 
 
 // all queries
@@ -83,45 +69,39 @@
 }
 
 
-/////////////////////
-//////// Flux style
-/////////////////////
 
-@include for-size(phone) {
+@include for-size(desktop) {
 
-    .agenda_moving_left, .agenda_moving_right, .past{ display: none; }
+
+    #agenda, #git{
+        margin-bottom: $baseline*8;
+    }
 
     #agenda, #git, #tweet {
+        > h1{
+            position: sticky;
+            top: $height-top-bar + $baseline*3.5;
+            background: $background-site;
+            z-index: 8;
+        }
+    }
+}
 
-        #agenda-contenu,
-        #git-contenu,
-        #tweet-contenu{
-            margin-top: $baseline*4;
-            margin-bottom: $baseline*0;
+@include for-size(phone) {
+    #agenda, #git, #tweet {
+
+        margin: 0;
+
+        > h1{ display: none }
+
+        label.responsive-flux{ 
+
+            position: sticky;
+            top: $height-top-bar-phone;
+            background: $background-site;
+            z-index: 8;
         }
 
-     
-
-        article{
-
-            border-top: $border;
-            padding: $baseline*2 0;
-
-
-            .date-news{ 
-                @include font-size-13-phone();
-                font-weight: 600;
-                .week{ display: none; }
-                .year{ display: none; }
-
-      
-            }
-
-
-
-        }
-
-    } /* end agenda*/
-
+    }
 } /* end phone*/
 

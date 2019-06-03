@@ -8,178 +8,147 @@ $height-slideshow-phone: calc(100vh - #{$topbar-phone});
 @include for-size(phone) {
 
 	#slideshow{
+        
+		.slideshow-container{
 
+	    	span.controls{
+	      		height: $baseline*3;
+	      		bottom: 0;
+	     		&:before, &:after{        
+	     			padding: $baseline $unite/4;
+	        		top: 50%;
+	        		transform: translateY(-50%);        
+	        	}
+	        }
 
-		width: 100%;
-		height: 600px;
-		height: $height-slideshow-phone;
+	        .bullets-slide{
+	       		top: 40vh;
+	       		left: 0;
+	        }
+			.slideshow-inner{
 
-		margin: 0 auto;
-		margin-top: $topbar-phone;		
-		//top: -3px;
+				.slideshow-item{
+			
+					article{
+						height: $height-slideshow-phone;
+						width: 100%;
+						margin-left: 0;
 
-		border-bottom: $border;
-		width: 100%;
-		margin-left: 0;
-		
+						.image-pre{ display: none; }
 
-		.slideshow-item{
-			width: 100%;
-			height: $height-slideshow-phone;
-			overflow: hidden;
-	
-			article{
+						.image-pre-phone{ 
+							width: 100%;
+							height: 100%;
+							max-height: 40vh;
+							background-color: $background-site;
+							overflow: hidden;
+		        			border: none;
+		        			pre{ 
+		        				@include ratioImg120(100vw);
+								font-size: -webkit-calc((100vw/120)*2.25);
+								font-size: -moz-calc((100vwe/120)*2.25);
+								font-size: calc((100vw/120)*2.25);
 
-				height: 100%;
-				width: 100%;
-				margin-left: 0;
-
-				.image-pre{ display: none; }
-
-				.image-pre-phone{ 
-					//font-size: calc(10px + 3vw);
-
-					pre{ 
-	                    font-weight: bold;
-						font-size: calc(((100vw - #{$margins-phone*2})/125)*3.5);
-						line-height: calc(((100vw - #{$margins-phone*2})/125)*3.89);
-	                    overflow: hidden;
-	                    top: -50%;
-		                transform: translateY(50%);
-					}
-				}
-				height: 100%;
-				
-				.contenu-slide{
-					position: absolute;					
-					width: 75vw;
-					min-height: 60%;
-					height: 70%;
-					z-index: 90;
-
-					padding: $baseline $unite/2;
-					text-align: left;
-					background: $background-site;
-					overflow: hidden;
-
-					top: 15%;
-					left: 12.5vw;
-
-					.bandeau, .more{ @include font-size-13-phone(); }
-
-					a{ height: 100%; position: relative; display: inline-block;}
-
-					h1{ 
-						@include font-size-27-phone(); 
-						margin-top: $baseline;
-						margin-bottom: $baseline/2;
-					}
-	
-					h2 { @include font-size-20-phone(); }
-	
-					.description{ display: none; }
-
-					.date-news{
-						@include font-size-16();
-						font-weight: 600;
-						.year{display: none}
-						//.year:last-of-type{display: inline;}
-					}
-
-					.more{
-						margin-top: $baseline*1;
-						color: $text-color-light;
-						text-decoration: underline;
-
-						position: absolute;
-						bottom: 0;
-
-					}
-         			
-					.bandeau{
-						text-align: left;
-						margin-bottom: $baseline*2;
-						@include font-size-13();
-
-						p{ 
-							padding-right: $unite/2;
-							display: inline-block;
+			                    font-weight: bold;                
+			                    overflow: hidden;
+								color: $color-img;
+		        			}
 						}
-					}	
+				        .contenu-slide{
 
-				}/* .end contenu-slide*/
+							color: $redlab;
+							position: absolute;
+							top: 40vh;
+							//left: $margins-phone;	
+							margin-top: $baseline;		            
+							padding: $baseline/2 $margins-phone/2;
+							//width: -webkit-calc( 100% - #{$margins-phone*2});
+				            //width: -moz-calc( 100% - #{$margins-phone*2});
+							//width: calc( 100% - #{$margins-phone*2});
+							width: 100%;
+				            //height: -webkit-calc(50vh - 0);
+				            //height: -moz-calc(50vh - 0);
+							//height: calc(50vh - 0);					
+							min-height: 50vh;							
+							z-index: 9;
+							text-align: left;
+							background: $background-site;
+							overflow: hidden;
+				        	
+							h1{ @include font-size-20(); }
+							.date{ @include font-size-16(); }
+							.accroche, .authors{ display: none; }
 
-			}/* .end article*/
+							&:hover{
+								background-color: $background-grey;
+								cursor: pointer;
+							}
 
+							a{ 
+								height: 100%; 
+								position: relative; 
+								display: inline-block;}
+		         			
+							.bandeau{
+								width: 100%;
+								border-bottom: $border-redlab-very-light;
+								padding-bottom: $baseline/2;
+								text-align: left;
+								@include font-size-13();
+								.type:before{ display: inline; padding: 5px;}
+								.label-news, .subtype-production, .title{
+									padding-left: $unite/2;
+									margin-left: $unite/2;
+									border-left: $border-redlab-very-light;
+								}
+								p{ display: inline-block;}
+							}
+							
+							
+							.date{
+								padding: $baseline  0;
+								border-bottom: $border-redlab-very-light;						
+								.date-news, .hours-news{		
+									display: inline-block;
+									&::first-letter{ text-transform: capitalize; }
+								}
 			
-		}/* end .slideshow-item */
-
-		hr, .slideshow--bullet-label{ display: none;}
-
-
-
-		/* Navigatin slideshow flêches ----------------------------------------------- */
-
-		.slideshow--nav:after {
+								.hours-news{
+									padding-left: $unite/2;
+									margin-left: $unite/2;
+									border-left: $border-redlab-very-light;
+								}
 			
-			font-size: 3rem;
-			color: $text-color-light;
-			top: 50%;
-			right: 0px;
-			background: $background-site;
-			padding: 2.0vh .75vh;
-			width: $unite-phone*4;
-			margin-top: $unite-phone*(-2/2);
-			height: $unite-phone*6;
-			display: flex;
-			align-items: center;
-			padding: 1.4rem;
-			border-top: $border;
-			border-bottom: $border;
-			&:hover{ color: $redlab!important; }
-			
+							}
+						
+
+							h1{
+								
+								margin-top: $baseline*1.5;
+								margin-bottom: $baseline*2;
+								&::first-letter{ text-transform: capitalize; }
+							}
+
+							 .more{
+								@include font-size-13();
+								color: $redlab;
+								@include linktext();
+
+								position: absolute;
+								bottom: 0;
+								left: 0;
+								&:hover{ color: $redlab-light;}
+							 }
+
+
+						}
+					}/* end article*/
+
+				}/* end slideshow-item*/
+
+				/* Navigatin slideshow bullets ----------------------------------------------- */
+				hr{ display: none; }
+			}/* end slideshow*/
 		}
-
-
-		.slideshow--nav{
-			
-			appearance: none;
-			top: 0;
-			bottom: 0;
-			width: 15vw;
-			&:hover:after{ color: $redlab; }
-		}
-
-
-		.slideshow--nav-previous {
-			left: 0;
-		}
-
-		.slideshow--nav-previous:after {
-			right: auto;
-			left: 0px;
-		}
-
-		.slideshow--nav-next {
-			right: 0;
-		}
-
-
-		/* Navigatin slideshow bullets ----------------------------------------------- */
-
-
-		.slideshow--bullet {
-			display: none;
-		}
-
-
-
-
-		
-
-
-	}/* end #slideshow*/
-
-		
-}/* end query phone */
-
+	}
+}

@@ -7,7 +7,16 @@ export default function git({github, lang}) {
   return (
     <>
       <section id="git">
-        <h1>Le médialab sur <span data-icon="git"><a href="https://github.com/medialab">Github</a></span></h1>
+
+        <h1>{lang ==="fr" ? "Le médialab sur " : "Medialab on" }<span data-icon="git"><a href="https://github.com/medialab">Github</a></span></h1>
+        <input
+        type="radio" name="radio_flux" id="radio_git"
+        hidden />
+        <label className="responsive-flux" htmlFor="radio_git">
+          {lang ==="fr" ? "Le médialab sur " : "Medialab on" }<span data-icon="git"><a href="https://github.com/medialab">Github</a></span>
+        </label>  
+
+
         {github.map(r =>
         (<article key={r.repo} className="git" data-type="git">
           <aside className="divers">

@@ -2,6 +2,34 @@
 //////// Footer desktop
 /////////////////////
 
+footer{
+
+    
+    .contact, .mentions{
+
+        color: $text-color-light;
+        a:hover{ color: $redlab;}
+
+    }
+
+    .mentions a{
+        padding-top: $baseline;
+        @include linktext();
+       
+    }
+
+    .contact{
+        li{
+                display: inline-block;
+                &:not(:last-of-type):after{
+                    content: "/";
+                    padding: 0 $unite;
+                }
+        }           
+    }
+
+}
+
 @include for-size(desktop) {
     footer{
         height: $height-footer;
@@ -19,37 +47,19 @@
 
         @include font-size-16();
 
- 
-        .contact, .mentions{
-
-            color: $text-color-light;
-            width: 240px;
-            margin-left: $margins-desktop;
-            margin-top: $baseline;
-            a:hover{ color: $redlab;}
-
-        }
-
         .mentions{ margin-top: $baseline*2;}
-        .mentions a{
-            padding-top: $baseline;
-            @include linktext();
-           
-        }
 
-        .contact{
-            li{
-                    display: inline-block;
-                    &:not(:last-of-type):after{
-                        content: "/";
-                        padding: 0 $unite;
-                    }
-            }           
-        }
 
+        .contact, .mentions{
+            width: 240px;
+        }
 
     }
     //.page-home footer{ background: $background-site;}
+}
+
+@media screen and (min-width: 1650px){
+    footer .contact, footer .mentions{ margin-left: $margins-desktop; }
 }
 
 
@@ -59,43 +69,16 @@
 
 @include for-size(phone) {
     footer{
-        margin: $unite-phone $margins-phone 0 $margins-phone;
-        padding: $unite-phone 0;
-        width: calc( 100% - #{$margins-phone*2} );
+        width: 100vw;
+        padding: $baseline*2 $margins-phone;
         border-top: $border;
 
-        @include flex();
-        @include flex-direction(column);
-        @include font-size-16();
+        @include font-size-13-phone();
 
-        .logo{
-            display: none;
-        }
-        .adresse, .mentions{
-            color: $text-color-light;
-            order: 2;
-            margin-top: $baseline*1.6;
-        }
+        .adresse, .mentions{ color: $text-color-light; }
 
-        .contact{
 
-            order: 1;
-            width: 100%;
-            color: $text-color-light;
-
-            ul{
-                width: 100%;
-                @include flex();
-                @include flex-wrap(wrap);
-                
-                li{
-                    &:not(:last-of-type):after{
-                        content: "/";
-                        padding: 0 $unite-phone*2;
-                    }
-                }
-            }           
-        }
+        .contact{  margin-top: $baseline; }
     }
 }
 

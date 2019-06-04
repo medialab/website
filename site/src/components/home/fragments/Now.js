@@ -18,12 +18,12 @@ export default function Now({now, lang}) {
   <>
     <section id="now">
       <h1>{ lang === "fr" ? "À la une" : "Headlines"}</h1>
-      <input
+      {/* <input
         type="checkbox" name="checkbox_now" id="checkbox_now"
         hidden />
       <label className="responsive-now" htmlFor="checkbox_now">
         { lang === "fr" ? "À la une" : "Headlines"}
-      </label>      
+      </label>       */}
       <ul className="contenu">
       {now.map((item, index) =>
 

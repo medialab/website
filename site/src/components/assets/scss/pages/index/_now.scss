@@ -20,6 +20,7 @@
 @include for-size(phone) {
 	#now{
 
+		li{ border-bottom: $border-very-light!important;}
 		label.responsive-now{ 
 
             position: sticky;
@@ -28,11 +29,11 @@
             z-index: 8;
         }
         
-		ul{ display: none;}
+		// ul{ display: none;}
 
-		#checkbox_now:checked ~ ul{
-			display: block !important;
-		}
+		// #checkbox_now:checked ~ ul{
+		// 	display: block !important;
+		// }
 
 	}
 

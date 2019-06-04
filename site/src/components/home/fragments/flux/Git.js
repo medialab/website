@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'gatsby';
 import DateNews from '../../../helpers/DateNews.js';
+import { Icons } from '../../../helpers/Icons.js';
 
 export default function git({github, lang}) {
 
@@ -10,13 +11,15 @@ export default function git({github, lang}) {
 
         <h1>{lang ==="fr" ? "Le médialab sur " : "Medialab on" }<span data-icon="git"><a href="https://github.com/medialab">Github</a></span></h1>
         <input
-        type="radio" name="radio_flux" id="radio_git"
+        type="checkbox" name="checkbox_flux" id="checkbox_git"
         hidden />
-        <label className="responsive-flux" htmlFor="radio_git">
-          {lang ==="fr" ? "Le médialab sur " : "Medialab on" }<span data-icon="git"><a href="https://github.com/medialab">Github</a></span>
+        <label className="responsive-flux" htmlFor="checkbox_git">
+          <span><Icons icon='arrow' /></span>
         </label>  
 
+      <div id="git-content">
 
+        ezgrz
         {github.map(r =>
         (<article key={r.repo} className="git" data-type="git">
           <aside className="divers">
@@ -57,6 +60,7 @@ export default function git({github, lang}) {
           </aside>
         </article>)
         )}
+        </div>
       </section>
     </>
 );

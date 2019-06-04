@@ -1,11 +1,12 @@
 /* miniature all */
 
 
-
 .page-people #highlights #highlights-list-activity li, 
 .page-people #highlights #highlights-list-production li, 
 .page-home #now li,
 .elements-associes-block ul.liste_objet li{
+
+    
 
     border-bottom: $border;
     position: relative;
@@ -90,12 +91,14 @@
 
 
 
+
 /* IF IMAGE-PRE -------------------------------------------------------------------------------------------------------------- 
  ----------------------------------------------------------------------------------------------------------------------------- 
   -----------------------------------------------------------------------------------------------------------------------------*/
 
 $width-image-pre-highlight: ( 100% / 75 ) * 6;
 // $width-image-pre-highlight: ( 100% / 75 ) * 1.1338 * 4;
+
 
 
 .page-people #highlights #highlights-list-activity, 
@@ -141,3 +144,36 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
 
 
 
+@include for-size(phone) {
+
+    .page-people #highlights #highlights-list-activity, 
+    .page-people #highlights #highlights-list-production, 
+    .page-home #now{
+
+    
+
+        .image-pre{
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: $baseline*4.5;
+            border-bottom: $border-very-light;
+        }
+
+        .bandeau{
+            position: relative; 
+            width: calc(100% - #{$margins-phone*2});
+            left: 0;
+            margin: 0 $margins-phone;
+        }
+        
+        hgroup{
+            width: 100%;
+            left: 0;
+            padding: 0 $margins-phone;
+            h1{ @include font-size-20-phone; }
+        }
+        
+    }
+
+}

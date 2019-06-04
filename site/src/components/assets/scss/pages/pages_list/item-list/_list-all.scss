@@ -15,6 +15,7 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
         position: relative;
         height: auto;
 
+
         a{ 
             width: 100%;
             height: 100%;
@@ -62,6 +63,7 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
         hgroup, .accroche{
             display: inline-block;
             vertical-align: top;
+          
         }
 
         h1::first-letter{ text-transform: capitalize; }
@@ -94,7 +96,9 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
                     font-size: calc((((( 100vw - #{$unite*2}) - #{$logo-column}) / 2 )  /120 ) *1.89 ); 
                 }
                 &:hover{ 
-                    max-width: calc( ( 100% + #{$width-image-pre-listing/2} )/2)!important;
+                    max-width: calc((100% - #{$width-image-pre-listing})/2 + #{$width-image-pre-listing})!important;
+                    //max-width: calc( ( 100% + #{$width-image-pre-listing/2} )/2)!important;
+                    max-width: 100%;
                     transition-duration: .15s;
                     background-color: $background-site;
                 }
@@ -123,6 +127,10 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
                 margin-top: $baseline*.5;
                 margin-bottom: $baseline;
                 padding: 0 $unite/2;
+            }
+
+            .accroche{ 
+                height: 100% !important;
             }
 
             h1{

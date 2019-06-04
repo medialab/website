@@ -85,22 +85,56 @@
             z-index: 8;
         }
     }
+
+    label.responsive-flux{display: none;}
 }
 
 @include for-size(phone) {
-    #agenda, #git, #tweet {
 
+    #agenda > h1{ border-top: $border;}
+    #agenda, #git, #tweet {
         margin: 0;
 
-        > h1{ display: none }
+       #agenda-content, #git-content, #tweet-content{
+           border-bottom: $border;
+       }
 
-        label.responsive-flux{ 
+        label.responsive-flux{
+            display: block;
+            width: 100vw;
+            height: $baseline*2.5;
+            position: absolute;
+            top: 0;
+            left: 0;
 
-            position: sticky;
-            top: $height-top-bar-phone;
-            background: $background-site;
-            z-index: 8;
+            span{
+
+                display: block; 
+                width: $baseline*1.2;
+                height: $baseline*1.2;
+                margin-top: $baseline/2;
+                position: absolute;
+                right: $margins-phone/2;
+                top: 2px;
+            }
+            
+
         }
+
+        input:checked + label span,
+        label:hover span{
+            svg{
+                transform: rotate(90deg);
+                transform-origin: center center;
+            } 
+            top: 4px;
+            right: $margins-phone/2 + 2px;
+        }
+    
+
+
+
+        
 
     }
 } /* end phone*/

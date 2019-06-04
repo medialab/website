@@ -1,5 +1,7 @@
 import React from 'react';
 import {Link} from 'gatsby';
+import { Icons } from '../../../helpers/Icons.js';
+
 
 import {format as formatDate, parseISO} from 'date-fns';
 import * as locales from 'date-fns/locale';
@@ -30,12 +32,14 @@ return (
     <section id="tweet">
       <h1>{lang ==="fr" ? "Le médialab sur " : "Medialab on" }<span data-icon="tweet"><a href="https://twitter.com/medialab_scpo">Twitter</a></span></h1>
       <input
-      type="radio" name="radio_flux" id="radio_tweet"
+      type="checkbox" name="checkbox_flux" id="checkbox_tweet"
       hidden />
-      <label className="responsive-flux" htmlFor="radio_tweet">
-        {lang ==="fr" ? "Le médialab sur " : "Medialab on" }<span data-icon="tweet"><a href="https://twitter.com/medialab_scpo">Twitter</a></span>
+      <label className="responsive-flux" htmlFor="checkbox_tweet">
+        <span><Icons icon='arrow' /></span>
       </label>
 
+      <div id="tweet-content">
+        <p>hi</p>
           
       { tweets.map(t =>
           (<article className="tweet" data-type="tweet" key={t.tweet.toString()} >	
@@ -61,6 +65,7 @@ return (
           </article>)
         )
       }
+      </div>
     </section>
   </>
 );

@@ -3,6 +3,7 @@ import {Link} from 'gatsby';
 import DateNews from '../../../helpers/DateNews.js';
 import TimeNews from '../../../helpers/TimeNews.js';
 import {format as formatDate, getYear, parseISO} from 'date-fns';
+import { Icons } from '../../../helpers/Icons.js';
 
 export default function Agenda({rdv, lang}) {
 
@@ -14,13 +15,11 @@ export default function Agenda({rdv, lang}) {
     <section id="agenda" /* style={nbRdv} */>
     <>
     <h1>{ lang === "fr" ? "Rendez-vous" : "Meeting"}</h1>
-    <input
-    type="radio" name="radio_flux" id="radio_agenda"
-    hidden />
-    <label className="responsive-flux" htmlFor="radio_agenda">
-      { lang === "fr" ? "Rendez-vous" : "Meeting"}
+    <input type="checkbox" name="checkbox_flux" id="checkbox_agenda" hidden />
+    <label className="responsive-flux" htmlFor="checkbox_agenda">
+      <span><Icons icon='arrow' /></span>
     </label> 
-      <>
+      <div id="agenda-content">
 
         {rdv.map((event, i) =>
           (<React.Fragment key={i}>
@@ -47,7 +46,7 @@ export default function Agenda({rdv, lang}) {
 
           </React.Fragment>)
 				)}
-      </>
+      </div>
     </>
     </section>
   </>

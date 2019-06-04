@@ -1,19 +1,20 @@
-/////////////////////
-//////// Introduction phone
-/////////////////////
 
 @include for-size(phone) {
 
     #introduction{
         text-align: left;
-        //margin: 0 $margins-phone;
         padding-top: $baseline*2;
-        padding-bottom: $baseline*2;
+        
 
-        h1{ display: none;}
+        // h1{ display: none;}
+
+        p{
+            margin: 0 $margins-phone;
+        }
 
         p:first-of-type{
-            @include font-size-16();
+            @include font-size-16-phone();
+            margin-top: $baseline*1.5;
             z-index: 9;
         }
 
@@ -21,6 +22,7 @@
         p:nth-of-type(2){
 
             a{
+                @include font-size-13-phone();
                 @include linktext();
                 display: block;
                 margin-top: $baseline;
@@ -33,10 +35,6 @@
 }
 
 
-
-/////////////////////
-//////// Introduction desktop
-/////////////////////
 
 @include for-size(desktop) {
         

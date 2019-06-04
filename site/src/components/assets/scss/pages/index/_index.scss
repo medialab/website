@@ -14,6 +14,20 @@ $hunit: 4vh;
     
     hr{ border: none; }
 
+    footer{ 
+        position: relative;
+        top: -1px;
+    }
+
+    #home footer{ 
+        display: none; 
+        padding: 0;
+        padding-top: $baseline*3;
+        padding-bottom: $baseline*3;
+        height: auto!important;
+        .contact, .mentions{margin-left: 0;}
+    }
+
 }
 
 
@@ -53,6 +67,8 @@ $hunit: 4vh;
             padding: $baseline/2 0;
             border-bottom: $border;    
         }
+
+        
     }
 }
 
@@ -83,15 +99,7 @@ $hunit: 4vh;
         }
 
 
-        /*#slideshow:after{
-            content:'';
-            width: 100%;
-            border-bottom: $border;
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-
-        }*/
+        
     }
 }
 
@@ -100,49 +108,58 @@ $hunit: 4vh;
 
 
 @media screen and (min-width: 1000px) {
-    #home{
-        position: fixed;
-        top: $height-top-bar;
-        height: calc(100vh - #{$height-top-bar});
-        overflow-y: scroll;
-        padding-bottom: $height-footer;
+    .page-home{
+        #home{
+            position: fixed;
+            top: $height-top-bar;
+            height: calc(100vh - #{$height-top-bar});
+            overflow-y: scroll;
+            // padding-bottom: $height-footer;
+        }
+        footer{ display: none; }
+        #home footer{ display: block!important; }
     }
 }
 
 @media screen and (min-width: 1000px) and (max-width: 1200px){
-    #home{ width: 700px + $size-scrollbar; }
-    #slideshow, #introduction, #now { width: 700px; }
+    .page-home{
+        #home{ width: 700px + $size-scrollbar; }
+        #slideshow, #introduction, #now, footer { width: 700px; }
 
-    #flux{ margin-left: 700px + $margins-desktop; }  
-   .flux_selection_container{ width: calc(100vw - 700px - #{$margins-desktop*3}); }
+        #flux{ margin-left: 700px + $margins-desktop; }  
+        .flux_selection_container{ width: calc(100vw - 700px - #{$margins-desktop*3}); }
+    }
 
 }
 
 
 
 @media screen and (min-width: 1200px) and (max-width: 1350px){
+    .page-home{
+        #home{ width: 800px + $size-scrollbar; }
+        #slideshow, #introduction, #now, footer { width: 800px; }
 
-    #home{ width: 800px + $size-scrollbar; }
-    #slideshow, #introduction, #now { width: 800px; }
-
-    #flux{ margin-left: 800px + $margins-desktop; }  
-    .flux_selection_container{ width: calc(100vw - 800px - #{$margins-desktop*3}); }
+        #flux{ margin-left: 800px + $margins-desktop; }  
+        .flux_selection_container{ width: calc(100vw - 800px - #{$margins-desktop*3}); }
+    }
 
 }
 
 
 
 @media screen and (min-width: 1350px){
+    .page-home{
+        #home{ width: $max-width-article + $size-scrollbar; }
+        #slideshow, #introduction, #now, footer{ width: $max-width-article; }
 
-    #home{ width: $max-width-article + $size-scrollbar; }
-    #slideshow, #introduction, #now { width: $max-width-article; }
-
-    #flux{ margin-left: $max-width-article + $margins-desktop; }  
-    .flux_selection_container{ width: calc(100vw - #{$max-width-article} - #{$margins-desktop*3}); }
-
+        #flux{ margin-left: $max-width-article + $margins-desktop; }  
+        .flux_selection_container{ width: calc(100vw - #{$max-width-article} - #{$margins-desktop*3}); }
+    }
 }
 
 
 @media screen and (min-width: 1650px){
-    #flux, .flux_selection_container{ width: $max-width-main - $max-width-article - $margins-desktop; }  
+    .page-home{
+        #flux, .flux_selection_container{ width: $max-width-main - $max-width-article - $margins-desktop; }  
+    }
 }

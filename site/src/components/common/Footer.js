@@ -16,8 +16,8 @@ const Footer = ({lang}) => {
       </div>
         <ul className="contact">
           <li><a href="mailto:contact@medialab.sciencespo.fr" title={ lang === 'fr' ? "Ecrire au Medialab" : "Write to Medialab"} target="_blank" rel="noopener" >Mail</a></li>
-          <li><a href="https://twitter.com/medialab_scpo" title={ lang === 'fr' ? "Lien vers le compte Twitter du Medialab" : "Link to Medialab's Twitter"} target="_blank" rel="noopener" >Tweet</a></li>
-          <li><a href="https://github.com/medialab" title={ lang === 'fr' ? "Lien vers le Github du Medialab" : "Link to Medialab's Github"} target="_blank" rel="noopener" >Git</a></li>
+          <li><a href="https://twitter.com/medialab_scpo" title={ lang === 'fr' ? "Lien vers le compte Twitter du Medialab" : "Link to Medialab's Twitter"} target="_blank" rel="noopener" >Twitter</a></li>
+          <li><a href="https://github.com/medialab" title={ lang === 'fr' ? "Lien vers le Github du Medialab" : "Link to Medialab's Github"} target="_blank" rel="noopener" >Github</a></li>
         </ul>
     </div>
   </footer>

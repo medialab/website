@@ -6,7 +6,7 @@ import {Link} from 'gatsby';
 import Slideshow from './fragments/Slideshow.js';
 import Now from './fragments/Now.js';
 import Flux from './fragments/Flux.js';
-
+import Footer from '../common/Footer.js';
 
 
 export default function Home({lang, grid, slider, rdv, tweets, github}) {
@@ -23,6 +23,7 @@ export default function Home({lang, grid, slider, rdv, tweets, github}) {
             <p><a href="#">En savoir plus</a></p>
           </section>
           <Now now={grid} lang={lang} />
+          <Footer lang={lang} />
         </section>
         <Flux rdv={rdv} tweets={tweets} github={github} lang={lang} />
       </main>

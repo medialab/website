@@ -213,7 +213,7 @@ export default function PeopleDetail({lang, person}) {
   return (
     <>
 
-      <main>
+      <main id="main">
 
         <Nav lang={lang} data={person} order={['main', 'activities', 'productions', 'news']} />
 

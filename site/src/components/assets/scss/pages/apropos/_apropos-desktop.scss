@@ -8,6 +8,7 @@
 @include for-size(desktop) {
 	.page-about{
 
+			main{ padding-top: $height-top-bar; }
 
 			hgroup{
 				
@@ -30,6 +31,8 @@
 			.about-contenu{
 				max-width: $max-width-article;
 				margin-right: $unite*2;
+
+				h3:target{ padding-top: $height-top-bar + $baseline*2; }
 			}	
 
 			/*h3{

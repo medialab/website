@@ -12,8 +12,7 @@
 		#liste .liste_objet{
 
 				[data-item], .list-year, .accroche-titre{ width: calc(100vw - #{$logo-column-medium} - #{$margins-desktop*2}); }
-			
-			
+
 				[data-item] ~ [data-item-accroche]{ 
 					display: block;
 					max-height: 0;
@@ -31,10 +30,7 @@
 				[data-item]:hover ~ [data-item-accroche],
 				[data-item-accroche]:hover{
 					border-bottom: $border; 
-				}
-			
-
-
+				}	
 		
 				.item_accroche{
 					@include font-size-13();
@@ -43,20 +39,7 @@
 					color: $redlab;
 				}
 
-
-
-		} /* end #liste */
-
-		// #liste .accroche-titre-phone{
-		// 	display: block;
-		// 	height: auto;
-		// 	border-top: none!important; 
-		// 	@include font-size-27();
-		// 	text-align: center;	
-		// 	padding-top: $baseline*2;
-		// 	padding-bottom: $baseline*2;
-		// }
-
+		} 
 		
 		
 	}
@@ -65,89 +48,7 @@
 
 
 	@include for-size(phone) {
-
-		.type_title{
-			display: block;
-			width: 100vw!important;
-			top: $height-top-bar-phone!important;
-			margin: 0!important;
-			padding-top: $baseline*1!important;
-			padding-bottom: $baseline*1!important;
-			padding-left: $margins-phone;
-			background-color: $background-site!important;		
-			border-top: none!important; 
-			border-bottom: $border!important; 
-			z-index: 15!important;
-		}
-
-		#liste{
-			margin-top: $height-top-bar-phone + $baseline*3.5;
-
-			// .liste_objet{
-
-			// 	width: 100%;
-			// 	height: auto;
-			// 	margin-bottom: 50vh;
-			// 	min-height: calc(100vh - 50vh - #{$height-top-bar-phone});
-
-
-			// 	[data-item], .list-year{ 
-			// 		width: 100%; 				
-			// 	}
-
-			// 	[data-item]{
-			// 		h1{ @include font-size-20-phone(); }
-			// 		h2{ @include font-size-13-phone(); }
-			// 		.date, .type, .go-to-object{ @include font-size-13-phone(); }
-			// 	}
-
-
-			// 	.item_accroche{
-			// 		@include font-size-13-phone();
-			// 		width: 100%;
-			// 	}
-
-			// }
-
-			// #liste-news .date-news, #liste-news .hours-news{
-			// 	@include font-size-13-phone();
-			// 	font-weight: 600;
-			// }	
-
-			
-
-		} /* end #liste */
-
-		// #liste .accroche-titre-phone{ 
-		// 	width: $mobile-container-width; 
-		// 	@include font-size-27-phone();
-		// }
-
+		#liste{ padding-top: $height-top-bar-phone + $baseline*3.5; }
 	}
 
-
-	@media screen and (max-width: 375px){
-		#liste-news {
-			.date-news{
-				margin-bottom: 0!important;
-			}
-			.hours-news{
-				position: relative!important;
-				width: 100%!important;
-				right: 0!important;
-				top: 0!important;
-				border-left: 0px!important;
-				text-align: left!important;
-				border-bottom: $border-very-light;
-				padding-top: $baseline*0.5;
-				padding-bottom: $baseline*0.5;
-				
-				padding-left: 0!important;
-			}
-			[data-item] h1{
-				margin-top: $baseline*1;
-			}
-
-		} 
-	}
 }

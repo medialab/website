@@ -68,13 +68,13 @@
             hgroup, .authors{
                 width: calc(100vw - #{$margins-phone*2});
                 margin: 0 $margins-phone;
+              
             }
 
-            .authors p{
-                @include font-size-16; 
-                margin-bottom: $baseline;
-                padding-top: $baseline;
-                color: $text-color-light;
+            .authors{
+                p {@include font-size-13; }
+                padding-bottom: $baseline/2;
+                padding-top: $baseline/2;
                 border-top: $border-very-light;
             }
        

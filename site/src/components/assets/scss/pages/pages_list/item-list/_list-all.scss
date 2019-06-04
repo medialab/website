@@ -279,12 +279,12 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
     
             h1{
                  @include font-size-20; 
-                 padding-bottom: $baseline;
+                 padding-bottom: $baseline/2;
                  margin-top: 0;
             }
 
             .accroche{
-                padding-bottom: $baseline;
+                padding-bottom: $baseline*2.5;
                 
                 p{ 
                     @include font-size-13; 

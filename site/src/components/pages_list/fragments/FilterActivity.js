@@ -37,7 +37,7 @@ const FilterActivity = ({ lang, status, statuses }) => {
   return (
     <>
 
-      <h1 className="type_title" data-icon="activite">{IsModel('activities', lang)}</h1>
+      <h1 className="type_title" data-icon="activite"><a href="#liste">{IsModel('activities', lang)}</a></h1>
 
       <input type="radio" id="radio-phone-filters" name="radio-phone" value="filters" hidden />
       <label htmlFor="radio-phone-filters" title={IsModel('filtersAlt', lang)} arial-label={filtersAlt}><Icons icon='search-filter' /></label>

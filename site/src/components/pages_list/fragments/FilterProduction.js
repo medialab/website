@@ -30,7 +30,7 @@ const FilterProduction = ({lang, group, types}) => {
 
 	return (
   <>
-    <h1 className="type_title" data-icon="production" ><a href="#year-2019">Productions</a></h1>
+    <h1 className="type_title" data-icon="production" ><a href="#liste">Productions</a></h1>
     
     <input type="radio" id="radio-phone-filters" name="radio-phone" value="filters" hidden />
     <label htmlFor="radio-phone-filters" title={IsModel('filtersAlt', lang)} arial-label={IsModel('filtersAlt', lang)}><Icons icon='search-filter' /></label>

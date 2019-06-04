@@ -1,15 +1,6 @@
-/////////////////////
-//////// item_accroche: Phone 
-/////////////////////
-
 @include for-size(phone) {
-	.page-people-list{
-
-		#liste_equipe{
-			
-	    }
-
-		#liste_equipe{        
+	.page-people-list #liste_equipe{        
+			padding-top: $height-top-bar-phone + $baseline*3.5;
 			margin: $baseline $margins-phone 0 $margins-phone ;
 
 			ul{
@@ -20,11 +11,9 @@
 					width: 100%;
 					
 					figure{
-
 						width: 100%;
 						overflow: hidden;
 						height: 25vh;
-
 						img{
 							width: 100%;
 							top: 50%;
@@ -33,25 +22,13 @@
 						}
 					}
 
-					hgroup{
-						padding: $baseline*1 0;
+					hgroup{ padding: $baseline*1 0; }
 
-						h1{
-							@include font-size-20;
-							font-weight: bold;
+					.details{ margin-bottom: $baseline*3; }
 
-						}
-
-						h2{
-							@include font-size-20;
-						}
-					}
-
-					[data-type="activite"]{
-						display: none ;
-					}
+					[data-type="activite"]{ display: none ; }
 				}		   	
 			}
-		}
 	}
+	
 }

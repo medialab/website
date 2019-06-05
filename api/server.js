@@ -5,7 +5,6 @@ const path = require('path');
 const querystring = require('querystring');
 const async = require('async');
 const express = require('express');
-const config = require('config');
 const exec = require('child_process').exec;
 const jsonServer = require('json-server');
 const fileUpload = require('express-fileupload');
@@ -23,6 +22,8 @@ const GatsbyProcess = require('./gatsby.js');
 
 const MODELS = require('../specs/models.json');
 const spire = require('./spire.js');
+
+const config = require('./configWithSecrets.js');
 
 // Constants
 const PORT = config.get('port');

@@ -1,5 +1,5 @@
 /* eslint no-console: 0 */
-const config = require('config'),
+const config = require('./configWithSecrets.js'),
       path = require('path'),
       fs = require('fs-extra'),
       Ajv = require('ajv');

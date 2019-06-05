@@ -1,5 +1,5 @@
 /* eslint no-console: 0 */
-const config = require('config'),
+const config = require('./configWithSecrets.js'),
       Ajv = require('ajv'),
       async = require('async'),
       request = require('request'),

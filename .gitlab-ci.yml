@@ -5,80 +5,46 @@ stages:
   - deploy
 
 variables:
-  STAGING_BASEURL: http://website-pprd.medialab.sciences-po.fr
-  PROD_BASEURL: http://website-prod.medialab.sciences-po.fr
   WEB_IMAGE_NAME: $CI_REGISTRY_IMAGE/website_web:$CI_COMMIT_REF_SLUG
   API_IMAGE_NAME: $CI_REGISTRY_IMAGE/website_api:$CI_COMMIT_REF_SLUG
   GIT_SUBMODULE_STRATEGY: recursive
 
-build_web_staging:
+build_web_image:
   stage: build
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
     - docker build --force-rm --build-arg "API_URL=$CI_ENVIRONMENT_URL/api" --build-arg "STATIC_URL=$CI_ENVIRONMENT_URL" -t $WEB_IMAGE_NAME -f ./admin/Dockerfile .
     - docker push $WEB_IMAGE_NAME
   environment:
-    name: staging
-    url: $STAGING_BASEURL
+    name: $CI_COMMIT_REF_SLUG
+    url: $BASEURL
   only:
     - staging
-
-build_web_prod:
-  stage: build
-  script:
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-    - docker build --force-rm --build-arg "API_URL=$CI_ENVIRONMENT_URL/api" --build-arg "STATIC_URL=$CI_ENVIRONMENT_URL" -t $WEB_IMAGE_NAME -f ./admin/Dockerfile .
-    - docker push $WEB_IMAGE_NAME
-  environment:
-    name: production
-    url: $PROD_BASEURL
-  only:
     - production
 
-build_api_staging:
+build_api_image:
   stage: build
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
     - docker build --force-rm -t $API_IMAGE_NAME --build-arg "STATIC_URL=$CI_ENVIRONMENT_URL" -f Dockerfile .
     - docker push $API_IMAGE_NAME
   environment:
-    name: staging
-    url: $STAGING_BASEURL
+    name: $CI_COMMIT_REF_SLUG
+    url: $BASEURL
   only:
     - staging
-
-build_api_prod:
-  stage: build
-  script:
-    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-    - docker build --force-rm -t $API_IMAGE_NAME --build-arg "STATIC_URL=$CI_ENVIRONMENT_URL" -f Dockerfile .
-    - docker push $API_IMAGE_NAME
-  environment:
-    name: production
-    url: $PROD_BASEURL
-  only:
     - production
 
-deploy_staging:
+deploy:
   stage: deploy
   image: cdrx/rancher-gitlab-deploy
   script:
-    - upgrade --rancher-key $RANCHER_ACCESS_KEY --rancher-secret $RANCHER_SECRET_KEY --rancher-url $RANCHER_URL --environment $RANCHER_STAGING_ENV --stack $RANCHER_STACK --service $RANCHER_WEBSITE_API_SERVICE --start-before-stopping
-    - upgrade --rancher-key $RANCHER_ACCESS_KEY --rancher-secret $RANCHER_SECRET_KEY --rancher-url $RANCHER_URL --environment $RANCHER_STAGING_ENV --stack $RANCHER_STACK --service $RANCHER_WEBSITE_WEB_SERVICE --start-before-stopping
+    - upgrade --rancher-key $RANCHER_ACCESS_KEY --rancher-secret $RANCHER_SECRET_KEY --rancher-url $RANCHER_URL --environment $RANCHER_ENV --stack $RANCHER_STACK --service $RANCHER_WEBSITE_API_SERVICE --start-before-stopping
+    - upgrade --rancher-key $RANCHER_ACCESS_KEY --rancher-secret $RANCHER_SECRET_KEY --rancher-url $RANCHER_URL --environment $RANCHER_ENV --stack $RANCHER_STACK --service $RANCHER_WEBSITE_WEB_SERVICE --start-before-stopping
   environment:
-    name: staging
+    name: $CI_COMMIT_REF_SLUG
     url: $STAGING_BASEURL
   only:
     - staging
-
-deploy_production:
-  stage: deploy
-  image: cdrx/rancher-gitlab-deploy
-  script:
-    - upgrade --rancher-key $RANCHER_ACCESS_KEY --rancher-secret $RANCHER_SECRET_KEY --rancher-url $RANCHER_URL --environment $RANCHER_PRODUCTION_ENV --stack $RANCHER_STACK --service $RANCHER_WEBSITE_API_SERVICE --start-before-stopping
-    - upgrade --rancher-key $RANCHER_ACCESS_KEY --rancher-secret $RANCHER_SECRET_KEY --rancher-url $RANCHER_URL --environment $RANCHER_PRODUCTION_ENV --stack $RANCHER_STACK --service $RANCHER_WEBSITE_WEB_SERVICE --start-before-stopping
-  environment:
-    name: production
-    url: $PROD_BASEURL
-  only:
     - production
+

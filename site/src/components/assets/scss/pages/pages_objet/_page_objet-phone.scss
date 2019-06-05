@@ -51,8 +51,11 @@
 			.details{
 				border-top: $border-very-light;
 				border-bottom:$border-very-light;				
-				@include font-size-16-phone();
-				p, li{ padding: $baseline/2 0;}
+				@include font-size-13-phone();
+				p, li{ 
+					padding: $baseline/2 0;
+					display: inline-block;
+				}
 				//p:not(:first-of-type){ border-bottom: $border-very-light; }
 
 				.date-news, .hours-news, .date{ 
@@ -72,6 +75,17 @@
 						border-left: $border-very-light;
 					}
 				}
+
+				.fichiers-associes, #attachments { 
+					width: 100%; 
+					border-top: $border-very-light;
+					li:first-of-type { 
+						border-left: none; 
+						padding-left: 0;
+						margin-left: 0;
+					}
+				}
+
 			}
 			
 		

@@ -39,7 +39,6 @@ return (
       </label>
 
       <div id="tweet-content">
-        <p>hi</p>
           
       { tweets.map(t =>
           (<article className="tweet" data-type="tweet" key={t.tweet.toString()} >	

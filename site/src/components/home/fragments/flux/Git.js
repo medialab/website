@@ -19,7 +19,6 @@ export default function git({github, lang}) {
 
       <div id="git-content">
 
-        ezgrz
         {github.map(r =>
         (<article key={r.repo} className="git" data-type="git">
           <aside className="divers">

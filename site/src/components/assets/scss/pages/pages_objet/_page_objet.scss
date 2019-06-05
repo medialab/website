@@ -40,29 +40,25 @@
 				 }
 				.hours-news::before{ content:$time; }	
 
+		
+
 			}
 
 			.fichiers-associes, #attachments{
-				width: 100%;
-				border-top: $border-very-light;
+			
 				li{ 
-					a{ 
-						// @include linktext(); 
-						//border-bottom: 2px dotted currentColor;
-						&:hover{ color: $redlab!important; }
-					}
-					/*&::after{ 
-						content: '–'; 
-						padding-left: $unite/2;
-						padding-right: $unite/2;
-					}*/
+					a:hover{ color: $redlab!important; }
+					border-left: $border-very-light;
+					padding-left: $unite;
+					margin-left: $unite;
+				}
 
-					border-right: $border-very-light;
-					padding-right: $unite/2;
-					margin-right: $unite/2;
-
-					&:last-of-type { border-right: none; }
-					
+				.files{ color: $redlab;}
+				.files a:after{
+					content: $goto;
+					font-size: 0.8em;
+					margin-left: $unite/4;
+					top: -2px;
 				}
 				
 

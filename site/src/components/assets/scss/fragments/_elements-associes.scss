@@ -42,7 +42,6 @@
 	}
 
 }
-
 .personnes-associees-block{
 	.liste_personne{
 		display: inline-block;
@@ -51,11 +50,13 @@
 
 		$personne_associees_image_width:  100px; 
 
-		[data-type="people"]{
+		li{
 			
 			display: inline-block;
 			box-sizing: border-box;
 			height: 100%;
+			padding-left: 0!important;
+			padding-right: 0!important;
 
 			a{
 				margin: $unite/4;
@@ -199,9 +200,11 @@
     .page-production, 
 	.page-news, 
 	.page-activity{
-		main{ 
+		#main-objet{ 
 			display: flex;
+			padding: 0;
 		}
+		#article-contenu{ padding-left: $margins-desktop; }
 		#article-contenu, #all-aside{ 
 			display: inline-block; 
 			vertical-align: top;
@@ -209,11 +212,11 @@
 		}
 		#all-aside{
 			background-color:  $background-grey;
-			width: calc(100% - #{$max-width-article} - #{$unite*2});
+			width: calc(100% - #{$max-width-article} - #{$margins-desktop*2});
 			height: auto;
-			margin-left: $unite*2;
+			margin-left: $margins-desktop*2;
 			// margin-top: $baseline*4;
-			padding: $baseline*2 $unite*1.5;
+			padding: $baseline*2 $margins-desktop*1.5;
 			& > aside{
 				margin-top: 0;
 				padding-top: 0;
@@ -230,4 +233,14 @@
 		}
 		
 	}
+}
+
+@media screen and (min-width: 2100px){
+
+	.page-production #all-aside, 
+	.page-news #all-aside, 
+	.page-activity #all-aside{
+		margin-right: $margins-desktop!important; 
+	}
+
 }

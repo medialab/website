@@ -20,6 +20,8 @@ services:
        - API_URL=http://localhost:7000/api/
        - STATIC_URL=http://localhost:7000/
     restart: unless-stopped
+    links:
+      - api
     ports:
       - "7000:7000"
     environment:

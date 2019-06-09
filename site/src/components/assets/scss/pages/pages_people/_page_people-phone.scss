@@ -10,12 +10,12 @@
 			margin: $height-top-bar-phone 0;
 		}
 
-		#biographie{
+		#container-biographie, #all-aside{
+			width: 100%;
+			padding: 0 $margins-phone;
+		}
 
-			#container-biographie, #all-aside{
-				width: 100%;
-				padding: 0 $margins-phone;
-			}
+		#biographie{
 
 			figure{ 
 				margin-bottom: $baseline; 

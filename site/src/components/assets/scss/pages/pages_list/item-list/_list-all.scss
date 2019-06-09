@@ -95,11 +95,10 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
                 pre{ 
                     font-size: calc((((( 100vw - #{$unite*2}) - #{$logo-column}) / 2 )  /120 ) *1.89 ); 
                 }
-                &:hover{ 
-                    max-width: calc((100% - #{$width-image-pre-listing})/2 + #{$width-image-pre-listing});
-                    @media screen and (min-width: 960px){ max-width: calc( ( 100% + #{$width-image-pre-listing/2} )/2)!important; }
-                    //max-width: calc( ( 100% + #{$width-image-pre-listing/2} )/2)!important;
+                &:hover{
                     max-width: 100%;
+                    max-width: calc((100% - #{$width-image-pre-listing})/2 + #{$width-image-pre-listing});
+                    @media screen and (min-width: 960px){ max-width: calc( 100% - (100% - #{$width-image-pre-listing})/2 )!important; }
                     transition-duration: .15s;
                     background-color: $background-site;
                 }

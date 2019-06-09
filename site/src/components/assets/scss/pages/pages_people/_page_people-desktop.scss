@@ -122,32 +122,6 @@
 			vertical-align: top;
 			z-index: 0;
 		}
-
-		#highlights{
-			width: calc(100% - #{$max-width-article} - #{$unite*2});
-			height: auto;
-			margin-left: $unite*2;
-			margin-top: $baseline*1.5;
-			padding: 0;
-			& > h1 {
-				@include font-size-27();
-			}
-		}
-
-		#highlights-list-production{
-			.bandeau .authors{
-				display: block;
-				width: 100%;
-				border-left: none!important;
-				padding-left: 0!important;
-				margin-left: 0!important;
-				border-top: $border-very-light;
-				margin-top: $baseline/2;
-				padding-top: $baseline/2;
-    			white-space: normal!important;
-			}
-		
-		}
 	}
 }
 

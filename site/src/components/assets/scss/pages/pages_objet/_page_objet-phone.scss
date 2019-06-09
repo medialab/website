@@ -78,16 +78,17 @@
 					}
 				}
 
-				.fichiers-associes, #attachments { 
-					width: 100%; 
+				p + #attachments{ margin-top: $baseline/2;} //compenser l'absence de marge
+
+				#attachments{
+					//width: 100%; 
 					border-top: $border-very-light;
-					li:first-of-type { 
-						border-left: none; 
-						padding-left: 0;
-						margin-left: 0;
+					display: block;
+					padding-top: $baseline/2;
+					li{ 
+						&:not(:last-of-type){padding: 0 0 $baseline/2 0;}
 					}
 				}
-
 			}
 			
 		

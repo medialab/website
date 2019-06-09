@@ -33,9 +33,6 @@
 
         .title, .date-news{ 
             @include text-overflow();
-            padding-left: $unite/2;
-            margin-left: $unite/2;
-            border-left: $border-very-light;
             color: $redlab;
         }
     
@@ -49,9 +46,6 @@
         .authors, 
         .hours-news{
             @include text-overflow();
-            padding-left: $unite/2;
-            margin-left: $unite/2;
-            border-left: $border-very-light;
         }
         
         .hours-news::before{ content: $time; padding-right: 5px;}  
@@ -143,6 +137,37 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
 }
 
 
+ @include for-size(desktop){
+
+    .page-people #highlights #highlights-list-activity li, 
+    .page-people #highlights #highlights-list-production li, 
+    .page-home #now li,
+    .elements-associes-block ul.liste_objet li{
+
+
+        .title, .date-news{ 
+            @include text-overflow();
+            padding-left: $unite/2;
+            margin-left: $unite/2;
+            border-left: $border-very-light;
+            color: $redlab;
+        }
+        .date-production
+        .date-news,
+        .authors, 
+        .hours-news{
+            @include text-overflow();
+            @include for-size(desktop) {
+                padding-left: $unite/2;
+                margin-left: $unite/2;
+                border-left: $border-very-light;
+            }
+        }
+    }
+}
+
+
+
 
 @include for-size(phone) {
 
@@ -165,6 +190,11 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
             width: calc(100% - #{$margins-phone*2});
             left: 0;
             margin: 0 $margins-phone;
+
+            p{
+                //display: block !important;
+                padding-right: $unite-phone/2;
+            }
         }
         
         hgroup{

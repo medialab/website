@@ -6,58 +6,49 @@
 
 	.page-people{
 
-			main{
-				margin: $height-top-bar-phone 0;
+		main{
+			margin: $height-top-bar-phone 0;
+		}
+
+		#biographie{
+
+			#container-biographie, #all-aside{
+				width: 100%;
+				padding: 0 $margins-phone;
 			}
 
-			#biographie{
+			figure{ 
+				margin-bottom: $baseline; 
+				width: calc(100% + #{$margins-phone*2});
+				left: $margins-phone*-1;
+				img{ width: 100%; }
+			}
 
-				#container-biographie, #all-aside{
-					width: 100%;
-					padding: 0 $margins-phone;
-				}
+			header{
+				@include flex-order(1);
+				min-width: 50%;
+				margin-bottom: $baseline*2.5;
 
-				figure{ 
-					margin-bottom: $baseline; 
-					width: calc(100% + #{$margins-phone*2});
-					left: $margins-phone*-1;
-					img{ width: 100%; }
-				}
+				.status{ @include font-size-20(); }
+							
+				.bandeau{ margin: $baseline*1 0 0 0; }
+				.contact{ margin: 0 0 $baseline*1 0; }
 
-				header{
-					@include flex-order(1);
-					min-width: 50%;
-					margin-bottom: $baseline*2.5;
-
-					.status{ @include font-size-20(); }
-								
-					.bandeau{ margin: $baseline*1 0 0 0; }
-					.contact{ margin: 0 0 $baseline*1 0; }
-
-					.bandeau, .contact{
-						padding: $baseline/2 0;
-						p, li{ 
-							&:not(:last-of-type){padding: 0 0 $baseline/2 0;}
-							display: block;
-						
-						}
+				.bandeau, .contact{
+					padding: $baseline/2 0;
+					p, li{ 
+						&:not(:last-of-type){padding: 0 0 $baseline/2 0;}
+						display: block;
+					
 					}
-				
 				}
-		
-				.biographie-content{
-					width: 100%;
-				}
-			}		
-			#highlights{ 
-				margin-top: $baseline*4; 
-
-				h1{
-					padding: 0 $margins-phone;
-					margin-bottom: $baseline*2;
-					@include font-size-27();
-				}
+			
 			}
+	
+			.biographie-content{
+				width: 100%;
+			}
+		}		
 	}
 }
 

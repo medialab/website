@@ -58,7 +58,7 @@ const FilterProduction = ({lang, group, types}) => {
         <div className="go-to-year">
         <input type="checkbox" id="checkbox_filtre_year" name="radio_filtre-actu" value="year" hidden />
         <label htmlFor="checkbox_filtre_year"><span><Icons icon='arrow' /></span></label>
-          <p>{IsModel('gotoyear', lang)}<span className="current-year">2019</span></p>          
+          <p>{IsModel('gotoyear', lang)}<span className="current-year"></span></p>          
           <ul>
             <li><a href="#year-2019">2019</a></li>
             <li><a href="#year-2018">2018</a></li>

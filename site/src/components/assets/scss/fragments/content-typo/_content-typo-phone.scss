@@ -21,7 +21,7 @@
 				margin: $baseline*1 0 $baseline*2 0;
 				h1{
 					@include font-size-40();
-					font-weight: 600;
+					font-weight: 400;
 					margin-bottom: $baseline*1.5;
 				}
 				h2, h3{ @include font-size-20-phone();}
@@ -91,6 +91,7 @@
 
 			iframe{
 				max-width: 100%;
+				height: auto;
 				//height: auto;
 				margin-bottom: $baseline;
 			}

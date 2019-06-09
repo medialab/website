@@ -32,43 +32,18 @@
 			.bandeau{ 
 				border-top: $border-very-light;
 				border-bottom: $border-very-light;
-				margin-top: $baseline;
-				padding-top: $baseline/2;
-				padding-bottom: $baseline/2;
 				
-				p{ 
-					display: inline-block;
-					color: $text-color-light;
-					@include font-size-16(); 
-				}
-				[data-type="role"]{
-					color: $redlab;
-				}
-				[data-type="domaine"]{ 
-					margin-right: $unite/2; 
-					display: inline-block;
-					padding-left: $unite/2;
-					margin-left: $unite/2;
-					border-left: $border-very-light;
-				}
-				[data-type="membership"]{ 
-					display: inline-block;
-					border-left: $border-very-light;
-					padding-left: $unite/2; 
-				}
+				p{  color: $text-color-light; @include font-size-16(); }
+				[data-type="role"]{ color: $redlab; }
 			}
 		
 			.contact {
 
 				border-bottom: $border-very-light;
 
-			
 				li{ 
 					@include font-size-16();
 					color: $text-color-light;
-					padding: $baseline/2 $unite/2 $baseline/2 0;
-					margin-right:  $unite/2;
-					display: inline-block;
 
 					&[data-type="Mail"]{
 						p::after {
@@ -104,19 +79,10 @@
 		width: 100%;
 		overflow: hidden;
 		position: relative;
-		margin-top: $baseline*6;
-
-		> h1{
-			margin-bottom: $baseline*2;
-			@include font-size-40();
-		}
 
 		ul:first-of-type { 
 				border-top: $border; 
 				padding-top: 1px;
 		}
 	}
-
-
-
 }

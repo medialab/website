@@ -129,7 +129,7 @@ export default function NewsDetail({lang, news}) {
 
         <div id="img-article">
           <div className="activator"></div>
-          <div className="container">{coverImage}{coverImage}</div>
+          <div className="container">{coverImage}</div>
 
         </div>
 

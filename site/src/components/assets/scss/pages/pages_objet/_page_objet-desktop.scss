@@ -77,16 +77,12 @@
 					}
 
 					.fichiers-associes, #attachments{
-					
+						display: inline-block;
 						li{ 
 							border-left: $border-very-light;
 							padding-left: $unite;
 							margin-left: $unite;
 						}
-					}
-					
-					.fichiers-associes, #attachments{
-						display: inline-block;
 					}
 
 				}

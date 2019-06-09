@@ -21,7 +21,7 @@
 		padding: 0;
 
 		& > h1 {
-			margin: $baseline $margins-phone 0 $margins-phone;
+			margin: $baseline $margins-phone $baseline*2 $margins-phone;
 			@include font-size-27();
 		}
 	

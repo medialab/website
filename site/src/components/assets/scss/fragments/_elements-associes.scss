@@ -239,6 +239,7 @@
 			width: calc(100% - #{$max-width-article} - #{$margins-desktop*2});
 			height: auto;
 			margin-left: $margins-desktop*2;
+			margin-bottom: 0;
 			// margin-top: $baseline*4;
 			padding: $baseline*2 $margins-desktop*1.5;
 			& > aside{

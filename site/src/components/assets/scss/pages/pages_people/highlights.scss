@@ -8,6 +8,11 @@
 		max-width: $max-width-article;
 		margin-bottom: $baseline*5;
 
+		& > h1 {
+			margin: $baseline $margins-phone $baseline*2 $margins-phone;
+			@include font-size-27();
+		}
+
 	}
 
 	

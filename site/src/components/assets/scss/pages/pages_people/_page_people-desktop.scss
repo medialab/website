@@ -117,6 +117,17 @@
 	.page-people #biographie{
 		display: flex;
 
+		// #container-biographie{ width: 800px!important;}
+		#highlights{ 
+			width: 500px!important;
+			margin-left: $unite!important;
+			&> h1{ 
+				@include font-size-20; 
+				margin-top: $baseline*2;
+				margin-bottom: $baseline;
+			}
+		}
+
 		#container-biographie, #highlights{
 			display: inline-block; 
 			vertical-align: top;

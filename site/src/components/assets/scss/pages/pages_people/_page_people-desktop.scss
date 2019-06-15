@@ -9,7 +9,7 @@
 		#biographie{
 			
 			#container-biographie, #highlights{ max-width: $max-width-article; }
-			
+
 			header{
 				@include flex-order(1);
 				margin-bottom: $baseline*2;
@@ -121,6 +121,11 @@
 			display: inline-block; 
 			vertical-align: top;
 			z-index: 0;
+
+		}
+		#highlights{
+			//margin-left: $unite*2;
+			padding: $baseline*2 0 $baseline*2 $margins-desktop*1.5;
 		}
 	}
 }

@@ -50,7 +50,7 @@ const FilterActivity = ({ lang, status, statuses }) => {
       
 
       <aside className="accroche-title-list">
-        <h1 class="aside-title" data-icon="activite">{IsModel('activities', lang)}</h1>
+        <h1 className="aside-title" data-icon="activite">{IsModel('activities', lang)}</h1>
         <p>{accroche}</p>
       </aside>
 
@@ -73,7 +73,7 @@ const FilterActivity = ({ lang, status, statuses }) => {
 
       <aside className="aside-filters">
 
-      <h1 class="aside-title">{filtresTitle}</h1>
+      <h1 className="aside-title">{filtresTitle}</h1>
 
       <SearchInput lang={lang} />
 

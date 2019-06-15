@@ -42,7 +42,7 @@ export function SearchInput(value) {
     return ( 
         <div id="search">
             <input type="search" id="search-input" name="q" arial-label={arial} placeholder={placeholder} />   
-            <label for="search-input"><Icons icon='search' /></label>
+            <label htmlFor="search-input"><Icons icon='search' /></label>
 
          </div>
     );

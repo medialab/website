@@ -286,7 +286,8 @@
 
 	@include for-size( desktop-1300){
 		.personnes-associees-block{
-			max-width: 1300px;
+			max-width: $max-width-article*1.25 !important;
+
 			li[data-type="people"]{
 				width: 33.333% ;
 				figure{max-height: $baseline*8; }

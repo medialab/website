@@ -1,6 +1,10 @@
 
 ///// Global 
 
+
+@media screen{
+
+
 #all-aside{ margin-bottom: 20vh; }
 #all-aside aside{ 
 
@@ -34,6 +38,8 @@
 	ul.liste_objet{
 		li:first-of-type{ border-top: $border; }
 	}
+
+}
 
 }
 .personnes-associees-block{
@@ -112,6 +118,7 @@
 	
 	}
 }
+
 
 
 

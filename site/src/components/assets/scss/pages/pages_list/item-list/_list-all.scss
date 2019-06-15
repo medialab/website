@@ -66,12 +66,16 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
           
         }
 
+        
+
         h1::first-letter{ text-transform: capitalize; }
 
         &:hover{ background-color: $background-grey; }
 
     }
 }
+
+
 
 /* DESKTOP */
 @media screen and (min-width: 840px) {
@@ -139,7 +143,7 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
                 padding-bottom: $baseline*1.5;
                  @include font-size-40; 
             }
-
+            
             .accroche{ 
                 border-left: $border-very-light; 
                 p{ @include font-size-20; }
@@ -311,4 +315,84 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
 
        }
     }
+}
+
+
+/* PRINT */
+
+@media print{
+
+
+    .page-production-list #liste .liste_objet{
+
+        border-top: 1px solid black;
+        .list-year{ display: none; }
+
+        li{
+            break-inside: avoid;
+            padding-bottom: $baseline;
+            background-color: white!important; 
+
+            h1, .authors-paragraphe{ @include font-size-20(); }
+            h1{ padding-top: $baseline;}
+
+            .publication-ref{
+                padding-top: $baseline/2;
+                @include font-size-13-phone();
+                a{ display: inline; }
+            
+            }
+
+        }
+    
+    }
+
+
+    .page-activity-list #liste .liste_objet,
+    .page-news-list #liste .liste_objet{
+
+        border-top: 1px solid black;
+
+        .list-year{ display: none; }
+        
+        li{ 
+            min-height: 86px; 
+            break-inside: avoid;
+            padding-bottom: $baseline;
+            background-color: white!important; 
+        
+        }
+        .image-pre{
+            max-width: 180px;
+            max-height: 86px;
+            overflow: hidden;
+            position: absolute; 
+            top: 0;
+            left: 0;
+            pre{ font-size: 3px };
+        }
+        .bandeau, hgroup, .accroche{ margin-left: 190px; display: block;}
+        .bandeau p, div{
+            display: inline-block;
+        }
+
+        .label-news{
+            margin-left: $unite/2;
+            padding-left: $unite/2;
+            border-left: $border-very-light;
+            margin-right: $unite/2;
+            padding-right: $unite/2;
+            border-right: $border-very-light;
+        }
+
+        h1{ 
+            @include font-size-20(); 
+            padding-top: $baseline/2;
+        }
+        .accroche-paragraphe{ 
+            @include font-size-13-phone() 
+            
+        }
+    }
+
 }

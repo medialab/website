@@ -11,6 +11,7 @@
 	z-index: 15;
 	cursor: pointer;
 	&:hover{ color: $redlab; }
+	@media print{ margin-bottom: $baseline; }
 }
 
 .body-page:not(.page-news-list ) .type_title:after{
@@ -23,6 +24,7 @@
 		display: inline-block;
 		position: absolute; 
 		right: 0;
+		@media print{ display: none; }
 	}
 
 .accroche-title-list{
@@ -33,6 +35,7 @@
 	@media screen and (min-width: 1200px){ @include font-size-20; } 
 	overflow: hidden;
 	max-width: 1325px;
+	@media print{ margin-bottom: $baseline*3; }
 }
 
 
@@ -170,4 +173,12 @@
 		
 	}
 
+}
+
+
+@media print{
+	#toggle-filtre-phone-label,
+	#radio-phone-close + label,
+	.accroche-title-list h1,
+	.aside-filters{ display: none!important; }
 }

@@ -118,7 +118,7 @@ export default function NewsDetail({lang, news}) {
 
   return (
     <>
-      <main id="main">
+      <main id="main-objet">
 
       <header id="titre-sticky">
         <div id="container-titre-sticky">

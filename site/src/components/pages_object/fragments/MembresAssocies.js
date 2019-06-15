@@ -40,10 +40,14 @@ const MembresAssocies = ({lang, people}) => {
                   <img src={p.coverImage.url} alt={lang === 'fr' ? 'Photo de profil de ' + p.firstName + p.lastName : p.firstName + p.lastName + ' profil picture'} />
                   : <RawHtml html={noImg}/> }
                 </figure>
-                <hgroup>
-                  <h3 data-level-2="role" data-type="role">{p.role && (p.role[lang] || p.role.fr || p.role.en)}</h3>
-                  <h2>{p.firstName} {p.lastName}</h2>
-                </hgroup>
+                <div className="description">
+                  <hgroup>
+                    <h1>{p.firstName} {p.lastName}</h1>
+                  </hgroup>
+                  <div className="details">
+                    <p className="role" data-level-2="role" data-type="role">{p.role && (p.role[lang] || p.role.fr || p.role.en)}</p>              
+                  </div>
+                </div>
               </Link>
             </li>
           ))}

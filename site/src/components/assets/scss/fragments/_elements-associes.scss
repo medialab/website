@@ -6,7 +6,6 @@
 
 	padding-top: $height-sticky + $baseline*2;
 	max-width: $max-width-article;
-	
 
 	& > h1{
 		margin-bottom: $baseline*2;
@@ -34,170 +33,165 @@
 	ul.liste_objet{
 		li:first-of-type{ border-top: $border; }
 	}
-
 }
+
+
+
+
+
 .personnes-associees-block{
 	.liste_personne{
-		display: inline-block;
-		max-width: $max-width-article;
-		width: 100%;
-
-		$personne_associees_image_width:  100px; 
 
 		li{
-			
-			display: inline-block;
-			box-sizing: border-box;
-			height: 100%;
-			padding-left: 0!important;
-			padding-right: 0!important;
 
 			a{
-				margin: $baseline $unite/4;
-				height: 100%;
 				display: block;
-
-				figure, hgroup {
-					display: inline-block;
-					vertical-align: top;
-				}
-				
-				figure{ 
-					filter: grayscale(1) contrast(1.25);
-					mix-blend-mode: multiply;
-					width: $personne_associees_image_width;
-					vertical-align: top;
-					position: relative;
-					width: 100%;
-					max-width: 100%;
-					overflow: hidden;
-					border-bottom: $border-very-light;
-
-					img{ 
-						width: 100%;
-						display: block;
-						top: 50%;
-						left: 50%;
-						//transform: translate(-50%);
-						//transform: translateX(-50%) translateY(-50%);
-					}
-					> div{
-						opacity: 0.1;
-						//max-height: $baseline*8;									
-					}
-				}
-
-				hgroup{
-
-					width: 100%;
-					min-height: $personne_associees_image_width*.75;
-
-					h2{
-						@include font-size-20();
-						padding: $baseline/2 0;
-					}
-
-					h3{
-						@include font-size-13();
-						color: $text-color-light;
-						width: 100%;
-						bottom: 0;
-						padding: $unite/6 0;
-						border-top: $border-very-light;
-						border-bottom: $border-very-light;
-						top: -1px;
-					}
-				}
+				width: 100%;
+				height: 100%;				
+				&:hover{ 
+					background-color: $background-site;
+					color: currentColor; 
+				}				
 			}
 
-			&:hover{
-				background: rgba($background-site, 0.8);
+			h1{
+				@include font-size-20;
+				//margin-bottom: $baseline;
+			}
 
+			figure{
+				overflow: hidden;
+				div{	// if pre
+					overflow: hidden;
+					position: absolute;
+				}
+
+			}
+
+
+			.details{
+				border-top: $border-very-light;
+				padding: $baseline/2 0;
+				@include font-size-13;
+				@include for-size(phone) { @include font-size-13-phone; }
+				
+				.role{
+					border-bottom: $border-very-light;
+					padding-bottom: $baseline/2;
+					color: $redlab;
+				}
 			}
 		}
 	}
 }
 
 
-
-///// Responsive
+////////////////
+///// Queries
+////////////////
 
 @include for-size(phone) {
+
 	#all-aside aside{
 
 		&::before { 
 		    height: calc(100% + #{$unite*2});
+		    //width: calc(100% + #{$margins-phone*2});
 		    min-height: 200px;
 		    top: $unite*2;
-		    left: $margins-phone*-1;
+		    //left: $margins-phone*-1;
 
 		}
 	    &:last-of-type::before{
 	    	height: calc(100% + 70px + 1px);
 	    }
 	}
-	.personnes-associees-block, .elements-associes-block{
-	}
-	.elements-associes-block > h1{ 
-		@include font-size-16-phone();
-		font-weight: 600;
-		span{ font-weight: 300;}
-	}
 
 	.personnes-associees-block{
+		
+		//margin: $baseline $margins-phone 0 $margins-phone ;
+
+		>h1{
+			margin: 0 $margins-phone;
+			@include font-size-20-phone;
+		}
+
+		h1{
+			@include font-size-20-phone; 
+			margin-bottom: $baseline/2;
+		}
+
 		[data-type="people"]{
 			width: 100%;
-			//width: -webkit-calc(100% - #{$unite/2});
-			//width: -moz-calc(100% - #{$unite/2});
-			//width: calc(100% - #{$unite/2});
-			//left: $unite*-.25;
 			border-bottom: $border;
-			&:first-of-type { border-top: $border; }
-			a{
-				padding-bottom: $baseline*2;
-	
-				figure {
-					height: $baseline*12;
-
-					img{ transform: translateX(-50%) translateY(-50%);}
-
-					div{
-						top: -50%;
-						pre{ font-size: 15px; }
-					}
+			&:first-of-type{ border-top: $border;}
+			
+			figure{
+				width: 100%;
+				overflow: hidden;
+				height: 25vh;
+				img{
+					width: 100%;
+					top: 50%;
+					transform: translateY(-50%);
+					filter: grayscale(1);
 				}
-				hgroup{
-					h3{
-						padding: $baseline/2 0;
-					}
-				}
-			}	
+				div{ top: -50%; }
+				pre{ font-size: 15px;}
+			}
+
+			hgroup{ 
+				padding: $baseline*1 $margins-phone; 
+			}
+
+			.details{ 
+				margin: 0 $margins-phone $baseline*1 $margins-phone;
+				border-bottom: none !important;
+
+			}
 		}
 	}
 
-		
-	ul.liste_objet{
-		li{
-			&:before{
-				content: "";
-				position: absolute;
-				width: calc(100% + #{$margins-phone*2});
-				height: 100%;
-				left: $margins-phone*-1;
+	.elements-associes-block{
 
-			}
-			&:hover:before{
-				background: rgba($background-site, 0.8);
-			}
+		& > h1{ 
+			@include font-size-20-phone();
+			font-weight: 600;
+			margin: 0 $margins-phone;
+			span{ font-weight: 300;}
 		}
-	
-		.bandeau{
-			p{ padding-right: $unite-phone; }
+		ul.liste_objet{
+			li{
+				&:before{
+					content: "";
+					position: absolute;
+					width: calc(100% + #{$margins-phone*2});
+					height: 100%;
+					left: $margins-phone*-1;
+
+				}
+				&:hover:before{
+					background: rgba($background-site, 0.8);
+				}
+
+				a{
+					padding: 0 $margins-phone;
+				
+					.bandeau{
+						p{ padding-right: $unite-phone; }
+					}				
+				}
+			}
 		}
 	}
 }
 
+
+
+
+
 @include for-size(desktop) {
+
 	#all-aside aside{
 
 	    &:first-of-type{
@@ -231,32 +225,72 @@
 	.personnes-associees-block > h1{ 
 		@include font-size-40();
 		span{ padding-right: $unite/2;}
-		// font-weight: 600;
-		// span{ font-weight: 300;}
+
 	}
 	
 	.personnes-associees-block{
-		[data-type="people"]{
+
+
+		li[data-type="people"]{
+			margin-bottom: $baseline*2;
 			width: 50%;
-			padding-bottom: $baseline*2;
+			max-width: 600px;
+			display: inline-block;
+			padding: 0 #{$unite/2} 0 0 !important;
 
-			figure {
-				max-height: $baseline*12;
+			a{
+				//padding: $unite/2;
+				@include flex();						
+			}
 
-				img{ transform: translateX(-50%) translateY(-25%); }
-				div{
-					top: 50%;
-					transform: translateY(-50%);
-					pre{ font-size: 15px; }
+			.description{
+				width: 66%;
+				vertical-align: top;
+				padding-left: $unite*1;
+
+				@include flex;
+				@include flex-direction(column);
+				@include justify-content (space-between);
+			}
+
+			figure{
+				width: 33%;
+				display: inline-block; 
+				vertical-align: top;
+				img{
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					filter: grayscale(1);
 				}
-			}		
+				pre{ font-size: 5px;}
+			}
+
+			hgroup{
+				padding: $baseline/2 0;
+				min-height: 30px; 
+			}
+
+			.details{
+				justify-self: flex-end;
+				padding-bottom: 0;
+				margin-top: $baseline;
+			}
+
+			[data-type="activite"]{
+				display: none ;
+				@include font-size-16;
+			}
 		}
-		@include for-size( desktop-1300){ 
+	}
+
+	@include for-size( desktop-1300){
+		.personnes-associees-block{
 			max-width: 1300px;
-			[data-type="people"]{ 
-				width: 33.333%;
+			li[data-type="people"]{
+				width: 33.333% ;
 				figure{max-height: $baseline*8; }
-				pre{ font-size: 10px; }
+				pre{ font-size: 5px; }
 			}
 		}
 	}
@@ -302,34 +336,12 @@
 			}
 			.liste_personne li[data-type="people"]{
 				width: 100%;
-				padding: $baseline/2 0; 
-				border-bottom: $border;
+				margin-bottom: $baseline*1;
+				pre{ font-size: 8px; }
 
-				&:first-of-type{ border-top: $border; }
-
-				figure{
-					width: 33.333%;
-					img{
-						transform: translate(-50%);
-					}					
-					pre{ font-size: 8px; }					
-				}
-				hgroup{
-					max-width: 66.666%;
-					max-width: -webkit-calc(66.666% - #{$unite});
-					max-width: -moz-calc(66.666% - #{$unite});
-					max-width: calc(66.666% - #{$unite});
-					min-height: $baseline*7.6666;
-					margin: 0 0 0 $unite;
-
-					h3{
-						border-top: none;
-						top: 0;
-					}
-				}			
+			
 			}
-		}
-		
+		}	
 	}
 }
 

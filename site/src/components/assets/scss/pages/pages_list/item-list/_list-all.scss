@@ -73,7 +73,8 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
     }
 }
 
-@include for-size(desktop) {
+/* DESKTOP */
+@media screen and (min-width: 840px) {
 
     .page-production-list #liste .liste_objet,
     .page-activity-list #liste .liste_objet,
@@ -158,6 +159,9 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
                 // Divide image width
                 .image-pre{
                     max-width: $width-image-pre-listing/2;
+                    &:hover{
+                        max-width: calc((100% - #{$width-image-pre-listing/2})/2 + #{$width-image-pre-listing/2})!important;
+                    }
                 }
                 .bandeau{
                     width: calc(100% - #{$width-image-pre-listing/2} - #{$unite});
@@ -256,8 +260,8 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
 
 
 
-
-@include for-size(phone) {
+/* PHONE */
+@media screen and (max-width: 840px) {
 
     .page-production-list #liste .liste_objet,
     .page-activity-list #liste .liste_objet,
@@ -267,24 +271,25 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
         min-height: calc(100vh - #{$height-footer} - #{$height-top-bar-phone});
 
          li{
-            width: 100vw!important;
+            width: 100%!important;
             .image-pre{
-                width: 100vw;
-                height: $baseline*4.5;
+                width: 100%!important;
+                height: $baseline*8;
+                @media screen and (max-width: 500px){ height: $baseline*4.5;  }
                 overflow: hidden;
                 border-bottom: $border-very-light;
                 pre{ 
-                    //font-size: calc((( 100vw - #{$unite*2}) /120 ) *1.89 ); 
-                    font-size: calc((100vw /120 ) *1.89 );   
+                    font-size: calc((70vw /120 ) *1.89 );
+                    @media screen and (max-width: 700px){ font-size: calc((100vw /120 ) *1.89 );  }
                 }                
             }
             .bandeau{
-                width: calc(100vw - #{$margins-phone*2});
+                width: calc(100% - #{$margins-phone*2});
                 margin: 0 $margins-phone;          
             }
 
             hgroup, .accroche{
-                width: calc(100vw - #{$margins-phone*2});
+                width: calc(100% - #{$margins-phone*2});
                 margin: 0 $margins-phone;
             }
             hgroup{ margin-top: $baseline*1; }

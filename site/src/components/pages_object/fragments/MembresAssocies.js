@@ -1,13 +1,16 @@
 import React from 'react';
 import {Link} from 'gatsby';
 import {SECTIONS} from '../../helpers/sections';
+import RawHtml from '../../helpers/RawHtml';
 
-import Img from '../../assets/images/sample/default-people.png';
+//import Img from '../../assets/images/sample/default-people.png';
 
 
 const MembresAssocies = ({lang, people}) => {
 
   const related = SECTIONS.people;
+
+  const noImg = "<pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre><pre>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</pre><pre>░░░░░░░░░░░░░░░░░░░░░░░░░▒▓▓█▓▓▓▓▓█░░░░░░░░░░░░░░░</pre><pre>░░░░░░░░░░░░░░░░░░░░░░░▓▓▓▓▓▓▓▓▓▓▓▓███░░░░░░░░░░░░</pre><pre>░░░░░░░░░░░░░░░░░░░░░▓██▓▓██▓▓▓▓██▓▓▒█▒░░░░░░░░░░░</pre><pre>░░░░░░░░░░░░░░░░░░░░▒███████▓▓████▓▓▒░░▓░░░░░░░░░░</pre><pre>░░░░░░░░░░░░░░░░░░░░████▓▓▓██████▓▓▒░░░▒▓░░░░░░░░░</pre><pre>░░░░░░░░░░░░░░░░░░░░████▓▒▒▒▒░▒▓▓▒▒░░░░▒█░░░░░░░░░</pre><pre>░░░░░░░░░░░░░░░░░░░▒████▓▒░░░▒▒░░░░░▒░░░▓░░░░░░░░░</pre><pre>░░░░░░░░░░░░░░░░░░░░████▓███████▓░░█████▒░░░░░░░░░</pre><pre>░░░░░░░░░░░░░░░░░░░░█▒██▓▓█▓▒▒▒▒▒▒▒▒▒▒▒▒█░░░░░░░░░</pre><pre>░░░░░░░░░░░░░░░░░░░░▒▓▓▓▓▒▒▒░░░░█░░▓░░░▒░░░░░░░░░░</pre><pre>░░░░░░░░░░░░░░░░░░░░▒▒▒▓▓▓▒▒▒▒▒▓░░░▒░░▒▒░░░░░░░░░░</pre><pre>░░░░░░░░░░░░░░░░░░░░░▒░▓▓▓▒▒▒▒░▒█▓▒▒▒▒▒░░░░░░░░░░░</pre><pre>░░░░░░░░░░░░░░░░░░░░░█▓▓▓▓▒▒▒▒▒▒▒▒▒░░░▒░░░░░░░░░░░</pre><pre>░░░░░░░░░░░░░░░░░░░░░░░███▒▒░▒▒████▓▓░▒░░░░░░░░░░░</pre><pre>░░░░░░░░░░░░░░░░░░░░▒█▓███▓▒▒░░▓▓▓▓░░▒░░░░░░░░░░░░</pre><pre>░░░░░░░░░░░░░░░░░░░▓▓▓▒▒▓██▓▓▒░░░░░░▒░░░░░░░░░░░░░</pre><pre>░░░░░░░░░░░░░░░░░░▓▓▓▒▒▒▒▓██▓█▓▒▓▒▒▓▒░░░░░░░░░░░░░</pre><pre>░░░░░░░░░░░░░░░░▓▓▒▓▓▒▒░▒▒▒▓█▓▓▓▓▓▓▓▒▓▓▒░░░░░░░░░░</pre><pre>░░░░░░░░░░░░░▓▓▓▒▒▒▓▓▓▒░▒▒▒▒▒▓▓▓▓▓█░░▓▓▒▒▒▒▒░░░░░░</pre>";
 
   // Si aucun fichier lié, retourne null
   if (!people || people.length === 0)
@@ -32,10 +35,14 @@ const MembresAssocies = ({lang, people}) => {
           {people.map(p => (
             <li key={p.permalink.fr} data-type="people">
               <Link to={p.permalink[lang]}>
-                <figure><img src={p.coverImage ? p.coverImage.url : Img} alt={lang === 'fr' ? 'Photo de profil de ' + p.firstName + p.lastName : p.firstName + p.lastName + ' profil picture'} /></figure>
+                <figure>
+                  {p.coverImage ?
+                  <img src={p.coverImage.url} alt={lang === 'fr' ? 'Photo de profil de ' + p.firstName + p.lastName : p.firstName + p.lastName + ' profil picture'} />
+                  : <RawHtml html={noImg}/> }
+                </figure>
                 <hgroup>
-                  <h2>{p.firstName} {p.lastName}</h2>
                   <h3 data-level-2="role" data-type="role">{p.role && (p.role[lang] || p.role.fr || p.role.en)}</h3>
+                  <h2>{p.firstName} {p.lastName}</h2>
                 </hgroup>
               </Link>
             </li>

@@ -114,6 +114,9 @@
 			li{ 
 				left: $unite*1.5;
 				text-indent: -15px;
+				width: -webkit-calc( 100% - #{$unite*1.5});
+				width: -moz-calc( 100% - #{$unite*1.5});
+				width: calc( 100% - #{$unite*1.5});
 				&:before{ content: "⁘"; left: -15px;}
 			}
  

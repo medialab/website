@@ -54,7 +54,7 @@ const FilterNews = ({lang, years}) => {
     
       <aside className="aside-filters">
 
-        <h1 class="aside-title">{filtresTitle}</h1>
+        <h1 className="aside-title">{filtresTitle}</h1>
 
         <SearchInput lang={lang}/>
 

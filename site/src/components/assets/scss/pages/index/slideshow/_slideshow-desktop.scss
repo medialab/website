@@ -155,7 +155,9 @@
 
 
 
-@media screen and (min-width: 1000px) and (max-width: 1200px){
+
+
+@media screen and (min-width: 700px) and (max-width: 1200px){
 	#slideshow{
 
 		height: $baseline*26;
@@ -170,11 +172,16 @@
 			.accroche, .authors{ @include font-size-16(); }
 		}
 		
-		.image-pre{ @include ratioImg240(700px);}
+		.image-pre{ @include ratioImg240(900px);}
 
 	}
 }
 
+
+@media screen and (min-width: 1060px) and (max-width: 1200px){
+	#slideshow .image-pre{ @include ratioImg240(700px);}
+
+}
 
 
 @media screen and (min-width: 1200px) and (max-width: 1350px){

@@ -49,7 +49,7 @@ const FiltreEquipe = ({lang}) => {
       
 
       <aside className="accroche-title-list">
-        <h1 class="aside-title" data-icon="activite">{IsModel('people', lang)}</h1>
+        <h1 className="aside-title" data-icon="activite">{IsModel('people', lang)}</h1>
         <p>{accroche}</p>
       </aside>
 
@@ -81,7 +81,7 @@ const FiltreEquipe = ({lang}) => {
 
     <aside className="aside-filters">
 
-    <h1 class="aside-title">{filtresTitle}</h1>
+    <h1 className="aside-title">{filtresTitle}</h1>
 
       <SearchInput lang={lang} type={title} />
 

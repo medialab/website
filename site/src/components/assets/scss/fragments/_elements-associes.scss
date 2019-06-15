@@ -1,6 +1,10 @@
 
 ///// Global 
 
+
+@media screen{
+
+
 #all-aside{ margin-bottom: 20vh; }
 #all-aside aside{ 
 
@@ -86,9 +90,11 @@
 }
 
 
+
 ////////////////
 ///// Queries
 ////////////////
+
 
 @include for-size(phone) {
 

@@ -43,7 +43,7 @@ const FilterProduction = ({lang, group, types}) => {
     
 
     <aside className="accroche-title-list">
-      <h1 class="aside-title" data-icon="production">Productions</h1>
+      <h1 className="aside-title" data-icon="production">Productions</h1>
       <p>{accroche}</p>
     </aside>
 
@@ -51,7 +51,7 @@ const FilterProduction = ({lang, group, types}) => {
 
     <aside className="aside-filters">
 
-        <h1 class="aside-title">{filtresTitle}</h1>
+        <h1 className="aside-title">{filtresTitle}</h1>
 
         <SearchInput lang={lang}/>
 
@@ -102,6 +102,11 @@ const FilterProduction = ({lang, group, types}) => {
 
       </aside>
 
+
+      <script dangerouslySetInnerHTML= {{ __html: ` 
+        var name = 'world';
+        console.log('Hello ' + name);
+      `}} />
   </>
 	);
 };

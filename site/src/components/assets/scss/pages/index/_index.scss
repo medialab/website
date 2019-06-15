@@ -58,13 +58,18 @@ $hunit: 4vh;
             text-align: center;
             width: 100%;
             display: block;
-            cursor: pointer;
             padding: $baseline/2 $margins-phone;
             padding-top: $baseline*0.75;
             border-bottom: $border; 
             text-transform: uppercase;
             font-weight: 500;   
             
+        }
+
+        section#agenda,
+        section#git,
+        section#tweet{
+            label{ cursor: pointer; }
         }
 
      
@@ -114,7 +119,7 @@ $hunit: 4vh;
 
 
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1036px) {
     .page-home{
         #home{
             position: fixed;
@@ -128,7 +133,7 @@ $hunit: 4vh;
     }
 }
 
-@media screen and (min-width: 1000px) and (max-width: 1200px){
+@media screen and (min-width: 1036px) and (max-width: 1200px){
     .page-home{
         #home{ width: 700px + $size-scrollbar; }
         #slideshow, #introduction, #now, footer { width: 700px; }

@@ -26,10 +26,11 @@
             }
         }
 
-        @include for-size(desktop) {
 
-           
-    
+
+       /* DESKTOP */
+        @media screen and (min-width: 840px) {
+
             hgroup, .authors{
                 left: 0 !important;
             }
@@ -59,14 +60,15 @@
             }
         }
         
-        @include for-size(phone) {
+        /* DESKTOP */
+        @media screen and (max-width: 840px) {
 
-            width: 100vw!important;
+            width: 100%!important;
 
-            .bandeau{ width: calc(100vw - #{$margins-phone*2})!important; }
+            .bandeau{ width: calc(100% - #{$margins-phone*2})!important; }
 
             hgroup, .authors{
-                width: calc(100vw - #{$margins-phone*2});
+                width: calc(100% - #{$margins-phone*2});
                 margin: 0 $margins-phone;
               
             }

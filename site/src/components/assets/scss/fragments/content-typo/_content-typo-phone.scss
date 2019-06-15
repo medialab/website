@@ -36,6 +36,12 @@
 							
 			/* Regles de Base */
 
+			iframe{
+				width: 100%;
+				margin: $baseline*1.5 0 $baseline*2 0;	
+				border: none;					
+			}
+
 			h1, h2, h3, h4, h5{
 				@include font-size-20-phone;
 				font-weight: bold;

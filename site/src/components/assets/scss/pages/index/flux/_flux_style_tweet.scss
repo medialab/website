@@ -47,12 +47,15 @@
         color: $redlab;
     }
 
+    .tweet-content + .original-tweet aside.divers{ border-top: $border-very-light; }
+
     .original-tweet{
 
-        margin-left: $unite;
+        margin-left: $unite*1.5;
 
         aside.divers{
             letter-spacing: 0.15px; // Much text, so few letter spacing
+            
             p.label{
                 border: none;
                 margin-right: 0;
@@ -63,11 +66,11 @@
         &:before{
             content: "↳";
             position: absolute;
-            left: $unite*-1;
-            top: $baseline;
-            font-size: 25px;
+            left: $unite*-1.5;
+            top: $baseline*1.5;
+            font-size: 18px;
             line-height: 0;              
-            color: rgb(235, 235, 235);
+            color: $text-color-light;
         }
     }
     .tweet-content + .orginal-tweet { border-top: $border-very-light; } // Exclude simple RT

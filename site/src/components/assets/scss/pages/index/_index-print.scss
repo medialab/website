@@ -1,0 +1,75 @@
+@media print{
+
+    #home section > h1,
+    #flux section > h1{
+        @include font-size-16(); 
+        text-transform: uppercase;
+        margin-top: $baseline*4;
+        margin-bottom: $baseline*1.5;
+    }
+
+    #home{
+        .slideshow-container{
+            .image-pre{ 
+                width: 280px;
+                height: 170px;
+                overflow: hidden;
+                position: absolute;
+                top: 0;
+                left: 0;
+                pre{ font-size: 2px; }
+            }
+            .image-pre-phone, .more{ display: none; }
+            .contenu-slide{
+                min-height: 170px;
+                margin-left: 300px;
+                margin-bottom: $baseline*2;
+                .bandeau{
+                    @include font-size-13();
+                    margin-bottom: $baseline;
+                    .type:before{ display: inline; padding: 5px;}
+                    .label-news, .subtype-production, .title{
+                        padding-left: $unite/2;
+                        margin-left: $unite/2;
+                        border-left: $border-very-light;
+                    }
+                    p{ display: inline-block;}
+                }
+                h1{ 
+                    @include font-size-16(); 
+                    font-weight: 600;
+                }
+                .date{
+                    @include font-size-16(); 
+                }
+                .accroche{
+                    @include font-size-13-phone(); 
+                    margin-top: $baseline/2;
+                }
+            }
+        }
+
+
+        #introduction p{ 
+            @include font-size-16(); 
+            &:last-of-type{ display: none;}
+        }    
+    }
+
+    #flux{
+        margin-top: $baseline*4;
+        .flux_selection_container{ display: none; }
+
+        #agenda-content{ 
+            border-top: 1px solid black;
+            article{ 
+                background-color: $background-site!important; 
+                border-bottom: 1px solid black;
+                break-inside: avoid;
+            }
+        }
+
+        #git, #tweet{ display: none;}
+       
+    }
+}

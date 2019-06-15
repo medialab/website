@@ -62,6 +62,7 @@ export default function ProductionListing({lang, list, group, types}) {
                           <p className="authors-paragraphe">
                           {p.authors}
                           </p>
+                          <p class="print publication-ref" dangerouslySetInnerHTML={{__html: p.description && p.description.fr}} />
                         </div>
                       </Link>
                     </li>

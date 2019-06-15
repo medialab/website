@@ -96,6 +96,7 @@ const TopBar = ({permalinks, lang}) => {
           <p><Link activeClassName="active" to={permalinks.fr}>FR</Link><span> | </span><Link activeClassName="active" to={permalinks.en}>EN</Link></p>
         </div>
       </div>
+      <div class="print"><p>medialab.sciencespo.fr</p></div>
     </header>
   );
 };

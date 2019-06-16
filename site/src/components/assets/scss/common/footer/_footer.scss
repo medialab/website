@@ -72,6 +72,7 @@ footer{
         width: 100vw;
         padding: $baseline*2 $margins-phone;
         border-top: $border;
+        top: -1px;
 
         @include font-size-13-phone();
 

@@ -7,7 +7,7 @@
 	.page-people{
 
 		main{
-			margin: $height-top-bar-phone 0;
+			margin-top: $height-top-bar-phone;
 		}
 
 		#container-biographie{
@@ -29,10 +29,20 @@
 				min-width: 50%;
 				margin-bottom: $baseline*2.5;
 
+				hgroup h1{ @include font-size-40; }
+
 				.status{ @include font-size-20(); }
 							
-				.bandeau{ margin: $baseline*1 0 0 0; }
-				.contact{ margin: 0 0 $baseline*1 0; }
+				.bandeau{ 
+					margin: $baseline*1 0 0 0; 
+					border-top: $border;
+				}
+
+				.contact{ border-bottom: $border;}
+				[data-type="membership"]{
+					border-top: $border-very-light;
+					padding-top: $baseline/2;
+				}
 
 				.bandeau, .contact{
 					padding: $baseline/2 0;
@@ -47,6 +57,7 @@
 	
 			.biographie-content{
 				width: 100%;
+				margin-bottom: $baseline*5;
 			}
 		}		
 	}

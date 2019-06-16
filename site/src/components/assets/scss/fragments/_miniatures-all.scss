@@ -1,13 +1,14 @@
 /* miniature all */
 
 
+
+
+
 @media screen{
     .page-people #highlights #highlights-list-activity li, 
     .page-people #highlights #highlights-list-production li, 
     .page-home #now li,
     .elements-associes-block ul.liste_objet li{
-
-        
 
         border-bottom: $border;
         position: relative;
@@ -31,17 +32,18 @@
                 vertical-align: top;
             }
 
-
-            .title, .date-news{ 
-                @include text-overflow();
-                color: $redlab;
-            }
-        
-
             .subtype-production{
                 @include text-overflow();
                 &::before{ content: ", "; }
             }
+
+            .title, 
+            .date-news{ 
+                color: $redlab;
+                &::first-letter{ text-transform: capitalize; }
+            }
+
+            .title,
             .date-production
             .date-news,
             .authors, 
@@ -49,7 +51,13 @@
                 @include text-overflow();
             }
             
-            .hours-news::before{ content: $time; padding-right: 5px;}  
+            .hours-news{
+                padding-left: $unite/2;
+                margin-left: $unite/2;
+                border-left: $border-very-light;
+                &:before{ content: $time; padding-right: 5px;}
+            }
+
         }
 
         .bandeau, hgroup{ 
@@ -59,9 +67,7 @@
         hgroup{
             display: inline-block;
             vertical-align: top;
-        
             margin-top: $baseline*-0.5;
-            // margin-top: $baseline*2;
             margin-bottom: $baseline;
             padding-right: $unite;
             
@@ -140,6 +146,10 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
 }
 
 
+
+
+
+
  @include for-size(desktop){
 
     .page-people #highlights #highlights-list-activity li, 
@@ -147,26 +157,35 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
     .page-home #now li,
     .elements-associes-block ul.liste_objet li{
 
-
-        .title, .date-news{ 
-            @include text-overflow();
-            padding-left: $unite/2;
-            margin-left: $unite/2;
-            border-left: $border-very-light;
-            color: $redlab;
-        }
-        .date-production
+        .title,
+        .date-production,
         .date-news,
         .authors, 
         .hours-news{
-            @include text-overflow();
-            @include for-size(desktop) {
-                padding-left: $unite/2;
-                margin-left: $unite/2;
-                border-left: $border-very-light;
-            }
+            padding-left: $unite/2;
+            margin-left: $unite/2;
+            border-left: $border-very-light;
+        }
+
+        .authors{ width: calc(100% - 130px); }
+    }
+
+
+    .page-people #highlights #highlights-list-activity li, 
+    .page-people #highlights #highlights-list-production li, 
+    .page-home #now li{
+        .authors{ 
+            display: block!important;
+            width: 100%!important;
+            margin-left: 0%!important;
+            padding-left: 0%!important;
+            border-left: none!important;
+            border-top: $border-very-light;
+            padding-top: $baseline/2;
+            margin-top: $baseline/2;
         }
     }
+   
 }
 
 
@@ -175,12 +194,44 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
 
 @include for-size(phone) {
 
+    .page-people #highlights #highlights-list-activity li, 
+    .page-people #highlights #highlights-list-production li, 
+    .page-home #now li,
+    .elements-associes-block ul.liste_objet li{
+
+
+        .bandeau{
+
+            .type[data-icon="news"], .type-news{ 
+                width: 100%;
+                border-bottom: $border-very-light;
+                margin-bottom: $baseline/2;
+                padding-bottom: $baseline/2;
+            }
+            .title{
+                padding-left: $unite/2;
+                margin-left: $unite/2;
+                border-left: $border-very-light;
+                width: calc(100% - 130px);
+            }
+            .authors{
+                display: block!important;
+                border-top: $border-very-light;
+                padding-top: $baseline/2;
+                margin-top: $baseline/2;
+            }
+    
+       
+
+        }
+
+           
+    }
+
+    /* if image-pre (phone) */
     .page-people #highlights #highlights-list-activity, 
     .page-people #highlights #highlights-list-production, 
     .page-home #now{
-
-    
-
         .image-pre{
             position: relative;
             width: 100%;
@@ -194,19 +245,17 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
             width: calc(100% - #{$margins-phone*2});
             left: 0;
             margin: 0 $margins-phone;
-
-            p{
-                //display: block !important;
-                padding-right: $unite-phone/2;
-            }
         }
-        
+
+        .authors{ width: 100%; }       
         
         hgroup{
             width: 100%;
             left: 0;
             padding: 0 $margins-phone;
-            h1{ @include font-size-20-phone; }
+            margin-bottom: $baseline*2.5!important;
+            margin-top: $baseline*0.5!important;
+            h1{ padding-top: 0;}
         }
         
     }

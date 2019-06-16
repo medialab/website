@@ -79,7 +79,7 @@ export default function PeopleListing({lang, list}) {
                 </hgroup>
                 <div className="details">
                   <p className="role">{lang === 'fr' ? p.role && p.role.fr : p.role && p.role.en}</p>
-                  <p className="member">{p.membership === 'member' ? 'Membre' : 'Associé'}</p>
+                  <p className="details-statut">{p.membership === 'member' ? 'Membre' : 'Associé'}</p>
                   <p className="domaine">{IsModel(p.domain, lang)}</p>
                 </div>
               </div>

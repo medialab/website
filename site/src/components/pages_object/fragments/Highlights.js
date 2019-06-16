@@ -50,9 +50,7 @@ export default function highlights({people, lang}) {
                         {p.typeLabel !== 'media' && 
                           <p className="subtype-production"> {lang === 'fr' ? <span>{p.typeLabel.fr}</span> : <span>{p.typeLabel.en}</span>}</p> 
                         }
-                        {/* { p.date && <p className="date-production">{p.date}</p> } */}
-                        {/* p.external && (p.external === true) ? <p className="external" aria-label="production exterieure au medialab" title={lang === 'fr' ? "Ce lien renvoi à une page exterieure au Medialab" : "This linked is external to Medialab"} >⎈</p> : '' */}
-                        <p className="authors">{p.authors}</p>
+                        {p.authors && <p className="authors">{p.authors}</p>}
                       </div>
                       <hgroup>
                         <h1 data-level-1="title" >{lang === 'fr' ? p.title.fr : p.title.en}</h1>

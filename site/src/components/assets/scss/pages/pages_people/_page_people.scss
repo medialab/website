@@ -45,6 +45,8 @@
 					@include font-size-16();
 					color: $text-color-light;
 
+					a{ @include linktext(); }
+
 					&[data-type="Mail"]{
 						p::after {
 							content: attr(data-domain);

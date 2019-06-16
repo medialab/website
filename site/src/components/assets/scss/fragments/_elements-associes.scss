@@ -1,26 +1,20 @@
 
-///// Global 
+// IMPORTANT: style of list element = _miniatures-all.scss
 
 
 @media screen{
 
-
-	#all-aside{ margin-bottom: 20vh; }
 	#all-aside aside{ 
 
-		padding-top: $height-sticky + $baseline*2;
 		max-width: $max-width-article;
 
-		& > h1{
-			margin-bottom: $baseline*2;
-			
-		}
+		& > h1{ margin-bottom: $baseline*2; }
 		
-		& > p{
-			@include font-size-13;
-			color: $text-color-light;
-			display: none;
-		}
+		// & > p{
+		// 	@include font-size-13;
+		// 	color: $text-color-light;
+		// 	display: none;
+		// }
 
 		// Grey Background
 		&::before {  
@@ -31,12 +25,8 @@
 			z-index: -1;
 		}
 
-		// IMPORTANT: style of list element = _miniatures-all.scss
+		ul.liste_objet li:first-of-type{ border-top: $border; }
 		
-		// ajouts
-		ul.liste_objet{
-			li:first-of-type{ border-top: $border; }
-		}
 	}
 
 }
@@ -101,14 +91,13 @@
 @include for-size(phone) {
 
 	#all-aside aside{
-
+		padding-top: $topbar-phone;
+		width: 100vw;
 		&::before { 
 		    height: calc(100% + #{$unite*2});
-		    //width: calc(100% + #{$margins-phone*2});
+		    width: 100vw;
 		    min-height: 200px;
-		    top: $unite*2;
-		    //left: $margins-phone*-1;
-
+		    top: 0;
 		}
 	    &:last-of-type::before{
 	    	height: calc(100% + 70px + 1px);
@@ -117,22 +106,22 @@
 
 	.personnes-associees-block{
 		
-		//margin: $baseline $margins-phone 0 $margins-phone ;
-
-		>h1{
+		& > h1{
+			@include font-size-27-phone();
 			margin: 0 $margins-phone;
-			@include font-size-20-phone;
 		}
 
-		h1{
-			@include font-size-20-phone; 
-			margin-bottom: $baseline/2;
-		}
-
+		
 		[data-type="people"]{
 			width: 100%;
-			border-bottom: $border;
+			// border-bottom: $border;
 			&:first-of-type{ border-top: $border;}
+			
+			h1{
+				@include font-size-20-phone; 
+				margin-bottom: $baseline/2;
+			}
+
 			
 			figure{
 				width: 100%;
@@ -155,7 +144,6 @@
 			.details{ 
 				margin: 0 $margins-phone $baseline*1 $margins-phone;
 				border-bottom: none !important;
-
 			}
 		}
 	}
@@ -163,34 +151,26 @@
 	.elements-associes-block{
 
 		& > h1{ 
-			@include font-size-20-phone();
-			font-weight: 600;
+			@include font-size-27-phone();
+			// font-weight: 600;
 			margin: 0 $margins-phone;
 			span{ font-weight: 300;}
 		}
-		ul.liste_objet{
-			li{
-				&:before{
-					content: "";
-					position: absolute;
-					width: calc(100% + #{$margins-phone*2});
-					height: 100%;
-					left: $margins-phone*-1;
 
-				}
-				&:hover:before{
-					background: rgba($background-site, 0.8);
-				}
-
-				a{
-					padding: 0 $margins-phone;
-				
-					.bandeau{
-						p{ padding-right: $unite-phone; }
-					}				
-				}
+		ul.liste_objet li{
+			&:before{
+				content: "";
+				position: absolute;
+				width: calc(100% + #{$margins-phone*2});
+				height: 100%;
+				left: $margins-phone*-1;
 			}
+			&:hover:before{ background: rgba($background-site, 0.8); }
+
+			a{ padding: 0 $margins-phone;}
+				
 		}
+		
 	}
 }
 
@@ -200,7 +180,10 @@
 
 @include for-size(desktop) {
 
+	#all-aside{ margin-bottom: 20vh; }
+
 	#all-aside aside{
+		padding-top: $height-sticky + $baseline*2;
 
 	    &:first-of-type{
 	    	margin-top: $baseline*4;

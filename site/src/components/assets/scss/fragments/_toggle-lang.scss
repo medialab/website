@@ -1,7 +1,6 @@
 .toggle-lang{ 
     @include flex-order(2); 
-    border-top: $border-very-light;
-    border-bottom: $border-very-light;
+   
     max-width:900px;
     color: $text-color-light;
 
@@ -10,7 +9,7 @@
         white-space: nowrap;
         cursor: pointer;
         &:hover{ 
-            color: $redlab;
+            color: $redlab-light;
         }
     }
 
@@ -19,12 +18,16 @@
 @include for-size(phone) {
 
     .toggle-lang{
-   
-        padding: $baseline*1 0;
-        margin-top: $baseline*2;
+        border-top: $border-very-light;
+        border-bottom: $border-very-light;
+        padding: $baseline*1 $margins-phone;
         @include font-size-16();
-    
-           
+        width: 100vh;
+        left: $margins-phone *-1;
+        span{
+            display: block;
+            margin-left: 12px;
+        }
     }
     
 }
@@ -34,17 +37,14 @@
 @include for-size(desktop) {
 
     .toggle-lang{
-   
+        border-top: $border-very-light;
+        border-bottom: $border-very-light;
         padding: $baseline*1.5 0;
         margin-top: $baseline;
         @include font-size-20();
-    
-           
     }
     
 }
-
-
 
 
 

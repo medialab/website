@@ -13,6 +13,7 @@
 	main{
 		width: 100%;
 		max-width: $max-width-main + $margins-desktop*2;
+		min-height: calc(100vh - #{$height-top-bar} - #{$height-footer});
 		padding: 0 $margins-desktop;
 		
 		.main-nav, 

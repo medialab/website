@@ -11,8 +11,10 @@
 	background-color: $background-site;
 	z-index: 9; // So gets upon fullscreen Image Process in nav
 	white-space: nowrap;
-	border-bottom: $border-very-light;
-	padding: 0 $margins-desktop;
+	@include for-size(desktop) { 
+		padding: 0 $margins-desktop;
+		border-bottom: $border-very-light; 
+	}
 
 	#container-titre-sticky{
 		max-width: $max-width-main;
@@ -38,19 +40,23 @@
 	}
 
 	p{
-		@include font-size-20();
-		
+		@include for-size(desktop) { 
+			margin-top: $baseline*2; 
+			@include font-size-20();
+		}	
+		width: 100%;
 		@media screen and (min-width: 700px) and (max-width: 1080px){ width: calc(100% - #{$logo-column-medium}); }
 		@media screen and (min-width: 1080px){width: calc(100% - #{$logo-column}); max-width: $max-width-article; }
 		max-width: $max-width-article;
-		margin-top: $baseline*2;
+		
 		[data-icon]::before{ 
 			padding-right: $unite/4;
 		}
 		.title{ 
 			display: inline-block;
 			@include text-overflow(ellipsis);	
-			width: calc(100% - 170px);
+			@media screen and (max-width: 700px){ width: calc(100% - 110px); }
+			@media screen and (min-width: 700px){ width: calc(100% - 170px); }
 			max-width:  $max-width-article - 150px;
 			vertical-align: top;
 		}
@@ -74,11 +80,39 @@
 	
 @include for-size(phone) {
 
+	.page-people main, 
+    .page-production main, 
+	.page-news main, 
+	.page-activity main{
+        // with script
+        padding-top: $height-top-bar-phone;
+        // without script
+        padding-top: $height-top-bar-phone + $baseline*3.5;
+		
+    }
+    
+
 	.page-people #titre-sticky,
 	.page-production #titre-sticky, 
 	.page-news #titre-sticky, 
 	.page-activity #titre-sticky{
-		display: none;
+		// display: none;
+		height: $baseline*3.5;
+		top: $height-top-bar-phone;
+		border-bottom: $border; 
+		padding: $baseline $margins-phone;
+		overflow: hidden;
+		z-index: 95;
+		#logo-sticky{ display: none;}
+		p{ @include font-size-16-phone(); }
+	}
+
+	.page-people #titre-sticky{
+		.link-page-team{ display: none;}
+		.personne{
+			&:before{ display: none; }
+		}
+
 	}
 
 }

@@ -35,8 +35,69 @@
 
 
 
+
+
 @include for-size(phone) {
-    .main-nav{ display: none;}
+
+    
+
+
+ 
+ 
+
+    .main-nav{ top: -250px}
+
+    #toggle-nav + label{
+        position: fixed;
+        top: $height-top-bar-phone;
+        display: block;
+        width: 100vw;
+        height: $baseline*3.5;
+        // background-color: red;
+        // opacity: 0.8;
+        z-index: 98;
+        span{
+            display: block; 
+            width: $baseline*1;
+            height: $baseline*1;
+            margin-top: $baseline*1.25;
+            position: absolute;
+            // text-align: right;
+            right: $margins-phone;
+            top: 0;
+        }  
+    }
+
+    #toggle-nav:checked + label span{ 
+        svg{
+            transform: rotate(90deg);
+            transform-origin: center center;
+        }
+        top: 2px;
+    }
+
+    #toggle-nav:checked ~ #nav-inside-article{
+        top: $height-top-bar-phone + $baseline*3.5 ;
+    }
+
+    #nav-inside-article{
+        transition: top .6s;
+        width: 100vw;
+        position: fixed;
+        left: 0;
+        z-index: 90;
+        background-color: $background-site;
+        border-bottom: $border;
+        padding: $baseline $margins-phone;
+        @include font-size-16-phone;
+        li{ margin-bottom: $baseline/2; }
+    }
+    #activities:target,
+    #productions:target,
+    #news:target{
+        padding-top: $height-top-bar-phone + $baseline*5 ;
+    }
+
 }
 
 
@@ -66,4 +127,6 @@
 
         
     }
+
+    #toggle-nav + label{ display: none;}
 }

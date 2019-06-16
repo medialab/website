@@ -6,9 +6,9 @@
 
 	.page-people{
 
-		main{
-			margin-top: $height-top-bar-phone;
-		}
+		// main{
+		// 	padding-top: $height-top-bar-phone;
+		// }
 
 		#container-biographie{
 			width: 100%;
@@ -28,6 +28,7 @@
 				@include flex-order(1);
 				min-width: 50%;
 				margin-bottom: $baseline*2.5;
+				border-bottom: $border;
 
 				hgroup h1{ @include font-size-40; }
 
@@ -38,8 +39,9 @@
 					border-top: $border;
 				}
 
-				.contact{ border-bottom: $border;}
-				[data-type="membership"]{
+				[data-type="membership"] span{
+					display: block;
+					width: 100%;
 					border-top: $border-very-light;
 					padding-top: $baseline/2;
 				}
@@ -52,6 +54,8 @@
 					
 					}
 				}
+
+				
 			
 			}
 	

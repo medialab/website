@@ -4,6 +4,7 @@ import {Link} from 'gatsby';
 
 import Highlights from './fragments/Highlights.js';
 import Logo from '../assets/svg/logo_medialab.svg';
+import { Icons } from '../helpers/Icons.js';
 
 
 import ProductionsAssociees from './fragments/ProductionsAssociees.js';
@@ -173,7 +174,7 @@ export default function PeopleDetail({lang, person}) {
   const productions = person.mainProductions; // Sync mainProd
   const activities = person.mainActivities; // Sync mainActivities
 
-  let domaine;
+  let domaine, titleLInkTeam, backTop, toggleNav;
 
   if (person.domain === 'tech' ) {
     if (lang === 'fr') {
@@ -210,10 +211,26 @@ export default function PeopleDetail({lang, person}) {
     domaine = 'Domaine';
   }
 
+  if (lang === 'fr') {
+    titleLInkTeam = 'Aller à la page de l‘équipe du Médialab';
+    backTop = 'Aller en haut de la page';
+    toggleNav = 'Afficher ou masquer la navigation dans l‘article';
+  } else {
+    titleLInkTeam = 'Go to the medialab team page';
+    backTop = 'Go to the top of page';
+    toggleNav = 'Show or hide the navigation in the article';
+  }
+
+
+  
+
   return (
     <>
 
       <main id="main">
+
+      <input type="checkbox" id="toggle-nav" name="toggle-nav" value="toggle-nav" hidden />
+      <label htmlFor="toggle-nav" title={toggleNav} arial-label={toggleNav}><span><Icons icon='arrow' /></span></label>
 
         <Nav lang={lang} data={person} order={['main', 'activities', 'productions', 'news']} />
 
@@ -221,10 +238,10 @@ export default function PeopleDetail({lang, person}) {
           <div id="container-titre-sticky">
             <div id="logo-sticky"><a href="/"><Logo /></a></div>
             <p>
-            <Link to="/people">
+            <Link to="/people" className="link-page-team" title={titleLInkTeam}>
               <span>{lang === 'fr' ? "L'équipe du Medialab" : 'Medialab team'} </span>
             </Link>
-            <span className="personne"><a href="#topbar">{person.firstName} {person.lastName}</a></span>
+            <span className="personne"><a href="#topbar" title={backTop}>{person.firstName} {person.lastName}</a></span>
           </p>
         </div>
         </header>
@@ -247,7 +264,7 @@ export default function PeopleDetail({lang, person}) {
                 </hgroup>
                 <div className="bandeau">
                 <p className="role" data-type="role">{person.role[lang]}</p>
-                    <p data-type="domaine">{lang === "fr" ? "Domaine" + String.fromCharCode(8239) +":" : "Domain:"} {person.domain}</p>
+                    {/* <p data-type="domaine">{lang === "fr" ? "Domaine" + String.fromCharCode(8239) +":" : "Domain:"} {person.domain}</p> */}
                     <p data-type="membership">{templateMembership(person)}</p>
                 </div>
 

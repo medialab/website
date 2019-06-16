@@ -1,3 +1,5 @@
+import React from 'react';
+
 export function join(children, string) {
   const result = new Array(children.length * 2 - 1);
 
@@ -17,13 +19,13 @@ export function templateMembership(person) {
 
   if (isMember) {
     if (!person.active)
-      return 'Ancien membre';
+      return (<span>Ancien membre</span>);
   }
   else {
     if (person.active)
-      return 'Membre associé';
+      return (<span>Membre associé</span>);
     else
-      return 'Ancien membre associé';
+      return (<span>Ancien membre associé</span>);
   }
 
   return ''; // membre actif

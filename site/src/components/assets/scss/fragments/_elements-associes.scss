@@ -5,38 +5,40 @@
 @media screen{
 
 
-#all-aside{ margin-bottom: 20vh; }
-#all-aside aside{ 
+	#all-aside{ margin-bottom: 20vh; }
+	#all-aside aside{ 
 
-	padding-top: $height-sticky + $baseline*2;
-	max-width: $max-width-article;
+		padding-top: $height-sticky + $baseline*2;
+		max-width: $max-width-article;
 
-	& > h1{
-		margin-bottom: $baseline*2;
+		& > h1{
+			margin-bottom: $baseline*2;
+			
+		}
 		
-	}
-	
-	& > p{
-		@include font-size-13;
-		color: $text-color-light;
-		display: none;
+		& > p{
+			@include font-size-13;
+			color: $text-color-light;
+			display: none;
+		}
+
+		// Grey Background
+		&::before {  
+			content: "";
+			position: absolute;
+			width: 100vw;
+			background-color: $background-grey;
+			z-index: -1;
+		}
+
+		// IMPORTANT: style of list element = _miniatures-all.scss
+		
+		// ajouts
+		ul.liste_objet{
+			li:first-of-type{ border-top: $border; }
+		}
 	}
 
-	// Grey Background
-	&::before {  
-	    content: "";
-		position: absolute;
-		width: 100vw;
-	    background-color: $background-grey;
-	    z-index: -1;
-	}
-
-	// IMPORTANT: style of list element = _miniatures-all.scss
-	
-	// ajouts
-	ul.liste_objet{
-		li:first-of-type{ border-top: $border; }
-	}
 }
 
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import {graphql} from 'gatsby';
 import RawHtml from '../helpers/RawHtml.js';
+import {Link} from 'gatsby';
 
 import {join} from '../helpers/helpers.js';
-import Nav from '../common/Nav.js';
 import ToggleLang from './fragments/ToggleLang.js';
 
 import Logo from '../assets/svg/logo_medialab.svg';
@@ -138,11 +138,15 @@ export default function ActivityDetail({lang, activity}) {
 
   return (
     <main id="main-objet">
-
       <header id="titre-sticky">
         <div id="container-titre-sticky">
           <div id="logo-sticky"><a href="/"><Logo /></a></div>
-          <p><a href="#topbar"><span data-icon="activite"></span><span className="title">{activity.name}</span></a></p>
+          <p>
+            <Link to="/activities">
+              <span data-icon="activite">{lang === 'fr' ? "Activité" : 'Activity'} </span>
+            </Link>
+              <span className="title"><a href="#topbar">{activity.name}</a></span>
+          </p>
         </div>
       </header>
 

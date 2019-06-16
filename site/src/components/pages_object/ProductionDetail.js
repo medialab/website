@@ -1,6 +1,7 @@
 import React from 'react';
 import {graphql} from 'gatsby';
 import RawHtml from '../helpers/RawHtml.js';
+import {Link} from 'gatsby';
 
 import Nav from '../common/Nav.js';
 import ToggleLang from './fragments/ToggleLang.js';
@@ -111,7 +112,12 @@ export default function ProductionDetail({lang, production}) {
       <header id="titre-sticky">
         <div id="container-titre-sticky">
           <div id="logo-sticky"><a href="/"><Logo /></a></div>
-          <p><a href="#topbar"><span data-icon="production"></span><span className="title">{production.title && (lang === 'fr' ? production.title.fr : production.title.en) }</span></a></p>
+          <p>
+            <Link to="/productions">
+              <span data-icon="production">Productions</span>
+            </Link>
+              <span className="title"><a href="#topbar">{production.title && (lang === 'fr' ? production.title.fr : production.title.en) }</a></span>
+          </p>
         </div>
       </header>
 

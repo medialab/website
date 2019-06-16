@@ -1,6 +1,7 @@
 import React from 'react';
 import {graphql} from 'gatsby';
 import RawHtml from '../helpers/RawHtml.js';
+import {Link} from 'gatsby';
 
 import Nav from '../common/Nav.js';
 import ToggleLang from './fragments/ToggleLang.js';
@@ -123,7 +124,12 @@ export default function NewsDetail({lang, news}) {
       <header id="titre-sticky">
         <div id="container-titre-sticky">
           <div id="logo-sticky"><a href="/"><Logo /></a></div>
-          <p><a href="#topbar"><span data-icon="news"></span>{news.title && (lang === 'fr' ? news.title.fr : news.title.en) }</a></p>
+          <p>
+            <Link to="/news">
+              <span data-icon="news">{lang === 'fr' ? "Actualité" : 'News'} </span>
+            </Link>
+              <span className="title"><a href="#topbar">{news.title && (lang === 'fr' ? news.title.fr : news.title.en) }</a></span>
+          </p>
         </div>
       </header>
 

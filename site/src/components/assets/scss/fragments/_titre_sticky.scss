@@ -39,80 +39,42 @@
 
 	p{
 		@include font-size-20();
-		white-space: nowrap;
+		
+		@media screen and (min-width: 700px) and (max-width: 1080px){ width: calc(100% - #{$logo-column-medium}); }
+		@media screen and (min-width: 1080px){width: calc(100% - #{$logo-column}); max-width: $max-width-article; }
+		max-width: $max-width-article;
 		margin-top: $baseline*2;
-		[data-icon]{ 
-			padding-right: $unite/2;
+		[data-icon]::before{ 
+			padding-right: $unite/4;
 		}
-		span{ 
+		.title{ 
 			display: inline-block;
-			vertical-align: top;			
+			@include text-overflow(ellipsis);	
+			width: calc(100% - 170px);
+			max-width:  $max-width-article - 150px;
+			vertical-align: top;
 		}
 		
 	}
 
 
-	
-	
-
-	.title{ 			
-		font-weight: bold;
-		@include text-overflow;
-		//width: 90%;	
-		max-width: $max-width-article;
-				
-	}
+	.personne:before, .title:before{		
+		content: "/";
+		padding-left: $unite/2;
+		padding-right: $unite/2;
+	} 
+	span:hover{ color: $text-color-light; }
+	.title:hover:before{ color: $text-color;}
 
 	
 }	
 
 
 
-/* Page People --------------------------------------------------------------- 
------------------------------------------------------------------------------- */
-
-.page-people #titre-sticky{
-
-	.retour{
-		padding-right: $unite/2;
-	}
-
-	.personne{
-		font-weight: 100;
-		&:before{
-			content: "/";
-			padding-left: $unite/2;
-			padding-right: $unite/2;
-		}
-	} 
-	span:hover{ 
-		color: $text-color-light;
-		&:before{ color: $text-color;}
-	}
-}
-
-
 	
-
-
-
 @include for-size(phone) {
 
-	.page-people #titre-sticky{
-		display: none;
-		@include font-size-20-phone;
-		position: relative;
-		width: 100%;
-		height: 101px;
-		background-color: white;
-		z-index: 5;
-		padding-top: 50px;
-		font-weight: bold;
-		border-bottom: $border;
-
-		span.personne{ display: none; }
-	}
-
+	.page-people #titre-sticky,
 	.page-production #titre-sticky, 
 	.page-news #titre-sticky, 
 	.page-activity #titre-sticky{

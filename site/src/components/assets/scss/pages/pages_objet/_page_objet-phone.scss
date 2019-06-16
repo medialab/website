@@ -1,9 +1,4 @@
-/////////////////////
-//////// Phone 
-/////////////////////
-
-
-@include for-size(phone) {
+@media screen and (max-width: 800px) {
 
 	.page-production, 
 	.page-news, 
@@ -19,9 +14,7 @@
 			}
 
 			#article-contenu{
-				//margin-top: $baseline*2;
-
-				// Regles typo (communes à toutes les pges de contenu) transférées dans common/pages/* 
+				// Regles typo (communes à toutes les pges de contenu) transférées dans fragments/content-typo
 			}
 
 
@@ -96,4 +89,27 @@
 		}
 	}
 
+}
+
+
+/* tablet */
+@media screen and (min-width: 700px) and (max-width: 800px) {
+
+	.page-production, 
+	.page-news, 
+	.page-activity{
+		main{ margin-top: 0;}
+		#img-article{
+			position: relative;
+			left: $margins-desktop * -1!important;
+			max-height: 280px;
+			width: 100vw;
+			overflow: hidden;
+		}
+		#article-contenu{
+			hgroup{ margin-top: $baseline*2;}
+			hgroup h3{ margin-right: 0; }
+		}
+		
+	}
 }

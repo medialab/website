@@ -1,10 +1,4 @@
-//$hack-sticky: 54px;
-
-/////////////////////
-////////  Desktop 
-/////////////////////
-
-@include for-size(desktop) {
+@media screen and (min-width: 800px) {
 
 	.page-production, 
 	.page-news, 
@@ -51,6 +45,11 @@
 			}
 			
 			#article-contenu{
+
+				hgroup{			
+					padding-top: $baseline*3;
+					padding-bottom: $baseline*2;
+				}
 				
 				.details {
 
@@ -99,28 +98,12 @@
 
 
 
-@media screen and (min-width: 700px) {
-
- 	#article-contenu {
- 		hgroup{			
-			padding-top: $baseline*3;
-			padding-bottom: $baseline*2;
-		}
-		// .article-contenu div{ margin-top: $baseline*3 }
-		
-	}
-
-}
-@media screen and (min-width: 1000px) { }
-
-@media screen and (min-width: 1080px) {}
-
 
 //////////////////
 /// image sur toute la hauteur (même si l'image est coupée)
 ////////////////
 
-@media screen and (min-width: 700px) and (max-width: 899px) and (max-aspect-ratio:1/1) { 
+@media screen and (min-width: 800px) and (max-width: 899px) and (max-aspect-ratio:1/1) { 
 	#img-article{
 		pre{ 
 	        font-size: calc(((100vw - #{$unite*2})/240)*4.5) !important; // Should change with width

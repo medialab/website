@@ -1,57 +1,51 @@
 
 @media print{
-    #nav-inside-article{ display: none!important; }
 
-    #biographie{
-        
-        header {
-            min-height: 250px;
-            figure{ 
-                width: 290px;
-                position: absolute;
-                top: 0;
-                left: 0;
-                img{ width: 100%; }
-            }
+    .page-people{
+        #nav-inside-article{ display: none!important; }
 
-            hgroup{ 
-                min-height: 0px!important; 
-                margin-left: 310px;
-                .status{ 
-                    @include font-size-16(); 
-                    margin-bottom: $baseline;
+        #biographie{
+            
+            header {
+                min-height: 250px;
+                figure{ 
+                    width: 290px;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    img{ width: 100%; }
                 }
-                h1{
-					@include font-size-40();
-					font-weight: 400;
-					margin-bottom: $baseline*1.5;
-				}
+
+                hgroup{ 
+                    min-height: 0px!important; 
+                    margin-left: 310px;
+                    .status{ 
+                        @include font-size-16(); 
+                        margin-bottom: $baseline;
+                    }
+                    h1{
+                        @include font-size-40();
+                        font-weight: 400;
+                        margin-bottom: $baseline*1.5;
+                    }
+                }
+                .bandeau, .contact{
+                    @include font-size-13();
+                    margin-left: 310px;
+                    border: none!important;
+                    margin-bottom: $baseline;
+                    [data-type="domaine"]{ display: none!important; }
+                }
             }
-            .bandeau, .contact{
-                @include font-size-13();
-                margin-left: 310px;
-                border: none!important;
-                margin-bottom: $baseline;
-                [data-type="domaine"]{ display: none!important; }
+        
+
+            .biographie-content{
+                max-width: 150mm;
+                margin: 0 auto;
             }
         }
-       
-
-        .biographie-content{
-            max-width: 150mm;
-            margin: 0 auto;
-        }
-    }
 
 
-    #all-aside aside{
-        max-width: 150mm;
-        margin: 0 auto;
-        & > h1{
-            @include font-size-20();
-            margin-top: $baseline*5;
-            margin-bottom: $baseline;
-            border-bottom: $border;
-        }
+        #all-aside aside > h1{ margin-top: $baseline*5!important;  }
     }
 }

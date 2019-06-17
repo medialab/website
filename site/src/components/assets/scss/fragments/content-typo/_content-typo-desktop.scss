@@ -162,13 +162,43 @@
 				}
 
 				&.serie-pair + p{ display: none; }
-				
-				&.vignette-block, &.vignette-inline-paysage{
-					
-					transition: .25s ease-in-out;						
-					cursor: pointer;
 
-					&:hover img{ }
+				&.illustration{
+					width: 100%;
+					display: inline-block;
+					padding: $baseline*3 0 $baseline*6 $unite; 
+				}
+			}
+
+			.vignette{
+				
+				text-align: center;
+				display: block;
+				padding: $baseline*3 $unite $baseline*6 $unite;
+				vertical-align: middle;		
+
+				& .container_vignette-inline-paysage{
+
+					@include for-size(desktop-900){
+						width: 50%;
+						padding: $baseline*3 0 $baseline*6 $unite;
+					}
+
+					@include for-size(desktop-1200){
+						width: 33%;
+					}
+				}
+						
+				label{
+					position: absolute;
+					height: 300px;
+					width: 300px;
+					display: block;
+					left: 50%;
+					transform: translateX(-50%);
+					cursor: pointer;
+					z-index: 10;
+					opacity: 0;
 
 					&:after{
 						content: "🔎\00FE0E";
@@ -182,51 +212,78 @@
 						transition: 0.1s 0s ease-in-out;
 						line-height: 0;
 					}
+
 					&:hover:after{
 						opacity: 1;
 						transition: .25s ease-in-out;
-					}				
-				}
-				&.vignette-block{
-					text-align: center;
-					display: block;
-					padding: $baseline*3 $unite $baseline*6 $unite;
-
-					img{
-						max-width: 300px;
-						max-height: 300px;
+						transition: none;	
 					}
 				}
 
-				&.vignette-inline-paysage{
-					text-align: center;
-					display: inline-block;
-					padding: $baseline*3 0 $baseline*6 0;
-					width: 100%;
-					vertical-align: middle;
+				img{
+					max-width: 300px;
+					max-height: 300px;
+				}
 
-					@include for-size(desktop-900){
-						width: 50%;
-						padding: $baseline*3 0 $baseline*6 $unite;
+				input:checked {
+
+					& + label{
+						z-index: 100;
+						width: 100vw;
+						height: 100vh;
+						position: fixed;
+						top: 0;
+
+						//background: $background-site;
+						opacity: 1;
+
+						&:after{
+							content: "✕\00FE0E";
+							top: $baseline*2;
+							left: calc(100vw - #{$unite*2});
+							opacity: 1;
+							color: $text-color;
+							transition: none;						
+
+
+						}					
 					}
 
-					@include for-size(desktop-1200){
-						width: 33%;
-					}
+					& ~ figure{
+
+						z-index: 99;
+						position: fixed;
+						width: 100vw;
+						height: 100vh;
+						top: 0;
+						left: 0;
+						text-align: center;
+
+						transition: .25s ease-in-out;						
 
 
-					img{
-						max-width: 300px;
-						max-height: 300px;
+						&::before{
+							content: "";
+							width: 100vw;
+							height: 100vh;
+							top: 0;
+							left: 0;
+							position: absolute;
+							background: $background-site;
+							opacity: .6;
+						}	
+
+						img{
+							width: auto !important;
+							max-width: 80vw;
+							max-height: 80vh;
+							top: 50%;
+							transform: translateY(-50%);							
+						}
+
 					}
 				}
-				&.vignette-inline-paysage + p{ display: none;}
-
-				&.illustration{
-					width: 100%;
-					display: inline-block;
-					padding: $baseline*3 0 $baseline*6 $unite; 
-				}
+				.vignette + p{ display: none;}
 			}
 		}	
 	}

@@ -153,9 +153,9 @@
 		ul{ max-width: 100vw; }
 
 		li[data-type="people"]{
-			width: -webkit-calc(100vw - #{$margins-phone*2} - #{$unite/2}) ;
-			width: -moz-calc(100vw - #{$margins-phone*2} - #{$unite/2}) ;
-			width: calc(100vw - #{$margins-phone*2} - #{$unite/2}) ;
+			//width: -webkit-calc(100vw - #{$margins-phone*2} - #{$unite/2}) ;
+			//width: -moz-calc(100vw - #{$margins-phone*2} - #{$unite/2}) ;
+			//width: calc(100vw - #{$margins-phone*2} - #{$unite/2}) ;
 			padding-right: $margins-phone;
 			padding-left: $margins-phone;
 			

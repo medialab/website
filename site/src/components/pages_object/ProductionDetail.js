@@ -107,7 +107,7 @@ export default function ProductionDetail({lang, production}) {
 
   return (
     <>
-      <main id="main">
+      <main id="main-objet">
 
       <header id="titre-sticky">
         <div id="container-titre-sticky">

@@ -69,18 +69,18 @@
 						padding-top: $baseline*1;
 					}
 
-					.date-news, .hours-news, .date{ 
-						margin-left: $unite;
-						padding-left: $unite;
-						border-left: $border-very-light;
+					.type-objet, .date-news, .hours-news, .date{ 
+						margin-right: $unite;
+						padding-right: $unite;
+						border-right: $border-very-light;
 					}
 
 					.fichiers-associes, #attachments{
 						display: inline-block;
-						li{ 
-							border-left: $border-very-light;
-							padding-left: $unite;
-							margin-left: $unite;
+						li:not(:last-of-type){ 
+							border-right: $border-very-light;
+							padding-right: $unite;
+							margin-right: $unite;
 						}
 					}
 

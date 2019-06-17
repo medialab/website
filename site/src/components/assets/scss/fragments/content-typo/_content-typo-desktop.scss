@@ -125,117 +125,44 @@
 			/////////////////////////
 
 			figure{
-				
-				// default
-				img{
-					height: auto;
-					max-height: 80vh;
-					width: auto;
-					max-width: 100%;
-				}
 
 				figcaption{
 					@include font-size-13;
-					color: $text-color-light;
-					margin-top: $baseline*1;
 				}
 
-				&.figure-logo{
-					display: inline-block;
-					max-width: 20% !important;
-					width: auto;
-				    vertical-align: middle;
-					text-align: center;
-				    padding: $baseline $unite*2 $baseline 0;
-					margin: 0;
-
-					img{
-						max-width: $unite*4 !important;
-					    max-height: $baseline*6;						
+				&.figure-logo{ }
+				&.serie-pair{
+					@include for-size(desktop-1000){
+						width: 33.3333%;
 					}
 				}
-				&.serie-pair{
-					display: inline-block;
-					padding: $baseline 0 $baseline $unite;
-					width: 33%;
-
-				}
-
-				&.serie-pair + p{ display: none; }
-
-				&.illustration{
-					width: 100%;
-					display: inline-block;
-					padding: $baseline*3 0 $baseline*6 $unite; 
-				}
+				&.illustration{	}
 			}
 
 			.vignette{
 				
-				text-align: center;
-				display: block;
-				padding: $baseline*3 $unite $baseline*6 $unite;
-				vertical-align: middle;		
+				margin: $baseline*3 $unite $baseline*6 $unite;
+				
+				&.container_vignette-inline{			 
 
-				& .container_vignette-inline-paysage{
-
-					@include for-size(desktop-900){
+					@include for-size(desktop-1000){
 						width: 50%;
-						padding: $baseline*3 0 $baseline*6 $unite;
+						width: -moz-calc( 50% - #{$unite*2} - 2px);
+						width: -webkit-calc( 50% - #{$unite*2} - 2px);
+						width: calc( 50% - #{$unite*2} - 2px);
 					}
 
-					@include for-size(desktop-1200){
+					/*@include for-size(desktop-1200){
 						width: 33%;
-					}
-				}
-						
-				label{
-					position: absolute;
-					height: 300px;
-					width: 300px;
-					display: block;
-					left: 50%;
-					transform: translateX(-50%);
-					cursor: pointer;
-					z-index: 10;
-					opacity: 0;
-
-					&:after{
-						content: "🔎\00FE0E";
-						top: 50%;
-						left: 50%;
-						transform: translate(-50%);
-						position: absolute;
-						opacity: 0;
-						font-size: 30px;
-						color: $redlab;						
-						transition: 0.1s 0s ease-in-out;
-						line-height: 0;
-					}
-
-					&:hover:after{
-						opacity: 1;
-						transition: .25s ease-in-out;
-						transition: none;	
-					}
-				}
-
-				img{
-					max-width: 300px;
-					max-height: 300px;
+						width: -moz-calc( 33% - #{$unite*2});
+						width: -webkit-calc( 33% - #{$unite*2});
+						width: calc( 33% - #{$unite*2});						
+					}*/
 				}
 
 				input:checked {
 
 					& + label{
-						z-index: 100;
-						width: 100vw;
-						height: 100vh;
-						position: fixed;
-						top: 0;
-
-						//background: $background-site;
-						opacity: 1;
 
 						&:after{
 							content: "✕\00FE0E";
@@ -248,42 +175,7 @@
 
 						}					
 					}
-
-					& ~ figure{
-
-						z-index: 99;
-						position: fixed;
-						width: 100vw;
-						height: 100vh;
-						top: 0;
-						left: 0;
-						text-align: center;
-
-						transition: .25s ease-in-out;						
-
-
-						&::before{
-							content: "";
-							width: 100vw;
-							height: 100vh;
-							top: 0;
-							left: 0;
-							position: absolute;
-							background: $background-site;
-							opacity: .6;
-						}	
-
-						img{
-							width: auto !important;
-							max-width: 80vw;
-							max-height: 80vh;
-							top: 50%;
-							transform: translateY(-50%);							
-						}
-
-					}
 				}
-				.vignette + p{ display: none;}
 			}
 		}	
 	}

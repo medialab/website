@@ -108,78 +108,25 @@
 			///        Image 	/////
 			/////////////////////////
 
-			figure{
-								
-				figcaption{
-					@include font-size-13;
-					color: $text-color-light;
-					margin-top: $baseline*1;
-				}
+			.vignette{
 
-				&.figure-logo{
-					display: inline-block;
-					max-width: 33% !important;
-					width: auto;
-				    vertical-align: middle;
-					text-align: center;
-				    padding: $baseline $unite*1.5 $baseline 0;
-					margin: 0;
+				input:checked {
 
-					img{
-						max-width: $unite*4 !important;
-					    max-height: $baseline*6;						
+					& + label{
+
+						&:after{
+							content: "✕\00FE0E";
+							top: $baseline*2;
+							left: calc(100vw - #{$unite*2});
+							opacity: 1;
+							color: $text-color;
+							transition: none;						
+
+
+						}					
 					}
 				}
-				&.serie-pair{
-					display: inline-block;
-					padding: $baseline $unite $baseline 0;
-					width: 50%;
-
-				}
-
-				&.serie-pair + p{ display: none; }
-				
-				&.vignette-block, &.vignette-inline-paysage{
-					
-					transition: .25s ease-in-out;						
-					cursor: pointer;
-
-					&:after{
-						content: "🔎\00FE0E";
-						top: 50%;
-						left: 50%;
-						transform: translate(-50%);
-						position: absolute;
-						opacity: 0;
-						font-size: 30px;
-						color: $redlab;
-						transition: 0.1s 0s ease-in-out;
-						line-height: 0;
-					}
-					&:hover:after{
-						opacity: 1;
-						transition: .25s ease-in-out;
-					}				
-				}
-				&.vignette-block, &.vignette-inline-paysage{
-					text-align: center;
-					display: block;
-					padding: $baseline*2 $unite $baseline*2 $unite;
-
-					img{
-						max-width: 75%;
-						max-height: 66vh;
-					}
-				}
-
-				&.vignette-inline-paysage + p{ display: none;}
-
-				&.illustration{
-					width: 100%;
-					display: inline-block;
-					padding: $baseline*2 0 $baseline*4 0; 
-				}			
-			}
+			}			
 		}
 	}
 }

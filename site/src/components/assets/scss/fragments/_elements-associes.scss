@@ -69,7 +69,11 @@
 			max-width: $unite*6;
 			display: inline-block; 
 			vertical-align: top;
-			&:not(.noImg){height: 100%;}
+			&:not(.noImg){
+				height: 100%;
+				@include flex;
+				@include align-items(center);
+			}
 
 			img{
 				width: 100%;

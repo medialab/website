@@ -32,7 +32,7 @@ const FichiersAssocies = ({lang, attachments}) => {
                 {file.type === 'url' &&
                   <a 
                     title={ lang === 'fr' ? "Lien vers le site " + file.value : "Link to "  + file.value } 
-                    href={withPrefix(file.value)} target="_blank" rel="noopener">{file.label}</a>
+                    href={file.value} target="_blank" rel="noopener">{file.label}</a>
                 }
                 {file.type === 'label' &&
                   <span>{file.label}</span>

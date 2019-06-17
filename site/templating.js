@@ -25,7 +25,7 @@ function getImageClassName(format, width, height, even) {
 
   if (
     format === 'vignette-block' ||
-    format === 'illustration-block' ||
+    format === 'illustration' ||
     format === 'figure-logo'
   )
     return format;
@@ -153,8 +153,9 @@ function processHtml(pathPrefix, html) {
               format = $img.data('format'),
               credits = $img.data('credits') || '';
 
-        if (previousImageIndex !== i - 1)
+        if (previousImageIndex !== i - 1){
           evenImage = true;
+        }
 
         const className = getImageClassName(
           format,
@@ -166,9 +167,22 @@ function processHtml(pathPrefix, html) {
         evenImage = !evenImage;
         previousImageIndex = i;
 
-        output += `<figure class="${className}">
+        if( format === 'vignette-block' ||
+          format === 'vignette-inline-paysage' ||
+          format === 'vignette-inline-portrait' ||
+          format === 'vignette-inline'){
+            output += `
+              <div class="vignette container_${format}">
+                <input type="checkbox" id="focus-figure-${i}" name="focus-figure" hidden />
+                <label for="focus-figure-${i}" title="" arial-label=""}></label>
+                <figure class="${className}">
+                <img src="${withPrefix(src)}" alt="${credits}"/>`
+                + (credits !== '' ? `<figcaption>${credits}</figcaption></figure></div>` : '</figure></div>');
+        }
+        else { output += `<figure class="${className}">
           <img src="${withPrefix(src)}" alt="${credits}"/>`
           + (credits !== '' ? `<figcaption>${credits}</figcaption></figure>` : '</figure>');
+        }
       }
 
       // Iframes

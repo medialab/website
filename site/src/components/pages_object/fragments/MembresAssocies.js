@@ -35,7 +35,7 @@ const MembresAssocies = ({lang, people}) => {
           {people.map(p => (
             <li key={p.permalink.fr} data-type="people">
               <Link to={p.permalink[lang]}>
-                <figure>
+                <figure className={p.coverImage ? "" : "noImg"}>
                   {p.coverImage ?
                   <img src={p.coverImage.url} alt={lang === 'fr' ? 'Photo de profil de ' + p.firstName + p.lastName : p.firstName + p.lastName + ' profil picture'} />
                   : <RawHtml html={noImg}/> }

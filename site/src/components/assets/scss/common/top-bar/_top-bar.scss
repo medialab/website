@@ -30,3 +30,14 @@
 
 }
 
+body .page-news-list #topbar li[data-type="actualite"]{ font-weight: bold; }
+body .page-production-list #topbar li[data-type="production"]{ font-weight: bold; }
+body .page-activity-list #topbar li[data-type="activite"]{ font-weight: bold;}
+body .page-about #topbar ul#nav-institution li:first-of-type{ font-weight: bold; }
+body .page-people-list #topbar ul#nav-institution li:last-of-type{ font-weight: bold; }
+
+// A definir si on surligne aussi les catégories de pages si on est sur une page objet
+body .page-news #topbar li[data-type="actualite"]{ font-weight: bold; }
+body .page-production #topbar li[data-type="production"]{ font-weight: bold; }
+body .page-activity #topbar li[data-type="activite"]{ font-weight: bold;}
+body .page-people #topbar ul#nav-institution li:last-of-type{ font-weight: bold; }

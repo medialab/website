@@ -14,13 +14,21 @@
         z-index: -1;
     }
 
-    ul.liste_objet li:first-of-type{ border-top: $border; }
+    ul.list li:first-of-type{ border-top: $border; }
 
-    .label-news{
-        //position: absolute; 
-        //right: 0;
-        //text-align: right;
-        padding-left: $unite/2;
+    .bandeau{
+        .label-news{
+            //position: absolute; 
+            //right: 0;
+            //text-align: right;
+            padding-left: $unite/2;
+        }
+        span.day-num, 
+        span.day-name,
+        span.startDate_sameMonth,
+        span.between{ 
+            display: none !important;
+        }
     }
     
 }
@@ -65,11 +73,14 @@
 @include for-size(desktop) {
 
     .page-archive{
+        
+        width: 100%;
 
         #topbar{position: fixed !important;}
 
         section#archive{ 
-            margin: $height-top-bar 0 $baseline*2 0;
+            margin: #{$height-top-bar + $baseline*2} auto $baseline*2 auto;
+            display: block;
 
             .introduction{
                 @include font-size-20;
@@ -80,6 +91,13 @@
 
                 & > h1{ 
                     margin: $baseline 0 $baseline*2 0;
+                }
+
+                li.item{
+
+                    h1{
+                        //@include font-size-16;
+                    }
                 }
             }
         }

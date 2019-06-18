@@ -31,7 +31,7 @@ export default function Archive({lang, activities, news, productions}) {
 							<p className="label-news">{n.label && (lang === 'fr' ? <span>{n.label.fr}</span> : <span>{n.label.en}</span>)}</p>
 							
 							<DateNews startDate={n.startDate} endDate={n.endDate} lang={lang} />
-							<TimeNews startDate={n.startDate} endDate={n.endDate} />
+							{/*<TimeNews startDate={n.startDate} endDate={n.endDate} />*/}
 
 
 		                </div>

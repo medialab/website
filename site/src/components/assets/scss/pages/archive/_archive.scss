@@ -1,33 +1,87 @@
-/* all */
+.page-archive{ 
 
-#liste{
+    max-width: $max-width-article;
+    max-width: 100%;
+
+    & > h1{ margin-bottom: $baseline*2; }
+ 
+    // Grey Background
+    &::before {  
+        content: "";
+        position: absolute;
+        width: 100vw;
+        background-color: $background-grey;
+        z-index: -1;
+    }
+
+    ul.liste_objet li:first-of-type{ border-top: $border; }
+
+    .label-news{
+        //position: absolute; 
+        //right: 0;
+        //text-align: right;
+        padding-left: $unite/2;
+    }
     
-    position: relative;
+}
 
-    #liste_objet{
 
-        ////    Liste des liens
 
-        [data-item]{ // S'applique aux items des troix catégorie
-            border-top: $border;
-            
-            &:hover{
-                transition: .25s ease;
-                border-top-color: $redlab;
 
-                &+ [data-item] {
-                    border-top-color: $redlab;
+
+@include for-size(phone) {
+    .page-archive{ 
+
+        section#archive{ margin: $baseline*2 $margins-phone; }
+
+        section.type{
+
+            & > h1{ 
+                @include font-size-27-phone();
+                // font-weight: 600;
+                margin: 0 $margins-phone;
+                span{ font-weight: 300;}
+            }
+
+            ul.liste_objet li{
+                &:before{
+                    content: "";
+                    position: absolute;
+                    width: calc(100% + #{$margins-phone*2});
+                    height: 100%;
+                    left: $margins-phone*-1;
                 }
+                &:hover:before{ background: rgba($background-site, 0.8); }
+
+                a{ padding: 0 $margins-phone;}
+                    
             }
+            
         }
-
-        @for $i from 1 through 400 {
-
-            [data-item="#{$i}"]:hover ~ [data-item="#{$i + 1}"],
-            [data-item="#{$i}"]:active ~ [data-item="#{$i + 1}"]{ 
-                border-top-color: $redlab;
-            }
-        }  
     }
 }
 
+
+@include for-size(desktop) {
+
+    .page-archive{
+
+        #topbar{position: fixed !important;}
+
+        section#archive{ 
+            margin: $height-top-bar 0 $baseline*2 0;
+
+            .introduction{
+                @include font-size-20;
+                margin: $baseline 0 ;
+                max-width: $max-width-article;
+            }
+            section.type{
+
+                & > h1{ 
+                    margin: $baseline 0 $baseline*2 0;
+                }
+            }
+        }
+    }
+}

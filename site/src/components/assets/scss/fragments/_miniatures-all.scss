@@ -8,7 +8,8 @@
     .page-people #highlights #highlights-list-activity li, 
     .page-people #highlights #highlights-list-production li, 
     .page-home #now li,
-    .elements-associes-block ul.liste_objet li{
+    .elements-associes-block ul.liste_objet li,
+    .page-archive ul.list li{
 
         border-bottom: $border;
         position: relative;
@@ -58,6 +59,15 @@
                 &:before{ content: $time; padding-right: 5px;}
             }
 
+            .external{
+                color: $text-color-light;
+                display: block;
+                font-size: 13px;
+                padding: 5px;
+                position: absolute;
+                top: 0;
+                right: 0;                
+            }            
         }
 
         .bandeau, hgroup{ 
@@ -155,7 +165,8 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
     .page-people #highlights #highlights-list-activity li, 
     .page-people #highlights #highlights-list-production li, 
     .page-home #now li,
-    .elements-associes-block ul.liste_objet li{
+    .elements-associes-block ul.liste_objet li,
+    .page-archive ul.list li{
 
         .title,
         .date-production,
@@ -173,7 +184,8 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
 
     .page-people #highlights #highlights-list-activity li, 
     .page-people #highlights #highlights-list-production li, 
-    .page-home #now li{
+    .page-home #now li,
+    .page-archive ul.list li{
         .authors{ 
             display: block!important;
             width: 100%!important;
@@ -197,7 +209,8 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
     .page-people #highlights #highlights-list-activity li, 
     .page-people #highlights #highlights-list-production li, 
     .page-home #now li,
-    .elements-associes-block ul.liste_objet li{
+    .elements-associes-block ul.liste_objet li,
+    .page-archive ul.list li{
 
 
         .bandeau{

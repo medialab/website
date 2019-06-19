@@ -107,9 +107,9 @@ export default function ProductionDetail({lang, production}) {
 
   return (
     <>
-      <main id="main-objet">
+      <main id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " : " page content" }>
 
-      <header id="titre-sticky">
+      <header id="titre-sticky" aria-hidden="true">
         <div id="container-titre-sticky">
           <div id="logo-sticky"><a href="/"><Logo /></a></div>
           <p>

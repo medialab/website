@@ -31,7 +31,7 @@ export default function ProductionListing({lang, list, group, types}) {
 
     return (
       <>
-      <main>
+      <main role="main" aria-describedby="aria-accroche">
         <FilterProduction lang={lang} group={group} types={types} />
         <section className="main-filters">
         </section>

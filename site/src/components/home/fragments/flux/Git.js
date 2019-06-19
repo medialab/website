@@ -20,13 +20,13 @@ export default function git({github, lang}) {
       <div id="git-content">
 
         {github.map(r =>
-        (<article key={r.repo} className="git" data-type="git">
+        (<article key={r.repo} className="git" data-type="git" aria-label={ lang === "fr" ? "Repertoire Git : " + r.repo : r.repo + " Git repository"}>
           <aside className="divers">
             <p className="label" data-icon="git">Git</p>
             <p className="language">{r.language}</p>       
           </aside>
 
-          <a href={r.url} target="_blank" rel="noopener noreferrer">
+          <a href={r.url} target="_blank" rel="noopener noreferrer" aria-label={ lang === "fr" ? "Aller sur la page github de ce projet" : "Go to this project github page"}>
             <h1 data-level-1="title">
               {r.repo}
             </h1>

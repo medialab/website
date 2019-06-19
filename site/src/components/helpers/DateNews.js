@@ -19,7 +19,7 @@ function DateNews(props) {
   const startDateYear = formatDate(startDate, 'yyyy', {locale});
   const startDateDayMonth = formatDate(startDate, 'd MMMM', {locale});
 
-  const iconBetween = <span className="between">⇥</span>;
+  const iconBetween = <span className="between" aria-label={lang === "fr" ? "jusqu'au" : "to" } >⇥</span>;
 
   if (props.endDate) {
       const endDate = parseISO(props.endDate);
@@ -30,25 +30,25 @@ function DateNews(props) {
 
       // same date
       if (differenceInCalendarDays(startDate, endDate) === 0) {
-          dateNews = <p className="date-news"><span className="startDate" ><span className="day-name">{startDateDayName}</span> <span className="day-num">{startDateDay }</span> <span className="month-name">{startDateMonthName}</span> <span className="year">{startDateYear}</span></span></p>;
+          dateNews = <p className="date-news"><time datetime={formatDate(startDate, 'yyyy-MM-d')}><span className="startDate" ><span className="day-name">{startDateDayName}</span> <span className="day-num">{startDateDay }</span> <span className="month-name">{startDateMonthName}</span> <span className="year">{startDateYear}</span></span></time></p>;
       }
       else {
           if (isSameYear(startDate, endDate)) {
               if (isSameMonth(startDate, endDate)) {
-                  dateNews = <p className="date-news"><span className="startDate startDate_sameMonth" >{startDateDay} </span> {iconBetween} <span className="endDate endDate_sameMonth" ><span className="day-num">{endDateDay }</span> <span className="month-name">{endDateMonthName}</span> <span className="year">{endDateYear}</span></span></p>;
+                  dateNews = <p className="date-news" aria-label="date"><time datetime={formatDate(startDate, 'yyyy-MM-d')}><span className="startDate startDate_sameMonth" >{startDateDay} </span></time> {iconBetween} <time datetime={formatDate(endDate, 'yyyy-MM-d')}><span className="endDate endDate_sameMonth" ><span className="day-num">{endDateDay }</span> <span className="month-name">{endDateMonthName}</span> <span className="year">{endDateYear}</span></span></time></p>;
               }
               else {
-                  dateNews = <p className="date-news differentMonth"><span className="startDate" ><span className="day-num">{startDateDay }</span> <span className="month-name">{startDateMonthName}</span></span> {iconBetween} <span className="endDate"><span className="day-num">{endDateDay }</span> <span className="month-name">{endDateMonthName}</span> <span className="year">{endDateYear}</span></span></p>;
+                  dateNews = <p className="date-news differentMonth" aria-label="date"><time datetime={formatDate(startDate, 'yyyy-MM-d')}><span className="startDate" ><span className="day-num">{startDateDay }</span> <span className="month-name">{startDateMonthName}</span></span></time> {iconBetween} <time datetime={formatDate(endDate, 'yyyy-MM-d')}><span className="endDate"><span className="day-num">{endDateDay }</span> <span className="month-name">{endDateMonthName}</span> <span className="year">{endDateYear}</span></span></time></p>;
               }
           }
           // different year
           else {
-              dateNews = <p className="date-news differentYear"><span className="startDate" ><span className="day-num">{startDateDay }</span> <span className="month-name">{startDateMonthName}</span> <span className="year">{startDateYear}</span></span> {iconBetween} <span className="endDate" ><span className="day-num">{endDateDay }</span> <span className="month-name">{endDateMonthName}</span>  <span className="year">{endDateYear}</span></span></p>;
+              dateNews = <p className="date-news differentYear" aria-label="date"><time datetime={formatDate(startDate, 'yyyy-MM-d')}><span className="startDate" ><span className="day-num">{startDateDay }</span> <span className="month-name">{startDateMonthName}</span> <span className="year">{startDateYear}</span></span></time> {iconBetween} <time datetime={formatDate(endDate, 'yyyy-MM-d')}><span className="endDate" ><span className="day-num">{endDateDay }</span> <span className="month-name">{endDateMonthName}</span>  <span className="year">{endDateYear}</span></span></time></p>;
           }
       }
   }
   else {
-      dateNews = <p className="date-news"><span className="startDate"><span className="day-name">{startDateDayName}</span> <span className="day-num">{startDateDay }</span> <span className="month-name">{startDateMonthName}</span> <span className="year">{startDateYear}</span></span></p>;
+      dateNews = <p className="date-news" aria-label="date" ><time datetime={formatDate(startDate, 'yyyy-MM-d')}><span className="startDate"><span className="day-name">{startDateDayName}</span> <span className="day-num">{startDateDay }</span> <span className="month-name">{startDateMonthName}</span> <span className="year">{startDateYear}</span></span></time></p>;
   }
   return dateNews;
 }

@@ -15,7 +15,7 @@ export default function Archive({lang, activities, news, productions}) {
 
     return (
       <>
-      <main>
+      <main role="main">
         <section id="archive" className="main-container">
         	<p className="introduction">
         		Cette page est une archive...

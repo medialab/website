@@ -44,12 +44,12 @@ const FilterProduction = ({lang, group, types}) => {
 
     <aside className="accroche-title-list">
       <h1 className="aside-title" data-icon="production">Productions</h1>
-      <p>{accroche}</p>
+      <p id="aria-accroche">{accroche}</p>
     </aside>
 
     <InputFiltresType lang={lang} group={group} />
 
-    <aside className="aside-filters">
+    <aside className="aside-filters" aria-label={filtresTitle}>
 
         <h1 className="aside-title">{filtresTitle}</h1>
 
@@ -57,33 +57,33 @@ const FilterProduction = ({lang, group, types}) => {
 
         <div className="go-to-year">
         <input type="checkbox" id="checkbox_filtre_year" name="radio_filtre-actu" value="year" hidden />
-        <label htmlFor="checkbox_filtre_year"><span><Icons icon='arrow' /></span></label>
+        <label htmlFor="checkbox_filtre_year" aria-label={IsModel('gotoyear', lang)}><span><Icons icon='arrow' /></span></label>
           <p>{IsModel('gotoyear', lang)}<span className="current-year"></span></p>          
           <ul>
-            <li><a href="#year-2019">2019</a></li>
-            <li><a href="#year-2018">2018</a></li>
-            <li><a href="#year-2017">2017</a></li>
-            <li><a href="#year-2016">2016</a></li>
-            <li><a href="#year-2015">2015</a></li>
-            <li><a href="#year-2014">2014</a></li>
-            <li><a href="#year-2013">2013</a></li>
-            <li><a href="#year-2012">2012</a></li>
-            <li><a href="#year-2011">2011</a></li>
-            <li><a href="#year-2010">2010</a></li>
-            <li><a href="#year-2009">2009</a></li>
-            <li><a href="#years-before-2009">&lt; 2009</a></li>
+            <li><a href="#year-2019" aria-label={lang === "fr" ? "Aller à l'année 2019" : "Go to year 2019" }>2019</a></li>
+            <li><a href="#year-2018" aria-label={lang === "fr" ? "Aller à l'année 2018" : "Go to year 2018" }>2018</a></li>
+            <li><a href="#year-2017" aria-label={lang === "fr" ? "Aller à l'année 2017" : "Go to year 2017" }>2017</a></li>
+            <li><a href="#year-2016" aria-label={lang === "fr" ? "Aller à l'année 2016" : "Go to year 2016" }>2016</a></li>
+            <li><a href="#year-2015" aria-label={lang === "fr" ? "Aller à l'année 2015" : "Go to year 2015" }>2015</a></li>
+            <li><a href="#year-2014" aria-label={lang === "fr" ? "Aller à l'année 2014" : "Go to year 2014" }>2014</a></li>
+            <li><a href="#year-2013" aria-label={lang === "fr" ? "Aller à l'année 2013" : "Go to year 13" }>2013</a></li>
+            <li><a href="#year-2012" aria-label={lang === "fr" ? "Aller à l'année 2012" : "Go to year 2012" }>2012</a></li>
+            <li><a href="#year-2011" aria-label={lang === "fr" ? "Aller à l'année 2011" : "Go to year 2011" }>2011</a></li>
+            <li><a href="#year-2010" aria-label={lang === "fr" ? "Aller à l'année 2010" : "Go to year 2010" }>2010</a></li>
+            <li><a href="#year-2009" aria-label={lang === "fr" ? "Aller à l'année 2009" : "Go to year 2009" }>2009</a></li>
+            <li><a href="#years-before-2009" aria-label={lang === "fr" ? "Aller aux années précédant 2009" : "Go to years before 2009" }>&lt; 2009</a></li>
           </ul>
         </div>  
 
 
-        <ul id={'list-' + group + '_current'} className="link-productions-sort">
+        <ul id={'list-' + group + '_current'} className="link-productions-sort" aria-label={lang === "fr" ? "Filtrer les production par ..." : "Filter productions by ..." }>
         <li>
           <Link to="/productions">{lang === 'fr' ? 'Toutes les productions' : 'All productions'}</Link>
         </li>
           {types.map(g => {
                 return (
               <li key={g.id} id={ 'li-filter-' + g.id} className={cls(g.id === group && 'pageProduction_current')}>
-                <Link to={g.permalink[lang]}>
+                <Link to={g.permalink[lang]} aria-label={g.label[lang]}>
                   {g.label[lang]}
                   <span><Icons icon='arrow' /></span>
                 </Link>

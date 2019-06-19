@@ -41,7 +41,7 @@ const Slideshow = ({slider, lang}) => {
         <input
           type="radio" name="slide-bullet" id="slide-bullet-0"
           className="slideshow-bullet" hidden defaultChecked />
-        <label className="" htmlFor="slide-bullet-0">
+        <label className="" htmlFor="slide-bullet-0" aria-hidden="true">
         </label>
         {slider.map((slide, index) =>
           (<React.Fragment key={index}>
@@ -58,17 +58,17 @@ const Slideshow = ({slider, lang}) => {
         {slider.map((slide, index) =>
           (<React.Fragment key={index}>
             {/* Content */}
-            <div className="slideshow-item" data-item={ index + 1 }>
+            <div className="slideshow-item" data-item={ index + 1 } aria-label={lang === "fr" ? "Pages misent en avant" : "Spotlighted pages" }>
               <article data-type={slide.model}>
                 <Link to={slide.data.permalink[lang]}>
-                  <div className="image-pre">
+                  <div className="image-pre" aria-hidden="true">
                     <ProcessedImage size="large" image={slide.data.coverImage && slide.data.coverImage.processed.large} />
                   </div>
-                  <div className="image-pre-phone">
+                  <div className="image-pre-phone" aria-hidden="true">
                     <ProcessedImage size="medium" image={slide.data.coverImage && slide.data.coverImage.processed.medium} />
                   </div>
                 </Link>
-                <div className="contenu-slide">
+                <div className="contenu-slide" aria-label={lang === "fr" ? "Contenu" : "Content" }>
                   <Link to={slide.data.permalink[lang]}>
 
                     {/* if Activité */}
@@ -118,7 +118,7 @@ const Slideshow = ({slider, lang}) => {
                     )}
 
                     {/* Default */}
-                    <p className="more">En savoir plus</p>
+                    <p className="more" aria-label={lang === "fr" ? "Ouvrir ce lien" : "Open this link" }>En savoir plus</p>
                   </Link>
                 </div>
               </article>
@@ -129,13 +129,13 @@ const Slideshow = ({slider, lang}) => {
 
         {/* bullet pour controler le caroussel*/}
         <nav className="bullets-slide">
-          <label className="slideshow-bullet-label" data-slide="1" htmlFor="slide-bullet-1"></label>
-          <label className="slideshow-bullet-label" data-slide="2" htmlFor="slide-bullet-2"></label>
-          <label className="slideshow-bullet-label" data-slide="3" htmlFor="slide-bullet-3"></label>
+          <label className="slideshow-bullet-label" data-slide="1" htmlFor="slide-bullet-1" aria-label={lang === "fr" ? "Voir la première page" : "See first slide" }></label>
+          <label className="slideshow-bullet-label" data-slide="2" htmlFor="slide-bullet-2" aria-label={lang === "fr" ? "Voir la deuxième page" : "See second slide" }></label>
+          <label className="slideshow-bullet-label" data-slide="3" htmlFor="slide-bullet-3" aria-label={lang === "fr" ? "Voir la troisème page" : "See third slide" }></label>
         </nav>
 
         {/* label pour controler le caroussel*/}
-        <nav className="slideshow-controls">
+        <nav className="slideshow-controls" aria-hidden="true">
           {slider.map((slide, index) =>
             (<React.Fragment key={index}>
                 {IsIndex(index)}
@@ -143,7 +143,7 @@ const Slideshow = ({slider, lang}) => {
                 <label htmlFor={`slide-bullet-${z}`} className="slide_controls slide_controls-next" alt={lang === 'fr' ? 'Aller à la slide ' + z : 'Go to slide ' + z }></label>
             </React.Fragment>)
           )}
-          <span className="controls"></span>
+          <span className="controls" aria-hidden="true"></span>
         </nav>
     </div>
     <hr />

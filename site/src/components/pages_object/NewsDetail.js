@@ -119,9 +119,9 @@ export default function NewsDetail({lang, news}) {
 
   return (
     <>
-      <main id="main-objet">
+      <main id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + news.title.fr : news.title.en + " page content" }>
 
-      <header id="titre-sticky">
+      <header id="titre-sticky" aria-hidden="true">
         <div id="container-titre-sticky">
           <div id="logo-sticky"><a href="/"><Logo /></a></div>
           <p>
@@ -133,7 +133,7 @@ export default function NewsDetail({lang, news}) {
         </div>
       </header>
 
-        <div id="img-article">
+        <div id="img-article" aria-hidden="true">
           <div className="activator"></div>
           <div className="container">{coverImage}</div>
 

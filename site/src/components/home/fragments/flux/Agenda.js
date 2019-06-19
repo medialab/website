@@ -25,7 +25,7 @@ export default function Agenda({rdv, lang}) {
           (<React.Fragment key={i}>
 
             <article>
-            <Link to={event.permalink[lang]}>
+            <Link to={event.permalink[lang]} aria-label={ lang === "fr" ? "En savoir plus sur ce Rendez-vous" : "Get more information on this Rendez-vous"}>
 
               <aside className="divers">
                 <p className="label" data-icon="news">{ event.label && (lang === 'fr' ? event.label.fr : event.label.en) }</p>
@@ -38,7 +38,7 @@ export default function Agenda({rdv, lang}) {
 
               <aside className="details">
                 <TimeNews startDate={event.startDate} endDate={event.endDate} />
-                { event.place && <p className="place">{event.place}</p> }
+                { event.place && <p className="place" aria-label={lang === "fr" ? "Lieu" : "Place" }>{event.place}</p> }
               </aside>
 
             </Link>

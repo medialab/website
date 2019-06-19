@@ -11,16 +11,16 @@ export default function highlights({people, lang}) {
   if ((people.mainActivities && people.mainActivities.length > 0) || (people.mainProductions && people.mainProductions.length > 0)) {
     return (
 
-      <section id="highlights">
+      <section id="highlights" aria-describedby="aria-title" >
         <>
-        <h1>{lang === 'fr' ? 'Activité(s) et production(s) principale(s)' : 'Main activities and productions' }</h1>
+        <h1 id="aria-title">{lang === 'fr' ? 'Activité(s) et production(s) principale(s)' : 'Main activities and productions' }</h1>
         <div className="contenu">
           <ul id="highlights-list-activity" data-type="activities">
             { people.mainActivities &&
               people.mainActivities.map((a, index) => (
                 <li data-type={a.type} className="list-item" key={index}>
-                  <Link to={a.permalink[lang]}>
-                    <div className="image-pre">
+                  <Link to={a.permalink[lang]} aria-label={lang === "fr" ? "Lien vers cette Activité" : "Link to this activity" }>
+                    <div className="image-pre" aria-hidden="true">
                         <ProcessedImage size="small" image={a.coverImage && a.coverImage.processed.small} />
                     </div>
                     <div className="bandeau">
@@ -41,7 +41,7 @@ export default function highlights({people, lang}) {
             { people.mainProductions && 
               people.mainProductions.map((p, index) => (
                   <li data-type={p.type} className="list-item" key={index}>
-                    <Link to={p.permalink[lang]}>
+                    <Link to={p.permalink[lang]} aria-label={lang === "fr" ? "Lien vers cette production" : "Link to this production" }>
                       <div className="image-pre">
                           <ProcessedImage size="small" image={p.coverImage && p.coverImage.processed.small} />
                       </div>

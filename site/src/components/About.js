@@ -10,19 +10,19 @@ export default function About({lang}) {
 
   return (
     <>
-      <main id="main">
-      <nav className="main-nav" id="nav-inside-article">
+      <main id="main" aria-labelledby="page-title" role="main">
+      <nav className="main-nav" id="nav-inside-article" role="navigation">
         <ul>
-          <li className="nav-inside-item" data-type="main"><a href="#main"> Aller en haut</a></li>
-          <li className="nav-inside-item"><a href="#research">La recherche au médialab</a></li>
-          <li className="nav-inside-item"><a href="#team">Equipe</a></li>
-          <li className="nav-inside-item"><a href="#activities">Activités</a></li>
-          <li className="nav-inside-item"><a href="#productions">Productions</a></li>
+          <li className="nav-inside-item" data-type="main"><a href="#main" title="Aller à la section" > Aller en haut</a></li>
+          <li className="nav-inside-item"><a href="#research" title="Aller à la section" >La recherche au médialab</a></li>
+          <li className="nav-inside-item"><a href="#team" title="Aller à la section" >Equipe</a></li>
+          <li className="nav-inside-item"><a href="#activities" title="Aller à la section" >Activités</a></li>
+          <li className="nav-inside-item"><a href="#productions" title="Aller à la section" >Productions</a></li>
         </ul>
       </nav>
         <article id="about-contenu" className="main-container">
           <hgroup>
-            <h1>Le medialab</h1>
+            <h1 id="page-title">Le medialab</h1>
             <h2>Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des sciences sociales.</h2>
           </hgroup>
           <div className="about-contenu">

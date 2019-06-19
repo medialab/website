@@ -18,7 +18,7 @@ const ProductionsAssociees = ({lang, productions}) => {
 	}
 
 	return (
-    <aside className="container elements-associes-block" id="productions">
+    <aside className="container elements-associes-block" id="productions" role="complementary" aria-label={ lang ==='fr' ? related.fr : related.en }>
       <h1><span data-icon="production" /> {accroche}</h1>
       <div className="contenu">
         <ul className="liste_objet">

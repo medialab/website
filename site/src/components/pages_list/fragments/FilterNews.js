@@ -52,32 +52,32 @@ const FilterNews = ({lang, years}) => {
       <input type="checkbox" id="filtre-actu_post" name="filtre-actu_post" className="input_filtre-actu" value="post" hidden />
       <input type="checkbox" id="filtre-actu_notice" name="filtre-actu_notice" className="input_filtre-actu" value="notice" hidden />
     
-      <aside className="aside-filters">
+      <aside className="aside-filters" role="navigation" aria-label={filtresTitle}>
 
         <h1 className="aside-title">{filtresTitle}</h1>
 
         <SearchInput lang={lang}/>
 
 
-        <div className="go-to-year">
+        <div className="go-to-year" aria-label={IsModel('gotoyear', lang)}>
         <input type="checkbox" id="checkbox_filtre_year" name="radio_filtre-actu" value="year" hidden />
         <label htmlFor="checkbox_filtre_year"><span><Icons icon='arrow' /></span></label>
-          <p>{IsModel('gotoyear', lang)} <span className="current-year"></span></p>          
+          <p aria-hidden="true">{IsModel('gotoyear', lang)} <span className="current-year"></span></p>          
           <ul>
             {years.map(y => (
-              <li key={`year-${y}`} ><a href={`#year-${y}`}>{y}</a></li>
+              <li key={`year-${y}`} ><a href={`#year-${y}`} aria-label={lang === "fr" ? "Aller à l'année " + y : "Go to year " + y }>{y}</a></li>
             ))}
             { suppYears &&
-              <li key={`filter-years-before-${suppYears}`}><a href={`#year-${suppYears}`} >&le; {suppYears}</a></li>
+              <li key={`filter-years-before-${suppYears}`}><a href={`#year-${suppYears}`}  aria-label={lang === "fr" ? "Aller aux années précédant " + y : "Go to years before " + y }>&le; {suppYears}</a></li>
             }
           </ul>
         </div>  
 
-        <div className="filter-group">
+        <div className="filter-group" aria-label={filterType}>
           <h1>{filterType}</h1>
-          <label id="filtre-actu_event_label" className="filtre-actu checkbox-medialab"  htmlFor="filtre-actu_event">{event}</label>
-          <label id="filtre-actu_post_label" className="filtre-actu checkbox-medialab"  htmlFor="filtre-actu_post">{post}</label>
-          <label id="filtre-actu_notice_label" className="filtre-actu checkbox-medialab"  htmlFor="filtre-actu_notice">{notice}</label>
+          <label id="filtre-actu_event_label" className="filtre-actu checkbox-medialab"  htmlFor="filtre-actu_event" aria-label={event}>{event}</label>
+          <label id="filtre-actu_post_label" className="filtre-actu checkbox-medialab"  htmlFor="filtre-actu_post" aria-label={post}>{post}</label>
+          <label id="filtre-actu_notice_label" className="filtre-actu checkbox-medialab"  htmlFor="filtre-actu_notice" aria-label={notice}>{notice}</label>
         </div>
 
       </aside>

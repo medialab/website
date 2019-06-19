@@ -34,11 +34,11 @@ export default function ActivityListing({lang, list, status, statuses}) {
                       <p className="title" data-level-2="title">{a.name}</p>
                     </div>
                     <hgroup>
-                      <h1 data-level-1="baseline" >{a.baseline && (lang === 'fr' ? a.baseline.fr : a.baseline.en)}</h1>
+                      <h1 data-level-1="baseline" >{a.baseline && (a.baseline[lang] || a.baseline[(lang === 'fr' ? 'en' : 'fr')])}</h1>
                     </hgroup>
                     <div className="accroche">
                       <p className="accroche-paragraphe">
-                        {a.description && <RawHTML html={lang === 'fr' ? a.description.fr : a.description.en} />}
+                        {a.description && <RawHTML html={a.description && (a.description[lang] || a.description[(lang === 'fr' ? 'en' : 'fr')])} />}
                       </p>
                     </div>
                   </Link>

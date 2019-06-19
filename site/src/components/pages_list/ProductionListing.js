@@ -51,18 +51,18 @@ export default function ProductionListing({lang, list, group, types}) {
                     <li data-item={nbItem} data-type={p.type} className={`list-item ${p.type}`}>
                       <Link to={p.permalink[lang]}>
                         <div className="bandeau">
-                          <p className="type-production" data-icon="production"> {lang === 'fr' ? p.groupLabel.fr : p.groupLabel.en}</p> 
-                          <p className="subtype-production">{p.typeLabel !== 'media' && lang === 'fr' ? <span>{p.typeLabel.fr}</span> : <span>{p.typeLabel.en}</span>}</p>
+                          <p className="type-production" data-icon="production"> {p.groupLabel[lang]}</p> 
+                          <p className="subtype-production">{p.typeLabel !== 'media' && <span>{p.typeLabel[lang]}</span>}</p>
                           <p className="date-production">{p.date}</p>
                         </div>
                         <hgroup>
-                          <h1 data-level-1="title" >{lang === 'fr' ? p.title.fr : p.title.en}</h1>
+                          <h1 data-level-1="title" >{p.title && (p.title[lang] || p.title[(lang === 'fr' ? 'en' : 'fr')])}</h1>
                         </hgroup> 
                         <div className="authors">
                           <p className="authors-paragraphe">
-                          {p.authors}
+                            {p.authors}
                           </p>
-                          <p class="print publication-ref" dangerouslySetInnerHTML={{__html: p.description && p.description.fr}} />
+                          <p className="print publication-ref" dangerouslySetInnerHTML={{__html: p.description && (p.description[lang] || p.description[(lang === 'fr' ? 'en' : 'fr')])}} />
                         </div>
                       </Link>
                     </li>

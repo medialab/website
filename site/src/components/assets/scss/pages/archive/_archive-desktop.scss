@@ -4,34 +4,5 @@
 
 
 @include for-size(desktop) {
-	ul{
-		ul{
 
-			@include flex;
-			@include flex-wrap(wrap);
-			
-			& + ul{
-				margin-top: $unite*8;
-			}
-			h1{
-				flex: 1 0 100% !important;
-
-				@include font-size-27();
-			}
-
-			li{
-				flex: 1 0 auto;
-				box-sizing: border-box;
-				padding: $baseline 0 ;
-				margin-right: $unite;
-				border-bottom: $border;
-
-				width: $unite*10;
-				max-height: $baseline*3.6;
-
-				@include font-size-16();
-				@include text-overflow;
-			}
-		}
-	}
 }

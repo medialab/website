@@ -227,14 +227,14 @@ export default function PeopleDetail({lang, person}) {
   return (
     <>
 
-      <main id="main">
+      <main id="main" role="main" aria-label={lang === "fr" ? "Présentation de" + person.firstName + person.lastName : person.firstName + person.lastName + "'s presentation" }>
 
       <input type="checkbox" id="toggle-nav" name="toggle-nav" value="toggle-nav" hidden />
       <label htmlFor="toggle-nav" title={toggleNav} arial-label={toggleNav}><span><Icons icon='arrow' /></span></label>
 
         <Nav lang={lang} data={person} order={['main', 'activities', 'productions', 'news']} />
 
-        <header id="titre-sticky">
+        <header id="titre-sticky" aria-hidden="true">
           <div id="container-titre-sticky">
             <div id="logo-sticky"><a href="/"><Logo /></a></div>
             <p>
@@ -257,15 +257,15 @@ export default function PeopleDetail({lang, person}) {
                 <hgroup>
                   <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
                  {person.status && 
-                   <p className="status" data-type="status">
+                   <p className="status" data-type="status" aria-label={lang === "fr" ? "Occupation actuelle " : "Present activitiies" }>
                       { lang === "fr" ? person.status.fr : person.status.en}
                     </p>
                   }
                 </hgroup>
                 <div className="bandeau">
-                <p className="role" data-type="role">{person.role[lang]}</p>
+                <p className="role" data-type="role" aria-label={lang === "fr" ? "Rôle au sein de l'equipe" : "Role within the team " }>{person.role[lang]}</p>
                     {/* <p data-type="domaine">{lang === "fr" ? "Domaine" + String.fromCharCode(8239) +":" : "Domain:"} {person.domain}</p> */}
-                    <p data-type="membership">{templateMembership(person)}</p>
+                    <p data-type="membership" aria-label={lang === "fr" ? "Nature de la relation au Medialab" : "Nature of the relationship within Medialab"}>{templateMembership(person)}</p>
                 </div>
 
                 { person.contacts && person.contacts.length > 0 &&
@@ -274,7 +274,7 @@ export default function PeopleDetail({lang, person}) {
                     { person.contacts.map((contact, i) => (
                       <li key={i} data-type={contact.label}>
                         {contact.type === 'url' && contact.label !== 'CV' ?
-                          <span><span className="label-contact">{contact.label}:</span> <a href={contact.value} target="_blank" rel="noopener">{contact.value}</a></span> :
+                          <span><span className="label-contact">{contact.label}:</span> <a href={contact.value} target="_blank" rel="noopener" aria-label={lang === "fr" ? "Ouvrir cette page " + contact.value : "Open this " + contact.value +" page"}>{contact.value}</a></span> :
                             ( contact.label === 'Mail' ?
                               <p data-domain="@sciencepo.fr">{contact.label}: NEED_SUBSTRING</p> :
                                 <a href={contact.value}>{contact.label}</a> ) }
@@ -284,7 +284,7 @@ export default function PeopleDetail({lang, person}) {
                   </div>}
               </header>
 
-              <div className="biographie-content">
+              <div className="biographie-content" aria-label={lang === "fr" ? "Biographie" : "Biography" } >
                 {person.bio && person.bio[lang] ? <RawHtml html={person.bio[lang]} /> : null}
               </div>
             </div>

@@ -9,11 +9,30 @@ export const query = graphql`
     allActivitiesJson {
       edges {
         node {
+          id
+          active          
           name
           permalink {
             en
             fr
           }
+          type
+          typeLabel {
+            en
+            fr
+          }
+          description {
+            en
+            fr
+          }
+          baseline {
+            en
+            fr
+          }
+          people {
+            firstName
+            lastName
+          }          
         }
       }
     }
@@ -21,6 +40,7 @@ export const query = graphql`
     allNewsJson {
       edges {
         node {
+          id
           title {
             en
             fr
@@ -29,6 +49,22 @@ export const query = graphql`
             en
             fr
           }
+          description {
+            en
+            fr
+          }
+          place
+          label {
+            en
+            fr
+          }
+          type
+          typeLabel {
+            en
+            fr
+          }          
+          startDate
+          endDate
         }
       }
     }
@@ -40,10 +76,27 @@ export const query = graphql`
             en
             fr
           }
+          description {
+            en
+            fr
+          }
+          type,
+          group,
+          typeLabel {
+            en
+            fr
+          }
+          groupLabel {
+            en
+            fr
+          }
           permalink {
             en
             fr
           }
+          type
+          authors
+          date
         }
       }
     }

@@ -47,7 +47,7 @@ export default function PeopleListing({lang, list}) {
 
 	return (
   <>
-  <main>
+  <main role="main" aria-describedby="aria-accroche">
     <FiltreEquipe lang={lang} />
     <section className="main-filters" />
     <section id="liste_equipe" className="main-container">

@@ -28,7 +28,7 @@ const MembresAssocies = ({lang, people}) => {
   }
 
   return (
-    <aside className="container personnes-associees-block" id="people">
+    <aside className="container personnes-associees-block" id="people" role="complementary" aria-label={ lang ==='fr' ? related.fr : related.en }>
       <h1><span data-icon="people" />{accroche}</h1>
 
       <div className="contenu">

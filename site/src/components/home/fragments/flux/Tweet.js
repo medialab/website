@@ -41,7 +41,7 @@ return (
       <div id="tweet-content">
           
       { tweets.map(t =>
-          (<article className="tweet" data-type="tweet" key={t.tweet.toString()} >	
+          (<article className="tweet" data-type="tweet" key={t.tweet.toString()} aria-label="Tweet" >	
             <aside className="divers">
               {
                 //<p className="label" data-icon="tweet">{t.type}</p>

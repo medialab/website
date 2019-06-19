@@ -15,20 +15,20 @@ function TimeNews(news) {
     let startTimeFormat = null;
     let endTimeFormat = null;
 
-    const iconBetween = '⇥';
+    const iconBetween = <span aria-label="Jusqu'à / to">⇥</span>;
 
     if (endDate) {
         const endDateString = startDate.toString();
         if (endDateString.length > 10) {
             startTimeFormat = startDate.substr(11);
             endTimeFormat = endDate.substr(11);
-            timeNews = <p className="hours-news">{startTimeFormat} {iconBetween} {endTimeFormat}</p>;
+            timeNews = <p className="hours-news"  aria-label="Horaire / Schedule"><time datetime={startTimeFormat}>{startTimeFormat}</time> {iconBetween} <time datetime={endTimeFormat}>{endTimeFormat}</time></p>;
         }
     }
 else {
         if (startDateString.length > 10) {
             startTimeFormat = startDate.substr(11);
-            timeNews = <p className="hours-news">{startTimeFormat}</p>;
+            timeNews = <p className="hours-news"  aria-label="Horaire / Schedule"><time datetime={startTimeFormat}>{startTimeFormat}</time></p>;
         }
     }
 

@@ -24,7 +24,7 @@ const ActuAssociees = ({lang, actu}) => {
   }
 
   return (
-    <aside className="container elements-associes-block" id="news">
+    <aside className="container elements-associes-block" id="news" role="complementary" aria-label={ lang ==='fr' ? related.fr : related.en }>
       <h1><span data-icon="actualités" /> {accroche} </h1>
 
       <div className="contenu">

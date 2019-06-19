@@ -1,4 +1,4 @@
-import React from 'react';
+  import React from 'react';
 import { Link } from 'gatsby';
 import cls from 'classnames';
 import { IsModel } from '../../helpers/helpers.js';
@@ -49,9 +49,9 @@ const FilterActivity = ({ lang, status, statuses }) => {
       <label htmlFor="radio-phone-close" title={closeAlt} arial-label={closeAlt}>✕</label>
       
 
-      <aside className="accroche-title-list">
-        <h1 className="aside-title" data-icon="activite">{IsModel('activities', lang)}</h1>
-        <p>{accroche}</p>
+      <aside className="accroche-title-list" id="accroche-title-list">
+        <h1 className="aside-title" data-icon="activite" >{IsModel('activities', lang)}</h1>
+        <p id="aria-accroche">{accroche}</p>
       </aside>
 
 
@@ -71,22 +71,22 @@ const FilterActivity = ({ lang, status, statuses }) => {
 
       
 
-      <aside className="aside-filters">
+      <aside className="aside-filters" aria-label={filtresTitle}>
 
       <h1 className="aside-title">{filtresTitle}</h1>
 
       <SearchInput lang={lang} />
 
-        <div className="filter-group">
-          <h1>{filterStatus}</h1>
-          <label id="filtre-activity_active_label" className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_active">{activeActivity}</label>
-          <label id="filtre-activity_past_label" className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_past">{pastActivity}</label>
+        <div className="filter-group"aria-label={filterStatus}>
+          <h1 aria-hidden="true">{filterStatus}</h1>
+          <label id="filtre-activity_active_label" className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_active" aria-label={activeActivity}>{activeActivity}</label>
+          <label id="filtre-activity_past_label" className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_past" aria-label={pastActivity}>{pastActivity}</label>
         </div>
 
-        <div className="filter-group">
-          <h1>{filterType}</h1>
-          <label id="filtre-activity_research_label" className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_research">{IsModel('research', lang)}{(lang === 'fr' ? 's' : '')}</label>
-          <label id="filtre-activity_teaching_label" className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_teaching">{IsModel('teaching', lang)}{(lang === 'fr' ? 's' : '')}</label>
+        <div className="filter-group"aria-label={filterType}>
+          <h1 aria-hidden="true">{filterType}</h1>
+          <label id="filtre-activity_research_label" className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_research" aria-label={IsModel('research', lang)}>{IsModel('research', lang)}{(lang === 'fr' ? 's' : '')}</label>
+          <label id="filtre-activity_teaching_label" className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_teaching" aria-label={IsModel('teaching', lang)}>{IsModel('teaching', lang)}{(lang === 'fr' ? 's' : '')}</label>
         </div>
 
       </aside>

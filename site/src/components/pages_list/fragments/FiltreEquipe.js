@@ -50,7 +50,7 @@ const FiltreEquipe = ({lang}) => {
 
       <aside className="accroche-title-list">
         <h1 className="aside-title" data-icon="activite">{IsModel('people', lang)}</h1>
-        <p>{accroche}</p>
+        <p id="aria-accroche">{accroche}</p>
       </aside>
 
 
@@ -79,7 +79,7 @@ const FiltreEquipe = ({lang}) => {
       value="administratif" hidden />
 
 
-    <aside className="aside-filters">
+    <aside className="aside-filters" aria-label={filtresTitle}>
 
     <h1 className="aside-title">{filtresTitle}</h1>
 

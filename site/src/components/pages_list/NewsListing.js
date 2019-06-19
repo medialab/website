@@ -40,7 +40,7 @@ export default function NewsListing({lang, list}) {
   let nbNews = 0;
   return (
     <>
-    <main>
+    <main role="main" aria-describedby="aria-accroche">
       <FilterNews lang={lang} years={Array.from(yearGroups.keys()).sort(byYear)} />
       <section className="main-filters">
       </section>
@@ -58,7 +58,7 @@ export default function NewsListing({lang, list}) {
                   <li data-item={nbNews} data-type={news.type} className={`list-item ${news.type}`}>
                     <Link to={news.permalink[lang]}>
 
-                    <div className="image-pre">
+                    <div className="image-pre" aria-hidden="true">
                       <ProcessedImage size="medium" image={news.coverImage && news.coverImage.processed.medium} />
                     </div>
                     <div className="bandeau">

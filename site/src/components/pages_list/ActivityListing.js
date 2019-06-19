@@ -13,7 +13,7 @@ export default function ActivityListing({lang, list, status, statuses, topActivi
 
     return (
       <>
-      <main>
+      <main role="main" aria-describedby="aria-accroche">
         <FilterActivity lang={lang} status={status} statuses={statuses} />
         <section className="main-filters">
         </section>
@@ -25,7 +25,7 @@ export default function ActivityListing({lang, list, status, statuses, topActivi
               <React.Fragment key={index}>
                 <li data-type={a.type} className={`list-item ${a.type}-${a.active ? 'active' : 'past'}`}>
                   <Link to={a.permalink[lang]}>
-                    <div className="image-pre">
+                    <div className="image-pre" aria-hidden="true">
                         <ProcessedImage size="medium" image={a.coverImage && a.coverImage.processed.medium} />
                       </div>
                     <div className="bandeau">

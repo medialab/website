@@ -27,18 +27,18 @@ export default function Footer ({lang, content}) {
         type="radio" id="fr-to-en" name="toggle-lang"
         value="fr-to-en" className="fr" defaultChecked={lang === 'en'}
         hidden />
-      <label htmlFor="fr-to-en" className="fr toggle-lang" href="#main-objet">
+      <label htmlFor="fr-to-en" className="fr toggle-lang" href="#main-objet" aria-label={lang === "fr" ? fr : en }>
         {fr}
-        <span>Cliquer ici pour le voir.</span>
+        <span aria-hidden="true">Cliquer ici pour le voir.</span>
       </label>
 
       <input
         type="radio" id="en-to-fr" name="toggle-lang"
         value="en-to-fr" className="en" defaultChecked={lang === 'fr'}
         hidden />
-      <label htmlFor="en-to-fr" className="en toggle-lang">
+      <label htmlFor="en-to-fr" className="en toggle-lang" aria-label={lang === "fr" ? fr : en }>
         {en}
-        <span>Click here to see it.</span>
+        <span aria-hidden="true">Click here to see it.</span>
       </label>
     </>
   );

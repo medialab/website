@@ -16,7 +16,7 @@ export default function Now({now, lang}) {
 	// console.log(now);
 	return (
   <>
-    <section id="now">
+    <section id="now" aria-label={lang === "fr" ? "Dernières actualités du Médialab" : "Lastest news from Medialab" }>
       <h1>{ lang === "fr" ? "À la une" : "Headlines"}</h1>
       {/* <input
         type="checkbox" name="checkbox_now" id="checkbox_now"
@@ -30,7 +30,7 @@ export default function Now({now, lang}) {
         (<React.Fragment key={index}>
         <li data-type={item.model} className="now-item" key={index}>
           <Link to={item.data.permalink[lang]}>
-            <div className="image-pre">
+            <div className="image-pre" aria-hidden="true">
                 <ProcessedImage size="small" image={item.data.coverImage && item.data.coverImage.processed.small} />
             </div>
               {/* If Production*/}

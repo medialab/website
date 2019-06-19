@@ -3,7 +3,8 @@ module.exports = function(req, dbs, next) {
     settings: {
       home: {
         grid: [],
-        slider: []
+        slider: [],
+        topActivities: []
       }
     }
   });

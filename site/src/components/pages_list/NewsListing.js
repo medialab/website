@@ -63,18 +63,18 @@ export default function NewsListing({lang, list}) {
                     </div>
                     <div className="bandeau">
                       <p data-icon="news" className="type-news">{IsModel(news.type, lang)}</p>
-                      <p className="label-news">{news.label && (lang === 'fr' ? <span>{news.label.fr}</span> : <span>{news.label.en}</span>)}</p>
+                      <p className="label-news">{news.label && <span>{news.label[lang] || news.label[(lang === 'fr' ? 'en' : 'fr')]}</span>}</p>
                       <div>
                         <DateNews startDate={news.startDate} endDate={news.endDate} lang={lang} />
                         <TimeNews startDate={news.startDate} endDate={news.endDate} />
                         </div>
                     </div>
                     <hgroup>
-                      <h1 data-level-1="baseline" >{news.title && (lang === 'fr' ? news.title.fr : news.title.en)}</h1>
+                      <h1 data-level-1="baseline" >{news.title && (news.title[lang] || news.title[(lang === 'fr' ? 'en' : 'fr')])}</h1>
                     </hgroup>
                     <div className="accroche">
                       <p className="accroche-paragraphe">
-                        <RawHTML html={lang === 'fr' ? news.description.fr : news.description.en} />
+                        <RawHTML html={news.description && (news.description[lang] || news.description[(lang === 'fr' ? 'en' : 'fr')])} />
                       </p>
                     </div>
 

@@ -13,6 +13,10 @@ const HANDLERS = {
   slider: {
     type: 'relation',
     field: ['home', 'slider']
+  },
+  topActivities: {
+    type: 'relation',
+    field: ['topActivities']
   }
 };
 
@@ -74,7 +78,7 @@ export default class SettingsForm extends Component {
         <div className="columns">
           <div className="column is-4">
             <h2 className="title is-4">Home Page</h2>
-            <h3 className="title is-5">Slider</h3>
+            <h3 className="title is-5">Carrousel</h3>
             <EditorializationSelector
               max={4}
               models={['activities', 'news', 'productions']}
@@ -83,7 +87,7 @@ export default class SettingsForm extends Component {
               onDrop={this.handlers.slider.drop}
               onMove={this.handlers.slider.move} />
             <hr />
-            <h3 className="title is-5">Grid</h3>
+            <h3 className="title is-5">À la une</h3>
             <EditorializationSelector
               max={8}
               models={['activities', 'news', 'people', 'productions']}
@@ -98,6 +102,17 @@ export default class SettingsForm extends Component {
               onClick={!signaling ? this.handleSubmit : Function.prototype}>
               {signaling ? 'Saved!' : 'Save'}
             </Button>
+          </div>
+          <div className="column is-4">
+            <h2 className="title is-4">Activités</h2>
+            <h3 className="title is-5">Mise en avant dans le listing</h3>
+            <EditorializationSelector
+              max={10}
+              models={['activities']}
+              selected={settings.topActivities}
+              onAdd={this.handlers.topActivities.add}
+              onDrop={this.handlers.topActivities.drop}
+              onMove={this.handlers.topActivities.move} />
           </div>
         </div>
       </div>

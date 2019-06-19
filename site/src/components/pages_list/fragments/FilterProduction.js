@@ -212,34 +212,34 @@ function LabelFiltresType(values){
   if(group === 'publications'){
     return (
       <div className="filter-group">
-        <label id="filtre-production_article_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_article">{article}</label>
-        <label id="filtre-production_communication_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_communication">{communication}</label>
-        <label id="filtre-production_book_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_book">{book}</label>
-        <label id="filtre-production_thesis_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_thesis">{thesis}</label>
-        <label id="filtre-production_grey_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_grey">{grey}</label>
+        <label id="filtre-production_article_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_article" aria-label={article}>{article}</label>
+        <label id="filtre-production_communication_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_communication" aria-label={communication}>{communication}</label>
+        <label id="filtre-production_book_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_book"aria-label={book}>{book}</label>
+        <label id="filtre-production_thesis_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_thesis" aria-label={thesis}>{thesis}</label>
+        <label id="filtre-production_grey_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_grey" aria-label={grey}>{grey}</label>
       </div>
     );
   }else if(group === 'tools'){
     return (
       <div className="filter-group">
-        <label id="filtre-production_software_label" className="filtre-production checkbox-medialab"  htmlFor="filtre-production_software">{software}</label>
-        <label id="filtre-production_code_label" className="filtre-production checkbox-medialab"  htmlFor="filtre-production_code">Code</label>
+        <label id="filtre-production_software_label" className="filtre-production checkbox-medialab"  htmlFor="filtre-production_software" aria-label={software}>{software}</label>
+        <label id="filtre-production_code_label" className="filtre-production checkbox-medialab"  htmlFor="filtre-production_code" aria-label="Code">Code</label>
       </div>
     );
   }else if(group === 'webEditions'){
     return (
       <div className="filter-group">
-        <label id="filtre-production_datascape_label" className="filtre-production checkbox-medialab"  htmlFor="filtre-production_datascape">Datascape</label>
-        <label id="filtre-production_website_label" className="filtre-production checkbox-medialab"  htmlFor="filtre-production_website">{website}</label>
+        <label id="filtre-production_datascape_label" className="filtre-production checkbox-medialab"  htmlFor="filtre-production_datascape" aria-label="Datascape">Datascape</label>
+        <label id="filtre-production_website_label" className="filtre-production checkbox-medialab"  htmlFor="filtre-production_website" aria-label={website}>{website}</label>
       </div>
     );
   }else if(group === 'situations'){
     return (
       <div className="filter-group">
-        <label id="filtre-production_exhibition_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_exhibition">{exhibition}</label>
-        <label id="filtre-production_workshop_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_workshop">Workshops</label>
-        <label id="filtre-production_simulation_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_simulation">Simulations</label>
-        <label id="filtre-production_conference_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_conference">{conference}</label>
+        <label id="filtre-production_exhibition_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_exhibition"aria-label={exhibition}>{exhibition}</label>
+        <label id="filtre-production_workshop_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_workshop" aria-label="workshops">Workshops</label>
+        <label id="filtre-production_simulation_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_simulation" aria-label="Simulations">Simulations</label>
+        <label id="filtre-production_conference_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_conference"aria-label={conference}>{conference}</label>
       </div>
     );
   }else{

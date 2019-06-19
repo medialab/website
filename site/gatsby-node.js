@@ -606,6 +606,13 @@ exports.createPages = function({graphql, actions}) {
     component: path.resolve('./src/templates/people-list.js')
   });
 
+  const linkToAdmin = (model, identifier) => {
+    if (!process.env.BUILD_CONTEXT || process.env.BUILD_CONTEXT !== 'prod')
+      return `${process.env.ADMIN_URL}/#/${model}/${identifier}`;
+    else
+      return null;
+  }
+
   // Chaining promises
   const promises = [
 
@@ -619,7 +626,8 @@ exports.createPages = function({graphql, actions}) {
         const activity = edge.node;
 
         const context = {
-          identifier: activity.identifier
+          identifier: activity.identifier,
+          linkToAdmin: linkToAdmin('activities', activity.identifier)
         };
 
         activity.slugs.forEach(slug => {
@@ -640,9 +648,10 @@ exports.createPages = function({graphql, actions}) {
       // Creating pages
       result.data.allPeopleJson.edges.forEach(edge => {
         const person = edge.node;
-
+        
         const context = {
-          identifier: person.identifier
+          identifier: person.identifier,
+          linkToAdmin: linkToAdmin('people', person.identifier)
         };
 
         person.slugs.forEach(slug => {
@@ -665,7 +674,8 @@ exports.createPages = function({graphql, actions}) {
         const production = edge.node;
 
         const context = {
-          identifier: production.identifier
+          identifier: production.identifier,
+          linkToAdmin: linkToAdmin('productions', production.identifier)
         };
 
         production.slugs.forEach(slug => {
@@ -688,7 +698,8 @@ exports.createPages = function({graphql, actions}) {
         const news = edge.node;
 
         const context = {
-          identifier: news.identifier
+          identifier: news.identifier,
+          linkToAdmin: linkToAdmin('news', news.identifier)
         };
 
         news.slugs.forEach(slug => {

@@ -14,5 +14,6 @@
     "consumerSecret": "",
     "accessTokenKey": "",
     "accessTokenSecret": ""
-  }
+  },
+  "adminUrl": "http://localhost:7000"
 }

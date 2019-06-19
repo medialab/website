@@ -78,6 +78,10 @@ const ROUTERS = MODELS.concat('settings').map(model => {
   };
 });
 
+// pass ADMIN_URL conf to gatsby process for dev env)
+if (!process.env.ADMIN_URL)
+  process.env.ADMIN_URL = config.adminUrl;
+
 const gatsby = new GatsbyProcess('./site');
 
 process.on('exit', () => gatsby.kill());
@@ -307,7 +311,7 @@ ws.on('connection', socket => {
         changeDeployStatus('building');
 
         const env = Object.assign({}, process.env);
-
+        env.BUILD_CONTEXT = 'prod';
         env.ROOT_PATH = path.resolve(__dirname, '..');
 
         return exec('gatsby build', {cwd: SITE_PATH, env}, err => {

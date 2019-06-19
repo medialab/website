@@ -22,6 +22,8 @@ export default ({data, pageContext}) => {
       lang={pageContext.lang}
       className="page-activity body-page"
       permalinks={pageContext.permalinks}>
+      {pageContext.linkToAdmin && <div style={{'text-align': 'right'}}>{activity.draft ? <b>DRAFT</b> : <b>PUBLIC</b>} <a href={pageContext.linkToAdmin} target="_blank" rel="noopener noreferrer">éditer dans l'admin</a></div>}
+      
       <ActivityDetail lang={pageContext.lang} activity={activity} />
     </Layout>
   );

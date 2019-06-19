@@ -54,6 +54,17 @@ export const query = graphql`
         }
       }
     }
+
+    settingsJson {
+      topActivities {
+        model
+        data {
+          ... on Activities {
+            id
+          }
+        }
+      }
+    }
   }
 `;
 
@@ -62,6 +73,7 @@ export default ({data, pageContext}) => {
 
   const list = data.allActivitiesJson.edges.map(e => e.node);
   const statuses = data.facetedEnumsJson.activityStatuses;
+  const topActivities = data.settingsJson.topActivities.map(o => o.data.id);
 
   return (
     <Layout
@@ -72,7 +84,8 @@ export default ({data, pageContext}) => {
         lang={pageContext.lang}
         list={list}
         status={pageContext.status}
-        statuses={statuses} />
+        statuses={statuses}
+        topActivities={topActivities}  />
     </Layout>
   );
 };

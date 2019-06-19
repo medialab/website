@@ -8,9 +8,8 @@ import {IsModel} from '../helpers/helpers.js';
 import ProcessedImage from '../helpers/ProcessedImage.js';
 import {templateMembership} from '../helpers/helpers.js';
 
-export default function ActivityListing({lang, list, status, statuses}) {
-  // console.log(lang, list);
-
+export default function ActivityListing({lang, list, status, statuses, topActivities}) {
+  const activities = topActivities.map(ta => list.find(a => a.id === ta)).concat(list.filter(a => topActivities.indexOf(a.id) === -1));
 
     return (
       <>
@@ -22,7 +21,7 @@ export default function ActivityListing({lang, list, status, statuses}) {
         <section id="liste" className="main-container">
           <ul className="liste_objet" id="liste-activity">
 
-            {list.map((a, index) => (
+            {activities.map((a, index) => (
               <React.Fragment key={index}>
                 <li data-type={a.type} className={`list-item ${a.type}-${a.active ? 'active' : 'past'}`}>
                   <Link to={a.permalink[lang]}>
@@ -38,7 +37,7 @@ export default function ActivityListing({lang, list, status, statuses}) {
                     </hgroup>
                     <div className="accroche">
                       <p className="accroche-paragraphe">
-                        {a.description && <RawHTML html={a.description && (a.description[lang] || a.description[(lang === 'fr' ? 'en' : 'fr')])} />}
+                        {a.description && (a.description[lang] || a.description[(lang === 'fr' ? 'en' : 'fr')])}
                       </p>
                     </div>
                   </Link>

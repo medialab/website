@@ -84,6 +84,9 @@ exports.graphQLSchemaAdditionForSettings = function(schemas, getNode) {
           }
         }
       })
+    },
+    topActivities: {
+      type: new GraphQLTypes.GraphQLList(ItemType)
     }
   };
 };

@@ -53,7 +53,8 @@ if (!fs.existsSync(settingsPath))
       settings: {
         home: {
           grid: [],
-          slider: []
+          slider: [],
+          topActivities: []
         }
       }
     }, null, 2)

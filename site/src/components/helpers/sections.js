@@ -2,7 +2,7 @@ const exists = key => object => !!(object[key] && object[key].length > 0);
 
 const SECTIONS = {
   main: {
-    id: 'main',
+    id: 'topbar',
     en: 'Scroll top',
     fr: 'Aller en haut',
     exists: () => true

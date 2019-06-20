@@ -139,7 +139,7 @@
 
 				&.figure-logo{
 					display: inline-block;
-					max-width: 33% !important;
+					max-width: 20mm !important;
 					width: auto;
 				    vertical-align: middle;
 					text-align: center;
@@ -157,53 +157,39 @@
 					width: 50%;
 
 				}
-
-				&.serie-pair + p{ display: none; }
-				
-				&.vignette-block, &.vignette-inline-paysage{
+				.vignette{
 					
-					transition: .25s ease-in-out;						
-					cursor: pointer;
+					margin: $baseline*2 $unite $baseline*3 $unite;
+					display: inline-block;
+					
+					&.container_vignette-inline{			 
+						//width: 70mm;
+						width: -moz-calc( 50% - #{$unite*2} - 2px);
+						width: -webkit-calc( 50% - #{$unite*2} - 2px);
+						width: calc( 50% - #{$unite*2} - 2px);
 
-					&:after{
-						content: "🔎\00FE0E";
-						top: 50%;
-						left: 50%;
-						transform: translate(-50%);
-						position: absolute;
-						opacity: 0;
-						font-size: 30px;
-						color: $redlab;
-						transition: 0.1s 0s ease-in-out;
-						line-height: 0;
+						img{
+						}
 					}
-					&:hover:after{
-						opacity: 1;
-						transition: .25s ease-in-out;
-					}				
-				}
-				&.vignette-block, &.vignette-inline-paysage{
-					text-align: center;
-					display: block;
-					padding: $baseline*2 $unite $baseline*2 $unite;
 
-					img{
-						max-width: 75%;
-						max-height: 66vh;
-					}
 				}
-
-				&.vignette-inline-paysage + p{ display: none;}
 
 				&.illustration{
 					width: 100%;
 					display: inline-block;
+					margin: auto;
 					padding: $baseline*2 0 $baseline*4 0; 
+
+					img{
+						width: auto;
+						max-width: 100mm;
+						height: auto;
+						max-height: 100mm;
+					}
 				}			
 			}
 		}
-
-
+	
 		#all-aside aside{
             max-width: 150mm;
             margin: 0 auto;

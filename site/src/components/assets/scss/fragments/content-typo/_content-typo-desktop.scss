@@ -51,10 +51,11 @@
 							
 			/* Regles de Base */
 			iframe{
-				width: 100%;
-				min-height: 50vh;
-				margin: $baseline*3 0 $baseline*4 0;	
-				border: none;					
+				//width: 100%;
+				//min-height: 50vh;
+				margin: $baseline*3 auto $baseline*4 auto;	
+				border: none;
+				display: block;			
 			}
 
 			

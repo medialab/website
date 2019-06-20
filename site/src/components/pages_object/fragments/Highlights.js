@@ -42,9 +42,9 @@ export default function highlights({people, lang}) {
               people.mainProductions.map((p, index) => (
                   <li data-type={p.type} className="list-item" key={index}>
                     <Link to={p.permalink[lang]} aria-label={lang === "fr" ? "Lien vers cette production" : "Link to this production" }>
-                      <div className="image-pre">
+                      {/*<div className="image-pre">
                           <ProcessedImage size="small" image={p.coverImage && p.coverImage.processed.small} />
-                      </div>
+                      </div>*/}
                       <div className="bandeau">
                         <p className="type-production" data-icon="production"> {p.groupLabel[lang]}</p> 
                         {p.typeLabel !== 'media' && 

@@ -79,25 +79,25 @@ const FiltreEquipe = ({lang}) => {
       value="administratif" hidden />
 
 
-    <aside className="aside-filters" aria-label={filtresTitle}>
+    <aside className="aside-filters" role="navigation" aria-label={filtresTitle}>
 
     <h1 className="aside-title">{filtresTitle}</h1>
 
       <SearchInput lang={lang} type={title} />
 
-      <div className="filter-group">
+      <div className="filter-group" aria-label={filterMember}>
         <h1>{ filterMember }</h1>
-        <label id="filtre_membre_label" className="checkbox-medialab" htmlFor="filtre_membre">{member}</label>
-        <label id="filtre_non_membre_label" className="checkbox-medialab" htmlFor="filtre_non_membre">{associate}</label>
+        <label id="filtre_membre_label" className="checkbox-medialab" htmlFor="filtre_membre" aria-label={member}>{member}</label>
+        <label id="filtre_non_membre_label" className="checkbox-medialab" htmlFor="filtre_non_membre" aria-label={associate}>{associate}</label>
       </div>
 
-      <div className="filter-group">
+      <div className="filter-group" aria-label={filterDomain}>
         <h1>{ filterDomain }</h1>
-        <label id="domaine_academique_label" className="checkbox-medialab" htmlFor="domaine_academique">{IsModel('academic', lang)}</label>
-        <label id="domaine_technique_label" className="checkbox-medialab" htmlFor="domaine_technique">{IsModel('tech', lang)}</label>
-        <label id="domaine_design_label" className="checkbox-medialab" htmlFor="domaine_design">{IsModel('design', lang)}</label>
-        <label id="domaine_pedagogie_label" className="checkbox-medialab" htmlFor="domaine_pedagogie">{IsModel('pedagogy', lang)}</label>
-        <label id="domaine_administratif_label" className="checkbox-medialab" htmlFor="domaine_administratif">{IsModel('admin', lang)}</label>
+        <label id="domaine_academique_label" className="checkbox-medialab" htmlFor="domaine_academique" aria-label={IsModel('academic', lang)}>{IsModel('academic', lang)}</label>
+        <label id="domaine_technique_label" className="checkbox-medialab" htmlFor="domaine_technique" aria-label={IsModel('tech', lang)}>{IsModel('tech', lang)}</label>
+        <label id="domaine_design_label" className="checkbox-medialab" htmlFor="domaine_design" aria-label={IsModel('design', lang)}>{IsModel('design', lang)}</label>
+        <label id="domaine_pedagogie_label" className="checkbox-medialab" htmlFor="domaine_pedagogie" aria-label={IsModel('pedagogy', lang)}>{IsModel('pedagogy', lang)}</label>
+        <label id="domaine_administratif_label" className="checkbox-medialab" htmlFor="domaine_administratif" aria-label={IsModel('admin', lang)}>{IsModel('admin', lang)}</label>
       </div>
 
     </aside>

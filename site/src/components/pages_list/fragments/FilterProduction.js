@@ -42,7 +42,7 @@ const FilterProduction = ({lang, group, types}) => {
     <label htmlFor="radio-phone-close" title={closeAlt} arial-label={closeAlt}>✕</label>
     
 
-    <aside className="accroche-title-list">
+    <aside className="accroche-title-list" role="navigation">
       <h1 className="aside-title" data-icon="production">Productions</h1>
       <p id="aria-accroche">{accroche}</p>
     </aside>
@@ -211,7 +211,7 @@ function LabelFiltresType(values){
 
   if(group === 'publications'){
     return (
-      <div className="filter-group">
+      <div className="filter-group" aria-label={lang ==='fr' ? "Filtrer par sous-type" : "Filter by subtypes"}>
         <label id="filtre-production_article_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_article" aria-label={article}>{article}</label>
         <label id="filtre-production_communication_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_communication" aria-label={communication}>{communication}</label>
         <label id="filtre-production_book_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_book"aria-label={book}>{book}</label>
@@ -221,21 +221,21 @@ function LabelFiltresType(values){
     );
   }else if(group === 'tools'){
     return (
-      <div className="filter-group">
+      <div className="filter-group" aria-label={lang ==='fr' ? "Filtrer par sous-type" : "Filter by subtypes"}>
         <label id="filtre-production_software_label" className="filtre-production checkbox-medialab"  htmlFor="filtre-production_software" aria-label={software}>{software}</label>
         <label id="filtre-production_code_label" className="filtre-production checkbox-medialab"  htmlFor="filtre-production_code" aria-label="Code">Code</label>
       </div>
     );
   }else if(group === 'webEditions'){
     return (
-      <div className="filter-group">
+      <div className="filter-group" aria-label={lang ==='fr' ? "Filtrer par sous-type" : "Filter by subtypes"}>
         <label id="filtre-production_datascape_label" className="filtre-production checkbox-medialab"  htmlFor="filtre-production_datascape" aria-label="Datascape">Datascape</label>
         <label id="filtre-production_website_label" className="filtre-production checkbox-medialab"  htmlFor="filtre-production_website" aria-label={website}>{website}</label>
       </div>
     );
   }else if(group === 'situations'){
     return (
-      <div className="filter-group">
+      <div className="filter-group" aria-label={lang ==='fr' ? "Filtrer par sous-type" : "Filter by subtypes"}>
         <label id="filtre-production_exhibition_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_exhibition"aria-label={exhibition}>{exhibition}</label>
         <label id="filtre-production_workshop_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_workshop" aria-label="workshops">Workshops</label>
         <label id="filtre-production_simulation_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_simulation" aria-label="Simulations">Simulations</label>

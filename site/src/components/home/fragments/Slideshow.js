@@ -32,7 +32,7 @@ const Slideshow = ({slider, lang}) => {
  	}
 
 	return (
-  <section className="slideshow" id="slideshow">
+  <section className="slideshow" id="slideshow" data-nbr-item="3">
     <div className="slideshow-container">
 
 

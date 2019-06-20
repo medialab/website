@@ -19,7 +19,7 @@
         a{
             color: $redlab;
 
-            &:last-of-type:not(.mention):not(.hashtag){
+            /*&:last-of-type:not(.mention):not(.hashtag){
 
                 color: $text-color-light;
                 font-size: 0;
@@ -32,7 +32,7 @@
                     color: $text-color-light;
 
                 }
-            }
+            }*/
         }
         a.hashtag,
         a.mention {

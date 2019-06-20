@@ -56,10 +56,10 @@ const TopBar = ({permalinks, lang}) => {
         type="checkbox" id="toggle-menu" name="toggle-menu"
         value="visible" hidden />
       <label htmlFor="toggle-menu">
-        <span className="span-nochecked" aria-label={lang === 'fr' ? "Ouvrir le menu principale" : 'Open the main menu'}>
+        <span className="span-nochecked" aria-label={lang === 'fr' ? "Ouvrir le menu principal" : 'Open the main menu'}>
           <MenuCircle />
         </span>
-        <span className="span-checked" aria-label={lang === 'fr' ? "fermer le menu principale" : 'close the main menu'}>
+        <span className="span-checked" aria-label={lang === 'fr' ? "fermer le menu principal" : 'close the main menu'}>
           <CloseCircle />
         </span>
       </label>

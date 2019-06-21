@@ -63,9 +63,7 @@ export default function ProductionListing({lang, list, group, types}) {
                           </h1>
                         </hgroup> 
                         <div className="authors">
-                          <p className="authors-paragraphe">
-                            {p.authors}
-                          </p>
+                          {p.authors && <p className="authors-paragraphe" dangerouslySetInnerHTML={{__html:p.authors.replace(/([^,$]+)(,)?( )?/g, '<nobr>$1$2</nobr>$3')}} />}
                           <p className="print publication-ref" dangerouslySetInnerHTML={{__html: p.description && (p.description[lang] || p.description[(lang === 'fr' ? 'en' : 'fr')])}} />
                         </div>
                       </Link>

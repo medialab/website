@@ -4,7 +4,7 @@ import {Link} from 'gatsby';
 
 import FiltreEquipe from './fragments/FiltreEquipe.js';
 import {IsModel} from '../helpers/helpers.js';
-
+import LanguageFallback from './fragments/LanguageFallback.js';
 
 import Img from '../assets/images/sample/default-people.png';
 
@@ -29,11 +29,9 @@ export default function PeopleListing({lang, list}) {
           <div className="description">
             <hgroup>
               <h1 data-level-1="name">{p.firstName} {p.lastName}</h1>
-              {p.status && (
-                (p.status[lang] && p.status[lang] !== '' && <p className="status">{p.status[lang]}</p>) ||
-                (p.status[lang === 'fr' ? 'en' : 'fr'] && p.status[lang === 'fr' ? 'en' : 'fr'] !== '' && <p className="status">{p.status[lang === 'fr' ? 'en' : 'fr']}</p>)
-                )
-              }
+              <p className={`status ${lang}`}>
+                <LanguageFallback lang={lang} translatedAttribute={p.status} />
+              </p>
             </hgroup>
             <div className="details">
               <p className="role">{lang === 'fr' ? p.role && p.role.fr : p.role && p.role.en}</p>

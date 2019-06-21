@@ -28,9 +28,18 @@
 				@include font-size-16; 
 				@include for-size(phone) { @include font-size-13-phone; }
 				font-style: italic;
+			}
+
+			.status.en:not(:empty) span{
 				&::before{ content: "“"; }
 				&::after{ content: "”"; }
 			}
+
+			.status.fr:not(:empty) span{
+				&::before{ content: "« "; }
+				&::after{ content: " »"; }
+			}
+
 
 			.details{
 				border-top: $border-very-light;
@@ -54,6 +63,10 @@
 					margin-right: $unite/2;
 					border-right: $border-very-light;
 				}
+			}
+
+			.opacity{
+				opacity: 0.3;
 			}
 		}
 		

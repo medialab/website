@@ -9,6 +9,8 @@ import {IsModel} from '../helpers/helpers.js';
 import RawHTML from '../helpers/RawHtml.js';
 import {format as formatDate, getYear, parseISO} from 'date-fns';
 
+import LanguageFallback from './fragments/LanguageFallback.js';
+
 const byYear = ([yearA], [yearB]) => yearB - yearA;
 
 export default function NewsListing({lang, list}) {
@@ -63,18 +65,20 @@ export default function NewsListing({lang, list}) {
                     </div>
                     <div className="bandeau">
                       <p data-icon="news" className="type-news">{IsModel(news.type, lang)}</p>
-                      <p className="label-news">{news.label && <span>{news.label[lang] || news.label[(lang === 'fr' ? 'en' : 'fr')]}</span>}</p>
+                      <p className="label-news"><LanguageFallback lang={lang} translatedAttribute={news.label} /></p>
                       <div>
                         <DateNews startDate={news.startDate} endDate={news.endDate} lang={lang} />
                         <TimeNews startDate={news.startDate} endDate={news.endDate} />
                         </div>
                     </div>
                     <hgroup>
-                      <h1 data-level-1="baseline" >{news.title && (news.title[lang] || news.title[(lang === 'fr' ? 'en' : 'fr')])}</h1>
+                      <h1 data-level-1="baseline" >
+                        <LanguageFallback lang={lang} translatedAttribute={news.title} />
+                      </h1>
                     </hgroup>
                     <div className="accroche">
                       <p className="accroche-paragraphe">
-                        <RawHTML html={news.description && (news.description[lang] || news.description[(lang === 'fr' ? 'en' : 'fr')])} />
+                        <LanguageFallback lang={lang} translatedAttribute={news.description} />
                       </p>
                     </div>
 

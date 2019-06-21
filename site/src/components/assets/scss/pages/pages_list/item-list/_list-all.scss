@@ -72,7 +72,10 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
         h1::first-letter{ text-transform: capitalize; }
 
         &:hover{ background-color: $background-grey; }
-
+        
+        .opacity{
+            opacity: 0.3;
+        }
     }
 }
 

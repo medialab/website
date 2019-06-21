@@ -5,6 +5,8 @@ import FilterProduction from './fragments/FilterProduction.js';
 import RawHTML from '../helpers/RawHtml.js';
 import {format as formatDate, getYear, parseISO} from 'date-fns';
 
+import LanguageFallback from './fragments/LanguageFallback.js';
+
 
 const byYear = ([yearA], [yearB]) => yearB - yearA;
 
@@ -56,12 +58,12 @@ export default function ProductionListing({lang, list, group, types}) {
                           <p className="date-production">{p.date}</p>
                         </div>
                         <hgroup>
-                          <h1 data-level-1="title" >{p.title && (p.title[lang] || p.title[(lang === 'fr' ? 'en' : 'fr')])}</h1>
+                          <h1 data-level-1="title" >
+                            <LanguageFallback lang={lang} translatedAttribute={p.title} />
+                          </h1>
                         </hgroup> 
                         <div className="authors">
-                          <p className="authors-paragraphe">
-                            {p.authors}
-                          </p>
+                          {p.authors && <p className="authors-paragraphe" dangerouslySetInnerHTML={{__html:p.authors.replace(/([^,$]+)(,)?( )?/g, '<nobr>$1$2</nobr>$3')}} />}
                           <p className="print publication-ref" dangerouslySetInnerHTML={{__html: p.description && (p.description[lang] || p.description[(lang === 'fr' ? 'en' : 'fr')])}} />
                         </div>
                       </Link>

@@ -130,9 +130,9 @@ exports.retrieveGithubFluxData = function(people, callback) {
           // Attempting to match
           const match = peopleIndex[login.toLowerCase()];
 
-          if (match) 
+          if (match)
             author = {...author, ...match};
-          
+
           return author;
         });
 
@@ -177,8 +177,8 @@ function resolveTweetUrls(tweet, html = false) {
 
 function convertTweetTextToHtml(tweet) {
   return resolveTweetUrls(tweet, true)
-    .replace(new RegExp(`(@(${tweet.entities.user_mentions.map(m => m.screen_name).join('|')}))`, 'gi'), '<a href="https://twitter.com/$1" class="mention" target="_blank" rel="noopener">$&</a>')
-    .replace(new RegExp(`(#(${tweet.entities.hashtags.map(h => h.text).join('|')}))`, 'gi'), '<a href="https://twitter.com/hashtag/$1" class="hashtag" target="_blank" rel="noopener">$&</a>');
+    .replace(new RegExp(`(?:@(${tweet.entities.user_mentions.map(m => m.screen_name).join('|')}))`, 'gi'), '<a href="https://twitter.com/$1" class="mention" target="_blank" rel="noopener">$&</a>')
+    .replace(new RegExp(`(?:#(${tweet.entities.hashtags.map(h => h.text).join('|')}))`, 'gi'), '<a href="https://twitter.com/hashtag/$1" class="hashtag" target="_blank" rel="noopener">$&</a>');
 }
 
 // Function retrieving Twitter events and formatting them into our flux
@@ -226,7 +226,7 @@ exports.retrieveTwitterFluxData = function(callback) {
         if (t.in_reply_to_status_id_str) {
           const repliedTweet = repliedTweetIndex[t.in_reply_to_status_id_str];
 
-          
+
           item.originalTweet = {
             tweet: repliedTweet.id_str,
             text: resolveTweetUrls(repliedTweet),
@@ -240,7 +240,7 @@ exports.retrieveTwitterFluxData = function(callback) {
 
         // Retweets
         if (t.retweeted_status) {
-          
+
           item.originalTweet = {
             tweet: t.retweeted_status.id_str,
             text: resolveTweetUrls(t.retweeted_status),
@@ -254,7 +254,7 @@ exports.retrieveTwitterFluxData = function(callback) {
 
         // Quotes
         if (t.quoted_status) {
-          
+
           item.originalTweet = {
             tweet: t.quoted_status.id_str,
             text: resolveTweetUrls(t.quoted_status),

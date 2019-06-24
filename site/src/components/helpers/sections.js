@@ -1,3 +1,5 @@
+import highlights from "../pages_object/fragments/Highlights";
+
 const exists = key => object => !!(object[key] && object[key].length > 0);
 
 const SECTIONS = {
@@ -36,6 +38,12 @@ const SECTIONS = {
     en: 'Attached files',
     fr: 'Fichiers associés',
     exists: exists('attachments')
+  },
+  highlights: {
+    id: 'highlights',
+    en: 'Currently',
+    fr: 'En ce moment',
+    exists: exists('mainProductions') || exists('mainActivities')
   }
 };
 

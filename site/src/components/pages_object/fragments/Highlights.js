@@ -6,6 +6,7 @@ import RawHTML from '../../helpers/RawHtml.js';
 import DateNews from '../../helpers/DateNews.js';
 import ProcessedImage from '../../helpers/ProcessedImage.js';
 
+import {SECTIONS} from '../../helpers/sections';
 
 export default function highlights({people, lang}) {
   if ((people.mainActivities && people.mainActivities.length > 0) || (people.mainProductions && people.mainProductions.length > 0)) {
@@ -13,7 +14,7 @@ export default function highlights({people, lang}) {
 
       <section id="highlights" aria-describedby="aria-title" >
         <>
-        <h1 id="aria-title">{lang === 'fr' ? 'Activité(s) et production(s) principale(s)' : 'Main activities and productions' }</h1>
+        <h1 id="aria-title">{SECTIONS.highlights[lang]}</h1>
         <div className="contenu">
           <ul id="highlights-list-activity" data-type="activities">
             { people.mainActivities &&

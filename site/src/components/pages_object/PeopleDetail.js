@@ -232,7 +232,7 @@ export default function PeopleDetail({lang, person}) {
       <input type="checkbox" id="toggle-nav" name="toggle-nav" value="toggle-nav" hidden />
       <label htmlFor="toggle-nav" title={toggleNav} arial-label={toggleNav}><span><Icons icon='arrow' /></span></label>
 
-        <Nav lang={lang} data={person} order={['main', 'activities', 'productions', 'news']} />
+        <Nav lang={lang} data={person} order={['main', 'highlights', 'activities', 'productions', 'news']} />
 
         <header id="titre-sticky" aria-hidden="true">
           <div id="container-titre-sticky">

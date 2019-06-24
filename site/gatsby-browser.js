@@ -6,7 +6,7 @@ function Hilitor(id, tag) {
   // private variables
   var targetNode = document.getElementById(id) || document.body;
   var hiliteTag = tag || "MARK";
-  var skipTags = new RegExp("^(?:" + hiliteTag + "|SCRIPT|FORM|SPAN)$");
+  var skipTags = new RegExp("^(?:" + hiliteTag + "|SCRIPT|FORM)$");
   var colors = ["rgb(247, 50, 63)", "rgb(247, 50, 63)", "rgb(247, 50, 63)", "rgb(247, 50, 63)", "rgb(247, 50, 63)"];
   var wordColor = [];
   var colorIdx = 0;
@@ -146,6 +146,7 @@ export function onRouteUpdate() {
    */
   var searchInput = document.querySelector('#search');
   if (searchInput) {
+    console.debug('search enabled');
     searchInput.style.display = 'block';
     /**
      * LOGIQUE DE SEARCH

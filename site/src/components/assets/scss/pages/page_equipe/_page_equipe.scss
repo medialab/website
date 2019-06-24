@@ -28,6 +28,7 @@
 				@include font-size-16; 
 				@include for-size(phone) { @include font-size-13-phone; }
 				font-style: italic;
+			}
 
 			.status.en:not(:empty) span{
 				&::before{ content: "“"; }

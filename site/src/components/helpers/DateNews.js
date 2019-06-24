@@ -11,46 +11,60 @@ function DateNews(props) {
   const lang = props.lang;
   const locale = locales[lang];
 
-  let dateNews = null;
-  const startDateFormat = formatDate(startDate, 'd MMMM', {locale});
+  //deprecated ? const startDateFormat = formatDate(startDate, 'd MMMM', {locale});
+  // date can be precise only at month or year level in which case we ignore day
+  const showStarDateDay = props.startDate.length > 7
   const startDateDay = formatDate(startDate, 'd', {locale});
   const startDateDayName = formatDate(startDate, 'EEEE', {locale});
+  // date can be precise only at year level in which case we ignore month
+  const showStartDateMonth = props.startDate.length > 4
   const startDateMonthName = formatDate(startDate, 'MMMM', {locale});
   const startDateYear = formatDate(startDate, 'yyyy', {locale});
-  const startDateDayMonth = formatDate(startDate, 'd MMMM', {locale});
+  //deprecated ? const startDateDayMonth = formatDate(startDate, 'd MMMM', {locale});
 
-  const iconBetween = <span className="between" aria-label={lang === "fr" ? "jusqu'au" : "to" } >⇥</span>;
+  const iconBetween = <span className="between" aria-label={lang === 'fr' ? 'jusqu\'au' : 'to'} > ⇥ </span>;
 
-  if (props.endDate) {
-      const endDate = parseISO(props.endDate);
-      const endDateFormat = formatDate(endDate, 'd MMMM', {locale});
-      const endDateDay = formatDate(endDate, 'd', {locale});
-      const endDateMonthName = formatDate(endDate, 'MMMM', {locale});
-      const endDateYear = formatDate(endDate, 'yyyy', {locale});
 
-      // same date
-      if (differenceInCalendarDays(startDate, endDate) === 0) {
-          dateNews = <p className="date-news"><time datetime={formatDate(startDate, 'yyyy-MM-d')}><span className="startDate" ><span className="day-name">{startDateDayName}</span> <span className="day-num">{startDateDay }</span> <span className="month-name">{startDateMonthName}</span> <span className="year">{startDateYear}</span></span></time></p>;
-      }
-      else {
-          if (isSameYear(startDate, endDate)) {
-              if (isSameMonth(startDate, endDate)) {
-                  dateNews = <p className="date-news" aria-label="date"><time datetime={formatDate(startDate, 'yyyy-MM-d')}><span className="startDate startDate_sameMonth" >{startDateDay} </span></time> {iconBetween} <time datetime={formatDate(endDate, 'yyyy-MM-d')}><span className="endDate endDate_sameMonth" ><span className="day-num">{endDateDay }</span> <span className="month-name">{endDateMonthName}</span> <span className="year">{endDateYear}</span></span></time></p>;
-              }
-              else {
-                  dateNews = <p className="date-news differentMonth" aria-label="date"><time datetime={formatDate(startDate, 'yyyy-MM-d')}><span className="startDate" ><span className="day-num">{startDateDay }</span> <span className="month-name">{startDateMonthName}</span></span></time> {iconBetween} <time datetime={formatDate(endDate, 'yyyy-MM-d')}><span className="endDate"><span className="day-num">{endDateDay }</span> <span className="month-name">{endDateMonthName}</span> <span className="year">{endDateYear}</span></span></time></p>;
-              }
-          }
-          // different year
-          else {
-              dateNews = <p className="date-news differentYear" aria-label="date"><time datetime={formatDate(startDate, 'yyyy-MM-d')}><span className="startDate" ><span className="day-num">{startDateDay }</span> <span className="month-name">{startDateMonthName}</span> <span className="year">{startDateYear}</span></span></time> {iconBetween} <time datetime={formatDate(endDate, 'yyyy-MM-d')}><span className="endDate" ><span className="day-num">{endDateDay }</span> <span className="month-name">{endDateMonthName}</span>  <span className="year">{endDateYear}</span></span></time></p>;
-          }
-      }
+  const endDate = parseISO(props.endDate);
+  if (props.endDate && differenceInCalendarDays(startDate, endDate) !== 0) {
+
+    //deprecated ? const endDateFormat = formatDate(endDate, 'd MMMM', {locale});
+    const showEndDateDay = props.endDate.length > 7;
+    const endDateDay = formatDate(endDate, 'd', {locale});
+    const showEndDateMonth = props.endDate.length > 4
+    const endDateMonthName = formatDate(endDate, 'MMMM', {locale});
+    const endDateYear = formatDate(endDate, 'yyyy', {locale});
+
+    return (<p className="date-news differentYear" aria-label="date">
+      <time dateTime={formatDate(startDate, 'yyyy-MM-d')}>
+        <span className={`startDate ${isSameMonth(startDate, endDate) ? 'startDate_sameMonth' : ''}`} >
+          {showEndDateDay && showStarDateDay && isSameYear(startDate, endDate) && isSameMonth(startDate, endDate) ? startDateDay : ''}
+          {showEndDateDay && showStarDateDay && (!isSameYear(startDate, endDate) || !isSameMonth(startDate, endDate)) && <span className="day-num">{startDateDay} </span>}
+          {showStartDateMonth && showEndDateMonth && !isSameMonth(startDate, endDate) && <span className="month-name">{startDateMonthName} </span>}
+          {!isSameYear(startDate, endDate) && <span className="year">{startDateYear}</span>}
+        </span>
+      </time>{iconBetween}
+      <time dateTime={formatDate(endDate, 'yyyy-MM-d')}>
+        <span className="endDate" >
+          {showEndDateDay && showStarDateDay && <span className="day-num">{endDateDay} </span>}
+          {showStartDateMonth && showEndDateMonth && <span className="month-name">{endDateMonthName} </span>}
+          <span className="year">{endDateYear}</span>
+        </span>
+      </time>
+    </p>);
   }
   else {
-      dateNews = <p className="date-news" aria-label="date" ><time datetime={formatDate(startDate, 'yyyy-MM-d')}><span className="startDate"><span className="day-name">{startDateDayName}</span> <span className="day-num">{startDateDay }</span> <span className="month-name">{startDateMonthName}</span> <span className="year">{startDateYear}</span></span></time></p>;
+    return (<p className="date-news" aria-label="date" >
+      <time dateTime={formatDate(startDate, 'yyyy-MM-d')}>
+        <span className="startDate">
+          {showStarDateDay && <span className="day-name">{startDateDayName} </span>}
+          {showStarDateDay && <span className="day-num">{startDateDay } </span>}
+          {showStartDateMonth && <span className="month-name">{startDateMonthName} </span>}
+          <span className="year">{startDateYear}</span>
+        </span>
+      </time>
+    </p>);
   }
-  return dateNews;
 }
 
 export default DateNews;

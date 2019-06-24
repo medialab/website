@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'gatsby';
 
 import FilterProduction from './fragments/FilterProduction.js';
+import DateNews from '../helpers/DateNews.js';
 import RawHTML from '../helpers/RawHtml.js';
 import {format as formatDate, getYear, parseISO} from 'date-fns';
 
@@ -54,8 +55,9 @@ export default function ProductionListing({lang, list, group, types}) {
                       <Link to={p.permalink[lang]}>
                         <div className="bandeau">
                           <p className="type-production" data-icon="production"> {p.groupLabel[lang]}</p> 
-                          <p className="subtype-production">{p.typeLabel !== 'media' && <span>{p.typeLabel[lang]}</span>}</p>
-                          <p className="date-production">{p.date}</p>
+                          <p className="subtype-production">{p.typeLabel !== 'media' && <span>{p.typeLabel[lang]}</span>}</p> 
+                          <DateNews startDate={p.date} lang={lang} />
+                          {/* the p surrounding the date used before DateNews integration className="date-production" */}
                         </div>
                         <hgroup>
                           <h1 data-level-1="title" >

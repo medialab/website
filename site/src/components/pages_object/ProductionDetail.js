@@ -1,6 +1,7 @@
 import React from 'react';
 import {graphql} from 'gatsby';
 import RawHtml from '../helpers/RawHtml.js';
+import DateNews from '../helpers/DateNews.js';
 import {Link} from 'gatsby';
 
 import Nav from '../common/Nav.js';
@@ -141,7 +142,8 @@ export default function ProductionDetail({lang, production}) {
             </hgroup>
             <div className="details">
               <p className="type-objet"><span data-icon="production"></span> {IsModel(production.group, "fr")} – {IsModel(production.type, "fr")}</p>
-              <p className="date">{production.date}</p>
+              <DateNews startDate={production.date} lang="fr" />
+              {/*<p className="date">{production.date}</p>*/}
               <p className="production-ref"><RawHtml html={production.description && (production.description.fr)} /></p>
               <FichiersAssocies attachments={production.attachments} lang="fr" />
 
@@ -159,7 +161,8 @@ export default function ProductionDetail({lang, production}) {
             </hgroup>
             <div className="details">
               <p className="type-objet"><span data-icon="production"></span> {IsModel(production.group, "en")} – {IsModel(production.type, "en")}</p>
-              <p className="date">{production.date}</p>
+              <DateNews startDate={production.date} lang="en" />
+              {/*<p className="date">{production.date}</p>*/}
               <p className="production-ref"><RawHtml html={production.description && (production.description.en)} /></p>
               <FichiersAssocies attachments={production.attachments} lang="en" />
             </div>

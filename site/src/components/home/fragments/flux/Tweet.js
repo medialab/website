@@ -39,31 +39,33 @@ return (
       </label>
 
       <div id="tweet-content">
-          
-      { tweets.map(t =>
-          (<article className="tweet" data-type="tweet" key={t.tweet.toString()} aria-label="Tweet" >	
-            <aside className="divers">
-              {
-                //<p className="label" data-icon="tweet">{t.type}</p>
-              }
-              <p className="account"><a href="https://twitter.com/medialab_ScPo" target="blank">@medialab_ScPo</a></p>
-              <p className="date">{formatDateTime(t.date, lang)}</p>
-            </aside>
-            {t.type !== 'retweet' &&
-                <p className="tweet-content" dangerouslySetInnerHTML={{__html: t.html}} />
-            }
-            {t.originalTweet &&
-              <div className="original-tweet">
+        { tweets.map(t =>
+            (<article className="tweet" data-type="tweet" key={t.tweet.toString()} aria-label="Tweet" >	
+              <a href={`https://twitter.com/medialab_scpo/status/${t.tweet}`} target="_blank" rel="noopener noreferrer">
                 <aside className="divers">
-                  <p className="label" data-icon="tweet">{originalTweetIntro[lang][t.type]}</p>
-                  <p className="account">{t.originalTweet.name} (<a href={`https://twitter.com/${t.originalTweet.screenName}`} target="_blank" rel="noopener noreferrer">@{t.originalTweet.screenName}</a>)</p>
+                  {
+                    //<p className="label" data-icon="tweet">{t.type}</p>
+                  }
+                  <p className="account">@medialab_ScPo</p>
+                  <p className="date">{formatDateTime(t.date, lang)}</p>
+                  <p className="date">🔗</p>
                 </aside>
+              </a>
+              {t.type !== 'retweet' &&
+                <p className="tweet-content" dangerouslySetInnerHTML={{__html: t.html}} />
+              }
+              {t.originalTweet &&
+                <div className="original-tweet">
+                  <aside className="divers">
+                    <p className="label" data-icon="tweet">{originalTweetIntro[lang][t.type]}</p>
+                    <p className="account">{t.originalTweet.name} (<a href={`https://twitter.com/${t.originalTweet.screenName}`} target="_blank" rel="noopener noreferrer">@{t.originalTweet.screenName}</a>)</p>
+                  </aside>
                   <p className="tweet-content" dangerouslySetInnerHTML={{__html: t.originalTweet.html}} />
-              </div>
-            }
-          </article>)
-        )
-      }
+                </div>
+              }
+            </article>)
+          )
+        }
       </div>
     </section>
   </>

@@ -158,7 +158,8 @@ const TWITTER_CLIENT = new Twitter({
 
 // Helpers
 function resolveTweetUrls(tweet, html = false) {
-  const ahref = url => `<a href="${url}" target="_blank" rel="noopener">${url}</a>`;
+  const shortenUrl = url => url.replace(/https?:\/\/(www.)?/,'').slice(0, 20) + '…';
+  const ahref = url => `<a href="${url}" target="_blank" rel="noopener">${shortenUrl(url)}</a>`;
   let fullText = tweet.full_text;
 
   if (tweet.entities && tweet.entities.urls) {

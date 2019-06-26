@@ -168,6 +168,26 @@ export const queryFragment = graphql`
   }
 `;
 
+function PeopleContactLabel({lang, data}) {
+  console.log(data);
+  if (data.type === 'url' && data.label !== 'CV') {
+    return (
+      <span>
+        <span className="label-data">{data.label}:</span>
+        &nbsp;<a href={data.value} target="_blank" rel="noopener" aria-label={lang === "fr" ? "Ouvrir cette page " + data.value : "Open this " + data.value +" page"}>{data.value}</a>
+      </span>
+    );
+  }
+
+  if (data.label === 'Mail') {
+    const [identifer, domain] = data.value.split('@');
+
+    return <p>{data.label}: {identifer} [at] {domain}</p>;
+  }
+
+  return <a href={data.value}>{data.label}</a>;
+}
+
 export default function PeopleDetail({lang, person}) {
   // console.log(lang, person);
 
@@ -235,11 +255,7 @@ export default function PeopleDetail({lang, person}) {
                     <ul>
                     { person.contacts.map((contact, i) => (
                       <li key={i} data-type={contact.label}>
-                        {contact.type === 'url' && contact.label !== 'CV' ?
-                          <span><span className="label-contact">{contact.label}:</span> <a href={contact.value} target="_blank" rel="noopener" aria-label={lang === "fr" ? "Ouvrir cette page " + contact.value : "Open this " + contact.value +" page"}>{contact.value}</a></span> :
-                            ( contact.label === 'Mail' ?
-                              <p data-domain="@sciencepo.fr">{contact.label}: NEED_SUBSTRING</p> :
-                                <a href={contact.value}>{contact.label}</a> ) }
+                        <PeopleContactLabel lang={lang} data={contact} />
                       </li>
                     ))}
                     </ul>

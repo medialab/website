@@ -174,55 +174,17 @@ export default function PeopleDetail({lang, person}) {
   const productions = person.mainProductions; // Sync mainProd
   const activities = person.mainActivities; // Sync mainActivities
 
-  let domaine, titleLInkTeam, backTop, toggleNav;
-
-  if (person.domain === 'tech' ) {
-    if (lang === 'fr') {
-      domaine = 'Technique';
-    } else {
-      domaine = 'Technical';
-    }
-  }
-  if (person.domain === 'admin' ) {
-    if (lang === 'fr') {
-      domaine = 'Administratif';
-    } else {
-      domaine = 'Administration';
-    }
-  }
-  if (person.domain === 'academic' ) {
-    if (lang === 'fr') {
-      domaine = 'Académique';
-    } else {
-      domaine = 'Academic';
-    }
-  }
-  if (person.domain === 'Design' ) {
-    domaine = "Design";
-  }
-  if (person.domain === 'pedagogy' ) {
-    if (lang === 'fr') {
-      domaine = 'Pédagogie';
-    } else {
-      domaine = 'Pedagogy';
-    }
-  }
-  else {
-    domaine = 'Domaine';
-  }
+  let titleLinkTeam, backTop, toggleNav;
 
   if (lang === 'fr') {
-    titleLInkTeam = 'Aller à la page de l‘équipe du Médialab';
+    titleLinkTeam = 'Aller à la page de l‘équipe du Médialab';
     backTop = 'Aller en haut de la page';
     toggleNav = 'Afficher ou masquer la navigation dans l‘article';
   } else {
-    titleLInkTeam = 'Go to the medialab team page';
+    titleLinkTeam = 'Go to the medialab team page';
     backTop = 'Go to the top of page';
     toggleNav = 'Show or hide the navigation in the article';
   }
-
-
-  
 
   return (
     <>
@@ -238,7 +200,7 @@ export default function PeopleDetail({lang, person}) {
           <div id="container-titre-sticky">
             <div id="logo-sticky"><a href="/"><Logo /></a></div>
             <p>
-            <Link to="/people" className="link-page-team" title={titleLInkTeam}>
+            <Link to="/people" className="link-page-team" title={titleLinkTeam}>
               <span>{lang === 'fr' ? "L'équipe du Medialab" : 'Medialab team'} </span>
             </Link>
             <span className="personne"><a href="#topbar" title={backTop}>{person.firstName} {person.lastName}</a></span>
@@ -256,7 +218,7 @@ export default function PeopleDetail({lang, person}) {
                 </figure>
                 <hgroup>
                   <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
-                 {person.status && 
+                 {person.status &&
                    <p className="status" data-type="status" aria-label={lang === "fr" ? "Occupation actuelle " : "Present activitiies" }>
                       { lang === "fr" ? person.status.fr : person.status.en}
                     </p>

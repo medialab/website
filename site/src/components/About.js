@@ -51,7 +51,7 @@ export default function About({lang}) {
 
             <h3 id="productions">Productions</h3>
             <p>Issues des dynamiques de recherche du laboratoire combinant méthode, analyse et théorie, les productions du médialab constituent un panorama hétéroclite. Aux traditionnelles publications académiques s’ajoute un ensemble de réalisations techniques qui répondent à des problèmes de recherche récurrents. Récemment, les sites web et réalisations en situation se sont développés comme de nouvelles formes pour rendre compte des activités du laboratoire.</p>
-            <p><Link to="/Productions" className="GoTo">Voir la liste des productions</Link></p>
+            <p><Link to="/productions" className="GoTo">Voir la liste des productions</Link></p>
 
           </div>
           {/*  <aside id="inshort">

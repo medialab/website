@@ -13,7 +13,7 @@
     "docker:build": "docker-compose build",
     "docker:up": "docker-compose -p website up",
     "docker:down": "docker-compose -p website down",
-    "docker:start": "gatsby telemetry --disable && npm start",
+    "docker:start": "gatsby telemetry --disable && npm run clean && npm start",
     "dump": "node ./scripts/dump.js",
     "flux": "node ./scripts/flux-github.js && node ./scripts/flux-twitter.js",
     "hydrate": "rm -rf data/* && mkdir -p data/assets && touch data/assets/dummy && cp specs/samples/*.json data",

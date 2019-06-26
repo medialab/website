@@ -7,4 +7,5 @@ cd /website
 echo "Starting hydrate if required..."
 [ ! -f data/people.json ] && npm run hydrate
 echo "Starting server..."
+su-exec node:node /usr/local/bin/npm run clean
 su-exec node:node /usr/local/bin/npm start

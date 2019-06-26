@@ -16,6 +16,7 @@ const set = require('lodash/fp/set');
 const fs = require('fs-extra');
 const io = require('socket.io');
 
+const utils = require('./utils.js');
 const dump = require('./dump.js');
 const middlewares = require('./middlewares.js');
 const GatsbyProcess = require('./gatsby.js');
@@ -161,7 +162,7 @@ app.post('/upload', (req, res) => {
     return res.status(400).send('No file.');
 
   const ext = path.extname(file.name),
-        filename = path.basename(file.name, ext);
+        filename = utils.cleanAssetName(path.basename(file.name, ext));
 
   const name = `${filename}_${uuid()}${ext}`;
 
@@ -181,6 +182,7 @@ app.get('/reboot-gatsby', (req, res) => {
 // Migration routes
 const MIGRATION_SCHEMES = {
   // 'drop-important': require('./migrations/drop-important.js'),
+  'fix-asset-names': require('./migrations/fix-asset-names.js'),
   // 'fix-dates': require('./migrations/fix-dates.js'),
   // 'fix-minutes': require('./migrations/fix-minutes.js'),
   // 'fix-missing-processed': require('./migrations/fix-missing-processed.js'),

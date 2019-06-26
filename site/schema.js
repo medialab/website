@@ -1,5 +1,6 @@
 const GraphQLTypes = require('gatsby/graphql');
 const sharp = require('sharp');
+const memoize = require('timed-memoize').default;
 const path = require('path');
 const _ = require('lodash');
 
@@ -235,66 +236,70 @@ exports.patchGraphQLSchema = function(current, model, type, schema, settings) {
   if ('coverImage' in current[model])
     return;
 
+  const resolver = item => {
+    if (!item.cover)
+      return null;
+
+    const cover = item.cover;
+
+    const ext = path.extname(cover.file),
+          name = path.basename(cover.file, ext);
+
+    const output = `${name}.cover${ext}`;
+
+    const crop = cover.crop;
+
+    const data = {
+      url: `${settings.prefix}/static/${output}`
+    };
+
+    return new Promise((resolve, reject) => {
+
+      const img = () => sharp(path.join(settings.assetsPath, cover.file)).extract({
+        left: crop.x,
+        top: crop.y,
+        width: crop.width,
+        height: crop.height
+      });
+
+      // TODO: temporal memoize to avoid triggering too many copies?
+      // TODO: only use a single stream!
+      return img()
+        .toFile(path.join(settings.publicPath, output), err => {
+          if (err)
+            return reject(err);
+
+          if (cover.processed) {
+            Promise.all([
+              settings.processing(img(), cover.crop, {
+                rows: 60,
+                gamma: cover.gamma
+              }),
+              settings.processing(img(), cover.crop, {
+                rows: 120,
+                gamma: cover.gamma
+              }),
+              settings.processing(img(), cover.crop, {
+                rows: 240,
+                gamma: cover.gamma
+              })
+            ]).then(([small, medium, large]) => {
+              resolve({...data, processed: {small, medium, large}});
+            }).catch(reject);
+          }
+          else {
+            resolve(data);
+          }
+        });
+    });
+  };
+
   current[model].coverImage = {
     type: CoverType,
-    resolve: item => {
-
-      if (!item.cover)
-        return null;
-
-      const cover = item.cover;
-
-      const ext = path.extname(cover.file),
-            name = path.basename(cover.file, ext);
-
-      const output = `${name}.cover${ext}`;
-
-      const crop = cover.crop;
-
-      const data = {
-        url: `${settings.prefix}/static/${output}`
-      };
-
-      return new Promise((resolve, reject) => {
-
-        const img = () => sharp(path.join(settings.assetsPath, cover.file)).extract({
-          left: crop.x,
-          top: crop.y,
-          width: crop.width,
-          height: crop.height
-        });
-
-        // TODO: temporal memoize to avoid triggering too many copies?
-        // TODO: only use a single stream!
-        return img()
-          .toFile(path.join(settings.publicPath, output), err => {
-            if (err)
-              return reject(err);
-
-            if (cover.processed) {
-              Promise.all([
-                settings.processing(img(), cover.crop, {
-                  rows: 60,
-                  gamma: cover.gamma
-                }),
-                settings.processing(img(), cover.crop, {
-                  rows: 120,
-                  gamma: cover.gamma
-                }),
-                settings.processing(img(), cover.crop, {
-                  rows: 240,
-                  gamma: cover.gamma
-                })
-              ]).then(([small, medium, large]) => {
-                resolve({...data, processed: {small, medium, large}});
-              }).catch(reject);
-            }
-            else {
-              resolve(data);
-            }
-          });
-      });
-    }
+    resolve: memoize(resolver, {
+      timeout: 60 * 1000,
+      resolver: args => args[0].id
+    })
   };
 };
 

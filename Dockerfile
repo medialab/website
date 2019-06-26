@@ -16,6 +16,7 @@ RUN apk add --no-cache --virtual .build-deps make gcc g++ libc-dev libpng-dev au
       --repository https://alpine.global.ssl.fastly.net/alpine/edge/main \
       --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
     && npm ci --quiet --no-audit --ignore-scripts \
+    && ./node_modules/.bin/gatsby telemetry --disable \
     && cd site \
     && npm ci --quiet --no-audit \
     && apk del .build-deps \

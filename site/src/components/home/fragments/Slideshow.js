@@ -14,38 +14,16 @@ const Slideshow = ({slider, lang}) => {
 
 const otherLang = lang === 'fr' ? 'en' : 'fr';
 
-
-let a, z;
-a = 3;
-z = 1;
-
-function IsIndex (index) {
-  if (index === 0) {
-    a = '3';
-    z = '2';
-  }
-  if (index === 1) {
-    a = '1';
-    z = '3';
-  }
-    if (index === 2) {
-    a = '2';
-    z = '1';
-  }
-}
-
 	return (
-  <section className="slideshow" id="slideshow" data-nbr-item="3">
+  <section className="slideshow" id="slideshow" data-nbr-item={slider.length}>
     <div className="slideshow-container">
       {/* Bullet by default*/}
       <input
         type="radio" name="slide-bullet" id="slide-bullet-0"
         className="slideshow-bullet" hidden defaultChecked />
-      <label className="" htmlFor="slide-bullet-0" aria-hidden="true">
-      </label>
+      <label className="" htmlFor="slide-bullet-0" aria-hidden="true" />
       {slider.map((slide, index) =>
         (<React.Fragment key={index}>
-          {IsIndex(index)}
           <input
             type="radio" name="slide-bullet" id={`slide-bullet-${index + 1}`}
             className="slideshow-bullet" hidden />
@@ -127,21 +105,20 @@ function IsIndex (index) {
 
       {/* bullet pour controler le caroussel*/}
       <nav className="bullets-slide">
-        <label className="slideshow-bullet-label" data-slide="1" htmlFor="slide-bullet-1" aria-label={lang === "fr" ? "Voir la première page" : "See first slide" }></label>
-        <label className="slideshow-bullet-label" data-slide="2" htmlFor="slide-bullet-2" aria-label={lang === "fr" ? "Voir la deuxième page" : "See second slide" }></label>
-        <label className="slideshow-bullet-label" data-slide="3" htmlFor="slide-bullet-3" aria-label={lang === "fr" ? "Voir la troisème page" : "See third slide" }></label>
+        { slider.map((slide, index) => {
+            return <label key={index + 1} className="slideshow-bullet-label" data-slide={index + 1} htmlFor={`slide-bullet-${index + 1}`} aria-label={`slide ${index + 1}`} />
+          })}
       </nav>
 
       {/* label pour controler le caroussel*/}
       <nav className="slideshow-controls" aria-hidden="true">
         {slider.map((slide, index) =>
           (<React.Fragment key={index}>
-              {IsIndex(index)}
-              <label htmlFor={`slide-bullet-${a}`} className="slide_controls slide_controls-previous" alt={lang === 'fr' ? 'Aller à la slide ' + a : 'Go to slide ' + a }></label>
-              <label htmlFor={`slide-bullet-${z}`} className="slide_controls slide_controls-next" alt={lang === 'fr' ? 'Aller à la slide ' + z : 'Go to slide ' + z }></label>
+            <label htmlFor={`slide-bullet-${index === 0 ? slider.length : index}`} className="slide_controls slide_controls-previous" alt={`${(lang === 'fr' ? 'Aller à la slide' : 'Go to slide')} ${index === 0 ? slider.length : index}`} />
+            <label htmlFor={`slide-bullet-${(index === slider.length - 1) ? 1 : index + 2}`} className="slide_controls slide_controls-next" alt={`${(lang === 'fr' ? 'Aller à la slide' : 'Go to slide')} ${(index === slider.length - 1) ? 1 : index + 2}`} />
           </React.Fragment>)
         )}
-        <span className="controls" aria-hidden="true"></span>
+        <span className="controls" aria-hidden="true" />
       </nav>
     </div>
     <hr />
@@ -150,4 +127,3 @@ function IsIndex (index) {
 };
 
 export default Slideshow;
-

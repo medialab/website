@@ -80,7 +80,10 @@ const HANDLERS = {
   },
   url: {
     field: 'url'
-  }
+  },
+  authors: {
+    field: ['authors']
+  },
 };
 
 class SpireGeneratedField extends Component {
@@ -255,6 +258,51 @@ function renderProductionForm(props) {
           </div>
         </div>
       </div>
+      <div className="column is-12">
+        <div className="field">
+          <label className="label">Auteurs
+            <em>Liste des auteurs prénom nom séparés par des virgules.<br></br>
+          Iniquer la liste complète (médialab et non médialab) des auteurs dans l'ordre de la publication.</em></label>
+          <div className="control">
+            <SpireGeneratedField
+              spireValue={data.spire && data.spire.generatedFields.authors}
+              humanValue={data.authors}
+              init={() => handlers.authors({target: {value: ''}})}
+              cancel={() => handlers.authors({target: {value: undefined}})} >
+              <input
+                type="text"
+                className="input"
+                value={data.authors || ''}
+                onChange={handlers.authors}
+                placeholder="prénom nom, prénom nom" />
+            </SpireGeneratedField>
+          </div>
+        </div>
+      </div>
+
+
+      <div className="columns">
+        <div className="column is-12">
+          <div className="field">
+            <label className="label">Auteurs médialab
+            <em>Indiquer quels sont les membres médialab parmi les auteurs.</em></label>
+            <div className="control">
+              <SpireGeneratedField
+                spireValue={data.spire && data.spire.generatedFields.people}
+                humanValue={data.people}
+                init={() => handlers.people.add([])}
+                cancel={() => handlers.people.empty()}
+                model="people">
+                <RelationSelector
+                  model="people"
+                  selected={data.people}
+                  onAdd={handlers.people.add}
+                  onDrop={handlers.people.drop} />
+              </SpireGeneratedField>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div className="form-group">
         <h4 className="title is-4">
@@ -372,28 +420,6 @@ function renderProductionForm(props) {
                   selected={data.activities}
                   onAdd={handlers.activities.add}
                   onDrop={handlers.activities.drop} />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="columns">
-          <div className="column is-12">
-            <div className="field">
-              <label className="label">Related People</label>
-              <div className="control">
-                <SpireGeneratedField
-                  spireValue={data.spire && data.spire.generatedFields.people}
-                  humanValue={data.people}
-                  init={() => handlers.people.add([])}
-                  cancel={() => handlers.people.empty()}
-                  model="people">
-                  <RelationSelector
-                    model="people"
-                    selected={data.people}
-                    onAdd={handlers.people.add}
-                    onDrop={handlers.people.drop} />
-                </SpireGeneratedField>
               </div>
             </div>
           </div>

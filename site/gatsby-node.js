@@ -151,6 +151,11 @@ const MODEL_READERS = {
     const rawData = fs.readFileSync(MODELS_PATHS.productions, 'utf-8');
     const data = JSON.parse(rawData);
 
+    // we need people data to create authors field from people
+    const peopleRawData = fs.readFileSync(MODELS_PATHS.people, 'utf-8');
+    const peopleData = JSON.parse(peopleRawData);
+    const peopleIndex = _.keyBy(peopleData.people, p => p.id);
+
     // Productions
     data.productions.forEach(production => {
 
@@ -178,6 +183,10 @@ const MODEL_READERS = {
         en: ENUMS.productionTypes.en[production.type || ENUMS.productionTypes.default],
         fr: ENUMS.productionTypes.fr[production.type || ENUMS.productionTypes.default]
       };
+
+      // if authors field is empty but we have people, let's fill the field.
+      if ((!production.authors || production.authors === '') && production.people && production.people.length > 0)
+        production.authors = production.people.map(pId => (peopleIndex[pId] ? `${peopleIndex[pId].firstName} ${peopleIndex[pId].lastName}` : `${pId} missing`)).join(', ');
 
       // Processing HTML
       const content = template(pathPrefix, production.content);

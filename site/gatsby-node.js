@@ -22,6 +22,8 @@ const {
 } = require('./templating.js');
 
 const ROOT_PATH = process.env.ROOT_PATH || '..';
+const BUILD_CONTEXT = process.env.BUILD_CONTEXT;
+const ADMIN_URL = process.env.ADMIN_URL;
 
 const QUERIES = require('./queries.js');
 const ENUMS = require(path.join(ROOT_PATH, 'specs', 'enums.json'));
@@ -616,11 +618,11 @@ exports.createPages = function({graphql, actions}) {
   });
 
   const linkToAdmin = (model, identifier) => {
-    if (!process.env.BUILD_CONTEXT || process.env.BUILD_CONTEXT !== 'prod')
-      return `${process.env.ADMIN_URL}/#/${model}/${identifier}`;
+    if (!BUILD_CONTEXT || BUILD_CONTEXT !== 'prod')
+      return `${ADMIN_URL}/#/${model}/${identifier}`;
     else
       return null;
-  }
+  };
 
   // Chaining promises
   const promises = [
@@ -657,7 +659,7 @@ exports.createPages = function({graphql, actions}) {
       // Creating pages
       result.data.allPeopleJson.edges.forEach(edge => {
         const person = edge.node;
-        
+
         const context = {
           identifier: person.identifier,
           linkToAdmin: linkToAdmin('people', person.identifier)

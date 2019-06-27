@@ -5,6 +5,7 @@ const _ = require('lodash');
 const entities = new Entities();
 
 const TITLE = /^H[123456]$/;
+const POINTLESS_P = /<p><br><\/p>/g;
 
 function getImageOrientation(width, height) {
 
@@ -41,7 +42,7 @@ function getImageClassName(format, width, height, even) {
 function processHtml(pathPrefix, html) {
   const withPrefix = asset => `${pathPrefix}/static/${asset}`;
 
-  const $ = cheerio.load(html, {
+  const $ = cheerio.load(html.replace(POINTLESS_P, ''), {
     decodeEntities: false
   });
 

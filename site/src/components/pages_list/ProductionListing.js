@@ -14,9 +14,7 @@ const byYear = ([yearA], [yearB]) => yearB - yearA;
 export default function ProductionListing({lang, list, group, types}) {
     const yearGroups = new Map();
 
- 
-
-    list.filter(p => p.date).sort((a, b) => b.date.localeCompare(a.date)).forEach(production => {
+    list.filter(p => p.date && !p.external).sort((a, b) => b.date.localeCompare(a.date)).forEach(production => {
       let year = getYear(parseISO(production.date));
 
       // TODO: this is a temporary workaround

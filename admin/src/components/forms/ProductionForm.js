@@ -84,6 +84,10 @@ const HANDLERS = {
   authors: {
     field: ['authors']
   },
+  external: {
+    type: 'negative',
+    field: ['external']
+  }
 };
 
 class SpireGeneratedField extends Component {
@@ -258,6 +262,8 @@ function renderProductionForm(props) {
           </div>
         </div>
       </div>
+
+
       <div className="column is-12">
         <div className="field">
           <label className="label">Auteurs
@@ -300,6 +306,22 @@ function renderProductionForm(props) {
                   onDrop={handlers.people.drop} />
               </SpireGeneratedField>
             </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div className="columns">
+        <div className="column is-6">
+          <label className="label">Publication pré-médialab ?
+            <em>Publications des membres du labo ayant été publiées avant leur arrivée.<br></br>
+          Permet de créer une publication et de la mettre en avant dans le profil d'un membre sans la faire apparaître dans la liste des publications du labo</em>
+          </label>
+          <div className="control">
+            <BooleanSelector
+              value={!data.external}
+              labels={['publication médialab', 'publication hors médialab']}
+              onChange={handlers.external} />
           </div>
         </div>
       </div>

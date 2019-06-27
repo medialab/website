@@ -57,6 +57,7 @@ export const queryFragment = graphql`
       fr
     }
     mainProductions {
+      identifier
       description {
         en
         fr
@@ -86,8 +87,11 @@ export const queryFragment = graphql`
         en
         fr
       }
+      external
+      url
     }
     mainActivities {
+      identifier
       description {
         en
         fr
@@ -113,6 +117,7 @@ export const queryFragment = graphql`
       }
     }
     activities {
+      identifier
       name
       baseline {
         en
@@ -147,6 +152,7 @@ export const queryFragment = graphql`
       startDate
     }
     productions {
+      identifier
       title {
         en
         fr
@@ -164,12 +170,14 @@ export const queryFragment = graphql`
         en
         fr
       }
+      external
+      url
+      date
     }
   }
 `;
 
 function PeopleContactLabel({lang, data}) {
-  console.log(data);
   if (data.type === 'url' && data.label !== 'CV') {
     return (
       <span>
@@ -191,8 +199,12 @@ function PeopleContactLabel({lang, data}) {
 export default function PeopleDetail({lang, person}) {
   // console.log(lang, person);
 
-  const productions = person.mainProductions; // Sync mainProd
-  const activities = person.mainActivities; // Sync mainActivities
+  // filter out main from normal list
+  const mainProductionsId = person.mainProductions.map(p => p.identifier);
+  const productions = person.productions.filter(p => !mainProductionsId.includes(p.identifier));
+
+  const mainActivitiessId = person.mainActivities.map(a => a.identifier);
+  const activities = person.activities.filter(a => !mainActivitiessId.includes(a.identifier));
 
   let titleLinkTeam, backTop, toggleNav;
 
@@ -273,8 +285,8 @@ export default function PeopleDetail({lang, person}) {
 
 
           <aside id="all-aside">
-            <ActivitesAssociees activities={person.activities} lang={lang} />
-            <ProductionsAssociees productions={person.productions} lang={lang} />
+            <ActivitesAssociees activities={activities} lang={lang} />
+            <ProductionsAssociees productions={productions} lang={lang} />
             <ActuAssociees actu={person.news} lang={lang} />
           </aside>
 

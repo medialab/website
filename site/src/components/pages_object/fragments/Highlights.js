@@ -8,8 +8,32 @@ import ProcessedImage from '../../helpers/ProcessedImage.js';
 
 import {SECTIONS} from '../../helpers/sections';
 
+const ProductionCard = ({p, lang}) => {
+  return (
+    <>
+      {/*<div className="image-pre">
+                            <ProcessedImage size="small" image={p.coverImage && p.coverImage.processed.small} />
+                        </div>*/}
+      <div className="bandeau">
+        <p className="type-production" data-icon="production"> {p.groupLabel[lang]}</p> 
+        {p.typeLabel !== 'media' && 
+          <p className="subtype-production"> {lang === 'fr' ? <span>{p.typeLabel.fr}</span> : <span>{p.typeLabel.en}</span>}</p> 
+        }
+        {p.authors && <p className="authors">{p.authors}</p>}
+        { p.external && p.url && <p className="external" aria-label="production exterieure au medialab" title={lang === 'fr' ? "Ce lien renvoi à une page exterieure au Medialab" : "This linked is external to Medialab"} >⤤</p> }
+      </div>
+      <hgroup>
+        <h1 data-level-1="title" >{lang === 'fr' ? p.title.fr : p.title.en}</h1>
+      </hgroup>
+      
+    </>);
+};
+
 export default function highlights({people, lang}) {
   if ((people.mainActivities && people.mainActivities.length > 0) || (people.mainProductions && people.mainProductions.length > 0)) {
+    
+    
+    
     return (
 
       <section id="highlights" aria-describedby="aria-title" >
@@ -27,7 +51,6 @@ export default function highlights({people, lang}) {
                     <div className="bandeau">
                       <p className="type-activity" data-icon="activite">{IsModel(a.type, lang)}</p>
                       <p className="title" data-level-2="title">{a.name}</p>
-                      { a.external && (a.external === true) ? <p className="external" aria-label="production exterieure au medialab" title={lang === 'fr' ? "Ce lien renvoi à une page exterieure au Medialab" : "This linked is external to Medialab"} >⤤</p> : ''}
                     </div>
                     <hgroup>
                       <h1 data-level-1="baseline" >{a.baseline && (lang === 'fr' ? a.baseline.fr : a.baseline.en)}</h1>
@@ -42,22 +65,17 @@ export default function highlights({people, lang}) {
             { people.mainProductions && 
               people.mainProductions.map((p, index) => (
                   <li data-type={p.type} className="list-item" key={index}>
-                    <Link to={p.permalink[lang]} aria-label={lang === "fr" ? "Lien vers cette production" : "Link to this production" }>
-                      {/*<div className="image-pre">
-                          <ProcessedImage size="small" image={p.coverImage && p.coverImage.processed.small} />
-                      </div>*/}
-                      <div className="bandeau">
-                        <p className="type-production" data-icon="production"> {p.groupLabel[lang]}</p> 
-                        {p.typeLabel !== 'media' && 
-                          <p className="subtype-production"> {lang === 'fr' ? <span>{p.typeLabel.fr}</span> : <span>{p.typeLabel.en}</span>}</p> 
-                        }
-                        {p.authors && <p className="authors">{p.authors}</p>}
-                      </div>
-                      <hgroup>
-                        <h1 data-level-1="title" >{lang === 'fr' ? p.title.fr : p.title.en}</h1>
-                      </hgroup>
-  
-                    </Link>
+                    {!p.external &&
+                      <Link to={p.permalink[lang]} aria-label={lang === "fr" ? "Lien vers cette production" : "Link to this production" }>
+                        <ProductionCard p={p} lang={lang}/>
+                      </Link>}
+                    {p.external && p.url &&
+                      <a href={p.url} target="_blank" rel="noreferrer noopener">
+                        <ProductionCard p={p} lang={lang}/>
+                      </a>}
+                    {p.external && !p.url &&
+                      <ProductionCard p={p} lang={lang}/>
+                    }
                   </li>
               ))
             }

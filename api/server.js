@@ -83,7 +83,7 @@ const ROUTERS = MODELS.concat('settings').map(model => {
 if (!process.env.ADMIN_URL)
   process.env.ADMIN_URL = config.adminUrl;
 
-const gatsby = new GatsbyProcess('./site');
+const gatsby = new GatsbyProcess(path.join(__dirname, '..', 'site'));
 
 process.on('exit', () => gatsby.kill());
 

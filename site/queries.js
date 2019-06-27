@@ -31,6 +31,7 @@ exports.PUBLICATION = `
         node {
           identifier
           slugs
+          external
         }
       }
     }

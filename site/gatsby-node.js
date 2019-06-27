@@ -681,19 +681,20 @@ exports.createPages = function({graphql, actions}) {
       // Creating pages
       result.data.allProductionsJson.edges.forEach(edge => {
         const production = edge.node;
+        if (!production.external) {
+          const context = {
+            identifier: production.identifier,
+            linkToAdmin: linkToAdmin('productions', production.identifier)
+          };
 
-        const context = {
-          identifier: production.identifier,
-          linkToAdmin: linkToAdmin('productions', production.identifier)
-        };
-
-        production.slugs.forEach(slug => {
-          createI18nPage(createPage, {
-            path: `/productions/${slug}`,
-            component: path.resolve('./src/templates/production.js'),
-            context
+          production.slugs.forEach(slug => {
+            createI18nPage(createPage, {
+              path: `/productions/${slug}`,
+              component: path.resolve('./src/templates/production.js'),
+              context
+            });
           });
-        });
+        }
       });
     }),
 

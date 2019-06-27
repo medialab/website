@@ -29,7 +29,7 @@ const otherLang = lang === 'fr' ? 'en' : 'fr';
       {/* Bullet by default*/}
       <input
         type="radio" name="slide-bullet" id="slide-bullet-0"
-        className="slideshow-bullet" hidden defaultChecked />
+        className="slideshow-bullet" hidden defaultChecked={slider.length > 1} />
       <label className="" htmlFor="slide-bullet-0" aria-hidden="true" />
       {slides.length > 1 && slides.map((slide, index) =>
         (<React.Fragment key={index}>

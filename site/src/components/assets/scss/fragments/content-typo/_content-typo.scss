@@ -43,7 +43,7 @@
 					    max-height: $baseline*6;						
 					}
 				}
-				&.serie-pair{
+				&.serie-pair, &.serie-impair{
 					display: inline-block;
 					padding: 0 $unite 0 $unite;
 					margin:  $baseline 0 $baseline*3 0;
@@ -52,8 +52,6 @@
 					vertical-align: top;
 					overflow: hidden;
 				}
-
-				&.serie-pair + p{ display: none; }
 
 				&.illustration{
 					width: 100%;

@@ -167,21 +167,28 @@ function processHtml(pathPrefix, html) {
         evenImage = !evenImage;
         previousImageIndex = i;
 
-        if( format === 'vignette-block' ||
+        if (
+          format === 'vignette-block' ||
           format === 'vignette-inline-paysage' ||
           format === 'vignette-inline-portrait' ||
-          format === 'vignette-inline'){
-            output += `
-              <div class="vignette container_${format}">
-                <input type="checkbox" id="focus-figure-${i}" name="focus-figure" hidden />
-                <label for="focus-figure-${i}" title="" arial-label=""}></label>
-                <figure class="${className}">
-                <img src="${withPrefix(src)}" alt="${credits}"/>`
-                + (credits !== '' ? `<figcaption>${credits}</figcaption></figure></div>` : '</figure></div>');
+          format === 'vignette-inline'
+        ) {
+          output += `
+            <div class="vignette container_${format}">
+              <input type="checkbox" id="focus-figure-${i}" name="focus-figure" hidden />
+              <label for="focus-figure-${i}" title="" arial-label=""></label>
+              <figure class="${className}">
+                <img src="${withPrefix(src)}" alt="${credits}"/>${credits ? `<figcaption>${credits}</figcaption>` : ''}
+              </figure>
+            </div>
+          `.trim();
         }
-        else { output += `<figure class="${className}">
-          <img src="${withPrefix(src)}" alt="${credits}"/>`
-          + (credits !== '' ? `<figcaption>${credits}</figcaption></figure>` : '</figure>');
+        else {
+          output += `
+            <figure class="${className}">
+              <img src="${withPrefix(src)}" alt="${credits}"/>${credits ? `<figcaption>${credits}</figcaption>` : ''}
+            </figure>
+          `.trim();
         }
       }
 

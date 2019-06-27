@@ -151,7 +151,7 @@
 					    max-height: $baseline*6;						
 					}
 				}
-				&.serie-pair{
+				&.serie-pair, &.serie-impair{
 					display: inline-block;
 					padding: $baseline $unite $baseline 0;
 					width: 50%;

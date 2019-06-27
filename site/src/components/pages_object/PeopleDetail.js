@@ -178,7 +178,6 @@ export const queryFragment = graphql`
 `;
 
 function PeopleContactLabel({lang, data}) {
-  console.log(data);
   if (data.type === 'url' && data.label !== 'CV') {
     return (
       <span>

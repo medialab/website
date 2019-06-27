@@ -132,7 +132,7 @@
 				}
 
 				&.figure-logo{ }
-				&.serie-pair{
+				&.serie-pair, &.serie-impair{
 					@include for-size(desktop-1000){
 						width: 33.3333%;
 					}

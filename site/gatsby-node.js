@@ -21,10 +21,12 @@ const {
   resolveAttachments
 } = require('./templating.js');
 
+// Env vars
 const ROOT_PATH = process.env.ROOT_PATH || '..';
 const BUILD_CONTEXT = process.env.BUILD_CONTEXT;
 const ADMIN_URL = process.env.ADMIN_URL;
 
+// Paths & data
 const QUERIES = require('./queries.js');
 const ENUMS = require(path.join(ROOT_PATH, 'specs', 'enums.json'));
 const MODELS = require(path.join(ROOT_PATH, 'specs', 'models.json'));

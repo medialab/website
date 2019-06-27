@@ -18,10 +18,7 @@ const otherLang = lang === 'fr' ? 'en' : 'fr';
   // limiting number of slide to 5 maximum
   if (slider.length > 5)
     slides = slider.slice(0, 5);
-  else
-    // duplicate if less than 3
-    if (slider.length === 2)
-      slides = slider.concat(slider);
+
 
 	return (
   <section className="slideshow" id="slideshow" data-nbr-item={slides.length}>

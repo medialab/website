@@ -28,6 +28,14 @@
 
 
 
+
+
+
+
+    //////////////
+    /// Slideshow Motion
+    ////////////
+
     /* Move slides overflowed container */
     #slide-bullet-1:checked ~ .slideshow-inner {
       margin-left: 0;
@@ -38,12 +46,22 @@
     #slide-bullet-3:checked ~ .slideshow-inner {
       margin-left: -200%;
     }
+    #slide-bullet-4:checked ~ .slideshow-inner {
+      margin-left: -300%;
+    }
+    #slide-bullet-5:checked ~ .slideshow-inner {
+      margin-left: -400%;
+    }
+
+
+
 
 
 
     ////////////////////
     //// Bullet
     //////////////////
+
     .bullets-slide{
       position: absolute;
       width: 100%;
@@ -52,8 +70,6 @@
 
       .slideshow-bullet-label{
         background: $background-site;
-
-        width: 33.3333333%;
         height: 5px;
         display: inline-block;
         cursor: pointer;
@@ -63,67 +79,28 @@
         top: -4px;
         position: relative;
 
-        &:nth-of-type(2){  }
-
         &[data-type="active"]{
           opacity: 1;
         }
       }
     }
 
-    /* Calculate AUTOPLAY for SLIDES */
-    @keyframes bullet {
-      0%, 29% { background: $redlab; }
-      29.01%, 100%  { background: $background-site; }
-    }
-
-    #slide-bullet-0:checked ~ nav.bullets-slide {
-      [data-slide="1"]{ animation: bullet 18450ms infinite ; }
-      [data-slide="2"]{ animation: bullet 18450ms infinite 5719ms; }
-      [data-slide="3"]{ animation: bullet 18450ms infinite 11800ms; }
-    }  
-    #slide-bullet-1:checked ~ nav.bullets-slide [data-slide="1"]{
-      background: $redlab;
-    }
-    #slide-bullet-2:checked ~ nav.bullets-slide [data-slide="2"]{
-      background: $redlab;
-    }
-    #slide-bullet-3:checked ~ nav.bullets-slide [data-slide="3"]{
-      background: $redlab;
-    }
+    // Bullet manual control
+    #slide-bullet-1:checked ~ nav.bullets-slide [data-slide="1"]{ background: $redlab; }
+    #slide-bullet-2:checked ~ nav.bullets-slide [data-slide="2"]{ background: $redlab; }
+    #slide-bullet-3:checked ~ nav.bullets-slide [data-slide="3"]{ background: $redlab; }
+    #slide-bullet-4:checked ~ nav.bullets-slide [data-slide="4"]{ background: $redlab; }
+    #slide-bullet-5:checked ~ nav.bullets-slide [data-slide="5"]{ background: $redlab; }
 
 
-    /* Calculate AUTOPLAY for SLIDES */
-    @keyframes slide {
-      0%, 29%	{ margin-left: 0; }
-      33.333333333333336%, 62%	{ margin-left: -100%; }
-      66.66666666666667%, 96%	{ margin-left: -200%; }
-    }
 
 
-    #slide-bullet-0:checked ~  .slideshow-inner {
-      animation: slide 18450ms infinite;
-      will-change: auto;
-    }
-    /* Calculate AUTOPLAY for SLIDES - END */
+
 
 
     //////////////
     ///// Controls 
     /////////////
-
-    @keyframes slideshow-controls-animation {
-      0%, 33.32333333333334%  {
-        //opacity: 1;
-        //visibility: visible;
-        z-index: 11;
-      }
-      33.333333333333336%, 100% {
-        //opacity: 0;
-        //visibility: collapse;
-        z-index: -1;
-      }
-    }
 
     nav.slideshow-controls {
       position: absolute;
@@ -180,43 +157,5 @@
         }
       }
     }
-
-
-    #slide-bullet-0:checked ~ .slideshow-controls label{
-      // Le Radio 0 se contente d'agir sur l'appartition / disparition de tous les labels Nav
-      display: block;
-
-      &:nth-of-type(1), &:nth-of-type(2){
-        animation: slideshow-controls-animation 18450ms infinite 0ms; // -1000ms
-      }
-      &:nth-of-type(3), &:nth-of-type(4){
-        animation: slideshow-controls-animation 18450ms infinite 5719ms; 
-      }
-      &:nth-of-type(5), &:nth-of-type(6){
-        animation: slideshow-controls-animation 18450ms infinite 11800ms; 
-      }
-    }
-
-    #slide-bullet-1:checked ~ .slideshow-controls label{
-        z-index: -1;
-      &:nth-of-type(1), &:nth-of-type(2){
-        z-index: 11;
-      }
-    }
-
-    #slide-bullet-2:checked ~ .slideshow-controls label{
-        z-index: -1;
-      &:nth-of-type(3), &:nth-of-type(4){
-        z-index: 11;
-      }
-    }
-
-    #slide-bullet-3:checked ~ .slideshow-controls label{
-        z-index: -1;
-      &:nth-of-type(5), &:nth-of-type(6){
-        z-index: 11;
-      }
-    }
   }
-
 }

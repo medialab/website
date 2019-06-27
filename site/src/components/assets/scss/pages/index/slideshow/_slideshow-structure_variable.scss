@@ -1,0 +1,333 @@
+#slideshow[data-nbr-item="2"]{
+ 
+	///////////////////
+	// Slideshow Motion
+	//////////////////
+
+    /* Calculate AUTOPLAY for SLIDES */
+    @keyframes slide-A {
+      0%, 45%	{ margin-left: 0; }
+      50%, 95%	{ margin-left: -100%; }
+    }
+    #slide-bullet-0:checked ~  .slideshow-inner {
+      animation: slide-A 10000ms infinite;
+      will-change: auto;
+    }
+
+
+
+    ////////////////
+    // Bullet
+    ///////////////
+
+    .bullets-slide .slideshow-bullet-label{ width: 50%;}
+    /* Calculate AUTOPLAY for Bullet */
+    @keyframes bullet-A { 
+      0%, 49% { background: $redlab; }
+      50%, 100%  { background: $background-site; }
+    }
+    #slide-bullet-0:checked ~ nav.bullets-slide {
+      [data-slide="1"]{ animation: bullet-A 10000ms infinite ; }
+      [data-slide="2"]{ animation: bullet-A 10000ms infinite 5000ms; }
+    }  
+
+
+
+
+
+
+    ///////////
+    // Control
+    ////////////
+
+    @keyframes slideshow-controls-animation-A {
+      0%, 49.9999%  { z-index: 11; }
+      50%, 100% { z-index: -1; }
+    }
+    
+    #slide-bullet-0:checked ~ .slideshow-controls label{
+      // Le Radio 0 se contente d'agir sur l'appartition / disparition de tous les labels Nav
+      display: block;
+      &:nth-of-type(1), &:nth-of-type(2){ animation: slideshow-controls-animation-A 10s infinite 0ms; }
+      &:nth-of-type(3), &:nth-of-type(4){ animation: slideshow-controls-animation-A 10s infinite 5s; }
+    }
+
+    #slide-bullet-1:checked ~ .slideshow-controls label{
+        z-index: -1;
+      &:nth-of-type(1), &:nth-of-type(2){ z-index: 11;}
+    }
+    #slide-bullet-2:checked ~ .slideshow-controls label{
+        z-index: -1;
+      &:nth-of-type(3), &:nth-of-type(4){ z-index: 11; }
+    }
+}
+
+
+
+
+
+
+
+
+#slideshow[data-nbr-item="3"]{
+ 
+	///////////////////
+	// Slideshow Motion
+	//////////////////
+
+    /* Calculate AUTOPLAY for SLIDES */
+    @keyframes slide-B {
+      0%, 30.3333%	{ margin-left: 0; }
+      33.3333%, 63.333%	{ margin-left: -100%; }
+      66.6666%, 98%	{ margin-left: -200%; }
+
+    }
+    #slide-bullet-0:checked ~  .slideshow-inner {
+      animation: slide-B 15000ms infinite;
+      will-change: auto;
+    }
+
+
+
+    ////////////////
+    // Bullet
+    ///////////////
+
+    .bullets-slide .slideshow-bullet-label{ width: 33.3333%;}
+    /* Calculate AUTOPLAY for Bullet */
+    @keyframes bullet-B { 
+      0%, 31% { background: $redlab; }
+      33.3333%, 100%  { background: $background-site; }
+    }
+    #slide-bullet-0:checked ~ nav.bullets-slide {
+      [data-slide="1"]{ animation: bullet-B 15s infinite ; }
+      [data-slide="2"]{ animation: bullet-B 15s infinite 5s; }
+      [data-slide="3"]{ animation: bullet-B 15s infinite 10s; }
+
+    }  
+
+
+
+
+
+
+    ///////////
+    // Control
+    ////////////
+
+    @keyframes slideshow-controls-animation-B {
+      0%, 33.33332%  { z-index: 11; }
+      33.33333%, 100% { z-index: -1; }
+    }
+    
+    #slide-bullet-0:checked ~ .slideshow-controls label{
+      // Le Radio 0 se contente d'agir sur l'appartition / disparition de tous les labels Nav
+      display: block;
+      &:nth-of-type(1), &:nth-of-type(2){ animation: slideshow-controls-animation-B 15s infinite 0s; }
+      &:nth-of-type(3), &:nth-of-type(4){ animation: slideshow-controls-animation-B 15s infinite 5s; }
+      &:nth-of-type(5), &:nth-of-type(6){ animation: slideshow-controls-animation-B 15s infinite 10s; }
+
+    }
+
+    #slide-bullet-1:checked ~ .slideshow-controls label{
+        z-index: -1;
+      &:nth-of-type(1), &:nth-of-type(2){ z-index: 11;}
+    }
+    #slide-bullet-2:checked ~ .slideshow-controls label{
+        z-index: -1;
+      &:nth-of-type(3), &:nth-of-type(4){ z-index: 11; }
+    }
+    #slide-bullet-3:checked ~ .slideshow-controls label{
+        z-index: -1;
+      &:nth-of-type(5), &:nth-of-type(6){ z-index: 11; }
+    }    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#slideshow[data-nbr-item="4"]{
+ 
+	///////////////////
+	// Slideshow Motion
+	//////////////////
+
+    /* Calculate AUTOPLAY for SLIDES */
+    @keyframes slide-C {
+      0%, 23%	{ margin-left: 0; }
+      25%, 48%	{ margin-left: -100%; }
+      50%, 73%	{ margin-left: -200%; }
+      75%, 98%	{ margin-left: -300%; }
+
+
+    }
+    #slide-bullet-0:checked ~  .slideshow-inner {
+      animation: slide-C 20s infinite;
+      will-change: auto;
+    }
+
+
+
+    ////////////////
+    // Bullet
+    ///////////////
+
+    .bullets-slide .slideshow-bullet-label{ width: 25%;}
+    /* Calculate AUTOPLAY for Bullet */
+    @keyframes bullet-C { 
+      0%, 24% { background: $redlab; }
+      25%, 100%  { background: $background-site; }
+    }
+    #slide-bullet-0:checked ~ nav.bullets-slide {
+      [data-slide="1"]{ animation: bullet-C 20s infinite 0s; }
+      [data-slide="2"]{ animation: bullet-C 20s infinite 5s; }
+      [data-slide="3"]{ animation: bullet-C 20s infinite 10s; }
+      [data-slide="4"]{ animation: bullet-C 20s infinite 15s; }
+    }  
+
+
+
+
+
+
+    ///////////
+    // Control
+    ////////////
+
+    @keyframes slideshow-controls-animation-C {
+      0%, 24.9999%  { z-index: 11; }
+      25%, 100% { z-index: -1; }
+    }
+    
+    #slide-bullet-0:checked ~ .slideshow-controls label{
+      // Le Radio 0 se contente d'agir sur l'appartition / disparition de tous les labels Nav
+      display: block;
+      &:nth-of-type(1), &:nth-of-type(2){ animation: slideshow-controls-animation-C 20s infinite 0s; }
+      &:nth-of-type(3), &:nth-of-type(4){ animation: slideshow-controls-animation-C 20s infinite 5s; }
+      &:nth-of-type(5), &:nth-of-type(6){ animation: slideshow-controls-animation-C 20s infinite 10s; }
+      &:nth-of-type(7), &:nth-of-type(8){ animation: slideshow-controls-animation-C 20s infinite 15s; }
+
+    }
+
+    #slide-bullet-1:checked ~ .slideshow-controls label{
+        z-index: -1;
+      &:nth-of-type(1), &:nth-of-type(2){ z-index: 11;}
+    }
+    #slide-bullet-2:checked ~ .slideshow-controls label{
+        z-index: -1;
+      &:nth-of-type(3), &:nth-of-type(4){ z-index: 11; }
+    }
+    #slide-bullet-3:checked ~ .slideshow-controls label{
+        z-index: -1;
+      &:nth-of-type(5), &:nth-of-type(6){ z-index: 11; }
+    }    
+    #slide-bullet-4:checked ~ .slideshow-controls label{
+        z-index: -1;
+      &:nth-of-type(7), &:nth-of-type(8){ z-index: 11; }
+    }    
+}
+
+
+
+
+
+
+
+
+#slideshow[data-nbr-item="5"]{
+ 
+	///////////////////
+	// Slideshow Motion
+	//////////////////
+
+    /* Calculate AUTOPLAY for SLIDES */
+    @keyframes slide-D {
+      0%, 19%	{ margin-left: 0; }
+      20%, 39%	{ margin-left: -100%; }
+      40%, 59%	{ margin-left: -200%; }
+      60%, 79%	{ margin-left: -300%; }
+      80%, 99%	{ margin-left: -400%; }
+
+    }
+    #slide-bullet-0:checked ~  .slideshow-inner {
+      animation: slide-D 25s infinite;
+      will-change: auto;
+    }
+
+
+
+    ////////////////
+    // Bullet
+    ///////////////
+
+    .bullets-slide .slideshow-bullet-label{ width: 20%;}
+    /* Calculate AUTOPLAY for Bullet */
+    @keyframes bullet-D { 
+      0%, 24% { background: $redlab; }
+      25%, 100%  { background: $background-site; }
+    }
+    #slide-bullet-0:checked ~ nav.bullets-slide {
+      [data-slide="1"]{ animation: bullet-D 25s infinite ; }
+      [data-slide="2"]{ animation: bullet-D 25s infinite 5s; }
+      [data-slide="3"]{ animation: bullet-D 25s infinite 10s; }
+      [data-slide="4"]{ animation: bullet-D 25s infinite 15s; }
+      [data-slide="5"]{ animation: bullet-D 25s infinite 20s; }
+
+    }  
+
+
+
+
+
+
+    ///////////
+    // Control
+    ////////////
+
+    @keyframes slideshow-controls-animation-D {
+      0%, 24.9999%  { z-index: 11; }
+      25%, 100% { z-index: -1; }
+    }
+    
+    #slide-bullet-0:checked ~ .slideshow-controls label{
+      // Le Radio 0 se contente d'agir sur l'appartition / disparition de tous les labels Nav
+      display: block;
+      &:nth-of-type(1), &:nth-of-type(2){ animation: slideshow-controls-animation-D 25s infinite 0s; }
+      &:nth-of-type(3), &:nth-of-type(4){ animation: slideshow-controls-animation-D 25s infinite 5s; }
+      &:nth-of-type(5), &:nth-of-type(6){ animation: slideshow-controls-animation-D 25s infinite 10s; }
+      &:nth-of-type(7), &:nth-of-type(8){ animation: slideshow-controls-animation-D 25s infinite 15s; }
+      &:nth-of-type(9), &:nth-of-type(10){ animation: slideshow-controls-animation-D 25s infinite 20s; }
+
+    }
+
+    #slide-bullet-1:checked ~ .slideshow-controls label{
+        z-index: -1;
+      &:nth-of-type(1), &:nth-of-type(2){ z-index: 11;}
+    }
+    #slide-bullet-2:checked ~ .slideshow-controls label{
+        z-index: -1;
+      &:nth-of-type(3), &:nth-of-type(4){ z-index: 11; }
+    }
+    #slide-bullet-1:checked ~ .slideshow-controls label{
+        z-index: -1;
+      &:nth-of-type(5), &:nth-of-type(6){ z-index: 11;}
+    }
+    #slide-bullet-2:checked ~ .slideshow-controls label{
+        z-index: -1;
+      &:nth-of-type(7), &:nth-of-type(8){ z-index: 11; }
+    }
+    #slide-bullet-1:checked ~ .slideshow-controls label{
+        z-index: -1;
+      &:nth-of-type(9), &:nth-of-type(10){ z-index: 11;}
+    }
+}
+

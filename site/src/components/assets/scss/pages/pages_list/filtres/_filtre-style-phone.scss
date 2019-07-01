@@ -115,3 +115,48 @@ $top-filtre-phone-open: $height-top-bar-phone + $baseline*3.5;
 	}
 
 }
+
+
+@media screen and (min-width: 700px) and (max-width: 1080px)  {
+
+	.type_title{
+
+		&::after{ display: none!important; }
+
+		
+	}
+
+	#radio-phone-infos + label{ 
+		display: block!important; 
+		position: fixed;
+		width: $unite*1.25;
+		height: $unite*1.25;
+		top: $height-top-bar + $baseline; 
+		left: $logo-column-medium - $unite;
+		z-index: 60;
+		padding: $unite*0.25;
+		svg{ fill: $text-color-light; }
+	}
+
+	#radio-phone-infos ~ .accroche-title-list { 
+		top: $height-top-bar * -1 + 10px; 
+		transition: .4s ease-out;
+	}
+	#radio-phone-infos:checked ~ .accroche-title-list { 
+		top: $height-top-bar + 1px; 
+	}
+
+
+	#radio-phone-infos:checked ~ #radio-phone-close + label{
+		display: block!important;
+		position: fixed;
+		z-index: 92;
+		top: $height-top-bar + $baseline/2; 
+		right: $margins-desktop;
+		@include font-size-20-phone;
+		color: $redlab;
+	}
+
+
+
+}

@@ -69,7 +69,8 @@
                 display: inline-block;
             }
             hgroup{
-                max-width: 70%!important;
+                width: 100%!important;
+                max-width: 700px;
                 margin-top: $baseline*1;
                 margin-bottom: $baseline*3;
                 padding-left: 0!important;

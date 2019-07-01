@@ -13,7 +13,8 @@ const {
 
 const {
   hashNode,
-  createI18nPage
+  createI18nPage,
+  frenchTypographyReplace
 } = require('./utils.js');
 
 const {
@@ -172,6 +173,11 @@ const MODEL_READERS = {
         // use spire.generatedFields for empty object fields
         production = {...production.spire.generatedFields, ...production};
       }
+
+      // Typography
+      if (production.title && production.title.fr)
+        production.title.fr = frenchTypographyReplace(production.title.fr);
+
       // Solving enums
       solveEnum(ENUMS.productionTypes, 'type', production);
 
@@ -231,6 +237,10 @@ const MODEL_READERS = {
       // NOTE: renaming our `internal` prop because Gatsby does not like this very much...
       news.isInternal = news.internal;
       delete news.internal;
+
+      // Typography
+      if (news.title && news.title.fr)
+        news.title.fr = frenchTypographyReplace(news.title.fr);
 
       // Solving enums
       news.typeLabel = {

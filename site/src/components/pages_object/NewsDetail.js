@@ -60,6 +60,10 @@ export const queryFragment = graphql`
     }
     draft
     activities {
+      baseline {
+        en
+        fr
+      }
       description {
         en
         fr

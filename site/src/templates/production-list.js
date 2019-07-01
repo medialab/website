@@ -7,7 +7,7 @@ import ProductionListing from '../components/pages_list/ProductionListing';
 // TODO: is the groupLabel necessary here?
 export const query = graphql`
   query ($allowedTypes: [String]!) {
-    allProductionsJson(filter: {type: {in: $allowedTypes}}) {
+    allProductionsJson(filter: {type: {in: $allowedTypes}, external: {ne: true}}) {
       edges {
         node {
           id

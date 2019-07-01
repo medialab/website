@@ -272,8 +272,8 @@
     .bullets-slide .slideshow-bullet-label{ width: 20%;}
     /* Calculate AUTOPLAY for Bullet */
     @keyframes bullet-D { 
-      0%, 24% { background: $redlab; }
-      25%, 100%  { background: $background-site; }
+      0%, 19.9999% { background: $redlab; }
+      20%, 100%  { background: $background-site; }
     }
     #slide-bullet-0:checked ~ nav.bullets-slide {
       [data-slide="1"]{ animation: bullet-D 25s infinite ; }
@@ -294,8 +294,8 @@
     ////////////
 
     @keyframes slideshow-controls-animation-D {
-      0%, 24.9999%  { z-index: 11; }
-      25%, 100% { z-index: -1; }
+      0%, 19.9999%  { z-index: 11; }
+      20%, 100% { z-index: -1; }
     }
     
     #slide-bullet-0:checked ~ .slideshow-controls label{
@@ -317,15 +317,15 @@
         z-index: -1;
       &:nth-of-type(3), &:nth-of-type(4){ z-index: 11; }
     }
-    #slide-bullet-1:checked ~ .slideshow-controls label{
+    #slide-bullet-3:checked ~ .slideshow-controls label{
         z-index: -1;
       &:nth-of-type(5), &:nth-of-type(6){ z-index: 11;}
     }
-    #slide-bullet-2:checked ~ .slideshow-controls label{
+    #slide-bullet-4:checked ~ .slideshow-controls label{
         z-index: -1;
       &:nth-of-type(7), &:nth-of-type(8){ z-index: 11; }
     }
-    #slide-bullet-1:checked ~ .slideshow-controls label{
+    #slide-bullet-5:checked ~ .slideshow-controls label{
         z-index: -1;
       &:nth-of-type(9), &:nth-of-type(10){ z-index: 11;}
     }

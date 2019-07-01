@@ -74,20 +74,7 @@ const TopBar = ({permalinks, lang}) => {
         </div>
 
         <nav id="nav-option" role="navigation" aria-owns="langue back_button fr-to-en en-to-fr">
-          <ul id="nav-home" aria-label={lang === "fr" ? "Lien présent sur la page d'accueil" : "Link from homepage" }>
-            <li>
-              <a href="#now"
-                 aria-label={lang === 'fr' ? "Aller à la liste des actualités du Medialab" : "Go to a list of Medialab news" }>{now}</a>
-            </li>
-            <li>
-              <a href="#agenda"
-                 aria-label={lang === 'fr' ? "Voir l'agenda du Medialab" : "See Medialab diary" }>{agenda}</a>
-            </li>
-            <li>
-              <a href="#flux"
-                 aria-label={lang === 'fr' ? "Voir les activités du Medialab sur les réseaux sociaux" : "See Medialab social activities" }>{flux}</a>
-            </li>
-          </ul>
+    
           <ul id="nav-objet" >
 
             <li data-type="actualite">

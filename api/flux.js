@@ -160,7 +160,7 @@ const TWITTER_CLIENT = new Twitter({
 function resolveTweetUrls(tweet, html = false) {
   const shortenUrl = url => url.replace(/https?:\/\/(www.)?/,'').slice(0, 20) + '…';
   const ahref = url => `<a href="${url}" target="_blank" rel="noopener">${shortenUrl(url)}</a>`;
-  let fullText = tweet.full_text;
+  let fullText = tweet.full_text.replace(/(https:\/\/t.co\/\w+) https:\/\/t.co\/\w+/, '$1');
 
   if (tweet.entities && tweet.entities.urls) {
     tweet.entities.urls.forEach(({url, expanded_url}) => {

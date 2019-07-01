@@ -47,12 +47,13 @@ footer{
 
         @include font-size-16();
 
-        .mentions{ margin-top: $baseline*2;}
-
-
-        .contact, .mentions{
-            width: 240px;
+        .mentions{ 
+            margin-top: $baseline*2;
+            margin-bottom: $baseline;
         }
+
+
+     
 
     }
     //.page-home footer{ background: $background-site;}

@@ -178,6 +178,10 @@
       "title": "Lien externe",
       "type": "string"
     },
+    "external": {
+      "title": "external?",
+      "type": "boolean"
+    },
     "draft": {
       "title": "Draft?",
       "type": "boolean"

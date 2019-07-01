@@ -80,7 +80,7 @@ export default class SettingsForm extends Component {
             <h2 className="title is-4">Home Page</h2>
             <h3 className="title is-5">Carrousel</h3>
             <EditorializationSelector
-              max={4}
+              max={5}
               models={['activities', 'news', 'productions']}
               selected={settings.home.slider}
               onAdd={this.handlers.slider.add}

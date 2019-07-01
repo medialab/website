@@ -14,20 +14,24 @@ const byYear = ([yearA], [yearB]) => yearB - yearA;
 export default function ProductionListing({lang, list, group, types}) {
     const yearGroups = new Map();
 
-    list.filter(p => p.date && !p.external).sort((a, b) => b.date.localeCompare(a.date)).forEach(production => {
-      let year = getYear(parseISO(production.date));
+    list
+      .filter(p => p.date)
+      .sort((a, b) => b.date.localeCompare(a.date))
+      .forEach(production => {
+        let year = getYear(parseISO(production.date));
 
-      // TODO: this is a temporary workaround
-      if (Number.isNaN(year)) {
-        year = 2008;
-      }
+        // TODO: this is a temporary workaround
+        if (Number.isNaN(year)) {
+          year = 2008;
+        }
 
-      if (!yearGroups.has(year)) {
-        yearGroups.set(year, []);
-      }
+        if (!yearGroups.has(year)) {
+          yearGroups.set(year, []);
+        }
 
-      yearGroups.get(year).push(production);
-    });
+        yearGroups.get(year).push(production);
+      });
+
     let nbItem = 0;
 
     return (
@@ -52,8 +56,8 @@ export default function ProductionListing({lang, list, group, types}) {
                     <li data-item={nbItem} data-type={p.type} className={`list-item ${p.type}`}>
                       <Link to={p.permalink[lang]}>
                         <div className="bandeau">
-                          <p className="type-production" data-icon="production"> {p.groupLabel[lang]}</p> 
-                          <p className="subtype-production">{p.typeLabel !== 'media' && <span>{p.typeLabel[lang]}</span>}</p> 
+                          <p className="type-production" data-icon="production"> {p.groupLabel[lang]}</p>
+                          <p className="subtype-production">{p.typeLabel !== 'media' && <span>{p.typeLabel[lang]}</span>}</p>
                           <DateNews startDate={p.date} lang={lang} />
                           {/* the p surrounding the date used before DateNews integration className="date-production" */}
                         </div>
@@ -61,14 +65,14 @@ export default function ProductionListing({lang, list, group, types}) {
                           <h1 data-level-1="title" >
                             <LanguageFallback lang={lang} translatedAttribute={p.title} />
                           </h1>
-                        </hgroup> 
+                        </hgroup>
                         <div className="authors">
                           {p.authors && <p className="authors-paragraphe" dangerouslySetInnerHTML={{__html:p.authors.replace(/([^,$]+)(,)?( )?/g, '<nobr>$1$2</nobr>$3')}} />}
                           <p className="print publication-ref" dangerouslySetInnerHTML={{__html: p.description && (p.description[lang] || p.description[(lang === 'fr' ? 'en' : 'fr')])}} />
                         </div>
                       </Link>
                     </li>
-                  
+
                   </React.Fragment>
                 ))}
               </React.Fragment>

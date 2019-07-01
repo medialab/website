@@ -181,6 +181,7 @@ app.get('/reboot-gatsby', (req, res) => {
 
 // Migration routes
 const MIGRATION_SCHEMES = {
+  'clean-unused-assets': require('./migrations/clean-unused-assets.js')(ASSETS_PATH),
   // 'drop-important': require('./migrations/drop-important.js'),
   'fix-asset-names': require('./migrations/fix-asset-names.js'),
   // 'fix-dates': require('./migrations/fix-dates.js'),

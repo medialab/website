@@ -200,11 +200,11 @@ export default function PeopleDetail({lang, person}) {
   // console.log(lang, person);
 
   // filter out main from normal list
-  const mainProductionsId = person.mainProductions.map(p => p.identifier);
-  const productions = person.productions.filter(p => !mainProductionsId.includes(p.identifier));
+  const mainProductionsId = person.mainProductions ? person.mainProductions.map(p => p.identifier) : [];
+  const productions = person.productions ? person.productions.filter(p => !mainProductionsId.includes(p.identifier)) : [];
 
-  const mainActivitiessId = person.mainActivities.map(a => a.identifier);
-  const activities = person.activities.filter(a => !mainActivitiessId.includes(a.identifier));
+  const mainActivitiessId = person.mainActivities ? person.mainActivities.map(a => a.identifier) : [];
+  const activities = person.activities ? person.activities.filter(a => !mainActivitiessId.includes(a.identifier)) : [];
 
   let titleLinkTeam, backTop, toggleNav;
 

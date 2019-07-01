@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'gatsby';
 import {SECTIONS} from '../../helpers/sections';
-import _ from 'underscore';
+import sortBy from 'lodash/sortBy';
 import DateNews from '../../helpers/DateNews.js'; 
 
 const ProductionsAssociees = ({lang, productions}) => {
@@ -12,7 +12,7 @@ const ProductionsAssociees = ({lang, productions}) => {
     return null;
 
   // sort
-  const productionsSorted = _.sortBy(productions, p => p.date || '0').reverse();
+  const productionsSorted = sortBy(productions, p => p.date || '0').reverse();
 
 	let accroche;
 	if (lang === 'fr') {

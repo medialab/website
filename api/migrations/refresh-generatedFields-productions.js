@@ -10,9 +10,6 @@ module.exports = function(req, dbs, next) {
     const prodState = dbs.productions.getState();
     prodState.productions.filter(p => p.spire && p.spire.meta).forEach(p => {
       p.spire.generatedFields = spire.translateRecord(p.spire.meta, spireAuthors);
-      for (const field in p.spire.generatedFields) {
-        delete p[field];
-      }
     });
 
     dbs.productions.setState(prodState);

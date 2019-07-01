@@ -41,20 +41,15 @@
 
     
 
-
- 
- 
-
     .main-nav{ top: -250px}
 
     #toggle-nav + label{
         position: fixed;
-        top: $height-top-bar-phone;
+        //top: $height-top-bar-phone;
+        top: 0;
         display: block;
         width: 100vw;
         height: $baseline*3.5;
-        // background-color: red;
-        // opacity: 0.8;
         z-index: 98;
         span{
             display: block; 
@@ -67,6 +62,8 @@
             top: 0;
         }  
     }
+
+ 
 
     #toggle-nav:checked + label span{ 
         svg{
@@ -90,7 +87,7 @@
         border-bottom: $border;
         padding: $baseline $margins-phone;
         @include font-size-16-phone;
-        li{ margin-bottom: $baseline/2; }
+        li{ margin-bottom: $baseline; }
     }
     #activities:target,
     #productions:target,

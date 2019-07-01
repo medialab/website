@@ -224,7 +224,7 @@ export default function PeopleDetail({lang, person}) {
       <main id="main" role="main" aria-label={lang === "fr" ? "Présentation de" + person.firstName + person.lastName : person.firstName + person.lastName + "'s presentation" }>
 
       <input type="checkbox" id="toggle-nav" name="toggle-nav" value="toggle-nav" hidden />
-      <label htmlFor="toggle-nav" title={toggleNav} arial-label={toggleNav}><span><Icons icon='arrow' /></span></label>
+      <label htmlFor="toggle-nav" id="toggle-nav_label" title={toggleNav} arial-label={toggleNav}><span><Icons icon='arrow' /></span></label>
 
         <Nav lang={lang} data={person} order={['main', 'highlights', 'activities', 'productions', 'news']} />
 

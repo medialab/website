@@ -63,7 +63,7 @@ const FilterNews = ({lang, years}) => {
         <input type="checkbox" id="checkbox_filtre_year" name="radio_filtre-actu" value="year" hidden />
         <label htmlFor="checkbox_filtre_year"><span><Icons icon='arrow' /></span></label>
           <p aria-hidden="true">{IsModel('gotoyear', lang)} <span className="current-year"></span></p>          
-          <ul>
+          <ul id="list-years">
             {years.map(y => (
               <li key={`year-${y}`} ><a href={`#year-${y}`} aria-label={lang === "fr" ? "Aller à l'année " + y : "Go to year " + y }>{y}</a></li>
             ))}

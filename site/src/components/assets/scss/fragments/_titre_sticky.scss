@@ -80,17 +80,17 @@
 	
 @include for-size(phone) {
 
-	.page-people main, 
     .page-production main, 
 	.page-news main, 
 	.page-activity main{
-        // with script
-        padding-top: $height-top-bar-phone;
-        // without script
         padding-top: $height-top-bar-phone + $baseline*3.5;
 		
     }
-    
+	
+	
+	.page-people main{
+		padding-top: $height-top-bar-phone;
+	}
 
 	.page-people #titre-sticky,
 	.page-production #titre-sticky, 
@@ -108,6 +108,7 @@
 	}
 
 	.page-people #titre-sticky{
+		top: 0px;
 		.link-page-team{ display: none;}
 		.personne{
 			&:before{ display: none; }

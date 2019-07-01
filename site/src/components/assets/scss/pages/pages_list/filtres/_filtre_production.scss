@@ -24,34 +24,8 @@
 		.link-productions-sort li a:hover{ color: $text-color-light; font-weight: 600!important; }
 	}
 
-	#list-all_current li:first-of-type a{ font-weight: 600!important;}
-
-	@include for-size(desktop) {
-		#list-all_current li:first-of-type a:hover{ 
-			font-weight: 600!important; 
-			color: $text-color;
-			cursor: auto;
-		}
-	}
-
 	#li-filter-media span{ display: none; }
 
-	.pageProduction_current a{
-		font-weight: 600!important;
-		span{ display: none; }
-	}
-
-
-	#checkbox_groupFilter_label{
-		display: block;
-		width: 100%;
-		height: $baseline*2.5;
-		position: absolute;
-		top: 0;
-		left: 0;
-		cursor: pointer;
-		span{ margin-top: $baseline*0.75; }
-	}
 
 	.filter-group{
 		border-bottom: none;
@@ -84,6 +58,35 @@
 			&:hover:before{ border: 5px solid $text-color-light!important;}
 		}
 	}
+
+
+	// Afficher la bonne liste de sous-filtres ------------------------------------------------------------------------------------ //
+
+	.filter-group{ display: none!important; }
+	[data-list-open="publications"] [data-filter-group="publications"],
+	[data-list-open="tools"] [data-filter-group="tools"],
+	[data-list-open="webEditions"] [data-filter-group="webEditions"],
+	[data-list-open="situations"] [data-filter-group="situations"]{ display: block!important; }
+
+
+	
+	[data-list-open="publications"] [data-link="publications"],
+	[data-list-open="tools"] [data-link="tools"],
+	[data-list-open="webEditions"] [data-link="webEditions"],
+	[data-list-open="media"] [data-link="media"],
+	[data-list-open="situations"] [data-link="situations"]{
+		font-weight: 600!important;
+		color: $text-color!important;
+		cursor: default;
+		span{ top: 2px; }
+		span svg{
+			transform: rotate(90deg);
+			transform-origin: center center;
+		}
+		
+	}
+
+	[data-list-open="all"] li:first-of-type a{ font-weight: 600!important; }
 
 
 	

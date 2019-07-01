@@ -20,14 +20,18 @@
 		}
 	}
 
-	.link-productions-sort li a:hover{ color: $text-color-light; font-weight: 600!important; }
+	@include for-size(desktop) {
+		.link-productions-sort li a:hover{ color: $text-color-light; font-weight: 600!important; }
+	}
 
 	#list-all_current li:first-of-type a{ font-weight: 600!important;}
 
-	#list-all_current li:first-of-type a:hover{ 
-		font-weight: 600!important; 
-		color: $text-color;
-		cursor: auto;
+	@include for-size(desktop) {
+		#list-all_current li:first-of-type a:hover{ 
+			font-weight: 600!important; 
+			color: $text-color;
+			cursor: auto;
+		}
 	}
 
 	#li-filter-media span{ display: none; }
@@ -76,7 +80,9 @@
 	#filtre-production_conference:checked ~ .aside-filters #filtre-production_conference_label{
 		font-weight: 600!important;
 		&:before{ border: 5px solid $text-color;}
-		&:hover:before{ border: 5px solid $text-color-light!important;}
+		@include for-size(desktop) {
+			&:hover:before{ border: 5px solid $text-color-light!important;}
+		}
 	}
 
 

@@ -5,6 +5,10 @@
 $width-image-pre-listing: ( ( 100% / 120 ) * 1.1338 * 10 );
 $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
 
+
+
+
+
 .page-production-list #liste .liste_objet,
 .page-activity-list #liste .liste_objet,
 .page-news-list #liste .liste_objet{
@@ -36,6 +40,7 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
             border-bottom: $border-very-light;
             padding: $baseline/2 0;
             @include text-overflow();
+            width: 100%;
             p{ 
                 @include font-size-13; 
                 display: inline-block; 
@@ -51,12 +56,16 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
                 width: $unite*7;
             }
             /* news */
-            .hours-news{
+            .date-news{
                 margin-left: $baseline*1;
                 padding-left: $baseline*1;
                 border-left: $border-very-light;
             }
-            .date-news{ color: $redlab; }
+            .hours-news {
+                margin-left: $baseline*1;
+                padding-left: $baseline*1;
+                border-left: $border-very-light;
+            }
             .hours-news::before{ content: $time; }
 
         }
@@ -79,6 +88,9 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
     }
 }
 
+
+//specific
+.page-news-list #liste .liste_objet .date-news{ color: $redlab; } 
 
 
 /* DESKTOP */
@@ -119,11 +131,7 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
                     display: inline-block;
                     vertical-align: top;
                 }
-                .date-news{
-                    margin-left: $baseline*1;
-                    padding-left: $baseline*1;
-                    border-left: $border-very-light;
-                }
+                
                 .label-news{
                     position: absolute; 
                     right: 0;
@@ -231,6 +239,7 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
     .page-activity-list #liste .liste_objet,
     .page-news-list #liste .liste_objet{
         .bandeau{
+            width: 100%;
            
             .day-name{ display: none;}
             .label-news{
@@ -246,11 +255,7 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
                 border-top: $border-very-light; 
                 display: block!important;
             }
-            .date-news{
-                margin-left: 0!important;
-                padding-left: 0!important;
-                border-left: none!important;
-            }
+            
             .hours-news{
                 border-bottom: none;
                 padding-top: 0;
@@ -261,6 +266,17 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
             }
           
         }
+
+        .list-year:target{ 
+            display: block;
+            padding-top: $height-top-bar + 0px;  
+        }
+    }
+
+    .page-news-list #liste .liste_objet .date-news{
+        margin-left: 0!important;
+        padding-left: 0!important;
+        border-left: none!important;
     }
 
 }
@@ -309,7 +325,7 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
             }
 
             .accroche{
-                padding-bottom: $baseline*2.5;
+                padding-bottom: $baseline*4;
                 
                 p{ 
                     @include font-size-13; 
@@ -318,6 +334,13 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
             }
 
        }
+    }
+}
+
+@include for-size(phone) {
+    .list-year:target{ 
+        display: block;
+        padding-top: $height-top-bar + 0px;  
     }
 }
 

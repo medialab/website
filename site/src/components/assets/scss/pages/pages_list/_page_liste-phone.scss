@@ -25,17 +25,10 @@
 					}
 				}
 		
-				[data-item]:hover{ border-bottom: $border-redlab-very-light!important; }
-		
-				[data-item]:hover ~ [data-item-accroche],
-				[data-item-accroche]:hover{
-					border-bottom: $border; 
-				}	
 		
 				.item_accroche{
 					@include font-size-13();
 					position: relative;
-					// width: $mobile-container-width!important;
 					color: $redlab;
 				}
 

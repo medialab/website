@@ -9,7 +9,9 @@
 	#filtre-activity_teaching:checked ~ .aside-filters #filtre-activity_teaching_label{
 		font-weight: 600!important;
 		&:before{ border: 5px solid $text-color;}
-		&:hover:before{ border: 5px solid $text-color-light!important;}
+		@include for-size(desktop) {
+			&:hover:before{ border: 5px solid $text-color-light!important;}
+		}
 	}
 
 

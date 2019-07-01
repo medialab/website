@@ -62,7 +62,7 @@ exports.ellipse = (text, maxSize = 175) => {
   return text;
 };
 
-const PUNCTUATION = /\s+([?!])/g;
+const PUNCTUATION = /\s*([?!])/g;
 
 exports.frenchTypographyReplace = string => {
   return string.replace(PUNCTUATION, '\xa0$1');

@@ -24,8 +24,28 @@
                 border-left: $border-very-light;
                 padding-left: $unite/2;
             }
+
+            .day-name{ display: none; }
+            .date-news{
+                margin-left: $baseline*1;
+                padding-left: $baseline*1;
+                border-left: $border-very-light;
+            }
         }
 
+
+      
+            .authors{
+                width: 100%;
+                border-top: $border-very-light;
+                padding: $baseline/2 0;        
+                .authors-paragraphe{ 
+                    @include font-size-13; 
+                    width: 100%;
+                    @include text-overflow();
+                }          
+            }
+ 
 
 
        /* DESKTOP */
@@ -40,24 +60,23 @@
 
             .bandeau{
                 width: calc(70% - #{$unite});
+                .type-production::before{ 
+                    display: inline-block;
+                    width: 23px;
+                }
             }
             hgroup, .authors{
                 display: inline-block;
             }
             hgroup{
-                width: 70%!important;
+                width: 100%!important;
+                max-width: 700px;
                 margin-top: $baseline*1;
                 margin-bottom: $baseline*3;
-                padding-right: $unite;
+                padding-left: 0!important;
             }
 
-            .authors{
-                width: 30%;
-                border-left: $border-very-light;
-                margin: $baseline/2 0;
-                padding-left: $unite;           
-                .authors-paragraphe{ @include font-size-20; }          
-            }
+         
         }
         
         /* DESKTOP */

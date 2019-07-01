@@ -84,8 +84,23 @@
         max-width: $max-width-main;
         margin: 0 auto;
         height: 100%;
-        @include flex();
-        @include justify-content(stretch);
+       
+    
+
+        #logo-medialab, #nav-option, #langue{
+            display: inline-block;
+            vertical-align: bottom;
+        }
+        #langue{ 
+            position: relative;
+            top: $margins-desktop*-1; 
+        }
+
+        @supports(display: flex) {
+            @include flex();
+            @include justify-content(stretch);
+            #langue{ top: 0; }
+        }
 
 
         #logo-medialab svg, #logo-medialab img{
@@ -99,16 +114,18 @@
         li::before{
             display: inline-block;
             text-align: center;
-            // display: none;
             width: $baseline*1;
             margin-right: $baseline*0.75;
         }
 
-        nav{
-            @include flex();
-            @include align-items(flex-end);
+        #nav-option{
+            @supports(display: flex) {
+                @include flex();
+                @include align-items(flex-end);
+            }
             ul{ 
-                
+                display: inline-block;
+            vertical-align: bottom;
                 li{ margin-top: $baseline/4; }
                 &:last-of-type{ width: 80px!important;}
             }
@@ -116,7 +133,9 @@
 
         #langue{
             width: 100%;
-            @include align-self(flex-end);
+            @supports(display: flex) {
+                @include align-self(flex-end);
+            }
             p{
                 width: 100%;
                 text-align: right;

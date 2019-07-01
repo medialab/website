@@ -66,9 +66,10 @@
         }
 
         #langue{
-            text-align: right;
-            padding: $baseline $margins-phone;
+            padding-top: $baseline*2;
+            padding-left: $unite*1.2 +  $margins-phone;
             margin-bottom: 20vh;
+            color: $text-color-light;
         }
     }
 

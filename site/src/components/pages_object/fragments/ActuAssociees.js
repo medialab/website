@@ -23,17 +23,21 @@ const ActuAssociees = ({lang, actu}) => {
     accroche = related.en;
   }
 
+  const sorted = actu.slice().sort((a, b) => {
+    return -a.startDate.localeCompare(b.startDate);
+  });
+
   return (
     <aside className="container elements-associes-block" id="news" role="complementary" aria-label={ lang ==='fr' ? related.fr : related.en }>
       <h1><span data-icon="actualités" /> {accroche} </h1>
 
       <div className="contenu">
         <ul className="liste_objet">
-          {actu.map(n => (
+          {sorted.map(n => (
             <li key={n.permalink.fr} data-type="activite" className="item">
               <Link to={n.permalink[lang]} className="accroche">
                 <div className="bandeau">
-                  <p data-icon="news" className="type">{IsModel(n.type, lang)} <span>{n.label && (lang === 'fr' ? n.label.fr : n.label.en)}</span></p>         
+                  <p data-icon="news" className="type">{IsModel(n.type, lang)} <span>{n.label && (lang === 'fr' ? n.label.fr : n.label.en)}</span></p>
                   <DateNews startDate={n.startDate} endDate={n.endDate} lang={lang} />
                   <TimeNews startDate={n.startDate} endDate={n.endDate} />
                 </div>

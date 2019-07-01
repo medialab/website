@@ -15,6 +15,9 @@ body{ overflow-x: visible}
         // margin: 0 $margins-desktop!important;
         background-color: $background-site;
         top: 0!important;
+        max-width: 100vw;
+        width: 100vw;
+        overflow-x: hidden;
     }
 }
 [data-type="news"] .type::before, 
@@ -91,11 +94,13 @@ body{ overflow-x: visible}
 }
 
 
-.checkbox-medialab:hover{
-    font-weight: 600;
-    color: $text-color-light;
-    cursor: pointer;
-    &:before{ border: 5px solid $text-color-light!important;}
+@include for-size(desktop) {
+    .checkbox-medialab:hover{
+        font-weight: 600!important;
+        color: $text-color-light;
+        cursor: pointer;
+        &:before{ border: 5px solid $text-color-light!important;}
+    }
 }
 
 

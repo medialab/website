@@ -22,7 +22,7 @@ export default ({data, pageContext}) => {
       lang={pageContext.lang}
       className="page-people body-page"
       permalinks={pageContext.permalinks}>
-      {pageContext.linkToAdmin && <div style={{'text-align': 'right'}}>{person.draft ? <b>DRAFT</b> : <b>PUBLIC</b>} <a href={pageContext.linkToAdmin} target="_blank" rel="noopener noreferrer">éditer dans l'admin</a></div>}
+      {pageContext.linkToAdmin && <div style={{textAlign: 'right'}}>{person.draft ? <b>DRAFT</b> : <b>PUBLIC</b>} <a href={pageContext.linkToAdmin} target="_blank" rel="noopener noreferrer">éditer dans l'admin</a></div>}
       <PeopleDetail lang={pageContext.lang} person={person} />
     </Layout>
   );

@@ -4,8 +4,9 @@ import Helmet from 'react-helmet';
 import {StaticQuery, graphql} from 'gatsby';
 import TopBar from './common/TopBar.js';
 import Footer from './common/Footer.js';
-import './assets/scss/global.scss';
+
 import './assets/font/Bel2/stylesheet.css';
+import './assets/scss/global.scss';
 
 const Layout = ({children, lang, className, permalinks}) => {
 

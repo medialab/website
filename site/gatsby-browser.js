@@ -138,13 +138,14 @@ function Hilitor(id, tag) {
     return matchRegExp;
   };
 
-}  
+}
 
-export function onRouteUpdate() {
+function customJS(){
   /**
    * SEARCH FILTER FUNCTION
    */
   var searchInput = document.querySelector('#search');
+  console.log(searchInput);
   if (searchInput) {
     console.debug('search enabled');
     searchInput.style.display = 'block';
@@ -158,5 +159,9 @@ export function onRouteUpdate() {
     }, 300)
     searchInput.addEventListener('input', search);
   }
-};
+}
 
+export function onRouteUpdate() {
+  console.debug('routeUpdated');
+  setTimeout(customJS, 500);
+}

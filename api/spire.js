@@ -4,8 +4,11 @@ const config = require('./configWithSecrets.js'),
       async = require('async'),
       request = require('request'),
       _ = require('lodash'),
+      uuid = require('uuid/v4'),
       slug = require('slug'),
-      uuid = require('uuid/v4');
+      makeSlugFunctions = require('../specs/slugs.js');
+
+const {production: slugifyProduction, people: slugifyPeople} = makeSlugFunctions(slug);
 
 const models = require('../specs/models.json');
 
@@ -17,12 +20,6 @@ models.forEach(model => {
 });
 
 const spireTypes = require('../specs/spireProductionsTypes.json');
-
-const DEFAULT_MAX_SLUG_TOKENS = 6;
-function slugify(text) {
-  const s = slug(text, {lower: true});
-  return s.split('-').slice(0, DEFAULT_MAX_SLUG_TOKENS).join('-');
-}
 
 const resultPerPage = 2000;
 const labIdSpire = '2441/53r60a8s3kup1vc9kf4j86q90';
@@ -148,9 +145,10 @@ module.exports.aSPIRE = function aSPIRE(doneCallback, emitCallback = console.deb
             result_batch_size: resultPerPage,
             result_citation_styles: ['chicago'],
             search_terms: {
-                index: 'affiliation_id',
-                operator: '=',
-                value: labIdSpire},
+              index: 'affiliation_id',
+              operator: '=',
+              value: labIdSpire
+            },
             result_offset: resultOffset
           }]};
           console.debug(`request to spire ${resultOffset}`);
@@ -184,8 +182,12 @@ module.exports.aSPIRE = function aSPIRE(doneCallback, emitCallback = console.deb
           if (err) {
             doneAPISpire(err);
           }
-          emitCallback(`Récupération Spire terminée : ${spireRecords.length} publications`);
-          console.debug(`got ${spireRecords.length}`);
+          const nbAPIResults = spireRecords.length;
+          emitCallback(`Récupération Spire terminée : ${nbAPIResults} publications`);
+          console.debug(`got ${nbAPIResults}`);
+          // filtering non published documents
+          spireRecords = spireRecords.filter(d => d.state_spire === '3');
+          console.debug(`filtered ${nbAPIResults - spireRecords.length} unpublished documents (state_spire ≠ 3)`);
           // common queue to process the writing requests
           const websiteApiQueue = async.queue(({method, model, object}, cb) => {
             if (!VALIDATORS[model](object)) {
@@ -203,12 +205,13 @@ module.exports.aSPIRE = function aSPIRE(doneCallback, emitCallback = console.deb
                 cb(null);
             });
           }, 2);
+          const existingSlugs = new Set(_.values(indeces.productions).reduce((slugs, p) => slugs.concat(p.slugs), []));
           const spireAuthors = _.keyBy(_.values(indeces.people).filter(p => !!p.spire), p => p.spire.id);
           // let's try to reconcile with slugs
           const peopleToResolve = [];
           _.forEach(missingLabAuthors(spireRecords, _.keys(spireAuthors)), (aut, idSpire) => {
             // simple true match on slug
-            const match = indeces.people[slugify(`${aut.name_given} ${aut.name_family}`)];
+            const match = indeces.people[slugifyPeople({firstName: aut.name_given, lastName: aut.name_family})];
             if (match) {
               spireAuthors[idSpire] = {spire: {id: idSpire}, ...match};
               emitCallback(`Ajout de l'id Spire à ${match.firstName} ${match.lastName} : ${idSpire}`);
@@ -258,12 +261,20 @@ module.exports.aSPIRE = function aSPIRE(doneCallback, emitCallback = console.deb
               else {
                 // if new publication + if type is not translated to null
                 if (!p && spireTypes[record.spire_document_type]) {
+                  // slug
+                  let slug = slugifyProduction(spire.generatedFields);
+                  if (existingSlugs.has(slug)) {
+                    // slug collision
+                    console.debug(`slug collision ${slug}`);
+                    slug += '-2';
+                  }
+                  existingSlugs.add(slug);
                   const newProduction = {
                     id: uuid(),
                     // draft by default
                     draft: true,
                     // slugs
-                    slugs: [slugify(spire.generatedFields.title ? (spire.generatedFields.title.fr || spire.generatedFields.title.en || '') : '')],
+                    slugs: [slug],
                     spire
                     // lastUpdated
                   };

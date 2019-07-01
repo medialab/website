@@ -25,9 +25,12 @@ module.exports = slug => ({
     return slugify(slug, p.firstName + ' ' + p.lastName);
   },
   production(p) {
-    if (!p.title)
+    const title = (p.title && (p.title.fr || p.title.en)) || (p.spire && p.spire.generatedFields && p.spire.generatedFields.title && (p.spire.generatedFields.title.fr || p.spire.generatedFields.title.en))
+    const date = (p.date || p.spire && p.spire.generatedFields && p.spire.generatedFields.date);
+    const authors = (p.authors || (p.spire && p.spire.generatedFields && p.spire.generatedFields.authors))
+    if (!title)
       return '';
 
-    return slugify(slug, p.title.fr || p.title.en || '');
+    return slugify(slug, (date ? date + ' ' : '') + (title || '') + (authors ? ' ' + authors : ''));
   }
 });

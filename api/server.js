@@ -189,7 +189,8 @@ const MIGRATION_SCHEMES = {
   // 'fix-missing-processed': require('./migrations/fix-missing-processed.js'),
   'reset-settings': require('./migrations/reset-settings.js'),
   'reslugify': require('./migrations/reslugify.js'),
-  'move-generatedFields-productions': require('./migrations/move-generatedFields-productions.js')
+  'refresh-generatedFields-productions': require('./migrations/refresh-generatedFields-productions.js'),
+  'drop-unpublished-spire-notices': require('./migrations/drop-unpublished-spire-notices.js')
 };
 
 app.get('/migrate/:scheme', (req, res) => {

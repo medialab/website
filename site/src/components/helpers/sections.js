@@ -17,20 +17,20 @@ const SECTIONS = {
   },
   productions: {
     id: 'productions',
-    en: 'Related productions',
-    fr: 'Productions en lien',
+    en: 'Productions',
+    fr: 'Productions',
     exists: exists('productions')
   },
   activities: {
     id: 'activities',
-    en: 'Related activities',
-    fr: 'Activités en lien',
+    en: 'Activities',
+    fr: 'Activités',
     exists: exists('activities')
   },
   news: {
     id: 'news',
-    en: 'Related news',
-    fr: 'Actualités en lien',
+    en: 'News',
+    fr: 'Actualités',
     exists: exists('news')
   },
   attachments: {
@@ -41,8 +41,8 @@ const SECTIONS = {
   },
   highlights: {
     id: 'highlights',
-    en: 'Currently',
-    fr: 'En ce moment',
+    en: 'Selected works',
+    fr: 'Travaux choisis',
     exists: exists('mainProductions') || exists('mainActivities')
   }
 };

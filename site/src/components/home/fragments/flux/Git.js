@@ -9,13 +9,13 @@ export default function git({github, lang}) {
     <>
       <section id="git">
 
-        <h1>{lang ==="fr" ? "Le médialab sur " : "Medialab on" }<span data-icon="git"><a href="https://github.com/medialab">Github</a></span></h1>
+        <h1>{lang ==="fr" ? "Le médialab sur " : "médialab on" }<span data-icon="git"><a href="https://github.com/medialab">Github</a></span></h1>
         <input
         type="checkbox" name="checkbox_flux" id="checkbox_git"
         hidden />
         <label className="responsive-flux" htmlFor="checkbox_git">
           <span><Icons icon='arrow' /></span>
-        </label>  
+        </label>
 
       <div id="git-content">
 
@@ -23,16 +23,16 @@ export default function git({github, lang}) {
         (<article key={r.repo} className="git" data-type="git" aria-label={ lang === "fr" ? "Repertoire Git : " + r.repo : r.repo + " Git repository"}>
           <aside className="divers">
             <p className="label" data-icon="git">Git</p>
-            <p className="language">{r.language}</p>       
+            <p className="language">{r.language}</p>
           </aside>
 
           <a href={r.url} target="_blank" rel="noopener noreferrer" aria-label={ lang === "fr" ? "Aller sur la page github de ce projet" : "Go to this project github page"}>
             <h1 data-level-1="title">
               {r.repo}
             </h1>
-          </a> 
+          </a>
 
-          <p data-level-2="description" className="description"> 
+          <p data-level-2="description" className="description">
             {r.description}
           </p>
 
@@ -45,7 +45,7 @@ export default function git({github, lang}) {
                   let sep = '';
                   if (i === r.authors.length - 2)
                     sep = lang === 'fr' ? ' et ' : ' and ';
-                  else 
+                  else
                     if ((i < r.authors.length - 2))
                       sep = ', ';
                   if (a.permalink)
@@ -55,7 +55,7 @@ export default function git({github, lang}) {
                   })}
 
               </p>
-            }     
+            }
           </aside>
         </article>)
         )}

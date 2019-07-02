@@ -9,7 +9,7 @@ import * as locales from 'date-fns/locale';
 const formatDateTime = (isoDate, lang) => {
   const date = parseISO(isoDate);
   const locale = locales[lang];
-  return formatDate(date, 'EEEE d MMMM, H:mm', {locale}); 
+  return formatDate(date, 'EEEE d MMMM, H:mm', {locale});
 };
 
 const originalTweetIntro = {
@@ -30,7 +30,7 @@ export default function tweet({lang, tweets}) {
 return (
   <>
     <section id="tweet">
-      <h1>{lang ==="fr" ? "Le médialab sur " : "Medialab on" }<span data-icon="tweet"><a href="https://twitter.com/medialab_scpo">Twitter</a></span></h1>
+      <h1>{lang ==="fr" ? "Le médialab sur " : "médialab on" }<span data-icon="tweet"><a href="https://twitter.com/medialab_scpo">Twitter</a></span></h1>
       <input
       type="checkbox" name="checkbox_flux" id="checkbox_tweet"
       hidden />
@@ -40,7 +40,7 @@ return (
 
       <div id="tweet-content">
         { tweets.map(t =>
-            (<article className="tweet" data-type="tweet" key={t.tweet.toString()} aria-label="Tweet" >	
+            (<article className="tweet" data-type="tweet" key={t.tweet.toString()} aria-label="Tweet" >
               <a href={`https://twitter.com/medialab_scpo/status/${t.tweet}`} target="_blank" rel="noopener noreferrer">
                 <aside className="divers">
                   {

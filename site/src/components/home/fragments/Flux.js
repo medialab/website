@@ -8,8 +8,8 @@ import Tweet from './flux/Tweet.js';
 export default function flux({rdv, lang, tweets, github}) {
 	return (
 		<>
-		
-		<section id="flux" aria-label={lang === "fr" ? "Le Medialab heure par heure" : "Medialab : hourly status" }>
+
+		<section id="flux" aria-label={lang === "fr" ? "Le médialab heure par heure" : "médialab : hourly status" }>
 			<div className="container">
 
 		      <ul className="flux_selection_container" role="navigation">
@@ -23,7 +23,7 @@ export default function flux({rdv, lang, tweets, github}) {
 				<Tweet lang={lang} tweets={tweets} />
 			</div>
 		</section>
-		
+
 		</>
   	);
 }

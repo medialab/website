@@ -13,6 +13,12 @@ function waitFor(check, cb, params) {
 
   let j = 0;
 
+  // First synchronous check
+  if (check()) {
+    cb();
+    return;
+  }
+
   const i = setInterval(function() {
     if (check()) {
       clearInterval(i);
@@ -168,30 +174,50 @@ function Hilitor(id, tag) {
 
 }
 
-function customJS(){
-  /**
-   * SEARCH FILTER FUNCTION
-   */
-  const searchInput = document.querySelector('#search');
-  console.log(searchInput);
-  if (searchInput) {
-    console.debug('search enabled');
-    searchInput.style.display = 'block';
-    /**
-     * LOGIQUE DE SEARCH
-     */
-    const hilitor = new Hilitor('liste');
-    hilitor.setMatchType('open');
-    const search = debounce(function(evt){
-      hilitor.apply(evt.target.value);
-    }, 300)
-    searchInput.addEventListener('input', search);
+const CUSTOM_SCRIPS = [
+
+  // Custom JS search input
+  {
+    waitFor: '.type_title',
+    sel: '#search',
+    fn(el) {
+
+      const searchInput = el;
+
+      console.debug('search enabled');
+
+      searchInput.style.display = 'block';
+
+      const hilitor = new Hilitor('liste');
+      hilitor.setMatchType('open');
+
+      const search = debounce(function(evt) {
+        hilitor.apply(evt.target.value);
+      }, 300);
+
+      searchInput.addEventListener('input', search);
+    }
   }
+];
+
+function injectCustomScript(spec) {
+  waitFor(
+    () => !!document.querySelector(spec.waitFor),
+    () => {
+      const el = document.querySelector(spec.sel);
+
+      if (!el)
+        return;
+
+      spec.fn(el);
+    }
+  );
+}
+
+function inject() {
+  CUSTOM_SCRIPS.forEach(spec => injectCustomScript(spec));
 }
 
 export function onRouteUpdate() {
-  console.debug('routeUpdated');
-
-  waitFor(() => !!document.querySelector('.type_title'), customJS);
-  // setTimeout(customJS, 500);
+  inject();
 }

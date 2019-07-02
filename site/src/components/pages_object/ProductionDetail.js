@@ -106,6 +106,45 @@ export default function ProductionDetail({lang, production}) {
     );
   }
 
+  // url + description in ref block
+  const refs = {};
+  ['en', 'fr'].forEach(lang => {
+    
+  });
+
+  const LangBlock = ({production, lang}) => {
+
+    let ref = (<p className="production-ref">
+      {production.description && <RawHtml html={production.description[lang]} />}
+      {production.url && <br /> } {production.url ? production.url + ' ⤤' : ''}
+    </p>);
+
+    if (production.url) {
+      ref = <a href={production.url} target="_blank" rel="noopener noreferrer">{ref}</a>;
+    }
+  
+    return (<div className={`block-lang ${lang}`} lang={lang}>
+      <hgroup>
+        <h1 data-level-1="title">{production.title[lang]}</h1>
+        {production.authors && <h2 data-level-2="authors"><span>{production.authors}</span></h2>}
+      </hgroup>
+      <div className="details">
+        <p className="type-objet">
+          <span data-icon="production"></span> {IsModel(production.group, lang)} – {IsModel(production.type, lang)}
+        </p>
+        <DateNews startDate={production.date} lang={lang} />
+        {ref}
+        { 
+          // so far we don't have attachments on production also we planned to have some... I think...
+          //<FichiersAssocies attachments={production.attachments} lang="fr" />
+        }
+
+      </div>
+      <div className="article-contenu">
+        {production.content && (production.content[lang] && <RawHtml html={production.content[lang]} />)}
+      </div>
+    </div>);
+  };
 
   return (
     <>
@@ -128,52 +167,15 @@ export default function ProductionDetail({lang, production}) {
         <div className="container">{ coverImage}</div>
       </div>
 
-
-
         <article id="article-contenu">
           {/* Toggle Langue */}
           <ToggleLang lang={lang} content={production.content} />
 
-
           {/* FR */}
-          <div className="block-lang fr" lang="fr">
-            <hgroup>
-              <h1 data-level-1="title">{production.title.fr}</h1>
-              {production.authors && <h2 data-level-2="authors"><span>{production.authors}</span></h2>}
-            </hgroup>
-            <div className="details">
-              <p className="type-objet"><span data-icon="production"></span> {IsModel(production.group, "fr")} – {IsModel(production.type, "fr")}</p>
-              <DateNews startDate={production.date} lang="fr" />
-              {/*<p className="date">{production.date}</p>*/}
-              <p className="production-ref">
-                {production.description && <a href={production.url} target="_blank" rel="noopener noreferrer" dangerouslySetInnerHTML={{__html: production.description.fr+' ⤤'}} />}
-              </p>
-              <FichiersAssocies attachments={production.attachments} lang="fr" />
-
-            </div>
-            <div className="article-contenu">
-            {production.content && (production.content.fr && <RawHtml html={production.content.fr} />)}
-            </div>
-          </div>
+          <LangBlock production={production} lang="fr" />
 
           {/* EN */}
-          <div className="block-lang en" lang="en">
-            <hgroup>
-              <h1 data-level-1="title">{production.title.en}</h1>
-              {production.authors && <h2 data-level-2="authors"><span>{production.authors}</span></h2>}
-            </hgroup>
-            <div className="details">
-              <p className="type-objet"><span data-icon="production"></span> {IsModel(production.group, "en")} – {IsModel(production.type, "en")}</p>
-              <DateNews startDate={production.date} lang="en" />
-              {/*<p className="date">{production.date}</p>*/}
-              <p className="production-ref"><RawHtml html={production.description && (production.description.en)} /></p>
-              <FichiersAssocies attachments={production.attachments} lang="en" />
-            </div>
-            <div className="article-contenu">
-              {production.content && (production.content.en && <RawHtml html={production.content.en} />)}
-            </div>
-          </div>
-
+          <LangBlock production={production} lang="en" />
         </article>
 
         <aside id="all-aside">

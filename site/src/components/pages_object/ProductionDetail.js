@@ -17,6 +17,8 @@ import ActivitesAssociees from './fragments/ActivitesAssociees.js';
 import ActuAssociees from './fragments/ActuAssociees.js';
 import MembresAssocies from './fragments/MembresAssocies.js';
 import FichiersAssocies from './fragments/FichiersAssocies.js';
+
+import LanguageFallback from '../pages_list/fragments/LanguageFallback';
 //import './scss/page_objet.scss';
 
 export const queryFragment = graphql`
@@ -106,12 +108,6 @@ export default function ProductionDetail({lang, production}) {
     );
   }
 
-  // url + description in ref block
-  const refs = {};
-  ['en', 'fr'].forEach(lang => {
-    
-  });
-
   const LangBlock = ({production, lang}) => {
 
     let ref = (<p className="production-ref">
@@ -125,7 +121,7 @@ export default function ProductionDetail({lang, production}) {
   
     return (<div className={`block-lang ${lang}`} lang={lang}>
       <hgroup>
-        <h1 data-level-1="title">{production.title[lang]}</h1>
+        <h1 data-level-1="title"><LanguageFallback lang={lang} translatedAttribute={production.title} /></h1>
         {production.authors && <h2 data-level-2="authors"><span>{production.authors}</span></h2>}
       </hgroup>
       <div className="details">
@@ -145,7 +141,6 @@ export default function ProductionDetail({lang, production}) {
       </div>
     </div>);
   };
-
   return (
     <>
       <main id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " : " page content" }>
@@ -157,7 +152,11 @@ export default function ProductionDetail({lang, production}) {
             <Link to="/productions">
               <span data-icon="production">Productions</span>
             </Link>
-              <span className="title"><a href="#topbar">{production.title && (lang === 'fr' ? production.title.fr : production.title.en) }</a></span>
+              <span className="title">
+                <a href="#topbar">
+                  <LanguageFallback lang={lang} translatedAttribute={production.title} />
+                </a>
+              </span>
           </p>
         </div>
       </header>

@@ -24,7 +24,13 @@ const spireTypes = require('../specs/spireProductionsTypes.json');
 const resultPerPage = 2000;
 const labIdSpire = '2441/53r60a8s3kup1vc9kf4j86q90';
 
-const title = record => (record.title_non_sort ? record.title_non_sort : '') + record.title + (record.title_sub ? ' - ' + record.title_sub : '');
+const title = (record, lang) => {
+  if (record.languages[0] === lang) {
+    return (record.title_non_sort ? record.title_non_sort : '') + record.title + (record.title_sub ? ' — ' + record.title_sub.slice(0,1).toLowerCase() + record.title_sub.slice(1) : '');
+  }
+  else
+    return false;
+};
 const ref = record => {
   // removing the <a> tag
   return record.citations ? record.citations.html.chicago.replace(/<a.*?>(.*?)<\/a>/g, '$1') : false;
@@ -43,10 +49,10 @@ const translators = {
     }
     else
       if (record.is_part_ofs && record.is_part_ofs.length > 0)
-        return record.is_part_ofs.find(ipo => ipo.date_issued).date_issued
+        return record.is_part_ofs.find(ipo => ipo.date_issued).date_issued;
   },
-  'title.en': record => title(record),
-  'title.fr': record => title(record),
+  'title.en': record => title(record, 'en'),
+  'title.fr': record => title(record, 'fr'),
   'description.en': record => ref(record),
   'description.fr': record => ref(record),
   'content': record => {

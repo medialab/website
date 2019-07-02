@@ -168,10 +168,6 @@
         }
       }
     },
-    "important": {
-      "title": "Structurant?",
-      "type": "boolean"
-    },
     "active": {
       "title": "Actif?",
       "type": "boolean"

@@ -67,7 +67,7 @@ export function IsModel (item, lang) {
     }
   }
 
-  
+
 
   if (item === 'activities') {
     if (lang === 'fr') {
@@ -90,7 +90,7 @@ export function IsModel (item, lang) {
     if (lang === 'fr') {
       type = "L'equipe";
     } else {
-      type = "Medialab's Team";
+      type = "médialab's Team";
     }
   }
   // Activity
@@ -137,7 +137,7 @@ export function IsModel (item, lang) {
       type = 'Notice';
     }
   }
-  
+
 
   // Production group
   if (item === 'publications' ) {
@@ -180,7 +180,7 @@ export function IsModel (item, lang) {
   }
   if (item === 'communication' ) {
       type = 'Communication';
-  }  
+  }
   if (item === 'thesis' ) {
     if (lang === 'fr') {
       type = 'Thèse';
@@ -221,7 +221,7 @@ export function IsModel (item, lang) {
     } else {
       type = 'Code';
     }
-  }  
+  }
 
   if (item === 'exhibition' ) {
     if (lang === 'fr') {
@@ -236,7 +236,7 @@ export function IsModel (item, lang) {
     } else {
       type = 'Simulation';
     }
-  }  
+  }
 
   if (item === 'workshop' ) {
     if (lang === 'fr') {
@@ -251,14 +251,14 @@ export function IsModel (item, lang) {
     } else {
       type = 'Conference';
     }
-  }    
+  }
   if (item === 'media' ) {
     if (lang === 'fr') {
       type = 'Media';
     } else {
       type = 'Media';
     }
-  }    
+  }
   // domain people
   if (item === 'academic' ) {
     if (lang === 'fr') {
@@ -266,30 +266,30 @@ export function IsModel (item, lang) {
     } else {
       type = 'Academic';
     }
-  }  
+  }
   if (item === 'tech' ) {
     if (lang === 'fr') {
       type = 'Technique';
     } else {
       type = 'Technical';
     }
-  } 
+  }
   if (item === 'design' ) {
-      type = 'Design';  
-  }   
+      type = 'Design';
+  }
   if (item === 'pedagogy' ) {
     if (lang === 'fr') {
       type = 'Pédagogie';
     } else {
       type = 'Pedagogy';
     }
-  } 
+  }
   if (item === 'admin' ) {
     if (lang === 'fr') {
       type = 'Administratif';
     } else {
       type = 'Administrative';
     }
-  } 
+  }
    return type;
 }

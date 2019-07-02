@@ -24,7 +24,7 @@ const TopBar = ({permalinks, lang}) => {
     news = 'Actualités';
     prod = 'Productions';
     activite = 'Activités';
-    medialab = 'Le Médialab';
+    medialab = 'Le médialab';
     team = "L'équipe";
     tool = 'Outils';
     archive = 'Archives';
@@ -36,7 +36,7 @@ const TopBar = ({permalinks, lang}) => {
     news = 'News';
     prod = 'Productions';
     activite = 'Activities';
-    medialab = 'The Medialab';
+    medialab = 'The médialab';
     team = 'The team';
     tool = 'Tools';
     archive = 'Archives';
@@ -74,35 +74,35 @@ const TopBar = ({permalinks, lang}) => {
         </div>
 
         <nav id="nav-option" role="navigation" aria-owns="langue back_button fr-to-en en-to-fr">
-    
+
           <ul id="nav-objet" >
 
             <li data-type="actualite">
               <Link to={`${relLang}/news`}
-                    aria-label={lang === 'fr' ? "Aller à la liste complètes des Actualités" : "Go to the complete list of Medialab news" }>{news}</Link>
+                    aria-label={lang === 'fr' ? "Aller à la liste complètes des Actualités" : "Go to the complete list of médialab news" }>{news}</Link>
             </li>
 
             <li data-type="production">
               <Link to={`${relLang}/productions`}
-                    aria-label={lang === 'fr' ? "Aller à la liste complètes des Productions" : "Go to the complete list of Medialab productions" }>{prod}</Link>
+                    aria-label={lang === 'fr' ? "Aller à la liste complètes des Productions" : "Go to the complete list of médialab productions" }>{prod}</Link>
             </li>
 
             <li data-type="activite">
               <Link to={`${relLang}/activities`}
-                    aria-label={lang === 'fr' ? "Aller à la liste complètes des Activités" : "Go to the complete list of Medialab activities" }>{activite}</Link>
+                    aria-label={lang === 'fr' ? "Aller à la liste complètes des Activités" : "Go to the complete list of médialab activities" }>{activite}</Link>
             </li>
 
           </ul>
           <ul id="nav-institution">
-            <li><Link to={`${relLang}/about`} aria-label={lang === 'fr' ? "Aller à la page de présentation du Medialab" : "Go to Medialab presentation page" }>{medialab}</Link></li>
-            <li><Link to={`${relLang}/people`} aria-label={lang === 'fr' ? "Découvrir les membres du Medialab" : "Discover Medialab members " }>{team}</Link></li>
+            <li><Link to={`${relLang}/about`} aria-label={lang === 'fr' ? "Aller à la page de présentation du médialab" : "Go to médialab presentation page" }>{medialab}</Link></li>
+            <li><Link to={`${relLang}/people`} aria-label={lang === 'fr' ? "Découvrir les membres du médialab" : "Discover médialab members " }>{team}</Link></li>
           </ul>
           <ul id="nav-archive">
             {/*<li><Link to={`${relLang}/outils`}>{tool}</Link></li>*/}
             <li>
             <a href="http://tools.medialab.sciences-po.fr"
               target="_blank" rel="noopener"
-              aria-label={lang === 'fr' ? "Aller à la liste des outils numériques créés ou utilisé par le Medialab " : "Go to a listing of digital tools created or used by Medialab" }>{tool}</a>
+              aria-label={lang === 'fr' ? "Aller à la liste des outils numériques créés ou utilisé par le médialab " : "Go to a listing of digital tools created or used by médialab" }>{tool}</a>
             </li>
             {/* <li><Link to={`${relLang}/archive`}>{archive}</Link></li> */}
           </ul>

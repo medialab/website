@@ -16,7 +16,7 @@ export default function Now({now, lang}) {
 	// console.log(now);
 	return (
   <>
-    <section id="now" aria-label={lang === "fr" ? "Dernières actualités du Médialab" : "Lastest news from Medialab" }>
+    <section id="now" aria-label={lang === "fr" ? "Dernières actualités du médialab" : "Lastest news from médialab" }>
       <h1>{ lang === "fr" ? "À la une" : "Headlines"}</h1>
       {/* <input
         type="checkbox" name="checkbox_now" id="checkbox_now"

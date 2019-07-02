@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link} from 'gatsby';
 import {SECTIONS} from '../../helpers/sections';
-import sortBy from 'lodash/sortBy';
 import DateNews from '../../helpers/DateNews.js';
 
 const ProductionsAssociees = ({lang, productions}) => {
@@ -12,7 +11,9 @@ const ProductionsAssociees = ({lang, productions}) => {
     return null;
 
   // sort
-  const productionsSorted = sortBy(productions, p => p.date || '0').reverse();
+  const productionsSorted = productions.slice().sort((a, b) => {
+    return -(a.date || '0').localeCompare(b.date || '0');
+  });
 
 	let accroche;
 	if (lang === 'fr') {
@@ -32,7 +33,7 @@ const ProductionsAssociees = ({lang, productions}) => {
         } */}
         {p.authors && <p className="authors">{p.authors}</p>}
         {/*<DateNews startDate={p.date} lang={lang} />*/}
-        { p.external && p.url && <p className="external" aria-label="production exterieure au medialab" title={lang === 'fr' ? "Ce lien renvoi à une page exterieure au Medialab" : "This linked is external to Medialab"} >⤤</p> }
+        { p.external && p.url && <p className="external" aria-label="production exterieure au médialab" title={lang === 'fr' ? "Ce lien renvoi à une page exterieure au médialab" : "This linked is external to médialab"} >⤤</p> }
       </div>
       <hgroup>
         <h1 data-level-1="title" >{lang === 'fr' ? p.title.fr : p.title.en}</h1>

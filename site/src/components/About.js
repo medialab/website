@@ -22,7 +22,7 @@ export default function About({lang}) {
       </nav>
         <article id="about-contenu" className="main-container">
           <hgroup>
-            <h1 id="page-title">Le medialab</h1>
+            <h1 id="page-title">Le médialab</h1>
             <h2>Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des sciences sociales.</h2>
           </hgroup>
           <div className="about-contenu">

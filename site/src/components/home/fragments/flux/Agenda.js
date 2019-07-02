@@ -18,7 +18,7 @@ export default function Agenda({rdv, lang}) {
     <input type="checkbox" name="checkbox_flux" id="checkbox_agenda" hidden />
     <label className="responsive-flux" htmlFor="checkbox_agenda">
       <span><Icons icon='arrow' /></span>
-    </label> 
+    </label>
       <div id="agenda-content">
 
         {rdv.map((event, i) =>
@@ -30,7 +30,7 @@ export default function Agenda({rdv, lang}) {
               <aside className="divers">
                 <p className="label" data-icon="news">{ event.label && (lang === 'fr' ? event.label.fr : event.label.en) }</p>
                 <DateNews startDate={event.startDate} endDate={event.endDate} lang={lang} />
-                {event.isInternal && <p className="internal" aria-label="evenement interne au medialab" title={lang === 'fr' ? "Cet évenement est organisé par le Medialab" : "The event is hosted by Medialab"} >⌂</p>}
+                {event.isInternal && <p className="internal" aria-label="evenement interne au médialab" title={lang === 'fr' ? "Cet évenement est organisé par le médialab" : "The event is hosted by médialab"} >⌂</p>}
               </aside>
 
 

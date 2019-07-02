@@ -203,11 +203,11 @@ export default function PeopleDetail({lang, person}) {
   let titleLinkTeam, backTop, toggleNav;
 
   if (lang === 'fr') {
-    titleLinkTeam = 'Aller à la page de l‘équipe du Médialab';
+    titleLinkTeam = 'Aller à la page de l‘équipe du médialab';
     backTop = 'Aller en haut de la page';
     toggleNav = 'Afficher ou masquer la navigation dans l‘article';
   } else {
-    titleLinkTeam = 'Go to the medialab team page';
+    titleLinkTeam = 'Go to the médialab team page';
     backTop = 'Go to the top of page';
     toggleNav = 'Show or hide the navigation in the article';
   }
@@ -227,7 +227,7 @@ export default function PeopleDetail({lang, person}) {
             <div id="logo-sticky"><a href="/"><Logo /></a></div>
             <p>
             <Link to="/people" className="link-page-team" title={titleLinkTeam}>
-              <span>{lang === 'fr' ? "L'équipe du Medialab" : 'Medialab team'} </span>
+              <span>{lang === 'fr' ? "L'équipe du médialab" : 'médialab team'} </span>
             </Link>
             <span className="personne"><a href="#topbar" title={backTop}>{person.firstName} {person.lastName}</a></span>
           </p>
@@ -253,7 +253,7 @@ export default function PeopleDetail({lang, person}) {
                 <div className="bandeau">
                 <p className="role" data-type="role" aria-label={lang === "fr" ? "Rôle au sein de l'equipe" : "Role within the team " }>{person.role[lang]}</p>
                     {/* <p data-type="domaine">{lang === "fr" ? "Domaine" + String.fromCharCode(8239) +":" : "Domain:"} {person.domain}</p> */}
-                    <p data-type="membership" aria-label={lang === "fr" ? "Nature de la relation au Medialab" : "Nature of the relationship within Medialab"}>{templateMembership(person)}</p>
+                    <p data-type="membership" aria-label={lang === "fr" ? "Nature de la relation au médialab" : "Nature of the relationship within médialab"}>{templateMembership(person)}</p>
                 </div>
 
                 { person.contacts && person.contacts.length > 0 &&

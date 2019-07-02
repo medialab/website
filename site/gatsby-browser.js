@@ -178,13 +178,12 @@ const CUSTOM_SCRIPS = [
 
   // Custom JS search input
   {
+    name: 'search',
     waitFor: '.type_title',
     condition: () => !!document.querySelector('#search'),
     fn() {
 
       const searchInput = document.querySelector('#search');
-
-      console.debug('search enabled');
 
       searchInput.style.display = 'block';
 
@@ -197,8 +196,43 @@ const CUSTOM_SCRIPS = [
 
       searchInput.addEventListener('input', search);
     }
+  },
+
+  // Sticky title on people pages
+  {
+    name: 'people-sticky-title',
+    waitFor: '#container-biographie',
+    condition: () => window.innerWidth < 700,
+    fn() {
+      document.querySelector('#nav-inside-article [data-type=topbar] a').href = '#main';
+
+      const sticky = () => {
+        const navPeople = document.getElementById('toggle-nav_label');
+        const stickyTitle = document.getElementById('titre-sticky');
+        const navArticle = document.getElementById('nav-inside-article');
+
+        if (window.scrollY > 550) {
+          navPeople.style.top = '70px';
+          stickyTitle.style.top = '70px';
+          navArticle.style.top = '';
+        }
+        else {
+          navPeople.style.top = '0px';
+          stickyTitle.style.top = '0px';
+          navArticle.style.top = '-250px';
+        }
+      }
+
+      window.addEventListener('scroll', sticky);
+
+      return () => {
+        window.removeEventListener('scroll', sticky);
+      };
+    }
   }
 ];
+
+const listeners = [];
 
 function injectCustomScript(spec) {
   waitFor(
@@ -207,12 +241,24 @@ function injectCustomScript(spec) {
       if (!spec.condition())
         return;
 
-      spec.fn();
+      console.log(`Injecting "${spec.name}"`);
+
+      const unsubscribe = spec.fn();
+
+      if (unsubscribe)
+        listeners.push(unsubscribe);
     }
   );
 }
 
 function inject() {
+
+  // Cleanup
+  while (listeners.length) {
+    const unsubscribe = listeners.pop();
+    unsubscribe();
+  }
+
   CUSTOM_SCRIPS.forEach(spec => injectCustomScript(spec));
 }
 

@@ -179,10 +179,10 @@ const CUSTOM_SCRIPS = [
   // Custom JS search input
   {
     waitFor: '.type_title',
-    sel: '#search',
-    fn(el) {
+    condition: () => !!document.querySelector('#search'),
+    fn() {
 
-      const searchInput = el;
+      const searchInput = document.querySelector('#search');
 
       console.debug('search enabled');
 
@@ -204,12 +204,10 @@ function injectCustomScript(spec) {
   waitFor(
     () => !!document.querySelector(spec.waitFor),
     () => {
-      const el = document.querySelector(spec.sel);
-
-      if (!el)
+      if (!spec.condition())
         return;
 
-      spec.fn(el);
+      spec.fn();
     }
   );
 }

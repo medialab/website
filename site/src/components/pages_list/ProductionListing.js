@@ -15,14 +15,18 @@ export default function ProductionListing({lang, list, group, types}) {
     const yearGroups = new Map();
 
     list
-      .filter(p => p.date)
+      .map(p => {
+        if (!p.date)
+          p.date = ''+new Date().getFullYear();
+        return p;
+      })
       .sort((a, b) => b.date.localeCompare(a.date))
       .forEach(production => {
         let year = getYear(parseISO(production.date));
 
         // TODO: this is a temporary workaround
         if (Number.isNaN(year)) {
-          year = 2008;
+          year = new Date().getFullYear();
         }
 
         if (!yearGroups.has(year)) {

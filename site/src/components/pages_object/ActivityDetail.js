@@ -64,6 +64,8 @@ export const queryFragment = graphql`
       coverImage {
         url
       }
+      active
+      membership
     }
     activities {
       name

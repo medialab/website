@@ -17,6 +17,9 @@ const MembresAssocies = ({lang, people}) => {
   if (!people || people.length === 0)
     return null;
 
+  // sort active first
+  const peopleSorted = people.filter(p => p.active && p.membership === 'member').concat(people.filter(p => p.active && p.membership === 'associate')).concat(people.filter(p => !p.active))
+
   // definissons une accroche
   let accroche;
 
@@ -33,7 +36,7 @@ const MembresAssocies = ({lang, people}) => {
 
       <div className="contenu">
         <ul className="liste_personne">
-          {people.map(p => (
+          {peopleSorted.map(p => (
             <li key={p.permalink.fr} data-type="people">
               <Link to={p.permalink[lang]}>
                 <figure className={p.coverImage ? "" : "noImg"}>

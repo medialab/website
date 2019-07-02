@@ -229,6 +229,32 @@ const CUSTOM_SCRIPS = [
         window.removeEventListener('scroll', sticky);
       };
     }
+  },
+
+  // News listing UX enhancements
+  {
+    name: 'news-listing-ux',
+    waitFor: '.filtre-actu',
+    condition: () => !!document.querySelector('.filtre-actu'),
+    fn() {
+      const filterLabels = document.querySelectorAll('.filtre-actu');
+
+      const goTop = () => location.hash = '#liste';
+
+      Array.from(filterLabels).forEach(label => {
+        label.addEventListener('click', goTop);
+      });
+
+      const years = document.querySelectorAll('#list-years li a');
+
+      const closeFilters = () => {
+        document.getElementById('radio-phone-close').checked = true;
+      };
+
+      Array.from(years).forEach(year => {
+        year.addEventListener('click', closeFilters);
+      });
+    }
   }
 ];
 

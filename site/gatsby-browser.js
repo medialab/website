@@ -179,7 +179,7 @@ const CUSTOM_SCRIPS = [
   // Custom JS search input
   {
     name: 'search',
-    waitFor: '.type_title',
+    waitFor: 'main',
     condition: () => !!document.querySelector('#search'),
     fn() {
 
@@ -253,6 +253,22 @@ const CUSTOM_SCRIPS = [
 
       Array.from(years).forEach(year => {
         year.addEventListener('click', closeFilters);
+      });
+    }
+  },
+
+  // Activities listing UX enhancements
+  {
+    name: 'activities-listing-ux',
+    waitFor: '.filtre-activity',
+    condition: () => !!document.querySelector('.filtre-activity'),
+    fn() {
+      const filterLabels = document.querySelectorAll('.filtre-activity');
+
+      const goTop = () => location.hash = '#liste';
+
+      Array.from(filterLabels).forEach(label => {
+        label.addEventListener('click', goTop);
       });
     }
   }

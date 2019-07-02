@@ -91,6 +91,7 @@ export const queryFragment = graphql`
       }
     }
     draft
+    url
   }
 `;
 
@@ -144,7 +145,9 @@ export default function ProductionDetail({lang, production}) {
               <p className="type-objet"><span data-icon="production"></span> {IsModel(production.group, "fr")} – {IsModel(production.type, "fr")}</p>
               <DateNews startDate={production.date} lang="fr" />
               {/*<p className="date">{production.date}</p>*/}
-              <p className="production-ref"><RawHtml html={production.description && (production.description.fr)} /></p>
+              <p className="production-ref">
+                {production.description && <a href={production.url} target="_blank" rel="noopener noreferrer" dangerouslySetInnerHTML={{__html: production.description.fr+' ⤤'}} />}
+              </p>
               <FichiersAssocies attachments={production.attachments} lang="fr" />
 
             </div>

@@ -26,13 +26,8 @@ const labIdSpire = '2441/53r60a8s3kup1vc9kf4j86q90';
 
 const title = record => (record.title_non_sort ? record.title_non_sort : '') + record.title + (record.title_sub ? ' - ' + record.title_sub : '');
 const ref = record => {
-  const resourcesFiltered = record.resources ? record.resources.filter(p => p.relation_type !== 'frontCover') : [];
-  if (resourcesFiltered.length >= 1) {
-    return record.citations ? record.citations.html.chicago.replace(/href=".*?"/g, `href="${resourcesFiltered[0].url}"`) : false;
-  }
-  else {
-    return record.citations ? record.citations.html.chicago : false;
-  }
+  // removing the <a> tag
+  return record.citations ? record.citations.html.chicago.replace(/<a.*?>(.*?)<\/a>/g, '$1') : false;
 };
 // translation functions stored by object path.
 // translation function returns false is ther is nothing to update for the path.

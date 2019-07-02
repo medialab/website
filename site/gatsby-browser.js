@@ -179,7 +179,6 @@ const CUSTOM_SCRIPS = [
   // Custom JS search input
   {
     name: 'search',
-    waitFor: 'main',
     condition: () => !!document.querySelector('#search'),
     fn() {
 
@@ -201,8 +200,7 @@ const CUSTOM_SCRIPS = [
   // Sticky title on people pages
   {
     name: 'people-sticky-title',
-    waitFor: '#container-biographie',
-    condition: () => window.innerWidth < 700,
+    condition: () => !!document.querySelector('#container-biographie') && window.innerWidth < 700,
     fn() {
       document.querySelector('#nav-inside-article [data-type=topbar] a').href = '#main';
 
@@ -234,7 +232,6 @@ const CUSTOM_SCRIPS = [
   // News listing UX enhancements
   {
     name: 'news-listing-ux',
-    waitFor: '.filtre-actu',
     condition: () => !!document.querySelector('.filtre-actu'),
     fn() {
       const filterLabels = document.querySelectorAll('.filtre-actu');
@@ -260,7 +257,6 @@ const CUSTOM_SCRIPS = [
   // Activities listing UX enhancements
   {
     name: 'activities-listing-ux',
-    waitFor: '.filtre-activity',
     condition: () => !!document.querySelector('.filtre-activity'),
     fn() {
       const filterLabels = document.querySelectorAll('.filtre-activity');
@@ -278,7 +274,7 @@ const listeners = [];
 
 function injectCustomScript(spec) {
   waitFor(
-    () => !!document.querySelector(spec.waitFor),
+    () => !!document.querySelector(spec.waitFor || 'main'),
     () => {
       if (!spec.condition())
         return;

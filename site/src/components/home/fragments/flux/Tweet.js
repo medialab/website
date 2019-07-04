@@ -30,7 +30,7 @@ export default function tweet({lang, tweets}) {
 return (
   <>
     <section id="tweet">
-      <h1>{lang ==="fr" ? "Le médialab sur " : "médialab on" }<span data-icon="tweet"><a href="https://twitter.com/medialab_scpo">Twitter</a></span></h1>
+      <h1>{lang ==="fr" ? "Le médialab sur " : "médialab on" }<span data-icon="tweet"><a href="https://twitter.com/medialab_scpo"  target="_blank" rel="noopener noreferrer">Twitter</a></span></h1>
       <input
       type="checkbox" name="checkbox_flux" id="checkbox_tweet"
       hidden />

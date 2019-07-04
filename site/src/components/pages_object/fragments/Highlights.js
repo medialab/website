@@ -30,6 +30,22 @@ const ProductionCard = ({p, lang}) => {
 };
 
 export default function highlights({people, lang}) {
+
+  let titleActivity, titleProduction;
+
+  if (people.mainActivities && people.mainActivities.length > 0){
+    titleActivity = <h2 data-icon="activite">{lang === "fr" ? "Activité(s)" : "Activity(ies)" }</h2>;
+  }else{
+    titleActivity = '';
+  }
+
+  if (people.mainProductions && people.mainProductions.length > 0){
+    titleProduction = <h2 data-icon="production">Productions</h2>;
+  }else{
+    titleProduction = '';
+  }
+
+
   if ((people.mainActivities && people.mainActivities.length > 0) || (people.mainProductions && people.mainProductions.length > 0)) {
 
 
@@ -40,6 +56,7 @@ export default function highlights({people, lang}) {
         <>
         <h1 id="aria-title">{SECTIONS.highlights[lang]}</h1>
         <div className="contenu">
+          { titleActivity }
           <ul id="highlights-list-activity" data-type="activities">
             { people.mainActivities &&
               people.mainActivities.map((a, index) => (
@@ -61,6 +78,7 @@ export default function highlights({people, lang}) {
               ))
             }
           </ul>
+          { titleProduction }
           <ul id="highlights-list-production" data-type="productions">
             { people.mainProductions &&
               people.mainProductions.map((p, index) => (

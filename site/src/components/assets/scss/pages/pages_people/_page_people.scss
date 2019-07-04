@@ -18,6 +18,13 @@
 			figcaption{
 				margin-top: $baseline*1;
 			}
+
+			&.noImg div{
+				transform: translateX(-50%);
+				left: 50%;
+				opacity: .3;
+				position: absolute;
+			}			
 		}
 	
 		header{

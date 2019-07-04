@@ -82,11 +82,18 @@
 				filter: grayscale(1);
 			}
 
-			pre{ font-size: 5px;}
+			pre{ font-size: 3px;}
 			div{	// if pre
 				overflow: hidden;
 				//position: absolute;
-				pre{ line-height: 95%;}
+				pre{ line-height: 100%;}
+			}
+			&.noImg div{
+				
+				position: absolute;
+				transform: translateX(-50%);
+				left: 50%;
+				opacity: .3;
 			}
 
 		}
@@ -250,7 +257,6 @@
 			.liste_personne li[data-type="people"]{
 				width: 50% ;
 				figure{ max-width: inherit;}
-				pre{ font-size: 5px; }
 			}
 		}
 	}
@@ -262,7 +268,6 @@
 			.liste_personne li[data-type="people"]{
 				width: 33.333% ;
 				figure{max-height: $baseline*8; }
-				pre{ font-size: 4px; }
 			}
 		}
 	}		
@@ -311,7 +316,7 @@
 			.liste_personne li[data-type="people"]{
 				width: 100%;
 				margin-bottom: $baseline*1;
-				pre{ font-size: 0.35vw; }
+				pre{ font-size: 3px; }
 
 			
 			}

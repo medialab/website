@@ -9,7 +9,7 @@ export default function git({github, lang}) {
     <>
       <section id="git">
 
-        <h1>{lang ==="fr" ? "Le médialab sur " : "médialab on" }<span data-icon="git"><a href="https://github.com/medialab">Github</a></span></h1>
+        <h1>{lang ==="fr" ? "Le médialab sur " : "médialab on" }<span data-icon="git"><a href="https://github.com/medialab"  target="_blank" rel="noopener noreferrer">Github</a></span></h1>
         <input
         type="checkbox" name="checkbox_flux" id="checkbox_git"
         hidden />

@@ -245,7 +245,7 @@ export default function PeopleDetail({lang, person}) {
                 <hgroup>
                   <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
                  {person.status &&
-                   <p className="status" data-type="status" aria-label={lang === "fr" ? "Occupation actuelle " : "Present activitiies" }>
+                   <p className={`status ${lang}`} data-type="status" aria-label={lang === "fr" ? "Occupation actuelle " : "Present activitiies" }>
                       { lang === "fr" ? person.status.fr : person.status.en}
                     </p>
                   }

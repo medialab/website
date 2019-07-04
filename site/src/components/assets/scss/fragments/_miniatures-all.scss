@@ -155,7 +155,7 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
                     font-size: calc( ( 900px / 60 ) * 1.89); 
                 }
                 line-height: 95%;
-                z-index: 9;
+                z-index: 8;
             }
             &:hover{ 
                 max-width: calc(#{$width-image-pre-highlight} + (100% - #{$width-image-pre-highlight})); 

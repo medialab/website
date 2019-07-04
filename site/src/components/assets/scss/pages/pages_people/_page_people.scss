@@ -70,15 +70,23 @@
 
 		/* CONTENU --------------------------------------------------------------- 
 		 ------------------------------------------------------------------------ */
+		#container-biographie{
+		
+			@include flex();
+			@include flex-direction(column);
 
-		.biographie-content{
-			a{
-				@include linktext();
-				transition: .25s linear;
+			.biographie-content{
 
-				&:hover{
-					color: $redlab;
-					text-decoration-color: $redlab;
+			    @include flex-order(1); 
+
+				a{
+					@include linktext();
+					transition: .25s linear;
+
+					&:hover{
+						color: $redlab;
+						text-decoration-color: $redlab;
+					}
 				}
 			}
 		}

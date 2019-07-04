@@ -2,6 +2,7 @@ import React from 'react';
 import {graphql} from 'gatsby';
 import {Link} from 'gatsby';
 
+import ToggleLang from './fragments/ToggleLang.js';
 import Highlights from './fragments/Highlights.js';
 import Logo from '../assets/svg/logo_medialab.svg';
 import { Icons } from '../helpers/Icons.js';
@@ -273,8 +274,17 @@ export default function PeopleDetail({lang, person}) {
                   </div>}
               </header>
 
-              <div className="biographie-content" aria-label={lang === "fr" ? "Biographie" : "Biography" } >
-                {person.bio && person.bio[lang] ? <RawHtml html={person.bio[lang]} /> : null}
+              {/* Toggle Langue */}
+              <ToggleLang lang={lang} content={person.bio} />
+
+              {/* FR */}
+              <div className="biographie-content block-lang fr" lang="fr" aria-label="Biographie" >
+                {person.bio && person.bio['fr'] ? <RawHtml html={person.bio['fr']} /> : null}
+              </div>
+
+              {/* EN */}
+              <div className="biographie-content block-lang en" lang="en" aria-label="Biography"  >
+                {person.bio && person.bio['en'] ? <RawHtml html={person.bio['en']} /> : null}
               </div>
             </div>
 

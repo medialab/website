@@ -27,10 +27,10 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
         }
 
         .image-pre{
-            z-index: 0;
+            z-index: 8;
             pre{ 
                 color: $color-img;
-                line-height: 95%;          
+                line-height: 95%;
             }
         
         }
@@ -118,7 +118,7 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
                     max-width: calc((100% - #{$width-image-pre-listing})/2 + #{$width-image-pre-listing});
                     @media screen and (min-width: 960px){ max-width: calc( 100% - (100% - #{$width-image-pre-listing})/2 )!important; }
                     transition-duration: .15s;
-                    background-color: $background-site;
+                    //background-color: $background-site;
                 }
             }
             .bandeau{
@@ -137,6 +137,7 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
             }
             hgroup, .accroche{
                 width: calc((100% - #{$width-image-pre-listing})/2);
+                max-width: 1100px;
                 left: $width-image-pre-listing;
                 margin-top: $baseline*.5;
                 margin-bottom: $baseline;
@@ -152,6 +153,7 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
                 padding-bottom: $baseline*1.5;
                  @include font-size-40; 
             }
+    
             
             .accroche{ 
                 border-left: $border-very-light; 

@@ -25,7 +25,7 @@ const resultPerPage = 2000;
 const labIdSpire = '2441/53r60a8s3kup1vc9kf4j86q90';
 
 const title = (record, lang) => {
-  if (record.languages[0] === lang) {
+  if (record.languages[0] === lang || (!['fr', 'en'].includes(record.languages[0]))) {
     return (record.title_non_sort ? record.title_non_sort : '') + record.title + (record.title_sub ? ' — ' + record.title_sub.slice(0,1).toLowerCase() + record.title_sub.slice(1) : '');
   }
   else

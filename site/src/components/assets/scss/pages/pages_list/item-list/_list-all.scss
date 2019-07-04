@@ -27,10 +27,10 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
         }
 
         .image-pre{
-            z-index: 0;
+            z-index: 9;
             pre{ 
                 color: $color-img;
-                line-height: 95%;          
+                line-height: 95%;
             }
         
         }
@@ -118,7 +118,7 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
                     max-width: calc((100% - #{$width-image-pre-listing})/2 + #{$width-image-pre-listing});
                     @media screen and (min-width: 960px){ max-width: calc( 100% - (100% - #{$width-image-pre-listing})/2 )!important; }
                     transition-duration: .15s;
-                    background-color: $background-site;
+                    //background-color: $background-site;
                 }
             }
             .bandeau{

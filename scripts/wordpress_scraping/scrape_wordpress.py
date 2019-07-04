@@ -32,7 +32,7 @@ def scrape_slug_page(s, url):
                 "class": "row-title"})[0].get_text()
             value = row.find_all(
                 'td', attrs={"class": "slug column-slug"})[0].get_text()
-            slugs[key] = value
+            slugs[key.replace('’',"'")] = value
     return slugs
 
 
@@ -86,7 +86,7 @@ def name_to_slug(s, name, type):
         # this guy doesn't have the same name in English & in French
         if name == 'François Gemenne' or name == 'François Gemmene':
             return 'francois-gemenne'
-        name = name.replace("'",'’')
+        #name = name.replace("'",'’')
         with open(os.path.join(directory, 'people_slugs.json'), 'r') as dict_file:
             slug_dict = json.load(dict_file)
     elif type == 'category':
@@ -97,7 +97,12 @@ def name_to_slug(s, name, type):
             slug_dict = json.load(dict_file)
     else:
         print("ERROR:", "'type' should be either 'tool', 'people', 'category', 'publication' or 'projet'")
-    return slug_dict[name]
+    try:
+        slug = slug_dict[name.replace('’',"'")]
+    except: 
+        print(name, slug_dict)
+        slug=None
+    return slug
 
 
 def scrape_tools(s):

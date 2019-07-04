@@ -68,6 +68,10 @@ const MISSING_DIMENSIONS = {
   '/wp-content/uploads/2012/08/EMAPSworkshop_pic.jpg': {
     width: 1280,
     height: 956
+  },
+  '/wp-content/uploads/2019/06/roue-polarization.png': {
+    width: 3472,
+    height: 3472
   }
 };
 

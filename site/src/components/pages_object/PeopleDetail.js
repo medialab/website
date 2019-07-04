@@ -190,7 +190,7 @@ function PeopleContactLabel({lang, data}) {
   if (data.label === 'Mail') {
     const [identifer, domain] = data.value.split('@');
 
-    return <p>{data.label}: {identifer} [at] {domain}</p>;
+    return <p>{data.label}: {identifer}💌{domain}</p>;
   }
 
   return <a href={data.value}>{data.label}</a>;

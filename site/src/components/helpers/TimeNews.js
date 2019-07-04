@@ -15,7 +15,7 @@ function TimeNews(news) {
     let startTimeFormat = null;
     let endTimeFormat = null;
 
-    const iconBetween = <span aria-label="Jusqu'à / to">⇥</span>;
+    const iconBetween = <span className="between" aria-label="Jusqu'à / to">⇥</span>;
 
     if (endDate) {
         const endDateString = startDate.toString();

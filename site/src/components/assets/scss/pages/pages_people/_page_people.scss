@@ -47,11 +47,7 @@
 
 					a{ @include linktext(); }
 
-					&[data-type="Mail"]{
-						p::after {
-							content: attr(data-domain);
-						}
-					}
+					&[data-type="Mail"] p{ font-family: $font-symbol}
 				}
 			}
 		}

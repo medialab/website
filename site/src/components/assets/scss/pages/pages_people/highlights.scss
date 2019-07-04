@@ -2,18 +2,25 @@
 // For details see fragments/miniatures
 
 .page-people #highlights {
+
+
+    & > h1 {
+        margin-top: $baseline; 
+        @include font-size-27();
+    }
+
+   h2{
+        @include font-size-13-uppercase();
+       margin-bottom: $baseline;
+       margin-top: $baseline*3;
+    }
+
+    #highlights-list-production li:first-of-type{ border-top: $border; }
 	
 	@include for-size(desktop) {
 
 		max-width: $max-width-article;
 		margin-bottom: $baseline*5;
-
-		& > h1 {
-			margin: $baseline 0 $baseline*2 0;
-			@include font-size-27();
-        }
-        
-       
 	}
 
 	
@@ -21,14 +28,19 @@
 				
 		width: 100%;
 		height: auto;
-		padding: 0;
+        padding: 0;
+        
+        h2:first-of-type{ margin-top: $baseline}
 
 		& > h1 {
-			margin: $baseline $margins-phone $baseline*2 $margins-phone;
+			margin: $baseline $margins-phone 0 $margins-phone;
 			@include font-size-27();
-		}
-	
-	
+        }
+
+        h2{ margin-left: $margins-phone; }
+        
+    
+
 		
 	}	
 
@@ -38,7 +50,6 @@
 		margin: 0 auto;
 		margin-top: $baseline*2;
 		& > h1 {
-			margin-bottom: $baseline*2;
 			@include font-size-20();
 		}
 

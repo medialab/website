@@ -83,7 +83,9 @@
 							margin-right: $unite;
 						}
 					}
-
+	
+					& > *:last-child{ border-right: none !important;}
+	
 				}
 		
 				.article-contenu{

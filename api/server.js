@@ -317,7 +317,7 @@ ws.on('connection', socket => {
     }, err => {
       if (err)
         console.error(err);
-      console.log('Over');
+
       setTimeout(() => changeDeployStatus('free'), 1000);
     });
   });
@@ -340,6 +340,10 @@ ws.on('connection', socket => {
 
 // Build logic
 function buildStaticSite(callback) {
+  console.log('Building site...');
+
+  changeBuildStatus('cleaning');
+
   return async.series({
 
     // 1) Cleanup
@@ -352,18 +356,22 @@ function buildStaticSite(callback) {
 
     // 2) Building static site
     building(next) {
+      changeBuildStatus('building');
+
       const env = Object.assign({}, process.env);
       env.BUILD_CONTEXT = 'prod';
       env.ROOT_PATH = path.resolve(__dirname, '..');
 
       return exec('gatsby build', {cwd: SITE_PATH, env}, err => {
+        changeBuildStatus('free');
+
         if (err)
           return next(err);
 
         return next();
       });
     }
-  });
+  }, callback);
 }
 
 // Listening

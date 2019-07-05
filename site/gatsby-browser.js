@@ -120,6 +120,28 @@ function Hilitor(id, tag) {
     }
   }
 
+  // highlight current match
+  this.highlightCurrentMatch = function()
+  {
+    // filtering for keeping only visible elements as potential targets
+    const targets = Array.prototype.filter.call(
+      document.querySelectorAll(hiliteTag),
+      function(element) {
+        return element.offsetParent !== null;
+      }
+    );
+    Array.prototype.forEach.call(
+      targets,
+      function(element, index) {
+        if (index === matchIndex) {
+          element.style.opacity = 1;
+        } else {
+          element.style.opacity = 0.5;
+        }
+      }
+    );
+  }
+
   // recursively apply word highlighting
   this.hiliteWords = function(node)
   {
@@ -150,6 +172,7 @@ function Hilitor(id, tag) {
           const after = node.splitText(regs.index);
           after.nodeValue = after.nodeValue.substring(regs[0].length);
           node.parentNode.insertBefore(match, after);
+          this.highlightCurrentMatch();
           this.scrollToElement(document.querySelector(hiliteTag));
         }
       }
@@ -191,6 +214,7 @@ function Hilitor(id, tag) {
       }
     )
     matchIndex = matchIndex < targets.length - 1 ? matchIndex + 1 : 0;
+    this.highlightCurrentMatch();
     this.scrollToElement(targets[matchIndex]);
   }
 

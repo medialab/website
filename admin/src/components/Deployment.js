@@ -5,22 +5,18 @@ import Button from './misc/Button';
 const STEPS = {
   cleaning: {
     label: 'Cleaning old files...',
-    completion: 10
+    completion: 20
   },
   pulling: {
     label: 'Pulling current dump...',
-    completion: 30
+    completion: 40
   },
   dumping: {
     label: 'Dumping the database...',
-    completion: 40
+    completion: 60
   },
   committing: {
     label: 'Committing to the git repository...',
-    completion: 60
-  },
-  building: {
-    label: 'Building the static site...',
     completion: 80
   }
 };
@@ -73,7 +69,7 @@ export default class Deployment extends Component {
             <Button
               disabled={status === null || status !== 'free'}
               onClick={this.handleDeploy}>
-              Deploy
+              Sauvegarder les données dans le git
             </Button>
           </div>
           {status && status !== 'free' && [

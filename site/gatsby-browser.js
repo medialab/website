@@ -47,6 +47,7 @@ function Hilitor(id, tag) {
   let matchRegExp = '';
   const openLeft = true;
   const openRight = true;
+  let matchIndex = 0;
 
   // characters to strip from start and end of the input string
   const endRegExp = new RegExp('^[^\\w]+|[^\\w]+$', 'g');
@@ -113,9 +114,38 @@ function Hilitor(id, tag) {
     return retval;
   };
 
+  this.scrollToElement = function(node) {
+    if (node) {
+      node.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'});
+    }
+  }
+
+  // highlight current match
+  this.highlightCurrentMatch = function()
+  {
+    // filtering for keeping only visible elements as potential targets
+    const targets = Array.prototype.filter.call(
+      document.querySelectorAll(hiliteTag),
+      function(element) {
+        return element.offsetParent !== null;
+      }
+    );
+    Array.prototype.forEach.call(
+      targets,
+      function(element, index) {
+        if (index === matchIndex) {
+          element.style.opacity = 1;
+        } else {
+          element.style.opacity = 0.5;
+        }
+      }
+    );
+  }
+
   // recursively apply word highlighting
   this.hiliteWords = function(node)
   {
+    matchIndex = 0;
     if(node === undefined || !node) return;
     if(!matchRegExp) return;
     if(skipTags.test(node.nodeName)) return;
@@ -142,7 +172,8 @@ function Hilitor(id, tag) {
           const after = node.splitText(regs.index);
           after.nodeValue = after.nodeValue.substring(regs[0].length);
           node.parentNode.insertBefore(match, after);
-          document.querySelector(hiliteTag).scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'});
+          this.highlightCurrentMatch();
+          this.scrollToElement(document.querySelector(hiliteTag));
         }
       }
     };
@@ -172,6 +203,21 @@ function Hilitor(id, tag) {
     return matchRegExp;
   };
 
+  // scroll to next item
+  this.next = function()
+  {
+    // filtering for keeping only visible elements as potential targets
+    const targets = Array.prototype.filter.call(
+      document.querySelectorAll(hiliteTag),
+      function(element) {
+        return element.offsetParent !== null;
+      }
+    )
+    matchIndex = matchIndex < targets.length - 1 ? matchIndex + 1 : 0;
+    this.highlightCurrentMatch();
+    this.scrollToElement(targets[matchIndex]);
+  }
+
 }
 
 const CUSTOM_SCRIPS = [
@@ -193,7 +239,14 @@ const CUSTOM_SCRIPS = [
         hilitor.apply(evt.target.value);
       }, 300);
 
+      const onEnter = function(evt) {
+        if (evt.keyCode === 13) {
+          hilitor.next();
+        }
+      };
+
       searchInput.addEventListener('input', search);
+      searchInput.addEventListener('keyup', onEnter)
     }
   },
 

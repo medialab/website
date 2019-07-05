@@ -56,6 +56,7 @@ function extractGenerativeParameters(rows, data) {
     +date.split('T')[0].replace(/-/g, '') :
     0;
 
+  // TODO: Split somewhere in half!
   let splitPoint = number % string.length;
 
   if (splitPoint === 1)
@@ -80,7 +81,7 @@ export default function ProcessedImage({image, data, size}) {
 
   if (!image && data) {
     const params = extractGenerativeParameters(rows, data);
-    console.log(data.title.fr || data.title.en, params[2]);
+    // console.log(data.title.fr || data.title.en, params[2]);
 
     image = levenshteinGenerativePattern.apply(null, params);
   }

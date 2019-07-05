@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {levenshteinGenerativePattern} from '../../generative';
+
 const BLANK = '\u00A0';
 
 const ROWS = {
@@ -41,12 +43,49 @@ function findAnchor(image, rows, b) {
   return Math.min.apply(null, firstColoredBlock);
 }
 
+function extractGenerativeParameters(rows, data) {
+  const string = (
+    data.name ||
+    (data.title ? data.title.fr : data.title.en) ||
+    'levenshtein is so cool'
+  );
+
+  const date = (data.startDate || data.date);
+
+  const number = date ?
+    +date.split('T')[0].replace(/-/g, '') :
+    0;
+
+  let splitPoint = number % string.length;
+
+  if (splitPoint === 1)
+    splitPoint = (string.length / 2) | 0;
+
+  const A = string.slice(0, splitPoint);
+  const B = string.slice(-splitPoint);
+
+  const sparsity = number % 5;
+
+  return [A, B, {
+    rows,
+    sparsity,
+    rotate: number
+  }];
+}
+
 const PLACEHOLDER_CHARACTERS = makeid(12);
 
-export default function ProcessedImage({image, size}) {
-  const needPlaceholder = !image;
-
+export default function ProcessedImage({image, data, size}) {
   const rows = ROWS[size];
+
+  if (!image && data) {
+    const params = extractGenerativeParameters(rows, data);
+    console.log(data.title.fr || data.title.en, params[2]);
+
+    image = levenshteinGenerativePattern.apply(null, params);
+  }
+
+  const needPlaceholder = !image;
 
   const length = image ? image.length : ((rows * 3 / 4) | 0) * rows;
 

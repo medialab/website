@@ -61,7 +61,10 @@ export default function NewsListing({lang, list}) {
                     <Link to={news.permalink[lang]}>
 
                     <div className="image-pre" aria-hidden="true">
-                      <ProcessedImage size="medium" image={news.coverImage && news.coverImage.processed.medium} />
+                      <ProcessedImage
+                        data={news}
+                        size="medium"
+                        image={news.coverImage && news.coverImage.processed.medium} />
                     </div>
                     <div className="bandeau">
                       <p data-icon="news" className="type-news">{IsModel(news.type, lang)}</p>

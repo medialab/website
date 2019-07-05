@@ -46,6 +46,8 @@ function findAnchor(image, rows, b) {
 function extractGenerativeParameters(rows, data) {
   const string = (
     data.name ||
+
+    // TODO: fix this, by ors
     (data.title ? data.title.fr : data.title.en) ||
     'levenshtein is so cool'
   );

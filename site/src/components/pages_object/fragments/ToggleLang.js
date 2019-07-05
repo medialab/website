@@ -2,15 +2,21 @@ import React from 'react';
 
 export default function Footer ({lang, content}) {
 
-  const enoughContentLength = 300;
+  const enoughContentLength = 1500;
 
   const isEnEnough = content.en && content.en.length >= enoughContentLength;
   const isFrEnough = content.fr && content.fr.length >= enoughContentLength;
-  const showSwitchToEn = isEnEnough && !isFrEnough;
-  const showSwitchToFr = isFrEnough && !isEnEnough;
-  const message = {
-    fr: '⚐ Cet article est plus complet en anglais. ',
+  const showSwitchToEn = (isEnEnough && !isFrEnough) || (!isEnEnough && !isFrEnough && content.en.length > content.fr.length);
+  const showSwitchToFr = (isFrEnough && !isEnEnough) || (!isEnEnough && !isFrEnough && content.fr.length > content.en.length);
+  const message = (!isEnEnough && !isFrEnough) ?
+  {
+    fr: '⚐ Cet article pourrait être plus complet en anglais. ',
     en: '⚐ This article could be more substantial in french. '
+  }
+  :
+  {
+    fr: '⚐ Cet article est plus complet en anglais. ',
+    en: '⚐ This article is more substantial in french. '
   };
   // let fr, en;
 

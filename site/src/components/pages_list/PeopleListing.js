@@ -4,7 +4,7 @@ import {Link} from 'gatsby';
 
 import FiltreEquipe from './fragments/FiltreEquipe.js';
 import {IsModel} from '../helpers/helpers.js';
-import LanguageFallback from './fragments/LanguageFallback.js';
+import LanguageFallback from '../helpers/LanguageFallback.js';
 import RawHtml from '../helpers/RawHtml';
 
 import Img from '../assets/images/sample/default-people.png';

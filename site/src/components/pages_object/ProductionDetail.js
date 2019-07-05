@@ -18,7 +18,7 @@ import ActuAssociees from './fragments/ActuAssociees.js';
 import MembresAssocies from './fragments/MembresAssocies.js';
 import FichiersAssocies from './fragments/FichiersAssocies.js';
 
-import LanguageFallback from '../pages_list/fragments/LanguageFallback';
+import LanguageFallback from '../helpers/LanguageFallback';
 //import './scss/page_objet.scss';
 
 export const queryFragment = graphql`

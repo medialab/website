@@ -3,6 +3,8 @@ import {Link} from 'gatsby';
 import {SECTIONS} from '../../helpers/sections';
 import {IsModel} from '../../helpers/helpers.js';
 
+import LanguageFallback from '../../helpers/LanguageFallback.js';
+
 const ActivitesAssociees = ({lang, activities}) => {
 
   const related = SECTIONS.activities;
@@ -34,7 +36,9 @@ const ActivitesAssociees = ({lang, activities}) => {
                   <p className="title" data-level-2="title">{a.name}</p>
                 </div>
                 <hgroup>
-                  <h1 data-level-1="baseline" >{a.baseline && (lang === 'fr' ? a.baseline.fr : a.baseline.en)}</h1>
+                  <h1 data-level-1="baseline" >
+                    <LanguageFallback lang={lang} translatedAttribute={a.baseline} />
+                  </h1>
                 </hgroup>                   
               </Link>         
             </li>

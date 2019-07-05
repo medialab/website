@@ -5,6 +5,7 @@ import {SECTIONS} from '../../helpers/sections';
 import DateNews from '../../helpers/DateNews.js';
 import TimeNews from '../../helpers/TimeNews.js';
 import {IsModel} from '../../helpers/helpers.js';
+import LanguageFallback from '../../helpers/LanguageFallback.js';
 
 
 const ActuAssociees = ({lang, actu}) => {
@@ -42,7 +43,9 @@ const ActuAssociees = ({lang, actu}) => {
                   <TimeNews startDate={n.startDate} endDate={n.endDate} />
                 </div>
                 <hgroup>
-                  <h1 data-level-2="title">{n.title[lang] || n.title.fr || n.title.en}</h1>
+                  <h1 data-level-2="title">
+                    <LanguageFallback lang={lang} translatedAttribute={n.title} />
+                  </h1>
                 </hgroup>
               </Link>
             </li>

@@ -20,6 +20,7 @@ import ActivitesAssociees from './fragments/ActivitesAssociees.js';
 import ActuAssociees from './fragments/ActuAssociees.js';
 import MembresAssocies from './fragments/MembresAssocies.js';
 import FichiersAssocies from './fragments/FichiersAssocies.js';
+import LanguageFallback from '../helpers/LanguageFallback';
 
 //import './scss/page_objet.scss';
 
@@ -168,7 +169,7 @@ export default function ActivityDetail({lang, activity}) {
         <div className="block-lang fr" lang="fr">
           <hgroup>
             <h1  data-level-2="title">{activity.name}</h1>
-            <h2  data-level-2="baseline">{activity.baseline && (activity.baseline.fr || activity.baseline.en)}</h2>
+            <h2  data-level-2="baseline">{activity.baseline && <LanguageFallback lang={lang} translatedAttribute={activity.baseline} />}</h2>
             <h3  data-level-3="description"><RawHtml html={activity.description && activity.description.fr} /></h3>
           </hgroup>
           <div className="details">
@@ -188,7 +189,7 @@ export default function ActivityDetail({lang, activity}) {
         <div className="block-lang en" lang="en">
           <hgroup>
             <h1  data-level-2="title">{activity.name}</h1>
-            <h2   data-level-2="baseline">{activity.baseline && (activity.baseline.en || activity.baseline.fr)}</h2>
+            <h2   data-level-2="baseline">{activity.baseline && <LanguageFallback lang={lang} translatedAttribute={activity.baseline} />}</h2>
             <h3  data-level-3="description"><RawHtml html={activity.description && activity.description.en} /></h3>
           </hgroup>
           <div className="details">

@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Footer ({lang, content}) {
 
-  const enoughContentLength = 300;
+  const enoughContentLength = 1500;
 
   const isEnEnough = content.en && content.en.length >= enoughContentLength;
   const isFrEnough = content.fr && content.fr.length >= enoughContentLength;

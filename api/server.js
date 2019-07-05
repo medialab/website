@@ -11,6 +11,7 @@ const fileUpload = require('express-fileupload');
 const uuid = require('uuid/v4');
 const rimraf = require('rimraf');
 const simpleGit = require('simple-git');
+const CronJob = require('cron').CronJob;
 const get = require('lodash/fp/get');
 const set = require('lodash/fp/set');
 const fs = require('fs-extra');
@@ -373,6 +374,23 @@ function buildStaticSite(callback) {
     }
   }, callback);
 }
+
+// Building every 15 minutes
+const cron = new CronJob('*/15 * * * *', function() {
+
+  // We can't run several build at once!
+  if (LOCKS.buildStatus !== 'free')
+    return;
+
+  buildStaticSite(err => {
+    if (err)
+      console.error(err);
+    else
+      console.log('Done building site.');
+  });
+});
+
+cron.start();
 
 // Listening
 console.log(`Listening on port ${PORT}...`);

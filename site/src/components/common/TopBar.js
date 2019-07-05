@@ -36,7 +36,7 @@ const TopBar = ({permalinks, lang}) => {
     news = 'News';
     prod = 'Productions';
     activite = 'Activities';
-    medialab = 'The médialab';
+    medialab = 'The medialab';
     team = 'The team';
     tool = 'Tools';
     archive = 'Archives';

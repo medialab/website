@@ -172,7 +172,10 @@ function processHtml(pathPrefix, html) {
           format === 'vignette-block' ||
           format === 'vignette-inline-paysage' ||
           format === 'vignette-inline-portrait' ||
-          format === 'vignette-inline'
+          format === 'vignette-inline' ||
+          format === 'serie' ||
+          format === 'serie-impair' ||
+          format === 'serie-pair'
         ) {
           output += `
             <div class="vignette container_${format}">

@@ -22,6 +22,10 @@
 				width: calc(100% + #{$margins-phone*2});
 				left: $margins-phone*-1;
 				img{ width: 100%; }
+				&.noImg {
+					min-height: $baseline*14;
+					pre{ font-size: 7px;}
+				}
 			}
 
 			header{

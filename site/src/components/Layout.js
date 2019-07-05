@@ -6,6 +6,7 @@ import TopBar from './common/TopBar.js';
 import Footer from './common/Footer.js';
 
 import './assets/font/Bel2/stylesheet.css';
+import './assets/font/Symbol/stylesheet.css';
 import './assets/scss/global.scss';
 
 const Layout = ({children, lang, className, permalinks}) => {

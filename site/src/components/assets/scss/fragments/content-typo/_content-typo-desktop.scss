@@ -132,11 +132,7 @@
 				}
 
 				&.figure-logo{ }
-				&.serie-pair, &.serie-impair{
-					@include for-size(desktop-1000){
-						width: 33.3333%;
-					}
-				}
+				
 				&.illustration{	}
 			}
 
@@ -159,6 +155,12 @@
 						width: -webkit-calc( 33% - #{$unite*2});
 						width: calc( 33% - #{$unite*2});						
 					}*/
+				}
+
+				&.container_serie{
+					@include for-size(desktop-1000){
+						width: 33.3333%;
+					}
 				}
 
 				input:checked {

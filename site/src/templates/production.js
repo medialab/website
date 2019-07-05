@@ -4,6 +4,8 @@ import {graphql} from 'gatsby';
 import Layout from '../components/Layout';
 import ProductionDetail from '../components/pages_object/ProductionDetail';
 
+import EditInAdmin from '../components/pages_object/fragments/EditInAdmin';
+
 export const query = graphql`
   query($identifier: String!) {
     productionsJson(identifier: {eq: $identifier}) {
@@ -22,8 +24,8 @@ export default ({data, pageContext}) => {
       lang={pageContext.lang}
       className="page-production body-page"
       permalinks={pageContext.permalinks}>
-      {pageContext.linkToAdmin && <div style={{textAlign: 'right'}}>{production.draft ? <b>DRAFT</b> : <b>PUBLIC</b>} <a href={pageContext.linkToAdmin} target="_blank" rel="noopener noreferrer">éditer dans l'admin</a></div>}
-
+      {pageContext.linkToAdmin && <EditInAdmin draft={production.draft} linkToAdmin={pageContext.linkToAdmin} />}
+      
       <ProductionDetail lang={pageContext.lang} production={production} />
     </Layout>
   );

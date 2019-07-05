@@ -21,7 +21,10 @@
 				}
 
 				figure img{ width: 100%; }
-				
+				figure.noImg {
+					min-height: $baseline*14;
+					pre{ font-size: 7px;}
+				}
 
 				hgroup{ 
 					padding-left: $unite;

@@ -26,40 +26,46 @@ body{ overflow-x: visible}
 [data-icon="actualite"]::before,
 [data-type="actualités"] .type::before, 
 [data-icon="actualités"]::before{
-    content: $actualites;
+    content: $actualites; 
+    font-family: $font-symbol;
 }
 [data-type="production"] .type::before, 
 [data-icon="production"]::before,
 [data-type="productions"] .type::before, 
 [data-icon="productions"]::before{
-    content: $productions;
+    content: $productions; 
+    font-family: $font-symbol;
 }
 
 [data-type="activities"] .type::before, 
 [data-icon="activities"]::before,
 [data-type="activite"] .type::before, 
 [data-icon="activite"]::before{
-    content: $activites;
+    content: $activites; 
+    font-family: $font-symbol;
 }
 
 [data-type="file"] .type::before, 
 [data-icon="file"]::before,
 [data-type="file"] .type::before, 
 [data-icon="file"]::before{
-    content: $files;
+    content: $files; 
+    font-family: $font-symbol;
 }
 
 [data-icon="people"]::before{
-    content: $people;
+    content: $people; 
+    font-family: $font-symbol;
 }
 
-[data-type="git"] .type::before{ content: $git; }
-[data-icon="git"]::before{ content: $git; }
-[data-type="tweet"] .type::before{ content: $tweet; }
-[data-icon="tweet"]::before{ content: $tweet; }
+[data-type="git"] .type::before{ content: $git; font-family: $font-symbol; }
+[data-icon="git"]::before{ content: $git; font-family: $font-symbol; }
+[data-type="tweet"] .type::before{ content: $tweet; font-family: $font-symbol; }
+[data-icon="tweet"]::before{ content: $tweet; font-family: $font-symbol; }
 
-.GoTo::after{ content: $goto; }
+.GoTo::after{ content: $goto; font-family: $font-symbol; }
 
+.between { font-family: $font-symbol; }
 //a:hover{ color: $redlab; }
 
 

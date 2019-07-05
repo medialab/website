@@ -33,10 +33,14 @@
                 vertical-align: top;
             }
 
-            .subtype-production{
+           .subtype-production{
                 @include text-overflow();
-                &::before{ content: ", "; }
+                &::before{ 
+                    content: ", ";
+                    color: $text-color-light; 
+                }
             }
+
 
             .title, 
             .date-news{ 
@@ -67,7 +71,12 @@
                 position: absolute;
                 top: 0;
                 right: 0;                
-            }            
+            } 
+            
+            .type-production, .subtype-production, .authors{ display: inline-block; }
+            .subtype-production{ 
+                color: $redlab; 
+            }
         }
 
         .bandeau, hgroup{ 
@@ -135,7 +144,7 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
             transition: max-width 0.25s ease-in-out;
             background-color: $background-site;
             max-width: calc(#{$width-image-pre-highlight});
-            height: 100%;
+            height: calc(100% - 1px);
             pre{ 
                 color: $color-img;
                 top: -50%;
@@ -146,6 +155,7 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
                     font-size: calc( ( 900px / 60 ) * 1.89); 
                 }
                 line-height: 95%;
+                z-index: 8;
             }
             &:hover{ 
                 max-width: calc(#{$width-image-pre-highlight} + (100% - #{$width-image-pre-highlight})); 
@@ -153,6 +163,15 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
         }
         
     }
+
+    .page-people #highlights #highlights-list-production{ 
+        .bandeau, hgroup { 
+            left: 0;
+            padding-left: 0;
+        } 
+        h1{ min-height: 0!important; }
+    }
+
 }
 
 
@@ -168,6 +187,8 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
     .elements-associes-block ul.liste_objet li,
     .page-archive ul.list li{
 
+        
+
         .title,
         .date-production,
         .date-news,
@@ -178,26 +199,11 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
             border-left: $border-very-light;
         }
 
-        .authors{ width: calc(100% - 130px); }
+        .bandeau{ width: 100%;}
+        .title { width: calc(100% - 180px); }
+        .authors{ width: calc(100% - 200px); }
     }
 
-
-    .page-people #highlights #highlights-list-activity li, 
-    .page-people #highlights #highlights-list-production li, 
-    .page-home #now li,
-    .page-archive ul.list li{
-        .authors{ 
-            display: block!important;
-            width: 100%!important;
-            margin-left: 0%!important;
-            padding-left: 0%!important;
-            border-left: none!important;
-            border-top: $border-very-light;
-            padding-top: $baseline/2;
-            margin-top: $baseline/2;
-        }
-    }
-   
 }
 
 
@@ -225,16 +231,17 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
                 padding-left: $unite/2;
                 margin-left: $unite/2;
                 border-left: $border-very-light;
-                width: calc(100% - 130px);
+                
             }
-            .authors{
-                display: block!important;
+
+            .authors {
                 border-top: $border-very-light;
                 padding-top: $baseline/2;
                 margin-top: $baseline/2;
+                width: 100%;
+
             }
     
-       
 
         }
 
@@ -260,7 +267,7 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
             margin: 0 $margins-phone;
         }
 
-        .authors{ width: 100%; }       
+        // .authors{ width: 100%; }       
         
         hgroup{
             width: 100%;

@@ -3,6 +3,7 @@ import {graphql} from 'gatsby';
 
 import Layout from '../components/Layout';
 import ActivityDetail from '../components/pages_object/ActivityDetail';
+import EditInAdmin from '../components/pages_object/fragments/EditInAdmin';
 
 export const query = graphql`
   query($identifier: String!) {
@@ -22,7 +23,7 @@ export default ({data, pageContext}) => {
       lang={pageContext.lang}
       className="page-activity body-page"
       permalinks={pageContext.permalinks}>
-      {pageContext.linkToAdmin && <div style={{textAlign: 'right'}}>{activity.draft ? <b>DRAFT</b> : <b>PUBLIC</b>} <a href={pageContext.linkToAdmin} target="_blank" rel="noopener noreferrer">éditer dans l'admin</a></div>}
+      {pageContext.linkToAdmin && <EditInAdmin draft={activity.draft} linkToAdmin={pageContext.linkToAdmin} />}
 
       <ActivityDetail lang={pageContext.lang} activity={activity} />
     </Layout>

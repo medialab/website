@@ -18,12 +18,15 @@
 
     li[data-type="actualite"]::before{
         content: $actualites;
+        font-family: $font-symbol;
     }
     li[data-type="production"]::before{
         content: $productions;
+        font-family: $font-symbol;
     }
     li[data-type="activite"]::before{
         content: $activites;
+        font-family: $font-symbol;
     }
 
 

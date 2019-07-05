@@ -85,7 +85,7 @@ const otherLang = lang === 'fr' ? 'en' : 'fr';
                       <>
                         <div className="bandeau">
                           <p data-icon="news" className="type">{IsModel(slide.model, lang)}</p>
-                          <p className="label-news"><span>{slide.data.label[lang] || slide.data.label[otherLang]}</span></p>
+                          {slide.data.label && <p className="label-news"><span>{slide.data.label[lang] || slide.data.label[otherLang]}</span></p>}
                         </div>
                         <div className="date">
                           <DateNews startDate={slide.data.startDate} endDate={slide.data.endDate} lang={lang} />

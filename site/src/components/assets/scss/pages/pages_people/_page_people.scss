@@ -18,6 +18,13 @@
 			figcaption{
 				margin-top: $baseline*1;
 			}
+
+			&.noImg div{
+				transform: translateX(-50%);
+				left: 50%;
+				opacity: .3;
+				position: absolute;
+			}			
 		}
 	
 		header{
@@ -25,8 +32,16 @@
 			.status{
 				margin-top: $baseline/2;
 				font-style: italic;					
-				&::before{ content: "“"; }
-				&::after{ content: "”"; }
+			
+				&.en:not(:empty){
+					&::before{ content: "“"; }
+					&::after{ content: "”"; }
+				}
+
+				&.fr:not(:empty){
+					&::before{ content: "« "; }
+					&::after{ content: " »"; }
+				}
 			}
 
 			.bandeau{ 
@@ -47,11 +62,7 @@
 
 					a{ @include linktext(); }
 
-					&[data-type="Mail"]{
-						p::after {
-							content: attr(data-domain);
-						}
-					}
+					&[data-type="Mail"] p{ font-family: $font-symbol}
 				}
 			}
 		}
@@ -59,15 +70,23 @@
 
 		/* CONTENU --------------------------------------------------------------- 
 		 ------------------------------------------------------------------------ */
+		#container-biographie{
+		
+			@include flex();
+			@include flex-direction(column);
 
-		.biographie-content{
-			a{
-				@include linktext();
-				transition: .25s linear;
+			.biographie-content{
 
-				&:hover{
-					color: $redlab;
-					text-decoration-color: $redlab;
+			    @include flex-order(1); 
+
+				a{
+					@include linktext();
+					transition: .25s linear;
+
+					&:hover{
+						color: $redlab;
+						text-decoration-color: $redlab;
+					}
 				}
 			}
 		}

@@ -59,6 +59,7 @@ function extractGenerativeParameters(rows, data) {
     0;
 
   // TODO: Split somewhere in half!
+  // TODO: fix still empty cases
   let splitPoint = number % string.length;
 
   if (splitPoint === 1)
@@ -96,6 +97,7 @@ export default function ProcessedImage({image, data, size}) {
 
   const anchor = Math.max(0, image ? findAnchor(image, rows, b) - MARGIN: 0);
 
+  // TODO: somehow inject params in markup
   return (
     <>
       {Array.from(new Array(b), (_, i) => {

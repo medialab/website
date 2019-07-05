@@ -7,7 +7,7 @@ import RawHTML from '../helpers/RawHtml.js';
 import {IsModel} from '../helpers/helpers.js';
 import ProcessedImage from '../helpers/ProcessedImage.js';
 import {templateMembership} from '../helpers/helpers.js';
-import LanguageFallback from './fragments/LanguageFallback.js';
+import LanguageFallback from '../helpers/LanguageFallback.js';
 
 export default function ActivityListing({lang, list, status, statuses, topActivities}) {
   const activities = topActivities.map(ta => list.find(a => a.id === ta)).concat(list.filter(a => topActivities.indexOf(a.id) === -1));

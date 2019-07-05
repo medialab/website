@@ -3,6 +3,8 @@ import {Link} from 'gatsby';
 import {SECTIONS} from '../../helpers/sections';
 import DateNews from '../../helpers/DateNews.js';
 
+import LanguageFallback from '../../helpers/LanguageFallback.js';
+
 const ProductionsAssociees = ({lang, productions}) => {
 
   const related = SECTIONS.productions;
@@ -36,7 +38,9 @@ const ProductionsAssociees = ({lang, productions}) => {
         { p.external && p.url && <p className="external" aria-label="production exterieure au médialab" title={lang === 'fr' ? "Ce lien renvoi à une page exterieure au médialab" : "This linked is external to médialab"} >⤤</p> }
       </div>
       <hgroup>
-        <h1 data-level-1="title" >{lang === 'fr' ? p.title.fr : p.title.en}</h1>
+        <h1 data-level-1="title" >
+          <LanguageFallback lang={lang} translatedAttribute={p.title} />
+        </h1>
       </hgroup>
     </>);
 

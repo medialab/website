@@ -9,7 +9,7 @@ import {IsModel} from '../helpers/helpers.js';
 import RawHTML from '../helpers/RawHtml.js';
 import {format as formatDate, getYear, parseISO} from 'date-fns';
 
-import LanguageFallback from './fragments/LanguageFallback.js';
+import LanguageFallback from '../helpers/LanguageFallback.js';
 
 const byYear = ([yearA], [yearB]) => yearB - yearA;
 

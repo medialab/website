@@ -5,8 +5,10 @@ import RawHTML from '../../helpers/RawHtml.js';
 
 import DateNews from '../../helpers/DateNews.js';
 import ProcessedImage from '../../helpers/ProcessedImage.js';
+import LanguageFallback from '../../helpers/LanguageFallback.js';
 
 import {SECTIONS} from '../../helpers/sections';
+
 
 const ProductionCard = ({p, lang}) => {
   return (
@@ -23,7 +25,9 @@ const ProductionCard = ({p, lang}) => {
         { p.external && p.url && <p className="external" aria-label="production exterieure au médialab" title={lang === 'fr' ? "Ce lien renvoi à une page exterieure au médialab" : "This linked is external to médialab"} >⤤</p> }
       </div>
       <hgroup>
-        <h1 data-level-1="title" >{lang === 'fr' ? p.title.fr : p.title.en}</h1>
+        <h1 data-level-1="title" >
+          <LanguageFallback lang={lang} translatedAttribute={p.title} />
+        </h1>
       </hgroup>
 
     </>);
@@ -70,7 +74,9 @@ export default function highlights({people, lang}) {
                       <p className="title" data-level-2="title">{a.name}</p>
                     </div>
                     <hgroup>
-                      <h1 data-level-1="baseline" >{a.baseline && (lang === 'fr' ? a.baseline.fr : a.baseline.en)}</h1>
+                      <h1 data-level-1="baseline" >
+                        <LanguageFallback lang={lang} translatedAttribute={a.baseline} />
+                      </h1>
                     </hgroup>
 
                   </Link>

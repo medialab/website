@@ -18,6 +18,8 @@ import ActivitesAssociees from './fragments/ActivitesAssociees.js';
 import MembresAssocies from './fragments/MembresAssocies.js';
 import FichiersAssocies from './fragments/FichiersAssocies.js';
 
+import LanguageFallback from '../helpers/LanguageFallback';
+
 export const queryFragment = graphql`
   fragment NewsDetail on NewsJson {
     title {
@@ -132,7 +134,9 @@ export default function NewsDetail({lang, news}) {
             <Link to="/news">
               <span data-icon="news">{lang === 'fr' ? "Actualité" : 'News'} </span>
             </Link>
-              <span className="title"><a href="#topbar">{news.title && (lang === 'fr' ? news.title.fr : news.title.en) }</a></span>
+            {news.title && <span className="title">
+              <a href="#topbar"> <LanguageFallback lang={lang} translatedAttribute={news.title} /></a>
+            </span>}
           </p>
         </div>
       </header>
@@ -150,7 +154,7 @@ export default function NewsDetail({lang, news}) {
           {/* FR */}
           <div className="block-lang fr" lang="fr">
             <hgroup>
-              <h1 data-type="title">{news.title && (news.title.fr)}</h1>
+              <h1 data-type="title"> <LanguageFallback lang={lang} translatedAttribute={news.title} /></h1>
               <h2 data-type="description"><RawHtml html={news.description && (news.description.fr)} /></h2>
             </hgroup>
             <div className="details">
@@ -171,7 +175,7 @@ export default function NewsDetail({lang, news}) {
           {/* Chapô EN */}
           <div className="block-lang en" lang="en">
           <hgroup>
-              <h1 data-type="title">{news.title && (news.title.en)}</h1>
+              <h1 data-type="title"><LanguageFallback lang={lang} translatedAttribute={news.title} /></h1>
               <h2 data-type="description"><RawHtml html={news.description && (news.description.en)} /></h2>
             </hgroup>
             <div className="details">

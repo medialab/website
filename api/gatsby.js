@@ -10,6 +10,7 @@ class GatsbyProcess {
   constructor(cwd) {
     this.cwd = cwd;
     this.child = null;
+    this.started = false;
   }
 
   start(callback) {
@@ -44,6 +45,8 @@ class GatsbyProcess {
 
     stdout.on('data', log);
     stderr.on('data', log);
+
+    this.started = true;
   }
 
   restart(callback) {
@@ -56,6 +59,7 @@ class GatsbyProcess {
 
   kill() {
     this.child.kill();
+    this.started = false;
   }
 }
 

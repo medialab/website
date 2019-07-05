@@ -11,6 +11,7 @@ const fileUpload = require('express-fileupload');
 const uuid = require('uuid/v4');
 const rimraf = require('rimraf');
 const simpleGit = require('simple-git');
+const CronJob = require('cron').CronJob;
 const get = require('lodash/fp/get');
 const set = require('lodash/fp/set');
 const fs = require('fs-extra');
@@ -27,6 +28,10 @@ const spire = require('./spire.js');
 const config = require('./configWithSecrets.js');
 
 // Constants
+const ARGV = require('yargs')
+  .option('--gatsby', {type: 'boolean', default: true})
+  .argv;
+
 const PORT = config.get('port');
 const DATA_PATH = config.get('data');
 const BUILD_CONF = config.get('build');
@@ -85,7 +90,7 @@ if (!process.env.ADMIN_URL)
 
 const gatsby = new GatsbyProcess(path.join(__dirname, '..', 'site'));
 
-process.on('exit', () => gatsby.kill());
+process.on('exit', () => gatsby.started && gatsby.kill());
 
 // json-server init
 const app = jsonServer.create();
@@ -222,8 +227,14 @@ const server = http.Server(app);
 const ws = io(server, {path: '/sockets'});
 
 const LOCKS = {
+  buildStatus: 'free',
   deployStatus: 'free',
   spireStatus: 'free'
+};
+
+const changeBuildStatus = (newStatus) => {
+  LOCKS.buildStatus = newStatus;
+  ws.emit('buildStatusChanged', newStatus);
 };
 
 const changeDeployStatus = (newStatus) => {
@@ -303,27 +314,6 @@ ws.on('connection', socket => {
           .add('./*')
           .commit('New dump')
           .push('origin', 'master', next);
-      },
-
-      // 6) Dropping last build
-      droppingLastBuild(next) {
-        return rimraf(path.join(SITE_PATH, 'public'), next);
-      },
-
-      // 7) Building static site
-      building(next) {
-        changeDeployStatus('building');
-
-        const env = Object.assign({}, process.env);
-        env.BUILD_CONTEXT = 'prod';
-        env.ROOT_PATH = path.resolve(__dirname, '..');
-
-        return exec('gatsby build', {cwd: SITE_PATH, env}, err => {
-          if (err)
-            return next(err);
-
-          return next();
-        });
       }
     }, err => {
       if (err)
@@ -349,9 +339,65 @@ ws.on('connection', socket => {
   });
 });
 
+// Build logic
+function buildStaticSite(callback) {
+  console.log('Building site...');
+
+  changeBuildStatus('cleaning');
+
+  return async.series({
+
+    // 1) Cleanup
+    droppingLastBuild(next) {
+      return async.parallel([
+        async.apply(rimraf, path.join(SITE_PATH, 'public')),
+        async.apply(rimraf, path.join(SITE_PATH, '.cache'))
+      ], next);
+    },
+
+    // 2) Building static site
+    building(next) {
+      changeBuildStatus('building');
+
+      const env = Object.assign({}, process.env);
+      env.BUILD_CONTEXT = 'prod';
+      env.ROOT_PATH = path.resolve(__dirname, '..');
+
+      return exec('gatsby build', {cwd: SITE_PATH, env}, err => {
+        changeBuildStatus('free');
+
+        if (err)
+          return next(err);
+
+        return next();
+      });
+    }
+  }, callback);
+}
+
+// Building every 15 minutes
+const cron = new CronJob('*/15 * * * *', function() {
+
+  // We can't run several build at once!
+  if (LOCKS.buildStatus !== 'free')
+    return;
+
+  buildStaticSite(err => {
+    if (err)
+      console.error(err);
+    else
+      console.log('Done building site.');
+  });
+});
+
+cron.start();
+
 // Listening
 console.log(`Listening on port ${PORT}...`);
 server.listen(PORT);
 
 // Starting gatsby
-gatsby.start();
+const shouldStartGatsby = ARGV.gatsby;
+
+if (shouldStartGatsby)
+  gatsby.start();

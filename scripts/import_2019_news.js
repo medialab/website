@@ -122,7 +122,6 @@ const buildNewsFromBlog = (o, indeces) => {
       const groups = o.date_debut_fr.match(/\w+ (\d{1,2}) ([\wé]*) ?(\d{4})?/u);
       if (groups) {
         const y = !!groups[3] ? groups[3] : new Date(Date.parse(o.date)).getFullYear();
-        console.log(groups[1]);
         newNews.startDate = `${y}-${mois[groups[2]]}-${groups[1].length === 1 ? '0' : ''}${groups[1]}`;
       }
     }
@@ -133,11 +132,9 @@ const buildNewsFromBlog = (o, indeces) => {
     let m = (approxDate.getMonth() + 1) + '';
     m = m.length === 1 ? '0' + m : m;
     let d = approxDate.getDate();
-    console.log(d);
     d = ('' + d).length === 1 ? '0' + d : d;
     newNews.startDate = `${approxDate.getFullYear()}-${m}-${d}`;
   }
-  console.log(newNews.startDate);
   // label
   if (o.news_type_fr)
     newNews.label = {fr: o.news_type_fr};
@@ -153,7 +150,7 @@ const buildNewsFromBlog = (o, indeces) => {
     if (indeces.people[pp])
       newNews.people.push(indeces.people[pp].id);
     else
-      console.log('can\'t find people', pp);
+      console.error('can\'t find people', pp);
   });
   newNews.activities = [];
   o.projets.forEach(p => {
@@ -161,7 +158,7 @@ const buildNewsFromBlog = (o, indeces) => {
     if (indeces.activities[pp])
       newNews.activities.push(indeces.activities[pp].id);
     else
-      console.log('can\'t find activity', pp);
+      console.error('can\'t find activity', pp);
   });
 
   newNews.productions = o.tools.map(p => indices.productions[p]).filter(p => !!p);
@@ -278,7 +275,6 @@ async.waterfall([
     });
     //move and rename assets
     async.each(allAssets, (a, cb) => {
-      console.log(a);
       if (a.newPath !== a.oldPath) {
         fs.copyFile(path.join('./scripts/wordpress_scraping/data', a.oldPath), path.join('./data/assets', a.newPath),
           {overwrite: false},

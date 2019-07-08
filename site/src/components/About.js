@@ -24,12 +24,36 @@ export default function About({lang}) {
           <article id="about-contenu" className="main-container">
             <hgroup>
               <h1 id="page-title">Le médialab</h1>
-              <h2>Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des sciences sociales.</h2>
+              <h2>Laboratoire de recherche interdisciplinaire réunissant sociologues, ingénieurs et designers, le médialab mène des recherches thématiques et méthodologiques exploitant et interrogeant la place prise par le numérique dans nos sociétés.</h2>
             </hgroup>
             <div className="about-contenu">
 
               <h3 id="research">La recherche au médialab</h3>
+              
+              <p>Le numérique transforme nos sociétés mais aussi la production de la connaissance scientifique. Centrale dans l’approche développée au Médialab, la transition numérique invite à articuler trois approches fondées sur les sciences sociales, l'ingénierie et le design. Par la multitude de données qu’elle génère, la transition numérique contribue à élargir les connaissances que nous avons des différents mondes sociaux. En parallèle, elle offre des instruments d’investigation favorisant de nouveaux modes de production des savoirs à travers la modélisation, la visualisation et l’exploration interactive des corpus. Enfin elle insiste à expérimenter avec les publics et les étudiants en encourageant de nouvelles formes de réflexivité et de partage des résultats de la recherche.</p> 
+              
+              <p>Ces approches sont développées conjointement au sein de quatre axes thématiques :
+                  <li><b>l’espace public numérique</b> où sont cartographier les transformations des espaces journalistiques et politiques sous l’effet du numérique. Les recherches qui s’y rapportent s’intéressent au nouveaux circuits de l’information, à la construction de l’agenda public et aux activités parlementaires.</li> 
+                  <li><b>la transition écologique</b> dont les enjeux émergents au carrefour de la science, de la politique et des attentes de nos sociétés sont explorés à l’aide de méthodes numériques.</li>
+                  <li><b>les futurs technologiques</b> explorés dans l’esprit des Science & technology studies (STS), étudient comment les nouvelles technologies de calcul de l’Intelligence artificiel pénètrent nos sociétés, en enquêtant à la fois sur la conception de ces technologies et sur les effets de leur pénétration croissante dans les mondes sociaux.</li>
+                  <li><b>les études culturelles quantitatives</b> (Quantitatives Cultural studies) qui, à travers les données des musées et des institutions culturelles, s’attachent à explorer, du côté des oeuvres et de leurs circulations, les nouveaux agencements culturels de nos sociétés. Ce champs d’études porte aussi son attention sur les festivals culturels et la production des connaissances scientifiques sur la Russie.</li>
+               </p>
+  
+              <p>Chacun des projets de recherche menés au médialab se développe dans une approche pluridisciplinaire mobilisant des compétences variées. Irrigués par les sciences sociales et les STS, ces projets se nourrissent de l'ingénierie informatique, pour affiner les enquêtes en utilisant le web comme terrain d’enquête ou la science des données comme méthode d’analyse. Ils se saisissent également de nouvelles formes de mises en situation et d’exploration des questions de recherche proposées par le design.
+              Historiquement attaché à la question de la production et de la transmission des connaissances, le médialab expérimente depuis ses débuts de nouvelles formes d’interventions avec les étudiants. Tangible dans les cours dispensés par les membres de son équipe, ce lien se manifeste également par l’accueil d’un programme de recherche en pédagogies innovante qui s’ancre pleinement dans les pratiques de recherche du laboratoire.</p>
+      
+              <h3 id="research">Equipe</h3>
+              <p>Composée d’hommes et de femmes aux compétences complémentaires, l’équipe du médialab est plurielle. Membres ou associés au laboratoire, ces profils académiques, techniques, en design, ou encore en pédagogie se combinent et travaillent ensemble pour développer une recherche se nourrissant de cette diversité.</p>
 
+              <h3 id="research">Activités</h3>
+              <p>Les activités du médialab s’articulent entre recherche et enseignement. Elles approfondissent notamment l’usage des méthodes numériques pour répondre aux enjeux contemporains en sociologie et STS. Également mobilisées au coeur d’activités pédagogiques, par exemple en mettant les étudiants en situation d’enquête, elles bénéficient d’une réflexivité très enrichissante sur nos processus de recherche. </p>
+
+              <h3 id="research">Productions</h3>
+              <p>Aux traditionnelles publications académiques s’ajoutent les “éditions web” qui projettent les activités du laboratoire dans un média interactif et ouvrent de nouveaux moyens de représentation et d’exploration visuelle des résultats. Les mises en situation -expositions, workshops, simulations, etc.- permettent d’engager des publics dans le processus de recherche et de confronter les hypothèses à la réalité du terrain.</p>
+
+      
+      
+      ---
               <p>Central dans les réflexions du médialab depuis sa <span className="totip">création<span className="tip">BlaBla</span></span>, le numérique y est envisagé tant comme un objet d’étude que comme un moyen de recherche en sciences sociales. Les transformations engendrées par les technologies numériques sont sources de rapports complexes que les travaux du médialab visent à analyser et à représenter.
               Le changement de paradigme dans notre rapport au monde induit par ces nouvelles articulations  centrent les recherches autour de grands défis contemporains qui se répartissent en quatre thèmes : “espace public numérique”, “transition énergétique”, “futurs technologiques”, et “Quantitatives Cultural studies”.</p>
 

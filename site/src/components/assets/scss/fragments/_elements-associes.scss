@@ -216,15 +216,12 @@
 	#all-aside aside{
 		padding-top: $height-sticky + $baseline*2;
 
-	    &:first-of-type{
-	    	margin-top: $baseline*4;
-	    }
-	    	
 		&::before { 
 		    height: calc(100% + #{$unite*2});
 			min-height: 200px;
 			width: 200vw;
-		    top: 50px;
+			// top: 50px;
+			top: 0px;
 		    left: -100vw;
 
 		}

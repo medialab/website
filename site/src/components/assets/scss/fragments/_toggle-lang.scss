@@ -38,7 +38,7 @@
 
     .toggle-lang{
         border-top: $border-very-light;
-        // border-bottom: $border-very-light;
+        border-bottom: $border-very-light;
         padding: $baseline*1.5 0;
         margin-top: $baseline;
         @include font-size-20();

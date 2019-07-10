@@ -7,8 +7,7 @@ module.exports = {
       name: '',
       type: enums.activityTypes.default,
       draft: true,
-      active: true,
-      important: false
+      active: true
     };
   },
   news: function(uuid) {

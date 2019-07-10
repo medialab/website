@@ -53,13 +53,14 @@
 				
 				.details {
 
-					padding: $baseline*1 0;
+					padding-top: $baseline*1;
 					border-top: $border-very-light;
 					border-bottom:$border-very-light;
 
 					p, li{ 
 						@include font-size-16(); 
-						display: inline-block; 
+						display: inline-block;
+						margin-bottom: $baseline;
 						
 					}
 

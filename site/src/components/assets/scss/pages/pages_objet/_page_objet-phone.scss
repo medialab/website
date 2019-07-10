@@ -1,4 +1,4 @@
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
 
 	.page-production, 
 	.page-news, 
@@ -23,7 +23,7 @@
 				left: 0;
 				top: 0;
 				position: relative;
-				z-index: 9;
+				z-index: 8;
 
 				.activator{
 					display: none;       
@@ -107,7 +107,7 @@
 
 
 /* tablet */
-@media screen and (min-width: 700px) and (max-width: 800px) {
+@media screen and (min-width: 700px) and (max-width: 900px) {
 
 	.page-production, 
 	.page-news, 

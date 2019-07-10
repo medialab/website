@@ -36,8 +36,8 @@
 
 
 
-
-@include for-size(phone) {
+/* Phone */
+@media screen and (max-width: 900px){ 
 
     
 
@@ -97,8 +97,8 @@
 
 }
 
-
-@include for-size(desktop) {
+/* Desktop */
+@media screen and (min-width: 900px){ 
 
     /* la largeur de la navigation est dans le modèle global des pages */
     .main-nav{

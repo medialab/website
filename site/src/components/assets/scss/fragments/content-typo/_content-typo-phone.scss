@@ -1,7 +1,7 @@
 /* Regles typographique de bases communes à toutes les pages de contenu */
 
 
-@include for-size(phone) {
+@media screen and (max-width: 900px){ 
 
 	.page-production, 
 	.page-news, 
@@ -15,7 +15,6 @@
 		#article-contenu, 
 		#biographie,
 		#about-contenu {
-
 
 			hgroup {
 				margin: $baseline*2 0 $baseline*1.5 0;
@@ -97,7 +96,6 @@
 
 			iframe{
 				max-width: 100%;
-				height: auto;
 				//height: auto;
 				margin-bottom: $baseline;
 			}

@@ -3,7 +3,7 @@
 /* Regles typographique de bases communes à toutes les pages de contenu */
 
 
-@include for-size(desktop) {
+@media screen and (min-width: 900px){
 
 	.page-production, 
 	.page-news, 
@@ -17,7 +17,7 @@
 		#biographie,
 		#about-contenu {
 
-			@media screen and (min-width: 700px) { 
+			@media screen and (min-width: 900px) { 
 				hgroup{			
 					h1{ @include font-size-40(); }
 					h2, h3{ 
@@ -29,9 +29,6 @@
 			}
 
 
-			@media screen and (min-width: 900px) {
-
-			}
 
 			@media screen and (min-width: 1080px) {
 				hgroup{
@@ -47,6 +44,7 @@
 		.article-contenu, 
 		.biographie-content,
 		.about-contenu {
+
 
 							
 			/* Regles de Base */

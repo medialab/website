@@ -37,10 +37,17 @@
 	/* page avec une navigation sur le côté */
     .main-filters, .main-nav{ width: $logo-column-medium; }
 	.main-container{ width: calc(100% - #{$logo-column-medium}); }
-	
 }
 
-@media screen and (min-width: 800px) and (max-width: 1080px){
+
+@media screen and (min-width: 700px) and (max-width: 900px){
+	/* page objet avec une navigation sur le côté */
+	.page-people, .page-about{
+		.main-container{ width: 100%; }
+	}
+}
+
+@media screen and (min-width: 900px) and (max-width: 1080px){
 	/* page avec une image sur le côté */
 	.page-production main, 
 	.page-news main, 

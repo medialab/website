@@ -1,4 +1,4 @@
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 900px) {
 
 	.page-production, 
 	.page-news, 
@@ -105,7 +105,7 @@
 //////////////////
 /// image sur toute la hauteur (même si l'image est coupée)
 ////////////////
-
+/*
 @media screen and (min-width: 800px) and (max-width: 899px) and (max-aspect-ratio:1/1) { 
 	#img-article{
 		pre{ 
@@ -114,7 +114,7 @@
 			transform: translateX(50%);	        
 		}
 	}
-}
+}*/
 
 @media screen and (min-width: 900px) and (max-aspect-ratio:1/1) { 
 	#img-article{

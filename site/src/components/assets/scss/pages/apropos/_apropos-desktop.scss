@@ -29,8 +29,10 @@
 			}
 
 			.about-contenu{
-				max-width: $max-width-article;
-				margin-right: $unite*2;
+				@media screen and (min-width: 900px){ 
+					max-width: $max-width-article;
+					margin-right: $unite*2;
+				}
 
 				h3:target{ padding-top: $height-top-bar + $baseline*2; }
 			}	
@@ -58,4 +60,8 @@
 
 		
 	}
+}
+
+@media screen and (max-width: 900px){ 
+
 }

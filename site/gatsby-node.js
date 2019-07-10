@@ -578,23 +578,23 @@ exports.createPages = function({graphql, actions}) {
     }
   });
 
-  createI18nPage(createPage, {
-    path: '/activities/current',
-    component: path.resolve('./src/templates/activity-list.js'),
-    context: {
-      status: 'current',
-      allowedStatuses: [true]
-    }
-  });
+  // createI18nPage(createPage, {
+  //   path: '/activities/current',
+  //   component: path.resolve('./src/templates/activity-list.js'),
+  //   context: {
+  //     status: 'current',
+  //     allowedStatuses: [true]
+  //   }
+  // });
 
-  createI18nPage(createPage, {
-    path: '/activities/past',
-    component: path.resolve('./src/templates/activity-list.js'),
-    context: {
-      status: 'past',
-      allowedStatuses: [false]
-    }
-  });
+  // createI18nPage(createPage, {
+  //   path: '/activities/past',
+  //   component: path.resolve('./src/templates/activity-list.js'),
+  //   context: {
+  //     status: 'past',
+  //     allowedStatuses: [false]
+  //   }
+  // });
 
   // News
   createI18nPage(createPage, {

@@ -12,16 +12,8 @@
 @include for-size(desktop) {
 
 	#slideshow{
-        
-        &:after{
-            content: "";
-            position: absolute;
-            bottom: 4px;
-            border-bottom: $border-very-light;
-            width: 100%;
-        }
-
-		.slideshow-container{
+ 
+ 		.slideshow-container{
 
 			.slide_controls{width: $unite*2;}
 			
@@ -37,7 +29,7 @@
 	        }
 
 	        .bullets-slide{
-	       		top: calc(100% - 5px);
+	       		top: calc(100% - 4px);
 	       		left: 0;
 	        }
 

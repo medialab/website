@@ -14,7 +14,7 @@ $height-slideshow-phone: 180px;
 	      		bottom: 0;
 	     		&:before, &:after{        
 	     			padding: $baseline $unite/4;
-	        		top: calc(50% - 5px);
+	        		top: calc(50% - 4px);
 	        		transform: translateY(-50%);        
 	        	}
 	        }

@@ -18,16 +18,20 @@
 
 			hgroup {
 				margin: $baseline*2 0 $baseline*1.5 0;
+				padding: 0;
 				h1{
 					@include font-size-27();
 					font-weight: 400;
-					margin-bottom: $baseline*0.5;
+					padding-bottom: $baseline*1.5;
 				}
-				h2, h3{ @include font-size-20-phone();}
-				h2 { margin-bottom: $baseline*1; }
-				// h3 { margin-bottom: $baseline*3; }
+				h2{ 
+					@include font-size-20-phone();
+					padding-bottom: 0;
+				}
 			}
 		}
+
+		#about-contenu{ margin-bottom: $baseline*4; }
 
 		.article-contenu, 
 		.biographie-content,

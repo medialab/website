@@ -67,6 +67,10 @@
 			
 			.article-contenu{ 
 
+				@media screen and (min-width: 700px){
+					margin-bottom: $baseline*6;
+				}
+
 				@include flex-order(1); 
 					max-width: $max-width-article;
 			

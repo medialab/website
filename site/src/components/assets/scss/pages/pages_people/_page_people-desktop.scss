@@ -93,6 +93,7 @@
 			}			
 		}	
 		.biographie-content p, .biographie-content li{ @include font-size-16();}
+		.biographie-content{ margin-bottom: $baseline*4; }
 	}
 }
 

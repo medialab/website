@@ -26,6 +26,7 @@ $height-slideshow-phone: 180px;
 			
 			.slideshow-controls{
 				height: $height-slideshow-phone;
+				.slide_controls{width: 50vw;}
 			}
 
 			.slideshow-inner{

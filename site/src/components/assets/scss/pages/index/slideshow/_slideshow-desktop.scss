@@ -23,8 +23,12 @@
 
 		.slideshow-container{
 
+			.slide_controls{width: $unite*2;}
+			
 	    	span.controls{
 	      		height: 100%;
+	      		
+
 	     		&:before, &:after{        
 	     			padding: $baseline*1.25 $unite/4;
 	        		top: 50%;

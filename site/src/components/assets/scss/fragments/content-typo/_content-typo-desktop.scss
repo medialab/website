@@ -161,6 +161,8 @@
 					}
 				}
 
+				figcaption{ max-height: $baseline*4.5; overflow: hidden;}
+
 				input:checked {
 
 					& + label{
@@ -175,6 +177,35 @@
 
 
 						}					
+					}
+
+					& ~ figure{
+						img{
+							max-width: 80vw;
+							max-height: 70vh;
+						}
+
+						figcaption{
+							width: 100%;
+							margin: auto;
+							position: absolute;
+							bottom: 0;
+							left: 50%;
+							transform: translateX(-50%);
+							background: linear-gradient(rgba(255,255,255,0) 0px, #{$baseline}, #{$background-site} #{$baseline*4}) ;
+							padding: $baseline*2 25vw $baseline*2 25vw;
+							color: $text-color;
+
+							overflow: inherit;
+							max-height: inherit;
+							
+							@include for-size(desktop-1400){
+								padding-right: 30vw; 
+								padding-left: 30vw;
+							}
+
+
+						}
 					}
 				}
 			}

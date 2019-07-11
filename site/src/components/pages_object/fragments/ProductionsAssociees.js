@@ -34,7 +34,7 @@ const ProductionsAssociees = ({lang, productions}) => {
           <p className="subtype-production"> {lang === 'fr' ? <span>{p.typeLabel.fr}</span> : <span>{p.typeLabel.en}</span>}</p>
         } */}
         {p.authors && <p className="authors">{p.authors}</p>}
-        {/*<DateNews startDate={p.date} lang={lang} />*/}
+        <DateNews startDate={p.date} lang={lang} />
         { p.external && p.url && <p className="external" aria-label="production exterieure au médialab" title={lang === 'fr' ? "Ce lien renvoi à une page exterieure au médialab" : "This linked is external to médialab"} >⤤</p> }
       </div>
       <hgroup>

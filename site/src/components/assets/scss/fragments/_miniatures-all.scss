@@ -204,6 +204,9 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
         .authors{ width: calc(100% - 200px); }
     }
 
+     .elements-associes-block ul.liste_objet li .authors{width: auto; max-width: calc(100% - 200px - 200px);} // Faire place pour les dates
+
+
 }
 
 

@@ -123,6 +123,23 @@
 				width: -moz-calc(100% - #{$unite-phone*2});
 				width: calc(100% - #{$unite-phone*2});
 
+				&.container_vignette-block{
+
+
+
+					@media screen and (max-width: 500px){ 
+						// desactive Focus sur tout petit écran
+						width: 100%;
+						width: -webkit-calc(100% - #{$unite-phone*2});
+						width: -moz-calc(100% - #{$unite-phone*2});
+						width: calc(100% - #{$unite-phone*2});
+						label{ display: none;}
+						input:checked + label { display: inline-block;} // Securité si brusque redimentionement avec le focus activé
+					}
+
+				}
+
+
 				figure{
 					figcaption{
 						max-height: $baseline*6;

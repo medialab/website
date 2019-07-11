@@ -139,11 +139,12 @@
 
 			.vignette{
 				
-				margin: $baseline*3 $unite $baseline*6 $unite;
+				margin: $baseline*2 $unite $baseline*2 $unite;
 				width: 100%;
 				width: -webkit-calc(100% - #{$unite*2});
 				width: -moz-calc(100% - #{$unite*2});
-				width: calc(100% - #{$unite*2});				
+				width: calc(100% - #{$unite*2});
+	
 				
 				&.container_vignette-inline{			 
 
@@ -168,11 +169,22 @@
 					}
 				}
 
-				figcaption{ max-height: $baseline*4.5; overflow: hidden;}
+				figcaption{ 
+					max-height: $baseline*5.5; 
+					max-width: 600px;
+					width: 120%;
+					left: -10%;
+					margin: auto;
+					padding: $baseline 0;
+					overflow: hidden;
+
+				}
 
 				input:checked {
 
 					& + label{
+
+						max-height: 80vh;
 
 						&:after{
 							content: "✕\00FE0E";
@@ -189,12 +201,12 @@
 					& ~ figure{
 						img{
 							max-width: 80vw;
-							max-height: 70vh;
+							max-height: 80vh;
 						}
 
 						figcaption{
 							padding: $baseline*2 25vw;
-							
+
 							@include for-size(desktop-1400){
 								padding-right: 30vw;
 								padding-left: 30vw;

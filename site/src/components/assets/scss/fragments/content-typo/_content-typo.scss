@@ -70,6 +70,12 @@
 						max-height: 300px;
 					}
 				}
+				&.container_vignette-block{
+					min-width: 300px;
+					width: 50%;
+					margin-left: auto;
+					margin-right: auto;
+				}					
 				&.container_serie{
 					display: inline-block;
 					padding: 0 $unite 0 $unite;
@@ -181,7 +187,37 @@
 							color: $text-color;
 
 							overflow: inherit;
-							max-height: inherit;
+
+							max-width: inherit;
+							max-height: $baseline*2;
+							height: auto;
+							transition: .25s ease-in-out;
+
+							@include text-overflow;
+
+							&:before{
+								content: "\276D";
+								position: absolute;
+								top: 0;
+								left: 50%;
+								transform: translateX(-50%) rotate(-90deg);
+								color: $text-color-light;
+							}
+
+							&:hover{
+								max-height: inherit;
+								height: auto;
+								transition: .25s ease-in-out;
+								text-overflow :inherit;
+								overflow: inherit;
+								white-space: normal;
+
+								&:before{
+									opacity: 0;
+								}
+
+							}
+						
 						}
 					}
 				}

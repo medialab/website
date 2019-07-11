@@ -59,12 +59,7 @@
 				
 				text-align: center;
 				display: block;
-				margin: $baseline*1.5 $unite $baseline*3 $unite;
 				vertical-align: middle;	
-				width: 100%;
-				width: -webkit-calc(100% - #{$unite*2});
-				width: -moz-calc(100% - #{$unite*2});
-				width: calc(100% - #{$unite*2});	
 
 				&.container_vignette-inline{
 
@@ -93,13 +88,13 @@
 					left: 50%;
 					transform: translateX(-50%);
 					cursor: pointer;
-					z-index: 10;
+					z-index: 8;
 
 					&:after{
-						content: "🔎\00FE0E";
+						content: "\26f6\00FE0E";
 						font-family: $font-symbol;
-						top: 50%;
-						left: 50%;
+						top: $baseline;
+						left: 100%;
 						transform: translate(-50%);
 						position: absolute;
 						opacity: 0;
@@ -174,9 +169,22 @@
 							transform: translateY(-50%);							
 						}
 
+
+						figcaption{
+							width: 100%;
+							margin: auto;
+							position: absolute;
+							bottom: 0;
+							left: 50%;
+							transform: translateX(-50%);
+							background: linear-gradient(rgba(255,255,255,0) 0px, #{$baseline}, #{$background-site} #{$baseline*4}) ;
+							color: $text-color;
+
+							overflow: inherit;
+							max-height: inherit;
+						}
 					}
 				}
-				//.vignette + p{ display: none;}
 			}
 		}
 	}

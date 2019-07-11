@@ -125,6 +125,9 @@
 
 			figure{
 
+				img{
+
+				}
 				figcaption{
 					@include font-size-13;
 				}
@@ -137,6 +140,10 @@
 			.vignette{
 				
 				margin: $baseline*3 $unite $baseline*6 $unite;
+				width: 100%;
+				width: -webkit-calc(100% - #{$unite*2});
+				width: -moz-calc(100% - #{$unite*2});
+				width: calc(100% - #{$unite*2});				
 				
 				&.container_vignette-inline{			 
 
@@ -186,25 +193,12 @@
 						}
 
 						figcaption{
-							width: 100%;
-							margin: auto;
-							position: absolute;
-							bottom: 0;
-							left: 50%;
-							transform: translateX(-50%);
-							background: linear-gradient(rgba(255,255,255,0) 0px, #{$baseline}, #{$background-site} #{$baseline*4}) ;
-							padding: $baseline*2 25vw $baseline*2 25vw;
-							color: $text-color;
-
-							overflow: inherit;
-							max-height: inherit;
+							padding: $baseline*2 25vw;
 							
 							@include for-size(desktop-1400){
-								padding-right: 30vw; 
+								padding-right: 30vw;
 								padding-left: 30vw;
 							}
-
-
 						}
 					}
 				}

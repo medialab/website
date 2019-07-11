@@ -105,6 +105,11 @@
 			}
 
 			img, figure{ max-width: 100%;}
+
+			img{
+				max-width: 80vw;
+				max-height: 80vh;
+			}
  
 			//////////////////////////
 			///        Image 	/////
@@ -112,9 +117,26 @@
 
 			.vignette{
 
+				margin: $baseline*1.5 $unite-phone $baseline*3 $unite-phone;
+				width: 100%;
+				width: -webkit-calc(100% - #{$unite-phone*2});
+				width: -moz-calc(100% - #{$unite-phone*2});
+				width: calc(100% - #{$unite-phone*2});
+
+				figure{
+					figcaption{
+						max-height: $baseline*6;
+						overflow: hidden;
+					}
+				}
+
 				input:checked {
 
 					& + label{
+
+						height: -webkit-calc( 100% - #{$baseline*6});
+						height: -moz-calc( 100% - #{$baseline*6});
+						height: calc( 100% - #{$baseline*6});
 
 						&:after{
 							content: "✕\00FE0E";
@@ -129,6 +151,15 @@
 
 						//figure{ max-height: inherit !important;}					
 					}
+
+					& ~ figure{ 
+						figcaption{
+							padding: $baseline $unite-phone;
+							max-height: $baseline*6;
+							overflow-y: scroll;
+						}
+					}
+
 				}
 			}			
 		}

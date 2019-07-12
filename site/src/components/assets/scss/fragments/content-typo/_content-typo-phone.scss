@@ -24,7 +24,7 @@
 					font-weight: 400;
 					padding-bottom: $baseline*1.5;
 				}
-				h2{ 
+				h2, h3{ 
 					@include font-size-20-phone();
 					padding-bottom: 0;
 				}

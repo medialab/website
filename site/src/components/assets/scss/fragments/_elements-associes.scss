@@ -138,7 +138,7 @@
 ////////////////
 
 
-@include for-size(phone) {
+@media screen and (max-width: 900px){
 
 	#all-aside aside{
 		padding-top: $topbar-phone;
@@ -148,6 +148,8 @@
 		    width: 100vw;
 		    min-height: 200px;
 		    top: 0;
+		    @media screen and (min-width:700px) and (max-width: 900px){ left: $unite*-1} // Fix transition between Page object 700px and 900px
+
 		}
 	    &:last-of-type::before{
 	    	height: calc(100% + 70px + 1px);
@@ -175,7 +177,7 @@
 				@include font-size-20-phone; 
 				margin-bottom: $baseline/2;
 			}
-			.details{ border-bottom: none !important; margin-bottom: 0 !important; }
+			.description .details{ border-bottom: none !important; margin-bottom: 0 !important; }
 		}
 	}
 
@@ -209,7 +211,7 @@
 
 
 
-@include for-size(desktop) {
+@media screen and (min-width: 900px){
 
 	#all-aside{ margin-bottom: 20vh; }
 

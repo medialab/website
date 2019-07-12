@@ -100,7 +100,7 @@
 						content: "\26f6\00FE0E";
 						font-family: $font-symbol;
 						top: $baseline;
-						left: 100%;
+						left: calc(100% - 15px);
 						transform: translate(-50%);
 						position: absolute;
 						opacity: 0;

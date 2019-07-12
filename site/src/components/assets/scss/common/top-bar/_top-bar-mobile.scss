@@ -15,7 +15,7 @@
         background-color: $background-site;
         border-bottom: $border;
         z-index: 99;
-        height: $topbar-phone -1px;
+        height: $topbar-phone + 1px;
 
         label span svg{
             width: $unite*1.5;

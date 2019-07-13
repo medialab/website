@@ -179,9 +179,14 @@
 				@include font-size-20-phone; 
 				margin-bottom: $baseline/2;
 			}
+
+			img{
+				min-height: $baseline*6;
+			}
 			.description {
-				width: 100%;
-				.details{ border-bottom: none !important; margin-bottom: 0 !important; }
+				//width: 100%;
+				padding-left: $unite-phone;
+				.details{ border-bottom: none !important; margin: 0 !important; }
 			}
 		}
 	}

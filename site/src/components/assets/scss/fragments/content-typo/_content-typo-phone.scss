@@ -44,7 +44,8 @@
 			iframe{
 				//width: 100%;
 				margin: $baseline*1.5 auto $baseline*2 auto;	
-				border: none;					
+				border: none;
+				display: block;					
 			}
 
 			h1, h2, h3, h4, h5{

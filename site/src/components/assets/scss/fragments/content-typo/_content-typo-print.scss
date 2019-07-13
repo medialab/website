@@ -117,10 +117,18 @@
 			}
 
 			iframe{
-				max-width: 100%;
-				height: auto;
-				//height: auto;
-				margin-bottom: $baseline;
+				display: none;
+
+				& + .print{
+
+					@include font-size-16-phone();
+					opacity: .5;
+					text-align: center;
+
+					span:before{ content: "🔗"; font-family: $font-symbol; padding: 0 $unite/2; }
+					span:lang(fr):after{ content: "\2009: "}
+					span:lang(en):after{ content: ": "}
+				}
 			}
 
 			img, figure{ max-width: 100%;}

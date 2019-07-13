@@ -206,7 +206,7 @@ function processHtml(pathPrefix, html) {
         if (internal)
           src = withPrefix(src);
 
-        output += `<iframe src="${src}"></iframe>`;
+        output += `<iframe src="${src}"></iframe><p class="print"><span>Iframe</span>${src}</p>`;
       }
     }
   });

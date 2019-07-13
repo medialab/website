@@ -14,10 +14,11 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
 .page-news-list #liste .liste_objet{
 
     li{
-        border-bottom: $border;
         width: 100%;
         position: relative;
         height: auto;
+
+        &:not(:empty){border-bottom: $border;}
 
 
         a{ 

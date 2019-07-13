@@ -148,7 +148,7 @@
 		    width: 100vw;
 		    min-height: 200px;
 		    top: 0;
-		    @media screen and (min-width:700px) and (max-width: 900px){ left: $unite*-1} // Fix transition between Page object 700px and 900px
+		    @media screen and (min-width:700px) and (max-width: 900px){ left: $unite-phone*-1} // Fix transition between Page object 700px and 900px
 
 		}
 	    &:last-of-type::before{

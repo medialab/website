@@ -27,7 +27,7 @@
 				top: 0;
 				position: relative;
 				z-index: 8;
-				margin-top: $height-sticky + $baseline*3;
+				@media screen and (max-width: 700px){ margin-top: $height-sticky + $baseline*3; }
 
 				.activator{
 					display: none;       

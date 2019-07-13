@@ -391,12 +391,13 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
         }
         .image-pre{
             max-width: 180px;
-            max-height: 86px;
+            //max-height: 86px;
             overflow: hidden;
             position: absolute; 
             top: 0;
             left: 0;
-            pre{ font-size: 3px };
+            height: calc( 100% + #{$baseline});
+            pre{ font-size: 5px; transform: translateX(-50%);}
         }
         .bandeau, hgroup, .accroche{ margin-left: 190px; display: block;}
         .bandeau p, div{

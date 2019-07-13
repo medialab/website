@@ -15,8 +15,12 @@
             top: 0;
             display: inline-block;
             vertical-align: top;
-            pre{ font-size: 2px; }
-            // position: absolute;
+            width: 80mm;
+            height: 60mm;
+            padding-right: 5mm;
+    		overflow: hidden;
+            pre{ font-size: 3px; }
+
         }
     
 
@@ -50,8 +54,13 @@
             
             .details{
                 @include font-size-13-phone();
-                position: absolute; 
-                top: 180px;
+                max-width: 150mm !important;
+                margin: 0 auto $baseline auto;
+                padding: $baseline/2 0;
+                border-top: $border-very-light;
+                border-bottom: $border-very-light;
+
+                p{ display: inline-block; width: auto; padding-right: 5mm;}
                 .type-objet span{ padding-right: 2px!important;}
             }
 		}
@@ -124,6 +133,7 @@
 					@include font-size-16-phone();
 					opacity: .5;
 					text-align: center;
+					padding-top: $baseline;
 
 					span:before{ content: "🔗"; font-family: $font-symbol; padding: 0 $unite/2; }
 					span:lang(fr):after{ content: "\2009: "}
@@ -131,71 +141,73 @@
 				}
 			}
 
-			img, figure{ max-width: 100%;}
+			img, figure{ max-width: 100%; filter: grayscale(1);}
  
 			//////////////////////////
 			///        Image 	/////
 			/////////////////////////
+			.vignette{
+				
+				margin: $baseline*2 $unite $baseline*3 $unite;
+				display: inline-block;
 
-			figure{
-								
-				figcaption{
-					@include font-size-13;
-					color: $text-color-light;
-					margin-top: $baseline*1;
-				}
-
-				&.figure-logo{
-					display: inline-block;
-					max-width: 20mm !important;
-					width: auto;
-				    vertical-align: middle;
-					text-align: center;
-				    padding: $baseline $unite*1.5 $baseline 0;
-					margin: 0;
+				label{ display: none !important;}
+				
+				&.container_vignette-inline{			 
+					//width: 70mm;
+					width: -moz-calc( 50% - #{$unite*2} - 2px);
+					width: -webkit-calc( 50% - #{$unite*2} - 2px);
+					width: calc( 50% - #{$unite*2} - 2px);
 
 					img{
-						max-width: $unite*4 !important;
-					    max-height: $baseline*6;						
 					}
 				}
-				&.serie-pair, &.serie-impair{
-					display: inline-block;
-					padding: $baseline $unite $baseline 0;
-					width: 50%;
+				&.container_serie{
+					max-height: inherit;
 
+					img{ max-height: 50mm;}
 				}
-				.vignette{
-					
-					margin: $baseline*2 $unite $baseline*3 $unite;
-					display: inline-block;
-					
-					&.container_vignette-inline{			 
-						//width: 70mm;
-						width: -moz-calc( 50% - #{$unite*2} - 2px);
-						width: -webkit-calc( 50% - #{$unite*2} - 2px);
-						width: calc( 50% - #{$unite*2} - 2px);
+
+			}
+
+			&.illustration{
+				width: 100%;
+				display: inline-block;
+				margin: auto;
+				padding: $baseline*2 0 $baseline*4 0; 
+
+				img{
+					width: auto;
+					max-width: 100mm;
+					height: auto;
+					max-height: 100mm;
+				}
+
+				figure{
+									
+					figcaption{
+						@include font-size-13;
+						color: $text-color-light;
+						margin-top: $baseline*1;
+					}
+
+					&.figure-logo{
+						display: inline-block;
+						max-width: 20mm !important;
+						width: auto;
+					    vertical-align: middle;
+						text-align: center;
+					    padding: $baseline $unite*1.5 $baseline 0;
+						margin: 0;
 
 						img{
+							max-width: $unite*4 !important;
+						    max-height: $baseline*6;						
 						}
 					}
-
 				}
-
-				&.illustration{
-					width: 100%;
-					display: inline-block;
-					margin: auto;
-					padding: $baseline*2 0 $baseline*4 0; 
-
-					img{
-						width: auto;
-						max-width: 100mm;
-						height: auto;
-						max-height: 100mm;
-					}
-				}			
 			}
+
 		}
 	
 		#all-aside aside{
@@ -213,6 +225,7 @@
 	
 			break-inside: avoid;
 			margin-bottom: $baseline/2;
+			width: 50%;
 
 			
 			figure, .description{ 
@@ -233,7 +246,7 @@
 			img{ 
 				width: 30mm;
 				filter: grayscale(100%);
-				margin-right: 5mm;
+				padding-right: 5mm;
 			}
 			
 		}

@@ -92,7 +92,7 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
 
 
 /* DESKTOP */
-@media screen and (min-width: 840px) {
+@media screen and (min-width: 900px) {
 
     .page-production-list #liste .liste_objet,
     .page-activity-list #liste .liste_objet,
@@ -234,7 +234,7 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
     }
 }
 
-@media screen and (max-width: 870px){
+@media screen and (max-width: 900px){
     .page-production-list #liste .liste_objet,
     .page-activity-list #liste .liste_objet,
     .page-news-list #liste .liste_objet{
@@ -285,7 +285,7 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
 
 
 /* PHONE */
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 900px) {
 
     .page-production-list #liste .liste_objet,
     .page-activity-list #liste .liste_objet,
@@ -309,12 +309,12 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
             }
             .bandeau{
                 width: calc(100% - #{$margins-phone*2});
-                margin: 0 $margins-phone;          
+                @media screen and (max-width: 700px){margin: 0 $margins-phone;}
             }
 
             hgroup, .accroche{
                 width: calc(100% - #{$margins-phone*2});
-                margin: 0 $margins-phone;
+                @media screen and (max-width: 700px){margin: 0 $margins-phone;}
             }
             hgroup{ margin-top: $baseline*1; }
     

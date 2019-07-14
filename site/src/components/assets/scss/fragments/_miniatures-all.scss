@@ -243,11 +243,13 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
                 margin: 0;
 
                 .type[data-icon="news"], .type-news{ 
-                    width: 100%;
-                    border-bottom: $border-very-light;
-                    margin-bottom: $baseline/2;
-                    padding-bottom: $baseline/2;
+                    //width: 100%;
+                    //border-bottom: $border-very-light;
+                    //margin-bottom: $baseline/2;
+                    //padding-bottom: $baseline/2;
                 }
+
+                .type[data-icon="news"],
                 .type-activity,
                 .title, 
                 .date-news,

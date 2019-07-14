@@ -44,9 +44,9 @@
 
 	
 
-	section:target article:first-of-type{
-		margin-top: $baseline*8.5;
-	}
+	#agenda:target{padding-top: $height-top-bar + $baseline*3.5; }
+    #git:target{ padding-top: $height-top-bar + $baseline*3.5; }
+    #tweet:target{ padding-top: $height-top-bar + $baseline*3.5; }
 	
 }
 

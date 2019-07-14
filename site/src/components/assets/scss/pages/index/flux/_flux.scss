@@ -202,8 +202,7 @@
 
             }
 
-            input:checked + label span,
-            label:hover span{
+            input:checked + label span{
                 svg{
                     transform: rotate(90deg);
                     transform-origin: center center;

@@ -15,7 +15,8 @@
  
  		.slideshow-container{
 
-			.slide_controls{width: $unite*2;}
+			.slide_controls{ width: $unite*2;}
+
 			
 	    	span.controls{
 	      		height: 100%;
@@ -151,7 +152,9 @@
 
 
 
-
+@media screen and (min-width: 700px) and (max-width: 900px){
+	#slideshow .slide_controls{ width: $unite*3 !important;}
+}
 
 @media screen and (min-width: 700px) and (max-width: 1200px){
 	#slideshow{

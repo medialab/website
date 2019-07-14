@@ -11,7 +11,7 @@
     .elements-associes-block ul.liste_objet li,
     .page-archive ul.list li{
 
-        border-bottom: $border;
+        &:not(:last-of-type){border-bottom: $border;}
         position: relative;
         height: auto;
         width: 100%;
@@ -164,6 +164,12 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
         
     }
 
+    .page-home #now{
+
+        .bandeau, hgroup{ width: 100%;}
+
+    }
+
     .page-people #highlights #highlights-list-production{ 
         .bandeau, hgroup { 
             left: 0;
@@ -251,6 +257,7 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
 
                 .type[data-icon="news"],
                 .type-activity,
+                .type-news,
                 .title, 
                 .date-news,
                 .hours-news{
@@ -278,6 +285,12 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
                 //padding: 0 $margins-phone;
                 padding: 0;
             }
+
+            .bandeau, hgroup{ 
+                padding-left: $margins-phone;
+                padding-right: $margins-phone;
+            }
+
         }
            
     }

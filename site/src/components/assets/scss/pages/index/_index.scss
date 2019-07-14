@@ -60,8 +60,7 @@ $hunit: 4vh;
             padding-top: $baseline*0.75;
             border-bottom: $border; 
             text-transform: uppercase;
-            font-weight: 500;   
-            
+            font-weight: 500;            
         }
 
         section#agenda,
@@ -81,7 +80,14 @@ $hunit: 4vh;
     }
 }
 
-
+            
+@media screen and (min-width: 700px) and (max-width: 900px) {
+    main{ padding: 0; }
+    #introduction{ padding: $unite; }
+    #now, #agenda, #git, #tweet {
+        > h1{ padding-left: $unite; }
+    }
+}
 
 @include for-size(desktop) {
     

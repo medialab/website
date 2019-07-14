@@ -48,9 +48,6 @@
 	.page-news #article-contenu, 
 	.page-activity #article-contenu{
 		width: 100%;
-		//width: -webkit-calc(100% - #{$margins-phone});
-		//width: -moz-calc(100% - #{$margins-phone});
-		//width: calc(100% - #{$margins-phone});
 		padding: 0 $margins-phone; 
 
 	}
@@ -62,6 +59,18 @@
 	}
 }
 
+
+@media screen and (min-width: 700px) and (max-width: 900px){
+	/* page objet avec une navigation sur le côté */
+	.page-people #biographie, 
+	.page-about #about-contenu, 
+	.page-production #article-contenu, 
+	.page-news #article-contenu, 
+	.page-activity #article-contenu{
+		padding: 0 $unite; 
+
+	}
+}
 
 @media screen and (min-width: 901px) and (max-width: 1080px){
 	/* page avec une image sur le côté */

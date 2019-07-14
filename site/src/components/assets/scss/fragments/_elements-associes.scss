@@ -148,7 +148,7 @@
 		    width: 100vw;
 		    min-height: 200px;
 		    top: 0;
-		    @media screen and (min-width:700px) and (max-width: 900px){ left: $unite-phone*-1} // Fix transition between Page object 700px and 900px
+		    //@media screen and (min-width:700px) and (max-width: 900px){ left: $unite-phone*-1.5} // Fix transition between Page object 700px and 900px
 
 		}
 	    &:last-of-type::before{
@@ -166,13 +166,14 @@
 		ul{ max-width: 100vw; }
 
 		li[data-type="people"]{
-			width: -webkit-calc(100% - #{$unite-phone*2});
-			width: -moz-calc(100% - #{$unite-phone*2});
-			width: calc(100% - #{$unite-phone*2});
+			width: 100%;
+			//width: -webkit-calc(100% - #{$unite-phone*2});
+			//width: -moz-calc(100% - #{$unite-phone*2});
+			//width: calc(100% - #{$unite-phone*2});
 			max-width: inherit;
 			
-			padding-right: $margins-phone;
-			padding-left: $margins-phone;
+			padding-right: $margins-phone*.6;
+			padding-left: $margins-phone*.6;
 			
 			
 			h1{
@@ -200,20 +201,21 @@
 			span{ font-weight: 300;}
 		}
 
-		ul.liste_objet li{
-			&:before{
-				content: "";
-				position: absolute;
-				width: calc(100% + #{$margins-phone*2});
-				height: 100%;
-				left: $margins-phone*-1;
-			}
-			&:hover:before{ background: rgba($background-site, 0.8); }
+		ul.liste_objet{
 
-			a{ padding: 0 $margins-phone;}
-				
+			padding: 0 $margins-phone;
+
+			li{
+				&:before{
+					content: "";
+					position: absolute;
+					width: calc(100% + #{$margins-phone*2});
+					height: 100%;
+					left: $margins-phone*-1;
+				}
+				&:hover:before{ background: rgba($background-site, 0.8); }
+			}	
 		}
-		
 	}
 }
 

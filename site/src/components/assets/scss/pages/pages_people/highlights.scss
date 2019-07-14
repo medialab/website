@@ -10,7 +10,7 @@
     }
 
    h2{
-        @include font-size-13-uppercase();
+       @include font-size-13-uppercase();
        margin-bottom: $baseline;
        margin-top: $baseline*3;
     }
@@ -33,11 +33,11 @@
         h2:first-of-type{ margin-top: $baseline}
 
 		& > h1 {
-			margin: $baseline $margins-phone 0 $margins-phone;
+			margin: $baseline 0 0 0;
 			@include font-size-27();
         }
 
-        h2{ margin-left: $margins-phone; }
+        //h2{ margin-left: $margins-phone; }
         
     
 

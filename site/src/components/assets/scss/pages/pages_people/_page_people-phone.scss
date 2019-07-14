@@ -6,18 +6,10 @@
 
 	.page-people{
 
-		// main{
-		// 	padding-top: $height-top-bar-phone;
-		// }
-
-		#container-biographie{
-			width: 100%;
-			padding: 0 $margins-phone;
-		}
-
 		#biographie{
 
 			figure{ 
+				margin-top: $height-top-bar-phone;
 				margin-bottom: $baseline; 
 				width: calc(100% + #{$margins-phone*2});
 				left: $margins-phone*-1;

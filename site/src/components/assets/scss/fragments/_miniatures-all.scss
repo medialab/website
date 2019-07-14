@@ -225,42 +225,58 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
 
 @include for-size(phone) {
 
-    .page-people #highlights #highlights-list-activity li, 
-    .page-people #highlights #highlights-list-production li, 
-    .page-home #now li,
-    .elements-associes-block ul.liste_objet li,
-    .page-archive ul.list li{
+    .page-people #highlights ul#highlights-list-activity, 
+    .page-people #highlights ul#highlights-list-production, 
+    .page-home #now ul,
+    .elements-associes-block ul.liste_objet,
+    .page-archive ul.list{
+
+        li{
 
 
-        .bandeau{
+            .bandeau{
 
-            .type[data-icon="news"], .type-news{ 
-                width: 100%;
-                border-bottom: $border-very-light;
-                margin-bottom: $baseline/2;
-                padding-bottom: $baseline/2;
+                //position: relative; 
+                //width: calc(100% - #{$margins-phone*2});
+                left: 0;
+                //margin: 0 $margins-phone;
+                margin: 0;
+
+                .type[data-icon="news"], .type-news{ 
+                    width: 100%;
+                    border-bottom: $border-very-light;
+                    margin-bottom: $baseline/2;
+                    padding-bottom: $baseline/2;
+                }
+                .type-activity,
+                .title, 
+                .date-news,
+                .hours-news{
+                    padding-right: $unite/2;
+                    margin-right: $unite/2;
+                    border-right: $border-very-light;
+                }
+
+                .authors {
+                    border-top: $border-very-light;
+                    padding-top: $baseline/2;
+                    margin-top: $baseline/2;
+                    width: 100%;
+
+                }
+
+                > *:last-of-type{ border-right: none;}
+        
+
             }
-            .title, 
-            .date-news,
-            .hours-news{
-                padding-right: $unite/2;
-                margin-right: $unite/2;
-                border-right: $border-very-light;
+
+            hgroup{
+                //width: 100%;
+                left: 0;
+                //padding: 0 $margins-phone;
+                padding: 0;
             }
-
-            .authors {
-                border-top: $border-very-light;
-                padding-top: $baseline/2;
-                margin-top: $baseline/2;
-                width: 100%;
-
-            }
-
-            > *:last-of-type{ border-right: none;}
-    
-
         }
-
            
     }
 
@@ -276,19 +292,10 @@ $width-image-pre-highlight: ( 100% / 75 ) * 6;
             border-bottom: $border-very-light;
         }
 
-        .bandeau{
-            position: relative; 
-            width: calc(100% - #{$margins-phone*2});
-            left: 0;
-            margin: 0 $margins-phone;
-        }
 
         // .authors{ width: 100%; }       
         
         hgroup{
-            width: 100%;
-            left: 0;
-            padding: 0 $margins-phone;
             margin-bottom: $baseline*2.5!important;
             margin-top: $baseline*0.5!important;
             h1{ padding-top: 0;}

@@ -6,15 +6,6 @@
 
 		main{
 
-			// margin-top: $height-top-bar-phone;
-
-			#article-contenu{
-				width: 100%;
-				width: -webkit-calc(100% - #{$margins-phone});
-				width: -moz-calc(100% - #{$margins-phone});
-				width: calc(100% - #{$margins-phone});
-				padding: 0 $margins-phone;
-			}
 
 			#article-contenu{
 				// Regles typo (communes à toutes les pges de contenu) transférées dans fragments/content-typo

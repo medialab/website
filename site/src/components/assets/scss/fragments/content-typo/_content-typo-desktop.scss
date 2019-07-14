@@ -132,7 +132,18 @@
 					@include font-size-13;
 				}
 
-				&.figure-logo{ }
+				&.figure-logo{ 
+					max-width: 20% !important;
+					width: auto;
+				    padding: $baseline $unite $baseline $unite;
+
+					img{
+						max-width: $unite*4 !important;
+					    max-height: $baseline*6;
+					    width: 100%;
+						height: 100%;					
+					}
+				}
 				
 				&.illustration{	}
 			}

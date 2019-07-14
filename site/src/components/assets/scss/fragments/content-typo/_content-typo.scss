@@ -32,17 +32,9 @@
 
 				&.figure-logo{
 					display: inline-block;
-					max-width: 20% !important;
-					width: auto;
 				    vertical-align: middle;
 					text-align: center;
-				    padding: $baseline $unite $baseline $unite;
 					margin: 0;
-
-					img{
-						max-width: $unite*4 !important;
-					    max-height: $baseline*6;						
-					}
 
 					figcaption{ display: none;}
 				}

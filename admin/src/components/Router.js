@@ -1,10 +1,11 @@
-import React from 'react';
-import {Route, Switch} from 'react-router';
+import React, {useState} from 'react';
+import {Route, Switch, Redirect, withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
 import cls from 'classnames';
 
 import listSpecs from '../../../specs/lists.js';
 
+import Login from './Login';
 import Home from './Home';
 import Playground from './Playground';
 import HomeIcon from 'material-icons-svg/components/baseline/Home';
@@ -16,7 +17,15 @@ import ProductionForm from './forms/ProductionForm';
 import NewsForm from './forms/NewsForm';
 import SettingsForm from './forms/SettingsForm';
 
-export default function Router() {
+export default withRouter(function Router({history}) {
+
+  const [authenticated, setAuthenticated] = useState(false);
+
+  const authenticate = () => {
+    setAuthenticated(true);
+    history.push('/');
+  };
+
   return (
     <div className="container">
       <div className="tabs header">
@@ -62,6 +71,8 @@ export default function Router() {
         </ul>
       </div>
       <Switch>
+        {!authenticated && <Route path="/login" render={() => <Login authenticate={authenticate} />} />}
+        {!authenticated && <Route path="/" render={() => <Redirect to="/login" />} />}
         <Route exact path="/" render={() => <Home />} />
         <Route path="/activities/new" render={() => <ActivityForm />} />
         <Route path="/activities/:id" render={({match}) => <ActivityForm id={match.params.id} />} />
@@ -81,4 +92,4 @@ export default function Router() {
       </Switch>
     </div>
   );
-}
+})

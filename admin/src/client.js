@@ -11,11 +11,19 @@ const client = new Client({
   // Default call options
   defaults: {
     type: 'GET',
-    dataType: 'json'
+    dataType: 'json',
+    xhrFields: {
+      withCredentials: true
+    }
   },
 
   // Services
   services: {
+    login: {
+      url: '/login',
+      type: 'POST',
+      dataType: 'text'
+    },
     list: '/:model/:model',
     get: '/:model/:model/:id',
     post: {

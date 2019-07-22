@@ -44,6 +44,7 @@
     "cron": "^1.7.1",
     "express": "^4.17.1",
     "express-fileupload": "^1.1.5",
+    "express-session": "^1.16.2",
     "fs-extra": "^8.0.1",
     "gatsby-cli": "^2.6.13",
     "json-server": "^0.15.0",

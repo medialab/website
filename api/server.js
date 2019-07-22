@@ -8,6 +8,7 @@ const express = require('express');
 const exec = require('child_process').exec;
 const jsonServer = require('json-server');
 const fileUpload = require('express-fileupload');
+const session = require('express-session');
 const uuid = require('uuid/v4');
 const rimraf = require('rimraf');
 const simpleGit = require('simple-git');
@@ -96,6 +97,13 @@ process.on('exit', () => gatsby.started && gatsby.kill());
 const app = jsonServer.create();
 const jsonServerMiddlewares = jsonServer.defaults();
 
+app.use(session({
+  resave: false,
+  secret: 'medialab',
+  saveUninitialized: false
+}));
+
+app.use(middlewares.authentication);
 app.use(jsonServerMiddlewares);
 app.use(jsonServer.bodyParser);
 app.use(fileUpload());

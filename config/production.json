@@ -15,5 +15,9 @@
     "accessTokenKey": "",
     "accessTokenSecret": ""
   },
-  "adminUrl": "http://localhost:7000"
+  "adminUrl": "http://localhost:7000",
+  "superuser": {
+    "username": "médialab",
+    "password": "delaballe"
+  },
 }

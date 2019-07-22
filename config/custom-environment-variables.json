@@ -14,5 +14,9 @@
     "accessTokenKey": "TWITTER_ACCESS_TOKEN_KEY",
     "accessTokenSecret": "TWITTER_ACCESS_TOKEN_SECRET"
   },
-  "adminUrl": "ADMIN_URL"
+  "adminUrl": "ADMIN_URL",
+  "superuser": {
+    "username": "SUPERUSER_USERNAME",
+    "password": "SUPERUSER_PASSWORD"
+  }
 }

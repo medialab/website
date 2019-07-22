@@ -97,15 +97,30 @@ process.on('exit', () => gatsby.started && gatsby.kill());
 const app = jsonServer.create();
 const jsonServerMiddlewares = jsonServer.defaults();
 
+app.use(jsonServerMiddlewares);
+app.use(jsonServer.bodyParser);
+
 app.use(session({
   resave: false,
   secret: 'medialab',
   saveUninitialized: false
 }));
 
+const SUPERUSER = config.get('superuser');
+
+// Login route
+app.post('/login', function(req, res) {
+  const {username, password} = req.body;
+
+  if (username === SUPERUSER.username && password === SUPERUSER.password) {
+    req.session.authenticated = true;
+    return res.status(200).send('OK');
+  }
+
+  return res.status(401).send('Unauthorized');
+});
+
 app.use(middlewares.authentication);
-app.use(jsonServerMiddlewares);
-app.use(jsonServer.bodyParser);
 app.use(fileUpload());
 app.use('/assets', express.static(ASSETS_PATH));
 

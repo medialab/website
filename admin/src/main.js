@@ -6,6 +6,7 @@ import {Provider} from 'react-redux';
 import {createHashHistory} from 'history';
 import {routerMiddleware, ConnectedRouter} from 'connected-react-router';
 
+import client from './client';
 import Application from './components/Application';
 import createRootReducer from './modules';
 
@@ -32,11 +33,11 @@ const STORE = createStore(
 window.STORE = STORE;
 
 // Function rendering the application
-function renderApplication(Component) {
+function renderApplication(Component, props) {
   const block = (
     <Provider store={STORE}>
       <ConnectedRouter history={history}>
-        <Component />
+        <Component {...props} />
       </ConnectedRouter>
     </Provider>
   );
@@ -45,7 +46,12 @@ function renderApplication(Component) {
 }
 
 // First render
-renderApplication(Application);
+let alreadyAuthenticated = false;
+
+client.isLogged((err, logged) => {
+  alreadyAuthenticated = logged;
+  renderApplication(Application, {alreadyAuthenticated});
+});
 
 // Handling HMR
 if (module.hot) {
@@ -53,7 +59,7 @@ if (module.hot) {
   // Reloading components
   module.hot.accept('./components/Application', () => {
     const NextApplication = require('./components/Application').default;
-    renderApplication(NextApplication);
+    renderApplication(NextApplication, {alreadyAuthenticated});
   });
 
   // Reloading reducers

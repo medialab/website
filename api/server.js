@@ -101,6 +101,9 @@ app.use(jsonServerMiddlewares);
 app.use(jsonServer.bodyParser);
 
 app.use(session({
+  cookie: {
+    httpOnly: false
+  },
   resave: false,
   secret: 'medialab',
   saveUninitialized: false
@@ -118,6 +121,10 @@ app.post('/login', function(req, res) {
   }
 
   return res.status(401).send('Unauthorized');
+});
+
+app.get('/is-logged', function(req, res) {
+  return res.json(!!(req.session && req.session.authenticated));
 });
 
 app.use(middlewares.authentication);

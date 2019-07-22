@@ -24,6 +24,9 @@ const client = new Client({
       type: 'POST',
       dataType: 'text'
     },
+    isLogged: {
+      url: '/is-logged'
+    },
     list: '/:model/:model',
     get: '/:model/:model/:id',
     post: {

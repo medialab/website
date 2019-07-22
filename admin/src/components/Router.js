@@ -17,9 +17,9 @@ import ProductionForm from './forms/ProductionForm';
 import NewsForm from './forms/NewsForm';
 import SettingsForm from './forms/SettingsForm';
 
-export default withRouter(function Router({history}) {
+export default withRouter(function Router({alreadyAuthenticated, history}) {
 
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState(alreadyAuthenticated);
 
   const authenticate = () => {
     setAuthenticated(true);

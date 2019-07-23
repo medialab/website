@@ -31,7 +31,7 @@ const {
 const MODELS = require('../specs/models.json');
 const spire = require('./spire.js');
 
-const config = require('./configWithSecrets.js');
+const config = require('config-secrets');
 
 // Constants
 const ARGV = require('yargs')

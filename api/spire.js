@@ -1,5 +1,5 @@
 /* eslint no-console: 0 */
-const config = require('./configWithSecrets.js'),
+const config = require('config-secrets'),
       Ajv = require('ajv'),
       async = require('async'),
       request = require('request'),
@@ -95,13 +95,13 @@ function translateRecord(record, spireAuthors) {
 module.exports.translateRecord = translateRecord;
 
 // finds Authors which should be attached to a people object
-// tries to resolve through firstname.name slug  
+// tries to resolve through firstname.name slug
 function missingLabAuthors(spireRecords, existingSpireAuthors) {
   // find authors and detect missing ones
   return _.keyBy(_.flatten(spireRecords.map(
     // only author (not organisators)
     r => r.creators.filter(c => (
-    // which were at that time affiliated to the lab 
+    // which were at that time affiliated to the lab
     c.affiliation && c.affiliation.rec_id === labIdSpire)
     // which is a person which is not registered as a spire authors in our data
     && c.agent && c.agent.rec_class === 'Person' && !existingSpireAuthors.includes(c.agent.rec_id))

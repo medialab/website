@@ -1,5 +1,5 @@
 const path = require('path');
-const config = require('../configWithSecrets.js');
+const config = require('config-secrets');
 const fs = require('fs-extra');
 const utils = require('../utils.js');
 

@@ -1,5 +1,5 @@
 const stableJson = require('json-stable-stringify'),
-      config = require('./configWithSecrets.js'),
+      config = require('config'),
       path = require('path'),
       fs = require('fs-extra');
 

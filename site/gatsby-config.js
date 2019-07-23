@@ -1,4 +1,5 @@
 const GOOGLE_ANALYTICS_ID = process.env.GOOGLE_ANALYTICS_ID;
+const NODE_ENV = process.env.NODE_ENV;
 
 const plugins = [
   'gatsby-plugin-sass',
@@ -16,7 +17,7 @@ const plugins = [
   'gatsby-plugin-sitemap'
 ];
 
-if (GOOGLE_ANALYTICS_ID)
+if (NODE_ENV === 'production' && GOOGLE_ANALYTICS_ID)
   plugins.push({
     resolve: 'gatsby-plugin-google-analytics',
     options: {

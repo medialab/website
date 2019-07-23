@@ -2,6 +2,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 const chokidar = require('chokidar');
+const shuffleInPlace = require('pandemonium/shuffle-in-place');
 const _ = require('lodash');
 
 const {
@@ -118,6 +119,9 @@ const MODEL_READERS = {
   people({actions: {createNode, deleteNode}, getNode, pathPrefix}) {
     const rawData = fs.readFileSync(MODELS_PATHS.people, 'utf-8');
     const data = JSON.parse(rawData);
+
+    // Shuffling people to randomize list order
+    shuffleInPlace(data.people);
 
     // People
     data.people.forEach(person => {

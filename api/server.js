@@ -23,6 +23,11 @@ const dump = require('./dump.js');
 const middlewares = require('./middlewares.js');
 const GatsbyProcess = require('./gatsby.js');
 
+const {
+  retrieveGithubFluxData,
+  retrieveTwitterFluxData
+} = require('./flux.js');
+
 const MODELS = require('../specs/models.json');
 const spire = require('./spire.js');
 
@@ -369,6 +374,36 @@ ws.on('connection', socket => {
   });
 });
 
+// Flux logic
+const PEOPLE_DB = ROUTERS.find(({model}) => model === 'people').router.db;
+
+function retrieveFluxData(callback) {
+
+  // Retrieving people data
+  PEOPLE_DB.read();
+
+  const people = PEOPLE_DB.getState().people;
+
+  return async.parallel({
+    github: next => {
+      return retrieveGithubFluxData(people, (err, data) => {
+        if (err)
+          return next(err);
+
+        fs.writeJson(path.join(DATA_PATH, 'github.json'), data, {spaces: 2}, next);
+      });
+    },
+    twitter: next => {
+      return retrieveTwitterFluxData((err, data) => {
+        if (err)
+          return next(err);
+
+        fs.writeJson(path.join(DATA_PATH, 'twitter.json'), data, {spaces: 2}, next);
+      });
+    }
+  }, callback);
+}
+
 // Build logic
 function buildStaticSite(callback) {
   console.log('Building site...');
@@ -385,7 +420,14 @@ function buildStaticSite(callback) {
       ], next);
     },
 
-    // 2) Building static site
+    // 2) Refreshing flux data
+    flux(next) {
+      changeBuildStatus('flux');
+
+      return retrieveFluxData(next);
+    },
+
+    // 3) Building static site
     building(next) {
       changeBuildStatus('building');
 

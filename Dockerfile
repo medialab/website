@@ -2,7 +2,7 @@ FROM node:10.12.0-alpine
 
 ENV NODE_ENV production
 
-RUN apk add --no-cache su-exec util-linux git
+RUN apk add --no-cache su-exec util-linux git rsync
 
 ARG STATIC_URL="http://localhost:8000"
 ENV GATSBY_WEBPACK_PUBLICPATH=${STATIC_URL}

@@ -392,6 +392,7 @@ function buildStaticSite(callback) {
       const env = Object.assign({}, process.env);
       env.BUILD_CONTEXT = 'prod';
       env.ROOT_PATH = path.resolve(__dirname, '..');
+      env.GOOGLE_ANALYTICS_ID = config.get('googleAnalyticsId');
 
       return exec('gatsby build', {cwd: SITE_PATH, env}, err => {
         changeBuildStatus('free');
@@ -406,11 +407,11 @@ function buildStaticSite(callback) {
 }
 
 // Building every 15 minutes
-const cron = new CronJob('*/15 * * * *', function() {
+function buildTask() {
 
   // We can't run several build at once!
   if (LOCKS.buildStatus !== 'free')
-    return;
+    return false;
 
   buildStaticSite(err => {
     if (err)
@@ -418,9 +419,23 @@ const cron = new CronJob('*/15 * * * *', function() {
     else
       console.log('Done building site.');
   });
-});
+
+  return true;
+}
+
+const cron = new CronJob('*/15 * * * *', buildTask);
 
 cron.start();
+
+app.get('/build', (req, res) => {
+  const willBuild = buildTask();
+
+  const payload = !willBuild ?
+    {result: 'Already building.'} :
+    {result: 'Ok'};
+
+  return res.json(payload);
+});
 
 // Listening
 console.log(`Listening on port ${PORT}...`);

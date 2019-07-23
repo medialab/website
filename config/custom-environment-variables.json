@@ -14,6 +14,7 @@
     "accessTokenKey": "TWITTER_ACCESS_TOKEN_KEY",
     "accessTokenSecret": "TWITTER_ACCESS_TOKEN_SECRET"
   },
+  "googleAnalyticsId": "GOOGLE_ANALYTICS_ID",
   "adminUrl": "ADMIN_URL",
   "superuser": {
     "username": "SUPERUSER_USERNAME",

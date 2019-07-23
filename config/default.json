@@ -15,6 +15,7 @@
     "accessTokenKey": "",
     "accessTokenSecret": ""
   },
+  "googleAnalyticsId": "UA-XXXXXXXX-Y",
   "adminUrl": "http://localhost:7000",
   "superuser": {
     "username": "médialab",

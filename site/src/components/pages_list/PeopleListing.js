@@ -9,6 +9,20 @@ import RawHtml from '../helpers/RawHtml';
 
 import Img from '../assets/images/sample/default-people.png';
 
+import PageMeta from '../helpers/PageMeta.js';
+
+const messagesMeta = {
+  title: {
+    fr: 'L\'équipe – médialab Sciences Po',
+    en: 'The team – médialab Sciences Po',
+  },
+  description: {
+    fr: 'Composée d’hommes et de femmes aux compétences complémentaires, l’équipe du médialab est plurielle. Membres ou associés au laboratoire, ces profils académiques, techniques, en design, ou encore en pédagogie se combinent et travaillent ensemble pour développer une recherche se nourrissant de cette diversité.',
+    en: 'The Médialab is a diverse research team, comprised of men and women with complementary skills. As members or partners of the laboratory, these academic, technical, design and teaching experts join forces and work together to develop research that draws on this diversity.'
+  }
+};
+
+
 export default function PeopleListing({lang, list}) {
   // console.log(lang, list);
 
@@ -48,6 +62,10 @@ export default function PeopleListing({lang, list}) {
 
 	return (
   <>
+  <PageMeta
+    title={messagesMeta.title[lang]}
+    description={messagesMeta.description[lang]}
+  />
   <main role="main" aria-describedby="aria-accroche">
     <FiltreEquipe lang={lang} />
     <section className="main-filters" />

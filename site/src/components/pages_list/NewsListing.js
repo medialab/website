@@ -11,6 +11,19 @@ import {format as formatDate, getYear, parseISO} from 'date-fns';
 
 import LanguageFallback from '../helpers/LanguageFallback.js';
 
+import PageMeta from '../helpers/PageMeta.js';
+
+const messagesMeta = {
+  title: {
+    fr: 'Actualités – médialab Sciences Po',
+    en: 'News – médialab Sciences Po',
+  },
+  description: {
+    fr: 'rendez-vous, chroniques et annonces du médialab',
+    en: 'events, posts and notices from the médialab'
+  }
+};
+
 const byYear = ([yearA], [yearB]) => yearB - yearA;
 
 export default function NewsListing({lang, list}) {
@@ -42,6 +55,10 @@ export default function NewsListing({lang, list}) {
   let nbNews = 0;
   return (
     <>
+    <PageMeta
+      title={messagesMeta.title[lang]}
+      description={messagesMeta.description[lang]}
+    />
     <main role="main" aria-describedby="aria-accroche">
       <FilterNews lang={lang} years={Array.from(yearGroups.keys()).sort(byYear)} />
       <section className="main-filters">

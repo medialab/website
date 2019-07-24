@@ -21,6 +21,7 @@ import ActuAssociees from './fragments/ActuAssociees.js';
 import MembresAssocies from './fragments/MembresAssocies.js';
 import FichiersAssocies from './fragments/FichiersAssocies.js';
 import LanguageFallback from '../helpers/LanguageFallback';
+import PageMeta from '../helpers/PageMeta.js';
 
 //import './scss/page_objet.scss';
 
@@ -141,7 +142,10 @@ export default function ActivityDetail({lang, activity}) {
 
   return (
     <main id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + activity.name : activity.name + "  page content" }>
-      
+      <PageMeta
+        title={`${activity.name} – médialab Sciences Po`}
+        description={activity.baseline && activity.baseline[lang]}
+      />
       <header id="titre-sticky" aria_hidden="true"> 
         <div id="container-titre-sticky">
           <div id="logo-sticky"><a href="/"><Logo /></a></div>

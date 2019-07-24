@@ -29,7 +29,7 @@ if (NODE_ENV === 'production' && GOOGLE_ANALYTICS_ID)
 
 module.exports = {
   siteMetadata: {
-    title: 'médialab website',
+    title: 'médialab Sciences Po',
     siteUrl: 'https://medialab.sciencespo.fr'
   },
   plugins,

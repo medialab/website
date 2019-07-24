@@ -19,6 +19,7 @@ import MembresAssocies from './fragments/MembresAssocies.js';
 import FichiersAssocies from './fragments/FichiersAssocies.js';
 
 import LanguageFallback from '../helpers/LanguageFallback';
+import PageMeta from '../helpers/PageMeta.js';
 
 export const queryFragment = graphql`
   fragment NewsDetail on NewsJson {
@@ -125,6 +126,10 @@ export default function NewsDetail({lang, news}) {
 
   return (
     <>
+      <PageMeta
+        title={`${news.title[lang]} – médialab Sciences Po`}
+        description={news.description && news.description[lang]}
+      />
       <main id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + news.title.fr : news.title.en + " page content" }>
 
       <header id="titre-sticky" aria-hidden="true">

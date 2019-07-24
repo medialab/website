@@ -16,6 +16,8 @@ import Nav from '../common/Nav.js';
 
 import RawHtml from '../helpers/RawHtml';
 import {templateMembership} from '../helpers/helpers.js';
+import PageMeta from '../helpers/PageMeta.js';
+
 //import './scss/page_personne.scss';
 
 import Img from '../assets/images/sample/default-people.png';
@@ -218,7 +220,10 @@ export default function PeopleDetail({lang, person}) {
 
   return (
     <>
-
+      <PageMeta
+        title={`${person.firstName} ${person.lastName} – médialab Sciences Po`}
+        description={person.status && person.status[lang]}
+      />
       <main id="main" role="main" aria-label={lang === "fr" ? "Présentation de " + person.firstName + person.lastName : person.firstName + person.lastName + "'s presentation" }>
 
       <input type="checkbox" id="toggle-nav" name="toggle-nav" value="toggle-nav" hidden />

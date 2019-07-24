@@ -8,6 +8,19 @@ import {format as formatDate, getYear, parseISO} from 'date-fns';
 
 import LanguageFallback from '../helpers/LanguageFallback.js';
 
+import PageMeta from '../helpers/PageMeta.js';
+
+const messagesMeta = {
+  title: {
+    fr: 'Productions – médialab Sciences Po',
+    en: 'Productions – médialab Sciences Po',
+  },
+  description: {
+    fr: 'Aux traditionnelles publications académiques s’ajoutent les “éditions web” qui projettent les activités du laboratoire dans un média interactif et ouvrent de nouveaux moyens de représentation et d’exploration visuelle des résultats. Les mises en situation -expositions, workshops, simulations, etc.- permettent d’engager des publics dans le processus de recherche et de confronter les hypothèses à la réalité du terrain.',
+    en: 'In addition to traditional academic publications, "Web publications" also disseminate the laboratory\'s activities through an interactive medium that opens up new ways of representing and visually exploring findings. Situations – exhibitions, workshops, simulations, etc. – allow for the public’s involvement in the research process and the testing of hypotheses against the reality on the ground'
+  }
+};
+
 
 const byYear = ([yearA], [yearB]) => yearB - yearA;
 

@@ -19,6 +19,8 @@ import MembresAssocies from './fragments/MembresAssocies.js';
 import FichiersAssocies from './fragments/FichiersAssocies.js';
 
 import LanguageFallback from '../helpers/LanguageFallback';
+import PageMeta from '../helpers/PageMeta.js';
+
 //import './scss/page_objet.scss';
 
 export const queryFragment = graphql`
@@ -143,6 +145,10 @@ export default function ProductionDetail({lang, production}) {
   };
   return (
     <>
+      <PageMeta
+        title={`${production.title && production.title[lang]}. ${production.authors} (${production.date}) – médialab Sciences Po`}
+        description={production.content && production.content[lang]}
+      />
       <main id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " : " page content" }>
 
       <header id="titre-sticky" aria-hidden="true">

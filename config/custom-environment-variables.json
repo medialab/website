@@ -4,6 +4,10 @@
     "path": "BUILD_FOLDER",
     "repository": "BUILD_REPO"
   },
+  "rsync": {
+    "target": "RSYNC_TARGET",
+    "password": "RSYNC_PASSWORD"
+  },
   "port": {
     "__name": "PORT",
     "__format": "json"

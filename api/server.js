@@ -436,14 +436,19 @@ function buildStaticSite(callback) {
       env.ROOT_PATH = path.resolve(__dirname, '..');
       env.GOOGLE_ANALYTICS_ID = config.get('googleAnalyticsId');
 
-      return exec('gatsby build', {cwd: SITE_PATH, env}, err => {
-        changeBuildStatus('free');
+      return exec('gatsby build', {cwd: SITE_PATH, env}, next);
+    },
 
-        if (err)
-          return next(err);
+    // 4) Deploying using rsync
+    rsync(next) {
+      changeBuildStatus('rsync');
 
+      const rsyncConfig = config.get('rsync');
+
+      if (!rsyncConfig.target || !rsyncConfig.password) {
+        console.log('Skipping rsync...');
         return next();
-      });
+      }
     }
   }, callback);
 }
@@ -456,6 +461,8 @@ function buildTask() {
     return false;
 
   buildStaticSite(err => {
+    changeBuildStatus('free');
+
     if (err)
       console.error(err);
     else

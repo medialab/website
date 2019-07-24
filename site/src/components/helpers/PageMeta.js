@@ -74,13 +74,13 @@ function PageMeta(props) {
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:creator" content="@medialab" />
-        <meta name="twitter:image" content={coverTwitter} />
+        <meta name="twitter:image" content={'https://medialab.sciencespo.fr' + coverTwitter} />
         {/* end meta twitter */}
 
         {/* META GOOGLE */}
         <meta itemProp="name" content={title} />
         <meta itemProp="description" content={description} />
-        <meta itemProp="image" content={coverFb} />
+        <meta itemProp="image" content={'https://medialab.sciencespo.fr' + coverFb} />
         {/* END META GOOGLE + */}
 
         {/* META OPEN GRAPH / FACEBOOK */}
@@ -88,7 +88,7 @@ function PageMeta(props) {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={uri ? uri : 'https://medialab.sciencespo.fr'} />
         <meta property="og:description" content={description} />
-        <meta property="og:image:url" content={coverFb} />
+        <meta property="og:image:url" content={'https://medialab.sciencespo.fr' + coverFb} />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content={2000} />
         <meta property="og:image:height" content={2000} />

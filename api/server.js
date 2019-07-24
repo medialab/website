@@ -449,6 +449,15 @@ function buildStaticSite(callback) {
         console.log('Skipping rsync...');
         return next();
       }
+
+      const built = path.join(SITE_PATH, 'public', '/');
+
+      const command = [
+        `RSYNC_PASSWORD=${rsyncConfig.password}`,
+        `rsync -az --del ${built} ${rsyncConfig.target}`
+      ].join(' ');
+
+      return exec(command, next);
     }
   }, callback);
 }

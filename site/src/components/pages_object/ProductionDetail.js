@@ -6,11 +6,10 @@ import {Link} from 'gatsby';
 
 import Nav from '../common/Nav.js';
 import ToggleLang from './fragments/ToggleLang.js';
-import {IsModel, productionTypeToSchemaURL} from '../helpers/helpers.js';
+import {IsModel, productionTypeToSchemaURL, productionTypeToZoteroType} from '../helpers/helpers.js';
 
 import Logo from '../assets/svg/logo_medialab.svg';
 import ProcessedImage from '../helpers/ProcessedImage.js';
-
 
 import ProductionsAssociees from './fragments/ProductionsAssociees.js';
 import ActivitesAssociees from './fragments/ActivitesAssociees.js';
@@ -111,7 +110,6 @@ export default function ProductionDetail({lang, production}) {
   }
 
   const LangBlock = ({production, lang}) => {
-
     let ref = (<p itemProp="description" className="production-ref">
       {production.description && <RawHtml html={production.description[lang]} />}
       {production.url && <br /> } {production.url ? production.url + ' ⤤' : ''}
@@ -148,16 +146,16 @@ export default function ProductionDetail({lang, production}) {
       <PageMeta
         title={`${production.title && production.title[lang]}. ${production.authors} (${production.date}) – médialab Sciences Po`}
         citationTitle={production.title && production.title[lang]}
+        zoteroType={productionTypeToZoteroType(production.type)}
         description={production.content && production.content[lang]}
         date={production.date}
-        author={production.authors}
+        author={production.authors.split(',')}
         lang={lang}
         type={production.type}
         uri={production.url}
         citation={production.description && production.description[lang]}
       />
       <main itemScope itemType={productionTypeToSchemaURL(production.type)} id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " : " page content" }>
-
       <header id="titre-sticky" aria-hidden="true">
         <div id="container-titre-sticky">
           <div id="logo-sticky"><a href="/"><Logo /></a></div>

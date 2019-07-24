@@ -26,6 +26,7 @@ function PageMeta(props) {
     const {
         title,
         citationTitle,
+        zoteroType,
         description,
         date,
         author,
@@ -40,9 +41,14 @@ function PageMeta(props) {
         <title>{title}</title>
 
         {/* REGULAR META */}
-        <meta name="author" content={author && author.length ? author : 'médialab Sciences Po'} />
+        <meta name="author" content={author ? author : 'médialab Sciences Po'} />
         <meta name="description" content={description} />
         {/* END REGULAR META */}
+        {/* ZOTERO META */}
+        {uri && <meta name="citation_public_url" content={uri}/>}
+        <meta name="z:itemType" content={zoteroType}></meta>
+        {citationTitle && <meta name="citation_title" content={citationTitle}/>}
+        {/* END ZOTERO META */}
 
         {/* META DUBLIN CORE */}
         <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
@@ -54,9 +60,12 @@ function PageMeta(props) {
         {uri && <meta name="DCTERMS.uri" lang={lang} content={uri} />}
         <meta name="DCTERMS.description" lang={lang} content={description} />
         {date && <meta name="DCTERMS.issued" scheme="DCTERMS.W3CDTF" content={date} />}
-        {author && <meta name="DCTERMS.creator" content={author} />}
+        {author && Array.isArray(author) ?
+            author.map((a, i) => <meta name="DCTERMS.creator" key={i} content={a} /> )
+        : <meta name="DCTERMS.creator" content={author} />
+        }
         {citation && <meta name="DCTERMS.bibliographicCitation" content={citation} />}
-        {type && typeToDublinCoreMapping[type] && <meta name="DCTERMS.type" content={typeToDublinCoreMapping[type]} />}
+        {type && !zoteroType && typeToDublinCoreMapping[type] && <meta name="DCTERMS.type" content={typeToDublinCoreMapping[type]} />}
         {/* END META DUBLIN CORE */}
 
         {/* META TWITTER */}

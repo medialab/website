@@ -314,3 +314,24 @@ export const productionTypeToSchemaURL = type => {
   }
   return mapping[type] || 'https://schema.org/CreativeWork';
 }
+
+
+export const productionTypeToZoteroType = type => {
+  const mapping = {
+      article: 'journalArticle',
+      book: 'book',
+      communication: 'presentation',
+      thesis: 'thesis',
+      grey: 'report',
+      datascape: 'webpage',
+      website: 'webpage',
+      software: 'computerProgram',
+      code: 'computerProgram',
+      exhibition: 'document',
+      simulation: 'document',
+      workshop: 'document',
+      conference: 'document',
+      media: 'newspaperArticle',
+  }
+  return mapping[type] || 'document';
+}

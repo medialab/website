@@ -30,6 +30,7 @@ export const queryFragment = graphql`
   fragment ActivityDetail on ActivitiesJson {
     name
     type
+    slugs
     baseline {
       en
       fr
@@ -138,8 +139,6 @@ export default function ActivityDetail({lang, activity}) {
       <ProcessedImage size="large" image={activity.coverImage.processed ? activity.coverImage.processed.large : null} />
     );
   }
-
-
   return (
     <main itemProp="member" itemScope itemType={activity.type === 'research' ? 'https://schema.org/ResearchProject': 'https://schema.org/Project'} id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + activity.name : activity.name + "  page content" }>
       <PageMeta
@@ -148,6 +147,37 @@ export default function ActivityDetail({lang, activity}) {
         lang={lang}
         date={activity.startDate}
       />
+      <ol style={{display: 'none'}} itemScope itemType="https://schema.org/BreadcrumbList">
+        <li itemProp="itemListElement" itemScope
+            itemType="https://schema.org/ListItem">
+          <a itemType="https://schema.org/Organization"
+            itemProp="item" href="https://medialab.sciencespo.fr">
+              <span itemProp="name">médialab Sciences Po</span></a>
+          <meta itemProp="position" content="1" />
+        </li>
+        <li itemProp="itemListElement" itemScope
+            itemType="https://schema.org/ListItem">
+          <a itemType="https://schema.org/Thing"
+            itemProp="item"
+            href="https://medialab.sciencespo.fr/activities"
+          >
+            <span itemProp="name">{lang === 'fr' ? 'Activités' : 'Activities'}</span></a>
+          <meta itemProp="position" content="2" />
+        </li>
+        <li itemProp="itemListElement" itemScope
+            itemType="https://schema.org/ListItem">
+          <a itemType="https://schema.org/Thing"
+            itemProp="item"
+            href={`https://medialab.sciencespo.fr/activities/${activity.slugs && activity.slugs[0]}`}
+          >
+            <span itemProp="name">
+                {activity.name}
+            </span>
+        </a>
+          <meta itemProp="position" content="3" />
+        </li>
+      </ol>
+
       <header id="titre-sticky" aria_hidden="true"> 
         <div id="container-titre-sticky">
           <div id="logo-sticky"><a href="/"><Logo /></a></div>

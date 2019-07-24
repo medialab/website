@@ -26,6 +26,7 @@ export const queryFragment = graphql`
   fragment PeopleDetail on PeopleJson {
     firstName
     lastName
+    slugs
     role {
       en
       fr
@@ -230,6 +231,35 @@ export default function PeopleDetail({lang, person}) {
         itemType="http://schema.org/Person"
         itemProp="member" 
         id="main" role="main" aria-label={lang === "fr" ? "Présentation de " + person.firstName + person.lastName : person.firstName + person.lastName + "'s presentation" }>
+      
+      <ol style={{display: 'none'}} itemScope itemType="https://schema.org/BreadcrumbList">
+        <li itemProp="itemListElement" itemScope
+            itemType="https://schema.org/ListItem">
+          <a itemType="https://schema.org/Organization"
+            itemProp="item" href="https://medialab.sciencespo.fr">
+              <span itemProp="name">médialab Sciences Po</span></a>
+          <meta itemProp="position" content="1" />
+        </li>
+        <li itemProp="itemListElement" itemScope
+            itemType="https://schema.org/ListItem">
+          <a itemType="https://schema.org/Thing"
+            href="https://medialab.sciencespo.fr/people"
+            itemProp="item">
+            <span itemProp="name">{lang === 'fr' ? `L'équipe` : 'The team'}</span></a>
+          <meta itemProp="position" content="2" />
+        </li>
+        <li itemProp="itemListElement" itemScope
+            itemType="https://schema.org/ListItem">
+          <a itemType="https://schema.org/Thing"
+            href={`https://medialab.sciencespo.fr/people/${person.slugs && person.slugs[0]}`}
+            itemProp="item">
+            <span itemProp="name">
+                {person.firstName} {person.lastName}
+            </span>
+        </a>
+          <meta itemProp="position" content="3" />
+        </li>
+      </ol>
 
       <input type="checkbox" id="toggle-nav" name="toggle-nav" value="toggle-nav" hidden />
       <label htmlFor="toggle-nav" id="toggle-nav_label" title={toggleNav} arial-label={toggleNav}><span><Icons icon='arrow' /></span></label>

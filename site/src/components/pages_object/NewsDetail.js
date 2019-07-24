@@ -110,6 +110,7 @@ export const queryFragment = graphql`
     startDate
     endDate
     place
+    slugs
   }
 `;
 
@@ -134,6 +135,36 @@ export default function NewsDetail({lang, news}) {
         lang={lang}
       />
       <main itemScope itemProp={news.type !== 'post' ? 'event': 'subjectOf'} itemType={news.type !== 'post' ? 'https://schema.org/Event' : 'https://schema.org/CreativeWork'} id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + news.title.fr : news.title.en + " page content" }>
+
+      <ol style={{display: 'none'}} itemScope itemType="https://schema.org/BreadcrumbList">
+        <li itemProp="itemListElement" itemScope
+            itemType="https://schema.org/ListItem">
+          <a itemType="https://schema.org/Organization"
+            itemProp="item" href="https://medialab.sciencespo.fr">
+              <span itemProp="name">médialab Sciences Po</span></a>
+          <meta itemProp="position" content="1" />
+        </li>
+        <li itemProp="itemListElement" itemScope
+            itemType="https://schema.org/ListItem">
+          <a itemType="https://schema.org/Thing"
+            href="https://medialab.sciencespo.fr/news"
+            href={`https://medialab.sciencespo.fr/news`}
+            itemProp="item">
+            <span itemProp="name">{lang === 'fr' ? 'Actualités' : 'News'}</span></a>
+          <meta itemProp="position" content="2" />
+        </li>
+        <li itemProp="itemListElement" itemScope
+            itemType="https://schema.org/ListItem">
+          <a itemType="https://schema.org/Thing"
+          href={`https://medialab.sciencespo.fr/news/${news.slugs && news.slugs[0]}`}
+            itemProp="item">
+            <span itemProp="name">
+                <LanguageFallback lang={lang} translatedAttribute={news.title} />
+            </span>
+        </a>
+          <meta itemProp="position" content="3" />
+        </li>
+      </ol>
 
       <header id="titre-sticky" aria-hidden="true">
         <div id="container-titre-sticky">

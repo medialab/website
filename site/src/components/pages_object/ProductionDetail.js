@@ -32,6 +32,7 @@ export const queryFragment = graphql`
     group
     type
     date
+    slugs
     description {
       en
       fr
@@ -156,6 +157,34 @@ export default function ProductionDetail({lang, production}) {
         citation={production.description && production.description[lang]}
       />
       <main itemScope itemType={productionTypeToSchemaURL(production.type)} id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " : " page content" }>
+      <ol style={{display: 'none'}} itemScope itemType="https://schema.org/BreadcrumbList">
+        <li itemProp="itemListElement" itemScope
+            itemType="https://schema.org/ListItem">
+          <a itemType="https://schema.org/Organization"
+            itemProp="item" href="https://medialab.sciencespo.fr">
+              <span itemProp="name">médialab Sciences Po</span></a>
+          <meta itemProp="position" content="1" />
+        </li>
+        <li itemProp="itemListElement" itemScope
+            itemType="https://schema.org/ListItem">
+          <a itemType="https://schema.org/Thing"
+            href="https://medialab.sciencespo.fr/productions"
+            itemProp="item">
+            <span itemProp="name">{'Productions'}</span></a>
+          <meta itemProp="position" content="2" />
+        </li>
+        <li itemProp="itemListElement" itemScope
+            itemType="https://schema.org/ListItem">
+          <a itemType="https://schema.org/Thing"
+            href={`https://medialab.sciencespo.fr/people/${production.slugs && production.slugs[0]}`}
+            itemProp="item">
+            <span itemProp="name">
+                <LanguageFallback lang={lang} translatedAttribute={production.title} />
+            </span>
+        </a>
+          <meta itemProp="position" content="3" />
+        </li>
+      </ol>
       <header id="titre-sticky" aria-hidden="true">
         <div id="container-titre-sticky">
           <div id="logo-sticky"><a href="/"><Logo /></a></div>

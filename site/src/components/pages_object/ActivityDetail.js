@@ -174,7 +174,7 @@ export default function ActivityDetail({lang, activity}) {
           </hgroup>
           <div className="details">
             <p className="type-objet"><span data-icon="activite"></span> {IsModel(activity.type, "fr")}</p>
-            <DateNews startDate={activity.startDate} endDate={activity.endDate} lang="fr" />
+            <DateNews isTimeSpan startDate={activity.startDate} endDate={activity.endDate} lang="fr" />
             <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
             <FichiersAssocies attachments={activity.attachments} lang="fr" />
           </div>
@@ -194,7 +194,7 @@ export default function ActivityDetail({lang, activity}) {
           </hgroup>
           <div className="details">
             <p className="type-objet"><span data-icon="activite"></span> {IsModel(activity.type, "en")}</p>
-            <DateNews startDate={activity.startDate} endDate={activity.endDate} lang="en" />
+            <DateNews isTimeSpan startDate={activity.startDate} endDate={activity.endDate} lang="en" />
             <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
             <FichiersAssocies attachments={activity.attachments} lang="en" />
           </div>

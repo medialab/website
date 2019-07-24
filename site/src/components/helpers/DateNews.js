@@ -56,6 +56,9 @@ function DateNews(props) {
   else {
     return (<p className="date-news" aria-label="date" >
       <time dateTime={formatDate(startDate, 'yyyy-MM-d')}>
+        <span>
+          {props.isTimeSpan && (lang === 'fr' ? 'depuis ' : 'since ')}
+        </span>
         <span className="startDate">
           {showStarDateDay && <span className="day-name">{startDateDayName} </span>}
           {showStarDateDay && <span className="day-num">{startDateDay } </span>}

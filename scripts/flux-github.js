@@ -1,4 +1,4 @@
-const config = require('config');
+const config = require('config-secrets');
 const path = require('path');
 const fs = require('fs');
 const {retrieveGithubFluxData} = require('../api/flux.js');

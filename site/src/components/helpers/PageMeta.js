@@ -1,22 +1,25 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
+import coverFb from '../assets/images/cover-fb.png';
+import coverTwitter from '../assets/images/cover-twitter.png';
+
 const typeToDublinCoreMapping = {
-  "article": 'Text',
-  "book" : 'Text',
-  "communication": 'Text',
-  "thesis": 'Text',
-  "grey": 'Text',
-  "datascape": 'InteractiveResource',
-  "website": 'InteractiveResource',
-  "software": 'Software',
-  "code": 'Software',
-  "exhibition": '',
-  "simulation": 'Event',
-  "workshop" : 'Event',
-  "conference": 'Event',
-  "media": 'Event',
-}
+  article: 'Text',
+  book: 'Text',
+  'communication': 'Text',
+  'thesis': 'Text',
+  'grey': 'Text',
+  'datascape': 'InteractiveResource',
+  'website': 'InteractiveResource',
+  software: 'Software',
+  code: 'Software',
+  exhibition: '',
+  simulation: 'Event',
+  'workshop': 'Event',
+  'conference': 'Event',
+  media: 'Event',
+};
 
 function PageMeta(props) {
 
@@ -38,7 +41,7 @@ function PageMeta(props) {
         <title>{title}</title>
 
         {/* REGULAR META */}
-        <meta name="author" content={author && author.length ? author : "médialab Sciences Po"} />
+        <meta name="author" content={author && author.length ? author : 'médialab Sciences Po'} />
         <meta name="description" content={description} />
         {/* END REGULAR META */}
 
@@ -63,20 +66,24 @@ function PageMeta(props) {
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:creator" content="@medialab" />
-        {/* <meta name="twitter:image" content={imageUrl}> */}
+        <meta name="twitter:image" content={coverTwitter}>
         {/* end meta twitter */}
 
         {/* META GOOGLE */}
         <meta itemProp="name" content={title} />
         <meta itemProp="description" content={description} />
-        {/* <meta itemprop="image" content={imageUrl}> */}
+        <meta itemprop="image" content={coverFb}>
         {/* END META GOOGLE + */}
 
         {/* META OPEN GRAPH / FACEBOOK */}
         <meta property="og:title" content={title} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={uri ? uri : "https://medialab.sciencespo.fr"}/>
+        <meta property="og:url" content={uri ? uri : 'https://medialab.sciencespo.fr'} />
         <meta property="og:description" content={description} />
+        <meta property="og:image:url" content={coverFb} />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content={2000} />
+        <meta property="og:image:height" content={2000} />
         {/* END META OPEN GRAPH / FACEBOOK*/}
       </Helmet>
     );

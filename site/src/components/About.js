@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'gatsby';
 
 import Nav from './common/Nav.js';
+import PageMeta from './helpers/PageMeta.js';
 
 import RawHtml from './helpers/RawHtml';
 
@@ -11,6 +12,9 @@ export default function About({lang}) {
     // ***************************    french VERSION
     return (
       <>
+        <PageMeta
+          description={'Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d\'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et sociales.'}
+        />
         <main id="main" aria-labelledby="page-title" role="main">
         <nav className="main-nav" id="nav-inside-article" role="navigation">
           <ul>
@@ -68,7 +72,11 @@ export default function About({lang}) {
   else
     // ***************************    ENGLISH VERSION
     return (
-      <>        <main id="main" aria-labelledby="page-title" role="main">
+      <>        
+      <main id="main" aria-labelledby="page-title" role="main">
+      <PageMeta
+          description={'The Médialab, an interdisciplinary research laboratory comprised of sociologists, engineers and designers, conducts thematic and methodological research to investigate the role of digital technology in our societies'}
+        />
         <nav className="main-nav" id="nav-inside-article" role="navigation">
           <ul>
             <li className="nav-inside-item" data-type="main"><a href="#main" title="Aller à la section" > Go to the Top</a></li>

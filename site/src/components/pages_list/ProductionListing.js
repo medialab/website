@@ -53,6 +53,10 @@ export default function ProductionListing({lang, list, group, types}) {
 
     return (
       <>
+      <PageMeta
+        title={messagesMeta.title[lang]}
+        description={messagesMeta.description[lang]}
+      />
       <main role="main" aria-describedby="aria-accroche">
         <FilterProduction lang={lang} group={group} types={types} />
         <section className="main-filters">

@@ -50,7 +50,7 @@ function PageMeta(props) {
         {/* META OPEN GRAPH / FACEBOOK */}
         <meta property="og:title" content={title} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={'https://medialab.sciencespo.fr'}/>
+        <meta property="og:url" content="https://medialab.sciencespo.fr"/>
         <meta property="og:description" content={description} />
         {/* END META OPEN GRAPH / FACEBOOK*/}
       </Helmet>

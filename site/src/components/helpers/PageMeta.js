@@ -32,7 +32,6 @@ function PageMeta(props) {
         lang = 'fr',
         citation,
         type,
-        url,
         uri,
     } = props;
 

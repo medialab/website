@@ -28,7 +28,7 @@ const Layout = ({children, lang, className, permalinks}) => {
             title={data.site.siteMetadata.title}>
             <html lang={lang} />
           </Helmet>
-          <div className={className}>
+          <div itemScope itemType="https://schema.org/Organization" className={className}>
             <TopBar lang={lang} permalinks={permalinks} />
             {children}
             <Footer lang={lang} />

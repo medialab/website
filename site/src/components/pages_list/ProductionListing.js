@@ -4,6 +4,7 @@ import {Link} from 'gatsby';
 import FilterProduction from './fragments/FilterProduction.js';
 import DateNews from '../helpers/DateNews.js';
 import RawHTML from '../helpers/RawHtml.js';
+import {productionTypeToSchemaURL} from '../helpers/helpers.js';
 import {format as formatDate, getYear, parseISO} from 'date-fns';
 
 import LanguageFallback from '../helpers/LanguageFallback.js';
@@ -75,21 +76,21 @@ export default function ProductionListing({lang, list, group, types}) {
 
                 {yearList.map((p, i) => (
                   <React.Fragment key={i}>
-                    <li data-item={nbItem} data-type={p.type} className={`list-item ${p.type}`}>
+                    <li itemScope itemType={productionTypeToSchemaURL(p.type)} data-item={nbItem} data-type={p.type} className={`list-item ${p.type}`}>
                       <Link to={p.permalink[lang]}>
                         <div className="bandeau">
                           <p className="type-production" data-icon="production"> {p.groupLabel[lang]}</p>
                           <p className="subtype-production">{p.typeLabel !== 'media' && <span>{p.typeLabel[lang]}</span>}</p>
-                          <DateNews startDate={p.date} lang={lang} />
+                          <DateNews  startDateSchemaProp={'datePublished'} startDate={p.date} lang={lang} />
                           {/* the p surrounding the date used before DateNews integration className="date-production" */}
                         </div>
                         <hgroup>
-                          <h1 data-level-1="title" >
+                          <h1 itemProp="name" data-level-1="title" >
                             <LanguageFallback lang={lang} translatedAttribute={p.title} />
                           </h1>
                         </hgroup>
                         <div className="authors">
-                          {p.authors && <p className="authors-paragraphe" dangerouslySetInnerHTML={{__html:p.authors.replace(/([^,$]+)(,)?( )?/g, '<nobr>$1$2</nobr>$3')}} />}
+                          {p.authors && <p itemProp="author" className="authors-paragraphe" dangerouslySetInnerHTML={{__html:p.authors.replace(/([^,$]+)(,)?( )?/g, '<nobr>$1$2</nobr>$3')}} />}
                           <p className="print publication-ref" dangerouslySetInnerHTML={{__html: p.description && (p.description[lang] || p.description[(lang === 'fr' ? 'en' : 'fr')])}} />
                         </div>
                       </Link>

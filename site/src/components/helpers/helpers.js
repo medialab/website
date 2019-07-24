@@ -293,3 +293,24 @@ export function IsModel (item, lang) {
   }
    return type;
 }
+
+
+export const productionTypeToSchemaURL = type => {
+  const mapping = {
+      article: 'https://schema.org/Article',
+      book: 'https://schema.org/Book',
+      communication: 'https://schema.org/CreativeWork',
+      thesis: 'https://schema.org/Thesis',
+      grey: 'https://schema.org/CreativeWork',
+      datascape: 'https://schema.org/WebSite',
+      website: 'https://schema.org/WebSite',
+      software: 'https://schema.org/SoftwareApplication',
+      code: 'https://schema.org/SoftwareSourceCode',
+      exhibition: 'https://schema.org/ExhibitionEvent',
+      simulation: 'https://schema.org/TheaterEvent',
+      workshop: 'https://schema.org/Event',
+      conference: 'https://schema.org/Event',
+      media: 'https://schema.org/CreativeWork',
+  }
+  return mapping[type] || 'https://schema.org/CreativeWork';
+}

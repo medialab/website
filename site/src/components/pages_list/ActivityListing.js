@@ -38,14 +38,14 @@ export default function ActivityListing({lang, list, status, statuses, topActivi
 
               {activities.map((a, index) => (
                 <React.Fragment key={index}>
-                  <li data-type={a.type} className={`list-item ${a.type}-${a.active ? 'active' : 'past'}`}>
+                  <li itemScope itemProp="member" itemType={a.type === 'research' ? 'https://schema.org/ResearchProject': 'https://schema.org/Project'} data-type={a.type} className={`list-item ${a.type}-${a.active ? 'active' : 'past'}`}>
                     <Link to={a.permalink[lang]}>
                       <div className="image-pre" aria-hidden="true">
                         <ProcessedImage size="medium" image={a.coverImage && a.coverImage.processed.medium} />
                       </div>
                       <div className="bandeau">
                         <p data-icon="activite" className="type-activity">{IsModel(a.type, lang)}</p>
-                        <p className="title" data-level-2="title">{a.name}</p>
+                        <p className="title" itemProp="name" data-level-2="title">{a.name}</p>
                       </div>
                       <hgroup>
                         <h1 data-level-1="baseline" >

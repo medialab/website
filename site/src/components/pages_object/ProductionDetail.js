@@ -6,7 +6,7 @@ import {Link} from 'gatsby';
 
 import Nav from '../common/Nav.js';
 import ToggleLang from './fragments/ToggleLang.js';
-import {IsModel} from '../helpers/helpers.js';
+import {IsModel, productionTypeToSchemaURL} from '../helpers/helpers.js';
 
 import Logo from '../assets/svg/logo_medialab.svg';
 import ProcessedImage from '../helpers/ProcessedImage.js';
@@ -112,13 +112,13 @@ export default function ProductionDetail({lang, production}) {
 
   const LangBlock = ({production, lang}) => {
 
-    let ref = (<p className="production-ref">
+    let ref = (<p itemProp="description" className="production-ref">
       {production.description && <RawHtml html={production.description[lang]} />}
       {production.url && <br /> } {production.url ? production.url + ' ⤤' : ''}
     </p>);
 
     if (production.url) {
-      ref = <a href={production.url} target="_blank" rel="noopener noreferrer">{ref}</a>;
+      ref = <a itemProp="url" href={production.url} target="_blank" rel="noopener noreferrer">{ref}</a>;
     }
   
     return (<div className={`block-lang ${lang}`} lang={lang}>
@@ -130,7 +130,7 @@ export default function ProductionDetail({lang, production}) {
         <p className="type-objet">
           <span data-icon="production"></span> {IsModel(production.group, lang)} – {IsModel(production.type, lang)}
         </p>
-        <DateNews startDate={production.date} lang={lang} />
+        <DateNews startDateSchemaProp="datePublished" startDate={production.date} lang={lang} />
         {ref}
         { 
           // so far we don't have attachments on production also we planned to have some... I think...
@@ -156,7 +156,7 @@ export default function ProductionDetail({lang, production}) {
         uri={production.url}
         citation={production.description && production.description[lang]}
       />
-      <main id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " : " page content" }>
+      <main itemScope itemType={productionTypeToSchemaURL(production.type)} id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " : " page content" }>
 
       <header id="titre-sticky" aria-hidden="true">
         <div id="container-titre-sticky">
@@ -165,7 +165,7 @@ export default function ProductionDetail({lang, production}) {
             <Link to="/productions">
               <span data-icon="production">Productions</span>
             </Link>
-              <span className="title">
+              <span itemProp="name" className="title">
                 <a href="#topbar">
                   <LanguageFallback lang={lang} translatedAttribute={production.title} />
                 </a>
@@ -191,7 +191,7 @@ export default function ProductionDetail({lang, production}) {
         </article>
 
         <aside id="all-aside">
-          <MembresAssocies people={production.people} lang={lang} />
+          <MembresAssocies people={production.people} schemaRelationProp="author" lang={lang} />
           <ActivitesAssociees activities={production.activities} lang={lang} />
           <ProductionsAssociees productions={production.productions} lang={lang} />
           <ActuAssociees actu={production.news} lang={lang} />

@@ -141,7 +141,7 @@ export default function ActivityDetail({lang, activity}) {
 
 
   return (
-    <main id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + activity.name : activity.name + "  page content" }>
+    <main itemProp="member" itemScope itemType={activity.type === 'research' ? 'https://schema.org/ResearchProject': 'https://schema.org/Project'} id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + activity.name : activity.name + "  page content" }>
       <PageMeta
         title={`${activity.name} – médialab Sciences Po`}
         description={activity.baseline && activity.baseline[lang]}
@@ -174,13 +174,13 @@ export default function ActivityDetail({lang, activity}) {
         {/* FR */}
         <div className="block-lang fr" lang="fr">
           <hgroup>
-            <h1  data-level-2="title">{activity.name}</h1>
+            <h1  data-level-2="title" itemProp="name">{activity.name}</h1>
             <h2  data-level-2="baseline">{activity.baseline && <LanguageFallback lang={lang} translatedAttribute={activity.baseline} />}</h2>
-            <h3  data-level-3="description"><RawHtml html={activity.description && activity.description.fr} /></h3>
+            <h3  data-level-3="description" itemProp="description"><RawHtml html={activity.description && activity.description.fr} /></h3>
           </hgroup>
           <div className="details">
             <p className="type-objet"><span data-icon="activite"></span> {IsModel(activity.type, "fr")}</p>
-            <DateNews isTimeSpan startDate={activity.startDate} endDate={activity.endDate} lang="fr" />
+            <DateNews isTimeSpan startDateSchemaProp={'foundingDate'}  endDateSchemaProp={'dissolutionDate'} startDate={activity.startDate} endDate={activity.endDate} lang="fr" />
             <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
             <FichiersAssocies attachments={activity.attachments} lang="fr" />
           </div>
@@ -211,7 +211,7 @@ export default function ActivityDetail({lang, activity}) {
 
       </article>
       <aside id="all-aside">
-        <MembresAssocies people={activity.people} lang={lang} />
+        <MembresAssocies people={activity.people} schemaRelationProp="member" lang={lang} />
         <ActivitesAssociees activities={activity.activities} lang={lang} />
         <ProductionsAssociees productions={activity.productions} lang={lang} />
         <ActuAssociees actu={activity.news} lang={lang} />

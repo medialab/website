@@ -75,7 +75,7 @@ export default function NewsListing({lang, list}) {
               </li>
               {yearNews.map((news, i) => (
                 <React.Fragment key={i}>
-                  <li data-item={nbNews} data-type={news.type} className={`list-item ${news.type}`}>
+                  <li itemScope itemProp={news.type !== 'post' ? 'event': 'subjectOf'} itemType={news.type !== 'post' ? 'https://schema.org/Event' : 'https://schema.org/CreativeWork'} data-item={nbNews} data-type={news.type} className={`list-item ${news.type}`}>
                     <Link to={news.permalink[lang]}>
 
                     <div className="image-pre" aria-hidden="true">
@@ -93,12 +93,12 @@ export default function NewsListing({lang, list}) {
                         </div>
                     </div>
                     <hgroup>
-                      <h1 data-level-1="baseline" >
+                      <h1 itemProp="name" data-level-1="baseline" >
                         <LanguageFallback lang={lang} translatedAttribute={news.title} />
                       </h1>
                     </hgroup>
                     <div className="accroche">
-                      <p className="accroche-paragraphe">
+                      <p itemProp="description" className="accroche-paragraphe">
                         <LanguageFallback lang={lang} translatedAttribute={news.description} />
                       </p>
                     </div>

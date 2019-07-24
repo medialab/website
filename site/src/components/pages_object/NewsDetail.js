@@ -131,7 +131,7 @@ export default function NewsDetail({lang, news}) {
         description={news.description && news.description[lang]}
         lang={lang}
       />
-      <main id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + news.title.fr : news.title.en + " page content" }>
+      <main itemScope itemProp={news.type !== 'post' ? 'event': 'subjectOf'} itemType={news.type !== 'post' ? 'https://schema.org/Event' : 'https://schema.org/CreativeWork'} id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + news.title.fr : news.title.en + " page content" }>
 
       <header id="titre-sticky" aria-hidden="true">
         <div id="container-titre-sticky">
@@ -204,7 +204,7 @@ export default function NewsDetail({lang, news}) {
         </article>
 
         <aside id="all-aside">
-          <MembresAssocies people={news.people} lang={lang} />
+          <MembresAssocies schemaRelationProp={news.type === 'post' ? 'author': 'organizer'} people={news.people} lang={lang} />
           <ActivitesAssociees activities={news.activities} lang={lang} />
           <ProductionsAssociees productions={news.productions} lang={lang} />
         </aside>

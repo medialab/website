@@ -31,6 +31,9 @@ export default function PeopleListing({lang, list}) {
   const peopleFragment = (p) => (
     <React.Fragment key={p.permalink.fr}>
       <li
+        itemScope 
+        itemType="http://schema.org/Person"
+        itemProp="member"
         data-item={p.id} data-domain={p.domain}
         data-active={p.active ? 'yes' : 'no'} data-member={p.membership === 'member' ? 'yes' : 'no'}
         className={(p.active ? 'active' : 'past') + "-" + (p.membership === 'member' ? 'member' : 'associate') + "-" + p.domain}>
@@ -45,13 +48,13 @@ export default function PeopleListing({lang, list}) {
 
           <div className="description">
             <hgroup>
-              <h1 data-level-1="name">{p.firstName} {p.lastName}</h1>
-              <p className={`status ${lang}`}>
+              <h1 data-level-1="name"><span itemProp="givenName">{p.firstName}</span> <span itemProp="familyName">{p.lastName}</span></h1>
+              <p itemProp="description" className={`status ${lang}`}>
                 <LanguageFallback lang={lang} translatedAttribute={p.status} />
               </p>
             </hgroup>
             <div className="details">
-              <p className="role">{lang === 'fr' ? p.role && p.role.fr : p.role && p.role.en}</p>
+              <p itemProp="hasOccupation" className="role">{lang === 'fr' ? p.role && p.role.fr : p.role && p.role.en}</p>
               <p className="details-statut">{p.membership === 'member' ? 'Membre' : 'Associé'}</p>
               <p className="domaine">{IsModel(p.domain, lang)}</p>
             </div>

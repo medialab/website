@@ -67,9 +67,10 @@ const TopBar = ({permalinks, lang}) => {
       <div id="topbar-content">
         <div id="logo-medialab">
           <Link to="/"
-            id="back_button" title={lang === 'fr' ? "Retour à l'acceuil" : 'Back to Homepage'}
-            aria-label={lang === 'fr' ? "Retour à l'acceuil" : 'Back to Homepage'}>
+            id="back_button" title={lang === 'fr' ? "Retour à l'accueil" : 'Back to Homepage'}
+            aria-label={lang === 'fr' ? "Retour à l'accueil" : 'Back to Homepage'}>
             <Logo />
+            <span itemProp="name" style={{display: 'none'}}>médialab Sciences Po</span>
           </Link>
         </div>
 
@@ -112,7 +113,7 @@ const TopBar = ({permalinks, lang}) => {
           <p><Link activeClassName="active" to={permalinks.fr} aria-label={lang === "fr" ? "Contenu en langue française" : "French version content" }>FR</Link><span> | </span><Link activeClassName="active" to={permalinks.en} aria-label={lang === "fr" ? "Contenu en langue anglaise" : "English version content" }>EN</Link></p>
         </div>
       </div>
-      <div className="print"><p>medialab.sciencespo.fr</p></div>
+      <div className="print"><p itemProp="url">medialab.sciencespo.fr</p></div>
     </header>
   );
 };

@@ -148,6 +148,10 @@ export default function ProductionDetail({lang, production}) {
       <PageMeta
         title={`${production.title && production.title[lang]}. ${production.authors} (${production.date}) – médialab Sciences Po`}
         description={production.content && production.content[lang]}
+        date={production.date}
+        author={production.authors}
+        lang={lang}
+        citation={production.description && production.description[lang]}
       />
       <main id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " : " page content" }>
 

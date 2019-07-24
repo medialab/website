@@ -145,6 +145,8 @@ export default function ActivityDetail({lang, activity}) {
       <PageMeta
         title={`${activity.name} – médialab Sciences Po`}
         description={activity.baseline && activity.baseline[lang]}
+        lang={lang}
+        date={activity.startDate}
       />
       <header id="titre-sticky" aria_hidden="true"> 
         <div id="container-titre-sticky">

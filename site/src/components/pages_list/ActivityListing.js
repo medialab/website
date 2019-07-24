@@ -27,6 +27,7 @@ export default function ActivityListing({lang, list, status, statuses, topActivi
         <PageMeta
           title={messagesMeta.title[lang]}
           description={messagesMeta.description[lang]}
+          lang={lang}
         />
         <main role="main" aria-describedby="aria-accroche">
           <FilterActivity lang={lang} status={status} statuses={statuses} />

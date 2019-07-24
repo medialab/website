@@ -223,6 +223,7 @@ export default function PeopleDetail({lang, person}) {
       <PageMeta
         title={`${person.firstName} ${person.lastName} – médialab Sciences Po`}
         description={person.status && person.status[lang]}
+        lang={lang}
       />
       <main id="main" role="main" aria-label={lang === "fr" ? "Présentation de " + person.firstName + person.lastName : person.firstName + person.lastName + "'s presentation" }>
 

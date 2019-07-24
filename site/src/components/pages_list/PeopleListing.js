@@ -65,6 +65,7 @@ export default function PeopleListing({lang, list}) {
   <PageMeta
     title={messagesMeta.title[lang]}
     description={messagesMeta.description[lang]}
+    lang={lang}
   />
   <main role="main" aria-describedby="aria-accroche">
     <FiltreEquipe lang={lang} />

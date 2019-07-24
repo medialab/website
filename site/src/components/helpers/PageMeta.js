@@ -5,7 +5,11 @@ function PageMeta(props) {
 
     const {
         title,
-        description
+        description,
+        date,
+        author,
+        lang = 'fr',
+        citation,
     } = props;
 
     return (
@@ -13,12 +17,19 @@ function PageMeta(props) {
         <title>{title}</title>
 
         {/* REGULAR META */}
-        <meta name="author" content="médialab Sciences Po" />
+        <meta name="author" content={author && author.length ? author : "médialab Sciences Po"} />
         <meta name="description" content={description} />
         {/* END REGULAR META */}
 
         {/* META DUBLIN CORE */}
-        <meta name="DC.Title" lang="fr" content={title} />
+        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
+        <meta name="DC.format" scheme="DCTERMS.IMT" content="text/html" />
+        <meta name="DC.Title" lang={lang} content={title} />
+        {date && <meta name="DC.date" content={date} />}
+        {date && <meta name="DCTERMS.issued" scheme="DCTERMS.W3CDTF" content={date} />}
+        {author && <meta name="DCTERMS.creator" content={author} />}
+        {citation && <meta name="DCTERMS.bibliographicCitation" content={citation} />}
         {/* END META DUBLIN CORE */}
 
         {/* META TWITTER */}
@@ -39,7 +50,7 @@ function PageMeta(props) {
         {/* META OPEN GRAPH / FACEBOOK */}
         <meta property="og:title" content={title} />
         <meta property="og:type" content="website" />
-        {/*<meta property="og:url" content={url}/> */}
+        <meta property="og:url" content={'https://medialab.sciencespo.fr'}/>
         <meta property="og:description" content={description} />
         {/* END META OPEN GRAPH / FACEBOOK*/}
       </Helmet>

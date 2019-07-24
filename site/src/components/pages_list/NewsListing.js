@@ -58,6 +58,7 @@ export default function NewsListing({lang, list}) {
     <PageMeta
       title={messagesMeta.title[lang]}
       description={messagesMeta.description[lang]}
+      lang={lang}
     />
     <main role="main" aria-describedby="aria-accroche">
       <FilterNews lang={lang} years={Array.from(yearGroups.keys()).sort(byYear)} />

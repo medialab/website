@@ -129,6 +129,7 @@ export default function NewsDetail({lang, news}) {
       <PageMeta
         title={`${news.title[lang]} – médialab Sciences Po`}
         description={news.description && news.description[lang]}
+        lang={lang}
       />
       <main id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + news.title.fr : news.title.en + " page content" }>
 

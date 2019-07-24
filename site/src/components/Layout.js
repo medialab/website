@@ -18,6 +18,7 @@ const Layout = ({children, lang, className, permalinks}) => {
           site {
             siteMetadata {
               title
+              siteUrl
             }
           }
         }
@@ -29,6 +30,7 @@ const Layout = ({children, lang, className, permalinks}) => {
             <html lang={lang} />
           </Helmet>
           <div itemScope itemType="https://schema.org/Organization" className={className}>
+            <link itemProp="url" href={data.site.siteMetadata.siteUrl}/>
             <TopBar lang={lang} permalinks={permalinks} />
             {children}
             <Footer lang={lang} />

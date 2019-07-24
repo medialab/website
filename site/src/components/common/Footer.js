@@ -18,9 +18,9 @@ const Footer = ({lang}) => {
         <p><Link to={`${relLang}/legal`} aria-label={ lang ==='fr' ? "Liens vers les mentions légales" : "Link to legal notice"}>Mentions legales</Link></p>
       </div>
         <ul className="contact">
-          <li><a href="mailto:contact@medialab.sciencespo.fr" aria-label={ lang === 'fr' ? "Ecrire au médialab" : "Write to médialab"} target="_blank" rel="noopener" >Mail</a></li>
-          <li><a href="https://twitter.com/medialab_scpo" aria-label={ lang === 'fr' ? "Lien vers le compte Twitter du médialab" : "Link to médialab's Twitter"} target="_blank" rel="noopener" >Twitter</a></li>
-          <li><a href="https://github.com/medialab" aria-label={ lang === 'fr' ? "Lien vers le Github du médialab" : "Link to médialab's Github"} target="_blank" rel="noopener" >Github</a></li>
+          <li><a itemProp="email" href="mailto:contact@medialab.sciencespo.fr" aria-label={ lang === 'fr' ? "Ecrire au médialab" : "Write to médialab"} target="_blank" rel="noopener" >Mail</a></li>
+          <li><a itemProp="sameAs" href="https://twitter.com/medialab_scpo" aria-label={ lang === 'fr' ? "Lien vers le compte Twitter du médialab" : "Link to médialab's Twitter"} target="_blank" rel="noopener" >Twitter</a></li>
+          <li><a itemProp="sameAs" href="https://github.com/medialab" aria-label={ lang === 'fr' ? "Lien vers le Github du médialab" : "Link to médialab's Github"} target="_blank" rel="noopener" >Github</a></li>
         </ul>
     </div>
   </footer>

@@ -14,6 +14,7 @@ const TopBar = ({permalinks, lang}) => {
   let activite = null;
   let medialab = null;
   let team = null;
+  let seminar = null;
   let tool = null;
   let archive = null;
 
@@ -26,6 +27,7 @@ const TopBar = ({permalinks, lang}) => {
     activite = 'Activités';
     medialab = 'Le médialab';
     team = "L'équipe";
+    seminar = "Le séminaire";
     tool = 'Outils';
     archive = 'Archives';
   }
@@ -38,6 +40,7 @@ const TopBar = ({permalinks, lang}) => {
     activite = 'Activities';
     medialab = 'The medialab';
     team = 'The team';
+    seminar = "The seminar";
     tool = 'Tools';
     archive = 'Archives';
 
@@ -96,6 +99,7 @@ const TopBar = ({permalinks, lang}) => {
           <ul id="nav-institution">
             <li><Link to={`${relLang}/about`} aria-label={lang === 'fr' ? "Aller à la page de présentation du médialab" : "Go to médialab presentation page" }>{medialab}</Link></li>
             <li><Link to={`${relLang}/people`} aria-label={lang === 'fr' ? "Découvrir les membres du médialab" : "Discover médialab members " }>{team}</Link></li>
+            <li><Link to={`${relLang}/activities/seminaire-du-medialab`} aria-label={lang === 'fr' ? "Assister à notre séminaire" : "Join us for our seminar" }>{seminar}</Link></li>
           </ul>
           <ul id="nav-archive">
             {/*<li><Link to={`${relLang}/outils`}>{tool}</Link></li>*/}

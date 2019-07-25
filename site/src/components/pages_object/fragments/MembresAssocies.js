@@ -49,7 +49,7 @@ const MembresAssocies = ({lang, people, schemaRelationProp = 'member'}) => {
                     <h1><span itemProp="givenName">{p.firstName}</span> <span itemProp="familyName">{p.lastName}</span></h1>
                   </hgroup>
                   <div className="details">
-                    <p itemProp="hasOccupation" className="role" data-level-2="role" data-type="role">{p.role && (p.role[lang] || p.role.fr || p.role.en)}</p>              
+                    <p className="role" data-level-2="role" data-type="role">{p.role && (p.role[lang] || p.role.fr || p.role.en)}</p>              
                   </div>
                 </div>
               </Link>

@@ -124,7 +124,6 @@ export default function NewsDetail({lang, news}) {
     );
   }
 
-
   return (
     <>
       <PageMeta
@@ -174,10 +173,13 @@ export default function NewsDetail({lang, news}) {
               <span data-icon="news">{lang === 'fr' ? "Actualité" : 'News'} </span>
             </Link>
             {news.title && <span className="title">
-              <a href="#topbar"> <LanguageFallback lang={lang} translatedAttribute={news.title} /></a>
+              <a href="#topbar" itemProp="name"> <LanguageFallback lang={lang} translatedAttribute={news.title} /></a>
             </span>}
           </p>
         </div>
+        {news.place && <div style={{display: 'none'}} itemProp="location" itemScope itemType="https://schema.org/Place">
+          <span itemProp="address">{news.place}</span>
+        </div>}
       </header>
 
         <div id="img-article" aria-hidden="true">

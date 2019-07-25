@@ -9,7 +9,6 @@ export default function Agenda({rdv, lang}) {
 
 
 
-
 	return (
   <>
     <section id="agenda" /* style={nbRdv} */>
@@ -38,7 +37,7 @@ export default function Agenda({rdv, lang}) {
 
               <aside className="details">
                 <TimeNews startDate={event.startDate} endDate={event.endDate} />
-                { event.place && <p className="place" aria-label={lang === "fr" ? "Lieu" : "Place" }>{event.place}</p> }
+                { event.place && <p className="place" itemProp="location" itemScope itemType="https://schema.org/Place" aria-label={lang === "fr" ? "Lieu" : "Place" }><span itemProp="address">{event.place}</span></p> }
               </aside>
 
             </Link>

@@ -81,7 +81,7 @@ export default function ProductionListing({lang, list, group, types}) {
                         <div className="bandeau">
                           <p className="type-production" data-icon="production"> {p.groupLabel[lang]}</p>
                           <p className="subtype-production">{p.typeLabel !== 'media' && <span>{p.typeLabel[lang]}</span>}</p>
-                          <DateNews  startDateSchemaProp={'datePublished'} startDate={p.date} lang={lang} />
+                          <DateNews startDateSchemaProp={p.type === 'exhibition' ? 'startDate' : 'datePublished'} startDate={p.date} lang={lang} />
                           {/* the p surrounding the date used before DateNews integration className="date-production" */}
                         </div>
                         <hgroup>
@@ -90,8 +90,17 @@ export default function ProductionListing({lang, list, group, types}) {
                           </h1>
                         </hgroup>
                         <div className="authors">
-                          {p.authors && <p itemProp="author" className="authors-paragraphe" dangerouslySetInnerHTML={{__html:p.authors.replace(/([^,$]+)(,)?( )?/g, '<nobr>$1$2</nobr>$3')}} />}
+                          {p.authors && <p itemProp={p.type !== 'exhibition' ? 'author' : undefined} className="authors-paragraphe" dangerouslySetInnerHTML={{__html:p.authors.replace(/([^,$]+)(,)?( )?/g, '<nobr>$1$2</nobr>$3')}} />}
                           <p className="print publication-ref" dangerouslySetInnerHTML={{__html: p.description && (p.description[lang] || p.description[(lang === 'fr' ? 'en' : 'fr')])}} />
+                        </div>
+                        {/* microdata-related invisible elements */}
+                        <div style={{display: 'none'}}>
+                          {p.type === 'software' && 
+                            <>
+                              <div itemProp="applicationCategory">Scientific</div>
+                              <div itemProp="operatingSystem">*</div>
+                            </>
+                          }
                         </div>
                       </Link>
                     </li>

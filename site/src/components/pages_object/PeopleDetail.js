@@ -297,7 +297,7 @@ export default function PeopleDetail({lang, person}) {
                   }
                 </hgroup>
                 <div className="bandeau">
-                <p itemProp="hasOccupation" className="role" data-type="role" aria-label={lang === "fr" ? "Rôle au sein de l'equipe" : "Role within the team " }>{person.role[lang]}</p>
+                <p className="role" data-type="role" aria-label={lang === "fr" ? "Rôle au sein de l'equipe" : "Role within the team " }>{person.role[lang]}</p>
                     {/* <p data-type="domaine">{lang === "fr" ? "Domaine" + String.fromCharCode(8239) +":" : "Domain:"} {person.domain}</p> */}
                     <p data-type="membership" aria-label={lang === "fr" ? "Nature de la relation au médialab" : "Nature of the relationship within médialab"}>{templateMembership(person)}</p>
                 </div>

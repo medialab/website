@@ -122,7 +122,7 @@ export default function ProductionDetail({lang, production}) {
   
     return (<div className={`block-lang ${lang}`} lang={lang}>
       <hgroup>
-        <h1 data-level-1="title"><LanguageFallback lang={lang} translatedAttribute={production.title} /></h1>
+        <h1 itemProp="name" data-level-1="title"><LanguageFallback lang={lang} translatedAttribute={production.title} /></h1>
         {production.authors && <h2 data-level-2="authors"><span>{production.authors}</span></h2>}
       </hgroup>
       <div className="details">
@@ -137,7 +137,7 @@ export default function ProductionDetail({lang, production}) {
         }
 
       </div>
-      <div className="article-contenu">
+      <div className="article-contenu" itemProp="headline">
         {production.content && (production.content[lang] && <RawHtml html={production.content[lang]} />)}
       </div>
     </div>);

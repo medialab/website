@@ -30,6 +30,7 @@ const {
 
 const MODELS = require('../specs/models.json');
 const spire = require('./spire.js');
+const oldSlugRedirections = require('./oldSlugRedirections.js');
 
 const config = require('config-secrets');
 
@@ -494,6 +495,15 @@ app.get('/build', (req, res) => {
 
   return res.json(payload);
 });
+
+app.get('/redirects.nginx.conf', (req, res) => {
+  oldSlugRedirections((err, redirections) => {
+    if (err)
+      return res.status(500).send(err);
+    else
+      return res.type('txt/*').send(redirections);
+  })
+})
 
 // Listening
 console.log(`Listening on port ${PORT}...`);

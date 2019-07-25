@@ -222,7 +222,7 @@ export default function PeopleDetail({lang, person}) {
   return (
     <>
       <PageMeta
-        title={`${person.firstName} ${person.lastName} – médialab Sciences Po`}
+        title={`${person.firstName} ${person.lastName} | médialab Sciences Po`}
         description={person.status && person.status[lang]}
         lang={lang}
       />

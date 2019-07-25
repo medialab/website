@@ -14,6 +14,7 @@ export default function About({lang}) {
       <>
         <PageMeta
           lang={lang}
+          title={`À propos | médialab Sciences Po`}
           description={'Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d\'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et sociales.'}
         />
         <main id="main" aria-labelledby="page-title" role="main">
@@ -77,6 +78,7 @@ export default function About({lang}) {
       <main id="main" aria-labelledby="page-title" role="main">
       <PageMeta
           lang={lang}
+          title={`About | médialab Sciences Po`}
           description={'The médialab, an interdisciplinary research laboratory comprised of sociologists, engineers and designers, conducts thematic and methodological research to investigate the role of digital technology in our societies'}
         />
         <nav className="main-nav" id="nav-inside-article" role="navigation">

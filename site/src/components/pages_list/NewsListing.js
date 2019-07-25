@@ -15,8 +15,8 @@ import PageMeta from '../helpers/PageMeta.js';
 
 const messagesMeta = {
   title: {
-    fr: 'Actualités – médialab Sciences Po',
-    en: 'News – médialab Sciences Po',
+    fr: 'Actualités | médialab Sciences Po',
+    en: 'News | médialab Sciences Po',
   },
   description: {
     fr: 'rendez-vous, chroniques et annonces du médialab',

@@ -11,8 +11,8 @@ import PageMeta from '../helpers/PageMeta.js';
 
 const messagesMeta = {
   title: {
-    fr: 'Activités – médialab Sciences Po',
-    en: 'Activities – médialab Sciences Po',
+    fr: 'Activités | médialab Sciences Po',
+    en: 'Activities | médialab Sciences Po',
   },
   description: {
     fr: 'Les activités du médialab s’articulent entre recherche et enseignement. Elles approfondissent notamment l’usage des méthodes numériques pour répondre aux enjeux contemporains en sociologie et STS. Également mobilisées au coeur d’activités pédagogiques, par exemple en mettant les étudiants en situation d’enquête, elles bénéficient d’une réflexivité très enrichissante sur nos processus de recherche.',

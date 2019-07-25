@@ -13,8 +13,8 @@ import PageMeta from '../helpers/PageMeta.js';
 
 const messagesMeta = {
   title: {
-    fr: 'Productions – médialab Sciences Po',
-    en: 'Productions – médialab Sciences Po',
+    fr: 'Productions | médialab Sciences Po',
+    en: 'Productions | médialab Sciences Po',
   },
   description: {
     fr: 'Aux traditionnelles publications académiques s’ajoutent les “éditions web” qui projettent les activités du laboratoire dans un média interactif et ouvrent de nouveaux moyens de représentation et d’exploration visuelle des résultats. Les mises en situation -expositions, workshops, simulations, etc.- permettent d’engager des publics dans le processus de recherche et de confronter les hypothèses à la réalité du terrain.',

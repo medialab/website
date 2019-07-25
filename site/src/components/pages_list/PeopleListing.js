@@ -13,8 +13,8 @@ import PageMeta from '../helpers/PageMeta.js';
 
 const messagesMeta = {
   title: {
-    fr: 'L\'équipe – médialab Sciences Po',
-    en: 'The team – médialab Sciences Po',
+    fr: 'L\'équipe | médialab Sciences Po',
+    en: 'The team | médialab Sciences Po',
   },
   description: {
     fr: 'Composée d’hommes et de femmes aux compétences complémentaires, l’équipe du médialab est plurielle. Membres ou associés au laboratoire, ces profils académiques, techniques, en design, ou encore en pédagogie se combinent et travaillent ensemble pour développer une recherche se nourrissant de cette diversité.',

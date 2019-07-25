@@ -145,7 +145,7 @@ export default function ProductionDetail({lang, production}) {
   return (
     <>
       <PageMeta
-        title={`${production.title && production.title[lang]}. ${production.authors} (${production.date}) – médialab Sciences Po`}
+        title={`${production.title && production.title[lang]}. ${production.authors} (${production.date}) | médialab Sciences Po`}
         citationTitle={production.title && production.title[lang]}
         zoteroType={productionTypeToZoteroType(production.type)}
         description={production.content && production.content[lang]}

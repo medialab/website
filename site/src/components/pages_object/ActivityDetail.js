@@ -142,7 +142,7 @@ export default function ActivityDetail({lang, activity}) {
   return (
     <main itemProp="member" itemScope itemType={activity.type === 'research' ? 'https://schema.org/ResearchProject': 'https://schema.org/Project'} id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + activity.name : activity.name + "  page content" }>
       <PageMeta
-        title={`${activity.name} – médialab Sciences Po`}
+        title={`${activity.name} | médialab Sciences Po`}
         description={activity.baseline && activity.baseline[lang]}
         lang={lang}
         date={activity.startDate}

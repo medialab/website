@@ -40,7 +40,7 @@ const otherLang = lang === 'fr' ? 'en' : 'fr';
         {slides.map((slide, index) =>
           (<React.Fragment key={index}>
             {/* Content */}
-            <div className="slideshow-item" data-item={ index + 1 } aria-label={lang === "fr" ? "Pages misent en avant" : "Spotlighted pages" }>
+            <div itemScope itemType="https://schema.org/Thing" className="slideshow-item" data-item={ index + 1 } aria-label={lang === "fr" ? "Pages misent en avant" : "Spotlighted pages" }>
               <article data-type={slide.model}>
                 <Link to={slide.data.permalink[lang]}>
                   <div className="image-pre" aria-hidden="true">

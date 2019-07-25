@@ -134,7 +134,7 @@ export default function NewsDetail({lang, news}) {
         lang={lang}
       />
       <main itemScope itemProp={news.type !== 'post' ? 'event': 'subjectOf'} itemType={news.type !== 'post' ? 'https://schema.org/Event' : 'https://schema.org/CreativeWork'} id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + news.title.fr : news.title.en + " page content" }>
-
+ 
       <ol style={{display: 'none'}} itemScope itemType="https://schema.org/BreadcrumbList">
         <li itemProp="itemListElement" itemScope
             itemType="https://schema.org/ListItem">

@@ -21,6 +21,26 @@ const typeToDublinCoreMapping = {
   media: 'Event',
 };
 
+const buildOpenGraphAdditionalMeta = obj => {
+  switch(obj.type) {
+    case 'book':
+      return [
+          <meta key={'type'} property="og:type" content="book" />,
+          <meta key={'author'} property="og:book:author" content={obj.author} />,
+          <meta key={'time'} property="og:book:release_date" content={obj.date} />
+        ]
+    case 'post':
+    case 'article':
+      return [
+          <meta key={'type'} property="og:type" content="article" />,
+          <meta key={'author'} property="og:article:author" content={obj.author} />,
+          <meta key={'time'} property="og:article:published_time" content={obj.date} />
+      ]
+    default:
+      return <meta property="og:type" content="website" />;
+  }
+}
+
 function PageMeta(props) {
 
     const {
@@ -85,13 +105,14 @@ function PageMeta(props) {
 
         {/* META OPEN GRAPH / FACEBOOK */}
         <meta property="og:title" content={title} />
-        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="médialab Sciences Po" />        
         <meta property="og:url" content={uri ? uri : 'https://medialab.sciencespo.fr'} />
         <meta property="og:description" content={description} />
         <meta property="og:image:url" content={'https://medialab.sciencespo.fr' + coverFb} />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content={2000} />
         <meta property="og:image:height" content={2000} />
+        {buildOpenGraphAdditionalMeta(props)}
         {/* END META OPEN GRAPH / FACEBOOK*/}
       </Helmet>
     );

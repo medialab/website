@@ -44,7 +44,7 @@ const buildOpenGraphAdditionalMeta = obj => {
 function PageMeta(props) {
 
     const {
-        title,
+        title = 'médialab Sciences Po',
         citationTitle,
         zoteroType,
         description,

@@ -109,7 +109,9 @@ function PageMeta(props) {
         <meta property="og:url" content={uri ? uri : 'https://medialab.sciencespo.fr'} />
         <meta property="og:description" content={description} />
         <meta property="og:image:url" content={'https://medialab.sciencespo.fr' + coverFb} />
+        <meta property="og:image:secure_url" content={'https://medialab.sciencespo.fr' + coverFb} />
         <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:alt" content="médialab logo" />
         <meta property="og:image:width" content={2000} />
         <meta property="og:image:height" content={2000} />
         {buildOpenGraphAdditionalMeta(props)}

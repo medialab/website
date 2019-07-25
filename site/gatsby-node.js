@@ -27,6 +27,7 @@ const {
 const ROOT_PATH = process.env.ROOT_PATH || '..';
 const BUILD_CONTEXT = process.env.BUILD_CONTEXT;
 const ADMIN_URL = process.env.ADMIN_URL;
+const NODE_ENV = process.env.NODE_ENV;
 
 // Paths & data
 const QUERIES = require('./queries.js');
@@ -79,6 +80,8 @@ const MODEL_READERS = {
 
     // Activities
     data.activities.forEach(activity => {
+      if (NODE_ENV === 'production' && activity.draft)
+        return;
 
       const node = getNode(activity.id);
 
@@ -125,6 +128,8 @@ const MODEL_READERS = {
 
     // People
     data.people.forEach(person => {
+      if (NODE_ENV === 'production' && person.draft)
+        return;
 
       const node = getNode(person.id);
 
@@ -167,6 +172,8 @@ const MODEL_READERS = {
 
     // Productions
     data.productions.forEach(production => {
+      if (NODE_ENV === 'production' && production.draft)
+        return;
 
       const node = getNode(production.id);
 
@@ -232,6 +239,8 @@ const MODEL_READERS = {
 
     // News
     data.news.forEach(news => {
+      if (NODE_ENV === 'production' && news.draft)
+        return;
 
       const node = getNode(news.id);
 

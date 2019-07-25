@@ -436,6 +436,7 @@ function buildStaticSite(callback) {
       env.BUILD_CONTEXT = 'prod';
       env.ROOT_PATH = path.resolve(__dirname, '..');
       env.GOOGLE_ANALYTICS_ID = config.get('googleAnalyticsId');
+      env.NODE_ENV = 'production';
 
       return exec('gatsby build', {cwd: SITE_PATH, env}, next);
     },

@@ -86,6 +86,17 @@
 					}
 	
 					& > *:last-child{ border-right: none !important;}
+
+					.place{
+						border-top: $border-very-light;
+						width: 100%;
+						padding-top: $baseline*1;
+						&:before{
+							content: "\29BF ";
+							font-family: "Symbol", sans-serif;
+							padding-right: 5px;
+						}
+					}
 	
 				}
 		

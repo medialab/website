@@ -41,10 +41,10 @@ const otherLang = lang === 'fr' ? 'en' : 'fr';
               <article data-type={slide.model}>
                 <Link to={slide.data.permalink[lang]}>
                   <div className="image-pre" aria-hidden="true">
-                    <ProcessedImage size="large" image={slide.data.coverImage && slide.data.coverImage.processed.large} />
+                    <ProcessedImage size="large" image={slide.data.coverImage && slide.data.coverImage.processed.large} data={slide.data}/>
                   </div>
                   <div className="image-pre-phone" aria-hidden="true">
-                    <ProcessedImage size="medium" image={slide.data.coverImage && slide.data.coverImage.processed.medium} />
+                    <ProcessedImage size="medium" image={slide.data.coverImage && slide.data.coverImage.processed.medium} data={slide.data}/>
                   </div>
                 </Link>
                 <div className="contenu-slide" aria-label={lang === "fr" ? "Contenu" : "Content" }>

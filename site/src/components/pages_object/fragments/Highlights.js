@@ -67,7 +67,7 @@ export default function highlights({people, lang}) {
                 <li data-type={a.type} className="list-item" key={index}>
                   <Link to={a.permalink[lang]} aria-label={lang === "fr" ? "Lien vers cette Activité" : "Link to this activity" }>
                     <div className="image-pre" aria-hidden="true">
-                        <ProcessedImage size="small" image={a.coverImage && a.coverImage.processed.small} />
+                        <ProcessedImage size="small" image={a.coverImage && a.coverImage.processed.small} data={a}/>
                     </div>
                     <div className="bandeau">
                       <p className="type-activity" data-icon="activite">{IsModel(a.type, lang)}</p>

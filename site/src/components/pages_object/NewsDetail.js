@@ -114,13 +114,6 @@ export const queryFragment = graphql`
 
 export default function NewsDetail({lang, news}) {
 
-  let coverImage = null;
-
-  if (news.coverImage) {
-    coverImage = (
-      <ProcessedImage size="large" image={news.coverImage.processed ? news.coverImage.processed.large : null} />
-    );
-  }
 
 
   return (
@@ -143,7 +136,9 @@ export default function NewsDetail({lang, news}) {
 
         <div id="img-article" aria-hidden="true">
           <div className="activator"></div>
-          <div className="container">{coverImage}</div>
+          <div className="container">
+            <ProcessedImage size="large" image={news.coverImage && news.coverImage.processed && news.coverImage.processed.large} data={news}/>
+          </div>
 
         </div>
 

@@ -129,14 +129,7 @@ export const queryFragment = graphql`
 `;
 
 export default function ActivityDetail({lang, activity}) {
-
-  let coverImage = null;
-
-  if (activity.coverImage) {
-    coverImage = (
-      <ProcessedImage size="large" image={activity.coverImage.processed ? activity.coverImage.processed.large : null} />
-    );
-  }
+  
 
 
   return (
@@ -157,7 +150,9 @@ export default function ActivityDetail({lang, activity}) {
 
       <div id="img-article" >
         <div className="activator"></div>
-        <div className="container" aria-hidden="true">{coverImage}</div>
+        <div className="container" aria-hidden="true">
+          <ProcessedImage size="large" image={activity.coverImage  && activity.coverImage.processed && activity.coverImage.processed.large} data={activity} />
+        </div>
       </div>
 
 

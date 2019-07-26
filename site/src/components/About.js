@@ -63,12 +63,12 @@ export default function About({lang}) {
 
 
               <h3 id="contact">Contact</h3>
-              <p>Pour toute question, vous pouvez joindre l'équipe du médialab à l'adresse<em>medialab[at]sciences-po.fr</em>
-              Vous pouvez également nous joindre par téléphone au 01 45 49 53 54.
-              Vous pouvez nous écrire à l'adresse suivante :
-              <em>Sciences Po - médialab
-              27, rue Saint Guillaume
-              75337 Paris Cedex 07</em></p>
+              <p>Pour toute question, vous pouvez joindre l'équipe du médialab à l'adresse medialab[at]sciences-po.fr<br/>
+              Vous pouvez également nous joindre par téléphone au 01 45 49 53 54.<br/>
+              Vous pouvez nous écrire à l'adresse suivante :<br/>
+              Sciences Po - médialab<br/>
+              27, rue Saint Guillaume<br/>
+              75337 Paris Cedex 07</p>
 
             </div>
             </article>
@@ -130,12 +130,12 @@ export default function About({lang}) {
               <p><Link to="/en/productions" className="GoTo">Voir la liste des productions</Link></p>
 
               <h3 id="contact">Contact</h3>
-              <p>For any inquiries, please send an email to <em>medialab[at]sciences-po.fr</em>
-              You can also call us: 01 45 49 53 54.
-              You can write to us at the following address:
-              <em>Sciences Po - médialab
-              27, rue Saint Guillaume
-              75337 Paris Cedex 07</em></p>
+              <p>For any inquiries, please send an email to medialab[at]sciences-po.fr<br/>
+              You can also call us: 01 45 49 53 54.<br/>              
+              You can write to us at the following address:<br/>
+              Sciences Po - médialab<br/>
+              27, rue Saint Guillaume<br/>
+              75337 Paris Cedex 07</p>
 
             </div>
             {/*  <aside id="inshort">

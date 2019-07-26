@@ -13,6 +13,7 @@ const {
 } = require('./schema.js');
 
 const {
+  importGraphQLSchema,
   hashNode,
   createI18nPage,
   frenchTypographyReplace
@@ -379,56 +380,16 @@ const MODEL_READERS = {
   }
 };
 
+exports.createSchemaCustomization = function({actions}) {
+  const fluxSchema = importGraphQLSchema('flux');
+
+  actions.createTypes([
+    fluxSchema
+  ]);
+};
+
 exports.sourceNodes = function(args) {
-  const {actions: {createNode, createTypes}} = args;
-
-  // TODO: fix this dirty hack!
-  createTypes(`
-    type GithubAuthor {
-      nickname: String!
-      url: String!
-      slug: String
-      name: String
-      permalink: Permalink
-    }
-
-    type Permalink {
-      fr: String
-      en: String
-    }
-
-    type GithubJson implements Node @infer {
-      repo: String!
-      language: String
-      url: String
-      startDate: String
-      endDate: String
-      count: Int
-      description: String
-      license: String
-      authors: [GithubAuthor!]
-    }
-
-    type OriginalTweet {
-      tweet: String!
-      text: String!
-      html: String!
-      screenName: String!
-      name: String!
-      type: String!
-    }
-
-    type TwitterJson implements Node @infer {
-      tweet: String!
-      text: String!
-      html: String!
-      date: String
-      retweets: Int
-      favorites: Int
-      type: String!
-      originalTweet: OriginalTweet
-    }
-  `);
+  const {actions: {createNode}} = args;
 
   const copyAsset = asset => {
     fs.copySync(

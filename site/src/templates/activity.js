@@ -6,8 +6,8 @@ import ActivityDetail from '../components/pages_object/ActivityDetail';
 import EditInAdmin from '../components/pages_object/fragments/EditInAdmin';
 
 export const query = graphql`
-  query($identifier: String!) {
-    activitiesJson(identifier: {eq: $identifier}) {
+  query($id: String!) {
+    activitiesJson(id: {eq: $id}) {
       ...ActivityDetail
     }
   }

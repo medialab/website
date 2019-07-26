@@ -110,7 +110,6 @@ const MODEL_READERS = {
           fr: `/activites/${slug}`,
           en: `/en/activities/${slug}`
         },
-        identifier: activity.id,
         internal: {
           type: 'ActivitiesJson',
           contentDigest: hash,
@@ -152,7 +151,6 @@ const MODEL_READERS = {
           fr: `/equipe/${slug}`,
           en: `/en/people/${slug}`
         },
-        identifier: person.id,
         internal: {
           type: 'PeopleJson',
           contentDigest: hash,
@@ -224,7 +222,6 @@ const MODEL_READERS = {
           fr: `/productions/${slug}`,
           en: `/en/productions/${slug}`
         },
-        identifier: production.id,
         internal: {
           type: 'ProductionsJson',
           contentDigest: hash,
@@ -285,7 +282,6 @@ const MODEL_READERS = {
           fr: `/actu/${slug}`,
           en: `/en/news/${slug}`
         },
-        identifier: news.id,
         internal: {
           type: 'NewsJson',
           contentDigest: hash,
@@ -609,9 +605,9 @@ exports.createPages = function({graphql, actions}) {
     component: path.resolve('./src/templates/people-list.js')
   });
 
-  const linkToAdmin = (model, identifier) => {
+  const linkToAdmin = (model, id) => {
     if (!BUILD_CONTEXT || BUILD_CONTEXT !== 'prod')
-      return `${ADMIN_URL}/#/${model}/${identifier}`;
+      return `${ADMIN_URL}/#/${model}/${id}`;
     else
       return null;
   };
@@ -629,8 +625,8 @@ exports.createPages = function({graphql, actions}) {
         const activity = edge.node;
 
         const context = {
-          identifier: activity.identifier,
-          linkToAdmin: linkToAdmin('activities', activity.identifier)
+          id: activity.id,
+          linkToAdmin: linkToAdmin('activities', activity.id)
         };
 
         activity.slugs.forEach(slug => {
@@ -654,8 +650,8 @@ exports.createPages = function({graphql, actions}) {
         const person = edge.node;
 
         const context = {
-          identifier: person.identifier,
-          linkToAdmin: linkToAdmin('people', person.identifier)
+          id: person.id,
+          linkToAdmin: linkToAdmin('people', person.id)
         };
 
         person.slugs.forEach(slug => {
@@ -679,8 +675,8 @@ exports.createPages = function({graphql, actions}) {
         const production = edge.node;
         if (!production.external) {
           const context = {
-            identifier: production.identifier,
-            linkToAdmin: linkToAdmin('productions', production.identifier)
+            id: production.id,
+            linkToAdmin: linkToAdmin('productions', production.id)
           };
 
           production.slugs.forEach(slug => {
@@ -704,8 +700,8 @@ exports.createPages = function({graphql, actions}) {
         const news = edge.node;
 
         const context = {
-          identifier: news.identifier,
-          linkToAdmin: linkToAdmin('news', news.identifier)
+          id: news.id,
+          linkToAdmin: linkToAdmin('news', news.id)
         };
 
         news.slugs.forEach(slug => {

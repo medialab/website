@@ -147,14 +147,20 @@ type ProductionsJson implements Node @infer {
 }
 
 type FacetedEnumValue {
+  label: TranslatedString
+  type: String
+}
+
+type FacetedEnum {
   id: String
   label: TranslatedString
   permalink: TranslatedString
+  values: [FacetedEnumValue]
 }
 
 type FacetedEnumsJson implements Node @infer {
-  activityStatuses: [FacetedEnumValue]
-  productionTypes: [FacetedEnumValue]
+  activityStatuses: [FacetedEnum]
+  productionTypes: [FacetedEnum]
 }
 
 union HomeItemData = ActivitiesJson | NewsJson | PeopleJson | ProductionsJson

@@ -71,6 +71,10 @@ export const queryFragment = graphql`
         fr
       }
       name
+      baseline {
+        en
+        fr
+      }
       type
     }
     productions {

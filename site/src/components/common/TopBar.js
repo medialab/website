@@ -27,7 +27,7 @@ const TopBar = ({permalinks, lang}) => {
     activite = 'Activités';
     medialab = 'Le médialab';
     team = "L'équipe";
-    seminar = "Le séminaire";
+    seminar = "Séminaire";
     tool = 'Outils';
     archive = 'Archives';
   }
@@ -38,9 +38,9 @@ const TopBar = ({permalinks, lang}) => {
     news = 'News';
     prod = 'Productions';
     activite = 'Activities';
-    medialab = 'The medialab';
+    medialab = 'The médialab';
     team = 'The team';
-    seminar = "The seminar";
+    seminar = "Seminar";
     tool = 'Tools';
     archive = 'Archives';
 
@@ -97,9 +97,8 @@ const TopBar = ({permalinks, lang}) => {
 
           </ul>
           <ul id="nav-institution">
-            <li><Link to={`${relLang}/about`} aria-label={lang === 'fr' ? "Aller à la page de présentation du médialab" : "Go to médialab presentation page" }>{medialab}</Link></li>
             <li><Link to={`${relLang}/people`} aria-label={lang === 'fr' ? "Découvrir les membres du médialab" : "Discover médialab members " }>{team}</Link></li>
-            <li><Link to={`${relLang}/activities/seminaire-du-medialab`} aria-label={lang === 'fr' ? "Assister à notre séminaire" : "Join us for our seminar" }>{seminar}</Link></li>
+            <li><Link to={`${relLang}/about`} aria-label={lang === 'fr' ? "Aller à la page de présentation du médialab" : "Go to médialab presentation page" }>{medialab}</Link></li>
           </ul>
           <ul id="nav-archive">
             {/*<li><Link to={`${relLang}/outils`}>{tool}</Link></li>*/}
@@ -108,6 +107,7 @@ const TopBar = ({permalinks, lang}) => {
               target="_blank" rel="noopener"
               aria-label={lang === 'fr' ? "Aller à la liste des outils numériques créés ou utilisé par le médialab " : "Go to a listing of digital tools created or used by médialab" }>{tool}</a>
             </li>
+            <li><Link to={`${relLang}/activities/seminaire-du-medialab`} aria-label={lang === 'fr' ? "Assister à notre séminaire" : "Join us for our seminar" }>{seminar}</Link></li>
             {/* <li><Link to={`${relLang}/archive`}>{archive}</Link></li> */}
           </ul>
         </nav>

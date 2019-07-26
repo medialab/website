@@ -29,6 +29,7 @@ export const queryFragment = graphql`
   fragment ActivityDetail on ActivitiesJson {
     name
     type
+    slugs
     baseline {
       en
       fr
@@ -138,7 +139,6 @@ export default function ActivityDetail({lang, activity}) {
     );
   }
 
-
   return (
     <main id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + activity.name : activity.name + "  page content" }>
       
@@ -208,7 +208,7 @@ export default function ActivityDetail({lang, activity}) {
         <MembresAssocies people={activity.people} lang={lang} />
         <ActivitesAssociees activities={activity.activities} lang={lang} />
         <ProductionsAssociees productions={activity.productions} lang={lang} />
-        <ActuAssociees actu={activity.news} lang={lang} />
+        <ActuAssociees isSeminar={activity.slugs.join().includes('seminaire')} actu={activity.news} lang={lang} />
       </aside>
 
     </main>

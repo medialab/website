@@ -109,9 +109,8 @@ const TopBar = ({permalinks, lang}) => {
 
           </ul>
           <ul id="nav-institution">
-            <li><Link to={mainPermalinks[lang].about} aria-label={lang === 'fr' ? "Aller à la page de présentation du médialab" : "Go to médialab presentation page" }>{medialab}</Link></li>
             <li><Link to={mainPermalinks[lang].people} aria-label={lang === 'fr' ? "Découvrir les membres du médialab" : "Discover médialab members " }>{team}</Link></li>
-            <li><Link to={mainPermalinks[lang].seminar} aria-label={lang === 'fr' ? "Assister à notre séminaire" : "Join us for our seminar" }>{seminar}</Link></li>
+            <li><Link to={mainPermalinks[lang].about} aria-label={lang === 'fr' ? "Aller à la page de présentation du médialab" : "Go to médialab presentation page" }>{medialab}</Link></li>
           </ul>
           <ul id="nav-archive">
             {/*<li><Link to={`${relLang}/outils`}>{tool}</Link></li>*/}

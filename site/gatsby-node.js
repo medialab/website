@@ -6,13 +6,6 @@ const shuffleInPlace = require('pandemonium/shuffle-in-place');
 const _ = require('lodash');
 
 const {
-  addBacklinkToGraphQLSchema,
-  graphQLSchemaAdditionForSettings,
-  graphQLSchemaAdditionFromJsonSchema,
-  patchGraphQLSchema
-} = require('./schema.js');
-
-const {
   importGraphQLSchema,
   hashNode,
   createI18nPage,
@@ -23,6 +16,13 @@ const {
   template,
   resolveAttachments
 } = require('./templating.js');
+
+const {
+  createSettingsItemResolver,
+  createRelationResolver,
+  createBacklinkResolver,
+  createCoverImageResolver
+} = require('./schemas/resolvers.js');
 
 // Env vars
 const ROOT_PATH = process.env.ROOT_PATH || '..';
@@ -49,16 +49,12 @@ _.forEach(ENUMS.productionTypes.groups, (group, key) => {
 const processing = require(path.join(ROOT_PATH, 'specs', 'processing.js')).sharpToString;
 
 const MODELS_PATHS = {};
-const SCHEMAS = {};
-const GRAPHQL_SCHEMAS = {};
 
 MODELS.forEach(model => {
   MODELS_PATHS[model] = path.join(DB_PATH, `${model}.json`);
-  SCHEMAS[model] = require(path.join(ROOT_PATH, 'specs', 'schemas', `${model}.json`));
-  GRAPHQL_SCHEMAS[model] = graphQLSchemaAdditionFromJsonSchema(model, SCHEMAS[model]);
 });
 
-// Specifics schemas & models
+// Specifics models
 MODELS_PATHS.settings = path.join(DB_PATH, 'settings.json');
 MODELS_PATHS.github = path.join(DB_PATH, 'github.json');
 MODELS_PATHS.twitter = path.join(DB_PATH, 'twitter.json');
@@ -386,6 +382,68 @@ exports.createSchemaCustomization = function({actions}) {
   ]);
 };
 
+exports.createResolvers = function({createResolvers, pathPrefix}) {
+
+  const settings = {
+    assetsPath: ASSETS_PATH,
+    publicPath: PUBLIC_PATH,
+    prefix: pathPrefix,
+    processing
+  };
+
+  createResolvers({
+    HomeItem: {
+      data: createSettingsItemResolver(settings)
+    },
+
+    ActivitiesJson: {
+      // Cover
+      coverImage: createCoverImageResolver(settings),
+
+      // Relations
+      people: createRelationResolver('people'),
+
+      // Backlinks
+      news: createBacklinkResolver('NewsJson'),
+      productions: createBacklinkResolver('ProductionsJson')
+    },
+
+    NewsJson: {
+      // Cover
+      coverImage: createCoverImageResolver(settings),
+
+      // Relations
+      activities: createRelationResolver('activities'),
+      people: createRelationResolver('people'),
+      productions: createRelationResolver('productions')
+    },
+
+    PeopleJson: {
+      // Cover
+      coverImage: createCoverImageResolver(settings),
+
+      // Relations
+      mainActivities: createRelationResolver('mainActivities'),
+      mainProductions: createRelationResolver('mainProductions'),
+
+      // Backlinks
+      activities: createBacklinkResolver('ActivitiesJson'),
+      news: createBacklinkResolver('NewsJson'),
+      productions: createBacklinkResolver('ProductionsJson')
+    },
+
+    ProductionsJson: {
+      // Cover
+      coverImage: createCoverImageResolver(settings),
+
+      // Relations
+      activities: createRelationResolver('activities'),
+      people: createRelationResolver('people'),
+      productions: createRelationResolver('productions')
+    }
+  });
+};
+
 exports.sourceNodes = function(args) {
   const {actions: {createNode}} = args;
 
@@ -707,71 +765,4 @@ exports.createPages = function({graphql, actions}) {
   ];
 
   return Promise.all(promises);
-};
-
-exports.setFieldsOnGraphQLNodeType = function({type, getNode, getNodesByType, pathPrefix}) {
-  return;
-
-  const settings = {
-    assetsPath: ASSETS_PATH,
-    publicPath: PUBLIC_PATH,
-    prefix: pathPrefix,
-    processing
-  };
-
-  if (type.name === 'SettingsJson') {
-    return graphQLSchemaAdditionForSettings(GRAPHQL_SCHEMAS, getNode);
-  }
-
-  else if (type.name === 'ActivitiesJson') {
-    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'activities', type, SCHEMAS.activities, settings);
-    addBacklinkToGraphQLSchema(
-      getNodesByType.bind(null, 'ProductionsJson'),
-      GRAPHQL_SCHEMAS,
-      'activities',
-      'productions'
-    );
-    addBacklinkToGraphQLSchema(
-      getNodesByType.bind(null, 'NewsJson'),
-      GRAPHQL_SCHEMAS,
-      'activities',
-      'news'
-    );
-    return GRAPHQL_SCHEMAS.activities;
-  }
-
-  else if (type.name === 'PeopleJson') {
-    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'people', type, SCHEMAS.people, settings);
-    addBacklinkToGraphQLSchema(
-      getNodesByType.bind(null, 'ActivitiesJson'),
-      GRAPHQL_SCHEMAS,
-      'people',
-      'activities'
-    );
-    addBacklinkToGraphQLSchema(
-      getNodesByType.bind(null, 'NewsJson'),
-      GRAPHQL_SCHEMAS,
-      'people',
-      'news'
-    );
-    addBacklinkToGraphQLSchema(
-      getNodesByType.bind(null, 'ProductionsJson'),
-      GRAPHQL_SCHEMAS,
-      'people',
-      'productions'
-    );
-    return GRAPHQL_SCHEMAS.people;
-  }
-
-  else if (type.name === 'ProductionsJson') {
-    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'productions', type, SCHEMAS.productions, settings);
-    return GRAPHQL_SCHEMAS.productions;
-  }
-
-  else if (type.name === 'NewsJson') {
-    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'news', type, SCHEMAS.news, settings);
-    return GRAPHQL_SCHEMAS.news;
-  }
-
-  return {};
 };

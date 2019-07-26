@@ -51,12 +51,14 @@ type ActivitiesJson implements Node @infer {
   content: TranslatedString
   people: [PeopleJson]
   activities: [ActivitiesJson]
-  productions: [ProductionsJson]
-  news: [NewsJson]
   attachments: [Attachment]
   startDate: String
   endDate: String
   external: Boolean
+
+  # Backlinks
+  news: [NewsJson]
+  productions: [ProductionsJson]
 }
 
 type NewsJson implements Node @infer {
@@ -80,6 +82,11 @@ type NewsJson implements Node @infer {
   attachments: [Attachment]
   startDate: String
   endDate: String
+
+  # Site specific
+  isInternal: Boolean
+  typeLabel: TranslatedString
+  expiry: Int
 }
 
 type PeopleJson implements Node @infer {
@@ -101,6 +108,8 @@ type PeopleJson implements Node @infer {
   membership: String
   mainActivities: [ActivitiesJson]
   mainProductions: [ProductionsJson]
+
+  # Backlinks
   activities: [ActivitiesJson]
   news: [NewsJson]
   productions: [ProductionsJson]
@@ -127,6 +136,11 @@ type ProductionsJson implements Node @infer {
   ref: String
   url: String
   external: Boolean
+
+  # Site specific
+  group: String
+  groupLabel: TranslatedString
+  typeLabel: TranslatedString
 }
 
 type FacetedEnumValue {

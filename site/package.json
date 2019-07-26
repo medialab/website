@@ -5,7 +5,7 @@
   "description": "The website static sources.",
   "main": "index.js",
   "scripts": {
-    "build": "gatsby build",
+    "build": "npm run clean && gatsby build",
     "clean": "rm -rf .cache public",
     "dev": "npm run clean && gatsby develop -H 0.0.0.0",
     "postinstall": "gatsby telemetry --disable || true"

@@ -6,8 +6,7 @@ export default function Legal({lang}) {
   if (lang === 'fr')
     // ***************************    french VERSION
     return (
-      <>
-        <main id="main" aria-labelledby="page-title" role="main">
+      <main id="main" aria-labelledby="page-title" role="main">
         <nav className="main-nav" id="nav-inside-article" role="navigation">
           <ul>
             <li className="nav-inside-item" data-type="main"><a href="#main" title="Aller à la section" > Aller en haut</a></li>
@@ -29,7 +28,7 @@ export default function Legal({lang}) {
               75337 Paris Cedex 07
               Tel. : 01 45 49 50 50
               Fax. : 01 42 22 31 26
-              webmestre@sciencespo.fr
+              webmestre@sciencespo.fr</p>
 
               <h3 id="directeur">Directeur de la publication</h3>
               <p>Frédéric Mion, administrateur de la Fondation nationale des sciences politiques et directeur de l’Institut d’études politiques de Paris.</p>
@@ -58,16 +57,14 @@ export default function Legal({lang}) {
 
                   par courrier :  médialab, 27 rue Saint Guillaume 75337 Paris Cedex 07
                   par courrier électronique : medialab[AT]sciencespo.fr
-            </div>
+              </hgroup>
             </article>
-        </main>
-      </>
+      </main>
     );
   else
     // ***************************    ENGLISH VERSION
     return (
-      <>
-        <main id="main" aria-labelledby="page-title" role="main">
+      <main id="main" aria-labelledby="page-title" role="main">
         <nav className="main-nav" id="nav-inside-article" role="navigation">
           <ul>
             <li className="nav-inside-item" data-type="main"><a href="#main" title="Aller à la section" > Aller en haut</a></li>
@@ -87,7 +84,7 @@ export default function Legal({lang}) {
               75337 Paris Cedex 07
               Tel. : 01 45 49 50 50
               Fax. : 01 42 22 31 26
-              webmestre@sciencespo.fr
+              webmestre@sciencespo.fr</p>
 
               <h3 id="publisher">Publisher</h3>
               <p>Frédéric Mion, President of Sciences Po</p>
@@ -108,7 +105,7 @@ export default function Legal({lang}) {
               <p>Our pages also contain links to other sites for which we are in no manner responsible, neither regarding their adhesion to public order or good conduct, on the one hand, nor regarding their personal data privacy policies and use, on the other.
               By accessing an outside site, through a hypertext link, you accept that this access is carried out at your own risk. Therefore, Sciences Po will in no way be held responsible for any direct or indirect damages resulting from your access to an outside site through a hypertext link.</p>
 
-            </div>
+            </hgroup>
             {/*  <aside id="inshort">
               <h3>Side chose</h3>
               <p>L’autre originalité du médialab en terme d’organisation est de s’appuyer à parts égales sur trois métiers</p>
@@ -119,7 +116,6 @@ export default function Legal({lang}) {
               </ul>
             </aside>*/}
             </article>
-        </main>
-      </>
+      </main>
     );
 }

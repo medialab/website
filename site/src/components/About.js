@@ -19,6 +19,7 @@ export default function About({lang}) {
             <li className="nav-inside-item"><a href="#team" title="Aller à la section" >Equipe</a></li>
             <li className="nav-inside-item"><a href="#activities" title="Aller à la section" >Activités</a></li>
             <li className="nav-inside-item"><a href="#productions" title="Aller à la section" >Productions</a></li>
+            <li className="nav-inside-item"><a href="#contact" title="Aller à la section" >Contact</a></li>
           </ul>
         </nav>
           <article id="about-contenu" className="main-container">
@@ -60,6 +61,15 @@ export default function About({lang}) {
 
               <p><Link to="/productions" className="GoTo">Voir la liste des productions</Link></p>
 
+
+              <h3 id="contact">Contact</h3>
+              <p>Pour toute question, vous pouvez joindre l'équipe du médialab à l'adresse<em>medialab[at]sciences-po.fr</em>
+              Vous pouvez également nous joindre par téléphone au 01 45 49 53 54.
+              Vous pouvez nous écrire à l'adresse suivante :
+              <em>Sciences Po - médialab
+              27, rue Saint Guillaume
+              75337 Paris Cedex 07</em></p>
+
             </div>
             </article>
         </main>
@@ -76,6 +86,7 @@ export default function About({lang}) {
             <li className="nav-inside-item"><a href="#team" title="Aller à la section" >Team</a></li>
             <li className="nav-inside-item"><a href="#activities" title="Aller à la section" >Activities</a></li>
             <li className="nav-inside-item"><a href="#productions" title="Aller à la section" >Productions</a></li>
+            <li className="nav-inside-item"><a href="#contact" title="Aller à la section" >Contact</a></li>
           </ul>
         </nav>
           <article id="about-contenu" className="main-container">
@@ -118,6 +129,14 @@ export default function About({lang}) {
 
               <p><Link to="/en/productions" className="GoTo">Voir la liste des productions</Link></p>
 
+              <h3 id="contact">Contact</h3>
+              <p>For any inquiries, please send an email to <em>medialab[at]sciences-po.fr</em>
+              You can also call us: 01 45 49 53 54.
+              You can write to us at the following address:
+              <em>Sciences Po - médialab
+              27, rue Saint Guillaume
+              75337 Paris Cedex 07</em></p>
+
             </div>
             {/*  <aside id="inshort">
               <h3>Side chose</h3>
@@ -133,4 +152,3 @@ export default function About({lang}) {
       </>
     );
 }
-

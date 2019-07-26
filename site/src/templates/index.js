@@ -128,6 +128,10 @@ export const query = graphql`
                 en
                 fr
               }
+              typeLabel {
+                en
+                fr
+              }
               title {
                 en
                 fr

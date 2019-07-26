@@ -58,7 +58,6 @@ export const queryFragment = graphql`
       fr
     }
     mainProductions {
-      identifier
       description {
         en
         fr
@@ -92,7 +91,6 @@ export const queryFragment = graphql`
       url
     }
     mainActivities {
-      identifier
       description {
         en
         fr
@@ -118,7 +116,6 @@ export const queryFragment = graphql`
       }
     }
     activities {
-      identifier
       name
       baseline {
         en
@@ -153,7 +150,6 @@ export const queryFragment = graphql`
       startDate
     }
     productions {
-      identifier
       title {
         en
         fr

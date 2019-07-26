@@ -124,7 +124,7 @@ export default function NewsDetail({lang, news}) {
         <div id="container-titre-sticky">
           <div id="logo-sticky"><a href="/"><Logo /></a></div>
           <p>
-            <Link to="/news">
+            <Link to={lang === 'fr' ? '/actu' : '/en/news'}>
               <span data-icon="news">{lang === 'fr' ? "Actualité" : 'News'} </span>
             </Link>
             {news.title && <span className="title">

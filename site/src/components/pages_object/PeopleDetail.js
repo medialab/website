@@ -58,7 +58,6 @@ export const queryFragment = graphql`
       fr
     }
     mainProductions {
-      identifier
       description {
         en
         fr
@@ -92,7 +91,6 @@ export const queryFragment = graphql`
       url
     }
     mainActivities {
-      identifier
       description {
         en
         fr
@@ -118,7 +116,6 @@ export const queryFragment = graphql`
       }
     }
     activities {
-      identifier
       name
       baseline {
         en
@@ -153,7 +150,6 @@ export const queryFragment = graphql`
       startDate
     }
     productions {
-      identifier
       title {
         en
         fr
@@ -230,7 +226,7 @@ export default function PeopleDetail({lang, person}) {
           <div id="container-titre-sticky">
             <div id="logo-sticky"><a href="/"><Logo /></a></div>
             <p>
-            <Link to="/people" className="link-page-team" title={titleLinkTeam}>
+            <Link to={lang === 'fr' ? '/equipe' : '/en/people'} className="link-page-team" title={titleLinkTeam}>
               <span>{lang === 'fr' ? "L'équipe du médialab" : 'médialab team'} </span>
             </Link>
             <span className="personne"><a href="#topbar" title={backTop}>{person.firstName} {person.lastName}</a></span>
@@ -242,12 +238,12 @@ export default function PeopleDetail({lang, person}) {
 
           <article id="biographie">
             <div id="container-biographie">
-              <header>        
+              <header>
                 <figure className={person.coverImage ? "" : "noImg"}>
                   {person.coverImage ?
                   <img src={person.coverImage ? person.coverImage.url : Img} alt={lang === 'fr' ? 'Photo de profil de ' + person.firstName + person.lastName : person.firstName + person.lastName + ' profil picture'} />
                   : <RawHtml html={noImg}/> }
-                </figure>                
+                </figure>
                 <hgroup>
                   <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
                  {person.status &&

@@ -312,9 +312,6 @@ exports.addBacklinkToGraphQLSchema = function(getNodes, schemas, source, target)
     name: source + '__' + target + '__backlink',
     fields: {
       ...schemas[target],
-      identifier: {
-        type: GraphQLTypes.GraphQLString
-      },
       id: {
         type: GraphQLTypes.GraphQLString
       }

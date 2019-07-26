@@ -3,7 +3,7 @@ exports.ACTIVITIES = `
     allActivitiesJson {
       edges {
         node {
-          identifier
+          id
           slugs
         }
       }
@@ -16,7 +16,7 @@ exports.PEOPLE = `
     allPeopleJson {
       edges {
         node {
-          identifier
+          id
           slugs
         }
       }
@@ -29,7 +29,7 @@ exports.PUBLICATION = `
     allProductionsJson {
       edges {
         node {
-          identifier
+          id
           slugs
           external
         }
@@ -43,7 +43,7 @@ exports.NEWS = `
     allNewsJson {
       edges {
         node {
-          identifier
+          id
           slugs
         }
       }

@@ -39,13 +39,6 @@ export const queryFragment = graphql`
       en
       fr
     }
-    coverImage {
-      url
-      processed {
-        medium
-        large
-      }
-    }
     people {
       firstName
       lastName
@@ -99,14 +92,6 @@ export const queryFragment = graphql`
 
 export default function ProductionDetail({lang, production}) {
 
-
-  let coverImage = null;
-
-  if (production.coverImage) {
-    coverImage = (
-      <ProcessedImage size="large" image={production.coverImage.processed ? production.coverImage.processed.large : null} />
-    );
-  }
 
   const LangBlock = ({production, lang}) => {
 
@@ -163,7 +148,6 @@ export default function ProductionDetail({lang, production}) {
 
       <div id="img-article">
         <div className="activator"></div>
-        <div className="container">{ coverImage}</div>
       </div>
 
         <article id="article-contenu">

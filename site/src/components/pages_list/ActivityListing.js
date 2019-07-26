@@ -26,7 +26,7 @@ export default function ActivityListing({lang, list, status, statuses, topActivi
                   <li data-type={a.type} className={`list-item ${a.type}-${a.active ? 'active' : 'past'}`}>
                     <Link to={a.permalink[lang]}>
                       <div className="image-pre" aria-hidden="true">
-                        <ProcessedImage size="medium" image={a.coverImage && a.coverImage.processed.medium} />
+                        <ProcessedImage size="medium" image={a.coverImage && a.coverImage.processed && a.coverImage.processed.medium} data={a} />
                       </div>
                       <div className="bandeau">
                         <p data-icon="activite" className="type-activity">{IsModel(a.type, lang)}</p>

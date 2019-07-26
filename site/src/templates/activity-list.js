@@ -12,6 +12,7 @@ export const query = graphql`
           id
           name
           active
+          startDate
           description {
             en
             fr

@@ -1,4 +1,19 @@
+const auth = require('basic-auth');
+const config = require('config-secrets');
+
+const SUPERUSER = config.get('superuser');
+
 exports.authentication = function(req, res, next) {
+  const user = auth(req);
+
+  // HTTP auth bypass
+  if (
+    user &&
+    user.name === SUPERUSER.username &&
+    user.pass === SUPERUSER.password
+  )
+    return next();
+
   if (!req.session || !req.session.authenticated)
     return res.status(401).send('Unauthorized');
 

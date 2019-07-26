@@ -4,6 +4,25 @@ import Logo from '../assets/svg/logo_medialab.svg';
 import MenuCircle from '../assets/svg/menu-circle.svg';
 import CloseCircle from '../assets/svg/close-circle.svg';
 
+const mainPermalinks = {
+  en: {
+    about: '/en/about',
+    seminar: '/en/activities/seminaire-du-medialab',
+    activities: '/en/activities',
+    news: '/en/news',
+    people: '/en/people',
+    productions: '/en/productions'
+  },
+  fr: {
+    about: '/a-propos',
+    seminar: '/activites/seminaire-du-medialab',
+    activities: '/activites',
+    news: '/actu',
+    people: '/equipe',
+    productions: '/productions'
+  }
+};
+
 const TopBar = ({permalinks, lang}) => {
 
   let now = null;
@@ -45,13 +64,6 @@ const TopBar = ({permalinks, lang}) => {
     archive = 'Archives';
 
   }
-  let relLang;
-  if (lang === 'en') {
-  relLang = '/en';
-  }
-  else {
-  relLang = '';
-  }
 
 	return (
     <header id="topbar" role="banner" aria-label={lang === 'fr' ? "Navigation globale du site" : "Website global navigation" }>
@@ -81,25 +93,25 @@ const TopBar = ({permalinks, lang}) => {
           <ul id="nav-objet" >
 
             <li data-type="actualite">
-              <Link to={`${relLang}/news`}
+              <Link to={mainPermalinks[lang].news}
                     aria-label={lang === 'fr' ? "Aller à la liste complètes des Actualités" : "Go to the complete list of médialab news" }>{news}</Link>
             </li>
 
             <li data-type="production">
-              <Link to={`${relLang}/productions`}
+              <Link to={mainPermalinks[lang].productions}
                     aria-label={lang === 'fr' ? "Aller à la liste complètes des Productions" : "Go to the complete list of médialab productions" }>{prod}</Link>
             </li>
 
             <li data-type="activite">
-              <Link to={`${relLang}/activities`}
+              <Link to={mainPermalinks[lang].activities}
                     aria-label={lang === 'fr' ? "Aller à la liste complètes des Activités" : "Go to the complete list of médialab activities" }>{activite}</Link>
             </li>
 
           </ul>
           <ul id="nav-institution">
-            <li><Link to={`${relLang}/about`} aria-label={lang === 'fr' ? "Aller à la page de présentation du médialab" : "Go to médialab presentation page" }>{medialab}</Link></li>
-            <li><Link to={`${relLang}/people`} aria-label={lang === 'fr' ? "Découvrir les membres du médialab" : "Discover médialab members " }>{team}</Link></li>
-            <li><Link to={`${relLang}/activities/seminaire-du-medialab`} aria-label={lang === 'fr' ? "Assister à notre séminaire" : "Join us for our seminar" }>{seminar}</Link></li>
+            <li><Link to={mainPermalinks[lang].about} aria-label={lang === 'fr' ? "Aller à la page de présentation du médialab" : "Go to médialab presentation page" }>{medialab}</Link></li>
+            <li><Link to={mainPermalinks[lang].people} aria-label={lang === 'fr' ? "Découvrir les membres du médialab" : "Discover médialab members " }>{team}</Link></li>
+            <li><Link to={mainPermalinks[lang].seminar} aria-label={lang === 'fr' ? "Assister à notre séminaire" : "Join us for our seminar" }>{seminar}</Link></li>
           </ul>
           <ul id="nav-archive">
             {/*<li><Link to={`${relLang}/outils`}>{tool}</Link></li>*/}

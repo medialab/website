@@ -31,7 +31,7 @@ const FilterProduction = ({lang, group, types}) => {
 	return (
   <>
     <h1 className="type_title" data-icon="production" ><a href="#liste">Productions</a></h1>
-    
+
     <input type="radio" id="radio-phone-filters" name="radio-phone" value="filters" hidden />
     <label htmlFor="radio-phone-filters" id="radio-phone-filters_label" title={IsModel('filtersAlt', lang)} arial-label={IsModel('filtersAlt', lang)}><Icons icon='search-filter' /></label>
 
@@ -40,7 +40,7 @@ const FilterProduction = ({lang, group, types}) => {
 
     <input type="radio" id="radio-phone-close" name="radio-phone" value="close" hidden />
     <label htmlFor="radio-phone-close" id="radio-phone-close_label" title={closeAlt} arial-label={closeAlt}>✕</label>
-    
+
 
     <aside className="accroche-title-list" role="navigation">
       <h1 className="aside-title" data-icon="production">Productions</h1>
@@ -58,7 +58,7 @@ const FilterProduction = ({lang, group, types}) => {
         <div className="go-to-year">
         <input type="checkbox" id="checkbox_filtre_year" name="radio_filtre-actu" value="year" hidden />
         <label htmlFor="checkbox_filtre_year" aria-label={IsModel('gotoyear', lang)}><span><Icons icon='arrow' /></span></label>
-          <p>{IsModel('gotoyear', lang)}</p>          
+          <p>{IsModel('gotoyear', lang)}</p>
           <ul id="list-years">
             <li><a href="#year-2019" data-year="#year-2019" aria-label={lang === "fr" ? "Aller à l'année 2019" : "Go to year 2019" }>2019</a></li>
             <li><a href="#year-2018" data-year="#year-2018" aria-label={lang === "fr" ? "Aller à l'année 2018" : "Go to year 2018" }>2018</a></li>
@@ -73,12 +73,12 @@ const FilterProduction = ({lang, group, types}) => {
             <li><a href="#year-2009" data-year="#year-2009" aria-label={lang === "fr" ? "Aller à l'année 2009" : "Go to year 2009" }>2009</a></li>
             <li><a href="#years-before-2009" aria-label={lang === "fr" ? "Aller aux années précédant 2009" : "Go to years before 2009" }>&lt; 2009</a></li>
           </ul>
-        </div>  
+        </div>
 
 
         <ul id="list-filter-type" data-list-open={group} className="link-productions-sort" aria-label={lang === "fr" ? "Filtrer les production par ..." : "Filter productions by ..." }>
         <li>
-          <Link to="/productions">{lang === 'fr' ? 'Toutes les productions' : 'All productions'}</Link>
+          <Link to={lang === 'fr' ? '/productions' : '/en/productions'}>{lang === 'fr' ? 'Toutes les productions' : 'All productions'}</Link>
         </li>
           {types.map(g => {
                 return (
@@ -96,7 +96,7 @@ const FilterProduction = ({lang, group, types}) => {
       </aside>
 
 
-      <script dangerouslySetInnerHTML= {{ __html: ` 
+      <script dangerouslySetInnerHTML= {{ __html: `
         var name = 'world';
         console.log('Hello ' + name);
       `}} />

@@ -59,6 +59,9 @@ type ActivitiesJson implements Node @infer {
   # Backlinks
   news: [NewsJson]
   productions: [ProductionsJson]
+
+  # Site specific
+  typeLabel: TranslatedString
 }
 
 type NewsJson implements Node @infer {

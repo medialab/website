@@ -94,10 +94,14 @@
 }
 
 
-/* ctivity only */
+/* ativity only */
 .page-activity .date-news .day-name,  
 .page-activity .date-news .day-num{
 	display: none;
+}
+.page-activity .liste_objet .date-news .day-name,  
+.page-activity .liste_objet .date-news .day-num{
+	display: inline;
 }
 
 .page-activity .date-news .month-name{ text-transform: capitalize; }

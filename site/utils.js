@@ -12,21 +12,23 @@ exports.hashNode = function hashNode(data) {
 // Helper creating an internationalized page
 exports.createI18nPage = function createI18nPage(createPage, page) {
 
-  const englishPath = '/en' + page.path;
+  const englishPath = '/en' + page.path,
+        frenchPath = page.frenchPath || page.path;
 
   // TODO: `current` & `translated` might not be useful
 
   // Default page, same as French
   createPage({
     ...page,
+    path: frenchPath,
     context: {
       ...page.context,
       lang: 'fr',
       permalinks: {
-        current: page.path,
+        current: frenchPath,
         translated: englishPath,
         en: englishPath,
-        fr: page.path
+        fr: frenchPath
       }
     }
   });
@@ -44,9 +46,9 @@ exports.createI18nPage = function createI18nPage(createPage, page) {
       lang: 'en',
       permalinks: {
         current: englishPath,
-        translated: page.path,
+        translated: frenchPath,
         en: englishPath,
-        fr: page.path
+        fr: frenchPath
       }
     }
   });

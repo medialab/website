@@ -106,7 +106,7 @@ const MODEL_READERS = {
         content,
         attachments: resolveAttachments(pathPrefix, activity.attachments || []),
         permalink: {
-          fr: `/activities/${slug}`,
+          fr: `/activites/${slug}`,
           en: `/en/activities/${slug}`
         },
         identifier: activity.id,
@@ -148,7 +148,7 @@ const MODEL_READERS = {
         bio: content,
         contacts: resolveAttachments(pathPrefix, person.contacts || []),
         permalink: {
-          fr: `/people/${slug}`,
+          fr: `/equipe/${slug}`,
           en: `/en/people/${slug}`
         },
         identifier: person.id,
@@ -281,7 +281,7 @@ const MODEL_READERS = {
         ...news,
         content: content,
         permalink: {
-          fr: `/news/${slug}`,
+          fr: `/actu/${slug}`,
           en: `/en/news/${slug}`
         },
         identifier: news.id,
@@ -311,7 +311,7 @@ const MODEL_READERS = {
         if (a.slug)
           return {...a,
             permalink: {
-              fr: `/people/${a.slug}`,
+              fr: `/equipe/${a.slug}`,
               en: `/en/people/${a.slug}`
             }
           };
@@ -488,7 +488,7 @@ exports.sourceNodes = function(args) {
         },
         permalink: {
           en: '/en/activities/current',
-          fr: '/activities/current'
+          fr: '/activites/current'
         }
       },
       {
@@ -499,7 +499,7 @@ exports.sourceNodes = function(args) {
         },
         permalink: {
           en: '/en/activities/past',
-          fr: '/activities/past'
+          fr: '/activites/past'
         }
       }
     ],
@@ -560,6 +560,7 @@ exports.createPages = function({graphql, actions}) {
 
   createI18nPage(createPage, {
     path: '/about',
+    frenchPath: '/a-propos',
     component: path.resolve('./src/templates/about.js')
   });
 
@@ -584,6 +585,7 @@ exports.createPages = function({graphql, actions}) {
   // Activities
   createI18nPage(createPage, {
     path: '/activities',
+    frenchPath: '/activites',
     component: path.resolve('./src/templates/activity-list.js'),
     context: {
       status: 'all',
@@ -593,6 +595,7 @@ exports.createPages = function({graphql, actions}) {
 
   // createI18nPage(createPage, {
   //   path: '/activities/current',
+  //   frenchPath: '/activites/current',
   //   component: path.resolve('./src/templates/activity-list.js'),
   //   context: {
   //     status: 'current',
@@ -602,6 +605,7 @@ exports.createPages = function({graphql, actions}) {
 
   // createI18nPage(createPage, {
   //   path: '/activities/past',
+  //   frenchPath: '/activites/past',
   //   component: path.resolve('./src/templates/activity-list.js'),
   //   context: {
   //     status: 'past',
@@ -612,6 +616,7 @@ exports.createPages = function({graphql, actions}) {
   // News
   createI18nPage(createPage, {
     path: '/news',
+    frenchPath: '/actu',
     component: path.resolve('./src/templates/news-list.js')
   });
 
@@ -639,6 +644,7 @@ exports.createPages = function({graphql, actions}) {
   // People
   createI18nPage(createPage, {
     path: '/people',
+    frenchPath: '/equipe',
     component: path.resolve('./src/templates/people-list.js')
   });
 
@@ -669,6 +675,7 @@ exports.createPages = function({graphql, actions}) {
         activity.slugs.forEach(slug => {
           createI18nPage(createPage, {
             path: `/activities/${slug}`,
+            frenchPath: `/activites/${slug}`,
             component: path.resolve('./src/templates/activity.js'),
             context
           });
@@ -693,6 +700,7 @@ exports.createPages = function({graphql, actions}) {
         person.slugs.forEach(slug => {
           createI18nPage(createPage, {
             path: `/people/${slug}`,
+            frenchPath: `/equipe/${slug}`,
             component: path.resolve('./src/templates/people.js'),
             context
           });
@@ -742,6 +750,7 @@ exports.createPages = function({graphql, actions}) {
         news.slugs.forEach(slug => {
           createI18nPage(createPage, {
             path: `/news/${slug}`,
+            frenchPath: `/actu/${slug}`,
             component: path.resolve('./src/templates/news.js'),
             context
           });

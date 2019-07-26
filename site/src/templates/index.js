@@ -15,7 +15,7 @@ export const query = graphql`
               coverImage {
                 url
                 processed {
-                  medium
+                  small
                 }
               }
               description {
@@ -37,7 +37,7 @@ export const query = graphql`
               coverImage {
                 url
                 processed {
-                  medium
+                  small
                 }
               }
               description {
@@ -60,7 +60,7 @@ export const query = graphql`
               coverImage {
                 url
                 processed {
-                  medium
+                  small
                 }
               }
               description {
@@ -80,6 +80,7 @@ export const query = graphql`
                 en
                 fr
               }
+              authors
             }
           }
         }

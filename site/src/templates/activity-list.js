@@ -59,7 +59,7 @@ export const query = graphql`
       topActivities {
         model
         data {
-          ... on Activities {
+          ... on ActivitiesJson {
             id
           }
         }

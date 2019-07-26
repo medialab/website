@@ -378,9 +378,11 @@ const MODEL_READERS = {
 
 exports.createSchemaCustomization = function({actions}) {
   const fluxSchema = importGraphQLSchema('flux');
+  const modelSchema = importGraphQLSchema('model');
 
   actions.createTypes([
-    fluxSchema
+    fluxSchema,
+    modelSchema
   ]);
 };
 
@@ -420,19 +422,6 @@ exports.sourceNodes = function(args) {
       console.log(`Updating ${model}.json`);
       MODEL_READERS[model](args);
     });
-
-  // Creating enum nodes
-  const enumHash = hashNode(ENUMS);
-
-  createNode({
-    ...ENUMS,
-    id: 'site-enums-node',
-    internal: {
-      type: 'EnumsJson',
-      contentDigest: enumHash,
-      mediaType: 'application/json'
-    }
-  });
 
   // Some faceted enums for templating convenience
   const facetedEnums = {
@@ -606,7 +595,7 @@ exports.createPages = function({graphql, actions}) {
   });
 
   const linkToAdmin = (model, id) => {
-    if (!BUILD_CONTEXT || BUILD_CONTEXT !== 'prod')
+    if (ADMIN_URL && (!BUILD_CONTEXT || BUILD_CONTEXT !== 'prod'))
       return `${ADMIN_URL}/#/${model}/${id}`;
     else
       return null;
@@ -721,6 +710,7 @@ exports.createPages = function({graphql, actions}) {
 };
 
 exports.setFieldsOnGraphQLNodeType = function({type, getNode, getNodesByType, pathPrefix}) {
+  return;
 
   const settings = {
     assetsPath: ASSETS_PATH,

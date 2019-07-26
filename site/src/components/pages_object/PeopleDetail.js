@@ -42,7 +42,6 @@ export const queryFragment = graphql`
     membership
     active
     draft
-    lastUpdated
     domain
     role {
       en

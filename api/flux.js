@@ -1,6 +1,6 @@
 const async = require('async');
 const Twitter = require('twitter');
-const config = require('config');
+const config = require('config-secrets');
 let request = require('request');
 const cachedRequest = require('cached-request');
 const range = require('lodash/range');

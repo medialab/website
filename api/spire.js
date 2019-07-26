@@ -8,6 +8,9 @@ const config = require('config-secrets'),
       slug = require('slug'),
       makeSlugFunctions = require('../specs/slugs.js');
 
+const SUPERUSER = config.get('superuser');
+const AUTH = `${SUPERUSER.username}:${SUPERUSER.password}`;
+
 const {production: slugifyProduction, people: slugifyPeople} = makeSlugFunctions(slug);
 
 const models = require('../specs/models.json');
@@ -116,14 +119,14 @@ module.exports.aSPIRE = function aSPIRE(doneCallback, emitCallback = console.deb
     getRefDone => {
       async.parallel({
         people: fetchPeopleDone => {
-          request.get(`http://localhost:${config.port}/people/people`, {json: true}, (err, result) => {
+          request.get(`http://${AUTH}@localhost:${config.port}/people/people`, {json: true}, (err, result) => {
             if (err) fetchPeopleDone(err);
             emitCallback('Récupération des People terminée');
             fetchPeopleDone(null, _.keyBy(result.body, p => p.slugs[0]));
           });
         },
         productions: fetchProductionsDone => {
-          request.get(`http://localhost:${config.port}/productions/productions`, {json: true}, (err, result) => {
+          request.get(`http://${AUTH}@localhost:${config.port}/productions/productions`, {json: true}, (err, result) => {
             if (err) fetchProductionsDone(err);
             emitCallback('Récupération des Productions terminée');
             fetchProductionsDone(null, _.keyBy(result.body.filter(p => !!p.spire), p => p.spire.id));
@@ -195,7 +198,7 @@ module.exports.aSPIRE = function aSPIRE(doneCallback, emitCallback = console.deb
               console.error(model, object, VALIDATORS[model].errors);
               cb(new Error(VALIDATORS[model].errors));
             }
-            const url = method === 'PUT' ? `http://localhost:${config.port}/${model}/${model}/${object.id}` : `http://localhost:${config.port}/${model}/${model}/`;
+            const url = method === 'PUT' ? `http://${AUTH}@localhost:${config.port}/${model}/${model}/${object.id}` : `http://${AUTH}@localhost:${config.port}/${model}/${model}/`;
             console.debug(`API CALL ${model} ${method} ${object.id}`);
             request({url, method, body: object, json: true}, (reqErr) => {
               if (reqErr) {

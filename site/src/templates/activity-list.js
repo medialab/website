@@ -12,6 +12,7 @@ export const query = graphql`
           id
           name
           active
+          startDate
           description {
             en
             fr
@@ -36,7 +37,6 @@ export const query = graphql`
             }
           }
           type
-          lastUpdated
         }
       }
     }
@@ -59,7 +59,7 @@ export const query = graphql`
       topActivities {
         model
         data {
-          ... on Activities {
+          ... on ActivitiesJson {
             id
           }
         }

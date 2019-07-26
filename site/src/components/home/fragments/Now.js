@@ -7,6 +7,7 @@ import TimeNews from '../../helpers/TimeNews.js';
 import ProcessedImage from '../../helpers/ProcessedImage.js';
 import {IsModel} from '../../helpers/helpers.js';
 import RawHTML from '../../helpers/RawHtml.js';
+import LanguageFallback from '../../helpers/LanguageFallback.js';
 
 
 export default function Now({now, lang}) {
@@ -26,13 +27,14 @@ export default function Now({now, lang}) {
       </label>       */}
       <ul className="contenu">
       {now.map((item, index) =>
-
         (<React.Fragment key={index}>
         <li  itemScope itemType="https://schema.org/Thing" data-type={item.model} className="now-item" key={index}>
           <Link to={item.data.permalink[lang]}>
-            <div className="image-pre" aria-hidden="true">
-                <ProcessedImage size="small" image={item.data.coverImage && item.data.coverImage.processed.small} />
-            </div>
+              {item.model !== 'productions' && 
+                (<div className="image-pre" aria-hidden="true">
+                  <ProcessedImage size="small" image={item.data.coverImage && item.data.coverImage.processed.small} data={item.data} />
+                </div>)
+              }
               {/* If Production*/}
               {item.model === 'productions' &&
 								<>
@@ -42,23 +44,12 @@ export default function Now({now, lang}) {
                   <p className="authors">{item.data.authors}</p>
                 </div>
                 <hgroup>
-                (item.data.title &&
-                  {lang === 'fr' ?
-                    <h1 data-level-1="title">{item.data.title.fr}</h1> :
-                    <h1 data-level-1="title">{item.data.title.en}</h1>
-                	}
-                  <h2 data-level-2="author" className="author">
-                    {(item.data.author || []).map(person => <span>{person.firstName} {person.lastName}</span>)}
-                  </h2>
-                  )
+                  { item.data.title &&  
+                    <h1 data-level-1="title"><LanguageFallback translatedAttribute={item.data.title} lang={lang}/></h1> 
+                  }
                 </hgroup>
 							  </>
               }
-
-
-
-
-
               {/* If People*/}
               {item.model === 'people' &&
                 <>
@@ -90,7 +81,9 @@ export default function Now({now, lang}) {
                     <TimeNews startDate={item.data.startDate} endDate={item.data.endDate} />
                 </div>
                 <hgroup>
-						    {lang === 'fr' ? <h1 data-level-1="title">{item.data.title && item.data.title.fr}</h1> : <h1 data-level-1="title">{item.data.label && item.data.title.en}</h1>}
+                  {
+                    item.data.title && <h1 data-level-1="title"><LanguageFallback translatedAttribute={item.data.title} lang={lang}/></h1>
+                  }
                 </hgroup>
                 </>
 							}
@@ -103,10 +96,7 @@ export default function Now({now, lang}) {
                     <p className="title" data-level-2="title">{item.data.name}</p>
                   </div>
                   <hgroup>
-                    {lang === 'fr' ?
-                      <h1 data-level-1="baseline">{item.data.baseline && item.data.baseline.fr}</h1> :
-                      <h1 data-level-1="baseline">{item.data.baseline && item.data.baseline.en}</h1>
-                      }
+                    {item.data.baseline && <h1 data-level-1="baseline"><LanguageFallback translatedAttribute={item.data.baseline} lang={lang}/></h1>}
                   </hgroup>
                 </>
 							}

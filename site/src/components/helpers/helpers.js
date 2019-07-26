@@ -1,5 +1,15 @@
 import React from 'react';
 
+// ellipse function
+export function ellipse(text, maxSize = 175) {
+  if (text.length > maxSize) {
+    let cutIndex = text.slice(0, maxSize).lastIndexOf(' ');
+    cutIndex = cutIndex === -1 ? maxSize : cutIndex;
+    return text.slice(0, cutIndex) + '…';
+  }
+  return text;
+}
+
 export function join(children, string) {
   const result = new Array(children.length * 2 - 1);
 

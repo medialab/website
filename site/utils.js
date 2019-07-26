@@ -1,4 +1,13 @@
 const crypto = require('crypto');
+const path = require('path');
+const fs = require('fs');
+
+// Helper importing a GraphQL schema
+exports.importGraphQLSchema = function(name) {
+  const p = path.join(__dirname, 'schemas', `${name}.gql`);
+
+  return fs.readFileSync(p, 'utf-8');
+};
 
 // Helper hashing a node's data
 exports.hashNode = function hashNode(data) {
@@ -12,21 +21,23 @@ exports.hashNode = function hashNode(data) {
 // Helper creating an internationalized page
 exports.createI18nPage = function createI18nPage(createPage, page) {
 
-  const englishPath = '/en' + page.path;
+  const englishPath = '/en' + page.path,
+        frenchPath = page.frenchPath || page.path;
 
   // TODO: `current` & `translated` might not be useful
 
   // Default page, same as French
   createPage({
     ...page,
+    path: frenchPath,
     context: {
       ...page.context,
       lang: 'fr',
       permalinks: {
-        current: page.path,
+        current: frenchPath,
         translated: englishPath,
         en: englishPath,
-        fr: page.path
+        fr: frenchPath
       }
     }
   });
@@ -44,22 +55,12 @@ exports.createI18nPage = function createI18nPage(createPage, page) {
       lang: 'en',
       permalinks: {
         current: englishPath,
-        translated: page.path,
+        translated: frenchPath,
         en: englishPath,
-        fr: page.path
+        fr: frenchPath
       }
     }
   });
-};
-
-// ellipse function
-exports.ellipse = (text, maxSize = 175) => {
-  if (text.length > maxSize) {
-    let cutIndex = text.slice(0, maxSize).lastIndexOf(' ');
-    cutIndex = cutIndex === -1 ? maxSize : cutIndex;
-    return text.slice(0, cutIndex) + '…';
-  }
-  return text;
 };
 
 const PUNCTUATION = /\s*([?!])/g;

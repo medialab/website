@@ -25,6 +25,7 @@ const messagesMeta = {
 };
 
 const byYear = ([yearA], [yearB]) => yearB - yearA;
+const byYearKey = (yearA, yearB) => yearB - yearA;
 
 export default function NewsListing({lang, list}) {
 	// console.log(lang, list);
@@ -61,7 +62,7 @@ export default function NewsListing({lang, list}) {
       lang={lang}
     />
     <main role="main" aria-describedby="aria-accroche">
-      <FilterNews lang={lang} years={Array.from(yearGroups.keys()).sort(byYear)} />
+      <FilterNews lang={lang} years={Array.from(yearGroups.keys()).sort(byYearKey)} />
       <section className="main-filters">
       </section>
 

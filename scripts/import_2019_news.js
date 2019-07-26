@@ -1,4 +1,4 @@
-const config = require('config'),
+const config = require('config-secrets'),
   Ajv = require('ajv'),
   async = require('async'),
   request = require('request'),
@@ -260,7 +260,7 @@ async.waterfall([
     const activitiesByOldSlug = _.keyBy(indeces.activities, a => a.oldSlug);
 
     /*********** BLOG => NEWS **********/
-    
+
     //old content already imported
     const importedNews = new Set(indeces.news.map(n => n.oldSlug));
     const oldBlogToImport = indeces.oldBlog.filter(on => !importedNews.has(oldSlug(on)));
@@ -294,6 +294,6 @@ async.waterfall([
 // get activities from scrap created where slug unknown
 // export unknown oldslugs
 // load correction table
-// add old slugs 
+// add old slugs
 
 

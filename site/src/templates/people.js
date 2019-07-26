@@ -7,8 +7,8 @@ import EditInAdmin from '../components/pages_object/fragments/EditInAdmin';
 
 
 export const query = graphql`
-  query($identifier: String!) {
-    peopleJson(identifier: {eq: $identifier}) {
+  query($id: String!) {
+    peopleJson(id: {eq: $id}) {
       ...PeopleDetail
     }
   }

@@ -52,11 +52,11 @@ function extractGenerativeParameters(rows, data) {
     'levenshtein is so cool'
   );
 
-  const date = (data.startDate || data.date);
-
+  const date = (data.startDate || data.date || data.endDate);
+ 
   const number = date ?
     +date.split('T')[0].replace(/-/g, '') :
-    0;
+    string.charCodeAt(0);
 
   // TODO: Split somewhere in half!
   // TODO: fix still empty cases
@@ -80,12 +80,11 @@ function extractGenerativeParameters(rows, data) {
 const PLACEHOLDER_CHARACTERS = makeid(12);
 
 export default function ProcessedImage({image, data, size}) {
+
   const rows = ROWS[size];
 
   if (!image && data) {
     const params = extractGenerativeParameters(rows, data);
-    // console.log(data.title.fr || data.title.en, params[2]);
-
     image = levenshteinGenerativePattern.apply(null, params);
   }
 

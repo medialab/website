@@ -30,6 +30,7 @@ const {
 
 const MODELS = require('../specs/models.json');
 const spire = require('./spire.js');
+const oldSlugRedirections = require('./oldSlugRedirections.js');
 
 const config = require('config-secrets');
 
@@ -435,15 +436,30 @@ function buildStaticSite(callback) {
       env.BUILD_CONTEXT = 'prod';
       env.ROOT_PATH = path.resolve(__dirname, '..');
       env.GOOGLE_ANALYTICS_ID = config.get('googleAnalyticsId');
+      env.NODE_ENV = 'production';
 
-      return exec('gatsby build', {cwd: SITE_PATH, env}, err => {
-        changeBuildStatus('free');
+      return exec('gatsby build', {cwd: SITE_PATH, env}, next);
+    },
 
-        if (err)
-          return next(err);
+    // 4) Deploying using rsync
+    rsync(next) {
+      changeBuildStatus('rsync');
 
+      const rsyncConfig = config.get('rsync');
+
+      if (!rsyncConfig.target || !rsyncConfig.password) {
+        console.log('Skipping rsync...');
         return next();
-      });
+      }
+
+      const built = path.join(SITE_PATH, 'public', '/');
+
+      const command = [
+        `RSYNC_PASSWORD=${rsyncConfig.password}`,
+        `rsync -az --del ${built} ${rsyncConfig.target}`
+      ].join(' ');
+
+      return exec(command, next);
     }
   }, callback);
 }
@@ -456,6 +472,8 @@ function buildTask() {
     return false;
 
   buildStaticSite(err => {
+    changeBuildStatus('free');
+
     if (err)
       console.error(err);
     else
@@ -478,6 +496,15 @@ app.get('/build', (req, res) => {
 
   return res.json(payload);
 });
+
+app.get('/redirects.nginx.conf', (req, res) => {
+  oldSlugRedirections((err, redirections) => {
+    if (err)
+      return res.status(500).send(err);
+    else
+      return res.type('txt/*').send(redirections);
+  })
+})
 
 // Listening
 console.log(`Listening on port ${PORT}...`);

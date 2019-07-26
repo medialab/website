@@ -34,20 +34,5 @@ module.exports = {
     title: 'médialab Sciences Po',
     siteUrl: 'https://medialab.sciencespo.fr'
   },
-  plugins,
-  mapping: {
-    'ActivitiesJson.assets': 'File.base',
-    'ActivitiesJson.people': 'PeopleJson',
-    'PeopleJson.assets': 'File.base',
-    'PeopleJson.mainActivities': 'ActivitiesJson',
-    'PeopleJson.mainProductions': 'ProductionsJson',
-    'ProductionsJson.assets': 'File.base',
-    'ProductionsJson.activities': 'ActivitiesJson',
-    'ProductionsJson.people': 'PeopleJson',
-    'ProductionsJson.productions': 'ProductionsJson',
-    'NewsJson.assets': 'File.base',
-    'NewsJson.activities': 'ActivitiesJson',
-    'NewsJson.people': 'PeopleJson',
-    'NewsJson.productions': 'ProductionsJson'
-  }
+  plugins
 };

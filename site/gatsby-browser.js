@@ -248,7 +248,10 @@ const CUSTOM_SCRIPTS = [
       hilitor.setMatchType('open');
 
       const search = debounce(function(evt) {
-        hilitor.apply(evt.target.value);
+        const val = evt.target.value;
+        if (val.length > 2 || val.length === 0) {
+          hilitor.apply(evt.target.value);
+        }
       }, 300);
 
       const onEnter = function(evt) {

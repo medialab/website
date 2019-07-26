@@ -8,6 +8,10 @@
     "path": "./build",
     "repository": "git@repo"
   },
+  "rsync": {
+    "target": "",
+    "password": ""
+  },
   "port": 3000,
   "twitter": {
     "consumerKey": "",

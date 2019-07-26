@@ -6,6 +6,7 @@ const entities = new Entities();
 
 const TITLE = /^H[123456]$/;
 const POINTLESS_P = /<p><br><\/p>/g;
+const RAW_IFRAME = /<iframe.+src="([^"]*)"[^>]*>[^<]*<\/iframe>/g;
 
 function getImageOrientation(width, height) {
 
@@ -138,7 +139,11 @@ function processHtml(pathPrefix, html) {
 
     // Raw blocks
     else if (tag === 'PRE') {
-      output += entities.decode($this.text().replace(/^\s+/g, ''));
+      let injection = entities.decode($this.text().replace(/^\s+/g, ''));
+
+      injection = injection.replace(RAW_IFRAME, '$&<p class="print"><span>Iframe</span> $1</p>')
+
+      output += injection;
     }
 
     // Atomics
@@ -206,7 +211,7 @@ function processHtml(pathPrefix, html) {
         if (internal)
           src = withPrefix(src);
 
-        output += `<iframe src="${src}"></iframe><p class="print"><span>Iframe</span>${src}</p>`;
+        output += `<iframe src="${src}"></iframe><p class="print"><span>Iframe</span> ${src}</p>`;
       }
     }
   });

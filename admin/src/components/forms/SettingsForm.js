@@ -90,7 +90,7 @@ export default class SettingsForm extends Component {
             <h3 className="title is-5">À la une</h3>
             <EditorializationSelector
               max={8}
-              models={['activities', 'news', 'people', 'productions']}
+              models={['activities', 'news', 'productions']}
               selected={settings.home.grid}
               onAdd={this.handlers.grid.add}
               onDrop={this.handlers.grid.drop}

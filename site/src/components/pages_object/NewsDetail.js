@@ -160,6 +160,7 @@ export default function NewsDetail({lang, news}) {
               </p>
               <DateNews startDate={news.startDate} endDate={news.endDate} lang="fr" />
               <TimeNews startDate={news.startDate} endDate={news.endDate} />
+              { news.place && <p className="place" aria-label={lang === "fr" ? "Lieu" : "Place" }>{news.place}</p> }
               <FichiersAssocies attachments={news.attachments} lang="fr" />
             </div>
             <div className="article-contenu">
@@ -181,6 +182,7 @@ export default function NewsDetail({lang, news}) {
               </p>
               <DateNews startDate={news.startDate} endDate={news.endDate} lang="en" />
               <TimeNews startDate={news.startDate} endDate={news.endDate} />
+              { news.place && <p className="place" aria-label={lang === "fr" ? "Lieu" : "Place" }>{news.place}</p> }
               <FichiersAssocies attachments={news.attachments} lang="en" />
             </div>
             <div className="article-contenu">

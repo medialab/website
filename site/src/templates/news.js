@@ -6,8 +6,8 @@ import NewsDetail from '../components/pages_object/NewsDetail';
 import EditInAdmin from '../components/pages_object/fragments/EditInAdmin';
 
 export const query = graphql`
-  query($identifier: String!) {
-    newsJson(identifier: {eq: $identifier}) {
+  query($id: String!) {
+    newsJson(id: {eq: $id}) {
       ...NewsDetail
     }
   }

@@ -1,0 +1,182 @@
+type TranslatedString {
+  fr: String
+  en: String
+}
+
+type CoverCrop {
+  x: Float
+  y: Float
+  width: Float
+  height: Float
+}
+
+type Cover {
+  processed: Boolean
+  file: String
+  gamma: Int
+  crop: CoverCrop
+  credits: String
+}
+
+type CoverImageProcessed {
+  small: String
+  medium: String
+  large: String
+}
+
+type CoverImage {
+  url: String
+  processed: CoverImageProcessed
+}
+
+type Attachment {
+  type: String!
+  label: String
+  value: String
+}
+
+type ActivitiesJson implements Node @infer {
+  slugs: [String]
+  oldSlug: String
+  cover: Cover
+  coverImage: CoverImage
+  active: Boolean
+  draft: Boolean
+  permalink: TranslatedString
+
+  name: String!
+  baseline: TranslatedString
+  description: TranslatedString
+  type: String!
+  content: TranslatedString
+  people: [PeopleJson]
+  activities: [ActivitiesJson]
+  attachments: [Attachment]
+  startDate: String
+  endDate: String
+  external: Boolean
+
+  # Backlinks
+  news: [NewsJson]
+  productions: [ProductionsJson]
+
+  # Site specific
+  typeLabel: TranslatedString
+}
+
+type NewsJson implements Node @infer {
+  slugs: [String]
+  oldSlug: String
+  cover: Cover
+  coverImage: CoverImage
+  active: Boolean
+  draft: Boolean
+  permalink: TranslatedString
+
+  title: TranslatedString
+  type: String!
+  description: TranslatedString
+  place: String
+  label: TranslatedString
+  content: TranslatedString
+  activities: [ActivitiesJson]
+  people: [PeopleJson]
+  productions: [ProductionsJson]
+  attachments: [Attachment]
+  startDate: String
+  endDate: String
+
+  # Site specific
+  isInternal: Boolean
+  typeLabel: TranslatedString
+  expiry: Int
+}
+
+type PeopleJson implements Node @infer {
+  slugs: [String]
+  oldSlug: String
+  cover: Cover
+  coverImage: CoverImage
+  active: Boolean
+  draft: Boolean
+  permalink: TranslatedString
+
+  firstName: String!
+  lastName: String!
+  role: TranslatedString
+  domain: String
+  status: TranslatedString
+  bio: TranslatedString
+  contacts: [Attachment]
+  membership: String
+  mainActivities: [ActivitiesJson]
+  mainProductions: [ProductionsJson]
+
+  # Backlinks
+  activities: [ActivitiesJson]
+  news: [NewsJson]
+  productions: [ProductionsJson]
+}
+
+type ProductionsJson implements Node @infer {
+  slugs: [String]
+  oldSlug: String
+  cover: Cover
+  coverImage: CoverImage
+  active: Boolean
+  draft: Boolean
+  permalink: TranslatedString
+
+  title: TranslatedString
+  description: TranslatedString
+  type: String!
+  content: TranslatedString
+  authors: String
+  activities: [ActivitiesJson]
+  productions: [ProductionsJson]
+  people: [PeopleJson]
+  date: String
+  ref: String
+  url: String
+  external: Boolean
+
+  # Site specific
+  group: String
+  groupLabel: TranslatedString
+  typeLabel: TranslatedString
+}
+
+type FacetedEnumValue {
+  label: TranslatedString
+  type: String
+}
+
+type FacetedEnum {
+  id: String
+  label: TranslatedString
+  permalink: TranslatedString
+  values: [FacetedEnumValue]
+}
+
+type FacetedEnumsJson implements Node @infer {
+  activityStatuses: [FacetedEnum]
+  productionTypes: [FacetedEnum]
+}
+
+union HomeItemData = ActivitiesJson | NewsJson | PeopleJson | ProductionsJson
+
+type HomeItem {
+  id: String
+  model: String
+  data: HomeItemData
+}
+
+type Home {
+  grid: [HomeItem]
+  slider: [HomeItem]
+}
+
+type SettingsJson implements Node @infer {
+  home: Home
+  topActivities: [HomeItem]
+}

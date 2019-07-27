@@ -39,13 +39,6 @@ export const queryFragment = graphql`
       en
       fr
     }
-    coverImage {
-      url
-      processed {
-        medium
-        large
-      }
-    }
     people {
       firstName
       lastName
@@ -71,6 +64,10 @@ export const queryFragment = graphql`
         fr
       }
       name
+      baseline {
+        en
+        fr
+      }
       type
     }
     productions {
@@ -100,14 +97,6 @@ export const queryFragment = graphql`
 export default function ProductionDetail({lang, production}) {
 
 
-  let coverImage = null;
-
-  if (production.coverImage) {
-    coverImage = (
-      <ProcessedImage size="large" image={production.coverImage.processed ? production.coverImage.processed.large : null} />
-    );
-  }
-
   const LangBlock = ({production, lang}) => {
 
     let ref = (<p className="production-ref">
@@ -118,7 +107,7 @@ export default function ProductionDetail({lang, production}) {
     if (production.url) {
       ref = <a href={production.url} target="_blank" rel="noopener noreferrer">{ref}</a>;
     }
-  
+
     return (<div className={`block-lang ${lang}`} lang={lang}>
       <hgroup>
         <h1 data-level-1="title"><LanguageFallback lang={lang} translatedAttribute={production.title} /></h1>
@@ -130,7 +119,7 @@ export default function ProductionDetail({lang, production}) {
         </p>
         <DateNews startDate={production.date} lang={lang} />
         {ref}
-        { 
+        {
           // so far we don't have attachments on production also we planned to have some... I think...
           //<FichiersAssocies attachments={production.attachments} lang="fr" />
         }
@@ -149,7 +138,7 @@ export default function ProductionDetail({lang, production}) {
         <div id="container-titre-sticky">
           <div id="logo-sticky"><a href="/"><Logo /></a></div>
           <p>
-            <Link to="/productions">
+            <Link to={lang === 'fr' ? '/productions' : '/en/productions'}>
               <span data-icon="production">Productions</span>
             </Link>
               <span className="title">
@@ -163,7 +152,6 @@ export default function ProductionDetail({lang, production}) {
 
       <div id="img-article">
         <div className="activator"></div>
-        <div className="container">{ coverImage}</div>
       </div>
 
         <article id="article-contenu">

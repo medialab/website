@@ -114,13 +114,6 @@ export const queryFragment = graphql`
 
 export default function NewsDetail({lang, news}) {
 
-  let coverImage = null;
-
-  if (news.coverImage) {
-    coverImage = (
-      <ProcessedImage size="large" image={news.coverImage.processed ? news.coverImage.processed.large : null} />
-    );
-  }
 
 
   return (
@@ -131,7 +124,7 @@ export default function NewsDetail({lang, news}) {
         <div id="container-titre-sticky">
           <div id="logo-sticky"><a href="/"><Logo /></a></div>
           <p>
-            <Link to="/news">
+            <Link to={lang === 'fr' ? '/actu' : '/en/news'}>
               <span data-icon="news">{lang === 'fr' ? "Actualité" : 'News'} </span>
             </Link>
             {news.title && <span className="title">
@@ -143,7 +136,9 @@ export default function NewsDetail({lang, news}) {
 
         <div id="img-article" aria-hidden="true">
           <div className="activator"></div>
-          <div className="container">{coverImage}</div>
+          <div className="container">
+            <ProcessedImage size="large" image={news.coverImage && news.coverImage.processed && news.coverImage.processed.large} data={news}/>
+          </div>
 
         </div>
 
@@ -161,10 +156,11 @@ export default function NewsDetail({lang, news}) {
               <p className="type-objet">
                 <span data-icon="news"></span>
                 <span className="type-news">{IsModel(news.type, "fr")}</span>
-                {news.label ? <span>, {news.label.fr}</span> : ''}
+                {news.label && news.label.fr ? <span>, {news.label.fr}</span> : ''}
               </p>
               <DateNews startDate={news.startDate} endDate={news.endDate} lang="fr" />
               <TimeNews startDate={news.startDate} endDate={news.endDate} />
+              { news.place && <p className="place" aria-label={lang === "fr" ? "Lieu" : "Place" }>{news.place}</p> }
               <FichiersAssocies attachments={news.attachments} lang="fr" />
             </div>
             <div className="article-contenu">
@@ -182,10 +178,11 @@ export default function NewsDetail({lang, news}) {
               <p className="type-objet">
                 <span data-icon="news"></span>
                 <span className="type-news">{IsModel(news.type, "en")}</span>
-                {news.label ? <span>, {news.label.en}</span> : ''}
+                {news.label && news.label.en ? <span>, {news.label.en}</span> : ''}
               </p>
               <DateNews startDate={news.startDate} endDate={news.endDate} lang="en" />
               <TimeNews startDate={news.startDate} endDate={news.endDate} />
+              { news.place && <p className="place" aria-label={lang === "fr" ? "Lieu" : "Place" }>{news.place}</p> }
               <FichiersAssocies attachments={news.attachments} lang="en" />
             </div>
             <div className="article-contenu">

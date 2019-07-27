@@ -6,13 +6,7 @@ const shuffleInPlace = require('pandemonium/shuffle-in-place');
 const _ = require('lodash');
 
 const {
-  addBacklinkToGraphQLSchema,
-  graphQLSchemaAdditionForSettings,
-  graphQLSchemaAdditionFromJsonSchema,
-  patchGraphQLSchema
-} = require('./schema.js');
-
-const {
+  importGraphQLSchema,
   hashNode,
   createI18nPage,
   frenchTypographyReplace
@@ -22,6 +16,13 @@ const {
   template,
   resolveAttachments
 } = require('./templating.js');
+
+const {
+  createSettingsItemResolver,
+  createRelationResolver,
+  createBacklinkResolver,
+  createCoverImageResolver
+} = require('./schemas/resolvers.js');
 
 // Env vars
 const ROOT_PATH = process.env.ROOT_PATH || '..';
@@ -48,16 +49,12 @@ _.forEach(ENUMS.productionTypes.groups, (group, key) => {
 const processing = require(path.join(ROOT_PATH, 'specs', 'processing.js')).sharpToString;
 
 const MODELS_PATHS = {};
-const SCHEMAS = {};
-const GRAPHQL_SCHEMAS = {};
 
 MODELS.forEach(model => {
   MODELS_PATHS[model] = path.join(DB_PATH, `${model}.json`);
-  SCHEMAS[model] = require(path.join(ROOT_PATH, 'specs', 'schemas', `${model}.json`));
-  GRAPHQL_SCHEMAS[model] = graphQLSchemaAdditionFromJsonSchema(model, SCHEMAS[model]);
 });
 
-// Specifics schemas & models
+// Specifics models
 MODELS_PATHS.settings = path.join(DB_PATH, 'settings.json');
 MODELS_PATHS.github = path.join(DB_PATH, 'github.json');
 MODELS_PATHS.twitter = path.join(DB_PATH, 'twitter.json');
@@ -106,10 +103,9 @@ const MODEL_READERS = {
         content,
         attachments: resolveAttachments(pathPrefix, activity.attachments || []),
         permalink: {
-          fr: `/activities/${slug}`,
+          fr: `/activites/${slug}`,
           en: `/en/activities/${slug}`
         },
-        identifier: activity.id,
         internal: {
           type: 'ActivitiesJson',
           contentDigest: hash,
@@ -148,10 +144,9 @@ const MODEL_READERS = {
         bio: content,
         contacts: resolveAttachments(pathPrefix, person.contacts || []),
         permalink: {
-          fr: `/people/${slug}`,
+          fr: `/equipe/${slug}`,
           en: `/en/people/${slug}`
         },
-        identifier: person.id,
         internal: {
           type: 'PeopleJson',
           contentDigest: hash,
@@ -223,7 +218,6 @@ const MODEL_READERS = {
           fr: `/productions/${slug}`,
           en: `/en/productions/${slug}`
         },
-        identifier: production.id,
         internal: {
           type: 'ProductionsJson',
           contentDigest: hash,
@@ -281,10 +275,9 @@ const MODEL_READERS = {
         ...news,
         content: content,
         permalink: {
-          fr: `/news/${slug}`,
+          fr: `/actu/${slug}`,
           en: `/en/news/${slug}`
         },
-        identifier: news.id,
         internal: {
           type: 'NewsJson',
           contentDigest: hash,
@@ -311,7 +304,7 @@ const MODEL_READERS = {
         if (a.slug)
           return {...a,
             permalink: {
-              fr: `/people/${a.slug}`,
+              fr: `/equipe/${a.slug}`,
               en: `/en/people/${a.slug}`
             }
           };
@@ -379,56 +372,80 @@ const MODEL_READERS = {
   }
 };
 
+exports.createSchemaCustomization = function({actions}) {
+  const fluxSchema = importGraphQLSchema('flux');
+  const modelSchema = importGraphQLSchema('model');
+
+  actions.createTypes([
+    fluxSchema,
+    modelSchema
+  ]);
+};
+
+exports.createResolvers = function({createResolvers, pathPrefix}) {
+
+  const settings = {
+    assetsPath: ASSETS_PATH,
+    publicPath: PUBLIC_PATH,
+    prefix: pathPrefix,
+    processing
+  };
+
+  createResolvers({
+    HomeItem: {
+      data: createSettingsItemResolver(settings)
+    },
+
+    ActivitiesJson: {
+      // Cover
+      coverImage: createCoverImageResolver(settings),
+
+      // Relations
+      people: createRelationResolver('people'),
+
+      // Backlinks
+      news: createBacklinkResolver('NewsJson'),
+      productions: createBacklinkResolver('ProductionsJson')
+    },
+
+    NewsJson: {
+      // Cover
+      coverImage: createCoverImageResolver(settings),
+
+      // Relations
+      activities: createRelationResolver('activities'),
+      people: createRelationResolver('people'),
+      productions: createRelationResolver('productions')
+    },
+
+    PeopleJson: {
+      // Cover
+      coverImage: createCoverImageResolver(settings),
+
+      // Relations
+      mainActivities: createRelationResolver('mainActivities'),
+      mainProductions: createRelationResolver('mainProductions'),
+
+      // Backlinks
+      activities: createBacklinkResolver('ActivitiesJson'),
+      news: createBacklinkResolver('NewsJson'),
+      productions: createBacklinkResolver('ProductionsJson')
+    },
+
+    ProductionsJson: {
+      // Cover
+      coverImage: createCoverImageResolver(settings),
+
+      // Relations
+      activities: createRelationResolver('activities'),
+      people: createRelationResolver('people'),
+      productions: createRelationResolver('productions')
+    }
+  });
+};
+
 exports.sourceNodes = function(args) {
-  const {actions: {createNode, createTypes}} = args;
-
-  // TODO: fix this dirty hack!
-  createTypes(`
-    type GithubAuthor {
-      nickname: String!
-      url: String!
-      slug: String
-      name: String
-      permalink: Permalink
-    }
-
-    type Permalink {
-      fr: String
-      en: String
-    }
-
-    type GithubJson implements Node @infer {
-      repo: String!
-      language: String
-      url: String
-      startDate: String
-      endDate: String
-      count: Int
-      description: String
-      license: String
-      authors: [GithubAuthor!]
-    }
-
-    type OriginalTweet {
-      tweet: String!
-      text: String!
-      html: String!
-      screenName: String!
-      name: String!
-      type: String!
-    }
-
-    type TwitterJson implements Node @infer {
-      tweet: String!
-      text: String!
-      html: String!
-      date: String
-      retweets: Int
-      favorites: Int
-      type: String!
-      originalTweet: OriginalTweet
-    }
-  `);
+  const {actions: {createNode}} = args;
 
   const copyAsset = asset => {
     fs.copySync(
@@ -464,19 +481,6 @@ exports.sourceNodes = function(args) {
       MODEL_READERS[model](args);
     });
 
-  // Creating enum nodes
-  const enumHash = hashNode(ENUMS);
-
-  createNode({
-    ...ENUMS,
-    id: 'site-enums-node',
-    internal: {
-      type: 'EnumsJson',
-      contentDigest: enumHash,
-      mediaType: 'application/json'
-    }
-  });
-
   // Some faceted enums for templating convenience
   const facetedEnums = {
     activityStatuses: [
@@ -488,7 +492,7 @@ exports.sourceNodes = function(args) {
         },
         permalink: {
           en: '/en/activities/current',
-          fr: '/activities/current'
+          fr: '/activites/current'
         }
       },
       {
@@ -499,7 +503,7 @@ exports.sourceNodes = function(args) {
         },
         permalink: {
           en: '/en/activities/past',
-          fr: '/activities/past'
+          fr: '/activites/past'
         }
       }
     ],
@@ -560,6 +564,7 @@ exports.createPages = function({graphql, actions}) {
 
   createI18nPage(createPage, {
     path: '/about',
+    frenchPath: '/a-propos',
     component: path.resolve('./src/templates/about.js')
   });
 
@@ -584,6 +589,7 @@ exports.createPages = function({graphql, actions}) {
   // Activities
   createI18nPage(createPage, {
     path: '/activities',
+    frenchPath: '/activites',
     component: path.resolve('./src/templates/activity-list.js'),
     context: {
       status: 'all',
@@ -593,6 +599,7 @@ exports.createPages = function({graphql, actions}) {
 
   // createI18nPage(createPage, {
   //   path: '/activities/current',
+  //   frenchPath: '/activites/current',
   //   component: path.resolve('./src/templates/activity-list.js'),
   //   context: {
   //     status: 'current',
@@ -602,6 +609,7 @@ exports.createPages = function({graphql, actions}) {
 
   // createI18nPage(createPage, {
   //   path: '/activities/past',
+  //   frenchPath: '/activites/past',
   //   component: path.resolve('./src/templates/activity-list.js'),
   //   context: {
   //     status: 'past',
@@ -612,6 +620,7 @@ exports.createPages = function({graphql, actions}) {
   // News
   createI18nPage(createPage, {
     path: '/news',
+    frenchPath: '/actu',
     component: path.resolve('./src/templates/news-list.js')
   });
 
@@ -639,12 +648,13 @@ exports.createPages = function({graphql, actions}) {
   // People
   createI18nPage(createPage, {
     path: '/people',
+    frenchPath: '/equipe',
     component: path.resolve('./src/templates/people-list.js')
   });
 
-  const linkToAdmin = (model, identifier) => {
-    if (!BUILD_CONTEXT || BUILD_CONTEXT !== 'prod')
-      return `${ADMIN_URL}/#/${model}/${identifier}`;
+  const linkToAdmin = (model, id) => {
+    if (ADMIN_URL && (!BUILD_CONTEXT || BUILD_CONTEXT !== 'prod'))
+      return `${ADMIN_URL}/#/${model}/${id}`;
     else
       return null;
   };
@@ -662,13 +672,14 @@ exports.createPages = function({graphql, actions}) {
         const activity = edge.node;
 
         const context = {
-          identifier: activity.identifier,
-          linkToAdmin: linkToAdmin('activities', activity.identifier)
+          id: activity.id,
+          linkToAdmin: linkToAdmin('activities', activity.id)
         };
 
         activity.slugs.forEach(slug => {
           createI18nPage(createPage, {
             path: `/activities/${slug}`,
+            frenchPath: `/activites/${slug}`,
             component: path.resolve('./src/templates/activity.js'),
             context
           });
@@ -686,13 +697,14 @@ exports.createPages = function({graphql, actions}) {
         const person = edge.node;
 
         const context = {
-          identifier: person.identifier,
-          linkToAdmin: linkToAdmin('people', person.identifier)
+          id: person.id,
+          linkToAdmin: linkToAdmin('people', person.id)
         };
 
         person.slugs.forEach(slug => {
           createI18nPage(createPage, {
             path: `/people/${slug}`,
+            frenchPath: `/equipe/${slug}`,
             component: path.resolve('./src/templates/people.js'),
             context
           });
@@ -710,8 +722,8 @@ exports.createPages = function({graphql, actions}) {
         const production = edge.node;
         if (!production.external) {
           const context = {
-            identifier: production.identifier,
-            linkToAdmin: linkToAdmin('productions', production.identifier)
+            id: production.id,
+            linkToAdmin: linkToAdmin('productions', production.id)
           };
 
           production.slugs.forEach(slug => {
@@ -735,13 +747,14 @@ exports.createPages = function({graphql, actions}) {
         const news = edge.node;
 
         const context = {
-          identifier: news.identifier,
-          linkToAdmin: linkToAdmin('news', news.identifier)
+          id: news.id,
+          linkToAdmin: linkToAdmin('news', news.id)
         };
 
         news.slugs.forEach(slug => {
           createI18nPage(createPage, {
             path: `/news/${slug}`,
+            frenchPath: `/actu/${slug}`,
             component: path.resolve('./src/templates/news.js'),
             context
           });
@@ -752,70 +765,4 @@ exports.createPages = function({graphql, actions}) {
   ];
 
   return Promise.all(promises);
-};
-
-exports.setFieldsOnGraphQLNodeType = function({type, getNode, getNodesByType, pathPrefix}) {
-
-  const settings = {
-    assetsPath: ASSETS_PATH,
-    publicPath: PUBLIC_PATH,
-    prefix: pathPrefix,
-    processing
-  };
-
-  if (type.name === 'SettingsJson') {
-    return graphQLSchemaAdditionForSettings(GRAPHQL_SCHEMAS, getNode);
-  }
-
-  else if (type.name === 'ActivitiesJson') {
-    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'activities', type, SCHEMAS.activities, settings);
-    addBacklinkToGraphQLSchema(
-      getNodesByType.bind(null, 'ProductionsJson'),
-      GRAPHQL_SCHEMAS,
-      'activities',
-      'productions'
-    );
-    addBacklinkToGraphQLSchema(
-      getNodesByType.bind(null, 'NewsJson'),
-      GRAPHQL_SCHEMAS,
-      'activities',
-      'news'
-    );
-    return GRAPHQL_SCHEMAS.activities;
-  }
-
-  else if (type.name === 'PeopleJson') {
-    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'people', type, SCHEMAS.people, settings);
-    addBacklinkToGraphQLSchema(
-      getNodesByType.bind(null, 'ActivitiesJson'),
-      GRAPHQL_SCHEMAS,
-      'people',
-      'activities'
-    );
-    addBacklinkToGraphQLSchema(
-      getNodesByType.bind(null, 'NewsJson'),
-      GRAPHQL_SCHEMAS,
-      'people',
-      'news'
-    );
-    addBacklinkToGraphQLSchema(
-      getNodesByType.bind(null, 'ProductionsJson'),
-      GRAPHQL_SCHEMAS,
-      'people',
-      'productions'
-    );
-    return GRAPHQL_SCHEMAS.people;
-  }
-
-  else if (type.name === 'ProductionsJson') {
-    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'productions', type, SCHEMAS.productions, settings);
-    return GRAPHQL_SCHEMAS.productions;
-  }
-
-  else if (type.name === 'NewsJson') {
-    patchGraphQLSchema(GRAPHQL_SCHEMAS, 'news', type, SCHEMAS.news, settings);
-    return GRAPHQL_SCHEMAS.news;
-  }
-
-  return {};
 };

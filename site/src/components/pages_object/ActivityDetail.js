@@ -130,23 +130,16 @@ export const queryFragment = graphql`
 `;
 
 export default function ActivityDetail({lang, activity}) {
-
-  let coverImage = null;
-
-  if (activity.coverImage) {
-    coverImage = (
-      <ProcessedImage size="large" image={activity.coverImage.processed ? activity.coverImage.processed.large : null} />
-    );
-  }
+  
 
   return (
     <main id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + activity.name : activity.name + "  page content" }>
-      
-      <header id="titre-sticky" aria_hidden="true"> 
+
+      <header id="titre-sticky" aria_hidden="true">
         <div id="container-titre-sticky">
           <div id="logo-sticky"><a href="/"><Logo /></a></div>
           <p>
-            <Link to="/activities">
+            <Link to={lang === 'fr' ? '/activites' : '/en/activities'}>
               <span data-icon="activite">{lang === 'fr' ? "Activité" : 'Activity'} </span>
             </Link>
               <span className="title"><a href="#topbar">{activity.name}</a></span>
@@ -157,7 +150,9 @@ export default function ActivityDetail({lang, activity}) {
 
       <div id="img-article" >
         <div className="activator"></div>
-        <div className="container" aria-hidden="true">{coverImage}</div>
+        <div className="container" aria-hidden="true">
+          <ProcessedImage size="large" image={activity.coverImage  && activity.coverImage.processed && activity.coverImage.processed.large} data={activity} />
+        </div>
       </div>
 
 

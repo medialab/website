@@ -10,7 +10,7 @@ export const query = graphql`
       edges {
         node {
           id
-          title{
+          title {
             en
             fr
           }
@@ -41,7 +41,6 @@ export const query = graphql`
               medium
             }
           }
-          lastUpdated
         }
       }
     }

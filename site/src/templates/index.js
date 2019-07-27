@@ -11,11 +11,11 @@ export const query = graphql`
         grid {
           model
           data {
-            ... on Activities {
+            ... on ActivitiesJson {
               coverImage {
                 url
                 processed {
-                  medium
+                  small
                 }
               }
               description {
@@ -33,11 +33,11 @@ export const query = graphql`
               }
               type
             }
-            ... on News {
+            ... on NewsJson {
               coverImage {
                 url
                 processed {
-                  medium
+                  small
                 }
               }
               description {
@@ -56,11 +56,11 @@ export const query = graphql`
               startDate
               endDate
             }
-            ... on Productions {
+            ... on ProductionsJson {
               coverImage {
                 url
                 processed {
-                  medium
+                  small
                 }
               }
               description {
@@ -80,13 +80,14 @@ export const query = graphql`
                 en
                 fr
               }
+              authors
             }
           }
         }
         slider {
           model
           data {
-            ... on Activities {
+            ... on ActivitiesJson {
               name
               coverImage {
                 url
@@ -112,7 +113,7 @@ export const query = graphql`
                 fr
               }
             }
-            ... on News {
+            ... on NewsJson {
               coverImage {
                 url
                 processed {
@@ -124,6 +125,10 @@ export const query = graphql`
               startDate
               endDate
               label {
+                en
+                fr
+              }
+              typeLabel {
                 en
                 fr
               }
@@ -140,7 +145,7 @@ export const query = graphql`
                 fr
               }
             }
-            ... on Productions {
+            ... on ProductionsJson {
               coverImage {
                 url
                 processed {
@@ -215,7 +220,7 @@ export const query = graphql`
         }
       }
     }
-    github:allGithubJson {
+    github: allGithubJson {
       edges {
         node {
           repo,

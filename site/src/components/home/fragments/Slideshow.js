@@ -2,12 +2,9 @@ import React from 'react';
 import {Link} from 'gatsby';
 
 import ProcessedImage from '../../helpers/ProcessedImage.js';
-import {IsModel} from '../../helpers/helpers.js';
+import {IsModel, ellipse} from '../../helpers/helpers.js';
 import DateNews from '../../helpers/DateNews.js';
 import TimeNews from '../../helpers/TimeNews.js';
-import {format as formatDate, getYear, parseISO} from 'date-fns';
-import { runInThisContext } from 'vm';
-import {ellipse} from '../../../../utils.js';
 
 // Ici nous composons l'ensemble du caroussel
 const Slideshow = ({slider, lang}) => {
@@ -44,10 +41,10 @@ const otherLang = lang === 'fr' ? 'en' : 'fr';
               <article data-type={slide.model}>
                 <Link to={slide.data.permalink[lang]}>
                   <div className="image-pre" aria-hidden="true">
-                    <ProcessedImage size="large" image={slide.data.coverImage && slide.data.coverImage.processed.large} />
+                    <ProcessedImage size="large" image={slide.data.coverImage && slide.data.coverImage.processed.large} data={slide.data}/>
                   </div>
                   <div className="image-pre-phone" aria-hidden="true">
-                    <ProcessedImage size="medium" image={slide.data.coverImage && slide.data.coverImage.processed.medium} />
+                    <ProcessedImage size="medium" image={slide.data.coverImage && slide.data.coverImage.processed.medium} data={slide.data}/>
                   </div>
                 </Link>
                 <div className="contenu-slide" aria-label={lang === "fr" ? "Contenu" : "Content" }>
@@ -60,9 +57,9 @@ const otherLang = lang === 'fr' ? 'en' : 'fr';
                           <p data-icon="activities" className="type">{IsModel(slide.model, lang)}</p>
                           <p className="title">{slide.data.name}</p>
                         </aside>
-                        <h1 data-level-1="baseline" >{slide.data.baseline[lang] || slide.data.baseline[otherLang]}</h1>
+                        <h1 data-level-1="baseline" >{ellipse(slide.data.baseline[lang] || slide.data.baseline[otherLang], 65)}</h1>
                         <p className="accroche">
-                          {slide.data.description && ellipse(slide.data.description[lang] || slide.data.description[otherLang], 175)}
+                          {slide.data.description && ellipse(slide.data.description[lang] || slide.data.description[otherLang], 160)}
                         </p>
                       </>
                     )}
@@ -75,8 +72,8 @@ const otherLang = lang === 'fr' ? 'en' : 'fr';
                           <p className="subtype-production"><span>{slide.data.typeLabel[lang]}</span></p>
                           <p className="date-production">{slide.data.date}</p>
                         </aside>
-                        <h1 data-level-1="title">{ellipse(slide.data.title[lang] || slide.data.title[otherLang], 100)}</h1>
-                        <h2 data-level-1="authors" className="authors">{slide.data.authors}</h2>
+                        <h1 data-level-1="title">{ellipse(slide.data.title[lang] || slide.data.title[otherLang], 90)}</h1>
+                        <h2 data-level-1="authors" className="authors">{ellipse(slide.data.authors, 110)}</h2>
                       </>
                     )}
 
@@ -85,16 +82,16 @@ const otherLang = lang === 'fr' ? 'en' : 'fr';
                       <>
                         <div className="bandeau">
                           <p data-icon="news" className="type">{IsModel(slide.model, lang)}</p>
-                          {slide.data.label && <p className="label-news"><span>{slide.data.label[lang] || slide.data.label[otherLang]}</span></p>}
+                          {<p className="label-news"><span>{slide.data.label ? slide.data.label[lang] || slide.data.label[otherLang] : slide.data.typeLabel[lang] || slide.data.typeLabel[otherLang]}</span></p>}
                         </div>
                         <div className="date">
                           <DateNews startDate={slide.data.startDate} endDate={slide.data.endDate} lang={lang} />
                           <TimeNews startDate={slide.data.startDate} endDate={slide.data.endDate} />
                         </div>
-                        <h1 data-level-1="baseline" >{ellipse(slide.data.title[lang] || slide.data.title[otherLang], 80)}</h1>
+                        <h1 data-level-1="baseline" >{ellipse(slide.data.title[lang] || slide.data.title[otherLang], 49)}</h1>
 
                         <p className="accroche">
-                          {ellipse(slide.data.description[lang] || slide.data.description[otherLang], 175)}
+                          {ellipse(slide.data.description[lang] || slide.data.description[otherLang], 170)}
                         </p>
                       </>
                     )}

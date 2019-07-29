@@ -48,7 +48,7 @@ const ActuAssociees = ({lang, actu, isSeminar, filter, titles}) => {
           {sorted.map((n, i) => isSeminar ?
           (
             <React.Fragment key={n.permalink.fr}>
-              <li data-item={i} data-type={n.type} className={`list-item ${n.type}`}>
+              <li itemProp="event" itemScope itemType="https://schema.org/Event" data-item={i} data-type={n.type} className={`list-item ${n.type}`}>
                 <Link to={n.permalink[lang]}>
 
                 <div className="image-pre" aria-hidden="true">
@@ -66,7 +66,7 @@ const ActuAssociees = ({lang, actu, isSeminar, filter, titles}) => {
                     </div>
                 </div>
                 <hgroup>
-                  <h1 data-level-1="baseline" >
+                  <h1 itemProp="name" data-level-1="baseline" >
                     <LanguageFallback lang={lang} translatedAttribute={n.title} />
                   </h1>
                 </hgroup>
@@ -74,6 +74,9 @@ const ActuAssociees = ({lang, actu, isSeminar, filter, titles}) => {
                   <p className="accroche-paragraphe">
                     <LanguageFallback lang={lang} translatedAttribute={n.description} />
                   </p>
+                </div>
+                <div style={{display: 'none'}} itemProp="location" itemScope itemType="https://schema.org/Place">
+                  <span itemProp="address">{n.place}</span>
                 </div>
                 </Link>
               </li>

@@ -1,0 +1,54 @@
+
+
+.page-404 {
+    // content of the 404 page
+    .not-found-container {
+        display: flex;
+        margin-left: 250px;
+        flex-flow: row nowrap;
+        @include for-size(phone) {
+            flex-direction: column;
+            margin-left: 10px;
+        }
+    }
+    .not-found {
+        margin: 30px 0;
+        flex: 1;
+        h1{
+            font-size: 56px;
+
+            font-weight: 100;
+
+            line-height: 67.5px;
+
+            letter-spacing: -0.5px;
+        }
+        p {
+            font-size: 20px;
+
+            font-weight: 300;
+
+            line-height: 30px;
+
+            margin-bottom: 30px;
+        }
+    
+        a{
+            color: $redlab;  
+        }
+        margin-right: 20px;
+        @include for-size(phone) {
+            margin-right: 10px;
+        }
+
+    }
+
+    .pattern-container {
+        pre {
+            color: $redlab;  
+        }
+        max-height:30vh;
+        overflow: hidden;
+    }
+    
+}

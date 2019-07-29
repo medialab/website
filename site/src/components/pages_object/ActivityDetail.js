@@ -115,6 +115,11 @@ export const queryFragment = graphql`
         fr
       }
       startDate
+      coverImage {
+        processed {
+          medium
+        }
+      }
     }
     attachments {
       type
@@ -130,7 +135,6 @@ export const queryFragment = graphql`
 `;
 
 export default function ActivityDetail({lang, activity}) {
-  
 
   return (
     <main id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + activity.name : activity.name + "  page content" }>

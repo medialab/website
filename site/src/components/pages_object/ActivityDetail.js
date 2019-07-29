@@ -121,6 +121,7 @@ export const queryFragment = graphql`
           medium
         }
       }
+      place
     }
     attachments {
       type

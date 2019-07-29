@@ -126,7 +126,7 @@ export default function About({lang}) {
 
               <h3 id="team">Team</h3>
 
-              <p>The Médialab is a diverse research team, comprised of men and women with complementary skills. As members or partners of the laboratory, these academic, technical, design and teaching experts join forces and work together to develop research that draws on this diversity.</p>
+              <p>The médialab is a diverse research team, comprised of men and women with complementary skills. As members or partners of the laboratory, these academic, technical, design and teaching experts join forces and work together to develop research that draws on this diversity.</p>
               <p><Link to="/en/people" className="GoTo">Découvrir les membres de l'équipe</Link></p>
 
               <h3 id="research">Activities</h3>

@@ -11,7 +11,8 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
 
 .page-production-list #liste .liste_objet,
 .page-activity-list #liste .liste_objet,
-.page-news-list #liste .liste_objet{
+.page-news-list #liste .liste_objet,
+.liste_seminaire{
 
     li{
         width: 100%;
@@ -96,7 +97,8 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
 
     .page-production-list #liste .liste_objet,
     .page-activity-list #liste .liste_objet,
-    .page-news-list #liste .liste_objet{
+    .page-news-list #liste .liste_objet,
+    .liste_seminaire{
         
         margin-bottom: $height-footer;
         min-height: calc(100vh - #{$height-footer} - #{$height-top-bar});
@@ -237,7 +239,8 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
 @media screen and (max-width: 900px){
     .page-production-list #liste .liste_objet,
     .page-activity-list #liste .liste_objet,
-    .page-news-list #liste .liste_objet{
+    .page-news-list #liste .liste_objet,
+    .liste_seminaire{
         .bandeau{
             width: 100%;
            
@@ -289,7 +292,8 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
 
     .page-production-list #liste .liste_objet,
     .page-activity-list #liste .liste_objet,
-    .page-news-list #liste .liste_objet{
+    .page-news-list #liste .liste_objet,
+    .liste_seminaire{
         
         margin-bottom: $height-footer;
         min-height: calc(100vh - #{$height-footer} - #{$height-top-bar-phone});
@@ -350,7 +354,8 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
 @media print{
 
 
-    .page-production-list #liste .liste_objet{
+    .page-production-list #liste .liste_objet,
+    .liste_seminaire{
 
         border-top: 1px solid black;
         .list-year{ display: none; }
@@ -376,7 +381,8 @@ $width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
 
 
     .page-activity-list #liste .liste_objet,
-    .page-news-list #liste .liste_objet{
+    .page-news-list #liste .liste_objet,
+    .liste_seminaire{
 
         border-top: 1px solid black;
 

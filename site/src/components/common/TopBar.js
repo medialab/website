@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'gatsby';
+import {Link as BasicLink} from 'gatsby';
 import Logo from '../assets/svg/logo_medialab.svg';
 import MenuCircle from '../assets/svg/menu-circle.svg';
 import CloseCircle from '../assets/svg/close-circle.svg';
@@ -22,6 +22,8 @@ const mainPermalinks = {
     productions: '/productions'
   }
 };
+
+const Link = (props) => <BasicLink partiallyActive activeClassName={'active'} {...props} />
 
 const TopBar = ({permalinks, lang}) => {
 

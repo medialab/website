@@ -404,8 +404,8 @@ exports.createResolvers = function({createResolvers, pathPrefix}) {
       people: createRelationResolver('people'),
 
       // Backlinks
-      news: createBacklinkResolver('NewsJson'),
-      productions: createBacklinkResolver('ProductionsJson')
+      news: createBacklinkResolver('NewsJson', 'activities'),
+      productions: createBacklinkResolver('ProductionsJson', 'activities')
     },
 
     NewsJson: {
@@ -427,9 +427,9 @@ exports.createResolvers = function({createResolvers, pathPrefix}) {
       mainProductions: createRelationResolver('mainProductions'),
 
       // Backlinks
-      activities: createBacklinkResolver('ActivitiesJson'),
-      news: createBacklinkResolver('NewsJson'),
-      productions: createBacklinkResolver('ProductionsJson')
+      activities: createBacklinkResolver('ActivitiesJson', 'people'),
+      news: createBacklinkResolver('NewsJson', 'people'),
+      productions: createBacklinkResolver('ProductionsJson', 'people')
     },
 
     ProductionsJson: {

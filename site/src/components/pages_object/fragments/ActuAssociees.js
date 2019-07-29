@@ -9,7 +9,7 @@ import LanguageFallback from '../../helpers/LanguageFallback.js';
 import ProcessedImage from '../../helpers/ProcessedImage.js';
 
 
-const ActuAssociees = ({lang, actu, isSeminar}) => {
+const ActuAssociees = ({lang, actu, isSeminar, filter, titles}) => {
 
   const related = SECTIONS.news;
 
@@ -17,27 +17,34 @@ const ActuAssociees = ({lang, actu, isSeminar}) => {
   if (!actu || actu.length === 0)
     return null;
 
+  let sorted = actu.slice().sort((a, b) => {
+    return -a.startDate.localeCompare(b.startDate);
+  });
+  if (filter) {
+    const now = new Date().getTime();
+    if (filter === 'future') {
+      sorted = sorted.filter(actu => new Date(actu.startDate).getTime() > now)
+    } else if (filter === 'past') {
+      sorted = sorted.filter(actu => new Date(actu.startDate).getTime() < now)
+    }
+  }
+
   let accroche;
-  if (isSeminar) {
-    accroche = lang === 'fr' ? 'Programme' : 'Program';
-  } else
-  if (lang === 'fr') {
+  if (titles) {
+    accroche = titles[lang];
+  } else if (lang === 'fr') {
     accroche = related.fr + String.fromCharCode(8239);
   }
   else {
     accroche = related.en;
   }
 
-  const sorted = actu.slice().sort((a, b) => {
-    return -a.startDate.localeCompare(b.startDate);
-  });
-
   return (
     <aside className="container elements-associes-block" id="news" role="complementary" aria-label={ lang ==='fr' ? related.fr : related.en }>
       <h1><span data-icon="actualités" /> {accroche} </h1>
 
       <div className="contenu">
-        <ul className={`liste_objet ${isSeminar ? 'liste_seminaire' : ''}`}>
+        <ul className={`liste_objet ${isSeminar ? 'liste_seminaire' : ''} ${filter ? filter : ''}`}>
           {sorted.map((n, i) => isSeminar ?
           (
             <React.Fragment key={n.permalink.fr}>

@@ -136,6 +136,8 @@ export const queryFragment = graphql`
 
 export default function ActivityDetail({lang, activity}) {
 
+  const inSeminar = activity.slugs.join().includes('seminaire');
+
   return (
     <main id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + activity.name : activity.name + "  page content" }>
 
@@ -203,11 +205,20 @@ export default function ActivityDetail({lang, activity}) {
         </div>
 
       </article>
-      <aside id="all-aside">
+      <aside id={`all-aside`} className={inSeminar ? 'in-seminar': ''}>
         <MembresAssocies people={activity.people} lang={lang} />
         <ActivitesAssociees activities={activity.activities} lang={lang} />
         <ProductionsAssociees productions={activity.productions} lang={lang} />
-        <ActuAssociees isSeminar={activity.slugs.join().includes('seminaire')} actu={activity.news} lang={lang} />
+        {
+          inSeminar ?
+          <>
+          <ActuAssociees isSeminar={true} filter={'future'} actu={activity.news} lang={lang} titles={{fr: 'Séances à venir', en: 'Upcoming sessions'}} />
+          <ActuAssociees isSeminar={true} filter={'past'} actu={activity.news} lang={lang} titles={{fr: 'Séances passées', en: 'Past sessions'}} />
+          </>
+          :
+
+          <ActuAssociees isSeminar={inSeminar} actu={activity.news} lang={lang} />
+        }
       </aside>
 
     </main>

@@ -139,7 +139,7 @@ export default function NewsDetail({lang, news}) {
         <li itemProp="itemListElement" itemScope
             itemType="https://schema.org/ListItem">
           <a itemType="https://schema.org/Thing"
-            href="https://medialab.sciencespo.fr/news"
+            href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'actus': 'en/news'}`}
             href={`https://medialab.sciencespo.fr/news`}
             itemProp="item">
             <span itemProp="name">{lang === 'fr' ? 'Actualités' : 'News'}</span></a>
@@ -148,7 +148,7 @@ export default function NewsDetail({lang, news}) {
         <li itemProp="itemListElement" itemScope
             itemType="https://schema.org/ListItem">
           <a itemType="https://schema.org/Thing"
-          href={`https://medialab.sciencespo.fr/news/${news.slugs && news.slugs[0]}`}
+          href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'actus': 'en/news'}/${news.slugs && news.slugs[0]}`}
             itemProp="item">
             <span itemProp="name">
                 <LanguageFallback lang={lang} translatedAttribute={news.title} />

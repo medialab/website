@@ -135,10 +135,7 @@ module.exports = {
       {
         label: 'Label',
         property: function(n) {
-          if (!n.label)
-            return '';
-
-          return n.label.fr || n.label.en || '';
+          return (n.label && (n.label.fr || n.label.en)) || enums.newsTypes.fr[n.type] || enums.newsTypes.en[n.type] || '';
         },
         order: [
           n => n.label && normalize(n.label.fr || n.label.en)

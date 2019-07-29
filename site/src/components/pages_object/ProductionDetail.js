@@ -157,7 +157,7 @@ export default function ProductionDetail({lang, production}) {
         <li itemProp="itemListElement" itemScope
             itemType="https://schema.org/ListItem">
           <a itemType="https://schema.org/Thing"
-            href="https://medialab.sciencespo.fr/productions"
+            href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'productions' : 'en/productions'}`}
             itemProp="item">
             <span itemProp="name">{'Productions'}</span></a>
           <meta itemProp="position" content="2" />
@@ -165,7 +165,7 @@ export default function ProductionDetail({lang, production}) {
         <li itemProp="itemListElement" itemScope
             itemType="https://schema.org/ListItem">
           <a itemType="https://schema.org/Thing"
-            href={`https://medialab.sciencespo.fr/people/${production.slugs && production.slugs[0]}`}
+            href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'productions' : 'en/productions'}/${production.slugs && production.slugs[0]}`}
             itemProp="item">
             <span itemProp="name">
                 <LanguageFallback lang={lang} translatedAttribute={production.title} />

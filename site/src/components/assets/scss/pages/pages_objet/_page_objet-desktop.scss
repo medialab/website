@@ -111,6 +111,21 @@
 }
 
 
+// spécifique page séminaire
+#all-aside.in-seminar aside:first-of-type::before{
+    display: none;
+}
+#all-aside.in-seminar aside:first-of-type {
+    padding-top: 0;
+}
+#all-aside.in-seminar aside:first-of-type .liste_seminaire{
+    margin-bottom: 60px;
+    min-height: unset;
+}
+#all-aside.in-seminar aside:last-of-type{
+    padding-top: 60px;
+}
+// fin spécifique page séminaire
 
 
 //////////////////

@@ -116,6 +116,11 @@ export const queryFragment = graphql`
         fr
       }
       startDate
+      coverImage {
+        processed {
+          medium
+        }
+      }
     }
     attachments {
       type
@@ -132,6 +137,7 @@ export const queryFragment = graphql`
 
 export default function ActivityDetail({lang, activity}) {
 
+  const inSeminar = activity.slugs.join().includes('seminaire');
 
   return (
     <main id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + activity.name : activity.name + "  page content" }>
@@ -153,7 +159,7 @@ export default function ActivityDetail({lang, activity}) {
             itemType="https://schema.org/ListItem">
           <a itemType="https://schema.org/Thing"
             itemProp="item"
-            href="https://medialab.sciencespo.fr/activities"
+            href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'activites' : 'en/activities'}`}
           >
             <span itemProp="name">{lang === 'fr' ? 'Activités' : 'Activities'}</span></a>
           <meta itemProp="position" content="2" />
@@ -162,7 +168,7 @@ export default function ActivityDetail({lang, activity}) {
             itemType="https://schema.org/ListItem">
           <a itemType="https://schema.org/Thing"
             itemProp="item"
-            href={`https://medialab.sciencespo.fr/activities/${activity.slugs && activity.slugs[0]}`}
+            href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'activites' : 'en/activities'}/${activity.slugs && activity.slugs[0]}`}
           >
             <span itemProp="name">
                 {activity.name}
@@ -235,11 +241,20 @@ export default function ActivityDetail({lang, activity}) {
         </div>
 
       </article>
-      <aside id="all-aside">
-        <MembresAssocies people={activity.people} schemaRelationProp="member" lang={lang} />
+      <aside id={`all-aside`} className={inSeminar ? 'in-seminar': ''}>
+        <MembresAssocies people={activity.people} lang={lang} />
         <ActivitesAssociees activities={activity.activities} lang={lang} />
         <ProductionsAssociees productions={activity.productions} lang={lang} />
-        <ActuAssociees actu={activity.news} lang={lang} />
+        {
+          inSeminar ?
+          <>
+          <ActuAssociees isSeminar={true} filter={'future'} actu={activity.news} lang={lang} titles={{fr: 'Séances à venir', en: 'Upcoming sessions'}} />
+          <ActuAssociees isSeminar={true} filter={'past'} actu={activity.news} lang={lang} titles={{fr: 'Séances passées', en: 'Past sessions'}} />
+          </>
+          :
+
+          <ActuAssociees isSeminar={inSeminar} actu={activity.news} lang={lang} />
+        }
       </aside>
 
     </main>

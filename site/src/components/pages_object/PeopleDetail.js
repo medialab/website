@@ -238,7 +238,7 @@ export default function PeopleDetail({lang, person}) {
         <li itemProp="itemListElement" itemScope
             itemType="https://schema.org/ListItem">
           <a itemType="https://schema.org/Thing"
-            href="https://medialab.sciencespo.fr/people"
+            href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'equipe' : 'en/people'}`}
             itemProp="item">
             <span itemProp="name">{lang === 'fr' ? `L'équipe` : 'The team'}</span></a>
           <meta itemProp="position" content="2" />
@@ -246,7 +246,7 @@ export default function PeopleDetail({lang, person}) {
         <li itemProp="itemListElement" itemScope
             itemType="https://schema.org/ListItem">
           <a itemType="https://schema.org/Thing"
-            href={`https://medialab.sciencespo.fr/people/${person.slugs && person.slugs[0]}`}
+            href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'equipe' : 'en/people'}/${person.slugs && person.slugs[0]}`}
             itemProp="item">
             <span itemProp="name">
                 {person.firstName} {person.lastName}

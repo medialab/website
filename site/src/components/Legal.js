@@ -50,7 +50,7 @@ export default function Legal({lang}) {
               En accédant à un autre site, par l'intermédiaire d'un lien hypertexte, vous acceptez que cet accès s'effectue à vos risques et périls. En conséquence, tout préjudice direct ou indirect résultant de votre accès à un autre site relié par un lien hypertexte ne peut engager la responsabilité de Sciences Po.</p>
 
               <h3 id="images">Images</h3>
-              <p>Les images du site sont libres de droit, sauf mentions crontraires.</p>
+              <p>Les images du site sont libres de droit, sauf mentions contraires.</p>
 
               <h3 id="IL">Informatique et Libertés</h3>
               <p>Droit d'accès, modification suppression des données personnelles vous concernant :<br/>

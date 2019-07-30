@@ -83,9 +83,9 @@ const TopBar = ({permalinks, lang}) => {
 
       <div id="topbar-content">
         <div id="logo-medialab">
-          <Link to="/"
-            id="back_button" title={lang === 'fr' ? "Retour à l'accueil" : 'Back to Homepage'}
-            aria-label={lang === 'fr' ? "Retour à l'accueil" : 'Back to Homepage'}>
+          <Link to={lang === 'fr' ? '/' : '/en/'}
+            id="back_button" title={lang === 'fr' ? "Retour à l'acceuil" : 'Back to Homepage'}
+            aria-label={lang === 'fr' ? "Retour à l'acceuil" : 'Back to Homepage'}>
             <Logo />
             <span itemProp="name" style={{display: 'none'}}>médialab Sciences Po</span>
           </Link>
@@ -128,7 +128,7 @@ const TopBar = ({permalinks, lang}) => {
         </nav>
 
         <div id="langue" className="menu langue" aria-label={lang === "fr" ? "Choix de la langue" : "Language selection" }>
-          <p><Link activeClassName="active" to={permalinks.fr} aria-label={lang === "fr" ? "Contenu en langue française" : "French version content" }>FR</Link><span> | </span><Link activeClassName="active" to={permalinks.en} aria-label={lang === "fr" ? "Contenu en langue anglaise" : "English version content" }>EN</Link></p>
+          <p><BasicLink activeClassName="active" to={permalinks.fr} aria-label={lang === "fr" ? "Contenu en langue française" : "French version content" }>FR</BasicLink><span> | </span><BasicLink activeClassName="active" to={permalinks.en} aria-label={lang === "fr" ? "Contenu en langue anglaise" : "English version content" }>EN</BasicLink></p>
         </div>
       </div>
       <div className="print"><p itemProp="url">medialab.sciencespo.fr</p></div>

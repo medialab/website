@@ -40,17 +40,17 @@ return (
 
       <div id="tweet-content">
         { tweets.map(t =>
-            (<article className="tweet" data-type="tweet" key={t.tweet.toString()} aria-label="Tweet" >
-              <a href={`https://twitter.com/medialab_scpo/status/${t.tweet}`} target="_blank" rel="noopener noreferrer">
+            (<article itemScope itemType="https://schema.org/SocialMediaPosting" className="tweet" data-type="tweet" key={t.tweet.toString()} aria-label="Tweet" >
+              <a itemProp="url" href={`https://twitter.com/medialab_scpo/status/${t.tweet}`} target="_blank" rel="noopener noreferrer">
                 <aside className="divers">
                   {
                     //<p className="label" data-icon="tweet">{t.type}</p>
                   }
-                  <p className="account">@medialab_ScPo</p>
-                  <p className="date">{formatDateTime(t.date, lang)}</p>
+                  <p itemProp="creator" className="account">@medialab_ScPo</p>
+                  <time itemProp="datePublished" className="date" datetime={t.date}>{formatDateTime(t.date, lang)}</time>
                 </aside>
                 {t.type !== 'retweet' &&
-                  <p className="tweet-content" dangerouslySetInnerHTML={{__html: t.html}} />
+                  <p itemProp="articleBody" className="tweet-content" dangerouslySetInnerHTML={{__html: t.html}} />
                 }
                 {t.originalTweet &&
                   <div className="original-tweet">

@@ -220,7 +220,19 @@ function Hilitor(id, tag) {
 
 }
 
-const CUSTOM_SCRIPS = [
+const CUSTOM_SCRIPTS = [
+
+  // zotero update
+  {
+    name: 'zotero',
+    condition: () => true,
+    fn() {
+      document.dispatchEvent(new Event('ZoteroItemUpdated', {
+          bubbles: true,
+          cancelable: true
+      }))
+    }
+  },
 
   // Custom JS search input
   {
@@ -353,7 +365,7 @@ function inject() {
     unsubscribe();
   }
 
-  CUSTOM_SCRIPS.forEach(spec => injectCustomScript(spec));
+  CUSTOM_SCRIPTS.forEach(spec => injectCustomScript(spec));
 }
 
 export function onRouteUpdate() {

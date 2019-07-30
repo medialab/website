@@ -10,7 +10,9 @@ const plugins = [
     options: {
       name: 'medialab-website',
       short_name: 'medialab',
-      start_url: '/'
+      start_url: '/',
+      background_color: '#ffffff',
+      icon: 'src/components/assets/images/icons/icon-specimen.png'
     }
   },
   'gatsby-plugin-offline',
@@ -29,7 +31,7 @@ if (NODE_ENV === 'production' && GOOGLE_ANALYTICS_ID)
 
 module.exports = {
   siteMetadata: {
-    title: 'médialab website',
+    title: 'médialab Sciences Po',
     siteUrl: 'https://medialab.sciencespo.fr'
   },
   plugins

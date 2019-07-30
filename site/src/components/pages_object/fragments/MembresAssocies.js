@@ -6,7 +6,7 @@ import RawHtml from '../../helpers/RawHtml';
 //import Img from '../../assets/images/sample/default-people.png';
 
 
-const MembresAssocies = ({lang, people}) => {
+const MembresAssocies = ({lang, people, schemaRelationProp = 'member'}) => {
 
   const related = SECTIONS.people;
 
@@ -37,16 +37,16 @@ const MembresAssocies = ({lang, people}) => {
       <div className="contenu">
         <ul className="liste_personne">
           {peopleSorted.map(p => (
-            <li key={p.permalink.fr} data-type="people">
+            <li itemProp={schemaRelationProp} itemScope itemType="https://schema.org/Person" key={p.permalink.fr} data-type="people">
               <Link to={p.permalink[lang]}>
                 <figure className={p.coverImage ? "" : "noImg"}>
                   {p.coverImage ?
-                  <img src={p.coverImage.url} alt={lang === 'fr' ? 'Photo de profil de ' + p.firstName + p.lastName : p.firstName + p.lastName + ' profil picture'} />
+                  <img itemProp="image" src={p.coverImage.url} alt={lang === 'fr' ? 'Photo de profil de ' + p.firstName + p.lastName : p.firstName + p.lastName + ' profil picture'} />
                   : <RawHtml html={noImg}/> }
                 </figure>
                 <div className="description">
                   <hgroup>
-                    <h1>{p.firstName} {p.lastName}</h1>
+                    <h1><span itemProp="givenName">{p.firstName}</span> <span itemProp="familyName">{p.lastName}</span></h1>
                   </hgroup>
                   <div className="details">
                     <p className="role" data-level-2="role" data-type="role">{p.role && (p.role[lang] || p.role.fr || p.role.en)}</p>              

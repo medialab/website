@@ -11,6 +11,19 @@ import {format as formatDate, getYear, parseISO} from 'date-fns';
 
 import LanguageFallback from '../helpers/LanguageFallback.js';
 
+import PageMeta from '../helpers/PageMeta.js';
+
+const messagesMeta = {
+  title: {
+    fr: 'Actualités | médialab Sciences Po',
+    en: 'News | médialab Sciences Po',
+  },
+  description: {
+    fr: 'rendez-vous, chroniques et annonces du médialab',
+    en: 'events, posts and notices from the médialab'
+  }
+};
+
 const byYear = ([yearA], [yearB]) => yearB - yearA;
 const byYearKey = (yearA, yearB) => yearB - yearA;
 
@@ -43,6 +56,11 @@ export default function NewsListing({lang, list}) {
   let nbNews = 0;
   return (
     <>
+    <PageMeta
+      title={messagesMeta.title[lang]}
+      description={messagesMeta.description[lang]}
+      lang={lang}
+    />
     <main role="main" aria-describedby="aria-accroche">
       <FilterNews lang={lang} years={Array.from(yearGroups.keys()).sort(byYearKey)} />
       <section className="main-filters">
@@ -58,7 +76,7 @@ export default function NewsListing({lang, list}) {
               </li>
               {yearNews.map((news, i) => (
                 <React.Fragment key={i}>
-                  <li data-item={nbNews} data-type={news.type} className={`list-item ${news.type}`}>
+                  <li itemScope itemProp={news.type !== 'post' ? 'event': 'subjectOf'} itemType={news.type !== 'post' ? 'https://schema.org/Event' : 'https://schema.org/CreativeWork'} data-item={nbNews} data-type={news.type} className={`list-item ${news.type}`}>
                     <Link to={news.permalink[lang]}>
 
                     <div className="image-pre" aria-hidden="true">
@@ -76,12 +94,12 @@ export default function NewsListing({lang, list}) {
                         </div>
                     </div>
                     <hgroup>
-                      <h1 data-level-1="baseline" >
+                      <h1 itemProp="name" data-level-1="baseline" >
                         <LanguageFallback lang={lang} translatedAttribute={news.title} />
                       </h1>
                     </hgroup>
                     <div className="accroche">
-                      <p className="accroche-paragraphe">
+                      <p itemProp="description" className="accroche-paragraphe">
                         <LanguageFallback lang={lang} translatedAttribute={news.description} />
                       </p>
                     </div>

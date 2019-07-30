@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'gatsby';
 
 import Nav from './common/Nav.js';
+import PageMeta from './helpers/PageMeta.js';
 
 import RawHtml from './helpers/RawHtml';
 
@@ -11,6 +12,11 @@ export default function About({lang}) {
     // ***************************    french VERSION
     return (
       <>
+        <PageMeta
+          lang={lang}
+          title={`À propos | médialab Sciences Po`}
+          description={'Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d\'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et sociales.'}
+        />
         <main id="main" aria-labelledby="page-title" role="main">
         <nav className="main-nav" id="nav-inside-article" role="navigation">
           <ul>
@@ -78,7 +84,13 @@ export default function About({lang}) {
   else
     // ***************************    ENGLISH VERSION
     return (
-      <>        <main id="main" aria-labelledby="page-title" role="main">
+      <>        
+      <main id="main" aria-labelledby="page-title" role="main">
+      <PageMeta
+          lang={lang}
+          title={`About | médialab Sciences Po`}
+          description={'The médialab, an interdisciplinary research laboratory comprised of sociologists, engineers and designers, conducts thematic and methodological research to investigate the role of digital technology in our societies'}
+        />
         <nav className="main-nav" id="nav-inside-article" role="navigation">
           <ul>
             <li className="nav-inside-item" data-type="main"><a href="#main" title="Aller à la section" > Go to the Top</a></li>
@@ -92,7 +104,7 @@ export default function About({lang}) {
           <article id="about-contenu" className="main-container">
             <hgroup>
               <h1 id="page-title">The médialab</h1>
-              <h2>The Médialab, an interdisciplinary research laboratory comprised of sociologists, engineers and designers, conducts thematic and methodological research to investigate the role of digital technology in our societies.</h2>            </hgroup>
+              <h2>The médialab, an interdisciplinary research laboratory comprised of sociologists, engineers and designers, conducts thematic and methodological research to investigate the role of digital technology in our societies.</h2>            </hgroup>
             <div className="about-contenu">
 
               <h3 id="research">Research at the médialab</h3>
@@ -110,16 +122,16 @@ export default function About({lang}) {
               </p>
 
               <p>Every research project carried out at the Médialab follows a multidisciplinary approach mobilizing a variety of competences. These projects, informed by social science and STS, apply computer engineering to refine investigation by using the Web as a field of inquiry and data science as an analytical method. They also employ new forms of situated testing and exploration of the research questions raised by design.
-                The Médialab is historically committed to studying the production and transmission of knowledge, and has experimented with new forms of teaching since its inception. This connection with students is evident in the courses taught by the members of the Medialab team, and is also reflected by the research programme it hosts on innovative teaching, fully informed by the laboratory's research practices.</p>
+                The médialab is historically committed to studying the production and transmission of knowledge, and has experimented with new forms of teaching since its inception. This connection with students is evident in the courses taught by the members of the Medialab team, and is also reflected by the research programme it hosts on innovative teaching, fully informed by the laboratory's research practices.</p>
 
               <h3 id="team">Team</h3>
 
-              <p>The Médialab is a diverse research team, comprised of men and women with complementary skills. As members or partners of the laboratory, these academic, technical, design and teaching experts join forces and work together to develop research that draws on this diversity.</p>
+              <p>The médialab is a diverse research team, comprised of men and women with complementary skills. As members or partners of the laboratory, these academic, technical, design and teaching experts join forces and work together to develop research that draws on this diversity.</p>
               <p><Link to="/en/people" className="GoTo">Découvrir les membres de l'équipe</Link></p>
 
               <h3 id="research">Activities</h3>
 
-              <p>The Médialab’s activities articulate both research and teaching. In particular, they explore the use of digital methods to address contemporary issues in sociology and STS. These methods are also central to the laboratory’s teaching, for example by putting students in research situations. This fosters highly enriching reflection on our research processes. </p>
+              <p>The médialab’s activities articulate both research and teaching. In particular, they explore the use of digital methods to address contemporary issues in sociology and STS. These methods are also central to the laboratory’s teaching, for example by putting students in research situations. This fosters highly enriching reflection on our research processes. </p>
 
               <p><Link to="/en/activities" className="GoTo">Voir la liste des activités</Link></p>
 

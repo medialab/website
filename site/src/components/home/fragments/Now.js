@@ -28,7 +28,7 @@ export default function Now({now, lang}) {
       <ul className="contenu">
       {now.map((item, index) =>
         (<React.Fragment key={index}>
-        <li data-type={item.model} className="now-item" key={index}>
+        <li  itemScope itemType="https://schema.org/Thing" data-type={item.model} className="now-item" key={index}>
           <Link to={item.data.permalink[lang]}>
               {item.model !== 'productions' && 
                 (<div className="image-pre" aria-hidden="true">

@@ -9,7 +9,6 @@ export default function Agenda({rdv, lang}) {
 
 
 
-
 	return (
   <>
     <section id="agenda" /* style={nbRdv} */>
@@ -24,11 +23,11 @@ export default function Agenda({rdv, lang}) {
         {rdv.map((event, i) =>
           (<React.Fragment key={i}>
 
-            <article>
+            <article  itemScope itemProp="event" itemType="https://schema.org/Event">
             <Link to={event.permalink[lang]} aria-label={ lang === "fr" ? "En savoir plus sur ce Rendez-vous" : "Get more information on this Rendez-vous"}>
 
               <aside className="divers">
-                <p className="label" data-icon="news">{ event.label && (lang === 'fr' ? event.label.fr : event.label.en) }</p>
+                <p className="label" data-icon="news" itemProp="name">{ event.label && (lang === 'fr' ? event.label.fr : event.label.en) }</p>
                 <DateNews startDate={event.startDate} endDate={event.endDate} lang={lang} />
                 {event.isInternal && <p className="internal" aria-label="evenement interne au médialab" title={lang === 'fr' ? "Cet évenement est organisé par le médialab" : "The event is hosted by médialab"} >⌂</p>}
               </aside>
@@ -38,7 +37,7 @@ export default function Agenda({rdv, lang}) {
 
               <aside className="details">
                 <TimeNews startDate={event.startDate} endDate={event.endDate} />
-                { event.place && <p className="place" aria-label={lang === "fr" ? "Lieu" : "Place" }>{event.place}</p> }
+                { event.place && <p className="place" itemProp="location" itemScope itemType="https://schema.org/Place" aria-label={lang === "fr" ? "Lieu" : "Place" }><span itemProp="address">{event.place}</span></p> }
               </aside>
 
             </Link>

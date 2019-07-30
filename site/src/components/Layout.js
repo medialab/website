@@ -5,6 +5,8 @@ import {StaticQuery, graphql} from 'gatsby';
 import TopBar from './common/TopBar.js';
 import Footer from './common/Footer.js';
 
+import coverFb from './assets/images/cover-fb.png';
+
 import './assets/font/Bel2/stylesheet.css';
 import './assets/font/Symbol/stylesheet.css';
 import './assets/scss/global.scss';
@@ -18,6 +20,7 @@ const Layout = ({children, lang, className, permalinks}) => {
           site {
             siteMetadata {
               title
+              siteUrl
             }
           }
         }
@@ -28,7 +31,10 @@ const Layout = ({children, lang, className, permalinks}) => {
             title={data.site.siteMetadata.title}>
             <html lang={lang} />
           </Helmet>
-          <div className={className}>
+          <div itemScope itemType="https://schema.org/Organization" className={className}>
+            <link itemProp="url" href={data.site.siteMetadata.siteUrl}/>
+            {/** The following invisible div indicates to search engines which logo to use to display the website card **/}
+            <div itemProp="logo" style={{display: 'none'}}>{'https://medialab.sciencespo.fr' + coverFb}</div>
             <TopBar lang={lang} permalinks={permalinks} />
             {children}
             <Footer lang={lang} />

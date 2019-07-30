@@ -10,6 +10,8 @@ function DateNews(props) {
   const startDate = parseISO(props.startDate);
   const lang = props.lang;
   const locale = locales[lang];
+  const startDateSchemaProp = props.startDateSchemaProp || 'startDate'
+  const endDateSchemaProp = props.endDateSchemaProp || 'endDate'
 
   //deprecated ? const startDateFormat = formatDate(startDate, 'd MMMM', {locale});
   // date can be precise only at month or year level in which case we ignore day
@@ -36,7 +38,7 @@ function DateNews(props) {
     const endDateYear = formatDate(endDate, 'yyyy', {locale});
 
     return (<p className="date-news differentYear" aria-label="date">
-      <time dateTime={formatDate(startDate, 'yyyy-MM-d')}>
+      <time itemProp={startDateSchemaProp} dateTime={formatDate(startDate, 'yyyy-MM-d')}>
         <span className={`startDate ${isSameMonth(startDate, endDate) ? 'startDate_sameMonth' : ''}`} >
           {showEndDateDay && showStarDateDay && isSameYear(startDate, endDate) && isSameMonth(startDate, endDate) ? startDateDay : ''}
           {showEndDateDay && showStarDateDay && (!isSameYear(startDate, endDate) || !isSameMonth(startDate, endDate)) && <span className="day-num">{startDateDay} </span>}
@@ -44,7 +46,7 @@ function DateNews(props) {
           {!isSameYear(startDate, endDate) && <span className="year">{startDateYear}</span>}
         </span>
       </time>{iconBetween}
-      <time dateTime={formatDate(endDate, 'yyyy-MM-d')}>
+      <time itemProp={endDateSchemaProp} dateTime={formatDate(endDate, 'yyyy-MM-d')}>
         <span className="endDate" >
           {showEndDateDay && showStarDateDay && <span className="day-num">{endDateDay} </span>}
           {showStartDateMonth && showEndDateMonth && <span className="month-name">{endDateMonthName} </span>}
@@ -55,7 +57,7 @@ function DateNews(props) {
   }
   else {
     return (<p className="date-news" aria-label="date" >
-      <time dateTime={formatDate(startDate, 'yyyy-MM-d')}>
+      <time itemProp={startDateSchemaProp} dateTime={formatDate(startDate, 'yyyy-MM-d')}>
         <span>
           {props.isTimeSpan && (lang === 'fr' ? 'depuis ' : 'since ')}
         </span>

@@ -21,6 +21,7 @@ import ActuAssociees from './fragments/ActuAssociees.js';
 import MembresAssocies from './fragments/MembresAssocies.js';
 import FichiersAssocies from './fragments/FichiersAssocies.js';
 import LanguageFallback from '../helpers/LanguageFallback';
+import PageMeta from '../helpers/PageMeta.js';
 
 //import './scss/page_objet.scss';
 
@@ -120,6 +121,7 @@ export const queryFragment = graphql`
           medium
         }
       }
+      place
     }
     attachments {
       type
@@ -140,7 +142,42 @@ export default function ActivityDetail({lang, activity}) {
 
   return (
     <main id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + activity.name : activity.name + "  page content" }>
-
+    <PageMeta
+        title={`${activity.name} | médialab Sciences Po`}
+        description={activity.baseline && activity.baseline[lang]}
+        lang={lang}
+        date={activity.startDate}
+      />
+      <ol style={{display: 'none'}} itemScope itemType="https://schema.org/BreadcrumbList">
+        <li itemProp="itemListElement" itemScope
+            itemType="https://schema.org/ListItem">
+          <a itemType="https://schema.org/Organization"
+            itemProp="item" href="https://medialab.sciencespo.fr">
+              <span itemProp="name">médialab Sciences Po</span></a>
+          <meta itemProp="position" content="1" />
+        </li>
+        <li itemProp="itemListElement" itemScope
+            itemType="https://schema.org/ListItem">
+          <a itemType="https://schema.org/Thing"
+            itemProp="item"
+            href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'activites' : 'en/activities'}`}
+          >
+            <span itemProp="name">{lang === 'fr' ? 'Activités' : 'Activities'}</span></a>
+          <meta itemProp="position" content="2" />
+        </li>
+        <li itemProp="itemListElement" itemScope
+            itemType="https://schema.org/ListItem">
+          <a itemType="https://schema.org/Thing"
+            itemProp="item"
+            href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'activites' : 'en/activities'}/${activity.slugs && activity.slugs[0]}`}
+          >
+            <span itemProp="name">
+                {activity.name}
+            </span>
+        </a>
+          <meta itemProp="position" content="3" />
+        </li>
+      </ol>
       <header id="titre-sticky" aria_hidden="true">
         <div id="container-titre-sticky">
           <div id="logo-sticky"><a href="/"><Logo /></a></div>
@@ -169,13 +206,13 @@ export default function ActivityDetail({lang, activity}) {
         {/* FR */}
         <div className="block-lang fr" lang="fr">
           <hgroup>
-            <h1  data-level-2="title">{activity.name}</h1>
+            <h1  data-level-2="title" itemProp="name">{activity.name}</h1>
             <h2  data-level-2="baseline">{activity.baseline && <LanguageFallback lang={lang} translatedAttribute={activity.baseline} />}</h2>
-            <h3  data-level-3="description"><RawHtml html={activity.description && activity.description.fr} /></h3>
+            <h3  data-level-3="description" itemProp="description"><RawHtml html={activity.description && activity.description.fr} /></h3>
           </hgroup>
           <div className="details">
             <p className="type-objet"><span data-icon="activite"></span> {IsModel(activity.type, "fr")}</p>
-            <DateNews isTimeSpan startDate={activity.startDate} endDate={activity.endDate} lang="fr" />
+            <DateNews isTimeSpan startDateSchemaProp={'foundingDate'}  endDateSchemaProp={'dissolutionDate'} startDate={activity.startDate} endDate={activity.endDate} lang="fr" />
             <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
             <FichiersAssocies attachments={activity.attachments} lang="fr" />
           </div>

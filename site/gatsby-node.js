@@ -420,7 +420,7 @@ exports.createResolvers = function({createResolvers, pathPrefix}) {
 
     PeopleJson: {
       // Cover
-      coverImage: createCoverImageResolver(settings),
+      coverImage:  createCoverImageResolver(settings),
 
       // Relations
       mainActivities: createRelationResolver('mainActivities'),

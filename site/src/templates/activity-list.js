@@ -57,12 +57,7 @@ export const query = graphql`
 
     settingsJson {
       topActivities {
-        model
-        data {
-          ... on ActivitiesJson {
-            id
-          }
-        }
+        id
       }
     }
   }
@@ -73,7 +68,7 @@ export default ({data, pageContext}) => {
 
   const list = data.allActivitiesJson.edges.map(e => e.node);
   const statuses = data.facetedEnumsJson.activityStatuses;
-  const topActivities = (data.settingsJson.topActivities || []).map(o => o.data.id);
+  const topActivities = (data.settingsJson.topActivities || []).map(o => o.id);
 
   return (
     <Layout

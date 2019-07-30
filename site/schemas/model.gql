@@ -171,6 +171,11 @@ type HomeItem {
   data: HomeItemData
 }
 
+type TopActivityItem {
+  id: String
+  model: String
+}
+
 type Home {
   grid: [HomeItem]
   slider: [HomeItem]
@@ -178,5 +183,5 @@ type Home {
 
 type SettingsJson implements Node @infer {
   home: Home
-  topActivities: [HomeItem]
+  topActivities: [TopActivityItem]
 }

@@ -18,12 +18,12 @@ exports.createRelationResolver = property => {
   };
 };
 
-exports.createBacklinkResolver = relationType => {
+exports.createBacklinkResolver = (relationType, propName) => {
   return {
     resolve(source, args, context) {
       const nodes = context.nodeModel.getAllNodes({type: relationType});
 
-      return nodes.filter(node => node.id === source.id);
+      return nodes.filter(node => node[propName] && node[propName].includes(source.id));
     }
   };
 };

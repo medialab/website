@@ -1,3 +1,4 @@
+
 const BLOCKS = ['\u00A0', '\u2591', '\u2592', '\u2593', '\u2588'].reverse();
 const CARDINALITY = BLOCKS.length;
 const NUM_RATIO = 756 / CARDINALITY;
@@ -165,7 +166,72 @@ function imageToBlocks(img, options) {
   return mapBlocksToCharacterMatrix(blocks, options.rows);
 }
 
+function blocksToImage(blocks, images, imageDimensions, callback) {
+  const imageMap = blocks.map((row, rowNumber) => {
+    const y = rowNumber * imageDimensions.height;
+    return row.map((char, columnNumber) => {
+      const x = columnNumber * imageDimensions.width;
+      let src;
+      switch(char) {
+        case '\u00A0':
+          src = images.char00A0;
+          break;
+        case '\u2591':
+            src = images.char2591;
+            break;
+        case '\u2592':
+            src = images.char2592;
+            break;
+        case '\u2593':
+            src = images.char2593;
+            break;
+        case '\u2588':
+        default:
+            src = images.char2588;
+            break;
+          break;
+      }
+      return {
+        x,
+        y,
+        src
+      }
+    })
+  })
+  .reduce((res, row) => {
+    return res.concat(row)
+  }, [])
+
+  const image = new Image();
+
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+  canvas.width = blocks[0].length * imageDimensions.width;
+  canvas.height = blocks.length * imageDimensions.height;
+  imageMap.reduce((cur, char) => {
+    return cur.then(() => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = char.src;
+        img.onload = function() {
+            context.drawImage(img, 0, 0);
+        }
+        img.onerror = e => reject(e);
+
+        context.drawImage(img, char.x, char.y, imageDimensions.width, imageDimensions.height);
+        resolve();
+    })
+    })
+  }, Promise.resolve())
+  .then(() => {
+    const url = canvas.toDataURL();
+    callback(null, url)
+  })
+
+}
+
 exports.readImageFileAsDataUrl = readImageFileAsDataUrl;
 exports.sharpToString = sharpToString;
 exports.imageFileToBlocks = imageFileToBlocks;
 exports.imageToBlocks = imageToBlocks;
+exports.blocksToImage = blocksToImage;

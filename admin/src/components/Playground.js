@@ -3,7 +3,12 @@ import Dropzone from 'react-dropzone';
 import debounce from 'lodash/debounce';
 import Slider from './misc/Slider';
 
-import {imageFileToBlocks} from '../../../specs/processing';
+import {imageFileToBlocks, blocksToImage} from '../../../specs/processing';
+import char00A0 from '../../../specs/charactersImg/00A0.png';
+import char2588 from '../../../specs/charactersImg/2588.png';
+import char2591 from '../../../specs/charactersImg/2591.png';
+import char2592 from '../../../specs/charactersImg/2592.png';
+import char2593 from '../../../specs/charactersImg/2593.png';
 
 const containerStyle = {
   lineHeight: 'normal',
@@ -70,7 +75,9 @@ export default class Playground extends Component {
     } = this.state;
 
     imageFileToBlocks(file, {gamma, rows}, (err, blocks) => {
-      this.setState({blocks});
+      blocksToImage(blocks, {char00A0, char2588, char2591, char2592, char2593}, {width: 14, height: 24}, (err, image) => {
+        this.setState({blocks, image});
+      });
     });
   };
 
@@ -79,6 +86,7 @@ export default class Playground extends Component {
   render() {
     const {
       blocks,
+      image,
       gamma,
       file,
       rows,
@@ -117,6 +125,23 @@ export default class Playground extends Component {
               </div>
             </div>
             <BlocksPreview blocks={blocks} zoom={zoom} />
+            {
+              image &&
+              <img src={image} />
+               /*&&
+              <div style={{position: 'relative'}}>
+                {
+                  image.reduce((res, row, rowI) => {
+                    return [
+                      ...res,
+                      ...row.map((char, charI) => (
+                        <img key={`${rowI}-${charI}`} style={{position: 'absolute', left: char.x, top: char.y }} src={char.src} />
+                      ))
+                    ]
+                  }, [])
+                }
+              </div>*/
+            }
             <br />
             <br />
           </>

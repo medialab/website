@@ -54,7 +54,12 @@ function PageMeta(props) {
         citation,
         type,
         uri,
+        imageData,
     } = props;
+
+    const imageSrc = imageData && imageData.url ?  'https://medialab.sciencespo.fr/' + imageData.url : 'https://medialab.sciencespo.fr' + coverFb;
+    const imageWidth = imageData && imageData.width ? imageData.width : 2000;
+    const imageHeight = imageData && imageData.height ? imageData.height : 2000;
 
     return (
       <Helmet>
@@ -94,13 +99,13 @@ function PageMeta(props) {
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:creator" content="@medialab" />
-        <meta name="twitter:image" content={'https://medialab.sciencespo.fr' + coverTwitter} />
+        <meta name="twitter:image" content={/*'https://medialab.sciencespo.fr' + coverTwitter*/ imageSrc} />
         {/* end meta twitter */}
 
         {/* META GOOGLE */}
         <meta itemProp="name" content={title} />
         <meta itemProp="description" content={description} />
-        <meta itemProp="image" content={'https://medialab.sciencespo.fr' + coverFb} />
+        <meta itemProp="image" content={imageSrc} />
         {/* END META GOOGLE + */}
 
         {/* META OPEN GRAPH / FACEBOOK */}
@@ -108,12 +113,12 @@ function PageMeta(props) {
         <meta property="og:site_name" content="médialab Sciences Po" />        
         <meta property="og:url" content={uri ? uri : 'https://medialab.sciencespo.fr'} />
         <meta property="og:description" content={description} />
-        <meta property="og:image:url" content={'https://medialab.sciencespo.fr' + coverFb} />
-        <meta property="og:image:secure_url" content={'https://medialab.sciencespo.fr' + coverFb} />
+        <meta property="og:image:url" content={imageSrc} />
+        <meta property="og:image:secure_url" content={imageSrc} />
         <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:alt" content="médialab logo" />
-        <meta property="og:image:width" content={2000} />
-        <meta property="og:image:height" content={2000} />
+        <meta property="og:image:alt" content="médialab website image" />
+        <meta property="og:image:width" content={imageWidth} />
+        <meta property="og:image:height" content={imageHeight} />
         {buildOpenGraphAdditionalMeta(props)}
         {/* END META OPEN GRAPH / FACEBOOK*/}
       </Helmet>

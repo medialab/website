@@ -4,6 +4,7 @@ const path = require('path');
 const chokidar = require('chokidar');
 const shuffleInPlace = require('pandemonium/shuffle-in-place');
 const _ = require('lodash');
+const canvas = require('canvas');
 
 const {
   importGraphQLSchema,
@@ -47,6 +48,18 @@ _.forEach(ENUMS.productionTypes.groups, (group, key) => {
 });
 
 const processing = require(path.join(ROOT_PATH, 'specs', 'processing.js')).sharpToString;
+const unprocessing = require(path.join(ROOT_PATH, 'specs', 'processing.js')).imgToProcessedPng;
+
+/**
+ * Following is related to social networks processed images rendering
+ */
+const char00A0 = path.join(ROOT_PATH, 'specs', 'charactersImg', '00A0.png');
+const char2588 = path.join(ROOT_PATH, 'specs', 'charactersImg', '2588.png');
+const char2591 = path.join(ROOT_PATH, 'specs', 'charactersImg', '2591.png');
+const char2592 = path.join(ROOT_PATH, 'specs', 'charactersImg', '2592.png');
+const char2593 = path.join(ROOT_PATH, 'specs', 'charactersImg', '2593.png');
+const symbolTiles = {char00A0, char2588, char2592, char2591, char2593};
+const tilesDimensions = {width: 14, height: 24};
 
 const MODELS_PATHS = {};
 
@@ -388,7 +401,12 @@ exports.createResolvers = function({createResolvers, pathPrefix}) {
     assetsPath: ASSETS_PATH,
     publicPath: PUBLIC_PATH,
     prefix: pathPrefix,
-    processing
+    processing,
+    symbolTiles,
+    tilesDimensions,
+    unprocessing,
+    canvas,
+    writeFile: fs.writeFile
   };
 
   createResolvers({

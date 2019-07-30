@@ -18,6 +18,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "canvas": "^2.5.0",
     "cheerio": "^1.0.0-rc.3",
     "chokidar": "^3.0.2",
     "classnames": "^2.2.6",
@@ -41,5 +42,6 @@
     "react-helmet": "^5.2.1",
     "sharp": "^0.22.1",
     "timed-memoize": "^2.4.2"
-  }
+  },
+  "devDependencies": {}
 }

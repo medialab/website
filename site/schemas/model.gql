@@ -18,10 +18,17 @@ type Cover {
   credits: String
 }
 
+type CoverImageSocial {
+  width: Int
+  height: Int
+  url: String
+}
+
 type CoverImageProcessed {
   small: String
   medium: String
   large: String
+  unprocessed: CoverImageSocial
 }
 
 type CoverImage {

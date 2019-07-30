@@ -33,7 +33,6 @@ exports.createCoverImageResolver = settings => {
   const resolver = source => {
     if (!source.cover)
       return null;
-
     const cover = source.cover;
 
     const ext = path.extname(cover.file),
@@ -76,9 +75,14 @@ exports.createCoverImageResolver = settings => {
               settings.processing(img(), cover.crop, {
                 rows: 240,
                 gamma: cover.gamma
-              })
-            ]).then(([small, medium, large]) => {
-              resolve({...data, processed: {small, medium, large}});
+              }),
+              settings.unprocessing(img(), cover.crop, {
+                rows: 240,
+                gamma: cover.gamma,
+                id: source.slugs.join(),
+              }, settings),
+            ]).then(([small, medium, large, deprocessed]) => {
+            resolve({...data, processed: {small, medium, large, deprocessed}});
             }).catch(reject);
           }
           else {

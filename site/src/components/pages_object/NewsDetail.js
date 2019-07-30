@@ -44,6 +44,11 @@ export const queryFragment = graphql`
       processed {
         medium
         large
+        unprocessed {
+          url
+          width
+          height
+        }
       }
     }
     people {
@@ -124,6 +129,7 @@ export default function NewsDetail({lang, news}) {
         description={news.description && news.description[lang]}
         zoteroType={news.type === 'post' ? 'blogPost' : undefined}
         author={news.type === 'post' ? news.people.map(p => `${p.lastName},${p.firstName}`) : undefined}
+        imageData={news.coverImage && news.coverImage.processed && news.coverImage.processed.unprocessed}
         lang={lang}
       />
       <main itemScope itemProp={news.type !== 'post' ? 'event': 'subjectOf'} itemType={news.type !== 'post' ? 'https://schema.org/Event' : 'https://schema.org/CreativeWork'} id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + news.title.fr : news.title.en + " page content" }>

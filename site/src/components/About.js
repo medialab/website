@@ -22,7 +22,7 @@ export default function About({lang}) {
           <ul>
             <li className="nav-inside-item" data-type="main"><a href="#main" title="Aller à la section" > Aller en haut</a></li>
             <li className="nav-inside-item"><a href="#research" title="Aller à la section" >La recherche au médialab</a></li>
-            <li className="nav-inside-item"><a href="#team" title="Aller à la section" >Equipe</a></li>
+            <li className="nav-inside-item"><a href="#team" title="Aller à la section" >Équipe</a></li>
             <li className="nav-inside-item"><a href="#activities" title="Aller à la section" >Activités</a></li>
             <li className="nav-inside-item"><a href="#productions" title="Aller à la section" >Productions</a></li>
             <li className="nav-inside-item"><a href="#contact" title="Aller à la section" >Contact</a></li>
@@ -52,7 +52,7 @@ export default function About({lang}) {
               <p>Chacun des projets de recherche menés au médialab se développe dans une approche pluridisciplinaire mobilisant des compétences variées. Irrigués par les sciences sociales et les STS, ces projets se nourrissent de l'ingénierie informatique, pour affiner les enquêtes en utilisant le web comme terrain d’enquête ou la science des données comme méthode d’analyse. Ils se saisissent également de nouvelles formes de mises en situation et d’exploration des questions de recherche proposées par le design.
               Historiquement attaché à la question de la production et de la transmission des connaissances, le médialab expérimente depuis ses débuts de nouvelles formes d’interventions avec les étudiants. Tangible dans les cours dispensés par les membres de son équipe, ce lien se manifeste également par l’accueil d’un programme de recherche en pédagogies innovante qui s’ancre pleinement dans les pratiques de recherche du laboratoire.</p>
 
-              <h3 id="team">Equipe</h3>
+              <h3 id="team">Équipe</h3>
               <p>Composée d’hommes et de femmes aux compétences complémentaires, l’équipe du médialab est plurielle. Membres ou associés au laboratoire, ces profils académiques, techniques, en design, ou encore en pédagogie se combinent et travaillent ensemble pour développer une recherche se nourrissant de cette diversité.</p>
 
               <p><Link to="/equipe" className="GoTo">Découvrir les membres de l'équipe</Link></p>

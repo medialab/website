@@ -41,6 +41,5 @@
     "react-helmet": "^5.2.1",
     "sharp": "^0.22.1",
     "timed-memoize": "^2.4.2"
-  },
-  "devDependencies": { }
+  }
 }

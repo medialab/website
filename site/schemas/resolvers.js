@@ -34,6 +34,7 @@ exports.createCoverImageResolver = settings => {
   const resolver = source => {
     if (!source.cover)
       return null;
+
     const cover = source.cover;
 
     const ext = path.extname(cover.file),

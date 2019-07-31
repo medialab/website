@@ -50,6 +50,7 @@ _.forEach(ENUMS.productionTypes.groups, (group, key) => {
 
 const processing = require(path.join(ROOT_PATH, 'specs', 'processing.js')).sharpToString;
 const unprocessing = require(path.join(ROOT_PATH, 'specs', 'processing.js')).imgToProcessedPng;
+const getImagesAsPixels = require(path.join(ROOT_PATH, 'specs', 'processing.js')).getImagesAsPixels;
 
 /**
  * Following is related to social networks processed images rendering
@@ -59,8 +60,13 @@ const char2588 = path.join(ROOT_PATH, 'specs', 'charactersImg', '2588.png');
 const char2591 = path.join(ROOT_PATH, 'specs', 'charactersImg', '2591.png');
 const char2592 = path.join(ROOT_PATH, 'specs', 'charactersImg', '2592.png');
 const char2593 = path.join(ROOT_PATH, 'specs', 'charactersImg', '2593.png');
-const symbolTiles = {char00A0, char2588, char2592, char2591, char2593};
+let symbolTiles = {char00A0, char2588, char2592, char2591, char2593};
 const tilesDimensions = {width: 14, height: 24};
+getImagesAsPixels(symbolTiles, decodePNG)
+  .then(result => {
+    symbolTiles = result;
+  })
+  .catch(e => console.log('could not load tiles pixels', e))
 
 const MODELS_PATHS = {};
 

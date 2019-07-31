@@ -1,6 +1,7 @@
 const memoize = require('timed-memoize').default;
 const path = require('path');
 const sharp = require('sharp');
+const inProduction = process.env.NODE_ENV === 'production';
 
 exports.createSettingsItemResolver = () => {
   return {
@@ -76,12 +77,13 @@ exports.createCoverImageResolver = settings => {
                 rows: 240,
                 gamma: cover.gamma
               }),
-              settings.unprocessing(img(), cover.crop, {
+              inProduction ? settings.unprocessing(img(), cover.crop, {
                 rows: 60,
                 gamma: cover.gamma,
                 id: source.slugs.join(),
-              }, settings),
-            ]).then(([small, medium, large, unprocessed]) => {
+              }, settings) : Promise.resolve({url : undefined, width: 0, height: 0}),
+            ])
+            .then(([small, medium, large, unprocessed]) => {
             resolve({...data, processed: {small, medium, large, unprocessed}});
             }).catch(reject);
           }

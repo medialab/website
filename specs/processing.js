@@ -265,32 +265,18 @@ function getChannelsForPixel ({
 function imgToProcessedPng(img, crop, options, settings) {
   const tileWidth = settings.tilesDimensions.width;
   const tileHeight = settings.tilesDimensions.height;
-  const images = settings.symbolTiles;
+  const symbolsMap = settings.symbolTiles;
   const filePath = `${settings.publicPath}/${options.id}.social.png`;
-  let symbolsMap;
-  const cellsMap = {};
   console.log('building processed image png', filePath)
 
   return new Promise((resolve, reject) => {
-    getImagesAsPixels(images, settings.decodePNG)
-    .then((res) => {
-      symbolsMap = res;
-      return sharpToString(img, crop, options)
-    })
+    sharpToString(img, crop, options)
     .then((data) => {
       const matrix = mapStringToCharacterMatrix(data, options.rows);
       const columnsNumber = matrix[0].length;
       const rowsNumber = matrix.length;
       const imageWidth = columnsNumber * tileWidth;
-      const imageHeight = rowsNumber * tileHeight;
-
-      // build an object out of the 2d matrix to improve performance
-      matrix.forEach((row, rowIndex) => {
-        cellsMap[rowIndex] = {};
-        row.forEach((char, columnIndex) => {
-          cellsMap[rowIndex][columnIndex] = char;
-        })
-      })
+      const imageHeight = rowsNumber * tileHeight;      
 
       // maps unicode symbols to corresponding pixels map key
       const getSymbolFromChar = char => {
@@ -322,7 +308,7 @@ function imgToProcessedPng(img, crop, options, settings) {
               y, 
               columnsNumber,
               rowsNumber,
-              cellsMap,
+              cellsMap: matrix,
               symbolsMap,
               getSymbolFromChar,
               columnWidth: tileWidth,
@@ -356,3 +342,4 @@ exports.sharpToString = sharpToString;
 exports.imgToProcessedPng = imgToProcessedPng;
 exports.imageFileToBlocks = imageFileToBlocks;
 exports.imageToBlocks = imageToBlocks;
+exports.getImagesAsPixels = getImagesAsPixels;

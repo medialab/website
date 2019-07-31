@@ -76,15 +76,38 @@ exports.createCoverImageResolver = settings => {
               settings.processing(img(), cover.crop, {
                 rows: 240,
                 gamma: cover.gamma
-              }),
-              inProduction ? settings.unprocessing(img(), cover.crop, {
-                rows: 120,
-                gamma: cover.gamma,
-                id: source.slugs.join(),
-              }, settings) : Promise.resolve({url : undefined, width: 0, height: 0}),
+              })
             ])
-            .then(([small, medium, large, unprocessed]) => {
-            resolve({...data, processed: {small, medium, large, unprocessed}});
+            .then(([small, medium, large]) => {
+              if (inProduction) {
+                settings.unprocessing(medium, {
+                  rows: 120,
+                  id: source.slugs.join(),
+                }, settings)
+                .then(unprocessed => {
+                  resolve({
+                    ...data,
+                    processed: {
+                      small,
+                      medium,
+                      large,
+                      unprocessed
+                    }
+                  });
+                })
+                .catch(reject);
+
+              } else {
+                resolve({
+                  ...data,
+                  processed: {
+                    small,
+                    medium,
+                    large,
+                    unprocessed: {url: undefined, width: 0, height: 0}
+                  }
+                });
+            }
             }).catch(reject);
           }
           else {

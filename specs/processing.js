@@ -1,4 +1,3 @@
-
 const BLOCKS = ['\u00A0', '\u2591', '\u2592', '\u2593', '\u2588'].reverse();
 const CARDINALITY = BLOCKS.length;
 const NUM_RATIO = 756 / CARDINALITY;
@@ -118,6 +117,19 @@ function mapBlocksToCharacterMatrix(blocks, rows) {
   return matrix;
 }
 
+function mapStringToCharacterMatrix(str, rows) {
+  const blocks = Array.from(str);
+  const matrix = new Array(blocks.length / rows);
+
+  for (let c = 0, i = 0; c < blocks.length; c += rows) {
+    matrix[i] = Array.from(blocks.slice(c, c + rows));
+
+    i++;
+  }
+
+  return matrix;
+}
+
 function mapBlocksToString(blocks) {
   return Array.from(blocks, i => BLOCKS[i]).join('');
 }
@@ -143,6 +155,7 @@ function sharpToString(img, crop, options) {
   });
 }
 
+
 function pixelsToString(pixels, options) {
   return mapBlocksToString(pixelsToBlocks(pixels, options));
 }
@@ -166,72 +179,180 @@ function imageToBlocks(img, options) {
   return mapBlocksToCharacterMatrix(blocks, options.rows);
 }
 
-function blocksToImage(blocks, images, imageDimensions, callback) {
-  const imageMap = blocks.map((row, rowNumber) => {
-    const y = rowNumber * imageDimensions.height;
-    return row.map((char, columnNumber) => {
-      const x = columnNumber * imageDimensions.width;
-      let src;
-      switch(char) {
-        case '\u00A0':
-          src = images.char00A0;
-          break;
-        case '\u2591':
-            src = images.char2591;
-            break;
-        case '\u2592':
-            src = images.char2592;
-            break;
-        case '\u2593':
-            src = images.char2593;
-            break;
-        case '\u2588':
-        default:
-            src = images.char2588;
-            break;
-          break;
-      }
-      return {
-        x,
-        y,
-        src
-      }
-    })
+/**
+ * From a map of image paths,
+ * returns a map in which values are Uint8Array pixel information
+ * coded on 3 channels (rvba)
+ */
+function getImagesAsPixels(mapOfImages, decodePNG) {
+  let result = {};
+  return new Promise ((globalResolve, globalReject) => {
+    Object.keys(mapOfImages).reduce((cur, key) => 
+      cur.then(() => new Promise((resolve) => {
+        decodePNG(mapOfImages[key], (buffer) => {
+          // const pixels = new Uint8Array(toArrayBuffer(buffer));
+          const pixels = new Uint8Array(buffer);
+          result[key] = pixels;
+          resolve()
+        })
+      }))
+    , Promise.resolve())
+    .then(() => globalResolve(result))
+    .catch(globalReject)
   })
-  .reduce((res, row) => {
-    return res.concat(row)
-  }, [])
+}
 
-  const image = new Image();
+/**
+ * Translates an absolute pixel information into a position
+ * in a matrix of tiles.
+ * @param {*} x 
+ * @param {*} y 
+ * @param {*} columnWidth 
+ * @param {*} rowHeight 
+ * @return {Object} coordinates in the tiles matrix and relative offset
+ */
+function getCoordinatesForPixel (x, y, columnWidth, rowHeight) {
+  const offsetX = x % columnWidth;
+  const offsetY = y % rowHeight;
+  const column = Math.floor(x / columnWidth);
+  const row = Math.floor(y / rowHeight);
+  return {
+      column,
+      row,
+      offsetX,
+      offsetY
+  }
+}
 
-  const canvas = document.createElement('canvas');
-  const context = canvas.getContext('2d');
-  canvas.width = blocks[0].length * imageDimensions.width;
-  canvas.height = blocks.length * imageDimensions.height;
-  imageMap.reduce((cur, char) => {
-    return cur.then(() => {
-      return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.src = char.src;
-        img.onload = function() {
-            context.drawImage(img, 0, 0);
+/**
+ * Translates absolute position of pixel into pixel information
+ * against a matrix of tile images
+ * @return {Uint8Array} channels - triplet of RVB values (on range 0-255)
+ */
+function getChannelsForPixel ({
+  x,
+  y,
+  columnWidth, 
+  rowHeight,
+  getSymbolFromChar,
+  cellsMap,
+  symbolsMap
+}) {
+  // determine pixel position
+  // regarding tiles matrix
+  const {
+      column,
+      row,
+      offsetX,
+      offsetY
+  } = getCoordinatesForPixel(x, y, columnWidth, rowHeight)
+  // get corresponding char
+  const char = cellsMap[row][column];
+  // get corresonding symbol's pixel Uint8Array
+  const symbolKey = getSymbolFromChar(char);
+  const pixels = symbolsMap[symbolKey];
+  // translate 2d position into 1d position in the list of pixels of the symbol
+  const order = (offsetY * columnWidth) + offsetX;
+  // map to the 4 channels image position of the pixel in symbol pixels list
+  // (but keep only 3 as we encode the image in 3 channels)
+  const channels = pixels.slice(order * 4, order * 4 + 3)
+  return channels;
+}
+
+/**
+ * Translates a raw image into a symbol-processed png file
+ */
+function imgToProcessedPng(img, crop, options, settings) {
+  const tileWidth = settings.tilesDimensions.width;
+  const tileHeight = settings.tilesDimensions.height;
+  const images = settings.symbolTiles;
+  const filePath = `${settings.publicPath}/${options.id}.social.png`;
+  let symbolsMap;
+  const cellsMap = {};
+  console.log('building processed image png', filePath)
+
+  return new Promise((resolve, reject) => {
+    getImagesAsPixels(images, settings.decodePNG)
+    .then((res) => {
+      symbolsMap = res;
+      return sharpToString(img, crop, options)
+    })
+    .then((data) => {
+      const matrix = mapStringToCharacterMatrix(data, options.rows);
+      const columnsNumber = matrix[0].length;
+      const rowsNumber = matrix.length;
+      const imageWidth = columnsNumber * tileWidth;
+      const imageHeight = rowsNumber * tileHeight;
+
+      // build an object out of the 2d matrix to improve performance
+      matrix.forEach((row, rowIndex) => {
+        cellsMap[rowIndex] = {};
+        row.forEach((char, columnIndex) => {
+          cellsMap[rowIndex][columnIndex] = char;
+        })
+      })
+
+      // maps unicode symbols to corresponding pixels map key
+      const getSymbolFromChar = char => {
+        switch(char) {
+          case '\u00A0':
+            return 'char00A0';
+            break;
+          case '\u2591':
+              return 'char2591';
+              break;
+          case '\u2592':
+              return 'char2592';
+              break;
+          case '\u2593':
+              return 'char2593';
+              break;
+          case '\u2588':
+          default:
+              return 'char2588';
+              break;
         }
-        img.onerror = e => reject(e);
+      }
 
-        context.drawImage(img, char.x, char.y, imageDimensions.width, imageDimensions.height);
-        resolve();
+      let buffer = new Uint8Array(imageWidth * imageHeight * 3);
+      for (let x = 0 ; x < imageWidth ; x ++) {
+          for (let y = 0 ; y < imageHeight ; y ++) {
+            const channels = getChannelsForPixel({
+              x, 
+              y, 
+              columnsNumber,
+              rowsNumber,
+              cellsMap,
+              symbolsMap,
+              getSymbolFromChar,
+              columnWidth: tileWidth,
+              rowHeight: tileHeight
+            })
+            // add rvb triplet
+            buffer.set(channels, x * 3 + y * imageWidth * 3);
+          }
+      }
+    settings.sharp(Buffer.from(buffer), {
+        raw: {
+            width: imageWidth,
+            height: imageHeight,
+            channels: 3
+        }
     })
-    })
-  }, Promise.resolve())
-  .then(() => {
-    const url = canvas.toDataURL();
-    callback(null, url)
-  })
-
+    .toFile(filePath)
+    .then(() => {
+      resolve({
+        width: Math.floor(imageWidth),
+        height: Math.floor(imageHeight),
+        url: `static/${options.id}.social.png`
+      });
+    }).catch(reject)
+    });
+  });
 }
 
 exports.readImageFileAsDataUrl = readImageFileAsDataUrl;
 exports.sharpToString = sharpToString;
+exports.imgToProcessedPng = imgToProcessedPng;
 exports.imageFileToBlocks = imageFileToBlocks;
 exports.imageToBlocks = imageToBlocks;
-exports.blocksToImage = blocksToImage;

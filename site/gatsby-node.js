@@ -62,7 +62,7 @@ const symbolTiles = Object.keys(symbolsRawData).reduce((result, key) => {
     }
   )
 }, {})
-const tilesDimensions = {width: 14, height: 24};
+const tilesDimensions = {width: 7, height: 12};
 
 const MODELS_PATHS = {};
 

@@ -78,7 +78,7 @@ exports.createCoverImageResolver = settings => {
                 gamma: cover.gamma
               }),
               inProduction ? settings.unprocessing(img(), cover.crop, {
-                rows: 60,
+                rows: 120,
                 gamma: cover.gamma,
                 id: source.slugs.join(),
               }, settings) : Promise.resolve({url : undefined, width: 0, height: 0}),

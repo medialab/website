@@ -76,7 +76,7 @@ export default class SettingsForm extends Component {
     return (
       <div>
         <div className="columns">
-          <div className="column is-4">
+          <div className="column is-6">
             <h2 className="title is-4">Home Page</h2>
             <h3 className="title is-5">Carrousel</h3>
             <EditorializationSelector
@@ -103,7 +103,7 @@ export default class SettingsForm extends Component {
               {signaling ? 'Saved!' : 'Save'}
             </Button>
           </div>
-          <div className="column is-4">
+          <div className="column is-6">
             <h2 className="title is-4">Activités</h2>
             <h3 className="title is-5">Mise en avant dans le listing</h3>
             <EditorializationSelector

@@ -59,7 +59,7 @@ const ActuAssociees = ({lang, actu, isSeminar, filter, titles}) => {
                 </div>
                 <div className="bandeau">
                   <p data-icon="news" className="type-news">{IsModel(n.type, lang)}</p>
-                  <p className="label-news"><LanguageFallback lang={lang} translatedAttribute={name.label} /></p>
+                  <p className="label-news"><LanguageFallback lang={lang} translatedAttribute={n.label} /></p>
                   <div>
                     <DateNews startDate={n.startDate} endDate={n.endDate} lang={lang} />
                     <TimeNews startDate={n.startDate} endDate={n.endDate} />

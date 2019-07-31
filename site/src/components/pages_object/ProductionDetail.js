@@ -33,6 +33,15 @@ export const queryFragment = graphql`
     type
     date
     slugs
+    coverImage {
+      processed {
+        unprocessed {
+          url
+          width
+          height
+        }
+      }
+    }
     description {
       en
       fr
@@ -143,6 +152,7 @@ export default function ProductionDetail({lang, production}) {
         lang={lang}
         type={production.type}
         uri={production.url}
+        imageData={production.coverImage && production.coverImage.processed && production.coverImage.processed.unprocessed}
         citation={production.description && production.description[lang]}
       />
       <main itemScope itemType={productionTypeToSchemaURL(production.type)} id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " : " page content" }>

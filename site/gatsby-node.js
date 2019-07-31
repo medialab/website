@@ -53,17 +53,7 @@ const unprocessing = require(path.join(ROOT_PATH, 'specs', 'processing.js')).img
 /**
  * Following is related to social networks processed images rendering
  */
-const symbolsRawData = JSON.parse(fs.readFileSync(path.join(ROOT_PATH, 'specs', 'charactersImg', 'symbolsData.json'), 'utf8'));
-const symbolTiles = Object.keys(symbolsRawData).reduce((result, key) => {
-  return Object.assign(
-    result,
-    {
-      [key]: new Uint8Array(symbolsRawData[key])
-    }
-  )
-}, {})
-const tilesDimensions = {width: 7, height: 12};
-
+const symbolsData = require(path.join(ROOT_PATH, 'specs', 'charactersImg', 'symbolsData.js'))
 const MODELS_PATHS = {};
 
 MODELS.forEach(model => {
@@ -405,8 +395,8 @@ exports.createResolvers = function({createResolvers, pathPrefix}) {
     publicPath: PUBLIC_PATH,
     prefix: pathPrefix,
     processing,
-    symbolTiles,
-    tilesDimensions,
+    symbolTiles: symbolsData.symbolTiles,
+    tilesDimensions: symbolsData.tilesDimensions,
     unprocessing,
     sharp,
   };

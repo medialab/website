@@ -201,14 +201,6 @@ function getImagesAsPixels(mapOfImages, decodePNG) {
   })
 }
 
-const CHAR_TO_SYMBOL = {
-  '\u00A0': 'char00A0',
-  '\u2591': 'char2591',
-  '\u2592': 'char2592',
-  '\u2593': 'char2593',
-  '\u2588': 'char2588'
-};
-
 /**
  * Translates a raw image into a symbol-processed png file
  */
@@ -229,20 +221,26 @@ function imgToProcessedPng(data, options, settings) {
     // instantiate buffer to populate with final image data
     const buffer = new Uint8Array(imageWidth * imageHeight * 4);
     // iterate in matrix of symbols
+    let tilePixels;
+    let tileOffsetXInPixels;
+    let tileOffsetYInPixels;
+    let rowValues;
+    let rowOffset;
+
     for (let x = 0 ; x < columnsNumber ; x++) {
       for (let y = 0 ; y < rowsNumber ; y++) {
         // get Uint8Array of pixels for the cell's corresponding tile
-        const tilePixels = settings.symbolTiles[CHAR_TO_SYMBOL[matrix[y][x]]];
-        const tileOffsetXInPixels = tileWidth * x;
-        const tileOffsetYInPixels = tileHeight * y;
+        tilePixels = settings.symbolTiles[matrix[y][x]];
+        tileOffsetXInPixels = tileWidth * x;
+        tileOffsetYInPixels = tileHeight * y;
         // iterate in each row of the tile image to add its data to the buffer
         for (let row = 0 ; row < tileHeight ; row ++) {
           // values of the current row of pixels
-          const rowValues = tilePixels
+          rowValues = tilePixels
           // get slice of 4-channels values corresponding to the tile row of pixels
           .slice(tileWidthInValues * row, tileWidthInValues * row + tileWidthInValues)
           // compute 1-dimension offset in final image
-          const rowOffset = (tileOffsetYInPixels * imageWidth + row * imageWidth + tileOffsetXInPixels) * 4;
+          rowOffset = (tileOffsetYInPixels * imageWidth + row * imageWidth + tileOffsetXInPixels) * 4;
           // add values to buffer at correct position
           buffer.set(rowValues, rowOffset);
         }

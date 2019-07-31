@@ -1,7 +1,7 @@
 const memoize = require('timed-memoize').default;
 const path = require('path');
 const sharp = require('sharp');
-const inProduction = process.env.NODE_ENV === 'production';
+const rasterizeProcessedImages = process.env.NODE_ENV === 'production';
 
 exports.createSettingsItemResolver = () => {
   return {
@@ -80,7 +80,7 @@ exports.createCoverImageResolver = settings => {
               })
             ])
             .then(([small, medium, large]) => {
-              if (inProduction) {
+              if (rasterizeProcessedImages) {
                 settings.unprocessing(medium, {
                   rows: 120,
                   id: source.slugs.join(''),

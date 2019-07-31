@@ -152,6 +152,7 @@ export default function ActivityDetail({lang, activity}) {
         lang={lang}
         date={activity.startDate}
         imageData={activity.coverImage && activity.coverImage.processed && activity.coverImage.processed.unprocessed}
+        uri={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'activites' : 'en/activities'}/${activity.slugs && activity.slugs[0]}`}
       />
       <ol style={{display: 'none'}} itemScope itemType="https://schema.org/BreadcrumbList">
         <li itemProp="itemListElement" itemScope

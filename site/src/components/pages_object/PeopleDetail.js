@@ -219,6 +219,7 @@ export default function PeopleDetail({lang, person}) {
       <PageMeta
         title={`${person.firstName} ${person.lastName} | médialab Sciences Po`}
         description={person.status && person.status[lang]}
+        uri={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'equipe' : 'en/people'}/${person.slugs && person.slugs[0]}`}
         lang={lang}
       />
       <main

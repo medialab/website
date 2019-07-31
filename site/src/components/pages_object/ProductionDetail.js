@@ -142,7 +142,7 @@ export default function ProductionDetail({lang, production}) {
         author={production.authors.split(',')}
         lang={lang}
         type={production.type}
-        uri={production.url}
+        uri={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'productions' : 'en/productions'}/${production.slugs && production.slugs[0]}`}
         citation={production.description && production.description[lang]}
       />
       <main itemScope itemType={productionTypeToSchemaURL(production.type)} id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " : " page content" }>

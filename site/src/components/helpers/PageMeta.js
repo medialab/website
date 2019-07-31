@@ -57,9 +57,9 @@ function PageMeta(props) {
         imageData,
     } = props;
 
-    const imageSrc = imageData && imageData.url ?  'https://medialab.sciencespo.fr/' + imageData.url : 'https://medialab.sciencespo.fr' + coverFb;
+    const imageSrc = imageData && imageData.url ?  'https://medialab.sciencespo.fr/' + imageData.url : 'https://medialab.sciencespo.fr' + coverTwitter;
     const imageWidth = imageData && imageData.width ? imageData.width : 2000;
-    const imageHeight = imageData && imageData.height ? imageData.height : 2000;
+    const imageHeight = imageData && imageData.height ? imageData.height : 1000;
 
     return (
       <Helmet>

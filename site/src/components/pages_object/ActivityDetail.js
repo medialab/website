@@ -144,7 +144,6 @@ export const queryFragment = graphql`
 export default function ActivityDetail({lang, activity}) {
 
   const inSeminar = activity.slugs.join().includes('seminaire');
-
   return (
     <main id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + activity.name : activity.name + "  page content" }>
     <PageMeta

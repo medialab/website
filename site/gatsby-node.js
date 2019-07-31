@@ -4,7 +4,8 @@ const path = require('path');
 const chokidar = require('chokidar');
 const shuffleInPlace = require('pandemonium/shuffle-in-place');
 const _ = require('lodash');
-const canvas = require('canvas');
+const decodePNG = require('png-js').decode;
+const sharp = require('sharp');
 
 const {
   importGraphQLSchema,
@@ -405,8 +406,9 @@ exports.createResolvers = function({createResolvers, pathPrefix}) {
     symbolTiles,
     tilesDimensions,
     unprocessing,
-    canvas,
-    writeFile: fs.writeFile
+    decodePNG,
+    // getPixels,
+    sharp,
   };
 
   createResolvers({

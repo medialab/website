@@ -77,12 +77,12 @@ exports.createCoverImageResolver = settings => {
                 gamma: cover.gamma
               }),
               settings.unprocessing(img(), cover.crop, {
-                rows: 240,
+                rows: 60,
                 gamma: cover.gamma,
                 id: source.slugs.join(),
               }, settings),
-            ]).then(([small, medium, large, deprocessed]) => {
-            resolve({...data, processed: {small, medium, large, deprocessed}});
+            ]).then(([small, medium, large, unprocessed]) => {
+            resolve({...data, processed: {small, medium, large, unprocessed}});
             }).catch(reject);
           }
           else {

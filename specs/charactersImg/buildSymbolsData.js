@@ -7,7 +7,7 @@ const char2588 = __dirname + '/2588.png';
 const char2591 = __dirname + '/2591.png';
 const char2592 = __dirname + '/2592.png';
 const char2593 = __dirname + '/2593.png';
-let symbolTiles = {char00A0, char2588, char2592, char2591, char2593};
+const symbolTiles = {char00A0, char2588, char2592, char2591, char2593};
 getImagesAsPixels(symbolTiles, decodePNG)
   .then(result => {
     const serializable = Object.keys(result).reduce((final, key) => {

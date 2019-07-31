@@ -49,7 +49,6 @@ _.forEach(ENUMS.productionTypes.groups, (group, key) => {
 
 const processing = require(path.join(ROOT_PATH, 'specs', 'processing.js')).sharpToString;
 const unprocessing = require(path.join(ROOT_PATH, 'specs', 'processing.js')).imgToProcessedPng;
-const getImagesAsPixels = require(path.join(ROOT_PATH, 'specs', 'processing.js')).getImagesAsPixels;
 
 /**
  * Following is related to social networks processed images rendering

@@ -203,71 +203,13 @@ function getImagesAsPixels(mapOfImages, decodePNG) {
 }
 
 /**
- * Translates an absolute pixel information into a position
- * in a matrix of tiles.
- * @param {*} x 
- * @param {*} y 
- * @param {*} columnWidth 
- * @param {*} rowHeight 
- * @return {Object} coordinates in the tiles matrix and relative offset
- */
-function getCoordinatesForPixel (x, y, columnWidth, rowHeight) {
-  const offsetX = x % columnWidth;
-  const offsetY = y % rowHeight;
-  const column = Math.floor(x / columnWidth);
-  const row = Math.floor(y / rowHeight);
-  return {
-      column,
-      row,
-      offsetX,
-      offsetY
-  }
-}
-
-/**
- * Translates absolute position of pixel into pixel information
- * against a matrix of tile images
- * @return {Uint8Array} channels - triplet of RVB values (on range 0-255)
- */
-function getChannelsForPixel ({
-  x,
-  y,
-  columnWidth, 
-  rowHeight,
-  getSymbolFromChar,
-  cellsMap,
-  symbolsMap
-}) {
-  // determine pixel position
-  // regarding tiles matrix
-  const {
-      column,
-      row,
-      offsetX,
-      offsetY
-  } = getCoordinatesForPixel(x, y, columnWidth, rowHeight)
-  // get corresponding char
-  const char = cellsMap[row][column];
-  // get corresonding symbol's pixel Uint8Array
-  const symbolKey = getSymbolFromChar(char);
-  const pixels = symbolsMap[symbolKey];
-  // translate 2d position into 1d position in the list of pixels of the symbol
-  const order = (offsetY * columnWidth) + offsetX;
-  // map to the 4 channels image position of the pixel in symbol pixels list
-  // (but keep only 3 as we encode the image in 3 channels)
-  const channels = pixels.slice(order * 4, order * 4 + 3)
-  return channels;
-}
-
-/**
  * Translates a raw image into a symbol-processed png file
  */
 function imgToProcessedPng(img, crop, options, settings) {
   const tileWidth = settings.tilesDimensions.width;
   const tileHeight = settings.tilesDimensions.height;
-  const symbolsMap = settings.symbolTiles;
   const filePath = `${settings.publicPath}/${options.id}.social.png`;
-  console.log('building processed image png', filePath)
+  // console.time('building processed image png' + filePath)
 
   return new Promise((resolve, reject) => {
     sharpToString(img, crop, options)
@@ -276,57 +218,57 @@ function imgToProcessedPng(img, crop, options, settings) {
       const columnsNumber = matrix[0].length;
       const rowsNumber = matrix.length;
       const imageWidth = columnsNumber * tileWidth;
-      const imageHeight = rowsNumber * tileHeight;      
+      const imageHeight = rowsNumber * tileHeight;
+      // width in rgba of a row of pixels in the symbols
+      const tileWidthInValues = tileWidth * 4;    
 
       // maps unicode symbols to corresponding pixels map key
       const getSymbolFromChar = char => {
         switch(char) {
           case '\u00A0':
             return 'char00A0';
-            break;
           case '\u2591':
               return 'char2591';
-              break;
           case '\u2592':
               return 'char2592';
-              break;
           case '\u2593':
               return 'char2593';
-              break;
           case '\u2588':
           default:
               return 'char2588';
-              break;
         }
       }
 
-      let buffer = new Uint8Array(imageWidth * imageHeight * 3);
-      for (let x = 0 ; x < imageWidth ; x ++) {
-          for (let y = 0 ; y < imageHeight ; y ++) {
-            const channels = getChannelsForPixel({
-              x, 
-              y, 
-              columnsNumber,
-              rowsNumber,
-              cellsMap: matrix,
-              symbolsMap,
-              getSymbolFromChar,
-              columnWidth: tileWidth,
-              rowHeight: tileHeight
-            })
-            // add rvb triplet
-            buffer.set(channels, x * 3 + y * imageWidth * 3);
+      const buffer = new Uint8Array(imageWidth * imageHeight * 4);
+      for (let x = 0 ; x < columnsNumber ; x++) {
+        for (let y = 0 ; y < rowsNumber ; y++) {
+          const tilePixels = settings.symbolTiles[getSymbolFromChar(matrix[y][x])];
+          const tileOffsetXInPixels = tileWidth * x;
+          const tileOffsetYInPixels = tileHeight * y;
+          for (let row = 0 ; row < tileHeight ; row ++) {
+            
+            // values of the current row of pixels
+            const rowValues = tilePixels
+            // get slice
+            .slice(tileWidthInValues * row, tileWidthInValues * row + tileWidthInValues)
+            // 1dimension offset in final image
+            const rowOffset = (tileOffsetYInPixels * imageWidth + row * imageWidth + tileOffsetXInPixels) * 4;
+            buffer.set(rowValues, rowOffset);
           }
+        }
       }
+
     settings.sharp(Buffer.from(buffer), {
         raw: {
             width: imageWidth,
             height: imageHeight,
-            channels: 3
+            channels: 4
         }
     })
+    .flatten({background: {r: 255, g: 255, b: 255}})
     .toFile(filePath)
     .then(() => {
+      // console.timeEnd('building processed image png' + filePath);
       resolve({
         width: Math.floor(imageWidth),
         height: Math.floor(imageHeight),

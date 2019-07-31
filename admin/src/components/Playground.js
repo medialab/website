@@ -70,7 +70,7 @@ export default class Playground extends Component {
     } = this.state;
 
     imageFileToBlocks(file, {gamma, rows}, (err, blocks) => {
-      this.setState({blocks})
+      this.setState({blocks});
     });
   };
 

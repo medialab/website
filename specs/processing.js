@@ -155,7 +155,6 @@ function sharpToString(img, crop, options) {
   });
 }
 
-
 function pixelsToString(pixels, options) {
   return mapBlocksToString(pixelsToBlocks(pixels, options));
 }
@@ -202,61 +201,53 @@ function getImagesAsPixels(mapOfImages, decodePNG) {
   })
 }
 
+const CHAR_TO_SYMBOL = {
+  '\u00A0': 'char00A0',
+  '\u2591': 'char2591',
+  '\u2592': 'char2592',
+  '\u2593': 'char2593',
+  '\u2588': 'char2588'
+};
+
 /**
  * Translates a raw image into a symbol-processed png file
  */
-function imgToProcessedPng(img, crop, options, settings) {
+function imgToProcessedPng(data, options, settings) {
   const tileWidth = settings.tilesDimensions.width;
   const tileHeight = settings.tilesDimensions.height;
   const filePath = `${settings.publicPath}/${options.id}.social.png`;
   // console.time('building processed image png' + filePath)
-
   return new Promise((resolve, reject) => {
-    sharpToString(img, crop, options)
-    .then((data) => {
-      const matrix = mapStringToCharacterMatrix(data, options.rows);
-      const columnsNumber = matrix[0].length;
-      const rowsNumber = matrix.length;
-      const imageWidth = columnsNumber * tileWidth;
-      const imageHeight = rowsNumber * tileHeight;
-      // width in rgba of a row of pixels in the symbols
-      const tileWidthInValues = tileWidth * 4;    
-
-      // maps unicode symbols to corresponding pixels map key
-      const getSymbolFromChar = char => {
-        switch(char) {
-          case '\u00A0':
-            return 'char00A0';
-          case '\u2591':
-              return 'char2591';
-          case '\u2592':
-              return 'char2592';
-          case '\u2593':
-              return 'char2593';
-          case '\u2588':
-          default:
-              return 'char2588';
+    // convert flat characters string to a 2d matrix of single characters
+    const matrix = mapStringToCharacterMatrix(data, options.rows);
+    const columnsNumber = matrix[0].length;
+    const rowsNumber = matrix.length;
+    const imageWidth = columnsNumber * tileWidth;
+    const imageHeight = rowsNumber * tileHeight;
+    // compute width in rgba of a row of pixels in the symbols
+    const tileWidthInValues = tileWidth * 4;    
+    // instantiate buffer to populate with final image data
+    const buffer = new Uint8Array(imageWidth * imageHeight * 4);
+    // iterate in matrix of symbols
+    for (let x = 0 ; x < columnsNumber ; x++) {
+      for (let y = 0 ; y < rowsNumber ; y++) {
+        // get Uint8Array of pixels for the cell's corresponding tile
+        const tilePixels = settings.symbolTiles[CHAR_TO_SYMBOL[matrix[y][x]]];
+        const tileOffsetXInPixels = tileWidth * x;
+        const tileOffsetYInPixels = tileHeight * y;
+        // iterate in each row of the tile image to add its data to the buffer
+        for (let row = 0 ; row < tileHeight ; row ++) {
+          // values of the current row of pixels
+          const rowValues = tilePixels
+          // get slice of 4-channels values corresponding to the tile row of pixels
+          .slice(tileWidthInValues * row, tileWidthInValues * row + tileWidthInValues)
+          // compute 1-dimension offset in final image
+          const rowOffset = (tileOffsetYInPixels * imageWidth + row * imageWidth + tileOffsetXInPixels) * 4;
+          // add values to buffer at correct position
+          buffer.set(rowValues, rowOffset);
         }
       }
-
-      const buffer = new Uint8Array(imageWidth * imageHeight * 4);
-      for (let x = 0 ; x < columnsNumber ; x++) {
-        for (let y = 0 ; y < rowsNumber ; y++) {
-          const tilePixels = settings.symbolTiles[getSymbolFromChar(matrix[y][x])];
-          const tileOffsetXInPixels = tileWidth * x;
-          const tileOffsetYInPixels = tileHeight * y;
-          for (let row = 0 ; row < tileHeight ; row ++) {
-            
-            // values of the current row of pixels
-            const rowValues = tilePixels
-            // get slice
-            .slice(tileWidthInValues * row, tileWidthInValues * row + tileWidthInValues)
-            // 1dimension offset in final image
-            const rowOffset = (tileOffsetYInPixels * imageWidth + row * imageWidth + tileOffsetXInPixels) * 4;
-            buffer.set(rowValues, rowOffset);
-          }
-        }
-      }
+    }
 
     settings.sharp(Buffer.from(buffer), {
         raw: {
@@ -275,7 +266,6 @@ function imgToProcessedPng(img, crop, options, settings) {
         url: `static/${options.id}.social.png`
       });
     }).catch(reject)
-    });
   });
 }
 

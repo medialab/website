@@ -36,12 +36,11 @@
     "lodash": "^4.17.15",
     "node-sass": "^4.12.0",
     "pandemonium": "^1.4.1",
-    "png-js": "^0.1.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "sharp": "^0.22.1",
     "timed-memoize": "^2.4.2"
   },
-  "devDependencies": {}
+  "devDependencies": { }
 }

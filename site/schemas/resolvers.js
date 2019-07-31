@@ -82,7 +82,7 @@ exports.createCoverImageResolver = settings => {
               if (inProduction) {
                 settings.unprocessing(medium, {
                   rows: 120,
-                  id: source.slugs.join(),
+                  id: source.slugs.join(''),
                 }, settings)
                 .then(unprocessed => {
                   resolve({

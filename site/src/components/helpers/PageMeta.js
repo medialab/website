@@ -99,7 +99,7 @@ function PageMeta(props) {
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:creator" content="@medialab" />
-        <meta name="twitter:image" content={/*'https://medialab.sciencespo.fr' + coverTwitter*/ imageSrc} />
+        <meta name="twitter:image" content={imageSrc} />
         {/* end meta twitter */}
 
         {/* META GOOGLE */}

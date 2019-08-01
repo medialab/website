@@ -180,8 +180,8 @@ function imageToBlocks(img, options) {
 
 /**
  * From a map of image paths,
- * returns a map in which values are Uint8Array pixel information
- * coded on 3 channels (rvba)
+ * returns a map in which values are a Uint8Array of pixel information
+ * coded on 4 channels (rgba)
  */
 function getImagesAsPixels(mapOfImages, decodePNG) {
   let result = {};
@@ -202,13 +202,17 @@ function getImagesAsPixels(mapOfImages, decodePNG) {
 }
 
 /**
- * Translates a raw image into a symbol-processed png file
+ * Translates a processed image string into a png file
+ * @param {string} data - processed image string
+ * @param {object} options
+ * @param {object} options.id - id to use to name the file
+ * @param {object} options.rows - number of rows of the image
+ * @param {object} settings - diverse additional information
  */
 function imgToProcessedPng(data, options, settings) {
   const tileWidth = settings.tilesDimensions.width;
   const tileHeight = settings.tilesDimensions.height;
   const filePath = `${settings.publicPath}/${options.id}.social.png`;
-  // console.time('building processed image png' + filePath)
   return new Promise((resolve, reject) => {
     // convert flat characters string to a 2d matrix of single characters
     const matrix = mapStringToCharacterMatrix(data, options.rows);
@@ -226,7 +230,6 @@ function imgToProcessedPng(data, options, settings) {
     let tileOffsetYInPixels;
     let rowValues;
     let rowOffset;
-
     for (let x = 0 ; x < columnsNumber ; x++) {
       for (let y = 0 ; y < rowsNumber ; y++) {
         // get Uint8Array of pixels for the cell's corresponding tile
@@ -246,7 +249,6 @@ function imgToProcessedPng(data, options, settings) {
         }
       }
     }
-
     settings.sharp(Buffer.from(buffer), {
         raw: {
             width: imageWidth,
@@ -257,10 +259,9 @@ function imgToProcessedPng(data, options, settings) {
     .flatten({background: {r: 255, g: 255, b: 255}})
     .toFile(filePath)
     .then(() => {
-      // console.timeEnd('building processed image png' + filePath);
       resolve({
-        width: Math.floor(imageWidth),
-        height: Math.floor(imageHeight),
+        width: imageWidth,
+        height: imageHeight,
         url: `static/${options.id}.social.png`
       });
     }).catch(reject)

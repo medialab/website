@@ -30,6 +30,13 @@ import CardModal from '../misc/CardModal';
 import Preview from '../Preview';
 import {hash, createHandlers} from './utils';
 
+const urlTranlsationMap = {
+  activities: 'activites',
+  news: 'actu',
+  people: 'equipe',
+  productions: 'productions',
+};
+
 const condWithConstants = d => cond(
   map(
     ([condition, result]) => [condition, isFunction(result) ? result : constant(result)], d
@@ -374,11 +381,11 @@ class Form extends Component {
     const slug = isNew ?
       slugify(data) :
       data.slugs[data.slugs.length - 1];
-    const URL = `${model}/${slug}`;
     const pageLabel = label || model;
     const dirty = hash(data) !== lastHash;
     const validationError = validate(data);
     const state = {...this.state, dirty, validationError};
+    const URL = `${isFrenchPage(state) ? urlTranlsationMap[model] : model}/${slug}`;
     const previewPropsFilter = compareTo => ({
       kind: !validationError && !dirty ? 'success' : 'white',
       disabled: dirty || validationError || isPage(compareTo)(state),

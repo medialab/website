@@ -44,7 +44,7 @@ export const queryFragment = graphql`
       processed {
         medium
         large
-        unprocessed {
+        raster {
           url
           width
           height
@@ -129,7 +129,7 @@ export default function NewsDetail({lang, news}) {
         description={news.description && news.description[lang]}
         zoteroType={news.type === 'post' ? 'blogPost' : undefined}
         author={news.type === 'post' ? news.people.map(p => `${p.lastName},${p.firstName}`) : undefined}
-        imageData={news.coverImage && news.coverImage.processed && news.coverImage.processed.unprocessed}
+        imageData={news.coverImage && news.coverImage.processed && news.coverImage.processed.raster}
         uri={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'actu': 'en/news'}/${news.slugs && news.slugs[0]}`}
         lang={lang}
       />

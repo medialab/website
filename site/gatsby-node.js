@@ -48,7 +48,7 @@ _.forEach(ENUMS.productionTypes.groups, (group, key) => {
 });
 
 const processing = require(path.join(ROOT_PATH, 'specs', 'processing.js')).sharpToString;
-const unprocessing = require(path.join(ROOT_PATH, 'specs', 'processing.js')).imgToProcessedPng;
+const rasterize = require(path.join(ROOT_PATH, 'specs', 'processing.js')).imgToProcessedPng;
 
 /**
  * Following is related to social networks processed images rendering
@@ -397,7 +397,7 @@ exports.createResolvers = function({createResolvers, pathPrefix}) {
     processing,
     symbolTiles: symbolsData.symbolTiles,
     tilesDimensions: symbolsData.tilesDimensions,
-    unprocessing,
+    rasterize,
     sharp,
   };
 

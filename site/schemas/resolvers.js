@@ -81,18 +81,18 @@ exports.createCoverImageResolver = settings => {
             ])
             .then(([small, medium, large]) => {
               if (rasterizeProcessedImages) {
-                settings.unprocessing(medium, {
+                settings.rasterize(medium, {
                   rows: 120,
                   id: source.slugs.join(''),
                 }, settings)
-                .then(unprocessed => {
+                .then(raster => {
                   resolve({
                     ...data,
                     processed: {
                       small,
                       medium,
                       large,
-                      unprocessed
+                      raster
                     }
                   });
                 })
@@ -105,7 +105,7 @@ exports.createCoverImageResolver = settings => {
                     small,
                     medium,
                     large,
-                    unprocessed: {url: undefined, width: 0, height: 0}
+                    raster: {url: undefined, width: 0, height: 0}
                   }
                 });
             }

@@ -51,7 +51,7 @@ export const queryFragment = graphql`
       processed {
         medium
         large
-        unprocessed {
+        raster {
           url
           width
           height
@@ -151,7 +151,7 @@ export default function ActivityDetail({lang, activity}) {
         description={activity.baseline && activity.baseline[lang]}
         lang={lang}
         date={activity.startDate}
-        imageData={activity.coverImage && activity.coverImage.processed && activity.coverImage.processed.unprocessed}
+        imageData={activity.coverImage && activity.coverImage.processed && activity.coverImage.processed.raster}
         uri={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'activites' : 'en/activities'}/${activity.slugs && activity.slugs[0]}`}
       />
       <ol style={{display: 'none'}} itemScope itemType="https://schema.org/BreadcrumbList">

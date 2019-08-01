@@ -28,7 +28,7 @@ type CoverImageProcessed {
   small: String
   medium: String
   large: String
-  unprocessed: CoverImageSocial
+  raster: CoverImageSocial
 }
 
 type CoverImage {

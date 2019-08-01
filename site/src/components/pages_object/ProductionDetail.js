@@ -35,7 +35,7 @@ export const queryFragment = graphql`
     slugs
     coverImage {
       processed {
-        unprocessed {
+        raster {
           url
           width
           height
@@ -151,7 +151,7 @@ export default function ProductionDetail({lang, production}) {
         author={production.authors.split(',')}
         lang={lang}
         type={production.type}
-        imageData={production.coverImage && production.coverImage.processed && production.coverImage.processed.unprocessed}
+        imageData={production.coverImage && production.coverImage.processed && production.coverImage.processed.raster}
         uri={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'productions' : 'en/productions'}/${production.slugs && production.slugs[0]}`}
         citation={production.description && production.description[lang]}
       />

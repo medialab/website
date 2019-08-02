@@ -128,7 +128,7 @@ const feedsMakers = [
           }
         `,
         output: lang === 'fr' ? '/seminaire.feed.xml' : '/seminar.feed.xml',
-        title: lang === 'fr' ? 'Actualités du séminaire médialab Sciences Po' : 'News from médialab SciencesPo\s seminar',
+        title: lang === 'fr' ? 'Actualités du séminaire médialab Sciences Po' : 'News from médialab SciencesPo\'s seminar',
     }),
     /**
      * Productions feeds maker
@@ -185,7 +185,7 @@ const feedsMakers = [
           }
         `,
         output: lang === 'fr' ? '/productions-fr.feed.xml' : '/productions-en.feed.xml',
-        title: lang === 'fr' ? 'Nouvelles productions du médialab Sciences Po' : 'New productions from médialab SciencesPo\s',
+        title: lang === 'fr' ? 'Nouvelles productions du médialab Sciences Po' : 'New productions from médialab SciencesPo',
     }),
     /**
      * All objects feeds maker
@@ -356,7 +356,7 @@ const feedsMakers = [
         }
       `,
       output: lang === 'fr' ? '/all-updates-fr.feed.xml' : '/all-updates-en.feed.xml',
-      title: lang === 'fr' ? 'Toutes les mises à jour du médialab Sciences Po' : 'All updates from médialab SciencesPo\s',
+      title: lang === 'fr' ? 'Toutes les mises à jour du médialab Sciences Po' : 'All updates from médialab SciencesPo',
   }),
 ];
 

@@ -233,14 +233,13 @@ function imgToProcessedPng(data, options, settings) {
     let tileValueOffset;
     for (let x = 0 ; x < columnsNumber ; x++) {
       for (let y = 0 ; y < rowsNumber ; y++) {
-        // get Uint8Array of pixels for the cell's corresponding tile
-        // tilePixels = settings.symbolTiles[matrix[y][x]];
+        // get proper index of relevant tile's pixel data in the concatenated tiles pixel values
+        tileValueOffset = tilesIndexes[matrix[y][x]];
         tileOffsetXInPixels = tileWidth * x;
         tileOffsetYInPixels = tileHeight * y;
         // iterate in each row of the tile image to add its data to the buffer
         for (let row = 0 ; row < tileHeight ; row ++) {
-          // get proper index of relevant tile's pixel data in the concatenated tiles pixel values
-          tileValueOffset = tilesIndexes[matrix[y][x]];
+        
           // get slice of 4-channels values corresponding to the tile row of pixels
           rowValues = pixelValues
           .slice(tileValueOffset + tileWidthInValues * row, tileValueOffset + tileWidthInValues * row + tileWidthInValues)

@@ -23,9 +23,9 @@ const ActuAssociees = ({lang, actu, isSeminar, filter, titles}) => {
   if (filter) {
     const now = new Date().getTime();
     if (filter === 'future') {
-      sorted = sorted.filter(actu => new Date(actu.startDate).getTime() > now)
+      sorted = sorted.filter(actu => new Date(actu.startDate).getTime() > now).reverse();
     } else if (filter === 'past') {
-      sorted = sorted.filter(actu => new Date(actu.startDate).getTime() < now)
+      sorted = sorted.filter(actu => new Date(actu.startDate).getTime() < now);
     }
   }
 

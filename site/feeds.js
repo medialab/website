@@ -128,7 +128,7 @@ const feedsMakers = [
           }
         `,
         output: lang === 'fr' ? '/seminaire.feed.xml' : '/seminar.feed.xml',
-        title: lang === 'fr' ? 'Actualités du séminaire médialab Sciences Po' : 'News from médialab SciencesPo\'s seminar',
+        title: lang === 'fr' ? 'Programme du séminaire médialab Sciences Po' : 'Program of the médialab SciencesPo\'s seminar',
     }),
     /**
      * Productions feeds maker
@@ -238,7 +238,7 @@ const feedsMakers = [
                 date: edge.node.lastUpdated,
                 url: edge.node.permalink[lang],
                 guid: edge.node.id,
-                custom_elements: [{ 'content:encoded': languageFallback(edge.node.description, lang) }],
+                custom_elements: [{ 'content:encoded': languageFallback(edge.node.content, lang) }],
               })
             }),
         ]
@@ -267,6 +267,10 @@ const feedsMakers = [
                   fr
                 }
                 permalink {
+                  en
+                  fr
+                }
+                content {
                   en
                   fr
                 }

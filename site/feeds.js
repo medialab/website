@@ -21,12 +21,12 @@ const feedsMakers = [
         serialize: ({ query: { allNewsJson } }) => {
           return allNewsJson.edges
           .filter(edge => !edge.node.draft)
-          .filter((e, i) => i < FEED_MAX_NUMBER_OF_ITEMS)
           .sort((a, b) => {
             if (a.node.startDate > b.node.startDate) {
               return -1;
             } else return 1;
           })
+          .filter((e, i) => i < FEED_MAX_NUMBER_OF_ITEMS)
           .map(edge => {
             return Object.assign( {
               title: languageFallback(edge.node.title, lang),
@@ -137,12 +137,12 @@ const feedsMakers = [
         serialize: ({ query: { allProductionsJson } }) => {
           return allProductionsJson.edges
           .filter(edge => !edge.node.draft)
-          .filter((e, i) => i < FEED_MAX_NUMBER_OF_ITEMS)
           .sort((a, b) => {
             if (a.node.date > b.node.date) {
               return -1;
             } else return 1;
           })
+          .filter((e, i) => i < FEED_MAX_NUMBER_OF_ITEMS)
           .map(edge => {
             return Object.assign( {
               title: `${languageFallback(edge.node.title, lang)} - ${edge.node.authors}`,
@@ -187,6 +187,177 @@ const feedsMakers = [
         output: lang === 'fr' ? '/productions-fr.feed.xml' : '/productions-en.feed.xml',
         title: lang === 'fr' ? 'Nouvelles productions du médialab Sciences Po' : 'New productions from médialab SciencesPo\s',
     }),
+    /**
+     * All objects feeds maker
+     */
+    lang => ({
+      serialize: ({ query: { allProductionsJson, allNewsJson, allPeopleJson, allActivitiesJson } }) => {
+        return [
+          ...allPeopleJson.edges
+          .filter(edge => !edge.node.draft)
+          .map(edge => {
+            return Object.assign( {
+              title: `${edge.node.firstName} ${edge.node.lastName}`,
+              description: languageFallback(edge.node.status, lang),
+              date: edge.node.lastUpdated,
+              url: edge.node.permalink[lang],
+              guid: edge.node.id,
+              custom_elements: [{ 'content:encoded': languageFallback(edge.node.bio, lang) }],
+            })
+          }),
+          ...allNewsJson.edges
+          .filter(edge => !edge.node.draft)
+          .map(edge => {
+            return Object.assign( {
+              title: edge.node.title[lang],
+              description: languageFallback(edge.node.description, lang),
+              date: edge.node.lastUpdated,
+              url: edge.node.permalink[lang],
+              guid: edge.node.id,
+              custom_elements: [{ 'content:encoded': languageFallback(edge.node.content, lang) }],
+            })
+          }),
+          ...allProductionsJson.edges
+            .filter(edge => !edge.node.draft)
+            .map(edge => {
+              return Object.assign( {
+                title: `${languageFallback(edge.node.title, lang)} - ${edge.node.authors}`,
+                description: languageFallback(edge.node.description, lang),
+                date: edge.node.lastUpdated,
+                url: edge.node.permalink[lang],
+                guid: edge.node.id,
+                custom_elements: [{ 'content:encoded': languageFallback(edge.node.content, lang) }],
+              })
+            }),
+            ...allActivitiesJson.edges
+            .filter(edge => !edge.node.draft)
+            .map(edge => {
+              return Object.assign( {
+                title: edge.node.name,
+                description: languageFallback(edge.node.baseline, lang),
+                date: edge.node.lastUpdated,
+                url: edge.node.permalink[lang],
+                guid: edge.node.id,
+                custom_elements: [{ 'content:encoded': languageFallback(edge.node.description, lang) }],
+              })
+            }),
+        ]
+        .sort((a, b) => {
+          if (a.date > b.date) {
+            return -1;
+          } else return 1;
+        })
+        .filter((e, i) => i < FEED_MAX_NUMBER_OF_ITEMS)
+      },
+      query: `
+        {
+          allActivitiesJson {
+            edges {
+              node {
+                id
+                name
+                draft
+                lastUpdated
+                description {
+                  en
+                  fr
+                }
+                baseline {
+                  en
+                  fr
+                }
+                permalink {
+                  en
+                  fr
+                }
+              }
+            }
+          }
+          allPeopleJson {
+            edges {
+              node {
+                firstName
+                lastName
+                bio {
+                  en
+                  fr
+                }
+                id
+                draft
+                lastUpdated
+                status {
+                  en
+                  fr
+                }
+                permalink {
+                  en
+                  fr
+                }
+              }
+            }
+          }
+          allNewsJson {
+              edges {
+                node {
+                  id
+                  lastUpdated
+                  title {
+                    en
+                    fr
+                  }
+                  draft
+                  description {
+                    en
+                    fr
+                  }
+                  label {
+                    en
+                    fr
+                  }
+                  startDate
+                  permalink {
+                    en
+                    fr
+                  }
+                  content {
+                    en
+                    fr
+                  }
+                }
+              }
+          }
+          allProductionsJson {
+            edges {
+              node {
+                id
+                lastUpdated
+                title {
+                  en
+                  fr
+                }
+                description {
+                  en
+                  fr
+                }
+                authors
+                date
+                draft
+                permalink {
+                  en
+                  fr
+                }
+                content {
+                  en
+                  fr
+                }
+              }
+            }
+          }
+        }
+      `,
+      output: lang === 'fr' ? '/all-updates-fr.feed.xml' : '/all-updates-en.feed.xml',
+      title: lang === 'fr' ? 'Toutes les mises à jour du médialab Sciences Po' : 'All updates from médialab SciencesPo\s',
+  }),
 ];
 
 const feeds = feedsMakers.reduce((result, feedMaker) => {

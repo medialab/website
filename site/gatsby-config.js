@@ -1,3 +1,5 @@
+const feeds = require('./feeds.js');
+
 const GOOGLE_ANALYTICS_ID = process.env.GOOGLE_ANALYTICS_ID;
 const NODE_ENV = process.env.NODE_ENV;
 
@@ -16,7 +18,23 @@ const plugins = [
     }
   },
   'gatsby-plugin-offline',
-  'gatsby-plugin-sitemap'
+  'gatsby-plugin-sitemap',
+  {
+    resolve: `gatsby-plugin-feed`,
+    options: {
+      query: `
+        {
+          site {
+            siteMetadata {
+              title
+              siteUrl
+            }
+          }
+        }
+      `,
+      feeds,
+    },
+  },
 ];
 
 if (NODE_ENV === 'production' && GOOGLE_ANALYTICS_ID)
@@ -32,7 +50,7 @@ if (NODE_ENV === 'production' && GOOGLE_ANALYTICS_ID)
 module.exports = {
   siteMetadata: {
     title: 'médialab Sciences Po',
-    siteUrl: 'https://medialab.sciencespo.fr'
+    siteUrl: 'https://medialab.sciencespo.fr', 
   },
   plugins
 };

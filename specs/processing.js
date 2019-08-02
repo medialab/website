@@ -213,6 +213,7 @@ function imgToProcessedPng(data, options, settings) {
   const tileWidth = settings.tilesDimensions.width;
   const tileHeight = settings.tilesDimensions.height;
   const filePath = `${settings.publicPath}/${options.id}.social.png`;
+  const {pixelValues, tilesIndexes} = settings.symbolTiles;
   return new Promise((resolve, reject) => {
     // convert flat characters string to a 2d matrix of single characters
     const matrix = mapStringToCharacterMatrix(data, options.rows);
@@ -221,27 +222,28 @@ function imgToProcessedPng(data, options, settings) {
     const imageWidth = columnsNumber * tileWidth;
     const imageHeight = rowsNumber * tileHeight;
     // compute width in rgba of a row of pixels in the symbols
-    const tileWidthInValues = tileWidth * 4;    
+    const tileWidthInValues = tileWidth * 4;
     // instantiate buffer to populate with final image data
     const buffer = new Uint8Array(imageWidth * imageHeight * 4);
     // iterate in matrix of symbols
-    let tilePixels;
     let tileOffsetXInPixels;
     let tileOffsetYInPixels;
     let rowValues;
     let rowOffset;
+    let tileValueOffset;
     for (let x = 0 ; x < columnsNumber ; x++) {
       for (let y = 0 ; y < rowsNumber ; y++) {
         // get Uint8Array of pixels for the cell's corresponding tile
-        tilePixels = settings.symbolTiles[matrix[y][x]];
+        // tilePixels = settings.symbolTiles[matrix[y][x]];
         tileOffsetXInPixels = tileWidth * x;
         tileOffsetYInPixels = tileHeight * y;
         // iterate in each row of the tile image to add its data to the buffer
         for (let row = 0 ; row < tileHeight ; row ++) {
-          // values of the current row of pixels
-          rowValues = tilePixels
+          // get proper index of relevant tile's pixel data in the concatenated tiles pixel values
+          tileValueOffset = tilesIndexes[matrix[y][x]];
           // get slice of 4-channels values corresponding to the tile row of pixels
-          .slice(tileWidthInValues * row, tileWidthInValues * row + tileWidthInValues)
+          rowValues = pixelValues
+          .slice(tileValueOffset + tileWidthInValues * row, tileValueOffset + tileWidthInValues * row + tileWidthInValues)
           // compute 1-dimension offset in final image
           rowOffset = (tileOffsetYInPixels * imageWidth + row * imageWidth + tileOffsetXInPixels) * 4;
           // add values to buffer at correct position
@@ -256,7 +258,8 @@ function imgToProcessedPng(data, options, settings) {
             channels: 4
         }
     })
-    .flatten({background: {r: 255, g: 255, b: 255}})
+    // following is necessary is tiles have a transparent background
+    // .flatten({background: {r: 255, g: 255, b: 255}})
     .toFile(filePath)
     .then(() => {
       resolve({

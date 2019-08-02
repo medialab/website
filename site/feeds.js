@@ -11,6 +11,8 @@ const languageFallback = (obj, lang) => {
     }
 };
 
+const FEED_MAX_NUMBER_OF_ITEMS = 50;
+
 const feedsMakers = [
     /**
      * News feeds maker
@@ -19,6 +21,7 @@ const feedsMakers = [
         serialize: ({ query: { allNewsJson } }) => {
           return allNewsJson.edges
           .filter(edge => !edge.node.draft)
+          .filter((e, i) => i < FEED_MAX_NUMBER_OF_ITEMS)
           .sort((a, b) => {
             if (a.node.startDate > b.node.startDate) {
               return -1;
@@ -79,6 +82,7 @@ const feedsMakers = [
             } else return 1;
           })
           .filter(edge => !edge.node.draft && edge.node.label && edge.node.label.fr ===  'Séminaire de recherche')
+          .filter((e, i) => i < FEED_MAX_NUMBER_OF_ITEMS)
           .map(edge => {
             return Object.assign( {
               title: edge.node.title[lang],
@@ -133,6 +137,7 @@ const feedsMakers = [
         serialize: ({ query: { allProductionsJson } }) => {
           return allProductionsJson.edges
           .filter(edge => !edge.node.draft)
+          .filter((e, i) => i < FEED_MAX_NUMBER_OF_ITEMS)
           .sort((a, b) => {
             if (a.node.date > b.node.date) {
               return -1;

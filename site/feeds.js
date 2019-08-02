@@ -85,7 +85,7 @@ const feedsMakers = [
           .filter((e, i) => i < FEED_MAX_NUMBER_OF_ITEMS)
           .map(edge => {
             return Object.assign( {
-              title: edge.node.title[lang],
+              title: languageFallback(edge.node.title, lang),
               description: languageFallback(edge.node.description, lang),
               date: edge.node.startDate,
               url: edge.node.permalink[lang],

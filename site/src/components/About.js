@@ -129,13 +129,13 @@ export default function About({lang}) {
               <p>The médialab is a diverse research team, comprised of men and women with complementary skills. As members or partners of the laboratory, these academic, technical, design and teaching experts join forces and work together to develop research that draws on this diversity.</p>
               <p><Link to="/en/people" className="GoTo">Découvrir les membres de l'équipe</Link></p>
 
-              <h3 id="research">Activities</h3>
+              <h3 id="activities">Activities</h3>
 
               <p>The médialab’s activities articulate both research and teaching. In particular, they explore the use of digital methods to address contemporary issues in sociology and STS. These methods are also central to the laboratory’s teaching, for example by putting students in research situations. This fosters highly enriching reflection on our research processes. </p>
 
               <p><Link to="/en/activities" className="GoTo">Voir la liste des activités</Link></p>
 
-              <h3 id="production">Productions</h3>
+              <h3 id="productions">Productions</h3>
 
               <p>In addition to traditional academic publications, "Web publications" also disseminate the laboratory's activities through an interactive medium that opens up new ways of representing and visually exploring findings. Situations – exhibitions, workshops, simulations, etc. – allow for the public’s involvement in the research process and the testing of hypotheses against the reality on the ground</p>
 

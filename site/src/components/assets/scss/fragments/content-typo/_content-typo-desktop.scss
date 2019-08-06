@@ -118,7 +118,30 @@
 				width: calc( 100% - #{$unite*1.5});
 				&:before{ content: "⁘"; left: -15px;}
 			}
- 
+ 			
+ 			blockquote{
+ 				margin-top: $baseline*2;
+ 				margin-bottom: $baseline*2;
+ 				@include font-size-20();
+ 				font-style: italic;
+				
+				margin-left: $unite*2;
+ 				margin-right: $unite*2;
+
+ 				&:before{
+ 					font-size: 70px;
+ 				}
+
+ 				&:lang(en):before{
+					left: $unite*-1.75;
+					line-height: $baseline*4;
+ 				}
+
+ 				&:lang(fr):before{
+ 					left: $unite*-2;
+					line-height: $baseline*2;
+ 				}
+ 			}
 			//////////////////////////
 			///        Image 	/////
 			/////////////////////////

@@ -10,6 +10,23 @@
 			
 			li{ list-style: none;}
 
+			blockquote{
+				border-left: $border-very-light;
+				padding-left: $unite/2;
+
+				&:lang(en):before{ content: "“"; }
+
+				&:lang(fr):before{ content: "«"; }
+	
+				&:before{
+					position: absolute;
+
+					@include font-size-27;
+					color: #ebebeb;
+
+				}
+			}
+
 			//////////////////////////
 			///        Image 	/////
 			/////////////////////////

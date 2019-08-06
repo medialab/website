@@ -141,6 +141,32 @@
 					span:lang(en):after{ content: ": "}
 				}
 			}
+ 			
+ 			blockquote{
+ 				//margin-top: $baseline*1;
+ 				margin-bottom: $baseline*2;
+ 				@include font-size-16-phone();
+ 				font-style: italic;
+				
+				margin-left: $unite*1;
+ 				margin-right: $unite*1;
+
+ 				&:before{
+ 					
+ 				}
+
+ 				&:lang(en):before{
+ 					font-size: $baseline*4;
+					left: $unite*-1.25;
+					line-height: 50px;
+ 				}
+
+ 				&:lang(fr):before{
+ 					font-size: $baseline*3;
+ 					left: $unite*-1.25;
+					line-height: $baseline*1.5;
+ 				}
+ 			}
 
 			img, figure{ max-width: 100%; filter: grayscale(1);}
  

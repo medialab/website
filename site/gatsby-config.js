@@ -32,7 +32,7 @@ const plugins = [
           }
         }
       `,
-      feeds,
+      feeds
     },
   },
 ];
@@ -50,7 +50,7 @@ if (NODE_ENV === 'production' && GOOGLE_ANALYTICS_ID)
 module.exports = {
   siteMetadata: {
     title: 'médialab Sciences Po',
-    siteUrl: 'https://medialab.sciencespo.fr', 
+    siteUrl: 'https://medialab.sciencespo.fr'
   },
   plugins
 };

@@ -1,13 +1,15 @@
 const languageFallback = (obj, lang) => {
     if (obj) {
-        if (obj[lang]) {
-            return obj[lang];
-        } else {
-            const other = lang === 'fr' ? 'en' : 'fr';
-            if (obj[other]) {
-                return obj[other]
-            }
+      if (obj[lang]) {
+        return obj[lang];
+      }
+      else {
+        const other = lang === 'fr' ? 'en' : 'fr';
+
+        if (obj[other]) {
+          return obj[other]
         }
+      }
     }
 };
 

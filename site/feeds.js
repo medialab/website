@@ -28,7 +28,7 @@ const feedsMakers = [
               return -1;
             } else return 1;
           })
-          .filter((e, i) => i < FEED_MAX_NUMBER_OF_ITEMS)
+          .slice(0, FEED_MAX_NUMBER_OF_ITEMS)
           .map(edge => {
             return Object.assign({
               title: languageFallback(edge.node.title, lang),
@@ -84,7 +84,7 @@ const feedsMakers = [
             } else return 1;
           })
           .filter(edge => !edge.node.draft && edge.node.label && edge.node.label.fr ===  'Séminaire de recherche')
-          .filter((e, i) => i < FEED_MAX_NUMBER_OF_ITEMS)
+          .slice(0, FEED_MAX_NUMBER_OF_ITEMS)
           .map(edge => {
             return Object.assign({
               title: languageFallback(edge.node.title, lang),
@@ -144,7 +144,7 @@ const feedsMakers = [
               return -1;
             } else return 1;
           })
-          .filter((e, i) => i < FEED_MAX_NUMBER_OF_ITEMS)
+          .slice(0, FEED_MAX_NUMBER_OF_ITEMS)
           .map(edge => {
             return Object.assign({
               title: `${languageFallback(edge.node.title, lang)} - ${edge.node.authors}`,
@@ -249,7 +249,7 @@ const feedsMakers = [
             return -1;
           } else return 1;
         })
-        .filter((e, i) => i < FEED_MAX_NUMBER_OF_ITEMS)
+        .slice(0, FEED_MAX_NUMBER_OF_ITEMS)
       },
       query: `
         {

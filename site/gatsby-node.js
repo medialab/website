@@ -4,7 +4,6 @@ const path = require('path');
 const chokidar = require('chokidar');
 const shuffleInPlace = require('pandemonium/shuffle-in-place');
 const _ = require('lodash');
-const sharp = require('sharp');
 
 const {
   importGraphQLSchema,
@@ -47,13 +46,12 @@ _.forEach(ENUMS.productionTypes.groups, (group, key) => {
   group.values.forEach(type => PRODUCTION_TYPE_TO_GROUP[type] = key);
 });
 
+/**
+ * Following is related to processed images rendering.
+ */
 const processing = require(path.join(ROOT_PATH, 'specs', 'processing.js')).sharpToString;
 const rasterize = require(path.join(ROOT_PATH, 'specs', 'processing.js')).imgToProcessedPng;
 
-/**
- * Following is related to social networks processed images rendering
- */
-const symbolsData = require(path.join(ROOT_PATH, 'specs', 'charactersImg', 'symbolsData.js'))
 const MODELS_PATHS = {};
 
 MODELS.forEach(model => {
@@ -395,10 +393,7 @@ exports.createResolvers = function({createResolvers, pathPrefix}) {
     publicPath: PUBLIC_PATH,
     prefix: pathPrefix,
     processing,
-    symbolTiles: symbolsData.symbolTiles,
-    tilesDimensions: symbolsData.tilesDimensions,
-    rasterize,
-    sharp,
+    rasterize: NODE_ENV === 'production' ? rasterize : null
   };
 
   createResolvers({

@@ -4,6 +4,8 @@ const NUM_RATIO = 756 / CARDINALITY;
 const ASCII_WIDTH = 9;
 const ASCII_HEIGHT = 19;
 
+const SYMBOLS_DATA = require('./charactersImg/symbolsData.js');
+
 function readImageFileAsDataUrl(file, callback) {
   const reader = new FileReader();
 
@@ -186,7 +188,7 @@ function imageToBlocks(img, options) {
 function getImagesAsPixels(mapOfImages, decodePNG) {
   let result = {};
   return new Promise ((globalResolve, globalReject) => {
-    Object.keys(mapOfImages).reduce((cur, key) => 
+    Object.keys(mapOfImages).reduce((cur, key) =>
       cur.then(() => new Promise((resolve) => {
         decodePNG(mapOfImages[key], (buffer) => {
           // const pixels = new Uint8Array(toArrayBuffer(buffer));
@@ -210,10 +212,10 @@ function getImagesAsPixels(mapOfImages, decodePNG) {
  * @param {object} settings - diverse additional information
  */
 function imgToProcessedPng(data, options, settings) {
-  const tileWidth = settings.tilesDimensions.width;
-  const tileHeight = settings.tilesDimensions.height;
+  const tileWidth = SYMBOLS_DATA.tilesDimensions.width;
+  const tileHeight = SYMBOLS_DATA.tilesDimensions.height;
   const filePath = `${settings.publicPath}/${options.id}.social.png`;
-  const {pixelValues, tilesIndexes} = settings.symbolTiles;
+  const {pixelValues, tilesIndexes} = SYMBOLS_DATA.symbolTiles;
   return new Promise((resolve, reject) => {
     // convert flat characters string to a 2d matrix of single characters
     const matrix = mapStringToCharacterMatrix(data, options.rows);
@@ -239,7 +241,7 @@ function imgToProcessedPng(data, options, settings) {
         tileOffsetYInPixels = tileHeight * y;
         // iterate in each row of the tile image to add its data to the buffer
         for (let row = 0 ; row < tileHeight ; row ++) {
-        
+
           // get slice of 4-channels values corresponding to the tile row of pixels
           rowValues = pixelValues
           .slice(tileValueOffset + tileWidthInValues * row, tileValueOffset + tileWidthInValues * row + tileWidthInValues)
@@ -251,11 +253,11 @@ function imgToProcessedPng(data, options, settings) {
       }
     }
     settings.sharp(Buffer.from(buffer), {
-        raw: {
-            width: imageWidth,
-            height: imageHeight,
-            channels: 4
-        }
+      raw: {
+        width: imageWidth,
+        height: imageHeight,
+        channels: 4
+      }
     })
     // following is necessary is tiles have a transparent background
     // .flatten({background: {r: 255, g: 255, b: 255}})

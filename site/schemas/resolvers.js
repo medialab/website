@@ -77,8 +77,37 @@ exports.createCoverImageResolver = settings => {
                 rows: 240,
                 gamma: cover.gamma
               })
-            ]).then(([small, medium, large]) => {
-              resolve({...data, processed: {small, medium, large}});
+            ])
+            .then(([small, medium, large]) => {
+              if (settings.rasterize) {
+                settings.rasterize(medium, {
+                  rows: 120,
+                  id: source.slugs.join(''),
+                }, {...settings, sharp})
+                .then(raster => {
+                  resolve({
+                    ...data,
+                    processed: {
+                      small,
+                      medium,
+                      large,
+                      raster
+                    }
+                  });
+                })
+                .catch(reject);
+
+              } else {
+                resolve({
+                  ...data,
+                  processed: {
+                    small,
+                    medium,
+                    large,
+                    raster: {url: undefined, width: 0, height: 0}
+                  }
+                });
+            }
             }).catch(reject);
           }
           else {

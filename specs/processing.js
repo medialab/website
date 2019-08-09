@@ -4,6 +4,8 @@ const NUM_RATIO = 756 / CARDINALITY;
 const ASCII_WIDTH = 9;
 const ASCII_HEIGHT = 19;
 
+const SYMBOLS_DATA = require('./charactersImg/symbolsData.js');
+
 function readImageFileAsDataUrl(file, callback) {
   const reader = new FileReader();
 
@@ -117,6 +119,19 @@ function mapBlocksToCharacterMatrix(blocks, rows) {
   return matrix;
 }
 
+function mapStringToCharacterMatrix(str, rows) {
+  const blocks = Array.from(str);
+  const matrix = new Array(blocks.length / rows);
+
+  for (let c = 0, i = 0; c < blocks.length; c += rows) {
+    matrix[i] = Array.from(blocks.slice(c, c + rows));
+
+    i++;
+  }
+
+  return matrix;
+}
+
 function mapBlocksToString(blocks) {
   return Array.from(blocks, i => BLOCKS[i]).join('');
 }
@@ -165,7 +180,101 @@ function imageToBlocks(img, options) {
   return mapBlocksToCharacterMatrix(blocks, options.rows);
 }
 
+/**
+ * From a map of image paths,
+ * returns a map in which values are a Uint8Array of pixel information
+ * coded on 4 channels (rgba)
+ */
+function getImagesAsPixels(mapOfImages, decodePNG) {
+  let result = {};
+  return new Promise ((globalResolve, globalReject) => {
+    Object.keys(mapOfImages).reduce((cur, key) =>
+      cur.then(() => new Promise((resolve) => {
+        decodePNG(mapOfImages[key], (buffer) => {
+          // const pixels = new Uint8Array(toArrayBuffer(buffer));
+          const pixels = new Uint8Array(buffer);
+          result[key] = pixels;
+          resolve()
+        })
+      }))
+    , Promise.resolve())
+    .then(() => globalResolve(result))
+    .catch(globalReject)
+  })
+}
+
+/**
+ * Translates a processed image string into a png file
+ * @param {string} data - processed image string
+ * @param {object} options
+ * @param {object} options.id - id to use to name the file
+ * @param {object} options.rows - number of rows of the image
+ * @param {object} settings - diverse additional information
+ */
+function imgToProcessedPng(data, options, settings) {
+  const tileWidth = SYMBOLS_DATA.tilesDimensions.width;
+  const tileHeight = SYMBOLS_DATA.tilesDimensions.height;
+  const filePath = `${settings.publicPath}/${options.id}.social.png`;
+  const {pixelValues, tilesIndexes} = SYMBOLS_DATA.symbolTiles;
+  return new Promise((resolve, reject) => {
+    // convert flat characters string to a 2d matrix of single characters
+    const matrix = mapStringToCharacterMatrix(data, options.rows);
+    const columnsNumber = matrix[0].length;
+    const rowsNumber = matrix.length;
+    const imageWidth = columnsNumber * tileWidth;
+    const imageHeight = rowsNumber * tileHeight;
+    // compute width in rgba of a row of pixels in the symbols
+    const tileWidthInValues = tileWidth * 4;
+    // instantiate buffer to populate with final image data
+    const buffer = new Uint8Array(imageWidth * imageHeight * 4);
+    // iterate in matrix of symbols
+    let tileOffsetXInPixels;
+    let tileOffsetYInPixels;
+    let rowValues;
+    let rowOffset;
+    let tileValueOffset;
+    for (let x = 0 ; x < columnsNumber ; x++) {
+      for (let y = 0 ; y < rowsNumber ; y++) {
+        // get proper index of relevant tile's pixel data in the concatenated tiles pixel values
+        tileValueOffset = tilesIndexes[matrix[y][x]];
+        tileOffsetXInPixels = tileWidth * x;
+        tileOffsetYInPixels = tileHeight * y;
+        // iterate in each row of the tile image to add its data to the buffer
+        for (let row = 0 ; row < tileHeight ; row ++) {
+
+          // get slice of 4-channels values corresponding to the tile row of pixels
+          rowValues = pixelValues
+          .slice(tileValueOffset + tileWidthInValues * row, tileValueOffset + tileWidthInValues * row + tileWidthInValues)
+          // compute 1-dimension offset in final image
+          rowOffset = (tileOffsetYInPixels * imageWidth + row * imageWidth + tileOffsetXInPixels) * 4;
+          // add values to buffer at correct position
+          buffer.set(rowValues, rowOffset);
+        }
+      }
+    }
+    settings.sharp(Buffer.from(buffer), {
+      raw: {
+        width: imageWidth,
+        height: imageHeight,
+        channels: 4
+      }
+    })
+    // following is necessary is tiles have a transparent background
+    // .flatten({background: {r: 255, g: 255, b: 255}})
+    .toFile(filePath)
+    .then(() => {
+      resolve({
+        width: imageWidth,
+        height: imageHeight,
+        url: `static/${options.id}.social.png`
+      });
+    }).catch(reject)
+  });
+}
+
 exports.readImageFileAsDataUrl = readImageFileAsDataUrl;
 exports.sharpToString = sharpToString;
+exports.imgToProcessedPng = imgToProcessedPng;
 exports.imageFileToBlocks = imageFileToBlocks;
 exports.imageToBlocks = imageToBlocks;
+exports.getImagesAsPixels = getImagesAsPixels;

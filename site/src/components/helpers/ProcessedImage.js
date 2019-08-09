@@ -87,7 +87,6 @@ export default function ProcessedImage({image, data, size}) {
     const params = extractGenerativeParameters(rows, data);
     image = levenshteinGenerativePattern.apply(null, params);
   }
-
   const needPlaceholder = !image;
 
   const length = image ? image.length : ((rows * 3 / 4) | 0) * rows;

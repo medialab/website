@@ -51,6 +51,11 @@ export const queryFragment = graphql`
       processed {
         medium
         large
+        raster {
+          url
+          width
+          height
+        }
       }
     }
     people {
@@ -139,7 +144,6 @@ export const queryFragment = graphql`
 export default function ActivityDetail({lang, activity}) {
 
   const inSeminar = activity.slugs.join().includes('seminaire');
-
   return (
     <main id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + activity.name : activity.name + "  page content" }>
     <PageMeta
@@ -147,6 +151,7 @@ export default function ActivityDetail({lang, activity}) {
         description={activity.baseline && activity.baseline[lang]}
         lang={lang}
         date={activity.startDate}
+        imageData={activity.coverImage && activity.coverImage.processed && activity.coverImage.processed.raster}
         uri={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'activites' : 'en/activities'}/${activity.slugs && activity.slugs[0]}`}
       />
       <ol style={{display: 'none'}} itemScope itemType="https://schema.org/BreadcrumbList">

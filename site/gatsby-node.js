@@ -46,7 +46,11 @@ _.forEach(ENUMS.productionTypes.groups, (group, key) => {
   group.values.forEach(type => PRODUCTION_TYPE_TO_GROUP[type] = key);
 });
 
+/**
+ * Following is related to processed images rendering.
+ */
 const processing = require(path.join(ROOT_PATH, 'specs', 'processing.js')).sharpToString;
+const rasterize = require(path.join(ROOT_PATH, 'specs', 'processing.js')).imgToProcessedPng;
 
 const MODELS_PATHS = {};
 
@@ -388,7 +392,8 @@ exports.createResolvers = function({createResolvers, pathPrefix}) {
     assetsPath: ASSETS_PATH,
     publicPath: PUBLIC_PATH,
     prefix: pathPrefix,
-    processing
+    processing,
+    rasterize: NODE_ENV === 'production' ? rasterize : null
   };
 
   createResolvers({

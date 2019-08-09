@@ -1,16 +1,16 @@
 const languageFallback = (obj, lang) => {
-    if (obj) {
-      if (obj[lang]) {
-        return obj[lang];
-      }
-      else {
-        const other = lang === 'fr' ? 'en' : 'fr';
+  if (obj) {
+    if (obj[lang]) {
+      return obj[lang];
+    }
+    else {
+      const other = lang === 'fr' ? 'en' : 'fr';
 
-        if (obj[other]) {
-          return obj[other]
-        }
+      if (obj[other]) {
+        return obj[other]
       }
     }
+  }
 };
 
 const FEED_MAX_NUMBER_OF_ITEMS = 50;
@@ -30,13 +30,13 @@ const feedsMakers = [
           })
           .filter((e, i) => i < FEED_MAX_NUMBER_OF_ITEMS)
           .map(edge => {
-            return Object.assign( {
+            return Object.assign({
               title: languageFallback(edge.node.title, lang),
               description: languageFallback(edge.node.description, lang),
               date: edge.node.startDate,
               url: edge.node.permalink[lang],
               guid: edge.node.id,
-              custom_elements: [{ 'content:encoded': languageFallback(edge.node.content, lang) }],
+              custom_elements: [{'content:encoded': languageFallback(edge.node.content, lang)}]
             })
           })
         },
@@ -86,13 +86,13 @@ const feedsMakers = [
           .filter(edge => !edge.node.draft && edge.node.label && edge.node.label.fr ===  'Séminaire de recherche')
           .filter((e, i) => i < FEED_MAX_NUMBER_OF_ITEMS)
           .map(edge => {
-            return Object.assign( {
+            return Object.assign({
               title: languageFallback(edge.node.title, lang),
               description: languageFallback(edge.node.description, lang),
               date: edge.node.startDate,
               url: edge.node.permalink[lang],
               guid: edge.node.id,
-              custom_elements: [{ 'content:encoded': languageFallback(edge.node.content, lang) }],
+              custom_elements: [{'content:encoded': languageFallback(edge.node.content, lang)}]
             })
           })
         },
@@ -146,13 +146,13 @@ const feedsMakers = [
           })
           .filter((e, i) => i < FEED_MAX_NUMBER_OF_ITEMS)
           .map(edge => {
-            return Object.assign( {
+            return Object.assign({
               title: `${languageFallback(edge.node.title, lang)} - ${edge.node.authors}`,
               description: languageFallback(edge.node.description, lang),
               date: edge.node.date,
               url: edge.node.permalink[lang],
               guid: edge.node.id,
-              custom_elements: [{ 'content:encoded': languageFallback(edge.node.content, lang) }],
+              custom_elements: [{'content:encoded': languageFallback(edge.node.content, lang)}]
             })
           })
         },
@@ -198,49 +198,49 @@ const feedsMakers = [
           ...allPeopleJson.edges
           .filter(edge => !edge.node.draft)
           .map(edge => {
-            return Object.assign( {
+            return Object.assign({
               title: `${edge.node.firstName} ${edge.node.lastName}`,
               description: languageFallback(edge.node.status, lang),
               date: edge.node.lastUpdated,
               url: edge.node.permalink[lang],
               guid: edge.node.id,
-              custom_elements: [{ 'content:encoded': languageFallback(edge.node.bio, lang) }],
+              custom_elements: [{'content:encoded': languageFallback(edge.node.bio, lang)}]
             })
           }),
           ...allNewsJson.edges
           .filter(edge => !edge.node.draft)
           .map(edge => {
-            return Object.assign( {
+            return Object.assign({
               title: edge.node.title[lang],
               description: languageFallback(edge.node.description, lang),
               date: edge.node.lastUpdated,
               url: edge.node.permalink[lang],
               guid: edge.node.id,
-              custom_elements: [{ 'content:encoded': languageFallback(edge.node.content, lang) }],
+              custom_elements: [{'content:encoded': languageFallback(edge.node.content, lang)}]
             })
           }),
           ...allProductionsJson.edges
             .filter(edge => !edge.node.draft)
             .map(edge => {
-              return Object.assign( {
+              return Object.assign({
                 title: `${languageFallback(edge.node.title, lang)} - ${edge.node.authors}`,
                 description: languageFallback(edge.node.description, lang),
                 date: edge.node.lastUpdated,
                 url: edge.node.permalink[lang],
                 guid: edge.node.id,
-                custom_elements: [{ 'content:encoded': languageFallback(edge.node.content, lang) }],
+                custom_elements: [{'content:encoded': languageFallback(edge.node.content, lang)}]
               })
             }),
             ...allActivitiesJson.edges
             .filter(edge => !edge.node.draft)
             .map(edge => {
-              return Object.assign( {
+              return Object.assign({
                 title: edge.node.name,
                 description: languageFallback(edge.node.baseline, lang),
                 date: edge.node.lastUpdated,
                 url: edge.node.permalink[lang],
                 guid: edge.node.id,
-                custom_elements: [{ 'content:encoded': languageFallback(edge.node.content, lang) }],
+                custom_elements: [{'content:encoded': languageFallback(edge.node.content, lang)}]
               })
             }),
         ]
@@ -367,11 +367,11 @@ const feedsMakers = [
 ];
 
 const feeds = feedsMakers.reduce((result, feedMaker) => {
-    return [
-        ...result,
-        feedMaker('fr'),
-        feedMaker('en')
-    ];
+  return [
+    ...result,
+    feedMaker('fr'),
+    feedMaker('en')
+  ];
 }, []);
 
 module.exports = feeds;

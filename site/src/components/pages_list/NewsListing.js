@@ -6,7 +6,6 @@ import DateNews from '../helpers/DateNews.js';
 import TimeNews from '../helpers/TimeNews.js';
 import ProcessedImage from '../helpers/ProcessedImage.js';
 import {IsModel} from '../helpers/helpers.js';
-import RawHTML from '../helpers/RawHtml.js';
 import {format as formatDate, getYear, parseISO} from 'date-fns';
 
 import LanguageFallback from '../helpers/LanguageFallback.js';
@@ -30,16 +29,6 @@ const byYearKey = (yearA, yearB) => yearB - yearA;
 export default function NewsListing({lang, list}) {
 	// console.log(lang, list);
 	const yearGroups = new Map();
-
-
-	let accroche;
-
-	if (lang === 'fr') {
-		accroche = 'Description en une phrase de la catégorie actualité';
-	}
-	else {
-		accroche = 'Description in english en une phrase de la catégorie actualité';
-	}
 
 	list.forEach(news => {
     const year = getYear(parseISO(news.startDate));

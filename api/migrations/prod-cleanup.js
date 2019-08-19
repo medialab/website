@@ -8,6 +8,8 @@ const MODELS = [
 ];
 
 module.exports = function(req, dbs, next) {
+  const dryRun = 'dryrun' in req.query;
+
   const data = MODELS.map(plural => {
     dbs[plural].read();
 
@@ -40,8 +42,10 @@ module.exports = function(req, dbs, next) {
     return next(error);
 
   // Persisting
-  dbs.news.setState({news: toKeep});
-  dbs.news.write();
+  if (!dryRun) {
+    dbs.news.setState({news: toKeep});
+    dbs.news.write();
+  }
 
   return next(null, toDelete);
 };

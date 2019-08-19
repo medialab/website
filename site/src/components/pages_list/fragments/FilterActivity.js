@@ -1,38 +1,46 @@
-  import React from 'react';
-import { Link } from 'gatsby';
-import cls from 'classnames';
-import { IsModel } from '../../helpers/helpers.js';
-import { Icons } from '../../helpers/Icons.js';
-import { SearchInput } from '../../helpers/SearchInput.js';
+import React from 'react';
+import {IsModel} from '../../helpers/helpers.js';
+import {Icons} from '../../helpers/Icons.js';
+import {SearchInput} from '../../helpers/SearchInput.js';
 
-
-const FilterActivity = ({ lang, status, statuses }) => {
-
-  let filterType, filterStatus, activeActivity, pastActivity, accroche, filtersAlt, infosAlt,  closeAlt, filtresTitle;
-
-  if (lang === 'fr') {
-    filterType = 'Filter par type';
-    filterStatus = 'Filtrer par état';
-    activeActivity = 'En cours';
-    pastActivity = 'Terminée';
-    accroche = 'A la fois objet de recherche et outils au service des projets, les méthodes numériques sont au coeur des activités du médialab et contribuent à nourrir la réflexion sur les enjeux contemporains tant en sociologie qu’en STS. Organisées entre recherche, enseignement et méthodes, ces activités étudient notamment la montée des populismes, les futurs écologiques ou encore de l’histoire de l’art numérique.';
-    filtersAlt = 'Afficher les filtres de la page';
-    infosAlt = 'Informations à propos des activités';
-    filtresTitle = 'Filtres des activités';
-    closeAlt = "Revenir aux activités";
+const i18n = {
+  fr: {
+    filterType: 'Filter par type',
+    filterStatus: 'Filtrer par état',
+    activeActivity: 'En cours',
+    pastActivity: 'Terminée',
+    accroche: 'A la fois objet de recherche et outils au service des projets, les méthodes numériques sont au coeur des activités du médialab et contribuent à nourrir la réflexion sur les enjeux contemporains tant en sociologie qu’en STS. Organisées entre recherche, enseignement et méthodes, ces activités étudient notamment la montée des populismes, les futurs écologiques ou encore de l’histoire de l’art numérique.',
+    filtersAlt: 'Afficher les filtres de la page',
+    infosAlt: 'Informations à propos des activités',
+    filtersTitle: 'Filtres des activités',
+    closeAlt: 'Revenir aux activités'
+  },
+  en: {
+    filterType: 'Filter by type',
+    filterStatus: 'Filter by status',
+    activeActivity: 'Current',
+    pastActivity: 'Closed',
+    accroche: 'Description in english en une phrase de la catégorie activité',
+    filtersAlt: 'Show page filters',
+    infosAlt: 'Informations about the activities',
+    filtersTitle: 'Filters of activities',
+    closeAlt: 'Back to activities'
   }
-  else {
-    filterType = 'Filter by type';
-    filterStatus = 'Filter by status';
-    activeActivity = 'Current';
-    pastActivity = 'Closed';
-    accroche = 'Description in english en une phrase de la catégorie activité';
-    filtersAlt = 'Show page filters';
-    infosAlt = 'Informations about the activities';
-    filtresTitle = 'Filters of activities';
-    closeAlt = "Back to activities";
+};
 
-  }
+const FilterActivity = ({lang}) => {
+
+  const {
+    filterType,
+    filterStatus,
+    activeActivity,
+    pastActivity,
+    accroche,
+    filtersAlt,
+    infosAlt,
+    closeAlt,
+    filtersTitle
+  } = i18n[lang];
 
   return (
     <>
@@ -47,7 +55,7 @@ const FilterActivity = ({ lang, status, statuses }) => {
 
       <input type="radio" id="radio-phone-close" name="radio-phone" value="close" hidden />
       <label htmlFor="radio-phone-close" title={closeAlt} arial-label={closeAlt}>✕</label>
-      
+
 
       <aside className="accroche-title-list" id="accroche-title-list">
         <h1 className="aside-title" data-icon="activite" >{IsModel('activities', lang)}</h1>
@@ -55,7 +63,7 @@ const FilterActivity = ({ lang, status, statuses }) => {
       </aside>
 
 
-     
+
       <input
         type="checkbox" id="filtre-activity_active" name="filtre-activity_active"
         className="input_filtre-activity filtre-activity_statut" value="active" defaultChecked hidden />
@@ -69,11 +77,11 @@ const FilterActivity = ({ lang, status, statuses }) => {
         type="checkbox" id="filtre-activity_teaching" name="filtre-activity_teaching"
         className="input_filtre-activity filtre-activity_type" value="teaching" hidden />
 
-      
 
-      <aside className="aside-filters" aria-label={filtresTitle}>
 
-      <h1 className="aside-title">{filtresTitle}</h1>
+      <aside className="aside-filters" aria-label={filtersTitle}>
+
+      <h1 className="aside-title">{filtersTitle}</h1>
 
       <SearchInput lang={lang} />
 

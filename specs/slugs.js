@@ -26,8 +26,9 @@ module.exports = slug => ({
   },
   production(p) {
     const title = (p.title && (p.title.fr || p.title.en)) || (p.spire && p.spire.generatedFields && p.spire.generatedFields.title && (p.spire.generatedFields.title.fr || p.spire.generatedFields.title.en))
-    const date = (p.date || p.spire && p.spire.generatedFields && p.spire.generatedFields.date);
-    const authors = (p.authors || (p.spire && p.spire.generatedFields && p.spire.generatedFields.authors))
+    const date = (p.type !== 'software' && p.type !== 'code' && (p.date || p.spire && p.spire.generatedFields && p.spire.generatedFields.date));
+    const authors = (p.type !== 'software' && p.type !== 'code' && (p.authors || (p.spire && p.spire.generatedFields && p.spire.generatedFields.authors)));
+
     if (!title)
       return '';
 

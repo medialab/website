@@ -37,6 +37,7 @@ const config = require('config-secrets');
 // Constants
 const ARGV = require('yargs')
   .option('--gatsby', {type: 'boolean', default: true})
+  .option('--bypass-auth', {type: 'boolean', default: false})
   .argv;
 
 const PORT = config.get('port');
@@ -121,7 +122,10 @@ const SUPERUSER = config.get('superuser');
 app.post('/login', function(req, res) {
   const {username, password} = req.body;
 
-  if (username === SUPERUSER.username && password === SUPERUSER.password) {
+  if (
+    username === SUPERUSER.username &&
+    password === SUPERUSER.password
+  ) {
     req.session.authenticated = true;
     return res.status(200).send('OK');
   }
@@ -133,7 +137,9 @@ app.get('/is-logged', function(req, res) {
   return res.json(!!(req.session && req.session.authenticated));
 });
 
-app.use(middlewares.authentication);
+if (!ARGV.bypassAuth)
+  app.use(middlewares.authentication);
+
 app.use(fileUpload());
 app.use('/assets', express.static(ASSETS_PATH));
 
@@ -224,14 +230,15 @@ app.get('/reboot-gatsby', (req, res) => {
 const MIGRATION_SCHEMES = {
   'clean-unused-assets': require('./migrations/clean-unused-assets.js')(ASSETS_PATH),
   'drop-important': require('./migrations/drop-important.js'),
+  'drop-unpublished-spire-notices': require('./migrations/drop-unpublished-spire-notices.js'),
   'fix-asset-names': require('./migrations/fix-asset-names.js'),
   // 'fix-dates': require('./migrations/fix-dates.js'),
   // 'fix-minutes': require('./migrations/fix-minutes.js'),
   // 'fix-missing-processed': require('./migrations/fix-missing-processed.js'),
+  'prod-cleanup': require('./migrations/prod-cleanup.js'),
   'reset-settings': require('./migrations/reset-settings.js'),
   'reslugify': require('./migrations/reslugify.js'),
-  'refresh-generatedFields-productions': require('./migrations/refresh-generatedFields-productions.js'),
-  'drop-unpublished-spire-notices': require('./migrations/drop-unpublished-spire-notices.js')
+  'refresh-generatedFields-productions': require('./migrations/refresh-generatedFields-productions.js')
 };
 
 app.get('/migrate/:scheme', (req, res) => {

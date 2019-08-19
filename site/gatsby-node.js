@@ -474,6 +474,7 @@ exports.sourceNodes = function(args) {
   for (const model in MODEL_READERS)
     MODEL_READERS[model](args);
 
+  // TODO: maybe debounce this?
   chokidar
     .watch(DB_GLOB, {awaitWriteFinish: true})
     .on('change', p => {

@@ -94,18 +94,22 @@ function customInlineFn(element, {Entity}) {
 }
 
 export function htmlToRaw(html) {
-  return convertToRaw(stateFromHTML(html, {
+  const raw = convertToRaw(stateFromHTML(html, {
     customInlineFn
   }));
+
+  return raw;
 }
 
 export function rawToHtml(rawContentState) {
-  const html = stateToHTML(convertFromRaw(rawContentState), {
+  let html = stateToHTML(convertFromRaw(rawContentState), {
     defaultBlockTag: null,
     entityStyleFn
   });
 
-  return html.replace(/\n/g, '');
+  html = html.replace(/\n/g, '');
+
+  return html;
 }
 
 export function getImageDimensions(src, callback) {

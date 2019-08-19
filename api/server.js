@@ -228,6 +228,7 @@ app.get('/reboot-gatsby', (req, res) => {
 
 // Migration routes
 const MIGRATION_SCHEMES = {
+  'clean-html-metadata': require('./migrations/clean-html-metadata.js')(ASSETS_PATH),
   'clean-unused-assets': require('./migrations/clean-unused-assets.js')(ASSETS_PATH),
   'drop-important': require('./migrations/drop-important.js'),
   'drop-unpublished-spire-notices': require('./migrations/drop-unpublished-spire-notices.js'),

@@ -25,6 +25,8 @@
     "draft-js": "^0.10.5",
     "draft-js-export-html": "1.2.0",
     "draft-js-import-html": "1.2.1",
+    "draft-js-import-element": "1.2.1",
+    "draft-js-utils": "1.2.0",
     "draftail": "^1.0.0",
     "hash.js": "^1.1.7",
     "history": "^4.7.2",

@@ -12,8 +12,44 @@
   },
   "contributors": [
     {
-      "name": "Guillaume Plique",
+      "name": "JulieBlanc",
+      "url": "https://github.com/JulieBlanc"
+    },
+    {
+      "name": "BenjmnG",
+      "url": "https://github.com/BenjmnG"
+    },
+    {
+      "name": "farjasju",
+      "url": "https://github.com/farjasju"
+    },
+    {
+      "name": "jri",
+      "url": "https://github.com/robindemourat"
+    },
+    {
+      "name": "paulgirard",
+      "url": "https://github.com/paulgirard"
+    },
+    {
+      "name": "robindemourat",
+      "url": "https://github.com/robindemourat"
+    },
+    {
+      "name": "oncletom",
+      "url": "https://github.com/oncletom"
+    },
+    {
+      "name": "boogheta",
+      "url": "https://github.com/boogheta"
+    },
+    {
+      "name": "Yomguithereal",
       "url": "http://github.com/Yomguithereal"
+    },
+    {
+      "name": "AmelieVRL",
+      "url": "https://github.com/AmelieVRL"
     }
   ],
   "license": "MIT",

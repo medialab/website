@@ -140,6 +140,7 @@ app.get('/is-logged', function(req, res) {
 if (!ARGV.bypassAuth)
   app.use(middlewares.authentication);
 
+// TODO: move this before /upload to avoid mishap?
 app.use(fileUpload());
 app.use('/assets', express.static(ASSETS_PATH));
 

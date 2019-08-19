@@ -4,6 +4,8 @@ const BLOCKS = ['\u2591', '\u2592', '\u2593', '\u2588'];
 const RATIO = 9 / (4 / 3) / 19;
 
 export function levenshteinGenerativePattern(a, b, options = {}) {
+
+  // NOTE: could also play on this
   if (a.length < b.length) {
     [a, b] = [b, a];
   }
@@ -49,6 +51,7 @@ export function levenshteinGenerativePattern(a, b, options = {}) {
   }
 
   const r = options.rotate || 1;
+  const scheme = 'rotationScheme' in options ? options.rotationScheme : 1;
   const sparsity = 'sparsity' in options ? options.sparsity : 1;
   const map = (new Array(sparsity)).fill('\u00A0').concat(BLOCKS);
 
@@ -56,7 +59,12 @@ export function levenshteinGenerativePattern(a, b, options = {}) {
     let chars = row.map((_, j) => {
 
       // Rotating
-      const t = row[(i * r + j) % row.length];
+      let t;
+
+      if (scheme)
+        t = row[(i * r + j) % row.length];
+      else
+        t = row[i * ((r + j) % row.length)];
 
       return map[t % map.length];
     }).join('');
@@ -83,12 +91,4 @@ export function levenshteinGenerativePattern(a, b, options = {}) {
   }
 
   return blocks.join('');
-}
-
-// Testing
-if (require.main === module) {
-  const A = 'whatverdude';
-  const B = 'whatverdol';
-
-  levenshteinGenerativePattern(A, B, {rows: 40, sparsity: 7, rotate: 4});
 }

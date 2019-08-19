@@ -44,23 +44,21 @@ function findAnchor(image, rows, b) {
 }
 
 function extractGenerativeParameters(rows, data) {
-  const string = (
+  let string = (
     data.name ||
-
-    // TODO: fix this, by ors
-    (data.title ? data.title.fr : data.title.en) ||
+    (data.title &&
+      ((data.title.fr || '') + (data.title.en || ''))) ||
     'levenshtein is so cool'
   );
 
   const date = (data.startDate || data.date || data.endDate);
- 
+
   const number = date ?
     +date.split('T')[0].replace(/-/g, '') :
     string.charCodeAt(0);
 
-  // TODO: Split somewhere in half!
-  // TODO: fix still empty cases
-  let splitPoint = number % string.length;
+  // TODO: There is something fishy here...
+  let splitPoint = (number % string.length);
 
   if (splitPoint === 1)
     splitPoint = (string.length / 2) | 0;

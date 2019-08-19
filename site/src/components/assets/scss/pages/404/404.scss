@@ -32,9 +32,9 @@
 
             margin-bottom: 30px;
         }
-    
+
         a{
-            color: $redlab;  
+            color: $redlab;
         }
         margin-right: 20px;
         @include for-size(phone) {
@@ -45,10 +45,11 @@
 
     .pattern-container {
         pre {
-            color: $redlab;  
+            color: $redlab;
         }
+        text-align: center;
         max-height:30vh;
         overflow: hidden;
     }
-    
+
 }

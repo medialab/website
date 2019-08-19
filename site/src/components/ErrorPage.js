@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Home({lang, code}) {
+export default function ErrorPage({lang, code}) {
   // console.log(code);
 
   return (

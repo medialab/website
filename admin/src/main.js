@@ -37,7 +37,7 @@ function renderApplication(Component, props) {
   const block = (
     <Provider store={STORE}>
       <ConnectedRouter history={history}>
-        <Component {...props} />
+        <Component alreadyAuthenticated={window.ALREADY_AUTHENTICATED} />
       </ConnectedRouter>
     </Provider>
   );
@@ -46,11 +46,11 @@ function renderApplication(Component, props) {
 }
 
 // First render
-let alreadyAuthenticated = false;
+window.ALREADY_AUTHENTICATED = false;
 
 client.isLogged((err, logged) => {
-  alreadyAuthenticated = logged;
-  renderApplication(Application, {alreadyAuthenticated});
+  window.ALREADY_AUTHENTICATED = logged;
+  renderApplication(Application);
 });
 
 // Handling HMR
@@ -59,7 +59,7 @@ if (module.hot) {
   // Reloading components
   module.hot.accept('./components/Application', () => {
     const NextApplication = require('./components/Application').default;
-    renderApplication(NextApplication, {alreadyAuthenticated});
+    renderApplication(NextApplication);
   });
 
   // Reloading reducers

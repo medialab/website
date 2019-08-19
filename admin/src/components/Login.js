@@ -15,6 +15,8 @@ export default function Login({authenticate}) {
         return setHasError(true);
 
       setHasError(false);
+
+      window.ALREADY_AUTHENTICATED = true;
       return authenticate();
     });
   }

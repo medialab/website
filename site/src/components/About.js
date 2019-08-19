@@ -1,13 +1,10 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
-import Nav from './common/Nav.js';
 import PageMeta from './helpers/PageMeta.js';
 
-import RawHtml from './helpers/RawHtml';
-
 export default function About({lang}) {
-  // console.log(lang);
+
   if (lang === 'fr')
     // ***************************    french VERSION
     return (
@@ -84,7 +81,7 @@ export default function About({lang}) {
   else
     // ***************************    ENGLISH VERSION
     return (
-      <>        
+      <>
       <main id="main" aria-labelledby="page-title" role="main">
       <PageMeta
           lang={lang}
@@ -143,7 +140,7 @@ export default function About({lang}) {
 
               <h3 id="contact">Contact</h3>
               <p>For any inquiries, please send an email to medialab[at]sciences-po.fr<br/>
-              You can also call us: 01 45 49 53 54.<br/>              
+              You can also call us: 01 45 49 53 54.<br/>
               You can write to us at the following address:<br/>
               Sciences Po - médialab<br/>
               27, rue Saint Guillaume<br/>

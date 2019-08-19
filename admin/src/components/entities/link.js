@@ -173,6 +173,7 @@ const limitStringsize = truncate({
 function LinkDecorator(props) {
   const {entityKey, contentState, onEdit, onRemove} = props;
   const {href} = contentState.getEntity(entityKey).getData();
+
   return (
     <Tooltip
       trigger={['click']}

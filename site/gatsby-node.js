@@ -474,6 +474,7 @@ exports.sourceNodes = function(args) {
   for (const model in MODEL_READERS)
     MODEL_READERS[model](args);
 
+  // TODO: maybe debounce this?
   chokidar
     .watch(DB_GLOB, {awaitWriteFinish: true})
     .on('change', p => {
@@ -554,9 +555,7 @@ exports.sourceNodes = function(args) {
 exports.createPages = function({graphql, actions}) {
   const {createPage} = actions;
 
-  // TODO: CHANGE THIS WHEN IN PROD!
-  // const yesterday = +(new Date()) / 1000;
-  const yesterday = +(new Date('2010-02-01T16:30')) / 1000;
+  const yesterday = (+(new Date()) / 1000) | 0;
 
   // Creating basic pages
   createI18nPage(createPage, {

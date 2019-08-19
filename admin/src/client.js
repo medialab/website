@@ -54,7 +54,8 @@ client.upload = function(file, callback) {
 
   fetch(`${API_URL}/upload`, {
     method: 'POST',
-    body: formData
+    body: formData,
+    credentials: 'include'
   }).then(response => {
     return response.json();
   }).then(callback);

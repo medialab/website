@@ -572,10 +572,10 @@ exports.createPages = function({graphql, actions}) {
     component: path.resolve('./src/templates/about.js')
   });
 
-  createI18nPage(createPage, {
-    path: '/archive',
-    component: path.resolve('./src/templates/archive.js')
-  });
+  // createI18nPage(createPage, {
+  //   path: '/archive',
+  //   component: path.resolve('./src/templates/archive.js')
+  // });
 
   createI18nPage(createPage, {
     path: '/legal',

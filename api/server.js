@@ -137,12 +137,15 @@ app.get('/is-logged', function(req, res) {
   return res.json(!!(req.session && req.session.authenticated));
 });
 
+// Assets are served without auth to avoid canvas tainting and such...
+app.use('/assets', express.static(ASSETS_PATH));
+
+// From now on, routes are authenticated
 if (!ARGV.bypassAuth)
   app.use(middlewares.authentication);
 
 // TODO: move this before /upload to avoid mishap?
 app.use(fileUpload());
-app.use('/assets', express.static(ASSETS_PATH));
 
 ROUTERS.forEach(({model, router}) => {
 

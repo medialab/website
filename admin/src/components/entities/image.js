@@ -121,7 +121,7 @@ class ImageSource extends Component {
     });
   };
 
-  updateEntity = () => {
+  updateEntity = () => {
     const {entity, entityKey, editorState, onComplete} = this.props;
 
     const content = editorState.getCurrentContent();
@@ -146,8 +146,8 @@ class ImageSource extends Component {
       'change-block-data'
     );
 
-    const block = content.getBlockMap().find(block => {
-      return block.getEntityAt(0) === entityKey;
+    const block = content.getBlockMap().find(b => {
+      return b.getEntityAt(0) === entityKey;
     });
 
     let selection = SelectionState.createEmpty();
@@ -193,7 +193,7 @@ class ImageSource extends Component {
     });
   };
 
-  handleCredits = e => {
+  handleCredits = e => {
     this.setState({credits: e.target.value});
   };
 

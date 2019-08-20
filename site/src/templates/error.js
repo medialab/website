@@ -1,11 +1,9 @@
 import React from 'react';
-import {graphql} from 'gatsby';
 
 import Layout from '../components/Layout';
 import Page from '../components/ErrorPage';
 
-
-const ErrorPage = ({data, pageContext}) => {
+const ErrorPage = ({pageContext}) => {
   // console.log(data, pageContext);
 
   return (

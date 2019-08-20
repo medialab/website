@@ -10,7 +10,7 @@ export default function Login({authenticate}) {
   function onSubmit() {
     setHasError(false);
 
-    client.login({data: {username, password}}, (err, data) => {
+    client.login({data: {username, password}}, err => {
       if (err)
         return setHasError(true);
 

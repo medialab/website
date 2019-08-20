@@ -100,43 +100,44 @@ export const queryFragment = graphql`
   }
 `;
 
-export default function ProductionDetail({lang, production}) {
-
-
-  const LangBlock = ({production, lang}) => {
-    let ref = (<p itemProp="description" className="production-ref">
+const LangBlock = ({production, lang}) => {
+  let ref = (
+    <p itemProp="description" className="p-ref">
       {production.description && <RawHtml html={production.description[lang]} />}
       {production.url && <br /> } {production.url ? production.url + ' ⤤' : ''}
-    </p>);
+    </p>
+  );
 
-    if (production.url) {
-      ref = (<a
-        itemProp="url" href={production.url} target="_blank"
-        rel="noopener noreferrer">{ref}</a>);
-    }
+  if (production.url) {
+    ref = (<a
+      itemProp="url" href={production.url} target="_blank"
+      rel="noopener noreferrer">{ref}</a>);
+  }
 
-    return (<div className={`block-lang ${lang}`} lang={lang}>
-      <hgroup>
-        <h1 itemProp="name" data-level-1="title"><LanguageFallback lang={lang} translatedAttribute={production.title} /></h1>
-        {production.authors && <h2 data-level-2="authors"><span>{production.authors}</span></h2>}
-      </hgroup>
-      <div className="details">
-        <p className="type-objet">
-          <span data-icon="production" /> {I18N_GROUP_LABELS.productions[lang][production.group]} – {I18N_TYPE_LABELS.productions[lang][production.type]}
-        </p>
-        <DateNews startDateSchemaProp="datePublished" startDate={production.date} lang={lang} />
-        {ref}
-        {
-          // so far we don't have attachments on production also we planned to have some... I think...
-          //<FichiersAssocies attachments={production.attachments} lang="fr" />
-        }
+  return (<div className={`block-lang ${lang}`} lang={lang}>
+    <hgroup>
+      <h1 itemProp="name" data-level-1="title"><LanguageFallback lang={lang} translatedAttribute={production.title} /></h1>
+      {production.authors && <h2 data-level-2="authors"><span>{production.authors}</span></h2>}
+    </hgroup>
+    <div className="details">
+      <p className="type-objet">
+        <span data-icon="production" /> {I18N_GROUP_LABELS.productions[lang][production.group]} – {I18N_TYPE_LABELS.productions[lang][production.type]}
+      </p>
+      <DateNews startDateSchemaProp="datePublished" startDate={production.date} lang={lang} />
+      {ref}
+      {
+        // so far we don't have attachments on production also we planned to have some... I think...
+        //<FichiersAssocies attachments={production.attachments} lang="fr" />
+      }
 
-      </div>
-      <div className="article-contenu" itemProp="headline">
-        {production.content && (production.content[lang] && <RawHtml html={production.content[lang]} />)}
-      </div>
-    </div>);
-  };
+    </div>
+    <div className="article-contenu" itemProp="headline">
+      {production.content && (production.content[lang] && <RawHtml html={production.content[lang]} />)}
+    </div>
+  </div>);
+};
+
+export default function ProductionDetail({lang, production}) {
   return (
     <>
       <PageMeta

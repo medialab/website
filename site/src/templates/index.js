@@ -239,8 +239,8 @@ export const query = graphql`
 const IndexPage = ({data, pageContext}) => {
   // console.log(data, pageContext);
 
-  const grid = data.settingsJson.home.grid.filter(({data}) => !!data);
-  const slider = data.settingsJson.home.slider.filter(({data}) => !!data);
+  const grid = data.settingsJson.home.grid.filter(item => !!item.data);
+  const slider = data.settingsJson.home.slider.filter(item => !!item.data);
   const rdv = data.rdv ? data.rdv.edges.map(({node}) => node).filter(node => !!node) : [];
   const tweets = data.tweets ? data.tweets.edges.map(({node}) => node) : [];
   const github = data.github ? data.github.edges.map(({node}) => node) : [];

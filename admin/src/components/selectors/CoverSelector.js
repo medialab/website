@@ -188,11 +188,7 @@ export default class CoverSelector extends Component {
 
     // Deleting credits
     if (!credits) {
-      const {
-        credits,
-        ...cover
-      } = this.props.cover;
-
+      const cover = omit(this.props.cover, ['credits']);
       return this.props.onChange(cover);
     }
 

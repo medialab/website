@@ -1,10 +1,9 @@
 import React from 'react';
-//import {graphql} from 'gatsby';
 
 import Layout from '../components/Layout';
 import About from '../components/About';
 
-export default ({data, pageContext}) => {
+export default ({pageContext}) => {
   // console.log(data, pageContext);
 
   return (

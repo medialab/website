@@ -33,7 +33,7 @@ const STORE = createStore(
 window.STORE = STORE;
 
 // Function rendering the application
-function renderApplication(Component, props) {
+function renderApplication(Component) {
   const block = (
     <Provider store={STORE}>
       <ConnectedRouter history={history}>

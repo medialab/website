@@ -119,33 +119,41 @@ class SpireGeneratedField extends Component {
   render() {
 
     const {peopleLabels, loading} = this.state;
-    const {humanValue, spireValue, children, init, cancel, model} = this.props;
+    const {humanValue, spireValue, children, init, cancel} = this.props;
     if (spireValue) {
+
       let spireLabel = spireValue;
+
       if (loading)
         spireLabel = 'loading...';
-      else
-        if (this.props.model === 'people') {
-          spireLabel = spireValue.map(sv => peopleLabels[sv].label).join(', ');
-        }
-      return (<div>
-        <div className="notification is-medium">{spireLabel}</div>
-        {(!humanValue && humanValue !== '') && <Button
-          kind="text" onClick={() => {
-init();
-}}>Modifier la valeur générée depuis SPIRE</Button>}
-        {(humanValue || humanValue === '') && children}
-        {(humanValue || humanValue === '') && <Button
-          kind="text" onClick={() => {
-cancel();
-}}>Annuler et restaurer la valeur générée depuis spire </Button>}
-      </div>);
+      else if (this.props.model === 'people')
+        spireLabel = spireValue.map(sv => peopleLabels[sv].label).join(', ');
+
+      return (
+        <div>
+          <div className="notification is-medium">{spireLabel}</div>
+          {(!humanValue && humanValue !== '') && (
+            <Button
+              kind="text"
+              onClick={() => init()}>
+              Modifier la valeur générée depuis SPIRE
+            </Button>
+          )}
+          {(humanValue || humanValue === '') && children}
+          {(humanValue || humanValue === '') && (
+            <Button
+              kind="text"
+              onClick={() => cancel()}>
+              Annuler et restaurer la valeur générée depuis spire
+            </Button>
+          )}
+        </div>
+      );
     }
-    else
+    else {
       return children;
-
+    }
   }
-
 }
 
 function renderProductionForm(props) {

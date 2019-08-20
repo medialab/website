@@ -3,24 +3,28 @@ import {Link} from 'gatsby';
 import cls from 'classnames';
 
 import {I18N_TYPE_LABELS} from '../../../i18n.js';
-import {IsModel} from '../../helpers/helpers.js';
 import {Icons} from '../../helpers/Icons.js';
 import {SearchInput} from '../../helpers/SearchInput.js';
 
+// TODO: abstract some values into generic i18n.
 const i18n = {
   fr: {
     accroche: 'Issues des dynamiques de recherche du laboratoire combinant méthode, analyse et théorie, les productions du médialab constituent un panorama hétéroclite. Aux traditionnelles publications académiques s’ajoute un ensemble de réalisations techniques qui répondent à des problèmes de recherche récurrents. Récemment, les sites web et réalisations en situation se sont développés comme de nouvelles formes pour rendre compte des activités du laboratoire.',
     infosAlt: 'Informations à propos des productions',
     closeAlt: 'Revenir aux productions',
     filtresTitle: 'Filtre des productions',
-    filtresLabel: 'Filtrer par sous-type'
+    filtresLabel: 'Filtrer par sous-type',
+    filtersAlt: 'Afficher les filtres de la page',
+    gotoyear: 'Aller à l\'année…'
   },
   en: {
     accroche: 'Description in english en une phrase de la catégorie production',
     infosAlt: 'Informations about the productions',
     closeAlt: 'Back to productions',
     filtresTitle: 'Filters of productions',
-    filtresLabel: 'Filter by subtypes'
+    filtresLabel: 'Filter by subtypes',
+    filtersAlt: 'Show page filters',
+    gotoyear: 'Go to year…'
   }
 };
 
@@ -29,8 +33,10 @@ const FilterProduction = ({lang, group, types}) => {
     accroche,
     infosAlt,
     closeAlt,
-    filtresTitle
-  } = i18n;
+    filtresTitle,
+    filtersAlt,
+    gotoyear
+  } = i18n[lang];
 
 	return (
   <>
@@ -40,8 +46,8 @@ const FilterProduction = ({lang, group, types}) => {
       type="radio" id="radio-phone-filters" name="radio-phone"
       value="filters" hidden />
     <label
-      htmlFor="radio-phone-filters" id="radio-phone-filters_label" title={IsModel('filtersAlt', lang)}
-      arial-label={IsModel('filtersAlt', lang)}><Icons icon="search-filter" /></label>
+      htmlFor="radio-phone-filters" id="radio-phone-filters_label" title={filtersAlt}
+      arial-label={filtersAlt}><Icons icon="search-filter" /></label>
 
     <input
       type="radio" id="radio-phone-infos" name="radio-phone"
@@ -73,8 +79,8 @@ const FilterProduction = ({lang, group, types}) => {
         <input
           type="checkbox" id="checkbox_filtre_year" name="radio_filtre-actu"
           value="year" hidden />
-        <label htmlFor="checkbox_filtre_year" aria-label={IsModel('gotoyear', lang)}><span><Icons icon="arrow" /></span></label>
-        <p>{IsModel('gotoyear', lang)}</p>
+        <label htmlFor="checkbox_filtre_year" aria-label={gotoyear}><span><Icons icon="arrow" /></span></label>
+        <p>{gotoyear}</p>
         <ul id="list-years">
           <li><a href="#year-2019" data-year="#year-2019" aria-label={lang === 'fr' ? "Aller à l'année 2019" : 'Go to year 2019'}>2019</a></li>
           <li><a href="#year-2018" data-year="#year-2018" aria-label={lang === 'fr' ? "Aller à l'année 2018" : 'Go to year 2018'}>2018</a></li>

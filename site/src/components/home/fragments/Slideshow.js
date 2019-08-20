@@ -1,8 +1,10 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
+import {I18N_MODEL} from '../../../i18n.js';
+
 import ProcessedImage from '../../helpers/ProcessedImage.js';
-import {IsModel, ellipse} from '../../helpers/helpers.js';
+import {ellipse} from '../../helpers/helpers.js';
 import DateNews from '../../helpers/DateNews.js';
 import TimeNews from '../../helpers/TimeNews.js';
 
@@ -54,7 +56,7 @@ const otherLang = lang === 'fr' ? 'en' : 'fr';
                     {slide.model === 'activities' && (
                       <>
                         <aside className="bandeau">
-                          <p data-icon="activities" className="type">{IsModel(slide.model, lang)}</p>
+                          <p data-icon="activities" className="type">{I18N_MODEL[lang][slide.model]}</p>
                           <p className="title">{slide.data.name}</p>
                         </aside>
                         <h1 data-level-1="baseline" >{ellipse(slide.data.baseline[lang] || slide.data.baseline[otherLang], 65)}</h1>
@@ -68,7 +70,7 @@ const otherLang = lang === 'fr' ? 'en' : 'fr';
                     {slide.model === 'productions' && (
                       <>
                         <aside className="bandeau">
-                          <p data-icon="productions" className="type">{IsModel(slide.model, lang)}</p>
+                          <p data-icon="productions" className="type">{I18N_MODEL[lang][slide.model]}</p>
                           <p className="subtype-production"><span>{slide.data.typeLabel[lang]}</span></p>
                           <p className="date-production">{slide.data.date}</p>
                         </aside>
@@ -81,7 +83,7 @@ const otherLang = lang === 'fr' ? 'en' : 'fr';
                     {slide.model === 'news' && (
                       <>
                         <div className="bandeau">
-                          <p data-icon="news" className="type">{IsModel(slide.model, lang)}</p>
+                          <p data-icon="news" className="type">{I18N_MODEL[lang][slide.model]}</p>
                           {<p className="label-news"><span>{slide.data.label ? slide.data.label[lang] || slide.data.label[otherLang] : slide.data.typeLabel[lang] || slide.data.typeLabel[otherLang]}</span></p>}
                         </div>
                         <div className="date">

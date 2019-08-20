@@ -124,10 +124,7 @@ export const query = graphql`
                 en
                 fr
               }
-              typeLabel {
-                en
-                fr
-              }
+              type
               title {
                 en
                 fr
@@ -162,10 +159,7 @@ export const query = graphql`
                 en
                 fr
               }
-              typeLabel {
-                en
-                fr
-              }
+              type
             }
           }
         }

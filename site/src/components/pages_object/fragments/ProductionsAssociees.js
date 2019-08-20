@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'gatsby';
+import {I18N_GROUP_LABELS} from '../../../i18n.js';
 import {SECTIONS} from '../../helpers/sections';
 import DateNews from '../../helpers/DateNews.js';
 import {compare, productionTypeToSchemaURL} from '../../helpers/helpers.js';
@@ -29,11 +30,7 @@ const ProductionsAssociees = ({lang, productions}) => {
   const ProductionCard = ({p, lang}) => (
     <>
       <div className="bandeau" >
-        <p className="type-production" data-icon="production"> {p.groupLabel[lang]}</p>
-
-        {/* {p.typeLabel !== 'media' &&
-          <p className="subtype-production"> {lang === 'fr' ? <span>{p.typeLabel.fr}</span> : <span>{p.typeLabel.en}</span>}</p>
-        } */}
+        <p className="type-production" data-icon="production"> {I18N_GROUP_LABELS.productions[lang][p.group]}</p>
         {p.authors && <p className="authors">{p.authors}</p>}
         <DateNews startDateSchemaProp="datePublished" startDate={p.date} lang={lang} />
         { p.external && p.url && <p className="external" aria-label="production exterieure au médialab" title={lang === 'fr' ? 'Ce lien renvoi à une page exterieure au médialab' : 'This linked is external to médialab'} >⤤</p> }

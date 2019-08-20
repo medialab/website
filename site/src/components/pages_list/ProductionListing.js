@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
-import {I18N_TYPE_LABELS} from '../../i18n.js';
+import {I18N_TYPE_LABELS, I18N_GROUP_LABELS} from '../../i18n.js';
 
 import FilterProduction from './fragments/FilterProduction.js';
 import DateNews from '../helpers/DateNews.js';
@@ -80,7 +80,7 @@ export default function ProductionListing({lang, list, group, types}) {
                       data-type={p.type} className={`list-item ${p.type}`}>
                       <Link to={p.permalink[lang]}>
                         <div className="bandeau">
-                          <p className="type-production" data-icon="production"> {p.groupLabel[lang]}</p>
+                          <p className="type-production" data-icon="production"> {I18N_GROUP_LABELS.productions[lang][p.group]}</p>
                           <p className="subtype-production">
                             <span>{I18N_TYPE_LABELS.productions[lang][p.type]}</span>
                           </p>

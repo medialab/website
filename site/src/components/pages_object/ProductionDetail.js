@@ -85,10 +85,7 @@ export const queryFragment = graphql`
         fr
       }
       authors
-      groupLabel {
-        en
-        fr
-      }
+      group
       permalink {
         en
         fr

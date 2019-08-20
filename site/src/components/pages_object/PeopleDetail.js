@@ -81,10 +81,7 @@ export const queryFragment = graphql`
           medium
         }
       }
-      groupLabel {
-        en
-        fr
-      }
+      group
       typeLabel {
         en
         fr
@@ -157,10 +154,7 @@ export const queryFragment = graphql`
         fr
       }
       authors
-      groupLabel {
-        en
-        fr
-      }
+      group
       permalink {
         en
         fr

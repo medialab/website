@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
-import {I18N_TYPE_LABELS} from '../../../i18n.js';
+import {I18N_TYPE_LABELS, I18N_GROUP_LABELS} from '../../../i18n.js';
 
 import ProcessedImage from '../../helpers/ProcessedImage.js';
 import LanguageFallback from '../../helpers/LanguageFallback.js';
@@ -16,9 +16,9 @@ const ProductionCard = ({p, lang}) => {
                             <ProcessedImage size="small" image={p.coverImage && p.coverImage.processed.small} />
                         </div>*/}
       <div className="bandeau">
-        <p className="type-production" data-icon="production"> {p.groupLabel[lang]}</p>
-        {p.typeLabel !== 'media' &&
-          <p className="subtype-production"> <span>{p.typeLabel[lang]}</span></p>
+        <p className="type-production" data-icon="production"> {I18N_GROUP_LABELS.productions[lang][p.group]}</p>
+        {p.type !== 'media' &&
+          <p className="subtype-production"> <span>{I18N_TYPE_LABELS.productions[lang][p.type]}</span></p>
         }
         {p.authors && <p className="authors">{p.authors}</p>}
         { p.external && p.url && <p className="external" aria-label="production exterieure au médialab" title={lang === 'fr' ? 'Ce lien renvoi à une page exterieure au médialab' : 'This linked is external to médialab'} >⤤</p> }

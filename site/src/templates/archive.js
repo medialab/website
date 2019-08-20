@@ -10,7 +10,7 @@ export const query = graphql`
       edges {
         node {
           id
-          active          
+          active
           name
           permalink {
             en
@@ -32,7 +32,7 @@ export const query = graphql`
           people {
             firstName
             lastName
-          }          
+          }
         }
       }
     }
@@ -62,7 +62,7 @@ export const query = graphql`
           typeLabel {
             en
             fr
-          }          
+          }
           startDate
           endDate
         }
@@ -83,10 +83,6 @@ export const query = graphql`
           type,
           group,
           typeLabel {
-            en
-            fr
-          }
-          groupLabel {
             en
             fr
           }

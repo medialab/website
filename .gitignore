@@ -1,6 +1,7 @@
 node_modules
 .DS_Store
 .cache
+.vs-code
 build
 config/local.json
 data

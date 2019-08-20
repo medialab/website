@@ -1,6 +1,5 @@
 import React from 'react';
-import {I18N_MODEL} from '../../../i18n.js';
-import {IsModel} from '../../helpers/helpers.js';
+import {I18N_MODEL, I18N_TYPE_LABELS} from '../../../i18n.js';
 import {Icons} from '../../helpers/Icons.js';
 import {SearchInput} from '../../helpers/SearchInput.js';
 
@@ -105,10 +104,10 @@ const FilterActivity = ({lang}) => {
           <h1 aria-hidden="true">{filterType}</h1>
           <label
             id="filtre-activity_research_label" className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_research"
-            aria-label={IsModel('research', lang)}>{IsModel('research', lang)}{(lang === 'fr' ? 's' : '')}</label>
+            aria-label={I18N_TYPE_LABELS.activities[lang].research}>{I18N_TYPE_LABELS.activities[lang].research}</label>
           <label
             id="filtre-activity_teaching_label" className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_teaching"
-            aria-label={IsModel('teaching', lang)}>{IsModel('teaching', lang)}{(lang === 'fr' ? 's' : '')}</label>
+            aria-label={I18N_TYPE_LABELS.activities[lang].teaching}>{I18N_TYPE_LABELS.activities[lang].teaching}</label>
         </div>
 
       </aside>

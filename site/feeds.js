@@ -7,7 +7,7 @@ const languageFallback = (obj, lang) => {
       const other = lang === 'fr' ? 'en' : 'fr';
 
       if (obj[other]) {
-        return obj[other]
+        return obj[other];
       }
     }
   }
@@ -20,13 +20,14 @@ const feedsMakers = [
      * News feeds maker
      */
     lang => ({
-        serialize: ({ query: { allNewsJson } }) => {
+        serialize: ({query: {allNewsJson}}) => {
           return allNewsJson.edges
           .filter(edge => !edge.node.draft)
           .sort((a, b) => {
             if (a.node.startDate > b.node.startDate) {
               return -1;
-            } else return 1;
+            }
+ else return 1;
           })
           .slice(0, FEED_MAX_NUMBER_OF_ITEMS)
           .map(edge => {
@@ -37,8 +38,8 @@ const feedsMakers = [
               url: edge.node.permalink[lang],
               guid: edge.node.id,
               custom_elements: [{'content:encoded': languageFallback(edge.node.content, lang)}]
-            })
-          })
+            });
+          });
         },
         query: `
           {
@@ -76,14 +77,15 @@ const feedsMakers = [
      * Seminar sessions feeds maker
      */
     lang => ({
-        serialize: ({ query: { allNewsJson } }) => {
+        serialize: ({query: {allNewsJson}}) => {
           return allNewsJson.edges
           .sort((a, b) => {
             if (a.node.startDate > b.node.startDate) {
               return -1;
-            } else return 1;
+            }
+ else return 1;
           })
-          .filter(edge => !edge.node.draft && edge.node.label && edge.node.label.fr ===  'Séminaire de recherche')
+          .filter(edge => !edge.node.draft && edge.node.label && edge.node.label.fr === 'Séminaire de recherche')
           .slice(0, FEED_MAX_NUMBER_OF_ITEMS)
           .map(edge => {
             return Object.assign({
@@ -93,8 +95,8 @@ const feedsMakers = [
               url: edge.node.permalink[lang],
               guid: edge.node.id,
               custom_elements: [{'content:encoded': languageFallback(edge.node.content, lang)}]
-            })
-          })
+            });
+          });
         },
         query: `
           {
@@ -136,13 +138,14 @@ const feedsMakers = [
      * Productions feeds maker
      */
     lang => ({
-        serialize: ({ query: { allProductionsJson } }) => {
+        serialize: ({query: {allProductionsJson}}) => {
           return allProductionsJson.edges
           .filter(edge => !edge.node.draft)
           .sort((a, b) => {
             if (a.node.date > b.node.date) {
               return -1;
-            } else return 1;
+            }
+ else return 1;
           })
           .slice(0, FEED_MAX_NUMBER_OF_ITEMS)
           .map(edge => {
@@ -153,8 +156,8 @@ const feedsMakers = [
               url: edge.node.permalink[lang],
               guid: edge.node.id,
               custom_elements: [{'content:encoded': languageFallback(edge.node.content, lang)}]
-            })
-          })
+            });
+          });
         },
         query: `
           {
@@ -193,7 +196,7 @@ const feedsMakers = [
      * All objects feeds maker
      */
     lang => ({
-      serialize: ({ query: { allProductionsJson, allNewsJson, allPeopleJson, allActivitiesJson } }) => {
+      serialize: ({query: {allProductionsJson, allNewsJson, allPeopleJson, allActivitiesJson}}) => {
         return [
           ...allPeopleJson.edges
           .filter(edge => !edge.node.draft)
@@ -205,7 +208,7 @@ const feedsMakers = [
               url: edge.node.permalink[lang],
               guid: edge.node.id,
               custom_elements: [{'content:encoded': languageFallback(edge.node.bio, lang)}]
-            })
+            });
           }),
           ...allNewsJson.edges
           .filter(edge => !edge.node.draft)
@@ -217,7 +220,7 @@ const feedsMakers = [
               url: edge.node.permalink[lang],
               guid: edge.node.id,
               custom_elements: [{'content:encoded': languageFallback(edge.node.content, lang)}]
-            })
+            });
           }),
           ...allProductionsJson.edges
             .filter(edge => !edge.node.draft)
@@ -229,7 +232,7 @@ const feedsMakers = [
                 url: edge.node.permalink[lang],
                 guid: edge.node.id,
                 custom_elements: [{'content:encoded': languageFallback(edge.node.content, lang)}]
-              })
+              });
             }),
             ...allActivitiesJson.edges
             .filter(edge => !edge.node.draft)
@@ -241,15 +244,16 @@ const feedsMakers = [
                 url: edge.node.permalink[lang],
                 guid: edge.node.id,
                 custom_elements: [{'content:encoded': languageFallback(edge.node.content, lang)}]
-              })
+              });
             }),
         ]
         .sort((a, b) => {
           if (a.date > b.date) {
             return -1;
-          } else return 1;
+          }
+ else return 1;
         })
-        .slice(0, FEED_MAX_NUMBER_OF_ITEMS)
+        .slice(0, FEED_MAX_NUMBER_OF_ITEMS);
       },
       query: `
         {

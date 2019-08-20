@@ -36,7 +36,7 @@ const ProductionsAssociees = ({lang, productions}) => {
         } */}
         {p.authors && <p className="authors">{p.authors}</p>}
         <DateNews startDateSchemaProp="datePublished" startDate={p.date} lang={lang} />
-        { p.external && p.url && <p className="external" aria-label="production exterieure au médialab" title={lang === 'fr' ? "Ce lien renvoi à une page exterieure au médialab" : "This linked is external to médialab"} >⤤</p> }
+        { p.external && p.url && <p className="external" aria-label="production exterieure au médialab" title={lang === 'fr' ? 'Ce lien renvoi à une page exterieure au médialab' : 'This linked is external to médialab'} >⤤</p> }
       </div>
       <hgroup>
         <h1 itemProp="name" data-level-1="title" >
@@ -46,28 +46,32 @@ const ProductionsAssociees = ({lang, productions}) => {
     </>);
 
 	return (
-    <aside className="container elements-associes-block" id="productions" role="complementary" aria-label={ lang ==='fr' ? related.fr : related.en }>
-      <h1><span data-icon="production" /> {accroche}</h1>
-      <div className="contenu">
-        <ul className="liste_objet">
-          {productionsSorted.map(p => (
-            <li itemScope itemType={productionTypeToSchemaURL(p.type)} key={p.permalink.fr} data-type="production" className="item">
-              {!p.external &&
-                <Link to={p.permalink[lang]} aria-label={lang === "fr" ? "Lien vers cette production" : "Link to this production" }>
-                  <ProductionCard p={p} lang={lang} />
-                </Link>}
-              {p.external && p.url &&
-                <a href={p.url} target="_blank" rel="noreferrer noopener">
-                  <ProductionCard p={p} lang={lang} />
-                </a>}
-              {p.external && !p.url &&
-                <ProductionCard p={p} lang={lang} />
+  <aside
+    className="container elements-associes-block" id="productions" role="complementary"
+    aria-label={lang === 'fr' ? related.fr : related.en}>
+    <h1><span data-icon="production" /> {accroche}</h1>
+    <div className="contenu">
+      <ul className="liste_objet">
+        {productionsSorted.map(p => (
+          <li
+            itemScope itemType={productionTypeToSchemaURL(p.type)} key={p.permalink.fr}
+            data-type="production" className="item">
+            {!p.external &&
+            <Link to={p.permalink[lang]} aria-label={lang === 'fr' ? 'Lien vers cette production' : 'Link to this production'}>
+              <ProductionCard p={p} lang={lang} />
+            </Link>}
+            {p.external && p.url &&
+            <a href={p.url} target="_blank" rel="noreferrer noopener">
+              <ProductionCard p={p} lang={lang} />
+            </a>}
+            {p.external && !p.url &&
+            <ProductionCard p={p} lang={lang} />
               }
-            </li>
+          </li>
           ))}
-        </ul>
-      </div>
-    </aside>
+      </ul>
+    </div>
+  </aside>
 	);
 };
 

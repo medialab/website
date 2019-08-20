@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 import initializers from '../../../../specs/initializers';
 import {slugifyProduction} from '../../utils';
@@ -129,16 +129,22 @@ class SpireGeneratedField extends Component {
           spireLabel = spireValue.map(sv => peopleLabels[sv].label).join(', ');
         }
       return (<div>
-        <div className='notification is-medium'>{spireLabel}</div>
-        {(!humanValue && humanValue !== "") && <Button kind='text' onClick={() => {init();}}>Modifier la valeur générée depuis SPIRE</Button>}
+        <div className="notification is-medium">{spireLabel}</div>
+        {(!humanValue && humanValue !== '') && <Button
+          kind="text" onClick={() => {
+init();
+}}>Modifier la valeur générée depuis SPIRE</Button>}
         {(humanValue || humanValue === '') && children}
-        {(humanValue || humanValue === '') && <Button kind='text' onClick={() => {cancel();}}>Annuler et restaurer la valeur générée depuis spire </Button>}
+        {(humanValue || humanValue === '') && <Button
+          kind="text" onClick={() => {
+cancel();
+}}>Annuler et restaurer la valeur générée depuis spire </Button>}
       </div>);
     }
     else
       return children;
 
-  };
+  }
 
 }
 
@@ -267,7 +273,7 @@ function renderProductionForm(props) {
       <div className="column is-12">
         <div className="field">
           <label className="label">Auteurs
-            <em>Liste des auteurs prénom nom séparés par des virgules.<br></br>
+            <em>Liste des auteurs prénom nom séparés par des virgules.<br />
           Iniquer la liste complète (médialab et non médialab) des auteurs dans l'ordre de la publication.</em></label>
           <div className="control">
             <SpireGeneratedField
@@ -291,7 +297,7 @@ function renderProductionForm(props) {
         <div className="column is-12">
           <div className="field">
             <label className="label">Auteurs médialab
-            <em>Indiquer quels sont les membres médialab parmi les auteurs.</em></label>
+              <em>Indiquer quels sont les membres médialab parmi les auteurs.</em></label>
             <div className="control">
               <SpireGeneratedField
                 spireValue={data.spire && data.spire.generatedFields.people}
@@ -314,7 +320,7 @@ function renderProductionForm(props) {
       <div className="columns">
         <div className="column is-6">
           <label className="label">Publication pré-médialab ?
-            <em>Publications des membres du labo ayant été publiées avant leur arrivée.<br></br>
+            <em>Publications des membres du labo ayant été publiées avant leur arrivée.<br />
           Permet de créer une publication et de la mettre en avant dans le profil d'un membre sans la faire apparaître dans la liste des publications du labo</em>
           </label>
           <div className="control">
@@ -468,7 +474,7 @@ function renderProductionForm(props) {
       { (data.title || data.spire) &&
         <div className="form-group is-important">
           <div className="field">
-            <label className="label title is-4">{'"' + ((data.title && (data.title.fr || data.title.en)) || (data.spire && data.spire.generatedFields.title.fr)|| '') + '"' || 'Publication'} page's production status</label>
+            <label className="label title is-4">{'"' + ((data.title && (data.title.fr || data.title.en)) || (data.spire && data.spire.generatedFields.title.fr) || '') + '"' || 'Publication'} page's production status</label>
             <div className="control">
               <BooleanSelector
                 value={!data.draft}

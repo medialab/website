@@ -28,7 +28,7 @@ export default function ListFilterSelector(props) {
     return (
       <div className="buttons has-addons">
         <span
-          className={cls('button',  value === null && ['is-selected', 'is-info'])}
+          className={cls('button', value === null && ['is-selected', 'is-info'])}
           onClick={() => onChange(null)}>All</span>
         <span
           className={cls('button', value === true && ['is-selected', 'is-success'])}

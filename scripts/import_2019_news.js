@@ -10,7 +10,7 @@ const config = require('config-secrets'),
   path = require('path'),
   convertWordpressHtml = require('../specs/html').convertWordpressHtml;
 
-const {production: slugifyProduction, people: slugifyPeople, news:slugifyNews} = makeSlugFunctions(slug);
+const {production: slugifyProduction, people: slugifyPeople, news: slugifyNews} = makeSlugFunctions(slug);
 
 
 const models = require('../specs/models.json');
@@ -162,7 +162,7 @@ const buildNewsFromBlog = (o, indeces) => {
   });
 
   newNews.productions = o.tools.map(p => indices.productions[p]).filter(p => !!p);
-  return {newNews, assets:allAssets};
+  return {newNews, assets: allAssets};
 };
 
 const websiteApiQueue = async.queue(({method, model, object}, cb) => {
@@ -245,7 +245,7 @@ async.waterfall([
           return slug;
       }).filter(o => o);
 
-      if (unknown.length > 0 ) {
+      if (unknown.length > 0) {
         console.log('remaining unknowns : ');
         console.log(unknown.join('\n'));
       }
@@ -295,5 +295,4 @@ async.waterfall([
 // export unknown oldslugs
 // load correction table
 // add old slugs
-
 

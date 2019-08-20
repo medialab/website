@@ -43,8 +43,10 @@ export default function Footer ({lang, content}) {
         type="radio" id="fr-to-en" name="toggle-lang"
         value="fr-to-en" className="fr" defaultChecked={lang === 'en'}
         hidden />
-      { showSwitchToEn && 
-        <label htmlFor="fr-to-en" className="fr toggle-lang" href="#main-objet" aria-label={message.fr}>
+      { showSwitchToEn &&
+        <label
+          htmlFor="fr-to-en" className="fr toggle-lang" href="#main-objet"
+          aria-label={message.fr}>
           {message.fr}
           <span aria-hidden="true">Cliquer ici pour le voir.</span>
         </label>
@@ -60,7 +62,7 @@ export default function Footer ({lang, content}) {
         <span aria-hidden="true">Click here to see it.</span>
       </label>
       }
-      
+
     </>
   );
 }

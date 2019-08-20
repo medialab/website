@@ -126,7 +126,7 @@ function renderActivityForm(props) {
         <div className="columns">
           <div className="column is-6">
             <div className="field">
-             
+
               <div className="control">
                 <EnumSelector
                   enumType="activityTypes"
@@ -179,7 +179,7 @@ function renderActivityForm(props) {
           <div className="column is-6">
             <div className="field">
               <label className="label">Accroche
-            <em>Une question qui présente la problématique pour les projets de recherche.<br></br>
+                <em>Une question qui présente la problématique pour les projets de recherche.<br />
             Une phrase qui présente les enjeux des enseignements.</em></label>
               <div className="control">
                 <textarea
@@ -195,7 +195,7 @@ function renderActivityForm(props) {
           <div className="column is-6">
             <div className="field">
               <label className="label">Baseline
-            <em>A question which underlines the research project problematic.<br></br>
+                <em>A question which underlines the research project problematic.<br />
             A sentence which introduces the main pedagogical objectives.</em></label>
               <div className="control">
                 <textarea

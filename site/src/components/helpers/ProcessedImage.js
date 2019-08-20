@@ -37,14 +37,14 @@ function findAnchor(image, rows, b) {
   for (let i = 0; i < 10; i++) {
     const offset = i * rows;
 
-    firstColoredBlock[i] = findFirstColoredBlock(image.slice(offset , offset + rows));
+    firstColoredBlock[i] = findFirstColoredBlock(image.slice(offset, offset + rows));
   }
 
   return Math.min.apply(null, firstColoredBlock);
 }
 
 function extractGenerativeParameters(rows, data) {
-  let string = (
+  const string = (
     data.name ||
     (data.title &&
       ((data.title.fr || '') + (data.title.en || ''))) ||
@@ -91,7 +91,7 @@ export default function ProcessedImage({image, data, size}) {
 
   const b = (length / rows) | 0;
 
-  const anchor = Math.max(0, image ? findAnchor(image, rows, b) - MARGIN: 0);
+  const anchor = Math.max(0, image ? findAnchor(image, rows, b) - MARGIN : 0);
 
   // TODO: somehow inject params in markup
   return (
@@ -100,7 +100,7 @@ export default function ProcessedImage({image, data, size}) {
         const offset = i * rows;
 
         const row = needPlaceholder ?
-          PLACEHOLDER_CHARACTERS.repeat(rows / PLACEHOLDER_CHARACTERS.length)  :
+          PLACEHOLDER_CHARACTERS.repeat(rows / PLACEHOLDER_CHARACTERS.length) :
           image.slice(offset + anchor, offset + rows);
 
         return (

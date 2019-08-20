@@ -55,7 +55,7 @@ export function levenshteinGenerativePattern(a, b, options = {}) {
   const sparsity = 'sparsity' in options ? options.sparsity : 1;
   const map = (new Array(sparsity)).fill('\u00A0').concat(BLOCKS);
 
-  let blocks = matrix.map((row, i) => {
+  const blocks = matrix.map((row, i) => {
     let chars = row.map((_, j) => {
 
       // Rotating

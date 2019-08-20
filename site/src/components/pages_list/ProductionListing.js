@@ -31,7 +31,7 @@ export default function ProductionListing({lang, list, group, types}) {
     list
       .map(p => {
         if (!p.date)
-          p.date = ''+new Date().getFullYear();
+          p.date = '' + new Date().getFullYear();
         return p;
       })
       .sort((a, b) => compare(b.date, a.date))
@@ -50,24 +50,22 @@ export default function ProductionListing({lang, list, group, types}) {
         yearGroups.get(year).push(production);
       });
 
-    let nbItem = 0;
+    const nbItem = 0;
 
     return (
       <>
-      <PageMeta
-        title={messagesMeta.title[lang]}
-        description={messagesMeta.description[lang]}
-        lang={lang}
-      />
-      <main role="main" aria-describedby="aria-accroche">
-        <FilterProduction lang={lang} group={group} types={types} />
-        <section className="main-filters">
-        </section>
+        <PageMeta
+          title={messagesMeta.title[lang]}
+          description={messagesMeta.description[lang]}
+          lang={lang} />
+        <main role="main" aria-describedby="aria-accroche">
+          <FilterProduction lang={lang} group={group} types={types} />
+          <section className="main-filters" />
 
-        <section id="liste" className="main-container">
-        {/* <div className="accroche-titre"><p>{accroche}</p></div> */}
-          <ul className="liste_objet" id="liste-productions">
-            {
+          <section id="liste" className="main-container">
+            {/* <div className="accroche-titre"><p>{accroche}</p></div> */}
+            <ul className="liste_objet" id="liste-productions">
+              {
             Array.from(yearGroups.entries()).sort(byYear).map(([year, yearList]) => (
               <React.Fragment key={year}>
                 <li id={year === 2008 ? 'years-before-2009' : `year-${year}`} className="list-year">
@@ -76,7 +74,9 @@ export default function ProductionListing({lang, list, group, types}) {
 
                 {yearList.map((p, i) => (
                   <React.Fragment key={i}>
-                    <li itemScope itemType={productionTypeToSchemaURL(p.type)} data-item={nbItem} data-type={p.type} className={`list-item ${p.type}`}>
+                    <li
+                      itemScope itemType={productionTypeToSchemaURL(p.type)} data-item={nbItem}
+                      data-type={p.type} className={`list-item ${p.type}`}>
                       <Link to={p.permalink[lang]}>
                         <div className="bandeau">
                           <p className="type-production" data-icon="production"> {p.groupLabel[lang]}</p>
@@ -90,7 +90,7 @@ export default function ProductionListing({lang, list, group, types}) {
                           </h1>
                         </hgroup>
                         <div className="authors">
-                          {p.authors && <p itemProp={p.type !== 'exhibition' ? 'author' : undefined} className="authors-paragraphe" dangerouslySetInnerHTML={{__html:p.authors.replace(/([^,$]+)(,)?( )?/g, '<nobr>$1$2</nobr>$3')}} />}
+                          {p.authors && <p itemProp={p.type !== 'exhibition' ? 'author' : undefined} className="authors-paragraphe" dangerouslySetInnerHTML={{__html: p.authors.replace(/([^,$]+)(,)?( )?/g, '<nobr>$1$2</nobr>$3')}} />}
                           <p className="print publication-ref" dangerouslySetInnerHTML={{__html: p.description && (p.description[lang] || p.description[(lang === 'fr' ? 'en' : 'fr')])}} />
                         </div>
                         {/* microdata-related invisible elements */}
@@ -109,9 +109,9 @@ export default function ProductionListing({lang, list, group, types}) {
                 ))}
               </React.Fragment>
             ))}
-          </ul>
-        </section>
-      </main>
+            </ul>
+          </section>
+        </main>
       </>
    );
 }

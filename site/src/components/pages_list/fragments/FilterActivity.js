@@ -48,13 +48,19 @@ const FilterActivity = ({lang}) => {
 
       <h1 className="type_title" data-icon="activite"><a href="#liste">{I18N_MODEL[lang].activities}</a></h1>
 
-      <input type="radio" id="radio-phone-filters" name="radio-phone" value="filters" hidden />
-      <label htmlFor="radio-phone-filters" title={filtersAlt} arial-label={filtersAlt}><Icons icon='search-filter' /></label>
+      <input
+        type="radio" id="radio-phone-filters" name="radio-phone"
+        value="filters" hidden />
+      <label htmlFor="radio-phone-filters" title={filtersAlt} arial-label={filtersAlt}><Icons icon="search-filter" /></label>
 
-      <input type="radio" id="radio-phone-infos" name="radio-phone" value="infos" hidden />
-      <label htmlFor="radio-phone-infos" title={infosAlt} arial-label={filtersAlt}><Icons icon='infos' /></label>
+      <input
+        type="radio" id="radio-phone-infos" name="radio-phone"
+        value="infos" hidden />
+      <label htmlFor="radio-phone-infos" title={infosAlt} arial-label={filtersAlt}><Icons icon="infos" /></label>
 
-      <input type="radio" id="radio-phone-close" name="radio-phone" value="close" hidden />
+      <input
+        type="radio" id="radio-phone-close" name="radio-phone"
+        value="close" hidden />
       <label htmlFor="radio-phone-close" title={closeAlt} arial-label={closeAlt}>✕</label>
 
 
@@ -64,10 +70,10 @@ const FilterActivity = ({lang}) => {
       </aside>
 
 
-
       <input
         type="checkbox" id="filtre-activity_active" name="filtre-activity_active"
-        className="input_filtre-activity filtre-activity_statut" value="active" defaultChecked hidden />
+        className="input_filtre-activity filtre-activity_statut" value="active" defaultChecked
+        hidden />
       <input
         type="checkbox" id="filtre-activity_past" name="filtre-activity_past"
         className="input_filtre-activity filtre-activity_statut" value="past" hidden />
@@ -79,23 +85,30 @@ const FilterActivity = ({lang}) => {
         className="input_filtre-activity filtre-activity_type" value="teaching" hidden />
 
 
-
       <aside className="aside-filters" aria-label={filtersTitle}>
 
-      <h1 className="aside-title">{filtersTitle}</h1>
+        <h1 className="aside-title">{filtersTitle}</h1>
 
-      <SearchInput lang={lang} />
+        <SearchInput lang={lang} />
 
         <div className="filter-group"aria-label={filterStatus}>
           <h1 aria-hidden="true">{filterStatus}</h1>
-          <label id="filtre-activity_active_label" className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_active" aria-label={activeActivity}>{activeActivity}</label>
-          <label id="filtre-activity_past_label" className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_past" aria-label={pastActivity}>{pastActivity}</label>
+          <label
+            id="filtre-activity_active_label" className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_active"
+            aria-label={activeActivity}>{activeActivity}</label>
+          <label
+            id="filtre-activity_past_label" className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_past"
+            aria-label={pastActivity}>{pastActivity}</label>
         </div>
 
         <div className="filter-group"aria-label={filterType}>
           <h1 aria-hidden="true">{filterType}</h1>
-          <label id="filtre-activity_research_label" className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_research" aria-label={IsModel('research', lang)}>{IsModel('research', lang)}{(lang === 'fr' ? 's' : '')}</label>
-          <label id="filtre-activity_teaching_label" className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_teaching" aria-label={IsModel('teaching', lang)}>{IsModel('teaching', lang)}{(lang === 'fr' ? 's' : '')}</label>
+          <label
+            id="filtre-activity_research_label" className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_research"
+            aria-label={IsModel('research', lang)}>{IsModel('research', lang)}{(lang === 'fr' ? 's' : '')}</label>
+          <label
+            id="filtre-activity_teaching_label" className="filtre-activity checkbox-medialab" htmlFor="filtre-activity_teaching"
+            aria-label={IsModel('teaching', lang)}>{IsModel('teaching', lang)}{(lang === 'fr' ? 's' : '')}</label>
         </div>
 
       </aside>

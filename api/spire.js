@@ -29,7 +29,7 @@ const labIdSpire = '2441/53r60a8s3kup1vc9kf4j86q90';
 
 const title = (record, lang) => {
   if (record.languages[0] === lang || (!['fr', 'en'].includes(record.languages[0]))) {
-    return (record.title_non_sort ? record.title_non_sort : '') + record.title + (record.title_sub ? ' — ' + record.title_sub.slice(0,1).toLowerCase() + record.title_sub.slice(1) : '');
+    return (record.title_non_sort ? record.title_non_sort : '') + record.title + (record.title_sub ? ' — ' + record.title_sub.slice(0, 1).toLowerCase() + record.title_sub.slice(1) : '');
   }
   else
     return false;
@@ -80,7 +80,7 @@ const translators = {
   // link to author people
   'people': (record, spireAuthors) => record.creators
     // filter authors who are person
-    .filter(c =>  c.agent && c.agent.rec_class === 'Person')
+    .filter(c => c.agent && c.agent.rec_class === 'Person')
     .map(c => spireAuthors[c.agent.rec_id] && spireAuthors[c.agent.rec_id].id)
     .filter(c => !!c)
 };
@@ -231,7 +231,7 @@ module.exports.aSPIRE = function aSPIRE(doneCallback, emitCallback = console.deb
           });
           // log what left to be resolved
           if (peopleToResolve.length > 0) {
-            const nameList = peopleToResolve.map(aut => `${aut.name_given} ${aut.name_family}`)
+            const nameList = peopleToResolve.map(aut => `${aut.name_given} ${aut.name_family}`);
             console.debug(`missing spire authors in data ${nameList}`);
             emitCallback(`${peopleToResolve.length} auteurs Spire non trouvés dans People : ${nameList}`);
           }
@@ -298,7 +298,8 @@ module.exports.aSPIRE = function aSPIRE(doneCallback, emitCallback = console.deb
               if (websiteApiQueue.idle()) {
                 emitCallback(`importation des données spire terminée : ${nbNewProductions} nouvelle.s production.s, ${modifiedProductionIds.length} modifiée.s, ${nbUnchangedProductions} inchangée.s`);
                 doneAPISpire(null, {nbNewProductions, modifiedProductionIds, nbUnchangedProductions, peopleToResolve});
-              }else
+              }
+else
                 websiteApiQueue.drain = () => {
                   emitCallback(`importation des données spire terminée : ${nbNewProductions} nouvelle.s production.s, ${modifiedProductionIds.length} modifiée.s, ${nbUnchangedProductions} inchangée.s`);
                   doneAPISpire(null, {nbNewProductions, modifiedProductionIds, nbUnchangedProductions, peopleToResolve});

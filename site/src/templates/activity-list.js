@@ -84,7 +84,7 @@ export default ({data, pageContext}) => {
         list={list}
         status={pageContext.status}
         statuses={statuses}
-        topActivities={topActivities}  />
+        topActivities={topActivities} />
     </Layout>
   );
 };

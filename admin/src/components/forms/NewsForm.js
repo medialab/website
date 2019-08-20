@@ -115,7 +115,7 @@ function renderNewsForm(props) {
     <div className="container">
 
       <div className="form-group">
-        <label className="label title is-4">{ data.title ? ( data.title.fr ? data.title.fr :  data.title.en) : 'Nouvelle actualité'}</label>
+        <label className="label title is-4">{ data.title ? (data.title.fr ? data.title.fr : data.title.en) : 'Nouvelle actualité'}</label>
 
         <div className="columns">
           <div className="column is-6">
@@ -184,32 +184,32 @@ function renderNewsForm(props) {
 
         { data.type && data.type !== 'post' &&
 
-            <div className="columns">
+        <div className="columns">
 
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">Type de l'actualité</label>
-                  <SuggestionSelector
-                    model="news"
-                    field={['label', 'fr']}
-                    placeholder="French label..."
-                    onChange={handlers.frenchLabel}
-                    value={(data.label && data.label.fr) || null} />
-                </div>
-              </div>
-
-              <div className="column is-6">
-                <div className="field">
-                  <label className="label">News type</label>
-                  <SuggestionSelector
-                    model="news"
-                    field={['label', 'en']}
-                    placeholder="English label..."
-                    onChange={handlers.englishLabel}
-                    value={(data.label && data.label.en) || null} />
-                </div>
-              </div>
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Type de l'actualité</label>
+              <SuggestionSelector
+                model="news"
+                field={['label', 'fr']}
+                placeholder="French label..."
+                onChange={handlers.frenchLabel}
+                value={(data.label && data.label.fr) || null} />
             </div>
+          </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">News type</label>
+              <SuggestionSelector
+                model="news"
+                field={['label', 'en']}
+                placeholder="English label..."
+                onChange={handlers.englishLabel}
+                value={(data.label && data.label.en) || null} />
+            </div>
+          </div>
+        </div>
         }
         { data.type && data.type === 'event' &&
           <div className="columns">
@@ -312,7 +312,7 @@ function renderNewsForm(props) {
           <div className="column is-6">
             <div className="field">
               <label className="label">Contenu riche
-              <em>Présentation longue de l'événement ou texte de la chronique</em></label>
+                <em>Présentation longue de l'événement ou texte de la chronique</em></label>
               <Editor
                 content={frenchEditorContent}
                 onSave={handlers.frenchContent} />

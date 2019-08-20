@@ -5,7 +5,7 @@ import {Link} from 'gatsby';
 import ToggleLang from './fragments/ToggleLang.js';
 import Highlights from './fragments/Highlights.js';
 import Logo from '../assets/svg/logo_medialab.svg';
-import { Icons } from '../helpers/Icons.js';
+import {Icons} from '../helpers/Icons.js';
 
 
 import ProductionsAssociees from './fragments/ProductionsAssociees.js';
@@ -243,7 +243,9 @@ function PeopleContactLabel({lang, data}) {
     return (
       <span>
         <span className="label-data">{data.label}:</span>
-        &nbsp;<a proptype="url" href={data.value} target="_blank" rel="noopener" aria-label={lang === "fr" ? "Ouvrir cette page " + data.value : "Open this " + data.value +" page"}>{data.value}</a>
+        &nbsp;<a
+          proptype="url" href={data.value} target="_blank"
+          rel="noopener" aria-label={lang === 'fr' ? 'Ouvrir cette page ' + data.value : 'Open this ' + data.value + ' page'}>{data.value}</a>
       </span>
     );
   }
@@ -251,7 +253,7 @@ function PeopleContactLabel({lang, data}) {
   return <a proptype="url" href={data.value}>{data.label}</a>;
 }
 
-  const noImg = "<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░▒▒▒▓▓▓▓▓▓▓▒▒▒░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░▒▒▓█████████████████▓▓▒▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▓▓██████████████████████▓▒▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▓██████████████████████████▓▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒██████▓▓▓▓▓▓▓▓▓▓▓▒▒▓▓▓▓██████▓▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▓████▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓████▓░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▓████▓▒▒▒▒░░░░░░░░░░░░░░░░▒▒▓███▓▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▓███▓▒▒▒▒░░░░░░░░░░░░░░░░░░▒▓███▓▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▓███▓▒▒░░░░░░░░░░░░░░░░░░░░░▒▓███▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;         &nbsp;&nbsp;░▓██▓▒▒▒▒▒░░░░░░░░░░░░░░░░░░░▒▓███▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▓██▒▒▒▒▒▒▒▒▒▒░░░░░░░▒▒▒▒▒▒▒▒░▒██▓▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒██▒▒░░░░░░░░░░░░░░░░░░░░░░░░▒▓█▓░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;░▒▓▓▒░░░▒▓▓█▒▒░░░░░░░▒▒██▓▓░░░▒▓█▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▓▓▒░░░░░░░░░░░░░░░░░░░░░░░░░░▒▓▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░░▒▒░░░▒░░░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░░░░░░░░░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░░░░░░░░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░▒▒▒▒▒▒▒▒▒▒▒░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░▒▒▒▒▒▒▒░░░░░░▒░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░▒▒▒▒░░░░░░░░░░░░░░░▒▒▒▒▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░▒▒▒▒▒▒▒░░░░░░░░░░░▒▒▒▒▒▓▒▒░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░▒▒▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▒▒░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;░░░░▒▒▒▓▓██▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓██▓▒▒▒░░░░&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;░░░░░░▒▒▒▒▓▓█████▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓████▓▓▓▒▒▒▒░&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;▒░▒▒▓▓▓████████▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓███████▓▓▓▓▒░&nbsp;&nbsp;</pre><pre>░▓▓▓▓███████████▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓███████████▓▒&nbsp;░</pre><pre>░▓██████████████▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▓▓▓▓████████████▒░░</pre><pre>░▓▓▓██████████▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓█▓█▓▓▓▓███▒░░</pre><pre>░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░</pre>"
+  const noImg = '<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░▒▒▒▓▓▓▓▓▓▓▒▒▒░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░▒▒▓█████████████████▓▓▒▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▓▓██████████████████████▓▒▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▓██████████████████████████▓▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒██████▓▓▓▓▓▓▓▓▓▓▓▒▒▓▓▓▓██████▓▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▓████▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓████▓░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▓████▓▒▒▒▒░░░░░░░░░░░░░░░░▒▒▓███▓▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▓███▓▒▒▒▒░░░░░░░░░░░░░░░░░░▒▓███▓▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▓███▓▒▒░░░░░░░░░░░░░░░░░░░░░▒▓███▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;         &nbsp;&nbsp;░▓██▓▒▒▒▒▒░░░░░░░░░░░░░░░░░░░▒▓███▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▓██▒▒▒▒▒▒▒▒▒▒░░░░░░░▒▒▒▒▒▒▒▒░▒██▓▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒██▒▒░░░░░░░░░░░░░░░░░░░░░░░░▒▓█▓░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;░▒▓▓▒░░░▒▓▓█▒▒░░░░░░░▒▒██▓▓░░░▒▓█▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▓▓▒░░░░░░░░░░░░░░░░░░░░░░░░░░▒▓▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░░▒▒░░░▒░░░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░░░░░░░░░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░░░░░░░░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░▒▒▒▒▒▒▒▒▒▒▒░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░▒▒▒▒▒▒▒░░░░░░▒░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░▒▒▒▒░░░░░░░░░░░░░░░▒▒▒▒▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░▒▒▒▒▒▒▒░░░░░░░░░░░▒▒▒▒▒▓▒▒░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░▒▒▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▒▒░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;░░░░▒▒▒▓▓██▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓██▓▒▒▒░░░░&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;░░░░░░▒▒▒▒▓▓█████▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓████▓▓▓▒▒▒▒░&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;▒░▒▒▓▓▓████████▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓███████▓▓▓▓▒░&nbsp;&nbsp;</pre><pre>░▓▓▓▓███████████▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓███████████▓▒&nbsp;░</pre><pre>░▓██████████████▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▓▓▓▓████████████▒░░</pre><pre>░▓▓▓██████████▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓█▓█▓▓▓▓███▒░░</pre><pre>░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░</pre>';
 
 
 export default function PeopleDetail({lang, person}) {
@@ -264,7 +266,8 @@ export default function PeopleDetail({lang, person}) {
     titleLinkTeam = 'Aller à la page de l‘équipe du médialab';
     backTop = 'Aller en haut de la page';
     toggleNav = 'Afficher ou masquer la navigation dans l‘article';
-  } else {
+  }
+ else {
     titleLinkTeam = 'Go to the médialab team page';
     backTop = 'Go to the top of page';
     toggleNav = 'Show or hide the navigation in the article';
@@ -276,45 +279,54 @@ export default function PeopleDetail({lang, person}) {
         title={`${person.firstName} ${person.lastName} | médialab Sciences Po`}
         description={person.status && person.status[lang]}
         uri={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'equipe' : 'en/people'}/${person.slugs && person.slugs[0]}`}
-        lang={lang}
-      />
+        lang={lang} />
       <main
         itemScope
         itemType="http://schema.org/Person"
         itemProp="member"
-        id="main" role="main" aria-label={lang === "fr" ? "Présentation de " + person.firstName + person.lastName : person.firstName + person.lastName + "'s presentation" }>
+        id="main" role="main" aria-label={lang === 'fr' ? 'Présentation de ' + person.firstName + person.lastName : person.firstName + person.lastName + "'s presentation"}>
 
-      <ol style={{display: 'none'}} itemScope itemType="https://schema.org/BreadcrumbList">
-        <li itemProp="itemListElement" itemScope
+        <ol style={{display: 'none'}} itemScope itemType="https://schema.org/BreadcrumbList">
+          <li
+            itemProp="itemListElement" itemScope
             itemType="https://schema.org/ListItem">
-          <a itemType="https://schema.org/Organization"
-            itemProp="item" href="https://medialab.sciencespo.fr">
+            <a
+              itemType="https://schema.org/Organization"
+              itemProp="item" href="https://medialab.sciencespo.fr">
               <span itemProp="name">médialab Sciences Po</span></a>
-          <meta itemProp="position" content="1" />
-        </li>
-        <li itemProp="itemListElement" itemScope
+            <meta itemProp="position" content="1" />
+          </li>
+          <li
+            itemProp="itemListElement" itemScope
             itemType="https://schema.org/ListItem">
-          <a itemType="https://schema.org/Thing"
-            href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'equipe' : 'en/people'}`}
-            itemProp="item">
-            <span itemProp="name">{lang === 'fr' ? `L'équipe` : 'The team'}</span></a>
-          <meta itemProp="position" content="2" />
-        </li>
-        <li itemProp="itemListElement" itemScope
+            <a
+              itemType="https://schema.org/Thing"
+              href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'equipe' : 'en/people'}`}
+              itemProp="item">
+              <span itemProp="name">{lang === 'fr' ? 'L\'équipe' : 'The team'}</span></a>
+            <meta itemProp="position" content="2" />
+          </li>
+          <li
+            itemProp="itemListElement" itemScope
             itemType="https://schema.org/ListItem">
-          <a itemType="https://schema.org/Thing"
-            href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'equipe' : 'en/people'}/${person.slugs && person.slugs[0]}`}
-            itemProp="item">
-            <span itemProp="name">
+            <a
+              itemType="https://schema.org/Thing"
+              href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'equipe' : 'en/people'}/${person.slugs && person.slugs[0]}`}
+              itemProp="item">
+              <span itemProp="name">
                 {person.firstName} {person.lastName}
-            </span>
-        </a>
-          <meta itemProp="position" content="3" />
-        </li>
-      </ol>
+              </span>
+            </a>
+            <meta itemProp="position" content="3" />
+          </li>
+        </ol>
 
-      <input type="checkbox" id="toggle-nav" name="toggle-nav" value="toggle-nav" hidden />
-      <label htmlFor="toggle-nav" id="toggle-nav_label" title={toggleNav} arial-label={toggleNav}><span><Icons icon='arrow' /></span></label>
+        <input
+          type="checkbox" id="toggle-nav" name="toggle-nav"
+          value="toggle-nav" hidden />
+        <label
+          htmlFor="toggle-nav" id="toggle-nav_label" title={toggleNav}
+          arial-label={toggleNav}><span><Icons icon="arrow" /></span></label>
 
         <Nav lang={lang} data={person} order={['main', 'highlights', 'activities', 'productions', 'news']} />
 
@@ -322,12 +334,12 @@ export default function PeopleDetail({lang, person}) {
           <div id="container-titre-sticky">
             <div id="logo-sticky"><a href="/"><Logo /></a></div>
             <p>
-            <Link to={lang === 'fr' ? '/equipe' : '/en/people'} className="link-page-team" title={titleLinkTeam}>
-              <span>{lang === 'fr' ? "L'équipe du médialab" : 'médialab team'} </span>
-            </Link>
-            <span className="personne"><a href="#topbar" title={backTop}><span itemProp="givenName">{person.firstName}</span> <span itemProp="familyName">{person.lastName}</span></a></span>
-          </p>
-        </div>
+              <Link to={lang === 'fr' ? '/equipe' : '/en/people'} className="link-page-team" title={titleLinkTeam}>
+                <span>{lang === 'fr' ? "L'équipe du médialab" : 'médialab team'} </span>
+              </Link>
+              <span className="personne"><a href="#topbar" title={backTop}><span itemProp="givenName">{person.firstName}</span> <span itemProp="familyName">{person.lastName}</span></a></span>
+            </p>
+          </div>
         </header>
 
         <div className="main-container">
@@ -335,32 +347,32 @@ export default function PeopleDetail({lang, person}) {
           <article id="biographie">
             <div id="container-biographie">
               <header>
-                <figure className={person.coverImage ? "" : "noImg"}>
+                <figure className={person.coverImage ? '' : 'noImg'}>
                   {person.coverImage ?
-                  <img itemProp="image" src={person.coverImage ? person.coverImage.url : Img} alt={lang === 'fr' ? 'Photo de profil de ' + person.firstName + person.lastName : person.firstName + person.lastName + ' profil picture'} />
-                  : <RawHtml html={noImg}/> }
+                    <img itemProp="image" src={person.coverImage ? person.coverImage.url : Img} alt={lang === 'fr' ? 'Photo de profil de ' + person.firstName + person.lastName : person.firstName + person.lastName + ' profil picture'} />
+                  : <RawHtml html={noImg} /> }
                 </figure>
                 <hgroup>
                   <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
-                 {person.status &&
-                   <p className={`status ${lang}`} data-type="status" aria-label={lang === "fr" ? "Occupation actuelle " : "Present activitiies" }>
-                      { lang === "fr" ? person.status.fr : person.status.en}
-                    </p>
+                  {person.status &&
+                  <p className={`status ${lang}`} data-type="status" aria-label={lang === 'fr' ? 'Occupation actuelle ' : 'Present activitiies'}>
+                    { lang === 'fr' ? person.status.fr : person.status.en}
+                  </p>
                   }
                 </hgroup>
                 <div className="bandeau">
-                <p className="role" data-type="role" aria-label={lang === "fr" ? "Rôle au sein de l'equipe" : "Role within the team " }>{person.role[lang]}</p>
-                    {/* <p data-type="domaine">{lang === "fr" ? "Domaine" + String.fromCharCode(8239) +":" : "Domain:"} {person.domain}</p> */}
-                    <p data-type="membership" aria-label={lang === "fr" ? "Nature de la relation au médialab" : "Nature of the relationship within médialab"}>{templateMembership(person)}</p>
+                  <p className="role" data-type="role" aria-label={lang === 'fr' ? "Rôle au sein de l'equipe" : 'Role within the team '}>{person.role[lang]}</p>
+                  {/* <p data-type="domaine">{lang === "fr" ? "Domaine" + String.fromCharCode(8239) +":" : "Domain:"} {person.domain}</p> */}
+                  <p data-type="membership" aria-label={lang === 'fr' ? 'Nature de la relation au médialab' : 'Nature of the relationship within médialab'}>{templateMembership(person)}</p>
                 </div>
 
                 { person.contacts && person.contacts.length > 0 &&
                   <div className="contact">
                     <ul>
-                    { person.contacts.map((contact, i) => (
-                      <li key={i} data-type={contact.label}>
-                        <PeopleContactLabel lang={lang} data={contact} />
-                      </li>
+                      { person.contacts.map((contact, i) => (
+                        <li key={i} data-type={contact.label}>
+                          <PeopleContactLabel lang={lang} data={contact} />
+                        </li>
                     ))}
                     </ul>
                   </div>}
@@ -370,13 +382,17 @@ export default function PeopleDetail({lang, person}) {
               <ToggleLang lang={lang} content={person.bio} />
 
               {/* FR */}
-              <div itemProp="description" className="biographie-content block-lang fr" lang="fr" aria-label="Biographie" >
-                {person.bio && person.bio['fr'] ? <RawHtml html={person.bio['fr']} /> : null}
+              <div
+                itemProp="description" className="biographie-content block-lang fr" lang="fr"
+                aria-label="Biographie" >
+                {person.bio && person.bio.fr ? <RawHtml html={person.bio.fr} /> : null}
               </div>
 
               {/* EN */}
-              <div itemProp="description" className="biographie-content block-lang en" lang="en" aria-label="Biography"  >
-                {person.bio && person.bio['en'] ? <RawHtml html={person.bio['en']} /> : null}
+              <div
+                itemProp="description" className="biographie-content block-lang en" lang="en"
+                aria-label="Biography" >
+                {person.bio && person.bio.en ? <RawHtml html={person.bio.en} /> : null}
               </div>
             </div>
 
@@ -392,9 +408,6 @@ export default function PeopleDetail({lang, person}) {
           </aside>
 
         </div>
-
-
-
 
 
       </main>

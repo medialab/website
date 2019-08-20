@@ -7,4 +7,4 @@ module.exports = assetsPath => {
 
     return next(null, {unused});
   };
-}
+};

@@ -314,27 +314,27 @@ export default class DateSelector extends Component {
               <div className="level-left">
                 <div className="level-item">
                   <Select
-                      isClearable={!minute}
-                      isDisabled={!day}
-                      placeholder="Hour"
-                      menuPlacement="top"
-                      value={hour}
-                      onChange={this.handleHour}
-                      styles={customStyles.hour}
-                      options={HOUR_OPTIONS}
-                      ref={this.hourRef} />
+                    isClearable={!minute}
+                    isDisabled={!day}
+                    placeholder="Hour"
+                    menuPlacement="top"
+                    value={hour}
+                    onChange={this.handleHour}
+                    styles={customStyles.hour}
+                    options={HOUR_OPTIONS}
+                    ref={this.hourRef} />
                 </div>
                 <div className="level-item">
                   <Select
-                      isClearable
-                      isDisabled={!hour}
-                      placeholder="Min"
-                      menuPlacement="top"
-                      value={minute}
-                      onChange={this.handleMinute}
-                      styles={customStyles.minutes}
-                      options={MINUTE_OPTIONS}
-                      ref={this.minuteRef} />
+                    isClearable
+                    isDisabled={!hour}
+                    placeholder="Min"
+                    menuPlacement="top"
+                    value={minute}
+                    onChange={this.handleMinute}
+                    styles={customStyles.minutes}
+                    options={MINUTE_OPTIONS}
+                    ref={this.minuteRef} />
                 </div>
               </div>
             </div>

@@ -39,17 +39,19 @@ const otherLang = lang === 'fr' ? 'en' : 'fr';
         {slides.map((slide, index) =>
           (<React.Fragment key={index}>
             {/* Content */}
-            <div itemScope itemType="https://schema.org/Thing" className="slideshow-item" data-item={ index + 1 } aria-label={lang === "fr" ? "Pages misent en avant" : "Spotlighted pages" }>
+            <div
+              itemScope itemType="https://schema.org/Thing" className="slideshow-item"
+              data-item={index + 1} aria-label={lang === 'fr' ? 'Pages misent en avant' : 'Spotlighted pages'}>
               <article data-type={slide.model}>
                 <Link to={slide.data.permalink[lang]}>
                   <div className="image-pre" aria-hidden="true">
-                    <ProcessedImage size="large" image={slide.data.coverImage && slide.data.coverImage.processed.large} data={slide.data}/>
+                    <ProcessedImage size="large" image={slide.data.coverImage && slide.data.coverImage.processed.large} data={slide.data} />
                   </div>
                   <div className="image-pre-phone" aria-hidden="true">
-                    <ProcessedImage size="medium" image={slide.data.coverImage && slide.data.coverImage.processed.medium} data={slide.data}/>
+                    <ProcessedImage size="medium" image={slide.data.coverImage && slide.data.coverImage.processed.medium} data={slide.data} />
                   </div>
                 </Link>
-                <div className="contenu-slide" aria-label={lang === "fr" ? "Contenu" : "Content" }>
+                <div className="contenu-slide" aria-label={lang === 'fr' ? 'Contenu' : 'Content'}>
                   <Link to={slide.data.permalink[lang]}>
 
                     {/* if Activité */}
@@ -99,7 +101,7 @@ const otherLang = lang === 'fr' ? 'en' : 'fr';
                     )}
 
                     {/* Default */}
-                    <p className="more" aria-label={lang === "fr" ? "Ouvrir ce lien" : "Open this link" }>En savoir plus</p>
+                    <p className="more" aria-label={lang === 'fr' ? 'Ouvrir ce lien' : 'Open this link'}>En savoir plus</p>
                   </Link>
                 </div>
               </article>
@@ -111,7 +113,9 @@ const otherLang = lang === 'fr' ? 'en' : 'fr';
       {/* bullet pour controler le caroussel*/}
       <nav className="bullets-slide">
         { slides.length > 1 && slides.map((slide, index) => {
-            return <label key={index + 1} className="slideshow-bullet-label" data-slide={index + 1} htmlFor={`slide-bullet-${index + 1}`} aria-label={`slide ${index + 1}`} />
+            return (<label
+              key={index + 1} className="slideshow-bullet-label" data-slide={index + 1}
+              htmlFor={`slide-bullet-${index + 1}`} aria-label={`slide ${index + 1}`} />);
           })}
       </nav>
 

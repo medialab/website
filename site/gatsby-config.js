@@ -20,7 +20,7 @@ const plugins = [
   'gatsby-plugin-offline',
   'gatsby-plugin-sitemap',
   {
-    resolve: `gatsby-plugin-feed`,
+    resolve: 'gatsby-plugin-feed',
     options: {
       query: `
         {

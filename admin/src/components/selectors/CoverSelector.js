@@ -101,7 +101,7 @@ export default class CoverSelector extends Component {
           height: h
         };
 
-        this.setState({crop, file: files[0], img: img});
+        this.setState({crop, file: files[0], img});
       });
     });
   };
@@ -355,8 +355,10 @@ export default class CoverSelector extends Component {
               <div className="column">
                 <div className="field">
                   <div><small>Paramètre gamma pour le traitement de l'image : ({cover.gamma})</small></div>
-                  <Slider value={cover.gamma} onChange={this.handleGamma} min={-255 * 3} max={255  * 3} />
-               </div>
+                  <Slider
+                    value={cover.gamma} onChange={this.handleGamma} min={-255 * 3}
+                    max={255 * 3} />
+                </div>
               </div>
             </div>
           </>

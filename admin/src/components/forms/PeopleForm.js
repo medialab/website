@@ -173,10 +173,10 @@ function renderPeopleForm(props) {
 
         <div className="columns">
           <div className="column is-8">
-          <label className="label">Contacts
-            <em>Choisissez le type de contact (email, site, CV...) et renseignez l'information adaptée.<br></br>
+            <label className="label">Contacts
+              <em>Choisissez le type de contact (email, site, CV...) et renseignez l'information adaptée.<br />
               Il est également possible d'ajouter un fichier (pour un CV par exemple).</em>
-          </label>
+            </label>
             <SortableKeyValueList
               items={data.contacts}
               model="people"
@@ -312,12 +312,11 @@ function renderPeopleForm(props) {
       </div>
 
 
-
       <div className="form-group">
         <h4 className="title is-4">
           Mises en avant
         </h4>
-        <em>Sélectionner les <b>activités et productions phares</b> de votre activité au médialab.<br></br>
+        <em>Sélectionner les <b>activités et productions phares</b> de votre activité au médialab.<br />
         Cette sélection vise à mettre en avant certains éléments dans une liste exhaustive qui sera générée automatiquement.
         </em>
 

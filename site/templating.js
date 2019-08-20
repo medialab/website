@@ -141,7 +141,7 @@ function processHtml(pathPrefix, html) {
     else if (tag === 'PRE') {
       let injection = entities.decode($this.text().replace(/^\s+/g, ''));
 
-      injection = injection.replace(RAW_IFRAME, '$&<p class="print"><span>Iframe</span> $1</p>')
+      injection = injection.replace(RAW_IFRAME, '$&<p class="print"><span>Iframe</span> $1</p>');
 
       output += injection;
     }
@@ -159,7 +159,7 @@ function processHtml(pathPrefix, html) {
               format = $img.data('format'),
               credits = $img.data('credits') || '';
 
-        if (previousImageIndex !== i - 1){
+        if (previousImageIndex !== i - 1) {
           evenImage = true;
         }
 

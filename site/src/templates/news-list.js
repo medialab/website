@@ -3,7 +3,7 @@ import {graphql} from 'gatsby';
 
 import Layout from '../components/Layout';
 import NewsListing from '../components/pages_list/NewsListing';
-import { compare } from '../components/helpers/helpers';
+import {compare} from '../components/helpers/helpers';
 
 export const query = graphql`
   {
@@ -53,7 +53,7 @@ export default ({data, pageContext}) => {
 
   const list = data.allNewsJson.edges
     .map(e => e.node)
-    .sort(({startDate:aStart, endDate:aEnd}, {startDate:bStart, endDate:bEnd}) => {
+    .sort(({startDate: aStart, endDate: aEnd}, {startDate: bStart, endDate: bEnd}) => {
       if (bEnd && aEnd) {
         return compare(bEnd, aEnd);
       }

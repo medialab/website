@@ -11,20 +11,19 @@ export default function About({lang}) {
       <>
         <PageMeta
           lang={lang}
-          title={`À propos | médialab Sciences Po`}
-          description={'Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d\'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et sociales.'}
-        />
+          title={'À propos | médialab Sciences Po'}
+          description={'Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d\'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et sociales.'} />
         <main id="main" aria-labelledby="page-title" role="main">
-        <nav className="main-nav" id="nav-inside-article" role="navigation">
-          <ul>
-            <li className="nav-inside-item" data-type="main"><a href="#main" title="Aller à la section" > Aller en haut</a></li>
-            <li className="nav-inside-item"><a href="#research" title="Aller à la section" >La recherche au médialab</a></li>
-            <li className="nav-inside-item"><a href="#team" title="Aller à la section" >Équipe</a></li>
-            <li className="nav-inside-item"><a href="#activities" title="Aller à la section" >Activités</a></li>
-            <li className="nav-inside-item"><a href="#productions" title="Aller à la section" >Productions</a></li>
-            <li className="nav-inside-item"><a href="#contact" title="Aller à la section" >Contact</a></li>
-          </ul>
-        </nav>
+          <nav className="main-nav" id="nav-inside-article" role="navigation">
+            <ul>
+              <li className="nav-inside-item" data-type="main"><a href="#main" title="Aller à la section" > Aller en haut</a></li>
+              <li className="nav-inside-item"><a href="#research" title="Aller à la section" >La recherche au médialab</a></li>
+              <li className="nav-inside-item"><a href="#team" title="Aller à la section" >Équipe</a></li>
+              <li className="nav-inside-item"><a href="#activities" title="Aller à la section" >Activités</a></li>
+              <li className="nav-inside-item"><a href="#productions" title="Aller à la section" >Productions</a></li>
+              <li className="nav-inside-item"><a href="#contact" title="Aller à la section" >Contact</a></li>
+            </ul>
+          </nav>
           <article id="about-contenu" className="main-container">
             <hgroup>
               <h1 id="page-title">Le médialab</h1>
@@ -37,13 +36,13 @@ export default function About({lang}) {
               <p>Le numérique transforme nos sociétés mais aussi la production de la connaissance scientifique. Centrale dans l’approche développée au Médialab, la transition numérique invite à articuler trois approches fondées sur les sciences sociales, l'ingénierie et le design. Par la multitude de données qu’elle génère, la transition numérique contribue à élargir les connaissances que nous avons des différents mondes sociaux. En parallèle, elle offre des instruments d’investigation favorisant de nouveaux modes de production des savoirs à travers la modélisation, la visualisation et l’exploration interactive des corpus. Enfin elle insiste à expérimenter avec les publics et les étudiants en encourageant de nouvelles formes de réflexivité et de partage des résultats de la recherche.</p>
 
               <p>Ces approches sont développées conjointement au sein de quatre axes thématiques&thinsp;: <br />
-              <br />
-              <ul>
+                <br />
+                <ul>
                   <li><b>l’espace public numérique</b> où sont cartographiées les transformations des espaces journalistiques et politiques sous l’effet du numérique. Les recherches qui s’y rapportent s’intéressent au nouveaux circuits de l’information, à la construction de l’agenda public et aux activités parlementaires.</li>
                   <li><b>la transition écologique</b> dont les enjeux émergents au carrefour de la science, de la politique et des attentes de nos sociétés sont explorés à l’aide de méthodes numériques.</li>
                   <li><b>les futurs technologiques</b> explorés dans l’esprit des Science & technology studies (STS), étudient comment les nouvelles technologies de calcul de l’Intelligence artificiel pénètrent nos sociétés, en enquêtant à la fois sur la conception de ces technologies et sur les effets de leur pénétration croissante dans les mondes sociaux.</li>
                   <li><b>les études culturelles quantitatives</b> (Quantitatives Cultural studies) qui, à travers les données des musées et des institutions culturelles, s’attachent à explorer, du côté des oeuvres et de leurs circulations, les nouveaux agencements culturels de nos sociétés. Ce champs d’études porte aussi son attention sur les festivals culturels et la production des connaissances scientifiques sur la Russie.</li>
-               </ul>
+                </ul>
               </p>
 
               <p>Chacun des projets de recherche menés au médialab se développe dans une approche pluridisciplinaire mobilisant des compétences variées. Irrigués par les sciences sociales et les STS, ces projets se nourrissent de l'ingénierie informatique, pour affiner les enquêtes en utilisant le web comme terrain d’enquête ou la science des données comme méthode d’analyse. Ils se saisissent également de nouvelles formes de mises en situation et d’exploration des questions de recherche proposées par le design.
@@ -66,15 +65,15 @@ export default function About({lang}) {
 
 
               <h3 id="contact">Contact</h3>
-              <p>Pour toute question, vous pouvez joindre l'équipe du médialab à l'adresse medialab[at]sciences-po.fr<br/>
-              Vous pouvez également nous joindre par téléphone au 01 45 49 53 54.<br/>
-              Vous pouvez nous écrire à l'adresse suivante :<br/>
-              Sciences Po - médialab<br/>
-              27, rue Saint Guillaume<br/>
+              <p>Pour toute question, vous pouvez joindre l'équipe du médialab à l'adresse medialab[at]sciences-po.fr<br />
+              Vous pouvez également nous joindre par téléphone au 01 45 49 53 54.<br />
+              Vous pouvez nous écrire à l'adresse suivante :<br />
+              Sciences Po - médialab<br />
+              27, rue Saint Guillaume<br />
               75337 Paris Cedex 07</p>
 
             </div>
-            </article>
+          </article>
         </main>
       </>
     );
@@ -82,22 +81,21 @@ export default function About({lang}) {
     // ***************************    ENGLISH VERSION
     return (
       <>
-      <main id="main" aria-labelledby="page-title" role="main">
-      <PageMeta
-          lang={lang}
-          title={`About | médialab Sciences Po`}
-          description={'The médialab, an interdisciplinary research laboratory comprised of sociologists, engineers and designers, conducts thematic and methodological research to investigate the role of digital technology in our societies'}
-        />
-        <nav className="main-nav" id="nav-inside-article" role="navigation">
-          <ul>
-            <li className="nav-inside-item" data-type="main"><a href="#main" title="Aller à la section" > Go to the Top</a></li>
-            <li className="nav-inside-item"><a href="#research" title="Aller à la section" >Research at the médialab</a></li>
-            <li className="nav-inside-item"><a href="#team" title="Aller à la section" >Team</a></li>
-            <li className="nav-inside-item"><a href="#activities" title="Aller à la section" >Activities</a></li>
-            <li className="nav-inside-item"><a href="#productions" title="Aller à la section" >Productions</a></li>
-            <li className="nav-inside-item"><a href="#contact" title="Aller à la section" >Contact</a></li>
-          </ul>
-        </nav>
+        <main id="main" aria-labelledby="page-title" role="main">
+          <PageMeta
+            lang={lang}
+            title={'About | médialab Sciences Po'}
+            description={'The médialab, an interdisciplinary research laboratory comprised of sociologists, engineers and designers, conducts thematic and methodological research to investigate the role of digital technology in our societies'} />
+          <nav className="main-nav" id="nav-inside-article" role="navigation">
+            <ul>
+              <li className="nav-inside-item" data-type="main"><a href="#main" title="Aller à la section" > Go to the Top</a></li>
+              <li className="nav-inside-item"><a href="#research" title="Aller à la section" >Research at the médialab</a></li>
+              <li className="nav-inside-item"><a href="#team" title="Aller à la section" >Team</a></li>
+              <li className="nav-inside-item"><a href="#activities" title="Aller à la section" >Activities</a></li>
+              <li className="nav-inside-item"><a href="#productions" title="Aller à la section" >Productions</a></li>
+              <li className="nav-inside-item"><a href="#contact" title="Aller à la section" >Contact</a></li>
+            </ul>
+          </nav>
           <article id="about-contenu" className="main-container">
             <hgroup>
               <h1 id="page-title">The médialab</h1>
@@ -109,13 +107,13 @@ export default function About({lang}) {
               <p>Digital technology is transforming our societies on the whole and the production of scientific knowledge in particular. The digital turn, central to the approach developed at the Médialab, calls for the articulation of three research approaches, drawn from the social sciences, engineering, and design. Through the multitude of data that it generates, the digital turn contributes to deepening our understanding of different social worlds. At the same time, it offers investigative tools that spawn new forms of knowledge production through the modelling, visualization and interactive exploration of data. Finally, it fosters experimentation with the public and students by encouraging new forms of reflexivity and new ways of sharing research results.</p>
 
               <p>These research approaches are developed jointly around four main themes:  <br />
-              <br />
-              <ul>
+                <br />
+                <ul>
                   <li><b>the digital public space</b>, mapping the transformations of journalistic and political spaces under the impact of digital technology. Research in this field focuses on new information channels, the shaping of the public agenda, and parliamentary activities;</li>
                   <li><b>the environmental turn</b>, using digital methods to explore emerging issues at the crossroads between science, politics and societal expectations;</li>
                   <li><b>technological futures</b>, adopting a Science & Technology Studies (STS) perspective to study how new artificial intelligence computation technology is penetrating our societies, investigating both the design of this technology and the effects of its increasing penetration into social realms;</li>
                   <li><b>Quantitative Cultural studies</b> which, drawing on data from museums and cultural institutions, endeavour to explore our societies’ new forms of organization of culture with respect to works and their circulation. This field of study is also concerned with cultural festivals and the production of scientific knowledge about Russia.</li>
-              </ul>
+                </ul>
               </p>
 
               <p>Every research project carried out at the Médialab follows a multidisciplinary approach mobilizing a variety of competences. These projects, informed by social science and STS, apply computer engineering to refine investigation by using the Web as a field of inquiry and data science as an analytical method. They also employ new forms of situated testing and exploration of the research questions raised by design.
@@ -139,11 +137,11 @@ export default function About({lang}) {
               <p><Link to="/en/productions" className="GoTo">Voir la liste des productions</Link></p>
 
               <h3 id="contact">Contact</h3>
-              <p>For any inquiries, please send an email to medialab[at]sciences-po.fr<br/>
-              You can also call us: 01 45 49 53 54.<br/>
-              You can write to us at the following address:<br/>
-              Sciences Po - médialab<br/>
-              27, rue Saint Guillaume<br/>
+              <p>For any inquiries, please send an email to medialab[at]sciences-po.fr<br />
+              You can also call us: 01 45 49 53 54.<br />
+              You can write to us at the following address:<br />
+              Sciences Po - médialab<br />
+              27, rue Saint Guillaume<br />
               75337 Paris Cedex 07</p>
 
             </div>
@@ -156,7 +154,7 @@ export default function About({lang}) {
                 <li>C</li>
               </ul>
             </aside>*/}
-            </article>
+          </article>
         </main>
       </>
     );

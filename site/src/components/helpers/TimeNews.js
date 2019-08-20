@@ -22,13 +22,13 @@ function TimeNews(news) {
         if (endDateString.length > 10) {
             startTimeFormat = startDate.substr(11);
             endTimeFormat = endDate.substr(11);
-            timeNews = <p className="hours-news"  aria-label="Horaire / Schedule"><time dateTime={startTimeFormat}>{startTimeFormat}</time> {iconBetween} <time dateTime={endTimeFormat}>{endTimeFormat}</time></p>;
+            timeNews = <p className="hours-news" aria-label="Horaire / Schedule"><time dateTime={startTimeFormat}>{startTimeFormat}</time> {iconBetween} <time dateTime={endTimeFormat}>{endTimeFormat}</time></p>;
         }
     }
     else {
         if (startDateString.length > 10) {
             startTimeFormat = startDate.substr(11);
-            timeNews = <p className="hours-news"  aria-label="Horaire / Schedule"><time dateTime={startTimeFormat}>{startTimeFormat}</time></p>;
+            timeNews = <p className="hours-news" aria-label="Horaire / Schedule"><time dateTime={startTimeFormat}>{startTimeFormat}</time></p>;
         }
     }
 

@@ -28,24 +28,28 @@ const originalTweetIntro = {
     retweet: 'retweet of'
   },
 
-}
+};
 
 export default function tweet({lang, tweets}) {
 return (
   <>
     <section id="tweet">
-      <h1>{lang ==="fr" ? "Le médialab sur " : "médialab on" }<span data-icon="tweet"><a href="https://twitter.com/medialab_scpo"  target="_blank" rel="noopener noreferrer">Twitter</a></span></h1>
+      <h1>{lang === 'fr' ? 'Le médialab sur ' : 'médialab on' }<span data-icon="tweet"><a href="https://twitter.com/medialab_scpo" target="_blank" rel="noopener noreferrer">Twitter</a></span></h1>
       <input
-      type="checkbox" name="checkbox_flux" id="checkbox_tweet"
-      hidden />
+        type="checkbox" name="checkbox_flux" id="checkbox_tweet"
+        hidden />
       <label className="responsive-flux" htmlFor="checkbox_tweet">
-        <span><Icons icon='arrow' /></span>
+        <span><Icons icon="arrow" /></span>
       </label>
 
       <div id="tweet-content">
         { tweets.map(t =>
-            (<article itemScope itemType="https://schema.org/SocialMediaPosting" className="tweet" data-type="tweet" key={t.tweet.toString()} aria-label="Tweet" >
-              <a itemProp="url" href={`https://twitter.com/medialab_scpo/status/${t.tweet}`} target="_blank" rel="noopener noreferrer">
+            (<article
+              itemScope itemType="https://schema.org/SocialMediaPosting" className="tweet"
+              data-type="tweet" key={t.tweet.toString()} aria-label="Tweet" >
+              <a
+                itemProp="url" href={`https://twitter.com/medialab_scpo/status/${t.tweet}`} target="_blank"
+                rel="noopener noreferrer">
                 <aside className="divers">
                   {
                     //<p className="label" data-icon="tweet">{t.type}</p>

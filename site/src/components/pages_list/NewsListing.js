@@ -42,66 +42,66 @@ export default function NewsListing({lang, list}) {
 
 		yearGroups.get(year).push(news);
   });
-  let nbNews = 0;
+  const nbNews = 0;
   return (
     <>
-    <PageMeta
-      title={messagesMeta.title[lang]}
-      description={messagesMeta.description[lang]}
-      lang={lang}
-    />
-    <main role="main" aria-describedby="aria-accroche">
-      <FilterNews lang={lang} years={Array.from(yearGroups.keys()).sort(byYearKey)} />
-      <section className="main-filters">
-      </section>
+      <PageMeta
+        title={messagesMeta.title[lang]}
+        description={messagesMeta.description[lang]}
+        lang={lang} />
+      <main role="main" aria-describedby="aria-accroche">
+        <FilterNews lang={lang} years={Array.from(yearGroups.keys()).sort(byYearKey)} />
+        <section className="main-filters" />
 
-      <section id="liste" className="main-container">
+        <section id="liste" className="main-container">
 
-        <ul className="liste_objet" id="liste-news">
-          {Array.from(yearGroups.entries()).sort(byYear).map(([year, yearNews], index) => (
-            <React.Fragment key={index}>
-              <li id={`year-${year}`} className="list-year">
-                {/* <span>{year}</span> */}
-              </li>
-              {yearNews.map((news, i) => (
-                <React.Fragment key={i}>
-                  <li itemScope itemProp={news.type !== 'post' ? 'event': 'subjectOf'} itemType={news.type !== 'post' ? 'https://schema.org/Event' : 'https://schema.org/CreativeWork'} data-item={nbNews} data-type={news.type} className={`list-item ${news.type}`}>
-                    <Link to={news.permalink[lang]}>
+          <ul className="liste_objet" id="liste-news">
+            {Array.from(yearGroups.entries()).sort(byYear).map(([year, yearNews], index) => (
+              <React.Fragment key={index}>
+                <li id={`year-${year}`} className="list-year">
+                  {/* <span>{year}</span> */}
+                </li>
+                {yearNews.map((news, i) => (
+                  <React.Fragment key={i}>
+                    <li
+                      itemScope itemProp={news.type !== 'post' ? 'event' : 'subjectOf'} itemType={news.type !== 'post' ? 'https://schema.org/Event' : 'https://schema.org/CreativeWork'}
+                      data-item={nbNews} data-type={news.type} className={`list-item ${news.type}`}>
+                      <Link to={news.permalink[lang]}>
 
-                    <div className="image-pre" aria-hidden="true">
-                      <ProcessedImage
-                        data={news}
-                        size="medium"
-                        image={news.coverImage && news.coverImage.processed.medium} />
-                    </div>
-                    <div className="bandeau">
-                      <p data-icon="news" className="type-news">{IsModel(news.type, lang)}</p>
-                      <p className="label-news"><LanguageFallback lang={lang} translatedAttribute={news.label} /></p>
-                      <div>
-                        <DateNews startDate={news.startDate} endDate={news.endDate} lang={lang} />
-                        <TimeNews startDate={news.startDate} endDate={news.endDate} />
+                        <div className="image-pre" aria-hidden="true">
+                        <ProcessedImage
+                          data={news}
+                          size="medium"
+                          image={news.coverImage && news.coverImage.processed.medium} />
+                      </div>
+                        <div className="bandeau">
+                        <p data-icon="news" className="type-news">{IsModel(news.type, lang)}</p>
+                        <p className="label-news"><LanguageFallback lang={lang} translatedAttribute={news.label} /></p>
+                        <div>
+                          <DateNews startDate={news.startDate} endDate={news.endDate} lang={lang} />
+                          <TimeNews startDate={news.startDate} endDate={news.endDate} />
                         </div>
-                    </div>
-                    <hgroup>
-                      <h1 itemProp="name" data-level-1="baseline" >
-                        <LanguageFallback lang={lang} translatedAttribute={news.title} />
-                      </h1>
-                    </hgroup>
-                    <div className="accroche">
-                      <p itemProp="description" className="accroche-paragraphe">
-                        <LanguageFallback lang={lang} translatedAttribute={news.description} />
-                      </p>
-                    </div>
+                      </div>
+                        <hgroup>
+                        <h1 itemProp="name" data-level-1="baseline" >
+                          <LanguageFallback lang={lang} translatedAttribute={news.title} />
+                        </h1>
+                      </hgroup>
+                        <div className="accroche">
+                        <p itemProp="description" className="accroche-paragraphe">
+                          <LanguageFallback lang={lang} translatedAttribute={news.description} />
+                        </p>
+                      </div>
 
-                    </Link>
-                  </li>
-                </React.Fragment>
+                      </Link>
+                    </li>
+                  </React.Fragment>
             ))}
-            </React.Fragment>
+              </React.Fragment>
         ))}
-        </ul>
-      </section>
-    </main>
+          </ul>
+        </section>
+      </main>
     </>
 	);
 }

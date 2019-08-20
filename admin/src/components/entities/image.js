@@ -253,7 +253,7 @@ class ImageSource extends Component {
                 </div>
               </div>
               <div className="field">
-              <label className="label">Gabarit d'image</label>
+                <label className="label">Gabarit d'image</label>
                 <FormatSelector selected={format} onChange={this.handleFormat} />
               </div>
             </div>
@@ -266,7 +266,7 @@ class ImageSource extends Component {
               disabled={!file && !entityKey}
               loading={loading}
               onClick={this.handleSubmit}>
-              {entityKey ? 'Update' :'Upload & Insert'}
+              {entityKey ? 'Update' : 'Upload & Insert'}
             </Button>
           )
         ]}

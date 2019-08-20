@@ -16,16 +16,16 @@ function DateNews(props) {
   const startDate = parseISO(props.startDate);
   const lang = props.lang;
   const locale = locales[lang];
-  const startDateSchemaProp = props.startDateSchemaProp || 'startDate'
-  const endDateSchemaProp = props.endDateSchemaProp || 'endDate'
+  const startDateSchemaProp = props.startDateSchemaProp || 'startDate';
+  const endDateSchemaProp = props.endDateSchemaProp || 'endDate';
 
   //deprecated ? const startDateFormat = formatDate(startDate, 'd MMMM', {locale});
   // date can be precise only at month or year level in which case we ignore day
-  const showStarDateDay = props.startDate.length > 7
+  const showStarDateDay = props.startDate.length > 7;
   const startDateDay = formatDate(startDate, 'd', {locale});
   const startDateDayName = formatDate(startDate, 'EEEE', {locale});
   // date can be precise only at year level in which case we ignore month
-  const showStartDateMonth = props.startDate.length > 4
+  const showStartDateMonth = props.startDate.length > 4;
   const startDateMonthName = formatDate(startDate, 'MMMM', {locale});
   const startDateYear = formatDate(startDate, 'yyyy', {locale});
   //deprecated ? const startDateDayMonth = formatDate(startDate, 'd MMMM', {locale});
@@ -39,7 +39,7 @@ function DateNews(props) {
     //deprecated ? const endDateFormat = formatDate(endDate, 'd MMMM', {locale});
     const showEndDateDay = props.endDate.length > 7;
     const endDateDay = formatDate(endDate, 'd', {locale});
-    const showEndDateMonth = props.endDate.length > 4
+    const showEndDateMonth = props.endDate.length > 4;
     const endDateMonthName = formatDate(endDate, 'MMMM', {locale});
     const endDateYear = formatDate(endDate, 'yyyy', {locale});
 

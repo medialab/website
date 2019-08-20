@@ -22,24 +22,24 @@ const typeToDublinCoreMapping = {
 };
 
 const buildOpenGraphAdditionalMeta = obj => {
-  switch(obj.type) {
+  switch (obj.type) {
     case 'book':
       return [
-          <meta key={'type'} property="og:type" content="book" />,
-          <meta key={'author'} property="og:book:author" content={obj.author} />,
-          <meta key={'time'} property="og:book:release_date" content={obj.date} />
-        ]
+        <meta key={'type'} property="og:type" content="book" />,
+        <meta key={'author'} property="og:book:author" content={obj.author} />,
+        <meta key={'time'} property="og:book:release_date" content={obj.date} />
+        ];
     case 'post':
     case 'article':
       return [
-          <meta key={'type'} property="og:type" content="article" />,
-          <meta key={'author'} property="og:article:author" content={obj.author} />,
-          <meta key={'time'} property="og:article:published_time" content={obj.date} />
-      ]
+        <meta key={'type'} property="og:type" content="article" />,
+        <meta key={'author'} property="og:article:author" content={obj.author} />,
+        <meta key={'time'} property="og:article:published_time" content={obj.date} />
+      ];
     default:
       return <meta property="og:type" content="website" />;
   }
-}
+};
 
 function PageMeta(props) {
 
@@ -57,7 +57,7 @@ function PageMeta(props) {
         imageData,
     } = props;
 
-    const imageSrc = imageData && imageData.url ?  'https://medialab.sciencespo.fr/' + imageData.url : 'https://medialab.sciencespo.fr' + coverTwitter;
+    const imageSrc = imageData && imageData.url ? 'https://medialab.sciencespo.fr/' + imageData.url : 'https://medialab.sciencespo.fr' + coverTwitter;
     const imageWidth = imageData && imageData.width ? imageData.width : 2000;
     const imageHeight = imageData && imageData.height ? imageData.height : 1000;
 
@@ -70,9 +70,9 @@ function PageMeta(props) {
         <meta name="description" content={description} />
         {/* END REGULAR META */}
         {/* ZOTERO META */}
-        {uri && <meta name="citation_public_url" content={uri}/>}
-        <meta name="z:itemType" content={zoteroType}></meta>
-        {citationTitle && <meta name="citation_title" content={citationTitle}/>}
+        {uri && <meta name="citation_public_url" content={uri} />}
+        <meta name="z:itemType" content={zoteroType} />
+        {citationTitle && <meta name="citation_title" content={citationTitle} />}
         {/* END ZOTERO META */}
 
         {/* META DUBLIN CORE */}
@@ -86,7 +86,7 @@ function PageMeta(props) {
         <meta name="DCTERMS.description" lang={lang} content={description} />
         {date && <meta name="DCTERMS.issued" scheme="DCTERMS.W3CDTF" content={date} />}
         {author && Array.isArray(author) ?
-            author.map((a, i) => <meta name="DCTERMS.creator" key={i} content={a} /> )
+            author.map((a, i) => <meta name="DCTERMS.creator" key={i} content={a} />)
         : <meta name="DCTERMS.creator" content={author} />
         }
         {citation && <meta name="DCTERMS.bibliographicCitation" content={citation} />}
@@ -110,7 +110,7 @@ function PageMeta(props) {
 
         {/* META OPEN GRAPH / FACEBOOK */}
         <meta property="og:title" content={title} />
-        <meta property="og:site_name" content="médialab Sciences Po" />        
+        <meta property="og:site_name" content="médialab Sciences Po" />
         <meta property="og:url" content={uri ? uri : 'https://medialab.sciencespo.fr'} />
         <meta property="og:description" content={description} />
         <meta property="og:image:url" content={imageSrc} />

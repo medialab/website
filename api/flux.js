@@ -53,7 +53,7 @@ exports.retrieveGithubFluxData = function(people, callback) {
     if (!contact)
       return;
 
-    const handle = extractGithubHandle(contact.value)
+    const handle = extractGithubHandle(contact.value);
 
     peopleIndex[handle] = {slug: p.slugs[p.slugs.length - 1], name: `${p.firstName} ${p.lastName}`};
   });
@@ -158,7 +158,7 @@ const TWITTER_CLIENT = new Twitter({
 
 // Helpers
 function resolveTweetUrls(tweet, html = false) {
-  const shortenUrl = url => url.replace(/https?:\/\/(www.)?/,'').slice(0, 20) + '…';
+  const shortenUrl = url => url.replace(/https?:\/\/(www.)?/, '').slice(0, 20) + '…';
   const ahref = url => `<a href="${url}" target="_blank" rel="noopener">${shortenUrl(url)}</a>`;
   let fullText = tweet.full_text;
 

@@ -145,42 +145,45 @@ export default function ActivityDetail({lang, activity}) {
 
   const inSeminar = activity.slugs.join().includes('seminaire');
   return (
-    <main id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " + activity.name : activity.name + "  page content" }>
-    <PageMeta
+    <main id="main-objet" role="main" aria-label={lang === 'fr' ? 'Contenu de la page ' + activity.name : activity.name + '  page content'}>
+      <PageMeta
         title={`${activity.name} | médialab Sciences Po`}
         description={activity.baseline && activity.baseline[lang]}
         lang={lang}
         date={activity.startDate}
         imageData={activity.coverImage && activity.coverImage.processed && activity.coverImage.processed.raster}
-        uri={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'activites' : 'en/activities'}/${activity.slugs && activity.slugs[0]}`}
-      />
+        uri={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'activites' : 'en/activities'}/${activity.slugs && activity.slugs[0]}`} />
       <ol style={{display: 'none'}} itemScope itemType="https://schema.org/BreadcrumbList">
-        <li itemProp="itemListElement" itemScope
-            itemType="https://schema.org/ListItem">
-          <a itemType="https://schema.org/Organization"
+        <li
+          itemProp="itemListElement" itemScope
+          itemType="https://schema.org/ListItem">
+          <a
+            itemType="https://schema.org/Organization"
             itemProp="item" href="https://medialab.sciencespo.fr">
-              <span itemProp="name">médialab Sciences Po</span></a>
+            <span itemProp="name">médialab Sciences Po</span></a>
           <meta itemProp="position" content="1" />
         </li>
-        <li itemProp="itemListElement" itemScope
-            itemType="https://schema.org/ListItem">
-          <a itemType="https://schema.org/Thing"
+        <li
+          itemProp="itemListElement" itemScope
+          itemType="https://schema.org/ListItem">
+          <a
+            itemType="https://schema.org/Thing"
             itemProp="item"
-            href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'activites' : 'en/activities'}`}
-          >
+            href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'activites' : 'en/activities'}`}>
             <span itemProp="name">{lang === 'fr' ? 'Activités' : 'Activities'}</span></a>
           <meta itemProp="position" content="2" />
         </li>
-        <li itemProp="itemListElement" itemScope
-            itemType="https://schema.org/ListItem">
-          <a itemType="https://schema.org/Thing"
+        <li
+          itemProp="itemListElement" itemScope
+          itemType="https://schema.org/ListItem">
+          <a
+            itemType="https://schema.org/Thing"
             itemProp="item"
-            href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'activites' : 'en/activities'}/${activity.slugs && activity.slugs[0]}`}
-          >
+            href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'activites' : 'en/activities'}/${activity.slugs && activity.slugs[0]}`}>
             <span itemProp="name">
-                {activity.name}
+              {activity.name}
             </span>
-        </a>
+          </a>
           <meta itemProp="position" content="3" />
         </li>
       </ol>
@@ -189,18 +192,18 @@ export default function ActivityDetail({lang, activity}) {
           <div id="logo-sticky"><a href="/"><Logo /></a></div>
           <p>
             <Link to={lang === 'fr' ? '/activites' : '/en/activities'}>
-              <span data-icon="activite">{lang === 'fr' ? "Activité" : 'Activity'} </span>
+              <span data-icon="activite">{lang === 'fr' ? 'Activité' : 'Activity'} </span>
             </Link>
-              <span className="title"><a href="#topbar">{activity.name}</a></span>
+            <span className="title"><a href="#topbar">{activity.name}</a></span>
           </p>
         </div>
       </header>
 
 
       <div id="img-article" >
-        <div className="activator"></div>
+        <div className="activator" />
         <div className="container" aria-hidden="true">
-          <ProcessedImage size="large" image={activity.coverImage  && activity.coverImage.processed && activity.coverImage.processed.large} data={activity} />
+          <ProcessedImage size="large" image={activity.coverImage && activity.coverImage.processed && activity.coverImage.processed.large} data={activity} />
         </div>
       </div>
 
@@ -212,13 +215,15 @@ export default function ActivityDetail({lang, activity}) {
         {/* FR */}
         <div className="block-lang fr" lang="fr">
           <hgroup>
-            <h1  data-level-2="title" itemProp="name">{activity.name}</h1>
-            <h2  data-level-2="baseline">{activity.baseline && <LanguageFallback lang={lang} translatedAttribute={activity.baseline} />}</h2>
-            <h3  data-level-3="description" itemProp="description"><RawHtml html={activity.description && activity.description.fr} /></h3>
+            <h1 data-level-2="title" itemProp="name">{activity.name}</h1>
+            <h2 data-level-2="baseline">{activity.baseline && <LanguageFallback lang={lang} translatedAttribute={activity.baseline} />}</h2>
+            <h3 data-level-3="description" itemProp="description"><RawHtml html={activity.description && activity.description.fr} /></h3>
           </hgroup>
           <div className="details">
-            <p className="type-objet"><span data-icon="activite"></span> {IsModel(activity.type, "fr")}</p>
-            <DateNews isTimeSpan startDateSchemaProp={'foundingDate'}  endDateSchemaProp={'dissolutionDate'} startDate={activity.startDate} endDate={activity.endDate} lang="fr" />
+            <p className="type-objet"><span data-icon="activite" /> {IsModel(activity.type, 'fr')}</p>
+            <DateNews
+              isTimeSpan startDateSchemaProp={'foundingDate'} endDateSchemaProp={'dissolutionDate'}
+              startDate={activity.startDate} endDate={activity.endDate} lang="fr" />
             <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
             <FichiersAssocies attachments={activity.attachments} lang="fr" />
           </div>
@@ -232,13 +237,15 @@ export default function ActivityDetail({lang, activity}) {
         {/* EN */}
         <div className="block-lang en" lang="en">
           <hgroup>
-            <h1  data-level-2="title">{activity.name}</h1>
-            <h2   data-level-2="baseline">{activity.baseline && <LanguageFallback lang={lang} translatedAttribute={activity.baseline} />}</h2>
-            <h3  data-level-3="description"><RawHtml html={activity.description && activity.description.en} /></h3>
+            <h1 data-level-2="title">{activity.name}</h1>
+            <h2 data-level-2="baseline">{activity.baseline && <LanguageFallback lang={lang} translatedAttribute={activity.baseline} />}</h2>
+            <h3 data-level-3="description"><RawHtml html={activity.description && activity.description.en} /></h3>
           </hgroup>
           <div className="details">
-            <p className="type-objet"><span data-icon="activite"></span> {IsModel(activity.type, "en")}</p>
-            <DateNews isTimeSpan startDate={activity.startDate} endDate={activity.endDate} lang="en" />
+            <p className="type-objet"><span data-icon="activite" /> {IsModel(activity.type, 'en')}</p>
+            <DateNews
+              isTimeSpan startDate={activity.startDate} endDate={activity.endDate}
+              lang="en" />
             <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
             <FichiersAssocies attachments={activity.attachments} lang="en" />
           </div>
@@ -248,19 +255,23 @@ export default function ActivityDetail({lang, activity}) {
         </div>
 
       </article>
-      <aside id={`all-aside`} className={inSeminar ? 'in-seminar': ''}>
+      <aside id={'all-aside'} className={inSeminar ? 'in-seminar' : ''}>
         <MembresAssocies people={activity.people} lang={lang} />
         <ActivitesAssociees activities={activity.activities} lang={lang} />
         <ProductionsAssociees productions={activity.productions} lang={lang} />
         {
           inSeminar ?
-          <>
-          <ActuAssociees isSeminar={true} filter={'future'} actu={activity.news} lang={lang} titles={{fr: 'Séances à venir', en: 'Upcoming sessions'}} />
-          <ActuAssociees isSeminar={true} filter={'past'} actu={activity.news} lang={lang} titles={{fr: 'Séances passées', en: 'Past sessions'}} />
-          </>
+            <>
+              <ActuAssociees
+                isSeminar filter={'future'} actu={activity.news}
+                lang={lang} titles={{fr: 'Séances à venir', en: 'Upcoming sessions'}} />
+              <ActuAssociees
+                isSeminar filter={'past'} actu={activity.news}
+                lang={lang} titles={{fr: 'Séances passées', en: 'Past sessions'}} />
+            </>
           :
 
-          <ActuAssociees isSeminar={inSeminar} actu={activity.news} lang={lang} />
+            <ActuAssociees isSeminar={inSeminar} actu={activity.news} lang={lang} />
         }
       </aside>
 

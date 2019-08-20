@@ -277,7 +277,7 @@ const MODEL_READERS = {
 
       createNode({
         ...news,
-        content: content,
+        content,
         permalink: {
           fr: `/actu/${slug}`,
           en: `/en/news/${slug}`
@@ -425,7 +425,7 @@ exports.createResolvers = function({createResolvers, pathPrefix}) {
 
     PeopleJson: {
       // Cover
-      coverImage:  createCoverImageResolver(settings),
+      coverImage: createCoverImageResolver(settings),
 
       // Relations
       mainActivities: createRelationResolver('mainActivities'),
@@ -533,9 +533,9 @@ exports.sourceNodes = function(args) {
               fr: ENUMS.productionTypes.fr[v]
             },
             type: v
-          }
+          };
         })
-      }
+      };
     })
   };
 

@@ -125,12 +125,12 @@ export default class SortableKeyValueList extends Component {
   };
 
   handleFile = file => {
-    this.setState({file: file});
+    this.setState({file});
   };
 
   handleAdd = () => {
     const type = !this.state.file ?
-      (isUrl(this.state.value) ? 'url': 'string') :
+      (isUrl(this.state.value) ? 'url' : 'string') :
       'attachment';
 
     // Need to upload?
@@ -188,7 +188,7 @@ export default class SortableKeyValueList extends Component {
 
     return (
       <div>
-       
+
 
         {/* Form to add a new item */}
         <div className="columns">

@@ -23,7 +23,7 @@ const mainPermalinks = {
   }
 };
 
-const Link = (props) => <BasicLink partiallyActive activeClassName={'active'} {...props} />
+const Link = (props) => <BasicLink partiallyActive activeClassName={'active'} {...props} />;
 
 const TopBar = ({permalinks, lang}) => {
 
@@ -48,7 +48,7 @@ const TopBar = ({permalinks, lang}) => {
     activite = 'Activités';
     medialab = 'Le médialab';
     team = "L'équipe";
-    seminar = "Séminaire";
+    seminar = 'Séminaire';
     tool = 'Outils';
     archive = 'Archives';
   }
@@ -61,78 +61,83 @@ const TopBar = ({permalinks, lang}) => {
     activite = 'Activities';
     medialab = 'The médialab';
     team = 'The team';
-    seminar = "Seminar";
+    seminar = 'Seminar';
     tool = 'Tools';
     archive = 'Archives';
 
   }
 
 	return (
-    <header id="topbar" role="banner" aria-label={lang === 'fr' ? "Navigation globale du site" : "Website global navigation" }>
-      <input
-        type="checkbox" id="toggle-menu" name="toggle-menu"
-        value="visible" hidden />
-      <label htmlFor="toggle-menu">
-        <span className="span-nochecked" aria-label={lang === 'fr' ? "Ouvrir le menu principal" : 'Open the main menu'}>
-          <MenuCircle />
-        </span>
-        <span className="span-checked" aria-label={lang === 'fr' ? "fermer le menu principal" : 'close the main menu'}>
-          <CloseCircle />
-        </span>
-      </label>
+  <header id="topbar" role="banner" aria-label={lang === 'fr' ? 'Navigation globale du site' : 'Website global navigation'}>
+    <input
+      type="checkbox" id="toggle-menu" name="toggle-menu"
+      value="visible" hidden />
+    <label htmlFor="toggle-menu">
+      <span className="span-nochecked" aria-label={lang === 'fr' ? 'Ouvrir le menu principal' : 'Open the main menu'}>
+        <MenuCircle />
+      </span>
+      <span className="span-checked" aria-label={lang === 'fr' ? 'fermer le menu principal' : 'close the main menu'}>
+        <CloseCircle />
+      </span>
+    </label>
 
-      <div id="topbar-content">
-        <div id="logo-medialab">
-          <Link to={lang === 'fr' ? '/' : '/en/'}
-            id="back_button" title={lang === 'fr' ? "Retour à l'acceuil" : 'Back to Homepage'}
-            aria-label={lang === 'fr' ? "Retour à l'acceuil" : 'Back to Homepage'}>
-            <Logo />
-            <span itemProp="name" style={{display: 'none'}}>médialab Sciences Po</span>
-          </Link>
-        </div>
-
-        <nav id="nav-option" role="navigation" aria-owns="langue back_button fr-to-en en-to-fr">
-
-          <ul id="nav-objet" >
-
-            <li data-type="actualite">
-              <Link to={mainPermalinks[lang].news}
-                    aria-label={lang === 'fr' ? "Aller à la liste complètes des Actualités" : "Go to the complete list of médialab news" }>{news}</Link>
-            </li>
-
-            <li data-type="production">
-              <Link to={mainPermalinks[lang].productions}
-                    aria-label={lang === 'fr' ? "Aller à la liste complètes des Productions" : "Go to the complete list of médialab productions" }>{prod}</Link>
-            </li>
-
-            <li data-type="activite">
-              <Link to={mainPermalinks[lang].activities}
-                    aria-label={lang === 'fr' ? "Aller à la liste complètes des Activités" : "Go to the complete list of médialab activities" }>{activite}</Link>
-            </li>
-
-          </ul>
-          <ul id="nav-institution">
-            <li><Link to={mainPermalinks[lang].people} aria-label={lang === 'fr' ? "Découvrir les membres du médialab" : "Discover médialab members " }>{team}</Link></li>
-            <li><Link to={mainPermalinks[lang].about} aria-label={lang === 'fr' ? "Aller à la page de présentation du médialab" : "Go to médialab presentation page" }>{medialab}</Link></li>
-          </ul>
-          <ul id="nav-archive">
-            {/*<li><Link to={`${relLang}/outils`}>{tool}</Link></li>*/}
-            <li>
-            <a href="http://tools.medialab.sciences-po.fr"
-              target="_blank" rel="noopener"
-              aria-label={lang === 'fr' ? "Aller à la liste des outils numériques créés ou utilisé par le médialab " : "Go to a listing of digital tools created or used by médialab" }>{tool}</a>
-            </li>
-            <li><Link to={mainPermalinks[lang].seminar} aria-label={lang === 'fr' ? "Assister à notre séminaire" : "Join us for our seminar" }>{seminar}</Link></li>
-            {/* <li><Link to={`${relLang}/archive`}>{archive}</Link></li> */}
-          </ul>
-        </nav>
-
-        <div id="langue" className="menu langue" aria-label={lang === "fr" ? "Choix de la langue" : "Language selection" }>
-          <p><BasicLink activeClassName="active" to={permalinks.fr} aria-label={lang === "fr" ? "Contenu en langue française" : "French version content" }>FR</BasicLink><span> | </span><BasicLink activeClassName="active" to={permalinks.en} aria-label={lang === "fr" ? "Contenu en langue anglaise" : "English version content" }>EN</BasicLink></p>
-        </div>
+    <div id="topbar-content">
+      <div id="logo-medialab">
+        <Link
+          to={lang === 'fr' ? '/' : '/en/'}
+          id="back_button" title={lang === 'fr' ? "Retour à l'acceuil" : 'Back to Homepage'}
+          aria-label={lang === 'fr' ? "Retour à l'acceuil" : 'Back to Homepage'}>
+          <Logo />
+          <span itemProp="name" style={{display: 'none'}}>médialab Sciences Po</span>
+        </Link>
       </div>
-      <div className="print"><p itemProp="url">medialab.sciencespo.fr</p></div>
-    </header>
+
+      <nav id="nav-option" role="navigation" aria-owns="langue back_button fr-to-en en-to-fr">
+
+        <ul id="nav-objet" >
+
+          <li data-type="actualite">
+            <Link
+              to={mainPermalinks[lang].news}
+              aria-label={lang === 'fr' ? 'Aller à la liste complètes des Actualités' : 'Go to the complete list of médialab news'}>{news}</Link>
+          </li>
+
+          <li data-type="production">
+            <Link
+              to={mainPermalinks[lang].productions}
+              aria-label={lang === 'fr' ? 'Aller à la liste complètes des Productions' : 'Go to the complete list of médialab productions'}>{prod}</Link>
+          </li>
+
+          <li data-type="activite">
+            <Link
+              to={mainPermalinks[lang].activities}
+              aria-label={lang === 'fr' ? 'Aller à la liste complètes des Activités' : 'Go to the complete list of médialab activities'}>{activite}</Link>
+          </li>
+
+        </ul>
+        <ul id="nav-institution">
+          <li><Link to={mainPermalinks[lang].people} aria-label={lang === 'fr' ? 'Découvrir les membres du médialab' : 'Discover médialab members '}>{team}</Link></li>
+          <li><Link to={mainPermalinks[lang].about} aria-label={lang === 'fr' ? 'Aller à la page de présentation du médialab' : 'Go to médialab presentation page'}>{medialab}</Link></li>
+        </ul>
+        <ul id="nav-archive">
+          {/*<li><Link to={`${relLang}/outils`}>{tool}</Link></li>*/}
+          <li>
+            <a
+              href="http://tools.medialab.sciences-po.fr"
+              target="_blank" rel="noopener"
+              aria-label={lang === 'fr' ? 'Aller à la liste des outils numériques créés ou utilisé par le médialab ' : 'Go to a listing of digital tools created or used by médialab'}>{tool}</a>
+          </li>
+          <li><Link to={mainPermalinks[lang].seminar} aria-label={lang === 'fr' ? 'Assister à notre séminaire' : 'Join us for our seminar'}>{seminar}</Link></li>
+          {/* <li><Link to={`${relLang}/archive`}>{archive}</Link></li> */}
+        </ul>
+      </nav>
+
+      <div id="langue" className="menu langue" aria-label={lang === 'fr' ? 'Choix de la langue' : 'Language selection'}>
+        <p><BasicLink activeClassName="active" to={permalinks.fr} aria-label={lang === 'fr' ? 'Contenu en langue française' : 'French version content'}>FR</BasicLink><span> | </span><BasicLink activeClassName="active" to={permalinks.en} aria-label={lang === 'fr' ? 'Contenu en langue anglaise' : 'English version content'}>EN</BasicLink></p>
+      </div>
+    </div>
+    <div className="print"><p itemProp="url">medialab.sciencespo.fr</p></div>
+  </header>
   );
 };
 

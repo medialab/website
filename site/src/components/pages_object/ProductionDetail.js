@@ -115,7 +115,9 @@ export default function ProductionDetail({lang, production}) {
     </p>);
 
     if (production.url) {
-      ref = <a itemProp="url" href={production.url} target="_blank" rel="noopener noreferrer">{ref}</a>;
+      ref = (<a
+        itemProp="url" href={production.url} target="_blank"
+        rel="noopener noreferrer">{ref}</a>);
     }
 
     return (<div className={`block-lang ${lang}`} lang={lang}>
@@ -125,7 +127,7 @@ export default function ProductionDetail({lang, production}) {
       </hgroup>
       <div className="details">
         <p className="type-objet">
-          <span data-icon="production"></span> {IsModel(production.group, lang)} – {IsModel(production.type, lang)}
+          <span data-icon="production" /> {IsModel(production.group, lang)} – {IsModel(production.type, lang)}
         </p>
         <DateNews startDateSchemaProp="datePublished" startDate={production.date} lang={lang} />
         {ref}
@@ -153,56 +155,63 @@ export default function ProductionDetail({lang, production}) {
         type={production.type}
         imageData={production.coverImage && production.coverImage.processed && production.coverImage.processed.raster}
         uri={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'productions' : 'en/productions'}/${production.slugs && production.slugs[0]}`}
-        citation={production.description && production.description[lang]}
-      />
-      <main itemScope itemType={productionTypeToSchemaURL(production.type)} id="main-objet" role="main" aria-label={lang === "fr" ? "Contenu de la page " : " page content" }>
-      <ol style={{display: 'none'}} itemScope itemType="https://schema.org/BreadcrumbList">
-        <li itemProp="itemListElement" itemScope
+        citation={production.description && production.description[lang]} />
+      <main
+        itemScope itemType={productionTypeToSchemaURL(production.type)} id="main-objet"
+        role="main" aria-label={lang === 'fr' ? 'Contenu de la page ' : ' page content'}>
+        <ol style={{display: 'none'}} itemScope itemType="https://schema.org/BreadcrumbList">
+          <li
+            itemProp="itemListElement" itemScope
             itemType="https://schema.org/ListItem">
-          <a itemType="https://schema.org/Organization"
-            itemProp="item" href="https://medialab.sciencespo.fr">
+            <a
+              itemType="https://schema.org/Organization"
+              itemProp="item" href="https://medialab.sciencespo.fr">
               <span itemProp="name">médialab Sciences Po</span></a>
-          <meta itemProp="position" content="1" />
-        </li>
-        <li itemProp="itemListElement" itemScope
+            <meta itemProp="position" content="1" />
+          </li>
+          <li
+            itemProp="itemListElement" itemScope
             itemType="https://schema.org/ListItem">
-          <a itemType="https://schema.org/Thing"
-            href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'productions' : 'en/productions'}`}
-            itemProp="item">
-            <span itemProp="name">{'Productions'}</span></a>
-          <meta itemProp="position" content="2" />
-        </li>
-        <li itemProp="itemListElement" itemScope
+            <a
+              itemType="https://schema.org/Thing"
+              href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'productions' : 'en/productions'}`}
+              itemProp="item">
+              <span itemProp="name">{'Productions'}</span></a>
+            <meta itemProp="position" content="2" />
+          </li>
+          <li
+            itemProp="itemListElement" itemScope
             itemType="https://schema.org/ListItem">
-          <a itemType="https://schema.org/Thing"
-            href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'productions' : 'en/productions'}/${production.slugs && production.slugs[0]}`}
-            itemProp="item">
-            <span itemProp="name">
+            <a
+              itemType="https://schema.org/Thing"
+              href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'productions' : 'en/productions'}/${production.slugs && production.slugs[0]}`}
+              itemProp="item">
+              <span itemProp="name">
                 <LanguageFallback lang={lang} translatedAttribute={production.title} />
-            </span>
-        </a>
-          <meta itemProp="position" content="3" />
-        </li>
-      </ol>
-      <header id="titre-sticky" aria-hidden="true">
-        <div id="container-titre-sticky">
-          <div id="logo-sticky"><a href="/"><Logo /></a></div>
-          <p>
-            <Link to={lang === 'fr' ? '/productions' : '/en/productions'}>
-              <span data-icon="production">Productions</span>
-            </Link>
+              </span>
+            </a>
+            <meta itemProp="position" content="3" />
+          </li>
+        </ol>
+        <header id="titre-sticky" aria-hidden="true">
+          <div id="container-titre-sticky">
+            <div id="logo-sticky"><a href="/"><Logo /></a></div>
+            <p>
+              <Link to={lang === 'fr' ? '/productions' : '/en/productions'}>
+                <span data-icon="production">Productions</span>
+              </Link>
               <span itemProp="name" className="title">
                 <a href="#topbar">
                   <LanguageFallback lang={lang} translatedAttribute={production.title} />
                 </a>
               </span>
-          </p>
-        </div>
-      </header>
+            </p>
+          </div>
+        </header>
 
-      <div id="img-article">
-        <div className="activator"></div>
-      </div>
+        <div id="img-article">
+          <div className="activator" />
+        </div>
 
         <article id="article-contenu">
           {/* Toggle Langue */}

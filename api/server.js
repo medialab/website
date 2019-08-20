@@ -515,8 +515,8 @@ app.get('/redirects.nginx.conf', (req, res) => {
       return res.status(500).send(err);
     else
       return res.type('txt/*').send(redirections);
-  })
-})
+  });
+});
 
 // Listening
 console.log(`Listening on port ${PORT}...`);

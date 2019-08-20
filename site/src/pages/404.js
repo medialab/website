@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'gatsby'
+import {Link} from 'gatsby';
 import Layout from '../components/Layout';
 import {withPrefix} from 'gatsby';
 
@@ -21,7 +21,7 @@ export default function() {
       </div>
       <div className="not-found-container">
         <div className="not-found not-found-fr">
-          <h1>Oups !<br/> page non trouvée</h1>
+          <h1>Oups !<br /> page non trouvée</h1>
           <p>
             Nous ne parvenons pas à atteindre la page que vous recherchez. L'URL est peut-être incorrecte ou la page n'existe plus.
             <br />
@@ -30,7 +30,7 @@ export default function() {
         </div>
 
         <div className="not-found not-found-en">
-          <h1>Oups !<br/> page not found</h1>
+          <h1>Oups !<br /> page not found</h1>
           <p>
             We cannot reach the page you are looking for. The URL is maybe incorrect or the page does not exist anymore.
             <br />

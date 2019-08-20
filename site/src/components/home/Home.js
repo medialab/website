@@ -17,20 +17,21 @@ export default function Home({lang, grid, slider, rdv, tweets, github}) {
     <>
       <PageMeta
         lang={lang}
-        description={lang === 'fr' ? 'Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d\'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et sociales.': 'The médialab, an interdisciplinary research laboratory comprised of sociologists, engineers and designers, conducts thematic and methodological research to investigate the role of digital technology in our societies'}
-      />
-      <main role="main" aria-label={lang === "fr" ? "Page d'accueil" : "Homepage" }>
-        <section id="home" aria-label={lang === "fr" ? "Contenu de la page d'accueil" : "Homepage content" }>
+        description={lang === 'fr' ? 'Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d\'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et sociales.' : 'The médialab, an interdisciplinary research laboratory comprised of sociologists, engineers and designers, conducts thematic and methodological research to investigate the role of digital technology in our societies'} />
+      <main role="main" aria-label={lang === 'fr' ? "Page d'accueil" : 'Homepage'}>
+        <section id="home" aria-label={lang === 'fr' ? "Contenu de la page d'accueil" : 'Homepage content'}>
           <Slideshow slider={slider} lang={lang} />
-          <section id="introduction" aria-label={lang === "fr" ? "Présentation succinct du médialab" : "médialab short presentation" }>
+          <section id="introduction" aria-label={lang === 'fr' ? 'Présentation succinct du médialab' : 'médialab short presentation'}>
             <h1>Le médialab</h1>
             <p> Laboratoire de recherche interdisciplinaire, le&nbsp;médialab est un lieu de conception, de développement et d'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et&nbsp;sociales.</p>
-            <p><Link to={lang === 'fr' ? '/a-propos' : '/en/about'} aria-label={lang === 'fr' ? "Aller à la page de présentation du médialab" : "Go to médialab presentation page" }>{lang === 'fr' ? "En savoir plus" : "Get more information"}</Link></p>
+            <p><Link to={lang === 'fr' ? '/a-propos' : '/en/about'} aria-label={lang === 'fr' ? 'Aller à la page de présentation du médialab' : 'Go to médialab presentation page'}>{lang === 'fr' ? 'En savoir plus' : 'Get more information'}</Link></p>
           </section>
-          <Now now={grid} lang={lang}/>
+          <Now now={grid} lang={lang} />
           <Footer lang={lang} />
         </section>
-        <Flux rdv={rdv} tweets={tweets} github={github} lang={lang} />
+        <Flux
+          rdv={rdv} tweets={tweets} github={github}
+          lang={lang} />
       </main>
     </>
   );

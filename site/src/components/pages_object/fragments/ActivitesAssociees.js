@@ -23,13 +23,17 @@ const ActivitesAssociees = ({lang, activities}) => {
 
   // Placeholder
   return (
-    <aside className="container elements-associes-block" id="activities" role="complementary" aria-label={ lang ==='fr' ? related.fr : related.en }>
+    <aside
+      className="container elements-associes-block" id="activities" role="complementary"
+      aria-label={lang === 'fr' ? related.fr : related.en}>
       <h1><span data-icon="activite" /> {accroche} </h1>
 
       <div className="contenu">
         <ul className="liste_objet">
           {activities.map(a => (
-            <li itemProp="memberOf" itemScope itemType={a.type === 'research' ? 'https://schema.org/ResearchProject': 'https://schema.org/Project'} key={a.permalink.fr} data-type="activite" className="item">
+            <li
+              itemProp="memberOf" itemScope itemType={a.type === 'research' ? 'https://schema.org/ResearchProject' : 'https://schema.org/Project'}
+              key={a.permalink.fr} data-type="activite" className="item">
               <Link to={a.permalink[lang]}>
                 <div className="bandeau">
                   <p className="type-activity" data-icon="activite">{IsModel(a.type, lang)}</p>
@@ -39,8 +43,8 @@ const ActivitesAssociees = ({lang, activities}) => {
                   <h1 data-level-1="baseline" itemProp="description" >
                     <LanguageFallback lang={lang} translatedAttribute={a.baseline} />
                   </h1>
-                </hgroup>                   
-              </Link>         
+                </hgroup>
+              </Link>
             </li>
           ))}
         </ul>

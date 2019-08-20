@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'gatsby';
 import cls from 'classnames';
+import enums from 'enums';
 
 import Years from './Years';
 import {I18N_TYPE_LABELS} from '../../../i18n.js';
@@ -59,15 +60,16 @@ function InputFiltresType() {
 }
 
 function LabelFiltresType({lang, group}) {
+  const allowed = new Set(enums.productionTypes.groups[group].values);
 
-  if (group === 'media')
+  if (allowed.size < 2)
     return null;
 
   const typeLabels = I18N_TYPE_LABELS.productions[lang];
 
   return (
     <div className="filter-group" data-filter-group={group} aria-label={i18n[lang].filtresLabel}>
-      {Object.keys(typeLabels).map(k => {
+      {Object.keys(typeLabels).filter(k => allowed.has(k)).map(k => {
         const label = typeLabels[k];
 
         return (
@@ -114,7 +116,6 @@ export default function FilterProduction({lang, group, types, years}) {
       <label
         htmlFor="radio-phone-close" id="radio-phone-close_label" title={closeAlt}
         arial-label={closeAlt}>✕</label>
-
 
       <aside className="accroche-title-list" role="navigation">
         <h1 className="aside-title" data-icon="production">Productions</h1>

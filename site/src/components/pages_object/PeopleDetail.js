@@ -176,7 +176,63 @@ export const queryFragment = graphql`
   }
 `;
 
+function extractHandle(value) {
+  if (value.startsWith('http')) {
+    return value.split('/').slice(-1)[0];
+  }
+
+  return value;
+}
+
+const TWITTER_LABEL_REGEX = /twitter/i,
+      GITHUB_LABEL_REGEX = /github/i;
+
+// TODO: we should probably sort contacts...
 function PeopleContactLabel({lang, data}) {
+  if (data.label === 'Mail') {
+    const [identifer] = data.value.split('@');
+
+    return <p proptype="email">{data.label}: {identifer}</p>;
+  }
+
+  if (TWITTER_LABEL_REGEX.test(data.label)) {
+    const handle = extractHandle(data.value);
+    const url = `https://twitter.com/${handle}`;
+
+    return (
+      <span>
+        <span className="label-data">Twitter:</span>
+        &nbsp;
+        <a
+          proptype="url"
+          href={url}
+          target="_blank"
+          rel="noopener">
+          @{handle}
+        </a>
+      </span>
+    );
+  }
+
+  if (GITHUB_LABEL_REGEX.test(data.label)) {
+    const handle = extractHandle(data.value);
+    const url = `https://github.com/${handle}`;
+
+    return (
+      <span>
+        <span className="label-data">Github:</span>
+        &nbsp;
+        <a
+          proptype="url"
+          href={url}
+          target="_blank"
+          rel="noopener">
+          @{handle}
+        </a>
+      </span>
+    );
+  }
+
   if (data.type === 'url' && data.label !== 'CV') {
     return (
       <span>
@@ -184,12 +240,6 @@ function PeopleContactLabel({lang, data}) {
         &nbsp;<a proptype="url" href={data.value} target="_blank" rel="noopener" aria-label={lang === "fr" ? "Ouvrir cette page " + data.value : "Open this " + data.value +" page"}>{data.value}</a>
       </span>
     );
-  }
-
-  if (data.label === 'Mail') {
-    const [identifer] = data.value.split('@');
-
-    return <p proptype="email">{data.label}: {identifer}</p>;
   }
 
   return <a proptype="url" href={data.value}>{data.label}</a>;

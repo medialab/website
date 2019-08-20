@@ -2,10 +2,7 @@ import React from 'react';
 import {Link} from 'gatsby';
 
 import FilterActivity from './fragments/FilterActivity.js';
-import RawHTML from '../helpers/RawHtml.js';
-import {IsModel} from '../helpers/helpers.js';
 import ProcessedImage from '../helpers/ProcessedImage.js';
-import {templateMembership} from '../helpers/helpers.js';
 import LanguageFallback from '../helpers/LanguageFallback.js';
 import PageMeta from '../helpers/PageMeta.js';
 
@@ -22,7 +19,8 @@ const messagesMeta = {
 
 export default function ActivityListing({lang, list, status, statuses, topActivities, ...other}) {
   const activities = topActivities.map(ta => list.find(a => a.id === ta)).concat(list.filter(a => topActivities.indexOf(a.id) === -1));
-    return (
+
+  return (
       <>
         <PageMeta
           title={messagesMeta.title[lang]}
@@ -44,7 +42,7 @@ export default function ActivityListing({lang, list, status, statuses, topActivi
                         <ProcessedImage size="medium" image={a.coverImage && a.coverImage.processed && a.coverImage.processed.medium} data={a} />
                       </div>
                       <div className="bandeau">
-                        <p data-icon="activite" className="type-activity">{IsModel(a.type, lang)}</p>
+                        <p data-icon="activite" className="type-activity">{a.typeLabel[lang]}</p>
                         <p className="title" itemProp="name" data-level-2="title">{a.name}</p>
                       </div>
                       <hgroup>

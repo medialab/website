@@ -13,3 +13,6 @@ export const I18N_MODEL = {
     productions: 'Productions'
   }
 };
+
+
+// TODO: one day we should solve typeLabel & groupLabel this way to ease payloads

@@ -11,11 +11,13 @@ import LanguageFallback from '../../helpers/LanguageFallback.js';
 const i18n = {
   fr: {
     ariaLabel: 'Dernières actualités du médialab',
-    title: 'À la une'
+    title: 'À la une',
+    member: 'Membre du labo'
   },
   en: {
     ariaLabel: 'Lastest news from médialab',
-    title: 'Headlines'
+    title: 'Headlines',
+    member: 'Labo member'
   }
 };
 
@@ -56,7 +58,7 @@ export default function Now({now, lang}) {
               {item.model === 'people' &&
                 <>
                   <div className="bandeau">
-                    <p className="type-people" data-icon="people">{ lang === 'fr' ? 'Membre du labo' : 'Labo member'}</p>
+                    <p className="type-people" data-icon="people">{i18n[lang].member}</p>
                   </div>
                   <hgroup>
                     <h1 data-level-1="name">{item.data.firstName} {item.data.lastName}</h1>

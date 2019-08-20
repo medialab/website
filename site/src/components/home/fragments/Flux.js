@@ -1,21 +1,37 @@
 import React from 'react';
-import {Link} from 'gatsby';
 
 import Agenda from './flux/Agenda.js';
 import Git from './flux/Git.js';
 import Tweet from './flux/Tweet.js';
 
+const i18n = {
+  fr: {
+    status: 'Le médialab heure par heure',
+    agenda: 'Atteindre l\'agenda',
+    rdv: 'Rendez-vous',
+    git: 'Atteindre les derniers projets Git',
+    gitProject: 'Projets Git',
+    tweets: 'Atteindre les derniers tweets'
+  },
+  en: {
+    status: 'médialab\'s hourly status',
+    agenda: 'Reach the agenda',
+    rdv: 'Meeting',
+    git: 'Reach lastest git projects',
+    gitProject: 'Git projects',
+    tweets: 'Reach lastest tweet'
+  }
+};
+
 export default function flux({rdv, lang, tweets, github}) {
 	return (
-  <>
-
-    <section id="flux" aria-label={lang === 'fr' ? 'Le médialab heure par heure' : 'médialab : hourly status'}>
+    <section id="flux" aria-label={i18n[lang].status}>
       <div className="container">
 
         <ul className="flux_selection_container" role="navigation">
-          <li><a href="#agenda" aria-label={lang === 'fr' ? "Atteindre l'agenda" : 'Reach the diary'}>{ lang === 'fr' ? 'Rendez-vous' : 'Meeting'}</a></li>
-          <li><a href="#git" aria-label={lang === 'fr' ? 'Atteindre les dernier projet Git' : 'Reach lastest git project'}>{ lang === 'fr' ? 'Projets Git' : 'Git projects'}</a></li>
-          <li><a href="#tweet" aria-label={lang === 'fr' ? 'Atteindre les derniers tweets' : 'Reach lastest tweet'}>Tweets</a></li>
+          <li><a href="#agenda" aria-label={i18n[lang].agenda}>{i18n[lang].rdv}</a></li>
+          <li><a href="#git" aria-label={i18n[lang].git}>{i18n[lang].gitProject}</a></li>
+          <li><a href="#tweet" aria-label={i18n[lang].tweets}>Tweets</a></li>
         </ul>
 
         <Agenda rdv={rdv} lang={lang} />
@@ -23,11 +39,5 @@ export default function flux({rdv, lang, tweets, github}) {
         <Tweet lang={lang} tweets={tweets} />
       </div>
     </section>
-
-  </>
-  	);
+  );
 }
-
-
-//export default Flux;
-

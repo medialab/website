@@ -1,10 +1,14 @@
 import React from 'react';
-import {Link} from 'gatsby';
-import { Icons } from '../../../helpers/Icons.js';
-
+import {Icons} from '../../../helpers/Icons.js';
 
 import {format as formatDate, parseISO} from 'date-fns';
-import * as locales from 'date-fns/locale';
+import enLocale from 'date-fns/locale/en-US';
+import frLocale from 'date-fns/locale/fr';
+
+const locales = {
+  en: enLocale,
+  fr: frLocale
+};
 
 const formatDateTime = (isoDate, lang) => {
   const date = parseISO(isoDate);

@@ -1,6 +1,12 @@
 import React from 'react';
 import {format as formatDate, parseISO, differenceInCalendarDays, isSameYear, isSameMonth} from 'date-fns';
-import * as locales from 'date-fns/locale';
+import enLocale from 'date-fns/locale/en-US';
+import frLocale from 'date-fns/locale/fr';
+
+const locales = {
+  en: enLocale,
+  fr: frLocale
+};
 
 function DateNews(props) {
 

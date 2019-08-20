@@ -32,8 +32,16 @@ function FalseIcon({children}) {
 }
 
 export default class Editor extends PureComponent {
+  firstSave = true;
 
   handleOnSave = content => {
+
+    // We avoid first save not to have our forms be dirty when nothing happened
+    if (this.firstSave) {
+      this.firstSave = false;
+      return;
+    }
+
     const html = content ? rawToHtml(content) : '';
     this.props.onSave(html);
   };

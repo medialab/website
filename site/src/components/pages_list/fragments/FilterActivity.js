@@ -1,4 +1,5 @@
 import React from 'react';
+import {I18N_MODEL} from '../../../i18n.js';
 import {IsModel} from '../../helpers/helpers.js';
 import {Icons} from '../../helpers/Icons.js';
 import {SearchInput} from '../../helpers/SearchInput.js';
@@ -45,20 +46,20 @@ const FilterActivity = ({lang}) => {
   return (
     <>
 
-      <h1 className="type_title" data-icon="activite"><a href="#liste">{IsModel('activities', lang)}</a></h1>
+      <h1 className="type_title" data-icon="activite"><a href="#liste">{I18N_MODEL[lang].activities}</a></h1>
 
       <input type="radio" id="radio-phone-filters" name="radio-phone" value="filters" hidden />
-      <label htmlFor="radio-phone-filters" title={IsModel('filtersAlt', lang)} arial-label={filtersAlt}><Icons icon='search-filter' /></label>
+      <label htmlFor="radio-phone-filters" title={filtersAlt} arial-label={filtersAlt}><Icons icon='search-filter' /></label>
 
       <input type="radio" id="radio-phone-infos" name="radio-phone" value="infos" hidden />
-      <label htmlFor="radio-phone-infos" title={infosAlt} arial-label={IsModel('filtersAlt', lang)}><Icons icon='infos' /></label>
+      <label htmlFor="radio-phone-infos" title={infosAlt} arial-label={filtersAlt}><Icons icon='infos' /></label>
 
       <input type="radio" id="radio-phone-close" name="radio-phone" value="close" hidden />
       <label htmlFor="radio-phone-close" title={closeAlt} arial-label={closeAlt}>✕</label>
 
 
       <aside className="accroche-title-list" id="accroche-title-list">
-        <h1 className="aside-title" data-icon="activite" >{IsModel('activities', lang)}</h1>
+        <h1 className="aside-title" data-icon="activite" >{I18N_MODEL[lang].activities}</h1>
         <p id="aria-accroche">{accroche}</p>
       </aside>
 

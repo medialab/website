@@ -13,7 +13,7 @@ export default function LanguageFallback({translatedAttribute, lang}) {
     translatedAttribute &&
     translatedAttribute[otherLang]
   )
-    return <span className="opacity">{translatedAttribute[otherLang]}</span>;
+    return <span>{translatedAttribute[otherLang]}</span>;
 
   return '';
 }

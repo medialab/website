@@ -89,12 +89,6 @@ const MODEL_READERS = {
       if (node)
         deleteNode({node});
 
-      // Solving enums
-      activity.typeLabel = {
-        en: ENUMS.activityTypes.en[activity.type],
-        fr: ENUMS.activityTypes.fr[activity.type]
-      };
-
       // Processing HTML
       const content = template(pathPrefix, activity.content);
 
@@ -192,17 +186,6 @@ const MODEL_READERS = {
       solveEnum(ENUMS.productionTypes, 'type', production);
 
       production.group = PRODUCTION_TYPE_TO_GROUP[production.type || ENUMS.productionTypes.default];
-      const relevantGroupInfo = ENUMS.productionTypes.groups[production.group];
-
-      production.groupLabel = {
-        en: relevantGroupInfo.en,
-        fr: relevantGroupInfo.fr
-      };
-
-      production.typeLabel = {
-        en: ENUMS.productionTypes.en[production.type || ENUMS.productionTypes.default],
-        fr: ENUMS.productionTypes.fr[production.type || ENUMS.productionTypes.default]
-      };
 
       // if authors field is empty but we have people, let's fill the field.
       if ((!production.authors || production.authors === '') && production.people && production.people.length > 0)
@@ -252,12 +235,6 @@ const MODEL_READERS = {
       // Typography
       if (news.title && news.title.fr)
         news.title.fr = frenchTypographyReplace(news.title.fr);
-
-      // Solving enums
-      news.typeLabel = {
-        en: ENUMS.newsTypes.en[news.type],
-        fr: ENUMS.newsTypes.fr[news.type]
-      };
 
       // Processing HTML
       const content = template(pathPrefix, news.content);
@@ -488,6 +465,7 @@ exports.sourceNodes = function(args) {
     });
 
   // Some faceted enums for templating convenience
+  // TODO: this could go directly into integration code
   const facetedEnums = {
     activityStatuses: [
       {

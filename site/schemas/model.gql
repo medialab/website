@@ -68,7 +68,6 @@ type ActivitiesJson implements Node @infer {
   productions: [ProductionsJson]
 
   # Site specific
-  typeLabel: TranslatedString
 }
 
 type NewsJson implements Node @infer {
@@ -95,7 +94,6 @@ type NewsJson implements Node @infer {
 
   # Site specific
   isInternal: Boolean
-  typeLabel: TranslatedString
   expiry: Int
 }
 
@@ -149,8 +147,6 @@ type ProductionsJson implements Node @infer {
 
   # Site specific
   group: String
-  groupLabel: TranslatedString
-  typeLabel: TranslatedString
 }
 
 type FacetedEnumValue {

@@ -43,7 +43,7 @@ const PUBLIC_PATH = path.join(process.cwd(), 'public', 'static');
 const PRODUCTION_TYPE_TO_GROUP = {};
 
 _.forEach(ENUMS.productionTypes.groups, (group, key) => {
-  group.values.forEach(type => PRODUCTION_TYPE_TO_GROUP[type] = key);
+  group.values.forEach(type => (PRODUCTION_TYPE_TO_GROUP[type] = key));
 });
 
 /**

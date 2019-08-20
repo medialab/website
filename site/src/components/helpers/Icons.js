@@ -1,5 +1,6 @@
 import React from 'react';
 
+// TODO: should probably not work thusly...
 const icons = {
   'search-filter': () => {
     return (

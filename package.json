@@ -124,6 +124,8 @@
       "@yomguithereal/eslint-config/react"
     ],
     "rules": {
+      "no-confusing-arrow": 0,
+      "no-nested-ternary": 0,
       "react/jsx-no-bind": 0,
       "react/no-danger": 0,
       "react/no-set-state": 0,

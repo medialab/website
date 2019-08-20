@@ -7,7 +7,7 @@ import Flux from './fragments/Flux.js';
 import Footer from '../common/Footer.js';
 import PageMeta from '../helpers/PageMeta.js';
 
-const i18n = {
+const i18n = {
   fr: {
     description: 'Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d\'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et sociales.',
     home: 'Page d\'accueil',

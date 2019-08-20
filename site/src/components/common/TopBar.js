@@ -153,7 +153,7 @@ const TopBar = ({permalinks, lang}) => {
             <li>
               <a
                 href="http://tools.medialab.sciences-po.fr"
-                target="_blank" rel="noopener"
+                target="_blank" rel="noopener noreferrer"
                 aria-label={ariaLabelI18n[lang].tools}>{tool}</a>
             </li>
             <li><Link to={mainPermalinks[lang].seminar} aria-label={ariaLabelI18n[lang].seminar}>{seminar}</Link></li>

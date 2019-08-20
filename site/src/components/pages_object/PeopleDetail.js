@@ -199,7 +199,7 @@ function PeopleContactLabel({lang, data}) {
           proptype="url"
           href={url}
           target="_blank"
-          rel="noopener">
+          rel="noopener noreferrer">
           @{handle}
         </a>
       </span>
@@ -218,7 +218,7 @@ function PeopleContactLabel({lang, data}) {
           proptype="url"
           href={url}
           target="_blank"
-          rel="noopener">
+          rel="noopener noreferrer">
           @{handle}
         </a>
       </span>
@@ -235,7 +235,7 @@ function PeopleContactLabel({lang, data}) {
         <span className="label-data">{data.label}:</span>
         &nbsp;<a
           proptype="url" href={data.value} target="_blank"
-          rel="noopener" aria-label={lang === 'fr' ? 'Ouvrir cette page ' + data.value : 'Open this ' + data.value + ' page'}>{data.value}</a>
+          rel="noopener noreferrer" aria-label={lang === 'fr' ? 'Ouvrir cette page ' + data.value : 'Open this ' + data.value + ' page'}>{data.value}</a>
       </span>
     );
   }
@@ -258,7 +258,7 @@ const i18n = {
 
 export default function PeopleDetail({lang, person}) {
   // console.log(lang, person);
-  let {
+  const {
     titleLinkTeam,
     backTop,
     toggleNav

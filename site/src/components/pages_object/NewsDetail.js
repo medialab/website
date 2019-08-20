@@ -3,7 +3,6 @@ import {graphql} from 'gatsby';
 import RawHtml from '../helpers/RawHtml.js';
 import {Link} from 'gatsby';
 
-import Nav from '../common/Nav.js';
 import ToggleLang from './fragments/ToggleLang.js';
 import DateNews from '../helpers/DateNews.js';
 import TimeNews from '../helpers/TimeNews.js';
@@ -144,7 +143,6 @@ export default function NewsDetail({lang, news}) {
             <a
               itemType="https://schema.org/Thing"
               href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'actus' : 'en/news'}`}
-              href={'https://medialab.sciencespo.fr/news'}
               itemProp="item">
               <span itemProp="name">{lang === 'fr' ? 'Actualités' : 'News'}</span></a>
             <meta itemProp="position" content="2" />

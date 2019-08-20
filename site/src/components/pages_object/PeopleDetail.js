@@ -187,6 +187,8 @@ function extractHandle(value) {
 const TWITTER_LABEL_REGEX = /twitter/i,
       GITHUB_LABEL_REGEX = /github/i;
 
+const MAX_URL_LENGTH = 50;
+
 // TODO: we should probably sort contacts...
 function PeopleContactLabel({lang, data}) {
   if (data.label === 'Mail') {
@@ -233,7 +235,11 @@ function PeopleContactLabel({lang, data}) {
     );
   }
 
-  if (data.type === 'url' && data.label !== 'CV') {
+  if (
+    data.type === 'url' &&
+    data.label !== 'CV' &&
+    data.value.length <= MAX_URL_LENGTH
+  ) {
     return (
       <span>
         <span className="label-data">{data.label}:</span>

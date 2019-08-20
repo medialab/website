@@ -1,31 +1,36 @@
 import React from 'react';
-/*import {graphql} from 'gatsby';*/
 import {Link} from 'gatsby';
 import cls from 'classnames';
+
+import {I18N_TYPE_LABELS} from '../../../i18n.js';
 import {IsModel} from '../../helpers/helpers.js';
 import {Icons} from '../../helpers/Icons.js';
 import {SearchInput} from '../../helpers/SearchInput.js';
 
+const i18n = {
+  fr: {
+    accroche: 'Issues des dynamiques de recherche du laboratoire combinant méthode, analyse et théorie, les productions du médialab constituent un panorama hétéroclite. Aux traditionnelles publications académiques s’ajoute un ensemble de réalisations techniques qui répondent à des problèmes de recherche récurrents. Récemment, les sites web et réalisations en situation se sont développés comme de nouvelles formes pour rendre compte des activités du laboratoire.',
+    infosAlt: 'Informations à propos des productions',
+    closeAlt: 'Revenir aux productions',
+    filtresTitle: 'Filtre des productions',
+    filtresLabel: 'Filtrer par sous-type'
+  },
+  en: {
+    accroche: 'Description in english en une phrase de la catégorie production',
+    infosAlt: 'Informations about the productions',
+    closeAlt: 'Back to productions',
+    filtresTitle: 'Filters of productions',
+    filtresLabel: 'Filter by subtypes'
+  }
+};
 
 const FilterProduction = ({lang, group, types}) => {
-
-
-  let accroche, infosAlt, closeAlt, filtresTitle;
-
-	if (lang === 'fr') {
-    accroche = 'Issues des dynamiques de recherche du laboratoire combinant méthode, analyse et théorie, les productions du médialab constituent un panorama hétéroclite. Aux traditionnelles publications académiques s’ajoute un ensemble de réalisations techniques qui répondent à des problèmes de recherche récurrents. Récemment, les sites web et réalisations en situation se sont développés comme de nouvelles formes pour rendre compte des activités du laboratoire.';
-    infosAlt = 'Informations à propos des productions';
-    closeAlt = 'Revenir aux productions';
-    filtresTitle = 'Filtre des productions';
-
-	}
-	else {
-    accroche = 'Description in english en une phrase de la catégorie production';
-    infosAlt = 'Informations about the productions';
-    closeAlt = 'Back to productions';
-    filtresTitle = 'Filters of productions';
-  }
-
+  let {
+    accroche,
+    infosAlt,
+    closeAlt,
+    filtresTitle
+  } = i18n;
 
 	return (
   <>
@@ -56,7 +61,7 @@ const FilterProduction = ({lang, group, types}) => {
       <p id="aria-accroche">{accroche}</p>
     </aside>
 
-    <InputFiltresType lang={lang} group={group} />
+    <InputFiltresType />
 
     <aside className="aside-filters" aria-label={filtresTitle}>
 
@@ -107,12 +112,6 @@ const FilterProduction = ({lang, group, types}) => {
       </ul>
 
     </aside>
-
-
-    <script dangerouslySetInnerHTML={{__html: `
-        var name = 'world';
-        console.log('Hello ' + name);
-      `}} />
   </>
 	);
 };
@@ -120,165 +119,48 @@ const FilterProduction = ({lang, group, types}) => {
 export default FilterProduction;
 
 
-function InputFiltresType(values) {
+function InputFiltresType() {
 
-  const lang = values.lang;
-  const group = values.group;
-
-    return (
-      <>
-        <input
-          type="checkbox" id="filtre-production_article" name="filtre-production_article"
-          className="input_filtre-production" value="article" hidden />
-        <input
-          type="checkbox" id="filtre-production_communication" name="filtre-production_communication"
-          className="input_filtre-production" value="communication" hidden />
-        <input
-          type="checkbox" id="filtre-production_book" name="filtre-production_book"
-          className="input_filtre-production" value="book" hidden />
-        <input
-          type="checkbox" id="filtre-production_thesis" name="filtre-production_thesis"
-          className="input_filtre-production" value="thesis" hidden />
-        <input
-          type="checkbox" id="filtre-production_grey" name="filtre-production_grey"
-          className="input_filtre-production" value="grey" hidden />
-        <input
-          type="checkbox" id="filtre-production_software" name="filtre-production_software"
-          className="input_filtre-production" value="software" hidden />
-        <input
-          type="checkbox" id="filtre-production_code" name="filtre-production_code"
-          className="input_filtre-production" value="code" hidden />
-        <input
-          type="checkbox" id="filtre-production_datascape" name="filtre-production_datascape"
-          className="input_filtre-production" value="datascape" hidden />
-        <input
-          type="checkbox" id="filtre-production_website" name="filtre-production_website"
-          className="input_filtre-production" value="website" hidden />
-        <input
-          type="checkbox" id="filtre-production_exhibition" name="filtre-production_exhibition"
-          className="input_filtre-production" value="exhibition" hidden />
-        <input
-          type="checkbox" id="filtre-production_workshop" name="filtre-production_workshop"
-          className="input_filtre-production" value="workshop" hidden />
-        <input
-          type="checkbox" id="filtre-production_simulation" name="filtre-production_simulation"
-          className="input_filtre-production" value="simulation" hidden />
-        <input
-          type="checkbox" id="filtre-production_conference" name="filtre-production_conference"
-          className="input_filtre-production" value="conference" hidden />
-      </>
-    );
-
+  return (
+    <>
+      {Object.keys(I18N_TYPE_LABELS.productions.fr).map(k => {
+        return (
+          <input
+            key={k}
+            type="checkbox"
+            id={`filtre-production_${k}`}
+            name={`filtre-production_${k}`}
+            className="input_filtre-production"
+            value="article"
+            hidden />
+        );
+      })}
+    </>
+  );
 }
 
+function LabelFiltresType({lang, group}) {
 
-function LabelFiltresType(values) {
+  if (group === 'media')
+    return null;
 
-  const lang = values.lang;
-  const group = values.group;
+  const typeLabels = I18N_TYPE_LABELS.productions[lang];
 
-  let typePublications, typeWebEditions, typeTools, typeSituations, article, communication, book, thesis, grey, software, website, exhibition, conference;
+  return (
+    <div className="filter-group" data-filter-group={group} aria-label={i18n[lang].filtresLabel}>
+      {Object.keys(typeLabels).map(k => {
+        const label = typeLabels[k];
 
-  if (lang === 'fr') {
-    typePublications = 'Type de publications';
-    typeWebEditions = 'Type d‘éditions web';
-    typeTools = 'Type d‘outils';
-    typeSituations = 'Type de situations';
-
-    article = 'Articles';
-    communication = 'Communications';
-    book = 'Livres';
-    thesis = 'Thèses';
-    grey = 'Littérature grise';
-    software = 'Logiciels';
-    website = 'Sites web';
-    exhibition = 'Expositions';
-    conference = 'Conférences';
-  }
-  else {
-    typePublications = 'Publications‘ type';
-    typeWebEditions = 'Web Editions‘ type';
-    typeTools = 'Tools‘ type';
-    typeSituations = 'Situations‘ type';
-
-    article = 'Articles';
-    communication = 'Communications';
-    book = 'Books';
-    thesis = 'Thesis';
-    grey = 'Grey literature';
-    software = 'Software';
-    website = 'Websites';
-    exhibition = 'Exhibitions';
-    conference = 'Conferences';
-  }
-
-
-  if (group === 'publications') {
-    return (
-      <div className="filter-group" data-filter-group="publications" aria-label={lang === 'fr' ? 'Filtrer par sous-type' : 'Filter by subtypes'}>
-        <label
-          id="filtre-production_article_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_article"
-          aria-label={article}>{article}</label>
-        <label
-          id="filtre-production_communication_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_communication"
-          aria-label={communication}>{communication}</label>
-        <label
-          id="filtre-production_book_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_book"
-          aria-label={book}>{book}</label>
-        <label
-          id="filtre-production_thesis_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_thesis"
-          aria-label={thesis}>{thesis}</label>
-        <label
-          id="filtre-production_grey_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_grey"
-          aria-label={grey}>{grey}</label>
-      </div>
-    );
-  }
-else if (group === 'tools') {
-    return (
-      <div className="filter-group" data-filter-group="tools" aria-label={lang === 'fr' ? 'Filtrer par sous-type' : 'Filter by subtypes'}>
-        <label
-          id="filtre-production_software_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_software"
-          aria-label={software}>{software}</label>
-        <label
-          id="filtre-production_code_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_code"
-          aria-label="Code">Code</label>
-      </div>
-    );
-  }
- else if (group === 'webEditions') {
-    return (
-      <div className="filter-group" data-filter-group="webEditions" aria-label={lang === 'fr' ? 'Filtrer par sous-type' : 'Filter by subtypes'}>
-        <label
-          id="filtre-production_datascape_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_datascape"
-          aria-label="Datascape">Datascape</label>
-        <label
-          id="filtre-production_website_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_website"
-          aria-label={website}>{website}</label>
-      </div>
-    );
-  }
-else if (group === 'situations') {
-    return (
-      <div className="filter-group" data-filter-group="situations" aria-label={lang === 'fr' ? 'Filtrer par sous-type' : 'Filter by subtypes'}>
-        <label
-          id="filtre-production_exhibition_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_exhibition"
-          aria-label={exhibition}>{exhibition}</label>
-        <label
-          id="filtre-production_workshop_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_workshop"
-          aria-label="workshops">Workshops</label>
-        <label
-          id="filtre-production_simulation_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_simulation"
-          aria-label="Simulations">Simulations</label>
-        <label
-          id="filtre-production_conference_label" className="filtre-production checkbox-medialab" htmlFor="filtre-production_conference"
-          aria-label={conference}>{conference}</label>
-      </div>
-    );
-  }
-else {
-    return (<> </>);
-  }
-
+        return (
+          <label
+            key={k}
+            id={`filtre-production_${k}_label`}
+            className="filtre-production checkbox-medialab"
+            htmlFor={`filtre-production_${k}`}
+            aria-label={label}>{label}</label>
+        );
+      })}
+    </div>
+  );
 }
 

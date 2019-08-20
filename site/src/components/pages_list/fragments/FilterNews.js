@@ -1,33 +1,39 @@
 import React from 'react';
-/*import {graphql} from 'gatsby';*/
-//import {Link} from 'gatsby';
-import {IsModel} from '../../helpers/helpers.js';
+import {I18N_MODEL, I18N_TYPE_LABELS} from '../../../i18n.js';
 import {Icons} from '../../helpers/Icons.js';
 import {SearchInput} from '../../helpers/SearchInput.js';
 
-
 const MAX_NB_FILTER_ITEMS = 12;
+
+const i18n = {
+  fr: {
+    filterType: 'Filter par type',
+    filtersAlt: 'Afficher les filtres de la page',
+    gotoyear: 'Aller à l\'année…',
+    filtresTitle: 'Filtres des actualités',
+    closeAlt: 'Revenir aux actualités'
+  },
+  en: {
+    filterType: 'Filter by type',
+    filtersAlt: 'Show page filters',
+    gotoyear: 'Go to year…',
+    filtresTitle: 'Filters of news',
+    closeAlt: 'Back to news'
+  }
+};
 
 const FilterNews = ({lang, years}) => {
 
-  let filterType, event, post, notice, filtresTitle, closeAlt;
+  let {
+    filterType,
+    filtersAlt,
+    gotoyear,
+    filtresTitle,
+    closeAlt
+  } = i18n[lang];
+
   years = years.sort().reverse();
-  if (lang === 'fr') {
-    filterType = 'Filter par type';
-    event = 'Rendez-vous';
-    post = 'Chroniques';
-    notice = 'Annonces';
-    filtresTitle = 'Filtres des actualités';
-    closeAlt = 'Revenir aux actualités';
-  }
-  else {
-    filterType = 'Filter by type';
-    event = 'Events';
-    post = 'Posts';
-    notice = 'Notices';
-    filtresTitle = 'Filters of news';
-    closeAlt = 'Back to news';
-  }
+
   let suppYears = false;
 
   if (years.length > MAX_NB_FILTER_ITEMS) {
@@ -37,12 +43,12 @@ const FilterNews = ({lang, years}) => {
 
   return (
     <>
-      <h1 className="type_title" data-icon="actualite"><a href="#liste">{IsModel('news', lang)}</a></h1>
+      <h1 className="type_title" data-icon="actualite"><a href="#liste">{I18N_MODEL[lang].news}</a></h1>
 
       <input
         type="radio" id="radio-phone-filters" name="radio-phone"
         value="filters" hidden />
-      <label htmlFor="radio-phone-filters" title={IsModel('filtersAlt', lang)} arial-label={IsModel('filtersAlt', lang)}><Icons icon="search-filter" /></label>
+      <label htmlFor="radio-phone-filters" title={filtersAlt} arial-label={filtersAlt}><Icons icon="search-filter" /></label>
 
       <input
         type="radio" id="radio-phone-close" name="radio-phone"
@@ -67,12 +73,12 @@ const FilterNews = ({lang, years}) => {
         <SearchInput lang={lang} />
 
 
-        <div className="go-to-year" aria-label={IsModel('gotoyear', lang)}>
+        <div className="go-to-year" aria-label={gotoyear}>
           <input
             type="checkbox" id="checkbox_filtre_year" name="radio_filtre-actu"
             value="year" hidden />
           <label htmlFor="checkbox_filtre_year"><span><Icons icon="arrow" /></span></label>
-          <p aria-hidden="true">{IsModel('gotoyear', lang)} <span className="current-year" /></p>
+          <p aria-hidden="true">{gotoyear} <span className="current-year" /></p>
           <ul id="list-years">
             {years.map(y => (
               <li key={`year-${y}`} ><a href={`#year-${y}`} aria-label={lang === 'fr' ? "Aller à l'année " + y : 'Go to year ' + y}>{y}</a></li>
@@ -87,13 +93,13 @@ const FilterNews = ({lang, years}) => {
           <h1>{filterType}</h1>
           <label
             id="filtre-actu_event_label" className="filtre-actu checkbox-medialab" htmlFor="filtre-actu_event"
-            aria-label={event}>{event}</label>
+            aria-label={I18N_TYPE_LABELS.news[lang].event}>{I18N_TYPE_LABELS.news[lang].event}</label>
           <label
             id="filtre-actu_post_label" className="filtre-actu checkbox-medialab" htmlFor="filtre-actu_post"
-            aria-label={post}>{post}</label>
+            aria-label={I18N_TYPE_LABELS.news[lang].post}>{I18N_TYPE_LABELS.news[lang].post}</label>
           <label
             id="filtre-actu_notice_label" className="filtre-actu checkbox-medialab" htmlFor="filtre-actu_notice"
-            aria-label={notice}>{notice}</label>
+            aria-label={I18N_TYPE_LABELS.news[lang].notice}>{I18N_TYPE_LABELS.news[lang].notice}</label>
         </div>
 
       </aside>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Footer ({lang, content}) {
+export default function ToggleLang({lang, content}) {
 
   const enoughContentLength = 1500;
 

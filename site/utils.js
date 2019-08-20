@@ -21,7 +21,7 @@ exports.hashNode = function hashNode(data) {
 // Helper creating an internationalized page
 exports.createI18nPage = function createI18nPage(createPage, page) {
 
-  const englishPath = '/en' + page.path,
+  const englishPath = '/en' + (page.path === '/' ? ':' : page.path),
         frenchPath = page.frenchPath || page.path;
 
   // TODO: `current` & `translated` might not be useful

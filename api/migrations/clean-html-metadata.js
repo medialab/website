@@ -12,6 +12,7 @@ const MODELS = [
 const uuidv4 = /[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}/i;
 const nbsp = /&nbsp;/g;
 const reverseNbsp = /%%NBSP%%/g;
+const badBr = /<br\s*\/>/g;
 
 function cleanupHtml(assetsPath, html) {
   const $ = cheerio.load(`<div id="main">${html.replace(nbsp, '%%NBSP%%')}</div>`, {
@@ -66,7 +67,41 @@ function cleanupHtml(assetsPath, html) {
     $(this).attr('data-height', dimensions.height);
   });
 
-  return $('#main').html().replace(reverseNbsp, '&nbsp;');
+  // Putting img attributes back in order
+  $('img').each(function() {
+    const $img = $(this);
+    const width = $img.attr('data-width');
+    const height = $img.attr('data-height');
+    const credits = $img.attr('data-credits');
+    const format = $img.attr('data-format');
+    const src = $img.attr('src');
+
+    $img
+      .removeAttr('src')
+      .removeAttr('data-width')
+      .removeAttr('data-height')
+      .removeAttr('data-credits')
+      .removeAttr('data-format');
+
+    $img.attr('src', src);
+
+    if (width)
+      $img.attr('data-width', width);
+
+    if (height)
+      $img.attr('data-height', height);
+
+    if (credits)
+      $img.attr('data-credits', credits);
+
+    if (format)
+      $img.attr('data-format', format);
+  });
+
+  html = $('#main').html().replace(reverseNbsp, '&nbsp;');
+  html = html.replace(badBr, '<br>');
+
+  return html;
 }
 
 module.exports = assetsPath => {

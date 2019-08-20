@@ -385,7 +385,10 @@ class Form extends Component {
     const dirty = hash(data) !== lastHash;
     const validationError = validate(data);
     const state = {...this.state, dirty, validationError};
-    const URL = `${isFrenchPage(state) ? urlTranlsationMap[model] : model}/${slug}`;
+    const urls = {
+      fr: `${urlTranlsationMap[model]}/${slug}`,
+      en: `en/${model}/${slug}`
+    };
     const previewPropsFilter = compareTo => ({
       kind: !validationError && !dirty ? 'success' : 'white',
       disabled: dirty || validationError || isPage(compareTo)(state),
@@ -413,11 +416,11 @@ class Form extends Component {
                   frenchEditorContent: this.frenchEditorContent,
                   slug,
                   data,
-                  url: !isNew && `${STATIC_URL}/${URL}`,
+                  url: !isNew && `${STATIC_URL}/${urls.fr}`,
                   dirty
                 })],
-              [isFrenchPage, <Preview key="preview" url={URL} />],
-              [stubTrue, <Preview key="preview" url={`en/${URL}`} />]
+              [isFrenchPage, <Preview key="preview" url={urls.fr} />],
+              [stubTrue, <Preview key="preview" url={urls.en} />]
             ])(state)
           }
           <p style={{height: '70px'}} />

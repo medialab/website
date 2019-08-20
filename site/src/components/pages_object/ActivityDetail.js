@@ -3,7 +3,6 @@ import {graphql} from 'gatsby';
 import RawHtml from '../helpers/RawHtml.js';
 import {Link} from 'gatsby';
 
-import {join} from '../helpers/helpers.js';
 import ToggleLang from './fragments/ToggleLang.js';
 
 import Logo from '../assets/svg/logo_medialab.svg';
@@ -12,8 +11,7 @@ import ProcessedImage from '../helpers/ProcessedImage.js';
 
 import DateNews from '../helpers/DateNews.js';
 import TimeNews from '../helpers/TimeNews.js';
-import {format as formatDate, getYear, parseISO} from 'date-fns';
-import {IsModel} from '../helpers/helpers.js';
+import {I18N_TYPE_LABELS} from '../../i18n.js';
 
 import ProductionsAssociees from './fragments/ProductionsAssociees.js';
 import ActivitesAssociees from './fragments/ActivitesAssociees.js';
@@ -220,7 +218,7 @@ export default function ActivityDetail({lang, activity}) {
             <h3 data-level-3="description" itemProp="description"><RawHtml html={activity.description && activity.description.fr} /></h3>
           </hgroup>
           <div className="details">
-            <p className="type-objet"><span data-icon="activite" /> {IsModel(activity.type, 'fr')}</p>
+            <p className="type-objet"><span data-icon="activite" /> {I18N_TYPE_LABELS.activities[lang][activity.type]}</p>
             <DateNews
               isTimeSpan startDateSchemaProp={'foundingDate'} endDateSchemaProp={'dissolutionDate'}
               startDate={activity.startDate} endDate={activity.endDate} lang="fr" />
@@ -242,7 +240,7 @@ export default function ActivityDetail({lang, activity}) {
             <h3 data-level-3="description"><RawHtml html={activity.description && activity.description.en} /></h3>
           </hgroup>
           <div className="details">
-            <p className="type-objet"><span data-icon="activite" /> {IsModel(activity.type, 'en')}</p>
+            <p className="type-objet"><span data-icon="activite" /> {I18N_TYPE_LABELS.activities[lang][activity.type]}</p>
             <DateNews
               isTimeSpan startDate={activity.startDate} endDate={activity.endDate}
               lang="en" />

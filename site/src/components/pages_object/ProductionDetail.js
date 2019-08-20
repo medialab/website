@@ -4,18 +4,16 @@ import RawHtml from '../helpers/RawHtml.js';
 import DateNews from '../helpers/DateNews.js';
 import {Link} from 'gatsby';
 
-import Nav from '../common/Nav.js';
 import ToggleLang from './fragments/ToggleLang.js';
-import {IsModel, productionTypeToSchemaURL, productionTypeToZoteroType} from '../helpers/helpers.js';
+import {productionTypeToSchemaURL, productionTypeToZoteroType} from '../helpers/helpers.js';
+import {I18N_TYPE_LABELS, I18N_GROUP_LABELS} from '../../i18n.js';
 
 import Logo from '../assets/svg/logo_medialab.svg';
-import ProcessedImage from '../helpers/ProcessedImage.js';
 
 import ProductionsAssociees from './fragments/ProductionsAssociees.js';
 import ActivitesAssociees from './fragments/ActivitesAssociees.js';
 import ActuAssociees from './fragments/ActuAssociees.js';
 import MembresAssocies from './fragments/MembresAssocies.js';
-import FichiersAssocies from './fragments/FichiersAssocies.js';
 
 import LanguageFallback from '../helpers/LanguageFallback';
 import PageMeta from '../helpers/PageMeta.js';
@@ -127,7 +125,7 @@ export default function ProductionDetail({lang, production}) {
       </hgroup>
       <div className="details">
         <p className="type-objet">
-          <span data-icon="production" /> {IsModel(production.group, lang)} – {IsModel(production.type, lang)}
+          <span data-icon="production" /> {I18N_GROUP_LABELS.productions[lang][production.group]} – {I18N_TYPE_LABELS.productions[lang][production.type]}
         </p>
         <DateNews startDateSchemaProp="datePublished" startDate={production.date} lang={lang} />
         {ref}

@@ -4,7 +4,8 @@ import {SECTIONS} from '../../helpers/sections';
 
 import DateNews from '../../helpers/DateNews.js';
 import TimeNews from '../../helpers/TimeNews.js';
-import {IsModel, compare} from '../../helpers/helpers.js';
+import {I18N_TYPE_LABELS} from '../../../i18n.js';
+import {compare} from '../../helpers/helpers.js';
 import LanguageFallback from '../../helpers/LanguageFallback.js';
 import ProcessedImage from '../../helpers/ProcessedImage.js';
 
@@ -25,7 +26,7 @@ const ActuAssociees = ({lang, actu, isSeminar, filter, titles}) => {
     if (filter === 'future') {
       sorted = sorted.filter(actu => new Date(actu.startDate).getTime() > now).reverse();
     }
- else if (filter === 'past') {
+    else if (filter === 'past') {
       sorted = sorted.filter(actu => new Date(actu.startDate).getTime() < now);
     }
   }
@@ -34,7 +35,7 @@ const ActuAssociees = ({lang, actu, isSeminar, filter, titles}) => {
   if (titles) {
     accroche = titles[lang];
   }
- else if (lang === 'fr') {
+  else if (lang === 'fr') {
     accroche = related.fr + String.fromCharCode(8239);
   }
   else {
@@ -64,7 +65,7 @@ const ActuAssociees = ({lang, actu, isSeminar, filter, titles}) => {
                       image={n.coverImage && n.coverImage.processed.medium} />
                   </div>
                   <div className="bandeau">
-                    <p data-icon="news" className="type-news">{IsModel(n.type, lang)}</p>
+                    <p data-icon="news" className="type-news">{I18N_TYPE_LABELS.news[lang][n.type]}</p>
                     <p className="label-news"><LanguageFallback lang={lang} translatedAttribute={n.label} /></p>
                     <div>
                       <DateNews startDate={n.startDate} endDate={n.endDate} lang={lang} />
@@ -95,7 +96,7 @@ const ActuAssociees = ({lang, actu, isSeminar, filter, titles}) => {
             <li key={n.permalink.fr} data-type="activite" className="item">
               <Link to={n.permalink[lang]} className="accroche">
                 <div className="bandeau">
-                  <p data-icon="news" className="type">{IsModel(n.type, lang)} <span>{n.label && (lang === 'fr' ? n.label.fr : n.label.en)}</span></p>
+                  <p data-icon="news" className="type">{I18N_TYPE_LABELS.news[lang][n.type]} <span>{n.label && (lang === 'fr' ? n.label.fr : n.label.en)}</span></p>
                   <DateNews startDate={n.startDate} endDate={n.endDate} lang={lang} />
                   <TimeNews startDate={n.startDate} endDate={n.endDate} />
                 </div>

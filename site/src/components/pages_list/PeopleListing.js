@@ -3,7 +3,7 @@ import React from 'react';
 import {Link} from 'gatsby';
 
 import FiltreEquipe from './fragments/FiltreEquipe.js';
-import {IsModel} from '../helpers/helpers.js';
+import {I18N_TYPE_LABELS} from '../../i18n.js';
 import LanguageFallback from '../helpers/LanguageFallback.js';
 import RawHtml from '../helpers/RawHtml';
 
@@ -56,7 +56,7 @@ export default function PeopleListing({lang, list}) {
             <div className="details">
               <p className="role">{lang === 'fr' ? p.role && p.role.fr : p.role && p.role.en}</p>
               <p className="details-statut">{p.membership === 'member' ? 'Membre' : 'Associé'}</p>
-              <p className="domaine">{IsModel(p.domain, lang)}</p>
+              <p className="domaine">{I18N_TYPE_LABELS.people[lang][p.domain]}</p>
             </div>
           </div>
         </Link>

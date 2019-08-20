@@ -5,7 +5,7 @@ import FilterNews from './fragments/FilterNews.js';
 import DateNews from '../helpers/DateNews.js';
 import TimeNews from '../helpers/TimeNews.js';
 import ProcessedImage from '../helpers/ProcessedImage.js';
-import {IsModel} from '../helpers/helpers.js';
+import {I18N_TYPE_LABELS} from '../../i18n.js';
 import {format as formatDate, getYear, parseISO} from 'date-fns';
 
 import LanguageFallback from '../helpers/LanguageFallback.js';
@@ -75,7 +75,7 @@ export default function NewsListing({lang, list}) {
                           image={news.coverImage && news.coverImage.processed.medium} />
                       </div>
                         <div className="bandeau">
-                        <p data-icon="news" className="type-news">{IsModel(news.type, lang)}</p>
+                        <p data-icon="news" className="type-news">{I18N_TYPE_LABELS.news[lang][news.type]}</p>
                         <p className="label-news"><LanguageFallback lang={lang} translatedAttribute={news.label} /></p>
                         <div>
                           <DateNews startDate={news.startDate} endDate={news.endDate} lang={lang} />

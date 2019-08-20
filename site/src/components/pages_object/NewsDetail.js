@@ -7,8 +7,7 @@ import Nav from '../common/Nav.js';
 import ToggleLang from './fragments/ToggleLang.js';
 import DateNews from '../helpers/DateNews.js';
 import TimeNews from '../helpers/TimeNews.js';
-import {format as formatDate, getYear, parseISO} from 'date-fns';
-import {IsModel} from '../helpers/helpers.js';
+import {I18N_TYPE_LABELS} from '../../i18n.js';
 
 import Logo from '../assets/svg/logo_medialab.svg';
 import ProcessedImage from '../helpers/ProcessedImage.js';
@@ -212,7 +211,7 @@ export default function NewsDetail({lang, news}) {
             <div className="details">
               <p className="type-objet">
                 <span data-icon="news" />
-                <span className="type-news">{IsModel(news.type, 'fr')}</span>
+                <span className="type-news">{I18N_TYPE_LABELS.news[lang][news.type]}</span>
                 {news.label && news.label.fr ? <span>, {news.label.fr}</span> : ''}
               </p>
               <DateNews startDate={news.startDate} endDate={news.endDate} lang="fr" />
@@ -236,7 +235,7 @@ export default function NewsDetail({lang, news}) {
             <div className="details">
               <p className="type-objet">
                 <span data-icon="news" />
-                <span className="type-news">{IsModel(news.type, 'en')}</span>
+                <span className="type-news">{I18N_TYPE_LABELS.news[lang][news.type]}</span>
                 {news.label && news.label.en ? <span>, {news.label.en}</span> : ''}
               </p>
               <DateNews startDate={news.startDate} endDate={news.endDate} lang="en" />

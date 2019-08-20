@@ -1,9 +1,8 @@
 import React from 'react';
 import {Link} from 'gatsby';
-import {IsModel} from '../../helpers/helpers.js';
-import RawHTML from '../../helpers/RawHtml.js';
 
-import DateNews from '../../helpers/DateNews.js';
+import {I18N_TYPE_LABELS} from '../../../i18n.js';
+
 import ProcessedImage from '../../helpers/ProcessedImage.js';
 import LanguageFallback from '../../helpers/LanguageFallback.js';
 
@@ -71,7 +70,7 @@ else {
                       <ProcessedImage size="small" image={a.coverImage && a.coverImage.processed.small} data={a} />
                     </div>
                     <div className="bandeau">
-                      <p className="type-activity" data-icon="activite">{IsModel(a.type, lang)}</p>
+                      <p className="type-activity" data-icon="activite">{I18N_TYPE_LABELS.activities[lang][a.type]}</p>
                       <p className="title" data-level-2="title">{a.name}</p>
                     </div>
                     <hgroup>

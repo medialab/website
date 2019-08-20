@@ -30,13 +30,13 @@ export default function flux({rdv, lang, tweets, github}) {
 
         <ul className="flux_selection_container" role="navigation">
           <li><a href="#agenda" aria-label={i18n[lang].agenda}>{i18n[lang].rdv}</a></li>
-          <li><a href="#git" aria-label={i18n[lang].git}>{i18n[lang].gitProject}</a></li>
           <li><a href="#tweet" aria-label={i18n[lang].tweets}>Tweets</a></li>
+          <li><a href="#git" aria-label={i18n[lang].git}>{i18n[lang].gitProject}</a></li>
         </ul>
 
         <Agenda rdv={rdv} lang={lang} />
-        <Git lang={lang} github={github} />
         <Tweet lang={lang} tweets={tweets} />
+        <Git lang={lang} github={github} />
       </div>
     </section>
   );

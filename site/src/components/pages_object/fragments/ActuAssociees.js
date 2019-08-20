@@ -24,10 +24,10 @@ const ActuAssociees = ({lang, actu, isSeminar, filter, titles}) => {
   if (filter) {
     const now = new Date().getTime();
     if (filter === 'future') {
-      sorted = sorted.filter(actu => new Date(actu.startDate).getTime() > now).reverse();
+      sorted = sorted.filter(a => new Date(a.startDate).getTime() > now).reverse();
     }
     else if (filter === 'past') {
-      sorted = sorted.filter(actu => new Date(actu.startDate).getTime() < now);
+      sorted = sorted.filter(a => new Date(a.startDate).getTime() < now);
     }
   }
 
@@ -52,44 +52,43 @@ const ActuAssociees = ({lang, actu, isSeminar, filter, titles}) => {
         <ul className={`liste_objet ${isSeminar ? 'liste_seminaire' : ''} ${filter ? filter : ''}`}>
           {sorted.map((n, i) => isSeminar ?
           (
-            <React.Fragment key={n.permalink.fr}>
-              <li
-                itemProp="event" itemScope itemType="https://schema.org/Event"
-                data-item={i} data-type={n.type} className={`list-item ${n.type}`}>
-                <Link to={n.permalink[lang]}>
+            <li
+              key={n.permalink.fr}
+              itemProp="event" itemScope itemType="https://schema.org/Event"
+              data-item={i} data-type={n.type} className={`list-item ${n.type}`}>
+              <Link to={n.permalink[lang]}>
 
-                  <div className="image-pre" aria-hidden="true">
-                    <ProcessedImage
-                      data={n}
-                      size="medium"
-                      image={n.coverImage && n.coverImage.processed.medium} />
+                <div className="image-pre" aria-hidden="true">
+                  <ProcessedImage
+                    data={n}
+                    size="medium"
+                    image={n.coverImage && n.coverImage.processed.medium} />
+                </div>
+                <div className="bandeau">
+                  <p data-icon="news" className="type-news">{I18N_TYPE_LABELS.news[lang][n.type]}</p>
+                  <p className="label-news"><LanguageFallback lang={lang} translatedAttribute={n.label} /></p>
+                  <div>
+                    <DateNews startDate={n.startDate} endDate={n.endDate} lang={lang} />
+                    <TimeNews startDate={n.startDate} endDate={n.endDate} />
                   </div>
-                  <div className="bandeau">
-                    <p data-icon="news" className="type-news">{I18N_TYPE_LABELS.news[lang][n.type]}</p>
-                    <p className="label-news"><LanguageFallback lang={lang} translatedAttribute={n.label} /></p>
-                    <div>
-                      <DateNews startDate={n.startDate} endDate={n.endDate} lang={lang} />
-                      <TimeNews startDate={n.startDate} endDate={n.endDate} />
-                    </div>
-                  </div>
-                  <hgroup>
-                    <h1 itemProp="name" data-level-1="baseline" >
-                      <LanguageFallback lang={lang} translatedAttribute={n.title} />
-                    </h1>
-                  </hgroup>
-                  <div className="accroche">
-                    <p className="accroche-paragraphe">
-                      <LanguageFallback lang={lang} translatedAttribute={n.description} />
-                    </p>
-                  </div>
-                  <div
-                    style={{display: 'none'}} itemProp="location" itemScope
-                    itemType="https://schema.org/Place">
-                    <span itemProp="address">{n.place}</span>
-                  </div>
-                </Link>
-              </li>
-            </React.Fragment>
+                </div>
+                <hgroup>
+                  <h1 itemProp="name" data-level-1="baseline" >
+                    <LanguageFallback lang={lang} translatedAttribute={n.title} />
+                  </h1>
+                </hgroup>
+                <div className="accroche">
+                  <p className="accroche-paragraphe">
+                    <LanguageFallback lang={lang} translatedAttribute={n.description} />
+                  </p>
+                </div>
+                <div
+                  style={{display: 'none'}} itemProp="location" itemScope
+                  itemType="https://schema.org/Place">
+                  <span itemProp="address">{n.place}</span>
+                </div>
+              </Link>
+            </li>
           )
             :
           (

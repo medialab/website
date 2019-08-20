@@ -86,7 +86,7 @@ function LabelFiltresType({lang, group}) {
 }
 
 export default function FilterProduction({lang, group, types, years}) {
-  let {
+  const {
     accroche,
     infosAlt,
     closeAlt,

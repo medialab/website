@@ -23,7 +23,7 @@ const ProductionCard = ({p, lang}) => (
   </>
 );
 
-const ProductionsAssociees = ({lang, productions}) => {
+export default function ProductionsAssociees({lang, productions}) {
 
   const related = SECTIONS.productions;
 
@@ -45,7 +45,9 @@ const ProductionsAssociees = ({lang, productions}) => {
 
 	return (
     <aside
-      className="container elements-associes-block" id="productions" role="complementary"
+      className="container elements-associes-block"
+      id="productions"
+      role="complementary"
       aria-label={related[lang]}>
       <h1><span data-icon="production" /> {accroche}</h1>
       <div className="contenu">
@@ -73,6 +75,4 @@ const ProductionsAssociees = ({lang, productions}) => {
       </div>
     </aside>
 	);
-};
-
-export default ProductionsAssociees;
+}

@@ -21,7 +21,7 @@ const i18n = {
 
 const FilterNews = ({lang, years}) => {
 
-  let {
+  const {
     filterType,
     filtersAlt,
     filtresTitle,

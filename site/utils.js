@@ -24,8 +24,6 @@ exports.createI18nPage = function createI18nPage(createPage, page) {
   const englishPath = '/en' + (page.path === '/' ? ':' : page.path),
         frenchPath = page.frenchPath || page.path;
 
-  // TODO: `current` & `translated` might not be useful
-
   // Default page, same as French
   createPage({
     ...page,
@@ -34,8 +32,6 @@ exports.createI18nPage = function createI18nPage(createPage, page) {
       ...page.context,
       lang: 'fr',
       permalinks: {
-        current: frenchPath,
-        translated: englishPath,
         en: englishPath,
         fr: frenchPath
       }
@@ -54,8 +50,6 @@ exports.createI18nPage = function createI18nPage(createPage, page) {
       ...page.context,
       lang: 'en',
       permalinks: {
-        current: englishPath,
-        translated: frenchPath,
         en: englishPath,
         fr: frenchPath
       }

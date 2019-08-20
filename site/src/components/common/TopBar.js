@@ -6,6 +6,7 @@ import CloseCircle from '../assets/svg/close-circle.svg';
 
 const mainPermalinks = {
   en: {
+    home: '/en',
     about: '/en/about',
     seminar: '/en/activities/seminaire-du-medialab',
     activities: '/en/activities',
@@ -14,6 +15,7 @@ const mainPermalinks = {
     productions: '/en/productions'
   },
   fr: {
+    home: '/',
     about: '/a-propos',
     seminar: '/activites/seminaire-du-medialab',
     activities: '/activites',
@@ -110,7 +112,7 @@ const TopBar = ({permalinks, lang}) => {
       <div id="topbar-content">
         <div id="logo-medialab">
           <Link
-            to={lang === 'fr' ? '/' : '/en/'}
+            to={mainPermalinks[lang].home}
             id="back_button"
             title={ariaLabelI18n[lang].title}
             aria-label={ariaLabelI18n[lang].title}>

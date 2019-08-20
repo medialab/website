@@ -1,11 +1,19 @@
 import React from 'react';
 
 export default function LanguageFallback({translatedAttribute, lang}) {
-  if (translatedAttribute && translatedAttribute[lang] && translatedAttribute[lang] !== '')
+  if (
+    translatedAttribute &&
+    translatedAttribute[lang]
+  )
     return <span>{translatedAttribute[lang]}</span>;
-  else
-    if (translatedAttribute && translatedAttribute[lang === 'fr' ? 'en' : 'fr'] && translatedAttribute[lang === 'fr' ? 'en' : 'fr'] !== '')
-      return <span className="opacity">{translatedAttribute[lang === 'fr' ? 'en' : 'fr']}</span>;
-    else
-      return '';
+
+  const otherLang = lang === 'fr' ? 'en' : 'fr';
+
+  if (
+    translatedAttribute &&
+    translatedAttribute[otherLang]
+  )
+    return <span className="opacity">{translatedAttribute[otherLang]}</span>;
+
+  return '';
 }

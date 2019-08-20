@@ -37,10 +37,6 @@ export const query = graphql`
             }
           }
           type
-          typeLabel {
-            en
-            fr
-          }
         }
       }
     }

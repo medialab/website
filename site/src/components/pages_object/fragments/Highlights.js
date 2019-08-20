@@ -18,7 +18,7 @@ const ProductionCard = ({p, lang}) => {
       <div className="bandeau">
         <p className="type-production" data-icon="production"> {p.groupLabel[lang]}</p>
         {p.typeLabel !== 'media' &&
-          <p className="subtype-production"> {lang === 'fr' ? <span>{p.typeLabel.fr}</span> : <span>{p.typeLabel.en}</span>}</p>
+          <p className="subtype-production"> <span>{p.typeLabel[lang]}</span></p>
         }
         {p.authors && <p className="authors">{p.authors}</p>}
         { p.external && p.url && <p className="external" aria-label="production exterieure au médialab" title={lang === 'fr' ? 'Ce lien renvoi à une page exterieure au médialab' : 'This linked is external to médialab'} >⤤</p> }

@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
+import {I18N_TYPE_LABELS} from '../../i18n.js';
+
 import FilterActivity from './fragments/FilterActivity.js';
 import ProcessedImage from '../helpers/ProcessedImage.js';
 import LanguageFallback from '../helpers/LanguageFallback.js';
@@ -17,7 +19,7 @@ const messagesMeta = {
   }
 };
 
-export default function ActivityListing({lang, list, status, statuses, topActivities, ...other}) {
+export default function ActivityListing({lang, list, status, statuses, topActivities}) {
   const activities = topActivities.map(ta => list.find(a => a.id === ta)).concat(list.filter(a => topActivities.indexOf(a.id) === -1));
 
   return (
@@ -43,7 +45,7 @@ export default function ActivityListing({lang, list, status, statuses, topActivi
                       <ProcessedImage size="medium" image={a.coverImage && a.coverImage.processed && a.coverImage.processed.medium} data={a} />
                     </div>
                     <div className="bandeau">
-                      <p data-icon="activite" className="type-activity">{a.typeLabel[lang]}</p>
+                      <p data-icon="activite" className="type-activity">{I18N_TYPE_LABELS.activities[lang][a.type]}</p>
                       <p className="title" itemProp="name" data-level-2="title">{a.name}</p>
                     </div>
                     <hgroup>

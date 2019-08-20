@@ -16,7 +16,9 @@ const i18n = {
     filtresTitle: 'Filtre des productions',
     filtresLabel: 'Filtrer par sous-type',
     filtersAlt: 'Afficher les filtres de la page',
-    gotoyear: 'Aller à l\'année…'
+    gotoyear: 'Aller à l\'année…',
+    filterBy: 'Filtrer les production par…',
+    all: 'Toutes les productions'
   },
   en: {
     accroche: 'Description in english en une phrase de la catégorie production',
@@ -25,84 +27,16 @@ const i18n = {
     filtresTitle: 'Filters of productions',
     filtresLabel: 'Filter by subtypes',
     filtersAlt: 'Show page filters',
-    gotoyear: 'Go to year…'
+    gotoyear: 'Go to year…',
+    filterBy: 'Filter productions by…',
+    all: 'All productions'
   }
 };
 
-const FilterProduction = ({lang, group, types, years}) => {
-  let {
-    accroche,
-    infosAlt,
-    closeAlt,
-    filtresTitle,
-    filtersAlt,
-    gotoyear
-  } = i18n[lang];
-
-	return (
-  <>
-    <h1 className="type_title" data-icon="production" ><a href="#liste">Productions</a></h1>
-
-    <input
-      type="radio" id="radio-phone-filters" name="radio-phone"
-      value="filters" hidden />
-    <label
-      htmlFor="radio-phone-filters" id="radio-phone-filters_label" title={filtersAlt}
-      arial-label={filtersAlt}><Icons icon="search-filter" /></label>
-
-    <input
-      type="radio" id="radio-phone-infos" name="radio-phone"
-      value="infos" hidden />
-    <label htmlFor="radio-phone-infos" title={infosAlt} arial-label={infosAlt}><Icons icon="infos" /></label>
-
-    <input
-      type="radio" id="radio-phone-close" name="radio-phone"
-      value="close" hidden />
-    <label
-      htmlFor="radio-phone-close" id="radio-phone-close_label" title={closeAlt}
-      arial-label={closeAlt}>✕</label>
-
-
-    <aside className="accroche-title-list" role="navigation">
-      <h1 className="aside-title" data-icon="production">Productions</h1>
-      <p id="aria-accroche">{accroche}</p>
-    </aside>
-
-    <InputFiltresType />
-
-    <aside className="aside-filters" aria-label={filtresTitle}>
-
-      <h1 className="aside-title">{filtresTitle}</h1>
-
-      <SearchInput lang={lang} />
-      <Years lang={lang} years={years} />
-
-      <ul
-        id="list-filter-type" data-list-open={group} className="link-productions-sort"
-        aria-label={lang === 'fr' ? 'Filtrer les production par ...' : 'Filter productions by ...'}>
-        <li>
-          <Link to={lang === 'fr' ? '/productions' : '/en/productions'}>{lang === 'fr' ? 'Toutes les productions' : 'All productions'}</Link>
-        </li>
-        {types.map(g => {
-          return (
-            <li key={g.id} id={'li-filter-' + g.id} className={cls(g.id === group && 'pageProduction_current')}>
-              <Link to={g.permalink[lang]} aria-label={g.label[lang]} data-link={g.id}>
-                {g.label[lang]}
-                <span><Icons icon="arrow" /></span>
-              </Link>
-              <LabelFiltresType lang={lang} group={g.id} />
-            </li>
-          );
-        })}
-      </ul>
-
-    </aside>
-  </>
-	);
+const mainPermalink = {
+  fr: '/productions',
+  en: '/en/productions'
 };
-
-export default FilterProduction;
-
 
 function InputFiltresType() {
 
@@ -149,3 +83,73 @@ function LabelFiltresType({lang, group}) {
   );
 }
 
+export default function FilterProduction({lang, group, types, years}) {
+  let {
+    accroche,
+    infosAlt,
+    closeAlt,
+    filtresTitle,
+    filtersAlt
+  } = i18n[lang];
+
+	return (
+    <>
+      <h1 className="type_title" data-icon="production" ><a href="#liste">Productions</a></h1>
+
+      <input
+        type="radio" id="radio-phone-filters" name="radio-phone"
+        value="filters" hidden />
+      <label
+        htmlFor="radio-phone-filters" id="radio-phone-filters_label" title={filtersAlt}
+        arial-label={filtersAlt}><Icons icon="search-filter" /></label>
+
+      <input
+        type="radio" id="radio-phone-infos" name="radio-phone"
+        value="infos" hidden />
+      <label htmlFor="radio-phone-infos" title={infosAlt} arial-label={infosAlt}><Icons icon="infos" /></label>
+
+      <input
+        type="radio" id="radio-phone-close" name="radio-phone"
+        value="close" hidden />
+      <label
+        htmlFor="radio-phone-close" id="radio-phone-close_label" title={closeAlt}
+        arial-label={closeAlt}>✕</label>
+
+
+      <aside className="accroche-title-list" role="navigation">
+        <h1 className="aside-title" data-icon="production">Productions</h1>
+        <p id="aria-accroche">{accroche}</p>
+      </aside>
+
+      <InputFiltresType />
+
+      <aside className="aside-filters" aria-label={filtresTitle}>
+
+        <h1 className="aside-title">{filtresTitle}</h1>
+
+        <SearchInput lang={lang} />
+        <Years lang={lang} years={years} />
+
+        <ul
+          id="list-filter-type" data-list-open={group} className="link-productions-sort"
+          aria-label={i18n[lang].filterBy}>
+          <li>
+            <Link to={mainPermalink[lang]}>{i18n[lang].all}</Link>
+          </li>
+          {types.map(g => {
+            return (
+              <li key={g.id} id={'li-filter-' + g.id} className={cls(g.id === group && 'pageProduction_current')}>
+                <Link to={g.permalink[lang]} aria-label={g.label[lang]} data-link={g.id}>
+                  {g.label[lang]}
+                  <span><Icons icon="arrow" /></span>
+                </Link>
+                <LabelFiltresType lang={lang} group={g.id} />
+              </li>
+            );
+          })}
+        </ul>
+
+      </aside>
+    </>
+	);
+}

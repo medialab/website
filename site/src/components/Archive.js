@@ -1,15 +1,9 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
-import Nav from './common/Nav.js';
-
-import RawHtml from './helpers/RawHtml';
-import {IsModel} from './helpers/helpers.js';
-import {templateMembership} from './helpers/helpers.js';
+import {I18N_TYPE_LABELS} from '../i18n.js';
 
 import DateNews from './helpers/DateNews.js';
-import TimeNews from './helpers/TimeNews.js';
-import {format as formatDate, getYear, parseISO} from 'date-fns';
 
 export default function Archive({lang, activities, news, productions}) {
 
@@ -27,7 +21,7 @@ export default function Archive({lang, activities, news, productions}) {
                   <li key={n.permalink.fr} data-type="actualite" className="item">
                     <Link to={n.permalink[lang]}>
                       <div className="bandeau">
-                        <p data-icon="news" className="type-news">{IsModel(n.type, lang)}</p>
+                        <p data-icon="news" className="type-news">{I18N_TYPE_LABELS.news[lang][n.type]}</p>
                         <p className="label-news">{n.label && (lang === 'fr' ? <span>{n.label.fr}</span> : <span>{n.label.en}</span>)}</p>
 
                         <DateNews startDate={n.startDate} endDate={n.endDate} lang={lang} />
@@ -72,7 +66,7 @@ export default function Archive({lang, activities, news, productions}) {
                   <li key={a.permalink.fr} data-type="activite" className="item">
                     <Link to={a.permalink[lang]}>
                       <div className="bandeau">
-                        <p className="type-activity" data-icon="activite">{IsModel(a.type, lang)}</p>
+                        <p className="type-activity" data-icon="activite">{I18N_TYPE_LABELS.activities[lang][a.type]}</p>
                         <p className="title" data-level-2="title">{a.name}</p>
                       </div>
                       <hgroup>

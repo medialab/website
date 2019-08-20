@@ -1,3 +1,5 @@
+// NOTE: this module does not exist per se.
+// It is injected by webpack as an alias for the one in `specs`.
 import enums from 'enums';
 
 // Generic i18n strings.

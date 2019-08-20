@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'gatsby';
 import {SECTIONS} from '../../helpers/sections';
 import DateNews from '../../helpers/DateNews.js';
-import {productionTypeToSchemaURL} from '../../helpers/helpers.js';
+import {compare, productionTypeToSchemaURL} from '../../helpers/helpers.js';
 
 import LanguageFallback from '../../helpers/LanguageFallback.js';
 
@@ -15,7 +15,7 @@ const ProductionsAssociees = ({lang, productions}) => {
 
   // sort
   const productionsSorted = productions.slice().sort((a, b) => {
-    return -(a.date || '0').localeCompare(b.date || '0');
+    return -compare(a.date || '0', b.date || '0');
   });
 
 	let accroche;

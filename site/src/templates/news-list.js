@@ -3,6 +3,7 @@ import {graphql} from 'gatsby';
 
 import Layout from '../components/Layout';
 import NewsListing from '../components/pages_list/NewsListing';
+import { compare } from '../components/helpers/helpers';
 
 export const query = graphql`
   {
@@ -54,16 +55,16 @@ export default ({data, pageContext}) => {
     .map(e => e.node)
     .sort(({startDate:aStart, endDate:aEnd}, {startDate:bStart, endDate:bEnd}) => {
       if (bEnd && aEnd) {
-        return bEnd.localeCompare(aEnd)
+        return compare(bEnd, aEnd);
       }
       else if (!bEnd && aEnd) {
-        return bStart.localeCompare(aEnd);
+        return compare(bStart, aEnd);
       }
       else if (bEnd && !aEnd) {
-        return bEnd.localeCompare(aStart);
+        return compare(bEnd, aStart);
       }
       else {
-        return bStart.localeCompare(aStart);
+        return compare(bStart, aStart);
       }
     });
 

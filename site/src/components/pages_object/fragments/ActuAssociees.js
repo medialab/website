@@ -4,7 +4,7 @@ import {SECTIONS} from '../../helpers/sections';
 
 import DateNews from '../../helpers/DateNews.js';
 import TimeNews from '../../helpers/TimeNews.js';
-import {IsModel} from '../../helpers/helpers.js';
+import {IsModel, compare} from '../../helpers/helpers.js';
 import LanguageFallback from '../../helpers/LanguageFallback.js';
 import ProcessedImage from '../../helpers/ProcessedImage.js';
 
@@ -18,7 +18,7 @@ const ActuAssociees = ({lang, actu, isSeminar, filter, titles}) => {
     return null;
 
   let sorted = actu.slice().sort((a, b) => {
-    return -a.startDate.localeCompare(b.startDate);
+    return -compare(a.startDate, b.startDate);
   });
   if (filter) {
     const now = new Date().getTime();
@@ -81,7 +81,7 @@ const ActuAssociees = ({lang, actu, isSeminar, filter, titles}) => {
                 </Link>
               </li>
             </React.Fragment>
-          ) 
+          )
             :
           (
             <li key={n.permalink.fr} data-type="activite" className="item">

@@ -4,7 +4,7 @@ import {Link} from 'gatsby';
 import FilterProduction from './fragments/FilterProduction.js';
 import DateNews from '../helpers/DateNews.js';
 import RawHTML from '../helpers/RawHtml.js';
-import {productionTypeToSchemaURL} from '../helpers/helpers.js';
+import {compare, productionTypeToSchemaURL} from '../helpers/helpers.js';
 import {format as formatDate, getYear, parseISO} from 'date-fns';
 
 import LanguageFallback from '../helpers/LanguageFallback.js';
@@ -34,7 +34,7 @@ export default function ProductionListing({lang, list, group, types}) {
           p.date = ''+new Date().getFullYear();
         return p;
       })
-      .sort((a, b) => b.date.localeCompare(a.date))
+      .sort((a, b) => compare(b.date, a.date))
       .forEach(production => {
         let year = getYear(parseISO(production.date));
 
@@ -95,7 +95,7 @@ export default function ProductionListing({lang, list, group, types}) {
                         </div>
                         {/* microdata-related invisible elements */}
                         <div style={{display: 'none'}}>
-                          {p.type === 'software' && 
+                          {p.type === 'software' &&
                             <>
                               <div itemProp="applicationCategory">Scientific</div>
                               <div itemProp="operatingSystem">*</div>

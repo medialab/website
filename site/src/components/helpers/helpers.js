@@ -1,5 +1,14 @@
 import React from 'react';
 
+export function compare(a, b) {
+  if (a < b)
+    return -1;
+  if (a > b)
+    return 1;
+
+  return 0;
+}
+
 // ellipse function
 export function ellipse(text, maxSize = 175) {
   if (text.length > maxSize) {

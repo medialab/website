@@ -60,7 +60,11 @@ export default function ProductionListing({lang, list, group, types}) {
           description={messagesMeta.description[lang]}
           lang={lang} />
         <main role="main" aria-describedby="aria-accroche">
-          <FilterProduction lang={lang} group={group} types={types} />
+          <FilterProduction
+            lang={lang}
+            group={group}
+            types={types}
+            years={Array.from(yearGroups.keys())} />
           <section className="main-filters" />
 
           <section id="liste" className="main-container">
@@ -69,7 +73,7 @@ export default function ProductionListing({lang, list, group, types}) {
               {
             Array.from(yearGroups.entries()).sort(byYear).map(([year, yearList]) => (
               <React.Fragment key={year}>
-                <li id={year === 2008 ? 'years-before-2009' : `year-${year}`} className="list-year">
+                <li id={`year-${year}`} className="list-year">
                   {/* <span>{year}</span>*/}
                 </li>
 

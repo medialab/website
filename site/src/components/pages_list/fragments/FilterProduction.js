@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'gatsby';
 import cls from 'classnames';
 
+import Years from './Years';
 import {I18N_TYPE_LABELS} from '../../../i18n.js';
 import {Icons} from '../../helpers/Icons.js';
 import {SearchInput} from '../../helpers/SearchInput.js';
@@ -28,7 +29,7 @@ const i18n = {
   }
 };
 
-const FilterProduction = ({lang, group, types}) => {
+const FilterProduction = ({lang, group, types, years}) => {
   let {
     accroche,
     infosAlt,
@@ -74,29 +75,7 @@ const FilterProduction = ({lang, group, types}) => {
       <h1 className="aside-title">{filtresTitle}</h1>
 
       <SearchInput lang={lang} />
-
-      <div className="go-to-year">
-        <input
-          type="checkbox" id="checkbox_filtre_year" name="radio_filtre-actu"
-          value="year" hidden />
-        <label htmlFor="checkbox_filtre_year" aria-label={gotoyear}><span><Icons icon="arrow" /></span></label>
-        <p>{gotoyear}</p>
-        <ul id="list-years">
-          <li><a href="#year-2019" data-year="#year-2019" aria-label={lang === 'fr' ? "Aller à l'année 2019" : 'Go to year 2019'}>2019</a></li>
-          <li><a href="#year-2018" data-year="#year-2018" aria-label={lang === 'fr' ? "Aller à l'année 2018" : 'Go to year 2018'}>2018</a></li>
-          <li><a href="#year-2017" data-year="#year-2017" aria-label={lang === 'fr' ? "Aller à l'année 2017" : 'Go to year 2017'}>2017</a></li>
-          <li><a href="#year-2016" data-year="#year-2016" aria-label={lang === 'fr' ? "Aller à l'année 2016" : 'Go to year 2016'}>2016</a></li>
-          <li><a href="#year-2015" data-year="#year-2015" aria-label={lang === 'fr' ? "Aller à l'année 2015" : 'Go to year 2015'}>2015</a></li>
-          <li><a href="#year-2014" data-year="#year-2014" aria-label={lang === 'fr' ? "Aller à l'année 2014" : 'Go to year 2014'}>2014</a></li>
-          <li><a href="#year-2013" data-year="#year-2013" aria-label={lang === 'fr' ? "Aller à l'année 2013" : 'Go to year 2013'}>2013</a></li>
-          <li><a href="#year-2012" data-year="#year-2012" aria-label={lang === 'fr' ? "Aller à l'année 2012" : 'Go to year 2012'}>2012</a></li>
-          <li><a href="#year-2011" data-year="#year-2011" aria-label={lang === 'fr' ? "Aller à l'année 2011" : 'Go to year 2011'}>2011</a></li>
-          <li><a href="#year-2010" data-year="#year-2010" aria-label={lang === 'fr' ? "Aller à l'année 2010" : 'Go to year 2010'}>2010</a></li>
-          <li><a href="#year-2009" data-year="#year-2009" aria-label={lang === 'fr' ? "Aller à l'année 2009" : 'Go to year 2009'}>2009</a></li>
-          <li><a href="#years-before-2009" aria-label={lang === 'fr' ? 'Aller aux années précédant 2009' : 'Go to years before 2009'}>&lt; 2009</a></li>
-        </ul>
-      </div>
-
+      <Years lang={lang} years={years} />
 
       <ul
         id="list-filter-type" data-list-open={group} className="link-productions-sort"
@@ -105,16 +84,16 @@ const FilterProduction = ({lang, group, types}) => {
           <Link to={lang === 'fr' ? '/productions' : '/en/productions'}>{lang === 'fr' ? 'Toutes les productions' : 'All productions'}</Link>
         </li>
         {types.map(g => {
-                return (
-                  <li key={g.id} id={'li-filter-' + g.id} className={cls(g.id === group && 'pageProduction_current')}>
-                    <Link to={g.permalink[lang]} aria-label={g.label[lang]} data-link={g.id}>
-                      {g.label[lang]}
-                      <span><Icons icon="arrow" /></span>
-                    </Link>
-                    <LabelFiltresType lang={lang} group={g.id} />
-                  </li>
-                );
-              })}
+          return (
+            <li key={g.id} id={'li-filter-' + g.id} className={cls(g.id === group && 'pageProduction_current')}>
+              <Link to={g.permalink[lang]} aria-label={g.label[lang]} data-link={g.id}>
+                {g.label[lang]}
+                <span><Icons icon="arrow" /></span>
+              </Link>
+              <LabelFiltresType lang={lang} group={g.id} />
+            </li>
+          );
+        })}
       </ul>
 
     </aside>

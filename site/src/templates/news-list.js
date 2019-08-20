@@ -32,10 +32,6 @@ export const query = graphql`
             fr
           }
           type
-          typeLabel {
-            en
-            fr
-          }
           coverImage {
             url
             processed {

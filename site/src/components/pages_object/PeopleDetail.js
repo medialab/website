@@ -82,10 +82,6 @@ export const queryFragment = graphql`
         }
       }
       group
-      typeLabel {
-        en
-        fr
-      }
       external
       url
     }

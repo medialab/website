@@ -20,10 +20,6 @@ export const query = graphql`
           }
           type,
           group,
-          typeLabel {
-            en
-            fr
-          }
           permalink {
             en
             fr

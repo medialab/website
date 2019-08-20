@@ -17,10 +17,6 @@ export const query = graphql`
             fr
           }
           type
-          typeLabel {
-            en
-            fr
-          }
           description {
             en
             fr
@@ -59,10 +55,6 @@ export const query = graphql`
             fr
           }
           type
-          typeLabel {
-            en
-            fr
-          }
           startDate
           endDate
         }
@@ -82,10 +74,6 @@ export const query = graphql`
           }
           type,
           group,
-          typeLabel {
-            en
-            fr
-          }
           permalink {
             en
             fr

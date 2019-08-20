@@ -23,49 +23,40 @@ const mainPermalinks = {
   }
 };
 
+const i18n = {
+  fr: {
+    news: 'Actualités',
+    prod: 'Productions',
+    activite: 'Activités',
+    medialab: 'Le médialab',
+    team: 'L\'équipe',
+    seminar: 'Séminaire',
+    tool: 'Outils'
+  },
+  en: {
+    news: 'News',
+    prod: 'Productions',
+    activite: 'Activities',
+    medialab: 'The médialab',
+    team: 'Team',
+    seminar: 'Seminar',
+    tool: 'Tools'
+  }
+};
+
 const Link = (props) => <BasicLink partiallyActive activeClassName={'active'} {...props} />;
 
 const TopBar = ({permalinks, lang}) => {
 
-  let now = null;
-  let agenda = null;
-  let flux = null;
-  let news = null;
-  let prod = null;
-  let activite = null;
-  let medialab = null;
-  let team = null;
-  let seminar = null;
-  let tool = null;
-  let archive = null;
-
-  if (lang === 'fr') {
-    now = 'En ce moment';
-    agenda = 'Les rendez-vous du labo';
-    flux = 'Flux';
-    news = 'Actualités';
-    prod = 'Productions';
-    activite = 'Activités';
-    medialab = 'Le médialab';
-    team = "L'équipe";
-    seminar = 'Séminaire';
-    tool = 'Outils';
-    archive = 'Archives';
-  }
-  else {
-    now = 'The news';
-    agenda = "Lab's appointment";
-    flux = 'Flux';
-    news = 'News';
-    prod = 'Productions';
-    activite = 'Activities';
-    medialab = 'The médialab';
-    team = 'The team';
-    seminar = 'Seminar';
-    tool = 'Tools';
-    archive = 'Archives';
-
-  }
+  const {
+    news,
+    prod,
+    activite,
+    medialab,
+    team,
+    seminar,
+    tool
+  } = i18n[lang];
 
 	return (
   <header id="topbar" role="banner" aria-label={lang === 'fr' ? 'Navigation globale du site' : 'Website global navigation'}>

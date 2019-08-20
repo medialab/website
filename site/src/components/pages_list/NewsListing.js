@@ -6,7 +6,7 @@ import DateNews from '../helpers/DateNews.js';
 import TimeNews from '../helpers/TimeNews.js';
 import ProcessedImage from '../helpers/ProcessedImage.js';
 import {I18N_TYPE_LABELS} from '../../i18n.js';
-import {format as formatDate, getYear, parseISO} from 'date-fns';
+import {getYear, parseISO} from 'date-fns';
 
 import LanguageFallback from '../helpers/LanguageFallback.js';
 

@@ -12,7 +12,7 @@ const MODELS = [
 const uuidv4 = /[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}/i;
 const nbsp = /&nbsp;/g;
 const reverseNbsp = /%%NBSP%%/g;
-const badBr = /<br\s*\/>/g;
+const badBr = /<br\s*\/>|<\/\s*br>/g;
 
 function cleanupHtml(assetsPath, html) {
   const $ = cheerio.load(`<div id="main">${html.replace(nbsp, '%%NBSP%%')}</div>`, {

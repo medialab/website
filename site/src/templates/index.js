@@ -31,7 +31,10 @@ export const query = graphql`
                 en
                 fr
               }
-              type
+              typeLabel {
+                en
+                fr
+              }
             }
             ... on NewsJson {
               coverImage {
@@ -52,7 +55,10 @@ export const query = graphql`
                 en
                 fr
               }
-              type
+              typeLabel {
+                en
+                fr
+              }
               startDate
               endDate
             }
@@ -75,7 +81,6 @@ export const query = graphql`
                 en
                 fr
               }
-              type
               typeLabel {
                 en
                 fr

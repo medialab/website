@@ -20,9 +20,12 @@ const i18n = {
   }
 };
 
-const Footer = ({lang}) => {
+const permalink = {
+  fr: '/legal',
+  en: '/en/legal'
+};
 
-  const relLang = lang === 'en' ? '/en' : '';
+const Footer = ({lang}) => {
 
 	return (
     <footer
@@ -34,7 +37,7 @@ const Footer = ({lang}) => {
             médialab Science Po<br />
             27 rue St Guillaume, Paris VII
           </p>
-          <p><Link to={`${relLang}/legal`} aria-label={i18n[lang].legal}>Mentions legales</Link></p>
+          <p><Link to={permalink[lang]} aria-label={i18n[lang].legal}>Mentions legales</Link></p>
         </div>
         <ul className="contact">
           <li><a

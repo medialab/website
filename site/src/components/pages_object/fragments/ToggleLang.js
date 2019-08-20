@@ -62,7 +62,6 @@ export default function ToggleLang({lang, content}) {
         <span aria-hidden="true">Click here to see it.</span>
       </label>
       }
-
     </>
   );
 }

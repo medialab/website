@@ -28,6 +28,10 @@ export const I18N_TYPE_LABELS = {
     fr: enums.newsTypes.fr,
     en: enums.newsTypes.en
   },
+  people: {
+    fr: enums.domains.fr,
+    en: enums.domains.en
+  },
   productions: {
     fr: enums.productionTypes.fr,
     en: enums.productionTypes.en

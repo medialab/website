@@ -1,41 +1,52 @@
 import React from 'react';
-/*import {graphql} from 'gatsby';
-import {Link} from 'gatsby';*/
-import {IsModel} from '../../helpers/helpers.js';
+
+import {I18N_MODEL, I18N_TYPE_LABELS} from '../../../i18n.js';
 import {Icons} from '../../helpers/Icons.js';
 import {SearchInput} from '../../helpers/SearchInput.js';
 
+const i18n = {
+  fr: {
+    member: 'Membres',
+    associate: 'Associés',
+    filterDomain: 'Filtrer par domaine',
+    filterMember: 'Filtrer par appartenance',
+    accroche: 'Composée d’hommes et de femmes aux compétences complémentaires, l’équipe du médialab est plurielle. Membres ou associés au laboratoire, ces profils académiques, techniques, en design, ou encore en pédagogie se combinent et travaillent ensemble pour aviver la force des activités du laboratoire.',
+    filtersAlt: 'Afficher les filtres de la page',
+    infosAlt: 'Informations à propos de l\'équipe',
+    filtresTitle: 'Filtres de l\'équipe',
+    closeAlt: 'Revenir à la liste des membres'
+  },
+  en: {
+    member: 'Members',
+    associate: 'Associates',
+    filterDomain: 'Filter by domain',
+    filterMember: 'Filter by membership',
+    accroche: 'Composée d’hommes et de femmes aux compétences complémentaires, l’équipe du médialab est plurielle. Membres ou associés au laboratoire, ces profils académiques, techniques, en design, ou encore en pédagogie se combinent et travaillent ensemble pour aviver la force des activités du laboratoire.',
+    filtersAlt: 'Show page filters',
+    infosAlt: 'Informations about the team',
+    filtresTitle: 'Filters of the team',
+    closeAlt: 'Back to the members list'
+  }
+};
+
 const FiltreEquipe = ({lang}) => {
 
-  let title, member, associate, filterDomain, filterMember, accroche, filtersAlt, infosAlt, filtresTitle, closeAlt;
-
-  if (lang === 'fr') {
-	  member = 'Membres';
-    associate = 'Associés';
-    filterDomain = 'Filtrer par domaine';
-    filterMember = 'Filtrer par appartenance';
-    accroche = 'Composée d’hommes et de femmes aux compétences complémentaires, l’équipe du médialab est plurielle. Membres ou associés au laboratoire, ces profils académiques, techniques, en design, ou encore en pédagogie se combinent et travaillent ensemble pour aviver la force des activités du laboratoire.';
-    filtersAlt = 'Afficher les filtres de la page';
-    infosAlt = "Informations à propos de l'équipe";
-    filtresTitle = "Filtres de l'équipe";
-    closeAlt = 'Revenir à la liste des membres';
-  }
-	else {
-		member = 'Members';
-    associate = 'Associates';
-    filterDomain = 'Filter by domain';
-    filterMember = 'Filter by membership';
-    accroche = 'Composée d’hommes et de femmes aux compétences complémentaires, l’équipe du médialab est plurielle. Membres ou associés au laboratoire, ces profils académiques, techniques, en design, ou encore en pédagogie se combinent et travaillent ensemble pour aviver la force des activités du laboratoire.';
-    filtersAlt = 'Show page filters';
-    infosAlt = 'Informations about the team';
-    filtresTitle = 'Filters of the team';
-    closeAlt = 'Back to the members list';
-  }
-
+  let {
+    title,
+    member,
+    associate,
+    filterDomain,
+    filterMember,
+    accroche,
+    filtersAlt,
+    infosAlt,
+    filtresTitle,
+    closeAlt
+  } = i18n[lang];
 
 	return (
   <>
-    <h1 className="type_title"><a href="#liste_equipe">{IsModel('people', lang)}</a></h1>
+    <h1 className="type_title"><a href="#liste_equipe">{I18N_MODEL[lang].people}</a></h1>
 
 
     <input
@@ -55,7 +66,7 @@ const FiltreEquipe = ({lang}) => {
 
 
     <aside className="accroche-title-list">
-      <h1 className="aside-title" data-icon="activite">{IsModel('people', lang)}</h1>
+      <h1 className="aside-title" data-icon="activite">{I18N_MODEL[lang].people}</h1>
       <p id="aria-accroche">{accroche}</p>
     </aside>
 
@@ -111,19 +122,19 @@ const FiltreEquipe = ({lang}) => {
         <h1>{ filterDomain }</h1>
         <label
           id="domaine_academique_label" className="checkbox-medialab" htmlFor="domaine_academique"
-          aria-label={IsModel('academic', lang)}>{IsModel('academic', lang)}</label>
+          aria-label={I18N_TYPE_LABELS.people[lang].academic}>{I18N_TYPE_LABELS.people[lang].academic}</label>
         <label
           id="domaine_technique_label" className="checkbox-medialab" htmlFor="domaine_technique"
-          aria-label={IsModel('tech', lang)}>{IsModel('tech', lang)}</label>
+          aria-label={I18N_TYPE_LABELS.people[lang].tech}>{I18N_TYPE_LABELS.people[lang].tech}</label>
         <label
           id="domaine_design_label" className="checkbox-medialab" htmlFor="domaine_design"
-          aria-label={IsModel('design', lang)}>{IsModel('design', lang)}</label>
+          aria-label={I18N_TYPE_LABELS.people[lang].design}>{I18N_TYPE_LABELS.people[lang].design}</label>
         <label
           id="domaine_pedagogie_label" className="checkbox-medialab" htmlFor="domaine_pedagogie"
-          aria-label={IsModel('pedagogy', lang)}>{IsModel('pedagogy', lang)}</label>
+          aria-label={I18N_TYPE_LABELS.people[lang].pedagogy}>{I18N_TYPE_LABELS.people[lang].pedagogy}</label>
         <label
           id="domaine_administratif_label" className="checkbox-medialab" htmlFor="domaine_administratif"
-          aria-label={IsModel('admin', lang)}>{IsModel('admin', lang)}</label>
+          aria-label={I18N_TYPE_LABELS.people[lang].admin}>{I18N_TYPE_LABELS.people[lang].admin}</label>
       </div>
 
     </aside>

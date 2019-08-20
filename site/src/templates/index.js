@@ -100,10 +100,6 @@ export const query = graphql`
                 en
                 fr
               }
-              baseline {
-                en
-                fr
-              }
               permalink {
                 en
                 fr

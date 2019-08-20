@@ -14,7 +14,6 @@ export const query = graphql`
           coverImage {
             url
           }
-          id
           domain
           active
           membership

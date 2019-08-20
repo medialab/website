@@ -10,7 +10,6 @@ export const query = graphql`
     allNewsJson {
       edges {
         node {
-          id
           title {
             en
             fr

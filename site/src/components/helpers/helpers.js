@@ -304,46 +304,44 @@ export function IsModel (item, lang) {
    return type;
 }
 
-
-export const productionTypeToSchemaURL = type => {
-  const mapping = {
-    article: 'https://schema.org/Article',
-    book: 'https://schema.org/Book',
-    communication: 'https://schema.org/CreativeWork',
-    thesis: 'https://schema.org/Thesis',
-    grey: 'https://schema.org/CreativeWork',
-    datascape: 'https://schema.org/WebSite',
-    website: 'https://schema.org/WebSite',
-    software: 'https://schema.org/SoftwareApplication',
-    code: 'https://schema.org/SoftwareSourceCode',
-    exhibition: 'https://schema.org/ExhibitionEvent',
-    simulation: 'https://schema.org/TheaterEvent',
-    workshop: 'https://schema.org/Event',
-    conference: 'https://schema.org/Event',
-    media: 'https://schema.org/CreativeWork'
-  }
-
-  return mapping[type] || 'https://schema.org/CreativeWork';
+const PRODUCTION_TYPE_TO_SCHEMA_URL = {
+  article: 'https://schema.org/Article',
+  book: 'https://schema.org/Book',
+  communication: 'https://schema.org/CreativeWork',
+  thesis: 'https://schema.org/Thesis',
+  grey: 'https://schema.org/CreativeWork',
+  datascape: 'https://schema.org/WebSite',
+  website: 'https://schema.org/WebSite',
+  software: 'https://schema.org/SoftwareApplication',
+  code: 'https://schema.org/SoftwareSourceCode',
+  exhibition: 'https://schema.org/ExhibitionEvent',
+  simulation: 'https://schema.org/TheaterEvent',
+  workshop: 'https://schema.org/Event',
+  conference: 'https://schema.org/Event',
+  media: 'https://schema.org/CreativeWork'
 }
 
+export const productionTypeToSchemaURL = type => {
+  return PRODUCTION_TYPE_TO_SCHEMA_URL[type] || 'https://schema.org/CreativeWork';
+}
+
+const PRODUCTION_TYPE_TO_ZOTERO_TYPE = {
+  article: 'journalArticle',
+  book: 'book',
+  communication: 'presentation',
+  thesis: 'thesis',
+  grey: 'report',
+  datascape: 'webpage',
+  website: 'webpage',
+  software: 'computerProgram',
+  code: 'computerProgram',
+  exhibition: 'document',
+  simulation: 'document',
+  workshop: 'document',
+  conference: 'document',
+  media: 'newspaperArticle'
+}
 
 export const productionTypeToZoteroType = type => {
-  const mapping = {
-    article: 'journalArticle',
-    book: 'book',
-    communication: 'presentation',
-    thesis: 'thesis',
-    grey: 'report',
-    datascape: 'webpage',
-    website: 'webpage',
-    software: 'computerProgram',
-    code: 'computerProgram',
-    exhibition: 'document',
-    simulation: 'document',
-    workshop: 'document',
-    conference: 'document',
-    media: 'newspaperArticle'
-  }
-
-  return mapping[type] || 'document';
+  return PRODUCTION_TYPE_TO_ZOTERO_TYPE[type] || 'document';
 }

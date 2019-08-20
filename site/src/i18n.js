@@ -1,3 +1,5 @@
+import enums from 'enums';
+
 // Generic i18n strings.
 export const I18N_MODEL = {
   fr: {
@@ -14,5 +16,34 @@ export const I18N_MODEL = {
   }
 };
 
+// Solving enums
+export const I18N_TYPE_LABELS = {
+  activities: {
+    fr: enums.activityTypes.fr,
+    en: enums.activityTypes.en
+  },
+  news: {
+    fr: enums.newsTypes.fr,
+    en: enums.newsTypes.en
+  },
+  productions: {
+    fr: enums.productionTypes.fr,
+    en: enums.productionTypes.en
+  }
+};
 
-// TODO: one day we should solve typeLabel & groupLabel this way to ease payloads
+const I18N_GROUP_LABELS = {
+  productions: {
+    fr: {},
+    en: {}
+  }
+};
+
+for (const k in enums.productionTypes.groups) {
+  I18N_GROUP_LABELS.productions.fr[k] = enums.productionTypes.groups[k].fr;
+  I18N_GROUP_LABELS.productions.en[k] = enums.productionTypes.groups[k].en;
+}
+
+export {
+  I18N_GROUP_LABELS
+};

@@ -770,3 +770,12 @@ exports.createPages = function({graphql, actions}) {
 
   return Promise.all(promises);
 };
+
+// Overloading webpack config
+exports.onCreateWebpackConfig = ({actions, getConfig}) => {
+  const currentConfig = getConfig();
+
+  currentConfig.resolve.alias.enums$ = require.resolve(path.join(ROOT_PATH, 'specs', 'enums.json'));
+
+  actions.replaceWebpackConfig(currentConfig);
+};

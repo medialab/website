@@ -47,7 +47,7 @@ return (
                     //<p className="label" data-icon="tweet">{t.type}</p>
                   }
                   <p itemProp="creator" className="account">@medialab_ScPo</p>
-                  <time itemProp="datePublished" className="date" datetime={t.date}>{formatDateTime(t.date, lang)}</time>
+                  <time itemProp="datePublished" className="date" dateTime={t.date}>{formatDateTime(t.date, lang)}</time>
                 </aside>
                 {t.type !== 'retweet' &&
                   <p itemProp="articleBody" className="tweet-content" dangerouslySetInnerHTML={{__html: t.html}} />

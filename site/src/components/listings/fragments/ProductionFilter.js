@@ -22,7 +22,7 @@ const i18n = {
     all: 'Toutes les productions'
   },
   en: {
-    accroche: 'Description in english en une phrase de la catégorie production',
+    accroche: 'In addition to traditional academic publications, "Web publications" also disseminate the laboratory\'s activities through an interactive medium that opens up new ways of representing and visually exploring findings. Situations – exhibitions, workshops, simulations, etc. – allow for the public’s involvement in the research process and the testing of hypotheses against the reality on the ground.',
     infosAlt: 'Informations about the productions',
     closeAlt: 'Back to productions',
     filtresTitle: 'Filters of productions',

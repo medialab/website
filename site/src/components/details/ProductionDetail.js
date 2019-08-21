@@ -157,6 +157,7 @@ const LangBlock = ({production, lang}) => {
 };
 
 export default function ProductionDetail({lang, production}) {
+  console.log(production)
   return (
     <>
       <PageMeta
@@ -165,7 +166,7 @@ export default function ProductionDetail({lang, production}) {
         zoteroType={productionTypeToZoteroType(production.type)}
         description={production.content && production.content[lang]}
         date={production.date}
-        author={production.authors.split(',')}
+        author={production.authors.split(', ')}
         lang={lang}
         type={production.type}
         imageData={production.coverImage && production.coverImage.processed && production.coverImage.processed.raster}

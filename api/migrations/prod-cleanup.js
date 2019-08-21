@@ -1,4 +1,5 @@
 const partition = require('lodash/partition');
+const flatten = require('lodash/flatten');
 
 const MODELS = [
   'activities',
@@ -10,17 +11,19 @@ const MODELS = [
 module.exports = function(req, dbs, next) {
   const dryRun = 'dryrun' in req.query;
 
-  const data = MODELS.map(plural => {
+  const data = flatten(MODELS.map(plural => {
     dbs[plural].read();
 
     return dbs[plural].getState()[plural];
-  });
+  }));
 
   // Finding things to delete
-  const [toDelete, toKeep] = partition(data[1], news => {
+  const [toDelete, toKeep] = partition(data, o => {
     return (
-      (news.title.fr && news.title.fr.includes(' SUPPRIMER')) ||
-      (news.title.en && news.title.en.includes(' SUPPRIMER'))
+      (o.title && ((o.title.fr && o.title.fr.includes(' SUPPRIMER')) ||
+                  (o.title.en && o.title.en.includes(' SUPPRIMER'))) 
+      ) ||
+      (o.name && o.name.includes(' SUPPRIMER'))
     );
   });
 

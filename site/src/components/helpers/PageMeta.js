@@ -1,5 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import {StaticQuery, graphql} from 'gatsby';
 
 import coverTwitter from '../../assets/images/cover-twitter.png';
 
@@ -40,7 +41,7 @@ const buildOpenGraphAdditionalMeta = obj => {
   }
 };
 
-function PageMeta(props) {
+function MetaData(props) {
   const {
     title = 'médialab Sciences Po',
     citationTitle,
@@ -52,10 +53,11 @@ function PageMeta(props) {
     citation,
     type,
     uri,
-    imageData
+    imageData,
+    siteUrl
   } = props;
 
-  const imageSrc = imageData && imageData.url ? 'https://medialab.sciencespo.fr/' + imageData.url : 'https://medialab.sciencespo.fr' + coverTwitter;
+  const imageSrc = imageData && imageData.url ? siteUrl + imageData.url : siteUrl + coverTwitter;
   const imageWidth = imageData && imageData.width ? imageData.width : 2000;
   const imageHeight = imageData && imageData.height ? imageData.height : 1000;
 
@@ -124,4 +126,22 @@ function PageMeta(props) {
   );
 }
 
-export default PageMeta;
+export default function PageMeta(props) {
+  return (
+    <StaticQuery
+      query={graphql`
+        {
+          site {
+            siteMetadata {
+              siteUrl
+            }
+          }
+        }
+      `}
+      render={data => {
+        const siteUrl = data.site.siteMetadata.siteUrl;
+
+        return <MetaData siteUrl={siteUrl} {...props} />;
+      }} />
+  );
+}

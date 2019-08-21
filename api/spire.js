@@ -5,13 +5,13 @@ const config = require('config-secrets'),
       request = require('request'),
       _ = require('lodash'),
       uuid = require('uuid/v4'),
-      slug = require('slug'),
+      slugLib = require('slug'),
       makeSlugFunctions = require('../specs/slugs.js');
 
 const SUPERUSER = config.get('superuser');
 const AUTH = `${SUPERUSER.username}:${SUPERUSER.password}`;
 
-const {production: slugifyProduction, people: slugifyPeople} = makeSlugFunctions(slug);
+const {production: slugifyProduction, people: slugifyPeople} = makeSlugFunctions(slugLib);
 
 const models = require('../specs/models.json');
 
@@ -38,22 +38,24 @@ const ref = record => {
   // removing the <a> tag
   return record.citations ? record.citations.html.chicago.replace(/<a.*?>(.*?)<\/a>/g, '$1') : false;
 };
+const getDate = record => {
+  if (record.date_issued || record.date_created) {
+    let date = record.date_issued || record.date_created;
+    //sometimes the format is YYYYMMDD and not YYYY-MM-DD ....
+    if (date.length === 8 && !date.includes('-'))
+      date = `${date.slice(0, 4)}-${date.slice(4, 6)}-${date.slice(6, 8)}`;
+    return date;
+  }
+  else
+    if (record.is_part_ofs && record.is_part_ofs.length > 0)
+      return record.is_part_ofs.find(ipo => ipo.date_issued).date_issued;
+};
 // translation functions stored by object path.
 // translation function returns false is ther is nothing to update for the path.
 const translators = {
   'type': record => spireTypes[record.spire_document_type],
-  'date': record => {
-    if (record.date_issued || record.date_created) {
-      let date = record.date_issued || record.date_created;
-      //sometimes the format is YYYYMMDD and not YYYY-MM-DD ....
-      if (date.length === 8 && !date.includes('-'))
-        date = `${date.slice(0, 4)}-${date.slice(4, 6)}-${date.slice(6, 8)}`;
-      return date;
-    }
-    else
-      if (record.is_part_ofs && record.is_part_ofs.length > 0)
-        return record.is_part_ofs.find(ipo => ipo.date_issued).date_issued;
-  },
+  'date': getDate,
+  'external': record => (getDate(record) < '2009'),
   'title.en': record => title(record, 'en'),
   'title.fr': record => title(record, 'fr'),
   'description.en': record => ref(record),
@@ -345,7 +347,7 @@ module.exports.aspireAuthors = function aspireAuthors(callback) {
       throw err;
     }
     response.body.result.records.map(p => {
-      let spireSlug = slugify(`${p.name_given} ${p.name_family}`);
+      let spireSlug = slugLib(`${p.name_given} ${p.name_family}`);
       switch (spireSlug) {
         case 'benjamin-ooghe':
           spireSlug = 'benjamin-ooghe-tabanou';

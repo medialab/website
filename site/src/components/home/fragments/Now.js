@@ -26,11 +26,11 @@ export default function Now({now, lang}) {
     <section id="now" aria-label={i18n[lang].ariaLabel}>
       <h1>{i18n[lang].title}</h1>
       <ul className="contenu">
-        {now.map((item, index) =>
+        {now.map((item, index) => (
           <li
             key={index}
             itemScope itemType="https://schema.org/Thing" data-type={item.model}
-            className="now-item" key={index}>
+            className="now-item">
             <Link to={item.data.permalink[lang]}>
               {item.model !== 'productions' && (
                 <div className="image-pre" aria-hidden="true">
@@ -99,7 +99,7 @@ export default function Now({now, lang}) {
               }
             </Link>
           </li>
-        )}
+        ))}
       </ul>
     </section>
 	);

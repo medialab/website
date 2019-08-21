@@ -10,42 +10,49 @@ const MODELS = [
 module.exports = function(req, dbs, next) {
   const dryRun = 'dryrun' in req.query;
 
-  const data = MODELS.map(plural => {
+  const data = {};
+  let deleted = [];
+
+  let stringifiedData = '';
+  MODELS.forEach(plural => {
     dbs[plural].read();
-
-    return dbs[plural].getState()[plural];
+    data[plural] = dbs[plural].getState()[plural];
+    stringifiedData += JSON.stringify(data[plural]) + '\n';
   });
 
-  // Finding things to delete
-  const [toDelete, toKeep] = partition(data[1], news => {
-    return (
-      (news.title.fr && news.title.fr.includes(' SUPPRIMER')) ||
-      (news.title.en && news.title.en.includes(' SUPPRIMER'))
-    );
+  MODELS.forEach(m => {
+      // Finding things to delete
+    const [toDelete, toKeep] = partition(data[m], o => {
+      return (
+        (o.title && (o.title.fr + o.title.en)) +
+        o.name
+      ).includes(' SUPPRIMER');
+    });
+
+    let error = null;
+
+    toDelete.some(o => {
+      const match = stringifiedData.match(o.id);
+
+      if (match && match.length > 1)
+        error = `${o.id} is still linked!`;
+
+      return error;
+    });
+
+    if (error)
+      return next(error);
+
+    deleted = deleted.concat(toDelete);
+
+    // Persisting
+    if (!dryRun) {
+      const newData = {};
+      newData[m] = toKeep;
+      dbs[m].setState(newData);
+      dbs[m].write();
+    }
   });
 
-  // Checking integrity
-  const stringifiedData = data.map(items => JSON.stringify(items)).join('\n');
-
-  let error = null;
-
-  toDelete.some(news => {
-    const match = stringifiedData.match(news.id);
-
-    if (match && match.length > 1)
-      error = `${news.id} is still linked!`;
-
-    return error;
-  });
-
-  if (error)
-    return next(error);
-
-  // Persisting
-  if (!dryRun) {
-    dbs.news.setState({news: toKeep});
-    dbs.news.write();
-  }
-
-  return next(null, toDelete);
+  return next(null, deleted);
 };

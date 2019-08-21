@@ -33,7 +33,7 @@ module.exports = function(req, dbs, next) {
 
     let string = JSON.stringify(state);
 
-    changed.forEach(([filename, cleaned]) => {
+    changed.forEach(([filename, cleaned]) => {
       string = string.replace(filename, cleaned);
     });
 

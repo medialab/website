@@ -3,26 +3,20 @@ import {graphql} from 'gatsby';
 import RawHtml from '../helpers/RawHtml.js';
 import {Link} from 'gatsby';
 
+import {I18N_MODEL} from '../../i18n.js';
 import ToggleLang from './fragments/ToggleLang.js';
-
-import Logo from '../assets/svg/logo_medialab.svg';
+import LogoSticky from './fragments/LogoSticky.js';
 import ProcessedImage from '../helpers/ProcessedImage.js';
-
-
 import DateNews from '../helpers/DateNews.js';
 import TimeNews from '../helpers/TimeNews.js';
 import {I18N_TYPE_LABELS} from '../../i18n.js';
-
-import ProductionsAssociees from './fragments/ProductionsAssociees.js';
-import ActivitesAssociees from './fragments/ActivitesAssociees.js';
-import ActuAssociees from './fragments/ActuAssociees.js';
-import MembresAssocies from './fragments/MembresAssocies.js';
-import FichiersAssocies from './fragments/FichiersAssocies.js';
+import RelatedProductions from './fragments/RelatedProductions.js';
+import RelatedActivities from './fragments/RelatedActivities.js';
+import RelatedNews from './fragments/RelatedNews.js';
+import RelatedPeople from './fragments/RelatedPeople.js';
+import Attachments from './fragments/Attachments.js';
 import LanguageFallback from '../helpers/LanguageFallback';
 import PageMeta from '../helpers/PageMeta.js';
-
-//import './scss/page_objet.scss';
-
 
 export const queryFragment = graphql`
   fragment ActivityDetail on ActivitiesJson {
@@ -34,6 +28,10 @@ export const queryFragment = graphql`
       fr
     }
     description {
+      en
+      fr
+    }
+    permalink {
       en
       fr
     }
@@ -136,18 +134,41 @@ export const queryFragment = graphql`
   }
 `;
 
+const i18n = {
+  fr: {
+    content(activity) {
+      return 'Contenu de la page ' + activity.name;
+    },
+    futureSeminars: 'Séances à venir',
+    pastSeminars: 'Séances passées'
+  },
+  en: {
+    content(activity) {
+      return activity.name + ' page content';
+    },
+    futureSeminars: 'Upcoming sessions',
+    pastSeminars: 'Past sessions'
+  }
+};
+
+const mainPermalink = {
+  fr: '/activites',
+  en: '/en/activities'
+};
+
 export default function ActivityDetail({lang, activity}) {
 
   const inSeminar = activity.slugs.join().includes('seminaire');
+
   return (
-    <main id="main-objet" role="main" aria-label={lang === 'fr' ? 'Contenu de la page ' + activity.name : activity.name + '  page content'}>
+    <main id="main-objet" role="main" aria-label={i18n[lang].content(activity)}>
       <PageMeta
         title={`${activity.name} | médialab Sciences Po`}
         description={activity.baseline && activity.baseline[lang]}
         lang={lang}
         date={activity.startDate}
         imageData={activity.coverImage && activity.coverImage.processed && activity.coverImage.processed.raster}
-        uri={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'activites' : 'en/activities'}/${activity.slugs && activity.slugs[0]}`} />
+        uri={`https://medialab.sciencespo.fr${activity.permalink[lang]}`} />
       <ol style={{display: 'none'}} itemScope itemType="https://schema.org/BreadcrumbList">
         <li
           itemProp="itemListElement" itemScope
@@ -164,8 +185,8 @@ export default function ActivityDetail({lang, activity}) {
           <a
             itemType="https://schema.org/Thing"
             itemProp="item"
-            href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'activites' : 'en/activities'}`}>
-            <span itemProp="name">{lang === 'fr' ? 'Activités' : 'Activities'}</span></a>
+            href={`https://medialab.sciencespo.fr/${mainPermalink[lang]}`}>
+            <span itemProp="name">{I18N_MODEL[lang].activities}</span></a>
           <meta itemProp="position" content="2" />
         </li>
         <li
@@ -174,7 +195,7 @@ export default function ActivityDetail({lang, activity}) {
           <a
             itemType="https://schema.org/Thing"
             itemProp="item"
-            href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'activites' : 'en/activities'}/${activity.slugs && activity.slugs[0]}`}>
+            href={`https://medialab.sciencespo.fr${activity.permalink[lang]}`}>
             <span itemProp="name">
               {activity.name}
             </span>
@@ -184,10 +205,10 @@ export default function ActivityDetail({lang, activity}) {
       </ol>
       <header id="titre-sticky" aria_hidden="true">
         <div id="container-titre-sticky">
-          <div id="logo-sticky"><a href="/"><Logo /></a></div>
+          <LogoSticky lang={lang} />
           <p>
-            <Link to={lang === 'fr' ? '/activites' : '/en/activities'}>
-              <span data-icon="activite">{lang === 'fr' ? 'Activité' : 'Activity'} </span>
+            <Link to={mainPermalink[lang]}>
+              <span data-icon="activite">{I18N_MODEL[lang].activities} </span>
             </Link>
             <span className="title"><a href="#topbar">{activity.name}</a></span>
           </p>
@@ -217,10 +238,14 @@ export default function ActivityDetail({lang, activity}) {
           <div className="details">
             <p className="type-objet"><span data-icon="activite" /> {I18N_TYPE_LABELS.activities[lang][activity.type]}</p>
             <DateNews
-              isTimeSpan startDateSchemaProp={'foundingDate'} endDateSchemaProp={'dissolutionDate'}
-              startDate={activity.startDate} endDate={activity.endDate} lang="fr" />
+              isTimeSpan
+              startDateSchemaProp={'foundingDate'}
+              endDateSchemaProp={'dissolutionDate'}
+              startDate={activity.startDate}
+              endDate={activity.endDate}
+              lang="fr" />
             <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
-            <FichiersAssocies attachments={activity.attachments} lang="fr" />
+            <Attachments attachments={activity.attachments} lang="fr" />
           </div>
 
 
@@ -242,7 +267,7 @@ export default function ActivityDetail({lang, activity}) {
               isTimeSpan startDate={activity.startDate} endDate={activity.endDate}
               lang="en" />
             <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
-            <FichiersAssocies attachments={activity.attachments} lang="en" />
+            <Attachments attachments={activity.attachments} lang="en" />
           </div>
           <div className="article-contenu">
             {activity.content && (activity.content.en && <RawHtml html={activity.content.en} />)}
@@ -251,25 +276,24 @@ export default function ActivityDetail({lang, activity}) {
 
       </article>
       <aside id={'all-aside'} className={inSeminar ? 'in-seminar' : ''}>
-        <MembresAssocies people={activity.people} lang={lang} />
-        <ActivitesAssociees activities={activity.activities} lang={lang} />
-        <ProductionsAssociees productions={activity.productions} lang={lang} />
+        <RelatedPeople people={activity.people} lang={lang} />
+        <RelatedActivities activities={activity.activities} lang={lang} />
+        <RelatedProductions productions={activity.productions} lang={lang} />
         {
-          inSeminar ?
+          inSeminar ? (
             <>
-              <ActuAssociees
+              <RelatedNews
                 isSeminar filter={'future'} actu={activity.news}
-                lang={lang} titles={{fr: 'Séances à venir', en: 'Upcoming sessions'}} />
-              <ActuAssociees
+                lang={lang} titles={{fr: i18n.fr.futureSeminars, en: i18n.en.futureSeminars}} />
+              <RelatedNews
                 isSeminar filter={'past'} actu={activity.news}
-                lang={lang} titles={{fr: 'Séances passées', en: 'Past sessions'}} />
+                lang={lang} titles={{fr: i18n.fr.pastSeminars, en: i18n.en.pastSeminars}} />
             </>
-          :
-
-            <ActuAssociees isSeminar={inSeminar} actu={activity.news} lang={lang} />
+          ) : (
+            <RelatedNews isSeminar={inSeminar} actu={activity.news} lang={lang} />
+          )
         }
       </aside>
-
     </main>
   );
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import {graphql} from 'gatsby';
 
 import Layout from '../components/Layout';
-import ActivityListing from '../components/pages_list/ActivityListing';
+import ActivityListing from '../components/listings/ActivityListing';
 
 export const query = graphql`
   query($allowedStatuses: [Boolean]!) {

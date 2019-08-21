@@ -39,7 +39,7 @@ export default function Archive({lang, activities, news, productions}) {
         <section id="archive_productions" className="type">
           <h1>Productions</h1>
           <ul className="list">
-            {productions.map((p, index) => (
+            {productions.map(p => (
               <li key={p.permalink.fr} data-type="production" className="item">
                 <Link to={p.permalink[lang]}>
                   <div className="bandeau">

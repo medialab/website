@@ -14,7 +14,7 @@ const plugins = [
       short_name: 'medialab',
       start_url: '/',
       background_color: '#ffffff',
-      icon: 'src/components/assets/images/icons/icon-specimen.png'
+      icon: 'src/assets/images/icons/icon-specimen.png'
     }
   },
   'gatsby-plugin-offline',

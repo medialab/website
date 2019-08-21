@@ -1,3 +1,4 @@
+/* eslint camelcase: 0 */
 const async = require('async');
 const Twitter = require('twitter');
 const config = require('config-secrets');
@@ -83,35 +84,35 @@ exports.retrieveGithubFluxData = function(people, callback) {
 
       return request.get(
         {url: GITHUB_REPO_URL + repo, headers: {'User-Agent': GITHUB_USER_AGENT}},
-        (err, response, body) => {
-          if (err || response.statusCode >= 400)
-            return next(err || response.statusCode);
+        (githubError, response, body) => {
+          if (githubError || response.statusCode >= 400)
+            return next(githubError || response.statusCode);
 
           repoData[repo] = JSON.parse(body);
           return next();
         }
       );
-    }, (err) => {
-      if (err)
-        return callback(err);
+    }, (finalError) => {
+      if (finalError)
+        return callback(finalError);
 
       const result = Array.from(groups.associations(), ([repo, events]) => {
-        const data = repoData[repo];
+        const repoItem = repoData[repo];
 
         const item = {
-          repo: data.name,
-          language: data.language,
-          url: data.html_url,
+          repo: repoItem.name,
+          language: repoItem.language,
+          url: repoItem.html_url,
           endDate: maxBy(events, event => event.created_at).created_at,
           startDate: minBy(events, event => event.created_at).created_at,
           count: events.length
         };
 
-        if (data.description)
-          item.description = data.description;
+        if (repoItem.description)
+          item.description = repoItem.description;
 
-        if (data.license && data.license.spdx_id !== 'NOASSERTION')
-          item.license = data.license.spdx_id;
+        if (repoItem.license && repoItem.license.spdx_id !== 'NOASSERTION')
+          item.license = repoItem.license.spdx_id;
 
         const authors = new Set();
 
@@ -205,13 +206,12 @@ exports.retrieveTwitterFluxData = function(callback) {
       tweet_mode: 'extended'
     };
 
-    return TWITTER_CLIENT.get('statuses/lookup', repliedParams, (err, repliedTweets) => {
+    return TWITTER_CLIENT.get('statuses/lookup', repliedParams, (e, repliedTweets) => {
       const repliedTweetIndex = {};
 
       repliedTweets.forEach(t => (repliedTweetIndex[t.id_str] = t));
 
       const result = tweets.map(t => {
-
 
         const item = {
           tweet: t.id_str,

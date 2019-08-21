@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 const cheerio = require('cheerio');
 const fs = require('fs');
 const {difference} = require('mnemonist/set');

@@ -3,7 +3,7 @@ import {Link} from 'gatsby';
 
 import {I18N_TYPE_LABELS} from '../../i18n.js';
 
-import FilterActivity from './fragments/FilterActivity.js';
+import ActivityFilter from './fragments/ActivityFilter.js';
 import ProcessedImage from '../helpers/ProcessedImage.js';
 import LanguageFallback from '../helpers/LanguageFallback.js';
 import PageMeta from '../helpers/PageMeta.js';
@@ -19,8 +19,20 @@ const messagesMeta = {
   }
 };
 
+const sortActivities = (a, b) => {
+  if (a.active !== b.active) {
+    if (a.active)
+      return -1;
+    else
+      return 1;
+  }
+  else {
+    return a.startDate > b.startDate ? -1 : 1;
+  }
+};
+
 export default function ActivityListing({lang, list, status, statuses, topActivities}) {
-  const activities = topActivities.map(ta => list.find(a => a.id === ta)).concat(list.filter(a => topActivities.indexOf(a.id) === -1));
+  const activities = topActivities.map(ta => list.find(a => a.id === ta)).concat(list.sort(sortActivities).filter(a => topActivities.indexOf(a.id) === -1));
 
   return (
     <>
@@ -29,7 +41,7 @@ export default function ActivityListing({lang, list, status, statuses, topActivi
         description={messagesMeta.description[lang]}
         lang={lang} />
       <main role="main" aria-describedby="aria-accroche">
-        <FilterActivity lang={lang} status={status} statuses={statuses} />
+        <ActivityFilter lang={lang} status={status} statuses={statuses} />
         <section className="main-filters" />
 
         <section id="liste" className="main-container">
@@ -38,8 +50,11 @@ export default function ActivityListing({lang, list, status, statuses, topActivi
             {activities.map((a, index) => (
               <li
                 key={index}
-                itemScope itemProp="member" itemType={a.type === 'research' ? 'https://schema.org/ResearchProject' : 'https://schema.org/Project'}
-                data-type={a.type} className={`list-item ${a.type}-${a.active ? 'active' : 'past'}`}>
+                itemScope
+                itemProp="member"
+                itemType={a.type === 'research' ? 'https://schema.org/ResearchProject' : 'https://schema.org/Project'}
+                data-type={a.type}
+                className={`list-item ${a.type}-${a.active ? 'active' : 'past'}`}>
                 <Link to={a.permalink[lang]}>
                   <div className="image-pre" aria-hidden="true">
                     <ProcessedImage size="medium" image={a.coverImage && a.coverImage.processed && a.coverImage.processed.medium} data={a} />
@@ -65,6 +80,5 @@ export default function ActivityListing({lang, list, status, statuses, topActivi
         </section>
       </main>
     </>
-   );
+  );
 }
-

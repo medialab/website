@@ -65,13 +65,28 @@ export default function About({lang}) {
 
 
               <h3 id="contact">Contact</h3>
-              <p>Pour toute question, vous pouvez joindre l'équipe du médialab à l'adresse medialab[at]sciences-po.fr<br />
-              Vous pouvez également nous joindre par téléphone au 01 45 49 53 54.<br />
-              Vous pouvez nous écrire à l'adresse suivante :<br />
-              Sciences Po - médialab<br />
-              27, rue Saint Guillaume<br />
-              75337 Paris Cedex 07</p>
-
+              <p>
+                Pour toute question, vous pouvez joindre l'équipe du médialab à l'adresse suivante:
+                <br />
+                <strong>medialab [at] sciences-po.fr</strong>
+              </p>
+              <p>
+                Vous pouvez également nous joindre par téléphone au:
+                <br />
+                <strong>(+33) 01 45 49 53 54</strong>
+              </p>
+              <p>
+                Enfin, vous pouvez nous écrire à l'adresse suivante :
+              </p>
+              <p>
+                <strong>
+                  Sciences Po - médialab
+                  <br />
+                  27, rue Saint Guillaume
+                  <br />
+                  75337 Paris Cedex 07
+                </strong>
+              </p>
             </div>
           </article>
         </main>
@@ -137,23 +152,29 @@ export default function About({lang}) {
               <p><Link to="/en/productions" className="GoTo">Voir la liste des productions</Link></p>
 
               <h3 id="contact">Contact</h3>
-              <p>For any inquiries, please send an email to medialab[at]sciences-po.fr<br />
-              You can also call us: 01 45 49 53 54.<br />
-              You can write to us at the following address:<br />
-              Sciences Po - médialab<br />
-              27, rue Saint Guillaume<br />
-              75337 Paris Cedex 07</p>
-
+              <p>
+                For any inquiries, please send an email to:
+                <br />
+                <strong>medialab [at] sciences-po.fr</strong>
+              </p>
+              <p>
+              You can also call us:
+                <br />
+                <strong>(+33) 01 45 49 53 54</strong>
+              </p>
+              <p>
+                Finally, you can also write us to the following address:
+              </p>
+              <p>
+                <strong>
+                  Sciences Po - médialab
+                  <br />
+                  27, rue Saint Guillaume
+                  <br />
+                  75337 Paris Cedex 07
+                </strong>
+              </p>
             </div>
-            {/*  <aside id="inshort">
-              <h3>Side chose</h3>
-              <p>L’autre originalité du médialab en terme d’organisation est de s’appuyer à parts égales sur trois métiers</p>
-              <ul>
-                <li>A</li>
-                <li>B</li>
-                <li>C</li>
-              </ul>
-            </aside>*/}
           </article>
         </main>
       </>

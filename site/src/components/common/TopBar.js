@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link as BasicLink} from 'gatsby';
-import Logo from '../assets/svg/logo_medialab.svg';
-import MenuCircle from '../assets/svg/menu-circle.svg';
-import CloseCircle from '../assets/svg/close-circle.svg';
+import Logo from '../../assets/svg/logo_medialab.svg';
+import MenuCircle from '../../assets/svg/menu-circle.svg';
+import CloseCircle from '../../assets/svg/close-circle.svg';
 
 const mainPermalinks = {
   en: {

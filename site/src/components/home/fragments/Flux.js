@@ -16,7 +16,7 @@ const i18n = {
   en: {
     status: 'médialab\'s hourly status',
     agenda: 'Reach the agenda',
-    rdv: 'Meeting',
+    rdv: 'Meetings',
     git: 'Reach lastest git projects',
     gitProject: 'Git projects',
     tweets: 'Reach lastest tweet'

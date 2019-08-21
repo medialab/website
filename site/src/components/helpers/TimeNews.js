@@ -1,5 +1,4 @@
 import React from 'react';
-import {format as formatDate} from 'date-fns';
 
 function TimeNews(news) {
 

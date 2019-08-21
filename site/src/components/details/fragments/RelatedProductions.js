@@ -18,7 +18,7 @@ const i18n = {
     externalProduction: 'This linked is external to médialab',
     linkAriaLabel: 'Link to this production'
   }
-}
+};
 
 const ProductionCard = ({p, lang}) => (
   <>

@@ -19,15 +19,17 @@ const messagesMeta = {
   }
 };
 
-const sortActivities = (a,b) => {
-  if (a.active !== b.active)
+const sortActivities = (a, b) => {
+  if (a.active !== b.active) {
     if (a.active)
-      return -1
+      return -1;
     else
-      return 1
-  else
-    return a.startDate > b.startDate ? -1 : 1
-}
+      return 1;
+  }
+  else {
+    return a.startDate > b.startDate ? -1 : 1;
+  }
+};
 
 export default function ActivityListing({lang, list, status, statuses, topActivities}) {
   const activities = topActivities.map(ta => list.find(a => a.id === ta)).concat(list.sort(sortActivities).filter(a => topActivities.indexOf(a.id) === -1));

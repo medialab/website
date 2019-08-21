@@ -5,13 +5,13 @@ const config = require('config-secrets'),
       request = require('request'),
       _ = require('lodash'),
       uuid = require('uuid/v4'),
-      slug = require('slug'),
+      slugLib = require('slug'),
       makeSlugFunctions = require('../specs/slugs.js');
 
 const SUPERUSER = config.get('superuser');
 const AUTH = `${SUPERUSER.username}:${SUPERUSER.password}`;
 
-const {production: slugifyProduction, people: slugifyPeople} = makeSlugFunctions(slug);
+const {production: slugifyProduction, people: slugifyPeople} = makeSlugFunctions(slugLib);
 
 const models = require('../specs/models.json');
 
@@ -347,7 +347,7 @@ module.exports.aspireAuthors = function aspireAuthors(callback) {
       throw err;
     }
     response.body.result.records.map(p => {
-      let spireSlug = slugify(`${p.name_given} ${p.name_family}`);
+      let spireSlug = slugLib(`${p.name_given} ${p.name_family}`);
       switch (spireSlug) {
         case 'benjamin-ooghe':
           spireSlug = 'benjamin-ooghe-tabanou';

@@ -4,13 +4,13 @@ const config = require('config-secrets'),
   request = require('request'),
   _ = require('lodash'),
   uuid = require('uuid/v4'),
-  slug = require('slug'),
+  slugLib = require('slug'),
   makeSlugFunctions = require('../specs/slugs.js'),
   fs = require('fs'),
   path = require('path'),
   convertWordpressHtml = require('../specs/html').convertWordpressHtml;
 
-const {production: slugifyProduction, people: slugifyPeople, news: slugifyNews} = makeSlugFunctions(slug);
+const {news: slugifyNews} = makeSlugFunctions(slugLib);
 
 
 const models = require('../specs/models.json');
@@ -73,7 +73,7 @@ const fetchExistingData = (model, cb) => {
         });
 };
 
-const buildNewsFromBlog = (o, indeces) => {
+const buildNewsFromBlog = (o, indices) => {
   const newNews = {
     id: uuid(),
     //oldId: o._id,
@@ -147,16 +147,16 @@ const buildNewsFromBlog = (o, indeces) => {
   newNews.people = [];
   o.people.forEach(p => {
     const pp = cleanPeopleSlug[p] || p;
-    if (indeces.people[pp])
-      newNews.people.push(indeces.people[pp].id);
+    if (indices.people[pp])
+      newNews.people.push(indices.people[pp].id);
     else
       console.error('can\'t find people', pp);
   });
   newNews.activities = [];
   o.projets.forEach(p => {
     const pp = cleanProjetsSlug[p] || p;
-    if (indeces.activities[pp])
-      newNews.activities.push(indeces.activities[pp].id);
+    if (indices.activities[pp])
+      newNews.activities.push(indices.activities[pp].id);
     else
       console.error('can\'t find activity', pp);
   });
@@ -174,7 +174,7 @@ const websiteApiQueue = async.queue(({method, model, object}, cb) => {
   console.debug(`API CALL ${model} ${method} ${object.id}`);
   request({url, method, body: object, json: true}, (reqErr) => {
     if (reqErr) {
-      console.error(`error ${method} ${model} ${object.id}`, err);
+      console.error(`error ${method} ${model} ${object.id}`, reqErr);
       cb(reqErr);
     }
     else
@@ -184,7 +184,7 @@ const websiteApiQueue = async.queue(({method, model, object}, cb) => {
 
 // get existing news from API
 async.waterfall([
-  // load indeces of existing prod and authors
+  // load indices of existing prod and authors
   getRefDone => {
     async.parallel({
       // get existing data from API
@@ -210,15 +210,15 @@ async.waterfall([
       oldPeople: readOldDone => {
         readScrapData('people', readOldDone);
       }
-    }, (err, indeces) => {
+    }, (err, indices) => {
       if (err) {
         console.log(err);
         getRefDone(err);
       }
-      else getRefDone(null, indeces);
+      else getRefDone(null, indices);
     });
   },
-  (indeces, done) => {
+  (indices, done) => {
     const affectUnkownObjects = (old, existing, model) => {
       const existingByOldSlug = _.keyBy(existing, p => p.oldSlug);
       let unknown = old.filter(p => !existingByOldSlug[oldSlug(p)]);
@@ -252,18 +252,18 @@ async.waterfall([
 
     };
     /*********** Add missing oldSlug for objects which have been created both sides **************/
-    affectUnkownObjects(indeces.oldPeople, indeces.people, 'people');
+    affectUnkownObjects(indices.oldPeople, indices.people, 'people');
     // index for news links
-    const peopleByOldSlug = _.keyBy(indeces.people, p => p.oldSlug);
-    affectUnkownObjects(indeces.oldProjets, indeces.activities, 'activities');
+    const peopleByOldSlug = _.keyBy(indices.people, p => p.oldSlug);
+    affectUnkownObjects(indices.oldProjets, indices.activities, 'activities');
     // index for news links
-    const activitiesByOldSlug = _.keyBy(indeces.activities, a => a.oldSlug);
+    const activitiesByOldSlug = _.keyBy(indices.activities, a => a.oldSlug);
 
     /*********** BLOG => NEWS **********/
 
     //old content already imported
-    const importedNews = new Set(indeces.news.map(n => n.oldSlug));
-    const oldBlogToImport = indeces.oldBlog.filter(on => !importedNews.has(oldSlug(on)));
+    const importedNews = new Set(indices.news.map(n => n.oldSlug));
+    const oldBlogToImport = indices.oldBlog.filter(on => !importedNews.has(oldSlug(on)));
     let allAssets = [];
     // create news from blog
     oldBlogToImport.forEach(blog => {

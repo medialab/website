@@ -9,7 +9,6 @@ export const query = graphql`
     allActivitiesJson {
       edges {
         node {
-          id
           active
           name
           permalink {
@@ -36,7 +35,6 @@ export const query = graphql`
     allNewsJson {
       edges {
         node {
-          id
           title {
             en
             fr

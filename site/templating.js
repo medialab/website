@@ -1,6 +1,5 @@
 const cheerio = require('cheerio');
 const Entities = require('html-entities').AllHtmlEntities;
-const _ = require('lodash');
 
 const entities = new Entities();
 
@@ -62,7 +61,7 @@ function processHtml(pathPrefix, html) {
     const $a = $(this);
 
     $a.attr('target', '_blank');
-    $a.attr('rel', 'noopener');
+    $a.attr('rel', 'noopener noreferrer');
   });
 
   // Finding highest title
@@ -107,7 +106,7 @@ function processHtml(pathPrefix, html) {
 
     // Root links
     if (tag === 'A') {
-      output += `<a href="${$this.attr('href')}" target="_blank" rel="noopener">${$this.text()}</a>`;
+      output += `<a href="${$this.attr('href')}" target="_blank" rel="noopener noreferrer">${$this.text()}</a>`;
       return;
     }
     else if (inRawText) {
@@ -250,12 +249,12 @@ exports.resolveAttachments = function resolveAttachments(pathPrefix, attachments
 };
 
 // Testing
-if (require.main === module) {
-  console.log(processHtml('', '<h1>Test1</h1>'));
-  console.log(processHtml('', '<h1>Test1</h1><h2>Test2</h2>'));
-  console.log(processHtml('', '<h1>Test1</h1><h2>Test2</h2><h3>Test3</h3>'));
-  console.log(processHtml('', '<h2>Test1</h2><h3>Test2</h3>'));
-  console.log(processHtml('', '<h1>Test1</h1><h3>Test2</h3>'));
-  console.log(processHtml('', '<h2>Test1</h2>'));
-  console.log(processHtml('', '<h3>Test1</h3>'));
-}
+// if (require.main === module) {
+//   console.log(processHtml('', '<h1>Test1</h1>'));
+//   console.log(processHtml('', '<h1>Test1</h1><h2>Test2</h2>'));
+//   console.log(processHtml('', '<h1>Test1</h1><h2>Test2</h2><h3>Test3</h3>'));
+//   console.log(processHtml('', '<h2>Test1</h2><h3>Test2</h3>'));
+//   console.log(processHtml('', '<h1>Test1</h1><h3>Test2</h3>'));
+//   console.log(processHtml('', '<h2>Test1</h2>'));
+//   console.log(processHtml('', '<h3>Test1</h3>'));
+// }

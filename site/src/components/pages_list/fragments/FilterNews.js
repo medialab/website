@@ -2,21 +2,18 @@ import React from 'react';
 import {I18N_MODEL, I18N_TYPE_LABELS} from '../../../i18n.js';
 import {Icons} from '../../helpers/Icons.js';
 import {SearchInput} from '../../helpers/SearchInput.js';
-
-const MAX_NB_FILTER_ITEMS = 12;
+import Years from './Years';
 
 const i18n = {
   fr: {
     filterType: 'Filter par type',
     filtersAlt: 'Afficher les filtres de la page',
-    gotoyear: 'Aller à l\'année…',
     filtresTitle: 'Filtres des actualités',
     closeAlt: 'Revenir aux actualités'
   },
   en: {
     filterType: 'Filter by type',
     filtersAlt: 'Show page filters',
-    gotoyear: 'Go to year…',
     filtresTitle: 'Filters of news',
     closeAlt: 'Back to news'
   }
@@ -24,22 +21,12 @@ const i18n = {
 
 const FilterNews = ({lang, years}) => {
 
-  let {
+  const {
     filterType,
     filtersAlt,
-    gotoyear,
     filtresTitle,
     closeAlt
   } = i18n[lang];
-
-  years = years.sort().reverse();
-
-  let suppYears = false;
-
-  if (years.length > MAX_NB_FILTER_ITEMS) {
-    suppYears = years[MAX_NB_FILTER_ITEMS - 1];
-    years = years.slice(0, MAX_NB_FILTER_ITEMS - 1);
-  }
 
   return (
     <>
@@ -71,23 +58,7 @@ const FilterNews = ({lang, years}) => {
         <h1 className="aside-title">{filtresTitle}</h1>
 
         <SearchInput lang={lang} />
-
-
-        <div className="go-to-year" aria-label={gotoyear}>
-          <input
-            type="checkbox" id="checkbox_filtre_year" name="radio_filtre-actu"
-            value="year" hidden />
-          <label htmlFor="checkbox_filtre_year"><span><Icons icon="arrow" /></span></label>
-          <p aria-hidden="true">{gotoyear} <span className="current-year" /></p>
-          <ul id="list-years">
-            {years.map(y => (
-              <li key={`year-${y}`} ><a href={`#year-${y}`} aria-label={lang === 'fr' ? "Aller à l'année " + y : 'Go to year ' + y}>{y}</a></li>
-            ))}
-            { suppYears &&
-              <li key={`filter-years-before-${suppYears}`}><a href={`#year-${suppYears}`} aria-label={lang === 'fr' ? 'Aller aux années précédant ' + y : 'Go to years before ' + y}>&le; {suppYears}</a></li>
-            }
-          </ul>
-        </div>
+        <Years lang={lang} years={years} />
 
         <div className="filter-group" aria-label={filterType}>
           <h1>{filterType}</h1>

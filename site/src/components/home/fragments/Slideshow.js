@@ -8,6 +8,21 @@ import {ellipse} from '../../helpers/helpers.js';
 import DateNews from '../../helpers/DateNews.js';
 import TimeNews from '../../helpers/TimeNews.js';
 
+const i18n = {
+  fr: {
+    label: 'Pages misent en avant',
+    content: 'Contenu',
+    lore: 'Ouvrir ce lien',
+    goto: 'Aller à la slide'
+  },
+  en: {
+    label: 'Spotlighted pages',
+    content: 'Contenu',
+    more: 'Open this link',
+    goto: 'Go to slide'
+  }
+};
+
 // Ici nous composons l'ensemble du caroussel
 const Slideshow = ({slider, lang}) => {
 
@@ -41,7 +56,7 @@ const Slideshow = ({slider, lang}) => {
               {/* Content */}
               <div
                 itemScope itemType="https://schema.org/Thing" className="slideshow-item"
-                data-item={index + 1} aria-label={lang === 'fr' ? 'Pages misent en avant' : 'Spotlighted pages'}>
+                data-item={index + 1} aria-label={i18n[lang].label}>
                 <article data-type={slide.model}>
                   <Link to={slide.data.permalink[lang]}>
                     <div className="image-pre" aria-hidden="true">
@@ -51,7 +66,7 @@ const Slideshow = ({slider, lang}) => {
                       <ProcessedImage size="medium" image={slide.data.coverImage && slide.data.coverImage.processed.medium} data={slide.data} />
                     </div>
                   </Link>
-                  <div className="contenu-slide" aria-label={lang === 'fr' ? 'Contenu' : 'Content'}>
+                  <div className="contenu-slide" aria-label={i18n[lang].content}>
                     <Link to={slide.data.permalink[lang]}>
 
                       {/* if Activité */}
@@ -105,7 +120,7 @@ const Slideshow = ({slider, lang}) => {
                       )}
 
                       {/* Default */}
-                      <p className="more" aria-label={lang === 'fr' ? 'Ouvrir ce lien' : 'Open this link'}>En savoir plus</p>
+                      <p className="more" aria-label={i18n[lang].more}>En savoir plus</p>
                     </Link>
                   </div>
                 </article>
@@ -125,14 +140,18 @@ const Slideshow = ({slider, lang}) => {
 
         {/* label pour controler le caroussel*/}
         {slides.length > 1 && <nav className="slideshow-controls" aria-hidden="true">
-          {
-            slides.map((slide, index) =>
-              (<React.Fragment key={index}>
-                <label htmlFor={`slide-bullet-${index === 0 ? slides.length : index}`} className="slide_controls slide_controls-previous" alt={`${(lang === 'fr' ? 'Aller à la slide' : 'Go to slide')} ${index === 0 ? slides.length : index}`} />
-                <label htmlFor={`slide-bullet-${(index === slides.length - 1) ? 1 : index + 2}`} className="slide_controls slide_controls-next" alt={`${(lang === 'fr' ? 'Aller à la slide' : 'Go to slide')} ${(index === slides.length - 1) ? 1 : index + 2}`} />
-              </React.Fragment>)
-            )
-          }
+          {slides.map((slide, index) => (
+            <React.Fragment key={index}>
+              <label
+                htmlFor={`slide-bullet-${index === 0 ? slides.length : index}`}
+                className="slide_controls slide_controls-previous"
+                alt={`${i18n[lang].goto} ${index === 0 ? slides.length : index}`} />
+              <label
+                htmlFor={`slide-bullet-${(index === slides.length - 1) ? 1 : index + 2}`}
+                className="slide_controls slide_controls-next"
+                alt={`${i18n[lang].goto} ${(index === slides.length - 1) ? 1 : index + 2}`} />
+            </React.Fragment>
+          ))}
           <span className="controls" aria-hidden="true" />
         </nav>
         }

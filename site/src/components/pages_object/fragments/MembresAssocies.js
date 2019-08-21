@@ -1,17 +1,25 @@
 import React from 'react';
 import {Link} from 'gatsby';
 import {SECTIONS} from '../../helpers/sections';
-import RawHtml from '../../helpers/RawHtml';
 
-//import Img from '../../assets/images/sample/default-people.png';
+import peoplePlaceholder from '../../assets/images/people-placeholder.png';
 
+const i18n = {
+  fr: {
+    profilePicture(p) {
+      return `Photo de profil de ${p.firstName} ${p.lastName}`;
+    }
+  },
+  en: {
+    profilePicture(p) {
+      return `${p.firstName} ${p.lastName} profile picture`;
+    }
+  }
+};
 
 const MembresAssocies = ({lang, people, schemaRelationProp = 'member'}) => {
 
   const related = SECTIONS.people;
-
-  const noImg = '<pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░▒▒▒▓▓▓▓▓▓▓▒▒▒░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░▒▒▓█████████████████▓▓▒▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▓▓██████████████████████▓▒▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▓██████████████████████████▓▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒██████▓▓▓▓▓▓▓▓▓▓▓▒▒▓▓▓▓██████▓▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▓████▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓████▓░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▓████▓▒▒▒▒░░░░░░░░░░░░░░░░▒▒▓███▓▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▓███▓▒▒▒▒░░░░░░░░░░░░░░░░░░▒▓███▓▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▓███▓▒▒░░░░░░░░░░░░░░░░░░░░░▒▓███▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;         &nbsp;&nbsp;░▓██▓▒▒▒▒▒░░░░░░░░░░░░░░░░░░░▒▓███▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▓██▒▒▒▒▒▒▒▒▒▒░░░░░░░▒▒▒▒▒▒▒▒░▒██▓▒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒██▒▒░░░░░░░░░░░░░░░░░░░░░░░░▒▓█▓░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;░▒▓▓▒░░░▒▓▓█▒▒░░░░░░░▒▒██▓▓░░░▒▓█▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▓▓▒░░░░░░░░░░░░░░░░░░░░░░░░░░▒▓▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░░▒▒░░░▒░░░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░░░░░░░░░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░░░░░░░░░░░░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░▒▒▒▒▒▒▒▒▒▒▒░░░░░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░░░░░░░▒▒▒▒▒▒▒░░░░░░▒░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░▒▒▒▒░░░░░░░░░░░░░░░▒▒▒▒▒░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░▒▒▒▒▒▒▒░░░░░░░░░░░▒▒▒▒▒▓▒▒░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;░░░▒▒▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▒▒░░░&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;&nbsp;&nbsp;░░░░▒▒▒▓▓██▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓██▓▒▒▒░░░░&nbsp;&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;░░░░░░▒▒▒▒▓▓█████▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓████▓▓▓▒▒▒▒░&nbsp;&nbsp;&nbsp;</pre><pre>&nbsp;▒░▒▒▓▓▓████████▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓███████▓▓▓▓▒░&nbsp;&nbsp;</pre><pre>░▓▓▓▓███████████▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓███████████▓▒&nbsp;░</pre><pre>░▓██████████████▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▓▓▓▓████████████▒░░</pre><pre>░▓▓▓██████████▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓█▓█▓▓▓▓███▒░░</pre><pre>░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░</pre>';
-
 
   // Si aucun fichier lié, retourne null
   if (!people || people.length === 0)
@@ -33,7 +41,7 @@ const MembresAssocies = ({lang, people, schemaRelationProp = 'member'}) => {
   return (
     <aside
       className="container personnes-associees-block" id="people" role="complementary"
-      aria-label={lang === 'fr' ? related.fr : related.en}>
+      aria-label={related[lang]}>
       <h1><span data-icon="people" />{accroche}</h1>
 
       <div className="contenu">
@@ -43,10 +51,11 @@ const MembresAssocies = ({lang, people, schemaRelationProp = 'member'}) => {
               itemProp={schemaRelationProp} itemScope itemType="https://schema.org/Person"
               key={p.permalink.fr} data-type="people">
               <Link to={p.permalink[lang]}>
-                <figure className={p.coverImage ? '' : 'noImg'}>
-                  {p.coverImage ?
-                    <img itemProp="image" src={p.coverImage.url} alt={lang === 'fr' ? 'Photo de profil de ' + p.firstName + p.lastName : p.firstName + p.lastName + ' profil picture'} />
-                  : <RawHtml html={noImg} /> }
+                <figure>
+                  <img
+                    itemProp="image"
+                    src={p.coverImage ? p.coverImage.url : peoplePlaceholder}
+                    alt={i18n[lang].profilePicture(p)} />
                 </figure>
                 <div className="description">
                   <hgroup>

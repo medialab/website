@@ -20,9 +20,12 @@ const i18n = {
   }
 };
 
-const Footer = ({lang}) => {
+const permalink = {
+  fr: '/legal',
+  en: '/en/legal'
+};
 
-  const relLang = lang === 'en' ? '/en' : '';
+const Footer = ({lang}) => {
 
 	return (
     <footer
@@ -34,18 +37,39 @@ const Footer = ({lang}) => {
             médialab Science Po<br />
             27 rue St Guillaume, Paris VII
           </p>
-          <p><Link to={`${relLang}/legal`} aria-label={i18n[lang].legal}>Mentions legales</Link></p>
+          <p><Link to={permalink[lang]} aria-label={i18n[lang].legal}>Mentions legales</Link></p>
         </div>
         <ul className="contact">
-          <li><a
-            itemProp="email" href="mailto:contact@medialab.sciencespo.fr" aria-label={i18n[lang].mail}
-            target="_blank" rel="noopener" >Mail</a></li>
-          <li><a
-            itemProp="sameAs" href="https://twitter.com/medialab_scpo" aria-label={i18n[lang].twitter}
-            target="_blank" rel="noopener" >Twitter</a></li>
-          <li><a
-            itemProp="sameAs" href="https://github.com/medialab" aria-label={i18n[lang].github}
-            target="_blank" rel="noopener" >Github</a></li>
+          <li>
+            <a
+              itemProp="email"
+              href="mailto:contact@medialab.sciencespo.fr"
+              aria-label={i18n[lang].mail}
+              target="_blank"
+              rel="noopener noreferrer">
+              Mail
+            </a>
+          </li>
+          <li>
+            <a
+              itemProp="sameAs"
+              href="https://twitter.com/medialab_scpo"
+              aria-label={i18n[lang].twitter}
+              target="_blank"
+              rel="noopener noreferrer">
+              Twitter
+            </a>
+          </li>
+          <li>
+            <a
+              itemProp="sameAs"
+              href="https://github.com/medialab"
+              aria-label={i18n[lang].github}
+              target="_blank"
+              rel="noopener noreferrer">
+              Github
+            </a>
+          </li>
         </ul>
       </div>
     </footer>

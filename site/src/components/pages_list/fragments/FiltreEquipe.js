@@ -31,7 +31,7 @@ const i18n = {
 
 const FiltreEquipe = ({lang}) => {
 
-  let {
+  const {
     title,
     member,
     associate,

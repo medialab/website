@@ -18,8 +18,6 @@ import RawHtml from '../helpers/RawHtml';
 import {templateMembership} from '../helpers/helpers.js';
 import PageMeta from '../helpers/PageMeta.js';
 
-//import './scss/page_personne.scss';
-
 import peoplePlaceholder from '../assets/images/people-placeholder.png';
 
 export const queryFragment = graphql`

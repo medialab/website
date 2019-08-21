@@ -28,6 +28,10 @@ const {
   retrieveTwitterFluxData
 } = require('./flux.js');
 
+const {
+  findUnusedAssets
+} = require('./cleanup.js');
+
 const MODELS = require('../specs/models.json');
 const spire = require('./spire.js');
 const oldSlugRedirections = require('./oldSlugRedirections.js');
@@ -320,7 +324,21 @@ ws.on('connection', socket => {
         rimraf(DUMP_PATH, next);
       },
 
-      // 2) Pulling
+      // 2) Removing unused assets
+      removingUnusedAssets(next) {
+        const dbs = {};
+
+        ROUTERS.forEach(({model, router}) => (dbs[model] = router.db));
+
+        const unused = findUnusedAssets(dbs, ASSETS_PATH);
+
+        return async.each(Array.from(unused), (asset, n) => {
+          console.log(`Dropping unused asset "${asset}"`);
+          return fs.unlink(path.join(ASSETS_PATH, asset), n);
+        }, next);
+      },
+
+      // 3) Pulling
       pull(next) {
         changeDeployStatus('pulling');
 
@@ -335,7 +353,7 @@ ws.on('connection', socket => {
           .pull('origin', 'master', next);
       },
 
-      // 3) Wiping files
+      // 4) Wiping files
       wiping(next) {
         const toDelete = MODELS.map(m => path.join(DUMP_PATH, m, '*.json'));
 
@@ -345,7 +363,7 @@ ws.on('connection', socket => {
         async.each(toDelete, rimraf, next);
       },
 
-      // 4) Dumping the files
+      // 5) Dumping the files
       dump(next) {
 
         changeDeployStatus('dumping');
@@ -354,7 +372,7 @@ ws.on('connection', socket => {
         process.nextTick(next);
       },
 
-      // 5) Committing the dump
+      // 6) Committing the dump
       commit(next) {
         changeDeployStatus('committing');
 

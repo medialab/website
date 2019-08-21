@@ -16,13 +16,15 @@ const formatDateTime = (isoDate, lang) => {
   return formatDate(date, 'EEEE d MMMM, H:mm', {locale});
 };
 
-const originalTweetIntro = {
+const i18n = {
   fr: {
+    on: 'Le médialab sur ',
     reply: 'en réponse à',
     quote: 'retweet de',
     retweet: 'retweet de'
   },
   en: {
+    on: 'médialab on ',
     reply: 'a response to',
     quote: 'retweet of',
     retweet: 'retweet of'
@@ -34,7 +36,7 @@ export default function tweet({lang, tweets}) {
 return (
   <>
     <section id="tweet">
-      <h1>{lang === 'fr' ? 'Le médialab sur ' : 'médialab on' }<span data-icon="tweet"><a href="https://twitter.com/medialab_scpo" target="_blank" rel="noopener noreferrer">Twitter</a></span></h1>
+      <h1>{i18n[lang].on}<span data-icon="tweet"><a href="https://twitter.com/medialab_scpo" target="_blank" rel="noopener noreferrer">Twitter</a></span></h1>
       <input
         type="checkbox" name="checkbox_flux" id="checkbox_tweet"
         hidden />
@@ -63,7 +65,7 @@ return (
                 {t.originalTweet &&
                   <div className="original-tweet">
                     <aside className="divers">
-                      <p className="label" data-icon="tweet">{originalTweetIntro[lang][t.type]}</p>
+                      <p className="label" data-icon="tweet">{i18n[lang][t.type]}</p>
                       <p className="account">{t.originalTweet.name} (<a href={`https://twitter.com/${t.originalTweet.screenName}`} target="_blank" rel="noopener noreferrer">@{t.originalTweet.screenName}</a>)</p>
                     </aside>
                     <p className="tweet-content" dangerouslySetInnerHTML={{__html: t.originalTweet.html}} />

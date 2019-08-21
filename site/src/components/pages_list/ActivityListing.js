@@ -36,34 +36,31 @@ export default function ActivityListing({lang, list, status, statuses, topActivi
           <ul className="liste_objet" id="liste-activity">
 
             {activities.map((a, index) => (
-              <React.Fragment key={index}>
-                <li
-                  itemScope itemProp="member" itemType={a.type === 'research' ? 'https://schema.org/ResearchProject' : 'https://schema.org/Project'}
-                  data-type={a.type} className={`list-item ${a.type}-${a.active ? 'active' : 'past'}`}>
-                  <Link to={a.permalink[lang]}>
-                    <div className="image-pre" aria-hidden="true">
-                      <ProcessedImage size="medium" image={a.coverImage && a.coverImage.processed && a.coverImage.processed.medium} data={a} />
-                    </div>
-                    <div className="bandeau">
-                      <p data-icon="activite" className="type-activity">{I18N_TYPE_LABELS.activities[lang][a.type]}</p>
-                      <p className="title" itemProp="name" data-level-2="title">{a.name}</p>
-                    </div>
-                    <hgroup>
-                      <h1 data-level-1="baseline" >
-                          <LanguageFallback lang={lang} translatedAttribute={a.baseline} />
-                        </h1>
-                    </hgroup>
-                    <div className="accroche">
-                      <p className="accroche-paragraphe">
-                          <LanguageFallback lang={lang} translatedAttribute={a.description} />
-                        </p>
-                    </div>
-                  </Link>
-                </li>
-              </React.Fragment>
-
-              ))}
-
+              <li
+                key={index}
+                itemScope itemProp="member" itemType={a.type === 'research' ? 'https://schema.org/ResearchProject' : 'https://schema.org/Project'}
+                data-type={a.type} className={`list-item ${a.type}-${a.active ? 'active' : 'past'}`}>
+                <Link to={a.permalink[lang]}>
+                  <div className="image-pre" aria-hidden="true">
+                    <ProcessedImage size="medium" image={a.coverImage && a.coverImage.processed && a.coverImage.processed.medium} data={a} />
+                  </div>
+                  <div className="bandeau">
+                    <p data-icon="activite" className="type-activity">{I18N_TYPE_LABELS.activities[lang][a.type]}</p>
+                    <p className="title" itemProp="name" data-level-2="title">{a.name}</p>
+                  </div>
+                  <hgroup>
+                    <h1 data-level-1="baseline" >
+                      <LanguageFallback lang={lang} translatedAttribute={a.baseline} />
+                    </h1>
+                  </hgroup>
+                  <div className="accroche">
+                    <p className="accroche-paragraphe">
+                      <LanguageFallback lang={lang} translatedAttribute={a.description} />
+                    </p>
+                  </div>
+                </Link>
+              </li>
+            ))}
           </ul>
         </section>
       </main>

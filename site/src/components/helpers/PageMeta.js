@@ -1,7 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-import coverFb from '../assets/images/cover-fb.png';
 import coverTwitter from '../assets/images/cover-twitter.png';
 
 const typeToDublinCoreMapping = {

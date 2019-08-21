@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 import deburr from 'lodash/deburr';
 import debounce from 'lodash/debounce';
 
@@ -41,19 +42,19 @@ function Hilitor(id, tag) {
   const targetNode = document.getElementById(id) || document.body;
   const hiliteTag = tag || 'MARK';
   const skipTags = new RegExp('^(?:' + hiliteTag + '|SCRIPT|FORM)$');
-  const colors = ['rgb(247, 50, 63)', 'rgb(247, 50, 63)', 'rgb(247, 50, 63)', 'rgb(247, 50, 63)', 'rgb(247, 50, 63)'];
-  const wordColor = [];
-  const colorIdx = 0;
+  // const colors = ['rgb(247, 50, 63)', 'rgb(247, 50, 63)', 'rgb(247, 50, 63)', 'rgb(247, 50, 63)', 'rgb(247, 50, 63)'];
+  // const wordColor = [];
+  // const colorIdx = 0;
   let matchRegExp = '';
-  const openLeft = true;
-  const openRight = true;
+  // const openLeft = true;
+  // const openRight = true;
   let matchIndex = 0;
 
   // characters to strip from start and end of the input string
-  const endRegExp = new RegExp('^[^\\w]+|[^\\w]+$', 'g');
+  let endRegExp = new RegExp('^[^\\w]+|[^\\w]+$', 'g');
 
   // characters used to break up the input string into words
-  const breakRegExp = new RegExp('[\'\|\'-]+', 'g');//new RegExp('[^\\w\'-]+', 'g');
+  let breakRegExp = new RegExp('[\'\|\'-]+', 'g');//new RegExp('[^\\w\'-]+', 'g');
 
   this.setEndRegExp = function(regex) {
     endRegExp = regex;
@@ -94,7 +95,7 @@ function Hilitor(id, tag) {
     input = input.replace(/\| *\|/, '|');
     input = input.replace(/^\||\|$/g, '');
     if (input) {
-      const re = '(' + input + ')';
+      let re = '(' + input + ')';
       if (!this.openLeft) re = '\\b' + re;
       if (!this.openRight) re = re + '\\b';
       matchRegExp = new RegExp(re, 'i');
@@ -104,7 +105,7 @@ function Hilitor(id, tag) {
   };
 
   this.getRegex = function() {
-    const retval = matchRegExp.toString();
+    let retval = matchRegExp.toString();
     retval = retval.replace(/(^\/(\\b)?|\(|\)|(\\b)?\/i$)/g, '');
     retval = retval.replace(/\|/g, ' ');
     return retval;
@@ -149,7 +150,7 @@ function Hilitor(id, tag) {
       for (let i = 0; i < node.childNodes.length; i++)
         this.hiliteWords(node.childNodes[i]);
     }
-    if (node.nodeType == 3) { // NODE_TEXT
+    if (node.nodeType === 3) { // NODE_TEXT
       const nv = node.nodeValue;
       if (nv) {
         const regs = matchRegExp.exec(deburr(nv));
@@ -293,10 +294,10 @@ const CUSTOM_SCRIPTS = [
   {
     name: 'activities-listing-ux',
     condition: () => !!document.querySelector('.filtre-activity') && window.innerWidth < 700,
-    fn() {
+    fn() {
       const filterLabels = document.querySelectorAll('.filtre-activity');
 
-      const goTop = () => location.hash = '#liste';
+      const goTop = () => (location.hash = '#liste');
 
       Array.from(filterLabels).forEach(label => {
         label.addEventListener('click', goTop);
@@ -311,7 +312,7 @@ const CUSTOM_SCRIPTS = [
     fn() {
       const filterLabels = document.querySelectorAll('.filter-group label');
 
-      const goTop = () => location.hash = '#liste';
+      const goTop = () => (location.hash = '#liste');
 
       Array.from(filterLabels).forEach(label => {
         label.addEventListener('click', goTop);
@@ -336,7 +337,7 @@ const CUSTOM_SCRIPTS = [
     fn() {
       const filterLabels = document.querySelectorAll('.filtre-actu');
 
-      const goTop = () => location.hash = '#liste';
+      const goTop = () => (location.hash = '#liste');
 
       Array.from(filterLabels).forEach(label => {
         label.addEventListener('click', goTop);

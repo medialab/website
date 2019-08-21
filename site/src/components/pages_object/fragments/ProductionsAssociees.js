@@ -45,8 +45,8 @@ export default function ProductionsAssociees({lang, productions}) {
 
 	return (
     <aside
-      className="container elements-associes-block"
       id="productions"
+      className="container elements-associes-block"
       role="complementary"
       aria-label={related[lang]}>
       <h1><span data-icon="production" /> {accroche}</h1>
@@ -54,8 +54,11 @@ export default function ProductionsAssociees({lang, productions}) {
         <ul className="liste_objet">
           {productionsSorted.map(p => (
             <li
-              itemScope itemType={productionTypeToSchemaURL(p.type)} key={p.permalink.fr}
-              data-type="production" className="item">
+              key={p.permalink.fr}
+              itemScope
+              itemType={productionTypeToSchemaURL(p.type)}
+              data-type="production"
+              className="item">
               {!p.external && (
                 <Link to={p.permalink[lang]} aria-label={lang === 'fr' ? 'Lien vers cette production' : 'Link to this production'}>
                   <ProductionCard p={p} lang={lang} />
@@ -70,7 +73,7 @@ export default function ProductionsAssociees({lang, productions}) {
                 <ProductionCard p={p} lang={lang} />
               )}
             </li>
-            ))}
+          ))}
         </ul>
       </div>
     </aside>

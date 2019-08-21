@@ -1,5 +1,3 @@
-import highlights from '../pages_object/fragments/Highlights';
-
 const exists = key => object => !!(object[key] && object[key].length > 0);
 
 const SECTIONS = {

@@ -22,8 +22,8 @@ function validate(data) {
   if (data.spire)
     return;
 
-  if (!data.title || !data.title.fr)
-    return 'Need at least a French title';
+  if (!data.title && !data.title.fr  && !data.title.en)
+    return 'Need at least a  title';
 }
 
 // TODO: authors, ref
@@ -85,7 +85,7 @@ const HANDLERS = {
     field: ['authors']
   },
   external: {
-    type: 'negative',
+    type: 'raw',
     field: ['external']
   }
 };
@@ -119,8 +119,9 @@ class SpireGeneratedField extends Component {
   render() {
 
     const {peopleLabels, loading} = this.state;
-    const {humanValue, spireValue, children, init, cancel} = this.props;
-    if (spireValue) {
+    const {humanValue, spireValue, children, init, cancel, label} = this.props;
+
+    if (spireValue !== undefined) {
 
       let spireLabel = spireValue;
 
@@ -128,19 +129,21 @@ class SpireGeneratedField extends Component {
         spireLabel = 'loading...';
       else if (this.props.model === 'people')
         spireLabel = spireValue.map(sv => peopleLabels[sv].label).join(', ');
+      else if (label)
+        spireLabel = label(spireValue);
 
       return (
         <div>
           <div className="notification is-medium">{spireLabel}</div>
-          {(!humanValue && humanValue !== '') && (
+          {(humanValue === undefined) && (
             <Button
               kind="text"
               onClick={() => init()}>
               Modifier la valeur générée depuis SPIRE
             </Button>
           )}
-          {(humanValue || humanValue === '') && children}
-          {(humanValue || humanValue === '') && (
+          {(humanValue !== undefined || humanValue === '') && children}
+          {(humanValue !== undefined || humanValue === '') && (
             <Button
               kind="text"
               onClick={() => cancel()}>
@@ -332,10 +335,17 @@ function renderProductionForm(props) {
           Permet de créer une publication et de la mettre en avant dans le profil d'un membre sans la faire apparaître dans la liste des publications du labo</em>
           </label>
           <div className="control">
-            <BooleanSelector
-              value={!data.external}
-              labels={['publication médialab', 'publication hors médialab']}
-              onChange={handlers.external} />
+            <SpireGeneratedField
+              spireValue={data.spire && !data.spire.generatedFields.external}
+              humanValue={data.external}
+              label={v => (v ? 'publication médialab' : 'publication hors médialab' )}
+              init={() => handlers.external(true)}
+              cancel={() => handlers.external(undefined)}>
+              <BooleanSelector
+                value={!data.external}
+                labels={['publication médialab', 'publication hors médialab']}
+                onChange={v => handlers.external(!v)} />
+            </SpireGeneratedField>
           </div>
         </div>
       </div>

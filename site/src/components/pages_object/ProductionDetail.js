@@ -7,9 +7,7 @@ import {Link} from 'gatsby';
 import ToggleLang from './fragments/ToggleLang.js';
 import {productionTypeToSchemaURL, productionTypeToZoteroType} from '../helpers/helpers.js';
 import {I18N_TYPE_LABELS, I18N_GROUP_LABELS} from '../../i18n.js';
-
-import Logo from '../assets/svg/logo_medialab.svg';
-
+import LogoSticky from './fragments/LogoSticky.js';
 import ProductionsAssociees from './fragments/ProductionsAssociees.js';
 import ActivitesAssociees from './fragments/ActivitesAssociees.js';
 import ActuAssociees from './fragments/ActuAssociees.js';
@@ -215,7 +213,7 @@ export default function ProductionDetail({lang, production}) {
         </ol>
         <header id="titre-sticky" aria-hidden="true">
           <div id="container-titre-sticky">
-            <div id="logo-sticky"><a href="/"><Logo /></a></div>
+            <LogoSticky lang={lang} />
             <p>
               <Link to={mainPermalink[lang]}>
                 <span data-icon="production">Productions</span>

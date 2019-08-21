@@ -4,9 +4,8 @@ import {Link} from 'gatsby';
 
 import ToggleLang from './fragments/ToggleLang.js';
 import Highlights from './fragments/Highlights.js';
-import Logo from '../assets/svg/logo_medialab.svg';
+import LogoSticky from './fragments/LogoSticky.js';
 import {Icons} from '../helpers/Icons.js';
-
 
 import ProductionsAssociees from './fragments/ProductionsAssociees.js';
 import ActivitesAssociees from './fragments/ActivitesAssociees.js';
@@ -361,7 +360,7 @@ export default function PeopleDetail({lang, person}) {
 
         <header id="titre-sticky" aria-hidden="true">
           <div id="container-titre-sticky">
-            <div id="logo-sticky"><a href="/"><Logo /></a></div>
+            <LogoSticky lang={lang} />
             <p>
               <Link to={mainPermalink[lang]} className="link-page-team" title={titleLinkTeam}>
                 <span>{I18N_MODEL[lang].people} </span>

@@ -119,6 +119,11 @@ function processHtml(pathPrefix, html) {
       output += `<p>${$this.html()}</p>`;
     }
 
+    // Blockquotes
+    else if (tag === 'BLOCKQUOTE') {
+      output += `<blockquote>${$this.html()}</blockquote>`;
+    }
+
     // Titles
     else if (TITLE.test(tag)) {
       const h = tag.toLowerCase();

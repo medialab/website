@@ -137,7 +137,7 @@ export default class CoverSelector extends PureComponent {
     };
 
     if (processing)
-    coverData.gamma = this.props.cover ? this.props.cover.gamma : 0;
+      coverData.gamma = this.props.cover ? this.props.cover.gamma : 0;
 
     this.props.onChange(coverData);
   };

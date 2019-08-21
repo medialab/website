@@ -28,6 +28,30 @@ exports.createBacklinkResolver = (relationType, propName) => {
   };
 };
 
+exports.createSameModelRelationResolver = (relationType, propName) => {
+  const forwardResolver = exports.createRelationResolver(propName).resolve,
+        backwardResolver = exports.createBacklinkResolver(relationType, propName).resolve;
+
+  return {
+    resolve(source, args, context) {
+
+      const forwardNodes = forwardResolver(source, args, context),
+            backwardNodes = backwardResolver(source, args, context);
+
+      // Merging backward & forward links into a single unified list
+      const data = {};
+
+      forwardNodes
+        .concat(backwardNodes)
+        .forEach(node => {
+          data[node.id] = node;
+        });
+
+      return Object.values(data);
+    }
+  };
+};
+
 exports.createCoverImageResolver = settings => {
 
   const resolver = source => {

@@ -82,6 +82,10 @@ export const queryFragment = graphql`
         en
         fr
       }
+      permalink {
+        en
+        fr
+      }
     }
     productions {
       title {

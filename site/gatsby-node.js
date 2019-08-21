@@ -21,6 +21,7 @@ const {
   createSettingsItemResolver,
   createRelationResolver,
   createBacklinkResolver,
+  createSameModelRelationResolver,
   createCoverImageResolver
 } = require('./schemas/resolvers.js');
 
@@ -387,7 +388,10 @@ exports.createResolvers = function({createResolvers, pathPrefix}) {
 
       // Backlinks
       news: createBacklinkResolver('NewsJson', 'activities'),
-      productions: createBacklinkResolver('ProductionsJson', 'activities')
+      productions: createBacklinkResolver('ProductionsJson', 'activities'),
+
+      // Same model
+      activities: createSameModelRelationResolver('ActivitiesJson', 'activities')
     },
 
     NewsJson: {
@@ -421,7 +425,9 @@ exports.createResolvers = function({createResolvers, pathPrefix}) {
       // Relations
       activities: createRelationResolver('activities'),
       people: createRelationResolver('people'),
-      productions: createRelationResolver('productions')
+
+      // Same model
+      productions: createSameModelRelationResolver('ProductionsJson', 'productions')
     }
   });
 };

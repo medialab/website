@@ -10,12 +10,16 @@ export const query = graphql`
     newsJson(id: {eq: $id}) {
       ...NewsDetail
     }
+
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
   }
 `;
 
 export default ({data, pageContext}) => {
-  // console.log(data, pageContext);
-
   const news = data.newsJson;
 
   return (
@@ -24,7 +28,10 @@ export default ({data, pageContext}) => {
       className="page-news body-page"
       permalinks={pageContext.permalinks}>
       {pageContext.linkToAdmin && <EditInAdmin draft={news.draft} linkToAdmin={pageContext.linkToAdmin} />}
-      <NewsDetail lang={pageContext.lang} news={news} />
+      <NewsDetail
+        lang={pageContext.lang}
+        news={news}
+        siteUrl={data.site.siteMetadata.siteUrl} />
     </Layout>
   );
 };

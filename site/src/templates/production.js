@@ -11,6 +11,12 @@ export const query = graphql`
     productionsJson(id: {eq: $id}) {
       ...ProductionDetail
     }
+
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
   }
 `;
 
@@ -26,7 +32,10 @@ export default ({data, pageContext}) => {
       permalinks={pageContext.permalinks}>
       {pageContext.linkToAdmin && <EditInAdmin draft={production.draft} linkToAdmin={pageContext.linkToAdmin} />}
 
-      <ProductionDetail lang={pageContext.lang} production={production} />
+      <ProductionDetail
+        lang={pageContext.lang}
+        production={production}
+        siteUrl={data.site.siteMetadata.siteUrl} />
     </Layout>
   );
 };

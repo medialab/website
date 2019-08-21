@@ -114,7 +114,7 @@ const mainPermalink = {
   en: '/en/productions'
 };
 
-const LangBlock = ({production, lang}) => {
+const LangBlock = ({production, lang, siteUrl}) => {
   let ref = (
     <p itemProp="description" className="p-ref">
       {production.description && <RawHtml html={production.description[lang]} />}
@@ -183,7 +183,7 @@ export default function ProductionDetail({lang, production}) {
         lang={lang}
         type={production.type}
         imageData={production.coverImage && production.coverImage.processed && production.coverImage.processed.raster}
-        uri={`https://medialab.sciencespo.fr/${mainPermalink[lang]}`}
+        uri={`${siteUrl}${mainPermalink[lang]}`}
         citation={production.description && production.description[lang]} />
       <main
         id="main-objet"
@@ -197,7 +197,7 @@ export default function ProductionDetail({lang, production}) {
             itemType="https://schema.org/ListItem">
             <a
               itemType="https://schema.org/Organization"
-              itemProp="item" href="https://medialab.sciencespo.fr">
+              itemProp="item" href={siteUrl}>
               <span itemProp="name">médialab Sciences Po</span></a>
             <meta itemProp="position" content="1" />
           </li>
@@ -206,7 +206,7 @@ export default function ProductionDetail({lang, production}) {
             itemType="https://schema.org/ListItem">
             <a
               itemType="https://schema.org/Thing"
-              href={`https://medialab.sciencespo.fr/${mainPermalink[lang]}`}
+              href={`${siteUrl}${mainPermalink[lang]}`}
               itemProp="item">
               <span itemProp="name">Productions</span></a>
             <meta itemProp="position" content="2" />
@@ -216,7 +216,7 @@ export default function ProductionDetail({lang, production}) {
             itemType="https://schema.org/ListItem">
             <a
               itemType="https://schema.org/Thing"
-              href={`https://medialab.sciencespo.fr/${production.permalink[lang]}`}
+              href={`${siteUrl}${production.permalink[lang]}`}
               itemProp="item">
               <span itemProp="name">
                 <LanguageFallback lang={lang} translatedAttribute={production.title} />

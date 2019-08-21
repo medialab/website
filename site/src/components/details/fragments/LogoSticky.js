@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'gatsby';
-import Logo from '../../assets/svg/logo_medialab.svg';
+import Logo from '../../../assets/svg/logo_medialab.svg';
 
 const mainPermalink = {
   fr: '/',

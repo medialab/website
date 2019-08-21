@@ -10,7 +10,7 @@ import LanguageFallback from '../../helpers/LanguageFallback.js';
 import ProcessedImage from '../../helpers/ProcessedImage.js';
 
 
-const ActuAssociees = ({lang, actu, isSeminar, filter, titles}) => {
+const RelatedNews = ({lang, actu, isSeminar, filter, titles}) => {
 
   const related = SECTIONS.news;
 
@@ -113,4 +113,4 @@ const ActuAssociees = ({lang, actu, isSeminar, filter, titles}) => {
   );
 };
 
-export default ActuAssociees;
+export default RelatedNews;

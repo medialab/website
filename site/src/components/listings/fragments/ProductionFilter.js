@@ -39,7 +39,7 @@ const mainPermalink = {
   en: '/en/productions'
 };
 
-function InputFiltresType() {
+function TypeFilterInputs() {
 
   return (
     <>
@@ -85,7 +85,7 @@ function LabelFiltresType({lang, group}) {
   );
 }
 
-export default function FilterProduction({lang, group, types, years}) {
+export default function ProductionFilter({lang, group, types, years}) {
   const {
     accroche,
     infosAlt,
@@ -122,7 +122,7 @@ export default function FilterProduction({lang, group, types, years}) {
         <p id="aria-accroche">{accroche}</p>
       </aside>
 
-      <InputFiltresType />
+      <TypeFilterInputs />
 
       <aside className="aside-filters" aria-label={filtresTitle}>
 

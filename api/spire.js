@@ -38,7 +38,7 @@ const ref = record => {
   // removing the <a> tag
   return record.citations ? record.citations.html.chicago.replace(/<a.*?>(.*?)<\/a>/g, '$1') : false;
 };
-const date = record => {
+const getDate = record => {
   if (record.date_issued || record.date_created) {
     let date = record.date_issued || record.date_created;
     //sometimes the format is YYYYMMDD and not YYYY-MM-DD ....
@@ -54,8 +54,8 @@ const date = record => {
 // translation function returns false is ther is nothing to update for the path.
 const translators = {
   'type': record => spireTypes[record.spire_document_type],
-  date,
-  'external': record => (date(record) < '2009'),
+  'date': getDate,
+  'external': record => (getDate(record) < '2009'),
   'title.en': record => title(record, 'en'),
   'title.fr': record => title(record, 'fr'),
   'description.en': record => ref(record),

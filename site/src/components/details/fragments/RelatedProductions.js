@@ -18,7 +18,7 @@ const i18n = {
     externalProduction: 'This linked is external to médialab',
     linkAriaLabel: 'Link to this production'
   }
-}
+};
 
 const ProductionCard = ({p, lang}) => (
   <>
@@ -43,7 +43,7 @@ const ProductionCard = ({p, lang}) => (
   </>
 );
 
-export default function ProductionsAssociees({lang, productions}) {
+export default function RelatedProductions({lang, productions}) {
 
   const related = SECTIONS.productions;
 

@@ -28,7 +28,7 @@ const i18n = {
   }
 };
 
-const FilterActivity = ({lang}) => {
+const ActivityFilter = ({lang}) => {
 
   const {
     filterType,
@@ -115,5 +115,5 @@ const FilterActivity = ({lang}) => {
   );
 };
 
-export default FilterActivity;
+export default ActivityFilter;
 

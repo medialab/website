@@ -29,7 +29,7 @@ const i18n = {
   }
 };
 
-const FiltreEquipe = ({lang}) => {
+const PeopleFilter = ({lang}) => {
 
   const {
     title,
@@ -144,4 +144,4 @@ const FiltreEquipe = ({lang}) => {
 	);
 };
 
-export default FiltreEquipe;
+export default PeopleFilter;

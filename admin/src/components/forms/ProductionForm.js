@@ -22,7 +22,7 @@ function validate(data) {
   if (data.spire)
     return;
 
-  if (!data.title && !data.title.fr  && !data.title.en)
+  if (!data.title && !data.title.fr && !data.title.en)
     return 'Need at least a  title';
 }
 
@@ -338,7 +338,7 @@ function renderProductionForm(props) {
             <SpireGeneratedField
               spireValue={data.spire && !data.spire.generatedFields.external}
               humanValue={data.external}
-              label={v => (v ? 'publication médialab' : 'publication hors médialab' )}
+              label={v => (v ? 'publication médialab' : 'publication hors médialab')}
               init={() => handlers.external(true)}
               cancel={() => handlers.external(undefined)}>
               <BooleanSelector

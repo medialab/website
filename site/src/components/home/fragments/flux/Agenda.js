@@ -13,7 +13,7 @@ const i18n = {
     place: 'Lieu'
   },
   en: {
-    rdv: 'Meeting',
+    rdv: 'Meetings',
     more: 'Get more information on this meeting',
     internal: 'The event is hosted by médialab',
     place: 'Place'

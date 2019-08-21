@@ -2,8 +2,8 @@ import React from 'react';
 import {graphql} from 'gatsby';
 
 import Layout from '../components/Layout';
-import ActivityDetail from '../components/pages_object/ActivityDetail';
-import EditInAdmin from '../components/pages_object/fragments/EditInAdmin';
+import ActivityDetail from '../components/details/ActivityDetail';
+import EditInAdmin from '../components/details/fragments/EditInAdmin';
 
 export const query = graphql`
   query($id: String!) {

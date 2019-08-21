@@ -24,11 +24,9 @@ module.exports = function(req, dbs, next) {
       // Finding things to delete
     const [toDelete, toKeep] = partition(data[m], o => {
       return (
-        (o.title && ((o.title.fr && o.title.fr.includes(' SUPPRIMER')) ||
-                    (o.title.en && o.title.en.includes(' SUPPRIMER'))) 
-        ) ||
-        (o.name && o.name.includes(' SUPPRIMER'))
-      );
+        (o.title && (o.title.fr + o.title.en)) +
+        o.name
+      ).includes(' SUPPRIMER');
     });
 
     let error = null;
@@ -44,7 +42,8 @@ module.exports = function(req, dbs, next) {
 
     if (error)
       return next(error);
-    deleted = deleted.concat(toDelete)
+
+    deleted = deleted.concat(toDelete);
 
     // Persisting
     if (!dryRun) {

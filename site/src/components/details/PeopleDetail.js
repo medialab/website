@@ -7,9 +7,9 @@ import Highlights from './fragments/Highlights.js';
 import LogoSticky from './fragments/LogoSticky.js';
 import {Icons} from '../helpers/Icons.js';
 
-import ProductionsAssociees from './fragments/ProductionsAssociees.js';
-import ActivitesAssociees from './fragments/ActivitesAssociees.js';
-import ActuAssociees from './fragments/ActuAssociees.js';
+import RelatedProductions from './fragments/RelatedProductions.js';
+import RelatedActivities from './fragments/RelatedActivities.js';
+import RelatedNews from './fragments/RelatedNews.js';
 
 import Nav from '../common/Nav.js';
 
@@ -17,8 +17,8 @@ import RawHtml from '../helpers/RawHtml';
 import {templateMembership} from '../helpers/helpers.js';
 import PageMeta from '../helpers/PageMeta.js';
 
-import peoplePlaceholder from '../assets/images/people-placeholder.png';
-import { I18N_MODEL } from '../../i18n.js';
+import peoplePlaceholder from '../../assets/images/people-placeholder.png';
+import {I18N_MODEL} from '../../i18n.js';
 
 export const queryFragment = graphql`
   fragment PeopleDetail on PeopleJson {
@@ -451,9 +451,9 @@ export default function PeopleDetail({lang, person}) {
           </article>
 
           <aside id="all-aside">
-            <ActivitesAssociees activities={person.activities} lang={lang} />
-            <ProductionsAssociees productions={person.productions} lang={lang} />
-            <ActuAssociees actu={person.news} lang={lang} />
+            <RelatedActivities activities={person.activities} lang={lang} />
+            <RelatedProductions productions={person.productions} lang={lang} />
+            <RelatedNews actu={person.news} lang={lang} />
           </aside>
 
         </div>

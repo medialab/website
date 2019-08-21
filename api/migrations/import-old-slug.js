@@ -5,7 +5,7 @@ const productionsRedirections = require('../../specs/productionsRedirections.jso
 
 module.exports = function(req, dbs, next) {
   const dryRun = 'dryrun' in req.query;
-  
+
   //indexing productions
   const productionsBySlug = {};
   dbs.productions.read();

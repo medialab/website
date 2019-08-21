@@ -243,7 +243,8 @@ const MIGRATION_SCHEMES = {
   'prod-cleanup': require('./migrations/prod-cleanup.js'),
   'reset-settings': require('./migrations/reset-settings.js'),
   'reslugify': require('./migrations/reslugify.js'),
-  'refresh-generatedFields-productions': require('./migrations/refresh-generatedFields-productions.js')
+  'refresh-generatedFields-productions': require('./migrations/refresh-generatedFields-productions.js'),
+  'import-old-slug': require('./migrations/import-old-slug.js')
 };
 
 app.get('/migrate/:scheme', (req, res) => {

@@ -469,7 +469,7 @@ function buildStaticSite(callback) {
       env.GOOGLE_ANALYTICS_ID = config.get('googleAnalyticsId');
       env.NODE_ENV = 'production';
 
-      return exec('gatsby build', {cwd: SITE_PATH, env}, next);
+      return exec('gatsby build > /dev/null', {cwd: SITE_PATH, env}, next);
     },
 
     // 4) Deploying using rsync
@@ -487,7 +487,7 @@ function buildStaticSite(callback) {
 
       const command = [
         `RSYNC_PASSWORD=${rsyncConfig.password}`,
-        `rsync -az --del ${built} ${rsyncConfig.target}`
+        `rsync -az --del ${built} --exclude="publications" ${rsyncConfig.target}`
       ].join(' ');
 
       return exec(command, next);

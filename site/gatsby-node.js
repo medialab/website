@@ -640,7 +640,7 @@ exports.createPages = function({graphql, actions}) {
     component: path.resolve('./src/templates/people-list.js')
   });
 
-  const linkToAdmin = (model, id) => {
+  const createLinkToAdmin = (model, id) => {
     if (ADMIN_URL && (!BUILD_CONTEXT || BUILD_CONTEXT !== 'prod'))
       return `${ADMIN_URL}/#/${model}/${id}`;
     else
@@ -660,9 +660,13 @@ exports.createPages = function({graphql, actions}) {
         const activity = edge.node;
 
         const context = {
-          id: activity.id,
-          linkToAdmin: linkToAdmin('activities', activity.id)
+          id: activity.id
         };
+
+        const linkToAdmin = createLinkToAdmin('activities', activity.id);
+
+        if (linkToAdmin)
+          context.linkToAdmin = linkToAdmin;
 
         activity.slugs.forEach(slug => {
           createI18nPage(createPage, {
@@ -685,9 +689,13 @@ exports.createPages = function({graphql, actions}) {
         const person = edge.node;
 
         const context = {
-          id: person.id,
-          linkToAdmin: linkToAdmin('people', person.id)
+          id: person.id
         };
+
+        const linkToAdmin = createLinkToAdmin('people', person.id);
+
+        if (linkToAdmin)
+          context.linkToAdmin = linkToAdmin;
 
         person.slugs.forEach(slug => {
           createI18nPage(createPage, {
@@ -708,11 +716,16 @@ exports.createPages = function({graphql, actions}) {
       // Creating pages
       result.data.allProductionsJson.edges.forEach(edge => {
         const production = edge.node;
+
         if (!production.external) {
           const context = {
-            id: production.id,
-            linkToAdmin: linkToAdmin('productions', production.id)
+            id: production.id
           };
+
+          const linkToAdmin = createLinkToAdmin('productions', production.id);
+
+          if (linkToAdmin)
+            context.linkToAdmin = linkToAdmin;
 
           production.slugs.forEach(slug => {
             createI18nPage(createPage, {
@@ -735,9 +748,13 @@ exports.createPages = function({graphql, actions}) {
         const news = edge.node;
 
         const context = {
-          id: news.id,
-          linkToAdmin: linkToAdmin('news', news.id)
+          id: news.id
         };
+
+        const linkToAdmin = createLinkToAdmin('news', news.id);
+
+        if (linkToAdmin)
+          context.linkToAdmin = linkToAdmin;
 
         news.slugs.forEach(slug => {
           createI18nPage(createPage, {

@@ -157,7 +157,6 @@ const LangBlock = ({production, lang}) => {
 };
 
 export default function ProductionDetail({lang, production}) {
-  console.log(production)
   return (
     <>
       <PageMeta

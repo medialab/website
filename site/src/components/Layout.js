@@ -34,7 +34,7 @@ const Layout = ({children, lang, className, permalinks}) => {
           <div itemScope itemType="https://schema.org/Organization" className={className}>
             <link itemProp="url" href={data.site.siteMetadata.siteUrl} />
             {/** The following invisible div indicates to search engines which logo to use to display the website card **/}
-            <div itemProp="logo" style={{display: 'none'}}>{'https://medialab.sciencespo.fr' + coverFb}</div>
+            <div itemProp="logo" style={{display: 'none'}}>{data.site.siteMetadata.siteUrl + coverFb}</div>
             <TopBar lang={lang} permalinks={permalinks} />
             {children}
             <Footer lang={lang} />

@@ -96,10 +96,10 @@ function MetaData(props) {
 
       {/* META TWITTER */}
       <meta name="twitter:card" value="summary" />
-      <meta name="twitter:site" content="https://medialab.sciencespo.fr" />
+      <meta name="twitter:site" content={siteUrl} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:creator" content="@medialab" />
+      <meta name="twitter:creator" content="@medialab_scpo" />
       <meta name="twitter:image" content={imageSrc} />
       {/* end meta twitter */}
 
@@ -112,7 +112,7 @@ function MetaData(props) {
       {/* META OPEN GRAPH / FACEBOOK */}
       <meta property="og:title" content={title} />
       <meta property="og:site_name" content="médialab Sciences Po" />
-      <meta property="og:url" content={uri ? uri : 'https://medialab.sciencespo.fr'} />
+      <meta property="og:url" content={uri ? uri : {siteUrl}} />
       <meta property="og:description" content={description} />
       <meta property="og:image:url" content={imageSrc} />
       <meta property="og:image:secure_url" content={imageSrc} />

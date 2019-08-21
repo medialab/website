@@ -17,7 +17,7 @@ import RawHtml from '../helpers/RawHtml';
 import {templateMembership} from '../helpers/helpers.js';
 import PageMeta from '../helpers/PageMeta.js';
 
-import peoplePlaceholder from '../assets/images/people-placeholder.png';
+import peoplePlaceholder from '../../assets/images/people-placeholder.png';
 import { I18N_MODEL } from '../../i18n.js';
 
 export const queryFragment = graphql`

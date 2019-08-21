@@ -5,11 +5,11 @@ import {StaticQuery, graphql} from 'gatsby';
 import TopBar from './common/TopBar.js';
 import Footer from './common/Footer.js';
 
-import coverFb from './assets/images/cover-fb.png';
+import coverFb from '../assets/images/cover-fb.png';
 
-import './assets/font/Bel2/stylesheet.css';
-import './assets/font/Symbol/stylesheet.css';
-import './assets/scss/global.scss';
+import '../assets/font/Bel2/stylesheet.css';
+import '../assets/font/Symbol/stylesheet.css';
+import '../assets/scss/global.scss';
 
 const Layout = ({children, lang, className, permalinks}) => {
 

@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'gatsby';
 import {SECTIONS} from '../../helpers/sections';
 
-import peoplePlaceholder from '../../assets/images/people-placeholder.png';
+import peoplePlaceholder from '../../../assets/images/people-placeholder.png';
 
 const i18n = {
   fr: {

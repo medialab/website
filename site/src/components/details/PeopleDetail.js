@@ -210,9 +210,11 @@ const mainPermalink = {
 };
 
 function extractHandle(value) {
-  if (value.startsWith('http')) {
+  if (value.startsWith('http'))
     return value.split('/').slice(-1)[0];
-  }
+
+  if (value.startsWith('@'))
+    return value.slice(1);
 
   return value;
 }

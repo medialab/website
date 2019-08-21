@@ -2,8 +2,8 @@ import React from 'react';
 import {graphql} from 'gatsby';
 
 import Layout from '../components/Layout';
-import PeopleDetail from '../components/pages_object/PeopleDetail';
-import EditInAdmin from '../components/pages_object/fragments/EditInAdmin';
+import PeopleDetail from '../components/details/PeopleDetail';
+import EditInAdmin from '../components/details/fragments/EditInAdmin';
 
 
 export const query = graphql`

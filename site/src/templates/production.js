@@ -2,9 +2,9 @@ import React from 'react';
 import {graphql} from 'gatsby';
 
 import Layout from '../components/Layout';
-import ProductionDetail from '../components/pages_object/ProductionDetail';
+import ProductionDetail from '../components/details/ProductionDetail';
 
-import EditInAdmin from '../components/pages_object/fragments/EditInAdmin';
+import EditInAdmin from '../components/details/fragments/EditInAdmin';
 
 export const query = graphql`
   query($id: String!) {

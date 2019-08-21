@@ -5,7 +5,7 @@ import {Link} from 'gatsby';
 
 import {I18N_MODEL} from '../../i18n.js';
 import ToggleLang from './fragments/ToggleLang.js';
-import Logo from '../assets/svg/logo_medialab.svg';
+import LogoSticky from './fragments/LogoSticky.js';
 import ProcessedImage from '../helpers/ProcessedImage.js';
 import DateNews from '../helpers/DateNews.js';
 import TimeNews from '../helpers/TimeNews.js';
@@ -205,7 +205,7 @@ export default function ActivityDetail({lang, activity}) {
       </ol>
       <header id="titre-sticky" aria_hidden="true">
         <div id="container-titre-sticky">
-          <div id="logo-sticky"><a href="/"><Logo /></a></div>
+          <LogoSticky lang={lang} />
           <p>
             <Link to={mainPermalink[lang]}>
               <span data-icon="activite">{I18N_MODEL[lang].activities} </span>

@@ -19,6 +19,7 @@ import {templateMembership} from '../helpers/helpers.js';
 import PageMeta from '../helpers/PageMeta.js';
 
 import peoplePlaceholder from '../assets/images/people-placeholder.png';
+import { I18N_MODEL } from '../../i18n.js';
 
 export const queryFragment = graphql`
   fragment PeopleDetail on PeopleJson {
@@ -32,6 +33,10 @@ export const queryFragment = graphql`
     bio {
       fr
       en
+    }
+    permalink {
+      en
+      fr
     }
     coverImage {
       url
@@ -164,6 +169,48 @@ export const queryFragment = graphql`
   }
 `;
 
+const i18n = {
+  fr: {
+    titleLinkTeam: 'Aller à la page de l‘équipe du médialab',
+    backTop: 'Aller en haut de la page',
+    toggleNav: 'Afficher ou masquer la navigation dans l‘article',
+    openLink(data) {
+      return 'Ouvrir cette page ' + data.value;
+    },
+    presentationAriaLabel(person) {
+      return `Présentation de ${person.firstName} ${person.lastName}`;
+    },
+    profilePicture(person) {
+      return `Photo de profil de ${person.firstName} ${person.lastName}`;
+    },
+    occupationAriaLabel: 'Occupation actuelle',
+    roleAriaLabel: 'Rôle au sein de l\'equipe',
+    membershipAriaLabel: 'Affiliation'
+  },
+  en: {
+    titleLinkTeam: 'Go to the médialab team page',
+    backTop: 'Go to the top of page',
+    toggleNav: 'Show or hide the navigation in the article',
+    openLink(data) {
+      return 'Open this ' + data.value + ' page';
+    },
+    presentationAriaLabel(person) {
+      return `${person.firstName} ${person.lastName}'s presentation`;
+    },
+    profilePicture(person) {
+      return `${person.firstName} ${person.lastName} profile picture`;
+    },
+    occupationAriaLabel: 'Present activities',
+    roleAriaLabel: 'Role within the team',
+    membershipAriaLabel: 'Membership status'
+  }
+};
+
+const mainPermalink = {
+  fr: '/equipe',
+  en: '/en/people'
+};
+
 function extractHandle(value) {
   if (value.startsWith('http')) {
     return value.split('/').slice(-1)[0];
@@ -232,8 +279,11 @@ function PeopleContactLabel({lang, data}) {
       <span>
         <span className="label-data">{data.label}:</span>
         &nbsp;<a
-          proptype="url" href={data.value} target="_blank"
-          rel="noopener noreferrer" aria-label={lang === 'fr' ? 'Ouvrir cette page ' + data.value : 'Open this ' + data.value + ' page'}>{data.value}</a>
+          proptype="url"
+          href={data.value}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={i18n[lang].openLink(data)}>{data.value}</a>
       </span>
     );
   }
@@ -241,21 +291,7 @@ function PeopleContactLabel({lang, data}) {
   return <a proptype="url" href={data.value}>{data.label}</a>;
 }
 
-const i18n = {
-  fr: {
-    titleLinkTeam: 'Aller à la page de l‘équipe du médialab',
-    backTop: 'Aller en haut de la page',
-    toggleNav: 'Afficher ou masquer la navigation dans l‘article'
-  },
-  en: {
-    titleLinkTeam: 'Go to the médialab team page',
-    backTop: 'Go to the top of page',
-    toggleNav: 'Show or hide the navigation in the article'
-  }
-};
-
 export default function PeopleDetail({lang, person}) {
-  // console.log(lang, person);
   const {
     titleLinkTeam,
     backTop,
@@ -267,13 +303,15 @@ export default function PeopleDetail({lang, person}) {
       <PageMeta
         title={`${person.firstName} ${person.lastName} | médialab Sciences Po`}
         description={person.status && person.status[lang]}
-        uri={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'equipe' : 'en/people'}/${person.slugs && person.slugs[0]}`}
+        uri={`https://medialab.sciencespo.fr/${person.permalink[lang]}`}
         lang={lang} />
       <main
+        id="main"
         itemScope
         itemType="http://schema.org/Person"
         itemProp="member"
-        id="main" role="main" aria-label={lang === 'fr' ? 'Présentation de ' + person.firstName + person.lastName : person.firstName + person.lastName + "'s presentation"}>
+        role="main"
+        aria-label={i18n[lang].presentationAriaLabel}>
 
         <ol style={{display: 'none'}} itemScope itemType="https://schema.org/BreadcrumbList">
           <li
@@ -290,9 +328,9 @@ export default function PeopleDetail({lang, person}) {
             itemType="https://schema.org/ListItem">
             <a
               itemType="https://schema.org/Thing"
-              href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'equipe' : 'en/people'}`}
+              href={`https://medialab.sciencespo.fr/${mainPermalink[lang]}`}
               itemProp="item">
-              <span itemProp="name">{lang === 'fr' ? 'L\'équipe' : 'The team'}</span></a>
+              <span itemProp="name">{I18N_MODEL[lang].people}</span></a>
             <meta itemProp="position" content="2" />
           </li>
           <li
@@ -300,7 +338,7 @@ export default function PeopleDetail({lang, person}) {
             itemType="https://schema.org/ListItem">
             <a
               itemType="https://schema.org/Thing"
-              href={`https://medialab.sciencespo.fr/${lang === 'fr' ? 'equipe' : 'en/people'}/${person.slugs && person.slugs[0]}`}
+              href={`https://medialab.sciencespo.fr/${person.permalink[lang]}`}
               itemProp="item">
               <span itemProp="name">
                 {person.firstName} {person.lastName}
@@ -314,7 +352,9 @@ export default function PeopleDetail({lang, person}) {
           type="checkbox" id="toggle-nav" name="toggle-nav"
           value="toggle-nav" hidden />
         <label
-          htmlFor="toggle-nav" id="toggle-nav_label" title={toggleNav}
+          id="toggle-nav_label"
+          htmlFor="toggle-nav"
+          title={toggleNav}
           arial-label={toggleNav}><span><Icons icon="arrow" /></span></label>
 
         <Nav lang={lang} data={person} order={['main', 'highlights', 'activities', 'productions', 'news']} />
@@ -323,10 +363,14 @@ export default function PeopleDetail({lang, person}) {
           <div id="container-titre-sticky">
             <div id="logo-sticky"><a href="/"><Logo /></a></div>
             <p>
-              <Link to={lang === 'fr' ? '/equipe' : '/en/people'} className="link-page-team" title={titleLinkTeam}>
-                <span>{lang === 'fr' ? "L'équipe du médialab" : 'médialab team'} </span>
+              <Link to={mainPermalink[lang]} className="link-page-team" title={titleLinkTeam}>
+                <span>{I18N_MODEL[lang].people} </span>
               </Link>
-              <span className="personne"><a href="#topbar" title={backTop}><span itemProp="givenName">{person.firstName}</span> <span itemProp="familyName">{person.lastName}</span></a></span>
+              <span className="personne">
+                <a href="#topbar" title={backTop}>
+                  <span itemProp="givenName">{person.firstName}</span> <span itemProp="familyName">{person.lastName}</span>
+                </a>
+              </span>
             </p>
           </div>
         </header>
@@ -340,23 +384,36 @@ export default function PeopleDetail({lang, person}) {
                   <img
                     itemProp="image"
                     src={person.coverImage ? person.coverImage.url : peoplePlaceholder}
-                    alt={lang === 'fr' ? 'Photo de profil de ' + person.firstName + person.lastName : person.firstName + person.lastName + ' profil picture'} />
+                    alt={i18n[lang].profilePicture(person)} />
                 </figure>
                 <hgroup>
-                  <h1 data-level-1="name" data-type="name">{person.firstName} {person.lastName}</h1>
-                  {person.status &&
-                  <p className={`status ${lang}`} data-type="status" aria-label={lang === 'fr' ? 'Occupation actuelle ' : 'Present activitiies'}>
-                    { lang === 'fr' ? person.status.fr : person.status.en}
-                  </p>
-                  }
+                  <h1 data-level-1="name" data-type="name">
+                    {person.firstName} {person.lastName}
+                  </h1>
+                  {person.status && (
+                    <p
+                      className={`status ${lang}`}
+                      data-type="status"
+                      aria-label={i18n[lang].occupationAriaLabel}>
+                      {person.status[lang]}
+                    </p>
+                  )}
                 </hgroup>
                 <div className="bandeau">
-                  <p className="role" data-type="role" aria-label={lang === 'fr' ? "Rôle au sein de l'equipe" : 'Role within the team '}>{person.role[lang]}</p>
-                  {/* <p data-type="domaine">{lang === "fr" ? "Domaine" + String.fromCharCode(8239) +":" : "Domain:"} {person.domain}</p> */}
-                  <p data-type="membership" aria-label={lang === 'fr' ? 'Nature de la relation au médialab' : 'Nature of the relationship within médialab'}>{templateMembership(person)}</p>
+                  <p
+                    className="role"
+                    data-type="role"
+                    aria-label={i18n[lang].roleAriaLabel}>
+                    {person.role[lang]}
+                  </p>
+                  <p
+                    data-type="membership"
+                    aria-label={i18n[lang].membershipAriaLabel}>
+                    {templateMembership(person)}
+                  </p>
                 </div>
 
-                { person.contacts && person.contacts.length > 0 &&
+                {person.contacts && person.contacts.length > 0 && (
                   <div className="contact">
                     <ul>
                       { person.contacts.map((contact, i) => (
@@ -365,7 +422,8 @@ export default function PeopleDetail({lang, person}) {
                         </li>
                     ))}
                     </ul>
-                  </div>}
+                  </div>
+                )}
               </header>
 
               {/* Toggle Langue */}
@@ -373,23 +431,25 @@ export default function PeopleDetail({lang, person}) {
 
               {/* FR */}
               <div
-                itemProp="description" className="biographie-content block-lang fr" lang="fr"
+                itemProp="description"
+                className="biographie-content block-lang fr"
+                lang="fr"
                 aria-label="Biographie" >
                 {person.bio && person.bio.fr ? <RawHtml html={person.bio.fr} /> : null}
               </div>
 
               {/* EN */}
               <div
-                itemProp="description" className="biographie-content block-lang en" lang="en"
+                itemProp="description"
+                className="biographie-content block-lang en"
+                lang="en"
                 aria-label="Biography" >
                 {person.bio && person.bio.en ? <RawHtml html={person.bio.en} /> : null}
               </div>
             </div>
 
-
             <Highlights people={person} lang={lang} />
           </article>
-
 
           <aside id="all-aside">
             <ActivitesAssociees activities={person.activities} lang={lang} />
@@ -398,7 +458,6 @@ export default function PeopleDetail({lang, person}) {
           </aside>
 
         </div>
-
 
       </main>
     </>

@@ -24,7 +24,6 @@ export const queryFragment = graphql`
   fragment PeopleDetail on PeopleJson {
     firstName
     lastName
-    slugs
     role {
       en
       fr

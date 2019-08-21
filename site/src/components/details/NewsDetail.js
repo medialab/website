@@ -110,7 +110,6 @@ export const queryFragment = graphql`
     startDate
     endDate
     place
-    slugs
   }
 `;
 

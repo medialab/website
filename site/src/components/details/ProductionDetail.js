@@ -26,7 +26,6 @@ export const queryFragment = graphql`
     group
     type
     date
-    slugs
     coverImage {
       processed {
         raster {

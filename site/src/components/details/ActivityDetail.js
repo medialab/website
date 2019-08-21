@@ -157,7 +157,7 @@ const mainPermalink = {
 };
 
 export default function ActivityDetail({lang, activity, siteUrl}) {
-  const inSeminar = activity.slugs.join().includes('seminaire');
+  const inSeminar = activity.slugs[0] === 'seminaire-du-medialab';
 
   return (
     <main id="main-objet" role="main" aria-label={i18n[lang].content(activity)}>

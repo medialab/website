@@ -19,6 +19,9 @@ function validate(data) {
     return 'Need at least a first name & a last name';
 }
 
+const suggestionFieldFR = ['role', 'fr'];
+const suggestionFieldEN = ['role', 'en'];
+
 const HANDLERS = {
   firstName: {
     type: 'slug',
@@ -220,7 +223,7 @@ function renderPeopleForm(props) {
               </label>
               <SuggestionSelector
                 model="people"
-                field={['role', 'fr']}
+                field={suggestionFieldFR}
                 placeholder="French role..."
                 onChange={handlers.frenchRole}
                 value={(data.role && data.role.fr) || null} />
@@ -234,7 +237,7 @@ function renderPeopleForm(props) {
               </label>
               <SuggestionSelector
                 model="people"
-                field={['role', 'en']}
+                field={suggestionFieldEN}
                 placeholder="English role..."
                 onChange={handlers.englishRole}
                 value={(data.role && data.role.en) || null} />

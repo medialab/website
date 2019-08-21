@@ -31,7 +31,7 @@ for (const k in enums) {
   }
 }
 
-export default function EnumSelector(props) {
+export default React.memo(function EnumSelector(props) {
   const {
     value,
     enumType,
@@ -41,6 +41,8 @@ export default function EnumSelector(props) {
   const options = OPTIONS[enumType];
 
   let selected;
+
+  const onChangeCallback = React.useCallback(option => onChange(option.value), []);
 
   if (enums[enumType].groups) {
     selected = options.flatMap(g => g.options).find(o => o.value === value);
@@ -64,11 +66,10 @@ export default function EnumSelector(props) {
         })}
       </span>
     );
-
   return (
     <Select
       value={selected}
-      onChange={option => onChange(option.value)}
+      onChange={onChangeCallback}
       options={options} />
   );
-}
+});

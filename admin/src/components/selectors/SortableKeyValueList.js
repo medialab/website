@@ -1,5 +1,5 @@
 /* global API_URL */
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import CreatableSelect from 'react-select/lib/Creatable';
 import {SortableContainer, SortableElement, SortableHandle} from 'react-sortable-hoc';
 import FileInput from 'react-simple-file-input';
@@ -58,7 +58,7 @@ const SortableList = SortableContainer(({items, onDrop}) => (
   </ul>
 ));
 
-export default class SortableKeyValueList extends Component {
+export default class SortableKeyValueList extends PureComponent {
   state = {
     file: null,
     label: null,

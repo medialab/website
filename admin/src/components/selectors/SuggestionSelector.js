@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import CreatableSelect from 'react-select/lib/Creatable';
 import client from '../../client';
 
-export default class SuggestionSelector extends Component {
+export default class SuggestionSelector extends PureComponent {
   constructor(props, context) {
     super(props, context);
 

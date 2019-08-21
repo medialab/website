@@ -73,7 +73,7 @@ function getKeyByValue(object, value) {
 }
 
 const RelationSelectorContainer = (BaseComponent) => {
-  return (props) => {
+  return React.memo((props) => {
     const {
       self,
       model,
@@ -126,7 +126,7 @@ const RelationSelectorContainer = (BaseComponent) => {
 
     if (self)
       filteredOptions = options.filter(o => o.value !== self);
-
+    console.log('coucou le rendu')
     return (
       <div>
         <div className="columns">
@@ -179,7 +179,7 @@ const RelationSelectorContainer = (BaseComponent) => {
         )}
       </div>
     );
-  };
+  });
 };
 
 export const MultiRelationSelector = RelationSelectorContainer(PopoutSelector);

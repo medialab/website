@@ -410,15 +410,15 @@ class Form extends Component {
         <div>
           {
             condWithConstants([
-              [isEditPage, children({
-                  handlers: this.handlers,
-                  englishEditorContent: this.englishEditorContent,
-                  frenchEditorContent: this.frenchEditorContent,
-                  slug,
-                  data,
-                  url: !isNew && `${STATIC_URL}/${urls.fr}`,
-                  dirty
-                })],
+              [isEditPage, React.createElement(children, {
+                handlers: this.handlers,
+                englishEditorContent: this.englishEditorContent,
+                frenchEditorContent: this.frenchEditorContent,
+                slug,
+                data,
+                url: !isNew && `${STATIC_URL}/${urls.fr}`,
+                dirty
+              })],
               [isFrenchPage, <Preview key="preview" url={urls.fr} />],
               [stubTrue, <Preview key="preview" url={urls.en} />]
             ])(state)

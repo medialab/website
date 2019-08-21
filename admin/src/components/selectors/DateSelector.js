@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/lib/Creatable';
 import range from 'lodash/range';
@@ -153,7 +153,7 @@ function parseTime(string) {
   };
 }
 
-export default class DateSelector extends Component {
+export default class DateSelector extends PureComponent {
   constructor(props) {
     super(props);
 

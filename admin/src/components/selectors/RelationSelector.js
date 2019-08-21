@@ -126,7 +126,7 @@ const RelationSelectorContainer = (BaseComponent) => {
 
     if (self)
       filteredOptions = options.filter(o => o.value !== self);
-    console.log('coucou le rendu')
+
     return (
       <div>
         <div className="columns">

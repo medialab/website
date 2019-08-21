@@ -1,7 +1,7 @@
 import React from 'react';
 import cls from 'classnames';
 
-export default function Button(props) {
+export default React.memo(function Button(props) {
   const {
     children,
     kind = 'raw',
@@ -32,4 +32,4 @@ export default function Button(props) {
       {children}
     </button>
   );
-}
+});

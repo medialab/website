@@ -38,8 +38,11 @@ export default function ActivityListing({lang, list, status, statuses, topActivi
             {activities.map((a, index) => (
               <li
                 key={index}
-                itemScope itemProp="member" itemType={a.type === 'research' ? 'https://schema.org/ResearchProject' : 'https://schema.org/Project'}
-                data-type={a.type} className={`list-item ${a.type}-${a.active ? 'active' : 'past'}`}>
+                itemScope
+                itemProp="member"
+                itemType={a.type === 'research' ? 'https://schema.org/ResearchProject' : 'https://schema.org/Project'}
+                data-type={a.type}
+                className={`list-item ${a.type}-${a.active ? 'active' : 'past'}`}>
                 <Link to={a.permalink[lang]}>
                   <div className="image-pre" aria-hidden="true">
                     <ProcessedImage size="medium" image={a.coverImage && a.coverImage.processed && a.coverImage.processed.medium} data={a} />
@@ -65,6 +68,5 @@ export default function ActivityListing({lang, list, status, statuses, topActivi
         </section>
       </main>
     </>
-   );
+  );
 }
-

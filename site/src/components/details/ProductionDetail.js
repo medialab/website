@@ -156,11 +156,25 @@ const LangBlock = ({production, lang}) => {
   );
 };
 
+function createProductionTitle(lang, production) {
+  let title = production.title;
+
+  if (title)
+    title = title[lang] || title.fr || title.en;
+
+  return (
+    (title ? `${title}. ` : '') +
+    `${production.authors}` +
+    (production.date ? ` (${production.date})` : '') +
+    ' | médialab Sciences Po'
+  );
+}
+
 export default function ProductionDetail({lang, production}) {
   return (
     <>
       <PageMeta
-        title={`${production.title && production.title[lang]}. ${production.authors} (${production.date}) | médialab Sciences Po`}
+        title={createProductionTitle(lang, production)}
         citationTitle={production.title && production.title[lang]}
         zoteroType={productionTypeToZoteroType(production.type)}
         description={production.content && production.content[lang]}

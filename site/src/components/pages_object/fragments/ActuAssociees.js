@@ -45,7 +45,7 @@ const ActuAssociees = ({lang, actu, isSeminar, filter, titles}) => {
   return (
     <aside
       className="container elements-associes-block" id="news" role="complementary"
-      aria-label={lang === 'fr' ? related.fr : related.en}>
+      aria-label={related[lang]}>
       <h1><span data-icon="actualités" /> {accroche} </h1>
 
       <div className="contenu">
@@ -95,7 +95,7 @@ const ActuAssociees = ({lang, actu, isSeminar, filter, titles}) => {
             <li key={n.permalink.fr} data-type="activite" className="item">
               <Link to={n.permalink[lang]} className="accroche">
                 <div className="bandeau">
-                  <p data-icon="news" className="type">{I18N_TYPE_LABELS.news[lang][n.type]} <span>{n.label && (lang === 'fr' ? n.label.fr : n.label.en)}</span></p>
+                  <p data-icon="news" className="type">{I18N_TYPE_LABELS.news[lang][n.type]} <span>{n.label && (n.label[lang] || n.label.fr || n.label.en)}</span></p>
                   <DateNews startDate={n.startDate} endDate={n.endDate} lang={lang} />
                   <TimeNews startDate={n.startDate} endDate={n.endDate} />
                 </div>

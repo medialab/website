@@ -1,6 +1,25 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
+const i18n = {
+  fr: {
+    attachment(file) {
+      return 'Lien vers la pièce jointe ' + file.value;
+    },
+    site(file) {
+      return 'Lien vers le site ' + file.value;
+    }
+  },
+  en: {
+    attachment(file) {
+      return 'Link to attachment file ' + file.value;
+    },
+    site(file) {
+      return 'Link to ' + file.value;
+    }
+  }
+};
+
 const FichiersAssocies = ({lang, attachments}) => {
 
   // Si aucun fichier lié, retourne null
@@ -15,16 +34,16 @@ const FichiersAssocies = ({lang, attachments}) => {
           {file.type === 'attachment' && (
             <Link
               to={file.value}
-              title={lang === 'fr' ? 'Lien vers la pièce jointe ' + file.value : 'Link to attachment file ' + file.value}
-              aria-label={lang === 'fr' ? 'Lien vers la pièce jointe ' + file.value : 'Link to attachment file ' + file.value}>
+              title={i18n[lang].attachment(file)}
+              aria-label={i18n[lang].attachment(file)}>
               {file.label}
             </Link>
           )}
           {file.type === 'url' && (
             <a
-              title={lang === 'fr' ? 'Lien vers le site ' + file.value : 'Link to ' + file.value}
+              title={i18n[lang].site(file)}
               href={file.value} target="_blank" rel="noopener noreferrer"
-              aria-label={lang === 'fr' ? 'Lien vers le site ' + file.value : 'Link to ' + file.value}>
+              aria-label={i18n[lang].site(file)}>
               {file.label}
             </a>
           )}

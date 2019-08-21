@@ -69,53 +69,52 @@ export default function ProductionListing({lang, list, group, types}) {
         <section id="liste" className="main-container">
           {/* <div className="accroche-titre"><p>{accroche}</p></div> */}
           <ul className="liste_objet" id="liste-productions">
-            {
-          Array.from(yearGroups.entries()).sort(byYear).map(([year, yearList]) => (
-            <React.Fragment key={year}>
-              <li id={`year-${year}`} className="list-year">
-                {/* <span>{year}</span>*/}
-              </li>
-
-              {yearList.map((p, i) => (
-                <li
-                  key={i}
-                  itemScope
-                  itemType={productionTypeToSchemaURL(p.type)}
-                  data-item={nbItem}
-                  data-type={p.type}
-                  className={`list-item ${p.type}`}>
-                  <Link to={p.permalink[lang]}>
-                    <div className="bandeau">
-                      <p className="type-production" data-icon="production"> {I18N_GROUP_LABELS.productions[lang][p.group]}</p>
-                      <p className="subtype-production">
-                        <span>{I18N_TYPE_LABELS.productions[lang][p.type]}</span>
-                      </p>
-                      <DateNews startDateSchemaProp={p.type === 'exhibition' ? 'startDate' : 'datePublished'} startDate={p.date} lang={lang} />
-                      {/* the p surrounding the date used before DateNews integration className="date-production" */}
-                    </div>
-                    <hgroup>
-                      <h1 itemProp="name" data-level-1="title" >
-                        <LanguageFallback lang={lang} translatedAttribute={p.title} />
-                      </h1>
-                    </hgroup>
-                    <div className="authors">
-                      {p.authors && <p itemProp={p.type !== 'exhibition' ? 'author' : undefined} className="authors-paragraphe" dangerouslySetInnerHTML={{__html: p.authors.replace(/([^,$]+)(,)?( )?/g, '<nobr>$1$2</nobr>$3')}} />}
-                      <p className="print publication-ref" dangerouslySetInnerHTML={{__html: p.description && (p.description[lang] || p.description[(lang === 'fr' ? 'en' : 'fr')])}} />
-                    </div>
-                    {/* microdata-related invisible elements */}
-                    <div style={{display: 'none'}}>
-                      {p.type === 'software' &&
-                        <>
-                          <div itemProp="applicationCategory">Scientific</div>
-                          <div itemProp="operatingSystem">*</div>
-                        </>
-                      }
-                    </div>
-                  </Link>
+            {Array.from(yearGroups.entries()).sort(byYear).map(([year, yearList]) => (
+              <React.Fragment key={year}>
+                <li id={`year-${year}`} className="list-year">
+                  {/* <span>{year}</span>*/}
                 </li>
-              ))}
-            </React.Fragment>
-          ))}
+
+                {yearList.map((p, i) => (
+                  <li
+                    key={i}
+                    itemScope
+                    itemType={productionTypeToSchemaURL(p.type)}
+                    data-item={nbItem}
+                    data-type={p.type}
+                    className={`list-item ${p.type}`}>
+                    <Link to={p.permalink[lang]}>
+                      <div className="bandeau">
+                        <p className="type-production" data-icon="production"> {I18N_GROUP_LABELS.productions[lang][p.group]}</p>
+                        <p className="subtype-production">
+                          <span>{I18N_TYPE_LABELS.productions[lang][p.type]}</span>
+                        </p>
+                        <DateNews startDateSchemaProp={p.type === 'exhibition' ? 'startDate' : 'datePublished'} startDate={p.date} lang={lang} />
+                        {/* the p surrounding the date used before DateNews integration className="date-production" */}
+                      </div>
+                      <hgroup>
+                        <h1 itemProp="name" data-level-1="title" >
+                          <LanguageFallback lang={lang} translatedAttribute={p.title} />
+                        </h1>
+                      </hgroup>
+                      <div className="authors">
+                        {p.authors && <p itemProp={p.type !== 'exhibition' ? 'author' : undefined} className="authors-paragraphe" dangerouslySetInnerHTML={{__html: p.authors.replace(/([^,$]+)(,)?( )?/g, '<nobr>$1$2</nobr>$3')}} />}
+                        <p className="print publication-ref" dangerouslySetInnerHTML={{__html: p.description && (p.description[lang] || p.description[(lang === 'fr' ? 'en' : 'fr')])}} />
+                      </div>
+                      {/* microdata-related invisible elements */}
+                      <div style={{display: 'none'}}>
+                        {p.type === 'software' &&
+                          <>
+                            <div itemProp="applicationCategory">Scientific</div>
+                            <div itemProp="operatingSystem">*</div>
+                          </>
+                        }
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+              </React.Fragment>
+            ))}
           </ul>
         </section>
       </main>

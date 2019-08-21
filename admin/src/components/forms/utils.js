@@ -106,3 +106,5 @@ export function hash(data) {
 
   return sha1().update(string).digest('hex');
 }
+
+export const statusLabels = ['publié', 'brouillon'];

@@ -1,7 +1,7 @@
 import React from 'react';
 import cls from 'classnames';
 
-export default function BooleanSelector(props) {
+export default React.memo(function BooleanSelector(props) {
   const {value, onChange, labels = ['Yes', 'No']} = props;
 
   return (
@@ -14,4 +14,4 @@ export default function BooleanSelector(props) {
         onClick={() => onChange(false)}>{labels[1]}</span>
     </span>
   );
-}
+});

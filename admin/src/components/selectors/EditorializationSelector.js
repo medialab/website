@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import Select from 'react-select';
 import {SortableContainer, SortableElement, SortableHandle} from 'react-sortable-hoc';
 import keyBy from 'lodash/keyBy';
@@ -72,7 +72,7 @@ const SortableList = SortableContainer(({items, index, onDrop}) => (
   </ul>
 ));
 
-export default class EditorializationSelector extends Component {
+export default class EditorializationSelector extends PureComponent {
   constructor(props, context) {
     super(props, context);
 

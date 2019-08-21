@@ -17,6 +17,7 @@ import PreviewLink from '../misc/PreviewLink';
 import client from '../../client';
 import Button from '../misc/Button';
 import keyBy from 'lodash/keyBy';
+import {statusLabels} from './utils';
 
 function validate(data) {
   if (data.spire)
@@ -496,7 +497,7 @@ function renderProductionForm(props) {
             <div className="control">
               <BooleanSelector
                 value={!data.draft}
-                labels={['published', 'draft']}
+                labels={statusLabels}
                 onChange={handlers.published} />
             </div>
           </div>

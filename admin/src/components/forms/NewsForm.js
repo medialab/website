@@ -14,6 +14,7 @@ import RelationSelector, {MultiRelationSelector} from '../selectors/RelationSele
 import SortableKeyValueList from '../selectors/SortableKeyValueList';
 import SuggestionSelector from '../selectors/SuggestionSelector';
 import PreviewLink from '../misc/PreviewLink';
+import {statusLabels} from './utils';
 
 function validate(data) {
   if (!data.title || !data.title.fr)
@@ -22,6 +23,8 @@ function validate(data) {
   if (!data.startDate)
     return 'Need a start date';
 }
+
+const accessLabels = ['internal', 'external'];
 
 const HANDLERS = {
   englishTitle: {
@@ -84,7 +87,7 @@ const HANDLERS = {
   },
   published: {
     type: 'negative',
-    field: ['draft']
+    field: ['draft'],
   },
   internal: {
     type: 'boolean',
@@ -174,7 +177,7 @@ function renderNewsForm(props) {
             <div className="field">
               <div className="control">
                 <BooleanSelector
-                  labels={['internal', 'external']}
+                  labels={accessLabels}
                   value={data.internal}
                   onChange={handlers.internal} />
               </div>
@@ -191,7 +194,7 @@ function renderNewsForm(props) {
               <label className="label">Type de l'actualité</label>
               <SuggestionSelector
                 model="news"
-                field={['label', 'fr']}
+                field={HANDLERS.frenchLabel.field}
                 placeholder="French label..."
                 onChange={handlers.frenchLabel}
                 value={(data.label && data.label.fr) || null} />
@@ -203,7 +206,7 @@ function renderNewsForm(props) {
               <label className="label">News type</label>
               <SuggestionSelector
                 model="news"
-                field={['label', 'en']}
+                field={HANDLERS.englishLabel.field}
                 placeholder="English label..."
                 onChange={handlers.englishLabel}
                 value={(data.label && data.label.en) || null} />
@@ -408,7 +411,7 @@ function renderNewsForm(props) {
             <div className="control">
               <BooleanSelector
                 value={!data.draft}
-                labels={['published', 'draft']}
+                labels={statusLabels}
                 onChange={handlers.published} />
             </div>
           </div>

@@ -1,5 +1,5 @@
 /* global API_URL */
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import Dropzone from 'react-dropzone';
 import Crop from 'react-image-crop';
 import cls from 'classnames';
@@ -62,7 +62,7 @@ function CroppedImage({blackAndWhite, img, pixelCrop}) {
 const DebouncedCroppedImage = debounceRender(CroppedImage, 150);
 const DebouncedProcessedImage = debounceRender(ProcessedImage, 50);
 
-export default class CoverSelector extends Component {
+export default class CoverSelector extends PureComponent {
   state = {
     blackAndWhite: true,
     crop: null,

@@ -120,7 +120,6 @@ const PopupSelector = props => {
         return;
     }
   }, [textInInput]);
-
   return (
     <Select
       onFocus={toggleOpen}
@@ -142,4 +141,4 @@ const PopupSelector = props => {
   );
 };
 
-export default PopupSelector;
+export default React.memo(PopupSelector);

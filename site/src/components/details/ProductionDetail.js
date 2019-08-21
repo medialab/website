@@ -113,7 +113,7 @@ const mainPermalink = {
   en: '/en/productions'
 };
 
-const LangBlock = ({production, lang, siteUrl}) => {
+const LangBlock = ({production, lang}) => {
   let ref = (
     <p itemProp="description" className="p-ref">
       {production.description && <RawHtml html={production.description[lang]} />}
@@ -169,7 +169,7 @@ function createProductionTitle(lang, production) {
   );
 }
 
-export default function ProductionDetail({lang, production}) {
+export default function ProductionDetail({lang, production, siteUrl}) {
   return (
     <>
       <PageMeta

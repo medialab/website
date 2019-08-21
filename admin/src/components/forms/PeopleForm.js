@@ -13,11 +13,14 @@ import BooleanSelector from '../selectors/BooleanSelector';
 import SortableKeyValueList from '../selectors/SortableKeyValueList';
 import SuggestionSelector from '../selectors/SuggestionSelector';
 import PreviewLink from '../misc/PreviewLink';
+import {statusLabels} from './utils';
 
 function validate(data) {
   if (!data.firstName || !data.lastName)
     return 'Need at least a first name & a last name';
 }
+
+const MEMBERS_LABELS = ['membre actif', 'ancien membre'];
 
 const HANDLERS = {
   firstName: {
@@ -146,7 +149,7 @@ function renderPeopleForm(props) {
               <div className="control">
                 <BooleanSelector
                   value={data.active}
-                  labels={['membre actif', 'ancien membre']}
+                  labels={MEMBERS_LABELS}
                   onChange={handlers.active} />
 
                 <EnumSelector
@@ -220,7 +223,7 @@ function renderPeopleForm(props) {
               </label>
               <SuggestionSelector
                 model="people"
-                field={['role', 'fr']}
+                field={HANDLERS.frenchRole.field}
                 placeholder="French role..."
                 onChange={handlers.frenchRole}
                 value={(data.role && data.role.fr) || null} />
@@ -234,7 +237,7 @@ function renderPeopleForm(props) {
               </label>
               <SuggestionSelector
                 model="people"
-                field={['role', 'en']}
+                field={HANDLERS.englishRole.field}
                 placeholder="English role..."
                 onChange={handlers.englishRole}
                 value={(data.role && data.role.en) || null} />
@@ -366,7 +369,7 @@ function renderPeopleForm(props) {
             <div className="control">
               <BooleanSelector
                 value={!data.draft}
-                labels={['publié', 'brouillon']}
+                labels={statusLabels}
                 onChange={handlers.published} />
             </div>
           </div>

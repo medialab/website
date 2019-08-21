@@ -13,6 +13,9 @@ import BooleanSelector from '../selectors/BooleanSelector';
 import RelationSelector from '../selectors/RelationSelector';
 import SortableKeyValueList from '../selectors/SortableKeyValueList';
 import PreviewLink from '../misc/PreviewLink';
+import {statusLabels} from './utils';
+
+const ACTIVITY_LABELS = ['activity is ongoing', 'activity is past/paused'];
 
 function validate(data) {
   if (!data.name) {
@@ -140,7 +143,7 @@ function renderActivityForm(props) {
               <div className="control">
                 <BooleanSelector
                   value={data.active}
-                  labels={['activity is ongoing', 'activity is past/paused']}
+                  labels={ACTIVITY_LABELS}
                   onChange={handlers.active} />
               </div>
             </div>
@@ -325,7 +328,7 @@ function renderActivityForm(props) {
             <div className="control">
               <BooleanSelector
                 value={!data.draft}
-                labels={['published', 'draft']}
+                labels={statusLabels}
                 onChange={handlers.published} />
             </div>
           </div>

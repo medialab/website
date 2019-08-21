@@ -73,7 +73,7 @@ function getKeyByValue(object, value) {
 }
 
 const RelationSelectorContainer = (BaseComponent) => {
-  return (props) => {
+  return React.memo((props) => {
     const {
       self,
       model,
@@ -179,7 +179,7 @@ const RelationSelectorContainer = (BaseComponent) => {
         )}
       </div>
     );
-  };
+  });
 };
 
 export const MultiRelationSelector = RelationSelectorContainer(PopoutSelector);

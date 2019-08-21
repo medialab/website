@@ -246,9 +246,9 @@ module.exports = {
           }
           else {
             if (p.active)
-              return 'Membre associé•e';
+              return 'Membre associé·e';
             else
-              return 'Ancien membre associé•e';
+              return 'Ancien membre associé·e';
           }
         }
       },
@@ -308,7 +308,7 @@ module.exports = {
           const persons = p.people
             .map(id => people[id])
             .map(person => person.lastName)
-            
+
           // NOTE: this is bad but it gets shit done
           p.relations = persons.join(',');
 

@@ -1,3 +1,4 @@
+/* eslint prefer-const: 0 */
 function fixDate(date) {
   let [y, m, d] = date.split('-');
 

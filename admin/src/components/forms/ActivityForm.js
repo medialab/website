@@ -51,6 +51,10 @@ const HANDLERS = {
     type: 'raw',
     field: 'type'
   },
+  activities: {
+    type: 'relation',
+    field: 'activities'
+  },
   people: {
     type: 'relation',
     field: 'people'
@@ -160,6 +164,22 @@ function renderActivityForm(props) {
                     selected={data.people}
                     onAdd={handlers.people.add}
                     onDrop={handlers.people.drop} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="columns">
+            <div className="column is-12">
+              <div className="field">
+                <label className="label">Activités liées</label>
+                <div className="control">
+                  <RelationSelector
+                    model="activities"
+                    self={data.id}
+                    selected={data.activities}
+                    onAdd={handlers.activities.add}
+                    onDrop={handlers.activities.drop} />
                 </div>
               </div>
             </div>

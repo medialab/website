@@ -179,7 +179,7 @@ function renderProductionForm(props) {
 
           <div className="column is-6">
             <div className="field">
-              <label className="label">French Title</label>
+              <label className="label">French Title <small>(requis en français ou anglais)</small></label>
               <div className="control">
                 <SpireGeneratedField
                   spireValue={data.spire && data.spire.generatedFields.title.fr}
@@ -199,7 +199,7 @@ function renderProductionForm(props) {
 
           <div className="column is-6">
             <div className="field">
-              <label className="label">English Title</label>
+              <label className="label">English Title <small>(requis en français ou anglais)</small></label>
               <div className="control">
                 <SpireGeneratedField
                   spireValue={data.spire && data.spire.generatedFields.title.en}

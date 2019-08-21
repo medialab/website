@@ -123,7 +123,7 @@ function renderNewsForm(props) {
         <div className="columns">
           <div className="column is-6">
             <div className="field">
-              <label className="label">Titre</label>
+              <label className="label">Titre <small>(requise)</small></label>
               <div className="control">
                 <input
                   type="text"
@@ -247,7 +247,7 @@ function renderNewsForm(props) {
 
         <div className="columns">
           <div className="column is-6">
-            <label className="label">Date
+            <label className="label">Date <small>(requise)</small>
               <em>Date de référence de l'actualité : date d'édition, date de début d'un événement...</em>
             </label>
             <div className="control">

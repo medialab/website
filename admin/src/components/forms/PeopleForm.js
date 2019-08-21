@@ -107,7 +107,7 @@ function renderPeopleForm(props) {
         <div className="columns">
           <div className="column is-6">
             <div className="field">
-              <label className="label">Prénom</label>
+              <label className="label">Prénom <small>(requis)</small></label>
               <div className="control">
                 <input
                   type="text"
@@ -121,7 +121,7 @@ function renderPeopleForm(props) {
           </div>
           <div className="column is-6">
             <div className="field">
-              <label className="label">Nom</label>
+              <label className="label">Nom <small>(requis)</small></label>
               <div className="control">
                 <input
                   type="text"

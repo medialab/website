@@ -7,13 +7,33 @@ import {compare, productionTypeToSchemaURL} from '../../helpers/helpers.js';
 
 import LanguageFallback from '../../helpers/LanguageFallback.js';
 
+const i18n = {
+  fr: {
+    externalAriaLabel: 'Production exterieure au médialab',
+    externalProduction: 'Ce lien renvoi à une page exterieure au médialab',
+    linkAriaLabel: 'Lien vers cette production'
+  },
+  en: {
+    externalAriaLabel: 'external production',
+    externalProduction: 'This linked is external to médialab',
+    linkAriaLabel: 'Link to this production'
+  }
+}
+
 const ProductionCard = ({p, lang}) => (
   <>
     <div className="bandeau" >
       <p className="type-production" data-icon="production"> {I18N_GROUP_LABELS.productions[lang][p.group]}</p>
       {p.authors && <p className="authors">{p.authors}</p>}
       <DateNews startDateSchemaProp="datePublished" startDate={p.date} lang={lang} />
-      { p.external && p.url && <p className="external" aria-label="production exterieure au médialab" title={lang === 'fr' ? 'Ce lien renvoi à une page exterieure au médialab' : 'This linked is external to médialab'} >⤤</p> }
+      {p.external && p.url && (
+        <p
+          className="external"
+          aria-label={i18n[lang].externalAriaLabel}
+          title={i18n[lang].externalProduction} >
+          ⤤
+        </p>
+      )}
     </div>
     <hgroup>
       <h1 itemProp="name" data-level-1="title" >
@@ -60,7 +80,7 @@ export default function ProductionsAssociees({lang, productions}) {
               data-type="production"
               className="item">
               {!p.external && (
-                <Link to={p.permalink[lang]} aria-label={lang === 'fr' ? 'Lien vers cette production' : 'Link to this production'}>
+                <Link to={p.permalink[lang]} aria-label={i18n[lang].linkAriaLabel}>
                   <ProductionCard p={p} lang={lang} />
                 </Link>
               )}

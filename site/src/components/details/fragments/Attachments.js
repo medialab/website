@@ -20,7 +20,7 @@ const i18n = {
   }
 };
 
-const FichiersAssocies = ({lang, attachments}) => {
+const Attachments = ({lang, attachments}) => {
 
   // Si aucun fichier lié, retourne null
   if (!attachments || attachments.length === 0)
@@ -56,4 +56,4 @@ const FichiersAssocies = ({lang, attachments}) => {
   );
 };
 
-export default FichiersAssocies;
+export default Attachments;

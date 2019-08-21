@@ -10,11 +10,11 @@ import ProcessedImage from '../helpers/ProcessedImage.js';
 import DateNews from '../helpers/DateNews.js';
 import TimeNews from '../helpers/TimeNews.js';
 import {I18N_TYPE_LABELS} from '../../i18n.js';
-import ProductionsAssociees from './fragments/ProductionsAssociees.js';
-import ActivitesAssociees from './fragments/ActivitesAssociees.js';
-import ActuAssociees from './fragments/ActuAssociees.js';
-import MembresAssocies from './fragments/MembresAssocies.js';
-import FichiersAssocies from './fragments/FichiersAssocies.js';
+import RelatedProductions from './fragments/RelatedProductions.js';
+import RelatedActivities from './fragments/RelatedActivities.js';
+import RelatedNews from './fragments/RelatedNews.js';
+import RelatedPeople from './fragments/RelatedPeople.js';
+import Attachments from './fragments/Attachments.js';
 import LanguageFallback from '../helpers/LanguageFallback';
 import PageMeta from '../helpers/PageMeta.js';
 
@@ -245,7 +245,7 @@ export default function ActivityDetail({lang, activity}) {
               endDate={activity.endDate}
               lang="fr" />
             <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
-            <FichiersAssocies attachments={activity.attachments} lang="fr" />
+            <Attachments attachments={activity.attachments} lang="fr" />
           </div>
 
 
@@ -267,7 +267,7 @@ export default function ActivityDetail({lang, activity}) {
               isTimeSpan startDate={activity.startDate} endDate={activity.endDate}
               lang="en" />
             <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
-            <FichiersAssocies attachments={activity.attachments} lang="en" />
+            <Attachments attachments={activity.attachments} lang="en" />
           </div>
           <div className="article-contenu">
             {activity.content && (activity.content.en && <RawHtml html={activity.content.en} />)}
@@ -276,21 +276,21 @@ export default function ActivityDetail({lang, activity}) {
 
       </article>
       <aside id={'all-aside'} className={inSeminar ? 'in-seminar' : ''}>
-        <MembresAssocies people={activity.people} lang={lang} />
-        <ActivitesAssociees activities={activity.activities} lang={lang} />
-        <ProductionsAssociees productions={activity.productions} lang={lang} />
+        <RelatedPeople people={activity.people} lang={lang} />
+        <RelatedActivities activities={activity.activities} lang={lang} />
+        <RelatedProductions productions={activity.productions} lang={lang} />
         {
           inSeminar ? (
             <>
-              <ActuAssociees
+              <RelatedNews
                 isSeminar filter={'future'} actu={activity.news}
                 lang={lang} titles={{fr: i18n.fr.futureSeminars, en: i18n.en.futureSeminars}} />
-              <ActuAssociees
+              <RelatedNews
                 isSeminar filter={'past'} actu={activity.news}
                 lang={lang} titles={{fr: i18n.fr.pastSeminars, en: i18n.en.pastSeminars}} />
             </>
           ) : (
-            <ActuAssociees isSeminar={inSeminar} actu={activity.news} lang={lang} />
+            <RelatedNews isSeminar={inSeminar} actu={activity.news} lang={lang} />
           )
         }
       </aside>

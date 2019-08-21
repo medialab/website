@@ -11,10 +11,10 @@ import {I18N_MODEL, I18N_TYPE_LABELS} from '../../i18n.js';
 import LogoSticky from './fragments/LogoSticky.js';
 import ProcessedImage from '../helpers/ProcessedImage.js';
 
-import ProductionsAssociees from './fragments/ProductionsAssociees.js';
-import ActivitesAssociees from './fragments/ActivitesAssociees.js';
-import MembresAssocies from './fragments/MembresAssocies.js';
-import FichiersAssocies from './fragments/FichiersAssocies.js';
+import RelatedProductions from './fragments/RelatedProductions.js';
+import RelatedNews from './fragments/RelatedNews.js';
+import RelatedPeople from './fragments/RelatedPeople.js';
+import Attachments from './fragments/Attachments.js';
 
 import LanguageFallback from '../helpers/LanguageFallback';
 import PageMeta from '../helpers/PageMeta.js';
@@ -246,7 +246,7 @@ export default function NewsDetail({lang, news}) {
                   <span itemProp="address">{news.place}</span>
                 </p>
               )}
-              <FichiersAssocies attachments={news.attachments} lang="fr" />
+              <Attachments attachments={news.attachments} lang="fr" />
             </div>
             <div className="article-contenu">
               {news.content && (news.content.fr && <RawHtml html={news.content.fr} />)}
@@ -277,7 +277,7 @@ export default function NewsDetail({lang, news}) {
                   <span itemProp="address">{news.place}</span>
                 </p>
               )}
-              <FichiersAssocies attachments={news.attachments} lang="en" />
+              <Attachments attachments={news.attachments} lang="en" />
             </div>
             <div className="article-contenu">
               {news.content && (news.content.en && <RawHtml html={news.content.en} />)}
@@ -286,9 +286,9 @@ export default function NewsDetail({lang, news}) {
         </article>
 
         <aside id="all-aside">
-          <MembresAssocies schemaRelationProp={news.type === 'post' ? 'author' : 'organizer'} people={news.people} lang={lang} />
-          <ActivitesAssociees activities={news.activities} lang={lang} />
-          <ProductionsAssociees productions={news.productions} lang={lang} />
+          <RelatedPeople schemaRelationProp={news.type === 'post' ? 'author' : 'organizer'} people={news.people} lang={lang} />
+          <RelatedNews activities={news.activities} lang={lang} />
+          <RelatedProductions productions={news.productions} lang={lang} />
         </aside>
       </main>
     </>

@@ -17,7 +17,7 @@ const i18n = {
   }
 };
 
-const MembresAssocies = ({lang, people, schemaRelationProp = 'member'}) => {
+const RelatedPeople = ({lang, people, schemaRelationProp = 'member'}) => {
 
   const related = SECTIONS.people;
 
@@ -74,4 +74,4 @@ const MembresAssocies = ({lang, people, schemaRelationProp = 'member'}) => {
   );
 };
 
-export default MembresAssocies;
+export default RelatedPeople;

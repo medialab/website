@@ -5,7 +5,7 @@ import {I18N_TYPE_LABELS} from '../../../i18n.js';
 
 import LanguageFallback from '../../helpers/LanguageFallback.js';
 
-const ActivitesAssociees = ({lang, activities}) => {
+const RelatedActivities = ({lang, activities}) => {
 
   const related = SECTIONS.activities;
 
@@ -53,4 +53,4 @@ const ActivitesAssociees = ({lang, activities}) => {
   );
 };
 
-export default ActivitesAssociees;
+export default RelatedActivities;

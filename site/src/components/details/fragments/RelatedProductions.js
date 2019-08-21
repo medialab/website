@@ -43,7 +43,7 @@ const ProductionCard = ({p, lang}) => (
   </>
 );
 
-export default function ProductionsAssociees({lang, productions}) {
+export default function RelatedProductions({lang, productions}) {
 
   const related = SECTIONS.productions;
 

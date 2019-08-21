@@ -8,10 +8,10 @@ import ToggleLang from './fragments/ToggleLang.js';
 import {productionTypeToSchemaURL, productionTypeToZoteroType} from '../helpers/helpers.js';
 import {I18N_TYPE_LABELS, I18N_GROUP_LABELS} from '../../i18n.js';
 import LogoSticky from './fragments/LogoSticky.js';
-import ProductionsAssociees from './fragments/ProductionsAssociees.js';
-import ActivitesAssociees from './fragments/ActivitesAssociees.js';
-import ActuAssociees from './fragments/ActuAssociees.js';
-import MembresAssocies from './fragments/MembresAssocies.js';
+import RelatedProductions from './fragments/RelatedProductions.js';
+import RelatedActivities from './fragments/RelatedActivities.js';
+import RelatedNews from './fragments/RelatedNews.js';
+import RelatedPeople from './fragments/RelatedPeople.js';
 
 import LanguageFallback from '../helpers/LanguageFallback';
 import PageMeta from '../helpers/PageMeta.js';
@@ -243,10 +243,10 @@ export default function ProductionDetail({lang, production}) {
         </article>
 
         <aside id="all-aside">
-          <MembresAssocies people={production.people} schemaRelationProp="author" lang={lang} />
-          <ActivitesAssociees activities={production.activities} lang={lang} />
-          <ProductionsAssociees productions={production.productions} lang={lang} />
-          <ActuAssociees actu={production.news} lang={lang} />
+          <RelatedPeople people={production.people} schemaRelationProp="author" lang={lang} />
+          <RelatedActivities activities={production.activities} lang={lang} />
+          <RelatedProductions productions={production.productions} lang={lang} />
+          <RelatedNews actu={production.news} lang={lang} />
         </aside>
 
       </main>

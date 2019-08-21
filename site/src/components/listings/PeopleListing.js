@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
-import FiltreEquipe from './fragments/FiltreEquipe.js';
+import PeopleFilter from './fragments/PeopleFilter.js';
 import {I18N_TYPE_LABELS} from '../../i18n.js';
 import LanguageFallback from '../helpers/LanguageFallback.js';
 
@@ -92,7 +92,7 @@ export default function PeopleListing({lang, list}) {
         description={i18n[lang].description}
         lang={lang} />
       <main role="main" aria-describedby="aria-accroche">
-        <FiltreEquipe lang={lang} />
+        <PeopleFilter lang={lang} />
         <section className="main-filters" />
         <section id="liste_equipe" className="main-container">
 

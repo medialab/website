@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'gatsby';
 
-import FilterNews from './fragments/FilterNews.js';
+import NewsFilter from './fragments/NewsFilter.js';
 import DateNews from '../helpers/DateNews.js';
 import TimeNews from '../helpers/TimeNews.js';
 import ProcessedImage from '../helpers/ProcessedImage.js';
@@ -50,7 +50,7 @@ export default function NewsListing({lang, list}) {
         description={messagesMeta.description[lang]}
         lang={lang} />
       <main role="main" aria-describedby="aria-accroche">
-        <FilterNews lang={lang} years={Array.from(yearGroups.keys()).sort(byYearKey)} />
+        <NewsFilter lang={lang} years={Array.from(yearGroups.keys()).sort(byYearKey)} />
         <section className="main-filters" />
 
         <section id="liste" className="main-container">

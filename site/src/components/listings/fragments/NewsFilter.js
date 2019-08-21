@@ -19,7 +19,7 @@ const i18n = {
   }
 };
 
-const FilterNews = ({lang, years}) => {
+const NewsFilter = ({lang, years}) => {
 
   const {
     filterType,
@@ -79,5 +79,5 @@ const FilterNews = ({lang, years}) => {
   );
 };
 
-export default FilterNews;
+export default NewsFilter;
 

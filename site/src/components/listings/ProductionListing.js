@@ -3,7 +3,7 @@ import {Link} from 'gatsby';
 
 import {I18N_TYPE_LABELS, I18N_GROUP_LABELS} from '../../i18n.js';
 
-import FilterProduction from './fragments/FilterProduction.js';
+import ProductionFilter from './fragments/ProductionFilter.js';
 import DateNews from '../helpers/DateNews.js';
 import {compare, productionTypeToSchemaURL} from '../helpers/helpers.js';
 import {getYear, parseISO} from 'date-fns';
@@ -59,7 +59,7 @@ export default function ProductionListing({lang, list, group, types}) {
         description={messagesMeta.description[lang]}
         lang={lang} />
       <main role="main" aria-describedby="aria-accroche">
-        <FilterProduction
+        <ProductionFilter
           lang={lang}
           group={group}
           types={types}

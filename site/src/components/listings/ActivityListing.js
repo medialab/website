@@ -3,7 +3,7 @@ import {Link} from 'gatsby';
 
 import {I18N_TYPE_LABELS} from '../../i18n.js';
 
-import FilterActivity from './fragments/FilterActivity.js';
+import ActivityFilter from './fragments/ActivityFilter.js';
 import ProcessedImage from '../helpers/ProcessedImage.js';
 import LanguageFallback from '../helpers/LanguageFallback.js';
 import PageMeta from '../helpers/PageMeta.js';
@@ -23,10 +23,10 @@ const sortActivities = (a,b) => {
   if (a.active !== b.active)
     if (a.active)
       return -1
-    else 
+    else
       return 1
   else
-    return a.startDate > b.startDate ? -1 : 1 
+    return a.startDate > b.startDate ? -1 : 1
 }
 
 export default function ActivityListing({lang, list, status, statuses, topActivities}) {
@@ -39,7 +39,7 @@ export default function ActivityListing({lang, list, status, statuses, topActivi
         description={messagesMeta.description[lang]}
         lang={lang} />
       <main role="main" aria-describedby="aria-accroche">
-        <FilterActivity lang={lang} status={status} statuses={statuses} />
+        <ActivityFilter lang={lang} status={status} statuses={statuses} />
         <section className="main-filters" />
 
         <section id="liste" className="main-container">

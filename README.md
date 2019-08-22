@@ -37,6 +37,13 @@ npm run reinstall
 
 ## Comment développer?
 
+## TL;DR
+
+```
+npm install
+npm run dev
+```
+
 ### Récapitulatif des ports utilisés en développement
 
 * [`localhost:3000`](http://localhost:3000): Serveur d'API du CMS.
@@ -45,7 +52,7 @@ npm run reinstall
 
 ### Commandes
 
-```
+```bash
 # Lancer l'intégralité de la stack (serveur + admin + site statique):
 npm run dev
 
@@ -70,6 +77,26 @@ npm run lint
 # Synchroniser les branches de préprod et de prod:
 npm run upgrade:prod
 ```
+
+### Configuration de développement
+
+Les fichiers de configuration se trouvent dans `config` et dans `admin/config` respectivement.
+
+Il est possible d'overrider des variables de configuration localement en créant un fichier `config/local.json` qui ne sera pas commité.
+
+### Serveur d'API du CMS
+
+Le serveur d'API maintient une base de données très simple, représentée par des fichiers JSON existant dans le dossier `data`.
+
+Les données sont ensuite servies via un serveur [express](https://expressjs.com/fr/) se basant sur [json-server](https://github.com/typicode/json-server).
+
+### Client du CMS
+
+[Documentation dédiée](admin/README.md)
+
+### Site statique
+
+[Documentation dédiée](site/README.md)
 
 ### Troubleshooting
 

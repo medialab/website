@@ -239,6 +239,7 @@ function Layout(props) {
   </div>
 </div>
 ```
+
 #### Composants jumeaux sans div parente
 
 Pour créer un composant qui rends deux blocs qui sont jumeaux sans avoir un conteneur div créé automatiquement pour les nester, il faut utiliser une syntaxe particulière:

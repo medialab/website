@@ -1,3 +1,5 @@
+const get = require('lodash/fp/get');
+
 const languageFallback = (obj, lang) => {
   if (obj) {
     if (obj[lang]) {
@@ -13,6 +15,19 @@ const languageFallback = (obj, lang) => {
   }
 };
 
+const createComparator = prop => (a, b) => {
+  a = get(prop, a);
+  b = get(prop, b);
+
+  if (a > b)
+    return -1;
+
+  else if (a < b)
+    return 1;
+
+  return 0;
+};
+
 const FEED_MAX_NUMBER_OF_ITEMS = 50;
 
 const feedsMakers = [
@@ -23,12 +38,7 @@ const feedsMakers = [
         serialize: ({query: {allNewsJson}}) => {
           return allNewsJson.edges
           .filter(edge => !edge.node.draft)
-          .sort((a, b) => {
-            if (a.node.startDate > b.node.startDate) {
-              return -1;
-            }
- else return 1;
-          })
+          .sort(createComparator(['node', 'startDate']))
           .slice(0, FEED_MAX_NUMBER_OF_ITEMS)
           .map(edge => {
             return Object.assign({
@@ -79,12 +89,7 @@ const feedsMakers = [
     lang => ({
         serialize: ({query: {allNewsJson}}) => {
           return allNewsJson.edges
-          .sort((a, b) => {
-            if (a.node.startDate > b.node.startDate) {
-              return -1;
-            }
- else return 1;
-          })
+          .sort(createComparator(['node', 'startDate']))
           .filter(edge => !edge.node.draft && edge.node.label && edge.node.label.fr === 'Séminaire de recherche')
           .slice(0, FEED_MAX_NUMBER_OF_ITEMS)
           .map(edge => {
@@ -141,12 +146,7 @@ const feedsMakers = [
         serialize: ({query: {allProductionsJson}}) => {
           return allProductionsJson.edges
           .filter(edge => !edge.node.draft)
-          .sort((a, b) => {
-            if (a.node.date > b.node.date) {
-              return -1;
-            }
- else return 1;
-          })
+          .sort(createComparator('node', 'date'))
           .slice(0, FEED_MAX_NUMBER_OF_ITEMS)
           .map(edge => {
             return Object.assign({
@@ -247,12 +247,7 @@ const feedsMakers = [
               });
             }),
         ]
-        .sort((a, b) => {
-          if (a.date > b.date) {
-            return -1;
-          }
- else return 1;
-        })
+        .sort(createComparator('date'))
         .slice(0, FEED_MAX_NUMBER_OF_ITEMS);
       },
       query: `

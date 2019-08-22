@@ -125,9 +125,6 @@ export const queryFragment = graphql`
       }
       place
     }
-    attachments {
-      type
-    }
     active
     draft
     attachments {

@@ -37,8 +37,42 @@ npm run reinstall
 
 ## Comment développer?
 
-## Récapitulatif des ports utilisés en développement
+### Récapitulatif des ports utilisés en développement
 
 * [`localhost:3000`](http://localhost:3000): Serveur d'API du CMS.
 * [`localhost:7000`](http://localhost:7000): Client du CMS (admin).
 * [`localhost:8000`](http://localhost:8000): Site statique.
+
+### Commandes
+
+```
+# Lancer l'intégralité de la stack (serveur + admin + site statique):
+npm run dev
+
+# Lancer uniquement le serveur d'api avec des options utiles au dev:
+  # 1. En désactivant le spawn de gatsby pour aller plus vite:
+  node api/server.js --no-gatsby
+  # 2. En désactivant l'authentification pour prototyper rapidement:
+  node api/server.js --bypass-auth
+
+# Dumper la base de données:
+npm run dump
+
+# Charger une base de données dumpée:
+npm run load -- /path/to/dump
+
+# Rafraîchir les données de flux (github/twitter):
+npm run flux
+
+# Linter l'intégralité du code:
+npm run lint
+
+# Synchroniser les branches de préprod et de prod:
+npm run upgrade:prod
+```
+
+### Troubleshooting
+
+**Le site statique ne se lance pas à cause d'erreurs de cache.**
+
+> Ceci est dû à une invalidation du cache de gatsby. Lancer `npm run clean` à la racine du projet ou dans `site` devrait corriger le problème.

@@ -3,85 +3,78 @@
 /////////////////////
 
 @include for-size(desktop) {
+  #agenda {
+    padding-top: $baseline * 3.5;
 
-    #agenda {
-
-        padding-top: $baseline* 3.5;
-
-        article{
-             
-            aside.divers{
-
-                .date-news{ color: $redlab; }
-                .internal{ 
-                    position: absolute;
-                    right: 0;
-                    cursor: help;
-                }
-
-            }
-
-
-            aside.details{ 
-
-                p:first-of-type{
-                    border-top: $border-very-light;
-                    padding-top: $baseline/2;
-                }
-
-                p:last-of-type{ padding-bottom: $baseline/2; }
-
-            }
-
-
+    article {
+      aside.divers {
+        .date-news {
+          color: $redlab;
         }
-    } 
+        .internal {
+          position: absolute;
+          right: 0;
+          cursor: help;
+        }
+      }
 
+      aside.details {
+        p:first-of-type {
+          border-top: $border-very-light;
+          padding-top: $baseline/2;
+        }
+
+        p:last-of-type {
+          padding-bottom: $baseline/2;
+        }
+      }
+    }
+  }
 }
-
-
-
 
 // all queries
 
 #agenda {
-    .place::before{ content: $place; padding-right: 5px;}
-    .hours-news::before{ content: $time; padding-right: 5px;}    
+  .place::before {
+    content: $place;
+    padding-right: 5px;
+  }
+  .hours-news::before {
+    content: $time;
+    padding-right: 5px;
+  }
 }
 
-
 @include for-size(phone) {
+  #agenda {
+    article {
+      .year-main {
+        display: none;
+      }
 
-    #agenda{   
-
-        article{
-
-
-            .year-main{ display: none; }
-            
-            .internal{
-                font-size: 11px;
-                position: absolute;
-                top: $baseline/2;
-                right: 0;
-                span{
-                    display: block;
-                    padding-top: 3px;
-                    height: $baseline*1.3;
-                    width: $baseline*1.3;
-                    color: $text-color-light;
-                    border: $border; 
-                    border-radius: 50%;
-                    text-align: center;
-                }
-            }
-
-
-            .place, .hours-news{ @include font-size-13-phone(); color: $text-color-light;  align-items: baseline;}
-
+      .internal {
+        font-size: 11px;
+        position: absolute;
+        top: $baseline/2;
+        right: 0;
+        span {
+          display: block;
+          padding-top: 3px;
+          height: $baseline * 1.3;
+          width: $baseline * 1.3;
+          color: $text-color-light;
+          border: $border;
+          border-radius: 50%;
+          text-align: center;
         }
+      }
 
-    } /* end agenda*/
-
+      .place,
+      .hours-news {
+        @include font-size-13-phone();
+        color: $text-color-light;
+        align-items: baseline;
+      }
+    }
+  } /* end agenda*/
 } /* end phone*/
-

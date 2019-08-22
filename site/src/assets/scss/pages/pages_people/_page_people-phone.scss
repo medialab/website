@@ -1,65 +1,69 @@
 /////////////////////
-////////  Phone 
+////////  Phone
 /////////////////////
 
 @include for-size(phone) {
+  .page-people {
+    #biographie {
+      figure {
+        margin-top: $height-top-bar-phone;
+        margin-bottom: $baseline;
+        width: calc(100% + #{$margins-phone * 2});
+        left: $margins-phone * -1;
+        img {
+          width: 100%;
+        }
+        &.noImg {
+          min-height: $baseline * 14;
+          pre {
+            font-size: 7px;
+          }
+        }
+      }
 
-	.page-people{
+      header {
+        @include flex-order(1);
+        min-width: 50%;
+        margin-bottom: $baseline * 2.5;
+        border-bottom: $border;
 
-		#biographie{
+        hgroup h1 {
+          @include font-size-40;
+        }
 
-			figure{ 
-				margin-top: $height-top-bar-phone;
-				margin-bottom: $baseline; 
-				width: calc(100% + #{$margins-phone*2});
-				left: $margins-phone*-1;
-				img{ width: 100%; }
-				&.noImg {
-					min-height: $baseline*14;
-					pre{ font-size: 7px;}
-				}
-			}
+        .status {
+          @include font-size-20();
+        }
 
-			header{
-				@include flex-order(1);
-				min-width: 50%;
-				margin-bottom: $baseline*2.5;
-				border-bottom: $border;
+        .bandeau {
+          margin: $baseline * 1 0 0 0;
+          border-top: $border;
+        }
 
-				hgroup h1{ @include font-size-40; }
+        [data-type="membership"] span {
+          display: block;
+          width: 100%;
+          border-top: $border-very-light;
+          padding-top: $baseline/2;
+        }
 
-				.status{ @include font-size-20(); }
-							
-				.bandeau{ 
-					margin: $baseline*1 0 0 0; 
-					border-top: $border;
-				}
+        .bandeau,
+        .contact {
+          padding: $baseline/2 0;
+          p,
+          li {
+            &:not(:last-of-type) {
+              padding: 0 0 $baseline/2 0;
+            }
+            display: block;
+          }
+        }
+      }
 
-				[data-type="membership"] span{
-					display: block;
-					width: 100%;
-					border-top: $border-very-light;
-					padding-top: $baseline/2;
-				}
-
-				.bandeau, .contact{
-					padding: $baseline/2 0;
-					p, li{ 
-						&:not(:last-of-type){padding: 0 0 $baseline/2 0;}
-						display: block;
-					
-					}
-				}
-
-				
-			
-			}
-	
-			.biographie-content{
-				width: 100%;
-				margin-bottom: $baseline*5;
-			}
-		}		
-	}
+      .biographie-content {
+        width: 100%;
+        margin-bottom: $baseline * 5;
+      }
+    }
+  }
 }
-

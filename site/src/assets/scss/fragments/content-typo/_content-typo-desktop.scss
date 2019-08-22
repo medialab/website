@@ -1,259 +1,250 @@
-
-
 /* Regles typographique de bases communes à toutes les pages de contenu */
 
+@media screen and (min-width: 900px) {
+  .page-production,
+  .page-news,
+  .page-activity,
+  .page-people,
+  .page-about {
+    /// Typo Header hgroup
+    #article-contenu,
+    #biographie,
+    #about-contenu {
+      @media screen and (min-width: 900px) {
+        hgroup {
+          h1 {
+            @include font-size-40();
+          }
+          h2,
+          h3 {
+            @include font-size-27();
+            margin-top: $baseline * 1.5;
+            margin-right: 80px;
+          }
+        }
+      }
 
-@media screen and (min-width: 900px){
+      @media screen and (min-width: 1080px) {
+        hgroup {
+          h1 {
+            @include font-size-60();
+          }
+          h2,
+          h3 {
+            @include font-size-27();
+            margin-top: $baseline * 1.5;
+          }
+        }
+      }
+    }
 
-	.page-production, 
-	.page-news, 
-	.page-activity, 
-	.page-people,
-	.page-about{
+    .article-contenu,
+    .biographie-content,
+    .about-contenu {
+      /* Regles de Base */
+      iframe {
+        //width: 100%;
+        //min-height: 50vh;
+        margin: $baseline * 3 auto $baseline * 4 auto;
+        border: none;
+        display: block;
+      }
 
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        @include font-size-20;
+        font-weight: bold;
+        margin-top: $baseline * 4;
+        margin-bottom: $baseline * 2;
+      }
 
-		/// Typo Header hgroup
-		#article-contenu, 
-		#biographie,
-		#about-contenu {
+      [data-style-level="1"] {
+        @include font-size-20;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-top: $baseline * 4;
+        margin-bottom: $baseline * 2;
+      }
 
-			@media screen and (min-width: 900px) { 
-				hgroup{			
-					h1{ @include font-size-40(); }
-					h2, h3{ 
-						@include font-size-27();
-						margin-top: $baseline*1.5;
-						margin-right: 80px;
-					}
-				}	
-			}
+      [data-style-level="2"] {
+        @include font-size-20;
+        font-weight: bold;
+        margin-top: $baseline * 4;
+        margin-bottom: $baseline * 2;
+      }
 
+      [data-style-level="3"] {
+        @include font-size-20;
+        font-weight: 300;
+        font-style: italic;
+        margin-top: $baseline * 2;
+        margin-bottom: $baseline * 1;
+      }
 
+      [data-style-level="1"] + p,
+      [data-style-level="2"] + p,
+      [data-style-level="3"] + p,
+      [data-style-level="1"] + ul,
+      [data-style-level="2"] + ul,
+      [data-style-level="3"] + ul,
+      [data-style-level="1"] + figure,
+      [data-style-level="2"] + figure,
+      [data-style-level="3"] + figure,
+      [data-style-level="1"] + [data-style-level="3"] {
+        margin-top: 0 !important;
+      }
 
-			@media screen and (min-width: 1080px) {
-				hgroup{
-					h1{ @include font-size-60(); }				
-					h2, h3{ 
-						@include font-size-27();
-						margin-top: $baseline*1.5;
-					}
-				}		
-			}
-		}
+      p + p {
+        margin-top: $baseline * 2;
+      }
 
-		.article-contenu, 
-		.biographie-content,
-		.about-contenu {
+      p,
+      li {
+        @include font-size-20();
+        margin-bottom: $baseline * 2;
+      }
 
+      li {
+        left: $unite * 1.5;
+        text-indent: -15px;
+        width: -webkit-calc(100% - #{$unite * 1.5});
+        width: -moz-calc(100% - #{$unite * 1.5});
+        width: calc(100% - #{$unite * 1.5});
+        &:before {
+          content: "⁘";
+          left: -15px;
+        }
+      }
 
-							
-			/* Regles de Base */
-			iframe{
-				//width: 100%;
-				//min-height: 50vh;
-				margin: $baseline*3 auto $baseline*4 auto;	
-				border: none;
-				display: block;			
-			}
+      blockquote {
+        margin-top: $baseline * 2;
+        margin-bottom: $baseline * 2;
+        @include font-size-20();
+        font-style: italic;
 
-			
-			h1, h2, h3, h4, h5{
-				@include font-size-20;
-				font-weight: bold;
-				margin-top: $baseline*4;
-				margin-bottom: $baseline*2;
-			}
+        margin-left: $unite * 2;
+        margin-right: $unite * 2;
 
+        &:before {
+          font-size: 70px;
+        }
 
-			[data-style-level="1"]{
-				@include font-size-20;
-				font-weight: bold;
-				text-transform: uppercase;
-				margin-top: $baseline*4;
-				margin-bottom: $baseline*2;
-			}
+        &:lang(en):before {
+          left: $unite * -1.75;
+          line-height: $baseline * 4;
+        }
 
-			[data-style-level="2"]{
-				@include font-size-20;
-				font-weight: bold;
-				margin-top: $baseline*4;
-				margin-bottom: $baseline*2;
-			}
+        &:lang(fr):before {
+          left: $unite * -2;
+          line-height: $baseline * 2;
+        }
+      }
+      //////////////////////////
+      ///        Image 	/////
+      /////////////////////////
 
-			[data-style-level="3"]{
-				@include font-size-20;
-				font-weight: 300;
-				font-style: italic;
-				margin-top: $baseline*2;
-				margin-bottom: $baseline*1;
-			}
+      figure {
+        img {
+        }
+        figcaption {
+          @include font-size-13;
+        }
 
+        &.figure-logo {
+          max-width: 20% !important;
+          width: auto;
+          padding: $baseline $unite $baseline $unite;
 
-			[data-style-level="1"] + p,
-			[data-style-level="2"] + p,
-			[data-style-level="3"] + p,
-			[data-style-level="1"] + ul,
-			[data-style-level="2"] + ul,
-			[data-style-level="3"] + ul,
-			[data-style-level="1"] + figure,
-			[data-style-level="2"] + figure,
-			[data-style-level="3"] + figure,
-			[data-style-level="1"] + [data-style-level="3"]{
-				margin-top: 0!important;
-			}
+          img {
+            max-width: $unite * 4 !important;
+            max-height: $baseline * 6;
+            width: 100%;
+            height: 100%;
+          }
+        }
 
+        &.illustration {
+        }
+      }
 
-			p + p {  margin-top: $baseline*2; }
+      .vignette {
+        margin: $baseline * 2 $unite $baseline * 2 $unite;
+        width: 100%;
+        width: -webkit-calc(100% - #{$unite * 2});
+        width: -moz-calc(100% - #{$unite * 2});
+        width: calc(100% - #{$unite * 2});
 
-			p, li{ 
-				@include font-size-20(); 
-				margin-bottom: $baseline*2;
-			}
-					
-			li{ 
-				left: $unite*1.5;
-				text-indent: -15px;
-				width: -webkit-calc( 100% - #{$unite*1.5});
-				width: -moz-calc( 100% - #{$unite*1.5});
-				width: calc( 100% - #{$unite*1.5});
-				&:before{ content: "⁘"; left: -15px;}
-			}
- 			
- 			blockquote{
- 				margin-top: $baseline*2;
- 				margin-bottom: $baseline*2;
- 				@include font-size-20();
- 				font-style: italic;
-				
-				margin-left: $unite*2;
- 				margin-right: $unite*2;
+        &.container_vignette-inline {
+          @include for-size(desktop-1000) {
+            width: 50%;
+            width: -moz-calc(50% - #{$unite * 2} - 2px);
+            width: -webkit-calc(50% - #{$unite * 2} - 2px);
+            width: calc(50% - #{$unite * 2} - 2px);
+          }
 
- 				&:before{
- 					font-size: 70px;
- 				}
-
- 				&:lang(en):before{
-					left: $unite*-1.75;
-					line-height: $baseline*4;
- 				}
-
- 				&:lang(fr):before{
- 					left: $unite*-2;
-					line-height: $baseline*2;
- 				}
- 			}
-			//////////////////////////
-			///        Image 	/////
-			/////////////////////////
-
-			figure{
-
-				img{
-
-				}
-				figcaption{
-					@include font-size-13;
-				}
-
-				&.figure-logo{ 
-					max-width: 20% !important;
-					width: auto;
-				    padding: $baseline $unite $baseline $unite;
-
-					img{
-						max-width: $unite*4 !important;
-					    max-height: $baseline*6;
-					    width: 100%;
-						height: 100%;					
-					}
-				}
-				
-				&.illustration{	}
-			}
-
-			.vignette{
-				
-				margin: $baseline*2 $unite $baseline*2 $unite;
-				width: 100%;
-				width: -webkit-calc(100% - #{$unite*2});
-				width: -moz-calc(100% - #{$unite*2});
-				width: calc(100% - #{$unite*2});
-	
-				
-				&.container_vignette-inline{			 
-
-					@include for-size(desktop-1000){
-						width: 50%;
-						width: -moz-calc( 50% - #{$unite*2} - 2px);
-						width: -webkit-calc( 50% - #{$unite*2} - 2px);
-						width: calc( 50% - #{$unite*2} - 2px);
-					}
-
-					/*@include for-size(desktop-1200){
+          /*@include for-size(desktop-1200){
 						width: 33%;
 						width: -moz-calc( 33% - #{$unite*2});
 						width: -webkit-calc( 33% - #{$unite*2});
 						width: calc( 33% - #{$unite*2});						
 					}*/
-				}
+        }
 
-				&.container_serie{
-					@include for-size(desktop-1000){
-						width: 33.3333%;
-					}
-				}
+        &.container_serie {
+          @include for-size(desktop-1000) {
+            width: 33.3333%;
+          }
+        }
 
-				label{
-					&::after{
-					}
-				}
+        label {
+          &::after {
+          }
+        }
 
-				figcaption{ 
-					//max-height: $baseline*5.5; 
-					max-width: 600px;
-					width: 120%;
-					left: -10%;
-					margin: auto;
-					padding: $baseline 0;
-					//overflow: hidden;
+        figcaption {
+          //max-height: $baseline*5.5;
+          max-width: 600px;
+          width: 120%;
+          left: -10%;
+          margin: auto;
+          padding: $baseline 0;
+          //overflow: hidden;
+        }
 
-				}
+        input:checked {
+          & + label {
+            max-height: 80vh;
 
-				input:checked {
+            &:after {
+              content: "✕\00FE0E";
+              top: $baseline * 2;
+              left: calc(100vw - #{$unite * 2});
+              opacity: 1;
+              color: $text-color;
+              transition: none;
+            }
+          }
 
-					& + label{
+          & ~ figure {
+            img {
+              max-width: 80vw;
+              max-height: 80vh;
+            }
 
-						max-height: 80vh;
+            figcaption {
+              padding: $baseline * 2 25vw;
 
-						&:after{
-							content: "✕\00FE0E";
-							top: $baseline*2;
-							left: calc(100vw - #{$unite*2});
-							opacity: 1;
-							color: $text-color;
-							transition: none;						
-
-
-						}					
-					}
-
-					& ~ figure{
-						img{
-							max-width: 80vw;
-							max-height: 80vh;
-						}
-
-						figcaption{
-							padding: $baseline*2 25vw;
-
-							@include for-size(desktop-1400){
-								padding-right: 30vw;
-								padding-left: 30vw;
-							}
-						}
-					}
-				}
-			}
-		}	
-	}
+              @include for-size(desktop-1400) {
+                padding-right: 30vw;
+                padding-left: 30vw;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

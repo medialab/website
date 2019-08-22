@@ -1,432 +1,450 @@
 /* page_list all */
 
-
 //$width-image-pre-listing: 90px;
-$width-image-pre-listing: ( ( 100% / 120 ) * 1.1338 * 10 );
-$width-image-pre-listing-phone: ( ( 100% / 120 ) * 1.1338 * 10 );
-
-
-
-
+$width-image-pre-listing: ((100% / 120) * 1.1338 * 10);
+$width-image-pre-listing-phone: ((100% / 120) * 1.1338 * 10);
 
 .page-production-list #liste .liste_objet,
 .page-activity-list #liste .liste_objet,
 .page-news-list #liste .liste_objet,
-.liste_seminaire{
+.liste_seminaire {
+  li {
+    width: 100%;
+    position: relative;
+    height: auto;
 
-    li{
-        width: 100%;
-        position: relative;
-        height: auto;
-
-        &:not(:empty){border-bottom: $border;}
-
-
-        a{ 
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-
-        .image-pre{
-            z-index: 8;
-            pre{ 
-                color: $color-img;
-                line-height: 95%;
-            }
-        
-        }
-
-
-        .bandeau{
-            border-bottom: $border-very-light;
-            padding: $baseline/2 0;
-            @include text-overflow();
-            width: 100%;
-            p{ 
-                @include font-size-13; 
-                display: inline-block; 
-                vertical-align: top;
-            }
-            /* activities */
-            .title{ 
-                @include text-overflow();
-                padding-left: $unite/2;
-                margin-left: $unite/2;
-                border-left: $border-very-light;
-                color: $redlab;
-                width: $unite*7;
-            }
-            /* news */
-            .date-news{
-                margin-left: $baseline*1;
-                padding-left: $baseline*1;
-                border-left: $border-very-light;
-            }
-            .hours-news {
-                margin-left: $baseline*1;
-                padding-left: $baseline*1;
-                border-left: $border-very-light;
-            }
-            .hours-news::before{ content: $time; }
-
-        }
-
-        hgroup, .accroche{
-            display: inline-block;
-            vertical-align: top;
-          
-        }
-
-        
-
-        h1::first-letter{ text-transform: capitalize; }
-
-        &:hover{ background-color: $background-grey; }
-        
+    &:not(:empty) {
+      border-bottom: $border;
     }
+
+    a {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .image-pre {
+      z-index: 8;
+      pre {
+        color: $color-img;
+        line-height: 95%;
+      }
+    }
+
+    .bandeau {
+      border-bottom: $border-very-light;
+      padding: $baseline/2 0;
+      @include text-overflow();
+      width: 100%;
+      p {
+        @include font-size-13;
+        display: inline-block;
+        vertical-align: top;
+      }
+      /* activities */
+      .title {
+        @include text-overflow();
+        padding-left: $unite/2;
+        margin-left: $unite/2;
+        border-left: $border-very-light;
+        color: $redlab;
+        width: $unite * 7;
+      }
+      /* news */
+      .date-news {
+        margin-left: $baseline * 1;
+        padding-left: $baseline * 1;
+        border-left: $border-very-light;
+      }
+      .hours-news {
+        margin-left: $baseline * 1;
+        padding-left: $baseline * 1;
+        border-left: $border-very-light;
+      }
+      .hours-news::before {
+        content: $time;
+      }
+    }
+
+    hgroup,
+    .accroche {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    h1::first-letter {
+      text-transform: capitalize;
+    }
+
+    &:hover {
+      background-color: $background-grey;
+    }
+  }
 }
 
-
 //specific
-.page-news-list #liste .liste_objet .date-news{ color: $redlab; } 
-
+.page-news-list #liste .liste_objet .date-news {
+  color: $redlab;
+}
 
 /* DESKTOP */
 @media screen and (min-width: 900px) {
+  .page-production-list #liste .liste_objet,
+  .page-activity-list #liste .liste_objet,
+  .page-news-list #liste .liste_objet,
+  .liste_seminaire {
+    margin-bottom: $height-footer;
+    min-height: calc(100vh - #{$height-footer} - #{$height-top-bar});
 
-    .page-production-list #liste .liste_objet,
-    .page-activity-list #liste .liste_objet,
-    .page-news-list #liste .liste_objet,
-    .liste_seminaire{
-        
-        margin-bottom: $height-footer;
-        min-height: calc(100vh - #{$height-footer} - #{$height-top-bar});
+    li {
+      .image-pre {
+        position: absolute;
+        left: 0;
+        height: 100%;
+        overflow: hidden;
+        transition: max-width 0.25s cubic-bezier(1, 0, 0, 1);
+        font-size: 1.1vw;
+        max-width: $width-image-pre-listing;
+        pre {
+          font-size: calc(
+            ((((100vw - #{$unite * 2}) - #{$logo-column}) / 2) / 120) * 1.89
+          );
+        }
+        &:hover {
+          max-width: 100%;
+          max-width: calc(
+            (100% - #{$width-image-pre-listing}) / 2 + #{$width-image-pre-listing}
+          );
+          @media screen and (min-width: 960px) {
+            max-width: calc(
+              100% - (100% - #{$width-image-pre-listing}) / 2
+            ) !important;
+          }
+          transition-duration: 0.15s;
+          //background-color: $background-site;
+        }
+      }
+      .bandeau {
+        width: calc(100% - #{$width-image-pre-listing} - #{$unite});
+        left: calc(#{$width-image-pre-listing} + #{$unite/2});
+        div {
+          display: inline-block;
+          vertical-align: top;
+        }
 
-        li{
+        .label-news {
+          position: absolute;
+          right: 0;
+          text-align: right;
+        }
+      }
+      hgroup,
+      .accroche {
+        width: calc((100% - #{$width-image-pre-listing}) / 2);
+        max-width: 1100px;
+        left: $width-image-pre-listing;
+        margin-top: $baseline * 0.5;
+        margin-bottom: $baseline;
+        padding: 0 $unite/2;
+      }
 
-            .image-pre{
-                position: absolute;
-                left: 0;
-                height: 100%;
-                overflow: hidden;
-                transition: max-width 0.25s cubic-bezier(1,0,0,1);
-                font-size: 1.1vw;
-                max-width: $width-image-pre-listing;
-                pre{ 
-                    font-size: calc((((( 100vw - #{$unite*2}) - #{$logo-column}) / 2 )  /120 ) *1.89 ); 
-                }
-                &:hover{
-                    max-width: 100%;
-                    max-width: calc((100% - #{$width-image-pre-listing})/2 + #{$width-image-pre-listing});
-                    @media screen and (min-width: 960px){ max-width: calc( 100% - (100% - #{$width-image-pre-listing})/2 )!important; }
-                    transition-duration: .15s;
-                    //background-color: $background-site;
-                }
-            }
-            .bandeau{
-                width: calc(100% - #{$width-image-pre-listing} - #{$unite});
-                left: calc(#{$width-image-pre-listing} + #{$unite/2});
-                div{
-                    display: inline-block;
-                    vertical-align: top;
-                }
-                
-                .label-news{
-                    position: absolute; 
-                    right: 0;
-                    text-align: right;
-                }
-            }
-            hgroup, .accroche{
-                width: calc((100% - #{$width-image-pre-listing})/2);
-                max-width: 1100px;
-                left: $width-image-pre-listing;
-                margin-top: $baseline*.5;
-                margin-bottom: $baseline;
-                padding: 0 $unite/2;
-            }
+      .accroche {
+        height: 100% !important;
+      }
 
-            .accroche{ 
-                height: 100% !important;
-            }
+      h1 {
+        padding-top: $baseline * 1;
+        padding-bottom: $baseline * 1.5;
+        @include font-size-40;
+      }
 
-            h1{
-                padding-top: $baseline*1;
-                padding-bottom: $baseline*1.5;
-                 @include font-size-40; 
-            }
-    
-            
-            .accroche{ 
-                border-left: $border-very-light; 
-                p{ @include font-size-20; }
-            }
+      .accroche {
+        border-left: $border-very-light;
+        p {
+          @include font-size-20;
+        }
+      }
 
-            ////////////////////////
-            /// QUIERY
-            //////////////////////
+      ////////////////////////
+      /// QUIERY
+      //////////////////////
 
-            /* 
+      /* 
             Ces règles s'appliquent aux écran dont la hauteur d'écran dne permet pas d'afficher plus 3 item par écran
             Par facilité, la logique des quieries est ici inversé. 
             Les règles s'applique "jusqu'à" et non "à partir de"... 
             */
 
-            @media screen and ( max-height: 770px ){
-                // Divide image width
-                .image-pre{
-                    max-width: $width-image-pre-listing/2;
-                    &:hover{
-                        max-width: calc((100% - #{$width-image-pre-listing/2})/2 + #{$width-image-pre-listing/2})!important;
-                    }
-                }
-                .bandeau{
-                    width: calc(100% - #{$width-image-pre-listing/2} - #{$unite});
-                    left: calc(#{$width-image-pre-listing/2} + #{$unite/2});  
-                }
-                hgroup, .accroche{
-                    width: calc((100% - #{$width-image-pre-listing/2})/2);
-                    left: calc(#{$width-image-pre-listing/2});
-                    margin-bottom: $baseline/2;
-                }
-
-                h1 { 
-                    @include font-size-20;  
-                    padding-top: 0; 
-                    padding-bottom: $baseline/2;
-                }
-                .accroche p{ 
-                    @include font-size-13; 
-                    margin-top: $baseline*.5;
-                    height: calc( 2 * #{$baseline*1.5} ); // Show 2 lines;
-                    overflow: hidden;
-                }
-            }
-
-            @media screen and ( max-height: 901px ){
-                h1 { 
-                    @include font-size-20;  
-                    padding-top: 0; 
-                    padding-bottom: $baseline/2;
-                }
-                .accroche p{ 
-                    @include font-size-13; 
-                    margin-top: $baseline*.5;
-                    height: calc( 2 * #{$baseline*1.5} ); // Show 2 lines;
-                    overflow: hidden;
-                }
-            }
+      @media screen and (max-height: 770px) {
+        // Divide image width
+        .image-pre {
+          max-width: $width-image-pre-listing/2;
+          &:hover {
+            max-width: calc(
+              (100% - #{$width-image-pre-listing/2}) / 2 + #{$width-image-pre-listing/2}
+            ) !important;
+          }
+        }
+        .bandeau {
+          width: calc(100% - #{$width-image-pre-listing/2} - #{$unite});
+          left: calc(#{$width-image-pre-listing/2} + #{$unite/2});
+        }
+        hgroup,
+        .accroche {
+          width: calc((100% - #{$width-image-pre-listing/2}) / 2);
+          left: calc(#{$width-image-pre-listing/2});
+          margin-bottom: $baseline/2;
         }
 
-        .list-year{ 
-            display: none;
-            height: 0;
-            padding-top: 0px;
-            border-bottom: $border;
-            overflow: hidden;
-            &:target{ 
-                display: block;
-                padding-top: $height-top-bar + 0px;  
-            }
-            &:hover{ 
-                background-color: $background-site; 
-            }
+        h1 {
+          @include font-size-20;
+          padding-top: 0;
+          padding-bottom: $baseline/2;
         }
+        .accroche p {
+          @include font-size-13;
+          margin-top: $baseline * 0.5;
+          height: calc(2 * #{$baseline * 1.5}); // Show 2 lines;
+          overflow: hidden;
+        }
+      }
+
+      @media screen and (max-height: 901px) {
+        h1 {
+          @include font-size-20;
+          padding-top: 0;
+          padding-bottom: $baseline/2;
+        }
+        .accroche p {
+          @include font-size-13;
+          margin-top: $baseline * 0.5;
+          height: calc(2 * #{$baseline * 1.5}); // Show 2 lines;
+          overflow: hidden;
+        }
+      }
     }
+
+    .list-year {
+      display: none;
+      height: 0;
+      padding-top: 0px;
+      border-bottom: $border;
+      overflow: hidden;
+      &:target {
+        display: block;
+        padding-top: $height-top-bar + 0px;
+      }
+      &:hover {
+        background-color: $background-site;
+      }
+    }
+  }
 }
 
-@media screen and (max-width: 900px){
-    .page-production-list #liste .liste_objet,
-    .page-activity-list #liste .liste_objet,
-    .page-news-list #liste .liste_objet,
-    .liste_seminaire{
-        .bandeau{
-            width: 100%;
-           
-            .day-name{ display: none;}
-            .label-news{
-                position: relative!important;
-                text-align: left;
-                margin-left: $baseline*1;
-                padding-left: $baseline*1;
-                border-left: $border-very-light;
-            }
-            div{ 
-                margin-top: $baseline/2;
-                padding-top: $baseline/2;
-                border-top: $border-very-light; 
-                display: block!important;
-            }
-            
-            .hours-news{
-                border-bottom: none;
-                padding-top: 0;
-                padding-bottom: 0;
-                margin-left: $baseline*1!important;
-                padding-left: $baseline*1!important;
-                border-left: $border-very-light!important;
-            }
-          
-        }
+@media screen and (max-width: 900px) {
+  .page-production-list #liste .liste_objet,
+  .page-activity-list #liste .liste_objet,
+  .page-news-list #liste .liste_objet,
+  .liste_seminaire {
+    .bandeau {
+      width: 100%;
 
-        .list-year:target{ 
-            display: block;
-            padding-top: $height-top-bar + 0px;  
-        }
+      .day-name {
+        display: none;
+      }
+      .label-news {
+        position: relative !important;
+        text-align: left;
+        margin-left: $baseline * 1;
+        padding-left: $baseline * 1;
+        border-left: $border-very-light;
+      }
+      div {
+        margin-top: $baseline/2;
+        padding-top: $baseline/2;
+        border-top: $border-very-light;
+        display: block !important;
+      }
+
+      .hours-news {
+        border-bottom: none;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-left: $baseline * 1 !important;
+        padding-left: $baseline * 1 !important;
+        border-left: $border-very-light !important;
+      }
     }
 
-    .page-news-list #liste .liste_objet .date-news{
-        margin-left: 0!important;
-        padding-left: 0!important;
-        border-left: none!important;
+    .list-year:target {
+      display: block;
+      padding-top: $height-top-bar + 0px;
     }
+  }
 
+  .page-news-list #liste .liste_objet .date-news {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    border-left: none !important;
+  }
 }
-
-
-
 
 /* PHONE */
 @media screen and (max-width: 900px) {
+  .page-production-list #liste .liste_objet,
+  .page-activity-list #liste .liste_objet,
+  .page-news-list #liste .liste_objet,
+  .liste_seminaire {
+    margin-bottom: $height-footer;
+    min-height: calc(100vh - #{$height-footer} - #{$height-top-bar-phone});
 
-    .page-production-list #liste .liste_objet,
-    .page-activity-list #liste .liste_objet,
-    .page-news-list #liste .liste_objet,
-    .liste_seminaire{
-        
-        margin-bottom: $height-footer;
-        min-height: calc(100vh - #{$height-footer} - #{$height-top-bar-phone});
+    li {
+      width: 100% !important;
+      .image-pre {
+        width: 100% !important;
+        height: $baseline * 8;
+        @media screen and (max-width: 500px) {
+          height: $baseline * 4.5;
+        }
+        overflow: hidden;
+        border-bottom: $border-very-light;
+        pre {
+          font-size: calc((70vw / 120) * 1.89);
+          @media screen and (max-width: 700px) {
+            font-size: calc((100vw / 120) * 1.89);
+          }
+        }
+      }
+      .bandeau {
+        width: calc(100% - #{$margins-phone * 2});
+        @media screen and (max-width: 700px) {
+          margin: 0 $margins-phone;
+        }
+      }
 
-         li{
-            width: 100%!important;
-            .image-pre{
-                width: 100%!important;
-                height: $baseline*8;
-                @media screen and (max-width: 500px){ height: $baseline*4.5;  }
-                overflow: hidden;
-                border-bottom: $border-very-light;
-                pre{ 
-                    font-size: calc((70vw /120 ) *1.89 );
-                    @media screen and (max-width: 700px){ font-size: calc((100vw /120 ) *1.89 );  }
-                }                
-            }
-            .bandeau{
-                width: calc(100% - #{$margins-phone*2});
-                @media screen and (max-width: 700px){margin: 0 $margins-phone;}
-            }
+      hgroup,
+      .accroche {
+        width: calc(100% - #{$margins-phone * 2});
+        @media screen and (max-width: 700px) {
+          margin: 0 $margins-phone;
+        }
+      }
+      hgroup {
+        margin-top: $baseline * 1;
+      }
 
-            hgroup, .accroche{
-                width: calc(100% - #{$margins-phone*2});
-                @media screen and (max-width: 700px){margin: 0 $margins-phone;}
-            }
-            hgroup{ margin-top: $baseline*1; }
-    
-            h1{
-                 @include font-size-20; 
-                 padding-bottom: $baseline/2;
-                 margin-top: 0;
-            }
+      h1 {
+        @include font-size-20;
+        padding-bottom: $baseline/2;
+        margin-top: 0;
+      }
 
-            .accroche{
-                padding-bottom: $baseline*4;
-                
-                p{ 
-                    @include font-size-13; 
-                    line-height: $baseline*1.4;
-                }
-            }
+      .accroche {
+        padding-bottom: $baseline * 4;
 
-       }
+        p {
+          @include font-size-13;
+          line-height: $baseline * 1.4;
+        }
+      }
     }
+  }
 }
 
 @include for-size(phone) {
-    .list-year:target{ 
-        display: block;
-        padding-top: $height-top-bar + 0px;  
-    }
+  .list-year:target {
+    display: block;
+    padding-top: $height-top-bar + 0px;
+  }
 }
-
 
 /* PRINT */
 
-@media print{
-
-
-    .page-production-list #liste .liste_objet,
-    .liste_seminaire{
-
-        border-top: 1px solid black;
-        .list-year{ display: none; }
-
-        li{
-            break-inside: avoid;
-            padding-bottom: $baseline;
-            background-color: white!important; 
-
-            h1, .authors-paragraphe{ @include font-size-20(); }
-            h1{ padding-top: $baseline;}
-
-            .publication-ref{
-                padding-top: $baseline/2;
-                @include font-size-13-phone();
-                a{ display: inline; }
-            
-            }
-
-        }
-    
+@media print {
+  .page-production-list #liste .liste_objet,
+  .liste_seminaire {
+    border-top: 1px solid black;
+    .list-year {
+      display: none;
     }
 
+    li {
+      break-inside: avoid;
+      padding-bottom: $baseline;
+      background-color: white !important;
 
-    .page-activity-list #liste .liste_objet,
-    .page-news-list #liste .liste_objet,
-    .liste_seminaire{
+      h1,
+      .authors-paragraphe {
+        @include font-size-20();
+      }
+      h1 {
+        padding-top: $baseline;
+      }
 
-        border-top: 1px solid black;
+      .publication-ref {
+        padding-top: $baseline/2;
+        @include font-size-13-phone();
+        a {
+          display: inline;
+        }
+      }
+    }
+  }
 
-        .list-year{ display: none; }
-        
-        li{ 
-            min-height: 86px; 
-            break-inside: avoid;
-            padding-bottom: $baseline;
-            background-color: white!important; 
-        
-        }
-        .image-pre{
-            max-width: 180px;
-            //max-height: 86px;
-            overflow: hidden;
-            position: absolute; 
-            top: 0;
-            left: 0;
-            height: calc( 100% + #{$baseline});
-            pre{ font-size: 5px; transform: translateX(-50%);}
-        }
-        .bandeau, hgroup, .accroche{ margin-left: 190px; display: block;}
-        .bandeau p, div{
-            display: inline-block;
-        }
+  .page-activity-list #liste .liste_objet,
+  .page-news-list #liste .liste_objet,
+  .liste_seminaire {
+    border-top: 1px solid black;
 
-        .label-news{
-            margin-left: $unite/2;
-            padding-left: $unite/2;
-            border-left: $border-very-light;
-            margin-right: $unite/2;
-            padding-right: $unite/2;
-            border-right: $border-very-light;
-        }
-
-        h1{ 
-            @include font-size-20(); 
-            padding-top: $baseline/2;
-        }
-        .accroche-paragraphe{ 
-            @include font-size-13-phone() 
-            
-        }
+    .list-year {
+      display: none;
     }
 
+    li {
+      min-height: 86px;
+      break-inside: avoid;
+      padding-bottom: $baseline;
+      background-color: white !important;
+    }
+    .image-pre {
+      max-width: 180px;
+      //max-height: 86px;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: calc(100% + #{$baseline});
+      pre {
+        font-size: 5px;
+        transform: translateX(-50%);
+      }
+    }
+    .bandeau,
+    hgroup,
+    .accroche {
+      margin-left: 190px;
+      display: block;
+    }
+    .bandeau p,
+    div {
+      display: inline-block;
+    }
+
+    .label-news {
+      margin-left: $unite/2;
+      padding-left: $unite/2;
+      border-left: $border-very-light;
+      margin-right: $unite/2;
+      padding-right: $unite/2;
+      border-right: $border-very-light;
+    }
+
+    h1 {
+      @include font-size-20();
+      padding-top: $baseline/2;
+    }
+    .accroche-paragraphe {
+      @include font-size-13-phone();
+    }
+  }
 }

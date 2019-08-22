@@ -1,24 +1,29 @@
-@media print{
+@media print {
+  .page-people-list .hack-item-grid {
+    min-height: 0px !important ;
+  }
+  .page-people-list #liste_equipe li {
+    min-height: 140px;
+    margin-bottom: $baseline * 2;
+    break-inside: avoid;
 
-    .page-people-list .hack-item-grid{ min-height: 0px!important ;}
-    .page-people-list #liste_equipe li{
-        min-height: 140px;
-        margin-bottom: $baseline*2;
-        break-inside: avoid;
-
-        figure{ 
-            width: 180px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            img{ width: 100%;}
-        }
-        .description{
-            margin-left: 200px;
-            h1{ margin-bottom: $baseline/2; }
-            .status{ margin-bottom: $baseline/2; }
-        }
-
-        
+    figure {
+      width: 180px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      img {
+        width: 100%;
+      }
     }
+    .description {
+      margin-left: 200px;
+      h1 {
+        margin-bottom: $baseline/2;
+      }
+      .status {
+        margin-bottom: $baseline/2;
+      }
+    }
+  }
 }

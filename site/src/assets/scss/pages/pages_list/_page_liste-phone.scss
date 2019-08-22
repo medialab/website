@@ -1,47 +1,42 @@
-	/////////////////////
-	//////// Page liste DESKTOP MEDIUM
-	/////////////////////
+/////////////////////
+//////// Page liste DESKTOP MEDIUM
+/////////////////////
 
 .page-production-list,
 .page-news-list,
-.page-activity-list, 
-.page-people-list{
-	
-	@media screen and (max-width: 1080px)  {
+.page-activity-list,
+.page-people-list {
+  @media screen and (max-width: 1080px) {
+    #liste .liste_objet {
+      [data-item],
+      .list-year,
+      .accroche-titre {
+        width: calc(100vw - #{$logo-column-medium} - #{$margins-desktop * 2});
+      }
 
-		#liste .liste_objet{
+      [data-item] ~ [data-item-accroche] {
+        display: block;
+        max-height: 0;
+        overflow: hidden;
+        transition: 0.5s max-height;
+        width: calc((100vw - #{$logo-column} - #{$margins-desktop * 3}));
+        & > a {
+          display: block;
+          margin: $baseline 0;
+        }
+      }
 
-				[data-item], .list-year, .accroche-titre{ width: calc(100vw - #{$logo-column-medium} - #{$margins-desktop*2}); }
+      .item_accroche {
+        @include font-size-13();
+        position: relative;
+        color: $redlab;
+      }
+    }
+  }
 
-				[data-item] ~ [data-item-accroche]{ 
-					display: block;
-					max-height: 0;
-					overflow: hidden;
-					transition: .5s max-height;
-					width: calc((100vw - #{$logo-column} - #{$margins-desktop*3}) ); 			
-					& > a{
-						display: block;
-						margin: $baseline 0;
-					}
-				}
-		
-		
-				.item_accroche{
-					@include font-size-13();
-					position: relative;
-					color: $redlab;
-				}
-
-		} 
-		
-		
-	}
-
-
-
-
-	@include for-size(phone) {
-		#liste{ padding-top: $height-top-bar-phone + $baseline*3.5; }
-	}
-
+  @include for-size(phone) {
+    #liste {
+      padding-top: $height-top-bar-phone + $baseline * 3.5;
+    }
+  }
 }

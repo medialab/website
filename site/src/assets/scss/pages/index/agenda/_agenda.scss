@@ -1,75 +1,86 @@
-
 // all queries
 
-
 #agenda {
-  
-     article{
+  article {
+    cursor: pointer;
 
-        cursor: pointer;
-
-        &:hover{ background-color: $background-grey; }
-
-        &> a{
-            display: block;
-            height: 100%;
-            width: 100%;
-        }
-
-   
-       
-        
-        h1{ 
-            @include font-size-20();  
-            padding-top: $baseline;
-            padding-bottom: $baseline*1.5;
-            &::first-letter { text-transform: capitalize; }
-        }
-
-        .date-news::before{ content: none; }
-        .place::before{ content: $place;  font-family: $font-symbol; padding-right: 5px;}
-        .hours-news::before{ content: $time;  font-family: $font-symbol; padding-right: 5px;}   
-
-        
-        aside.divers{
-            @include font-size-13();
-            p{ display: inline-block; }
-            border-bottom: $border-very-light;
-            padding: $baseline/2 0;
-
-            .label{
-                border-right: $border-very-light;
-                margin-right: $unite/2;
-                padding-right: $unite/2;
-            }
-
-            .date-news{
-                color: $redlab;
-                .week{ display: none; }   
-                &::first-letter{ text-transform: capitalize; }    
-            }
-            
-            .internal{ 
-                position: absolute;
-                right: 0;
-                font-family: $font-symbol;
-            }
-        }
-
-
-        aside.details{ 
-            width: 100%;
-           
-            @include font-size-13();
-
-            p:first-of-type{
-                border-top: $border-very-light;
-                padding-top: $baseline/2;
-            }
-
-            p:last-of-type{
-                padding-bottom: $baseline/2;
-            }
-        }
+    &:hover {
+      background-color: $background-grey;
     }
+
+    & > a {
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+
+    h1 {
+      @include font-size-20();
+      padding-top: $baseline;
+      padding-bottom: $baseline * 1.5;
+      &::first-letter {
+        text-transform: capitalize;
+      }
+    }
+
+    .date-news::before {
+      content: none;
+    }
+    .place::before {
+      content: $place;
+      font-family: $font-symbol;
+      padding-right: 5px;
+    }
+    .hours-news::before {
+      content: $time;
+      font-family: $font-symbol;
+      padding-right: 5px;
+    }
+
+    aside.divers {
+      @include font-size-13();
+      p {
+        display: inline-block;
+      }
+      border-bottom: $border-very-light;
+      padding: $baseline/2 0;
+
+      .label {
+        border-right: $border-very-light;
+        margin-right: $unite/2;
+        padding-right: $unite/2;
+      }
+
+      .date-news {
+        color: $redlab;
+        .week {
+          display: none;
+        }
+        &::first-letter {
+          text-transform: capitalize;
+        }
+      }
+
+      .internal {
+        position: absolute;
+        right: 0;
+        font-family: $font-symbol;
+      }
+    }
+
+    aside.details {
+      width: 100%;
+
+      @include font-size-13();
+
+      p:first-of-type {
+        border-top: $border-very-light;
+        padding-top: $baseline/2;
+      }
+
+      p:last-of-type {
+        padding-bottom: $baseline/2;
+      }
+    }
+  }
 }

@@ -1,357 +1,356 @@
-
 // IMPORTANT: style of list element = _miniatures-all.scss
 
+@media screen {
+  #all-aside aside {
+    max-width: $max-width-article;
 
-@media screen{
+    & > h1 {
+      margin-bottom: $baseline * 2;
+    }
 
-	#all-aside aside{ 
+    // & > p{
+    // 	@include font-size-13;
+    // 	color: $text-color-light;
+    // 	display: none;
+    // }
 
-		max-width: $max-width-article;
+    // Grey Background
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100vw;
+      background-color: $background-grey;
+      z-index: -1;
+    }
 
-		& > h1{ margin-bottom: $baseline*2; }
-		
-		// & > p{
-		// 	@include font-size-13;
-		// 	color: $text-color-light;
-		// 	display: none;
-		// }
-
-		// Grey Background
-		&::before {  
-			content: "";
-			position: absolute;
-			width: 100vw;
-			background-color: $background-grey;
-			z-index: -1;
-		}
-
-		ul.liste_objet li:first-of-type{ border-top: $border; }
-		
-	}
-
+    ul.liste_objet li:first-of-type {
+      border-top: $border;
+    }
+  }
 }
 
+.personnes-associees-block {
+  li[data-type="people"] {
+    width: 100%;
+    max-width: 600px;
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: $baseline * 1;
 
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: $unite/4;
+      @include flex();
 
+      &:hover {
+        background-color: $background-site;
+        color: currentColor;
+      }
+    }
 
+    h1 {
+      @include font-size-20;
+      //margin-bottom: $baseline;
+    }
 
-.personnes-associees-block{
+    figure {
+      overflow: hidden;
+      width: 33%;
+      max-width: $unite * 6;
+      display: inline-block;
+      vertical-align: top;
+      &:not(.noImg) {
+        height: 100%;
+        @include flex;
+        @include align-items(center);
+      }
 
-	li[data-type="people"]{
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(1);
+      }
 
-		width: 100%;
-		max-width: 600px;
-		display: inline-block;
-		vertical-align: top;
-		margin-bottom: $baseline*1;
+      pre {
+        font-size: 3px;
+      }
+      div {
+        // if pre
+        overflow: hidden;
+        //position: absolute;
+        pre {
+          line-height: 100%;
+        }
+      }
+      &.noImg div {
+        position: absolute;
+        transform: translateX(-50%);
+        left: 50%;
+        opacity: 0.3;
+      }
+    }
 
-		a{
-			display: block;
-			width: 100%;
-			height: 100%;
-			padding: $unite/4;
-			@include flex();
+    .description {
+      width: 66%;
+      vertical-align: top;
+      padding-left: $unite * 1;
 
-			&:hover{ 
-				background-color: $background-site;
-				color: currentColor; 
-			}				
-		}
+      @include flex;
+      @include flex-direction(column);
+      @include justify-content(space-between);
 
-		h1{
-			@include font-size-20;
-			//margin-bottom: $baseline;
-		}
+      hgroup {
+        padding-bottom: $baseline/2;
+        //min-height: 30px;
+      }
+      .details {
+        border-top: $border-very-light;
+        padding: $baseline/2 0;
+        justify-self: flex-end;
+        padding-bottom: 0;
+        //margin-top: $baseline;
+        @include font-size-13;
+        @include for-size(phone) {
+          @include font-size-13-phone;
+        }
 
-		figure{
-			overflow: hidden;
-			width: 33%;
-			max-width: $unite*6;
-			display: inline-block; 
-			vertical-align: top;
-			&:not(.noImg){
-				height: 100%;
-				@include flex;
-				@include align-items(center);
-			}
-
-			img{
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				filter: grayscale(1);
-			}
-
-			pre{ font-size: 3px;}
-			div{	// if pre
-				overflow: hidden;
-				//position: absolute;
-				pre{ line-height: 100%;}
-			}
-			&.noImg div{
-				
-				position: absolute;
-				transform: translateX(-50%);
-				left: 50%;
-				opacity: .3;
-			}
-
-		}
-
-		.description{
-			width: 66%;
-			vertical-align: top;
-			padding-left: $unite*1;
-
-			@include flex;
-			@include flex-direction(column);
-			@include justify-content (space-between);
-
-			hgroup{
-				padding-bottom: $baseline/2;
-				//min-height: 30px; 
-			}				
-			.details{
-				border-top: $border-very-light;
-				padding: $baseline/2 0;
-				justify-self: flex-end;
-				padding-bottom: 0;
-				//margin-top: $baseline;
-				@include font-size-13;
-				@include for-size(phone) { @include font-size-13-phone; }
-				
-				.role{
-					border-bottom: $border-very-light;
-					padding-bottom: $baseline/2;
-					color: $redlab;
-				}
-			}
-		}
-		
-	}
+        .role {
+          border-bottom: $border-very-light;
+          padding-bottom: $baseline/2;
+          color: $redlab;
+        }
+      }
+    }
+  }
 }
-
-
 
 ////////////////
 ///// Queries
 ////////////////
 
+@media screen and (max-width: 900px) {
+  #all-aside aside {
+    padding-top: $topbar-phone;
+    width: 100vw;
+    &::before {
+      height: calc(100% + #{$unite * 2});
+      width: 100vw;
+      min-height: 200px;
+      top: 0;
+      //@media screen and (min-width:700px) and (max-width: 900px){ left: $unite-phone*-1.5} // Fix transition between Page object 700px and 900px
+    }
+    &:last-of-type::before {
+      height: calc(100% + 70px + 1px);
+    }
+  }
 
-@media screen and (max-width: 900px){
+  .personnes-associees-block {
+    & > h1 {
+      @include font-size-27-phone();
+      margin: 0 $margins-phone;
+      @media screen and (min-width: 700px) and (max-width: 900px) {
+        margin: 0 $unite;
+      }
+    }
 
-	#all-aside aside{
-		padding-top: $topbar-phone;
-		width: 100vw;
-		&::before { 
-		    height: calc(100% + #{$unite*2});
-		    width: 100vw;
-		    min-height: 200px;
-		    top: 0;
-		    //@media screen and (min-width:700px) and (max-width: 900px){ left: $unite-phone*-1.5} // Fix transition between Page object 700px and 900px
+    ul {
+      max-width: 100vw;
+    }
 
-		}
-	    &:last-of-type::before{
-	    	height: calc(100% + 70px + 1px);
-	    }
-	}
+    li[data-type="people"] {
+      width: 100%;
+      //width: -webkit-calc(100% - #{$unite-phone*2});
+      //width: -moz-calc(100% - #{$unite-phone*2});
+      //width: calc(100% - #{$unite-phone*2});
+      max-width: inherit;
 
-	.personnes-associees-block{
-		
-		& > h1{
-			@include font-size-27-phone();
-			margin: 0 $margins-phone;
-			@media screen and (min-width: 700px) and (max-width: 900px){  margin: 0 $unite; }
-		}
+      padding-right: $margins-phone * 0.6;
+      padding-left: $margins-phone * 0.6;
 
-		ul{ max-width: 100vw; }
+      @media screen and (min-width: 700px) and (max-width: 900px) {
+        padding-right: $unite * 0.8;
+        padding-left: $unite * 0.8;
+      }
 
-		li[data-type="people"]{
-			width: 100%;
-			//width: -webkit-calc(100% - #{$unite-phone*2});
-			//width: -moz-calc(100% - #{$unite-phone*2});
-			//width: calc(100% - #{$unite-phone*2});
-			max-width: inherit;
-			
-			padding-right: $margins-phone*.6;
-			padding-left: $margins-phone*.6;
-			
-			@media screen and (min-width: 700px) and (max-width: 900px){ 
-				padding-right: $unite*.8;
-				padding-left: $unite*.8;
-			}
+      h1 {
+        @include font-size-20-phone;
+        margin-bottom: $baseline/2;
+      }
 
-			
-			h1{
-				@include font-size-20-phone; 
-				margin-bottom: $baseline/2;
-			}
+      img {
+        min-height: $baseline * 6;
+      }
+      .description {
+        //width: 100%;
+        padding-left: $unite-phone;
+        .details {
+          border-bottom: none !important;
+          margin: 0 !important;
+        }
+      }
+    }
+  }
 
-			img{
-				min-height: $baseline*6;
-			}
-			.description {
-				//width: 100%;
-				padding-left: $unite-phone;
-				.details{ border-bottom: none !important; margin: 0 !important; }
-			}
-		}
-	}
+  .elements-associes-block {
+    & > h1 {
+      @include font-size-27-phone();
+      // font-weight: 600;
+      margin: 0 $margins-phone;
+      @media screen and (min-width: 700px) and (max-width: 900px) {
+        margin: 0 $unite;
+      }
 
-	.elements-associes-block{
+      span {
+        font-weight: 300;
+      }
+    }
 
-		& > h1{ 
-			@include font-size-27-phone();
-			// font-weight: 600;
-			margin: 0 $margins-phone;
-			@media screen and (min-width: 700px) and (max-width: 900px){ margin: 0 $unite;}
+    ul.liste_objet {
+      padding: 0 $margins-phone;
+      @media screen and (min-width: 700px) and (max-width: 900px) {
+        padding: 0 $unite;
+      }
 
-			span{ font-weight: 300;}
-		}
-
-		ul.liste_objet{
-
-			padding: 0 $margins-phone;
-			@media screen and (min-width: 700px) and (max-width: 900px){ padding: 0 $unite;}
-
-
-
-			li{
-				&:before{
-					content: "";
-					position: absolute;
-					width: calc(100% + #{$margins-phone*2});
-					height: 100%;
-					left: $margins-phone*-1;
-				}
-				&:hover:before{ background: rgba($background-site, 0.8); }
-			}	
-		}
-	}
+      li {
+        &:before {
+          content: "";
+          position: absolute;
+          width: calc(100% + #{$margins-phone * 2});
+          height: 100%;
+          left: $margins-phone * -1;
+        }
+        &:hover:before {
+          background: rgba($background-site, 0.8);
+        }
+      }
+    }
+  }
 }
 
+@media screen and (min-width: 900px) {
+  #all-aside {
+    margin-bottom: 20vh;
+  }
 
+  #all-aside aside {
+    padding-top: $height-sticky + $baseline * 2;
 
+    &::before {
+      height: calc(100% + #{$unite * 2});
+      min-height: 200px;
+      width: 200vw;
+      // top: 50px;
+      top: 0px;
+      left: -100vw;
+    }
+    &:last-of-type::before {
+      height: calc(100% + #{$height-footer + $baseline * 8} - #{$unite * 2});
+    }
 
+    ul li {
+      //padding-left: $unite/2;
+      //padding-right: $unite/2;
+    }
 
-@media screen and (min-width: 900px){
+    ul.liste_objet {
+      li:hover {
+        background: rgba($background-site, 0.8);
+      }
+    }
+  }
 
-	#all-aside{ margin-bottom: 20vh; }
+  .elements-associes-block > h1,
+  .personnes-associees-block > h1 {
+    @include font-size-40();
+    span {
+      padding-right: $unite/2;
+    }
+  }
 
-	#all-aside aside{
-		padding-top: $height-sticky + $baseline*2;
+  @include for-size(desktop-900) {
+    .personnes-associees-block {
+      .liste_personne li[data-type="people"] {
+        width: 50%;
+        figure {
+          max-width: inherit;
+        }
+      }
+    }
+  }
 
-		&::before { 
-		    height: calc(100% + #{$unite*2});
-			min-height: 200px;
-			width: 200vw;
-			// top: 50px;
-			top: 0px;
-		    left: -100vw;
+  @include for-size(desktop-1300) {
+    .personnes-associees-block {
+      max-width: $max-width-article * 1.25 !important;
 
-		}
-	    &:last-of-type::before{
-	    	height: calc(100% + #{$height-footer + $baseline*8} - #{$unite*2});
-	    }
-
-
-		ul li{
-			//padding-left: $unite/2;
-			//padding-right: $unite/2;
-
-		}
-
-		ul.liste_objet{
-			li:hover{ background: rgba($background-site, 0.8); }
-		}
-	}
-
-	.elements-associes-block > h1,
-	.personnes-associees-block > h1{ 
-		@include font-size-40();
-		span{ padding-right: $unite/2;}
-
-	}
-
-
-	@include for-size( desktop-900){
-		.personnes-associees-block{
-			.liste_personne li[data-type="people"]{
-				width: 50% ;
-				figure{ max-width: inherit;}
-			}
-		}
-	}
-
-	@include for-size( desktop-1300){
-		.personnes-associees-block{
-			max-width: $max-width-article*1.25 !important;
-
-			.liste_personne li[data-type="people"]{
-				width: 33.333% ;
-				figure{max-height: $baseline*8; }
-			}
-		}
-	}		
+      .liste_personne li[data-type="people"] {
+        width: 33.333%;
+        figure {
+          max-height: $baseline * 8;
+        }
+      }
+    }
+  }
 }
- 
-
 
 /* ÉLÉMENTS ASSOCIÉS pour les pages objets larges  -------------------------------------------------------------------------------- */
 
+@media screen and (min-width: 1620px) {
+  .page-production,
+  .page-news,
+  .page-activity {
+    #main-objet {
+      display: flex;
+      padding: 0;
+    }
+    #article-contenu {
+      padding-left: $margins-desktop;
+    }
+    #article-contenu,
+    #all-aside {
+      display: inline-block;
+      vertical-align: top;
+      //z-index: 0;
+    }
+    #all-aside {
+      background-color: $background-grey;
+      width: calc(100% - #{$max-width-article} - #{$margins-desktop * 2});
+      height: auto;
+      margin-left: $margins-desktop * 2;
+      margin-bottom: 0;
+      // margin-top: $baseline*4;
+      padding: $baseline * 2 $margins-desktop * 1.5;
+      //z-index: -1;
 
-
-
-@media screen and (min-width: 1620px){
-    .page-production, 
-	.page-news, 
-	.page-activity{
-		#main-objet{ 
-			display: flex;
-			padding: 0;
-		}
-		#article-contenu{ padding-left: $margins-desktop; }
-		#article-contenu, #all-aside{ 
-			display: inline-block; 
-			vertical-align: top;
-			//z-index: 0;
-		}
-		#all-aside{
-			background-color:  $background-grey;
-			width: calc(100% - #{$max-width-article} - #{$margins-desktop*2});
-			height: auto;
-			margin-left: $margins-desktop*2;
-			margin-bottom: 0;
-			// margin-top: $baseline*4;
-			padding: $baseline*2 $margins-desktop*1.5;
-			//z-index: -1;
-			
-			& > aside{
-				margin-top: 0;
-				padding-top: 0;
-				margin-bottom: $baseline*5;
-				&::before{ display: none; content: none; }
-				& > h1 {
-					@include font-size-27();
-				}
-			}
-			.liste_personne li[data-type="people"]{
-				width: 100%;
-				margin-bottom: $baseline*1;
-				pre{ font-size: 3px; }
-
-			
-			}
-		}	
-	}
+      & > aside {
+        margin-top: 0;
+        padding-top: 0;
+        margin-bottom: $baseline * 5;
+        &::before {
+          display: none;
+          content: none;
+        }
+        & > h1 {
+          @include font-size-27();
+        }
+      }
+      .liste_personne li[data-type="people"] {
+        width: 100%;
+        margin-bottom: $baseline * 1;
+        pre {
+          font-size: 3px;
+        }
+      }
+    }
+  }
 }
 
-@media screen and (min-width: 2100px){
-
-	.page-production #all-aside, 
-	.page-news #all-aside, 
-	.page-activity #all-aside{
-		margin-right: $margins-desktop!important; 
-	}
-
+@media screen and (min-width: 2100px) {
+  .page-production #all-aside,
+  .page-news #all-aside,
+  .page-activity #all-aside {
+    margin-right: $margins-desktop !important;
+  }
 }

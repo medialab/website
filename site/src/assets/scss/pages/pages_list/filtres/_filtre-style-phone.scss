@@ -1,162 +1,153 @@
-$top-filtre-phone-open: $height-top-bar-phone + $baseline*3.5;
-
-
-
+$top-filtre-phone-open: $height-top-bar-phone + $baseline * 3.5;
 
 @include for-size(phone) {
+  .type_title {
+    display: block;
+    width: 100vw;
+    position: fixed;
+    top: $height-top-bar-phone;
+    left: 0;
+    margin: 0;
+    padding-top: $baseline * 1.1;
+    padding-bottom: $baseline * 0.9;
+    padding-left: $margins-phone;
+    z-index: 50;
+    border-bottom: $border;
+    background-color: $background-site;
+    &::after {
+      display: none !important;
+    }
+  }
 
+  #radio-phone-filters + label,
+  #radio-phone-infos + label {
+    position: fixed;
+    width: $unite * 1.25;
+    height: $unite * 1.25;
+    top: $height-top-bar-phone + $baseline * 0.75;
+    right: 0;
+    z-index: 60;
+    padding: $unite * 0.25;
+    svg {
+      fill: $text-color-light;
+    }
+  }
 
-	.type_title{
-		display: block;
-		width: 100vw;
-		position: fixed;
-		top: $height-top-bar-phone;
-		left: 0;
-		margin: 0;
-		padding-top: $baseline*1.1;
-		padding-bottom: $baseline*0.9;
-		padding-left: $margins-phone;
-		z-index: 50;
-		border-bottom: $border;
-		background-color: $background-site;
-		&::after{ display: none!important; }
-	}
+  #radio-phone-filters + label {
+    right: $margins-phone - $unite * 0.25;
+  }
+  #radio-phone-infos + label {
+    right: $unite + $margins-phone * 1;
+  }
 
-	#radio-phone-filters + label, 
-	#radio-phone-infos + label{
-		position: fixed;
-		width: $unite*1.25;
-		height: $unite*1.25;
-		top: $height-top-bar-phone + $baseline*0.75;
-		right: 0;
-		z-index: 60;
-		padding: $unite*0.25;
-		svg{ fill: $text-color-light; }
-	}
+  .aside-title {
+    @include font-size-13-phone;
+    font-weight: 600;
+    // text-transform: uppercase;
+    padding: $baseline 0;
+    border-bottom: $border-very-light;
+    color: $redlab;
+    position: fixed;
+    width: calc(100vw - #{$margins-phone}* 2);
+    background-color: $background-site;
+    z-index: 91;
+  }
 
-	#radio-phone-filters + label{ right: $margins-phone - $unite*0.25; }
-	#radio-phone-infos + label{ right: $unite + $margins-phone*1; }
+  #radio-phone-close + label {
+    position: fixed;
+    z-index: 92;
+    right: $margins-phone;
+    @include font-size-20-phone;
+    color: $redlab;
+  }
 
+  .accroche-title-list,
+  .aside-filters {
+    background-color: $background-site;
+    position: fixed;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - #{$height-top-bar-phone});
+    z-index: 90;
+    padding: 0 $margins-phone;
+    padding-top: $baseline * 3.5;
+    overflow-y: scroll;
+  }
 
-	.aside-title{
-		@include font-size-13-phone;
-		font-weight: 600;
-		// text-transform: uppercase;
-		padding: $baseline 0;
-		border-bottom: $border-very-light;
-		color: $redlab;
-		position: fixed;
-		width: calc(100vw - #{$margins-phone}*2);
-		background-color: $background-site;
-		z-index: 91;
-	}
+  .accroche-title-list p {
+    width: 100vw;
+    padding-right: $margins-phone * 2;
+    margin-top: $baseline * 1;
+  }
 
-	#radio-phone-close + label{
-		position: fixed;
-		z-index: 92;
-		right: $margins-phone;
-		@include font-size-20-phone;
-		color: $redlab;
-	}
+  .aside-filters {
+    padding-bottom: $baseline * 2;
+    padding-top: $baseline * 3.5;
+  }
 
+  /* pattern open/close */
 
-	.accroche-title-list, .aside-filters{
-		background-color: $background-site;
-		position: fixed;
-		left: 0;
-		width: 100vw;
-		height: calc(100vh - #{$height-top-bar-phone});
-		z-index: 90;
-		padding: 0 $margins-phone;
-		padding-top: $baseline*3.5;
-		overflow-y: scroll;	
-	}
+  #radio-phone-filters ~ .aside-filters,
+  #radio-phone-infos ~ .accroche-title-list,
+  #radio-phone-filters ~ #radio-phone-close + label,
+  #radio-phone-infos ~ #radio-phone-close + label,
+  #radio-phone-filters ~ .aside-filters .aside-title,
+  #radio-phone-infos ~ .accroche-title-list .aside-title {
+    top: -100vh;
+    transition: 0.4s ease-out;
+  }
+  #radio-phone-filters:checked ~ .aside-filters,
+  #radio-phone-infos:checked ~ .accroche-title-list {
+    top: $height-top-bar-phone + 1px;
+  }
 
-	.accroche-title-list p{
-		width: 100vw;
-		padding-right: $margins-phone*2;
-		margin-top: $baseline*1;
-	}
+  #radio-phone-filters:checked ~ #radio-phone-close + label,
+  #radio-phone-infos:checked ~ #radio-phone-close + label {
+    top: $height-top-bar-phone + $baseline * 0.75;
+  }
 
-
-	.aside-filters{
-		padding-bottom: $baseline*2;
-		padding-top: $baseline*3.5;
-	}
-
-
-	/* pattern open/close */
-
-	#radio-phone-filters ~ .aside-filters,
-	#radio-phone-infos ~ .accroche-title-list,
-	#radio-phone-filters ~ #radio-phone-close + label,
-	#radio-phone-infos ~ #radio-phone-close + label,
-	#radio-phone-filters ~ .aside-filters .aside-title,
-	#radio-phone-infos ~ .accroche-title-list .aside-title { 
-		top: -100vh; 
-		transition: .4s ease-out;
-	}
-	#radio-phone-filters:checked ~ .aside-filters,
-	#radio-phone-infos:checked ~ .accroche-title-list { 
-		top: $height-top-bar-phone + 1px; 
-	}
-
-
-	#radio-phone-filters:checked ~ #radio-phone-close + label,
-	#radio-phone-infos:checked ~ #radio-phone-close + label{
-		top: $height-top-bar-phone + $baseline*0.75;
-	}
-
-
-
-	#radio-phone-filters:checked ~ .aside-filters .aside-title,
-	#radio-phone-infos:checked ~ .accroche-title-list .aside-title{
-		top: $height-top-bar-phone;
-	}
-
+  #radio-phone-filters:checked ~ .aside-filters .aside-title,
+  #radio-phone-infos:checked ~ .accroche-title-list .aside-title {
+    top: $height-top-bar-phone;
+  }
 }
 
+@media screen and (min-width: 700px) and (max-width: 1080px) {
+  .type_title {
+    &::after {
+      display: none !important;
+    }
+  }
 
-@media screen and (min-width: 700px) and (max-width: 1080px)  {
+  #radio-phone-infos + label {
+    display: block !important;
+    position: fixed;
+    width: $unite * 1.25;
+    height: $unite * 1.25;
+    top: $height-top-bar + $baseline;
+    left: $logo-column-medium - $unite;
+    z-index: 60;
+    padding: $unite * 0.25;
+    svg {
+      fill: $text-color-light;
+    }
+  }
 
-	.type_title{
+  #radio-phone-infos ~ .accroche-title-list {
+    top: $height-top-bar * -1 + 10px;
+    transition: 0.4s ease-out;
+  }
+  #radio-phone-infos:checked ~ .accroche-title-list {
+    top: $height-top-bar + 1px;
+  }
 
-		&::after{ display: none!important; }
-
-		
-	}
-
-	#radio-phone-infos + label{ 
-		display: block!important; 
-		position: fixed;
-		width: $unite*1.25;
-		height: $unite*1.25;
-		top: $height-top-bar + $baseline; 
-		left: $logo-column-medium - $unite;
-		z-index: 60;
-		padding: $unite*0.25;
-		svg{ fill: $text-color-light; }
-	}
-
-	#radio-phone-infos ~ .accroche-title-list { 
-		top: $height-top-bar * -1 + 10px; 
-		transition: .4s ease-out;
-	}
-	#radio-phone-infos:checked ~ .accroche-title-list { 
-		top: $height-top-bar + 1px; 
-	}
-
-
-	#radio-phone-infos:checked ~ #radio-phone-close + label{
-		display: block!important;
-		position: fixed;
-		z-index: 92;
-		top: $height-top-bar + $baseline/2; 
-		right: $margins-desktop;
-		@include font-size-20-phone;
-		color: $redlab;
-	}
-
-
-
+  #radio-phone-infos:checked ~ #radio-phone-close + label {
+    display: block !important;
+    position: fixed;
+    z-index: 92;
+    top: $height-top-bar + $baseline/2;
+    right: $margins-desktop;
+    @include font-size-20-phone;
+    color: $redlab;
+  }
 }

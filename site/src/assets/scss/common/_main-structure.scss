@@ -1,118 +1,114 @@
 @include for-size(phone) {
-
-	main{
-		width: 100vw;
-		overflow: hidden;
-		// padding: 0 $margins-phone;
-	}
-
+  main {
+    width: 100vw;
+    overflow: hidden;
+    // padding: 0 $margins-phone;
+  }
 }
 
+@include for-size(desktop) {
+  main {
+    width: 100%;
+    max-width: $max-width-main + $margins-desktop * 2;
+    min-height: calc(100vh - #{$height-top-bar} - #{$height-footer});
+    padding: 0 $margins-desktop;
 
-@include for-size(desktop){
-	main{
-		width: 100%;
-		max-width: $max-width-main + $margins-desktop*2;
-		min-height: calc(100vh - #{$height-top-bar} - #{$height-footer});
-		padding: 0 $margins-desktop;
-		
-		.main-nav, 
-		.main-container,
-		.main-filters{
-			display: inline-block;
-			vertical-align: top;
-		}
-	
-	}
-
+    .main-nav,
+    .main-container,
+    .main-filters {
+      display: inline-block;
+      vertical-align: top;
+    }
+  }
 }
 
-
-	
-	
-
-
-
-@media screen and (min-width: 700px) and (max-width: 1080px){
-	/* page avec une navigation sur le côté */
-    .main-filters, .main-nav{ width: $logo-column-medium; }
-	.main-container{ width: calc(100% - #{$logo-column-medium}); }
+@media screen and (min-width: 700px) and (max-width: 1080px) {
+  /* page avec une navigation sur le côté */
+  .main-filters,
+  .main-nav {
+    width: $logo-column-medium;
+  }
+  .main-container {
+    width: calc(100% - #{$logo-column-medium});
+  }
 }
 
+@media screen and (max-width: 900px) {
+  /* page objet avec une navigation sur le côté */
+  .page-people #biographie,
+  .page-about #about-contenu,
+  .page-production #article-contenu,
+  .page-news #article-contenu,
+  .page-activity #article-contenu {
+    width: 100%;
+    padding: 0 $margins-phone;
+  }
 
-@media screen and (max-width: 900px){
-	/* page objet avec une navigation sur le côté */
-	.page-people #biographie, 
-	.page-about #about-contenu, 
-	.page-production #article-contenu, 
-	.page-news #article-contenu, 
-	.page-activity #article-contenu{
-		width: 100%;
-		padding: 0 $margins-phone; 
-
-	}
-
-	.page-people, .page-about, .page-production, .page-news, .page-activity{
-		.main-container{
-			width: 100%;
-		}
-	}
+  .page-people,
+  .page-about,
+  .page-production,
+  .page-news,
+  .page-activity {
+    .main-container {
+      width: 100%;
+    }
+  }
 }
 
-
-@media screen and (min-width: 700px) and (max-width: 900px){
-	/* page objet avec une navigation sur le côté */
-	.page-people #biographie, 
-	.page-about #about-contenu, 
-	.page-production #article-contenu, 
-	.page-news #article-contenu, 
-	.page-activity #article-contenu{
-		padding: 0 $unite; 
-
-	}
+@media screen and (min-width: 700px) and (max-width: 900px) {
+  /* page objet avec une navigation sur le côté */
+  .page-people #biographie,
+  .page-about #about-contenu,
+  .page-production #article-contenu,
+  .page-news #article-contenu,
+  .page-activity #article-contenu {
+    padding: 0 $unite;
+  }
 }
 
-@media screen and (min-width: 901px) and (max-width: 1080px){
-	/* page avec une image sur le côté */
-	.page-production main, 
-	.page-news main, 
-	.page-activity main{ 
-		width: calc(100% - #{$logo-column-medium})!important;
-		margin-left: $logo-column-medium!important;
-	}
+@media screen and (min-width: 901px) and (max-width: 1080px) {
+  /* page avec une image sur le côté */
+  .page-production main,
+  .page-news main,
+  .page-activity main {
+    width: calc(100% - #{$logo-column-medium}) !important;
+    margin-left: $logo-column-medium !important;
+  }
 }
 
-@media screen and (min-width: 1080px){
-	/* page avec une navigation sur le côté */
-    .main-filters, .main-nav{ width: $logo-column; }
-	.main-container{ width: calc(100% - #{$logo-column}); }
-	
+@media screen and (min-width: 1080px) {
+  /* page avec une navigation sur le côté */
+  .main-filters,
+  .main-nav {
+    width: $logo-column;
+  }
+  .main-container {
+    width: calc(100% - #{$logo-column});
+  }
 
-	/* page avec une image sur le côté */
-	.page-production main, 
-	.page-news main, 
-	.page-activity main{
-		width: calc(100% - #{$logo-column})!important;
-		margin-left: $logo-column!important;
-	}
+  /* page avec une image sur le côté */
+  .page-production main,
+  .page-news main,
+  .page-activity main {
+    width: calc(100% - #{$logo-column}) !important;
+    margin-left: $logo-column !important;
+  }
 }
 
+@media screen and (min-width: 1650px) {
+  /* centrer pour toutes les pages (exept home)*/
+  main {
+    width: $max-width-main + $margins-desktop * 2;
+    margin-left: 0;
+    margin: 0 auto;
+  }
+}
 
-
-@media screen and (min-width: 1650px) { 
-    /* centrer pour toutes les pages (exept home)*/
-	main{ 
-		width: $max-width-main + $margins-desktop*2;
-		margin-left: 0;
-		margin: 0 auto;
-	}
-}	
-
-@media screen and (min-width: 2110px) { 
-	/* page avec une image sur le côté */
-	.page-production main, 
-	.page-news main, 
-	.page-activity main{
-		margin: 0 auto!important;
-	}
-}	
+@media screen and (min-width: 2110px) {
+  /* page avec une image sur le côté */
+  .page-production main,
+  .page-news main,
+  .page-activity main {
+    margin: 0 auto !important;
+  }
+}

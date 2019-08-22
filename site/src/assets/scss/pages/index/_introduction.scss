@@ -1,73 +1,64 @@
-
 @include for-size(phone) {
+  #introduction {
+    text-align: left;
+    padding-top: $baseline * 2;
 
-    #introduction{
-        text-align: left;
-        padding-top: $baseline*2;
-        
+    // h1{ display: none;}
 
-        // h1{ display: none;}
-
-        p{
-            margin: 0 $margins-phone;
-        }
-
-        p:first-of-type{
-            @include font-size-16-phone();
-            margin-top: $baseline*1.5;
-            z-index: 9;
-        }
-
-
-        p:nth-of-type(2){
-
-            a{
-                @include font-size-13-phone();
-                @include linktext();
-                display: block;
-                margin-top: $baseline;
-                color: $text-color-light;
-                text-decoration: underline;
-            }
-        }         
+    p {
+      margin: 0 $margins-phone;
     }
 
+    p:first-of-type {
+      @include font-size-16-phone();
+      margin-top: $baseline * 1.5;
+      z-index: 9;
+    }
+
+    p:nth-of-type(2) {
+      a {
+        @include font-size-13-phone();
+        @include linktext();
+        display: block;
+        margin-top: $baseline;
+        color: $text-color-light;
+        text-decoration: underline;
+      }
+    }
+  }
 }
-
-
 
 @include for-size(desktop) {
-        
-    #introduction{
-        text-align: left;
-        padding-top: $baseline*2;
-        padding-bottom: $baseline*2;
+  #introduction {
+    text-align: left;
+    padding-top: $baseline * 2;
+    padding-bottom: $baseline * 2;
 
-        h1{ display: none;}
+    h1 {
+      display: none;
+    }
 
-        p:first-of-type{
-            @include font-size-20();
-            z-index: 9;
-            //max-width: 800px; 
-        }
+    p:first-of-type {
+      @include font-size-20();
+      z-index: 9;
+      //max-width: 800px;
+    }
 
+    p:nth-of-type(2) {
+      text-align: right;
+      padding-right: $unite;
 
-        p:nth-of-type(2){
-            text-align: right;
-            padding-right: $unite;
-
-            a{
-                @include font-size-13();
-                @include linktext();
-                display: block;
-            }
-        }        
-    }/* end #introduction */
-
+      a {
+        @include font-size-13();
+        @include linktext();
+        display: block;
+      }
+    }
+  } /* end #introduction */
 }
 
-
-@media screen and (min-width: 1350px){
-    #introduction p:first-of-type{ @include font-size-27(); }
+@media screen and (min-width: 1350px) {
+  #introduction p:first-of-type {
+    @include font-size-27();
+  }
 }
-

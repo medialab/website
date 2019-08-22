@@ -1,112 +1,94 @@
-@import 'common';
+@import "common";
 
 // Index
 
-@import 'pages/index/index';
+@import "pages/index/index";
 
-
-@import 'fragments/miniatures-all';
-@import 'fragments/elements-associes';
-@import 'fragments/toggle-lang';
-@import 'fragments/nav';
-@import 'fragments/titre_sticky';
-
-
+@import "fragments/miniatures-all";
+@import "fragments/elements-associes";
+@import "fragments/toggle-lang";
+@import "fragments/nav";
+@import "fragments/titre_sticky";
 
 // HOME ///////////////////////////////////////////////
 
-@import 'pages/index/slideshow/slideshow-structure';
-@import 'pages/index/slideshow/slideshow-structure_variable';
-@import 'pages/index/slideshow/slideshow-phone';
-@import 'pages/index/slideshow/slideshow-desktop';
+@import "pages/index/slideshow/slideshow-structure";
+@import "pages/index/slideshow/slideshow-structure_variable";
+@import "pages/index/slideshow/slideshow-phone";
+@import "pages/index/slideshow/slideshow-desktop";
 
-@import 'pages/index/introduction';
+@import "pages/index/introduction";
 
-@import 'pages/index/now';
+@import "pages/index/now";
 
-@import 'pages/index/agenda/agenda';
-@import 'pages/index/agenda/agenda-phone';
-@import 'pages/index/agenda/agenda-desktop'; 
+@import "pages/index/agenda/agenda";
+@import "pages/index/agenda/agenda-phone";
+@import "pages/index/agenda/agenda-desktop";
 
-@import 'pages/index/flux/flux';
-@import 'pages/index/flux/flux_style';
-@import 'pages/index/flux/flux_style_agenda';
-@import 'pages/index/flux/flux_style_git';
-@import 'pages/index/flux/flux_style_tweet';
+@import "pages/index/flux/flux";
+@import "pages/index/flux/flux_style";
+@import "pages/index/flux/flux_style_agenda";
+@import "pages/index/flux/flux_style_git";
+@import "pages/index/flux/flux_style_tweet";
 
-@import 'pages/index/index-print';
-
-
+@import "pages/index/index-print";
 
 // PAGES LIST ///////////////////////////////////////////////
 
-@import 'pages/pages_list/page_liste-desktop';
-@import 'pages/pages_list/page_liste-phone';
+@import "pages/pages_list/page_liste-desktop";
+@import "pages/pages_list/page_liste-phone";
 
+@import "pages/pages_list/item-list/list-all";
+@import "pages/pages_list/item-list/list-productions";
 
-@import 'pages/pages_list/item-list/list-all';
-@import 'pages/pages_list/item-list/list-productions';
+@import "pages/pages_list/filtres/filtre";
+@import "pages/pages_list/filtres/filtre-style-desktop";
+@import "pages/pages_list/filtres/filtre-style-phone";
 
-@import 'pages/pages_list/filtres/filtre';
-@import 'pages/pages_list/filtres/filtre-style-desktop';
-@import 'pages/pages_list/filtres/filtre-style-phone';
-
-@import 'pages/pages_list/filtres/filtre_production';
-@import 'pages/pages_list/filtres/filtre_activite';
-@import 'pages/pages_list/filtres/filtre_news';
-
-
+@import "pages/pages_list/filtres/filtre_production";
+@import "pages/pages_list/filtres/filtre_activite";
+@import "pages/pages_list/filtres/filtre_news";
 
 // PAGES EQUIPE ///////////////////////////////////////////////
 
-@import 'pages/page_equipe/page_equipe';
-@import 'pages/page_equipe/page_equipe-desktop';
-@import 'pages/page_equipe/page_equipe-phone';
-@import 'pages/page_equipe/page_equipe-print';
-@import 'pages/page_equipe/filtre_equipe_pattern';
+@import "pages/page_equipe/page_equipe";
+@import "pages/page_equipe/page_equipe-desktop";
+@import "pages/page_equipe/page_equipe-phone";
+@import "pages/page_equipe/page_equipe-print";
+@import "pages/page_equipe/filtre_equipe_pattern";
 
 // PAGE CONTENT TYPO  ///////////////////////////////////////////////
 
-@import 'fragments/content-typo/content-typo';
-@import 'fragments/content-typo/content-typo-desktop';
-@import 'fragments/content-typo/content-typo-phone';
-@import 'fragments/content-typo/content-typo-print';
+@import "fragments/content-typo/content-typo";
+@import "fragments/content-typo/content-typo-desktop";
+@import "fragments/content-typo/content-typo-phone";
+@import "fragments/content-typo/content-typo-print";
 
 // PAGES OBJET ///////////////////////////////////////////////
 
-@import 'pages/pages_objet/page_objet';
-@import 'pages/pages_objet/page_objet-desktop';
-@import 'pages/pages_objet/page_objet-phone';
+@import "pages/pages_objet/page_objet";
+@import "pages/pages_objet/page_objet-desktop";
+@import "pages/pages_objet/page_objet-phone";
 
 // PAGES PEOPLE ///////////////////////////////////////////////
 
-@import 'pages/pages_people/page_people';
-@import 'pages/pages_people/page_people-desktop';
-@import 'pages/pages_people/page_people-phone';
-@import 'pages/pages_people/page_people-print';
-@import 'pages/pages_people/highlights';
-
-
-
-
-
-
-
-
-
+@import "pages/pages_people/page_people";
+@import "pages/pages_people/page_people-desktop";
+@import "pages/pages_people/page_people-phone";
+@import "pages/pages_people/page_people-print";
+@import "pages/pages_people/highlights";
 
 // Page About
 
-@import 'pages/apropos/apropos';
-@import 'pages/apropos/apropos-desktop';
-@import 'pages/apropos/apropos-phone';
+@import "pages/apropos/apropos";
+@import "pages/apropos/apropos-desktop";
+@import "pages/apropos/apropos-phone";
 
 // Page 404
-@import 'pages/404/404';
-
+@import "pages/404/404";
 
 // Archive
 
-@import 'pages/archive/_archive';
-@import 'pages/archive/_archive-desktop';
-@import 'pages/archive/_archive-phone';
+@import "pages/archive/_archive";
+@import "pages/archive/_archive-desktop";
+@import "pages/archive/_archive-phone";

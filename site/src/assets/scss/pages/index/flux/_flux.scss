@@ -1,245 +1,252 @@
-#flux{
+#flux {
+  background: $background-site;
+  z-index: 9;
 
-	background: $background-site;
-	z-index: 9;
+  ////////////////
+  /// Input
+  ///////////////
 
+  .flux_selection_container {
+    z-index: 9;
+    background-color: $background-site;
+    border-bottom: $border;
+    padding: $baseline 0;
+    height: $baseline * 3.5;
 
-	////////////////
-	/// Input
-	///////////////
+    li {
+      @include font-size-13-uppercase;
+      color: $text-color;
+      display: inline-block;
+      cursor: pointer;
+      &:after {
+        content: "/";
+        margin-left: $unite * 0.75;
+        margin-right: $unite * 0.75;
+        @media screen and (max-width: 1070px) {
+          margin-left: $unite * 0.5;
+          margin-right: $unite * 0.5;
+        }
+      }
+      &:last-of-type:after {
+        content: none;
+        margin: 0;
+      }
+      &:hover {
+        @include linktext();
+      }
+      &:hover:after {
+        text-decoration: none !important;
+      }
+    }
+  }
 
-	.flux_selection_container{
-
-		z-index: 9;
-		background-color: $background-site;
-		border-bottom: $border;
-		padding: $baseline 0;
-		height: $baseline*3.5;
-
-		li{
-
-			@include font-size-13-uppercase;
-			color: $text-color;
-			display: inline-block;
-			cursor: pointer;
-			&:after{
-				content: '/';
-				margin-left: $unite*0.75;
-				margin-right: $unite*0.75;
-				@media screen and (max-width: 1070px) {	
-					margin-left: $unite*0.5;
-					margin-right: $unite*0.5;
-				}
-			}
-			&:last-of-type:after{
-				content: none;
-				margin: 0;
-			}
-			&:hover{ 
-				@include linktext(); 
-			}
-			&:hover:after{ text-decoration: none!important; }
-		}
-	}
-
-	
-
-	#agenda:target{padding-top: $height-top-bar + $baseline*3.5; }
-    #git:target{ padding-top: $height-top-bar + $baseline*3.5; }
-    #tweet:target{ padding-top: $height-top-bar + $baseline*3.5; }
-	
+  #agenda:target {
+    padding-top: $height-top-bar + $baseline * 3.5;
+  }
+  #git:target {
+    padding-top: $height-top-bar + $baseline * 3.5;
+  }
+  #tweet:target {
+    padding-top: $height-top-bar + $baseline * 3.5;
+  }
 }
 
-#agenda, #git, #tweet {
+#agenda,
+#git,
+#tweet {
+  width: 100%;
 
-    width: 100%;
-
-
-    article{
-
-        &> a{
-            display: block;
-            height: 100%;
-            width: 100%;
-            cursor: pointer;
-        }
-
-   
-
-        aside.divers{
-            @include font-size-13();
-            p{ display: inline-block; }
-            border-bottom: $border-very-light;
-            padding: $baseline/2 0;
-
-            .label{
-                border-right: $border-very-light;
-                margin-right: $unite/2;
-                padding-right: $unite/2;
-            }
-
-            .date-news{
-                .week{ display: none; }   
-                &::first-letter{ text-transform: capitalize; }    
-            }
-        }
-
-
-        aside.details{ 
-            width: 100%;
-           
-            @include font-size-13();
-
-        }
-
-
+  article {
+    & > a {
+      display: block;
+      height: 100%;
+      width: 100%;
+      cursor: pointer;
     }
-} 
+
+    aside.divers {
+      @include font-size-13();
+      p {
+        display: inline-block;
+      }
+      border-bottom: $border-very-light;
+      padding: $baseline/2 0;
+
+      .label {
+        border-right: $border-very-light;
+        margin-right: $unite/2;
+        padding-right: $unite/2;
+      }
+
+      .date-news {
+        .week {
+          display: none;
+        }
+        &::first-letter {
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    aside.details {
+      width: 100%;
+
+      @include font-size-13();
+    }
+  }
+}
 
 // all queries
 #agenda .date-news::before,
 #git .date-news::before,
-#tweet .date-news::before{ 
-    content: none; 
+#tweet .date-news::before {
+  content: none;
 }
 
-#agenda article:not(:last-of-type) > a, 
-#tweet article:not(:last-of-type) > a, 
-#git article:not(:last-of-type) > aside:last-of-type{ 
-    border-bottom: $border; 
+#agenda article:not(:last-of-type) > a,
+#tweet article:not(:last-of-type) > a,
+#git article:not(:last-of-type) > aside:last-of-type {
+  border-bottom: $border;
 }
-
 
 #agenda article:hover,
 #git article:hover,
-#tweet article:hover{
-    background-color: $background-grey;
+#tweet article:hover {
+  background-color: $background-grey;
 }
-
 
 // DESKTOP
 @media screen and (min-width: 1036px) {
-    #flux {
-
-            .flux_selection_container{
-                position: fixed;
-                top: $height-top-bar;
-            }
-        
-            #agenda, #git{
-                margin-bottom: $baseline*8;
-            }
-
-            #agenda, #git, #tweet {
-                > h1{
-                    position: sticky;
-                    top: $height-top-bar + $baseline*3.5;
-                    background: $background-site;
-					z-index: 8;
-					a{
-						@include linktext();
-						&:hover{ color: $redlab-light; }
-					}
-                }
-            }
-
-            label.responsive-flux{display: none;}
-
-        }
+  #flux {
+    .flux_selection_container {
+      position: fixed;
+      top: $height-top-bar;
     }
 
-    @media screen and (max-width: 1036px) {
-
-        #agenda {
-            padding-top: 0!important;
-        }
-
-        #flux {
-            .flux_selection_container{
-                position: relative;
-                display: none;
-            }
-        
-            #agenda-content, #git-content, #tweet-content{ display: none;}
-        
-            #checkbox_agenda:checked ~ #agenda-content{
-                display: block !important;
-            }
-        
-            #checkbox_git:checked ~ #git-content{
-                display: block !important;
-            }	
-            #checkbox_tweet:checked ~ #tweet-content{
-                display: block !important;
-            }
-        
-
-            #agenda > h1{ border-top: $border;}
-            #agenda, #git, #tweet {
-                margin: 0;
-
-            #agenda-content, #git-content, #tweet-content{
-                border-bottom: $border;
-            }
-
-            label.responsive-flux{
-                display: block;
-                width: 100%;
-                height: $baseline*4;
-                position: absolute;
-                top: 0;
-                left: 0;
-                span{
-                    display: block; 
-                    width: $baseline*1.2;
-                    height: $baseline*1.2;
-                    margin-top: $baseline*1.25;
-                    position: absolute;
-                    right: $margins-phone/2;
-                    top: 2px;
-                }
-                
-
-            }
-
-            input:checked + label span{
-                svg{
-                    transform: rotate(90deg);
-                    transform-origin: center center;
-                } 
-                top: 4px;
-                right: $margins-phone/2 + 2px;
-            }
-        
-
-
-
-            
-
-        }
+    #agenda,
+    #git {
+      margin-bottom: $baseline * 8;
     }
+
+    #agenda,
+    #git,
+    #tweet {
+      > h1 {
+        position: sticky;
+        top: $height-top-bar + $baseline * 3.5;
+        background: $background-site;
+        z-index: 8;
+        a {
+          @include linktext();
+          &:hover {
+            color: $redlab-light;
+          }
+        }
+      }
+    }
+
+    label.responsive-flux {
+      display: none;
+    }
+  }
 }
 
+@media screen and (max-width: 1036px) {
+  #agenda {
+    padding-top: 0 !important;
+  }
+
+  #flux {
+    .flux_selection_container {
+      position: relative;
+      display: none;
+    }
+
+    #agenda-content,
+    #git-content,
+    #tweet-content {
+      display: none;
+    }
+
+    #checkbox_agenda:checked ~ #agenda-content {
+      display: block !important;
+    }
+
+    #checkbox_git:checked ~ #git-content {
+      display: block !important;
+    }
+    #checkbox_tweet:checked ~ #tweet-content {
+      display: block !important;
+    }
+
+    #agenda > h1 {
+      border-top: $border;
+    }
+    #agenda,
+    #git,
+    #tweet {
+      margin: 0;
+
+      #agenda-content,
+      #git-content,
+      #tweet-content {
+        border-bottom: $border;
+      }
+
+      label.responsive-flux {
+        display: block;
+        width: 100%;
+        height: $baseline * 4;
+        position: absolute;
+        top: 0;
+        left: 0;
+        span {
+          display: block;
+          width: $baseline * 1.2;
+          height: $baseline * 1.2;
+          margin-top: $baseline * 1.25;
+          position: absolute;
+          right: $margins-phone/2;
+          top: 2px;
+        }
+      }
+
+      input:checked + label span {
+        svg {
+          transform: rotate(90deg);
+          transform-origin: center center;
+        }
+        top: 4px;
+        right: $margins-phone/2 + 2px;
+      }
+    }
+  }
+}
 
 @media screen and (max-width: 900px) {
-
-    #flux label.responsive-flux{
-        height: $baseline*2.75!important;
-        span{ margin-top: $baseline/2!important;}
+  #flux label.responsive-flux {
+    height: $baseline * 2.75 !important;
+    span {
+      margin-top: $baseline/2 !important;
     }
-    #agenda, #git, #tweet {
-        article{
-            padding-left: $unite-phone;
-            padding-right: $unite-phone;
-        }
+  }
+  #agenda,
+  #git,
+  #tweet {
+    article {
+      padding-left: $unite-phone;
+      padding-right: $unite-phone;
     }
+  }
 }
 
 @media screen and (min-width: 700px) and (max-width: 900px) {
-    #agenda, #git, #tweet {
-        article{
-            padding-left: $unite;
-            padding-right: $unite;
-        }
+  #agenda,
+  #git,
+  #tweet {
+    article {
+      padding-left: $unite;
+      padding-right: $unite;
     }
+  }
 }

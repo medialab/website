@@ -1,132 +1,130 @@
 @media screen and (min-width: 900px) {
+  .page-production,
+  .page-news,
+  .page-activity {
+    hgroup {
+      max-width: $max-width-article;
+    }
 
-	.page-production, 
-	.page-news, 
-	.page-activity{
+    #img-article {
+      left: 0;
+      top: 0;
+      top: $height-sticky;
+      position: fixed;
+      z-index: 99;
 
-			hgroup{ 
-				max-width: $max-width-article; 
-			}
-			
-			#img-article{
+      .activator {
+        display: block;
+        position: absolute;
+        width: $logo-column-medium;
+        height: 100%;
+        z-index: 9;
 
-				
-				left: 0;
-				top: 0;
-				top: $height-sticky;
-				position: fixed;
-				z-index: 99;
+        &:hover {
+          & + .container {
+            width: 100vw;
+          }
+        }
+      }
 
-				.activator{
-					display: block;
-					position: absolute;
-					width: $logo-column-medium;
-					height: 100%;
-					z-index: 9;
+      .container {
+        width: $logo-column - $margins-desktop * 2;
+        overflow: hidden;
+        transition: width 0.25s ease-in-out;
+      }
 
-					&:hover{
-						
-						& + .container{
-							width: 100vw;
-						}
-					}        
-				}	
+      pre {
+        font-size: calc(
+          ((100vw - #{$unite * 2}) / 240) * 1.89
+        ); // Should change with width
+        line-height: 95%;
+      }
+    }
 
-				.container{
-					width: $logo-column - $margins-desktop*2;
-					overflow: hidden;
-					transition: width 0.25s ease-in-out;
-				}
+    #article-contenu {
+      hgroup {
+        padding-top: $baseline * 3;
+        padding-bottom: $baseline * 2;
+      }
 
-				pre{ 
-			        font-size: calc(((100vw - #{$unite*2})/240)*1.89); // Should change with width
-			        line-height: 95%;
-				}
-			}
-			
-			#article-contenu{
+      .details {
+        padding-top: $baseline * 1;
+        border-top: $border-very-light;
+        border-bottom: $border-very-light;
 
-				hgroup{			
-					padding-top: $baseline*3;
-					padding-bottom: $baseline*2;
-				}
-				
-				.details {
+        p,
+        li {
+          @include font-size-16();
+          display: inline-block;
+          margin-bottom: $baseline;
+        }
 
-					padding-top: $baseline*1;
-					border-top: $border-very-light;
-					border-bottom:$border-very-light;
+        .production-ref {
+          width: 100%;
+          margin-top: $baseline * 1;
+          padding-top: $baseline * 1;
+        }
 
-					p, li{ 
-						@include font-size-16(); 
-						display: inline-block;
-						margin-bottom: $baseline;
-						
-					}
+        .type-objet,
+        .date-news,
+        .hours-news,
+        .date {
+          margin-right: $unite;
+          padding-right: $unite;
+          border-right: $border-very-light;
+        }
 
-					.production-ref{
-						width: 100%;
-						margin-top: $baseline*1;
-						padding-top: $baseline*1;
-					}
+        .fichiers-associes,
+        #attachments {
+          display: inline-block;
+          li:not(:last-of-type) {
+            border-right: $border-very-light;
+            padding-right: $unite;
+            margin-right: $unite;
+          }
+        }
 
-					.type-objet, .date-news, .hours-news, .date{ 
-						margin-right: $unite;
-						padding-right: $unite;
-						border-right: $border-very-light;
-					}
+        & > *:last-child {
+          border-right: none !important;
+        }
 
-					.fichiers-associes, #attachments{
-						display: inline-block;
-						li:not(:last-of-type){ 
-							border-right: $border-very-light;
-							padding-right: $unite;
-							margin-right: $unite;
-						}
-					}
-	
-					& > *:last-child{ border-right: none !important;}
+        .place {
+          border-top: $border-very-light;
+          width: 100%;
+          padding-top: $baseline * 1;
+          &:before {
+            content: "\29BF ";
+            font-family: "Symbol", sans-serif;
+            padding-right: 5px;
+          }
+        }
+      }
 
-					.place{
-						border-top: $border-very-light;
-						width: 100%;
-						padding-top: $baseline*1;
-						&:before{
-							content: "\29BF ";
-							font-family: "Symbol", sans-serif;
-							padding-right: 5px;
-						}
-					}
-	
-				}
-		
-				.article-contenu{
-					p:first-of-type{ margin-top: $baseline*3; }			
-					// Regles typo (communes à toutes les pges de contenu) transférées dans common/pages/* 
-				}
-			}/* #article-contenu */
-
-		
-	}
+      .article-contenu {
+        p:first-of-type {
+          margin-top: $baseline * 3;
+        }
+        // Regles typo (communes à toutes les pges de contenu) transférées dans common/pages/*
+      }
+    } /* #article-contenu */
+  }
 }
-
 
 // spécifique page séminaire
-#all-aside.in-seminar aside:first-of-type::before{
-    display: none;
+#all-aside.in-seminar aside:first-of-type::before {
+  display: none;
 }
 #all-aside.in-seminar aside:first-of-type {
-    padding-top: 0;
+  padding-top: 0;
 }
-#all-aside.in-seminar aside:first-of-type .liste_seminaire{
-    margin-bottom: 60px;
-    min-height: unset;
+#all-aside.in-seminar aside:first-of-type .liste_seminaire {
+  margin-bottom: 60px;
+  min-height: unset;
 }
-#all-aside.in-seminar aside:last-of-type{
-    padding-top: 60px;
+#all-aside.in-seminar aside:last-of-type {
+  padding-top: 60px;
 }
 // fin spécifique page séminaire
-
 
 //////////////////
 /// image sur toute la hauteur (même si l'image est coupée)
@@ -142,21 +140,24 @@
 	}
 }*/
 
-@media screen and (min-width: 900px) and (max-aspect-ratio:1/1) { 
-	#img-article{
-		pre{ 
-	        font-size: calc(((100vw - #{$unite*2})/240)*4) !important; // Should change with width
-			left: -50%;
-			transform: translateX(50%);	        
-		}
-	}
+@media screen and (min-width: 900px) and (max-aspect-ratio: 1/1) {
+  #img-article {
+    pre {
+      font-size: calc(
+        ((100vw - #{$unite * 2}) / 240) * 4
+      ) !important; // Should change with width
+      left: -50%;
+      transform: translateX(50%);
+    }
+  }
 }
 
-@media screen and (min-aspect-ratio:1/1) and (max-aspect-ratio:9/6) {
-	#img-article{
-		pre{ 
-	        font-size: calc(((100vw - #{$unite*2})/240)*2.75) !important; // Should change with width
-		}
-	}
+@media screen and (min-aspect-ratio: 1/1) and (max-aspect-ratio: 9/6) {
+  #img-article {
+    pre {
+      font-size: calc(
+        ((100vw - #{$unite * 2}) / 240) * 2.75
+      ) !important; // Should change with width
+    }
+  }
 }
-

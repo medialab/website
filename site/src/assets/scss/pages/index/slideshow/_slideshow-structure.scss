@@ -1,6 +1,5 @@
-@media screen{
-  #home{
-
+@media screen {
+  #home {
     .slideshow-container {
       overflow: hidden;
       top: 0;
@@ -13,24 +12,17 @@
     .slideshow-inner {
       width: 500%;
       height: 100%;
-      transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
-      transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
+      transition: all 800ms cubic-bezier(0.77, 0, 0.175, 1);
+      transition-timing-function: cubic-bezier(0.77, 0, 0.175, 1);
     }
     .slideshow-item {
       width: 20%;
       height: 100%;
       float: left;
     }
-    .slideshow-item{
+    .slideshow-item {
       transition: all 0.5s ease-out;
     }
-
-
-
-
-
-
-
 
     //////////////
     /// Slideshow Motion
@@ -53,22 +45,17 @@
       margin-left: -400%;
     }
 
-
-
-
-
-
     ////////////////////
     //// Bullet
     //////////////////
 
-    .bullets-slide{
+    .bullets-slide {
       position: absolute;
       width: 100%;
       height: 5px;
       z-index: 9;
 
-      .slideshow-bullet-label{
+      .slideshow-bullet-label {
         background: $background-site;
         height: 5px;
         display: inline-block;
@@ -79,62 +66,66 @@
         top: -4px;
         position: relative;
 
-        &[data-type="active"]{
+        &[data-type="active"] {
           opacity: 1;
         }
       }
     }
 
     // Bullet manual control
-    #slide-bullet-1:checked ~ nav.bullets-slide [data-slide="1"]{ background: $redlab; }
-    #slide-bullet-2:checked ~ nav.bullets-slide [data-slide="2"]{ background: $redlab; }
-    #slide-bullet-3:checked ~ nav.bullets-slide [data-slide="3"]{ background: $redlab; }
-    #slide-bullet-4:checked ~ nav.bullets-slide [data-slide="4"]{ background: $redlab; }
-    #slide-bullet-5:checked ~ nav.bullets-slide [data-slide="5"]{ background: $redlab; }
-
-
-
-
-
-
+    #slide-bullet-1:checked ~ nav.bullets-slide [data-slide="1"] {
+      background: $redlab;
+    }
+    #slide-bullet-2:checked ~ nav.bullets-slide [data-slide="2"] {
+      background: $redlab;
+    }
+    #slide-bullet-3:checked ~ nav.bullets-slide [data-slide="3"] {
+      background: $redlab;
+    }
+    #slide-bullet-4:checked ~ nav.bullets-slide [data-slide="4"] {
+      background: $redlab;
+    }
+    #slide-bullet-5:checked ~ nav.bullets-slide [data-slide="5"] {
+      background: $redlab;
+    }
 
     //////////////
-    ///// Controls 
+    ///// Controls
     /////////////
 
     nav.slideshow-controls {
       position: absolute;
       top: 0;
       width: 100%;
-      height: 100%;    
+      height: 100%;
 
-        .slide_controls{
-          height: 100%;
-
-          position: absolute;
-          top: 0;
-          cursor: pointer;
-          will-change: z-index;
-
-          &.slide_controls-previous{
-            left: 0;
-          }
-          &.slide_controls-next{
-            right: 0;
-          }
-          &.slide_controls-previous:hover ~ span.controls:before, 
-          &.slide_controls-next:hover ~ span.controls:after{
-            background: $background-grey !important;
-          }
-        }
-
-      // Les boutons visibles sont des pseudo éléments sur lequels vont et viennent les labels actionnable. Raison : economiser des performance navigateur
-      span.controls{
+      .slide_controls {
+        height: 100%;
 
         position: absolute;
+        top: 0;
+        cursor: pointer;
+        will-change: z-index;
+
+        &.slide_controls-previous {
+          left: 0;
+        }
+        &.slide_controls-next {
+          right: 0;
+        }
+        &.slide_controls-previous:hover ~ span.controls:before,
+        &.slide_controls-next:hover ~ span.controls:after {
+          background: $background-grey !important;
+        }
+      }
+
+      // Les boutons visibles sont des pseudo éléments sur lequels vont et viennent les labels actionnable. Raison : economiser des performance navigateur
+      span.controls {
+        position: absolute;
         width: 100%;
-        
-        &:before, &:after{
+
+        &:before,
+        &:after {
           position: absolute;
           //border-top: $border;
           //border-bottom: $border;
@@ -142,15 +133,17 @@
           font-size: 20px;
           z-index: 9;
 
-          &:hover{ background: $background-grey;}
+          &:hover {
+            background: $background-grey;
+          }
         }
 
-        &:before{
+        &:before {
           content: "❬";
           left: -1px;
         }
 
-        &:after{
+        &:after {
           content: "❭";
           right: -1px;
         }

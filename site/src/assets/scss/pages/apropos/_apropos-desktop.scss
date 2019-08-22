@@ -1,43 +1,41 @@
 /////////////////////
-////////  Desktop 
+////////  Desktop
 /////////////////////
 
-
-
-
 @include for-size(desktop) {
-	.page-about{
+  .page-about {
+    main {
+      padding-top: $height-top-bar;
+    }
 
-			main{ padding-top: $height-top-bar; }
+    hgroup {
+      flex-basis: 100%;
 
-			hgroup{
-				
-				flex-basis: 100%;
+      h1 {
+        @include font-size-40();
+        font-weight: bold;
+        margin: $baseline * 3 0 $baseline * 3 0;
+      }
 
-				h1{
-					@include font-size-40();
-					font-weight: bold;
-					margin: $baseline*3 0 $baseline*3 0;
-				}
+      h2 {
+        padding-bottom: $baseline * 1.5;
+        @include font-size-27();
+        max-width: $max-width-article;
+      }
+    }
 
+    .about-contenu {
+      @media screen and (min-width: 900px) {
+        max-width: $max-width-article;
+        margin-right: $unite * 2;
+      }
 
-				h2{ 
-					padding-bottom: $baseline*1.5; 
-					@include font-size-27();
-					max-width: $max-width-article;
-				}
-			}
+      h3:target {
+        padding-top: $height-top-bar + $baseline * 2;
+      }
+    }
 
-			.about-contenu{
-				@media screen and (min-width: 900px){ 
-					max-width: $max-width-article;
-					margin-right: $unite*2;
-				}
-
-				h3:target{ padding-top: $height-top-bar + $baseline*2; }
-			}	
-
-			/*h3{
+    /*h3{
 				@include font-size-27();
 				font-weight: bold;
 				padding-top: $baseline*3;
@@ -47,21 +45,17 @@
 			p, li{
 				@include font-size-20;
 			}*/
-				
-		
-		#inshort{
-			display: block;
-			max-width: 300px;
 
-			p{
-				@include font-size-16;
-			}
-		}	
+    #inshort {
+      display: block;
+      max-width: 300px;
 
-		
-	}
+      p {
+        @include font-size-16;
+      }
+    }
+  }
 }
 
-@media screen and (max-width: 900px){ 
-
+@media screen and (max-width: 900px) {
 }

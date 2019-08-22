@@ -1,27 +1,35 @@
 // CHEKED CHECKBOX ------------------------------------------------------------------------------------ //
 
-
 #filtre-actu_event:checked ~ .aside-filters #filtre-actu_event_label,
 #filtre-actu_post:checked ~ .aside-filters #filtre-actu_post_label,
-#filtre-actu_notice:checked ~ .aside-filters #filtre-actu_notice_label{
-	font-weight: 600!important;
-	&:before{ border: 5px solid $text-color;}
-	@include for-size(desktop) {
-		&:hover:before{ border: 5px solid $text-color-light!important;}
-	}
+#filtre-actu_notice:checked ~ .aside-filters #filtre-actu_notice_label {
+  font-weight: 600 !important;
+  &:before {
+    border: 5px solid $text-color;
+  }
+  @include for-size(desktop) {
+    &:hover:before {
+      border: 5px solid $text-color-light !important;
+    }
+  }
 }
-
-
-
 
 // FILTERS PATTERNS ------------------------------------------------------------------------------------ //
 
 input#filtre-actu_event:checked ~ #liste,
 input#filtre-actu_post:checked ~ #liste,
-input#filtre-actu_notice:checked ~ #liste{
-	#liste-news .list-item{ display: none !important; }
+input#filtre-actu_notice:checked ~ #liste {
+  #liste-news .list-item {
+    display: none !important;
+  }
 }
 
-input#filtre-actu_event:checked ~ #liste #liste-news .event{ display: block!important; }
-input#filtre-actu_post:checked ~ #liste #liste-news .post{ display: block!important; }
-input#filtre-actu_notice:checked ~ #liste #liste-news .notice{ display: block!important; }
+input#filtre-actu_event:checked ~ #liste #liste-news .event {
+  display: block !important;
+}
+input#filtre-actu_post:checked ~ #liste #liste-news .post {
+  display: block !important;
+}
+input#filtre-actu_notice:checked ~ #liste #liste-news .notice {
+  display: block !important;
+}

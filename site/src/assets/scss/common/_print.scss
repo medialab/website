@@ -1,38 +1,50 @@
-@media print{
-    .print{ @include font-size-13(); }
-    *{ color: black!important; }
+@media print {
+  .print {
+    @include font-size-13();
+  }
+  * {
+    color: black !important;
+  }
 
-    #topbar{ 
-        position: relative;
-        #nav-option, #langue, #toggle-menu + label{ display: none!important; }
-        #medialab-logo-svg{ width: 120px; }
-        .print{ 
-            text-transform: lowercase; 
-            position: absolute; 
-            right: 0;
-            bottom: 0;
-        }
-        padding-bottom: $baseline;
-        margin-bottom: $baseline*2;
-        border-bottom: solid 1px black;
-
-        // if Edit button
-        & + a { display: none;}
+  #topbar {
+    position: relative;
+    #nav-option,
+    #langue,
+    #toggle-menu + label {
+      display: none !important;
     }
-
-    main svg{
-        display: none!important;
-        visibility: hidden!important;
+    #medialab-logo-svg {
+      width: 120px;
     }
+    .print {
+      text-transform: lowercase;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+    padding-bottom: $baseline;
+    margin-bottom: $baseline * 2;
+    border-bottom: solid 1px black;
 
-    footer{ display: none; }
-    
+    // if Edit button
+    & + a {
+      display: none;
+    }
+  }
+
+  main svg {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  footer {
+    display: none;
+  }
 }
 
-@media screen{
-    .print{
-        display: none!important;
-        visibility: hidden!important;
-    }
-   
+@media screen {
+  .print {
+    display: none !important;
+    visibility: hidden !important;
+  }
 }

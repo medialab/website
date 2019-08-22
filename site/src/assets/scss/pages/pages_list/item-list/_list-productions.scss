@@ -1,104 +1,102 @@
 /* list-productions */
 
-    .page-production-list #liste [data-item]{
+.page-production-list #liste [data-item] {
+  .bandeau {
+    width: 100% !important;
+    left: 0 !important;
+    padding-top: $baseline/2;
 
-        .bandeau{
-            width: 100% !important; 
-            left: 0 !important;
-            padding-top: $baseline/2;
-            
-            p{ 
-                display: inline-block; 
-                vertical-align: top;
-                @include font-size-13;
-            }
-
-            .subtype-production{
-                border-left: $border-very-light;
-                margin-left: $unite/2;
-                padding-left: $unite/2;
-                color: $redlab;
-            }
-            .date-production{
-                margin-left: $unite/2;
-                border-left: $border-very-light;
-                padding-left: $unite/2;
-            }
-
-            .day-name{ display: none; }
-            .date-news{
-                margin-left: $baseline*1;
-                padding-left: $baseline*1;
-                border-left: $border-very-light;
-            }
-        }
-
-
-      
-            .authors{
-                width: 100%;
-                border-top: $border-very-light;
-                padding: $baseline/2 0;        
-                .authors-paragraphe{ 
-                    @include font-size-13; 
-                    width: 100%;
-                    @include text-overflow();
-                }          
-            }
- 
-
-
-       /* DESKTOP */
-        @media screen and (min-width: 840px) {
-
-            hgroup, .authors{
-                left: 0 !important;
-            }
-    
-            &:hover:after{ width: 100% !important; } // if no image process, adapt hover
-    
-
-            .bandeau{
-                width: calc(70% - #{$unite});
-                .type-production::before{ 
-                    display: inline-block;
-                    width: 23px;
-                }
-            }
-            hgroup, .authors{
-                display: inline-block;
-            }
-            hgroup{
-                width: 100%!important;
-                max-width: 700px;
-                margin-top: $baseline*1;
-                margin-bottom: $baseline*3;
-                padding-left: 0!important;
-            }
-
-         
-        }
-        
-        /* DESKTOP */
-        @media screen and (max-width: 840px) {
-
-            width: 100%!important;
-
-            .bandeau{ width: calc(100% - #{$margins-phone*2})!important; }
-
-            hgroup, .authors{
-                width: calc(100% - #{$margins-phone*2});
-                margin: 0 $margins-phone;
-              
-            }
-
-            .authors{
-                p {@include font-size-13; }
-                padding-bottom: $baseline/2;
-                padding-top: $baseline/2;
-                border-top: $border-very-light;
-            }
-       
-
-        }
+    p {
+      display: inline-block;
+      vertical-align: top;
+      @include font-size-13;
     }
+
+    .subtype-production {
+      border-left: $border-very-light;
+      margin-left: $unite/2;
+      padding-left: $unite/2;
+      color: $redlab;
+    }
+    .date-production {
+      margin-left: $unite/2;
+      border-left: $border-very-light;
+      padding-left: $unite/2;
+    }
+
+    .day-name {
+      display: none;
+    }
+    .date-news {
+      margin-left: $baseline * 1;
+      padding-left: $baseline * 1;
+      border-left: $border-very-light;
+    }
+  }
+
+  .authors {
+    width: 100%;
+    border-top: $border-very-light;
+    padding: $baseline/2 0;
+    .authors-paragraphe {
+      @include font-size-13;
+      width: 100%;
+      @include text-overflow();
+    }
+  }
+
+  /* DESKTOP */
+  @media screen and (min-width: 840px) {
+    hgroup,
+    .authors {
+      left: 0 !important;
+    }
+
+    &:hover:after {
+      width: 100% !important;
+    } // if no image process, adapt hover
+
+    .bandeau {
+      width: calc(70% - #{$unite});
+      .type-production::before {
+        display: inline-block;
+        width: 23px;
+      }
+    }
+    hgroup,
+    .authors {
+      display: inline-block;
+    }
+    hgroup {
+      width: 100% !important;
+      max-width: 700px;
+      margin-top: $baseline * 1;
+      margin-bottom: $baseline * 3;
+      padding-left: 0 !important;
+    }
+  }
+
+  /* DESKTOP */
+  @media screen and (max-width: 840px) {
+    width: 100% !important;
+
+    .bandeau {
+      width: calc(100% - #{$margins-phone * 2}) !important;
+    }
+
+    hgroup,
+    .authors {
+      width: calc(100% - #{$margins-phone * 2});
+      margin: 0 $margins-phone;
+    }
+
+    .authors {
+      p {
+        @include font-size-13;
+      }
+      padding-bottom: $baseline/2;
+      padding-top: $baseline/2;
+      border-top: $border-very-light;
+    }
+  }
+}

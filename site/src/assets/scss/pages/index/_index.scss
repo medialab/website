@@ -2,180 +2,208 @@
 $hunit: 4vh;
 
 /* all */
-.page-home{
-    //overflow-x: hidden;
-    .time::before{
-        content: "◷ ";
+.page-home {
+  //overflow-x: hidden;
+  .time::before {
+    content: "◷ ";
+  }
+
+  #home {
+    overflow-x: hidden;
+  }
+
+  hr {
+    border: none;
+  }
+
+  footer {
+    position: relative;
+    top: -1px;
+  }
+
+  #home footer {
+    display: none;
+    padding: 0;
+    padding-top: $baseline * 3;
+    padding-bottom: $baseline * 3;
+    height: auto !important;
+    .contact,
+    .mentions {
+      margin-left: 0;
     }
-
-   
-
-    #home{ overflow-x: hidden; }
-    
-    hr{ border: none; }
-
-    footer{ 
-        position: relative;
-        top: -1px;
-    }
-
-    #home footer{ 
-        display: none; 
-        padding: 0;
-        padding-top: $baseline*3;
-        padding-bottom: $baseline*3;
-        height: auto!important;
-        .contact, .mentions{margin-left: 0;}
-    }
-
+  }
 }
-
-
-
 
 @include for-size(phone) {
-
-    .page-home { 
-
-        main{ 
-            margin: $topbar-phone auto 0 auto;
-        }   
-        
-     #introduction {
-        padding-bottom: $baseline*3;
-     }
-
-  
-
-        section#introduction h1,
-        section#now > h1,
-        section#agenda > h1,
-        section#git > h1,
-        section#tweet > h1{
-            @include font-size-16-phone;
-            text-align: center;
-            width: 100%;
-            display: block;
-            padding: $baseline/2 $margins-phone;
-            padding-top: $baseline*0.75;
-            border-bottom: $border; 
-            text-transform: uppercase;
-            font-weight: 500;            
-        }
-
-        section#agenda,
-        section#git,
-        section#tweet{
-            label{ cursor: pointer; }
-        }
-
-     
-
-        section#introduction h1,
-        section#now > h1{
-            border-top: $border; 
-        }
-
-        
+  .page-home {
+    main {
+      margin: $topbar-phone auto 0 auto;
     }
+
+    #introduction {
+      padding-bottom: $baseline * 3;
+    }
+
+    section#introduction h1,
+    section#now > h1,
+    section#agenda > h1,
+    section#git > h1,
+    section#tweet > h1 {
+      @include font-size-16-phone;
+      text-align: center;
+      width: 100%;
+      display: block;
+      padding: $baseline/2 $margins-phone;
+      padding-top: $baseline * 0.75;
+      border-bottom: $border;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    section#agenda,
+    section#git,
+    section#tweet {
+      label {
+        cursor: pointer;
+      }
+    }
+
+    section#introduction h1,
+    section#now > h1 {
+      border-top: $border;
+    }
+  }
 }
 
-            
 @media screen and (min-width: 700px) and (max-width: 900px) {
-    main{ padding: 0; }
-    #introduction{ padding: $unite; }
-    #now, #agenda, #git, #tweet {
-        > h1{ padding-left: $unite; }
+  main {
+    padding: 0;
+  }
+  #introduction {
+    padding: $unite;
+  }
+  #now,
+  #agenda,
+  #git,
+  #tweet {
+    > h1 {
+      padding-left: $unite;
     }
+  }
 }
 
 @include for-size(desktop) {
-    
-    .page-home{
-    
-        main{ 
-           
-            max-width: $max-width-main + $margins-desktop*2;
-            margin: 0 auto;
-            margin-top: $height-top-bar;
-        }
-        
-        #introduction{ border-bottom: $border; }
-        section > h1{
-            @include font-size-20;
-            text-transform: uppercase; 
-            font-weight: 500;
-            border-bottom: $border;
-            padding: $baseline*1 0;
-        }
-
-        section label.responsive-now,
-        section label.responsive-flux{
-            display: none;
-        }
-
-
-        
+  .page-home {
+    main {
+      max-width: $max-width-main + $margins-desktop * 2;
+      margin: 0 auto;
+      margin-top: $height-top-bar;
     }
+
+    #introduction {
+      border-bottom: $border;
+    }
+    section > h1 {
+      @include font-size-20;
+      text-transform: uppercase;
+      font-weight: 500;
+      border-bottom: $border;
+      padding: $baseline * 1 0;
+    }
+
+    section label.responsive-now,
+    section label.responsive-flux {
+      display: none;
+    }
+  }
 }
-
-
-
-
 
 @media screen and (min-width: 1036px) {
-    .page-home{
-        #home{
-            position: fixed;
-            top: $height-top-bar;
-            height: calc(100vh - #{$height-top-bar});
-            overflow-y: scroll;
-            // padding-bottom: $height-footer;
-        }
-        footer{ display: none; }
-        #home footer{ display: block!important; }
+  .page-home {
+    #home {
+      position: fixed;
+      top: $height-top-bar;
+      height: calc(100vh - #{$height-top-bar});
+      overflow-y: scroll;
+      // padding-bottom: $height-footer;
     }
+    footer {
+      display: none;
+    }
+    #home footer {
+      display: block !important;
+    }
+  }
 }
 
-@media screen and (min-width: 1036px) and (max-width: 1200px){
-    .page-home{
-        #home{ width: 700px + $size-scrollbar; }
-        #slideshow, #introduction, #now, footer { width: 700px; }
-
-        #flux{ margin-left: 700px + $margins-desktop; }  
-        .flux_selection_container{ width: calc(100vw - 700px - #{$margins-desktop*3}); }
+@media screen and (min-width: 1036px) and (max-width: 1200px) {
+  .page-home {
+    #home {
+      width: 700px + $size-scrollbar;
+    }
+    #slideshow,
+    #introduction,
+    #now,
+    footer {
+      width: 700px;
     }
 
+    #flux {
+      margin-left: 700px + $margins-desktop;
+    }
+    .flux_selection_container {
+      width: calc(100vw - 700px - #{$margins-desktop * 3});
+    }
+  }
 }
 
-
-
-@media screen and (min-width: 1200px) and (max-width: 1350px){
-    .page-home{
-        #home{ width: 800px + $size-scrollbar; }
-        #slideshow, #introduction, #now, footer { width: 800px; }
-
-        #flux{ margin-left: 800px + $margins-desktop; }  
-        .flux_selection_container{ width: calc(100vw - 800px - #{$margins-desktop*3}); }
+@media screen and (min-width: 1200px) and (max-width: 1350px) {
+  .page-home {
+    #home {
+      width: 800px + $size-scrollbar;
+    }
+    #slideshow,
+    #introduction,
+    #now,
+    footer {
+      width: 800px;
     }
 
+    #flux {
+      margin-left: 800px + $margins-desktop;
+    }
+    .flux_selection_container {
+      width: calc(100vw - 800px - #{$margins-desktop * 3});
+    }
+  }
 }
 
-
-
-@media screen and (min-width: 1350px){
-    .page-home{
-        #home{ width: $max-width-article + $size-scrollbar; }
-        #slideshow, #introduction, #now, footer{ width: $max-width-article; }
-
-        #flux{ margin-left: $max-width-article + $margins-desktop; }  
-        .flux_selection_container{ width: calc(100vw - #{$max-width-article} - #{$margins-desktop*3}); }
+@media screen and (min-width: 1350px) {
+  .page-home {
+    #home {
+      width: $max-width-article + $size-scrollbar;
     }
+    #slideshow,
+    #introduction,
+    #now,
+    footer {
+      width: $max-width-article;
+    }
+
+    #flux {
+      margin-left: $max-width-article + $margins-desktop;
+    }
+    .flux_selection_container {
+      width: calc(100vw - #{$max-width-article} - #{$margins-desktop * 3});
+    }
+  }
 }
 
-
-@media screen and (min-width: 1650px){
-    .page-home{
-        #flux, .flux_selection_container{ width: $max-width-main - $max-width-article - $margins-desktop; }  
+@media screen and (min-width: 1650px) {
+  .page-home {
+    #flux,
+    .flux_selection_container {
+      width: $max-width-main - $max-width-article - $margins-desktop;
     }
+  }
 }

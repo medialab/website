@@ -1,4 +1,5 @@
 const get = require('lodash/fp/get');
+const siteUrl = require('./meta.js').siteUrl;
 
 const languageFallback = (obj, lang) => {
   if (obj) {
@@ -45,8 +46,8 @@ const feedsMakers = [
               title: languageFallback(edge.node.title, lang),
               description: languageFallback(edge.node.description, lang),
               date: edge.node.startDate,
-              url: edge.node.permalink[lang],
-              guid: edge.node.id,
+              url: siteUrl + edge.node.permalink[lang],
+              guid: siteUrl + edge.node.permalink[lang],
               custom_elements: [{'content:encoded': languageFallback(edge.node.content, lang)}]
             });
           });
@@ -97,8 +98,8 @@ const feedsMakers = [
               title: languageFallback(edge.node.title, lang),
               description: languageFallback(edge.node.description, lang),
               date: edge.node.startDate,
-              url: edge.node.permalink[lang],
-              guid: edge.node.id,
+              url: siteUrl + edge.node.permalink[lang],
+              guid: siteUrl + edge.node.permalink[lang],
               custom_elements: [{'content:encoded': languageFallback(edge.node.content, lang)}]
             });
           });
@@ -153,8 +154,8 @@ const feedsMakers = [
               title: `${languageFallback(edge.node.title, lang)} - ${edge.node.authors}`,
               description: languageFallback(edge.node.description, lang),
               date: edge.node.date,
-              url: edge.node.permalink[lang],
-              guid: edge.node.id,
+              url: siteUrl + edge.node.permalink[lang],
+              guid: siteUrl + edge.node.permalink[lang],
               custom_elements: [{'content:encoded': languageFallback(edge.node.content, lang)}]
             });
           });
@@ -205,8 +206,8 @@ const feedsMakers = [
               title: `${edge.node.firstName} ${edge.node.lastName}`,
               description: languageFallback(edge.node.status, lang),
               date: edge.node.lastUpdated,
-              url: edge.node.permalink[lang],
-              guid: edge.node.id,
+              url: siteUrl + edge.node.permalink[lang],
+              guid: siteUrl + edge.node.permalink[lang],
               custom_elements: [{'content:encoded': languageFallback(edge.node.bio, lang)}]
             });
           }),
@@ -217,8 +218,8 @@ const feedsMakers = [
               title: edge.node.title[lang],
               description: languageFallback(edge.node.description, lang),
               date: edge.node.lastUpdated,
-              url: edge.node.permalink[lang],
-              guid: edge.node.id,
+              url: siteUrl + edge.node.permalink[lang],
+              guid: siteUrl + edge.node.permalink[lang],
               custom_elements: [{'content:encoded': languageFallback(edge.node.content, lang)}]
             });
           }),
@@ -229,8 +230,8 @@ const feedsMakers = [
                 title: `${languageFallback(edge.node.title, lang)} - ${edge.node.authors}`,
                 description: languageFallback(edge.node.description, lang),
                 date: edge.node.lastUpdated,
-                url: edge.node.permalink[lang],
-                guid: edge.node.id,
+                url: siteUrl + edge.node.permalink[lang],
+                guid: siteUrl + edge.node.permalink[lang],
                 custom_elements: [{'content:encoded': languageFallback(edge.node.content, lang)}]
               });
             }),
@@ -241,8 +242,8 @@ const feedsMakers = [
                 title: edge.node.name,
                 description: languageFallback(edge.node.baseline, lang),
                 date: edge.node.lastUpdated,
-                url: edge.node.permalink[lang],
-                guid: edge.node.id,
+                url: siteUrl + edge.node.permalink[lang],
+                guid: siteUrl + edge.node.permalink[lang],
                 custom_elements: [{'content:encoded': languageFallback(edge.node.content, lang)}]
               });
             }),

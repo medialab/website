@@ -1,3 +1,4 @@
+const siteMetadata = require('./meta.js');
 const feeds = require('./feeds.js');
 
 const GOOGLE_ANALYTICS_ID = process.env.GOOGLE_ANALYTICS_ID;
@@ -48,9 +49,6 @@ if (NODE_ENV === 'production' && GOOGLE_ANALYTICS_ID)
   });
 
 module.exports = {
-  siteMetadata: {
-    title: 'médialab Sciences Po',
-    siteUrl: 'https://medialab.sciencespo.fr'
-  },
+  siteMetadata,
   plugins
 };

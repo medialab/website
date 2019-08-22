@@ -37,6 +37,7 @@ module.exports = function oldSlugRedirections(callback) {
   (err, redirections) => {
     //add pages
     const pageRedirections = [
+      'rewrite ^/fr/?$ / permanent;',
       'rewrite ^/fr/blog/?$ /actu permanent;',
       'rewrite ^/(en/)?blog/?$ /en/news permanent;',
       'rewrite ^/fr/projets/?$ /activites permanent;',
@@ -86,10 +87,10 @@ module.exports = function oldSlugRedirections(callback) {
       'rewrite ^/(fr/|en/)?atelier/? /activites/metat-atelier-de-methodes permanent;',
       'rewrite ^/(fr/|en/)?projets/electronic-maps-to-assist-public-science/? /en/activities/emaps permanent;',
       'rewrite ^/(fr/|en/)?projets/medea/?$ /en/activities/medea-cartographier-les-debats-sur-ladaptation permanent;',
-      'rewrite ^/(fr/|en/)?/politiques-de-la-terre/?$ /activites/politiques-de-la-terre-a-lepreuve-de-lanthropocene permanent;',
-      'rewrite ^/(fr/|en/)?/source/?$ /en/activities/source-project-societal-security-network permanent;',
-      'rewrite ^/(fr/|en/)?/cardon/?$ /equipe/dominique-cardon permanent;',
-       'rewrite ^/(fr/|en/)?/ipcc/?$ /en/news/cartographier-les-auteurs-du-giec permanent;'
+      'rewrite ^/(fr/|en/)?projets/politiques-de-la-terre/?$ /activites/politiques-de-la-terre-a-lepreuve-de-lanthropocene permanent;',
+      'rewrite ^/(fr/|en/)?projets/source/?$ /en/activities/source-project-societal-security-network permanent;',
+      'rewrite ^/(fr/|en/)?people/cardon/?$ /equipe/dominique-cardon permanent;',
+      'rewrite ^/(fr/|en/)?ipcc/?$ /en/news/cartographier-les-auteurs-du-giec permanent;'
     ];
 
     callback(err, flatten(redirections.concat(pageRedirections)).join('\n'));

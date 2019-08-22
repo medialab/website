@@ -488,7 +488,7 @@ function buildStaticSite(callback) {
 
       const command = [
         `RSYNC_PASSWORD=${rsyncConfig.password}`,
-        `rsync -az --del ${built} --exclude="publications" ${rsyncConfig.target}`
+        `rsync -az --del ${built} --exclude="/publications" ${rsyncConfig.target}`
       ].join(' ');
 
       return exec(command, next);

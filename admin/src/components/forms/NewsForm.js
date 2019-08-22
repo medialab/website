@@ -123,7 +123,7 @@ function renderNewsForm(props) {
         <div className="columns">
           <div className="column is-6">
             <div className="field">
-              <label className="label">Titre <small>(requise)</small></label>
+              <label className="label">Titre <small>(requis)</small></label>
               <div className="control">
                 <input
                   type="text"

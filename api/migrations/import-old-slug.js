@@ -1,15 +1,13 @@
-
 const keys = require('lodash/keys');
 const redirections = require('../../specs/oldSlugRedirections.json');
 
-
 module.exports = function(req, dbs, next) {
   const dryRun = 'dryrun' in req.query;
-  models = keys(redirections);
+  const models = keys(redirections);
 
   models.forEach(m => {
     dbs[m].read();
-    const itemsBySlug= {};
+    const itemsBySlug = {};
     const items = dbs[m].getState()[m];
     //indexing by slug
     items.forEach(o => {
@@ -32,7 +30,7 @@ module.exports = function(req, dbs, next) {
       else
         console.error(`can't find item ${r.slug}`);
     });
-    
+
       // Persisting
     if (!dryRun) {
       const newData = {};
@@ -40,7 +38,7 @@ module.exports = function(req, dbs, next) {
       dbs[m].setState(newData);
       dbs[m].write();
     }
-    
+
   });
   return next(null, redirections);
 };

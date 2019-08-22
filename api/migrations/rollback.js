@@ -17,7 +17,7 @@ module.exports = repo => {
         load(ROLLBACK_DUMP_PATH);
 
         // Refreshing cache
-        for (model in dbs)
+        for (const model in dbs)
           dbs[model].read();
 
         // Cleanup

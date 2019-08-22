@@ -72,7 +72,32 @@ const Footer = ({lang}) => {
           </li>
         </ul>
         <div className="mentions" >
-        <p><small>design par <a href='http://julie-blanc.fr/' target='_blank' rel="noopener noreferrer">Julie Blanc</a> et <a href="http://benjmng.eu/"  target='_blank' rel="noopener noreferrer">Benjamin Gremillon</a><br/>développement par <a href="https://github.com/medialab/website/graphs/contributors" target="_blank" rel="noopener noreferrer">l'équipe du médialab</a></small></p>
+          <p>
+            <small>
+              design par&nbsp;
+              <a
+                href="http://julie-blanc.fr/"
+                target="_blank"
+                rel="noopener noreferrer">
+                Julie Blanc
+              </a>
+              &nbsp;et&nbsp;
+              <a
+                href="http://benjmng.eu/"
+                target="_blank"
+                rel="noopener noreferrer">
+                Benjamin Gremillon
+              </a>
+              <br />
+              développement par&nbsp;
+              <a
+                href="https://github.com/medialab/website/graphs/contributors"
+                target="_blank"
+                rel="noopener noreferrer">
+                l'équipe du médialab
+              </a>
+            </small>
+          </p>
         </div>
       </div>
     </footer>

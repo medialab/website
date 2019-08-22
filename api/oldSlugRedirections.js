@@ -12,6 +12,7 @@ const oldRouteByModel = {
   productions: 'publications',
   news: 'blog'
 };
+
 const newRouteByModel = {
     people: 'equipe',
     activities: 'activites',
@@ -30,7 +31,7 @@ module.exports = function oldSlugRedirections(callback) {
       const redirections = [];
       list.filter(item => item.oldSlug).forEach(item => {
         redirections.push(`rewrite ^/fr/${oldRouteByModel[model]}/${item.oldSlug}/?$ /${newRouteByModel[model]}/${item.slugs[0]} permanent;`);
-        redirections.push(`rewrite ^/${model!=='people'? '(en/)?' : ''}${oldRouteByModel[model]}/${item.oldSlug}/?$ /en/${model}/${item.slugs[0]} permanent;`);
+        redirections.push(`rewrite ^/${model !== 'people' ? '(en/)?' : ''}${oldRouteByModel[model]}/${item.oldSlug}/?$ /en/${model}/${item.slugs[0]} permanent;`);
       });
       done(null, redirections);
   }),

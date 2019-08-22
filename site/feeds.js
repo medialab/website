@@ -373,4 +373,11 @@ const feeds = feedsMakers.reduce((result, feedMaker) => {
   ];
 }, []);
 
+// Adding the main feed
+const mainFeed = {
+  ...feeds.find(feed => feed.output === '/all-updates-fr.feed.xml')
+};
+mainFeed.output = '/feed';
+feeds.push(mainFeed);
+
 module.exports = feeds;

@@ -11,6 +11,7 @@ import ItalicIcon from 'material-icons-svg/components/baseline/FormatItalic';
 import OrderedListIcon from 'material-icons-svg/components/baseline/FormatListNumbered';
 import UnorderedListIcon from 'material-icons-svg/components/baseline/FormatListBulleted';
 import KeyboardReturnIcon from 'material-icons-svg/components/baseline/KeyboardReturn';
+import FormatQuoteIcon from 'material-icons-svg/components/baseline/FormatQuote';
 
 function FalseIcon({children}) {
   return (
@@ -65,9 +66,7 @@ export default class Editor extends PureComponent {
             {type: BLOCK_TYPE.HEADER_ONE, icon: <FalseIcon>h1</FalseIcon>},
             {type: BLOCK_TYPE.HEADER_TWO, icon: <FalseIcon>h2</FalseIcon>},
             {type: BLOCK_TYPE.HEADER_THREE, icon: <FalseIcon>h3</FalseIcon>},
-            // {type: BLOCK_TYPE.HEADER_FOUR, icon: <FalseIcon>h4</FalseIcon>},
-            // {type: BLOCK_TYPE.HEADER_FIVE, icon: <FalseIcon>h5</FalseIcon>},
-            // {type: BLOCK_TYPE.HEADER_SIX, icon: <FalseIcon>h6</FalseIcon>},
+            {type: BLOCK_TYPE.BLOCKQUOTE, icon: <FormatQuoteIcon width={24} height={24} />},
             {type: BLOCK_TYPE.UNORDERED_LIST_ITEM, icon: <UnorderedListIcon width={24} height={24} />},
             {type: BLOCK_TYPE.ORDERED_LIST_ITEM, icon: <OrderedListIcon width={24} height={24} />},
             {type: BLOCK_TYPE.CODE, icon: <CodeBlockIcon width={24} height={24} />}

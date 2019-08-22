@@ -79,13 +79,13 @@ export default function About({lang}) {
                 Enfin, vous pouvez nous écrire à l'adresse suivante :
               </p>
               <p>
-                <strong>
+                <em>
                   Sciences Po - médialab
                   <br />
                   27, rue Saint Guillaume
                   <br />
                   75337 Paris Cedex 07
-                </strong>
+                </em>
               </p>
             </div>
           </article>
@@ -166,13 +166,13 @@ export default function About({lang}) {
                 Finally, you can also write us to the following address:
               </p>
               <p>
-                <strong>
+                <em>
                   Sciences Po - médialab
                   <br />
                   27, rue Saint Guillaume
                   <br />
                   75337 Paris Cedex 07
-                </strong>
+                </em>
               </p>
             </div>
           </article>

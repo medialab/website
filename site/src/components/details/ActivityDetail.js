@@ -82,6 +82,10 @@ export const queryFragment = graphql`
         en
         fr
       }
+      permalink {
+        en
+        fr
+      }
     }
     productions {
       title {
@@ -156,9 +160,8 @@ const mainPermalink = {
   en: '/en/activities'
 };
 
-export default function ActivityDetail({lang, activity}) {
-
-  const inSeminar = activity.slugs.join().includes('seminaire');
+export default function ActivityDetail({lang, activity, siteUrl}) {
+  const inSeminar = activity.slugs[0] === 'seminaire-du-medialab';
 
   return (
     <main id="main-objet" role="main" aria-label={i18n[lang].content(activity)}>
@@ -168,14 +171,14 @@ export default function ActivityDetail({lang, activity}) {
         lang={lang}
         date={activity.startDate}
         imageData={activity.coverImage && activity.coverImage.processed && activity.coverImage.processed.raster}
-        uri={`https://medialab.sciencespo.fr${activity.permalink[lang]}`} />
+        uri={`${siteUrl}${activity.permalink[lang]}`} />
       <ol style={{display: 'none'}} itemScope itemType="https://schema.org/BreadcrumbList">
         <li
           itemProp="itemListElement" itemScope
           itemType="https://schema.org/ListItem">
           <a
             itemType="https://schema.org/Organization"
-            itemProp="item" href="https://medialab.sciencespo.fr">
+            itemProp="item" href={siteUrl}>
             <span itemProp="name">médialab Sciences Po</span></a>
           <meta itemProp="position" content="1" />
         </li>
@@ -185,7 +188,7 @@ export default function ActivityDetail({lang, activity}) {
           <a
             itemType="https://schema.org/Thing"
             itemProp="item"
-            href={`https://medialab.sciencespo.fr/${mainPermalink[lang]}`}>
+            href={`${siteUrl}${mainPermalink[lang]}`}>
             <span itemProp="name">{I18N_MODEL[lang].activities}</span></a>
           <meta itemProp="position" content="2" />
         </li>
@@ -195,7 +198,7 @@ export default function ActivityDetail({lang, activity}) {
           <a
             itemType="https://schema.org/Thing"
             itemProp="item"
-            href={`https://medialab.sciencespo.fr${activity.permalink[lang]}`}>
+            href={`${siteUrl}${activity.permalink[lang]}`}>
             <span itemProp="name">
               {activity.name}
             </span>

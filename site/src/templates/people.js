@@ -11,6 +11,12 @@ export const query = graphql`
     peopleJson(id: {eq: $id}) {
       ...PeopleDetail
     }
+
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
   }
 `;
 
@@ -25,7 +31,10 @@ export default ({data, pageContext}) => {
       className="page-people body-page"
       permalinks={pageContext.permalinks}>
       {pageContext.linkToAdmin && <EditInAdmin draft={person.draft} linkToAdmin={pageContext.linkToAdmin} />}
-      <PeopleDetail lang={pageContext.lang} person={person} />
+      <PeopleDetail
+        lang={pageContext.lang}
+        person={person}
+        siteUrl={data.site.siteMetadata.siteUrl} />
     </Layout>
   );
 };

@@ -110,7 +110,6 @@ export const queryFragment = graphql`
     startDate
     endDate
     place
-    slugs
   }
 `;
 
@@ -134,7 +133,7 @@ const mainPermalink = {
   en: '/en/news'
 };
 
-export default function NewsDetail({lang, news}) {
+export default function NewsDetail({lang, news, siteUrl}) {
 
   return (
     <>
@@ -156,7 +155,7 @@ export default function NewsDetail({lang, news}) {
             itemType="https://schema.org/ListItem">
             <a
               itemType="https://schema.org/Organization"
-              itemProp="item" href="https://medialab.sciencespo.fr">
+              itemProp="item" href={siteUrl}>
               <span itemProp="name">médialab Sciences Po</span></a>
             <meta itemProp="position" content="1" />
           </li>
@@ -165,7 +164,7 @@ export default function NewsDetail({lang, news}) {
             itemType="https://schema.org/ListItem">
             <a
               itemType="https://schema.org/Thing"
-              href={`https://medialab.sciencespo.fr/${mainPermalink[lang]}`}
+              href={`${siteUrl}${mainPermalink[lang]}`}
               itemProp="item">
               <span itemProp="name">{I18N_MODEL[lang].news}</span></a>
             <meta itemProp="position" content="2" />
@@ -175,7 +174,7 @@ export default function NewsDetail({lang, news}) {
             itemType="https://schema.org/ListItem">
             <a
               itemType="https://schema.org/Thing"
-              href={`https://medialab.sciencespo.fr/${news.permalink[lang]}`}
+              href={`${siteUrl}${news.permalink[lang]}`}
               itemProp="item">
               <span itemProp="name">
                 <LanguageFallback lang={lang} translatedAttribute={news.title} />

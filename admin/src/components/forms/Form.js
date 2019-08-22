@@ -1,4 +1,3 @@
-
 /* global STATIC_URL */
 /* eslint no-nested-ternary: 0 */
 /* eslint no-alert: 0 */
@@ -53,7 +52,9 @@ const isItSignaling = property('signaling');
 const isDirty = property('dirty');
 const isNotDirty = negate(isDirty);
 const isThereErrors = property('validationError');
+const hasServerError = property('serverError');
 const fnButtonKind = condWithConstants([
+  [hasServerError, 'danger'],
   [isItSignaling, 'success'],
   [isNotEditPage, 'danger'],
   [
@@ -69,17 +70,19 @@ const fnButtonKind = condWithConstants([
   [stubTrue, 'white']
 ]);
 const fnDisabled = condWithConstants([
+  [hasServerError, true],
   [isNotEditPage, false],
   [p => isNotDirty(p) || isThereErrors(p), true],
   [stubTrue, false]
 ]);
 const fnButtonText = pageLabel => condWithConstants([
+  [hasServerError, 'Server error! Nothing was saved.'],
   [isNotEditPage, 'Back to editing ↲'],
   [isItSignaling, `${pageLabel} saved!`],
   [isNotDirty, 'Nothing yet to save'],
   [isThereErrors, isThereErrors],
   [isItNew, `Create this ${pageLabel}`],
-  [stubTrue, `Save this ${pageLabel}`]
+  [stubTrue, `Save this ${pageLabel}`],
 ]);
 
 
@@ -195,6 +198,7 @@ class Form extends Component {
       confirming: false,
       loading: !isNew,
       saving: false,
+      serverError: false,
       signaling: false,
 
       // Keeping last relevant hash to detect whether the form is dirty
@@ -333,7 +337,11 @@ class Form extends Component {
         data: currentData
       };
 
-      client.post(payload, () => {
+      client.post(payload, err => {
+        if (err) {
+          return this.setState({serverError: true});
+        }
+
         push(`/${model}/${currentData.id}`);
         this.setState({isNew: false});
       });
@@ -344,7 +352,10 @@ class Form extends Component {
         data: currentData
       };
 
-      client.put(payload, Function.prototype);
+      client.put(payload, err => {
+        if (err)
+          return this.setState({serverError: true});
+      });
     }
 
     // Animating the save button

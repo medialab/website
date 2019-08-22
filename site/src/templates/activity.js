@@ -10,6 +10,12 @@ export const query = graphql`
     activitiesJson(id: {eq: $id}) {
       ...ActivityDetail
     }
+
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
   }
 `;
 
@@ -25,7 +31,10 @@ export default ({data, pageContext}) => {
       permalinks={pageContext.permalinks}>
       {pageContext.linkToAdmin && <EditInAdmin draft={activity.draft} linkToAdmin={pageContext.linkToAdmin} />}
 
-      <ActivityDetail lang={pageContext.lang} activity={activity} />
+      <ActivityDetail
+        lang={pageContext.lang}
+        activity={activity}
+        siteUrl={data.site.siteMetadata.siteUrl} />
     </Layout>
   );
 };

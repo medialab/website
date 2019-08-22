@@ -24,7 +24,6 @@ export const queryFragment = graphql`
   fragment PeopleDetail on PeopleJson {
     firstName
     lastName
-    slugs
     role {
       en
       fr
@@ -211,9 +210,11 @@ const mainPermalink = {
 };
 
 function extractHandle(value) {
-  if (value.startsWith('http')) {
+  if (value.startsWith('http'))
     return value.split('/').slice(-1)[0];
-  }
+
+  if (value.startsWith('@'))
+    return value.slice(1);
 
   return value;
 }
@@ -290,7 +291,7 @@ function PeopleContactLabel({lang, data}) {
   return <a proptype="url" href={data.value}>{data.label}</a>;
 }
 
-export default function PeopleDetail({lang, person}) {
+export default function PeopleDetail({lang, person, siteUrl}) {
   const {
     titleLinkTeam,
     backTop,
@@ -302,7 +303,7 @@ export default function PeopleDetail({lang, person}) {
       <PageMeta
         title={`${person.firstName} ${person.lastName} | médialab Sciences Po`}
         description={person.status && person.status[lang]}
-        uri={`https://medialab.sciencespo.fr/${person.permalink[lang]}`}
+        uri={`${siteUrl}${person.permalink[lang]}`}
         lang={lang} />
       <main
         id="main"
@@ -318,7 +319,7 @@ export default function PeopleDetail({lang, person}) {
             itemType="https://schema.org/ListItem">
             <a
               itemType="https://schema.org/Organization"
-              itemProp="item" href="https://medialab.sciencespo.fr">
+              itemProp="item" href={siteUrl}>
               <span itemProp="name">médialab Sciences Po</span></a>
             <meta itemProp="position" content="1" />
           </li>
@@ -327,7 +328,7 @@ export default function PeopleDetail({lang, person}) {
             itemType="https://schema.org/ListItem">
             <a
               itemType="https://schema.org/Thing"
-              href={`https://medialab.sciencespo.fr/${mainPermalink[lang]}`}
+              href={`${siteUrl}${mainPermalink[lang]}`}
               itemProp="item">
               <span itemProp="name">{I18N_MODEL[lang].people}</span></a>
             <meta itemProp="position" content="2" />
@@ -337,7 +338,7 @@ export default function PeopleDetail({lang, person}) {
             itemType="https://schema.org/ListItem">
             <a
               itemType="https://schema.org/Thing"
-              href={`https://medialab.sciencespo.fr/${person.permalink[lang]}`}
+              href={`${siteUrl}${person.permalink[lang]}`}
               itemProp="item">
               <span itemProp="name">
                 {person.firstName} {person.lastName}

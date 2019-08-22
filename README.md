@@ -39,8 +39,9 @@ npm run reinstall
 
 ## TL;DR
 
-```
+```bash
 npm install
+npm run load -- /path/to/dump
 npm run dev
 ```
 

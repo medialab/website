@@ -2,7 +2,8 @@
   "data": "DATA_FOLDER",
   "build": {
     "path": "BUILD_FOLDER",
-    "repository": "BUILD_REPO"
+    "repository": "BUILD_REPO",
+    "rollbackRepository": "BUILD_ROLLBACK_REPO"
   },
   "rsync": {
     "target": "RSYNC_TARGET",

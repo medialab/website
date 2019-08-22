@@ -6,7 +6,8 @@
   },
   "build": {
     "path": "./build",
-    "repository": "git@repo"
+    "repository": "git@repo",
+    "rollbackRepository": null
   },
   "rsync": {
     "target": "",

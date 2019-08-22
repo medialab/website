@@ -248,7 +248,7 @@ const MIGRATION_SCHEMES = {
   'reset-settings': require('./migrations/reset-settings.js'),
   'reslugify': require('./migrations/reslugify.js'),
   'refresh-generatedFields-productions': require('./migrations/refresh-generatedFields-productions.js'),
-  'rollback': require('./migrations/rollback.js')(BUILD_CONF.repository),
+  'rollback': require('./migrations/rollback.js')(BUILD_CONF.rollbackRepository || BUILD_CONF.repository),
   'import-old-slug': require('./migrations/import-old-slug.js')
 };
 

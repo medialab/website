@@ -171,6 +171,12 @@ function renderProductionForm(props) {
     dirty
   } = props;
 
+  const statusLabel = data.title ?
+    (data.title.fr || data.title.en) :
+    (data.spire && data.spire.generatedFields && data.spire.generatedFields.title) ?
+      (data.spire.generatedFields.title.fr || data.spire.generatedFields.title.en) :
+      'Publication';
+
   return (
     <div className="container">
 
@@ -490,10 +496,10 @@ function renderProductionForm(props) {
         </div>
 
       </div>
-      { (data.title || data.spire) &&
+      {(data.title || data.spire) &&
         <div className="form-group is-important">
           <div className="field">
-            <label className="label title is-4">{'"' + ((data.title && (data.title.fr || data.title.en)) || (data.spire && data.spire.generatedFields.title.fr) || '') + '"' || 'Publication'} page's production status</label>
+            <label className="label title is-4">"{statusLabel}" page's production status</label>
             <div className="control">
               <BooleanSelector
                 value={!data.draft}

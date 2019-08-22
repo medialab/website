@@ -1,45 +1,46 @@
 
-
-const productionsRedirections = require('../../specs/productionsRedirections.json');
+const keys = require('lodash/keys');
+const redirections = require('../../specs/oldSlugRedirections.json');
 
 
 module.exports = function(req, dbs, next) {
   const dryRun = 'dryrun' in req.query;
+  models = keys(redirections);
 
-  //indexing productions
-  const productionsBySlug = {};
-  dbs.productions.read();
-  const productions = dbs.productions.getState().productions;
-  productions.forEach(p => {
-    p.slugs.forEach(s => {
-      productionsBySlug[s] = p;
+  models.forEach(m => {
+    dbs[m].read();
+    const itemsBySlug= {};
+    const items = dbs[m].getState()[m];
+    //indexing by slug
+    items.forEach(o => {
+      o.slugs.forEach(s => {
+        itemsBySlug[s] = o;
+      });
     });
-  });
 
-  // adding redirections
-  productionsRedirections.forEach(r => {
-    r.done = false;
-    const prod = productionsBySlug[r.slug];
-    if (prod)
-      if (!prod.oldSlug) {
-        prod.oldSlug = r.oldSlug;
-        r.done = true;
-      }
+     // adding redirections
+    redirections[m].forEach(r => {
+      r.done = false;
+      const item = itemsBySlug[r.slug];
+      if (item)
+        if (!item.oldSlug) {
+          item.oldSlug = r.oldSlug;
+          r.done = true;
+        }
+        else
+          console.error(`item ${r.slug} already have oldSlug ${item.oldSlug}, can't insert ${r.oldSlug}`);
       else
-        console.error(`production ${r.slug} already have oldSlug ${prod.oldSlug}, can't insert ${r.oldSlug}`);
-    else
-      console.error(`can't find production ${r.slug}`);
+        console.error(`can't find item ${r.slug}`);
+    });
+    
+      // Persisting
+    if (!dryRun) {
+      const newData = {};
+      newData[m] = items;
+      dbs[m].setState(newData);
+      dbs[m].write();
+    }
+    
   });
-
-  productions.forEach(prod => {
-    // publish all
-    prod.draft = false;
-  });
-
-  // Persisting
-  if (!dryRun) {
-    dbs.productions.setState({productions});
-    dbs.productions.write();
-  }
-  return next(null, productionsRedirections);
+  return next(null, redirections);
 };

@@ -1,112 +1,118 @@
-.page-production, 
-.page-news, 
-.page-activity{
+.page-production,
+.page-news,
+.page-activity {
+  main {
+    #img-article {
+      pre {
+        color: $redlab;
+        font-weight: bold;
+        overflow: hidden;
+      }
+    }
 
-	
-	main{
-		#img-article{
+    #article-contenu {
+      // flex permet de mettre le choix de la langue en dernier (alors qu'il doit être en premier dans l'HTML pour pouvoir marcher)
+      @include flex();
+      @include flex-direction(column);
 
-			pre{ 
-				color: $redlab;
-		        font-weight: bold;
-		        overflow: hidden;
-			}
-		}	
+      hgroup h1::first-letter {
+        text-transform: capitalize;
+      }
 
-		#article-contenu{
+      .details {
+        width: 100%;
+        color: $text-color-light;
 
-			// flex permet de mettre le choix de la langue en dernier (alors qu'il doit être en premier dans l'HTML pour pouvoir marcher)
-			@include flex();
-			@include flex-direction(column);
+        .production-ref {
+          border-top: $border-very-light;
+        }
+        .type-news {
+          text-transform: uppercase;
+        }
 
-			hgroup h1::first-letter{ text-transform: capitalize; }
+        [data-icon] {
+          padding-right: $unite/2;
+        }
 
+        .date-news,
+        .date {
+          white-space: nowrap;
+          &::first-letter {
+            text-transform: capitalize;
+          }
+        }
+        .hours-news {
+          white-space: nowrap;
+          color: $redlab;
+        }
+        .hours-news::before {
+          content: $time;
+        }
+      }
 
-			.details{
-				width: 100%;
-				color: $text-color-light;
+      .fichiers-associes,
+      #attachments {
+        li:hover {
+          color: $redlab-light !important;
+        }
 
-				.production-ref{ border-top: $border-very-light; }
-				.type-news{ text-transform: uppercase; }
+        .files a {
+          @include linktext();
+        }
+        .files:after {
+          content: $goto;
+          font-family: $font-symbol;
+          font-size: 0.8em;
+          margin-left: $unite/4;
+          top: -2px;
+          text-decoration: none !important;
+        }
+      }
 
-				[data-icon]{ padding-right: $unite/2;}
+      .details {
+        max-width: $max-width-article;
+      }
 
-				
-				.date-news, .date{ 
-					white-space: nowrap; 
-					&::first-letter{ text-transform: capitalize; }
-				}	
-				.hours-news{ 
-					white-space: nowrap;
-					color: $redlab;
-				 }
-				.hours-news::before{ content:$time; }	
+      .article-contenu {
+        @media screen and (min-width: 700px) {
+          margin-bottom: $baseline * 6;
+        }
 
-		
+        @include flex-order(1);
+        max-width: $max-width-article;
 
-			}
+        a {
+          @include linktext();
+          transition: 0.25s linear;
 
-			.fichiers-associes, #attachments{
-			
-				li:hover{ color: $redlab-light!important; }
-
-				.files a{ 
-					@include linktext();
-				}
-				.files:after{
-					content: $goto;
-					font-family: $font-symbol;
-					font-size: 0.8em;
-					margin-left: $unite/4;
-					top: -2px;
-					text-decoration: none!important;
-				}
-			}
-
-			.details{ max-width: $max-width-article; }
-			
-			
-			.article-contenu{ 
-
-				@media screen and (min-width: 700px){
-					margin-bottom: $baseline*6;
-				}
-
-				@include flex-order(1); 
-					max-width: $max-width-article;
-			
-				
-				a{
-					@include linktext();
-					transition: .25s linear;
-
-					&:hover{
-						color: $redlab;
-						text-decoration-color: $redlab;
-
-					}
-				}
-
-
-			}		
-		}		
-	}
+          &:hover {
+            color: $redlab;
+            text-decoration-color: $redlab;
+          }
+        }
+      }
+    }
+  }
 }
-
 
 /* ativity only */
-.page-activity .date-news .day-name,  
-.page-activity .date-news .day-num{
-	display: none;
+.page-activity .date-news .day-name,
+.page-activity .date-news .day-num {
+  display: none;
 }
-.page-activity .liste_objet .date-news .day-name,  
-.page-activity .liste_objet .date-news .day-num{
-	display: inline;
+.page-activity .liste_objet .date-news .day-name,
+.page-activity .liste_objet .date-news .day-num {
+  display: inline;
 }
 
-.page-activity .date-news .month-name{ text-transform: capitalize; }
-.page-activity .block-lang hgroup h2{ color: $redlab; }
-
+.page-activity .date-news .month-name {
+  text-transform: capitalize;
+}
+.page-activity .block-lang hgroup h2 {
+  color: $redlab;
+}
 
 /*  news only */
-.page-news .date-news{ color: $redlab; }
+.page-news .date-news {
+  color: $redlab;
+}

@@ -1,129 +1,115 @@
-
-
-
-#nav-inside-article{
-
-    ul li{
-        
-        &[data-type="main"] a::before{
-            content: $scrolltop;
-        }
-        &[data-type="productions"] a::before{
-            content: $productions;
-        }
-        &[data-type="activities"] a::before{
-            content: $activites;
-        }
-        &[data-type="attachments"] a::before{
-            content: $files;
-        }
-        &[data-type="people"] a::before{
-            content: $people;
-        }
-        &[data-type="news"] a::before{
-            content: $actualites;
-        }
-
-        &:hover{
-            color: $text-color-light;
-        }
-
+#nav-inside-article {
+  ul li {
+    &[data-type="main"] a::before {
+      content: $scrolltop;
+    }
+    &[data-type="productions"] a::before {
+      content: $productions;
+    }
+    &[data-type="activities"] a::before {
+      content: $activites;
+    }
+    &[data-type="attachments"] a::before {
+      content: $files;
+    }
+    &[data-type="people"] a::before {
+      content: $people;
+    }
+    &[data-type="news"] a::before {
+      content: $actualites;
     }
 
+    &:hover {
+      color: $text-color-light;
+    }
+  }
 }
 
-
-
-
-
 /* Phone */
-@media screen and (max-width: 900px){ 
+@media screen and (max-width: 900px) {
+  .main-nav {
+    top: -250px;
+  }
 
-    
-
-    .main-nav{ top: -250px}
-
-    #toggle-nav + label{
-        position: fixed;
-        //top: $height-top-bar-phone;
-        top: 0;
-        display: block;
-        width: 100vw;
-        height: $baseline*3.5;
-        z-index: 98;
-        span{
-            display: block; 
-            width: $baseline*1;
-            height: $baseline*1;
-            margin-top: $baseline*1.25;
-            position: absolute;
-            // text-align: right;
-            right: $margins-phone;
-            top: 0;
-        }  
+  #toggle-nav + label {
+    position: fixed;
+    //top: $height-top-bar-phone;
+    top: 0;
+    display: block;
+    width: 100vw;
+    height: $baseline * 3.5;
+    z-index: 98;
+    span {
+      display: block;
+      width: $baseline * 1;
+      height: $baseline * 1;
+      margin-top: $baseline * 1.25;
+      position: absolute;
+      // text-align: right;
+      right: $margins-phone;
+      top: 0;
     }
+  }
 
- 
-
-    #toggle-nav:checked + label span{ 
-        svg{
-            transform: rotate(90deg);
-            transform-origin: center center;
-        }
-        top: 2px;
+  #toggle-nav:checked + label span {
+    svg {
+      transform: rotate(90deg);
+      transform-origin: center center;
     }
+    top: 2px;
+  }
 
-    #toggle-nav:checked ~ #nav-inside-article{
-        top: $height-top-bar-phone + $baseline*3.5 ;
-    }
+  #toggle-nav:checked ~ #nav-inside-article {
+    top: $height-top-bar-phone + $baseline * 3.5;
+  }
 
-    #nav-inside-article{
-        transition: top .6s;
-        width: 100vw;
-        position: fixed;
-        left: 0;
-        z-index: 90;
-        background-color: $background-site;
-        border-bottom: $border;
-        padding: $baseline $margins-phone;
-        @include font-size-16-phone;
-        li{ margin-bottom: $baseline; }
+  #nav-inside-article {
+    transition: top 0.6s;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    z-index: 90;
+    background-color: $background-site;
+    border-bottom: $border;
+    padding: $baseline $margins-phone;
+    @include font-size-16-phone;
+    li {
+      margin-bottom: $baseline;
     }
-    #activities:target,
-    #productions:target,
-    #news:target{
-        padding-top: $height-top-bar-phone + $baseline*5 ;
-    }
-
+  }
+  #activities:target,
+  #productions:target,
+  #news:target {
+    padding-top: $height-top-bar-phone + $baseline * 5;
+  }
 }
 
 /* Desktop */
-@media screen and (min-width: 900px){ 
+@media screen and (min-width: 900px) {
+  /* la largeur de la navigation est dans le modèle global des pages */
+  .main-nav {
+    position: sticky;
+    height: calc(100vh - #{$height-footer});
+    position: sticky;
+    top: $height-sticky * 2;
+    left: 0;
+    padding-right: $margins-desktop;
 
-    /* la largeur de la navigation est dans le modèle global des pages */
-    .main-nav{
-        position: sticky;
-        height: calc(100vh - #{$height-footer});
-        position: sticky;
-        top: $height-sticky*2;
-        left: 0;
-        padding-right: $margins-desktop;
-
-        ul{
-            position: absolute;
-            bottom: 0;
-            margin-bottom: $baseline;
-        }
-
-        ul li{
-            padding-top: $baseline/2;
-            width: 100%;
-            transition: .1s linear;
-            @include font-size-13();
-        }
-
-        
+    ul {
+      position: absolute;
+      bottom: 0;
+      margin-bottom: $baseline;
     }
 
-    #toggle-nav + label{ display: none;}
+    ul li {
+      padding-top: $baseline/2;
+      width: 100%;
+      transition: 0.1s linear;
+      @include font-size-13();
+    }
+  }
+
+  #toggle-nav + label {
+    display: none;
+  }
 }

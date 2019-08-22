@@ -2,155 +2,146 @@
 //////// Top bar desktop
 /////////////////////
 
-
-@media screen and (min-width: 700px) and (max-width: 1080px){
-    #topbar{ 
-        #logo-medialab{ width: $logo-column-medium + $margins-desktop; }
-        #logo-medialab svg,
-        #logo-medialab img{ 
-            width: $unite*5;
-            margin-right: $unite*3; 
-        }
-
-        #topbar-content nav ul{width: $unite*6.5; }
-    
+@media screen and (min-width: 700px) and (max-width: 1080px) {
+  #topbar {
+    #logo-medialab {
+      width: $logo-column-medium + $margins-desktop;
     }
+    #logo-medialab svg,
+    #logo-medialab img {
+      width: $unite * 5;
+      margin-right: $unite * 3;
+    }
+
+    #topbar-content nav ul {
+      width: $unite * 6.5;
+    }
+  }
 }
 
-@media screen and (min-width: 1080px){
-    #topbar{ 
-        #logo-medialab{ width: $logo-column + $margins-desktop; }
-        #logo-medialab svg,
-        #logo-medialab img{ 
-            width: $unite*6;
-            margin-right: $unite*4;         
-        }
-        #topbar-content nav ul{width: $unite*8; }
-    
+@media screen and (min-width: 1080px) {
+  #topbar {
+    #logo-medialab {
+      width: $logo-column + $margins-desktop;
     }
+    #logo-medialab svg,
+    #logo-medialab img {
+      width: $unite * 6;
+      margin-right: $unite * 4;
+    }
+    #topbar-content nav ul {
+      width: $unite * 8;
+    }
+  }
 }
-
-
-
-
-    
-
-
-   
-
-
-
-
 
 @include for-size(desktop) {
+  #topbar {
+    padding: $margins-desktop $margins-desktop;
+    width: 100vw;
+    height: $height-top-bar;
+    left: 0;
+    top: 0;
+    color: $text-color;
+    @include font-size-13-uppercase();
+    letter-spacing: 0.2px;
+    background-color: $background-site;
+    z-index: 999;
+    border-bottom: $border;
+  }
 
-    #topbar{
-        padding: $margins-desktop $margins-desktop;
-        width: 100vw;
-        height: $height-top-bar;
-        left: 0;
+  .page-production-list #topbar,
+  .page-activity-list #topbar,
+  .page-news-list #topbar,
+  .page-people-list #topbar,
+  .page-home #topbar,
+  .page-about #topbar {
+    position: fixed !important;
+  }
+
+  // .page-people #topbar{
+  //     position: absolute!important;
+  //     top: 0;
+  // }
+
+  #topbar label {
+    display: none;
+    cursor: pointer;
+  }
+
+  #topbar-content {
+    max-width: $max-width-main;
+    margin: 0 auto;
+    height: 100%;
+
+    #logo-medialab,
+    #nav-option,
+    #langue {
+      display: inline-block;
+      vertical-align: bottom;
+    }
+    #langue {
+      position: relative;
+      top: $margins-desktop * -1;
+    }
+
+    @supports (display: flex) {
+      @include flex();
+      @include justify-content(stretch);
+      #langue {
         top: 0;
-        color: $text-color;
-        @include font-size-13-uppercase();
-        letter-spacing: 0.2px;
-        background-color: $background-site;
-        z-index: 999;
-        border-bottom: $border;
-       
+      }
     }
 
-    .page-production-list #topbar, 
-    .page-activity-list #topbar, 
-    .page-news-list #topbar,
-    .page-people-list #topbar,
-    .page-home #topbar,
-    .page-about #topbar {
-        position: fixed !important;
+    #logo-medialab svg,
+    #logo-medialab img {
+      fill: $text-color;
 
+      top: 70%;
+      transform: translateY(-50%);
     }
 
-    // .page-people #topbar{
-    //     position: absolute!important; 
-    //     top: 0;
-    // }
-
-
-    #topbar label{ 
-        display: none;
-        cursor: pointer;     
+    li::before {
+      display: inline-block;
+      text-align: center;
+      width: $baseline * 1;
+      margin-right: $baseline * 0.75;
     }
-        
-    #topbar-content{
-        max-width: $max-width-main;
-        margin: 0 auto;
-        height: 100%;
-       
-    
 
-        #logo-medialab, #nav-option, #langue{
-            display: inline-block;
-            vertical-align: bottom;
+    #nav-option {
+      @supports (display: flex) {
+        @include flex();
+        @include align-items(flex-end);
+      }
+      ul {
+        display: inline-block;
+        vertical-align: bottom;
+        li {
+          margin-top: $baseline/4;
         }
-        #langue{ 
-            position: relative;
-            top: $margins-desktop*-1; 
+        &:last-of-type {
+          width: 80px !important;
         }
+      }
+    }
 
-        @supports(display: flex) {
-            @include flex();
-            @include justify-content(stretch);
-            #langue{ top: 0; }
-        }
+    #langue {
+      width: 100%;
+      @supports (display: flex) {
+        @include align-self(flex-end);
+      }
+      p {
+        width: 100%;
+        text-align: right;
 
-
-        #logo-medialab svg, #logo-medialab img{
-            
-            fill: $text-color;
-            
-            top: 70%;
-            transform: translateY(-50%);  
-        }
-
-        li::before{
-            display: inline-block;
-            text-align: center;
-            width: $baseline*1;
-            margin-right: $baseline*0.75;
+        .active {
+          border-bottom: $border;
         }
 
-        #nav-option{
-            @supports(display: flex) {
-                @include flex();
-                @include align-items(flex-end);
-            }
-            ul{ 
-                display: inline-block;
-            vertical-align: bottom;
-                li{ margin-top: $baseline/4; }
-                &:last-of-type{ width: 80px!important;}
-            }
+        a:hover.active {
+          border-color: $redlab;
         }
-
-        #langue{
-            width: 100%;
-            @supports(display: flex) {
-                @include align-self(flex-end);
-            }
-            p{
-                width: 100%;
-                text-align: right;
-
-                .active{
-                    border-bottom: $border;
-                }
-
-                a:hover.active{
-                    border-color: $redlab;
-                }
-            }
-        }
-    }/* end #topbar-content */
-
-}/* end desktop */
-
-
+      }
+    }
+  } /* end #topbar-content */
+} /* end desktop */

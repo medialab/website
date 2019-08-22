@@ -1,15 +1,11 @@
 $width-image-pre-listing: 90px;
 
-
-@include for-size(desktop){
-
-    .page-production-list,
-    .page-activity-list,
-    .page-news-list{
-        #liste{
-               padding-top: $height-top-bar;
-        }
+@include for-size(desktop) {
+  .page-production-list,
+  .page-activity-list,
+  .page-news-list {
+    #liste {
+      padding-top: $height-top-bar;
     }
+  }
 }
-
-

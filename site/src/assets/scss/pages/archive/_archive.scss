@@ -1,105 +1,104 @@
-.page-archive{ 
+.page-archive {
+  max-width: $max-width-article;
+  max-width: 100%;
 
-    max-width: $max-width-article;
-    max-width: 100%;
+  & > h1 {
+    margin-bottom: $baseline * 2;
+  }
 
-    & > h1{ margin-bottom: $baseline*2; }
- 
-    // Grey Background
-    &::before {  
-        content: "";
-        position: absolute;
-        width: 100vw;
-        background-color: $background-grey;
-        z-index: -1;
+  // Grey Background
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100vw;
+    background-color: $background-grey;
+    z-index: -1;
+  }
+
+  ul.list li:first-of-type {
+    border-top: $border;
+  }
+
+  .bandeau {
+    .label-news {
+      //position: absolute;
+      //right: 0;
+      //text-align: right;
+      padding-left: $unite/2;
     }
-
-    ul.list li:first-of-type{ border-top: $border; }
-
-    .bandeau{
-        .label-news{
-            //position: absolute; 
-            //right: 0;
-            //text-align: right;
-            padding-left: $unite/2;
-        }
-        span.day-num, 
-        span.day-name,
-        span.startDate_sameMonth,
-        span.between{ 
-            display: none !important;
-        }
+    span.day-num,
+    span.day-name,
+    span.startDate_sameMonth,
+    span.between {
+      display: none !important;
     }
-    
+  }
 }
-
-
-
-
 
 @include for-size(phone) {
-    .page-archive{ 
-
-        section#archive{ margin: $baseline*2 $margins-phone; }
-
-        section.type{
-
-            & > h1{ 
-                @include font-size-27-phone();
-                // font-weight: 600;
-                margin: 0 $margins-phone;
-                span{ font-weight: 300;}
-            }
-
-            ul.liste_objet li{
-                &:before{
-                    content: "";
-                    position: absolute;
-                    width: calc(100% + #{$margins-phone*2});
-                    height: 100%;
-                    left: $margins-phone*-1;
-                }
-                &:hover:before{ background: rgba($background-site, 0.8); }
-
-                a{ padding: 0 $margins-phone;}
-                    
-            }
-            
-        }
+  .page-archive {
+    section#archive {
+      margin: $baseline * 2 $margins-phone;
     }
+
+    section.type {
+      & > h1 {
+        @include font-size-27-phone();
+        // font-weight: 600;
+        margin: 0 $margins-phone;
+        span {
+          font-weight: 300;
+        }
+      }
+
+      ul.liste_objet li {
+        &:before {
+          content: "";
+          position: absolute;
+          width: calc(100% + #{$margins-phone * 2});
+          height: 100%;
+          left: $margins-phone * -1;
+        }
+        &:hover:before {
+          background: rgba($background-site, 0.8);
+        }
+
+        a {
+          padding: 0 $margins-phone;
+        }
+      }
+    }
+  }
 }
 
-
 @include for-size(desktop) {
+  .page-archive {
+    width: 100%;
 
-    .page-archive{
-        
-        width: 100%;
-
-        #topbar{position: fixed !important;}
-
-        section#archive{ 
-            margin: #{$height-top-bar + $baseline*2} auto $baseline*2 auto;
-            display: block;
-
-            .introduction{
-                @include font-size-20;
-                margin: $baseline 0 ;
-                max-width: $max-width-article;
-            }
-            section.type{
-
-                & > h1{ 
-                    margin: $baseline 0 $baseline*2 0;
-                }
-
-                li.item{
-
-                    h1{
-                        //@include font-size-16;
-                    }
-                }
-            }
-        }
+    #topbar {
+      position: fixed !important;
     }
+
+    section#archive {
+      margin: #{$height-top-bar + $baseline * 2} auto $baseline * 2 auto;
+      display: block;
+
+      .introduction {
+        @include font-size-20;
+        margin: $baseline 0;
+        max-width: $max-width-article;
+      }
+      section.type {
+        & > h1 {
+          margin: $baseline 0 $baseline * 2 0;
+        }
+
+        li.item {
+          h1 {
+            //@include font-size-16;
+          }
+        }
+      }
+    }
+  }
 }

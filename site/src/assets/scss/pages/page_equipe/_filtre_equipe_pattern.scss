@@ -1,7 +1,4 @@
-
-
 // CHEKED CHECKBOX ------------------------------------------------------------------------------------ //
-
 
 #filtre_membre:checked ~ .aside-filters #filtre_membre_label,
 #filtre_non_membre:checked ~ .aside-filters #filtre_non_membre_label,
@@ -9,161 +6,277 @@
 #domaine_technique:checked ~ .aside-filters #domaine_technique_label,
 #domaine_design:checked ~ .aside-filters #domaine_design_label,
 #domaine_pedagogie:checked ~ .aside-filters #domaine_pedagogie_label,
-#domaine_administratif:checked ~ .aside-filters #domaine_administratif_label{
-	font-weight: 600!important;
-	&:before{ border: 5px solid $text-color;}
-	&:hover:before{ border: 5px solid $text-color-light!important;}
+#domaine_administratif:checked ~ .aside-filters #domaine_administratif_label {
+  font-weight: 600 !important;
+  &:before {
+    border: 5px solid $text-color;
+  }
+  &:hover:before {
+    border: 5px solid $text-color-light !important;
+  }
 }
 
 /// only member/associate ------------------------------------------------------------------------------------ //
 
-.input_member:checked ~ #liste_equipe .liste_equipe{
-	li{ display: none; }
+.input_member:checked ~ #liste_equipe .liste_equipe {
+  li {
+    display: none;
+  }
 }
 
-#filtre_membre:checked ~ #liste_equipe .liste_equipe{
-	[class*=member]{ display: block; }
+#filtre_membre:checked ~ #liste_equipe .liste_equipe {
+  [class*="member"] {
+    display: block;
+  }
 }
 
-#filtre_non_membre:checked ~ #liste_equipe .liste_equipe{
-	[class*=associate]{ display: block; }
+#filtre_non_membre:checked ~ #liste_equipe .liste_equipe {
+  [class*="associate"] {
+    display: block;
+  }
 }
 
-#filtre_membre:checked ~ #filtre_non_membre:checked ~ #liste_equipe .liste_equipe{
-	[class*=member]{ display: block; }
-	[class*=associate]{ display: block; }
+#filtre_membre:checked
+  ~ #filtre_non_membre:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="member"] {
+    display: block;
+  }
+  [class*="associate"] {
+    display: block;
+  }
 }
-
 
 /// only domaine ------------------------------------------------------------------------------------ //
 
-.input_domaine:checked ~ #liste_equipe .liste_equipe{
-	li{ display: none; }
+.input_domaine:checked ~ #liste_equipe .liste_equipe {
+  li {
+    display: none;
+  }
 }
 
-#domaine_academique:checked ~ #liste_equipe .liste_equipe{
-	[class*=academic]{ display: block; }
+#domaine_academique:checked ~ #liste_equipe .liste_equipe {
+  [class*="academic"] {
+    display: block;
+  }
 }
 
-#domaine_technique:checked ~ #liste_equipe .liste_equipe{
-	[class*=tech]{ display: block; }
+#domaine_technique:checked ~ #liste_equipe .liste_equipe {
+  [class*="tech"] {
+    display: block;
+  }
 }
 
-#domaine_design:checked ~ #liste_equipe .liste_equipe{
-	[class*=design]{ display: block; }
+#domaine_design:checked ~ #liste_equipe .liste_equipe {
+  [class*="design"] {
+    display: block;
+  }
 }
 
-#domaine_pedagogie:checked ~ #liste_equipe .liste_equipe{
-	[class*=pedagogy]{ display: block; }
+#domaine_pedagogie:checked ~ #liste_equipe .liste_equipe {
+  [class*="pedagogy"] {
+    display: block;
+  }
 }
 
-#domaine_administratif:checked ~ #liste_equipe .liste_equipe{
-	[class*=admin]{ display: block; }
+#domaine_administratif:checked ~ #liste_equipe .liste_equipe {
+  [class*="admin"] {
+    display: block;
+  }
 }
-
-
-
-
-
-
 
 /// member/associate ------------------------------------------------------------------------------------ //
 /// domaine ------------------------------------------------------------------------------------ //
 
-
-.input_member:checked ~ .input_domaine:checked ~ #liste_equipe .liste_equipe{
-	li{ display: none!important; }
-	.hack-item-grid{ display: block!important; }
+.input_member:checked ~ .input_domaine:checked ~ #liste_equipe .liste_equipe {
+  li {
+    display: none !important;
+  }
+  .hack-item-grid {
+    display: block !important;
+  }
 }
-
 
 /* member */
 
-#filtre_membre:checked ~ #domaine_academique:checked ~ #liste_equipe .liste_equipe{
-	[class*=member-academic]{ display: block!important; }
+#filtre_membre:checked
+  ~ #domaine_academique:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="member-academic"] {
+    display: block !important;
+  }
 }
 
-#filtre_membre:checked ~ #domaine_technique:checked ~ #liste_equipe .liste_equipe{
-	[class*=member-tech]{ display: block!important; }
+#filtre_membre:checked
+  ~ #domaine_technique:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="member-tech"] {
+    display: block !important;
+  }
 }
 
-#filtre_membre:checked ~ #domaine_design:checked ~ #liste_equipe .liste_equipe{
-	[class*=member-design]{ display: block!important; }
+#filtre_membre:checked ~ #domaine_design:checked ~ #liste_equipe .liste_equipe {
+  [class*="member-design"] {
+    display: block !important;
+  }
 }
 
-#filtre_membre:checked ~ #domaine_pedagogie:checked ~ #liste_equipe .liste_equipe{
-	[class*=member-pedagogy]{ display: block!important; }
+#filtre_membre:checked
+  ~ #domaine_pedagogie:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="member-pedagogy"] {
+    display: block !important;
+  }
 }
 
-#filtre_membre:checked ~ #domaine_administratif:checked ~ #liste_equipe .liste_equipe{
-	[class*=member-admin]{ display: block!important; }
+#filtre_membre:checked
+  ~ #domaine_administratif:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="member-admin"] {
+    display: block !important;
+  }
 }
-
-
-
 
 /* associate */
 
-#filtre_non_membre:checked ~ .input_domaine:checked ~ #liste_equipe .liste_equipe{
-	li{ display: none!important; }
-	.hack-item-grid{ display: block!important; }
+#filtre_non_membre:checked
+  ~ .input_domaine:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  li {
+    display: none !important;
+  }
+  .hack-item-grid {
+    display: block !important;
+  }
 }
 
-
-#filtre_non_membre:checked ~ #domaine_academique:checked ~ #liste_equipe .liste_equipe{
-	[class*=associate-academic]{ display: block!important; }
+#filtre_non_membre:checked
+  ~ #domaine_academique:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="associate-academic"] {
+    display: block !important;
+  }
 }
 
-#filtre_non_membre:checked ~ #domaine_technique:checked ~ #liste_equipe .liste_equipe{
-	[class*=associate-tech]{ display: block!important; }
+#filtre_non_membre:checked
+  ~ #domaine_technique:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="associate-tech"] {
+    display: block !important;
+  }
 }
 
-#filtre_non_membre:checked ~ #domaine_design:checked ~ #liste_equipe .liste_equipe{
-	[class*=associate-design]{ display: block!important; }
+#filtre_non_membre:checked
+  ~ #domaine_design:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="associate-design"] {
+    display: block !important;
+  }
 }
 
-#filtre_non_membre:checked ~ #domaine_pedagogie:checked ~ #liste_equipe .liste_equipe{
-	[class*=associate-pedagogy]{ display: block!important; }
+#filtre_non_membre:checked
+  ~ #domaine_pedagogie:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="associate-pedagogy"] {
+    display: block !important;
+  }
 }
 
-#filtre_non_membre:checked ~ #domaine_administratif:checked ~ #liste_equipe .liste_equipe{
-	[class*=associate-admin]{ display: block!important; }
+#filtre_non_membre:checked
+  ~ #domaine_administratif:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="associate-admin"] {
+    display: block !important;
+  }
 }
 
 /* membre +associate */
 
-
-#filtre_membre:checked ~ #filtre_non_membre:checked ~ .input_domaine:checked ~ #liste_equipe .liste_equipe{
-	li{ display: none!important; }
-	.hack-item-grid{ display: block!important; }
+#filtre_membre:checked
+  ~ #filtre_non_membre:checked
+  ~ .input_domaine:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  li {
+    display: none !important;
+  }
+  .hack-item-grid {
+    display: block !important;
+  }
 }
 
-
-
-
-#filtre_membre:checked ~ #filtre_non_membre:checked ~ #domaine_academique:checked ~ #liste_equipe .liste_equipe{
-	[class*=member-academic]{ display: block!important; }
-	[class*=associate-academic]{ display: block!important; }
+#filtre_membre:checked
+  ~ #filtre_non_membre:checked
+  ~ #domaine_academique:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="member-academic"] {
+    display: block !important;
+  }
+  [class*="associate-academic"] {
+    display: block !important;
+  }
 }
 
-#filtre_membre:checked ~ #filtre_non_membre:checked ~ #domaine_technique:checked ~ #liste_equipe .liste_equipe{
-	[class*=member-tech]{ display: block!important; }
-	[class*=associate-tech]{ display: block!important; }
+#filtre_membre:checked
+  ~ #filtre_non_membre:checked
+  ~ #domaine_technique:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="member-tech"] {
+    display: block !important;
+  }
+  [class*="associate-tech"] {
+    display: block !important;
+  }
 }
 
-#filtre_membre:checked ~ #filtre_non_membre:checked ~ #domaine_design:checked ~ #liste_equipe .liste_equipe{
-	[class*=member-design]{ display: block!important; }
-	[class*=associate-design]{ display: block!important; }
+#filtre_membre:checked
+  ~ #filtre_non_membre:checked
+  ~ #domaine_design:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="member-design"] {
+    display: block !important;
+  }
+  [class*="associate-design"] {
+    display: block !important;
+  }
 }
 
-#filtre_membre:checked ~ #filtre_non_membre:checked ~ #domaine_pedagogie:checked ~ #liste_equipe .liste_equipe{
-	[class*=member-pedagogy]{ display: block!important; }
-	[class*=associate-pedagogy]{ display: block!important; }
+#filtre_membre:checked
+  ~ #filtre_non_membre:checked
+  ~ #domaine_pedagogie:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="member-pedagogy"] {
+    display: block !important;
+  }
+  [class*="associate-pedagogy"] {
+    display: block !important;
+  }
 }
 
-#filtre_membre:checked ~ #filtre_non_membre:checked ~ #domaine_administratif:checked ~ #liste_equipe .liste_equipe{
-	[class*=member-admin]{ display: block!important; }
-	[class*=associate-admin]{ display: block!important; }
+#filtre_membre:checked
+  ~ #filtre_non_membre:checked
+  ~ #domaine_administratif:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="member-admin"] {
+    display: block !important;
+  }
+  [class*="associate-admin"] {
+    display: block !important;
+  }
 }
-
-

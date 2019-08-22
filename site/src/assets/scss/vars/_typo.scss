@@ -1,108 +1,91 @@
 $font-main: sans-serif;
-$font-mono: 'Bel', courier, monospace; 
-$font-symbol: 'Symbol', sans-serif;
+$font-mono: "Bel", courier, monospace;
+$font-symbol: "Symbol", sans-serif;
 $font-size: 10px; // Base 10 pour simplifier les calculs
 $baseline: 15px;
 
+:root {
+  --font-size: $font-size;
+  --baseline: $baseline;
 
-:root{
-	--font-size: $font-size;
-    --baseline: $baseline;
-
-    --font-main: $font-main;
-    --font-mono: $font-mono;
-    color: $text-color;
+  --font-main: $font-main;
+  --font-mono: $font-mono;
+  color: $text-color;
 }
 
-
-html{
-    font-family: $font-main;
-    font-size: $font-size;
+html {
+  font-family: $font-main;
+  font-size: $font-size;
 }
-
 
 //// BONNE TYPO
 
-
-
 @mixin font-size-60() {
-    font-size: $font-size*5.6;
-    font-weight: 100;
-    line-height: $baseline*4.5;
-    letter-spacing: -0.5px;
+  font-size: $font-size * 5.6;
+  font-weight: 100;
+  line-height: $baseline * 4.5;
+  letter-spacing: -0.5px;
 }
 
-
-
 @mixin font-size-40() {
-    font-size: $font-size * 3.6;
-    font-weight: 100;
-    line-height: $baseline*3;
-    letter-spacing: -0.5px;
+  font-size: $font-size * 3.6;
+  font-weight: 100;
+  line-height: $baseline * 3;
+  letter-spacing: -0.5px;
 }
 
 @mixin font-size-27() {
-    font-size: $font-size*2.7;
-    font-weight: 100;
-    line-height: $baseline*2.5;
-}// ancien typo-list_title
+  font-size: $font-size * 2.7;
+  font-weight: 100;
+  line-height: $baseline * 2.5;
+} // ancien typo-list_title
 
 @mixin font-size-27-phone() {
-    font-size: $font-size*2.7;
-    font-weight: 300;
-    line-height: $baseline*2.5;
+  font-size: $font-size * 2.7;
+  font-weight: 300;
+  line-height: $baseline * 2.5;
 }
-
-
 
 @mixin font-size-20() {
-    font-size: $font-size*2;
-    font-weight: 300;
-    line-height: $baseline*2;
-}// ancien typo-list_title
+  font-size: $font-size * 2;
+  font-weight: 300;
+  line-height: $baseline * 2;
+} // ancien typo-list_title
 
 @mixin font-size-20-phone() {
-    font-size: $font-size*2;
-    font-weight: 300;
-    line-height: $baseline*2;
+  font-size: $font-size * 2;
+  font-weight: 300;
+  line-height: $baseline * 2;
 }
-
 
 @mixin font-size-16() {
-    font-size: $font-size*1.6;
-    line-height: $baseline*1.5;
-    font-weight: 100;
-}//ancien typo-labeur
+  font-size: $font-size * 1.6;
+  line-height: $baseline * 1.5;
+  font-weight: 100;
+} //ancien typo-labeur
 
 @mixin font-size-16-phone() {
-    font-size: $font-size*1.6;
-    line-height: $baseline*1.5;
-    font-weight: 300;
+  font-size: $font-size * 1.6;
+  line-height: $baseline * 1.5;
+  font-weight: 300;
 }
 
+@mixin font-size-13() {
+  font-size: $font-size * 1.3;
+  line-height: $baseline * 1.5;
+  font-weight: 100;
+} // ancien typo-home-nomenclature
 
-@mixin font-size-13(){
-    font-size: $font-size*1.3;
-    line-height: $baseline*1.5;
-    font-weight: 100;
-}// ancien typo-home-nomenclature
+@mixin font-size-13-uppercase() {
+  font-size: $font-size * 1.2;
+  line-height: $baseline * 1.5;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+} // ancien typo-home-nomenclature
 
-
-@mixin font-size-13-uppercase(){
-    font-size: $font-size*1.2;
-    line-height: $baseline*1.5;
-    font-weight: 100;
-    text-transform: uppercase;
-    letter-spacing: 0.2px;
-}// ancien typo-home-nomenclature
-
-
-@mixin font-size-13-phone(){
-    font-size: $font-size*1.3;
-    line-height: $baseline*1.3;
-    font-weight: 300;
+@mixin font-size-13-phone() {
+  font-size: $font-size * 1.3;
+  line-height: $baseline * 1.3;
+  font-weight: 300;
 }
-
-
-
-

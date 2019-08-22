@@ -8,7 +8,8 @@
     "build": "npm run clean && gatsby build",
     "clean": "rm -rf .cache public",
     "dev": "npm run clean && gatsby develop -H 0.0.0.0",
-    "postinstall": "gatsby telemetry --disable || true"
+    "postinstall": "gatsby telemetry --disable || true",
+    "style:scss": "prettier --write --parser scss 'src/assets/scss/**/*.scss'"
   },
   "contributors": [
     {
@@ -78,5 +79,8 @@
     "react-helmet": "^5.2.1",
     "sharp": "^0.22.1",
     "timed-memoize": "^2.4.2"
+  },
+  "devDependencies": {
+    "prettier": "^1.18.2"
   }
 }

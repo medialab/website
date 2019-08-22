@@ -1,125 +1,243 @@
-.page-activity-list{
+.page-activity-list {
+  // CHEKED CHECKBOX ------------------------------------------------------------------------------------ //
 
+  #filtre-activity_active:checked
+    ~ .aside-filters
+    #filtre-activity_active_label,
+  #filtre-activity_past:checked ~ .aside-filters #filtre-activity_past_label,
+  #filtre-activity_research:checked
+    ~ .aside-filters
+    #filtre-activity_research_label,
+  #filtre-activity_teaching:checked
+    ~ .aside-filters
+    #filtre-activity_teaching_label {
+    font-weight: 600 !important;
+    &:before {
+      border: 5px solid $text-color;
+    }
+    @include for-size(desktop) {
+      &:hover:before {
+        border: 5px solid $text-color-light !important;
+      }
+    }
+  }
 
-	// CHEKED CHECKBOX ------------------------------------------------------------------------------------ //
+  // FILTERS PATTERNS ------------------------------------------------------------------------------------ //
 
-	#filtre-activity_active:checked ~ .aside-filters #filtre-activity_active_label,
-	#filtre-activity_past:checked ~ .aside-filters #filtre-activity_past_label,
-	#filtre-activity_research:checked ~ .aside-filters #filtre-activity_research_label,
-	#filtre-activity_teaching:checked ~ .aside-filters #filtre-activity_teaching_label{
-		font-weight: 600!important;
-		&:before{ border: 5px solid $text-color;}
-		@include for-size(desktop) {
-			&:hover:before{ border: 5px solid $text-color-light!important;}
-		}
-	}
+  .filtre-activity_statut:checked ~ #liste #liste-activity {
+    .list-item {
+      display: none;
+    }
+  }
 
+  #filtre-activity_active:checked ~ #liste #liste-activity {
+    .research-active {
+      display: block;
+    }
+    .teaching-active {
+      display: block;
+    }
+  }
 
+  #filtre-activity_past:checked ~ #liste #liste-activity {
+    .research-past {
+      display: block;
+    }
+    .teaching-past {
+      display: block;
+    }
+  }
 
-	// FILTERS PATTERNS ------------------------------------------------------------------------------------ //
+  /* type only */
+  .filtre-activity_type:checked ~ #liste #liste-activity {
+    .list-item {
+      display: none;
+    }
+  }
+  #filtre-activity_research:checked ~ #liste #liste-activity {
+    .research-active {
+      display: block;
+    }
+    .research-past {
+      display: block;
+    }
+  }
+  #filtre-activity_teaching:checked ~ #liste #liste-activity {
+    .teaching-active {
+      display: block;
+    }
+    .teaching-past {
+      display: block;
+    }
+  }
 
-	.filtre-activity_statut:checked ~ #liste #liste-activity {
-		.list-item{ display: none; }
-	}
+  /* statut + type */
 
-	#filtre-activity_active:checked ~ #liste #liste-activity{
-		.research-active{ display: block; }
-		.teaching-active{ display: block; }
-	}
+  #filtre-activity_active:checked
+    ~ #filtre-activity_research:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: block !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+  }
 
-	#filtre-activity_past:checked ~ #liste #liste-activity{
-		.research-past{ display: block; }
-		.teaching-past{ display: block; }
-	}
+  #filtre-activity_active:checked
+    ~ #filtre-activity_teaching:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: block !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+  }
 
+  #filtre-activity_active:checked
+    ~ #filtre-activity_research:checked
+    ~ #filtre-activity_teaching:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: block !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: block !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+  }
 
+  #filtre-activity_past:checked
+    ~ #filtre-activity_research:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: block !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+  }
 
-	/* type only */
-	.filtre-activity_type:checked ~ #liste #liste-activity {
-		.list-item{ display: none; }
-	}
-	#filtre-activity_research:checked ~ #liste #liste-activity{
-		.research-active{ display: block; }
-		.research-past{ display: block; }
-	}
-	#filtre-activity_teaching:checked ~ #liste #liste-activity{
-		.teaching-active{ display: block; }
-		.teaching-past{ display: block; }
-	}
+  #filtre-activity_past:checked
+    ~ #filtre-activity_teaching:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: block !important;
+    }
+  }
 
+  #filtre-activity_past:checked
+    ~ #filtre-activity_research:checked
+    ~ #filtre-activity_teaching:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: block !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: block !important;
+    }
+  }
 
-	/* statut + type */
+  #filtre-activity_active:checked
+    ~ #filtre-activity_past:checked
+    ~ #filtre-activity_research:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: block !important;
+    }
+    .research-past {
+      display: block !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+  }
 
+  #filtre-activity_active:checked
+    ~ #filtre-activity_past:checked
+    ~ #filtre-activity_teaching:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: block !important;
+    }
+    .teaching-past {
+      display: block !important;
+    }
+  }
 
-	#filtre-activity_active:checked ~ #filtre-activity_research:checked ~ #liste #liste-activity{
-		.research-active{ display: block!important; }	
-		.research-past{ display: none!important; }
-		.teaching-active{ display: none!important; }	
-		.teaching-past{ display: none!important; }	
-	}
-
-	#filtre-activity_active:checked ~ #filtre-activity_teaching:checked ~ #liste #liste-activity{
-		.research-active{ display: none!important; }	
-		.research-past{ display: none!important; }
-		.teaching-active{ display: block!important; }	
-		.teaching-past{ display: none!important; }	
-	}
-
-	#filtre-activity_active:checked  ~ #filtre-activity_research:checked ~ #filtre-activity_teaching:checked ~ #liste #liste-activity{
-		.research-active{ display: block!important; }	
-		.research-past{ display: none!important; }
-		.teaching-active{ display: block!important; }	
-		.teaching-past{ display: none!important; }	
-	}
-
-
-
-	#filtre-activity_past:checked ~ #filtre-activity_research:checked ~ #liste #liste-activity{
-		.research-active{ display: none!important; }	
-		.research-past{ display: block!important; }
-		.teaching-active{ display: none!important; }	
-		.teaching-past{ display: none!important; }	
-	}
-
-	#filtre-activity_past:checked ~ #filtre-activity_teaching:checked ~ #liste #liste-activity{
-		.research-active{ display: none!important; }	
-		.research-past{ display: none!important; }
-		.teaching-active{ display: none!important; }	
-		.teaching-past{ display: block!important; }	
-	}
-
-	#filtre-activity_past:checked ~ #filtre-activity_research:checked ~ #filtre-activity_teaching:checked ~ #liste #liste-activity{
-		.research-active{ display: none!important; }	
-		.research-past{ display: block!important; }
-		.teaching-active{ display: none!important; }	
-		.teaching-past{ display: block!important; }	
-	}
-
-
-
-	#filtre-activity_active:checked ~ #filtre-activity_past:checked ~ #filtre-activity_research:checked ~ #liste #liste-activity{
-		.research-active{ display: block!important; }	
-		.research-past{ display: block!important; }
-		.teaching-active{ display: none!important; }	
-		.teaching-past{ display: none!important; }	
-	}
-
-	#filtre-activity_active:checked ~ #filtre-activity_past:checked ~ #filtre-activity_teaching:checked ~ #liste #liste-activity{
-		.research-active{ display: none!important; }	
-		.research-past{ display: none!important; }
-		.teaching-active{ display: block!important; }	
-		.teaching-past{ display: block!important; }	
-	}
-
-	#filtre-activity_active:checked ~ #filtre-activity_past:checked ~ #filtre-activity_research:checked ~ #filtre-activity_teaching:checked ~ #liste #liste-activity{
-		.research-active{ display: block!important; }	
-		.research-past{ display: block!important; }
-		.teaching-active{ display: block!important; }	
-		.teaching-past{ display: block!important; }	
-	}
-
-
-
+  #filtre-activity_active:checked
+    ~ #filtre-activity_past:checked
+    ~ #filtre-activity_research:checked
+    ~ #filtre-activity_teaching:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: block !important;
+    }
+    .research-past {
+      display: block !important;
+    }
+    .teaching-active {
+      display: block !important;
+    }
+    .teaching-past {
+      display: block !important;
+    }
+  }
 }
-
-

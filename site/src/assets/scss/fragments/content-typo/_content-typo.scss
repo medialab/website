@@ -1,235 +1,231 @@
-	.page-production, 
-	.page-news, 
-	.page-activity, 
-	.page-people,
-	.page-about{
+.page-production,
+.page-news,
+.page-activity,
+.page-people,
+.page-about {
+  .article-contenu,
+  .biographie-content,
+  .about-contenu {
+    li {
+      list-style: none;
+    }
 
-		.article-contenu, 
-		.biographie-content,
-		.about-contenu {
-			
-			li{ list-style: none;}
+    blockquote {
+      border-left: $border-very-light;
+      padding-left: $unite/2;
 
-			blockquote{
-				border-left: $border-very-light;
-				padding-left: $unite/2;
+      &:lang(en):before {
+        content: "“";
+      }
 
-				&:lang(en):before{ content: "“"; }
+      &:lang(fr):before {
+        content: "«";
+      }
 
-				&:lang(fr):before{ content: "«"; }
-	
-				&:before{
-					position: absolute;
+      &:before {
+        position: absolute;
 
-					@include font-size-27;
-					color: #ebebeb;
+        @include font-size-27;
+        color: #ebebeb;
+      }
+    }
 
-				}
-			}
+    //////////////////////////
+    ///        Image 	/////
+    /////////////////////////
 
-			//////////////////////////
-			///        Image 	/////
-			/////////////////////////
+    figure {
+      // default
+      img {
+        height: auto;
+        max-height: 80vh;
+        width: auto;
+        max-width: 100%;
+      }
 
-			figure{
-				
-				// default
-				img{
-					height: auto;
-					max-height: 80vh;
-					width: auto;
-					max-width: 100%;
-				}
+      figcaption {
+        @include font-size-13;
+        color: $text-color-light;
+        margin-top: $baseline * 1;
+      }
 
-				figcaption{
-					@include font-size-13;
-					color: $text-color-light;
-					margin-top: $baseline*1;
-				}
+      &.figure-logo {
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        margin: 0;
 
-				&.figure-logo{
-					display: inline-block;
-				    vertical-align: middle;
-					text-align: center;
-					margin: 0;
+        figcaption {
+          display: none;
+        }
+      }
 
-					figcaption{ display: none;}
-				}
-				
-				&.illustration{
-					width: 100%;
-					display: inline-block;
-					padding: $baseline*3  $baseline*6;
-					text-align: center; 
-				}
-			}
+      &.illustration {
+        width: 100%;
+        display: inline-block;
+        padding: $baseline * 3 $baseline * 6;
+        text-align: center;
+      }
+    }
 
-			.vignette{
-				
-				text-align: center;
-				display: block;
-				vertical-align: middle;	
+    .vignette {
+      text-align: center;
+      display: block;
+      vertical-align: middle;
 
-				&.container_vignette-inline{
+      &.container_vignette-inline {
+        display: inline-block !important;
 
-					display: inline-block !important;
+        img {
+          max-width: 300px;
+          max-height: 300px;
+        }
+      }
+      &.container_vignette-block {
+        min-width: 300px;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      &.container_serie {
+        display: inline-block;
+        padding: 0 $unite 0 $unite;
+        margin: $baseline 0 $baseline * 3 0;
+        width: 50%;
+        max-height: $baseline * 10;
+        vertical-align: top;
+        overflow: hidden;
+      }
 
-					img{
-						max-width: 300px;
-						max-height: 300px;
-					}
-				}
-				&.container_vignette-block{
-					min-width: 300px;
-					width: 50%;
-					margin-left: auto;
-					margin-right: auto;
-				}					
-				&.container_serie{
-					display: inline-block;
-					padding: 0 $unite 0 $unite;
-					margin:  $baseline 0 $baseline*3 0;
-					width: 50%;
-					max-height: $baseline*10;
-					vertical-align: top;
-					overflow: hidden;
-				}
-						
-				label{
-					position: absolute;
-					height: 100%;
-					width: 100%;
-					display: block;
-					left: 50%;
-					transform: translateX(-50%);
-					cursor: pointer;
-					z-index: 8;
+      label {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        display: block;
+        left: 50%;
+        transform: translateX(-50%);
+        cursor: pointer;
+        z-index: 8;
 
-					&:after{
-						content: "\26f6\00FE0E";
-						font-family: $font-symbol;
-						top: $baseline;
-						left: calc(100% - 15px);
-						transform: translate(-50%);
-						position: absolute;
-						opacity: 0;
-						font-size: 30px;
-						color: $redlab;						
-						transition: none;
-						line-height: 0;
-					}
+        &:after {
+          content: "\26f6\00FE0E";
+          font-family: $font-symbol;
+          top: $baseline;
+          left: calc(100% - 15px);
+          transform: translate(-50%);
+          position: absolute;
+          opacity: 0;
+          font-size: 30px;
+          color: $redlab;
+          transition: none;
+          line-height: 0;
+        }
 
-					&:hover:after{
-						opacity: 1;
-						//transition: .1s ease-in-out;
-						transition: none;	
-					}
-				}
+        &:hover:after {
+          opacity: 1;
+          //transition: .1s ease-in-out;
+          transition: none;
+        }
+      }
 
+      input:checked {
+        & + label {
+          z-index: 100;
+          width: 100vw;
+          height: 100vh;
+          position: fixed;
+          top: 0;
 
+          //background: $background-site;
+          opacity: 1;
 
-				input:checked {
+          &:after {
+            content: "✕\00FE0E";
+            top: $baseline * 2;
+            left: calc(100vw - #{$unite * 2});
+            opacity: 1;
+            color: $text-color;
+            transition: none;
+          }
+        }
 
-					& + label{
-						z-index: 100;
-						width: 100vw;
-						height: 100vh;
-						position: fixed;
-						top: 0;
+        & ~ figure {
+          z-index: 99;
+          position: fixed;
+          width: 100vw;
+          height: 100vh;
+          top: 0;
+          left: 0;
+          text-align: center;
 
-						//background: $background-site;
-						opacity: 1;
+          transition: 0.25s ease-in-out;
 
-						&:after{
-							content: "✕\00FE0E";
-							top: $baseline*2;
-							left: calc(100vw - #{$unite*2});
-							opacity: 1;
-							color: $text-color;
-							transition: none;						
+          &::before {
+            content: "";
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            position: absolute;
+            background: $background-site;
+            opacity: 0.8;
+          }
 
+          img {
+            width: auto !important;
+            max-width: 80vw;
+            max-height: 80vh;
+            top: 50%;
+            transform: translateY(-50%);
+          }
 
-						}					
-					}
+          figcaption {
+            width: 100%;
+            margin: auto;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(
+              rgba(255, 255, 255, 0) 0px,
+              #{$baseline},
+              #{$background-site} #{$baseline * 4}
+            );
+            color: $text-color;
 
-					& ~ figure{
+            overflow: inherit;
 
-						z-index: 99;
-						position: fixed;
-						width: 100vw;
-						height: 100vh;
-						top: 0;
-						left: 0;
-						text-align: center;
+            max-width: inherit;
+            max-height: $baseline * 2;
+            height: auto;
+            transition: 0.25s ease-in-out;
 
-						transition: .25s ease-in-out;						
+            @include text-overflow;
 
+            &:before {
+              content: "\276D";
+              position: absolute;
+              top: 0;
+              left: 50%;
+              transform: translateX(-50%) rotate(-90deg);
+              color: $text-color-light;
+            }
 
-						&::before{
-							content: "";
-							width: 100vw;
-							height: 100vh;
-							top: 0;
-							left: 0;
-							position: absolute;
-							background: $background-site;
-							opacity: .8;
-						}	
+            &:hover {
+              max-height: inherit;
+              height: auto;
+              transition: 0.25s ease-in-out;
+              text-overflow: inherit;
+              overflow: inherit;
+              white-space: normal;
 
-						img{
-							width: auto !important;
-							max-width: 80vw;
-							max-height: 80vh;
-							top: 50%;
-							transform: translateY(-50%);							
-						}
-
-
-						figcaption{
-							width: 100%;
-							margin: auto;
-							position: absolute;
-							bottom: 0;
-							left: 50%;
-							transform: translateX(-50%);
-							background: linear-gradient(rgba(255,255,255,0) 0px, #{$baseline}, #{$background-site} #{$baseline*4}) ;
-							color: $text-color;
-
-							overflow: inherit;
-
-							max-width: inherit;
-							max-height: $baseline*2;
-							height: auto;
-							transition: .25s ease-in-out;
-
-							@include text-overflow;
-
-							&:before{
-								content: "\276D";
-								position: absolute;
-								top: 0;
-								left: 50%;
-								transform: translateX(-50%) rotate(-90deg);
-								color: $text-color-light;
-							}
-
-							&:hover{
-								max-height: inherit;
-								height: auto;
-								transition: .25s ease-in-out;
-								text-overflow :inherit;
-								overflow: inherit;
-								white-space: normal;
-
-								&:before{
-									opacity: 0;
-								}
-
-							}
-						
-						}
-					}
-				}
-			}
-		}
-	}
+              &:before {
+                opacity: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

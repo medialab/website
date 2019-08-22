@@ -2,85 +2,83 @@
 //////// Footer desktop
 /////////////////////
 
-footer{
-
-    
-    .contact, .mentions{
-
-        color: $text-color-light;
-        a:hover{ color: $redlab;}
-
+footer {
+  .contact,
+  .mentions {
+    color: $text-color-light;
+    a:hover {
+      color: $redlab;
     }
+  }
 
-    .mentions a{
-        padding-top: $baseline;
-        @include linktext();
-       
+  .mentions a {
+    padding-top: $baseline;
+    @include linktext();
+  }
+
+  .contact {
+    li {
+      display: inline-block;
+      &:not(:last-of-type):after {
+        content: "/";
+        padding: 0 $unite;
+      }
     }
-
-    .contact{
-        li{
-                display: inline-block;
-                &:not(:last-of-type):after{
-                    content: "/";
-                    padding: 0 $unite;
-                }
-        }           
-    }
-
+  }
 }
 
 @include for-size(desktop) {
-    footer{
-        height: $height-footer;
-        width: 100vw;
-        background: $background-site;
-        left: 0;
-        padding: 0 $margins-desktop;
-        border-top: $border;
-        z-index: 99;   
-        
-        #container-footer{
-            max-width: $max-width-main + $margins-desktop*2;
-            margin: 0 auto;
-        }
+  footer {
+    height: $height-footer;
+    width: 100vw;
+    background: $background-site;
+    left: 0;
+    padding: 0 $margins-desktop;
+    border-top: $border;
+    z-index: 99;
 
-        @include font-size-16();
-
-        .mentions{ 
-            margin-top: $baseline*2;
-            margin-bottom: $baseline;
-        }
-
-
-     
-
+    #container-footer {
+      max-width: $max-width-main + $margins-desktop * 2;
+      margin: 0 auto;
     }
-    //.page-home footer{ background: $background-site;}
+
+    @include font-size-16();
+
+    .mentions {
+      margin-top: $baseline * 2;
+      margin-bottom: $baseline;
+    }
+  }
+  //.page-home footer{ background: $background-site;}
 }
 
-@media screen and (min-width: 1650px){
-    footer .contact, footer .mentions{ margin-left: $margins-desktop; }
+@media screen and (min-width: 1650px) {
+  footer .contact,
+  footer .mentions {
+    margin-left: $margins-desktop;
+  }
 }
-
 
 /////////////////////
 //////// Footer phone
 /////////////////////
 
 @include for-size(phone) {
-    footer{
-        width: 100vw;
-        padding: $baseline*2 $margins-phone;
-        border-top: $border;
-        top: -1px;
+  footer {
+    width: 100vw;
+    padding: $baseline * 2 $margins-phone;
+    border-top: $border;
+    top: -1px;
 
-        @include font-size-13-phone();
+    @include font-size-13-phone();
 
-        .adresse, .mentions{ color: $text-color-light; }
-
-
-        .contact{  margin-top: $baseline; }
+    .adresse,
+    .mentions {
+      color: $text-color-light;
     }
-}
 
+    .contact {
+      margin-top: $baseline;
+    }
+  }
+}

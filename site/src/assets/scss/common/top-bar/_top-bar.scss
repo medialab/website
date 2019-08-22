@@ -2,36 +2,37 @@
 //////// Top bar
 /////////////////////
 
-#topbar{
-    input{ display: none; }
-    
-    label{
-        svg, img{ 
-            width: $unite-phone*3;
-            fill: $text-color;
-        }
-        position: fixed;
-        top: $margins-phone;
-        right: $margins-phone;
-        z-index: 100;
-    } 
+#topbar {
+  input {
+    display: none;
+  }
 
-    li[data-type="actualite"]::before{
-        content: $actualites;
-        font-family: $font-symbol;
+  label {
+    svg,
+    img {
+      width: $unite-phone * 3;
+      fill: $text-color;
     }
-    li[data-type="production"]::before{
-        content: $productions;
-        font-family: $font-symbol;
-    }
-    li[data-type="activite"]::before{
-        content: $activites;
-        font-family: $font-symbol;
-    }
+    position: fixed;
+    top: $margins-phone;
+    right: $margins-phone;
+    z-index: 100;
+  }
 
-
+  li[data-type="actualite"]::before {
+    content: $actualites;
+    font-family: $font-symbol;
+  }
+  li[data-type="production"]::before {
+    content: $productions;
+    font-family: $font-symbol;
+  }
+  li[data-type="activite"]::before {
+    content: $activites;
+    font-family: $font-symbol;
+  }
 }
 
-#topbar a.active{
-    font-weight: bold;
+#topbar a.active {
+  font-weight: bold;
 }

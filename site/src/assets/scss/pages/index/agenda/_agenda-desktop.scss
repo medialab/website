@@ -3,14 +3,8 @@
 /////////////////////
 
 @include for-size(desktop) {
-
-    #agenda {
-
-       
-
-        article{
-
-        } /* end article */
-    } /* end #agenda */
-
-}/* end query desktop */
+  #agenda {
+    article {
+    } /* end article */
+  } /* end #agenda */
+} /* end query desktop */

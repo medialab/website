@@ -1,33 +1,32 @@
 /////////////////////
-//////// Phone 
+//////// Phone
 /////////////////////
 
 @include for-size(phone) {
-	.page-about{
-		main{
-			
-			margin-top: $height-top-bar-phone;
+  .page-about {
+    main {
+      margin-top: $height-top-bar-phone;
 
-			#about-contenu{ padding: 0 $margins-phone; }
+      #about-contenu {
+        padding: 0 $margins-phone;
+      }
 
-			hgroup{
-					padding-top: $baseline*1.5;
-					padding-bottom: $baseline*1;
-				h1{
-					@include font-size-27();
-					font-weight: bold;
-					padding: $baseline 0 $baseline*3 0;
-				}
+      hgroup {
+        padding-top: $baseline * 1.5;
+        padding-bottom: $baseline * 1;
+        h1 {
+          @include font-size-27();
+          font-weight: bold;
+          padding: $baseline 0 $baseline * 3 0;
+        }
 
-				h2{ 
-					@include font-size-27();
-					padding-bottom: $baseline*1.5; 
-				}
-			}
+        h2 {
+          @include font-size-27();
+          padding-bottom: $baseline * 1.5;
+        }
+      }
 
-		
-
-			/*h3{
+      /*h3{
 				padding-top: $baseline*3;
 				margin-bottom: $baseline*2.5;
 				@include font-size-27();
@@ -37,21 +36,20 @@
 			p{
 				@include font-size-20;
 			}*/
-		}
-		
-		#inshort{
-			display: none;
-		}	
+    }
 
+    #inshort {
+      display: none;
+    }
 
-		////////////////////////
-		////// Hidden part /////
-		////////////////////////
+    ////////////////////////
+    ////// Hidden part /////
+    ////////////////////////
 
-		.minified {
-			p{
-				@include font-size-20;
-			}	
-		}
-	}
+    .minified {
+      p {
+        @include font-size-20;
+      }
+    }
+  }
 }

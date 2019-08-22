@@ -2,91 +2,94 @@
 //////// Top bar mobile
 /////////////////////
 
-
 @include for-size(phone) {
+  #topbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    color: $text-color;
+    @include font-size-20();
+    background-color: $background-site;
+    border-bottom: $border;
+    z-index: 99;
+    height: $topbar-phone + 1px;
 
-    #topbar{
-        position: fixed;
-        width: 100%;
-        top: 0;
-        left: 0;
-        color: $text-color;
-        @include font-size-20();
-        background-color: $background-site;
-        border-bottom: $border;
-        z-index: 99;
-        height: $topbar-phone + 1px;
+    label span svg {
+      width: $unite * 1.5;
+      height: $unite * 1.5;
+    }
+  }
 
-        label span svg{
-            width: $unite*1.5;
-            height: $unite*1.5;
-        }
+  #topbar-content {
+    background-color: $background-site;
+    width: 100%;
+    height: $height-top-bar-phone;
+    overflow: hidden;
+    transition: height 0.5s;
 
+    #logo-medialab {
+      padding: $margins-phone;
+      height: $height-top-bar-phone;
+      a {
+        display: block;
+        height: 100%;
+        padding: 4px 0;
+      }
+      svg {
+        height: $height-top-bar-phone - $margins-phone * 2 - 10px;
+        fill: $text-color;
+      }
     }
 
-    #topbar-content{
-        background-color: $background-site;
-        width: 100%;
-        height: $height-top-bar-phone;
-        overflow: hidden;
-        transition: height 0.5s;
-
-        #logo-medialab{
-            padding: $margins-phone;
-            height:$height-top-bar-phone;
-            a{
-                display: block;
-                height: 100%;
-                padding: 4px 0; 
-            }
-            svg{
-                height: $height-top-bar-phone - $margins-phone*2 - 10px;
-                fill: $text-color;   
-            }  
+    #nav-option {
+      border-top: $border;
+      ul {
+        padding: 0 $margins-phone;
+        li {
+          padding-top: $baseline;
+          padding-bottom: $baseline;
+          border-bottom: $border-very-light;
+          padding-left: $unite * 1.2;
+          &::before {
+            display: block;
+            width: $unite * 0.75;
+            position: absolute;
+            left: 0;
+            text-align: center;
+          }
         }
-
-        #nav-option{
-            border-top: $border;
-            ul{
-                padding: 0 $margins-phone;
-                li{
-                    padding-top: $baseline;
-                    padding-bottom: $baseline;
-                    border-bottom: $border-very-light;
-                    padding-left: $unite*1.2;
-                    &::before{ 
-                        display: block;
-                        width: $unite*0.75;
-                        position: absolute; 
-                        left: 0;
-                        text-align: center;
-                    }
-                }
-            }
-        }
-
-        #langue{
-            padding-top: $baseline*2;
-            padding-left: $unite*1.2 +  $margins-phone;
-            margin-bottom: 20vh;
-            color: $text-color-light;
-        }
+      }
     }
 
-
-    #topbar{
-        label{
-            .span-nochecked{ display: block; }
-            .span-checked{ display: none; }
-        }
-        input:checked + label{
-            .span-nochecked{ display: none; }
-            .span-checked{ display: block; }
-        }
-        input:checked ~  #topbar-content{
-            height: 100vh;
-            overflow-y: scroll;
-        }
+    #langue {
+      padding-top: $baseline * 2;
+      padding-left: $unite * 1.2 + $margins-phone;
+      margin-bottom: 20vh;
+      color: $text-color-light;
     }
-    
+  }
+
+  #topbar {
+    label {
+      .span-nochecked {
+        display: block;
+      }
+      .span-checked {
+        display: none;
+      }
+    }
+    input:checked + label {
+      .span-nochecked {
+        display: none;
+      }
+      .span-checked {
+        display: block;
+      }
+    }
+    input:checked ~ #topbar-content {
+      height: 100vh;
+      overflow-y: scroll;
+    }
+  }
 }

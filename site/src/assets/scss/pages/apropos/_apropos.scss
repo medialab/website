@@ -1,7 +1,7 @@
 /* all */
 
-.page-about{
-	/*
+.page-about {
+  /*
 
 	////////////////////////
 	//////    color    /////
@@ -44,39 +44,59 @@
 
 	/* Masquer image dans Navbar */
 
-	////////////////////////
-	////// Hidden part /////
-	////////////////////////
+  ////////////////////////
+  ////// Hidden part /////
+  ////////////////////////
 
-	#about-contenu{ padding-bottom: 20vh;}
-	
-	.minified { display: none; }
+  #about-contenu {
+    padding-bottom: 20vh;
+  }
 
-	.minify{
-		& + label h3{
-			&:before{content:"⋁"; padding-right: 10px !important;}
-		}
-		&:checked + label h3{
-			&:before{content:"⋀";}
-		}
-	}
+  .minified {
+    display: none;
+  }
 
-	input.minify{display: none;}
-	input.minify{cursor:pointer; &+label{cursor:pointer; padding: 0 $unite 0 0;}}
-	input.minify:checked ~ .minified{display: block !important;}
+  .minify {
+    & + label h3 {
+      &:before {
+        content: "⋁";
+        padding-right: 10px !important;
+      }
+    }
+    &:checked + label h3 {
+      &:before {
+        content: "⋀";
+      }
+    }
+  }
 
-	.about-contenu{
-		p{ margin-bottom: $baseline*2; }
+  input.minify {
+    display: none;
+  }
+  input.minify {
+    cursor: pointer;
+    & + label {
+      cursor: pointer;
+      padding: 0 $unite 0 0;
+    }
+  }
+  input.minify:checked ~ .minified {
+    display: block !important;
+  }
 
-		a{
-			@include linktext();
-			transition: .25s linear;
+  .about-contenu {
+    p {
+      margin-bottom: $baseline * 2;
+    }
 
-			&:hover{
-				color: $redlab;
-				text-decoration-color: $redlab;
+    a {
+      @include linktext();
+      transition: 0.25s linear;
 
-			}
-		}
-	}
+      &:hover {
+        color: $redlab;
+        text-decoration-color: $redlab;
+      }
+    }
+  }
 }

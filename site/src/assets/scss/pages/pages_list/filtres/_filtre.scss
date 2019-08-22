@@ -2,183 +2,188 @@
 //////// Filtres
 /////////////////////
 
+.type_title {
+  @include font-size-16();
+  text-transform: uppercase;
+  font-weight: 600;
+  z-index: 15;
+  cursor: pointer;
 
-
-.type_title{
-	@include font-size-16();
-	text-transform: uppercase;
-	font-weight: 600;
-	z-index: 15;
-	cursor: pointer;
-
-	@media print{ margin-bottom: $baseline; }
+  @media print {
+    margin-bottom: $baseline;
+  }
 }
 
-.body-page:not(.page-news-list ) .type_title:after{
-		content: "ⓘ";
-		padding-left: $unite/3;
-		color: $text-color-light;
-		text-transform: lowercase;
-		font-weight: 100;
-		cursor: help;
-		display: inline-block;
-		position: absolute; 
-		right: 0;
-		@media print{ display: none; }
-	}
-
-.accroche-title-list{
-    box-sizing: content-box!important;
-    z-index: 14;
-	background-color: $background-site;
-	@include font-size-16;
-	@media screen and (min-width: 1200px){ @include font-size-20; } 
-	overflow: hidden;
-	max-width: 1325px;
-	@media print{ margin-bottom: $baseline*3; }
+.body-page:not(.page-news-list) .type_title:after {
+  content: "ⓘ";
+  padding-left: $unite/3;
+  color: $text-color-light;
+  text-transform: lowercase;
+  font-weight: 100;
+  cursor: help;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  @media print {
+    display: none;
+  }
 }
 
+.accroche-title-list {
+  box-sizing: content-box !important;
+  z-index: 14;
+  background-color: $background-site;
+  @include font-size-16;
+  @media screen and (min-width: 1200px) {
+    @include font-size-20;
+  }
+  overflow: hidden;
+  max-width: 1325px;
+  @media print {
+    margin-bottom: $baseline * 3;
+  }
+}
 
+.aside-filters {
+  .filter-group {
+    border-bottom: $border-very-light;
+    padding: $baseline 0;
 
-.aside-filters{
+    label {
+      @include font-size-13;
+      padding: $baseline/2 0;
+    }
+  }
 
-	.filter-group{
-		border-bottom: $border-very-light;
-		padding: $baseline 0;
-
-		label{ 
-			@include font-size-13;
-			padding: $baseline/2 0;
-		}
-	}
-	
-	.filter-group > h1{ 
-		@include font-size-13-uppercase(); 
-		padding-bottom: $baseline/2;
-	}
-
-
+  .filter-group > h1 {
+    @include font-size-13-uppercase();
+    padding-bottom: $baseline/2;
+  }
 }
 
 /* Search input */
 
-#search{
-	border-bottom: $border-very-light;
-	height: $baseline*2.5;
-	display: none;
-	label{
-		@include font-size-16;
-		placehorlder{ @include font-size-16; }
-		position: absolute;
-		top: $baseline*0.25;
-		left: 0;
-		svg{ 
-			fill: $text-color;
-			width: $unite*1.25;
-			height: $unite*1.25;
-			padding: $unite*0.25;
-		}
-	}
-	input{
-		margin-left: $unite*1.5;
-		width: calc(100% - #{$unite*1.5});
-		height: 100%;
-		border: none;
-	}
-	
+#search {
+  border-bottom: $border-very-light;
+  height: $baseline * 2.5;
+  display: none;
+  label {
+    @include font-size-16;
+    placehorlder {
+      @include font-size-16;
+    }
+    position: absolute;
+    top: $baseline * 0.25;
+    left: 0;
+    svg {
+      fill: $text-color;
+      width: $unite * 1.25;
+      height: $unite * 1.25;
+      padding: $unite * 0.25;
+    }
+  }
+  input {
+    margin-left: $unite * 1.5;
+    width: calc(100% - #{$unite * 1.5});
+    height: 100%;
+    border: none;
+  }
 }
 
 /* span arrows */
 
 .link-productions-sort li a span,
-#checkbox_filtre_year + label span{
-
-	display: block; 
-	width: $baseline*0.75;
-	height: $baseline*0.75;
-	margin-top: $baseline/2;
-	position: absolute;
-	// text-align: right;
-	// right: -5px;
-	right: 0;
-	top: 0;
+#checkbox_filtre_year + label span {
+  display: block;
+  width: $baseline * 0.75;
+  height: $baseline * 0.75;
+  margin-top: $baseline/2;
+  position: absolute;
+  // text-align: right;
+  // right: -5px;
+  right: 0;
+  top: 0;
 }
 
 @include for-size(desktop) {
-	.link-productions-sort li a:hover span,
-	#checkbox_filtre_year:checked + label span,
-	#checkbox_filtre_year + label:hover span{
+  .link-productions-sort li a:hover span,
+  #checkbox_filtre_year:checked + label span,
+  #checkbox_filtre_year + label:hover span {
+    svg {
+      transform: rotate(90deg);
+      transform-origin: center center;
+    }
 
-		svg{
-			transform: rotate(90deg);
-			transform-origin: center center;
-		}
-		
-		top: 2px;
-	}
+    top: 2px;
+  }
 }
-
-
-
 
 /* go-to-year */
 
-#checkbox_filtre_year ~ ul{ max-height: 0vh; }
-#checkbox_filtre_year:checked ~ ul{ max-height: 100vh; }
-
-
-.go-to-year{  
-
-	@include font-size-13;
-
-	ul{ width: 100%; }
-	ul li{ width: 33%; }
-	li:nth-of-type(3n){ border-right: none; }
-
-	#checkbox_filtre_year + label{
-		position: absolute;
-		width: 100%;
-		height: $baseline*2.5;
-		z-index:99;
-		cursor: pointer;
-	}
-
-
-	p{
-		width: 100%;
-		padding: $baseline/2 0;
-		border-bottom: $border-very-light;
-	}
-
-	.current-year{
-		font-weight: 600;
-		position: absolute; 
-		right: $baseline*1.5;
-	}
-
-	ul{
-		background-color: $background-site;       
-		@include font-size-13;
-		overflow: hidden;
-		
-		li{
-			display: inline-block;              
-			padding-bottom: $baseline/2;
-			padding-top: $baseline/2;
-			border-right: $border-very-light;
-			border-bottom: $border-very-light;
-			text-align: center;
-			&:hover{ font-weight: 600; } 
-		}
-		
-	}
-
+#checkbox_filtre_year ~ ul {
+  max-height: 0vh;
+}
+#checkbox_filtre_year:checked ~ ul {
+  max-height: 100vh;
 }
 
+.go-to-year {
+  @include font-size-13;
 
-@media print{
-	#toggle-filtre-phone-label,
-	#radio-phone-close + label,
-	.accroche-title-list h1,
-	.aside-filters{ display: none!important; }
+  ul {
+    width: 100%;
+  }
+  ul li {
+    width: 33%;
+  }
+  li:nth-of-type(3n) {
+    border-right: none;
+  }
+
+  #checkbox_filtre_year + label {
+    position: absolute;
+    width: 100%;
+    height: $baseline * 2.5;
+    z-index: 99;
+    cursor: pointer;
+  }
+
+  p {
+    width: 100%;
+    padding: $baseline/2 0;
+    border-bottom: $border-very-light;
+  }
+
+  .current-year {
+    font-weight: 600;
+    position: absolute;
+    right: $baseline * 1.5;
+  }
+
+  ul {
+    background-color: $background-site;
+    @include font-size-13;
+    overflow: hidden;
+
+    li {
+      display: inline-block;
+      padding-bottom: $baseline/2;
+      padding-top: $baseline/2;
+      border-right: $border-very-light;
+      border-bottom: $border-very-light;
+      text-align: center;
+      &:hover {
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+@media print {
+  #toggle-filtre-phone-label,
+  #radio-phone-close + label,
+  .accroche-title-list h1,
+  .aside-filters {
+    display: none !important;
+  }
 }

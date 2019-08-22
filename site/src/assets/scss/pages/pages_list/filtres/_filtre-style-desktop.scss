@@ -1,83 +1,85 @@
-
-
-$height-desktop-filter-year-open: $baseline*10.5 - 4px;
+$height-desktop-filter-year-open: $baseline * 10.5 - 4px;
 $height-desktop-filter-title: $baseline * 4;
-$height-gotoyear-desktop: $baseline*2.5;
-$first-filter-desktop: $height-top-bar + $height-desktop-filter-title + $height-gotoyear-desktop - 3px;
+$height-gotoyear-desktop: $baseline * 2.5;
+$first-filter-desktop: $height-top-bar + $height-desktop-filter-title +
+  $height-gotoyear-desktop - 3px;
 
 $height-filtres-actu: $baseline * 3.5;
 
-
-
-
-
 @include for-size(desktop) {
+  #toggle-filtre-phone-label,
+  #radio-phone-filters + label,
+  #radio-phone-infos + label,
+  #radio-phone-close + label,
+  .aside-title {
+    display: none;
+  }
 
-    #toggle-filtre-phone-label, 
-    #radio-phone-filters + label, 
-    #radio-phone-infos + label, 
-    #radio-phone-close + label, 
-    .aside-title{ display: none; }
-
-    .type_title{ 
-        position: fixed; 
-        top: $height-top-bar; 
-        border-bottom: $border;
-        padding-top: $baseline * 1.25;
-        height: $height-desktop-filter-title;
-        &:hover{ color: $redlab; }
-    } 
-
-    .accroche-title-list{
-        position: fixed;
-        top: -100vh;
-        transition: top .3s;   
-        padding-right: $margins-desktop;
-        margin-right: $margins-desktop;
-        overflow: hidden;
-        transition: top .3s;
-        padding-top: $baseline*0.75;
-        padding-bottom: $baseline;
-        border-bottom: $border-redlab;
-        color: $redlab;
-        h1{ display: none; }
+  .type_title {
+    position: fixed;
+    top: $height-top-bar;
+    border-bottom: $border;
+    padding-top: $baseline * 1.25;
+    height: $height-desktop-filter-title;
+    &:hover {
+      color: $redlab;
     }
+  }
 
-    .type_title:hover ~ .accroche-title-list {
-            top: $height-top-bar;  
-    } 
-
-    .aside-filters{
-        position: fixed; 
-        top: $height-top-bar + $height-desktop-filter-title; 
-        z-index: 99;
+  .accroche-title-list {
+    position: fixed;
+    top: -100vh;
+    transition: top 0.3s;
+    padding-right: $margins-desktop;
+    margin-right: $margins-desktop;
+    overflow: hidden;
+    transition: top 0.3s;
+    padding-top: $baseline * 0.75;
+    padding-bottom: $baseline;
+    border-bottom: $border-redlab;
+    color: $redlab;
+    h1 {
+      display: none;
     }
+  }
 
-  
+  .type_title:hover ~ .accroche-title-list {
+    top: $height-top-bar;
+  }
 
+  .aside-filters {
+    position: fixed;
+    top: $height-top-bar + $height-desktop-filter-title;
+    z-index: 99;
+  }
 }
 
-
-
-
-@media screen and (min-width: 700px) and (max-width: 1080px){
-    .type_title, .aside-filters{ width: $logo-column-medium - $margins-desktop; }
-    .accroche-title-list{ left: $logo-column-medium + $margins-desktop ; }
-}  
-
-@media screen and (min-width: 1080px){
-    .type_title, .aside-filters{ width: $logo-column - $margins-desktop; }
-    .accroche-title-list{ left: $logo-column + $margins-desktop ; }
-} 
-
-
-@media screen and (min-width: 1650px){
-    .type_title, .aside-filters{ left: calc((100vw - 1600px)/2); }
-    .accroche-title-list{ left: calc((100vw - 1600px)/2 + #{$logo-column}); }
+@media screen and (min-width: 700px) and (max-width: 1080px) {
+  .type_title,
+  .aside-filters {
+    width: $logo-column-medium - $margins-desktop;
+  }
+  .accroche-title-list {
+    left: $logo-column-medium + $margins-desktop;
+  }
 }
 
+@media screen and (min-width: 1080px) {
+  .type_title,
+  .aside-filters {
+    width: $logo-column - $margins-desktop;
+  }
+  .accroche-title-list {
+    left: $logo-column + $margins-desktop;
+  }
+}
 
-
-
-
-
+@media screen and (min-width: 1650px) {
+  .type_title,
+  .aside-filters {
+    left: calc((100vw - 1600px) / 2);
+  }
+  .accroche-title-list {
+    left: calc((100vw - 1600px) / 2 + #{$logo-column});
+  }
+}

@@ -1,109 +1,116 @@
-.page-people{
-
-
-
-	#biographie{
-
-		/* HEADER --------------------------------------------------------------- 
+.page-people {
+  #biographie {
+    /* HEADER --------------------------------------------------------------- 
 		 ------------------------------------------------------------------------ */
-		
-		figure{
-			max-height: auto;
-			overflow: hidden;
-	
-			img{
-				width: 100%;
-				filter: grayscale(1);
-			}
-			figcaption{
-				margin-top: $baseline*1;
-			}
 
-			&.noImg div{
-				transform: translateX(-50%);
-				left: 50%;
-				opacity: .3;
-				position: absolute;
-			}			
-		}
-	
-		header{
-	
-			.status{
-				margin-top: $baseline/2;
-				font-style: italic;					
-			
-				&.en:not(:empty){
-					&::before{ content: "“"; }
-					&::after{ content: "”"; }
-				}
+    figure {
+      max-height: auto;
+      overflow: hidden;
 
-				&.fr:not(:empty){
-					&::before{ content: "« "; }
-					&::after{ content: " »"; }
-				}
-			}
+      img {
+        width: 100%;
+        filter: grayscale(1);
+      }
+      figcaption {
+        margin-top: $baseline * 1;
+      }
 
-			.bandeau{ 
-				border-top: $border-very-light;
-				border-bottom: $border-very-light;
-				
-				p{  color: $text-color-light; @include font-size-16(); }
-				[data-type="role"]{ color: $redlab; }
-			}
-		
-			.contact {
+      &.noImg div {
+        transform: translateX(-50%);
+        left: 50%;
+        opacity: 0.3;
+        position: absolute;
+      }
+    }
 
-				border-bottom: $border-very-light;
+    header {
+      .status {
+        margin-top: $baseline/2;
+        font-style: italic;
 
-				li{ 
-					@include font-size-16();
-					color: $text-color-light;
+        &.en:not(:empty) {
+          &::before {
+            content: "“";
+          }
+          &::after {
+            content: "”";
+          }
+        }
 
-					a{ @include linktext(); }
+        &.fr:not(:empty) {
+          &::before {
+            content: "« ";
+          }
+          &::after {
+            content: " »";
+          }
+        }
+      }
 
-					&[data-type="Mail"] p{ font-family: $font-symbol}
-				}
-			}
-		}
+      .bandeau {
+        border-top: $border-very-light;
+        border-bottom: $border-very-light;
 
+        p {
+          color: $text-color-light;
+          @include font-size-16();
+        }
+        [data-type="role"] {
+          color: $redlab;
+        }
+      }
 
-		/* CONTENU --------------------------------------------------------------- 
+      .contact {
+        border-bottom: $border-very-light;
+
+        li {
+          @include font-size-16();
+          color: $text-color-light;
+
+          a {
+            @include linktext();
+          }
+
+          &[data-type="Mail"] p {
+            font-family: $font-symbol;
+          }
+        }
+      }
+    }
+
+    /* CONTENU --------------------------------------------------------------- 
 		 ------------------------------------------------------------------------ */
-		#container-biographie{
-		
-			@include flex();
-			@include flex-direction(column);
+    #container-biographie {
+      @include flex();
+      @include flex-direction(column);
 
-			.biographie-content{
+      .biographie-content {
+        @include flex-order(1);
 
-			    @include flex-order(1); 
+        a {
+          @include linktext();
+          transition: 0.25s linear;
 
-				a{
-					@include linktext();
-					transition: .25s linear;
+          &:hover {
+            color: $redlab;
+            text-decoration-color: $redlab;
+          }
+        }
+      }
+    }
+  }
 
-					&:hover{
-						color: $redlab;
-						text-decoration-color: $redlab;
-					}
-				}
-			}
-		}
-
-	}
-
-	/* HIGHLIGHT --------------------------------------------------------------- 
+  /* HIGHLIGHT --------------------------------------------------------------- 
 		------------------------------------------------------------------------ */
 
-	#highlights{
-		width: 100%;
-		overflow: hidden;
-		position: relative;
+  #highlights {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
 
-		ul:first-of-type { 
-				border-top: $border; 
-				padding-top: 1px;
-		}
-	}
+    ul:first-of-type {
+      border-top: $border;
+      padding-top: 1px;
+    }
+  }
 }

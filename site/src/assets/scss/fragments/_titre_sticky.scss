@@ -1,119 +1,129 @@
+#titre-sticky {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 100vw;
+  height: $height-sticky;
+  background-color: $background-site;
+  z-index: 9; // So gets upon fullscreen Image Process in nav
+  white-space: nowrap;
+  @include for-size(desktop) {
+    padding: 0 $margins-desktop;
+    border-bottom: $border-very-light;
+  }
 
+  #container-titre-sticky {
+    max-width: $max-width-main;
+    margin: 0 auto;
+  }
 
+  #logo-sticky,
+  p {
+    display: inline-block;
+    vertical-align: top;
+  }
 
-#titre-sticky{
-	
-	position: fixed;
-	top: 0px;
-	left: 0;
-	width: 100vw;
-	height: $height-sticky;
-	background-color: $background-site;
-	z-index: 9; // So gets upon fullscreen Image Process in nav
-	white-space: nowrap;
-	@include for-size(desktop) { 
-		padding: 0 $margins-desktop;
-		border-bottom: $border-very-light; 
-	}
-
-	#container-titre-sticky{
-		max-width: $max-width-main;
-		margin: 0 auto;
-	
-	}
-
-	#logo-sticky, p{ 
-		display: inline-block;
-		vertical-align: top;
-	}
-
-	#logo-sticky{
-		@media screen and (min-width: 700px) and (max-width: 1080px){ width: $logo-column-medium; }
-		@media screen and (min-width: 1080px){ width: $logo-column; }
-		
-		svg{
-			width: $logo-column/3 + $unite/2;
-			margin-top: calc(#{$unite} + 5px);
-			margin-bottom: 5px;
-			fill: $text-color; 
-		}
-	}
-
-	p{
-		@include for-size(desktop) { 
-			margin-top: $baseline*2; 
-			@include font-size-20();
-		}	
-		width: 100%;
-		@media screen and (min-width: 700px) and (max-width: 1080px){ width: calc(100% - #{$logo-column-medium}); }
-		@media screen and (min-width: 1080px){width: calc(100% - #{$logo-column}); max-width: $max-width-article; }
-		max-width: $max-width-article;
-		
-		[data-icon]::before{ 
-			padding-right: $unite/4;
-		}
-		.title{ 
-			display: inline-block;
-			@include text-overflow(ellipsis);	
-			@media screen and (max-width: 700px){ width: calc(100% - 110px); }
-			@media screen and (min-width: 700px){ width: calc(100% - 170px); }
-			max-width:  $max-width-article - 150px;
-			vertical-align: top;
-		}
-		
-	}
-
-
-	.personne:before, .title:before{		
-		content: "/";
-		padding-left: $unite/2;
-		padding-right: $unite/2;
-	} 
-	span:hover{ color: $text-color-light; }
-	.title:hover:before{ color: $text-color;}
-
-	
-}	
-
-
-
-	
-@include for-size(phone) {
-
-    .page-production main, 
-	.page-news main, 
-	.page-activity main{
-        padding-top: $height-top-bar-phone + $baseline*3.5;
-		
+  #logo-sticky {
+    @media screen and (min-width: 700px) and (max-width: 1080px) {
+      width: $logo-column-medium;
     }
-	
-	
-	.page-people main{
-		padding-top: $height-top-bar-phone;
-	}
+    @media screen and (min-width: 1080px) {
+      width: $logo-column;
+    }
 
-	.page-people #titre-sticky,
-	.page-production #titre-sticky, 
-	.page-news #titre-sticky, 
-	.page-activity #titre-sticky{
-		// display: none;
-		height: $baseline*3.5;
-		top: $height-top-bar-phone;
-		border-bottom: $border; 
-		padding: $baseline $margins-phone;
-		overflow: hidden;
-		z-index: 95;
-		#logo-sticky{ display: none;}
-		p{ @include font-size-16-phone(); }
-	}
+    svg {
+      width: $logo-column/3 + $unite/2;
+      margin-top: calc(#{$unite} + 5px);
+      margin-bottom: 5px;
+      fill: $text-color;
+    }
+  }
 
-	.page-people #titre-sticky{
-		top: 0px;
-		.link-page-team{ display: none;}
-		.personne{
-			&:before{ display: none; }
-		}
+  p {
+    @include for-size(desktop) {
+      margin-top: $baseline * 2;
+      @include font-size-20();
+    }
+    width: 100%;
+    @media screen and (min-width: 700px) and (max-width: 1080px) {
+      width: calc(100% - #{$logo-column-medium});
+    }
+    @media screen and (min-width: 1080px) {
+      width: calc(100% - #{$logo-column});
+      max-width: $max-width-article;
+    }
+    max-width: $max-width-article;
 
-	}
+    [data-icon]::before {
+      padding-right: $unite/4;
+    }
+    .title {
+      display: inline-block;
+      @include text-overflow(ellipsis);
+      @media screen and (max-width: 700px) {
+        width: calc(100% - 110px);
+      }
+      @media screen and (min-width: 700px) {
+        width: calc(100% - 170px);
+      }
+      max-width: $max-width-article - 150px;
+      vertical-align: top;
+    }
+  }
 
+  .personne:before,
+  .title:before {
+    content: "/";
+    padding-left: $unite/2;
+    padding-right: $unite/2;
+  }
+  span:hover {
+    color: $text-color-light;
+  }
+  .title:hover:before {
+    color: $text-color;
+  }
+}
+
+@include for-size(phone) {
+  .page-production main,
+  .page-news main,
+  .page-activity main {
+    padding-top: $height-top-bar-phone + $baseline * 3.5;
+  }
+
+  .page-people main {
+    padding-top: $height-top-bar-phone;
+  }
+
+  .page-people #titre-sticky,
+  .page-production #titre-sticky,
+  .page-news #titre-sticky,
+  .page-activity #titre-sticky {
+    // display: none;
+    height: $baseline * 3.5;
+    top: $height-top-bar-phone;
+    border-bottom: $border;
+    padding: $baseline $margins-phone;
+    overflow: hidden;
+    z-index: 95;
+    #logo-sticky {
+      display: none;
+    }
+    p {
+      @include font-size-16-phone();
+    }
+  }
+
+  .page-people #titre-sticky {
+    top: 0px;
+    .link-page-team {
+      display: none;
+    }
+    .personne {
+      &:before {
+        display: none;
+      }
+    }
+  }
 }

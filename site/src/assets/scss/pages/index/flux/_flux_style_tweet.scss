@@ -5,21 +5,19 @@
 // all queries
 
 #tweet {
-
-    .divers{
-        .date{
-            padding-left: $unite/2;
-            margin-left: $unite/2;
-            border-left: $border-very-light;
-        }
+  .divers {
+    .date {
+      padding-left: $unite/2;
+      margin-left: $unite/2;
+      border-left: $border-very-light;
     }
- 
-    .tweet-content{
+  }
 
-        a{
-            color: $redlab;
+  .tweet-content {
+    a {
+      color: $redlab;
 
-            /*&:last-of-type:not(.mention):not(.hashtag){
+      /*&:last-of-type:not(.mention):not(.hashtag){
 
                 color: $text-color-light;
                 font-size: 0;
@@ -33,101 +31,85 @@
 
                 }
             }*/
-        }
-        a.hashtag,
-        a.mention {
-            color: $redlab;
-        }
-
-        .link-external-tweet{ color: $text-color-light;}
+    }
+    a.hashtag,
+    a.mention {
+      color: $redlab;
     }
 
+    .link-external-tweet {
+      color: $text-color-light;
+    }
+  }
 
-    .account a{
-        color: $redlab;
+  .account a {
+    color: $redlab;
+  }
+
+  .tweet-content + .original-tweet aside.divers {
+    border-top: $border-very-light;
+  }
+
+  .original-tweet {
+    margin-left: $unite * 1.5;
+
+    aside.divers {
+      letter-spacing: 0.15px; // Much text, so few letter spacing
+
+      p.label {
+        border: none;
+        margin-right: 0;
+        padding-right: 3px;
+      }
     }
 
-    .tweet-content + .original-tweet aside.divers{ border-top: $border-very-light; }
-
-    .original-tweet{
-
-        margin-left: $unite*1.5;
-
-        aside.divers{
-            letter-spacing: 0.15px; // Much text, so few letter spacing
-            
-            p.label{
-                border: none;
-                margin-right: 0;
-                padding-right: 3px;
-            }
-        }
-
-        &:before{
-            content: "↳";
-            position: absolute;
-            left: $unite*-1.5;
-            top: $baseline*1.5;
-            font-size: 18px;
-            line-height: 0;              
-            color: $text-color-light;
-        }
+    &:before {
+      content: "↳";
+      position: absolute;
+      left: $unite * -1.5;
+      top: $baseline * 1.5;
+      font-size: 18px;
+      line-height: 0;
+      color: $text-color-light;
     }
-    .tweet-content + .orginal-tweet { border-top: $border-very-light; } // Exclude simple RT
-
+  }
+  .tweet-content + .orginal-tweet {
+    border-top: $border-very-light;
+  } // Exclude simple RT
 }
-
-
-
-
-
 
 @include for-size(desktop) {
+  #tweet article {
+    .tweet-content {
+      @include font-size-20();
+      padding-top: $baseline;
+      padding-bottom: $baseline * 1.5;
+      &::first-letter {
+        text-transform: capitalize;
+      }
+    }
 
-    #tweet article {
-             
-        .tweet-content{
-            @include font-size-20();  
-            padding-top: $baseline;
-            padding-bottom: $baseline*1.5;
-            &::first-letter { text-transform: capitalize; }
-        }
-
-
-        aside.details{ 
-                
-            border-top: $border-very-light;
-            padding: $baseline/2 0;
-
-        }
-    } 
-   
+    aside.details {
+      border-top: $border-very-light;
+      padding: $baseline/2 0;
+    }
+  }
 }
 
-
-
-
-
 @include for-size(phone) {
+  #tweet article {
+    .tweet-content {
+      @include font-size-20();
+      padding-top: $baseline;
+      padding-bottom: $baseline * 1.5;
+      &::first-letter {
+        text-transform: capitalize;
+      }
+    }
 
-
-    #tweet article {
-             
-        .tweet-content{
-            @include font-size-20();  
-            padding-top: $baseline;
-            padding-bottom: $baseline*1.5;
-            &::first-letter { text-transform: capitalize; }
-        }
-
-
-        aside.details{ 
-                
-            border-top: $border-very-light;
-            padding: $baseline/2 0;
-
-        }
-    } 
-
+    aside.details {
+      border-top: $border-very-light;
+      padding: $baseline/2 0;
+    }
+  }
 } /* end phone*/
-

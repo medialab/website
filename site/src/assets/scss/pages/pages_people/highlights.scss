@@ -1,121 +1,114 @@
-// Manage global structure and responsive. 
+// Manage global structure and responsive.
 // For details see fragments/miniatures
 
 .page-people #highlights {
+  & > h1 {
+    margin-top: $baseline;
+    @include font-size-27();
+  }
 
+  h2 {
+    @include font-size-13-uppercase();
+    margin-bottom: $baseline;
+    margin-top: $baseline * 3;
+  }
+
+  #highlights-list-production li:first-of-type {
+    border-top: $border;
+  }
+
+  @include for-size(desktop) {
+    max-width: $max-width-article;
+    margin-bottom: $baseline * 5;
+  }
+
+  @include for-size(phone) {
+    width: 100%;
+    height: auto;
+    padding: 0;
+
+    h2:first-of-type {
+      margin-top: $baseline;
+    }
 
     & > h1 {
-        margin-top: $baseline; 
-        @include font-size-27();
+      margin: $baseline 0 0 0;
+      @include font-size-27();
     }
 
-   h2{
-       @include font-size-13-uppercase();
-       margin-bottom: $baseline;
-       margin-top: $baseline*3;
+    //h2{ margin-left: $margins-phone; }
+  }
+
+  @media print {
+    max-width: 150mm;
+    margin: 0 auto;
+    margin-top: $baseline * 2;
+    & > h1 {
+      @include font-size-20();
     }
-
-    #highlights-list-production li:first-of-type{ border-top: $border; }
-	
-	@include for-size(desktop) {
-
-		max-width: $max-width-article;
-		margin-bottom: $baseline*5;
-	}
-
-	
-	@include for-size(phone) {
-				
-		width: 100%;
-		height: auto;
-        padding: 0;
-        
-        h2:first-of-type{ margin-top: $baseline}
-
-		& > h1 {
-			margin: $baseline 0 0 0;
-			@include font-size-27();
-        }
-
-        //h2{ margin-left: $margins-phone; }
-        
-    
-
-		
-	}	
-
-	@media print{
-
-		max-width: 150mm;
-		margin: 0 auto;
-		margin-top: $baseline*2;
-		& > h1 {
-			@include font-size-20();
-		}
-
-	}
+  }
 }
 
+@media print {
+  .page-people #highlights #highlights-list-activity,
+  .page-people #highlights #highlights-list-production {
+    .image-pre {
+      display: none !important;
+    }
+  }
 
+  .page-people #highlights #highlights-list-activity,
+  .page-people #highlights #highlights-list-production,
+  .page-home #now {
+    li {
+      break-inside: avoid;
+      border-bottom: $border;
+      position: relative;
+      height: auto;
+      width: 100%;
 
+      hgroup {
+        margin: 0;
+        padding: 0;
+      }
 
-
-@media print{
-
-    
-    .page-people #highlights #highlights-list-activity, 
-    .page-people #highlights #highlights-list-production{
-        .image-pre{ display: none!important; }
+      h1 {
+        font-size: $font-size * 1.6;
+        line-height: $baseline * 1.5;
+        font-weight: 600;
+        padding: $baseline/2 0;
+        min-height: 0px;
+      }
     }
 
-    .page-people #highlights #highlights-list-activity, 
-    .page-people #highlights #highlights-list-production, 
-    .page-home #now{
-        li{ 
-            break-inside: avoid;
-            border-bottom: $border;
-            position: relative;
-            height: auto;
-            width: 100%; 
+    .bandeau {
+      border-bottom: $border-very-light;
+      padding: $baseline/2 0;
+      p {
+        @include font-size-13;
+        display: inline-block;
+        vertical-align: top;
+      }
 
-            hgroup{
-                margin: 0;
-                padding: 0;
-            }
+      .authors,
+      .title,
+      .date-news,
+      .hours-news {
+        margin-left: $unite/2;
+        padding-left: $unite/2;
+        border-left: $border-very-light;
+      }
 
-            h1{
-                font-size: $font-size*1.6;
-                line-height: $baseline*1.5;
-                font-weight: 600;
-                padding: $baseline/2 0;
-                min-height: 0px;
-            }
+      .subtype-production {
+        &::before {
+          content: ", ";
         }
+      }
 
-     
-        .bandeau{
-            border-bottom: $border-very-light;
-            padding: $baseline/2 0;
-            p{ 
-                @include font-size-13; 
-                display: inline-block; 
-                vertical-align: top;
-            }
-
-            .authors, .title, .date-news, .hours-news{
-                margin-left: $unite/2;
-                padding-left: $unite/2;
-                border-left: $border-very-light;
-            }
-
-
-            .subtype-production{
-                &::before{ content: ", "; }
-            }
-  
-            
-            .hours-news::before{ content: $time; padding-right: 5px;}  
-        }
-
+      .hours-news::before {
+        content: $time;
+        padding-right: 5px;
+      }
     }
+  }
 }

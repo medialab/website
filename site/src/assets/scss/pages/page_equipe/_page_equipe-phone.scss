@@ -1,36 +1,42 @@
 @include for-size(phone) {
-	.page-people-list #liste_equipe{        
-			padding-top: $height-top-bar-phone + $baseline*3.5;
-			margin: $baseline $margins-phone 0 $margins-phone ;
+  .page-people-list #liste_equipe {
+    padding-top: $height-top-bar-phone + $baseline * 3.5;
+    margin: $baseline $margins-phone 0 $margins-phone;
 
-			ul{
-				display: inline-block;
+    ul {
+      display: inline-block;
 
-				li{
-					float: left;
-					width: 100%;
-					
-					figure{
-						width: 100%;
-						overflow: hidden;
-						height: 25vh;
-						img{
-							width: 100%;
-							top: 50%;
-							transform: translateY(-50%);
-						}
-					}
+      li {
+        float: left;
+        width: 100%;
 
-					hgroup{ padding: $baseline*1 0; }
+        figure {
+          width: 100%;
+          overflow: hidden;
+          height: 25vh;
+          img {
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+        }
 
-					.details{ margin-bottom: $baseline*3; }
+        hgroup {
+          padding: $baseline * 1 0;
+        }
 
-					figure .noImg pre{ font-size: 7px;}
+        .details {
+          margin-bottom: $baseline * 3;
+        }
 
+        figure .noImg pre {
+          font-size: 7px;
+        }
 
-					[data-type="activite"]{ display: none ; }
-				}		   	
-			}
-	}
-	
+        [data-type="activite"] {
+          display: none;
+        }
+      }
+    }
+  }
 }

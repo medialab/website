@@ -3,106 +3,96 @@
 /////////////////////
 
 @include for-size(desktop) {
+  #git article {
+    aside.divers {
+    }
 
-    #git article{
+    h1 {
+      @include font-size-20();
+      padding-top: $baseline;
+    }
 
-        aside.divers{
+    h2,
+    .description {
+      @include font-size-20();
+      padding-bottom: $baseline;
+    }
+
+    aside.details {
+      border-top: $border-very-light;
+      padding: $baseline/2 0;
+
+      .date-news,
+      .contribution,
+      .contributors {
+        display: inline-block;
+      }
+
+      .date-news,
+      .contribution {
+        padding-right: $unite/2;
+        margin-right: $unite/2;
+        border-right: $border-very-light;
+      }
+      .date-news {
+        .year {
+          display: none;
         }
-
-        h1{ 
-            @include font-size-20();
-            padding-top: $baseline;
-     
-        }
-
-        h2, .description{ 
-            @include font-size-20();
-            padding-bottom: $baseline;
-        }
-
-        aside.details{ 
-        
-            border-top: $border-very-light;
-            padding: $baseline/2 0;
-
-            .date-news, .contribution, .contributors{
-                display: inline-block;
-            }
-
-            .date-news, .contribution{
-                padding-right: $unite/2;
-                margin-right: $unite/2;
-                border-right: $border-very-light;                
-            }
-            .date-news{ 
-                .year{display: none; }
-            }  
-        } 
-
-    } 
-    
-   
-
+      }
+    }
+  }
 }
-
-
-
 
 // all queries
 
 #git {
- 
-    article h1{ color: $redlab;}
+  article h1 {
+    color: $redlab;
+  }
 
-    article h1::first-letter,
-    article h2::first-letter
-    article .description::first-letter{ 
-        text-transform: capitalize; 
-    }
-
+  article h1::first-letter,
+  article h2::first-letter article .description::first-letter {
+    text-transform: capitalize;
+  }
 }
 
-
 @include for-size(phone) {
+  #git article {
+    aside.divers {
+    }
 
+    h1 {
+      @include font-size-20();
+      padding-top: $baseline;
+    }
 
-    #git article{
+    h2,
+    .description {
+      @include font-size-20();
+      padding-bottom: $baseline;
+    }
 
-        aside.divers{
+    aside.details {
+      border-top: $border-very-light;
+      padding: $baseline/2 0;
+
+      .date-news,
+      .contribution,
+      .contributors {
+        display: inline-block;
+      }
+
+      .date-news,
+      .contribution {
+        padding-right: $unite/2;
+        margin-right: $unite/2;
+        border-right: $border-very-light;
+      }
+      .date-news {
+        .year {
+          display: none;
         }
-
-        h1{ 
-            @include font-size-20();
-            padding-top: $baseline;
-     
-        }
-
-        h2, .description{ 
-            @include font-size-20();
-            padding-bottom: $baseline;
-        }
-
-        aside.details{ 
-        
-            border-top: $border-very-light;
-            padding: $baseline/2 0;
-
-            .date-news, .contribution, .contributors{
-                display: inline-block;
-            }
-
-            .date-news, .contribution{
-                padding-right: $unite/2;
-                margin-right: $unite/2;
-                border-right: $border-very-light;                
-            }
-            .date-news{ 
-                .year{display: none; }
-            }  
-        } 
-
-    } 
-    
-
+      }
+    }
+  }
 } /* end phone*/
-

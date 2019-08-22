@@ -1,51 +1,55 @@
+@media print {
+  .page-people {
+    #nav-inside-article {
+      display: none !important;
+    }
 
-@media print{
-
-    .page-people{
-        #nav-inside-article{ display: none!important; }
-
-        #biographie{
-            
-            header {
-                min-height: 250px;
-                figure{ 
-                    width: 290px;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    img{ width: 100%; }
-                }
-
-                hgroup{ 
-                    min-height: 0px!important; 
-                    margin-left: 310px;
-                    .status{ 
-                        @include font-size-16(); 
-                        margin-bottom: $baseline;
-                    }
-                    h1{
-                        @include font-size-40();
-                        font-weight: 400;
-                        margin-bottom: $baseline*1.5;
-                    }
-                }
-                .bandeau, .contact{
-                    @include font-size-13();
-                    margin-left: 310px;
-                    border: none!important;
-                    margin-bottom: $baseline;
-                    [data-type="domaine"]{ display: none!important; }
-                }
-            }
-        
-
-            .biographie-content{
-                max-width: 150mm;
-                margin: 0 auto;
-            }
+    #biographie {
+      header {
+        min-height: 250px;
+        figure {
+          width: 290px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          img {
+            width: 100%;
+          }
         }
 
+        hgroup {
+          min-height: 0px !important;
+          margin-left: 310px;
+          .status {
+            @include font-size-16();
+            margin-bottom: $baseline;
+          }
+          h1 {
+            @include font-size-40();
+            font-weight: 400;
+            margin-bottom: $baseline * 1.5;
+          }
+        }
+        .bandeau,
+        .contact {
+          @include font-size-13();
+          margin-left: 310px;
+          border: none !important;
+          margin-bottom: $baseline;
+          [data-type="domaine"] {
+            display: none !important;
+          }
+        }
+      }
 
-        #all-aside aside > h1{ margin-top: $baseline*5!important;  }
+      .biographie-content {
+        max-width: 150mm;
+        margin: 0 auto;
+      }
     }
+
+    #all-aside aside > h1 {
+      margin-top: $baseline * 5 !important;
+    }
+  }
 }

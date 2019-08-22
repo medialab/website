@@ -1,190 +1,208 @@
 /* assets/scss/common/body.scss */
 
-html{ overflow-x: hidden}
-body{ overflow-x: visible}
+html {
+  overflow-x: hidden;
+}
+body {
+  overflow-x: visible;
+}
 
 @include for-size(phone) {
-    body{
-        background-color: $background-site;
-    }
+  body {
+    background-color: $background-site;
+  }
 }
 
 @include for-size(desktop) {
-    body{
-        // max-width: 1800px;
-        // margin: 0 $margins-desktop!important;
-        background-color: $background-site;
-        top: 0!important;
-        max-width: 100vw;
-        width: 100vw;
-        //overflow-x: hidden;
-    }
+  body {
+    // max-width: 1800px;
+    // margin: 0 $margins-desktop!important;
+    background-color: $background-site;
+    top: 0 !important;
+    max-width: 100vw;
+    width: 100vw;
+    //overflow-x: hidden;
+  }
 }
-[data-type="news"] .type::before, 
+[data-type="news"] .type::before,
 [data-icon="news"]::before,
-[data-type="actualite"] .type::before, 
+[data-type="actualite"] .type::before,
 [data-icon="actualite"]::before,
-[data-type="actualités"] .type::before, 
-[data-icon="actualités"]::before{
-    content: $actualites; 
-    font-family: $font-symbol;
+[data-type="actualités"] .type::before,
+[data-icon="actualités"]::before {
+  content: $actualites;
+  font-family: $font-symbol;
 }
-[data-type="production"] .type::before, 
+[data-type="production"] .type::before,
 [data-icon="production"]::before,
-[data-type="productions"] .type::before, 
-[data-icon="productions"]::before{
-    content: $productions; 
-    font-family: $font-symbol;
+[data-type="productions"] .type::before,
+[data-icon="productions"]::before {
+  content: $productions;
+  font-family: $font-symbol;
 }
 
-[data-type="activities"] .type::before, 
+[data-type="activities"] .type::before,
 [data-icon="activities"]::before,
-[data-type="activite"] .type::before, 
-[data-icon="activite"]::before{
-    content: $activites; 
-    font-family: $font-symbol;
+[data-type="activite"] .type::before,
+[data-icon="activite"]::before {
+  content: $activites;
+  font-family: $font-symbol;
 }
 
-[data-type="file"] .type::before, 
+[data-type="file"] .type::before,
 [data-icon="file"]::before,
-[data-type="file"] .type::before, 
-[data-icon="file"]::before{
-    content: $files; 
-    font-family: $font-symbol;
+[data-type="file"] .type::before,
+[data-icon="file"]::before {
+  content: $files;
+  font-family: $font-symbol;
 }
 
-[data-icon="people"]::before{
-    content: $people; 
-    font-family: $font-symbol;
+[data-icon="people"]::before {
+  content: $people;
+  font-family: $font-symbol;
 }
 
-[data-type="git"] .type::before{ content: $git; font-family: $font-symbol; }
-[data-icon="git"]::before{ content: $git; font-family: $font-symbol; }
-[data-type="tweet"] .type::before{ content: $tweet; font-family: $font-symbol; }
-[data-icon="tweet"]::before{ content: $tweet; font-family: $font-symbol; }
+[data-type="git"] .type::before {
+  content: $git;
+  font-family: $font-symbol;
+}
+[data-icon="git"]::before {
+  content: $git;
+  font-family: $font-symbol;
+}
+[data-type="tweet"] .type::before {
+  content: $tweet;
+  font-family: $font-symbol;
+}
+[data-icon="tweet"]::before {
+  content: $tweet;
+  font-family: $font-symbol;
+}
 
-.GoTo::after{ content: $goto; font-family: $font-symbol; }
+.GoTo::after {
+  content: $goto;
+  font-family: $font-symbol;
+}
 
-.between { font-family: $font-symbol; }
+.between {
+  font-family: $font-symbol;
+}
 //a:hover{ color: $redlab; }
 
-
-
-
 /* virgules après les auteurs. ATTENTION = il faut plutôt le mettre depuis le CMS car au copier/coller les éléments after ne restent pas*/
-.author span{ 
-    white-space: nowrap;
-    &:after{ content: ", "}
-    &:last-of-type:after{ content: ""}
+.author span {
+  white-space: nowrap;
+  &:after {
+    content: ", ";
+  }
+  &:last-of-type:after {
+    content: "";
+  }
 }
-
 
 /////////////////////
 //////// Checkbox
 /////////////////////
 
-
-.checkbox-medialab{
-    @include flex();
-	@include align-items(center);
+.checkbox-medialab {
+  @include flex();
+  @include align-items(center);
 }
 
 .checkbox-medialab:before {
-    content: '';
-    margin-right: 10px;
-    display: inline-block;
-    width: $baseline;
-    height: $baseline;
-    background: $background-site;
-    border: $border; 
+  content: "";
+  margin-right: 10px;
+  display: inline-block;
+  width: $baseline;
+  height: $baseline;
+  background: $background-site;
+  border: $border;
 }
-
 
 @include for-size(desktop) {
-    .checkbox-medialab:hover{
-        font-weight: 600!important;
-        color: $text-color-light;
-        cursor: pointer;
-        &:before{ border: 5px solid $text-color-light!important;}
+  .checkbox-medialab:hover {
+    font-weight: 600 !important;
+    color: $text-color-light;
+    cursor: pointer;
+    &:before {
+      border: 5px solid $text-color-light !important;
     }
+  }
 }
 
-
-input:checked + .checkbox-medialab{
-    font-weight: 600!important;
-    &:before{ border: 5px solid $text-color;}
+input:checked + .checkbox-medialab {
+  font-weight: 600 !important;
+  &:before {
+    border: 5px solid $text-color;
+  }
 }
 
-input:checked + .checkbox-medialab:hover{
-    &:before{ border: 5px solid $text-color-light!important;}
+input:checked + .checkbox-medialab:hover {
+  &:before {
+    border: 5px solid $text-color-light !important;
+  }
 }
-
-
 
 ////////////////////////////
 // En savoir plus Button //
 ///////////////////////////
 
-.more{
-    //margin-top: $baseline*1;
-    //margin-bottom: $baseline*1;
-    @include font-size-13();
-    color: $text-color-light;
-    text-decoration: underline; 
-    
-    &:hover{
-        color: $redlab;
-    }
+.more {
+  //margin-top: $baseline*1;
+  //margin-bottom: $baseline*1;
+  @include font-size-13();
+  color: $text-color-light;
+  text-decoration: underline;
+
+  &:hover {
+    color: $redlab;
+  }
 }
 
 /////////
 // Pre //
 /////////
 
-
 pre {
   font-family: $font-mono;
 }
-
 
 //////////////////
 //// Tip!  ///////
 //////////////////
 
-span.tip{
-    display: none;
+span.tip {
+  display: none;
 }
 
-.totip{
-    text-decoration: underline;
-    text-decoration-skip-ink: auto;
-    cursor: help;
-
+.totip {
+  text-decoration: underline;
+  text-decoration-skip-ink: auto;
+  cursor: help;
 }
 
-*:hover > span.tip, .totip:hover > span.tip, span.tip:hover {
-    display: block;
-    position: absolute;
-    z-index: 999;
-    max-width: 15%;
-    min-width: 150px;
-    
-    top: 100%;
-    left: 50%;
-    -webkit-transform: translate3D(-50%, 0, 0);
-    -ms-transform: translate3D(-50%, 0, 0);
-    transform: translate3D(-50%, 0, 0);
+*:hover > span.tip,
+.totip:hover > span.tip,
+span.tip:hover {
+  display: block;
+  position: absolute;
+  z-index: 999;
+  max-width: 15%;
+  min-width: 150px;
 
-    padding: 0.6rem 0.8rem;
-    margin: .5rem $unite/2;    
-    background: $text-color;
-    color: $background-site;
-    @include font-size-16();
-    text-decoration: none;
+  top: 100%;
+  left: 50%;
+  -webkit-transform: translate3D(-50%, 0, 0);
+  -ms-transform: translate3D(-50%, 0, 0);
+  transform: translate3D(-50%, 0, 0);
 
-
+  padding: 0.6rem 0.8rem;
+  margin: 0.5rem $unite/2;
+  background: $text-color;
+  color: $background-site;
+  @include font-size-16();
+  text-decoration: none;
 }
-
 
 //////////////
 // ARIA
@@ -204,14 +222,14 @@ span.tip{
 // ARROWS
 //////////////
 
-.arrow polyline{
-    fill:none;
-    stroke: $text-color;
-    stroke-linecap:round;
-    stroke-miterlimit:10;
-    stroke-width:1px;
+.arrow polyline {
+  fill: none;
+  stroke: $text-color;
+  stroke-linecap: round;
+  stroke-miterlimit: 10;
+  stroke-width: 1px;
 }
 
-.opacity{
-    color: lightgrey;
+.opacity {
+  color: lightgrey;
 }

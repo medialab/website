@@ -2,131 +2,212 @@
 //////// PRODUCTIONS - filtres positions
 /////////////////////
 
+.page-production-list {
+  // STYLE ------------------------------------------------------------------------------------ //
 
-.page-production-list{
+  .link-productions-sort li {
+    border-bottom: $border-very-light;
+    width: 100%;
+    a {
+      @include font-size-13-uppercase();
+      display: block;
+      width: 100%;
+      padding: $baseline/2 0;
+    }
+  }
 
+  @include for-size(desktop) {
+    .link-productions-sort li a:hover {
+      color: $text-color-light;
+      font-weight: 600 !important;
+    }
+  }
 
-	// STYLE ------------------------------------------------------------------------------------ //
+  #li-filter-media span {
+    display: none;
+  }
 
-	.link-productions-sort li{
-		
-		border-bottom: $border-very-light; 
-		width: 100%;
-		a{
-			@include font-size-13-uppercase();
-			display: block;
-			width: 100%;
-			padding: $baseline/2 0;
-		}
-	}
+  .filter-group {
+    border-bottom: none;
+    display: none;
+    padding-top: 0;
+  }
 
-	@include for-size(desktop) {
-		.link-productions-sort li a:hover{ color: $text-color-light; font-weight: 600!important; }
-	}
+  #checkbox_groupFilter:checked ~ .filter-group {
+    display: block;
+  }
 
-	#li-filter-media span{ display: none; }
+  // CHEKED CHECKBOX ------------------------------------------------------------------------------------ //
 
+  #filtre-production_article:checked
+    ~ .aside-filters
+    #filtre-production_article_label,
+  #filtre-production_communication:checked
+    ~ .aside-filters
+    #filtre-production_communication_label,
+  #filtre-production_book:checked
+    ~ .aside-filters
+    #filtre-production_book_label,
+  #filtre-production_thesis:checked
+    ~ .aside-filters
+    #filtre-production_thesis_label,
+  #filtre-production_grey:checked
+    ~ .aside-filters
+    #filtre-production_grey_label,
+  #filtre-production_software:checked
+    ~ .aside-filters
+    #filtre-production_software_label,
+  #filtre-production_code:checked
+    ~ .aside-filters
+    #filtre-production_code_label,
+  #filtre-production_datascape:checked
+    ~ .aside-filters
+    #filtre-production_datascape_label,
+  #filtre-production_website:checked
+    ~ .aside-filters
+    #filtre-production_website_label,
+  #filtre-production_exhibition:checked
+    ~ .aside-filters
+    #filtre-production_exhibition_label,
+  #filtre-production_workshop:checked
+    ~ .aside-filters
+    #filtre-production_workshop_label,
+  #filtre-production_simulation:checked
+    ~ .aside-filters
+    #filtre-production_simulation_label,
+  #filtre-production_conference:checked
+    ~ .aside-filters
+    #filtre-production_conference_label {
+    font-weight: 600 !important;
+    &:before {
+      border: 5px solid $text-color;
+    }
+    @include for-size(desktop) {
+      &:hover:before {
+        border: 5px solid $text-color-light !important;
+      }
+    }
+  }
 
-	.filter-group{
-		border-bottom: none;
-		display: none;
-		padding-top: 0;
-	}
+  // Afficher la bonne liste de sous-filtres ------------------------------------------------------------------------------------ //
 
-	#checkbox_groupFilter:checked ~ .filter-group{ display: block; }
+  .filter-group {
+    display: none !important;
+  }
+  [data-list-open="publications"] [data-filter-group="publications"],
+  [data-list-open="tools"] [data-filter-group="tools"],
+  [data-list-open="webEditions"] [data-filter-group="webEditions"],
+  [data-list-open="situations"] [data-filter-group="situations"] {
+    display: block !important;
+  }
 
+  [data-list-open="publications"] [data-link="publications"],
+  [data-list-open="tools"] [data-link="tools"],
+  [data-list-open="webEditions"] [data-link="webEditions"],
+  [data-list-open="media"] [data-link="media"],
+  [data-list-open="situations"] [data-link="situations"] {
+    font-weight: 600 !important;
+    color: $text-color !important;
+    cursor: default;
+    span {
+      top: 2px;
+    }
+    span svg {
+      transform: rotate(90deg);
+      transform-origin: center center;
+    }
+  }
 
-	// CHEKED CHECKBOX ------------------------------------------------------------------------------------ //
+  [data-list-open="all"] li:first-of-type a {
+    font-weight: 600 !important;
+  }
 
+  // FILTERS PATTERNS ------------------------------------------------------------------------------------ //
 
-	#filtre-production_article:checked ~ .aside-filters #filtre-production_article_label,
-	#filtre-production_communication:checked ~ .aside-filters #filtre-production_communication_label,
-	#filtre-production_book:checked ~ .aside-filters #filtre-production_book_label,
-	#filtre-production_thesis:checked ~ .aside-filters #filtre-production_thesis_label,
-	#filtre-production_grey:checked ~ .aside-filters #filtre-production_grey_label,
-	#filtre-production_software:checked ~ .aside-filters #filtre-production_software_label,
-	#filtre-production_code:checked ~ .aside-filters #filtre-production_code_label,
-	#filtre-production_datascape:checked ~ .aside-filters #filtre-production_datascape_label,
-	#filtre-production_website:checked ~ .aside-filters #filtre-production_website_label,
-	#filtre-production_exhibition:checked ~ .aside-filters #filtre-production_exhibition_label,
-	#filtre-production_workshop:checked ~ .aside-filters #filtre-production_workshop_label,
-	#filtre-production_simulation:checked ~ .aside-filters #filtre-production_simulation_label,
-	#filtre-production_conference:checked ~ .aside-filters #filtre-production_conference_label{
-		font-weight: 600!important;
-		&:before{ border: 5px solid $text-color;}
-		@include for-size(desktop) {
-			&:hover:before{ border: 5px solid $text-color-light!important;}
-		}
-	}
+  input#filtre-production_article:checked ~ #liste,
+  input#filtre-production_communication:checked ~ #liste,
+  input#filtre-production_book:checked ~ #liste,
+  input#filtre-production_thesis:checked ~ #liste,
+  input#filtre-production_grey:checked ~ #liste,
+  input#filtre-production_datascape:checked ~ #liste,
+  input#filtre-production_website:checked ~ #liste,
+  input#filtre-production_software:checked ~ #liste,
+  input#filtre-production_code:checked ~ #liste,
+  input#filtre-production_exhibition:checked ~ #liste,
+  input#filtre-production_workshop:checked ~ #liste,
+  input#filtre-production_simulation:checked ~ #liste,
+  input#filtre-production_conference:checked ~ #liste,
+  input#filtre-production_media:checked ~ #liste,
+  input#filtre-production_thesis:checked ~ #liste {
+    #liste-productions .list-item {
+      display: none !important;
+    }
+  }
 
-
-	// Afficher la bonne liste de sous-filtres ------------------------------------------------------------------------------------ //
-
-	.filter-group{ display: none!important; }
-	[data-list-open="publications"] [data-filter-group="publications"],
-	[data-list-open="tools"] [data-filter-group="tools"],
-	[data-list-open="webEditions"] [data-filter-group="webEditions"],
-	[data-list-open="situations"] [data-filter-group="situations"]{ display: block!important; }
-
-
-	
-	[data-list-open="publications"] [data-link="publications"],
-	[data-list-open="tools"] [data-link="tools"],
-	[data-list-open="webEditions"] [data-link="webEditions"],
-	[data-list-open="media"] [data-link="media"],
-	[data-list-open="situations"] [data-link="situations"]{
-		font-weight: 600!important;
-		color: $text-color!important;
-		cursor: default;
-		span{ top: 2px; }
-		span svg{
-			transform: rotate(90deg);
-			transform-origin: center center;
-		}
-		
-	}
-
-	[data-list-open="all"] li:first-of-type a{ font-weight: 600!important; }
-
-
-	
-
-
-	// FILTERS PATTERNS ------------------------------------------------------------------------------------ //
-
-	input#filtre-production_article:checked ~ #liste,
-	input#filtre-production_communication:checked ~ #liste,
-	input#filtre-production_book:checked ~ #liste,
-	input#filtre-production_thesis:checked ~ #liste,
-	input#filtre-production_grey:checked ~ #liste,
-	input#filtre-production_datascape:checked ~ #liste,
-	input#filtre-production_website:checked ~ #liste,
-	input#filtre-production_software:checked ~ #liste,
-	input#filtre-production_code:checked ~ #liste,
-	input#filtre-production_exhibition:checked ~ #liste,
-	input#filtre-production_workshop:checked ~ #liste,
-	input#filtre-production_simulation:checked ~ #liste,
-	input#filtre-production_conference:checked ~ #liste,
-	input#filtre-production_media:checked ~ #liste,
-	input#filtre-production_thesis:checked ~ #liste{
-		#liste-productions .list-item{ display: none !important; }
-	}
-
-
-	input#filtre-production_article:checked ~ #liste #liste-productions .article{ display: block!important; }
-	input#filtre-production_communication:checked ~ #liste #liste-productions .communication{ display: block!important; }
-	input#filtre-production_book:checked ~ #liste #liste-productions .book{ display: block!important; }
-	input#filtre-production_thesis:checked ~ #liste #liste-productions .thesis{ display: block!important; }
-	input#filtre-production_grey:checked ~ #liste #liste-productions .grey{ display: block!important; }
-	input#filtre-production_datascape:checked ~ #liste #liste-productions .datascape{ display: block!important; }
-	input#filtre-production_website:checked ~ #liste #liste-productions .website{ display: block!important; }
-	input#filtre-production_software:checked ~ #liste #liste-productions .software{ display: block!important; }
-	input#filtre-production_code:checked ~ #liste #liste-productions .code{ display: block!important; }
-	input#filtre-production_exhibition:checked ~ #liste #liste-productions .exhibition{ display: block!important; }
-	input#filtre-production_workshop:checked ~ #liste #liste-productions .workshop{ display: block!important; }
-	input#filtre-production_simulation:checked ~ #liste #liste-productions .simulation{ display: block!important; }
-	input#filtre-production_conference:checked ~ #liste #liste-productions .conference{ display: block!important; }
-	input#filtre-production_media:checked ~ #liste #liste-productions .media{ display: block!important; }
-	input#filtre-production_thesis:checked ~ #liste #liste-productions .thesis{ display: block!important; }
-
+  input#filtre-production_article:checked ~ #liste #liste-productions .article {
+    display: block !important;
+  }
+  input#filtre-production_communication:checked
+    ~ #liste
+    #liste-productions
+    .communication {
+    display: block !important;
+  }
+  input#filtre-production_book:checked ~ #liste #liste-productions .book {
+    display: block !important;
+  }
+  input#filtre-production_thesis:checked ~ #liste #liste-productions .thesis {
+    display: block !important;
+  }
+  input#filtre-production_grey:checked ~ #liste #liste-productions .grey {
+    display: block !important;
+  }
+  input#filtre-production_datascape:checked
+    ~ #liste
+    #liste-productions
+    .datascape {
+    display: block !important;
+  }
+  input#filtre-production_website:checked ~ #liste #liste-productions .website {
+    display: block !important;
+  }
+  input#filtre-production_software:checked
+    ~ #liste
+    #liste-productions
+    .software {
+    display: block !important;
+  }
+  input#filtre-production_code:checked ~ #liste #liste-productions .code {
+    display: block !important;
+  }
+  input#filtre-production_exhibition:checked
+    ~ #liste
+    #liste-productions
+    .exhibition {
+    display: block !important;
+  }
+  input#filtre-production_workshop:checked
+    ~ #liste
+    #liste-productions
+    .workshop {
+    display: block !important;
+  }
+  input#filtre-production_simulation:checked
+    ~ #liste
+    #liste-productions
+    .simulation {
+    display: block !important;
+  }
+  input#filtre-production_conference:checked
+    ~ #liste
+    #liste-productions
+    .conference {
+    display: block !important;
+  }
+  input#filtre-production_media:checked ~ #liste #liste-productions .media {
+    display: block !important;
+  }
+  input#filtre-production_thesis:checked ~ #liste #liste-productions .thesis {
+    display: block !important;
+  }
 }

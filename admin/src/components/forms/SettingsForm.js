@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Helmet} from 'react-helmet';
 
 import {createHandlers} from './utils';
 import client from '../../client';
@@ -75,6 +76,9 @@ export default class SettingsForm extends Component {
 
     return (
       <div>
+        <Helmet>
+          <title>médialab CMS - settings</title>
+        </Helmet>
         <div className="columns">
           <div className="column is-6">
             <h2 className="title is-4">Home Page</h2>

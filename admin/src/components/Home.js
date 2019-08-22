@@ -1,5 +1,6 @@
 /* global STATIC_URL */
 import React from 'react';
+import {Helmet} from 'react-helmet';
 import {Link} from 'react-router-dom';
 import Deployment from './Deployment';
 import Aspire from './Aspire';
@@ -7,6 +8,9 @@ import Aspire from './Aspire';
 export default function Home() {
   return (
     <div>
+      <Helmet>
+        <title>médialab CMS</title>
+      </Helmet>
       <p>
         <a href={STATIC_URL} target="_blank" rel="noopener noreferrer">
           Link towards the static site's preview.

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import {Helmet} from 'react-helmet';
 import debounce from 'lodash/debounce';
 import keyBy from 'lodash/keyBy';
 import map from 'lodash/map';
@@ -313,6 +314,10 @@ export default class List extends Component {
 
     return (
       <div>
+        <Helmet>
+          <title>médialab CMS - {model}</title>
+        </Helmet>
+
         <div className="columns">
           <div className="column is-4">
             <input

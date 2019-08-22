@@ -1,5 +1,6 @@
 /* global STATIC_URL */
 import React, {useState} from 'react';
+import {Helmet} from 'react-helmet';
 import client from '../client';
 
 export default function Login({authenticate}) {
@@ -23,6 +24,9 @@ export default function Login({authenticate}) {
 
   return (
     <form onSubmit={onSubmit}>
+      <Helmet>
+        <title>médialab CMS - login</title>
+      </Helmet>
       <div className="columns">
         <div className="column is-4">
           <h2 className="title is-2">Login</h2>

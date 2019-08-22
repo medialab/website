@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Helmet from 'react-helmet';
 import Dropzone from 'react-dropzone';
 import debounce from 'lodash/debounce';
 import Slider from './misc/Slider';
@@ -87,6 +88,9 @@ export default class Playground extends Component {
 
     return (
       <div>
+        <Helmet>
+          <title>médialab CMS - image playground</title>
+        </Helmet>
         {!file && <Dropzone onDrop={this.handleFile} />}
         {file && blocks && (
           <>

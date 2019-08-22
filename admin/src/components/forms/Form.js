@@ -3,6 +3,7 @@
 /* eslint no-alert: 0 */
 /* eslint react/forbid-prop-types: 0 */
 import React, {Component} from 'react';
+import {Helmet} from 'react-helmet';
 import PropTypes from 'prop-types';
 import {push as pushAction} from 'connected-react-router';
 import {connect} from 'react-redux';
@@ -23,6 +24,7 @@ import isFunction from 'lodash/fp/isFunction';
 import overSome from 'lodash/fp/overSome';
 import cls from 'classnames';
 
+import labels from '../../../../specs/labels';
 import client from '../../client';
 import Button from '../misc/Button';
 import CardModal from '../misc/CardModal';
@@ -84,7 +86,6 @@ const fnButtonText = pageLabel => condWithConstants([
   [isItNew, `Create this ${pageLabel}`],
   [stubTrue, `Save this ${pageLabel}`],
 ]);
-
 
 const navigationPromptMessage = () => 'You have unsaved modifications. Sure you want to move?';
 
@@ -406,8 +407,15 @@ class Form extends Component {
       loading: saving
     });
 
+    const titleLabel = isNew ?
+      'new' :
+      (data ? labels[model](data) : 'loading');
+
     return (
       <div>
+        <Helmet>
+          <title>médialab CMS - {model} / {titleLabel}</title>
+        </Helmet>
         {confirming && (
           <SlugConfirm
             slug={slug}

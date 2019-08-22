@@ -209,18 +209,19 @@ const mainPermalink = {
   en: '/en/people'
 };
 
+const TWITTER_LABEL_REGEX = /twitter/i,
+      GITHUB_LABEL_REGEX = /github/i,
+      TRAILING_SLASH_REGEX = /\/$/;
+
 function extractHandle(value) {
   if (value.startsWith('http'))
-    return value.split('/').slice(-1)[0];
+    return value.replace(TRAILING_SLASH_REGEX, '').split('/').slice(-1)[0];
 
   if (value.startsWith('@'))
     return value.slice(1);
 
   return value;
 }
-
-const TWITTER_LABEL_REGEX = /twitter/i,
-      GITHUB_LABEL_REGEX = /github/i;
 
 const MAX_URL_LENGTH = 50;
 

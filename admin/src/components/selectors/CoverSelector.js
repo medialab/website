@@ -136,7 +136,7 @@ export default class CoverSelector extends PureComponent {
       crop: omit(this.state.pixelCrop, ['aspect'])
     };
 
-    if (this.props.cover.credits)
+    if (this.props.cover && this.props.cover.credits)
       coverData.credits = this.props.cover.credits;
 
     if (processing)

@@ -91,66 +91,69 @@ exports.createCoverImageResolver = settings => {
           });
       };
 
-      // TODO: only use a single stream?
-      return img()
-        .resize(COVER_RESIZE)
-        .toFile(path.join(settings.publicPath, output), err => {
-          if (err)
-            return reject(err);
-
-          if (cover.processed) {
-            Promise.all([
-              settings.processing(img(), cover.crop, {
-                rows: 60,
-                gamma: cover.gamma
-              }),
-              settings.processing(img(), cover.crop, {
-                rows: 120,
-                gamma: cover.gamma
-              }),
-              settings.processing(img(), cover.crop, {
-                rows: 240,
-                gamma: cover.gamma
-              })
-            ])
-            .then(([small, medium, large]) => {
-              if (settings.rasterize) {
-                settings.rasterize(medium, {
-                  rows: 120,
-                  output: path.join(settings.publicPath, socialOutput)
-                }, {...settings, sharp})
-                .then(raster => {
-                  resolve({
-                    ...data,
-                    processed: {
-                      small,
-                      medium,
-                      large,
-                      raster: {
-                        ...raster,
-                        url: socialUrl
-                      }
-                    }
-                  });
-                })
-                .catch(reject);
-
-              } else {
-                resolve({
-                  ...data,
-                  processed: {
-                    small,
-                    medium,
-                    large
+      // Cover needs to be processed
+      if (cover.processed) {
+        return Promise.all([
+          settings.processing(img(), cover.crop, {
+            rows: 60,
+            gamma: cover.gamma
+          }),
+          settings.processing(img(), cover.crop, {
+            rows: 120,
+            gamma: cover.gamma
+          }),
+          settings.processing(img(), cover.crop, {
+            rows: 240,
+            gamma: cover.gamma
+          })
+        ])
+        .then(([small, medium, large]) => {
+          if (settings.rasterize) {
+            settings.rasterize(medium, {
+              rows: 120,
+              output: path.join(settings.publicPath, socialOutput)
+            }, {...settings, sharp})
+            .then(raster => {
+              resolve({
+                ...data,
+                processed: {
+                  small,
+                  medium,
+                  large,
+                  raster: {
+                    ...raster,
+                    url: socialUrl
                   }
-                });
-            }
-            }).catch(reject);
+                }
+              });
+            })
+            .catch(reject);
           }
           else {
-            resolve(data);
+            resolve({
+              ...data,
+              processed: {
+                small,
+                medium,
+                large
+              }
+            });
           }
-        });
+        }).catch(reject);
+      }
+
+      // Cover does not need to be processed
+      // TODO: what about cards for people?
+      else {
+        return img()
+          .resize(COVER_RESIZE)
+          .toFile(path.join(settings.publicPath, output), err => {
+            if (err)
+              return reject(err);
+
+            return resolve(data);
+          });
+      }
     });
   };
 

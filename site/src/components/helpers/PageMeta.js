@@ -25,16 +25,16 @@ const buildOpenGraphAdditionalMeta = obj => {
   switch (obj.type) {
     case 'book':
       return [
-        <meta key={'type'} property="og:type" content="book" />,
-        <meta key={'author'} property="og:book:author" content={obj.author} />,
-        <meta key={'time'} property="og:book:release_date" content={obj.date} />
+        <meta key="type" property="og:type" content="book" />,
+        <meta key="author" property="og:book:author" content={obj.author} />,
+        <meta key="time" property="og:book:release_date" content={obj.date} />
       ];
     case 'post':
     case 'article':
       return [
-        <meta key={'type'} property="og:type" content="article" />,
-        <meta key={'author'} property="og:article:author" content={obj.author} />,
-        <meta key={'time'} property="og:article:published_time" content={obj.date} />
+        <meta key="type" property="og:type" content="article" />,
+        <meta key="author" property="og:article:author" content={obj.author} />,
+        <meta key="time" property="og:article:published_time" content={obj.date} />
       ];
     default:
       return <meta property="og:type" content="website" />;

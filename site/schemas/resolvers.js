@@ -52,6 +52,11 @@ exports.createSameModelRelationResolver = (relationType, propName) => {
   };
 };
 
+const COVER_RESIZE = {
+  width: 300 * 2,
+  height: 225 * 2
+};
+
 exports.createCoverImageResolver = settings => {
 
   const resolver = source => {
@@ -64,6 +69,7 @@ exports.createCoverImageResolver = settings => {
           name = path.basename(cover.file, ext);
 
     const output = `${name}.cover${ext}`;
+    const socialOutput = `${name}.social.png`;
 
     const crop = cover.crop;
 
@@ -71,73 +77,83 @@ exports.createCoverImageResolver = settings => {
       url: `${settings.prefix}/static/${output}`
     };
 
+    const socialUrl = `${settings.prefix}/static/${socialOutput}`;
+
     return new Promise((resolve, reject) => {
 
-      const img = () => sharp(path.join(settings.assetsPath, cover.file)).extract({
-        left: crop.x,
-        top: crop.y,
-        width: crop.width,
-        height: crop.height
-      });
+      const img = () => {
+        return sharp(path.join(settings.assetsPath, cover.file))
+          .extract({
+            left: crop.x,
+            top: crop.y,
+            width: crop.width,
+            height: crop.height
+          });
+      };
 
-      // TODO: temporal memoize to avoid triggering too many copies?
-      // TODO: only use a single stream?
-      return img()
-        .toFile(path.join(settings.publicPath, output), err => {
-          if (err)
-            return reject(err);
-
-          if (cover.processed) {
-            Promise.all([
-              settings.processing(img(), cover.crop, {
-                rows: 60,
-                gamma: cover.gamma
-              }),
-              settings.processing(img(), cover.crop, {
-                rows: 120,
-                gamma: cover.gamma
-              }),
-              settings.processing(img(), cover.crop, {
-                rows: 240,
-                gamma: cover.gamma
-              })
-            ])
-            .then(([small, medium, large]) => {
-              if (settings.rasterize) {
-                settings.rasterize(medium, {
-                  rows: 120,
-                  id: source.slugs.join(''),
-                }, {...settings, sharp})
-                .then(raster => {
-                  resolve({
-                    ...data,
-                    processed: {
-                      small,
-                      medium,
-                      large,
-                      raster
-                    }
-                  });
-                })
-                .catch(reject);
-
-              } else {
-                resolve({
-                  ...data,
-                  processed: {
-                    small,
-                    medium,
-                    large,
-                    raster: {url: undefined, width: 0, height: 0}
+      // Cover needs to be processed
+      if (cover.processed) {
+        return Promise.all([
+          settings.processing(img(), cover.crop, {
+            rows: 60,
+            gamma: cover.gamma
+          }),
+          settings.processing(img(), cover.crop, {
+            rows: 120,
+            gamma: cover.gamma
+          }),
+          settings.processing(img(), cover.crop, {
+            rows: 240,
+            gamma: cover.gamma
+          })
+        ])
+        .then(([small, medium, large]) => {
+          if (settings.rasterize) {
+            settings.rasterize(medium, {
+              rows: 120,
+              output: path.join(settings.publicPath, socialOutput)
+            }, {...settings, sharp})
+            .then(raster => {
+              resolve({
+                ...data,
+                processed: {
+                  small,
+                  medium,
+                  large,
+                  raster: {
+                    ...raster,
+                    url: socialUrl
                   }
-                });
-            }
-            }).catch(reject);
+                }
+              });
+            })
+            .catch(reject);
           }
           else {
-            resolve(data);
+            resolve({
+              ...data,
+              processed: {
+                small,
+                medium,
+                large
+              }
+            });
           }
-        });
+        }).catch(reject);
+      }
+
+      // Cover does not need to be processed
+      // TODO: what about cards for people?
+      else {
+        return img()
+          .resize(COVER_RESIZE)
+          .toFile(path.join(settings.publicPath, output), err => {
+            if (err)
+              return reject(err);
+
+            return resolve(data);
+          });
+      }
     });
   };
 

@@ -214,7 +214,7 @@ function getImagesAsPixels(mapOfImages, decodePNG) {
 function imgToProcessedPng(data, options, settings) {
   const tileWidth = SYMBOLS_DATA.tilesDimensions.width;
   const tileHeight = SYMBOLS_DATA.tilesDimensions.height;
-  const filePath = `${settings.publicPath}/${options.id}.social.png`;
+
   const {pixelValues, tilesIndexes} = SYMBOLS_DATA.symbolTiles;
   return new Promise((resolve, reject) => {
     // convert flat characters string to a 2d matrix of single characters
@@ -261,12 +261,11 @@ function imgToProcessedPng(data, options, settings) {
     })
     // following is necessary is tiles have a transparent background
     // .flatten({background: {r: 255, g: 255, b: 255}})
-    .toFile(filePath)
+    .toFile(options.output)
     .then(() => {
       resolve({
         width: imageWidth,
-        height: imageHeight,
-        url: `static/${options.id}.social.png`
+        height: imageHeight
       });
     }).catch(reject)
   });

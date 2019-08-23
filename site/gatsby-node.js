@@ -365,7 +365,6 @@ exports.createSchemaCustomization = function({actions}) {
 };
 
 exports.createResolvers = function({createResolvers, pathPrefix}) {
-
   const settings = {
     assetsPath: ASSETS_PATH,
     publicPath: PUBLIC_PATH,

@@ -64,12 +64,15 @@ exports.createCoverImageResolver = settings => {
           name = path.basename(cover.file, ext);
 
     const output = `${name}.cover${ext}`;
+    const socialOutput = `${name}.social.png`;
 
     const crop = cover.crop;
 
     const data = {
       url: `${settings.prefix}/static/${output}`
     };
+
+    const socialUrl = `${settings.prefix}/static/${socialOutput}`;
 
     return new Promise((resolve, reject) => {
 
@@ -80,7 +83,6 @@ exports.createCoverImageResolver = settings => {
         height: crop.height
       });
 
-      // TODO: temporal memoize to avoid triggering too many copies?
       // TODO: only use a single stream?
       return img()
         .toFile(path.join(settings.publicPath, output), err => {
@@ -106,7 +108,7 @@ exports.createCoverImageResolver = settings => {
               if (settings.rasterize) {
                 settings.rasterize(medium, {
                   rows: 120,
-                  id: source.slugs.join(''),
+                  output: path.join(settings.publicPath, socialOutput)
                 }, {...settings, sharp})
                 .then(raster => {
                   resolve({
@@ -115,7 +117,10 @@ exports.createCoverImageResolver = settings => {
                       small,
                       medium,
                       large,
-                      raster
+                      raster: {
+                        ...raster,
+                        url: socialUrl
+                      }
                     }
                   });
                 })
@@ -127,8 +132,7 @@ exports.createCoverImageResolver = settings => {
                   processed: {
                     small,
                     medium,
-                    large,
-                    raster: {url: undefined, width: 0, height: 0}
+                    large
                   }
                 });
             }

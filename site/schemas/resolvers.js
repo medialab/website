@@ -52,6 +52,11 @@ exports.createSameModelRelationResolver = (relationType, propName) => {
   };
 };
 
+const COVER_RESIZE = {
+  width: 300 * 2,
+  height: 225 * 2
+};
+
 exports.createCoverImageResolver = settings => {
 
   const resolver = source => {
@@ -76,15 +81,19 @@ exports.createCoverImageResolver = settings => {
 
     return new Promise((resolve, reject) => {
 
-      const img = () => sharp(path.join(settings.assetsPath, cover.file)).extract({
-        left: crop.x,
-        top: crop.y,
-        width: crop.width,
-        height: crop.height
-      });
+      const img = () => {
+        return sharp(path.join(settings.assetsPath, cover.file))
+          .extract({
+            left: crop.x,
+            top: crop.y,
+            width: crop.width,
+            height: crop.height
+          });
+      };
 
       // TODO: only use a single stream?
       return img()
+        .resize(COVER_RESIZE)
         .toFile(path.join(settings.publicPath, output), err => {
           if (err)
             return reject(err);

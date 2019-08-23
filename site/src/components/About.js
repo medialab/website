@@ -147,7 +147,7 @@ export default function About({lang}) {
 
               <h3 id="productions">Productions</h3>
 
-              <p>In addition to traditional academic publications, "Web publications" also disseminate the laboratory's activities through an interactive medium that opens up new ways of representing and visually exploring findings. Situations – exhibitions, workshops, simulations, etc. – allow for the public’s involvement in the research process and the testing of hypotheses against the reality on the ground</p>
+              <p>In addition to traditional academic publications, "Web publications" also disseminate the laboratory's activities through an interactive medium that opens up new ways of representing and visually exploring findings. Situations – exhibitions, workshops, simulations, etc. – allow for the public’s involvement in the research process and the testing of hypotheses against the reality on the ground.</p>
 
               <p><Link to="/en/productions" className="GoTo">Voir la liste des productions</Link></p>
 

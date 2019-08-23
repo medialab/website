@@ -11,7 +11,7 @@ import {SearchInput} from '../../helpers/SearchInput.js';
 // TODO: abstract some values into generic i18n.
 const i18n = {
   fr: {
-    accroche: 'Issues des dynamiques de recherche du laboratoire combinant méthode, analyse et théorie, les productions du médialab constituent un panorama hétéroclite. Aux traditionnelles publications académiques s’ajoute un ensemble de réalisations techniques qui répondent à des problèmes de recherche récurrents. Récemment, les sites web et réalisations en situation se sont développés comme de nouvelles formes pour rendre compte des activités du laboratoire.',
+    accroche: 'Aux traditionnelles publications académiques s’ajoutent les “éditions web” qui projettent les activités du laboratoire dans un média interactif et ouvrent de nouveaux moyens de représentation et d’exploration visuelle des résultats. Les mises en situation -expositions, workshops, simulations, etc.- permettent d’engager des publics dans le processus de recherche et de confronter les hypothèses à la réalité du terrain.',
     infosAlt: 'Informations à propos des productions',
     closeAlt: 'Revenir aux productions',
     filtresTitle: 'Filtre des productions',

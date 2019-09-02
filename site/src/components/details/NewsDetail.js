@@ -12,7 +12,7 @@ import LogoSticky from './fragments/LogoSticky.js';
 import ProcessedImage from '../helpers/ProcessedImage.js';
 
 import RelatedProductions from './fragments/RelatedProductions.js';
-import RelatedNews from './fragments/RelatedNews.js';
+import RelatedActivities from './fragments/RelatedActivities.js';
 import RelatedPeople from './fragments/RelatedPeople.js';
 import Attachments from './fragments/Attachments.js';
 
@@ -286,7 +286,7 @@ export default function NewsDetail({lang, news, siteUrl}) {
 
         <aside id="all-aside">
           <RelatedPeople schemaRelationProp={news.type === 'post' ? 'author' : 'organizer'} people={news.people} lang={lang} />
-          <RelatedNews activities={news.activities} lang={lang} />
+          <RelatedActivities activities={news.activities} lang={lang} />
           <RelatedProductions productions={news.productions} lang={lang} />
         </aside>
       </main>

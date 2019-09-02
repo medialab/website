@@ -430,23 +430,14 @@ export default function PeopleDetail({lang, person, siteUrl}) {
               {/* Toggle Langue */}
               <ToggleLang lang={lang} content={person.bio} />
 
-              {/* FR */}
               <div
                 itemProp="description"
-                className="biographie-content block-lang fr"
-                lang="fr"
+                className={`biographie-content block-lang ${lang}`}
+                lang={lang}
                 aria-label="Biographie" >
-                {person.bio && person.bio.fr ? <RawHtml html={person.bio.fr} /> : null}
+                {person.bio && person.bio[lang] ? <RawHtml html={person.bio[lang]} /> : null}
               </div>
 
-              {/* EN */}
-              <div
-                itemProp="description"
-                className="biographie-content block-lang en"
-                lang="en"
-                aria-label="Biography" >
-                {person.bio && person.bio.en ? <RawHtml html={person.bio.en} /> : null}
-              </div>
             </div>
 
             <Highlights people={person} lang={lang} />

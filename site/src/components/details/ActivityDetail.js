@@ -228,12 +228,11 @@ export default function ActivityDetail({lang, activity, siteUrl}) {
         {/* Toggle Langue */}
         <ToggleLang lang={lang} content={activity.content} />
 
-        {/* FR */}
-        <div className="block-lang fr" lang="fr">
+        <div className={`"block-lang ${lang}`} lang={lang}>
           <hgroup>
             <h1 data-level-2="title" itemProp="name">{activity.name}</h1>
             <h2 data-level-2="baseline">{activity.baseline && <LanguageFallback lang={lang} translatedAttribute={activity.baseline} />}</h2>
-            <h3 data-level-3="description" itemProp="description"><RawHtml html={activity.description && activity.description.fr} /></h3>
+            <h3 data-level-3="description" itemProp="description"><RawHtml html={activity.description && activity.description[lang]} /></h3>
           </hgroup>
           <div className="details">
             <p className="type-objet"><span data-icon="activite" /> {I18N_TYPE_LABELS.activities[lang][activity.type]}</p>
@@ -243,34 +242,14 @@ export default function ActivityDetail({lang, activity, siteUrl}) {
               endDateSchemaProp={'dissolutionDate'}
               startDate={activity.startDate}
               endDate={activity.endDate}
-              lang="fr" />
+              lang={lang} />
             <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
-            <Attachments attachments={activity.attachments} lang="fr" />
+            <Attachments attachments={activity.attachments} lang={lang} />
           </div>
 
 
           <div className="article-contenu">
-            {activity.content && (activity.content.fr && <RawHtml html={activity.content.fr} />)}
-          </div>
-        </div>
-
-        {/* EN */}
-        <div className="block-lang en" lang="en">
-          <hgroup>
-            <h1 data-level-2="title">{activity.name}</h1>
-            <h2 data-level-2="baseline">{activity.baseline && <LanguageFallback lang={lang} translatedAttribute={activity.baseline} />}</h2>
-            <h3 data-level-3="description"><RawHtml html={activity.description && activity.description.en} /></h3>
-          </hgroup>
-          <div className="details">
-            <p className="type-objet"><span data-icon="activite" /> {I18N_TYPE_LABELS.activities[lang][activity.type]}</p>
-            <DateNews
-              isTimeSpan startDate={activity.startDate} endDate={activity.endDate}
-              lang="en" />
-            <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
-            <Attachments attachments={activity.attachments} lang="en" />
-          </div>
-          <div className="article-contenu">
-            {activity.content && (activity.content.en && <RawHtml html={activity.content.en} />)}
+            {activity.content && (activity.content[lang] && <RawHtml html={activity.content[lang]} />)}
           </div>
         </div>
 

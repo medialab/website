@@ -249,10 +249,7 @@ export default function ProductionDetail({lang, production, siteUrl}) {
           <ToggleLang lang={lang} content={production.content} />
 
           {/* FR */}
-          <LangBlock production={production} lang="fr" />
-
-          {/* EN */}
-          <LangBlock production={production} lang="en" />
+          <LangBlock production={production} lang={lang} />
         </article>
 
         <aside id="all-aside">

@@ -2,11 +2,6 @@ import React from 'react';
 
 import RawHtml from './RawHtml';
 
-const message = {
-    fr: '⚐ Cet article est disponible uniquement en anglais.',
-    en: '⚐ This article is available only in french.'
-};
-
 export default function HtmlFallback({
     content = {},
     lang = 'en',

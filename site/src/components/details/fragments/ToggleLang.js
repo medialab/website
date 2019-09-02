@@ -2,6 +2,10 @@ import React from 'react';
 
 export default function ToggleLang({lang, content}) {
 
+  if (!content[lang] || !content[lang].length) {
+    return null;
+  }
+
   const enoughContentLength = 1500;
 
   const isEnEnough = content.en && content.en.length >= enoughContentLength;

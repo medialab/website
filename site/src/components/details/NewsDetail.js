@@ -1,6 +1,6 @@
 import React from 'react';
 import {graphql} from 'gatsby';
-import RawHtml from '../helpers/RawHtml.js';
+import HtmlFallback from '../helpers/HtmlFallback.js';
 import {Link} from 'gatsby';
 
 import ToggleLang from './fragments/ToggleLang.js';
@@ -221,19 +221,18 @@ export default function NewsDetail({lang, news, siteUrl}) {
           {/* Toggle Langue */}
           <ToggleLang lang={lang} content={news.content} />
 
-          {/* FR */}
-          <div className="block-lang fr" lang="fr">
+          <div className={`block-lang ${lang}`} lang={lang}>
             <hgroup>
               <h1 data-type="title"> <LanguageFallback lang={lang} translatedAttribute={news.title} /></h1>
-              <h2 data-type="description"><RawHtml html={news.description && (news.description.fr)} /></h2>
+              <HtmlFallback Tag="h2" data-type="description" content={news.description} lang={lang} />
             </hgroup>
             <div className="details">
               <p className="type-objet">
                 <span data-icon="news" />
                 <span className="type-news">{I18N_TYPE_LABELS.news[lang][news.type]}</span>
-                {news.label && news.label.fr ? <span>, {news.label.fr}</span> : ''}
+                {news.label && news.label[lang] ? <span>, {news.label[lang]}</span> : ''}
               </p>
-              <DateNews startDate={news.startDate} endDate={news.endDate} lang="fr" />
+              <DateNews startDate={news.startDate} endDate={news.endDate} lang={lang} />
               <TimeNews startDate={news.startDate} endDate={news.endDate} />
               {news.place && (
                 <p
@@ -245,42 +244,9 @@ export default function NewsDetail({lang, news, siteUrl}) {
                   <span itemProp="address">{news.place}</span>
                 </p>
               )}
-              <Attachments attachments={news.attachments} lang="fr" />
+              <Attachments attachments={news.attachments} lang={lang} />
             </div>
-            <div className="article-contenu">
-              {news.content && (news.content.fr && <RawHtml html={news.content.fr} />)}
-            </div>
-          </div>
-
-          {/* Chapô EN */}
-          <div className="block-lang en" lang="en">
-            <hgroup>
-              <h1 data-type="title"><LanguageFallback lang={lang} translatedAttribute={news.title} /></h1>
-              <h2 data-type="description"><RawHtml html={news.description && (news.description.en)} /></h2>
-            </hgroup>
-            <div className="details">
-              <p className="type-objet">
-                <span data-icon="news" />
-                <span className="type-news">{I18N_TYPE_LABELS.news[lang][news.type]}</span>
-                {news.label && news.label.en && <span>, {news.label.en}</span>}
-              </p>
-              <DateNews startDate={news.startDate} endDate={news.endDate} lang="en" />
-              <TimeNews startDate={news.startDate} endDate={news.endDate} />
-              {news.place && (
-                <p
-                  className="place"
-                  itemProp="location"
-                  itemScope
-                  itemType="https://schema.org/Place"
-                  aria-label={i18n[lang].place}>
-                  <span itemProp="address">{news.place}</span>
-                </p>
-              )}
-              <Attachments attachments={news.attachments} lang="en" />
-            </div>
-            <div className="article-contenu">
-              {news.content && (news.content.en && <RawHtml html={news.content.en} />)}
-            </div>
+            <HtmlFallback lang={lang} content={news.content} className="article-contenu" />
           </div>
         </article>
 

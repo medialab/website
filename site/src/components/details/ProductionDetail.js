@@ -1,6 +1,6 @@
 import React from 'react';
 import {graphql} from 'gatsby';
-import RawHtml from '../helpers/RawHtml.js';
+import HtmlFallback from '../helpers/HtmlFallback.js';
 import DateNews from '../helpers/DateNews.js';
 import {Link} from 'gatsby';
 
@@ -116,7 +116,7 @@ const mainPermalink = {
 const LangBlock = ({production, lang}) => {
   let ref = (
     <p itemProp="description" className="p-ref">
-      {production.description && <RawHtml html={production.description[lang]} />}
+      <HtmlFallback lang={lang} content={production.description} />
       {production.url && <br /> } {production.url ? production.url + ' ⤤' : ''}
     </p>
   );
@@ -148,9 +148,12 @@ const LangBlock = ({production, lang}) => {
         <DateNews startDateSchemaProp="datePublished" startDate={production.date} lang={lang} />
         {ref}
       </div>
-      <div className="article-contenu" itemProp="headline">
-        {production.content && (production.content[lang] && <RawHtml html={production.content[lang]} />)}
-      </div>
+      <HtmlFallback 
+        lang={lang} 
+        content={production.content} 
+        className="article-contenu" 
+        itemProp="headline" 
+      />
     </div>
   );
 };
@@ -249,10 +252,7 @@ export default function ProductionDetail({lang, production, siteUrl}) {
           <ToggleLang lang={lang} content={production.content} />
 
           {/* FR */}
-          <LangBlock production={production} lang="fr" />
-
-          {/* EN */}
-          <LangBlock production={production} lang="en" />
+          <LangBlock production={production} lang={lang} />
         </article>
 
         <aside id="all-aside">

@@ -1,6 +1,6 @@
 import React from 'react';
 import {graphql} from 'gatsby';
-import RawHtml from '../helpers/RawHtml.js';
+import HtmlFallback from '../helpers/HtmlFallback.js';
 import {Link} from 'gatsby';
 
 import {I18N_MODEL} from '../../i18n.js';
@@ -232,7 +232,13 @@ export default function ActivityDetail({lang, activity, siteUrl}) {
           <hgroup>
             <h1 data-level-2="title" itemProp="name">{activity.name}</h1>
             <h2 data-level-2="baseline">{activity.baseline && <LanguageFallback lang={lang} translatedAttribute={activity.baseline} />}</h2>
-            <h3 data-level-3="description" itemProp="description"><RawHtml html={activity.description && activity.description[lang]} /></h3>
+            <HtmlFallback 
+              Tag="h3" 
+              data-level-3="description" 
+              itemProp="description" 
+              content={activity.description} 
+              lang={lang}
+            />
           </hgroup>
           <div className="details">
             <p className="type-objet"><span data-icon="activite" /> {I18N_TYPE_LABELS.activities[lang][activity.type]}</p>
@@ -247,10 +253,7 @@ export default function ActivityDetail({lang, activity, siteUrl}) {
             <Attachments attachments={activity.attachments} lang={lang} />
           </div>
 
-
-          <div className="article-contenu">
-            {activity.content && (activity.content[lang] && <RawHtml html={activity.content[lang]} />)}
-          </div>
+          <HtmlFallback lang={lang} content={activity.content} className="article-contenu" />
         </div>
 
       </article>

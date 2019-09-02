@@ -1,6 +1,6 @@
 import React from 'react';
 import {graphql} from 'gatsby';
-import RawHtml from '../helpers/RawHtml.js';
+import HtmlFallback from '../helpers/HtmlFallback.js';
 import {Link} from 'gatsby';
 
 import ToggleLang from './fragments/ToggleLang.js';
@@ -224,7 +224,7 @@ export default function NewsDetail({lang, news, siteUrl}) {
           <div className={`block-lang ${lang}`} lang={lang}>
             <hgroup>
               <h1 data-type="title"> <LanguageFallback lang={lang} translatedAttribute={news.title} /></h1>
-              <h2 data-type="description"><RawHtml html={news.description && (news.description[lang])} /></h2>
+              <HtmlFallback Tag="h2" data-type="description" content={news.description} lang={lang} />
             </hgroup>
             <div className="details">
               <p className="type-objet">
@@ -246,9 +246,7 @@ export default function NewsDetail({lang, news, siteUrl}) {
               )}
               <Attachments attachments={news.attachments} lang={lang} />
             </div>
-            <div className="article-contenu">
-              {news.content && (news.content[lang] && <RawHtml html={news.content[lang]} />)}
-            </div>
+            <HtmlFallback lang={lang} content={news.content} className="article-contenu" />
           </div>
         </article>
 

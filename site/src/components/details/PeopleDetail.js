@@ -13,7 +13,7 @@ import RelatedNews from './fragments/RelatedNews.js';
 
 import Nav from '../common/Nav.js';
 
-import RawHtml from '../helpers/RawHtml';
+import HtmlFallback from '../helpers/HtmlFallback';
 import {templateMembership} from '../helpers/helpers.js';
 import PageMeta from '../helpers/PageMeta.js';
 
@@ -435,7 +435,7 @@ export default function PeopleDetail({lang, person, siteUrl}) {
                 className={`biographie-content block-lang ${lang}`}
                 lang={lang}
                 aria-label="Biographie" >
-                {person.bio && person.bio[lang] ? <RawHtml html={person.bio[lang]} /> : null}
+                <HtmlFallback lang={lang} content={person.bio} />
               </div>
 
             </div>

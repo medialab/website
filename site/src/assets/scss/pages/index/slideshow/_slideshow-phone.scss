@@ -102,6 +102,7 @@ $height-slideshow-phone: 180px;
               @include font-size-13-phone();
               padding: $baseline/2 0;
               border-bottom: $border-redlab-very-light;
+              white-space: nowrap;
               .date-news,
               .hours-news {
                 display: inline-block;

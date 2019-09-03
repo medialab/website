@@ -184,9 +184,6 @@
   font-size: -webkit-calc((#{$value}/ 240) * 1.89);
   font-size: -moz-calc((#{$value}e/240) * 1.89);
   font-size: calc((#{$value}/ 240) * 1.89);
-  //line-height: -webkit-calc((#{$value}/240)*1.89);
-  //line-height: -moz-calc((#{$value}/240)*1.89);
-  //line-height: calc((#{$value}/240)*1.89);
   line-height: 94%;
 }
 

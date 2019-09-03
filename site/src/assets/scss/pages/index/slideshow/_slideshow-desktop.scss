@@ -100,6 +100,7 @@
               .date {
                 padding: $baseline 0;
                 border-bottom: $border-redlab-very-light;
+                white-space: nowrap;
                 .date-news,
                 .hours-news {
                   display: inline-block;
@@ -209,7 +210,8 @@
     }
 
     .image-pre {
-      @include ratioImg240(800px);
+      @include ratioImg240(820px);
+     
     }
   }
 }

@@ -121,3 +121,7 @@
 .page-news .date-news {
   color: $redlab;
 }
+
+
+/* Page séminar only */
+.main-seminar #article-contenu .details{ display: none!important; }

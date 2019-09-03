@@ -164,7 +164,7 @@ export const query = graphql`
     rdv: allNewsJson(
       limit: 7,
       filter: {expiry: {gte: $yesterday}, type: {eq: "event"}},
-      sort: {fields: [expiry], order: [DESC]}
+      sort: {fields: [expiry], order: [ASC]}
     ) {
       edges {
         node {

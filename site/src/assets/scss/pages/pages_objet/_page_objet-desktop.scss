@@ -59,9 +59,9 @@
           margin-bottom: $baseline;
         }
 
-        .production-ref {
+        .p-ref {
           width: 100%;
-          margin-top: $baseline * 1;
+          // margin-top: $baseline * 1;
           padding-top: $baseline * 1;
         }
 
@@ -73,6 +73,8 @@
           padding-right: $unite;
           border-right: $border-very-light;
         }
+
+      
 
         .fichiers-associes,
         #attachments {

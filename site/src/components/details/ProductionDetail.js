@@ -115,21 +115,22 @@ const mainPermalink = {
 
 const LangBlock = ({production, lang}) => {
   let ref = (
-    <p itemProp="description" className="p-ref">
-      <HtmlFallback lang={lang} content={production.description} />
-      {production.url && <br /> } {production.url ? production.url + ' ⤤' : ''}
-    </p>
+    <span>
+      <HtmlFallback Tag="span" lang={lang} content={production.description} />
+      {/* {production.url && <br /> }  */}
+      <span class="spire">{production.url ? '[ Spire ⤤ ]' : ''}</span>
+    </span>
   );
 
   if (production.url) {
     ref = (
-      <a
+      <p itemProp="description" className="p-ref"><a
         itemProp="url"
         href={production.url}
         target="_blank"
         rel="noopener noreferrer">
         {ref}
-      </a>
+      </a></p>
     );
   }
 

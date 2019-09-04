@@ -9,7 +9,7 @@ import PageMeta from '../helpers/PageMeta.js';
 
 const i18n = {
   fr: {
-    description: 'Laboratoire de recherche interdisciplinaire, le médialab est un lieu de conception, de développement et d\'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et sociales.',
+    description: 'Laboratoire interdisciplinaire, le médialab mène des recherches thématiques et méthodologiques exploitant et interrogeant la place prise par le numérique dans nos sociétés.',
     home: 'Page d\'accueil',
     content: 'Contenu de la page d\'accueil',
     presentation: 'Présentation du médialab',
@@ -17,7 +17,7 @@ const i18n = {
     more: 'En savoir plus'
   },
   en: {
-    description: 'The médialab, an interdisciplinary research laboratory comprised of sociologists, engineers and designers, conducts thematic and methodological research to investigate the role of digital technology in our societies',
+    description: 'The médialab is an interdisciplinary research laboratory which conducts thematic and methodological research to investigate the role of digital technology in our societies.',
     home: 'Homepage',
     content: 'Homepage content',
     presentation: 'médialab presentation',
@@ -42,7 +42,7 @@ export default function Home({lang, grid, slider, rdv, tweets, github}) {
           <Slideshow slider={slider} lang={lang} />
           <section id="introduction" aria-label={i18n[lang].presentation}>
             <h1>Le médialab</h1>
-            <p> Laboratoire interdisciplinaire, le médialab mène des recherches thématiques et méthodologiques exploitant et interrogeant la place prise par le numérique dans nos sociétés.</p>
+            <p> Laboratoire de recherche interdisciplinaire, le&nbsp;médialab est un lieu de conception, de développement et d'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et&nbsp;sociales.</p>
             <p>
               <Link
                 to={permalink[lang]}

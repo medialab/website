@@ -42,7 +42,7 @@ export default function Home({lang, grid, slider, rdv, tweets, github}) {
           <Slideshow slider={slider} lang={lang} />
           <section id="introduction" aria-label={i18n[lang].presentation}>
             <h1>Le médialab</h1>
-            <p> {i18n[lang]}</p>
+            <p>{i18n[lang].description}</p>
             <p>
               <Link
                 to={permalink[lang]}

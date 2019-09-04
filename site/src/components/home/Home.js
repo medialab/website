@@ -9,7 +9,7 @@ import PageMeta from '../helpers/PageMeta.js';
 
 const i18n = {
   fr: {
-    description: 'Laboratoire interdisciplinaire, le médialab mène des recherches thématiques et méthodologiques exploitant et interrogeant la place prise par le numérique dans nos sociétés.',
+    description: 'Laboratoire interdisciplinaire, le médialab mène des recherches thématiques et méthodologiques qui interrogent les relations entre le numérique et nos sociétés.',
     home: 'Page d\'accueil',
     content: 'Contenu de la page d\'accueil',
     presentation: 'Présentation du médialab',

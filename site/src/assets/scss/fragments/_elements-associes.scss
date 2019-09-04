@@ -1,7 +1,8 @@
 // IMPORTANT: style of list element = _miniatures-all.scss
 
 @media screen {
-  #all-aside aside {
+  #all-aside aside,
+  #aside-seminar aside {
     max-width: $max-width-article;
 
     & > h1 {
@@ -27,6 +28,9 @@
       border-top: $border;
     }
   }
+
+
+
 }
 
 .personnes-associees-block {
@@ -132,7 +136,8 @@
 ////////////////
 
 @media screen and (max-width: 900px) {
-  #all-aside aside {
+  #all-aside aside,
+  #aside-seminar aside {
     padding-top: $topbar-phone;
     width: 100vw;
     &::before {
@@ -231,11 +236,11 @@
 }
 
 @media screen and (min-width: 900px) {
-  #all-aside {
+  #all-aside, #aside-seminar {
     margin-bottom: $height-footer;
   }
 
-  #all-aside aside {
+  #all-aside aside, #aside-seminar aside {
     padding-top: $height-sticky + $baseline * 2;
 
     &::before {
@@ -295,6 +300,8 @@
   }
 }
 
+
+
 /* ÉLÉMENTS ASSOCIÉS pour les pages objets larges  -------------------------------------------------------------------------------- */
 
 @media screen and (min-width: 1620px) {
@@ -305,6 +312,7 @@
       display: flex;
       padding: 0;
     }
+    .main-seminar{ display: block!important; }
     #article-contenu {
       padding-left: $margins-desktop;
     }
@@ -354,3 +362,75 @@
     margin-right: $margins-desktop !important;
   }
 }
+
+
+
+
+/* Spécifique page SEMINAIRES -------------------------------------------------------------------------------- */
+
+#aside-seminar aside{ 
+  max-width: 1200px;
+  .type-news{ 
+    display: none; 
+  }
+  .date-news{
+    margin-left: 0;
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+#aside-seminar.in-seminar aside:first-of-type::before {
+  display: none;
+}
+#aside-seminar.in-seminar aside:first-of-type {
+  padding-top: 0;
+}
+#aside-seminar.in-seminar aside:first-of-type .liste_seminaire {
+  margin-bottom: 60px;
+  min-height: unset;
+}
+#aside-seminar.in-seminar aside:last-of-type {
+  padding-top: 60px;
+}
+
+@media screen and (max-width: 900px){
+  // .main-seminar { }
+
+  #aside-seminar .liste_seminaire{
+    padding: 0;
+    .bandeau{ padding-top: 0; }
+    .bandeau div{
+      margin-top:0;
+      padding-top: 0;
+      border-top: none; 
+      .date-news, .hours-news{
+        margin-right: 0;
+        padding-right: 0;
+        border-right: none;
+      }
+    }
+  }
+
+  #aside-seminar.in-seminar {
+    padding-top: 30px;
+  }
+
+  #aside-seminar.in-seminar aside:last-of-type .liste_seminaire{
+      margin-bottom: 0;
+  }
+
+  #aside-seminar aside::before{
+    top: -60px;
+  }
+
+
+}
+
+
+@media screen and (min-width: 900px){
+  #aside-seminar li h1{
+    @include font-size-27;
+  }
+}
+
+

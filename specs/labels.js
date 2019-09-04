@@ -9,9 +9,10 @@ module.exports = {
     if (p.spire)
       p = p.spire.generatedFields;
 
-    return p.title.en || p.title.fr;
+    return p.title.fr || p.title.en;
   },
   news: function(n) {
-    return n.title.en || n.title.fr;
+
+    return n.title.fr + (n.title.fr && n.title.en ? ' | ' : '') + n.title.en;
   }
 };

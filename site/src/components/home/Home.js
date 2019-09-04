@@ -42,7 +42,7 @@ export default function Home({lang, grid, slider, rdv, tweets, github}) {
           <Slideshow slider={slider} lang={lang} />
           <section id="introduction" aria-label={i18n[lang].presentation}>
             <h1>Le médialab</h1>
-            <p> Laboratoire de recherche interdisciplinaire, le&nbsp;médialab est un lieu de conception, de développement et d'expérimentation de méthodes numériques hybrides pour nourrir des questions scientifiques ancrées dans le périmètre des Sciences humaines et&nbsp;sociales.</p>
+            <p> Laboratoire interdisciplinaire, le médialab mène des recherches thématiques et méthodologiques exploitant et interrogeant la place prise par le numérique dans nos sociétés.</p>
             <p>
               <Link
                 to={permalink[lang]}

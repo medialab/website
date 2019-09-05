@@ -12,14 +12,14 @@
   },
   "domains": {
     "fr": {
-      "academic": "académique",
+      "academic": "sciences sociales",
       "tech": "technique",
       "design": "design",
       "pedagogy": "pédagogique",
       "admin": "vie du labo"
     },
     "en": {
-      "academic": "academic",
+      "academic": "social sciences",
       "tech": "technic",
       "design": "design",
       "pedagogy": "pedagogy",

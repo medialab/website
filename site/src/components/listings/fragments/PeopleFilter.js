@@ -93,10 +93,6 @@ const PeopleFilter = ({lang}) => {
       className="input_domaine"
       value="design" hidden />
     <input
-      type="checkbox" id="domaine_pedagogie" name="domaine_pedagogie"
-      className="input_domaine"
-      value="pedagogie" hidden />
-    <input
       type="checkbox" id="domaine_administratif" name="domaine_administratif"
       className="input_domaine"
       value="administratif" hidden />
@@ -129,9 +125,6 @@ const PeopleFilter = ({lang}) => {
         <label
           id="domaine_design_label" className="checkbox-medialab" htmlFor="domaine_design"
           aria-label={I18N_TYPE_LABELS.people[lang].design}>{I18N_TYPE_LABELS.people[lang].design}</label>
-        <label
-          id="domaine_pedagogie_label" className="checkbox-medialab" htmlFor="domaine_pedagogie"
-          aria-label={I18N_TYPE_LABELS.people[lang].pedagogy}>{I18N_TYPE_LABELS.people[lang].pedagogy}</label>
         <label
           id="domaine_administratif_label" className="checkbox-medialab" htmlFor="domaine_administratif"
           aria-label={I18N_TYPE_LABELS.people[lang].admin}>{I18N_TYPE_LABELS.people[lang].admin}</label>

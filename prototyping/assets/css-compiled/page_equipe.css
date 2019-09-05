@@ -6385,7 +6385,6 @@ span.tip {
 #domaine_academique:checked ~ #liste #liste_equipe [data-domaine="academique"],
 #domaine_technique:checked ~ #liste #liste_equipe [data-domaine="technique"],
 #domaine_design:checked ~ #liste #liste_equipe [data-domaine="design"],
-#domaine_pedagogie:checked ~ #liste #liste_equipe [data-domaine="pedagogie"],
 #domaine_administratif:checked ~ #liste #liste_equipe [data-domaine="administratif"] {
   display: block; }
 

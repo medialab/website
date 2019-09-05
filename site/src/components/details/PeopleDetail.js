@@ -228,9 +228,8 @@ const MAX_URL_LENGTH = 50;
 // TODO: we should probably sort contacts...
 function PeopleContactLabel({lang, data}) {
   if (data.label === 'Mail') {
-    const [identifer] = data.value.split('@');    
-    //return <p proptype="email">{data.label}: {identifer}</p>;
-    return <p proptype="email">{data.label}: {identifer}●sciencespo.fr</p>;
+    const email = data.value.replace('@', '●');    
+    return <p proptype="email">{data.label}: {email}</p>;
   }
 
   if (TWITTER_LABEL_REGEX.test(data.label)) {

@@ -64,14 +64,14 @@
 
       .fichiers-associes,
       #attachments {
-        li:hover {
+        .files.target:hover {
           color: $redlab-light !important;
         }
 
         .files a {
           @include linktext();
         }
-        .files:after {
+        .files.target:after {
           content: $goto;
           font-family: $font-symbol;
           font-size: 0.8em;

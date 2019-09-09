@@ -29,7 +29,7 @@ const Attachments = ({lang, attachments}) => {
   return (
     <ul className="fichiers-associes" id="attachments">
       {(attachments || []).map(file => (
-        <li key={file.value} data-type="files" className="files">
+        <li key={file.value} data-type="files" className={`files${['attachement', 'url'].includes(file.type) ? ' target' : ''}`}>
 
           {file.type === 'attachment' && (
             <Link

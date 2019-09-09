@@ -129,8 +129,10 @@ export default class SortableKeyValueList extends PureComponent {
   };
 
   handleAdd = () => {
+    // clean extra space
+    const value = this.state.value.trim();
     const type = !this.state.file ?
-      (isUrl(this.state.value) ? 'url' : 'string') :
+      (isUrl(value) ? 'url' : 'label') :
       'attachment';
 
     // Need to upload?
@@ -155,7 +157,7 @@ export default class SortableKeyValueList extends PureComponent {
     this.props.onAdd({
       type,
       label: this.state.label.value,
-      value: this.state.value
+      value
     });
 
     this.handleReset();

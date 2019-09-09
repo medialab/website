@@ -26,9 +26,16 @@
         .p-ref {
           border-top: $border-very-light;
           cursor: pointer;
-          &:hover{ color: $color-hover;}
-          span, div { display: inline; }
-          .spire{ white-space: nowrap; }
+          &:hover {
+            color: $color-hover;
+          }
+          span,
+          div {
+            display: inline;
+          }
+          .spire {
+            white-space: nowrap;
+          }
         }
 
         .type-news {
@@ -122,6 +129,7 @@
   color: $redlab;
 }
 
-
 /* Page séminar only */
-.main-seminar #article-contenu .details{ display: none!important; }
+.main-seminar #article-contenu .details {
+  display: none !important;
+}

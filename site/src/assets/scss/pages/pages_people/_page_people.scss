@@ -51,7 +51,9 @@
         border-top: $border-very-light;
         border-bottom: $border-very-light;
 
-        a:hover{ color: $color-hover;}
+        a:hover {
+          color: $color-hover;
+        }
 
         p {
           color: $text-color-light;
@@ -71,7 +73,9 @@
 
           a {
             @include linktext();
-            &:hover{ color: $color-hover;}
+            &:hover {
+              color: $color-hover;
+            }
           }
 
           &[data-type="Mail"] p {

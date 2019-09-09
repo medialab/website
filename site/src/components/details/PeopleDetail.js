@@ -228,7 +228,7 @@ const MAX_URL_LENGTH = 50;
 // TODO: we should probably sort contacts...
 function PeopleContactLabel({lang, data}) {
   if (data.label === 'Mail') {
-    const email = data.value.replace('@', '●');    
+    const email = data.value.replace('@', '●');
     return <p proptype="email">{data.label}: {email}</p>;
   }
 

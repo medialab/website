@@ -118,7 +118,7 @@ const LangBlock = ({production, lang}) => {
     <span>
       <HtmlFallback Tag="span" lang={lang} content={production.description} />
       {/* {production.url && <br /> }  */}
-      <span class="spire">{production.url ? '[ Spire ⤤ ]' : ''}</span>
+      <span className="spire">{production.url ? '[ Spire ⤤ ]' : ''}</span>
     </span>
   );
 
@@ -149,12 +149,11 @@ const LangBlock = ({production, lang}) => {
         <DateNews startDateSchemaProp="datePublished" startDate={production.date} lang={lang} />
         {ref}
       </div>
-      <HtmlFallback 
-        lang={lang} 
-        content={production.content} 
-        className="article-contenu" 
-        itemProp="headline" 
-      />
+      <HtmlFallback
+        lang={lang}
+        content={production.content}
+        className="article-contenu"
+        itemProp="headline" />
     </div>
   );
 };

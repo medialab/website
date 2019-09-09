@@ -224,7 +224,9 @@ export default function NewsDetail({lang, news, siteUrl}) {
           <div className={`block-lang ${lang}`} lang={lang}>
             <hgroup>
               <h1 data-type="title"> <LanguageFallback lang={lang} translatedAttribute={news.title} /></h1>
-              <HtmlFallback Tag="h2" data-type="description" content={news.description} lang={lang} />
+              <HtmlFallback
+                Tag="h2" data-type="description" content={news.description}
+                lang={lang} />
             </hgroup>
             <div className="details">
               <p className="type-objet">

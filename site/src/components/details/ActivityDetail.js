@@ -161,7 +161,9 @@ export default function ActivityDetail({lang, activity, siteUrl}) {
   const inSeminar = activity.slugs[0] === 'seminaire-du-medialab';
 
   return (
-    <main id="main-objet" role="main" class="main-seminar" aria-label={i18n[lang].content(activity)}>
+    <main
+      id="main-objet" role="main" className="main-seminar"
+      aria-label={i18n[lang].content(activity)}>
       <PageMeta
         title={`${activity.name} | médialab Sciences Po`}
         description={activity.baseline && activity.baseline[lang]}
@@ -232,13 +234,12 @@ export default function ActivityDetail({lang, activity, siteUrl}) {
           <hgroup>
             <h1 data-level-2="title" itemProp="name">{activity.name}</h1>
             <h2 data-level-2="baseline">{activity.baseline && <LanguageFallback lang={lang} translatedAttribute={activity.baseline} />}</h2>
-            <HtmlFallback 
-              Tag="h3" 
-              data-level-3="description" 
-              itemProp="description" 
-              content={activity.description} 
-              lang={lang}
-            />
+            <HtmlFallback
+              Tag="h3"
+              data-level-3="description"
+              itemProp="description"
+              content={activity.description}
+              lang={lang} />
           </hgroup>
           <div className="details">
             <p className="type-objet"><span data-icon="activite" /> {I18N_TYPE_LABELS.activities[lang][activity.type]}</p>

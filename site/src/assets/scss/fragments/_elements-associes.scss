@@ -28,9 +28,6 @@
       border-top: $border;
     }
   }
-
-
-
 }
 
 .personnes-associees-block {
@@ -236,11 +233,13 @@
 }
 
 @media screen and (min-width: 900px) {
-  #all-aside, #aside-seminar {
+  #all-aside,
+  #aside-seminar {
     margin-bottom: $height-footer;
   }
 
-  #all-aside aside, #aside-seminar aside {
+  #all-aside aside,
+  #aside-seminar aside {
     padding-top: $height-sticky + $baseline * 2;
 
     &::before {
@@ -300,8 +299,6 @@
   }
 }
 
-
-
 /* ÉLÉMENTS ASSOCIÉS pour les pages objets larges  -------------------------------------------------------------------------------- */
 
 @media screen and (min-width: 1620px) {
@@ -312,7 +309,9 @@
       display: flex;
       padding: 0;
     }
-    .main-seminar{ display: block!important; }
+    .main-seminar {
+      display: block !important;
+    }
     #article-contenu {
       padding-left: $margins-desktop;
     }
@@ -363,17 +362,14 @@
   }
 }
 
-
-
-
 /* Spécifique page SEMINAIRES -------------------------------------------------------------------------------- */
 
-#aside-seminar aside{ 
+#aside-seminar aside {
   max-width: 1200px;
-  .type-news{ 
-    display: none; 
+  .type-news {
+    display: none;
   }
-  .date-news{
+  .date-news {
     margin-left: 0;
     padding-left: 0;
     border-left: 0;
@@ -393,17 +389,20 @@
   padding-top: 60px;
 }
 
-@media screen and (max-width: 900px){
+@media screen and (max-width: 900px) {
   // .main-seminar { }
 
-  #aside-seminar .liste_seminaire{
+  #aside-seminar .liste_seminaire {
     padding: 0;
-    .bandeau{ padding-top: 0; }
-    .bandeau div{
-      margin-top:0;
+    .bandeau {
       padding-top: 0;
-      border-top: none; 
-      .date-news, .hours-news{
+    }
+    .bandeau div {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+      .date-news,
+      .hours-news {
         margin-right: 0;
         padding-right: 0;
         border-right: none;
@@ -415,22 +414,17 @@
     padding-top: 30px;
   }
 
-  #aside-seminar.in-seminar aside:last-of-type .liste_seminaire{
-      margin-bottom: 0;
+  #aside-seminar.in-seminar aside:last-of-type .liste_seminaire {
+    margin-bottom: 0;
   }
 
-  #aside-seminar aside::before{
+  #aside-seminar aside::before {
     top: -60px;
   }
-
-
 }
 
-
-@media screen and (min-width: 900px){
-  #aside-seminar li h1{
+@media screen and (min-width: 900px) {
+  #aside-seminar li h1 {
     @include font-size-27;
   }
 }
-
-

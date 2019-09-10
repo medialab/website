@@ -162,7 +162,7 @@ export default function ActivityDetail({lang, activity, siteUrl}) {
 
   return (
     <main
-      id="main-objet" role="main" className="main-seminar"
+      id="main-objet" role="main" className={inSeminar ? 'main-seminar':''}
       aria-label={i18n[lang].content(activity)}>
       <PageMeta
         title={`${activity.name} | médialab Sciences Po`}
@@ -258,7 +258,7 @@ export default function ActivityDetail({lang, activity, siteUrl}) {
         </div>
 
       </article>
-      <aside id={'aside-seminar'} className={inSeminar ? 'in-seminar' : ''}>
+      <aside id={inSeminar ? 'aside-seminar' : 'all-aside'} className={inSeminar ? 'in-seminar' : ''}>
         <RelatedPeople people={activity.people} lang={lang} />
         <RelatedActivities activities={activity.activities} lang={lang} />
         <RelatedProductions productions={activity.productions} lang={lang} />

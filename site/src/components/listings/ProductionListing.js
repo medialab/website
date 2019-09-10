@@ -8,7 +8,6 @@ import DateNews from '../helpers/DateNews.js';
 import {compare, productionTypeToSchemaURL} from '../helpers/helpers.js';
 import {getYear, parseISO} from 'date-fns';
 
-import LanguageFallback from '../helpers/LanguageFallback.js';
 
 import PageMeta from '../helpers/PageMeta.js';
 
@@ -51,6 +50,7 @@ export default function ProductionListing({lang, list, group, types}) {
     });
 
   const nbItem = 0;
+  const otherLang = lang === 'fr' ? 'en' : 'fr';
 
   return (
     <>
@@ -94,12 +94,12 @@ export default function ProductionListing({lang, list, group, types}) {
                       </div>
                       <hgroup>
                         <h1 itemProp="name" data-level-1="title" >
-                          <LanguageFallback lang={lang} translatedAttribute={p.title} />
+                          {p.title[lang] || p.title[otherLang]}
                         </h1>
                       </hgroup>
                       <div className="authors">
                         {p.authors && <p itemProp={p.type !== 'exhibition' ? 'author' : undefined} className="authors-paragraphe" dangerouslySetInnerHTML={{__html: p.authors.replace(/([^,$]+)(,)?( )?/g, '<nobr>$1$2</nobr>$3')}} />}
-                        <p className="print publication-ref" dangerouslySetInnerHTML={{__html: p.description && (p.description[lang] || p.description[(lang === 'fr' ? 'en' : 'fr')])}} />
+                        <p className="print publication-ref" dangerouslySetInnerHTML={{__html: p.description && (p.description[lang] || p.description[otherLang])}} />
                       </div>
                       {/* microdata-related invisible elements */}
                       <div style={{display: 'none'}}>

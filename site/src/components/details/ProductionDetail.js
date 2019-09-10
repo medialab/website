@@ -13,8 +13,9 @@ import RelatedActivities from './fragments/RelatedActivities.js';
 import RelatedNews from './fragments/RelatedNews.js';
 import RelatedPeople from './fragments/RelatedPeople.js';
 
-import LanguageFallback from '../helpers/LanguageFallback';
 import PageMeta from '../helpers/PageMeta.js';
+
+import RawHtml from '../helpers/RawHtml.js';
 
 export const queryFragment = graphql`
   fragment ProductionDetail on ProductionsJson {
@@ -114,11 +115,13 @@ const mainPermalink = {
 };
 
 const LangBlock = ({production, lang}) => {
+
+  const otherLang = lang === 'fr' ? 'en' : 'fr';
+
   let ref = (
     <span>
-      <HtmlFallback Tag="span" lang={lang} content={production.description} />
-      {/* {production.url && <br /> }  */}
-      <span className="spire">{production.url ? '[ Spire ⤤ ]' : ''}</span>
+      <span><RawHtml html={production.description[lang] || production.description[otherLang]} />
+      { production.url ? ` ⤤` : ''}</span>
     </span>
   );
 
@@ -138,7 +141,7 @@ const LangBlock = ({production, lang}) => {
     <div className={`block-lang ${lang}`} lang={lang}>
       <hgroup>
         <h1 itemProp="name" data-level-1="title">
-          <LanguageFallback lang={lang} translatedAttribute={production.title} />
+          {production.title[lang] || production.title[otherLang]}
         </h1>
         {production.authors && <h2 data-level-2="authors"><span>{production.authors}</span></h2>}
       </hgroup>
@@ -173,6 +176,8 @@ function createProductionTitle(lang, production) {
 }
 
 export default function ProductionDetail({lang, production, siteUrl}) {
+
+  const otherLang = lang === 'fr' ? 'en' : 'fr';
   return (
     <>
       <PageMeta
@@ -221,7 +226,7 @@ export default function ProductionDetail({lang, production, siteUrl}) {
               href={`${siteUrl}${production.permalink[lang]}`}
               itemProp="item">
               <span itemProp="name">
-                <LanguageFallback lang={lang} translatedAttribute={production.title} />
+                {production.title[lang] || production.title[otherLang]}
               </span>
             </a>
             <meta itemProp="position" content="3" />
@@ -236,7 +241,7 @@ export default function ProductionDetail({lang, production, siteUrl}) {
               </Link>
               <span itemProp="name" className="title">
                 <a href="#topbar">
-                  <LanguageFallback lang={lang} translatedAttribute={production.title} />
+                 {production.title[lang] || production.title[otherLang]}
                 </a>
               </span>
             </p>

@@ -249,7 +249,8 @@ const MIGRATION_SCHEMES = {
   'reslugify': require('./migrations/reslugify.js'),
   'refresh-generatedFields-productions': require('./migrations/refresh-generatedFields-productions.js'),
   'rollback': require('./migrations/rollback.js')(BUILD_CONF.rollbackRepository || BUILD_CONF.repository),
-  'import-old-slug': require('./migrations/import-old-slug.js')
+  'import-old-slug': require('./migrations/import-old-slug.js'),
+  'fix-bad-url-attachments': require('./migrations/fix-bad-url-attachments.js')
 };
 
 app.get('/migrate/:scheme', (req, res) => {

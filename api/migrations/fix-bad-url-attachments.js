@@ -26,6 +26,8 @@ module.exports = function(req, dbs, next) {
                     a.type = 'url';
                     corrected = true;
                 }
+                else 
+                  a.type = 'label'
                 weirdAttachments.push({corrected, model: plural, id: item._id, title: item.title.fr || item.title.en || item.name, attachement: a});
             }
         });

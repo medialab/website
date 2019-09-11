@@ -118,22 +118,35 @@ const LangBlock = ({production, lang}) => {
 
   const otherLang = lang === 'fr' ? 'en' : 'fr';
 
+  const description = (
+    production.description && (
+      production.description[lang] ||
+      production.description[otherLang]
+    )
+  ) || production.url;
+
   let ref = (
     <span>
-      <span><RawHtml html={production.description[lang] || production.description[otherLang]} />
-      { production.url ? ` ⤤` : ''}</span>
+      <span>
+        <RawHtml html={description} />
+        {production.url ? ` ⤤` : ''}
+      </span>
     </span>
   );
 
   if (production.url) {
     ref = (
-      <p itemProp="description" className="p-ref"><a
-        itemProp="url"
-        href={production.url}
-        target="_blank"
-        rel="noopener noreferrer">
-        {ref}
-      </a></p>
+      <p
+        itemProp="description"
+        className="p-ref">
+        <a
+          itemProp="url"
+          href={production.url}
+          target="_blank"
+          rel="noopener noreferrer">
+          {ref}
+        </a>
+      </p>
     );
   }
 

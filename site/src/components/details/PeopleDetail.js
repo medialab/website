@@ -426,8 +426,7 @@ export default function PeopleDetail({lang, person, siteUrl}) {
                 )}
               </header>
 
-              {/* Toggle Langue */}
-              <ToggleLang lang={lang} content={person.bio} />
+              
 
               <div
                 itemProp="description"
@@ -436,6 +435,8 @@ export default function PeopleDetail({lang, person, siteUrl}) {
                 aria-label="Biographie" >
                 <HtmlFallback lang={lang} content={person.bio} />
               </div>
+              {/* Toggle Langue */}
+              <ToggleLang lang={lang} content={person.bio} to={person.permalink} />
 
             </div>
 

@@ -266,11 +266,12 @@ export default function ProductionDetail({lang, production, siteUrl}) {
         </div>
 
         <article id="article-contenu">
-          {/* Toggle Langue */}
-          <ToggleLang lang={lang} content={production.content} />
-
+          
           {/* FR */}
           <LangBlock production={production} lang={lang} />
+
+          {/* Toggle Langue */}
+          <ToggleLang lang={lang} content={production.content} to={production.permalink} />
         </article>
 
         <aside id="all-aside">

@@ -227,8 +227,6 @@ export default function ActivityDetail({lang, activity, siteUrl}) {
 
 
       <article id="article-contenu">
-        {/* Toggle Langue */}
-        <ToggleLang lang={lang} content={activity.content} />
 
         <div className={`"block-lang ${lang}`} lang={lang}>
           <hgroup>
@@ -256,6 +254,8 @@ export default function ActivityDetail({lang, activity, siteUrl}) {
 
           <HtmlFallback lang={lang} content={activity.content} className="article-contenu" />
         </div>
+        {/* Toggle Langue */}
+        <ToggleLang lang={lang} content={activity.content} to={activity.permalink} />
 
       </article>
       <aside id={inSeminar ? 'aside-seminar' : 'all-aside'} className={inSeminar ? 'in-seminar' : ''}>

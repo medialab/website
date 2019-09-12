@@ -134,7 +134,6 @@ const mainPermalink = {
 };
 
 export default function NewsDetail({lang, news, siteUrl}) {
-
   return (
     <>
       <PageMeta
@@ -218,8 +217,6 @@ export default function NewsDetail({lang, news, siteUrl}) {
         </div>
 
         <article id="article-contenu">
-          {/* Toggle Langue */}
-          <ToggleLang lang={lang} content={news.content} />
 
           <div className={`block-lang ${lang}`} lang={lang}>
             <hgroup>
@@ -251,6 +248,9 @@ export default function NewsDetail({lang, news, siteUrl}) {
             </div>
             <HtmlFallback lang={lang} content={news.content} className="article-contenu" />
           </div>
+            {/* Toggle Langue */}
+            <ToggleLang lang={lang} content={news.content} to={news.permalink} />
+
         </article>
 
         <aside id="all-aside">

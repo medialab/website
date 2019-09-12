@@ -91,7 +91,8 @@ module.exports = function oldSlugRedirections(callback) {
       'rewrite ^/(fr/|en/)?projets/politiques-de-la-terre/?$ /activites/politiques-de-la-terre-a-lepreuve-de-lanthropocene permanent;',
       'rewrite ^/(fr/|en/)?projets/source/?$ /en/activities/source-project-societal-security-network permanent;',
       'rewrite ^/(fr/|en/)?people/cardon/?$ /equipe/dominique-cardon permanent;',
-      'rewrite ^/(fr/|en/)?ipcc/?$ /en/news/cartographier-les-auteurs-du-giec permanent;'
+      'rewrite ^/(fr/|en/)?ipcc/?$ /en/news/cartographier-les-auteurs-du-giec permanent;',
+      'rewrite ^/(fr/|en/)?feed/?$ /feed permanent;'
     ];
 
     callback(err, flatten(redirections.concat(pageRedirections)).join('\n'));

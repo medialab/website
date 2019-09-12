@@ -47,7 +47,7 @@ const Footer = ({lang}) => {
               aria-label={i18n[lang].mail}
               target="_blank"
               rel="noopener noreferrer">
-              Mail
+              {lang === 'fr' ? 'Courriel' : 'Email'}
             </a>
           </li>
           <li>
@@ -68,6 +68,16 @@ const Footer = ({lang}) => {
               target="_blank"
               rel="noopener noreferrer">
               Github
+            </a>
+          </li>
+          <li>
+            <a
+              itemProp="sameAs"
+              href="/feed"
+              aria-label="RSS"
+              target="_blank"
+              rel="noopener noreferrer">
+              RSS
             </a>
           </li>
         </ul>

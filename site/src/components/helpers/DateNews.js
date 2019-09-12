@@ -42,7 +42,7 @@ function DateNews(props) {
     const showEndDateMonth = props.endDate.length > 4;
     const endDateMonthName = formatDate(endDate, 'MMMM', {locale});
     const endDateYear = formatDate(endDate, 'yyyy', {locale});
-
+    
     return (<p className="date-news differentYear" aria-label="date">
       <time itemProp={startDateSchemaProp} dateTime={formatDate(startDate, 'yyyy-MM-d')}>
         <span className={`startDate ${isSameMonth(startDate, endDate) ? 'startDate_sameMonth' : ''}`} >
@@ -63,6 +63,7 @@ function DateNews(props) {
   }
   else {
     return (<p className="date-news" aria-label="date" >
+      {(props.prefix && props.prefix[lang]) || ''}
       <time itemProp={startDateSchemaProp} dateTime={formatDate(startDate, 'yyyy-MM-d')}>
         <span>
           {props.isTimeSpan && (lang === 'fr' ? 'depuis ' : 'since ')}

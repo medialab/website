@@ -5,8 +5,6 @@ import {SECTIONS} from '../../helpers/sections';
 import DateNews from '../../helpers/DateNews.js';
 import {compare, productionTypeToSchemaURL} from '../../helpers/helpers.js';
 
-import LanguageFallback from '../../helpers/LanguageFallback.js';
-
 const i18n = {
   fr: {
     externalAriaLabel: 'Production exterieure au médialab',
@@ -37,7 +35,7 @@ const ProductionCard = ({p, lang}) => (
     </div>
     <hgroup>
       <h1 itemProp="name" data-level-1="title" >
-        <LanguageFallback lang={lang} translatedAttribute={p.title} />
+        {p.title[lang] || p.title[lang === 'fr' ? 'en' : 'fr']}
       </h1>
     </hgroup>
   </>

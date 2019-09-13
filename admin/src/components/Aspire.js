@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {acquireSocket} from '../sockets';
+import client from '../client';
 import Button from './misc/Button';
 
 export default class Aspire extends Component {
@@ -12,8 +13,9 @@ export default class Aspire extends Component {
 
     // Connecting to socket
     this.socket = acquireSocket();
-    this.socket.emit('locks', null, (err, data) => {
-      this.setState({status: data.spireStatus, messages: []});
+
+    client.admin((err, data) => {
+      this.setState({status: data.locks.spireStatus, messages: []});
     });
 
     this.socket.on('spireStatusChanged', status => {
@@ -34,7 +36,7 @@ export default class Aspire extends Component {
     if (this.state.status !== 'free')
       return;
     this.setState({status, messages: []});
-    this.socket.emit('aspire');
+    this.client.aspire();
   };
 
   render() {
@@ -53,9 +55,7 @@ export default class Aspire extends Component {
           {messages &&
             <div className="level-item, notification, content">
               <ul>
-                { messages.map((s, i) =>
-                  <li key={i}>{s}</li>
-                  )}
+                {messages.map((s, i) => <li key={i}>{s}</li>)}
               </ul>
             </div>
           }

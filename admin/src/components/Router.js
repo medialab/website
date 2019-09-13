@@ -7,6 +7,7 @@ import listSpecs from '../../../specs/lists.js';
 
 import Login from './Login';
 import Home from './Home';
+import Admin from './Admin';
 import Playground from './Playground';
 import HomeIcon from 'material-icons-svg/components/baseline/Home';
 import List from './List';
@@ -63,6 +64,12 @@ export default withRouter(function Router({alreadyAuthenticated, history}) {
               </li>
           )} />
           <Route
+            path="/admin" children={({match}) => (
+              <li className={cls(match && 'is-active')} style={{marginLeft: '50px'}}>
+                <Link to="/admin">Admin</Link>
+              </li>
+          )} />
+          <Route
             path="/settings" children={({match}) => (
               <li className={cls(match && 'is-active')}>
                 <Link to="/settings">Settings</Link>
@@ -99,6 +106,7 @@ export default withRouter(function Router({alreadyAuthenticated, history}) {
             key="productions" model="productions" label="production"
             specs={listSpecs.productions} />)} />
         <Route path="/playground" component={Playground} />
+        <Route path="/admin" component={Admin} />
         <Route path="/settings" render={() => <SettingsForm key="settings" />} />
         <Route render={() => (<div>Miss!</div>)} />
       </Switch>

@@ -279,22 +279,23 @@ app.get('/migrate/:scheme', (req, res) => {
   });
 });
 
+// Transient data storage
+const TRANSIENT_DATA = {
+  lastBuildStart: null,
+  lastBuildEnd: null,
+  lastCommits: null
+};
+
 // Creating server
 const server = http.Server(app);
 
-// Serving websockets
+// Websocket logic
 const ws = io(server, {path: '/sockets'});
 
 const LOCKS = {
   buildStatus: 'free',
   deployStatus: 'free',
   spireStatus: 'free'
-};
-
-const TRANSIENT_DATA = {
-  lastBuildStart: null,
-  lastBuildEnd: null,
-  lastCommits: null
 };
 
 app.get('/admin', function(req, res) {
@@ -307,127 +308,157 @@ app.get('/admin', function(req, res) {
 const changeBuildStatus = (newStatus) => {
   LOCKS.buildStatus = newStatus;
   ws.emit('buildStatusChanged', newStatus);
+  ws.emit('locksChanged', LOCKS);
+
+  if (newStatus === 'free')
+    ws.emit('infoChanged', TRANSIENT_DATA);
 };
 
 const changeDeployStatus = (newStatus) => {
   LOCKS.deployStatus = newStatus;
   ws.emit('deployStatusChanged', newStatus);
+  ws.emit('locksChanged', LOCKS);
+
+  if (newStatus === 'free')
+    ws.emit('infoChanged', TRANSIENT_DATA);
 };
 
 const changeSpireStatus = (newStatus) => {
   LOCKS.spireStatus = newStatus;
   ws.emit('spireStatusChanged', newStatus);
+  ws.emit('locksChanged', LOCKS);
 };
 
-ws.on('connection', socket => {
+// Spire logic
+function updateSpire(callback) {
+  if (LOCKS.spireStatus !== 'free')
+    return false;
 
-  // Accessing locks
-  socket.on('locks', (data, callback) => {
-    callback(null, LOCKS);
+  changeSpireStatus('working');
+
+  return spire.aSPIRE(err => {
+    changeSpireStatus('free');
+
+    return callback(err);
   });
+}
 
-  // When triggering deploy
-  socket.on('deploy', () => {
+app.get('/aspire', (req, res) => {
+  const willPerform = updateSpire(err => console.error(err));
 
-    // Git handle
-    let git;
+  const payload = !willPerform ?
+    {result: 'Already doing.'} :
+    {result: 'Ok'};
 
-    // NOTE: we could do some things in parallel to gain some time
+  return res.json(payload);
+});
 
-    async.series({
+// Deployment logic
+function deploy(callback) {
 
-      // 1) Cleanup
-      cleanup(next) {
-        changeDeployStatus('cleaning');
+  // Don't deploy if already doing it
+  if (LOCKS.deployStatus !== 'free')
+    return false;
 
-        rimraf(DUMP_PATH, next);
-      },
+  // Git handle
+  let git;
 
-      // 2) Removing unused assets
-      removingUnusedAssets(next) {
-        const dbs = {};
+  async.series({
 
-        ROUTERS.forEach(({model, router}) => (dbs[model] = router.db));
+    // 1) Cleanup
+    cleanup(next) {
+      changeDeployStatus('cleaning');
 
-        const unused = findUnusedAssets(dbs, ASSETS_PATH);
+      rimraf(DUMP_PATH, next);
+    },
 
-        return async.each(Array.from(unused), (asset, n) => {
-          console.log(`Dropping unused asset "${asset}"`);
-          return fs.unlink(path.join(ASSETS_PATH, asset), n);
-        }, next);
-      },
+    // 2) Removing unused assets
+    removingUnusedAssets(next) {
+      const dbs = {};
 
-      // 3) Pulling
-      pull(next) {
-        changeDeployStatus('pulling');
+      ROUTERS.forEach(({model, router}) => (dbs[model] = router.db));
 
-        fs.ensureDirSync(DUMP_PATH);
+      const unused = findUnusedAssets(dbs, ASSETS_PATH);
 
-        git = simpleGit(DUMP_PATH);
+      return async.each(Array.from(unused), (asset, n) => {
+        console.log(`Dropping unused asset "${asset}"`);
+        return fs.unlink(path.join(ASSETS_PATH, asset), n);
+      }, next);
+    },
 
-        git
-          .cwd(DUMP_PATH)
-          .init()
-          .addRemote('origin', BUILD_CONF.repository)
-          .pull('origin', 'master', next);
-      },
+    // 3) Pulling
+    pull(next) {
+      changeDeployStatus('pulling');
 
-      // 4) Wiping files
-      wiping(next) {
-        const toDelete = MODELS.map(m => path.join(DUMP_PATH, m, '*.json'));
+      fs.ensureDirSync(DUMP_PATH);
 
-        toDelete.push(path.join(DUMP_PATH, 'assets', '*'));
-        toDelete.push(path.join(DUMP_PATH, 'settings.json'));
+      git = simpleGit(DUMP_PATH);
 
-        async.each(toDelete, rimraf, next);
-      },
+      git
+        .cwd(DUMP_PATH)
+        .init()
+        .addRemote('origin', BUILD_CONF.repository)
+        .pull('origin', 'master', next);
+    },
 
-      // 5) Dumping the files
-      dump(next) {
+    // 4) Wiping files
+    wiping(next) {
+      const toDelete = MODELS.map(m => path.join(DUMP_PATH, m, '*.json'));
 
-        changeDeployStatus('dumping');
-        dump(DUMP_PATH);
+      toDelete.push(path.join(DUMP_PATH, 'assets', '*'));
+      toDelete.push(path.join(DUMP_PATH, 'settings.json'));
 
+      async.each(toDelete, rimraf, next);
+    },
+
+    // 5) Dumping the files
+    dump(next) {
+
+      changeDeployStatus('dumping');
+      dump(DUMP_PATH);
+
+      process.nextTick(next);
+    },
+
+    // 6) Committing the dump
+    commit(next) {
+      changeDeployStatus('committing');
+
+      git
+        .cwd(DUMP_PATH)
+        .add('./*')
+        .commit('New dump')
+        .push('origin', 'master', next);
+    },
+
+    // 7) Building the site
+    build(next) {
+      changeDeployStatus('building');
+
+      if (LOCKS.buildStatus !== 'free')
         process.nextTick(next);
-      },
 
-      // 6) Committing the dump
-      commit(next) {
-        changeDeployStatus('committing');
+      return buildStaticSite(next);
+    }
+  }, err => {
+    return setTimeout(() => {
+      changeDeployStatus('free');
 
-        git
-          .cwd(DUMP_PATH)
-          .add('./*')
-          .commit('New dump')
-          .push('origin', 'master', next);
-      },
-
-      // 7) Building the site
-      build(next) {
-        changeDeployStatus('building');
-
-        if (LOCKS.buildStatus !== 'free')
-          process.nextTick(next);
-
-        return buildStaticSite(next);
-      }
-    }, err => {
-      if (err)
-        console.error(err);
-
-      setTimeout(() => changeDeployStatus('free'), 1000);
-    });
+      return callback(err);
+    }, 1000);
   });
 
-  // When triggering spire
-  socket.on('aspire', () => {
+  return true;
+}
 
-    spire.aSPIRE((err) => {
-      if (err)
-        console.error(err);
-      changeSpireStatus('free');
-    }, changeSpireStatus);
-  });
+app.get('/deploy', function(req, res) {
+  const willDeploy = deploy(err => console.error(err));
+
+  const payload = !willDeploy ?
+    {result: 'Already deploying.'} :
+    {result: 'Ok'};
+
+  return res.json(payload);
 });
 
 // Flux logic
@@ -478,7 +509,8 @@ function prepareDataForBuild(callback) {
             return next(err);
 
           if (!remotes || !remotes.length)
-            return git.addRemote('origin', BUILD_CONF.repository, next);
+            return git
+              .addRemote('origin', BUILD_CONF.repository, next);
 
           return next();
         });
@@ -486,7 +518,7 @@ function prepareDataForBuild(callback) {
 
     // Let's pull data from git
     pull(next) {
-      return git.pull('origin', 'master', next);
+      return git.pull('origin', 'master', {'--depth': '5'}, next);
     },
 
     // Record last commits
@@ -495,7 +527,7 @@ function prepareDataForBuild(callback) {
         if (err)
           return next(err);
 
-        TRANSIENT_DATA.lastCommits = commits;
+        TRANSIENT_DATA.lastCommits = commits.all;
 
         return next();
       });
@@ -526,14 +558,13 @@ function prepareDataForBuild(callback) {
   }, callback);
 }
 
-prepareDataForBuild(err => console.error(err));
-
 // Build logic
 function buildStaticSite(callback) {
   console.log('Building site...');
 
   changeBuildStatus('cleaning');
-  TRANSIENT_DATA.lastBuildStart = Date.now();
+
+  const lastBuildStart = Date.now();
 
   return async.series({
 
@@ -546,7 +577,11 @@ function buildStaticSite(callback) {
     },
 
     // 2) Preparing data
-    preparingData: prepareDataForBuild,
+    preparingData(next) {
+      changeBuildStatus('preparing');
+
+      return prepareDataForBuild(next);
+    },
 
     // 2) Building static site
     building(next) {
@@ -583,8 +618,9 @@ function buildStaticSite(callback) {
       return exec(command, next);
     }
   }, err => {
-    changeBuildStatus('free');
+    TRANSIENT_DATA.lastBuildStart = lastBuildStart;
     TRANSIENT_DATA.lastBuildEnd = Date.now();
+    changeBuildStatus('free');
     return callback(err);
   });
 }

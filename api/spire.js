@@ -301,11 +301,12 @@ module.exports.aSPIRE = function aSPIRE(doneCallback, emitCallback = console.deb
                 emitCallback(`importation des données spire terminée : ${nbNewProductions} nouvelle.s production.s, ${modifiedProductionIds.length} modifiée.s, ${nbUnchangedProductions} inchangée.s`);
                 doneAPISpire(null, {nbNewProductions, modifiedProductionIds, nbUnchangedProductions, peopleToResolve});
               }
-else
+              else {
                 websiteApiQueue.drain = () => {
                   emitCallback(`importation des données spire terminée : ${nbNewProductions} nouvelle.s production.s, ${modifiedProductionIds.length} modifiée.s, ${nbUnchangedProductions} inchangée.s`);
                   doneAPISpire(null, {nbNewProductions, modifiedProductionIds, nbUnchangedProductions, peopleToResolve});
                 };
+              }
             }
           );
         }

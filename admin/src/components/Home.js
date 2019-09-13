@@ -2,8 +2,6 @@
 import React from 'react';
 import {Helmet} from 'react-helmet';
 import {Link} from 'react-router-dom';
-import Deployment from './Deployment';
-import Aspire from './Aspire';
 
 export default function Home() {
   return (
@@ -11,22 +9,23 @@ export default function Home() {
       <Helmet>
         <title>médialab CMS</title>
       </Helmet>
-      <p>
-        <a href={STATIC_URL} target="_blank" rel="noopener noreferrer">
-          Link towards the static site's preview.
-        </a>
-      </p>
-      <hr />
-      <p>
-        <Link to="/playground">Image processing playground</Link>
-      </p>
-      <hr />
-      <div>
-        <Deployment />
-      </div>
-      <br />
-      <div>
-        <Aspire />
+      <div className="content">
+        <h2 className="title is-4">Bienvenu·e sur le CMS du site du médialab!</h2>
+        <p>
+          <a href={STATIC_URL} target="_blank" rel="noopener noreferrer">
+            Lien vers la preview du site (avec les changements du CMS en live)
+          </a>
+        </p>
+        <p>
+          <a href="https://medialab.sciencespo.fr" target="_blank" rel="noopener noreferrer">
+            Lien vers le site web en production
+          </a>
+        </p>
+        <p>
+          <Link to="/playground">
+            Liens vers le testeur de génération d'image
+          </Link>
+        </p>
       </div>
     </div>
   );

@@ -80,7 +80,7 @@ export default class SettingsForm extends Component {
           <title>médialab CMS - settings</title>
         </Helmet>
         <div className="columns">
-          <div className="column is-6">
+          <div className="column is-12">
             <h2 className="title is-4">Home Page</h2>
             <h3 className="title is-5">Carrousel</h3>
             <EditorializationSelector
@@ -100,14 +100,6 @@ export default class SettingsForm extends Component {
               onDrop={this.handlers.grid.drop}
               onMove={this.handlers.grid.move} />
             <hr />
-            <Button
-              kind={signaling ? 'success' : 'info'}
-              loading={saving}
-              onClick={!signaling ? this.handleSubmit : Function.prototype}>
-              {signaling ? 'Saved!' : 'Save'}
-            </Button>
-          </div>
-          <div className="column is-6">
             <h2 className="title is-4">Activités</h2>
             <h3 className="title is-5">Mise en avant dans le listing</h3>
             <EditorializationSelector
@@ -117,6 +109,13 @@ export default class SettingsForm extends Component {
               onAdd={this.handlers.topActivities.add}
               onDrop={this.handlers.topActivities.drop}
               onMove={this.handlers.topActivities.move} />
+            <hr />
+            <Button
+              kind={signaling ? 'success' : 'info'}
+              loading={saving}
+              onClick={!signaling ? this.handleSubmit : Function.prototype}>
+              {signaling ? 'Saved!' : 'Save'}
+            </Button>
           </div>
         </div>
       </div>

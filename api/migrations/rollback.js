@@ -9,7 +9,7 @@ module.exports = repo => {
 
     // Cloning data
     return simpleGit(process.cwd())
-      .clone(repo, ROLLBACK_DUMP_PATH, {'--depth': 1}, cloneError => {
+      .clone(repo, ROLLBACK_DUMP_PATH, {'--depth': '1'}, cloneError => {
         if (cloneError)
           return next(cloneError);
 

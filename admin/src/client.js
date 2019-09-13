@@ -24,6 +24,9 @@ const client = new Client({
       type: 'POST',
       dataType: 'text'
     },
+    admin: {
+      url: '/admin'
+    },
     isLogged: {
       url: '/is-logged'
     },
@@ -41,6 +44,15 @@ const client = new Client({
     },
     suggest: {
       url: '/:model/:model?_suggest=:field'
+    },
+    build: {
+      url: '/build'
+    },
+    deploy: {
+      url: '/deploy'
+    },
+    aspire: {
+      url: '/aspire'
     },
     rebootGatsby: {
       url: '/reboot-gatsby'

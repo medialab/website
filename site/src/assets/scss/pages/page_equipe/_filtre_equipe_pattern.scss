@@ -117,8 +117,6 @@
   }
 }
 
-
-
 #filtre_membre:checked
   ~ #domaine_administratif:checked
   ~ #liste_equipe
@@ -168,8 +166,6 @@
     display: block !important;
   }
 }
-
-
 
 #filtre_non_membre:checked
   ~ #domaine_administratif:checked
@@ -233,7 +229,6 @@
     display: block !important;
   }
 }
-
 
 #filtre_membre:checked
   ~ #filtre_non_membre:checked

@@ -16,13 +16,16 @@ models.forEach(model => {
 });
 
 // TODO: make async
-module.exports = function load(inputDir) {
+module.exports = function load(inputDir, outputDir) {
+  if (!outputDir)
+    outputDir = DATA_PATH;
+
   fs.ensureDirSync(config.get('data'));
 
-  fs.copySync(path.join(inputDir, 'settings.json'), path.join(DATA_PATH, 'settings.json'));
-  fs.removeSync(path.join(DATA_PATH, 'assets'));
-  fs.ensureDirSync(path.join(DATA_PATH, 'assets'));
-  fs.copySync(path.join(inputDir, 'assets'), path.join(DATA_PATH, 'assets'));
+  fs.copySync(path.join(inputDir, 'settings.json'), path.join(outputDir, 'settings.json'));
+  fs.removeSync(path.join(outputDir, 'assets'));
+  fs.ensureDirSync(path.join(outputDir, 'assets'));
+  fs.copySync(path.join(inputDir, 'assets'), path.join(outputDir, 'assets'));
 
   models.forEach(model => {
     const p = path.join(inputDir, model);
@@ -41,7 +44,7 @@ module.exports = function load(inputDir) {
     });
 
     fs.writeFileSync(
-      path.join(DATA_PATH, `${model}.json`),
+      path.join(outputDir, `${model}.json`),
       JSON.stringify({
         [model]: items
       }, null, 2)

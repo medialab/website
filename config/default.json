@@ -7,19 +7,19 @@
   "build": {
     "cron": "*/15 * * * *",
     "path": "./build",
-    "repository": "git@repo",
+    "repository": null,
     "rollbackRepository": null
   },
   "rsync": {
-    "target": "",
-    "password": ""
+    "target": null,
+    "password": null
   },
   "port": 3000,
   "twitter": {
-    "consumerKey": "",
-    "consumerSecret": "",
-    "accessTokenKey": "",
-    "accessTokenSecret": ""
+    "consumerKey": "TWITTER_CONSUMER_KEY",
+    "consumerSecret": "TWITTER_CONSUMER_SECRET",
+    "accessTokenKey": "TWITTER_ACCESS_TOKEN_KEY",
+    "accessTokenSecret": "TWITTER_ACCESS_TOKEN_SECRET"
   },
   "googleAnalyticsId": "UA-XXXXXXXX-Y",
   "adminUrl": "http://localhost:7000",

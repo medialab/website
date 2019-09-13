@@ -390,7 +390,35 @@ function prepareDataForBuild(callback) {
 
   const git = simpleGit(PUBLISH_DUMP_PATH);
 
-  async.series({
+  function copyFluxData() {
+    fs.copySync(
+      path.join(DATA_PATH, 'github.json'),
+      path.join(PUBLISH_DATA_PATH, 'github.json')
+    );
+
+    fs.copySync(
+      path.join(DATA_PATH, 'twitter.json'),
+      path.join(PUBLISH_DATA_PATH, 'twitter.json')
+    );
+  }
+
+  // In local, if no repo is indicated, the worflow is a bit different
+  const skipGit = !BUILD_CONF.repository;
+
+  if (skipGit) {
+    rimraf.sync(PUBLISH_DUMP_PATH);
+
+    return retrieveFluxData(err => {
+      if (err)
+        return callback(err);
+
+      fs.copySync(DATA_PATH, PUBLISH_DUMP_PATH);
+
+      return callback();
+    });
+  }
+
+  return async.series({
 
     // First we need to check the repo
     init(next) {
@@ -435,15 +463,7 @@ function prepareDataForBuild(callback) {
       loadDump(PUBLISH_DUMP_PATH, PUBLISH_DATA_PATH);
 
       // Copying flux data
-      fs.copySync(
-        path.join(DATA_PATH, 'github.json'),
-        path.join(PUBLISH_DATA_PATH, 'github.json')
-      );
-
-      fs.copySync(
-        path.join(DATA_PATH, 'twitter.json'),
-        path.join(PUBLISH_DATA_PATH, 'twitter.json')
-      );
+      copyFluxData();
 
       return next();
     }
@@ -553,6 +573,10 @@ app.get('/build', (req, res) => {
 
 // Deployment logic
 function deploy(callback) {
+
+  // In local, with no linked repo, we skip this
+  if (!BUILD_CONF.repository)
+    return callback();
 
   // Don't deploy if already doing it
   if (LOCKS.deployStatus !== 'free')

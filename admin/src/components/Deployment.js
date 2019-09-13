@@ -37,8 +37,8 @@ export default class Deployment extends Component {
 
     // Connecting to socket
     this.socket = acquireSocket();
-    this.socket.emit('getDeployStatus', null, (err, data) => {
-      this.setState({status: data.status});
+    this.socket.emit('locks', null, (err, data) => {
+      this.setState({status: data.deployStatus});
     });
 
     this.socket.on('deployStatusChanged', status => this.setState({status}));

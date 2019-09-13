@@ -291,6 +291,19 @@ const LOCKS = {
   spireStatus: 'free'
 };
 
+const TRANSIENT_DATA = {
+  lastBuildStart: null,
+  lastBuildEnd: null,
+  lastCommits: null
+};
+
+app.get('/admin', function(req, res) {
+  return res.json({
+    locks: LOCKS,
+    info: TRANSIENT_DATA
+  });
+});
+
 const changeBuildStatus = (newStatus) => {
   LOCKS.buildStatus = newStatus;
   ws.emit('buildStatusChanged', newStatus);
@@ -308,9 +321,9 @@ const changeSpireStatus = (newStatus) => {
 
 ws.on('connection', socket => {
 
-  // When retrieving deploy status
-  socket.on('getDeployStatus', (data, callback) => {
-    callback(null, {status: LOCKS.deployStatus});
+  // Accessing locks
+  socket.on('locks', (data, callback) => {
+    callback(null, LOCKS);
   });
 
   // When triggering deploy
@@ -406,11 +419,6 @@ ws.on('connection', socket => {
     });
   });
 
-  // When retrieving spire status
-  socket.on('getSpireStatus', (data, callback) => {
-    callback(null, {status: LOCKS.spireStatus});
-  });
-
   // When triggering spire
   socket.on('aspire', () => {
 
@@ -481,6 +489,18 @@ function prepareDataForBuild(callback) {
       return git.pull('origin', 'master', next);
     },
 
+    // Record last commits
+    record(next) {
+      return git.log(['-5'], (err, commits) => {
+        if (err)
+          return next(err);
+
+        TRANSIENT_DATA.lastCommits = commits;
+
+        return next();
+      });
+    },
+
     // Refreshing flux data
     flux(next) {
       return retrieveFluxData(next);
@@ -506,11 +526,14 @@ function prepareDataForBuild(callback) {
   }, callback);
 }
 
+prepareDataForBuild(err => console.error(err));
+
 // Build logic
 function buildStaticSite(callback) {
   console.log('Building site...');
 
   changeBuildStatus('cleaning');
+  TRANSIENT_DATA.lastBuildStart = Date.now();
 
   return async.series({
 
@@ -561,6 +584,7 @@ function buildStaticSite(callback) {
     }
   }, err => {
     changeBuildStatus('free');
+    TRANSIENT_DATA.lastBuildEnd = Date.now();
     return callback(err);
   });
 }
@@ -582,7 +606,7 @@ function buildTask() {
   return true;
 }
 
-const cron = new CronJob('*/15 * * * *', buildTask);
+const cron = new CronJob(BUILD_CONF.cron, buildTask);
 
 cron.start();
 

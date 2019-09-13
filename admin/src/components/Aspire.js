@@ -12,8 +12,8 @@ export default class Aspire extends Component {
 
     // Connecting to socket
     this.socket = acquireSocket();
-    this.socket.emit('getSpireStatus', null, (err, data) => {
-      this.setState({status: data.status, messages: []});
+    this.socket.emit('locks', null, (err, data) => {
+      this.setState({status: data.spireStatus, messages: []});
     });
 
     this.socket.on('spireStatusChanged', status => {

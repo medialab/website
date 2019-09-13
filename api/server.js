@@ -391,9 +391,12 @@ ws.on('connection', socket => {
 
       // 7) Building the site
       build(next) {
-        changeBuildStatus('building');
+        changeDeployStatus('building');
 
-        return next();
+        if (LOCKS.buildStatus !== 'free')
+          process.nextTick(next);
+
+        return buildStaticSite(next);
       }
     }, err => {
       if (err)
@@ -556,19 +559,20 @@ function buildStaticSite(callback) {
 
       return exec(command, next);
     }
-  }, callback);
+  }, err => {
+    changeBuildStatus('free');
+    return callback(err);
+  });
 }
 
 // Building every 15 minutes
 function buildTask() {
 
   // We can't run several build at once!
-  if (LOCKS.buildStatus !== 'free')
+  if (LOCKS.buildStatus !== 'free' || LOCKS.deployStatus !== 'free')
     return false;
 
   buildStaticSite(err => {
-    changeBuildStatus('free');
-
     if (err)
       console.error(err);
     else

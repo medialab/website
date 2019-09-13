@@ -387,6 +387,13 @@ ws.on('connection', socket => {
           .add('./*')
           .commit('New dump')
           .push('origin', 'master', next);
+      },
+
+      // 7) Building the site
+      build(next) {
+        changeBuildStatus('building');
+
+        return next();
       }
     }, err => {
       if (err)
@@ -585,6 +592,7 @@ app.get('/build', (req, res) => {
   return res.json(payload);
 });
 
+// Redirections
 app.get('/redirects.nginx.conf', (req, res) => {
   oldSlugRedirections((err, redirections) => {
     if (err)

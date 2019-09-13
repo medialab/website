@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {Helmet} from 'react-helmet';
-import cls from 'classnames';
 
 import client from '../client';
 import {acquireSocket} from '../sockets';
@@ -54,12 +53,12 @@ export default function Admin() {
       setLocks(data.locks);
     });
 
-    socket.on('locksChanged', locks => {
-      setLocks(locks);
+    socket.on('locksChanged', newLocks => {
+      setLocks(newLocks);
     });
 
-    socket.on('infoChanged', info => {
-      setAdminInfo(info);
+    socket.on('infoChanged', newAdminInfo => {
+      setAdminInfo(newAdminInfo);
     });
 
     // Cleanup

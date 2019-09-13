@@ -353,114 +353,6 @@ app.get('/aspire', (req, res) => {
   return res.json(payload);
 });
 
-// Deployment logic
-function deploy(callback) {
-
-  // Don't deploy if already doing it
-  if (LOCKS.deployStatus !== 'free')
-    return false;
-
-  // Git handle
-  let git;
-
-  async.series({
-
-    // 1) Cleanup
-    cleanup(next) {
-      changeDeployStatus('cleaning');
-
-      rimraf(DUMP_PATH, next);
-    },
-
-    // 2) Removing unused assets
-    removingUnusedAssets(next) {
-      const dbs = {};
-
-      ROUTERS.forEach(({model, router}) => (dbs[model] = router.db));
-
-      const unused = findUnusedAssets(dbs, ASSETS_PATH);
-
-      return async.each(Array.from(unused), (asset, n) => {
-        console.log(`Dropping unused asset "${asset}"`);
-        return fs.unlink(path.join(ASSETS_PATH, asset), n);
-      }, next);
-    },
-
-    // 3) Pulling
-    pull(next) {
-      changeDeployStatus('pulling');
-
-      fs.ensureDirSync(DUMP_PATH);
-
-      git = simpleGit(DUMP_PATH);
-
-      git
-        .cwd(DUMP_PATH)
-        .init()
-        .addRemote('origin', BUILD_CONF.repository)
-        .pull('origin', 'master', next);
-    },
-
-    // 4) Wiping files
-    wiping(next) {
-      const toDelete = MODELS.map(m => path.join(DUMP_PATH, m, '*.json'));
-
-      toDelete.push(path.join(DUMP_PATH, 'assets', '*'));
-      toDelete.push(path.join(DUMP_PATH, 'settings.json'));
-
-      async.each(toDelete, rimraf, next);
-    },
-
-    // 5) Dumping the files
-    dump(next) {
-
-      changeDeployStatus('dumping');
-      dump(DUMP_PATH);
-
-      process.nextTick(next);
-    },
-
-    // 6) Committing the dump
-    commit(next) {
-      changeDeployStatus('committing');
-
-      git
-        .cwd(DUMP_PATH)
-        .add('./*')
-        .commit('New dump')
-        .push('origin', 'master', next);
-    },
-
-    // 7) Building the site
-    build(next) {
-      changeDeployStatus('building');
-
-      if (LOCKS.buildStatus !== 'free')
-        process.nextTick(next);
-
-      return buildStaticSite(next);
-    }
-  }, err => {
-    return setTimeout(() => {
-      changeDeployStatus('free');
-
-      return callback(err);
-    }, 1000);
-  });
-
-  return true;
-}
-
-app.get('/deploy', function(req, res) {
-  const willDeploy = deploy(err => console.error(err));
-
-  const payload = !willDeploy ?
-    {result: 'Already deploying.'} :
-    {result: 'Ok'};
-
-  return res.json(payload);
-});
-
 // Flux logic
 const PEOPLE_DB = ROUTERS.find(({model}) => model === 'people').router.db;
 
@@ -651,6 +543,114 @@ app.get('/build', (req, res) => {
 
   const payload = !willBuild ?
     {result: 'Already building.'} :
+    {result: 'Ok'};
+
+  return res.json(payload);
+});
+
+// Deployment logic
+function deploy(callback) {
+
+  // Don't deploy if already doing it
+  if (LOCKS.deployStatus !== 'free')
+    return false;
+
+  // Git handle
+  let git;
+
+  async.series({
+
+    // 1) Cleanup
+    cleanup(next) {
+      changeDeployStatus('cleaning');
+
+      rimraf(DUMP_PATH, next);
+    },
+
+    // 2) Removing unused assets
+    removingUnusedAssets(next) {
+      const dbs = {};
+
+      ROUTERS.forEach(({model, router}) => (dbs[model] = router.db));
+
+      const unused = findUnusedAssets(dbs, ASSETS_PATH);
+
+      return async.each(Array.from(unused), (asset, n) => {
+        console.log(`Dropping unused asset "${asset}"`);
+        return fs.unlink(path.join(ASSETS_PATH, asset), n);
+      }, next);
+    },
+
+    // 3) Pulling
+    pull(next) {
+      changeDeployStatus('pulling');
+
+      fs.ensureDirSync(DUMP_PATH);
+
+      git = simpleGit(DUMP_PATH);
+
+      git
+        .cwd(DUMP_PATH)
+        .init()
+        .addRemote('origin', BUILD_CONF.repository)
+        .pull('origin', 'master', next);
+    },
+
+    // 4) Wiping files
+    wiping(next) {
+      const toDelete = MODELS.map(m => path.join(DUMP_PATH, m, '*.json'));
+
+      toDelete.push(path.join(DUMP_PATH, 'assets', '*'));
+      toDelete.push(path.join(DUMP_PATH, 'settings.json'));
+
+      async.each(toDelete, rimraf, next);
+    },
+
+    // 5) Dumping the files
+    dump(next) {
+
+      changeDeployStatus('dumping');
+      dump(DUMP_PATH);
+
+      process.nextTick(next);
+    },
+
+    // 6) Committing the dump
+    commit(next) {
+      changeDeployStatus('committing');
+
+      git
+        .cwd(DUMP_PATH)
+        .add('./*')
+        .commit('New dump')
+        .push('origin', 'master', next);
+    },
+
+    // 7) Building the site
+    build(next) {
+      changeDeployStatus('building');
+
+      if (LOCKS.buildStatus !== 'free')
+        process.nextTick(next);
+
+      return buildStaticSite(next);
+    }
+  }, err => {
+    return setTimeout(() => {
+      changeDeployStatus('free');
+
+      return callback(err);
+    }, 1000);
+  });
+
+  return true;
+}
+
+app.get('/deploy', function(req, res) {
+  const willDeploy = deploy(err => console.error(err));
+
+  const payload = !willDeploy ?
+    {result: 'Already deploying.'} :
     {result: 'Ok'};
 
   return res.json(payload);

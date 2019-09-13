@@ -24,11 +24,10 @@ export default function ToggleLang({lang, content, to}) {
   //   fr: '⚐ Cet article est plus complet en anglais. ',
   //   en: '⚐ This article is more substantial in french. '
   // };
-  let fr, en;
 
-  fr = '⚐ Cette page existe aussi en anglais. ';
-  en = '⚐ This page exists also in french. ';
-  
+  const fr = '⚐ Cette page existe aussi en anglais. ';
+  const en = '⚐ This page exists also in french. ';
+
   return (
     <label
       className="toggle-lang"
@@ -52,7 +51,6 @@ export default function ToggleLang({lang, content, to}) {
   //       en = '⚐ This article could be more substantial in french. ';
   //     }
   // }
-
 
 
   // return (

@@ -162,7 +162,7 @@ export default function ActivityDetail({lang, activity, siteUrl}) {
 
   return (
     <main
-      id="main-objet" role="main" className={inSeminar ? 'main-seminar':''}
+      id="main-objet" role="main" className={inSeminar ? 'main-seminar' : ''}
       aria-label={i18n[lang].content(activity)}>
       <PageMeta
         title={`${activity.name} | médialab Sciences Po`}

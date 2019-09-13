@@ -129,7 +129,7 @@ const LangBlock = ({production, lang}) => {
     <span>
       <span>
         <RawHtml html={description} />
-        {production.url ? ` ⤤` : ''}
+        {production.url ? ' ⤤' : ''}
       </span>
     </span>
   );
@@ -266,7 +266,7 @@ export default function ProductionDetail({lang, production, siteUrl}) {
         </div>
 
         <article id="article-contenu">
-          
+
           {/* FR */}
           <LangBlock production={production} lang={lang} />
 

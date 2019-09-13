@@ -231,7 +231,8 @@ export default function NewsDetail({lang, news, siteUrl}) {
                 <span className="type-news">{I18N_TYPE_LABELS.news[lang][news.type]}</span>
                 {news.label && news.label[lang] ? <span>, {news.label[lang]}</span> : ''}
               </p>
-              <DateNews startDate={news.startDate} endDate={news.endDate} lang={lang}
+              <DateNews
+                startDate={news.startDate} endDate={news.endDate} lang={lang}
                 prefix={(news.type === 'notice' && news.label && news.label.en === 'Job') ? {fr: 'Date limite : ', en: 'Deadline: '} : undefined} />
               <TimeNews startDate={news.startDate} endDate={news.endDate} />
               {news.place && (

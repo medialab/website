@@ -9,11 +9,11 @@ module.exports = function(req, dbs, next) {
       'productions'
     ].forEach(plural => {
       dbs[plural].read();
-  
+
       const state = dbs[plural].getState();
-  
+
       state[plural].forEach(item => {
-        
+
         if (item.attachments && item.attachments.length > 0)
           item.attachments.forEach(a => {
             let corrected = false;
@@ -43,12 +43,11 @@ module.exports = function(req, dbs, next) {
       });
       dbs[plural].setState(state);
     });
-  
+
     dbs.activities.write();
     dbs.news.write();
     dbs.people.write();
     dbs.productions.write();
-  
+
     return next(null, weirdAttachments);
   };
-  

@@ -406,13 +406,13 @@ function prepareDataForBuild(callback) {
   const skipGit = !BUILD_CONF.repository;
 
   if (skipGit) {
-    rimraf.sync(PUBLISH_DUMP_PATH);
+    rimraf.sync(PUBLISH_DATA_PATH);
 
     return retrieveFluxData(err => {
       if (err)
         return callback(err);
 
-      fs.copySync(DATA_PATH, PUBLISH_DUMP_PATH);
+      fs.copySync(DATA_PATH, PUBLISH_DATA_PATH);
 
       return callback();
     });
@@ -576,7 +576,7 @@ function deploy(callback) {
 
   // In local, with no linked repo, we skip this
   if (!BUILD_CONF.repository)
-    return callback();
+    return false;
 
   // Don't deploy if already doing it
   if (LOCKS.deployStatus !== 'free')

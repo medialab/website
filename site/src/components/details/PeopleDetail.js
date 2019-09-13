@@ -20,6 +20,8 @@ import PageMeta from '../helpers/PageMeta.js';
 import peoplePlaceholder from '../../assets/images/people-placeholder.png';
 import {I18N_MODEL} from '../../i18n.js';
 
+import LanguageFallback from '../helpers/LanguageFallback';
+
 export const queryFragment = graphql`
   fragment PeopleDetail on PeopleJson {
     firstName
@@ -395,7 +397,7 @@ export default function PeopleDetail({lang, person, siteUrl}) {
                       className={`status ${lang}`}
                       data-type="status"
                       aria-label={i18n[lang].occupationAriaLabel}>
-                      {person.status[lang]}
+                      <LanguageFallback lang={lang} translatedAttribute={person.status} />
                     </p>
                   )}
                 </hgroup>
@@ -425,8 +427,6 @@ export default function PeopleDetail({lang, person, siteUrl}) {
                   </div>
                 )}
               </header>
-
-              
 
               <div
                 itemProp="description"

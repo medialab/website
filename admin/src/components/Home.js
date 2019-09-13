@@ -3,6 +3,8 @@ import React from 'react';
 import {Helmet} from 'react-helmet';
 import {Link} from 'react-router-dom';
 
+import Banner from './Banner';
+
 export default function Home() {
   return (
     <div>
@@ -27,6 +29,7 @@ export default function Home() {
           </Link>
         </p>
       </div>
+      <Banner />
     </div>
   );
 }

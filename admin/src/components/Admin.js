@@ -77,10 +77,12 @@ export default function Admin() {
 
   let label = 'Forcer le build du site statique';
 
-  if (!canAct && locks.deployStatus !== 'free')
-    label = 'Le site est en train d\'être versionné';
-  else if (!canAct && locks.buildStatus !== 'free')
-    label = 'Le site est en train de builder';
+  if (!canAct) {
+    if (locks.buildStatus !== 'free')
+      label = 'Le site est en train de builder';
+    else if (locks.deployStatus !== 'free' && locks.deployStatus !== 'build')
+      label = 'Le site est en train d\'être versionné';
+  }
 
   return (
     <div>

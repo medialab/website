@@ -27,6 +27,7 @@ const {
 
 // Env vars
 const ROOT_PATH = process.env.ROOT_PATH || '..';
+const DATA_FOLDER = process.env.DATA_FOLDER || 'data';
 const BUILD_CONTEXT = process.env.BUILD_CONTEXT;
 const ADMIN_URL = process.env.ADMIN_URL;
 const NODE_ENV = process.env.NODE_ENV;
@@ -35,9 +36,9 @@ const NODE_ENV = process.env.NODE_ENV;
 const QUERIES = require('./queries.js');
 const ENUMS = require(path.join(ROOT_PATH, 'specs', 'enums.json'));
 const MODELS = require(path.join(ROOT_PATH, 'specs', 'models.json'));
-const DB_PATH = path.join(ROOT_PATH, 'data');
-const DB_GLOB = path.join(ROOT_PATH, 'data', '*.json');
-const ASSETS_PATH = path.join(ROOT_PATH, 'data', 'assets');
+const DB_PATH = path.join(ROOT_PATH, DATA_FOLDER);
+const DB_GLOB = path.join(ROOT_PATH, DATA_FOLDER, '*.json');
+const ASSETS_PATH = path.join(ROOT_PATH, DATA_FOLDER, 'assets');
 const ASSETS_GLOB = path.join(ASSETS_PATH, '*');
 const PUBLIC_PATH = path.join(process.cwd(), 'public', 'static');
 

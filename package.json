@@ -24,8 +24,9 @@
     "postinstall": "gatsby telemetry --disable && npm run install:admin && npm run install:site",
     "reinstall": "rm -rf ./admin/node_modules && rm -rf ./site/node_modules && rm -rf ./node_modules && npm i",
     "start": "node api/server.js",
+    "upgrade:prod:checks": "cd site && npm run clean && npm run build && cd ..",
     "upgrade:pprd": "git checkout staging && git pull && git merge master && git push && git checkout master",
-    "upgrade:prod": "npm run upgrade:pprd && git checkout production && git pull && git merge staging && git push && git checkout master"
+    "upgrade:prod": "npm run upgrade:prod:checks && npm run upgrade:pprd && git checkout production && git pull && git merge staging && git push && git checkout master"
   },
   "contributors": [
     {

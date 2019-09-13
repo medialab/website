@@ -20,7 +20,7 @@ module.exports = function load(inputDir, outputDir) {
   if (!outputDir)
     outputDir = DATA_PATH;
 
-  fs.ensureDirSync(config.get('data'));
+  fs.ensureDirSync(outputDir);
 
   fs.copySync(path.join(inputDir, 'settings.json'), path.join(outputDir, 'settings.json'));
   fs.removeSync(path.join(outputDir, 'assets'));

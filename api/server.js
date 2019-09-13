@@ -32,6 +32,8 @@ const {
   findUnusedAssets
 } = require('./cleanup.js');
 
+const loadDump = require('./load.js');
+
 const MODELS = require('../specs/models.json');
 const spire = require('./spire.js');
 const oldSlugRedirections = require('./oldSlugRedirections.js');
@@ -48,6 +50,8 @@ const PORT = config.get('port');
 const DATA_PATH = config.get('data');
 const BUILD_CONF = config.get('build');
 const DUMP_PATH = path.join(BUILD_CONF.path, 'dump');
+const PUBLISH_DUMP_PATH = path.join(BUILD_CONF.path, 'publish-dump');
+const PUBLISH_DATA_PATH = path.join(BUILD_CONF.path, 'publish-data');
 const SITE_PATH = path.join(BUILD_CONF.path, 'site');
 const ASSETS_PATH = path.join(DATA_PATH, 'assets');
 
@@ -438,6 +442,60 @@ function retrieveFluxData(callback) {
   }, callback);
 }
 
+// Build data preparation logic
+function prepareDataForBuild(callback) {
+  fs.ensureDirSync(DUMP_PATH);
+  fs.ensureDirSync(PUBLISH_DUMP_PATH);
+
+  const git = simpleGit(PUBLISH_DUMP_PATH);
+
+  async.series({
+
+    // First we need to check the repo
+    init(next) {
+      return git
+        .init()
+        .getRemotes((err, remotes) => {
+          if (err)
+            return next(err);
+
+          if (!remotes || !remotes.length)
+            return git.addRemote('origin', BUILD_CONF.repository, next);
+
+          return next();
+        });
+    },
+
+    // Let's pull data from git
+    pull(next) {
+      return git.pull('origin', 'master', next);
+    },
+
+    // Refreshing flux data
+    flux(next) {
+      return retrieveFluxData(next);
+    },
+
+    // Building data into shape
+    load(next) {
+      loadDump(PUBLISH_DUMP_PATH, PUBLISH_DATA_PATH);
+
+      // Copying flux data
+      fs.copySync(
+        path.join(DATA_PATH, 'github.json'),
+        path.join(PUBLISH_DATA_PATH, 'github.json')
+      );
+
+      fs.copySync(
+        path.join(DATA_PATH, 'twitter.json'),
+        path.join(PUBLISH_DATA_PATH, 'twitter.json')
+      );
+
+      return next();
+    }
+  }, callback);
+}
+
 // Build logic
 function buildStaticSite(callback) {
   console.log('Building site...');
@@ -454,27 +512,24 @@ function buildStaticSite(callback) {
       ], next);
     },
 
-    // 2) Refreshing flux data
-    flux(next) {
-      changeBuildStatus('flux');
+    // 2) Preparing data
+    preparingData: prepareDataForBuild,
 
-      return retrieveFluxData(next);
-    },
-
-    // 3) Building static site
+    // 2) Building static site
     building(next) {
       changeBuildStatus('building');
 
       const env = Object.assign({}, process.env);
       env.BUILD_CONTEXT = 'prod';
       env.ROOT_PATH = path.resolve(__dirname, '..');
+      env.DATA_FOLDER = PUBLISH_DATA_PATH;
       env.GOOGLE_ANALYTICS_ID = config.get('googleAnalyticsId');
       env.NODE_ENV = 'production';
 
       return exec('gatsby build > /dev/null', {cwd: SITE_PATH, env}, next);
     },
 
-    // 4) Deploying using rsync
+    // 3) Deploying using rsync
     rsync(next) {
       changeBuildStatus('rsync');
 
@@ -540,11 +595,15 @@ app.get('/redirects.nginx.conf', (req, res) => {
 });
 
 // Listening
-console.log(`Listening on port ${PORT}...`);
-server.listen(PORT);
+function startServer() {
+  console.log(`Listening on port ${PORT}...`);
+  server.listen(PORT);
 
-// Starting gatsby
-const shouldStartGatsby = ARGV.gatsby;
+  // Starting gatsby
+  const shouldStartGatsby = ARGV.gatsby;
 
-if (shouldStartGatsby)
-  gatsby.start();
+  if (shouldStartGatsby)
+    gatsby.start();
+}
+
+startServer();

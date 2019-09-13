@@ -232,7 +232,7 @@ export default function NewsDetail({lang, news, siteUrl}) {
                 {news.label && news.label[lang] ? <span>, {news.label[lang]}</span> : ''}
               </p>
               <DateNews startDate={news.startDate} endDate={news.endDate} lang={lang}
-                prefix={(news.type === 'notice' && news.label.en === 'Job') ? {fr: 'Date limite : ', en: 'Deadline: '} : undefined} />
+                prefix={(news.type === 'notice' && news.label && news.label.en === 'Job') ? {fr: 'Date limite : ', en: 'Deadline: '} : undefined} />
               <TimeNews startDate={news.startDate} endDate={news.endDate} />
               {news.place && (
                 <p

@@ -521,7 +521,10 @@ function buildStaticSite(callback) {
 function buildTask() {
 
   // We can't run several build at once!
-  if (LOCKS.buildStatus !== 'free' || LOCKS.deployStatus !== 'free')
+  if (
+    LOCKS.buildStatus !== 'free' ||
+    (LOCKS.deployStatus !== 'free' && LOCKS.deployStatus !== 'building')
+  )
     return false;
 
   buildStaticSite(err => {

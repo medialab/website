@@ -47,7 +47,7 @@ const Attachments = ({lang, attachments}) => {
               {file.label}
             </a>
           )}
-          {file.type === 'label' && (
+          {file.type === 'string' && (
             <span>{file.label}: {file.value}</span>
           )}
         </li>

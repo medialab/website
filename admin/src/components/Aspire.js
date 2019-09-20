@@ -36,7 +36,7 @@ export default class Aspire extends Component {
     if (this.state.status !== 'free')
       return;
     this.setState({status, messages: []});
-    this.client.aspire();
+    client.aspire();
   };
 
   render() {

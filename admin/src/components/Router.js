@@ -64,15 +64,15 @@ export default withRouter(function Router({alreadyAuthenticated, history}) {
               </li>
           )} />
           <Route
-            path="/admin" children={({match}) => (
-              <li className={cls(match && 'is-active')} style={{marginLeft: '50px'}}>
-                <Link to="/admin">Admin</Link>
-              </li>
-          )} />
-          <Route
             path="/settings" children={({match}) => (
               <li className={cls(match && 'is-active')}>
                 <Link to="/settings">Settings</Link>
+              </li>
+          )} />
+          <Route
+            path="/admin" children={({match}) => (
+              <li className={cls(match && 'is-active')} style={{marginLeft: '50px'}}>
+                <Link to="/admin">Admin</Link>
               </li>
           )} />
         </ul>

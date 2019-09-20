@@ -32,12 +32,14 @@ function templateAdminInfo(info) {
   if (!info || !info.lastBuildEnd)
     return defaultAdminInfo;
 
-  const lastCommitDate = info.lastCommits[0].date.split(' +')[0];
+  const lastCommitDate = info.lastCommits ?
+    info.lastCommits[0].date.split(' +')[0] :
+    null;
 
   return {
     lastBuildDate: formatDate(info.lastBuildEnd),
     lastBuildDuration: (info.lastBuildEnd - info.lastBuildStart) / 1000,
-    lastUpdate: formatDate(lastCommitDate)
+    lastUpdate: lastCommitDate ? formatDate(lastCommitDate) : '~'
   };
 }
 
@@ -88,25 +90,29 @@ export default function Admin() {
       <Helmet>
         <title>médialab CMS - admin</title>
       </Helmet>
-      <h2 className="title is-4">Build</h2>
+      <h2 className="title is-4">Mise à jour du site</h2>
       <p>
-        <strong>Dernier build</strong>:&nbsp;
+        <strong>Dernière mise à jour des flux</strong>&nbsp;
         <em>
           {templated.lastBuildDate} {templated.lastBuildDuration && <span>(en {templated.lastBuildDuration} secondes)</span>}
         </em>
       </p>
       <p>
-        <strong>Dernière mise à jour</strong>:&nbsp;
+        <strong>Dernière mise à jour des contenus</strong>&nbsp;
         <em>{templated.lastUpdate}</em>
       </p>
       <br />
       <div>
-        <Button
-          disabled={!canAct}
-          onClick={() => client.build()}>
-          {label}
-        </Button>
-        {!canAct && <Button kind="white" loading />}
+        {!canAct && (
+          <>
+            <Button
+              disabled={!canAct}
+              onClick={() => client.build()}>
+              {label}
+            </Button>
+            <Button kind="white" loading />
+          </>
+        )}
       </div>
       {canAct && (
         <div style={{marginTop: '3px'}}>

@@ -56,12 +56,12 @@ export default function About({lang}) {
               <h3 id="activities">Activités</h3>
               <p>Les activités du médialab s’articulent entre recherche et enseignement. Elles approfondissent notamment l’usage des méthodes numériques pour répondre aux enjeux contemporains en sociologie et STS. Également mobilisées au coeur d’activités pédagogiques, par exemple en mettant les étudiants en situation d’enquête, elles bénéficient d’une réflexivité très enrichissante sur nos processus de recherche. </p>
 
-              <p><Link to="/activites" className="GoTo">Voir la liste des activités</Link></p>
+              <p><Link to="/activites" className="GoTo">Consulter la liste des activités</Link></p>
 
               <h3 id="productions">Productions</h3>
               <p>Aux traditionnelles publications académiques s’ajoutent les “éditions web” qui projettent les activités du laboratoire dans un média interactif et ouvrent de nouveaux moyens de représentation et d’exploration visuelle des résultats. Les mises en situation -expositions, workshops, simulations, etc.- permettent d’engager des publics dans le processus de recherche et de confronter les hypothèses à la réalité du terrain.</p>
 
-              <p><Link to="/productions" className="GoTo">Voir la liste des productions</Link></p>
+              <p><Link to="/productions" className="GoTo">Consulter la liste des productions</Link></p>
 
 
               <h3 id="contact">Contact</h3>
@@ -137,19 +137,19 @@ export default function About({lang}) {
               <h3 id="team">Team</h3>
 
               <p>The médialab is a diverse research team, comprised of men and women with complementary skills. As members or partners of the laboratory, these academic, technical, design and teaching experts join forces and work together to develop research that draws on this diversity.</p>
-              <p><Link to="/en/people" className="GoTo">Découvrir les membres de l'équipe</Link></p>
+              <p><Link to="/en/people" className="GoTo">Discover the médialab's team</Link></p>
 
               <h3 id="activities">Activities</h3>
 
               <p>The médialab’s activities articulate both research and teaching. In particular, they explore the use of digital methods to address contemporary issues in sociology and STS. These methods are also central to the laboratory’s teaching, for example by putting students in research situations. This fosters highly enriching reflection on our research processes. </p>
 
-              <p><Link to="/en/activities" className="GoTo">Voir la liste des activités</Link></p>
+              <p><Link to="/en/activities" className="GoTo">Learn more about the médialab's activities</Link></p>
 
               <h3 id="productions">Productions</h3>
 
               <p>In addition to traditional academic publications, "Web publications" also disseminate the laboratory's activities through an interactive medium that opens up new ways of representing and visually exploring findings. Situations – exhibitions, workshops, simulations, etc. – allow for the public’s involvement in the research process and the testing of hypotheses against the reality on the ground.</p>
 
-              <p><Link to="/en/productions" className="GoTo">Voir la liste des productions</Link></p>
+              <p><Link to="/en/productions" className="GoTo">Learn more about the médialab's productions</Link></p>
 
               <h3 id="contact">Contact</h3>
               <p>

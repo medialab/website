@@ -13,14 +13,14 @@
   "domains": {
     "fr": {
       "academic": "sciences sociales",
-      "tech": "technique",
+      "tech": "méthodes numériques",
       "design": "design",
       "pedagogy": "pédagogique",
       "admin": "vie du labo"
     },
     "en": {
       "academic": "social sciences",
-      "tech": "technic",
+      "tech": "digital methods",
       "design": "design",
       "pedagogy": "pedagogy",
       "admin": "lab's life"

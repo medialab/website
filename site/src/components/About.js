@@ -49,7 +49,7 @@ export default function About({lang}) {
               Historiquement attaché à la question de la production et de la transmission des connaissances, le médialab expérimente depuis ses débuts de nouvelles formes d’interventions avec les étudiants. Tangible dans les cours dispensés par les membres de son équipe, ce lien se manifeste également par l’accueil d’un programme de recherche en pédagogies innovante qui s’ancre pleinement dans les pratiques de recherche du laboratoire.</p>
 
               <h3 id="team">Équipe</h3>
-              <p>Composée d’hommes et de femmes aux compétences complémentaires, l’équipe du médialab est plurielle. Membres ou associés au laboratoire, ces profils académiques, techniques, en design, ou encore en pédagogie se combinent et travaillent ensemble pour développer une recherche se nourrissant de cette diversité.</p>
+              <p>Composée d’hommes et de femmes aux compétences complémentaires, l’équipe du médialab est plurielle. Membres ou associés au laboratoire, ces profils spécialisés en sciences sociales, en méthodes numériques ou encore en design se combinent et travaillent ensemble pour développer une recherche se nourrissant de cette diversité.</p>
 
               <p><Link to="/equipe" className="GoTo">Découvrir les membres de l'équipe</Link></p>
 
@@ -136,7 +136,7 @@ export default function About({lang}) {
 
               <h3 id="team">Team</h3>
 
-              <p>The médialab is a diverse research team, comprised of men and women with complementary skills. As members or partners of the laboratory, these academic, technical, design and teaching experts join forces and work together to develop research that draws on this diversity.</p>
+              <p>The médialab is a diverse research team, comprised of men and women with complementary skills. As members or partners of the laboratory, these social sciences, digital methods and design experts join forces and work together to develop research that draws on this diversity.</p>
               <p><Link to="/en/people" className="GoTo">Discover the médialab's team</Link></p>
 
               <h3 id="activities">Activities</h3>

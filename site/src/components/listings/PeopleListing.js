@@ -12,7 +12,7 @@ import PageMeta from '../helpers/PageMeta.js';
 const i18n = {
   fr: {
     title: 'L\'équipe | médialab Sciences Po',
-    description: 'Composée d’hommes et de femmes aux compétences complémentaires, l’équipe du médialab est plurielle. Membres ou associés au laboratoire, ces profils académiques, techniques, en design, ou encore en pédagogie se combinent et travaillent ensemble pour développer une recherche se nourrissant de cette diversité.',
+    description: 'Composée d’hommes et de femmes aux compétences complémentaires, l’équipe du médialab est plurielle. Membres ou associés au laboratoire, ces profils spécialisés en sciences sociales, en méthodes numériques ou encore en design se combinent et travaillent ensemble pour développer une recherche se nourrissant de cette diversité.',
     showPastMembers: 'Afficher les anciens membres',
     profilePicture(p) {
       return `Photo de profil de ${p.firstName} ${p.lastName}`;
@@ -23,7 +23,7 @@ const i18n = {
   },
   en: {
     title: 'The team | médialab Sciences Po',
-    description: 'The médialab is a diverse research team, comprised of men and women with complementary skills. As members or partners of the laboratory, these academic, technical, design and teaching experts join forces and work together to develop research that draws on this diversity.',
+    description: 'The médialab is a diverse research team, comprised of men and women with complementary skills. As members or partners of the laboratory, these social sciences, digital methods and design experts join forces and work together to develop research that draws on this diversity.',
     showPastMembers: 'Show past members',
     profilePicture(p) {
       return `${p.firstName} ${p.lastName} profile picture`;

@@ -33,7 +33,7 @@ export default function About({lang}) {
 
               <h3 id="research">La recherche au médialab</h3>
 
-              <p>Le numérique transforme nos sociétés mais aussi la production de la connaissance scientifique. Centrale dans l’approche développée au Médialab, la transition numérique invite à articuler trois approches fondées sur les sciences sociales, l'ingénierie et le design. Par la multitude de données qu’elle génère, la transition numérique contribue à élargir les connaissances que nous avons des différents mondes sociaux. En parallèle, elle offre des instruments d’investigation favorisant de nouveaux modes de production des savoirs à travers la modélisation, la visualisation et l’exploration interactive des corpus. Enfin elle insiste à expérimenter avec les publics et les étudiants en encourageant de nouvelles formes de réflexivité et de partage des résultats de la recherche.</p>
+              <p>Le numérique transforme nos sociétés mais aussi la production de la connaissance scientifique. Centrale dans l’approche développée au médialab, la transition numérique invite à articuler trois approches fondées sur les sciences sociales, l'ingénierie et le design. Par la multitude de données qu’elle génère, la transition numérique contribue à élargir les connaissances que nous avons des différents mondes sociaux. En parallèle, elle offre des instruments d’investigation favorisant de nouveaux modes de production des savoirs à travers la modélisation, la visualisation et l’exploration interactive des corpus. Enfin elle insiste à expérimenter avec les publics et les étudiants en encourageant de nouvelles formes de réflexivité et de partage des résultats de la recherche.</p>
 
               <p>Ces approches sont développées conjointement au sein de quatre axes thématiques&thinsp;: <br />
                 <br />
@@ -119,7 +119,7 @@ export default function About({lang}) {
 
               <h3 id="research">Research at the médialab</h3>
 
-              <p>Digital technology is transforming our societies on the whole and the production of scientific knowledge in particular. The digital turn, central to the approach developed at the Médialab, calls for the articulation of three research approaches, drawn from the social sciences, engineering, and design. Through the multitude of data that it generates, the digital turn contributes to deepening our understanding of different social worlds. At the same time, it offers investigative tools that spawn new forms of knowledge production through the modelling, visualization and interactive exploration of data. Finally, it fosters experimentation with the public and students by encouraging new forms of reflexivity and new ways of sharing research results.</p>
+              <p>Digital technology is transforming our societies on the whole and the production of scientific knowledge in particular. The digital turn, central to the approach developed at the médialab, calls for the articulation of three research approaches, drawn from the social sciences, engineering, and design. Through the multitude of data that it generates, the digital turn contributes to deepening our understanding of different social worlds. At the same time, it offers investigative tools that spawn new forms of knowledge production through the modelling, visualization and interactive exploration of data. Finally, it fosters experimentation with the public and students by encouraging new forms of reflexivity and new ways of sharing research results.</p>
 
               <p>These research approaches are developed jointly around four main themes:  <br />
                 <br />
@@ -131,8 +131,8 @@ export default function About({lang}) {
                 </ul>
               </p>
 
-              <p>Every research project carried out at the Médialab follows a multidisciplinary approach mobilizing a variety of competences. These projects, informed by social science and STS, apply computer engineering to refine investigation by using the Web as a field of inquiry and data science as an analytical method. They also employ new forms of situated testing and exploration of the research questions raised by design.
-                The médialab is historically committed to studying the production and transmission of knowledge, and has experimented with new forms of teaching since its inception. This connection with students is evident in the courses taught by the members of the Medialab team, and is also reflected by the research programme it hosts on innovative teaching, fully informed by the laboratory's research practices.</p>
+              <p>Every research project carried out at the médialab follows a multidisciplinary approach mobilizing a variety of competences. These projects, informed by social science and STS, apply computer engineering to refine investigation by using the Web as a field of inquiry and data science as an analytical method. They also employ new forms of situated testing and exploration of the research questions raised by design.
+                The médialab is historically committed to studying the production and transmission of knowledge, and has experimented with new forms of teaching since its inception. This connection with students is evident in the courses taught by the members of the médialab team, and is also reflected by the research programme it hosts on innovative teaching, fully informed by the laboratory's research practices.</p>
 
               <h3 id="team">Team</h3>
 

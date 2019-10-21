@@ -95,7 +95,7 @@ function MetaData(props) {
       {/* END META DUBLIN CORE */}
 
       {/* META TWITTER */}
-      <meta name="twitter:card" value="summary" />
+      <meta name="twitter:card" value="summary_large_image" />
       <meta name="twitter:site" content={siteUrl} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />

@@ -119,7 +119,9 @@
         }
       }
 
-      li ul{ margin-top: $baseline*2}
+      li ul {
+        margin-top: $baseline * 2;
+      }
 
       blockquote {
         margin-top: $baseline * 2;

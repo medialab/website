@@ -1,11 +1,11 @@
-$redlab: #f7323f;
-$redlab-light: #e59197;
+$redlab: #e6142d;
+$redlab-light: desaturate(lighten($redlab, 15%), 30%);
 
 $background-site: white;
 $text-color: #444;
 $text-color-light: rgba(68, 68, 68, 0.6);
 $color-img: $redlab;
 
-$color-hover: #f7323f;
+$color-hover: $redlab;
 // $background-grey: #fafafa;
 $background-grey: #f5f5f5;

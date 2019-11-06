@@ -114,9 +114,9 @@ exports.createCoverImageResolver = settings => {
           const mediumPath = path.join(settings.publicPath, `${name}.processed.medium.dat`);
           const largePath = path.join(settings.publicPath, `${name}.processed.large.dat`);
 
-          fs.writeFileSync(smallPath, small);
-          fs.writeFileSync(mediumPath, medium);
-          fs.writeFileSync(largePath, large);
+          fs.writeFileSync(smallPath, small, 'binary');
+          fs.writeFileSync(mediumPath, medium, 'binary');
+          fs.writeFileSync(largePath, large, 'binary');
 
           if (settings.rasterize) {
             settings.rasterize(medium, {

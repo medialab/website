@@ -157,6 +157,27 @@ function sharpToString(img, crop, options) {
   });
 }
 
+function sharpToEncodedBlocks(img, crop, options) {
+  const ratio = crop.width / crop.height;
+
+  return new Promise((resolve, reject) => {
+    img
+      .resize({
+        width: options.rows,
+        height: (options.rows * ASCII_WIDTH / ratio / ASCII_HEIGHT) | 0
+      })
+      .raw()
+      .toBuffer((err, buffer, info) => {
+        if (err)
+          return reject(err);
+
+        const blocks = pixelsToBlocks(new Uint8ClampedArray(buffer), {...options, noAlpha: info.channels === 3});
+
+        resolve(encodeBlocks(blocks));
+      });
+  });
+}
+
 function pixelsToString(pixels, options) {
   return mapBlocksToString(pixelsToBlocks(pixels, options));
 }
@@ -300,7 +321,10 @@ function decodeBlocks(buffer) {
 
 exports.readImageFileAsDataUrl = readImageFileAsDataUrl;
 exports.sharpToString = sharpToString;
+exports.sharpToEncodedBlocks = sharpToEncodedBlocks;
 exports.imgToProcessedPng = imgToProcessedPng;
 exports.imageFileToBlocks = imageFileToBlocks;
 exports.imageToBlocks = imageToBlocks;
 exports.getImagesAsPixels = getImagesAsPixels;
+exports.decodeBlocks = decodeBlocks;
+exports.encodeBlocks = encodeBlocks;

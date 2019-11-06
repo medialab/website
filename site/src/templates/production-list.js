@@ -9,7 +9,6 @@ export const query = graphql`
     allProductionsJson(filter: {type: {in: $allowedTypes}, external: {ne: true}}) {
       edges {
         node {
-          id
           title {
             en
             fr
@@ -18,8 +17,7 @@ export const query = graphql`
             en
             fr
           }
-          type,
-          group,
+          group
           permalink {
             en
             fr

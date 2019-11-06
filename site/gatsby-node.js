@@ -51,7 +51,7 @@ _.forEach(ENUMS.productionTypes.groups, (group, key) => {
 /**
  * Following is related to processed images rendering.
  */
-const processing = require(path.join(ROOT_PATH, 'specs', 'processing.js')).sharpToString;
+const processing = require(path.join(ROOT_PATH, 'specs', 'processing.js')).sharpToEncodedBlocks;
 const rasterize = require(path.join(ROOT_PATH, 'specs', 'processing.js')).imgToProcessedPng;
 
 const MODELS_PATHS = {};

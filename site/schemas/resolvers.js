@@ -1,6 +1,7 @@
 const memoize = require('timed-memoize').default;
 const path = require('path');
 const sharp = require('sharp');
+const fs = require('fs');
 
 exports.createSettingsItemResolver = () => {
   return {
@@ -108,6 +109,15 @@ exports.createCoverImageResolver = settings => {
           })
         ])
         .then(([small, medium, large]) => {
+
+          const smallPath = path.join(settings.publicPath, `${name}.processed.small.dat`);
+          const mediumPath = path.join(settings.publicPath, `${name}.processed.medium.dat`);
+          const largePath = path.join(settings.publicPath, `${name}.processed.large.dat`);
+
+          fs.writeFileSync(smallPath, small);
+          fs.writeFileSync(mediumPath, medium);
+          fs.writeFileSync(largePath, large);
+
           if (settings.rasterize) {
             settings.rasterize(medium, {
               rows: 120,
@@ -117,9 +127,9 @@ exports.createCoverImageResolver = settings => {
               resolve({
                 ...data,
                 processed: {
-                  small,
-                  medium,
-                  large,
+                  small: '',
+                  medium: '',
+                  large: '',
                   raster: {
                     ...raster,
                     url: socialUrl
@@ -133,9 +143,9 @@ exports.createCoverImageResolver = settings => {
             resolve({
               ...data,
               processed: {
-                small,
-                medium,
-                large
+                small: '',
+                medium: '',
+                large: ''
               }
             });
           }

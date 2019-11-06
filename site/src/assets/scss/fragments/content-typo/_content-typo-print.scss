@@ -148,7 +148,9 @@
         }
       }
 
-      li ul{ margin-top: $baseline*2}
+      li ul {
+        margin-top: $baseline * 2;
+      }
 
       iframe {
         display: none;

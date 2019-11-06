@@ -110,9 +110,13 @@ exports.createCoverImageResolver = settings => {
         ])
         .then(([small, medium, large]) => {
 
-          const smallPath = path.join(settings.publicPath, `${name}.processed.small.dat`);
-          const mediumPath = path.join(settings.publicPath, `${name}.processed.medium.dat`);
-          const largePath = path.join(settings.publicPath, `${name}.processed.large.dat`);
+          const smallPath = path.join(settings.publicPath, `${name}.p.s.dat`);
+          const mediumPath = path.join(settings.publicPath, `${name}.p.m.dat`);
+          const largePath = path.join(settings.publicPath, `${name}.p.l.dat`);
+
+          const smallUrl = `${settings.prefix}/static/${name}.p.s.dat`;
+          const mediumUrl = `${settings.prefix}/static/${name}.p.m.dat`;
+          const largeUrl = `${settings.prefix}/static/${name}.p.l.dat`;
 
           fs.writeFileSync(smallPath, small, 'binary');
           fs.writeFileSync(mediumPath, medium, 'binary');
@@ -127,9 +131,9 @@ exports.createCoverImageResolver = settings => {
               resolve({
                 ...data,
                 processed: {
-                  small: '',
-                  medium: '',
-                  large: '',
+                  small: smallUrl,
+                  medium: mediumUrl,
+                  large: largeUrl,
                   raster: {
                     ...raster,
                     url: socialUrl
@@ -143,9 +147,9 @@ exports.createCoverImageResolver = settings => {
             resolve({
               ...data,
               processed: {
-                small: '',
-                medium: '',
-                large: ''
+                small: smallUrl,
+                medium: mediumUrl,
+                large: largeUrl
               }
             });
           }

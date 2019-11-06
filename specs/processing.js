@@ -287,6 +287,17 @@ function encodeBlocks(blocks) {
   return encoded;
 }
 
+function decodeBlocks(buffer) {
+  const blocks = new Uint8Array(buffer.length * 2);
+
+  for (let i = 0, j = 0; i < buffer.length; i += 1, j += 2) {
+    blocks[j] = buffer[i] >> 4;
+    blocks[j + 1] = buffer[i] & 0x0F;
+  }
+
+  return blocks;
+}
+
 exports.readImageFileAsDataUrl = readImageFileAsDataUrl;
 exports.sharpToString = sharpToString;
 exports.imgToProcessedPng = imgToProcessedPng;

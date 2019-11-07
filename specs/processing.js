@@ -157,6 +157,27 @@ function sharpToString(img, crop, options) {
   });
 }
 
+function sharpToEncodedBlocks(img, crop, options) {
+  const ratio = crop.width / crop.height;
+
+  return new Promise((resolve, reject) => {
+    img
+      .resize({
+        width: options.rows,
+        height: (options.rows * ASCII_WIDTH / ratio / ASCII_HEIGHT) | 0
+      })
+      .raw()
+      .toBuffer((err, buffer, info) => {
+        if (err)
+          return reject(err);
+
+        const blocks = pixelsToBlocks(new Uint8ClampedArray(buffer), {...options, noAlpha: info.channels === 3});
+
+        resolve(encodeBlocks(blocks));
+      });
+  });
+}
+
 function pixelsToString(pixels, options) {
   return mapBlocksToString(pixelsToBlocks(pixels, options));
 }
@@ -271,9 +292,39 @@ function imgToProcessedPng(data, options, settings) {
   });
 }
 
+function encodeBlocks(blocks) {
+
+  if (blocks.length % 2 !== 0)
+    throw new Error('Caught odd length blocks!');
+
+  const n = (blocks.length / 2) | 0;
+
+  // What if odd?
+  const encoded = new Uint8Array(n);
+
+  for (let i = 0, j = 0; i < n; i += 2, j += 1)
+    encoded[j] = blocks[i] * 16 + blocks[i + 1];
+
+  return encoded;
+}
+
+function decodeBlocks(buffer) {
+  const blocks = new Uint8Array(buffer.length * 2);
+
+  for (let i = 0, j = 0; i < buffer.length; i += 1, j += 2) {
+    blocks[j] = buffer[i] >> 4;
+    blocks[j + 1] = buffer[i] & 0x0F;
+  }
+
+  return blocks;
+}
+
 exports.readImageFileAsDataUrl = readImageFileAsDataUrl;
 exports.sharpToString = sharpToString;
+exports.sharpToEncodedBlocks = sharpToEncodedBlocks;
 exports.imgToProcessedPng = imgToProcessedPng;
 exports.imageFileToBlocks = imageFileToBlocks;
 exports.imageToBlocks = imageToBlocks;
 exports.getImagesAsPixels = getImagesAsPixels;
+exports.decodeBlocks = decodeBlocks;
+exports.encodeBlocks = encodeBlocks;

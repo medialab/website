@@ -294,15 +294,15 @@ function imgToProcessedPng(data, options, settings) {
 
 function encodeBlocks(blocks) {
 
+  // What if odd?
   if (blocks.length % 2 !== 0)
     throw new Error('Caught odd length blocks!');
 
   const n = (blocks.length / 2) | 0;
 
-  // What if odd?
   const encoded = new Uint8Array(n);
 
-  for (let i = 0, j = 0; i < n; i += 2, j += 1)
+  for (let i = 0, j = 0; j < n; i += 2, j += 1)
     encoded[j] = blocks[i] * 16 + blocks[i + 1];
 
   return encoded;

@@ -5,7 +5,7 @@
     "front": "http://spire.sciencespo.fr/hdl:/"
   },
   "build": {
-    "cron": "*/15 * * * *",
+    "cron": "*/30 * * * *",
     "path": "./build",
     "repository": null,
     "rollbackRepository": null

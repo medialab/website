@@ -357,6 +357,7 @@ app.get('/aspire', (req, res) => {
 const PEOPLE_DB = ROUTERS.find(({model}) => model === 'people').router.db;
 
 function retrieveFluxData(callback) {
+  console.time('flux');
 
   // Retrieving people data
   PEOPLE_DB.read();
@@ -380,7 +381,11 @@ function retrieveFluxData(callback) {
         fs.writeJson(path.join(DATA_PATH, 'twitter.json'), data, {spaces: 2}, next);
       });
     }
-  }, callback);
+  }, err => {
+    console.timeEnd('flux');
+
+    return callback(err);
+  });
 }
 
 // Build data preparation logic
@@ -418,6 +423,7 @@ function prepareDataForBuild(callback) {
     });
   }
 
+  console.time('pull');
   return async.series({
 
     // First we need to check the repo
@@ -443,6 +449,8 @@ function prepareDataForBuild(callback) {
 
     // Record last commits
     record(next) {
+
+      console.timeEnd('pull');
       return git.log(['-5'], (err, commits) => {
         if (err)
           return next(err);
@@ -460,11 +468,13 @@ function prepareDataForBuild(callback) {
 
     // Building data into shape
     load(next) {
+      console.time('load');
       loadDump(PUBLISH_DUMP_PATH, PUBLISH_DATA_PATH);
 
       // Copying flux data
       copyFluxData();
 
+      console.timeEnd('dump');
       return next();
     }
   }, callback);
@@ -478,6 +488,8 @@ function buildStaticSite(callback) {
 
   const lastBuildStart = Date.now();
 
+  console.time('drop');
+
   return async.series({
 
     // 1) Cleanup
@@ -490,6 +502,7 @@ function buildStaticSite(callback) {
 
     // 2) Preparing data
     preparingData(next) {
+      console.timeEnd('drop');
       changeBuildStatus('preparing');
 
       return prepareDataForBuild(next);
@@ -497,6 +510,7 @@ function buildStaticSite(callback) {
 
     // 2) Building static site
     building(next) {
+      console.time('build');
       changeBuildStatus('building');
 
       const env = Object.assign({}, process.env);
@@ -511,6 +525,8 @@ function buildStaticSite(callback) {
 
     // 3) Deploying using rsync
     rsync(next) {
+      console.timeEnd('build');
+      console.time('rsync');
       changeBuildStatus('rsync');
 
       const rsyncConfig = config.get('rsync');
@@ -530,6 +546,7 @@ function buildStaticSite(callback) {
       return exec(command, next);
     }
   }, err => {
+    console.timeEnd('rsync');
     TRANSIENT_DATA.lastBuildStart = lastBuildStart;
     TRANSIENT_DATA.lastBuildEnd = Date.now();
     changeBuildStatus('free');

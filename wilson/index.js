@@ -85,6 +85,24 @@ function createModelI18nPage(item) {
     {pretty: true}
   );
 
+  // English page
+  versions.en = renderPage(
+    template,
+
+    // Page context
+    {
+      lang: 'en',
+      permalinks: item.permalink,
+      linkToAdmin: NODE_ENV !== 'production' ? '' : '' // TODO: fix this!
+    },
+
+    // Page data
+    item,
+
+    // Options
+    {pretty: true}
+  );
+
   return versions;
 }
 

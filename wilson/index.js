@@ -36,7 +36,7 @@ const MODEL_TO_TEMPLATE = {};
 models.forEach(model => (MODEL_TO_TEMPLATE[model] = TEMPLATES[`${model}Detail`]));
 
 // Helpers
-function createI18nPage(item) {
+function createModelI18nPage(item) {
   const model = item.model;
 
   const template = MODEL_TO_TEMPLATE[model];
@@ -76,7 +76,7 @@ exports.build = function build(inputDir, outputDir, options, callback) {
   fs.ensureDirSync(outputDir);
 
   db.forEach(item => {
-    const versions = createI18nPage(item);
+    const versions = createModelI18nPage(item);
 
     const diskPaths = {
       fr: permalinkToDiskPath(outputDir, item.permalink.fr),

@@ -1,9 +1,27 @@
 const assert = require('assert');
 const React = require('react');
-const Helmet = require('react-helmet');
+const {Helmet} = require('react-helmet');
 const {renderToStaticMarkup} = require('react-dom/server');
 const SiteContext = require('../site/src/context.js').default;
+const pretty = require('pretty');
 const meta = require('./meta.js');
+
+// Helpers
+function wrap(content) {
+  return `
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  </head>
+  <body>
+    ${content}
+  </body>
+</html>
+  `.trim();
+}
 
 // TODO: drop require cache
 // TODO: replace svg components
@@ -16,8 +34,10 @@ const meta = require('./meta.js');
 // TODO: check ordering random etc.
 // TODO: github, twitter reducers
 // TODO: solve production authors with people field after solving people
-exports.renderPage = function(template, pageContext, data) {
+exports.renderPage = function(template, pageContext, data, options) {
   assert(typeof template === 'string', 'Template should be a string path.');
+
+  options = options || {};
 
   const Component = require(template).default;
 
@@ -27,8 +47,13 @@ exports.renderPage = function(template, pageContext, data) {
     </SiteContext.Provider>
   );
 
-  const content = renderToStaticMarkup(page);
-  const helmet = Helmet.renderToStaticMarkup();
+  let content = renderToStaticMarkup(page);
+  const helmet = Helmet.renderStatic();
 
-  return {content, helmet};
+  content = wrap(content);
+
+  if (options.pretty)
+    content = pretty(content);
+
+  return content;
 };

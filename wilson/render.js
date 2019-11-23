@@ -11,6 +11,7 @@ const meta = require('./meta.js');
 // TODO: relink CSS stylesheets
 // TODO: wrapper + metas + helmet
 // TODO: PageMeta
+// TODO: prettier --write --parser scss 'src/assets/scss/**/*.scss'
 exports.renderPage = function(template, pageContext, data) {
   assert(typeof template === 'string', 'Template should be a string path.');
 

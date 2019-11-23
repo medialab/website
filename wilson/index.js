@@ -51,7 +51,7 @@ function createI18nPage(item) {
     {
       lang: 'fr',
       permalinks: item.permalink,
-      linkToAdmin: NODE_ENV !== 'production'
+      linkToAdmin: NODE_ENV !== 'production' ? '' : '' // TODO: fix this!
     },
 
     // Page data

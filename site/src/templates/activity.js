@@ -5,7 +5,7 @@ import Layout from '../components/Layout';
 import ActivityDetail from '../components/details/ActivityDetail';
 import EditInAdmin from '../components/details/fragments/EditInAdmin';
 
-export default ({data, pageContext}) => {
+export default function ActivityTemplate({data, pageContext}) {
   // console.log(data, pageContext);
   const meta = useContext(SiteContext);
 

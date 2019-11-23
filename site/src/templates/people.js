@@ -5,7 +5,7 @@ import Layout from '../components/Layout';
 import PeopleDetail from '../components/details/PeopleDetail';
 import EditInAdmin from '../components/details/fragments/EditInAdmin';
 
-export default ({data, pageContext}) => {
+export default function PeopleTemplate({data, pageContext}) {
   // console.log(data, pageContext);
 
   const meta = useContext(SiteContext);

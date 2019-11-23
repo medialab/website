@@ -5,7 +5,7 @@ import Layout from '../components/Layout';
 import NewsDetail from '../components/details/NewsDetail';
 import EditInAdmin from '../components/details/fragments/EditInAdmin';
 
-export default ({data, pageContext}) => {
+export default function NewsTemplate({data, pageContext}) {
 
   const meta = useContext(SiteContext);
 

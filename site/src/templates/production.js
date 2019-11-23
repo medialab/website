@@ -6,7 +6,7 @@ import ProductionDetail from '../components/details/ProductionDetail';
 
 import EditInAdmin from '../components/details/fragments/EditInAdmin';
 
-export default ({data, pageContext}) => {
+export default function ProductionTemplate({data, pageContext}) {
   // console.log(data, pageContext);
   const meta = useContext(SiteContext);
 

@@ -12,6 +12,10 @@ const meta = require('./meta.js');
 // TODO: wrapper + metas + helmet
 // TODO: PageMeta
 // TODO: prettier --write --parser scss 'src/assets/scss/**/*.scss'
+// TODO: news.isInternal is internal once more
+// TODO: check ordering random etc.
+// TODO: github, twitter reducers
+// TODO: solve production authors with people field after solving people
 exports.renderPage = function(template, pageContext, data) {
   assert(typeof template === 'string', 'Template should be a string path.');
 

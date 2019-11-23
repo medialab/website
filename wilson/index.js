@@ -13,6 +13,7 @@ require('@babel/register')({
 // Dependencies
 const {renderPage} = require('./render.js');
 const reducers = require('./reducers.js');
+const Database = require('./database.js');
 
 // Constants
 const TEMPLATES = {
@@ -23,10 +24,14 @@ const TEMPLATES = {
 for (const k in TEMPLATES)
   TEMPLATES[k] = require.resolve(`../site/src/templates/${TEMPLATES[k]}.js`);
 
-const guillaume = require('../data/people.json').people.find(p => p.lastName === 'Plique');
+const DATABASE = new Database('./data');
 
-renderPage(
-  TEMPLATES.peopleDetail,
-  {lang: 'fr', permalinks: {fr: '', en: ''}, linkToAdmin: false},
-  {person: reducers.people('', guillaume)}
-);
+console.log(DATABASE.get('03c4c794-8063-441b-afae-0a833e1548a9'))
+
+// const guillaume = require('../data/people.json').people.find(p => p.lastName === 'Plique');
+
+// renderPage(
+//   TEMPLATES.peopleDetail,
+//   {lang: 'fr', permalinks: {fr: '', en: ''}, linkToAdmin: false},
+//   {person: reducers.people('', guillaume)}
+// );

@@ -39,14 +39,14 @@ models.forEach(model => (MODEL_TO_TEMPLATE[model] = TEMPLATES[`${model}Detail`])
 
 // Helpers
 const FONT_PATH = path.join(__dirname, '..', 'site', 'src', 'assets', 'font');
-const BEL2_FONT_PATH = path.join(FONT_PATH, 'Bel2', 'stylesheet.css');
-const SYMBOL_FONT_PATH = path.join(FONT_PATH, 'Symbol', 'stylesheet.css');
+const BEL2_FONT_PATH = path.join(FONT_PATH, 'Bel2');
+const SYMBOL_FONT_PATH = path.join(FONT_PATH, 'Symbol');
 
+// TODO: compress, sourceMap false
 function buildSass(outputDir, callback) {
 
-  // NOTE: this could be imported in the SCSS stylesheet...
-  fs.copyFileSync(BEL2_FONT_PATH, path.join(outputDir, 'bel2.css'));
-  fs.copyFileSync(SYMBOL_FONT_PATH, path.join(outputDir, 'symbol.css'));
+  fs.copySync(BEL2_FONT_PATH, outputDir);
+  fs.copySync(SYMBOL_FONT_PATH, outputDir);
 
   return sass.render({
     file: path.join(__dirname, '..', 'site', 'src', 'assets', 'scss', 'global.scss')

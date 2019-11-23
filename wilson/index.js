@@ -65,7 +65,10 @@ function createI18nPage(item) {
 }
 
 // Main functions
-exports.build = function build(inputDir, outputDir, pathPrefix='') {
+exports.build = function build(inputDir, outputDir, options, callback) {
+  options = options || {};
+  const pathPrefix = options.pathPrefix || '';
+
   const db = new Database(inputDir, pathPrefix);
 
   // Cleanup & scaffolding
@@ -86,24 +89,9 @@ exports.build = function build(inputDir, outputDir, pathPrefix='') {
     fs.writeFileSync(path.join(diskPaths.fr, 'index.html'), versions.fr);
     fs.writeFileSync(path.join(diskPaths.en, 'index.html'), versions.en);
   });
+
+  process.nextTick(callback);
 }
 
-exports.build('./data', './wbuild');
-
-// console.log(DATABASE.get('03c4c794-8063-441b-afae-0a833e1548a9'))
-
-// const guillaume = require('../data/people.json').people.find(p => p.lastName === 'Plique');
-
-// createI18nPage(createPage, {
-//   path: `/news/${slug}`,
-//   frenchPath: `/actu/${slug}`,
-//   component: path.resolve('./src/templates/news.js'),
-//   context
-// });
-
-// const result = renderPage(
-//   TEMPLATES.peopleDetail,
-//   {lang: 'fr', permalinks: {fr: '', en: ''}, linkToAdmin: false},
-//   {person: DATABASE.get('03c4c794-8063-441b-afae-0a833e1548a9')},
-//   {pretty: true}
-// );
+console.time('build');
+exports.build('./data', './wbuild', {}, () => console.timeEnd('build'));

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'gatsby';
-import Logo from '../../../assets/svg/logo_medialab.svg';
+// import Logo from '../../../assets/svg/logo_medialab.svg';
 
 const mainPermalink = {
   fr: '/',
@@ -11,7 +11,7 @@ export default function LogoSticky({lang}) {
   return (
     <div id="logo-sticky">
       <Link to={mainPermalink[lang]}>
-        <Logo />
+        {/* <Logo /> */}
       </Link>
     </div>
   );

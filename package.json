@@ -89,6 +89,7 @@
     "express-session": "^1.17.0",
     "fs-extra": "^8.1.0",
     "gatsby-cli": "^2.8.8",
+    "html-entities": "^1.2.1",
     "image-size": "^0.7.5",
     "is-url": "^1.2.4",
     "json-server": "^0.15.1",

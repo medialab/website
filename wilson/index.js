@@ -9,6 +9,7 @@ require('@babel/register')({
 
 // Dependencies
 const {renderPage} = require('./render.js');
+const reducers = require('./reducers.js');
 
 // Constants
 const TEMPLATES = {
@@ -19,4 +20,7 @@ const TEMPLATES = {
 for (const k in TEMPLATES)
   TEMPLATES[k] = require.resolve(`../site/src/templates/${TEMPLATES[k]}.js`);
 
-renderPage(TEMPLATES.peopleListing, {hello: 'world'});
+
+const guillaume = require('../data/people.json').people.find(p => p.lastName === 'Plique');
+
+renderPage(TEMPLATES.peopleDetail, {hello: 'world'}, reducers.people('', guillaume));

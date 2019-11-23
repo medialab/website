@@ -1,9 +1,11 @@
+const async = require('async');
 const assert = require('assert');
 const groupBy = require('lodash/groupBy');
 const Graph = require('graphology').Graph;
 const path = require('path');
 const fs = require('fs-extra');
 const reducers = require('./reducers.js');
+const {buildCover} = require('./images.js');
 const models = require('../specs/models.json');
 
 const FORWARD_LINKS = {
@@ -141,6 +143,27 @@ module.exports = class Database {
           attr[k] = groupedBacklinks[k] || [];
       }
     });
+  }
+
+  processCovers(inputDir, outputDir, pathPrefix, callback) {
+    const data = this.graph.nodes()
+      .map(node => {
+        return this.graph.getNodeAttributes(node);
+      })
+      .filter(item => {
+        return !!item.cover;
+      });
+
+    async.eachLimit(data, 10, (item, next) => {
+      return buildCover(inputDir, outputDir, pathPrefix, item, (err, coverImage) => {
+        if (err)
+          return next(err);
+
+        item.coverImage = coverImage;
+
+        return next();
+      });
+    }, callback);
   }
 
   get(id) {

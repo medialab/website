@@ -60,6 +60,14 @@ function buildSass(outputDir, callback) {
   });
 }
 
+function buildAssets(inputDir, outputDir, callback) {
+  fs.copy(
+    path.join(inputDir, 'assets'),
+    path.join(outputDir, 'static'),
+    callback
+  );
+}
+
 function createModelI18nPage(item) {
   const model = item.model;
 
@@ -118,9 +126,18 @@ exports.build = function build(inputDir, outputDir, options, callback) {
   fs.ensureDirSync(outputDir);
 
   async.series({
+    assets(next) {
+      return buildAssets(inputDir, outputDir, next);
+    },
+
+    covers(next) {
+      return db.processCovers(inputDir, outputDir, pathPrefix, next);
+    },
+
     sass(next) {
       return buildSass(outputDir, next);
     },
+
     build(next) {
       db.forEach(item => {
         const versions = createModelI18nPage(item);

@@ -17,7 +17,7 @@ import HtmlFallback from '../helpers/HtmlFallback';
 import {templateMembership} from '../helpers/helpers.js';
 import PageMeta from '../helpers/PageMeta.js';
 
-import peoplePlaceholder from '../../assets/images/people-placeholder.png';
+// import peoplePlaceholder from '../../assets/images/people-placeholder.png';
 import {I18N_MODEL} from '../../i18n.js';
 
 import LanguageFallback from '../helpers/LanguageFallback';
@@ -385,7 +385,7 @@ export default function PeopleDetail({lang, person, siteUrl}) {
                 <figure>
                   <img
                     itemProp="image"
-                    src={person.coverImage ? person.coverImage.url : peoplePlaceholder}
+                    src={person.coverImage ? person.coverImage.url : 'alt'}
                     alt={i18n[lang].profilePicture(person)} />
                 </figure>
                 <hgroup>

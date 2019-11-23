@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'gatsby';
 import {SECTIONS} from '../../helpers/sections';
 
-import peoplePlaceholder from '../../../assets/images/people-placeholder.png';
+// import peoplePlaceholder from '../../../assets/images/people-placeholder.png';
 
 const i18n = {
   fr: {
@@ -54,7 +54,7 @@ const RelatedPeople = ({lang, people, schemaRelationProp = 'member'}) => {
                 <figure>
                   <img
                     itemProp="image"
-                    src={p.coverImage ? p.coverImage.url : peoplePlaceholder}
+                    src={p.coverImage ? p.coverImage.url : 'alt'}
                     alt={i18n[lang].profilePicture(p)} />
                 </figure>
                 <div className="description">

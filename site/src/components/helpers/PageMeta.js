@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import {StaticQuery, graphql} from 'gatsby';
 
-import coverTwitter from '../../assets/images/cover-twitter.png';
+// import coverTwitter from '../../assets/images/cover-twitter.png';
 
 const typeToDublinCoreMapping = {
   article: 'Text',

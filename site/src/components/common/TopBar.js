@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link as BasicLink} from 'gatsby';
-import Logo from '../../assets/svg/logo_medialab.svg';
-import MenuCircle from '../../assets/svg/menu-circle.svg';
-import CloseCircle from '../../assets/svg/close-circle.svg';
+// import Logo from '../../assets/svg/logo_medialab.svg';
+// import MenuCircle from '../../assets/svg/menu-circle.svg';
+// import CloseCircle from '../../assets/svg/close-circle.svg';
 
 const mainPermalinks = {
   en: {
@@ -102,10 +102,10 @@ const TopBar = ({permalinks, lang}) => {
         value="visible" hidden />
       <label htmlFor="toggle-menu">
         <span className="span-nochecked" aria-label={ariaLabelI18n[lang].openMenu}>
-          <MenuCircle />
+          {/* <MenuCircle /> */}
         </span>
         <span className="span-checked" aria-label={ariaLabelI18n[lang].closeMenu}>
-          <CloseCircle />
+          {/* <CloseCircle /> */}
         </span>
       </label>
 
@@ -116,7 +116,7 @@ const TopBar = ({permalinks, lang}) => {
             id="back_button"
             title={ariaLabelI18n[lang].title}
             aria-label={ariaLabelI18n[lang].title}>
-            <Logo />
+            {/* <Logo /> */}
             <span itemProp="name" style={{display: 'none'}}>médialab Sciences Po</span>
           </Link>
         </div>

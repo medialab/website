@@ -5,7 +5,7 @@ import PeopleFilter from './fragments/PeopleFilter.js';
 import {I18N_TYPE_LABELS} from '../../i18n.js';
 import LanguageFallback from '../helpers/LanguageFallback.js';
 
-import peoplePlaceholder from '../../assets/images/people-placeholder.png';
+// import peoplePlaceholder from '../../assets/images/people-placeholder.png';
 
 import PageMeta from '../helpers/PageMeta.js';
 
@@ -58,7 +58,7 @@ function PeopleListingItem({lang, people}) {
 
         <figure>
           <img
-            src={people.coverImage ? people.coverImage.url : peoplePlaceholder}
+            src={people.coverImage ? people.coverImage.url : 'alt'}
             alt={i18n[lang].profilePicture(people)} />
         </figure>
 

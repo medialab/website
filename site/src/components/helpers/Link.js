@@ -1,9 +1,8 @@
 import React from 'react';
 
 export default function Link({to, children, ...props}) {
-  console.log(props);
 
-  // TODO: other props.
+  // TODO: other props: activeClassName, partiallyActive, title, activeClassName, className
   // TODO: resolve local context
   return (
     <a

@@ -1,6 +1,5 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import {StaticQuery, graphql} from 'gatsby';
 
 // import coverTwitter from '../../assets/images/cover-twitter.png';
 
@@ -127,6 +126,8 @@ function MetaData(props) {
 }
 
 export default function PageMeta(props) {
+  return null;
+
   return (
     <StaticQuery
       query={graphql`

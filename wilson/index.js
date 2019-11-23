@@ -1,8 +1,11 @@
+const NODE_ENV = process.env.NODE_ENV;
+
 // Babel require hook to transpile React/ES6 imports from static site templates
 require('@babel/register')({
-  cache: false,
+  cache: NODE_ENV === 'production' ? false : true,
   only: [
-    /site\/src/
+    /site\/src/,
+    /wilson\/render\.js/
   ],
   presets: ['@babel/preset-env', '@babel/preset-react']
 });

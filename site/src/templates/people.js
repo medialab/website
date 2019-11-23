@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
+import SiteContext from '../context';
 import Layout from '../components/Layout';
 import PeopleDetail from '../components/details/PeopleDetail';
 import EditInAdmin from '../components/details/fragments/EditInAdmin';
 
 export default ({data, pageContext}) => {
   // console.log(data, pageContext);
+
+  const meta = useContext(SiteContext);
 
   const person = data.person;
 
@@ -18,7 +21,7 @@ export default ({data, pageContext}) => {
       <PeopleDetail
         lang={pageContext.lang}
         person={person}
-        siteUrl={data.site.siteMetadata.siteUrl} />
+        siteUrl={meta.siteUrl} />
     </Layout>
   );
 };

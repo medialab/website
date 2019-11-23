@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'gatsby';
+import Link from '../../helpers/Link';
 
 import {I18N_MODEL, I18N_TYPE_LABELS, I18N_GROUP_LABELS} from '../../../i18n.js';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'gatsby';
+import Link from '../../helpers/Link';
 
 export default function ToggleLang({lang, content, to}) {
   const otherLang = lang === 'fr' ? 'en' : 'fr';

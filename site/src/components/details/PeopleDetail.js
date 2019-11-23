@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from '../common/Link';
+import Link from '../helpers/Link';
 
 import ToggleLang from './fragments/ToggleLang.js';
 import Highlights from './fragments/Highlights.js';

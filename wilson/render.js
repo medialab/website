@@ -39,6 +39,8 @@ function wrap(content) {
 // TODO: github, twitter reducers
 // TODO: solve production authors with people field after solving people
 // TODO: factorize `mainPermalink` in components
+// TODO: sitemap
+// TODO: rss feeds
 exports.renderPage = function(template, pageContext, data, options) {
   assert(typeof template === 'string', 'Template should be a string path.');
 

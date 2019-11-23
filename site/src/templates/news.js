@@ -1,26 +1,15 @@
-import React from 'react';
-import {graphql} from 'gatsby';
+import React, {useContext} from 'react';
 
+import SiteContext from '../context';
 import Layout from '../components/Layout';
 import NewsDetail from '../components/details/NewsDetail';
 import EditInAdmin from '../components/details/fragments/EditInAdmin';
 
-export const query = graphql`
-  query($id: String!) {
-    newsJson(id: {eq: $id}) {
-      ...NewsDetail
-    }
-
-    site {
-      siteMetadata {
-        siteUrl
-      }
-    }
-  }
-`;
-
 export default ({data, pageContext}) => {
-  const news = data.newsJson;
+
+  const meta = useContext(SiteContext);
+
+  const news = data;
 
   return (
     <Layout
@@ -31,7 +20,7 @@ export default ({data, pageContext}) => {
       <NewsDetail
         lang={pageContext.lang}
         news={news}
-        siteUrl={data.site.siteMetadata.siteUrl} />
+        siteUrl={meta.siteUrl} />
     </Layout>
   );
 };

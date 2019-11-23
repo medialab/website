@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'gatsby';
+import Link from './helpers/Link';
 
 import DateNews from '../../../helpers/DateNews.js';
 import {Icons} from '../../../helpers/Icons.js';

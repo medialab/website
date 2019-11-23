@@ -10,7 +10,7 @@ export default ({data, pageContext}) => {
 
   const meta = useContext(SiteContext);
 
-  const person = data.person;
+  const person = data;
 
   return (
     <Layout

@@ -1,7 +1,6 @@
 import React from 'react';
-import {graphql} from 'gatsby';
 import HtmlFallback from '../helpers/HtmlFallback.js';
-import {Link} from 'gatsby';
+import Link from '../helpers/Link';
 
 import {I18N_MODEL} from '../../i18n.js';
 import ToggleLang from './fragments/ToggleLang.js';
@@ -17,123 +16,6 @@ import RelatedPeople from './fragments/RelatedPeople.js';
 import Attachments from './fragments/Attachments.js';
 import LanguageFallback from '../helpers/LanguageFallback';
 import PageMeta from '../helpers/PageMeta.js';
-
-export const queryFragment = graphql`
-  fragment ActivityDetail on ActivitiesJson {
-    name
-    type
-    slugs
-    baseline {
-      en
-      fr
-    }
-    description {
-      en
-      fr
-    }
-    permalink {
-      en
-      fr
-    }
-    startDate
-    endDate
-    type
-    content {
-      en
-      fr
-    }
-    coverImage {
-      url
-      processed {
-        medium
-        large
-        raster {
-          url
-          width
-          height
-        }
-      }
-    }
-    people {
-      firstName
-      lastName
-      role {
-        en
-        fr
-      }
-      permalink {
-        en
-        fr
-      }
-      coverImage {
-        url
-      }
-      active
-      membership
-    }
-    activities {
-      name
-      type
-      baseline {
-        en
-        fr
-      }
-      description {
-        en
-        fr
-      }
-      permalink {
-        en
-        fr
-      }
-    }
-    productions {
-      title {
-        en
-        fr
-      }
-      authors
-      group
-      permalink {
-        en
-        fr
-      }
-      description {
-        en
-        fr
-      }
-    }
-    news {
-      title {
-        en
-        fr
-      }
-      type
-      description {
-        en
-        fr
-      }
-      permalink {
-        en
-        fr
-      }
-      startDate
-      coverImage {
-        processed {
-          medium
-        }
-      }
-      place
-    }
-    active
-    draft
-    attachments {
-      label
-      value
-      type
-    }
-  }
-`;
 
 const i18n = {
   fr: {

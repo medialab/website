@@ -3,6 +3,7 @@ node_modules
 .cache
 .vscode
 build
+wbuild
 config/local.json
 data
 dump

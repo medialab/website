@@ -1,57 +1,7 @@
 import React from 'react';
-import {graphql} from 'gatsby';
 
 import Layout from '../components/Layout';
 import ProductionListing from '../components/listings/ProductionListing';
-
-export const query = graphql`
-  query ($allowedTypes: [String]!) {
-    allProductionsJson(filter: {type: {in: $allowedTypes}, external: {ne: true}}) {
-      edges {
-        node {
-          title {
-            en
-            fr
-          }
-          description {
-            en
-            fr
-          }
-          group
-          permalink {
-            en
-            fr
-          }
-          type
-          authors
-          date
-          external
-        }
-      }
-    }
-
-    facetedEnumsJson {
-      productionTypes {
-        id
-        label {
-          en
-          fr
-        }
-        permalink {
-          en
-          fr
-        }
-        values {
-          type
-          label {
-            en
-            fr
-          }
-        }
-      }
-    }
-  }
-`;
 
 export default ({data, pageContext}) => {
   // console.log(data, pageContext);

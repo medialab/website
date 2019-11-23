@@ -1,7 +1,6 @@
 import React from 'react';
-import {graphql} from 'gatsby';
 import HtmlFallback from '../helpers/HtmlFallback.js';
-import {Link} from 'gatsby';
+import Link from '../helpers/Link';
 
 import ToggleLang from './fragments/ToggleLang.js';
 import DateNews from '../helpers/DateNews.js';
@@ -18,100 +17,6 @@ import Attachments from './fragments/Attachments.js';
 
 import LanguageFallback from '../helpers/LanguageFallback';
 import PageMeta from '../helpers/PageMeta.js';
-
-export const queryFragment = graphql`
-  fragment NewsDetail on NewsJson {
-    title {
-      en
-      fr
-    }
-    description {
-      en
-      fr
-    }
-    label {
-      en
-      fr
-    }
-    content {
-      en
-      fr
-    }
-    permalink {
-      en
-      fr
-    }
-    coverImage {
-      url
-      processed {
-        medium
-        large
-        raster {
-          url
-          width
-          height
-        }
-      }
-    }
-    people {
-      firstName
-      lastName
-      role {
-        en
-        fr
-      }
-      permalink {
-        en
-        fr
-      }
-      coverImage {
-        url
-      }
-    }
-    draft
-    activities {
-      baseline {
-        en
-        fr
-      }
-      description {
-        en
-        fr
-      }
-      permalink {
-        en
-        fr
-      }
-      name
-      type
-    }
-    productions {
-      title {
-        en
-        fr
-      }
-      authors
-      group
-      permalink {
-        en
-        fr
-      }
-      description {
-        en
-        fr
-      }
-    }
-    attachments {
-      label
-      value
-      type
-    }
-    type
-    startDate
-    endDate
-    place
-  }
-`;
 
 const i18n = {
   fr: {
@@ -134,6 +39,7 @@ const mainPermalink = {
 };
 
 export default function NewsDetail({lang, news, siteUrl}) {
+
   return (
     <>
       <PageMeta

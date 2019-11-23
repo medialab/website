@@ -25,7 +25,7 @@ const permalink = {
   en: '/en/legal'
 };
 
-const Footer = ({lang}) => {
+export default function Footer({lang}) {
 
 	return (
     <footer
@@ -113,5 +113,3 @@ const Footer = ({lang}) => {
     </footer>
   );
 };
-
-export default Footer;

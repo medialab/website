@@ -42,7 +42,6 @@ const ProductionCard = ({p, lang}) => (
 );
 
 export default function RelatedProductions({lang, productions}) {
-
   const related = SECTIONS.productions;
 
 	if (!productions || productions.length === 0)

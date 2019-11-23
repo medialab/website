@@ -1,29 +1,16 @@
-import React from 'react';
-import {graphql} from 'gatsby';
+import React, {useContext} from 'react';
 
+import SiteContext from '../context';
 import Layout from '../components/Layout';
 import ProductionDetail from '../components/details/ProductionDetail';
 
 import EditInAdmin from '../components/details/fragments/EditInAdmin';
 
-export const query = graphql`
-  query($id: String!) {
-    productionsJson(id: {eq: $id}) {
-      ...ProductionDetail
-    }
-
-    site {
-      siteMetadata {
-        siteUrl
-      }
-    }
-  }
-`;
-
 export default ({data, pageContext}) => {
   // console.log(data, pageContext);
+  const meta = useContext(SiteContext);
 
-  const production = data.productionsJson;
+  const production = data;
 
   return (
     <Layout
@@ -35,7 +22,7 @@ export default ({data, pageContext}) => {
       <ProductionDetail
         lang={pageContext.lang}
         production={production}
-        siteUrl={data.site.siteMetadata.siteUrl} />
+        siteUrl={meta.siteUrl} />
     </Layout>
   );
 };

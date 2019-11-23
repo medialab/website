@@ -1,28 +1,15 @@
-import React from 'react';
-import {graphql} from 'gatsby';
+import React, {useContext} from 'react';
 
+import SiteContext from '../context';
 import Layout from '../components/Layout';
 import ActivityDetail from '../components/details/ActivityDetail';
 import EditInAdmin from '../components/details/fragments/EditInAdmin';
 
-export const query = graphql`
-  query($id: String!) {
-    activitiesJson(id: {eq: $id}) {
-      ...ActivityDetail
-    }
-
-    site {
-      siteMetadata {
-        siteUrl
-      }
-    }
-  }
-`;
-
 export default ({data, pageContext}) => {
   // console.log(data, pageContext);
+  const meta = useContext(SiteContext);
 
-  const activity = data.activitiesJson;
+  const activity = data;
 
   return (
     <Layout
@@ -34,7 +21,7 @@ export default ({data, pageContext}) => {
       <ActivityDetail
         lang={pageContext.lang}
         activity={activity}
-        siteUrl={data.site.siteMetadata.siteUrl} />
+        siteUrl={meta.siteUrl} />
     </Layout>
   );
 };

@@ -83,7 +83,7 @@ const ariaLabelI18n = {
 
 const Link = (props) => <BasicLink partiallyActive activeClassName={'active'} {...props} />;
 
-const TopBar = ({permalinks, lang}) => {
+export default function TopBar({permalinks, lang}) {
 
   const {
     news,
@@ -183,5 +183,3 @@ const TopBar = ({permalinks, lang}) => {
     </header>
   );
 };
-
-export default TopBar;

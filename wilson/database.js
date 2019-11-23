@@ -39,7 +39,7 @@ const BACKWARD_LINKS = {
 
 const SELF_LINKS = {
   activities: 'activities',
-  production: 'productions'
+  productions: 'productions'
 };
 
 module.exports = class Database {
@@ -105,8 +105,10 @@ module.exports = class Database {
         const forward = FORWARD_LINKS[attr.model];
 
         for (const k in forward) {
-          if (!(k in attr))
+          if (!(k in attr)) {
+            attr[k] = [];
             continue;
+          }
 
           attr[k] = attr[k]
             .filter(id => this.graph.hasNode(id))
@@ -135,12 +137,8 @@ module.exports = class Database {
       if (attr.model in BACKWARD_LINKS) {
         const backward = BACKWARD_LINKS[attr.model];
 
-        for (const k in backward) {
-          if (!(k in groupedBacklinks))
-            continue;
-
-          attr[k] = groupedBacklinks[k];
-        }
+        for (const k in backward)
+          attr[k] = groupedBacklinks[k] || [];
       }
     });
   }
@@ -149,5 +147,15 @@ module.exports = class Database {
     assert(this.graph.hasNode(id));
 
     return this.graph.getNodeAttributes(id);
+  }
+
+  getModel(model) {
+    return this.store[model];
+  }
+
+  forEach(callback) {
+    this.graph.forEachNode((node, attr) => {
+      callback(attr);
+    });
   }
 }

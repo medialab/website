@@ -1,6 +1,7 @@
 const ENUMS = require('../specs/enums.json');
 const last = require('lodash/last');
 const forEach = require('lodash/forEach');
+const permalinks = require('./permalinks.js');
 const {template, resolveAttachments} = require('./templating.js');
 const {frenchTypographyReplace} = require('./utils.js');
 
@@ -15,8 +16,8 @@ exports.activities = function reduceActivity(pathPrefix, activity) {
     content,
     attachments: resolveAttachments(pathPrefix, activity.attachments || []),
     permalink: {
-      fr: `/activites/${slug}`,
-      en: `/en/activities/${slug}`
+      fr: `${permalinks.activities.fr}/${slug}`,
+      en: `${permalinks.activities.en}/${slug}`
     }
   };
 };
@@ -44,8 +45,8 @@ exports.news = function reduceNews(pathPrefix, news) {
     ...news,
     content,
     permalink: {
-      fr: `/actu/${slug}`,
-      en: `/en/news/${slug}`
+      fr: `${permalinks.news.fr}/${slug}`,
+      en: `${permalinks.news.en}/${slug}`
     }
   };
 };
@@ -61,8 +62,8 @@ exports.people = function reducePeople(pathPrefix, person) {
     bio: content,
     contacts: resolveAttachments(pathPrefix, person.contacts || []),
     permalink: {
-      fr: `/equipe/${slug}`,
-      en: `/en/people/${slug}`
+      fr: `${permalinks.people.fr}/${slug}`,
+      en: `${permalinks.people.en}/${slug}`
     }
   };
 };
@@ -110,6 +111,9 @@ exports.productions = function reduceProductions(pathPrefix, production) {
   //   production.authors = production.people.map(pId => (peopleIndex[pId] ? `${peopleIndex[pId].firstName} ${peopleIndex[pId].lastName}` : `${pId} missing`)).join(', ');
   // }
 
+  if (!production.authors)
+    production.authors = '';
+
   // Processing HTML
   const content = template(pathPrefix, production.content);
   const slug = last(production.slugs);
@@ -119,8 +123,8 @@ exports.productions = function reduceProductions(pathPrefix, production) {
     content,
     attachments: resolveAttachments(pathPrefix, production.attachments || []),
     permalink: {
-      fr: `/productions/${slug}`,
-      en: `/en/productions/${slug}`
+      fr: `${permalinks.productions.fr}/${slug}`,
+      en: `${permalinks.productions.en}/${slug}`
     }
   };
 };

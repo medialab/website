@@ -1,8 +1,7 @@
 import React from 'react';
-import {graphql} from 'gatsby';
 import HtmlFallback from '../helpers/HtmlFallback.js';
 import DateNews from '../helpers/DateNews.js';
-import {Link} from 'gatsby';
+import Link from '../helpers/Link';
 
 import ToggleLang from './fragments/ToggleLang.js';
 import {productionTypeToSchemaURL, productionTypeToZoteroType} from '../helpers/helpers.js';
@@ -16,89 +15,6 @@ import RelatedPeople from './fragments/RelatedPeople.js';
 import PageMeta from '../helpers/PageMeta.js';
 
 import RawHtml from '../helpers/RawHtml.js';
-
-export const queryFragment = graphql`
-  fragment ProductionDetail on ProductionsJson {
-    title {
-      en
-      fr
-    }
-    authors
-    group
-    type
-    date
-    coverImage {
-      processed {
-        raster {
-          url
-          width
-          height
-        }
-      }
-    }
-    description {
-      en
-      fr
-    }
-    content {
-      en
-      fr
-    }
-    permalink {
-      en
-      fr
-    }
-    people {
-      firstName
-      lastName
-      role {
-        en
-        fr
-      }
-      permalink {
-        en
-        fr
-      }
-      coverImage {
-        url
-      }
-    }
-    activities {
-      description {
-        en
-        fr
-      }
-      permalink {
-        en
-        fr
-      }
-      name
-      baseline {
-        en
-        fr
-      }
-      type
-    }
-    productions {
-      title {
-        en
-        fr
-      }
-      authors
-      group
-      permalink {
-        en
-        fr
-      }
-      description {
-        en
-        fr
-      }
-    }
-    draft
-    url
-  }
-`;
 
 const i18n = {
   fr: {

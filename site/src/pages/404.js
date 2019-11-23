@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'gatsby';
+import Link from './helpers/Link';
 import Layout from '../components/Layout';
 import {withPrefix} from 'gatsby';
 

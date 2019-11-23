@@ -1,47 +1,8 @@
 import React from 'react';
-import {graphql} from 'gatsby';
 
 import Layout from '../components/Layout';
 import NewsListing from '../components/listings/NewsListing';
 import {compare} from '../components/helpers/helpers';
-
-export const query = graphql`
-  {
-    allNewsJson {
-      edges {
-        node {
-          title {
-            en
-            fr
-          }
-          description {
-            en
-            fr
-          }
-          place
-          label {
-            en
-            fr
-          }
-          startDate
-          endDate
-          isInternal
-          permalink {
-            en
-            fr
-          }
-          type
-          coverImage {
-            url
-            processed {
-              medium
-            }
-          }
-        }
-      }
-    }
-  }
-`;
 
 export default ({data, pageContext}) => {
   // console.log(data, pageContext);

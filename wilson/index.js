@@ -20,7 +20,10 @@ const TEMPLATES = {
 for (const k in TEMPLATES)
   TEMPLATES[k] = require.resolve(`../site/src/templates/${TEMPLATES[k]}.js`);
 
-
 const guillaume = require('../data/people.json').people.find(p => p.lastName === 'Plique');
 
-renderPage(TEMPLATES.peopleDetail, {hello: 'world'}, reducers.people('', guillaume));
+renderPage(
+  TEMPLATES.peopleDetail,
+  {lang: 'fr', permalinks: {fr: '', en: ''}, linkToAdmin: false},
+  {person: reducers.people('', guillaume)}
+);

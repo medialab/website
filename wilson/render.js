@@ -11,7 +11,7 @@ exports.renderPage = function(template, pageContext, data) {
 
   const Component = require(template).default;
 
-  return renderToStaticMarkup(React.createElement(Component, null, {
+  return renderToStaticMarkup(React.createElement(Component, {
     data,
     pageContext
   }));

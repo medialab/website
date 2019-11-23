@@ -7,7 +7,7 @@ import EditInAdmin from '../components/details/fragments/EditInAdmin';
 export default ({data, pageContext}) => {
   // console.log(data, pageContext);
 
-  const person = data.peopleJson;
+  const person = data.person;
 
   return (
     <Layout

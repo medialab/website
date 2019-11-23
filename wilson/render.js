@@ -26,11 +26,10 @@ function wrap(content) {
   `.trim();
 }
 
+// TODO: link lang bold for current lang
 // TODO: path prefix for stylesheets and Js
 // TODO: drop require cache
-// TODO: replace svg components
 // TODO: replace png imports
-// TODO: relink CSS stylesheets
 // TODO: wrapper + metas + helmet
 // TODO: PageMeta
 // TODO: prettier --write --parser scss 'src/assets/scss/**/*.scss'
@@ -41,6 +40,7 @@ function wrap(content) {
 // TODO: factorize `mainPermalink` in components
 // TODO: sitemap
 // TODO: rss feeds
+// TODO: html lang
 exports.renderPage = function(template, pageContext, data, options) {
   assert(typeof template === 'string', 'Template should be a string path.');
 

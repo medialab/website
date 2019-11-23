@@ -5,10 +5,6 @@ import Footer from './common/Footer';
 
 // import coverFb from '../assets/images/cover-fb.png';
 
-// import '../assets/font/Bel2/stylesheet.css';
-// import '../assets/font/Symbol/stylesheet.css';
-// import '../assets/scss/global.scss';
-
 /* <Helmet
 title={data.site.siteMetadata.title}>
 <html lang={lang} />

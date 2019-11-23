@@ -15,6 +15,9 @@ function wrap(content) {
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="/bel2.css" rel="stylesheet">
+    <link href="/symbol.css" rel="stylesheet">
+    <link href="/medialab.css" rel="stylesheet">
   </head>
   <body>
     ${content}
@@ -23,6 +26,7 @@ function wrap(content) {
   `.trim();
 }
 
+// TODO: path prefix for stylesheets and Js
 // TODO: drop require cache
 // TODO: replace svg components
 // TODO: replace png imports

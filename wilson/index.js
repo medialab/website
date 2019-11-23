@@ -11,7 +11,9 @@ require('@babel/register')({
 });
 
 // Dependencies
+const async = require('async');
 const path = require('path');
+const sass = require('node-sass');
 const rimraf = require('rimraf');
 const fs = require('fs-extra');
 const {renderPage} = require('./render.js');
@@ -36,6 +38,28 @@ const MODEL_TO_TEMPLATE = {};
 models.forEach(model => (MODEL_TO_TEMPLATE[model] = TEMPLATES[`${model}Detail`]));
 
 // Helpers
+const FONT_PATH = path.join(__dirname, '..', 'site', 'src', 'assets', 'font');
+const BEL2_FONT_PATH = path.join(FONT_PATH, 'Bel2', 'stylesheet.css');
+const SYMBOL_FONT_PATH = path.join(FONT_PATH, 'Symbol', 'stylesheet.css');
+
+function buildSass(outputDir, callback) {
+
+  // NOTE: this could be imported in the SCSS stylesheet...
+  fs.copyFileSync(BEL2_FONT_PATH, path.join(outputDir, 'bel2.css'));
+  fs.copyFileSync(SYMBOL_FONT_PATH, path.join(outputDir, 'symbol.css'));
+
+  return sass.render({
+    file: path.join(__dirname, '..', 'site', 'src', 'assets', 'scss', 'global.scss')
+  }, (err, result) => {
+    if (err)
+      return callback(err);
+
+    fs.writeFileSync(path.join(outputDir, 'medialab.css'), result.css);
+
+    return callback();
+  });
+}
+
 function createModelI18nPage(item) {
   const model = item.model;
 
@@ -75,22 +99,29 @@ exports.build = function build(inputDir, outputDir, options, callback) {
   rimraf.sync(outputDir);
   fs.ensureDirSync(outputDir);
 
-  db.forEach(item => {
-    const versions = createModelI18nPage(item);
+  async.series({
+    sass(next) {
+      return buildSass(outputDir, next);
+    },
+    build(next) {
+      db.forEach(item => {
+        const versions = createModelI18nPage(item);
 
-    const diskPaths = {
-      fr: permalinkToDiskPath(outputDir, item.permalink.fr),
-      en: permalinkToDiskPath(outputDir, item.permalink.en)
-    };
+        const diskPaths = {
+          fr: permalinkToDiskPath(outputDir, item.permalink.fr),
+          en: permalinkToDiskPath(outputDir, item.permalink.en)
+        };
 
-    fs.ensureDirSync(diskPaths.fr);
-    fs.ensureDirSync(diskPaths.en);
+        fs.ensureDirSync(diskPaths.fr);
+        fs.ensureDirSync(diskPaths.en);
 
-    fs.writeFileSync(path.join(diskPaths.fr, 'index.html'), versions.fr);
-    fs.writeFileSync(path.join(diskPaths.en, 'index.html'), versions.en);
-  });
+        fs.writeFileSync(path.join(diskPaths.fr, 'index.html'), versions.fr);
+        fs.writeFileSync(path.join(diskPaths.en, 'index.html'), versions.en);
+      });
 
-  process.nextTick(callback);
+      process.nextTick(next);
+    }
+  }, callback);
 }
 
 console.time('build');

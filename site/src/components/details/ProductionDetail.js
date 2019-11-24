@@ -44,7 +44,7 @@ const LangBlock = ({production, lang}) => {
   let ref = (
     <span>
       <span>
-        <RawHtml html={description} />
+        <RawHtml html={description} wrapper='span' />
         {production.url ? ' ⤤' : ''}
       </span>
     </span>

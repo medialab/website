@@ -40,7 +40,10 @@ function wrap(content) {
 // TODO: factorize `mainPermalink` in components
 // TODO: sitemap
 // TODO: rss feeds
+// TODO: 404 page
 // TODO: html lang
+// TODO: analytics
+// TODO: script injection
 exports.renderPage = function(template, pageContext, data, options) {
   assert(typeof template === 'string', 'Template should be a string path.');
 

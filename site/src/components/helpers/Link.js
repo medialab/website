@@ -1,14 +1,28 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import cls from 'classnames';
+import SiteContext from '../../context';
 
-export default function Link({to, children, className, title}) {
+export default function Link(props) {
+  const {
+    to,
+    children,
+    activeClassName,
+    className,
+    partiallyActive,
+    title
+  } = props;
 
-  // console.log(to, children, props)
-  // TODO: other props: activeClassName, partiallyActive, title, activeClassName, className
-  // TODO: resolve local context
+  const meta = useContext(SiteContext);
+
+  let active = meta.permalink === to;
+
+  if (partiallyActive && meta.permalink.startsWith(to))
+    active = true;
+
   return (
     <a
       title={title}
-      className={className}
+      className={cls(className, active && activeClassName)}
       href={to}>
       {children}
     </a>

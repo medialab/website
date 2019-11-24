@@ -41,20 +41,26 @@ function wrap(content) {
 // TODO: sitemap
 // TODO: rss feeds
 // TODO: 404 page
+// TODO: static logo
 // TODO: html lang
 // TODO: analytics
 // TODO: script injection
 // TODO: use classnames for html fallback and such
 // TODO: get rid of HTMLFallback or improve it
-exports.renderPage = function(template, pageContext, data, options) {
+exports.renderPage = function(permalink, template, pageContext, data, options) {
   assert(typeof template === 'string', 'Template should be a string path.');
 
   options = options || {};
 
   const Component = require(template).default;
 
+  const renderingContext = {
+    ...meta,
+    permalink
+  };
+
   const page = (
-    <SiteContext.Provider value={meta}>
+    <SiteContext.Provider value={renderingContext}>
       <Component data={data} pageContext={pageContext} />
     </SiteContext.Provider>
   );

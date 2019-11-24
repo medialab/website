@@ -78,6 +78,7 @@ function createModelI18nPage(item) {
 
   // French page
   versions.fr = renderPage(
+    item.permalink.fr,
     template,
 
     // Page context
@@ -96,6 +97,7 @@ function createModelI18nPage(item) {
 
   // English page
   versions.en = renderPage(
+    item.permalink.en,
     template,
 
     // Page context

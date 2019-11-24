@@ -7,14 +7,17 @@ const pretty = require('pretty');
 const meta = require('./meta.js');
 
 // Helpers
-function wrap(content) {
+function wrap(content, helmet) {
   return `
 <!DOCTYPE html>
-<html>
+<html ${helmet.htmlAttributes.toString()}>
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    ${helmet.title.toString()}
+    ${helmet.meta.toString()}
+    ${helmet.link.toString()}
     <link href="/bel2.css" rel="stylesheet">
     <link href="/symbol.css" rel="stylesheet">
     <link href="/medialab.css" rel="stylesheet">
@@ -44,6 +47,7 @@ function wrap(content) {
 // TODO: static logo
 // TODO: html lang
 // TODO: analytics
+// TODO: issue with cropped images in prod
 // TODO: script injection
 // TODO: use classnames for html fallback and such
 // TODO: get rid of HTMLFallback or improve it
@@ -68,7 +72,7 @@ exports.renderPage = function(permalink, template, pageContext, data, options) {
   let content = renderToStaticMarkup(page);
   const helmet = Helmet.renderStatic();
 
-  content = wrap(content);
+  content = wrap(content, helmet);
 
   if (options.pretty)
     content = pretty(content);

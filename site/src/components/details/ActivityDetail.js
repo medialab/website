@@ -115,7 +115,7 @@ export default function ActivityDetail({lang, activity, siteUrl}) {
             <h1 data-level-2="title" itemProp="name">{activity.name}</h1>
             <h2 data-level-2="baseline">{activity.baseline && <LanguageFallback lang={lang} translatedAttribute={activity.baseline} />}</h2>
             <HtmlFallback
-              Tag="h3"
+              wrapper="h3"
               data-level-3="description"
               itemProp="description"
               content={activity.description}

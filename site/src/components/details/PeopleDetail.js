@@ -284,7 +284,7 @@ export default function PeopleDetail({lang, person, siteUrl}) {
                 itemProp="description"
                 className={`biographie-content block-lang ${lang}`}
                 lang={lang}
-                aria-label="Biographie" >
+                aria-label="Biographie">
                 <HtmlFallback lang={lang} content={person.bio} />
               </div>
               {/* Toggle Langue */}

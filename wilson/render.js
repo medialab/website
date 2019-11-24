@@ -44,6 +44,8 @@ function wrap(content) {
 // TODO: html lang
 // TODO: analytics
 // TODO: script injection
+// TODO: use classnames for html fallback and such
+// TODO: get rid of HTMLFallback or improve it
 exports.renderPage = function(template, pageContext, data, options) {
   assert(typeof template === 'string', 'Template should be a string path.');
 

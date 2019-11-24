@@ -128,7 +128,7 @@ export default function NewsDetail({lang, news, siteUrl}) {
             <hgroup>
               <h1 data-type="title"> <LanguageFallback lang={lang} translatedAttribute={news.title} /></h1>
               <HtmlFallback
-                Tag="h2" data-type="description" content={news.description}
+                wrapper="h2" data-type="description" content={news.description}
                 lang={lang} />
             </hgroup>
             <div className="details">

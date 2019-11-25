@@ -18,8 +18,8 @@ function wrap(content, helmet) {
     ${helmet.title.toString()}
     ${helmet.meta.toString()}
     ${helmet.link.toString()}
-    <link href="/bel2.css" rel="stylesheet">
-    <link href="/symbol.css" rel="stylesheet">
+    <link href="/font/bel2/bel2.css" rel="stylesheet">
+    <link href="/font/symbol/symbol.css" rel="stylesheet">
     <link href="/medialab.css" rel="stylesheet">
   </head>
   <body>

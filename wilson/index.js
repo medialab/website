@@ -43,11 +43,13 @@ const BEL2_FONT_PATH = path.join(FONT_PATH, 'Bel2');
 const SYMBOL_FONT_PATH = path.join(FONT_PATH, 'Symbol');
 
 // TODO: compress, sourceMap false
-// TODO: move fonts to folder in build
 function buildSass(outputDir, callback) {
 
-  fs.copySync(BEL2_FONT_PATH, outputDir);
-  fs.copySync(SYMBOL_FONT_PATH, outputDir);
+  const fontDir = path.join(outputDir, 'font');
+  fs.ensureDirSync(fontDir);
+
+  fs.copySync(BEL2_FONT_PATH, path.join(fontDir, 'bel2'));
+  fs.copySync(SYMBOL_FONT_PATH, path.join(fontDir, 'symbol'));
 
   return sass.render({
     file: path.join(__dirname, '..', 'site', 'src', 'assets', 'scss', 'global.scss')

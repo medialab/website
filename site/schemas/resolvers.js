@@ -2,6 +2,9 @@ const memoize = require('timed-memoize').default;
 const path = require('path');
 const sharp = require('sharp');
 
+// NOTE: disabling sharp's cache causing segfaults
+sharp.cache(false);
+
 exports.createSettingsItemResolver = () => {
   return {
     resolve(source, args, context) {

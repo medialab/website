@@ -21,7 +21,7 @@ export default function Link(props) {
 
   return (
     <a
-      className={cls(className, active && activeClassName)}
+      className={cls(className, active && activeClassName) || null}
       href={to}
       {...otherProps}>
       {children}

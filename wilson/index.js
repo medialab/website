@@ -94,7 +94,7 @@ function createModelI18nPage(item) {
     item,
 
     // Options
-    {pretty: true}
+    {pretty: false}
   );
 
   // English page
@@ -113,7 +113,7 @@ function createModelI18nPage(item) {
     item,
 
     // Options
-    {pretty: true}
+    {pretty: false}
   );
 
   return versions;

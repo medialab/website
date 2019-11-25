@@ -51,6 +51,7 @@ function wrap(content, helmet) {
 // TODO: script injection
 // TODO: use classnames for html fallback and such
 // TODO: get rid of HTMLFallback or improve it
+// TODO: js storage buster on first prod release
 exports.renderPage = function(permalink, template, pageContext, data, options) {
   assert(typeof template === 'string', 'Template should be a string path.');
 

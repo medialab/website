@@ -79,7 +79,7 @@ module.exports = class Database {
 
           item[k].forEach(target => {
             if (!this.graph.hasNode(target)) {
-              console.warn(`wilson/database: "${target}" node not found!`);
+              console.warn(`wilson/database: "${target}" - ${k} node not found (from "${item.id}" - ${item.model})!`);
               return;
             }
 

@@ -474,7 +474,7 @@ function prepareDataForBuild(callback) {
       // Copying flux data
       copyFluxData();
 
-      console.timeEnd('dump');
+      console.timeEnd('load');
       return next();
     }
   }, callback);
@@ -544,9 +544,13 @@ function buildStaticSite(callback) {
       ].join(' ');
 
       return exec(command, next);
+    },
+    // log end of rsync only if rsycn has been done
+    endRsync(next) {
+      console.timeEnd('rsync');
+      return callback(err);
     }
   }, err => {
-    console.timeEnd('rsync');
     TRANSIENT_DATA.lastBuildStart = lastBuildStart;
     TRANSIENT_DATA.lastBuildEnd = Date.now();
     changeBuildStatus('free');

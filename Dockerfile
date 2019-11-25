@@ -11,10 +11,9 @@ COPY --chown=node:node . /website
 WORKDIR /website
 
 RUN apk add --no-cache --virtual .build-deps make gcc g++ libc-dev libpng-dev automake autoconf libtool python \
-    && apk add vips-dev fftw-dev build-base --update-cache \
-      --repository https://alpine.global.ssl.fastly.net/alpine/edge/testing/ \
-      --repository https://alpine.global.ssl.fastly.net/alpine/edge/main \
-      --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
+    && apk add vips-dev fftw-dev build-base --no-cache --update \
+      --repository http://dl-3.alpinelinux.org/alpine/edge/community \
+      --repository http://dl-3.alpinelinux.org/alpine/edge/main \
     && npm ci --quiet --no-audit --ignore-scripts \
     && ./node_modules/.bin/gatsby telemetry --disable \
     && cd site \

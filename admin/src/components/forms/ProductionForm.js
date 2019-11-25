@@ -23,7 +23,7 @@ function validate(data) {
   if (data.spire)
     return;
 
-  if (!data.title && !data.title.fr && !data.title.en)
+  if (!data.title || (!data.title.fr && !data.title.en))
     return 'Need at least a  title';
 }
 

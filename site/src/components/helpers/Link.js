@@ -9,7 +9,7 @@ export default function Link(props) {
     activeClassName,
     className,
     partiallyActive,
-    title
+    ...otherProps
   } = props;
 
   const meta = useContext(SiteContext);
@@ -21,9 +21,9 @@ export default function Link(props) {
 
   return (
     <a
-      title={title}
       className={cls(className, active && activeClassName)}
-      href={to}>
+      href={to}
+      {...otherProps}>
       {children}
     </a>
   );

@@ -61,8 +61,8 @@ module.exports = class Database {
     });
 
     this.store.settings = fs.readJSONSync(path.join(directory, 'settings.json')).settings;
-    this.store.github = fs.readJSONSync(path.join(directory, 'github.json'));
-    this.store.twitter = fs.readJSONSync(path.join(directory, 'twitter.json'));
+    // this.store.github = fs.readJSONSync(path.join(directory, 'github.json'));
+    // this.store.twitter = fs.readJSONSync(path.join(directory, 'twitter.json'));
 
     // Adding edges and reducing items
     models.forEach(model => {

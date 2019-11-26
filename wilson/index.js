@@ -38,6 +38,18 @@ const MODEL_TO_TEMPLATE = {};
 models.forEach(model => (MODEL_TO_TEMPLATE[model] = TEMPLATES[`${model}Detail`]));
 
 // Helpers
+function writePermalinkToDisk(outputDir, html, permalink) {
+  const diskPath = permalinkToDiskPath(outputDir, permalink);
+
+  fs.ensureDirSync(diskPath);
+  fs.writeFileSync(path.join(diskPath, 'index.html'), html);
+}
+
+function writeI18nPermalinkToDisk(outputDir, versions, permalinks) {
+  writePermalinkToDisk(outputDir, versions.fr, permalinks.fr);
+  writePermalinkToDisk(outputDir, versions.en, permalinks.en);
+}
+
 const FONT_PATH = path.join(__dirname, '..', 'site', 'src', 'assets', 'font');
 const BEL2_FONT_PATH = path.join(FONT_PATH, 'Bel2');
 const SYMBOL_FONT_PATH = path.join(FONT_PATH, 'Symbol');
@@ -71,7 +83,7 @@ function buildAssets(inputDir, outputDir, callback) {
   );
 }
 
-function createModelI18nPage(item) {
+function renderModelI18nPage(item) {
   const model = item.model;
 
   const template = MODEL_TO_TEMPLATE[model];
@@ -145,18 +157,9 @@ exports.build = function build(inputDir, outputDir, options, callback) {
 
     build(next) {
       db.forEach(item => {
-        const versions = createModelI18nPage(item);
+        const versions = renderModelI18nPage(item);
 
-        const diskPaths = {
-          fr: permalinkToDiskPath(outputDir, item.permalink.fr),
-          en: permalinkToDiskPath(outputDir, item.permalink.en)
-        };
-
-        fs.ensureDirSync(diskPaths.fr);
-        fs.ensureDirSync(diskPaths.en);
-
-        fs.writeFileSync(path.join(diskPaths.fr, 'index.html'), versions.fr);
-        fs.writeFileSync(path.join(diskPaths.en, 'index.html'), versions.en);
+        writeI18nPermalinkToDisk(outputDir, versions, item.permalink);
       });
 
       process.nextTick(next);

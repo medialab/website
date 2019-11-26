@@ -6,7 +6,7 @@ const SiteContext = require('../site/src/context.js').default;
 const meta = require('./meta.js');
 
 // Helpers
-function wrap(content, helmet) {
+function wrap(pathPrefix, content, helmet) {
   return `
 <!DOCTYPE html>
 <html ${helmet.htmlAttributes.toString()}>
@@ -17,9 +17,9 @@ function wrap(content, helmet) {
     ${helmet.title.toString()}
     ${helmet.meta.toString()}
     ${helmet.link.toString()}
-    <link href="/font/bel2/bel2.css" rel="stylesheet">
-    <link href="/font/symbol/symbol.css" rel="stylesheet">
-    <link href="/medialab.css" rel="stylesheet">
+    <link href="${pathPrefix}/font/bel2/bel2.css" rel="stylesheet">
+    <link href="${pathPrefix}/font/symbol/symbol.css" rel="stylesheet">
+    <link href="${pathPrefix}/medialab.css" rel="stylesheet">
   </head>
   <body>
     ${content}
@@ -52,16 +52,15 @@ function wrap(content, helmet) {
 // TODO: use classnames for html fallback and such
 // TODO: get rid of HTMLFallback or improve it
 // TODO: js storage buster on first prod release
-exports.renderPage = function(permalink, template, pageContext, data, options) {
+exports.renderPage = function(pathPrefix, permalink, template, pageContext, data) {
   assert(typeof template === 'string', 'Template should be a string path.');
-
-  options = options || {};
 
   const Component = require(template).default;
 
   const renderingContext = {
     ...meta,
-    permalink
+    permalink,
+    pathPrefix
   };
 
   const page = (
@@ -73,7 +72,7 @@ exports.renderPage = function(permalink, template, pageContext, data, options) {
   let content = renderToStaticMarkup(page);
   const helmet = Helmet.renderStatic();
 
-  content = wrap(content, helmet);
+  content = wrap(pathPrefix, content, helmet);
 
   return content;
 };

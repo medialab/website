@@ -91,16 +91,41 @@ function buildSass(outputDir, callback) {
   });
 }
 
-function buildAssets(inputDir, outputDir, callback) {
-  fs.copy(
-    path.join(inputDir, 'assets'),
-    path.join(outputDir, 'static'),
-    callback
-  );
+const IMG = [
+  'people-placeholder.png',
+  'cover-twitter.png',
+  'cover-fb.png'
+];
+
+function copyAssets(inputDir, outputDir, callback) {
+  async.parallel({
+    assets(next) {
+      return fs.copy(
+        path.join(inputDir, 'assets'),
+        path.join(outputDir, 'static'),
+        next
+      );
+    },
+
+    img(next) {
+      const imgDir = path.join(outputDir, 'img');
+
+      fs.ensureDirSync(imgDir);
+
+      return async.each(IMG, (img, n) => {
+        fs.copyFile(
+          path.join(__dirname, '..', 'site', 'src', 'assets', 'images', img),
+          path.join(imgDir, img),
+          n
+        );
+      }, next);
+    }
+  }, callback);
 }
 
-function build404Page(outputDir) {
+function build404Page(outputDir, pathPrefix) {
   const html = renderPage(
+    pathPrefix,
     '/',
     TEMPLATES.error
   );
@@ -108,56 +133,8 @@ function build404Page(outputDir) {
   fs.writeFileSync(path.join(outputDir, '404.html'), html);
 }
 
-function renderModelI18nPage(item) {
-  const model = item.model;
-
-  const template = MODEL_TO_DETAIL_TEMPLATE[model];
-
-  const versions = {};
-
-  // French page
-  versions.fr = renderPage(
-    item.permalink.fr,
-    template,
-
-    // Page context
-    {
-      lang: 'fr',
-      permalinks: item.permalink,
-      linkToAdmin: NODE_ENV !== 'production' ? '' : '' // TODO: fix this!
-    },
-
-    // Page data
-    item,
-
-    // Options
-    {pretty: false}
-  );
-
-  // English page
-  versions.en = renderPage(
-    item.permalink.en,
-    template,
-
-    // Page context
-    {
-      lang: 'en',
-      permalinks: item.permalink,
-      linkToAdmin: NODE_ENV !== 'production' ? '' : '' // TODO: fix this!
-    },
-
-    // Page data
-    item,
-
-    // Options
-    {pretty: false}
-  );
-
-  return versions;
-}
-
 // Main functions
-function buildI18nPage(outputDir, {permalinks, template, context, data}) {
+function buildI18nPage(outputDir, pathPrefix, {permalinks, template, context, data}) {
   context = context || {};
 
   const versions = {};
@@ -169,6 +146,7 @@ function buildI18nPage(outputDir, {permalinks, template, context, data}) {
   };
 
   versions.fr = renderPage(
+    pathPrefix,
     permalinks.fr,
     template,
     {
@@ -179,6 +157,7 @@ function buildI18nPage(outputDir, {permalinks, template, context, data}) {
   );
 
   versions.en = renderPage(
+    pathPrefix,
     permalinks.en,
     template,
     {
@@ -203,7 +182,7 @@ exports.build = function build(inputDir, outputDir, options, callback) {
 
   async.series({
     assets(next) {
-      return buildAssets(inputDir, outputDir, next);
+      return copyAssets(inputDir, outputDir, next);
     },
 
     covers(next) {
@@ -222,7 +201,7 @@ exports.build = function build(inputDir, outputDir, options, callback) {
       const settings = db.getSettings();
 
       // Static error page
-      build404Page(outputDir);
+      build404Page(outputDir, pathPrefix);
 
       // Home page
       pagesToRender.push({
@@ -315,7 +294,7 @@ exports.build = function build(inputDir, outputDir, options, callback) {
       // Building pages
       // TODO: async much?
       pagesToRender.forEach(page => {
-        buildI18nPage(outputDir, page);
+        buildI18nPage(outputDir, pathPrefix, page);
       });
 
       process.nextTick(next);
@@ -324,7 +303,8 @@ exports.build = function build(inputDir, outputDir, options, callback) {
 }
 
 console.time('build');
-exports.build('./data', './wbuild', {}, () => {
+exports.build('./data', './wbuild', {}, err => {
+  console.log(err);
   console.timeEnd('build');
   console.timeEnd('buildPages');
 });

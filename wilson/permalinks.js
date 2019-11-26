@@ -1,4 +1,8 @@
 module.exports = {
+  home: {
+    fr: '/',
+    en: '/en'
+  },
   about: {
     fr: '/a-propos',
     en: '/en/about'

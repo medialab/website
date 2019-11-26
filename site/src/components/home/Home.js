@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from './helpers/Link';
+import Link from '../helpers/Link';
 
 import Slideshow from './fragments/Slideshow.js';
 import Now from './fragments/Now.js';
@@ -32,6 +32,7 @@ const permalink = {
 };
 
 export default function Home({lang, grid, slider, rdv, tweets, github}) {
+
   return (
     <>
       <PageMeta

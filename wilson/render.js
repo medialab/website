@@ -28,7 +28,7 @@ function wrap(content, helmet) {
   `.trim();
 }
 
-// TODO: link lang bold for current lang
+// TODO: link lang bold for current lang for home
 // TODO: path prefix for stylesheets and Js
 // TODO: drop require cache
 // TODO: replace png imports
@@ -42,8 +42,8 @@ function wrap(content, helmet) {
 // TODO: factorize `mainPermalink` in components
 // TODO: sitemap
 // TODO: rss feeds
-// TODO: 404 page
 // TODO: static logo
+// TODO: drafts
 // TODO: easter egg
 // TODO: html lang
 // TODO: analytics

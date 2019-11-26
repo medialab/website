@@ -1,4 +1,5 @@
 const enums = require('../specs/enums.json');
+const permalinks = require('./permalinks.js');
 
 const facetedEnums = {
   productionTypes: enums.productionTypes.groupOrder.map(group => {
@@ -11,8 +12,8 @@ const facetedEnums = {
         fr: e.fr
       },
       permalink: {
-        en: '/en/productions/' + group,
-        fr: '/productions/' + group
+        en:  `${permalinks.productions.en}/${group}`,
+        fr: `${permalinks.productions.fr}/${group}`
       },
       values: e.values.map(v => {
         return {

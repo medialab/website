@@ -12,6 +12,7 @@ require('@babel/register')({
 
 // Dependencies
 const async = require('async');
+const shuffle = require('pandemonium/shuffle');
 const path = require('path');
 const sass = require('node-sass');
 const rimraf = require('rimraf');
@@ -27,10 +28,14 @@ const PERMALINKS = require('./permalinks.js');
 
 // Constants
 const TEMPLATES = {
+
+  // Pages
+  home: 'index',
   about: 'about',
   legal: 'legal',
   error: '404',
 
+  // Models
   activitiesDetail: 'activity',
   activitiesListing: 'activity-list',
   newsDetail: 'news',
@@ -219,6 +224,19 @@ exports.build = function build(inputDir, outputDir, options, callback) {
       // Static error page
       build404Page(outputDir);
 
+      // Home page
+      pagesToRender.push({
+        permalinks: PERMALINKS.home,
+        template: TEMPLATES.home,
+        data: {
+          grid: settings.home.grid,
+          slider: settings.home.slider,
+          twitter: db.getTwitter(),
+          github: db.getGithub(),
+          rdv: db.getRdv()
+        }
+      });
+
       // Basic pages
       pagesToRender.push({
         permalinks: PERMALINKS.about,
@@ -290,7 +308,7 @@ exports.build = function build(inputDir, outputDir, options, callback) {
         permalinks: PERMALINKS.people,
         template: TEMPLATES.peopleListing,
         data: {
-          people: db.getModel('people')
+          people: shuffle(db.getModel('people'))
         }
       });
 

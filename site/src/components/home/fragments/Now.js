@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from './helpers/Link';
+import Link from '../../helpers/Link';
 
 import {I18N_TYPE_LABELS} from '../../../i18n.js';
 
@@ -31,25 +31,25 @@ export default function Now({now, lang}) {
             key={index}
             itemScope itemType="https://schema.org/Thing" data-type={item.model}
             className="now-item">
-            <Link to={item.data.permalink[lang]}>
+            <Link to={item.permalink[lang]}>
               {item.model !== 'productions' && (
                 <div className="image-pre" aria-hidden="true">
-                  <ProcessedImage size="small" image={item.data.coverImage && item.data.coverImage.processed.small} data={item.data} />
+                  <ProcessedImage size="small" image={item.coverImage && item.coverImage.processed.small} data={item} />
                 </div>
               )}
               {/* If Production*/}
               {item.model === 'productions' &&
               <>
                 <div className="bandeau">
-                  <p className="type-production" data-icon="production">{I18N_TYPE_LABELS.productions[lang][item.data.type]}</p>
+                  <p className="type-production" data-icon="production">{I18N_TYPE_LABELS.productions[lang][item.type]}</p>
                   <p className="subtype-production">
-                    <span>{I18N_TYPE_LABELS.productions[lang][item.data.type]}</span>
+                    <span>{I18N_TYPE_LABELS.productions[lang][item.type]}</span>
                   </p>
-                  <p className="authors">{item.data.authors}</p>
+                  <p className="authors">{item.authors}</p>
                 </div>
                 <hgroup>
-                  { item.data.title &&
-                  <h1 data-level-1="title"><LanguageFallback translatedAttribute={item.data.title} lang={lang} /></h1>
+                  { item.title &&
+                  <h1 data-level-1="title"><LanguageFallback translatedAttribute={item.title} lang={lang} /></h1>
                   }
                 </hgroup>
               </>
@@ -61,8 +61,8 @@ export default function Now({now, lang}) {
                     <p className="type-people" data-icon="people">{i18n[lang].member}</p>
                   </div>
                   <hgroup>
-                    <h1 data-level-1="name">{item.data.firstName} {item.data.lastName}</h1>
-                    <h2 data-level-2="role">{item.data.role && item.data.role[lang]}</h2>
+                    <h1 data-level-1="name">{item.firstName} {item.lastName}</h1>
+                    <h2 data-level-2="role">{item.role && item.role[lang]}</h2>
                   </hgroup>
                 </>
               }
@@ -71,15 +71,15 @@ export default function Now({now, lang}) {
               <>
                 <div className="bandeau">
                   <p data-icon="news" className="type-news">
-                    {I18N_TYPE_LABELS.news[lang][item.data.type]}
-                    <span>, {item.data.label[lang]}</span>
+                    {I18N_TYPE_LABELS.news[lang][item.type]}
+                    <span>, {item.label[lang]}</span>
                   </p>
-                  <DateNews startDate={item.data.startDate} endDate={item.data.endDate} lang={lang} />
-                  <TimeNews startDate={item.data.startDate} endDate={item.data.endDate} />
+                  <DateNews startDate={item.startDate} endDate={item.endDate} lang={lang} />
+                  <TimeNews startDate={item.startDate} endDate={item.endDate} />
                 </div>
                 <hgroup>
                   {
-                    item.data.title && <h1 data-level-1="title"><LanguageFallback translatedAttribute={item.data.title} lang={lang} /></h1>
+                    item.title && <h1 data-level-1="title"><LanguageFallback translatedAttribute={item.title} lang={lang} /></h1>
                   }
                 </hgroup>
               </>
@@ -89,11 +89,11 @@ export default function Now({now, lang}) {
               {item.model === 'activities' &&
                 <>
                   <div className="bandeau">
-                    <p className="type-activity" data-icon="activite">{I18N_TYPE_LABELS.activities[lang][item.data.type]}</p>
-                    <p className="title" data-level-2="title">{item.data.name}</p>
+                    <p className="type-activity" data-icon="activite">{I18N_TYPE_LABELS.activities[lang][item.type]}</p>
+                    <p className="title" data-level-2="title">{item.name}</p>
                   </div>
                   <hgroup>
-                    {item.data.baseline && <h1 data-level-1="baseline"><LanguageFallback translatedAttribute={item.data.baseline} lang={lang} /></h1>}
+                    {item.baseline && <h1 data-level-1="baseline"><LanguageFallback translatedAttribute={item.baseline} lang={lang} /></h1>}
                   </hgroup>
                 </>
               }

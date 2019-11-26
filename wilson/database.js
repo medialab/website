@@ -201,6 +201,27 @@ module.exports = class Database {
     return this.store.settings;
   }
 
+  getTwitter() {
+    return this.store.twitter;
+  }
+
+  getGithub() {
+    return this.store.github;
+  }
+
+  getRdv() {
+    const today = (+(new Date()) / 1000) | 0;
+
+    return this.getModel('news')
+      .filter(news => {
+        return news.expiry > today && news.type === 'event';
+      })
+      .sort((a, b) => {
+        return a.expiry - b.expiry;
+      })
+      .slice(0, 7);
+  }
+
   forEach(callback) {
     this.graph.forEachNode((node, attr) => {
       callback(attr);

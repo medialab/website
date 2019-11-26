@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from './helpers/Link';
+import Link from '../../helpers/Link';
 
 import {I18N_MODEL, I18N_TYPE_LABELS} from '../../../i18n.js';
 
@@ -58,27 +58,27 @@ const Slideshow = ({slider, lang}) => {
                 itemScope itemType="https://schema.org/Thing" className="slideshow-item"
                 data-item={index + 1} aria-label={i18n[lang].label}>
                 <article data-type={slide.model}>
-                  <Link to={slide.data.permalink[lang]}>
+                  <Link to={slide.permalink[lang]}>
                     <div className="image-pre" aria-hidden="true">
-                      <ProcessedImage size="large" image={slide.data.coverImage && slide.data.coverImage.processed.large} data={slide.data} />
+                      <ProcessedImage size="large" image={slide.coverImage && slide.coverImage.processed.large} data={slide} />
                     </div>
                     <div className="image-pre-phone" aria-hidden="true">
-                      <ProcessedImage size="medium" image={slide.data.coverImage && slide.data.coverImage.processed.medium} data={slide.data} />
+                      <ProcessedImage size="medium" image={slide.coverImage && slide.coverImage.processed.medium} data={slide} />
                     </div>
                   </Link>
                   <div className="contenu-slide" aria-label={i18n[lang].content}>
-                    <Link to={slide.data.permalink[lang]}>
+                    <Link to={slide.permalink[lang]}>
 
                       {/* if Activité */}
                       {slide.model === 'activities' && (
                         <>
                           <aside className="bandeau">
                             <p data-icon="activities" className="type">{I18N_MODEL[lang][slide.model]}</p>
-                            <p className="title">{slide.data.name}</p>
+                            <p className="title">{slide.name}</p>
                           </aside>
-                          <h1 data-level-1="baseline" >{ellipse(slide.data.baseline[lang] || slide.data.baseline[otherLang], 65)}</h1>
+                          <h1 data-level-1="baseline" >{ellipse(slide.baseline[lang] || slide.baseline[otherLang], 65)}</h1>
                           <p className="accroche">
-                            {slide.data.description && ellipse(slide.data.description[lang] || slide.data.description[otherLang], 160)}
+                            {slide.description && ellipse(slide.description[lang] || slide.description[otherLang], 160)}
                           </p>
                         </>
                       )}
@@ -88,11 +88,11 @@ const Slideshow = ({slider, lang}) => {
                         <>
                           <aside className="bandeau">
                             <p data-icon="productions" className="type">{I18N_MODEL[lang][slide.model]}</p>
-                            <p className="subtype-production"><span>{I18N_TYPE_LABELS.productions[lang][slide.data.type]}</span></p>
-                            <p className="date-production">{slide.data.date}</p>
+                            <p className="subtype-production"><span>{I18N_TYPE_LABELS.productions[lang][slide.type]}</span></p>
+                            <p className="date-production">{slide.date}</p>
                           </aside>
-                          <h1 data-level-1="title">{ellipse(slide.data.title[lang] || slide.data.title[otherLang], 90)}</h1>
-                          <h2 data-level-1="authors" className="authors">{ellipse(slide.data.authors, 110)}</h2>
+                          <h1 data-level-1="title">{ellipse(slide.title[lang] || slide.title[otherLang], 90)}</h1>
+                          <h2 data-level-1="authors" className="authors">{ellipse(slide.authors, 110)}</h2>
                         </>
                       )}
 
@@ -103,18 +103,18 @@ const Slideshow = ({slider, lang}) => {
                             <p data-icon="news" className="type">{I18N_MODEL[lang][slide.model]}</p>
                             <p className="label-news">
                               <span>
-                                {slide.data.label ? slide.data.label[lang] || slide.data.label[otherLang] : I18N_TYPE_LABELS.news[lang][slide.data.type]}
+                                {slide.label ? slide.label[lang] || slide.label[otherLang] : I18N_TYPE_LABELS.news[lang][slide.type]}
                               </span>
                             </p>
                           </div>
                           <div className="date">
-                            <DateNews startDate={slide.data.startDate} endDate={slide.data.endDate} lang={lang} />
-                            <TimeNews startDate={slide.data.startDate} endDate={slide.data.endDate} />
+                            <DateNews startDate={slide.startDate} endDate={slide.endDate} lang={lang} />
+                            <TimeNews startDate={slide.startDate} endDate={slide.endDate} />
                           </div>
-                          <h1 data-level-1="baseline" >{ellipse(slide.data.title[lang] || slide.data.title[otherLang], 49)}</h1>
+                          <h1 data-level-1="baseline" >{ellipse(slide.title[lang] || slide.title[otherLang], 49)}</h1>
 
                           <p className="accroche">
-                            {ellipse(slide.data.description[lang] || slide.data.description[otherLang], 170)}
+                            {ellipse(slide.description[lang] || slide.description[otherLang], 170)}
                           </p>
                         </>
                       )}

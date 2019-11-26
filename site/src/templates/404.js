@@ -1,16 +1,15 @@
 import React from 'react';
-import Link from './helpers/Link';
+import Link from '../components/helpers/Link';
 import Layout from '../components/Layout';
-import {withPrefix} from 'gatsby';
 
 import ProcessedImage from '../components/helpers/ProcessedImage.js';
 
 const DUMMY_PERMALINKS = {
-  fr: withPrefix(''),
-  en: withPrefix('/en')
+  fr: '',
+  en: '/en'
 };
 
-export default function() {
+export default function Page404() {
   return (
     <Layout
       lang="fr"

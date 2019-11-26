@@ -29,7 +29,7 @@ const PERMALINKS = require('./permalinks.js');
 const TEMPLATES = {
   about: 'about',
   legal: 'legal',
-  error: 'error',
+  error: '404',
 
   activitiesDetail: 'activity',
   activitiesListing: 'activity-list',
@@ -97,8 +97,7 @@ function buildAssets(inputDir, outputDir, callback) {
 function build404Page(outputDir) {
   const html = renderPage(
     '/',
-    TEMPLATES.error,
-    {code: 404, lang: 'fr', permalinks: {en: '/', fr: '/'}}
+    TEMPLATES.error
   );
 
   fs.writeFileSync(path.join(outputDir, '404.html'), html);

@@ -257,6 +257,7 @@ const MODEL_READERS = {
       createNode({
         ...news,
         content,
+        attachments: resolveAttachments(pathPrefix, news.attachments || []),
         permalink: {
           fr: `/actu/${slug}`,
           en: `/en/news/${slug}`

@@ -290,7 +290,15 @@ function PeopleContactLabel({lang, data}) {
     );
   }
 
-  return <a proptype="url" href={data.value}>{data.label}</a>;
+  return (
+    <a
+      proptype="url"
+      href={data.value}
+      target="_blank"
+      rel="noopener noreferrer">
+      {data.label}
+    </a>
+  );
 }
 
 export default function PeopleDetail({lang, person, siteUrl}) {

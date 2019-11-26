@@ -32,17 +32,21 @@ const Attachments = ({lang, attachments}) => {
         <li key={file.value} data-type="files" className={`files${['attachement', 'url'].includes(file.type) ? ' target' : ''}`}>
 
           {file.type === 'attachment' && (
-            <Link
-              to={file.value}
+            <a
+              href={file.value}
               title={i18n[lang].attachment(file)}
-              aria-label={i18n[lang].attachment(file)}>
+              aria-label={i18n[lang].attachment(file)}
+              target="_blank"
+              rel="noopener noreferrer">
               {file.label}
-            </Link>
+            </a>
           )}
           {file.type === 'url' && (
             <a
               title={i18n[lang].site(file)}
-              href={file.value} target="_blank" rel="noopener noreferrer"
+              href={file.value}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label={i18n[lang].site(file)}>
               {file.label}
             </a>

@@ -230,64 +230,64 @@ function getImagesAsPixels(mapOfImages, decodePNG) {
  * @param {object} options.rows - number of rows of the image
  * @param {object} settings - diverse additional information
  */
-function imgToProcessedPng(data, options, settings) {
+function imgToProcessedPng(data, options, sharp, callback) {
   const tileWidth = SYMBOLS_DATA.tilesDimensions.width;
   const tileHeight = SYMBOLS_DATA.tilesDimensions.height;
 
   const {pixelValues, tilesIndexes} = SYMBOLS_DATA.symbolTiles;
-  return new Promise((resolve, reject) => {
-    // convert flat characters string to a 2d matrix of single characters
-    const matrix = mapStringToCharacterMatrix(data, options.rows);
-    const columnsNumber = matrix[0].length;
-    const rowsNumber = matrix.length;
-    const imageWidth = columnsNumber * tileWidth;
-    const imageHeight = rowsNumber * tileHeight;
-    // compute width in rgba of a row of pixels in the symbols
-    const tileWidthInValues = tileWidth * 4;
-    // instantiate buffer to populate with final image data
-    const buffer = new Uint8Array(imageWidth * imageHeight * 4);
-    // iterate in matrix of symbols
-    let tileOffsetXInPixels;
-    let tileOffsetYInPixels;
-    let rowValues;
-    let rowOffset;
-    let tileValueOffset;
-    for (let x = 0 ; x < columnsNumber ; x++) {
-      for (let y = 0 ; y < rowsNumber ; y++) {
-        // get proper index of relevant tile's pixel data in the concatenated tiles pixel values
-        tileValueOffset = tilesIndexes[matrix[y][x]];
-        tileOffsetXInPixels = tileWidth * x;
-        tileOffsetYInPixels = tileHeight * y;
-        // iterate in each row of the tile image to add its data to the buffer
-        for (let row = 0 ; row < tileHeight ; row ++) {
 
-          // get slice of 4-channels values corresponding to the tile row of pixels
-          rowValues = pixelValues
-          .slice(tileValueOffset + tileWidthInValues * row, tileValueOffset + tileWidthInValues * row + tileWidthInValues)
-          // compute 1-dimension offset in final image
-          rowOffset = (tileOffsetYInPixels * imageWidth + row * imageWidth + tileOffsetXInPixels) * 4;
-          // add values to buffer at correct position
-          buffer.set(rowValues, rowOffset);
-        }
+  // convert flat characters string to a 2d matrix of single characters
+  const matrix = mapStringToCharacterMatrix(data, options.rows);
+  const columnsNumber = matrix[0].length;
+  const rowsNumber = matrix.length;
+  const imageWidth = columnsNumber * tileWidth;
+  const imageHeight = rowsNumber * tileHeight;
+  // compute width in rgba of a row of pixels in the symbols
+  const tileWidthInValues = tileWidth * 4;
+  // instantiate buffer to populate with final image data
+  const buffer = new Uint8Array(imageWidth * imageHeight * 4);
+  // iterate in matrix of symbols
+  let tileOffsetXInPixels;
+  let tileOffsetYInPixels;
+  let rowValues;
+  let rowOffset;
+  let tileValueOffset;
+  for (let x = 0 ; x < columnsNumber ; x++) {
+    for (let y = 0 ; y < rowsNumber ; y++) {
+      // get proper index of relevant tile's pixel data in the concatenated tiles pixel values
+      tileValueOffset = tilesIndexes[matrix[y][x]];
+      tileOffsetXInPixels = tileWidth * x;
+      tileOffsetYInPixels = tileHeight * y;
+      // iterate in each row of the tile image to add its data to the buffer
+      for (let row = 0 ; row < tileHeight ; row ++) {
+
+        // get slice of 4-channels values corresponding to the tile row of pixels
+        rowValues = pixelValues
+        .slice(tileValueOffset + tileWidthInValues * row, tileValueOffset + tileWidthInValues * row + tileWidthInValues)
+        // compute 1-dimension offset in final image
+        rowOffset = (tileOffsetYInPixels * imageWidth + row * imageWidth + tileOffsetXInPixels) * 4;
+        // add values to buffer at correct position
+        buffer.set(rowValues, rowOffset);
       }
     }
-    settings.sharp(Buffer.from(buffer), {
-      raw: {
-        width: imageWidth,
-        height: imageHeight,
-        channels: 4
-      }
-    })
-    // following is necessary is tiles have a transparent background
-    // .flatten({background: {r: 255, g: 255, b: 255}})
-    .toFile(options.output)
-    .then(() => {
-      resolve({
-        width: imageWidth,
-        height: imageHeight
-      });
-    }).catch(reject)
-  });
+  }
+
+  sharp(Buffer.from(buffer), {
+    raw: {
+      width: imageWidth,
+      height: imageHeight,
+      channels: 4
+    }
+  })
+  // following is necessary is tiles have a transparent background
+  // .flatten({background: {r: 255, g: 255, b: 255}})
+  .toFile(options.output)
+  .then(() => {
+    return callback(null, {
+      width: imageWidth,
+      height: imageHeight
+    });
+  }).catch(err => callback(err));
 }
 
 function encodeBlocks(blocks) {

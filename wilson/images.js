@@ -69,13 +69,25 @@ exports.buildCover = function buildCover(inputDir, outputDir, pathPrefix, item, 
 
       data.processed = processed;
 
-      return callback(null, data);
+      return imgToProcessedPng(
+        processed.medium,
+        {
+          rows: 120,
+          output: path.join(publicPath, socialOutput)
+        },
+        sharp,
+        (err, raster) => {
+          if (err)
+            return callback(err);
 
-      // Now we rasterize for social medias
-      // imgToProcessedPng(medium, {
-      //   rows: 120,
-      //   output:
-      // })
+          data.raster = {
+            ...raster,
+            url: socialUrl
+          };
+
+          return callback(null, data);
+        }
+      );
     });
   }
 

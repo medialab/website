@@ -27,6 +27,10 @@ const PERMALINKS = require('./permalinks.js');
 
 // Constants
 const TEMPLATES = {
+  about: 'about',
+  legal: 'legal',
+  error: 'error',
+
   activitiesDetail: 'activity',
   activitiesListing: 'activity-list',
   newsDetail: 'news',
@@ -90,6 +94,16 @@ function buildAssets(inputDir, outputDir, callback) {
   );
 }
 
+function build404Page(outputDir) {
+  const html = renderPage(
+    '/',
+    TEMPLATES.error,
+    {code: 404, lang: 'fr', permalinks: {en: '/', fr: '/'}}
+  );
+
+  fs.writeFileSync(path.join(outputDir, '404.html'), html);
+}
+
 function renderModelI18nPage(item) {
   const model = item.model;
 
@@ -139,7 +153,7 @@ function renderModelI18nPage(item) {
 }
 
 // Main functions
-function buildPage(outputDir, {permalinks, template, context, data}) {
+function buildI18nPage(outputDir, {permalinks, template, context, data}) {
   context = context || {};
 
   const versions = {};
@@ -202,6 +216,20 @@ exports.build = function build(inputDir, outputDir, options, callback) {
       const pagesToRender = [];
 
       const settings = db.getSettings();
+
+      // Static error page
+      build404Page(outputDir);
+
+      // Basic pages
+      pagesToRender.push({
+        permalinks: PERMALINKS.about,
+        template: TEMPLATES.about
+      });
+
+      pagesToRender.push({
+        permalinks: PERMALINKS.legal,
+        template: TEMPLATES.legal
+      });
 
       // Detail pages
       db.forEach(item => {
@@ -270,7 +298,7 @@ exports.build = function build(inputDir, outputDir, options, callback) {
       // Building pages
       // TODO: async much?
       pagesToRender.forEach(page => {
-        buildPage(outputDir, page);
+        buildI18nPage(outputDir, page);
       });
 
       process.nextTick(next);

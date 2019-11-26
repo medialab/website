@@ -24,18 +24,21 @@ const {permalinkToDiskPath} = require('./utils.js');
 // Constants
 const TEMPLATES = {
   activitiesDetail: 'activity',
+  activitiesListing: 'activity-list',
   newsDetail: 'news',
+  newsListing: 'news-list',
   peopleListing: 'people-list',
   peopleDetail: 'people',
-  productionsDetail: 'production'
+  productionsDetail: 'production',
+  productionsListing: 'production-list'
 };
 
 for (const k in TEMPLATES)
   TEMPLATES[k] = require.resolve(`../site/src/templates/${TEMPLATES[k]}.js`);
 
-const MODEL_TO_TEMPLATE = {};
+const MODEL_TO_DETAIL_TEMPLATE = {};
 
-models.forEach(model => (MODEL_TO_TEMPLATE[model] = TEMPLATES[`${model}Detail`]));
+models.forEach(model => (MODEL_TO_DETAIL_TEMPLATE[model] = TEMPLATES[`${model}Detail`]));
 
 // Helpers
 function writePermalinkToDisk(outputDir, html, permalink) {
@@ -86,7 +89,7 @@ function buildAssets(inputDir, outputDir, callback) {
 function renderModelI18nPage(item) {
   const model = item.model;
 
-  const template = MODEL_TO_TEMPLATE[model];
+  const template = MODEL_TO_DETAIL_TEMPLATE[model];
 
   const versions = {};
 
@@ -132,6 +135,40 @@ function renderModelI18nPage(item) {
 }
 
 // Main functions
+function buildPage(outputDir, {permalinks, template, context, data}) {
+  context = context || {};
+
+  const versions = {};
+
+  const commonContext = {
+    permalinks,
+    linkToAdmin: NODE_ENV !== 'production' ? '' : '', // TODO: fix this!
+    ...context
+  };
+
+  versions.fr = renderPage(
+    permalinks.fr,
+    template,
+    {
+      ...commonContext,
+      lang: 'fr'
+    },
+    data
+  );
+
+  versions.en = renderPage(
+    permalinks.en,
+    template,
+    {
+      ...commonContext,
+      lang: 'en'
+    },
+    data
+  );
+
+  writeI18nPermalinkToDisk(outputDir, versions, permalinks);
+}
+
 exports.build = function build(inputDir, outputDir, options, callback) {
   options = options || {};
   const pathPrefix = options.pathPrefix || '';
@@ -156,10 +193,19 @@ exports.build = function build(inputDir, outputDir, options, callback) {
     },
 
     build(next) {
-      db.forEach(item => {
-        const versions = renderModelI18nPage(item);
+      const pagesToRender = [];
 
-        writeI18nPermalinkToDisk(outputDir, versions, item.permalink);
+      // Detail pages
+      db.forEach(item => {
+        pagesToRender.push({
+          permalinks: item.permalink,
+          template: MODEL_TO_DETAIL_TEMPLATE[item.model],
+          data: item
+        });
+      });
+
+      pagesToRender.forEach(page => {
+        buildPage(outputDir, page);
       });
 
       process.nextTick(next);

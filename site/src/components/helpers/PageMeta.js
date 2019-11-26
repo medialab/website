@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Helmet from 'react-helmet';
 
-// import coverTwitter from '../../assets/images/cover-twitter.png';
+import SiteContext from '../../context';
 
 const typeToDublinCoreMapping = {
   article: 'Text',
@@ -40,7 +40,8 @@ const buildOpenGraphAdditionalMeta = obj => {
   }
 };
 
-function MetaData(props) {
+// TODO: cleanup upwards. replace uri by permalink etc.
+export default function PageMeta(props) {
   const {
     title = 'médialab Sciences Po',
     citationTitle,
@@ -52,11 +53,19 @@ function MetaData(props) {
     citation,
     type,
     uri,
-    imageData,
-    siteUrl
+    imageData
   } = props;
 
-  const imageSrc = imageData && imageData.url ? siteUrl + imageData.url : siteUrl + coverTwitter;
+  const context = useContext(SiteContext);
+
+  const siteUrl = context.siteUrl;
+
+  const siteUrlWithPrefix = context.siteUrl + context.pathPrefix;
+
+  const imageSrc = imageData && imageData.url ?
+    siteUrlWithPrefix + imageData.url :
+    siteUrlWithPrefix + '/img/cover-twitter.png';
+
   const imageWidth = imageData && imageData.width ? imageData.width : 2000;
   const imageHeight = imageData && imageData.height ? imageData.height : 1000;
 
@@ -111,7 +120,7 @@ function MetaData(props) {
       {/* META OPEN GRAPH / FACEBOOK */}
       <meta property="og:title" content={title} />
       <meta property="og:site_name" content="médialab Sciences Po" />
-      <meta property="og:url" content={uri ? uri : {siteUrl}} />
+      <meta property="og:url" content={uri ? uri : siteUrl} />
       <meta property="og:description" content={description} />
       <meta property="og:image:url" content={imageSrc} />
       <meta property="og:image:secure_url" content={imageSrc} />
@@ -122,27 +131,5 @@ function MetaData(props) {
       {buildOpenGraphAdditionalMeta(props)}
       {/* END META OPEN GRAPH / FACEBOOK*/}
     </Helmet>
-  );
-}
-
-export default function PageMeta(props) {
-  return null;
-
-  return (
-    <StaticQuery
-      query={graphql`
-        {
-          site {
-            siteMetadata {
-              siteUrl
-            }
-          }
-        }
-      `}
-      render={data => {
-        const siteUrl = data.site.siteMetadata.siteUrl;
-
-        return <MetaData siteUrl={siteUrl} {...props} />;
-      }} />
   );
 }

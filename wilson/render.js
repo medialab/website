@@ -6,6 +6,12 @@ const SiteContext = require('../site/src/context.js').default;
 const meta = require('./meta.js');
 
 // Helpers
+const HELMET_CLEANER = / data-react-helmet="true"/g;
+
+function cleanHelmetOutput(output) {
+  return output.replace(HELMET_CLEANER, '');
+}
+
 function wrap(pathPrefix, content, helmet) {
   return `
 <!DOCTYPE html>
@@ -14,9 +20,9 @@ function wrap(pathPrefix, content, helmet) {
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    ${helmet.title.toString()}
-    ${helmet.meta.toString()}
-    ${helmet.link.toString()}
+    ${cleanHelmetOutput(helmet.title.toString())}
+    ${cleanHelmetOutput(helmet.meta.toString())}
+    ${cleanHelmetOutput(helmet.link.toString())}
     <link href="${pathPrefix}/font/bel2/bel2.css" rel="stylesheet">
     <link href="${pathPrefix}/font/symbol/symbol.css" rel="stylesheet">
     <link href="${pathPrefix}/medialab.css" rel="stylesheet">

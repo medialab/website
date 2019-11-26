@@ -61,8 +61,18 @@ module.exports = class Database {
     });
 
     this.store.settings = fs.readJSONSync(path.join(directory, 'settings.json')).settings;
-    // this.store.github = fs.readJSONSync(path.join(directory, 'github.json'));
-    // this.store.twitter = fs.readJSONSync(path.join(directory, 'twitter.json'));
+
+    this.store.github = [];
+    this.store.twitter = [];
+
+    const githubPath = path.join(directory, 'github.json');
+    const twitterPath = path.join(directory, 'twitter.json');
+
+    if (fs.existsSync(githubPath))
+      this.store.github = fs.readJSONSync(githubPath).map(reducers.github);
+
+    if (fs.existsSync(twitterPath))
+      this.store.twitter = fs.readJSONSync(twitterPath);
 
     // Adding edges and reducing items
     models.forEach(model => {

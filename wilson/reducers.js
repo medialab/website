@@ -129,3 +129,21 @@ exports.productions = function reduceProductions(pathPrefix, production) {
     }
   };
 };
+
+exports.github = function reduceGithub(record) {
+  return {
+    ...record,
+    authors: record.authors.map(author => {
+      if (!author.slug)
+        return author;
+
+      return {
+        ...author,
+        permalink: {
+          fr: `${permalinks.people.fr}/${author.slug}`,
+          en: `${permalinks.people.en}/${author.slug}`
+        }
+      }
+    })
+  };
+};

@@ -44,6 +44,7 @@ exports.news = function reduceNews(pathPrefix, news) {
   return {
     ...news,
     content,
+    attachments: resolveAttachments(pathPrefix, news.attachments || []),
     permalink: {
       fr: `${permalinks.news.fr}/${slug}`,
       en: `${permalinks.news.en}/${slug}`

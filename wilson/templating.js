@@ -246,7 +246,7 @@ exports.resolveAttachments = function resolveAttachments(pathPrefix, attachments
     if (a.type === 'attachment')
       return {
         ...a,
-        url: `${pathPrefix}/static/${a.value}`
+        value: `${pathPrefix}/static/${a.value}`
       };
 
     return a;

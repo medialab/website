@@ -38,6 +38,7 @@ function wrap(pathPrefix, content, helmet) {
 // TODO: news.isInternal is internal once more
 // TODO: check ordering random etc.
 // TODO: github, twitter reducers
+// TODO: verify siteUrl + something with prefix
 // TODO: solve production authors with people field after solving people
 // TODO: factorize `mainPermalink` in components
 // TODO: sitemap

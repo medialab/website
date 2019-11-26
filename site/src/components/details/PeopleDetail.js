@@ -1,23 +1,23 @@
 import React from 'react';
 import Link from '../helpers/Link';
 
-import ToggleLang from './fragments/ToggleLang.js';
-import Highlights from './fragments/Highlights.js';
-import LogoSticky from './fragments/LogoSticky.js';
-import {Icons} from '../helpers/Icons.js';
+import ToggleLang from './fragments/ToggleLang';
+import Highlights from './fragments/Highlights';
+import LogoSticky from './fragments/LogoSticky';
+import {Icons} from '../helpers/Icons';
 
-import RelatedProductions from './fragments/RelatedProductions.js';
-import RelatedActivities from './fragments/RelatedActivities.js';
-import RelatedNews from './fragments/RelatedNews.js';
+import RelatedProductions from './fragments/RelatedProductions';
+import RelatedActivities from './fragments/RelatedActivities';
+import RelatedNews from './fragments/RelatedNews';
 
-import Nav from '../common/Nav.js';
+import Nav from '../common/Nav';
 
 import HtmlFallback from '../helpers/HtmlFallback';
-import {templateMembership} from '../helpers/helpers.js';
-import PageMeta from '../helpers/PageMeta.js';
+import {templateMembership} from '../helpers/helpers';
+import PageMeta from '../helpers/PageMeta';
+import PeoplePlaceholder from '../helpers/PeoplePlaceholder';
 
-// import peoplePlaceholder from '../../assets/images/people-placeholder.png';
-import {I18N_MODEL} from '../../i18n.js';
+import {I18N_MODEL} from '../../i18n';
 
 import LanguageFallback from '../helpers/LanguageFallback';
 
@@ -243,10 +243,14 @@ export default function PeopleDetail({lang, person, siteUrl}) {
             <div id="container-biographie">
               <header>
                 <figure>
-                  <img
-                    itemProp="image"
-                    src={person.coverImage ? person.coverImage.url : 'alt'}
-                    alt={i18n[lang].profilePicture(person)} />
+                  {person.coverImage ? (
+                    <img
+                      itemProp="image"
+                      src={person.coverImage.url}
+                      alt={i18n[lang].profilePicture(person)} />
+                  ) : (
+                    <PeoplePlaceholder alt={i18n[lang].profilePicture(person)} />
+                  )}
                 </figure>
                 <hgroup>
                   <h1 data-level-1="name" data-type="name">

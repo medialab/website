@@ -1,13 +1,11 @@
 import React from 'react';
 import Link from '../helpers/Link';
 
-import PeopleFilter from './fragments/PeopleFilter.js';
-import {I18N_TYPE_LABELS} from '../../i18n.js';
-import LanguageFallback from '../helpers/LanguageFallback.js';
-
-// import peoplePlaceholder from '../../assets/images/people-placeholder.png';
-
-import PageMeta from '../helpers/PageMeta.js';
+import PeopleFilter from './fragments/PeopleFilter';
+import {I18N_TYPE_LABELS} from '../../i18n';
+import LanguageFallback from '../helpers/LanguageFallback';
+import PeoplePlaceholder from '../helpers/PeoplePlaceholder'
+import PageMeta from '../helpers/PageMeta';
 
 const i18n = {
   fr: {
@@ -57,9 +55,14 @@ function PeopleListingItem({lang, people}) {
       <Link to={people.permalink[lang]}>
 
         <figure>
-          <img
-            src={people.coverImage ? people.coverImage.url : 'alt'}
-            alt={i18n[lang].profilePicture(people)} />
+          {people.coverImage ? (
+            <img
+              itemProp="image"
+              src={people.coverImage.url}
+              alt={i18n[lang].profilePicture(people)} />
+          ) : (
+            <PeoplePlaceholder alt={i18n[lang].profilePicture(people)} />
+          )}
         </figure>
 
         <div className="description">

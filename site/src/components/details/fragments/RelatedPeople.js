@@ -1,8 +1,7 @@
 import React from 'react';
 import Link from '../../helpers/Link';
 import {SECTIONS} from '../../helpers/sections';
-
-// import peoplePlaceholder from '../../../assets/images/people-placeholder.png';
+import PeoplePlaceholder from '../../helpers/PeoplePlaceholder';
 
 const i18n = {
   fr: {
@@ -52,10 +51,14 @@ const RelatedPeople = ({lang, people, schemaRelationProp = 'member'}) => {
               key={p.permalink.fr} data-type="people">
               <Link to={p.permalink[lang]}>
                 <figure>
-                  <img
-                    itemProp="image"
-                    src={p.coverImage ? p.coverImage.url : 'alt'}
-                    alt={i18n[lang].profilePicture(p)} />
+                  {p.coverImage ? (
+                    <img
+                      itemProp="image"
+                      src={p.coverImage.url}
+                      alt={i18n[lang].profilePicture(p)} />
+                  ) : (
+                    <PeoplePlaceholder alt={i18n[lang].profilePicture(p)} />
+                  )}
                 </figure>
                 <div className="description">
                   <hgroup>

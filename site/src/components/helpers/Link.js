@@ -19,10 +19,12 @@ export default function Link(props) {
   if (partiallyActive && meta.permalink.startsWith(to))
     active = true;
 
+  const toWithPrefix = meta.pathPrefix + to;
+
   return (
     <a
       className={cls(className, active && activeClassName) || null}
-      href={to}
+      href={toWithPrefix}
       {...otherProps}>
       {children}
     </a>

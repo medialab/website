@@ -153,6 +153,17 @@ module.exports = class Database {
           attr[k] = groupedBacklinks[k] || [];
       }
     });
+
+    // Hydrating home settings
+    const homeSettings = this.store.settings.home;
+
+    homeSettings.grid = homeSettings.grid.map(item => {
+      return this.graph.getNodeAttributes(item.id);
+    });
+
+    homeSettings.slider = homeSettings.slider.map(item => {
+      return this.graph.getNodeAttributes(item.id);
+    });
   }
 
   processCovers(inputDir, outputDir, pathPrefix, callback) {

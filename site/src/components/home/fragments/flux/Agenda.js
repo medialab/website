@@ -45,7 +45,7 @@ export default function Agenda({rdv, lang}) {
               <aside className="divers">
                 <p className="label" data-icon="news" itemProp="name">{event.label && event.label[lang]}</p>
                 <DateNews startDate={event.startDate} endDate={event.endDate} lang={lang} />
-                {event.isInternal && <p className="internal" aria-label={i18n[lang].internal} title={i18n[lang].internal} >⌂</p>}
+                {event.internal && <p className="internal" aria-label={i18n[lang].internal} title={i18n[lang].internal} >⌂</p>}
               </aside>
 
               <h1 data-level-1="title">{event.title[lang]}</h1>

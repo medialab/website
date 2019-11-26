@@ -52,12 +52,9 @@ function wrap(pathPrefix, content, helmet, scripts) {
 // TODO: link lang bold for current lang for home
 // TODO: path prefix for stylesheets and Js
 // TODO: drop require cache
-// TODO: replace png imports
-// TODO: wrapper + metas + helmet
-// TODO: PageMeta
-// TODO: prettier --write --parser scss 'src/assets/scss/**/*.scss'
 // TODO: news.isInternal is internal once more
 // TODO: check ordering random etc.
+// TODO: unwrap ./src folder
 // TODO: github, twitter reducers
 // TODO: verify siteUrl + something with prefix
 // TODO: solve production authors with people field after solving people

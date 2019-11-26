@@ -12,7 +12,14 @@ function cleanHelmetOutput(output) {
   return output.replace(HELMET_CLEANER, '');
 }
 
-function wrap(pathPrefix, content, helmet) {
+function wrap(pathPrefix, content, helmet, scripts) {
+  let scriptTags = '';
+
+  if (scripts)
+    scriptTags = scripts
+      .map(script => `<script src="${pathPrefix}/js/${script}.js" type="text/javascript"></script>`)
+      .join('\n');
+
   return `
 <!DOCTYPE html>
 <html ${helmet.htmlAttributes.toString()}>
@@ -29,11 +36,19 @@ function wrap(pathPrefix, content, helmet) {
   </head>
   <body>
     ${content}
+    ${scriptTags}
+    <script type="text/javascript">
+      document.dispatchEvent(new Event('ZoteroItemUpdated', {
+        bubbles: true,
+        cancelable: true
+      }));
+    </script>
   </body>
 </html>
   `.trim();
 }
 
+// TODO: solve Helmet warnings
 // TODO: link lang bold for current lang for home
 // TODO: path prefix for stylesheets and Js
 // TODO: drop require cache
@@ -49,18 +64,18 @@ function wrap(pathPrefix, content, helmet) {
 // TODO: factorize `mainPermalink` in components
 // TODO: sitemap
 // TODO: rss feeds
-// TODO: static logo
 // TODO: drafts
 // TODO: easter egg
-// TODO: html lang
 // TODO: analytics
 // TODO: issue with cropped images in prod
 // TODO: script injection
 // TODO: use classnames for html fallback and such
 // TODO: get rid of HTMLFallback or improve it
 // TODO: js storage buster on first prod release
-exports.renderPage = function(pathPrefix, permalink, template, pageContext, data) {
+exports.renderPage = function(pathPrefix, permalink, template, pageContext, data, options) {
   assert(typeof template === 'string', 'Template should be a string path.');
+
+  options = options || {};
 
   const Component = require(template).default;
 
@@ -79,7 +94,7 @@ exports.renderPage = function(pathPrefix, permalink, template, pageContext, data
   let content = renderToStaticMarkup(page);
   const helmet = Helmet.renderStatic();
 
-  content = wrap(pathPrefix, content, helmet);
+  content = wrap(pathPrefix, content, helmet, options.scripts);
 
   return content;
 };

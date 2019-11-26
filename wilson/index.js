@@ -119,6 +119,18 @@ function copyAssets(inputDir, outputDir, callback) {
           n
         );
       }, next);
+    },
+
+    js(next) {
+      const jsDir = path.join(outputDir, 'js');
+
+      fs.ensureDirSync(jsDir);
+
+      return fs.copy(
+        path.join(__dirname, '..', 'site', 'src', 'assets', 'js'),
+        jsDir,
+        next
+      );
     }
   }, callback);
 }
@@ -134,7 +146,7 @@ function build404Page(outputDir, pathPrefix) {
 }
 
 // Main functions
-function buildI18nPage(outputDir, pathPrefix, {permalinks, template, context, data}) {
+function buildI18nPage(outputDir, pathPrefix, {permalinks, template, context, data, scripts}) {
   context = context || {};
 
   const versions = {};
@@ -153,7 +165,8 @@ function buildI18nPage(outputDir, pathPrefix, {permalinks, template, context, da
       ...commonContext,
       lang: 'fr'
     },
-    data
+    data,
+    {scripts}
   );
 
   versions.en = renderPage(
@@ -164,7 +177,8 @@ function buildI18nPage(outputDir, pathPrefix, {permalinks, template, context, da
       ...commonContext,
       lang: 'en'
     },
-    data
+    data,
+    {scripts}
   );
 
   writeI18nPermalinkToDisk(outputDir, versions, permalinks);
@@ -232,7 +246,8 @@ exports.build = function build(inputDir, outputDir, options, callback) {
         pagesToRender.push({
           permalinks: item.permalink,
           template: MODEL_TO_DETAIL_TEMPLATE[item.model],
-          data: item
+          data: item,
+          scripts: item.model === 'people' ? ['people'] : null
         });
       });
 
@@ -243,7 +258,8 @@ exports.build = function build(inputDir, outputDir, options, callback) {
         data: {
           activities: db.getModel('activities'),
           topActivities: settings.topActivities.map(o => o.id)
-        }
+        },
+        scripts: ['search', 'activity-listing']
       });
 
       pagesToRender.push({
@@ -251,7 +267,8 @@ exports.build = function build(inputDir, outputDir, options, callback) {
         template: TEMPLATES.newsListing,
         data: {
           news: db.getModel('news')
-        }
+        },
+        scripts: ['search', 'news-listing']
       });
 
       pagesToRender.push({
@@ -263,7 +280,8 @@ exports.build = function build(inputDir, outputDir, options, callback) {
         data: {
           facetedEnums,
           productions: db.getModel('productions')
-        }
+        },
+        scripts: ['search', 'production-listing']
       });
 
       for (const group in enums.productionTypes.groups)
@@ -280,7 +298,8 @@ exports.build = function build(inputDir, outputDir, options, callback) {
             facetedEnums,
             productions: db.getModel('productions')
               .filter(p => p.group === group)
-          }
+          },
+          scripts: ['search', 'production-listing']
         });
 
       pagesToRender.push({
@@ -288,7 +307,8 @@ exports.build = function build(inputDir, outputDir, options, callback) {
         template: TEMPLATES.peopleListing,
         data: {
           people: shuffle(db.getModel('people'))
-        }
+        },
+        scripts: ['search']
       });
 
       // Building pages

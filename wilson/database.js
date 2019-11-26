@@ -176,6 +176,10 @@ module.exports = class Database {
     return this.store[model];
   }
 
+  getSettings() {
+    return this.store.settings;
+  }
+
   forEach(callback) {
     this.graph.forEachNode((node, attr) => {
       callback(attr);

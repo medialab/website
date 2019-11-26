@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from './helpers/Link';
+import Link from '../helpers/Link';
 
 import {I18N_TYPE_LABELS} from '../../i18n.js';
 
@@ -31,7 +31,7 @@ const sortActivities = (a, b) => {
   }
 };
 
-export default function ActivityListing({lang, list, status, statuses, topActivities}) {
+export default function ActivityListing({lang, list, topActivities}) {
   const activities = topActivities.map(ta => list.find(a => a.id === ta)).concat(list.sort(sortActivities).filter(a => topActivities.indexOf(a.id) === -1));
 
   return (
@@ -41,7 +41,7 @@ export default function ActivityListing({lang, list, status, statuses, topActivi
         description={messagesMeta.description[lang]}
         lang={lang} />
       <main role="main" aria-describedby="aria-accroche">
-        <ActivityFilter lang={lang} status={status} statuses={statuses} />
+        <ActivityFilter lang={lang} />
         <section className="main-filters" />
 
         <section id="liste" className="main-container">

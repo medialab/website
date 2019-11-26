@@ -4,11 +4,7 @@ import Layout from '../components/Layout';
 import ActivityListing from '../components/listings/ActivityListing';
 
 export default ({data, pageContext}) => {
-  // console.log(data, pageContext);
-
-  const list = data.allActivitiesJson.edges.map(e => e.node);
-  const statuses = data.facetedEnumsJson.activityStatuses;
-  const topActivities = (data.settingsJson.topActivities || []).map(o => o.id);
+  const topActivities = data.topActivities;
 
   return (
     <Layout
@@ -17,9 +13,7 @@ export default ({data, pageContext}) => {
       permalinks={pageContext.permalinks}>
       <ActivityListing
         lang={pageContext.lang}
-        list={list}
-        status={pageContext.status}
-        statuses={statuses}
+        list={data.activities}
         topActivities={topActivities} />
     </Layout>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from './helpers/Link';
+import Link from '../helpers/Link';
 
 import NewsFilter from './fragments/NewsFilter.js';
 import DateNews from '../helpers/DateNews.js';

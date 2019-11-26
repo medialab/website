@@ -44,6 +44,7 @@ function wrap(content, helmet) {
 // TODO: rss feeds
 // TODO: 404 page
 // TODO: static logo
+// TODO: easter egg
 // TODO: html lang
 // TODO: analytics
 // TODO: issue with cropped images in prod

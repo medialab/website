@@ -7,8 +7,8 @@ import {compare} from '../components/helpers/helpers';
 export default ({data, pageContext}) => {
   // console.log(data, pageContext);
 
-  const list = data.allNewsJson.edges
-    .map(e => e.node)
+  // TODO: could be done in wilson
+  const list = data.news
     .sort(({startDate: aStart, endDate: aEnd}, {startDate: bStart, endDate: bEnd}) => {
       if (bEnd && aEnd) {
         return compare(bEnd, aEnd);

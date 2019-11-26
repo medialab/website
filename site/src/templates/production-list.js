@@ -6,10 +6,6 @@ import ProductionListing from '../components/listings/ProductionListing';
 export default ({data, pageContext}) => {
   // console.log(data, pageContext);
 
-  const list = data.allProductionsJson ?
-    data.allProductionsJson.edges.map(e => e.node) :
-    [];
-
   return (
     <Layout
       lang={pageContext.lang}
@@ -17,9 +13,9 @@ export default ({data, pageContext}) => {
       permalinks={pageContext.permalinks}>
       <ProductionListing
         lang={pageContext.lang}
-        list={list}
+        list={data.productions}
         group={pageContext.group}
-        types={data.facetedEnumsJson.productionTypes} />
+        types={data.facetedEnums.productionTypes} />
     </Layout>
   );
 };

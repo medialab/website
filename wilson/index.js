@@ -20,6 +20,10 @@ const {renderPage} = require('./render.js');
 const models = require('../specs/models.json');
 const Database = require('./database.js');
 const {permalinkToDiskPath} = require('./utils.js');
+const enums = require('../specs/enums.json');
+const {facetedEnums} = require('./facets.js');
+
+const PERMALINKS = require('./permalinks.js');
 
 // Constants
 const TEMPLATES = {
@@ -193,7 +197,11 @@ exports.build = function build(inputDir, outputDir, options, callback) {
     },
 
     build(next) {
+
+      console.time('buildPages');
       const pagesToRender = [];
+
+      const settings = db.getSettings();
 
       // Detail pages
       db.forEach(item => {
@@ -204,6 +212,63 @@ exports.build = function build(inputDir, outputDir, options, callback) {
         });
       });
 
+      // Listing pages
+      pagesToRender.push({
+        permalinks: PERMALINKS.activities,
+        template: TEMPLATES.activitiesListing,
+        data: {
+          activities: db.getModel('activities'),
+          topActivities: settings.topActivities.map(o => o.id)
+        }
+      });
+
+      pagesToRender.push({
+        permalinks: PERMALINKS.news,
+        template: TEMPLATES.newsListing,
+        data: {
+          news: db.getModel('news')
+        }
+      });
+
+      pagesToRender.push({
+        permalinks: PERMALINKS.productions,
+        template: TEMPLATES.productionsListing,
+        context: {
+          group: 'all'
+        },
+        data: {
+          facetedEnums,
+          productions: db.getModel('productions')
+        }
+      });
+
+      for (const group in enums.productionTypes.groups)
+        pagesToRender.push({
+          permalinks: {
+            fr: PERMALINKS.productions.fr + '/' + group,
+            en: PERMALINKS.productions.en + '/' + group
+          },
+          template: TEMPLATES.productionsListing,
+          context: {
+            group
+          },
+          data: {
+            facetedEnums,
+            productions: db.getModel('productions')
+              .filter(p => p.group === group)
+          }
+        });
+
+      pagesToRender.push({
+        permalinks: PERMALINKS.people,
+        template: TEMPLATES.peopleListing,
+        data: {
+          people: db.getModel('people')
+        }
+      });
+
+      // Building pages
+      // TODO: async much?
       pagesToRender.forEach(page => {
         buildPage(outputDir, page);
       });
@@ -214,4 +279,7 @@ exports.build = function build(inputDir, outputDir, options, callback) {
 }
 
 console.time('build');
-exports.build('./data', './wbuild', {}, () => console.timeEnd('build'));
+exports.build('./data', './wbuild', {}, () => {
+  console.timeEnd('build');
+  console.timeEnd('buildPages');
+});

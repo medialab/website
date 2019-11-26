@@ -3,7 +3,6 @@ const React = require('react');
 const {Helmet} = require('react-helmet');
 const {renderToStaticMarkup} = require('react-dom/server');
 const SiteContext = require('../site/src/context.js').default;
-const pretty = require('pretty');
 const meta = require('./meta.js');
 
 // Helpers
@@ -74,9 +73,6 @@ exports.renderPage = function(permalink, template, pageContext, data, options) {
   const helmet = Helmet.renderStatic();
 
   content = wrap(content, helmet);
-
-  if (options.pretty)
-    content = pretty(content);
 
   return content;
 };

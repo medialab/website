@@ -136,25 +136,23 @@ function mapBlocksToString(blocks) {
   return Array.from(blocks, i => BLOCKS[i]).join('');
 }
 
-function sharpToString(img, crop, options) {
+function sharpToString(img, crop, options, callback) {
   const ratio = crop.width / crop.height;
 
-  return new Promise((resolve, reject) => {
-    img
-      .resize({
-        width: options.rows,
-        height: (options.rows * ASCII_WIDTH / ratio / ASCII_HEIGHT) | 0
-      })
-      .raw()
-      .toBuffer((err, buffer, info) => {
-        if (err)
-          return reject(err);
+  img
+    .resize({
+      width: options.rows,
+      height: (options.rows * ASCII_WIDTH / ratio / ASCII_HEIGHT) | 0
+    })
+    .raw()
+    .toBuffer((err, buffer, info) => {
+      if (err)
+        return callback(err);
 
-        const data = pixelsToString(new Uint8ClampedArray(buffer), {...options, noAlpha: info.channels === 3});
+      const data = pixelsToString(new Uint8ClampedArray(buffer), {...options, noAlpha: info.channels === 3});
 
-        resolve(data);
-      });
-  });
+      callback(null, data);
+    });
 }
 
 function sharpToEncodedBlocks(img, crop, options) {

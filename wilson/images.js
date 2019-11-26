@@ -1,6 +1,8 @@
 const assert = require('assert');
+const async = require('async');
 const sharp = require('sharp');
 const path = require('path');
+const {sharpToString, imgToProcessedPng} = require('../specs/processing.js');
 
 // Typical cover resize for people portraits
 const COVER_RESIZE = {
@@ -40,9 +42,44 @@ exports.buildCover = function buildCover(inputDir, outputDir, pathPrefix, item, 
       });
   };
 
-  if (cover.processed)
-    return process.nextTick(callback);
+  // Cover needs to be processed and rasterized
+  if (cover.processed) {
+    return async.parallel({
+      small(next) {
+        return sharpToString(img(), cover.crop, {
+          rows: 60,
+          gamma: cover.gamma
+        }, next);
+      },
+      medium(next) {
+        return sharpToString(img(), cover.crop, {
+          rows: 120,
+          gamma: cover.gamma
+        }, next);
+      },
+      large(next) {
+        return sharpToString(img(), cover.crop, {
+          rows: 240,
+          gamma: cover.gamma
+        }, next);
+      },
+    }, (err, processed) => {
+      if (err)
+        return callback(err);
 
+      data.processed = processed;
+
+      return callback(null, data);
+
+      // Now we rasterize for social medias
+      // imgToProcessedPng(medium, {
+      //   rows: 120,
+      //   output:
+      // })
+    });
+  }
+
+  // Cover does not need to be processed (e.g. team portraits)
   return img()
     .resize(COVER_RESIZE)
     .toFile(path.join(publicPath, output), err => {

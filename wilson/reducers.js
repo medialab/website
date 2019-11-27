@@ -103,15 +103,6 @@ exports.productions = function reduceProductions(pathPrefix, production) {
 
   production.group = PRODUCTION_TYPE_TO_GROUP[production.type || ENUMS.productionTypes.default];
 
-  // If authors field is empty but we have people, let's fill the field.
-  // if (
-  //   (!production.authors || production.authors === '') &&
-  //   production.people &&
-  //   production.people.length > 0
-  // ) {
-  //   production.authors = production.people.map(pId => (peopleIndex[pId] ? `${peopleIndex[pId].firstName} ${peopleIndex[pId].lastName}` : `${pId} missing`)).join(', ');
-  // }
-
   if (!production.authors)
     production.authors = '';
 

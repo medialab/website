@@ -154,6 +154,19 @@ module.exports = class Database {
       }
     });
 
+    // Filling productions authors
+    this.store.productions.forEach(production => {
+      if (
+        !production.authors &&
+        production.people &&
+        production.people.length > 0
+      ) {
+        production.authors = production.people
+          .map(p => `${p.firstName} ${p.lastName}`)
+          .join(', ');
+      }
+    });
+
     // Hydrating home settings
     const homeSettings = this.store.settings.home;
 

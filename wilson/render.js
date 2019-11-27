@@ -69,20 +69,14 @@ function wrap(pathPrefix, content, helmet, scripts, options) {
 }
 
 // TODO: solve Helmet warnings
-// TODO: link lang bold for current lang for home
-// TODO: path prefix for stylesheets and Js
 // TODO: drop require cache
 // TODO: unwrap ./src folder
 // TODO: verify siteUrl + something with prefix
-// TODO: solve production authors with people field after solving people
 // TODO: factorize `mainPermalink` in components
 // TODO: sitemap
 // TODO: rss feeds
 // TODO: drafts
 // TODO: easter egg
-// TODO: analytics
-// TODO: issue with cropped images in prod
-// TODO: script injection
 // TODO: use classnames for html fallback and such
 // TODO: get rid of HTMLFallback or improve it
 // TODO: js storage buster on first prod release

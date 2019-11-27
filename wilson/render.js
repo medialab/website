@@ -73,7 +73,6 @@ function wrap(pathPrefix, content, helmet, scripts, options) {
 // TODO: unwrap ./src folder
 // TODO: verify siteUrl + something with prefix
 // TODO: factorize `mainPermalink` in components
-// TODO: sitemap
 // TODO: rss feeds
 // TODO: drafts
 // TODO: easter egg

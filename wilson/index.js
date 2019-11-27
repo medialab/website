@@ -24,8 +24,10 @@ const Database = require('./database.js');
 const {permalinkToDiskPath} = require('./utils.js');
 const enums = require('../specs/enums.json');
 const {facetedEnums} = require('./facets.js');
+const createSitemapFromPages = require('./sitemap.js');
 
 const PERMALINKS = require('./permalinks.js');
+const META = require('./meta.js');
 
 // Constants
 const TEMPLATES = {
@@ -134,6 +136,14 @@ function copyAssets(inputDir, outputDir, callback) {
       );
     }
   }, callback);
+}
+
+function buildSitemap(outputDir, siteUrl, pathPrefix, pages) {
+  const sitemap = createSitemapFromPages(siteUrl, pathPrefix, pages);
+
+  console.log(sitemap);
+
+  fs.writeFileSync(path.join(outputDir, 'sitemap.xml'), sitemap);
 }
 
 function build404Page(outputDir, pathPrefix) {
@@ -321,6 +331,9 @@ exports.build = function build(inputDir, outputDir, options, callback) {
       pagesToRender.forEach(page => {
         buildI18nPage(outputDir, pathPrefix, page);
       });
+
+      // Sitemap
+      buildSitemap(outputDir, META.siteUrl, pathPrefix, pagesToRender);
 
       process.nextTick(next);
     }

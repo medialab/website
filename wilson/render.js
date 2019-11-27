@@ -1,9 +1,19 @@
 const assert = require('assert');
+const compileTemplate = require('lodash/template');
 const React = require('react');
 const {Helmet} = require('react-helmet');
 const {renderToStaticMarkup} = require('react-dom/server');
 const SiteContext = require('../site/src/context.js').default;
 const meta = require('./meta.js');
+const path = require('path');
+const fs = require('fs-extra');
+
+// Templates
+let GA_TEMPLATE = fs.readFileSync(
+  path.join(__dirname, '..', 'site', 'src', 'assets', 'js', 'ga.js'),
+  'utf-8'
+);
+GA_TEMPLATE = compileTemplate(GA_TEMPLATE);
 
 // Helpers
 const HELMET_CLEANER = / data-react-helmet="true"/g;
@@ -12,7 +22,16 @@ function cleanHelmetOutput(output) {
   return output.replace(HELMET_CLEANER, '');
 }
 
-function wrap(pathPrefix, content, helmet, scripts) {
+function templateGoogleAnalytics(id) {
+  return GA_TEMPLATE({GOOGLE_ANALYTICS_ID: id});
+}
+
+function wrap(pathPrefix, content, helmet, scripts, options) {
+  options = options || {};
+
+  const ga = options.googleAnalyticsId;
+
+  // Javascript
   let scriptTags = '';
 
   if (scripts)
@@ -43,6 +62,7 @@ function wrap(pathPrefix, content, helmet, scripts) {
         cancelable: true
       }));
     </script>
+    ${ga ? templateGoogleAnalytics(ga) : ''}
   </body>
 </html>
   `.trim();
@@ -88,7 +108,13 @@ exports.renderPage = function(pathPrefix, permalink, template, pageContext, data
   let content = renderToStaticMarkup(page);
   const helmet = Helmet.renderStatic();
 
-  content = wrap(pathPrefix, content, helmet, options.scripts);
+  content = wrap(
+    pathPrefix,
+    content,
+    helmet,
+    options.scripts,
+    {googleAnalyticsId: options.googleAnalyticsId}
+  );
 
   return content;
 };

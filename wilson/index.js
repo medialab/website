@@ -12,6 +12,7 @@ require('@babel/register')({
 
 // Dependencies
 const async = require('async');
+const config = require('config-secrets');
 const shuffle = require('pandemonium/shuffle');
 const path = require('path');
 const sass = require('node-sass');
@@ -157,6 +158,10 @@ function buildI18nPage(outputDir, pathPrefix, {permalinks, template, context, da
     ...context
   };
 
+  const commonOptions = {
+    googleAnalyticsId: config.get('googleAnalyticsId')
+  };
+
   versions.fr = renderPage(
     pathPrefix,
     permalinks.fr,
@@ -166,7 +171,7 @@ function buildI18nPage(outputDir, pathPrefix, {permalinks, template, context, da
       lang: 'fr'
     },
     data,
-    {scripts}
+    {...commonOptions, scripts}
   );
 
   versions.en = renderPage(
@@ -178,7 +183,7 @@ function buildI18nPage(outputDir, pathPrefix, {permalinks, template, context, da
       lang: 'en'
     },
     data,
-    {scripts}
+    {...commonOptions, scripts}
   );
 
   writeI18nPermalinkToDisk(outputDir, versions, permalinks);

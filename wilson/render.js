@@ -74,11 +74,12 @@ function wrap(pathPrefix, content, helmet, scripts, options) {
 // TODO: verify siteUrl + something with prefix
 // TODO: factorize `mainPermalink` in components
 // TODO: rss feeds
-// TODO: drafts
+// TODO: linkToAdmin
 // TODO: easter egg
 // TODO: use classnames for html fallback and such
 // TODO: get rid of HTMLFallback or improve it
 // TODO: js storage buster on first prod release
+// TODO: cache busting helper
 exports.renderPage = function(pathPrefix, permalink, template, pageContext, data, options) {
   assert(typeof template === 'string', 'Template should be a string path.');
 

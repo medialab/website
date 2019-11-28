@@ -140,9 +140,6 @@ function copyAssets(inputDir, outputDir, callback) {
 
 function buildSitemap(outputDir, siteUrl, pathPrefix, pages) {
   const sitemap = createSitemapFromPages(siteUrl, pathPrefix, pages);
-
-  console.log(sitemap);
-
   fs.writeFileSync(path.join(outputDir, 'sitemap.xml'), sitemap);
 }
 
@@ -202,8 +199,9 @@ function buildI18nPage(outputDir, pathPrefix, {permalinks, template, context, da
 exports.build = function build(inputDir, outputDir, options, callback) {
   options = options || {};
   const pathPrefix = options.pathPrefix || '';
+  const skipDrafts = options.skipDrafts || false;
 
-  const db = new Database(inputDir, {pathPrefix});
+  const db = new Database(inputDir, {pathPrefix, skipDrafts});
 
   // Cleanup & scaffolding
   rimraf.sync(outputDir);
@@ -341,7 +339,7 @@ exports.build = function build(inputDir, outputDir, options, callback) {
 }
 
 console.time('build');
-exports.build('./data', './wbuild', {}, err => {
+exports.build('./data', './wbuild', {skipDrafts: true}, err => {
   console.log(err);
   console.timeEnd('build');
   console.timeEnd('buildPages');

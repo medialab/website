@@ -49,6 +49,9 @@ module.exports = class Database {
     options = options || {};
 
     const pathPrefix = options.pathPrefix || '';
+    const skipDrafts = options.skipDrafts || false;
+
+    const draftIds = new Set();
 
     this.store = {};
     this.graph = new Graph();
@@ -56,9 +59,21 @@ module.exports = class Database {
     models.forEach(model => {
       const modelData = fs.readJSONSync(path.join(directory, `${model}.json`));
 
-      this.store[model] = modelData[model];
+      let items = modelData[model];
 
-      this.store[model].forEach(item => {
+      if (skipDrafts)
+        items = items.filter(item => {
+          if (item.draft) {
+            draftIds.add(item.id);
+            return false;
+          }
+
+          return true;
+        });
+
+      this.store[model] = items;
+
+      items.forEach(item => {
         item.model = model;
         this.graph.addNode(item.id);
       });
@@ -93,7 +108,8 @@ module.exports = class Database {
 
           item[k].forEach(target => {
             if (!this.graph.hasNode(target)) {
-              console.warn(`wilson/database: "${target}" - ${k} node not found (from "${item.id}" - ${item.model})!`);
+              if (!draftIds.has(target))
+                console.warn(`wilson/database: "${target}" - ${k} node not found (from "${item.id}" - ${item.model})!`);
               return;
             }
 

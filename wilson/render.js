@@ -26,7 +26,11 @@ function templateGoogleAnalytics(id) {
   return GA_TEMPLATE({GOOGLE_ANALYTICS_ID: id});
 }
 
-function wrap(pathPrefix, content, helmet, scripts, options) {
+function templateRssFeedLink(title, path) {
+  return `<link rel="alternate" type="application/rss+xml" title="${title}" href="${path}">`;
+}
+
+function wrap(pathPrefix, content, helmet, options) {
   options = options || {};
 
   const ga = options.googleAnalyticsId;
@@ -34,9 +38,28 @@ function wrap(pathPrefix, content, helmet, scripts, options) {
   // Javascript
   let scriptTags = '';
 
-  if (scripts)
-    scriptTags = scripts
+  if (options.scripts)
+    scriptTags = options.scripts
       .map(script => `<script src="${pathPrefix}/js/${script}.js" type="text/javascript"></script>`)
+      .join('\n');
+
+  let rssTags = '';
+
+  if (options.rssFeeds)
+    rssTags = options.rssFeeds
+      .map(feed => {
+        const lines = [
+          templateRssFeedLink(feed.fr.title, pathPrefix + feed.fr.path),
+          templateRssFeedLink(feed.en.title, pathPrefix + feed.en.path)
+        ];
+
+        if (feed.main)
+          lines.push(
+            templateRssFeedLink(feed.fr.title, pathPrefix + '/feed')
+          );
+
+        return lines.join('\n');
+      })
       .join('\n');
 
   return `
@@ -49,6 +72,7 @@ function wrap(pathPrefix, content, helmet, scripts, options) {
     ${cleanHelmetOutput(helmet.title.toString())}
     ${cleanHelmetOutput(helmet.meta.toString())}
     ${cleanHelmetOutput(helmet.link.toString())}
+    ${rssTags}
     <link href="${pathPrefix}/font/bel2/bel2.css" rel="stylesheet">
     <link href="${pathPrefix}/font/symbol/symbol.css" rel="stylesheet">
     <link href="${pathPrefix}/medialab.css" rel="stylesheet">
@@ -62,7 +86,9 @@ function wrap(pathPrefix, content, helmet, scripts, options) {
         cancelable: true
       }));
     </script>
-    ${ga ? templateGoogleAnalytics(ga) : ''}
+    <script type="text/javascript>
+      ${ga ? templateGoogleAnalytics(ga) : ''}
+    </script>
   </body>
 </html>
   `.trim();
@@ -73,8 +99,8 @@ function wrap(pathPrefix, content, helmet, scripts, options) {
 // TODO: unwrap ./src folder
 // TODO: verify siteUrl + something with prefix
 // TODO: factorize `mainPermalink` in components
-// TODO: rss feeds
 // TODO: linkToAdmin
+// TODO: bug css header sticky
 // TODO: easter egg
 // TODO: use classnames for html fallback and such
 // TODO: get rid of HTMLFallback or improve it
@@ -106,8 +132,11 @@ exports.renderPage = function(pathPrefix, permalink, template, pageContext, data
     pathPrefix,
     content,
     helmet,
-    options.scripts,
-    {googleAnalyticsId: options.googleAnalyticsId}
+    {
+      googleAnalyticsId: options.googleAnalyticsId,
+      scripts: options.scripts,
+      rssFeeds: options.rssFeeds
+    }
   );
 
   return content;

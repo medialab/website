@@ -40,6 +40,12 @@ const createComparator = prop => (a, b) => {
   a = get(prop, a);
   b = get(prop, b);
 
+  if (typeof a === 'undefined')
+    a = -Infinity;
+
+  if (typeof b === 'undefined')
+    b = -Infinity;
+
   if (a > b)
     return -1;
 
@@ -251,6 +257,7 @@ function createRssFeeds(siteUrl, pathPrefix, db) {
 
   return FEEDS.map(feed => {
     return {
+      main: feed.main || false,
       en: {
         ...feed.en,
         rss: createFeed('en', feed),

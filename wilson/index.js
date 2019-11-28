@@ -166,7 +166,8 @@ function build404Page(outputDir, pathPrefix) {
 }
 
 // Main functions
-function buildI18nPage(outputDir, pathPrefix, {permalinks, template, context, data, scripts}) {
+function buildI18nPage(outputDir, pathPrefix, {permalinks, template, context, data, scripts}, options) {
+  options = options || {};
   context = context || {};
 
   const versions = {};
@@ -178,6 +179,7 @@ function buildI18nPage(outputDir, pathPrefix, {permalinks, template, context, da
   };
 
   const commonOptions = {
+    rssFeeds: options.rssFeeds || null,
     googleAnalyticsId: config.get('googleAnalyticsId')
   };
 
@@ -347,7 +349,7 @@ exports.build = function build(inputDir, outputDir, options, callback) {
       // Building pages
       // TODO: async much?
       pagesToRender.forEach(page => {
-        buildI18nPage(outputDir, pathPrefix, page);
+        buildI18nPage(outputDir, pathPrefix, page, {rssFeeds});
       });
 
       // Sitemap

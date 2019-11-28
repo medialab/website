@@ -227,7 +227,7 @@ module.exports = class Database {
   }
 
   getModel(model) {
-    return this.store[model];
+    return this.store[model].slice();
   }
 
   getSettings() {

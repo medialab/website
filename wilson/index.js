@@ -203,7 +203,7 @@ exports.build = function build(inputDir, outputDir, options, callback) {
   options = options || {};
   const pathPrefix = options.pathPrefix || '';
 
-  const db = new Database(inputDir, pathPrefix);
+  const db = new Database(inputDir, {pathPrefix});
 
   // Cleanup & scaffolding
   rimraf.sync(outputDir);

@@ -45,7 +45,11 @@ const SELF_LINKS = {
 };
 
 module.exports = class Database {
-  constructor(directory, pathPrefix='') {
+  constructor(directory, options) {
+    options = options || {};
+
+    const pathPrefix = options.pathPrefix || '';
+
     this.store = {};
     this.graph = new Graph();
 

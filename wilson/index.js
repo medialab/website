@@ -25,6 +25,7 @@ const {permalinkToDiskPath} = require('./utils.js');
 const enums = require('../specs/enums.json');
 const {facetedEnums} = require('./facets.js');
 const createSitemapFromPages = require('./sitemap.js');
+const createRssFeeds = require('./rss.js');
 
 const PERMALINKS = require('./permalinks.js');
 const META = require('./meta.js');
@@ -143,6 +144,17 @@ function buildSitemap(outputDir, siteUrl, pathPrefix, pages) {
   fs.writeFileSync(path.join(outputDir, 'sitemap.xml'), sitemap);
 }
 
+function buildRssFeeds(outputDir, feeds, callback) {
+  async.eachLimit(feeds, 10, (feed, next) => {
+    const {fr, en} = feed;
+
+    async.parallel([
+      async.apply(fs.writeFile, permalinkToDiskPath(outputDir, en.path), en.rss),
+      async.apply(fs.writeFile, permalinkToDiskPath(outputDir, fr.path), fr.rss)
+    ], next);
+  }, callback);
+}
+
 function build404Page(outputDir, pathPrefix) {
   const html = renderPage(
     pathPrefix,
@@ -203,6 +215,8 @@ exports.build = function build(inputDir, outputDir, options, callback) {
 
   const db = new Database(inputDir, {pathPrefix, skipDrafts});
 
+  let rssFeeds = null;
+
   // Cleanup & scaffolding
   rimraf.sync(outputDir);
   fs.ensureDirSync(outputDir);
@@ -218,6 +232,12 @@ exports.build = function build(inputDir, outputDir, options, callback) {
 
     sass(next) {
       return buildSass(outputDir, next);
+    },
+
+    rss(next) {
+      rssFeeds = createRssFeeds(META.siteUrl, pathPrefix, db);
+
+      return buildRssFeeds(outputDir, rssFeeds, next);
     },
 
     build(next) {
@@ -331,6 +351,7 @@ exports.build = function build(inputDir, outputDir, options, callback) {
       });
 
       // Sitemap
+      // TODO: abstract the pages in a graph?
       buildSitemap(outputDir, META.siteUrl, pathPrefix, pagesToRender);
 
       process.nextTick(next);

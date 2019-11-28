@@ -22,18 +22,18 @@ function pubDate(date) {
 }
 
 function languageFallback(lang, o) {
-  if (o) {
-    if (o[lang]) {
-      return o[lang];
-    }
-    else {
-      const other = lang === 'fr' ? 'en' : 'fr';
+  if (!o)
+    return '';
 
-      if (o[other]) {
-        return o[other];
-      }
-    }
-  }
+  if (o[lang])
+    return o[lang];
+
+  const otherLang = lang === 'fr' ? 'en' : 'fr';
+
+  if (o[otherLang])
+    return o[otherLang];
+
+  return '';
 }
 
 const createComparator = prop => (a, b) => {
@@ -50,7 +50,13 @@ const createComparator = prop => (a, b) => {
 };
 
 function cdata(string) {
-  return `<![CDATA${string}]]>`
+  return `<![CDATA[${string.trim()}]]>`
+}
+
+const AMP = /&/g;
+
+function safeXmlText(string) {
+  return string.replace(AMP, '&amp;').trim();
 }
 
 function createRssRecord(item) {
@@ -64,11 +70,16 @@ function createRssRecord(item) {
 
   const record = [
     '    <item>',
-    `      <title>${title}</title>`,
-    `      <description>${description}</description>`,
+    `      <title>${safeXmlText(title)}</title>`,
+  ];
+
+  if (description)
+    record.push(`      <description>${safeXmlText(description)}</description>`);
+
+  record.push(
     `      <link>${url}</link>`,
     `      <guid isPermalink="false">${url}</guid>`
-  ];
+  );
 
   if (date)
     record.push(`      <pubDate>${pubDate(date)}</pubDate>`);
@@ -205,6 +216,7 @@ const FEEDS = [
         .concat(db.getModel('productions'))
         .filter(item => !item.draft)
         .sort(createComparator('lastUpdated'))
+        .slice(0, FEED_MAX_NUMBER_OF_ITEMS)
         .map(item => {
           return REDUCERS[item.model](resolve, lang, item);
         });
@@ -217,8 +229,8 @@ function createRssFeed(db, resolve, lang, feed) {
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">',
     '  <channel>',
-    `    <title>${feed[lang].title}</title>`,
-    `    <description>${feed[lang].title}</description>`,
+    `    <title>${safeXmlText(feed[lang].title)}</title>`,
+    `    <description>${safeXmlText(feed[lang].title)}</description>`,
     `    <lastBuildDate>${pubDate()}</lastBuildDate>`
   ];
 
@@ -232,7 +244,7 @@ function createRssFeed(db, resolve, lang, feed) {
   return lines.join('\n');
 }
 
-exports.createRssFeeds = function createRssFeeds(db, {pathPrefix, siteUrl}) {
+function createRssFeeds(siteUrl, pathPrefix, db) {
   const resolve = permalink => `${siteUrl}${pathPrefix}${permalink}`;
 
   const createFeed = (lang, feed) => createRssFeed(db, resolve, lang, feed);
@@ -241,20 +253,16 @@ exports.createRssFeeds = function createRssFeeds(db, {pathPrefix, siteUrl}) {
     return {
       en: {
         ...feed.en,
-        rss: createFeed('en', feed)
+        rss: createFeed('en', feed),
+        resolvedPath: resolve(feed.en.path)
       },
       fr: {
         ...feed.fr,
-        rss: createFeed('fr', feed)
+        rss: createFeed('fr', feed),
+        resolvedPath: resolve(feed.fr.path)
       }
     }
   });
 };
 
-if (require.main === module) {
-  const Database = require('./database.js');
-
-  const DB = new Database('./data');
-
-  console.log(exports.createRssFeeds(DB, {pathPrefix: '', siteUrl: ''}));
-}
+module.exports = createRssFeeds;

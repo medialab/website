@@ -197,7 +197,7 @@ exports.build = function build(inputDir, outputDir, options, callback) {
   const skipDrafts = options.skipDrafts || false;
   const linkToAdmin = options.linkToAdmin || null;
 
-  const db = new Database(inputDir, {pathPrefix, skipDrafts});
+  const db = Database.fromDisk(inputDir, {pathPrefix, skipDrafts});
   const website = new Website(db);
 
   let rssFeeds = null;

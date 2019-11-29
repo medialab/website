@@ -44,8 +44,8 @@ const SELF_LINKS = {
   productions: 'productions'
 };
 
-module.exports = class Database {
-  constructor(directory, options) {
+class Database {
+  constructor(store, options) {
     options = options || {};
 
     const pathPrefix = options.pathPrefix || '';
@@ -53,45 +53,24 @@ module.exports = class Database {
 
     const draftIds = new Set();
 
-    this.store = {};
+    this.store = store;
     this.graph = new Graph();
 
+    // Hydrating graph & filtering drafts
     models.forEach(model => {
-      const modelData = fs.readJSONSync(path.join(directory, `${model}.json`));
+      store[model] = store[model].filter(item => {
+        if (skipDrafts && item.draft) {
+          draftIds.add(item.id);
+          return false;
+        }
 
-      let items = modelData[model];
-
-      if (skipDrafts)
-        items = items.filter(item => {
-          if (item.draft) {
-            draftIds.add(item.id);
-            return false;
-          }
-
-          return true;
-        });
-
-      this.store[model] = items;
-
-      items.forEach(item => {
+        // Tagging model
         item.model = model;
+
         this.graph.addNode(item.id);
+        return true;
       });
     });
-
-    this.store.settings = fs.readJSONSync(path.join(directory, 'settings.json')).settings;
-
-    this.store.github = [];
-    this.store.twitter = [];
-
-    const githubPath = path.join(directory, 'github.json');
-    const twitterPath = path.join(directory, 'twitter.json');
-
-    if (fs.existsSync(githubPath))
-      this.store.github = fs.readJSONSync(githubPath).map(reducers.github);
-
-    if (fs.existsSync(twitterPath))
-      this.store.twitter = fs.readJSONSync(twitterPath);
 
     // Adding edges and reducing items
     models.forEach(model => {
@@ -261,3 +240,38 @@ module.exports = class Database {
     });
   }
 }
+
+function loadFluxFromDisk(inputDir) {
+  const data = {
+    github: [],
+    twitter: []
+  };
+
+  const githubPath = path.join(inputDir, 'github.json');
+  const twitterPath = path.join(inputDir, 'twitter.json');
+
+  if (fs.existsSync(githubPath))
+    data.github = fs.readJSONSync(githubPath).map(reducers.github);
+
+  if (fs.existsSync(twitterPath))
+    data.twitter = fs.readJSONSync(twitterPath);
+
+  return data;
+}
+
+Database.fromDisk = function(inputDir, options) {
+  const store = {};
+
+  models.forEach(model => {
+    const modelData = fs.readJSONSync(path.join(inputDir, `${model}.json`));
+    store[model] = modelData[model];
+  });
+
+  store.settings = fs.readJSONSync(path.join(inputDir, 'settings.json')).settings;
+
+  Object.assign(store, loadFluxFromDisk(inputDir));
+
+  return new Database(store, options);
+};
+
+module.exports = Database;

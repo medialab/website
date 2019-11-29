@@ -21,7 +21,6 @@ const io = require('socket.io');
 const utils = require('./utils.js');
 const dump = require('./dump.js');
 const middlewares = require('./middlewares.js');
-const GatsbyProcess = require('./gatsby.js');
 
 const {
   retrieveGithubFluxData,
@@ -42,7 +41,6 @@ const config = require('config-secrets');
 
 // Constants
 const ARGV = require('yargs')
-  .option('--gatsby', {type: 'boolean', default: true})
   .option('--bypass-auth', {type: 'boolean', default: false})
   .argv;
 
@@ -99,14 +97,6 @@ const ROUTERS = MODELS.concat('settings').map(model => {
     router: jsonServer.router(path.join(DATA_PATH, `${model}.json`))
   };
 });
-
-// pass ADMIN_URL conf to gatsby process for dev env)
-if (!process.env.ADMIN_URL)
-  process.env.ADMIN_URL = config.adminUrl;
-
-const gatsby = new GatsbyProcess(path.join(__dirname, '..', 'site'));
-
-process.on('exit', () => gatsby.started && gatsby.kill());
 
 // json-server init
 const app = jsonServer.create();
@@ -231,11 +221,6 @@ app.post('/upload', (req, res) => {
 
     return res.status(200).json({name, originalName: file.name});
   });
-});
-
-// Reboot gatsby route
-app.get('/reboot-gatsby', (req, res) => {
-  gatsby.restart(() => res.status(200).send('Ok'));
 });
 
 // Migration routes
@@ -513,14 +498,17 @@ function buildStaticSite(callback) {
       console.time('build');
       changeBuildStatus('building');
 
-      const env = Object.assign({}, process.env);
-      env.BUILD_CONTEXT = 'prod';
-      env.ROOT_PATH = path.resolve(__dirname, '..');
-      env.DATA_FOLDER = PUBLISH_DATA_PATH;
-      env.GOOGLE_ANALYTICS_ID = config.get('googleAnalyticsId');
-      env.NODE_ENV = 'production';
+      console.log('BUILD SHOULD BE BACK SOON!')
+      return process.nextTick(next);
 
-      return exec('gatsby build > /dev/null', {cwd: SITE_PATH, env}, next);
+      // const env = Object.assign({}, process.env);
+      // env.BUILD_CONTEXT = 'prod';
+      // env.ROOT_PATH = path.resolve(__dirname, '..');
+      // env.DATA_FOLDER = PUBLISH_DATA_PATH;
+      // env.GOOGLE_ANALYTICS_ID = config.get('googleAnalyticsId');
+      // env.NODE_ENV = 'production';
+
+      // return exec('gatsby build > /dev/null', {cwd: SITE_PATH, env}, next);
     },
 
     // 3) Deploying using rsync
@@ -714,12 +702,6 @@ app.get('/redirects.nginx.conf', (req, res) => {
 function startServer() {
   console.log(`Listening on port ${PORT}...`);
   server.listen(PORT);
-
-  // Starting gatsby
-  const shouldStartGatsby = ARGV.gatsby;
-
-  if (shouldStartGatsby)
-    gatsby.start();
 }
 
 startServer();

@@ -167,7 +167,7 @@ function buildI18nPage(
 
   const commonContext = {
     permalinks,
-    linkToAdmin: NODE_ENV !== 'production' ? '' : '', // TODO: fix this!
+    linkToAdmin: options.linkToAdmin,
     ...context
   };
 
@@ -207,6 +207,7 @@ exports.build = function build(inputDir, outputDir, options, callback) {
   options = options || {};
   const pathPrefix = options.pathPrefix || '';
   const skipDrafts = options.skipDrafts || false;
+  const linkToAdmin = options.linkToAdmin || null;
 
   const db = new Database(inputDir, {pathPrefix, skipDrafts});
   const website = new Website(db);
@@ -273,7 +274,7 @@ exports.build = function build(inputDir, outputDir, options, callback) {
           outputDir,
           pathPrefix,
           page,
-          {rssFeeds},
+          {rssFeeds, linkToAdmin},
           nextPage
         )
       }, next);

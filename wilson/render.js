@@ -97,7 +97,6 @@ function wrap(pathPrefix, content, helmet, options) {
 // TODO: solve Helmet warnings
 // TODO: verify siteUrl + something with prefix
 // TODO: factorize `mainPermalink` in components
-// TODO: linkToAdmin
 // TODO: easter egg
 // TODO: use classnames for html fallback and such
 // TODO: get rid of HTMLFallback or improve it

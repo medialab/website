@@ -1,10 +1,13 @@
 const NODE_ENV = process.env.NODE_ENV;
+const path = require('path');
 
 // Babel require hook to transpile React/ES6 imports from static site templates
+const siteDirectory = path.resolve(__dirname, '..', 'site');
+
 require('@babel/register')({
   cache: NODE_ENV === 'production' ? false : true,
   only: [
-    /site\/src/,
+    new RegExp(siteDirectory.replace(/\//g, '\/')),
     /wilson\/render\.js/
   ],
   presets: ['@babel/preset-env', '@babel/preset-react']
@@ -14,7 +17,6 @@ require('@babel/register')({
 const async = require('async');
 const config = require('config-secrets');
 const shuffle = require('pandemonium/shuffle');
-const path = require('path');
 const sass = require('node-sass');
 const rimraf = require('rimraf');
 const fs = require('fs-extra');
@@ -51,7 +53,7 @@ const TEMPLATES = {
 };
 
 for (const k in TEMPLATES)
-  TEMPLATES[k] = require.resolve(`../site/src/templates/${TEMPLATES[k]}.js`);
+  TEMPLATES[k] = require.resolve(`../site/templates/${TEMPLATES[k]}.js`);
 
 const MODEL_TO_DETAIL_TEMPLATE = {};
 
@@ -70,7 +72,7 @@ function writeI18nPermalinkToDisk(outputDir, versions, permalinks) {
   writePermalinkToDisk(outputDir, versions.en, permalinks.en);
 }
 
-const FONT_PATH = path.join(__dirname, '..', 'site', 'src', 'assets', 'font');
+const FONT_PATH = path.join(__dirname, '..', 'site', 'assets', 'font');
 const BEL2_FONT_PATH = path.join(FONT_PATH, 'Bel2');
 const SYMBOL_FONT_PATH = path.join(FONT_PATH, 'Symbol');
 
@@ -84,7 +86,7 @@ function buildSass(outputDir, callback) {
   fs.copySync(SYMBOL_FONT_PATH, path.join(fontDir, 'symbol'));
 
   return sass.render({
-    file: path.join(__dirname, '..', 'site', 'src', 'assets', 'scss', 'global.scss')
+    file: path.join(__dirname, '..', 'site', 'assets', 'scss', 'global.scss')
   }, (err, result) => {
     if (err)
       return callback(err);
@@ -118,7 +120,7 @@ function copyAssets(inputDir, outputDir, callback) {
 
       return async.each(IMG, (img, n) => {
         fs.copyFile(
-          path.join(__dirname, '..', 'site', 'src', 'assets', 'images', img),
+          path.join(__dirname, '..', 'site', 'assets', 'images', img),
           path.join(imgDir, img),
           n
         );
@@ -131,7 +133,7 @@ function copyAssets(inputDir, outputDir, callback) {
       fs.ensureDirSync(jsDir);
 
       return fs.copy(
-        path.join(__dirname, '..', 'site', 'src', 'assets', 'js'),
+        path.join(__dirname, '..', 'site', 'assets', 'js'),
         jsDir,
         next
       );

@@ -3,14 +3,14 @@ const compileTemplate = require('lodash/template');
 const React = require('react');
 const {Helmet} = require('react-helmet');
 const {renderToStaticMarkup} = require('react-dom/server');
-const SiteContext = require('../site/src/context.js').default;
+const SiteContext = require('../site/context.js').default;
 const meta = require('./meta.js');
 const path = require('path');
 const fs = require('fs-extra');
 
 // Templates
 let GA_TEMPLATE = fs.readFileSync(
-  path.join(__dirname, '..', 'site', 'src', 'assets', 'js', 'ga.js'),
+  path.join(__dirname, '..', 'site', 'assets', 'js', 'ga.js'),
   'utf-8'
 );
 GA_TEMPLATE = compileTemplate(GA_TEMPLATE);
@@ -95,16 +95,15 @@ function wrap(pathPrefix, content, helmet, options) {
 }
 
 // TODO: solve Helmet warnings
-// TODO: drop require cache
-// TODO: unwrap ./src folder
 // TODO: verify siteUrl + something with prefix
 // TODO: factorize `mainPermalink` in components
 // TODO: linkToAdmin
+// TODO: async all the things bordayl
 // TODO: easter egg
 // TODO: use classnames for html fallback and such
 // TODO: get rid of HTMLFallback or improve it
 // TODO: js storage buster on first prod release
-// TODO: cache busting helper
+// TODO: template cache busting helper
 exports.renderPage = function(pathPrefix, permalink, template, pageContext, data, options) {
   assert(typeof template === 'string', 'Template should be a string path.');
 

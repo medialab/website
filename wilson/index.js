@@ -32,6 +32,8 @@ const createRssFeeds = require('./rss.js');
 const PERMALINKS = require('./permalinks.js');
 const META = require('./meta.js');
 
+const apply = async.apply;
+
 // Constants
 const TEMPLATES = {
 
@@ -60,16 +62,20 @@ const MODEL_TO_DETAIL_TEMPLATE = {};
 models.forEach(model => (MODEL_TO_DETAIL_TEMPLATE[model] = TEMPLATES[`${model}Detail`]));
 
 // Helpers
-function writePermalinkToDisk(outputDir, html, permalink) {
+function writePermalinkToDisk(outputDir, html, permalink, callback) {
   const diskPath = permalinkToDiskPath(outputDir, permalink);
 
-  fs.ensureDirSync(diskPath);
-  fs.writeFileSync(path.join(diskPath, 'index.html'), html);
+  return async.series([
+    apply(fs.ensureDir, diskPath),
+    apply(fs.writeFile, path.join(diskPath, 'index.html'), html)
+  ], callback);
 }
 
-function writeI18nPermalinkToDisk(outputDir, versions, permalinks) {
-  writePermalinkToDisk(outputDir, versions.fr, permalinks.fr);
-  writePermalinkToDisk(outputDir, versions.en, permalinks.en);
+function writeI18nPermalinkToDisk(outputDir, versions, permalinks, callback) {
+  return async.parallel([
+    apply(writePermalinkToDisk, outputDir, versions.fr, permalinks.fr),
+    apply(writePermalinkToDisk, outputDir, versions.en, permalinks.en)
+  ], callback);
 }
 
 const FONT_PATH = path.join(__dirname, '..', 'site', 'assets', 'font');
@@ -78,23 +84,27 @@ const SYMBOL_FONT_PATH = path.join(FONT_PATH, 'Symbol');
 
 // TODO: compress, sourceMap false
 function buildSass(outputDir, callback) {
-
   const fontDir = path.join(outputDir, 'font');
-  fs.ensureDirSync(fontDir);
 
-  fs.copySync(BEL2_FONT_PATH, path.join(fontDir, 'bel2'));
-  fs.copySync(SYMBOL_FONT_PATH, path.join(fontDir, 'symbol'));
+  return async.series({
+    ensureFontDir: apply(fs.ensureDir, fontDir),
+    copyFonts(next) {
+      return async.parallel([
+        apply(fs.copy, BEL2_FONT_PATH, path.join(fontDir, 'bel2')),
+        apply(fs.copy, SYMBOL_FONT_PATH, path.join(fontDir, 'symbol'))
+      ], next);
+    },
+    renderSass(next) {
+      return sass.render({
+        file: path.join(__dirname, '..', 'site', 'assets', 'scss', 'global.scss')
+      }, (err, result) => {
+        if (err)
+          return callback(err);
 
-  return sass.render({
-    file: path.join(__dirname, '..', 'site', 'assets', 'scss', 'global.scss')
-  }, (err, result) => {
-    if (err)
-      return callback(err);
-
-    fs.writeFileSync(path.join(outputDir, 'medialab.css'), result.css);
-
-    return callback();
-  });
+        fs.writeFile(path.join(outputDir, 'medialab.css'), result.css, next);
+      });
+    }
+  }, callback);
 }
 
 const IMG = [
@@ -151,8 +161,8 @@ function buildRssFeeds(outputDir, feeds, callback) {
     const {fr, en} = feed;
 
     async.parallel([
-      async.apply(fs.writeFile, permalinkToDiskPath(outputDir, en.path), en.rss),
-      async.apply(fs.writeFile, permalinkToDiskPath(outputDir, fr.path), fr.rss)
+      apply(fs.writeFile, permalinkToDiskPath(outputDir, en.path), en.rss),
+      apply(fs.writeFile, permalinkToDiskPath(outputDir, fr.path), fr.rss)
     ], next);
   }, callback);
 }
@@ -168,7 +178,13 @@ function build404Page(outputDir, pathPrefix) {
 }
 
 // Main functions
-function buildI18nPage(outputDir, pathPrefix, {permalinks, template, context, data, scripts}, options) {
+function buildI18nPage(
+  outputDir,
+  pathPrefix,
+  {permalinks, template, context, data, scripts},
+  options,
+  callback
+) {
   options = options || {};
   context = context || {};
 
@@ -209,7 +225,7 @@ function buildI18nPage(outputDir, pathPrefix, {permalinks, template, context, da
     {...commonOptions, scripts}
   );
 
-  writeI18nPermalinkToDisk(outputDir, versions, permalinks);
+  writeI18nPermalinkToDisk(outputDir, versions, permalinks, callback);
 }
 
 exports.build = function build(inputDir, outputDir, options, callback) {
@@ -219,12 +235,16 @@ exports.build = function build(inputDir, outputDir, options, callback) {
 
   const db = new Database(inputDir, {pathPrefix, skipDrafts});
 
+  // TODO abstract this
+  const pagesToRender = [];
+
   let rssFeeds = null;
 
   // Cleanup & scaffolding
   rimraf.sync(outputDir);
   fs.ensureDirSync(outputDir);
 
+  // TODO: lots of things can be done in parallel
   async.series({
     assets(next) {
       return copyAssets(inputDir, outputDir, next);
@@ -247,7 +267,6 @@ exports.build = function build(inputDir, outputDir, options, callback) {
     build(next) {
 
       console.time('buildPages');
-      const pagesToRender = [];
 
       const settings = db.getSettings();
 
@@ -349,10 +368,18 @@ exports.build = function build(inputDir, outputDir, options, callback) {
       });
 
       // Building pages
-      // TODO: async much?
-      pagesToRender.forEach(page => {
-        buildI18nPage(outputDir, pathPrefix, page, {rssFeeds});
-      });
+      return async.eachLimit(pagesToRender, 10, (page, nextPage) => {
+        return buildI18nPage(
+          outputDir,
+          pathPrefix,
+          page,
+          {rssFeeds},
+          nextPage
+        )
+      }, next);
+    },
+
+    sitemap(next) {
 
       // Sitemap
       // TODO: abstract the pages in a graph?

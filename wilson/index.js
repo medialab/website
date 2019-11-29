@@ -16,50 +16,19 @@ require('@babel/register')({
 // Dependencies
 const async = require('async');
 const config = require('config-secrets');
-const shuffle = require('pandemonium/shuffle');
 const sass = require('node-sass');
 const rimraf = require('rimraf');
 const fs = require('fs-extra');
 const {renderPage} = require('./render.js');
-const models = require('../specs/models.json');
 const Database = require('./database.js');
+const Website = require('./website.js');
 const {permalinkToDiskPath} = require('./utils.js');
-const enums = require('../specs/enums.json');
-const {facetedEnums} = require('./facets.js');
 const createSitemapFromPages = require('./sitemap.js');
 const createRssFeeds = require('./rss.js');
 
-const PERMALINKS = require('./permalinks.js');
 const META = require('./meta.js');
 
 const apply = async.apply;
-
-// Constants
-const TEMPLATES = {
-
-  // Pages
-  home: 'index',
-  about: 'about',
-  legal: 'legal',
-  error: '404',
-
-  // Models
-  activitiesDetail: 'activity',
-  activitiesListing: 'activity-list',
-  newsDetail: 'news',
-  newsListing: 'news-list',
-  peopleListing: 'people-list',
-  peopleDetail: 'people',
-  productionsDetail: 'production',
-  productionsListing: 'production-list'
-};
-
-for (const k in TEMPLATES)
-  TEMPLATES[k] = require.resolve(`../site/templates/${TEMPLATES[k]}.js`);
-
-const MODEL_TO_DETAIL_TEMPLATE = {};
-
-models.forEach(model => (MODEL_TO_DETAIL_TEMPLATE[model] = TEMPLATES[`${model}Detail`]));
 
 // Helpers
 function writePermalinkToDisk(outputDir, html, permalink, callback) {
@@ -177,7 +146,7 @@ function build404Page(outputDir, pathPrefix, callback) {
   const html = renderPage(
     pathPrefix,
     '/',
-    TEMPLATES.error
+    require.resolve('../site/templates/404.js')
   );
 
   fs.writeFile(path.join(outputDir, '404.html'), html, callback);
@@ -240,9 +209,7 @@ exports.build = function build(inputDir, outputDir, options, callback) {
   const skipDrafts = options.skipDrafts || false;
 
   const db = new Database(inputDir, {pathPrefix, skipDrafts});
-
-  // TODO abstract this
-  const pagesToRender = [];
+  const website = new Website(db);
 
   let rssFeeds = null;
 
@@ -280,104 +247,8 @@ exports.build = function build(inputDir, outputDir, options, callback) {
 
       console.time('buildPages');
 
-      const settings = db.getSettings();
-
-      // Home page
-      pagesToRender.push({
-        permalinks: PERMALINKS.home,
-        template: TEMPLATES.home,
-        data: {
-          grid: settings.home.grid,
-          slider: settings.home.slider,
-          twitter: db.getTwitter(),
-          github: db.getGithub(),
-          rdv: db.getRdv()
-        }
-      });
-
-      // Basic pages
-      pagesToRender.push({
-        permalinks: PERMALINKS.about,
-        template: TEMPLATES.about
-      });
-
-      pagesToRender.push({
-        permalinks: PERMALINKS.legal,
-        template: TEMPLATES.legal
-      });
-
-      // Detail pages
-      db.forEach(item => {
-        pagesToRender.push({
-          permalinks: item.permalink,
-          template: MODEL_TO_DETAIL_TEMPLATE[item.model],
-          data: item,
-          scripts: item.model === 'people' ? ['people'] : null
-        });
-      });
-
-      // Listing pages
-      pagesToRender.push({
-        permalinks: PERMALINKS.activities,
-        template: TEMPLATES.activitiesListing,
-        data: {
-          activities: db.getModel('activities'),
-          topActivities: settings.topActivities.map(o => o.id)
-        },
-        scripts: ['search', 'activity-listing']
-      });
-
-      pagesToRender.push({
-        permalinks: PERMALINKS.news,
-        template: TEMPLATES.newsListing,
-        data: {
-          news: db.getModel('news')
-        },
-        scripts: ['search', 'news-listing']
-      });
-
-      pagesToRender.push({
-        permalinks: PERMALINKS.productions,
-        template: TEMPLATES.productionsListing,
-        context: {
-          group: 'all'
-        },
-        data: {
-          facetedEnums,
-          productions: db.getModel('productions')
-        },
-        scripts: ['search', 'production-listing']
-      });
-
-      for (const group in enums.productionTypes.groups)
-        pagesToRender.push({
-          permalinks: {
-            fr: PERMALINKS.productions.fr + '/' + group,
-            en: PERMALINKS.productions.en + '/' + group
-          },
-          template: TEMPLATES.productionsListing,
-          context: {
-            group
-          },
-          data: {
-            facetedEnums,
-            productions: db.getModel('productions')
-              .filter(p => p.group === group)
-          },
-          scripts: ['search', 'production-listing']
-        });
-
-      pagesToRender.push({
-        permalinks: PERMALINKS.people,
-        template: TEMPLATES.peopleListing,
-        data: {
-          people: shuffle(db.getModel('people'))
-        },
-        scripts: ['search']
-      });
-
       // Building pages
-      return async.eachLimit(pagesToRender, 10, (page, nextPage) => {
+      return async.eachLimit(website.getPagesToRender(), 10, (page, nextPage) => {
         return buildI18nPage(
           outputDir,
           pathPrefix,
@@ -391,12 +262,11 @@ exports.build = function build(inputDir, outputDir, options, callback) {
     sitemap(next) {
 
       // Sitemap
-      // TODO: abstract the pages in a graph?
       return buildSitemap(
         outputDir,
         META.siteUrl,
         pathPrefix,
-        pagesToRender,
+        website.getPagesToRender(),
         next
       );
     }

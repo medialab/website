@@ -126,34 +126,40 @@ function copyAssets(inputDir, outputDir, callback) {
     img(next) {
       const imgDir = path.join(outputDir, 'img');
 
-      fs.ensureDirSync(imgDir);
+      fs.ensureDir(imgDir, err => {
+        if (err)
+          return next(err);
 
-      return async.each(IMG, (img, n) => {
-        fs.copyFile(
-          path.join(__dirname, '..', 'site', 'assets', 'images', img),
-          path.join(imgDir, img),
-          n
-        );
-      }, next);
+        return async.each(IMG, (img, n) => {
+          fs.copyFile(
+            path.join(__dirname, '..', 'site', 'assets', 'images', img),
+            path.join(imgDir, img),
+            n
+          );
+        }, next);
+      });
     },
 
     js(next) {
       const jsDir = path.join(outputDir, 'js');
 
-      fs.ensureDirSync(jsDir);
+      fs.ensureDir(jsDir, err => {
+        if (err)
+          return next(err);
 
-      return fs.copy(
-        path.join(__dirname, '..', 'site', 'assets', 'js'),
-        jsDir,
-        next
-      );
+        return fs.copy(
+          path.join(__dirname, '..', 'site', 'assets', 'js'),
+          jsDir,
+          next
+        );
+      });
     }
   }, callback);
 }
 
-function buildSitemap(outputDir, siteUrl, pathPrefix, pages) {
+function buildSitemap(outputDir, siteUrl, pathPrefix, pages, callback) {
   const sitemap = createSitemapFromPages(siteUrl, pathPrefix, pages);
-  fs.writeFileSync(path.join(outputDir, 'sitemap.xml'), sitemap);
+  fs.writeFile(path.join(outputDir, 'sitemap.xml'), sitemap, callback);
 }
 
 function buildRssFeeds(outputDir, feeds, callback) {
@@ -167,14 +173,14 @@ function buildRssFeeds(outputDir, feeds, callback) {
   }, callback);
 }
 
-function build404Page(outputDir, pathPrefix) {
+function build404Page(outputDir, pathPrefix, callback) {
   const html = renderPage(
     pathPrefix,
     '/',
     TEMPLATES.error
   );
 
-  fs.writeFileSync(path.join(outputDir, '404.html'), html);
+  fs.writeFile(path.join(outputDir, '404.html'), html, callback);
 }
 
 // Main functions
@@ -264,14 +270,17 @@ exports.build = function build(inputDir, outputDir, options, callback) {
       return buildRssFeeds(outputDir, rssFeeds, next);
     },
 
+    page404(next) {
+
+      // Static error page
+      return build404Page(outputDir, pathPrefix, next);
+    },
+
     build(next) {
 
       console.time('buildPages');
 
       const settings = db.getSettings();
-
-      // Static error page
-      build404Page(outputDir, pathPrefix);
 
       // Home page
       pagesToRender.push({
@@ -383,9 +392,13 @@ exports.build = function build(inputDir, outputDir, options, callback) {
 
       // Sitemap
       // TODO: abstract the pages in a graph?
-      buildSitemap(outputDir, META.siteUrl, pathPrefix, pagesToRender);
-
-      process.nextTick(next);
+      return buildSitemap(
+        outputDir,
+        META.siteUrl,
+        pathPrefix,
+        pagesToRender,
+        next
+      );
     }
   }, callback);
 }

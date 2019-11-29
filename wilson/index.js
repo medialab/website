@@ -280,10 +280,3 @@ exports.build = function build(inputDir, outputDir, options, callback) {
     }
   }, callback);
 }
-
-console.time('build');
-exports.build('./data', './wbuild', {skipDrafts: true}, err => {
-  console.log(err);
-  console.timeEnd('build');
-  console.timeEnd('buildPages');
-});

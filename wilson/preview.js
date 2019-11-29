@@ -5,17 +5,22 @@ const Website = require('./website.js');
 const {renderPage} = require('./render.js');
 
 class Preview {
-  constructor(inputDir, pathPrefix, options) {
+  constructor(inputDir, pathPrefix, lowdbs, options) {
     options = options || {};
 
     this.inputDir = inputDir;
+    this.lowdbs = lowdbs;
     this.pathPrefix = pathPrefix;
     this.linkToAdmin = options.linkToAdmin || null;
     this.upgradeDatabase();
   }
 
   upgradeDatabase() {
-    this.db = new Database(this.inputDir);
+    this.db = Database.fromLowDB(
+      this.inputDir,
+      this.lowdbs,
+      {pathPrefix: this.pathPrefix}
+    );
     this.website = new Website(this.db);
   }
 
@@ -46,10 +51,3 @@ class Preview {
 }
 
 module.exports = Preview;
-
-// TODO: Database.from lowdb or from file
-if (require.main === module) {
-  const preview = new Preview('./data');
-
-  console.log(preview.renderPageForPermalink('/equipe/guillaume-plique'));
-}

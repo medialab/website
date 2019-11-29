@@ -21,6 +21,7 @@ const io = require('socket.io');
 const utils = require('./utils.js');
 const dump = require('./dump.js');
 const middlewares = require('./middlewares.js');
+const Preview = require('../wilson/preview.js');
 
 const {
   retrieveGithubFluxData,
@@ -100,6 +101,8 @@ const ROUTERS = MODELS.concat('settings').map(model => {
 
 const DBS = {};
 ROUTERS.forEach(({model, router}) => (DBS[model] = router.db));
+
+const PREVIEW = new Preview(DATA_PATH, '/preview', DBS, {linkToAdmin: 'TODO'});
 
 // json-server init
 const app = jsonServer.create();
@@ -224,6 +227,20 @@ app.post('/upload', (req, res) => {
 
     return res.status(200).json({name, originalName: file.name});
   });
+});
+
+// Preview
+const PREVIEW_PERMALINK_CLEANER = /^\/preview/;
+
+app.get('/preview/*', (req, res) => {
+  const permalink = req.url.replace(PREVIEW_PERMALINK_CLEANER, '');
+
+  const result = PREVIEW.renderPageForPermalink(permalink);
+
+  if (!result)
+    return res.status(404).send('Not Found.');
+
+  res.send(result.html);
 });
 
 // Migration routes

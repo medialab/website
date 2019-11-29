@@ -274,4 +274,21 @@ Database.fromDisk = function(inputDir, options) {
   return new Database(store, options);
 };
 
+Database.fromLowDB = function(inputDir, lowdbs, options) {
+  const store = {};
+
+  models.forEach(model => {
+    const lowdb = lowdbs[model];
+    lowdb.read();
+    store[model] = lowdb.getState()[model];
+  });
+
+  lowdbs.settings.read();
+  store.settings = lowdbs.settings.getState().settings;
+
+  Object.assign(store, loadFluxFromDisk(inputDir));
+
+  return new Database(store, options);
+};
+
 module.exports = Database;

@@ -33,6 +33,7 @@ models.forEach(model => (MODEL_TO_DETAIL_TEMPLATE[model] = TEMPLATES[`${model}De
 module.exports = class Website {
   constructor(db) {
     this.pages = [];
+    this.index = {fr: {}, en: {}};
 
     const settings = db.getSettings();
 
@@ -129,9 +130,35 @@ module.exports = class Website {
       },
       scripts: ['search']
     });
+
+    // Indexing pages
+    this.pages.forEach(page => {
+      this.index.fr[page.permalinks.fr] = page;
+      this.index.en[page.permalinks.en] = page;
+    });
   }
 
   getPagesToRender() {
     return this.pages;
+  }
+
+  get(permalink) {
+    let page = this.index.fr[permalink];
+
+    if (page)
+      return {
+        lang: 'fr',
+        page
+      };
+
+    page = this.index.en[permalink];
+
+    if (page)
+      return {
+        lang: 'en',
+        page
+      };
+
+    return;
   }
 };

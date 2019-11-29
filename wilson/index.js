@@ -213,35 +213,55 @@ exports.build = function build(inputDir, outputDir, options, callback) {
 
   let rssFeeds = null;
 
-  // Cleanup & scaffolding
-  rimraf.sync(outputDir);
-  fs.ensureDirSync(outputDir);
+  function buildAllAssets(nextStep) {
+    return async.parallel({
+      assets(next) {
+        return copyAssets(inputDir, outputDir, next);
+      },
 
-  // TODO: lots of things can be done in parallel
+      covers(next) {
+        return db.processCovers(inputDir, outputDir, pathPrefix, next);
+      },
+
+      sass(next) {
+        return buildSass(outputDir, next);
+      },
+
+      rss(next) {
+        rssFeeds = createRssFeeds(META.siteUrl, pathPrefix, db);
+
+        return buildRssFeeds(outputDir, rssFeeds, next);
+      },
+
+      page404(next) {
+
+        // Static error page
+        return build404Page(outputDir, pathPrefix, next);
+      },
+
+      sitemap(next) {
+
+        // Sitemap
+        return buildSitemap(
+          outputDir,
+          META.siteUrl,
+          pathPrefix,
+          website.getPagesToRender(),
+          next
+        );
+      }
+    }, nextStep);
+  }
+
+  // TODO: Giving path to covers in reducers could enable to build pages while
+  // processing assets
   async.series({
-    assets(next) {
-      return copyAssets(inputDir, outputDir, next);
-    },
+    cleanup: apply(rimraf, outputDir),
 
-    covers(next) {
-      return db.processCovers(inputDir, outputDir, pathPrefix, next);
-    },
+    createDir: apply(fs.ensureDir, outputDir),
+    createStaticDir: apply(fs.ensureDir, path.join(outputDir, 'static')),
 
-    sass(next) {
-      return buildSass(outputDir, next);
-    },
-
-    rss(next) {
-      rssFeeds = createRssFeeds(META.siteUrl, pathPrefix, db);
-
-      return buildRssFeeds(outputDir, rssFeeds, next);
-    },
-
-    page404(next) {
-
-      // Static error page
-      return build404Page(outputDir, pathPrefix, next);
-    },
+    assets: buildAllAssets,
 
     build(next) {
 
@@ -257,18 +277,6 @@ exports.build = function build(inputDir, outputDir, options, callback) {
           nextPage
         )
       }, next);
-    },
-
-    sitemap(next) {
-
-      // Sitemap
-      return buildSitemap(
-        outputDir,
-        META.siteUrl,
-        pathPrefix,
-        website.getPagesToRender(),
-        next
-      );
     }
   }, callback);
 }

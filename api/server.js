@@ -98,6 +98,9 @@ const ROUTERS = MODELS.concat('settings').map(model => {
   };
 });
 
+const DBS = {};
+ROUTERS.forEach(({model, router}) => (DBS[model] = router.db));
+
 // json-server init
 const app = jsonServer.create();
 const jsonServerMiddlewares = jsonServer.defaults();
@@ -249,11 +252,7 @@ app.get('/migrate/:scheme', (req, res) => {
   if (typeof fn !== 'function')
     return res.status(404).send('Bad Scheme!');
 
-  const dbs = {};
-
-  ROUTERS.forEach(({model, router}) => (dbs[model] = router.db));
-
-  return fn(req, dbs, (err, result) => {
+  return fn(req, DBS, (err, result) => {
     if (err)
       return res.status(500).send('' + err);
 
@@ -564,8 +563,10 @@ function buildTask() {
 
 const cron = new CronJob(BUILD_CONF.cron, buildTask);
 
-cron.start();
+// TODO: reactivate CRON
+// cron.start();
 
+// Need to update build
 app.get('/build', (req, res) => {
   const willBuild = buildTask();
 
@@ -601,11 +602,7 @@ function deploy(callback) {
 
     // 2) Removing unused assets
     removingUnusedAssets(next) {
-      const dbs = {};
-
-      ROUTERS.forEach(({model, router}) => (dbs[model] = router.db));
-
-      const unused = findUnusedAssets(dbs, ASSETS_PATH);
+      const unused = findUnusedAssets(DBS, ASSETS_PATH);
 
       return async.each(Array.from(unused), (asset, n) => {
         console.log(`Dropping unused asset "${asset}"`);

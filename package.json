@@ -22,7 +22,7 @@
     "load": "node ./scripts/load.js",
     "postinstall": "npm run install:admin",
     "reinstall": "rm -rf ./admin/node_modules && rm -rf ./node_modules && npm i",
-    "serve": "npm run build && http-server -p 8000 -o",
+    "serve": "npm run build && http-server -p 8000 ./wbuild -o",
     "start": "node api/server.js",
     "style:scss": "prettier --write --parser scss 'site/assets/scss/**/*.scss'",
     "upgrade:prod:checks": "npm run build",

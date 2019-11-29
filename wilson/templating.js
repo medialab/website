@@ -1,4 +1,5 @@
 const cheerio = require('cheerio');
+const path = require('path');
 const Entities = require('html-entities').AllHtmlEntities;
 
 const entities = new Entities();
@@ -252,6 +253,23 @@ exports.resolveAttachments = function resolveAttachments(pathPrefix, attachments
     return a;
   });
 };
+
+// exports.resolveCover = function resolveCover(pathPrefix, item) {
+//   if (!item.cover)
+//     return null;
+
+//   const ext = path.extname(cover.file),
+//         name = path.basename(cover.file, ext);
+
+//   const output = `${name}.cover${ext}`;
+//   const socialOutput = `${name}.social.png`;
+
+//   const coverImage = {
+//     url: `${pathPrefix}/static/${output}`
+//   };
+// };
+
+// raster width / height / social // drop w/h because they are all the same?
 
 // Testing
 // if (require.main === module) {

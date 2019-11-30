@@ -78,6 +78,9 @@ exports.buildCover = function buildCover(
 
       data.processed = processed;
 
+      if (options.skipRaster)
+        return callback(null, data);
+
       return imgToProcessedPng(
         processed.medium,
         {
@@ -101,12 +104,23 @@ exports.buildCover = function buildCover(
   }
 
   // Cover does not need to be processed (e.g. team portraits)
-  return img()
-    .resize(COVER_RESIZE)
-    .toFile(path.join(publicPath, output), err => {
+  const portrait =  img()
+    .resize(COVER_RESIZE);
+
+  if (options.outputBuffers)
+    return portrait.toBuffer((err, buffer) => {
       if (err)
         return callback(err);
 
+      data.buffer = buffer;
+
       return callback(null, data);
     });
+
+  return portrait.toFile(path.join(publicPath, output), err => {
+    if (err)
+      return callback(err);
+
+    return callback(null, data);
+  });
 };

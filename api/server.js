@@ -248,12 +248,15 @@ app.use('/preview/static', express.static(ASSETS_PATH));
 app.get('/preview/*', (req, res) => {
   const permalink = req.url.replace(PREVIEW_PERMALINK_CLEANER, '');
 
-  const result = PREVIEW.renderPageForPermalink(permalink);
+  return PREVIEW.renderPageForPermalink(permalink, (err, result) => {
+    if (err)
+      return res.status(500).send(err);
 
-  if (!result)
-    return res.status(404).send('Not Found.');
+    if (!result)
+      return res.status(404).send('Not Found.');
 
-  res.send(result.html);
+    return res.send(result.html);
+  });
 });
 
 // Migration routes

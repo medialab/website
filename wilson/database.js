@@ -184,7 +184,13 @@ class Database {
         return this.graph.getNodeAttributes(node);
       })
       .filter(item => {
-        return !!item.cover;
+        if (!item.cover)
+          return false;
+
+        if (options.only && !options.only.has(item.id))
+          return false;
+
+        return true;
       });
 
     async.eachLimit(data, 10, (item, next) => {

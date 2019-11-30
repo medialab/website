@@ -16,7 +16,6 @@ class Preview {
     this.linkToAdmin = options.linkToAdmin || null;
     this.upgradeDatabase();
 
-    this.processedImagesCache = {};
     this.stylesheet = null;
   }
 
@@ -46,11 +45,11 @@ class Preview {
     return this.stylesheet;
   }
 
-  renderPageForPermalink(permalink) {
+  renderPageForPermalink(permalink, callback) {
     const result = this.website.get(permalink);
 
     if (!result)
-      return null;
+      return callback(null, null);
 
     const {lang, page} = result;
 
@@ -68,7 +67,7 @@ class Preview {
       {scripts: page.scripts}
     );
 
-    return {html};
+    return callback(null, {html});
   }
 }
 

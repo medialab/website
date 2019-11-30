@@ -178,7 +178,7 @@ class Database {
     });
   }
 
-  processCovers(inputDir, outputDir, pathPrefix, callback) {
+  processCovers(inputDir, outputDir, pathPrefix, options, callback) {
     const data = this.graph.nodes()
       .map(node => {
         return this.graph.getNodeAttributes(node);
@@ -188,7 +188,7 @@ class Database {
       });
 
     async.eachLimit(data, 10, (item, next) => {
-      return buildCover(inputDir, outputDir, pathPrefix, item, (err, coverImage) => {
+      return buildCover(inputDir, outputDir, pathPrefix, item, options, (err, coverImage) => {
         if (err)
           return next(err);
 

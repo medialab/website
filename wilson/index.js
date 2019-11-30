@@ -209,7 +209,7 @@ exports.build = function build(inputDir, outputDir, options, callback) {
       },
 
       covers(next) {
-        return db.processCovers(inputDir, outputDir, pathPrefix, next);
+        return db.processCovers(inputDir, outputDir, pathPrefix, options, next);
       },
 
       sass(next) {

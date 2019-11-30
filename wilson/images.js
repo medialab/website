@@ -10,8 +10,17 @@ const COVER_RESIZE = {
   height: 225 * 2
 };
 
-exports.buildCover = function buildCover(inputDir, outputDir, pathPrefix, item, callback) {
+exports.buildCover = function buildCover(
+  inputDir,
+  outputDir,
+  pathPrefix,
+  item,
+  options,
+  callback
+) {
   assert(!!item.cover, `wilson/images.buildCover: cannot build cover if item "${item.id}" has none.`)
+
+  options = options || {};
 
   const publicPath = path.join(outputDir, 'static');
 

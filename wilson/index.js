@@ -47,8 +47,8 @@ function buildSass(outputDir, callback) {
     ensureFontDir: apply(fs.ensureDir, fontDir),
     copyFonts(next) {
       return async.parallel([
-        apply(fs.copy, BEL2_FONT_PATH, path.join(fontDir, 'bel2')),
-        apply(fs.copy, SYMBOL_FONT_PATH, path.join(fontDir, 'symbol'))
+        apply(fs.copy, BEL2_FONT_PATH, path.join(fontDir, 'Bel2')),
+        apply(fs.copy, SYMBOL_FONT_PATH, path.join(fontDir, 'Symbol'))
       ], next);
     },
     renderSass(next) {

@@ -73,8 +73,8 @@ function wrap(pathPrefix, content, helmet, options) {
     ${cleanHelmetOutput(helmet.meta.toString())}
     ${cleanHelmetOutput(helmet.link.toString())}
     ${rssTags}
-    <link href="${pathPrefix}/font/bel2/bel2.css" rel="stylesheet">
-    <link href="${pathPrefix}/font/symbol/symbol.css" rel="stylesheet">
+    <link href="${pathPrefix}/font/Bel2/bel2.css" rel="stylesheet">
+    <link href="${pathPrefix}/font/Symbol/symbol.css" rel="stylesheet">
     <link href="${pathPrefix}/medialab.css" rel="stylesheet">
   </head>
   <body>

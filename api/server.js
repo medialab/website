@@ -51,10 +51,12 @@ const BUILD_CONF = config.get('build');
 const DUMP_PATH = path.join(BUILD_CONF.path, 'dump');
 const PUBLISH_DUMP_PATH = path.join(BUILD_CONF.path, 'publish-dump');
 const PUBLISH_DATA_PATH = path.join(BUILD_CONF.path, 'publish-data');
+const SITE_SRC_PATH = path.join(__dirname, '..', 'site');
 const SITE_PATH = path.join(BUILD_CONF.path, 'site');
 const ASSETS_PATH = path.join(DATA_PATH, 'assets');
 
 // Ensuring we have the minimal file architecture
+// TODO: this is not required anymore
 fs.ensureDirSync(DATA_PATH);
 fs.ensureDirSync(path.join(DATA_PATH, 'assets'));
 fs.ensureDirSync(BUILD_CONF.path);
@@ -231,6 +233,16 @@ app.post('/upload', (req, res) => {
 
 // Preview
 const PREVIEW_PERMALINK_CLEANER = /^\/preview/;
+
+app.get('/preview/medialab.css', (req, res) => {
+  return res
+    .header('Content-Type', 'text/css')
+    .send(PREVIEW.getStylesheet());
+});
+
+app.use('/preview/font', express.static(path.join(SITE_SRC_PATH, 'assets', 'font')));
+app.use('/preview/js', express.static(path.join(SITE_SRC_PATH, 'assets', 'js')));
+app.use('/preview/img', express.static(path.join(SITE_SRC_PATH, 'assets', 'images')));
 
 app.get('/preview/*', (req, res) => {
   const permalink = req.url.replace(PREVIEW_PERMALINK_CLEANER, '');
@@ -714,8 +726,17 @@ app.get('/redirects.nginx.conf', (req, res) => {
 
 // Listening
 function startServer() {
-  console.log(`Listening on port ${PORT}...`);
-  server.listen(PORT);
+
+  console.log('Spawning preview...');
+  PREVIEW.compileAssets(err => {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+
+    console.log(`Listening on port ${PORT}...`);
+    server.listen(PORT);
+  });
 }
 
 startServer();

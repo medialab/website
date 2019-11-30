@@ -1,5 +1,7 @@
 require('./require-hook.js');
 
+const path = require('path');
+const sass = require('node-sass');
 const Database = require('./database.js');
 const Website = require('./website.js');
 const {renderPage} = require('./render.js');
@@ -13,6 +15,21 @@ class Preview {
     this.pathPrefix = pathPrefix;
     this.linkToAdmin = options.linkToAdmin || null;
     this.upgradeDatabase();
+
+    this.stylesheet = null;
+  }
+
+  compileAssets(callback) {
+    const stylesheetPath = path.join(__dirname, '..', 'site', 'assets', 'scss', 'global.scss');
+
+    return sass.render({file: stylesheetPath}, (err, result) => {
+      if (err)
+        return callback(err);
+
+      this.stylesheet = result.css.toString();
+
+      return callback();
+    });
   }
 
   upgradeDatabase() {
@@ -22,6 +39,10 @@ class Preview {
       {pathPrefix: this.pathPrefix}
     );
     this.website = new Website(this.db);
+  }
+
+  getStylesheet() {
+    return this.stylesheet;
   }
 
   renderPageForPermalink(permalink) {

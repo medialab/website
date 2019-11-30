@@ -243,6 +243,7 @@ app.get('/preview/medialab.css', (req, res) => {
 app.use('/preview/font', express.static(path.join(SITE_SRC_PATH, 'assets', 'font')));
 app.use('/preview/js', express.static(path.join(SITE_SRC_PATH, 'assets', 'js')));
 app.use('/preview/img', express.static(path.join(SITE_SRC_PATH, 'assets', 'images')));
+app.use('/preview/static', express.static(ASSETS_PATH));
 
 app.get('/preview/*', (req, res) => {
   const permalink = req.url.replace(PREVIEW_PERMALINK_CLEANER, '');

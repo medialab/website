@@ -16,6 +16,7 @@ class Preview {
     this.linkToAdmin = options.linkToAdmin || null;
     this.upgradeDatabase();
 
+    this.processedImagesCache = {};
     this.stylesheet = null;
   }
 

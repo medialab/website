@@ -187,6 +187,7 @@ class Database {
         if (!item.cover)
           return false;
 
+        // TODO: could be more efficient since we have the relevant ids
         if (options.only && !options.only.has(item.id))
           return false;
 

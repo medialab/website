@@ -5,6 +5,7 @@ const sass = require('node-sass');
 const Database = require('./database.js');
 const Website = require('./website.js');
 const {renderPage} = require('./render.js');
+const {collectItemsWithCover} = require('./utils.js');
 
 class Preview {
   constructor(inputDir, pathPrefix, lowdbs, options) {
@@ -52,6 +53,8 @@ class Preview {
       return callback(null, null);
 
     const {lang, page} = result;
+
+    // const itemsWithCover = collectItemsWithCover(page.data);
 
     const html = renderPage(
       this.pathPrefix,

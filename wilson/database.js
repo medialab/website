@@ -203,7 +203,19 @@ class Database {
 
         return next();
       });
-    }, callback);
+    }, err => {
+      if (err)
+        return callback(err);
+
+      const bufferIndex = {};
+
+      data.forEach(item => {
+        if (item.coverImage.buffer)
+          bufferIndex[item.coverImage.url] = item.coverImage.buffer;
+      });
+
+      return callback(null, bufferIndex);
+    });
   }
 
   get(id) {

@@ -18,6 +18,7 @@ class Preview {
     this.upgradeDatabase();
 
     this.stylesheet = null;
+    this.coverBuffers = {};
   }
 
   compileAssets(callback) {
@@ -27,7 +28,7 @@ class Preview {
       if (err)
         return callback(err);
 
-      this.stylesheet = result.css.toString();
+      this.stylesheet = result.css;
 
       return callback();
     });
@@ -46,6 +47,10 @@ class Preview {
     return this.stylesheet;
   }
 
+  getCoverBuffer(url) {
+    return this.coverBuffers[url];
+  }
+
   renderPageForPermalink(permalink, callback) {
     const result = this.website.get(permalink);
 
@@ -61,7 +66,7 @@ class Preview {
       '',
       this.pathPrefix,
       {outputBuffers: true, only: itemsWithCover, skipRaster: true},
-      err => {
+      (err, bufferIndex) => {
         if (err)
           return callback(err);
 
@@ -78,6 +83,8 @@ class Preview {
           page.data,
           {scripts: page.scripts}
         );
+
+        Object.assign(this.coverBuffers, bufferIndex);
 
         return callback(null, {html});
       });

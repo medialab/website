@@ -13,6 +13,7 @@ const uuid = require('uuid/v4');
 const rimraf = require('rimraf');
 const simpleGit = require('simple-git');
 const CronJob = require('cron').CronJob;
+const mime = require('mime-types');
 const get = require('lodash/fp/get');
 const set = require('lodash/fp/set');
 const fs = require('fs-extra');
@@ -243,6 +244,18 @@ app.get('/preview/medialab.css', (req, res) => {
 app.use('/preview/font', express.static(path.join(SITE_SRC_PATH, 'assets', 'font')));
 app.use('/preview/js', express.static(path.join(SITE_SRC_PATH, 'assets', 'js')));
 app.use('/preview/img', express.static(path.join(SITE_SRC_PATH, 'assets', 'images')));
+
+app.get('/preview/static/*.cover.*', (req, res) => {
+  const buffer = PREVIEW.getCoverBuffer(req.url);
+
+  if (!buffer)
+    return res.status(404).send('Not Found.');
+
+  return res
+    .header('Content-Type', mime.lookup(req.url))
+    .send(buffer);
+});
+
 app.use('/preview/static', express.static(ASSETS_PATH));
 
 app.get('/preview/*', (req, res) => {

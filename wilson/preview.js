@@ -54,23 +54,33 @@ class Preview {
 
     const {lang, page} = result;
 
-    // const itemsWithCover = collectItemsWithCover(page.data);
+    const itemsWithCover = collectItemsWithCover(page.data);
 
-    const html = renderPage(
+    this.db.processCovers(
+      this.inputDir,
+      '',
       this.pathPrefix,
-      permalink,
-      page.template,
-      {
-        permalinks: page.permalinks,
-        linkToAdmin: this.linkToAdmin,
-        lang,
-        ...page.context
-      },
-      page.data,
-      {scripts: page.scripts}
-    );
+      {outputBuffers: true, only: itemsWithCover, skipRaster: true},
+      err => {
+        if (err)
+          return callback(err);
 
-    return callback(null, {html});
+        const html = renderPage(
+          this.pathPrefix,
+          permalink,
+          page.template,
+          {
+            permalinks: page.permalinks,
+            linkToAdmin: this.linkToAdmin,
+            lang,
+            ...page.context
+          },
+          page.data,
+          {scripts: page.scripts}
+        );
+
+        return callback(null, {html});
+      });
   }
 }
 

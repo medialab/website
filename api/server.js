@@ -249,8 +249,10 @@ app.get('/preview/*', (req, res) => {
   const permalink = req.url.replace(PREVIEW_PERMALINK_CLEANER, '');
 
   return PREVIEW.renderPageForPermalink(permalink, (err, result) => {
-    if (err)
+    if (err) {
+      console.error(err);
       return res.status(500).send(err);
+    }
 
     if (!result)
       return res.status(404).send('Not Found.');

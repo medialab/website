@@ -37,6 +37,8 @@ module.exports = class Website {
 
     const settings = db.getSettings();
 
+    // TODO: maybe data should be a function to avoid mutation time travel
+
     // Home page
     this.pages.push({
       permalinks: PERMALINKS.home,

@@ -7,6 +7,8 @@ const Website = require('./website.js');
 const {renderPage} = require('./render.js');
 const {collectItemsWithCover} = require('./utils.js');
 
+// TODO: upgradeDatabase when data changes
+// TODO: compile covers with assets and cache with object-hash
 class Preview {
   constructor(inputDir, pathPrefix, lowdbs, options) {
     options = options || {};

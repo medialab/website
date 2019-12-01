@@ -79,16 +79,17 @@ function wrap(pathPrefix, content, helmet, options) {
   </head>
   <body>
     ${content}
-    ${scriptTags}
     <script type="text/javascript">
       document.dispatchEvent(new Event('ZoteroItemUpdated', {
         bubbles: true,
         cancelable: true
       }));
+      ${options.livereloadUrl ? `window.API_URL = '${options.livereloadUrl}';` : ''}
     </script>
-    <script type="text/javascript>
+    <script type="text/javascript">
       ${ga ? templateGoogleAnalytics(ga) : ''}
     </script>
+    ${scriptTags}
   </body>
 </html>
   `.trim();
@@ -124,14 +125,24 @@ exports.renderPage = function(pathPrefix, permalink, template, pageContext, data
   let content = renderToStaticMarkup(page);
   const helmet = Helmet.renderStatic();
 
+  let scripts = options.scripts;
+
+  if (options.livereloadUrl) {
+    if (!scripts)
+      scripts = [];
+
+    scripts.push('livereload');
+  }
+
   content = wrap(
     pathPrefix,
     content,
     helmet,
     {
       googleAnalyticsId: options.googleAnalyticsId,
-      scripts: options.scripts,
-      rssFeeds: options.rssFeeds
+      rssFeeds: options.rssFeeds,
+      livereloadUrl: options.livereloadUrl,
+      scripts
     }
   );
 

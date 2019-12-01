@@ -324,6 +324,11 @@ const server = http.Server(app);
 // Websocket logic
 const ws = io(server, {path: '/sockets'});
 
+// Preview live reloading
+PREVIEW.on('upgraded', () => {
+  ws.emit('previewUpgraded');
+});
+
 const LOCKS = {
   buildStatus: 'free',
   deployStatus: 'free',

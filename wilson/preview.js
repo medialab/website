@@ -5,6 +5,7 @@ const sass = require('node-sass');
 const chokidar = require('chokidar');
 const Database = require('./database.js');
 const Website = require('./website.js');
+const EventEmitter = require('events').EventEmitter;
 const {renderPage} = require('./render.js');
 const {collectItemsWithCover} = require('./utils.js');
 
@@ -12,14 +13,19 @@ const {collectItemsWithCover} = require('./utils.js');
 // TODO: live reload
 // TODO: rewire preview & docker
 // TODO: compile covers with assets and cache with object-hash
-class Preview {
+class Preview extends EventEmitter {
   constructor(inputDir, pathPrefix, lowdbs, options) {
+    super();
+
     options = options || {};
 
     this.inputDir = inputDir;
     this.lowdbs = lowdbs;
     this.pathPrefix = pathPrefix;
     this.linkToAdmin = options.linkToAdmin || null;
+
+    // TODO: drop default value
+    this.livereloadUrl = options.livereloadUrl || 'http://localhost:3000';
     this.upgradeDatabase();
 
     this.stylesheet = null;
@@ -54,6 +60,8 @@ class Preview {
       {pathPrefix: this.pathPrefix}
     );
     this.website = new Website(this.db);
+
+    this.emit('upgraded');
   }
 
   getStylesheet() {
@@ -94,7 +102,10 @@ class Preview {
             ...page.context
           },
           page.data,
-          {scripts: page.scripts}
+          {
+            livereloadUrl: this.livereloadUrl,
+            scripts: page.scripts
+          }
         );
 
         Object.assign(this.coverBuffers, bufferIndex);

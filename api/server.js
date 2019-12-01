@@ -53,7 +53,6 @@ const DUMP_PATH = path.join(BUILD_CONF.path, 'dump');
 const PUBLISH_DUMP_PATH = path.join(BUILD_CONF.path, 'publish-dump');
 const PUBLISH_DATA_PATH = path.join(BUILD_CONF.path, 'publish-data');
 const SITE_SRC_PATH = path.join(__dirname, '..', 'site');
-const SITE_PATH = path.join(BUILD_CONF.path, 'site');
 const ASSETS_PATH = path.join(DATA_PATH, 'assets');
 
 // Ensuring we have the minimal file architecture
@@ -61,12 +60,6 @@ const ASSETS_PATH = path.join(DATA_PATH, 'assets');
 fs.ensureDirSync(DATA_PATH);
 fs.ensureDirSync(path.join(DATA_PATH, 'assets'));
 fs.ensureDirSync(BUILD_CONF.path);
-
-if (!fs.pathExistsSync(SITE_PATH))
-  fs.copySync(path.join(__dirname, '..', 'site'), SITE_PATH);
-
-rimraf.sync(path.join(SITE_PATH, '.cache'));
-rimraf.sync(path.join(SITE_PATH, 'public'));
 
 const settingsPath = path.join(DATA_PATH, 'settings.json');
 

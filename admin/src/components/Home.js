@@ -14,7 +14,7 @@ export default function Home() {
       <div className="content">
         <h2 className="title is-4">Bienvenu·e sur le CMS du site du médialab!</h2>
         <p>
-          <a href={STATIC_URL} target="_blank" rel="noopener noreferrer">
+          <a href={STATIC_URL + '/'} target="_blank" rel="noopener noreferrer">
             Lien vers la preview du site (avec les changements du CMS en live)
           </a>
         </p>

@@ -103,7 +103,7 @@ export default function Legal({lang}) {
             <h1 id="page-title">Legal Notice</h1>
           </hgroup>
           <div className="about-contenu">
-          <h3>The contents of this site are provided by:</h3>
+            <h3>The contents of this site are provided by:</h3>
             <p>
               <em>
                 Sciences Po

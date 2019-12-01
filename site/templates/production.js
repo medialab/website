@@ -25,4 +25,4 @@ export default function ProductionTemplate({data, pageContext}) {
         siteUrl={meta.siteUrl} />
     </Layout>
   );
-};
+}

@@ -550,7 +550,7 @@ function buildStaticSite(callback) {
       console.time('build');
       changeBuildStatus('building');
 
-      console.log('BUILD SHOULD BE BACK SOON!')
+      console.log('BUILD SHOULD BE BACK SOON!');
       return process.nextTick(next);
 
       // const env = Object.assign({}, process.env);
@@ -614,7 +614,7 @@ function buildTask() {
   return true;
 }
 
-const cron = new CronJob(BUILD_CONF.cron, buildTask);
+// const cron = new CronJob(BUILD_CONF.cron, buildTask);
 
 // TODO: reactivate CRON
 // cron.start();

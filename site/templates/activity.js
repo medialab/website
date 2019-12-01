@@ -24,4 +24,4 @@ export default function ActivityTemplate({data, pageContext}) {
         siteUrl={meta.siteUrl} />
     </Layout>
   );
-};
+}

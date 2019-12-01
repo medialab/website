@@ -24,4 +24,4 @@ export default function PeopleTemplate({data, pageContext}) {
         siteUrl={meta.siteUrl} />
     </Layout>
   );
-};
+}

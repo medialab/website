@@ -9,8 +9,6 @@ const EventEmitter = require('events').EventEmitter;
 const {renderPage} = require('./render.js');
 const {collectItemsWithCover} = require('./utils.js');
 
-// TODO: upgradeDatabase when data changes
-// TODO: live reload
 // TODO: rewire preview & docker
 // TODO: compile covers with assets and cache with object-hash
 class Preview extends EventEmitter {

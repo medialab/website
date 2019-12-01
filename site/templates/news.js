@@ -23,4 +23,4 @@ export default function NewsTemplate({data, pageContext}) {
         siteUrl={meta.siteUrl} />
     </Layout>
   );
-};
+}

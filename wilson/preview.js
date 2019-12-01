@@ -11,6 +11,7 @@ const {collectItemsWithCover} = require('./utils.js');
 
 // TODO: rewire preview & docker
 // TODO: compile covers with assets and cache with object-hash
+// TODO: debounce upgrade
 class Preview extends EventEmitter {
   constructor(inputDir, pathPrefix, lowdbs, options) {
     super();

@@ -19,6 +19,7 @@ const set = require('lodash/fp/set');
 const fs = require('fs-extra');
 const io = require('socket.io');
 
+const {build: wilsonBuild} = require('../wilson');
 const utils = require('./utils.js');
 const dump = require('./dump.js');
 const middlewares = require('./middlewares.js');
@@ -44,6 +45,7 @@ const config = require('config-secrets');
 // Constants
 const ARGV = require('yargs')
   .option('--bypass-auth', {type: 'boolean', default: false})
+  .option('--cron', {type: 'boolean', default: true})
   .argv;
 
 const PORT = config.get('port');
@@ -52,11 +54,11 @@ const BUILD_CONF = config.get('build');
 const DUMP_PATH = path.join(BUILD_CONF.path, 'dump');
 const PUBLISH_DUMP_PATH = path.join(BUILD_CONF.path, 'publish-dump');
 const PUBLISH_DATA_PATH = path.join(BUILD_CONF.path, 'publish-data');
+const WBUILD_PATH = path.join(BUILD_CONF.path, 'site');
 const SITE_SRC_PATH = path.join(__dirname, '..', 'site');
 const ASSETS_PATH = path.join(DATA_PATH, 'assets');
 
 // Ensuring we have the minimal file architecture
-// TODO: this is not required anymore
 fs.ensureDirSync(DATA_PATH);
 fs.ensureDirSync(path.join(DATA_PATH, 'assets'));
 fs.ensureDirSync(BUILD_CONF.path);
@@ -387,7 +389,6 @@ app.get('/aspire', (req, res) => {
 const PEOPLE_DB = ROUTERS.find(({model}) => model === 'people').router.db;
 
 function retrieveFluxData(callback) {
-  console.time('flux');
 
   // Retrieving people data
   PEOPLE_DB.read();
@@ -412,7 +413,6 @@ function retrieveFluxData(callback) {
       });
     }
   }, err => {
-    console.timeEnd('flux');
 
     return callback(err);
   });
@@ -453,7 +453,6 @@ function prepareDataForBuild(callback) {
     });
   }
 
-  console.time('pull');
   return async.series({
 
     // First we need to check the repo
@@ -480,7 +479,6 @@ function prepareDataForBuild(callback) {
     // Record last commits
     record(next) {
 
-      console.timeEnd('pull');
       return git.log(['-5'], (err, commits) => {
         if (err)
           return next(err);
@@ -498,13 +496,11 @@ function prepareDataForBuild(callback) {
 
     // Building data into shape
     load(next) {
-      console.time('load');
       loadDump(PUBLISH_DUMP_PATH, PUBLISH_DATA_PATH);
 
       // Copying flux data
       copyFluxData();
 
-      console.timeEnd('dump');
       return next();
     }
   }, callback);
@@ -518,48 +514,24 @@ function buildStaticSite(callback) {
 
   const lastBuildStart = Date.now();
 
-  console.time('drop');
-
   return async.series({
 
-    // 1) Cleanup
-    droppingLastBuild(next) {
-      return async.parallel([
-        async.apply(rimraf, path.join(SITE_PATH, 'public')),
-        async.apply(rimraf, path.join(SITE_PATH, '.cache'))
-      ], next);
-    },
-
-    // 2) Preparing data
+    // Preparing data
     preparingData(next) {
-      console.timeEnd('drop');
       changeBuildStatus('preparing');
 
       return prepareDataForBuild(next);
     },
 
-    // 2) Building static site
+    // Building static site
     building(next) {
-      console.time('build');
       changeBuildStatus('building');
 
-      console.log('BUILD SHOULD BE BACK SOON!');
-      return process.nextTick(next);
-
-      // const env = Object.assign({}, process.env);
-      // env.BUILD_CONTEXT = 'prod';
-      // env.ROOT_PATH = path.resolve(__dirname, '..');
-      // env.DATA_FOLDER = PUBLISH_DATA_PATH;
-      // env.GOOGLE_ANALYTICS_ID = config.get('googleAnalyticsId');
-      // env.NODE_ENV = 'production';
-
-      // return exec('gatsby build > /dev/null', {cwd: SITE_PATH, env}, next);
+      return wilsonBuild(DATA_PATH, WBUILD_PATH, {skipDrafts: true}, next);
     },
 
-    // 3) Deploying using rsync
+    // Deploying using rsync
     rsync(next) {
-      console.timeEnd('build');
-      console.time('rsync');
       changeBuildStatus('rsync');
 
       const rsyncConfig = config.get('rsync');
@@ -569,7 +541,7 @@ function buildStaticSite(callback) {
         return next();
       }
 
-      const built = path.join(SITE_PATH, 'public', '/');
+      const built = path.join(WBUILD_PATH, '/');
 
       const command = [
         `RSYNC_PASSWORD=${rsyncConfig.password}`,
@@ -579,7 +551,6 @@ function buildStaticSite(callback) {
       return exec(command, next);
     }
   }, err => {
-    console.timeEnd('rsync');
     TRANSIENT_DATA.lastBuildStart = lastBuildStart;
     TRANSIENT_DATA.lastBuildEnd = Date.now();
     changeBuildStatus('free');
@@ -607,10 +578,10 @@ function buildTask() {
   return true;
 }
 
-// const cron = new CronJob(BUILD_CONF.cron, buildTask);
+const cron = new CronJob(BUILD_CONF.cron, buildTask);
 
-// TODO: reactivate CRON
-// cron.start();
+if (ARGV.cron)
+  cron.start();
 
 // Need to update build
 app.get('/build', (req, res) => {

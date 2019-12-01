@@ -10,6 +10,7 @@ const {collectItemsWithCover} = require('./utils.js');
 
 // TODO: upgradeDatabase when data changes
 // TODO: live reload
+// TODO: rewire preview & docker
 // TODO: compile covers with assets and cache with object-hash
 class Preview {
   constructor(inputDir, pathPrefix, lowdbs, options) {

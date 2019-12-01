@@ -2,12 +2,14 @@ require('./require-hook.js');
 
 const path = require('path');
 const sass = require('node-sass');
+const chokidar = require('chokidar');
 const Database = require('./database.js');
 const Website = require('./website.js');
 const {renderPage} = require('./render.js');
 const {collectItemsWithCover} = require('./utils.js');
 
 // TODO: upgradeDatabase when data changes
+// TODO: live reload
 // TODO: compile covers with assets and cache with object-hash
 class Preview {
   constructor(inputDir, pathPrefix, lowdbs, options) {
@@ -21,6 +23,14 @@ class Preview {
 
     this.stylesheet = null;
     this.coverBuffers = {};
+
+    this.watchDatabase();
+  }
+
+  watchDatabase() {
+    chokidar
+      .watch(path.join(this.inputDir, '*.json'), {awaitWriteFinish: true})
+      .on('change', () => this.upgradeDatabase());
   }
 
   compileAssets(callback) {

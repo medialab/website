@@ -1,42 +1,63 @@
-const stableJson = require('json-stable-stringify'),
-      config = require('config-secrets'),
+const async = require('async'),
+      stableJson = require('json-stable-stringify'),
       path = require('path'),
       fs = require('fs-extra');
 
-const DATA_PATH = config.get('data');
+const apply = async.apply;
 
 const models = require('../specs/models.json');
 
-// TODO: make async
-module.exports = function dump(outputDir) {
-  fs.ensureDirSync(outputDir);
+module.exports = function dump(inputDir, outputDir, callback) {
 
-  fs.copySync(path.join(DATA_PATH, 'assets'), path.join(outputDir, 'assets'));
+  function dumpModel(model, next) {
+    return async.series([
+      apply(fs.remove, path.join(outputDir, model)),
+      apply(fs.ensureDir, path.join(outputDir, model)),
+      nextStep => {
+        return fs.readJSON(path.join(inputDir, `${model}.json`), (err, data) => {
+          if (err)
+            return nextStep(err);
 
-  const settings = fs.readJsonSync(path.join(DATA_PATH, 'settings.json'));
+          const list = data[model];
 
-  fs.writeFileSync(
-    path.join(outputDir, 'settings.json'),
-    stableJson(settings, {space: 2})
-  );
+          if (!list)
+            return nextStep();
 
-  models.forEach(model => {
-    fs.removeSync(path.join(outputDir, model));
-    fs.ensureDirSync(path.join(outputDir, model));
+          return async.eachLimit(list, 10, (item, nextItem) => {
+            return fs.writeFile(
+              path.join(outputDir, model, `${item.id}.json`),
+              stableJson(item, {space: 2}),
+              nextItem
+            );
+          }, nextStep);
+        });
+      }
+    ], next);
+  }
 
-    const data = fs.readJsonSync(path.join(DATA_PATH, `${model}.json`), 'utf-8');
+  return async.series([
 
-    const list = data[model];
+    // Scaffolding
+    apply(fs.ensureDir, outputDir),
+    apply(fs.copy, path.join(inputDir, 'assets'), path.join(outputDir, 'assets')),
 
-    if (!list)
-      return;
+    // Settings
+    next => {
+      return fs.readJSON(path.join(inputDir, 'settings.json'), (err, settings) => {
+        if (err)
+          return next(err);
 
-    list.forEach(item => {
-      fs.writeFileSync(
-        path.join(outputDir, model, `${item.id}.json`),
-        stableJson(item, {space: 2})
-      );
-    });
-  });
+        return fs.writeFile(
+          path.join(outputDir, 'settings.json'),
+          stableJson(settings, {space: 2}),
+          next
+        );
+      });
+    },
 
+    // Dump items
+    next => {
+      return async.each(models, dumpModel, next);
+    }
+  ], callback);
 };

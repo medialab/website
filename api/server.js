@@ -659,9 +659,7 @@ function deploy(callback) {
     dump(next) {
 
       changeDeployStatus('dumping');
-      dump(DUMP_PATH);
-
-      process.nextTick(next);
+      return dump(DATA_PATH, DUMP_PATH, next);
     },
 
     // 6) Committing the dump

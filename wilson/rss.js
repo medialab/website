@@ -1,4 +1,4 @@
-const get = require('lodash/get');
+const get = require('lodash/fp/get');
 
 const FEED_MAX_NUMBER_OF_ITEMS = 50;
 
@@ -41,7 +41,7 @@ const createComparator = prop => (a, b) => {
   b = get(prop, b);
 
   if (typeof a === 'undefined')
-    a = -Infinity;
+    a = -Infinity;createComparator
 
   if (typeof b === 'undefined')
     b = -Infinity;

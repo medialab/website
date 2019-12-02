@@ -12,6 +12,7 @@ exports.permalinkToDiskPath = function(outputDir, permalink) {
   return path.join.apply(null, [outputDir].concat(splitted));
 };
 
+// TODO: this is slow. We could use proper reducers instead at website's level
 exports.collectItemsWithCover = function(data, maxDepth = 1) {
   const ids = new Set();
   const items = [];

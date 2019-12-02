@@ -90,7 +90,7 @@
     "cron": "^1.7.2",
     "date-fns": "^2.6.0",
     "express": "^4.17.1",
-    "express-fileupload": "^1.1.5",
+    "express-fileupload": "^1.1.6",
     "express-session": "^1.17.0",
     "fs-extra": "^8.1.0",
     "graphology": "^0.14.1",

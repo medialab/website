@@ -1,13 +1,10 @@
 /* eslint no-console: 0 */
 const async = require('async'),
-      config = require('config-secrets'),
       path = require('path'),
       fs = require('fs-extra'),
       Ajv = require('ajv');
 
 const apply = async.apply;
-
-const DATA_PATH = config.get('data');
 
 const models = require('../specs/models.json');
 
@@ -19,8 +16,6 @@ models.forEach(model => {
 });
 
 module.exports = function load(inputDir, outputDir, callback) {
-  if (!outputDir)
-    outputDir = DATA_PATH;
 
   function collectModel(model, p, next) {
     const items = [];

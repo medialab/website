@@ -14,6 +14,7 @@ exports.permalinkToDiskPath = function(outputDir, permalink) {
 
 exports.collectItemsWithCover = function(data, maxDepth = 1) {
   const ids = new Set();
+  const items = [];
   const done = new Set();
 
   function recurse(item, depth = 0) {
@@ -32,8 +33,10 @@ exports.collectItemsWithCover = function(data, maxDepth = 1) {
 
       done.add(item.id);
 
-      if (item.cover && !ids.has(item.id))
+      if (item.cover && !ids.has(item.id)) {
         ids.add(item.id);
+        items.push(item);
+      }
     }
 
     for (const k in item) {
@@ -46,5 +49,5 @@ exports.collectItemsWithCover = function(data, maxDepth = 1) {
 
   recurse(data);
 
-  return ids;
+  return items;
 };

@@ -1,18 +1,18 @@
 require('./require-hook.js');
 
 const path = require('path');
+const debounce = require('lodash/debounce');
 const sass = require('node-sass');
 const chokidar = require('chokidar');
 const Database = require('./database.js');
 const Website = require('./website.js');
 const EventEmitter = require('events').EventEmitter;
+const objectHash = require('object-hash');
 const {renderPage} = require('./render.js');
 const {collectItemsWithCover} = require('./utils.js');
 
 // TODO: rewire docker containers
 // TODO: precompile all covers on startup
-// TODO: compile covers with assets and cache with object-hash
-// TODO: debounce upgrade
 class Preview extends EventEmitter {
   constructor(inputDir, pathPrefix, lowdbs, options) {
     super();
@@ -30,14 +30,31 @@ class Preview extends EventEmitter {
 
     this.stylesheet = null;
     this.coverBuffers = {};
+    this.coverCache = {};
 
     this.watchDatabase();
+
+    this.debouncedUpgradeDatabase = debounce(this.upgradeDatabase.bind(this), 500);
+  }
+
+  testCoverCache(item) {
+    const hash = objectHash(item.cover);
+
+    if (item.id in this.coverCache) {
+      const currentHash = this.coverCache[item.id];
+
+      if (hash === currentHash)
+        return true;
+    }
+
+    this.coverCache[item.id] = hash;
+    return false;
   }
 
   watchDatabase() {
     chokidar
       .watch(path.join(this.inputDir, '*.json'), {awaitWriteFinish: true})
-      .on('change', () => this.upgradeDatabase());
+      .on('change', () => this.debouncedUpgradeDatabase());
   }
 
   compileAssets(callback) {
@@ -54,12 +71,20 @@ class Preview extends EventEmitter {
   }
 
   upgradeDatabase() {
+    const alreadyComputedCovers = {};
+
+    for (const id in this.coverCache)
+      alreadyComputedCovers[id] = this.db.get(id).coverImage;
+
     this.db = Database.fromLowDB(
       this.inputDir,
       this.lowdbs,
       {pathPrefix: this.pathPrefix}
     );
     this.website = new Website(this.db);
+
+    for (const id in alreadyComputedCovers)
+      this.db.get(id).coverImage = alreadyComputedCovers[id];
 
     this.emit('upgraded');
   }
@@ -80,13 +105,21 @@ class Preview extends EventEmitter {
 
     const {lang, page} = result;
 
-    const itemsWithCover = collectItemsWithCover(page.data);
+    const itemsWithCover = collectItemsWithCover(page.data)
+      .filter(item => {
+        return !this.testCoverCache(item);
+      });
+
+    const only = new Set(itemsWithCover.map(item => item.id));
+
+    if (only.size)
+      console.log('Recomputing preview covers for', only);
 
     this.db.processCovers(
       this.inputDir,
       '',
       this.pathPrefix,
-      {outputBuffers: true, only: itemsWithCover, skipRaster: true},
+      {outputBuffers: true, only, skipRaster: true},
       (err, bufferIndex) => {
         if (err)
           return callback(err);

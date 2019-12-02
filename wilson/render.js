@@ -125,14 +125,10 @@ exports.renderPage = function(pathPrefix, permalink, template, pageContext, data
   let content = renderToStaticMarkup(page);
   const helmet = Helmet.renderStatic();
 
-  let scripts = options.scripts;
+  let scripts = (options.scripts || []).slice();
 
-  if (options.livereloadUrl) {
-    if (!scripts)
-      scripts = [];
-
+  if (options.livereloadUrl)
     scripts.push('livereload');
-  }
 
   content = wrap(
     pathPrefix,

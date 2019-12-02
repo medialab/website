@@ -496,12 +496,15 @@ function prepareDataForBuild(callback) {
 
     // Building data into shape
     load(next) {
-      loadDump(PUBLISH_DUMP_PATH, PUBLISH_DATA_PATH);
+      loadDump(PUBLISH_DUMP_PATH, PUBLISH_DATA_PATH, err => {
+        if (err)
+          return next(err);
 
-      // Copying flux data
-      copyFluxData();
+        // Copying flux data
+        copyFluxData();
 
-      return next();
+        return next();
+      });
     }
   }, callback);
 }

@@ -12,7 +12,6 @@ const {renderPage} = require('./render.js');
 const {collectItemsWithCover} = require('./utils.js');
 
 // TODO: rewire docker containers
-// TODO: precompile all covers on startup
 class Preview extends EventEmitter {
   constructor(inputDir, pathPrefix, lowdbs, options) {
     super();
@@ -55,6 +54,28 @@ class Preview extends EventEmitter {
     chokidar
       .watch(path.join(this.inputDir, '*.json'), {awaitWriteFinish: true})
       .on('change', () => this.debouncedUpgradeDatabase());
+  }
+
+  processCovers(callback) {
+    return this.db.processCovers(
+      this.inputDir,
+      '',
+      this.pathPrefix,
+      {outputBuffers: true, skipRaster: true},
+      (err, bufferIndex) => {
+        if (err)
+          return callback(err);
+
+        Object.assign(this.coverBuffers, bufferIndex);
+
+        this.db.forEach(item => {
+          if (item.cover)
+            this.testCoverCache(item);
+        });
+
+        return callback();
+      }
+    );
   }
 
   compileAssets(callback) {
@@ -144,7 +165,8 @@ class Preview extends EventEmitter {
         Object.assign(this.coverBuffers, bufferIndex);
 
         return callback(null, {html});
-      });
+      }
+    );
   }
 }
 

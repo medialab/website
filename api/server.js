@@ -714,18 +714,40 @@ app.get('/redirects.nginx.conf', (req, res) => {
 });
 
 // Listening
-function startServer() {
-
+function startServer(callback) {
   console.log('Spawning preview...');
-  PREVIEW.compileAssets(err => {
-    if (err) {
-      console.error(err);
-      process.exit(1);
+
+  return async.parallel([
+    next => {
+      console.log('Compiling assets...');
+      console.time('assets');
+      PREVIEW.compileAssets(err => {
+        console.timeEnd('assets');
+        return next(err);
+      });
+    },
+    next => {
+      console.log('Precomputing covers...');
+      console.time('covers');
+      PREVIEW.processCovers(err => {
+        console.timeEnd('covers');
+        return next(err);
+      });
     }
+  ], err => {
+    if (err)
+      return callback(err);
 
     console.log(`Listening on port ${PORT}...`);
     server.listen(PORT);
+
+    return process.nextTick(callback);
   });
 }
 
-startServer();
+startServer(err => {
+  if (err) {
+    console.error(err);
+    process.exit(1);
+  }
+});

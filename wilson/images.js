@@ -92,7 +92,7 @@ exports.buildCover = function buildCover(
           if (err)
             return callback(err);
 
-          data.raster = {
+          data.processed.raster = {
             ...raster,
             url: socialUrl
           };

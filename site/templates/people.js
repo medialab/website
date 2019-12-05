@@ -17,7 +17,7 @@ export default function PeopleTemplate({data, pageContext}) {
       lang={pageContext.lang}
       className="page-people body-page"
       permalinks={pageContext.permalinks}>
-      {pageContext.linkToAdmin && <EditInAdmin draft={person.draft} linkToAdmin={pageContext.linkToAdmin} />}
+      {pageContext.linkToAdmin && <EditInAdmin item={person} linkToAdmin={pageContext.linkToAdmin} />}
       <PeopleDetail
         lang={pageContext.lang}
         person={person}

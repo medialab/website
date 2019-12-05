@@ -16,7 +16,7 @@ export default function NewsTemplate({data, pageContext}) {
       lang={pageContext.lang}
       className="page-news body-page"
       permalinks={pageContext.permalinks}>
-      {pageContext.linkToAdmin && <EditInAdmin draft={news.draft} linkToAdmin={pageContext.linkToAdmin} />}
+      {pageContext.linkToAdmin && <EditInAdmin item={news} linkToAdmin={pageContext.linkToAdmin} />}
       <NewsDetail
         lang={pageContext.lang}
         news={news}

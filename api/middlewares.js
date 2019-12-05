@@ -4,6 +4,11 @@ const config = require('config-secrets');
 const SUPERUSER = config.get('superuser');
 
 exports.authentication = function(req, res, next) {
+
+  // Preview does not require auth
+  if (req.url.includes('/preview/'))
+    return next();
+
   const user = auth(req);
 
   // HTTP auth bypass

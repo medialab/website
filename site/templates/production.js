@@ -17,7 +17,7 @@ export default function ProductionTemplate({data, pageContext}) {
       lang={pageContext.lang}
       className="page-production body-page"
       permalinks={pageContext.permalinks}>
-      {pageContext.linkToAdmin && <EditInAdmin draft={production.draft} linkToAdmin={pageContext.linkToAdmin} />}
+      {pageContext.linkToAdmin && <EditInAdmin item={production} linkToAdmin={pageContext.linkToAdmin} />}
 
       <ProductionDetail
         lang={pageContext.lang}

@@ -15,7 +15,7 @@ services:
       context: ./
       dockerfile: ./admin/Dockerfile
       args:
-       - API_URL=http://localhost:7000/api/
+       - API_URL=http://localhost:7000/api
     restart: unless-stopped
     links:
       - api

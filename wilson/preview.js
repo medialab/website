@@ -21,15 +21,13 @@ class Preview extends EventEmitter {
     this.lowdbs = lowdbs;
     this.pathPrefix = pathPrefix;
     this.linkToAdmin = options.linkToAdmin || null;
-
-    // TODO: drop default value
-    this.livereloadUrl = options.livereloadUrl || 'http://localhost:3000';
-    this.upgradeDatabase();
+    this.livereloadUrl = options.livereloadUrl || null;
 
     this.stylesheet = null;
     this.coverBuffers = {};
     this.coverCache = {};
 
+    this.upgradeDatabase();
     this.watchDatabase();
 
     this.debouncedUpgradeDatabase = debounce(this.upgradeDatabase.bind(this), 500);

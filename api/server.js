@@ -100,7 +100,10 @@ const ROUTERS = MODELS.concat('settings').map(model => {
 const DBS = {};
 ROUTERS.forEach(({model, router}) => (DBS[model] = router.db));
 
-const PREVIEW = new Preview(DATA_PATH, '/preview', DBS, {linkToAdmin: 'TODO'});
+const PREVIEW = new Preview(DATA_PATH, '/preview', DBS, {
+  linkToAdmin: config.get('adminUrl'),
+  livereloadUrl: config.get('adminUrl')
+});
 
 // json-server init
 const app = jsonServer.create();

@@ -96,13 +96,11 @@ function wrap(pathPrefix, content, helmet, options) {
 }
 
 // TODO: solve Helmet warnings
-// TODO: verify siteUrl + something with prefix
 // TODO: factorize `mainPermalink` in components
 // TODO: easter egg
 // TODO: use classnames for html fallback and such
 // TODO: get rid of HTMLFallback or improve it
-// TODO: js storage buster on first prod release
-// TODO: template cache busting helper
+// TODO: template cache busting helper for DX
 exports.renderPage = function(pathPrefix, permalink, template, pageContext, data, options) {
   assert(typeof template === 'string', 'Template should be a string path.');
 
@@ -129,6 +127,9 @@ exports.renderPage = function(pathPrefix, permalink, template, pageContext, data
 
   if (options.livereloadUrl)
     scripts.push('livereload');
+
+  // TEMP: cache busting Gatsby
+  scripts.push('cache-buster');
 
   content = wrap(
     pathPrefix,

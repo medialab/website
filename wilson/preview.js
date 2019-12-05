@@ -10,7 +10,6 @@ const EventEmitter = require('events').EventEmitter;
 const objectHash = require('object-hash');
 const {renderPage} = require('./render.js');
 
-// TODO: rewire docker containers
 class Preview extends EventEmitter {
   constructor(inputDir, pathPrefix, lowdbs, options) {
     super();

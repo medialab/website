@@ -9,7 +9,6 @@ const Website = require('./website.js');
 const EventEmitter = require('events').EventEmitter;
 const objectHash = require('object-hash');
 const {renderPage} = require('./render.js');
-const {collectItemsWithCover} = require('./utils.js');
 
 // TODO: rewire docker containers
 class Preview extends EventEmitter {
@@ -126,10 +125,14 @@ class Preview extends EventEmitter {
 
     const {lang, page} = result;
 
-    const itemsWithCover = collectItemsWithCover(page.data)
-      .filter(item => {
-        return !this.testCoverCache(item);
-      });
+    let itemsWithCover = [];
+
+    if (page.itemsWithCover)
+      itemsWithCover = page.itemsWithCover(page.data);
+
+    itemsWithCover = itemsWithCover.filter(item => {
+      return !this.testCoverCache(item);
+    });
 
     const only = new Set(itemsWithCover.map(item => item.id));
 

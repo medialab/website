@@ -49,6 +49,11 @@ module.exports = class Website {
         twitter: db.getTwitter(),
         github: db.getGithub(),
         rdv: db.getRdv()
+      },
+      itemsWithCover(data) {
+        return data.grid
+          .concat(data.slider)
+          .filter(item => item.cover);
       }
     });
 
@@ -69,7 +74,13 @@ module.exports = class Website {
         permalinks: item.permalink,
         template: MODEL_TO_DETAIL_TEMPLATE[item.model],
         data: item,
-        scripts: item.model === 'people' ? ['people'] : null
+        scripts: item.model === 'people' ? ['people'] : null,
+        itemsWithCover(data) {
+          if (data.cover)
+            return [data];
+
+          return [];
+        }
       });
     });
 
@@ -81,7 +92,10 @@ module.exports = class Website {
         activities: db.getModel('activities'),
         topActivities: settings.topActivities.map(o => o.id)
       },
-      scripts: ['search', 'activity-listing']
+      scripts: ['search', 'activity-listing'],
+      itemsWithCover(data) {
+        return data.activities.filter(item => item.cover);
+      }
     });
 
     this.pages.push({
@@ -90,7 +104,10 @@ module.exports = class Website {
       data: {
         news: db.getModel('news')
       },
-      scripts: ['search', 'news-listing']
+      scripts: ['search', 'news-listing'],
+      itemsWithCover(data) {
+        return data.news.filter(item => item.cover);
+      }
     });
 
     this.pages.push({
@@ -103,7 +120,10 @@ module.exports = class Website {
         facetedEnums,
         productions: db.getModel('productions')
       },
-      scripts: ['search', 'production-listing']
+      scripts: ['search', 'production-listing'],
+      itemsWithCover(data) {
+        return data.productions.filter(item => item.cover);
+      }
     });
 
     for (const group in enums.productionTypes.groups)
@@ -121,7 +141,10 @@ module.exports = class Website {
           productions: db.getModel('productions')
             .filter(p => p.group === group)
         },
-        scripts: ['search', 'production-listing']
+        scripts: ['search', 'production-listing'],
+        itemsWithCover(data) {
+          return data.productions.filter(item => item.cover);
+        }
       });
 
     this.pages.push({
@@ -130,7 +153,10 @@ module.exports = class Website {
       data: {
         people: shuffle(db.getModel('people'))
       },
-      scripts: ['search']
+      scripts: ['search'],
+      itemsWithCover(data) {
+        return data.people.filter(item => item.cover);
+      }
     });
 
     // Indexing pages

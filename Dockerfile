@@ -22,9 +22,6 @@ ENV NODE_ENV production
 
 RUN apk add --no-cache su-exec util-linux git rsync
 
-ARG STATIC_URL="http://localhost:8000"
-ENV GATSBY_WEBPACK_PUBLICPATH=${STATIC_URL}
-
 COPY --chown=node:node . /website
 # COPY --chown=node:node --from=vips node_modules/sharp /website/site/node_modules/sharp
 WORKDIR /website

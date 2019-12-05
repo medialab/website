@@ -5,10 +5,7 @@ FROM node:8.9.3-alpine AS static_admin
 ENV NODE_ENV production
 
 ARG API_URL=http://localhost:3000
-ARG STATIC_URL=http://localhost:8000
-
 ENV API_URL=${API_URL}
-ENV STATIC_URL=${STATIC_URL}
 
 ADD ./admin /admin
 ADD ./specs /specs
@@ -25,7 +22,10 @@ RUN apk add --no-cache --virtual .build-deps git build-base python \
 
 FROM nginx:alpine
 
-COPY --from=static_admin --chown=nginx:nginx /admin /admin
+RUN mkdir /admin
+
+COPY --from=static_admin --chown=nginx:nginx /admin/build /admin/build
+COPY --from=static_admin --chown=nginx:nginx /admin/index.html /admin/index.html
 
 RUN rm /etc/nginx/conf.d/default.conf
 

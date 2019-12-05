@@ -1,8 +1,8 @@
-/* global STATIC_URL */
+/* global API_URL */
 import React from 'react';
 
 export default function Preview({url}) {
-  const absoluteUrl = `${STATIC_URL}/${url}`;
+  const absoluteUrl = `${API_URL}/preview/${url}`;
 
   return (
     <div>

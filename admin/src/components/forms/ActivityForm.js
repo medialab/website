@@ -1,4 +1,3 @@
-/* global STATIC_URL */
 import React from 'react';
 
 import initializers from '../../../../specs/initializers';

@@ -1,4 +1,4 @@
-/* global STATIC_URL */
+/* global API_URL */
 import React from 'react';
 import {Helmet} from 'react-helmet';
 import {Link} from 'react-router-dom';
@@ -14,7 +14,7 @@ export default function Home() {
       <div className="content">
         <h2 className="title is-4">Bienvenu·e sur le CMS du site du médialab!</h2>
         <p>
-          <a href={STATIC_URL + '/'} target="_blank" rel="noopener noreferrer">
+          <a href={API_URL + '/preview/'} target="_blank" rel="noopener noreferrer">
             Lien vers la preview du site (avec les changements du CMS en live)
           </a>
         </p>

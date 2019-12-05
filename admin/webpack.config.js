@@ -1,4 +1,5 @@
 const path = require('path'),
+      url = require('url'),
       config = require('config'),
       webpack = require('webpack');
 
@@ -13,8 +14,7 @@ module.exports = {
   devtool: 'source-map',
   plugins: [
     new webpack.DefinePlugin({
-      API_URL: JSON.stringify(config.get('apiUrl')),
-      STATIC_URL: JSON.stringify(config.get('staticUrl'))
+      API_URL: JSON.stringify(config.get('apiUrl'))
     })
   ],
   module: {

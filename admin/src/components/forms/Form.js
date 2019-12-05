@@ -1,4 +1,4 @@
-/* global STATIC_URL */
+/* global API_URL */
 /* eslint no-nested-ternary: 0 */
 /* eslint no-alert: 0 */
 /* eslint react/forbid-prop-types: 0 */
@@ -435,7 +435,7 @@ class Form extends Component {
                 frenchEditorContent: this.frenchEditorContent,
                 slug,
                 data,
-                url: !isNew && `${STATIC_URL}/${urls.fr}`,
+                url: !isNew && `${API_URL}/preview/${urls.fr}`,
                 dirty
               })],
               [isFrenchPage, <Preview key="preview" url={urls.fr} />],

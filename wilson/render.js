@@ -71,6 +71,23 @@ function wrap(pathPrefix, content, helmet, options) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     ${cleanHelmetOutput(helmet.title.toString())}
     ${cleanHelmetOutput(helmet.meta.toString())}
+    <link rel="apple-touch-icon" sizes="57x57" href="${pathPrefix}/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="${pathPrefix}/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="${pathPrefix}/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="${pathPrefix}/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="${pathPrefix}/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="${pathPrefix}/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="${pathPrefix}/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="${pathPrefix}/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="${pathPrefix}/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="${pathPrefix}/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="${pathPrefix}/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="${pathPrefix}/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="${pathPrefix}/favicon-16x16.png">
+    <link rel="manifest" href="${pathPrefix}/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="${pathPrefix}/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
     ${cleanHelmetOutput(helmet.link.toString())}
     ${rssTags}
     <link href="${pathPrefix}/font/Bel2/bel2.css" rel="stylesheet">

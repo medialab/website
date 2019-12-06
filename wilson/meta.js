@@ -1,5 +1,5 @@
 // The site's metadata
 module.exports = {
-  title: 'médialab Sciences Po',
+  title: 'médialab SciencesPo',
   siteUrl: 'https://medialab.sciencespo.fr'
 };

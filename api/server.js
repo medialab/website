@@ -252,6 +252,7 @@ app.get('/preview/medialab.css', (req, res) => {
 app.use('/preview/font', express.static(path.join(SITE_SRC_PATH, 'assets', 'font')));
 app.use('/preview/js', express.static(path.join(SITE_SRC_PATH, 'assets', 'js')));
 app.use('/preview/img', express.static(path.join(SITE_SRC_PATH, 'assets', 'images')));
+app.use('/preview/', express.static(path.join(SITE_SRC_PATH, 'assets', 'manifest')));
 
 app.get('/preview/static/*.cover.*', (req, res) => {
   const coverUrl = path.join(config.get('previewPrefix'), req.url.replace(LEADING_SLASH_CLEANER, ''));

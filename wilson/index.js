@@ -80,6 +80,14 @@ function copyAssets(inputDir, outputDir, callback) {
       );
     },
 
+    manifest(next) {
+      return fs.copy(
+        path.join(__dirname, '..', 'site', 'assets', 'manifest'),
+        outputDir,
+        next
+      );
+    },
+
     img(next) {
       const imgDir = path.join(outputDir, 'img');
 

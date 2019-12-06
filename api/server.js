@@ -105,7 +105,7 @@ const PREVIEW = new Preview(
   path.join(config.get('previewPrefix'), 'preview'),
   DBS, {
     linkToAdmin: config.get('adminUrl'),
-    livereloadUrl: config.get('adminUrl')
+    livereloadUrl: path.join(config.get('adminUrl'), config.get('previewPrefix'))
   }
 );
 
@@ -236,6 +236,7 @@ app.post('/upload', (req, res) => {
 
 // Preview
 const PREVIEW_PERMALINK_CLEANER = /^\/preview/;
+const LEADING_SLASH_CLEANER = /^\//;
 
 app.get('/preview/medialab.css', (req, res) => {
   return res
@@ -248,13 +249,14 @@ app.use('/preview/js', express.static(path.join(SITE_SRC_PATH, 'assets', 'js')))
 app.use('/preview/img', express.static(path.join(SITE_SRC_PATH, 'assets', 'images')));
 
 app.get('/preview/static/*.cover.*', (req, res) => {
-  const buffer = PREVIEW.getCoverBuffer(req.url);
+  const coverUrl = path.join(config.get('previewPrefix'), req.url.replace(LEADING_SLASH_CLEANER, ''));
+  const buffer = PREVIEW.getCoverBuffer(coverUrl);
 
   if (!buffer)
     return res.status(404).send('Not Found.');
 
   return res
-    .header('Content-Type', mime.lookup(req.url))
+    .header('Content-Type', mime.lookup(coverUrl))
     .send(buffer);
 });
 

@@ -26,8 +26,8 @@ function templateGoogleAnalytics(id) {
   return GA_TEMPLATE({GOOGLE_ANALYTICS_ID: id});
 }
 
-function templateRssFeedLink(title, path) {
-  return `<link rel="alternate" type="application/rss+xml" title="${title}" href="${path}">`;
+function templateRssFeedLink(title, href) {
+  return `<link rel="alternate" type="application/rss+xml" title="${title}" href="${href}">`;
 }
 
 function wrap(pathPrefix, content, helmet, options) {
@@ -140,7 +140,7 @@ exports.renderPage = function(pathPrefix, permalink, template, pageContext, data
   let content = renderToStaticMarkup(page);
   const helmet = Helmet.renderStatic();
 
-  let scripts = (options.scripts || []).slice();
+  const scripts = (options.scripts || []).slice();
 
   if (options.livereloadUrl)
     scripts.push('livereload');

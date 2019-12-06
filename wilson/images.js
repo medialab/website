@@ -21,7 +21,7 @@ exports.buildCover = function buildCover(
   options,
   callback
 ) {
-  assert(!!item.cover, `wilson/images.buildCover: cannot build cover if item "${item.id}" has none.`)
+  assert(!!item.cover, `wilson/images.buildCover: cannot build cover if item "${item.id}" has none.`);
 
   options = options || {};
 
@@ -91,9 +91,9 @@ exports.buildCover = function buildCover(
           output: path.join(publicPath, socialOutput)
         },
         sharp,
-        (err, raster) => {
-          if (err)
-            return callback(err);
+        (rasterErr, raster) => {
+          if (rasterErr)
+            return callback(rasterErr);
 
           data.processed.raster = {
             ...raster,
@@ -107,7 +107,7 @@ exports.buildCover = function buildCover(
   }
 
   // Cover does not need to be processed (e.g. team portraits)
-  const portrait =  img()
+  const portrait = img()
     .resize(COVER_RESIZE);
 
   if (options.outputBuffers)

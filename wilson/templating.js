@@ -1,5 +1,4 @@
 const cheerio = require('cheerio');
-const path = require('path');
 const Entities = require('html-entities').AllHtmlEntities;
 
 const entities = new Entities();

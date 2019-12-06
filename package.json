@@ -15,7 +15,7 @@
     "flux": "node ./scripts/flux-github.js && node ./scripts/flux-twitter.js",
     "hydrate": "rm -rf data/* && mkdir -p data/assets && touch data/assets/dummy && cp specs/samples/*.json data",
     "install:admin": "cd admin && npm i",
-    "lint": "eslint api scripts site/**/*.js admin/src",
+    "lint": "eslint api scripts site/**/*.js admin/src wilson",
     "load": "node ./scripts/load.js",
     "postinstall": "npm run install:admin",
     "reinstall": "rm -rf ./admin/node_modules && rm -rf ./node_modules && npm i",

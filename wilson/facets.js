@@ -12,7 +12,7 @@ const facetedEnums = {
         fr: e.fr
       },
       permalink: {
-        en:  `${permalinks.productions.en}/${group}`,
+        en: `${permalinks.productions.en}/${group}`,
         fr: `${permalinks.productions.fr}/${group}`
       },
       values: e.values.map(v => {

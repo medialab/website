@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 const async = require('async');
 const assert = require('assert');
 const groupBy = require('lodash/groupBy');
@@ -83,7 +84,7 @@ class Database {
 
         for (const k in forward) {
           if (!(k in item))
-            continue
+            continue;
 
           item[k].forEach(target => {
             if (!this.graph.hasNode(target)) {
@@ -132,7 +133,7 @@ class Database {
         attr[SELF_LINKS[attr.model]] = this.graph
           .undirectedNeighbors(node)
           .map(neighbor => {
-            return this.graph.getNodeAttributes(neighbor)
+            return this.graph.getNodeAttributes(neighbor);
           });
       }
 

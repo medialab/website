@@ -41,7 +41,7 @@ const createComparator = prop => (a, b) => {
   b = get(prop, b);
 
   if (typeof a === 'undefined')
-    a = -Infinity;createComparator
+    a = -Infinity;
 
   if (typeof b === 'undefined')
     b = -Infinity;
@@ -56,7 +56,7 @@ const createComparator = prop => (a, b) => {
 };
 
 function cdata(string) {
-  return `<![CDATA[${string.trim()}]]>`
+  return `<![CDATA[${string.trim()}]]>`;
 }
 
 const AMP = /&/g;
@@ -137,7 +137,7 @@ const REDUCERS = {
       content: languageFallback(lang, item.content, lang)
     };
   }
-}
+};
 
 const FEEDS = [
 
@@ -268,8 +268,8 @@ function createRssFeeds(siteUrl, pathPrefix, db) {
         rss: createFeed('fr', feed),
         resolvedPath: resolve(feed.fr.path)
       }
-    }
+    };
   });
-};
+}
 
 module.exports = createRssFeeds;

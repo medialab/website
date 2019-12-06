@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 require('./require-hook.js');
 
 // Dependencies
@@ -199,7 +200,7 @@ function buildI18nPage(
   writeI18nPermalinkToDisk(outputDir, versions, permalinks, callback);
 }
 
-exports.build = function build(inputDir, outputDir, options, callback) {
+exports.build = function build(inputDir, outputDir, options, callback) {
   options = options || {};
   const pathPrefix = options.pathPrefix || '';
   const skipDrafts = options.skipDrafts || false;
@@ -272,8 +273,8 @@ exports.build = function build(inputDir, outputDir, options, callback) {
           page,
           {rssFeeds, linkToAdmin},
           nextPage
-        )
+        );
       }, next);
     }
   }, callback);
-}
+};

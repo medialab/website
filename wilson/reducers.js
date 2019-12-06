@@ -134,7 +134,7 @@ exports.github = function reduceGithub(record) {
           fr: `${permalinks.people.fr}/${author.slug}`,
           en: `${permalinks.people.en}/${author.slug}`
         }
-      }
+      };
     })
   };
 };

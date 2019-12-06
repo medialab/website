@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 require('./require-hook.js');
 
 const path = require('path');
@@ -46,7 +47,7 @@ class Preview extends EventEmitter {
     return false;
   }
 
-  watchDatabase() {
+  watchDatabase() {
     chokidar
       .watch(path.join(this.inputDir, '*.json'), {awaitWriteFinish: true})
       .on('change', () => this.debouncedUpgradeDatabase());

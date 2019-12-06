@@ -1,6 +1,7 @@
 /* eslint no-console: 0 */
 const async = require('async');
 const assert = require('assert');
+const cloneDeep = require('lodash/cloneDeep');
 const groupBy = require('lodash/groupBy');
 const Graph = require('graphology').Graph;
 const path = require('path');
@@ -300,11 +301,11 @@ Database.fromLowDB = function(inputDir, lowdbs, options) {
   models.forEach(model => {
     const lowdb = lowdbs[model];
     lowdb.read();
-    store[model] = lowdb.getState()[model];
+    store[model] = cloneDeep(lowdb.getState()[model]);
   });
 
   lowdbs.settings.read();
-  store.settings = lowdbs.settings.getState().settings;
+  store.settings = cloneDeep(lowdbs.settings.getState().settings);
 
   Object.assign(store, loadFluxFromDisk(inputDir));
 

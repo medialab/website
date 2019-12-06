@@ -62,6 +62,8 @@ npm run dev
   node api/server.js --no-cron
   # 2. En désactivant l'authentification pour prototyper rapidement:
   node api/server.js --bypass-auth
+  # 3/ En désactivant le précalcul des covers, pour démarrer plus vite:
+  node api/server.js --no-precompute-covers
 
 # Dumper la base de données:
 npm run dump

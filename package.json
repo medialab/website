@@ -21,6 +21,7 @@
     "reinstall": "rm -rf ./admin/node_modules && rm -rf ./node_modules && npm i",
     "serve": "npm run build && http-server -p 8000 ./wbuild -o",
     "start": "node api/server.js",
+    "start:fast": "node api/server.js --bypass-auth --no-cron --no-precompute-covers",
     "style:scss": "prettier --write --parser scss 'site/assets/scss/**/*.scss'",
     "upgrade:prod:checks": "npm run build",
     "upgrade:pprd": "git checkout staging && git pull && git merge master && git push && git checkout master",

@@ -46,6 +46,7 @@ const config = require('config-secrets');
 const ARGV = require('yargs')
   .option('--bypass-auth', {type: 'boolean', default: false})
   .option('--cron', {type: 'boolean', default: true})
+  .option('--precompute-covers', {type: 'boolean', default: true})
   .argv;
 
 const PORT = config.get('port');
@@ -289,6 +290,7 @@ const MIGRATION_SCHEMES = {
   'clean-html-metadata': require('./migrations/clean-html-metadata.js')(ASSETS_PATH),
   'clean-unused-assets': require('./migrations/clean-unused-assets.js')(ASSETS_PATH),
   'drop-important': require('./migrations/drop-important.js'),
+  'drop-inexisting-links': require('./migrations/drop-inexisting-links.js'),
   'drop-unpublished-spire-notices': require('./migrations/drop-unpublished-spire-notices.js'),
   'fix-asset-names': require('./migrations/fix-asset-names.js'),
   // 'fix-dates': require('./migrations/fix-dates.js'),
@@ -744,6 +746,10 @@ function startServer(callback) {
       });
     },
     next => {
+
+      if (!ARGV.precomputeCovers)
+        return process.nextTick(next);
+
       console.log('Precomputing covers...');
       console.time('covers');
       PREVIEW.processCovers(err => {

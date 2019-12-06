@@ -311,4 +311,8 @@ Database.fromLowDB = function(inputDir, lowdbs, options) {
   return new Database(store, options);
 };
 
+Database.FORWARD_LINKS = FORWARD_LINKS;
+Database.BACKWARD_LINKS = BACKWARD_LINKS;
+Database.SELF_LINKS = SELF_LINKS;
+
 module.exports = Database;

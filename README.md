@@ -48,7 +48,7 @@ npm run dev
 ### Récapitulatif des ports utilisés en développement
 
 * [`localhost:3000`](http://localhost:3000): Serveur d'API du CMS.
-* [`localhost:3000/preview/](http://localhost:3000/preview/): Preview du site statique.
+* [`localhost:3000/preview/`](http://localhost:3000/preview/): Preview du site statique.
 * [`localhost:7000`](http://localhost:7000): Client du CMS (admin).
 
 ### Commandes

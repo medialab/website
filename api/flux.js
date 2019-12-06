@@ -159,19 +159,18 @@ const TWITTER_CLIENT = new Twitter({
 
 // Helpers
 function resolveTweetUrls(tweet, html = false) {
-  const shortenUrl = url => url.replace(/https?:\/\/(www.)?/, '').slice(0, 20) + '…';
-  const ahref = url => `<a href="${url}" target="_blank" rel="noopener">${shortenUrl(url)}</a>`;
+  const ahref = url, text => `<a href="${url}" target="_blank" rel="noopener">${text}</a>`;
   let fullText = tweet.full_text;
 
   if (tweet.entities && tweet.entities.urls) {
-    tweet.entities.urls.forEach(({url, expanded_url}) => {
-      fullText = fullText.replace(url, html ? ahref(expanded_url) : expanded_url);
+    tweet.entities.urls.forEach(({url, expanded_url, display_url}) => {
+      fullText = fullText.replace(url, html ? ahref(expanded_url, display_url) : display_url);
     });
   }
 
   if (tweet.extended_entities && tweet.extended_entities.media) {
-    tweet.extended_entities.media.forEach(({url, expanded_url}) => {
-      fullText = fullText.replace(url, html ? ahref(expanded_url) : expanded_url);
+    tweet.extended_entities.media.forEach(({url, expanded_url, display_url}) => {
+      fullText = fullText.replace(url, html ? ahref(expanded_url, display_url) : display_url);
     });
   }
   return fullText;

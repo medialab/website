@@ -102,7 +102,7 @@ ROUTERS.forEach(({model, router}) => (DBS[model] = router.db));
 
 const PREVIEW = new Preview(
   DATA_PATH,
-  url.resolve(config.get('previewPrefix'), 'preview'),
+  path.join(config.get('previewPrefix'), 'preview'),
   DBS, {
     linkToAdmin: config.get('adminUrl'),
     livereloadUrl: config.get('adminUrl')
@@ -519,6 +519,7 @@ function prepareDataForBuild(callback) {
 // Build logic
 function buildStaticSite(callback) {
   console.log('Building site...');
+  console.time('build');
 
   changeBuildStatus('cleaning');
 
@@ -564,6 +565,7 @@ function buildStaticSite(callback) {
     TRANSIENT_DATA.lastBuildStart = lastBuildStart;
     TRANSIENT_DATA.lastBuildEnd = Date.now();
     changeBuildStatus('free');
+    console.timeEnd('build');
     return callback(err);
   });
 }

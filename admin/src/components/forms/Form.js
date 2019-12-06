@@ -474,7 +474,7 @@ class Form extends Component {
               <div className="level-right">
                 <div className="field is-grouped">
                   {!isNew && (
-                    <React.Fragment>
+                    <>
                       <div className="field-label is-normal">
                         <p className={cls(validationError && 'has-text-grey')}>Preview {pageLabel} page:</p>
                       </div>
@@ -490,8 +490,8 @@ class Form extends Component {
                           {...previewPropsFilter('preview-en')}
                           onClick={this.toggleEnglishPreview}>English</Button>
                       </div>
-                    </React.Fragment>
-                    )}
+                    </>
+                  )}
                 </div>
               </div>
             </div>

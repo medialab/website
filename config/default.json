@@ -23,6 +23,7 @@
   },
   "googleAnalyticsId": "UA-XXXXXXXX-Y",
   "adminUrl": "http://localhost:7000",
+  "previewPrefix": "/",
   "superuser": {
     "username": "médialab",
     "password": "delaballe"

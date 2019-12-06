@@ -26,7 +26,7 @@ npm run reinstall
 * `docs`: divers fichiers de documentation liés au projet.
 * `prototyping`: dossier contenant le prototype de design du site et gardé pour raisons historiques.
 * `scripts`: scripts divers de gestion de données et/ou de maintenance du serveur.
-* `site`: dossier contenant les sources du site statique en [GatsbyJS](https://www.gatsbyjs.org/).
+* `site`: dossier contenant le templating du site statique.
 * `specs`: dossier contenant de nombreux fichiers de configuration et schémas utilisés par toutes les composantes du site (statique et CMS).
 
 *Dossiers techniques*
@@ -48,8 +48,8 @@ npm run dev
 ### Récapitulatif des ports utilisés en développement
 
 * [`localhost:3000`](http://localhost:3000): Serveur d'API du CMS.
+* [`localhost:3000/preview/](http://localhost:3000/preview/): Preview du site statique.
 * [`localhost:7000`](http://localhost:7000): Client du CMS (admin).
-* [`localhost:8000`](http://localhost:8000): Site statique.
 
 ### Commandes
 
@@ -58,8 +58,8 @@ npm run dev
 npm run dev
 
 # Lancer uniquement le serveur d'api avec des options utiles au dev:
-  # 1. En désactivant le spawn de gatsby pour aller plus vite:
-  node api/server.js --no-gatsby
+  # 1. En désactivant le cron qui builde le site régulièrement:
+  node api/server.js --no-cron
   # 2. En désactivant l'authentification pour prototyper rapidement:
   node api/server.js --bypass-auth
 
@@ -98,9 +98,3 @@ Les données sont ensuite servies via un serveur [express](https://expressjs.com
 ### Site statique
 
 [Documentation dédiée](site/README.md)
-
-### Troubleshooting
-
-**Le site statique ne se lance pas à cause d'erreurs de cache.**
-
-> Ceci est dû à une invalidation du cache de gatsby. Lancer `npm run clean` à la racine du projet ou dans `site` devrait corriger le problème.

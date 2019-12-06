@@ -159,7 +159,8 @@ const TWITTER_CLIENT = new Twitter({
 
 // Helpers
 function resolveTweetUrls(tweet, html = false) {
-  const ahref = url, text => `<a href="${url}" target="_blank" rel="noopener">${text}</a>`;
+  const ahref = (url, text) => `<a href="${url}" target="_blank" rel="noopener">${text}</a>`;
+
   let fullText = tweet.full_text;
 
   if (tweet.entities && tweet.entities.urls) {
@@ -177,14 +178,15 @@ function resolveTweetUrls(tweet, html = false) {
 }
 
 function convertTweetTextToHtml(tweet) {
-  var tweet_text = resolveTweetUrls(tweet, true);
-  if (tweet.entities.user_mentions.length) {
-    tweet_text = tweet_text.replace(new RegExp(`(?:@(${tweet.entities.user_mentions.map(m => m.screen_name).join('|')}))`, 'gi'), '<a href="https://twitter.com/$1" class="mention" target="_blank" rel="noopener">$&</a>');
-  }
-  if (tweet.entities.hashtags.length) {
-    tweet_text = tweet_text.replace(new RegExp(`(?:#(${tweet.entities.hashtags.map(h => h.text).join('|')}))`, 'gi'), '<a href="https://twitter.com/hashtag/$1" class="hashtag" target="_blank" rel="noopener">$&</a>');
-  }
-  return tweet_text;
+  let tweetText = resolveTweetUrls(tweet, true);
+
+  if (tweet.entities.user_mentions.length)
+    tweetText = tweetText.replace(new RegExp(`(?:@(${tweet.entities.user_mentions.map(m => m.screen_name).join('|')}))`, 'gi'), '<a href="https://twitter.com/$1" class="mention" target="_blank" rel="noopener">$&</a>');
+
+  if (tweet.entities.hashtags.length)
+    tweetText = tweetText.replace(new RegExp(`(?:#(${tweet.entities.hashtags.map(h => h.text).join('|')}))`, 'gi'), '<a href="https://twitter.com/hashtag/$1" class="hashtag" target="_blank" rel="noopener">$&</a>');
+
+  return tweetText;
 }
 
 // Function retrieving Twitter events and formatting them into our flux

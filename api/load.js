@@ -20,9 +20,9 @@ module.exports = function load(inputDir, outputDir, callback) {
   function collectModel(model, p, next) {
     const items = [];
 
-    return fs.readdir(p, (err, files) => {
-      if (err)
-        return next(err);
+    return fs.readdir(p, (dirErr, files) => {
+      if (dirErr)
+        return next(dirErr);
 
       return async.eachLimit(files, 10, (f, nextFile) => {
 

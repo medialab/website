@@ -21,6 +21,7 @@ FROM node:10.12.0-alpine
 ENV NODE_ENV production
 ENV BABEL_CACHE_PATH /website
 ENV BABEL_DISABLE_CACHE 1
+ENV DISABLE_SHARP_CACHE 1
 
 RUN apk add --no-cache su-exec util-linux git rsync
 

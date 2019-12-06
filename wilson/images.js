@@ -4,6 +4,9 @@ const sharp = require('sharp');
 const path = require('path');
 const {sharpToString, imgToProcessedPng} = require('../specs/processing.js');
 
+if (process.env.DISABLE_SHARP_CACHE)
+  sharp.cache(false);
+
 // Typical cover resize for people portraits
 const COVER_RESIZE = {
   width: 300 * 2,

@@ -19,6 +19,8 @@
 FROM node:10.12.0-alpine
 
 ENV NODE_ENV production
+ENV BABEL_CACHE_PATH /website
+ENV BABEL_DISABLE_CACHE 1
 
 RUN apk add --no-cache su-exec util-linux git rsync
 
@@ -29,11 +31,8 @@ WORKDIR /website
 RUN apk add vips fftw --no-cache \
       --repository https://alpine.global.ssl.fastly.net/alpine/edge/community/ \
       --repository https://alpine.global.ssl.fastly.net/alpine/edge/main/ \
-    && npm ci --quiet --no-audit --ignore-scripts \
-    && ./node_modules/.bin/gatsby telemetry --disable \
-    && cd site \
     && npm ci --quiet --no-audit \
-    && rm -fr /root/.npm /root/.node-gyp
+    && rm -fr /root/.npm /root/.node-gyp /root/.config /usr/lib/node_modules
 
 VOLUME /website/data
 

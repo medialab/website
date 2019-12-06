@@ -26,6 +26,7 @@ RUN mkdir /admin
 
 COPY --from=static_admin --chown=nginx:nginx /admin/build /admin/build
 COPY --from=static_admin --chown=nginx:nginx /admin/index.html /admin/index.html
+COPY --from=static_admin --chown=nginx:nginx /admin/docker-cmd.sh /admin/docker-cmd.sh
 
 RUN rm /etc/nginx/conf.d/default.conf
 

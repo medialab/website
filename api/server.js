@@ -100,12 +100,17 @@ const ROUTERS = MODELS.concat('settings').map(model => {
 const DBS = {};
 ROUTERS.forEach(({model, router}) => (DBS[model] = router.db));
 
+const LIVERELOAD_URL = path.join(
+  config.get('previewBase') || config.get('adminUrl'),
+  config.get('previewPrefix')
+);
+
 const PREVIEW = new Preview(
   DATA_PATH,
   path.join(config.get('previewPrefix'), 'preview'),
   DBS, {
     linkToAdmin: config.get('adminUrl'),
-    livereloadUrl: path.join(config.get('adminUrl'), config.get('previewPrefix'))
+    livereloadUrl: LIVERELOAD_URL
   }
 );
 

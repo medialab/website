@@ -23,6 +23,7 @@
   },
   "googleAnalyticsId": "UA-XXXXXXXX-Y",
   "adminUrl": "http://localhost:7000",
+  "previewBase": "http://localhost:3000",
   "previewPrefix": "/",
   "superuser": {
     "username": "médialab",

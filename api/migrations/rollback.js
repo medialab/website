@@ -1,27 +1,33 @@
+const async = require('async');
 const rimraf = require('rimraf');
 const simpleGit = require('simple-git');
 const load = require('../load.js');
 
 const ROLLBACK_DUMP_PATH = 'rollback-dump';
 
-module.exports = repo => {
+module.exports = (inputDir, repo) => {
   return function(req, dbs, next) {
 
-    // Cloning data
-    return simpleGit(process.cwd())
-      .clone(repo, ROLLBACK_DUMP_PATH, {'--depth': '1'}, cloneError => {
-        if (cloneError)
-          return next(cloneError);
+    return async.series([
 
-        // Loading data
-        load(ROLLBACK_DUMP_PATH);
+      // Cloning
+      nextStep => {
+        return simpleGit(process.cwd())
+          .clone(repo, ROLLBACK_DUMP_PATH, {'--depth': '1'}, nextStep);
+      },
 
-        // Refreshing cache
+      // Loading
+      nextStep => {
+        return load(ROLLBACK_DUMP_PATH, inputDir, nextStep);
+      },
+
+      // Refresh & Cleanup
+      nextStep => {
         for (const model in dbs)
           dbs[model].read();
 
-        // Cleanup
-        return rimraf(ROLLBACK_DUMP_PATH, next);
-      });
+        return rimraf(ROLLBACK_DUMP_PATH, nextStep);
+      }
+    ], next);
   };
 };

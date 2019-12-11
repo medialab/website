@@ -40,7 +40,7 @@ export default function About({lang}) {
                 <ul>
                   <li><b>l’espace public numérique</b> où sont cartographiées les transformations des espaces journalistiques et politiques sous l’effet du numérique. Les recherches qui s’y rapportent s’intéressent au nouveaux circuits de l’information, à la construction de l’agenda public et aux activités parlementaires.</li>
                   <li><b>la transition écologique</b> dont les enjeux émergents au carrefour de la science, de la politique et des attentes de nos sociétés sont explorés à l’aide de méthodes numériques.</li>
-                  <li><b>les futurs technologiques</b> explorés dans l’esprit des Science & technology studies (STS), étudient comment les nouvelles technologies de calcul de l’Intelligence artificiel pénètrent nos sociétés, en enquêtant à la fois sur la conception de ces technologies et sur les effets de leur pénétration croissante dans les mondes sociaux.</li>
+                  <li><b>les futurs technologiques</b> explorés dans l’esprit des Science &amp; technology studies (STS), étudient comment les nouvelles technologies de calcul de l’Intelligence artificiel pénètrent nos sociétés, en enquêtant à la fois sur la conception de ces technologies et sur les effets de leur pénétration croissante dans les mondes sociaux.</li>
                   <li><b>les études culturelles quantitatives</b> (Quantitatives Cultural studies) qui, à travers les données des musées et des institutions culturelles, s’attachent à explorer, du côté des oeuvres et de leurs circulations, les nouveaux agencements culturels de nos sociétés. Ce champs d’études porte aussi son attention sur les festivals culturels et la production des connaissances scientifiques sur la Russie.</li>
                 </ul>
               </p>
@@ -126,7 +126,7 @@ export default function About({lang}) {
                 <ul>
                   <li><b>the digital public space</b>, mapping the transformations of journalistic and political spaces under the impact of digital technology. Research in this field focuses on new information channels, the shaping of the public agenda, and parliamentary activities;</li>
                   <li><b>the environmental turn</b>, using digital methods to explore emerging issues at the crossroads between science, politics and societal expectations;</li>
-                  <li><b>technological futures</b>, adopting a Science & Technology Studies (STS) perspective to study how new artificial intelligence computation technology is penetrating our societies, investigating both the design of this technology and the effects of its increasing penetration into social realms;</li>
+                  <li><b>technological futures</b>, adopting a Science &amp; Technology Studies (STS) perspective to study how new artificial intelligence computation technology is penetrating our societies, investigating both the design of this technology and the effects of its increasing penetration into social realms;</li>
                   <li><b>Quantitative Cultural studies</b> which, drawing on data from museums and cultural institutions, endeavour to explore our societies’ new forms of organization of culture with respect to works and their circulation. This field of study is also concerned with cultural festivals and the production of scientific knowledge about Russia.</li>
                 </ul>
               </p>

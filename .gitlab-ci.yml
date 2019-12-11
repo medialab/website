@@ -13,7 +13,7 @@ build_web_image:
   stage: build
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-    - docker build --force-rm --build-arg "API_URL=$CI_ENVIRONMENT_URL/api" --build-arg "STATIC_URL=$CI_ENVIRONMENT_URL" -t $WEB_IMAGE_NAME -f ./admin/Dockerfile .
+    - docker build --force-rm --build-arg "API_URL=$CI_ENVIRONMENT_URL/api" -t $WEB_IMAGE_NAME -f ./admin/Dockerfile .
     - docker push $WEB_IMAGE_NAME
   environment:
     name: $CI_COMMIT_REF_SLUG
@@ -26,7 +26,7 @@ build_api_image:
   stage: build
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
-    - docker build --force-rm -t $API_IMAGE_NAME --build-arg "STATIC_URL=$CI_ENVIRONMENT_URL" -f Dockerfile .
+    - docker build --force-rm -t $API_IMAGE_NAME -f Dockerfile .
     - docker push $API_IMAGE_NAME
   environment:
     name: $CI_COMMIT_REF_SLUG

@@ -40,7 +40,7 @@ function wrap(pathPrefix, content, helmet, options) {
 
   if (options.scripts)
     scriptTags = options.scripts
-      .map(script => `<script src="${pathPrefix}/js/${script}.js" type="text/javascript"></script>`)
+      .map(script => `<script src="${pathPrefix}/js/${script}.js"></script>`)
       .join('\n');
 
   let rssTags = '';
@@ -96,14 +96,14 @@ function wrap(pathPrefix, content, helmet, options) {
   </head>
   <body>
     ${content}
-    <script type="text/javascript">
+    <script>
       document.dispatchEvent(new Event('ZoteroItemUpdated', {
         bubbles: true,
         cancelable: true
       }));
       ${options.livereloadUrl ? `window.API_URL = '${options.livereloadUrl}';` : ''}
     </script>
-    <script type="text/javascript">
+    <script>
       ${ga ? templateGoogleAnalytics(ga) : ''}
     </script>
     ${scriptTags}

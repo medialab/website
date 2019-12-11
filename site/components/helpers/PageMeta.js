@@ -103,7 +103,7 @@ export default function PageMeta(props) {
       {/* END META DUBLIN CORE */}
 
       {/* META TWITTER */}
-      <meta name="twitter:card" value="summary_large_image" />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content={siteUrl} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />

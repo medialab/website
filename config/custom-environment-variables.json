@@ -1,6 +1,7 @@
 {
   "data": "DATA_FOLDER",
   "build": {
+    "cron": "BUILD_CRON",
     "path": "BUILD_FOLDER",
     "repository": "BUILD_REPO",
     "rollbackRepository": "BUILD_ROLLBACK_REPO"

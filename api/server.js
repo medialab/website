@@ -548,7 +548,12 @@ function buildStaticSite(callback) {
     building(next) {
       changeBuildStatus('building');
 
-      return wilsonBuild(DATA_PATH, WBUILD_PATH, {skipDrafts: true}, next);
+      return wilsonBuild(
+        DATA_PATH,
+        WBUILD_PATH,
+        {skipDrafts: true, minifyCss: true},
+        next
+      );
     },
 
     // Deploying using rsync

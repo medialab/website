@@ -6,6 +6,7 @@ const path = require('path');
 const async = require('async');
 const config = require('config-secrets');
 const sass = require('node-sass');
+const cssmin = require('cssmin');
 const rimraf = require('rimraf');
 const fs = require('fs-extra');
 const {renderPage} = require('./render.js');
@@ -40,8 +41,7 @@ const FONT_PATH = path.join(__dirname, '..', 'site', 'assets', 'font');
 const BEL2_FONT_PATH = path.join(FONT_PATH, 'Bel2');
 const SYMBOL_FONT_PATH = path.join(FONT_PATH, 'Symbol');
 
-// TODO: compress, sourceMap false
-function buildSass(outputDir, callback) {
+function buildSass(outputDir, minifyCss, callback) {
   const fontDir = path.join(outputDir, 'font');
 
   return async.series({
@@ -59,7 +59,12 @@ function buildSass(outputDir, callback) {
         if (err)
           return callback(err);
 
-        fs.writeFile(path.join(outputDir, 'medialab.css'), result.css, next);
+        let css = result.css;
+
+        if (minifyCss)
+          css = cssmin(css.toString());
+
+        fs.writeFile(path.join(outputDir, 'medialab.css'), css, next);
       });
     }
   }, callback);
@@ -205,6 +210,7 @@ exports.build = function build(inputDir, outputDir, options, callback) {
   const pathPrefix = options.pathPrefix || '';
   const skipDrafts = options.skipDrafts || false;
   const linkToAdmin = options.linkToAdmin || null;
+  const minifyCss = options.minifyCss || false;
 
   const db = Database.fromDisk(inputDir, {pathPrefix, skipDrafts});
   const website = new Website(db);
@@ -222,7 +228,7 @@ exports.build = function build(inputDir, outputDir, options, callback) {
       },
 
       sass(next) {
-        return buildSass(outputDir, next);
+        return buildSass(outputDir, minifyCss, next);
       },
 
       rss(next) {

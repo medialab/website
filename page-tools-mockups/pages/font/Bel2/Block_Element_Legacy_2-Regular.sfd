@@ -1,0 +1,1022 @@
+SplineFontDB: 3.0
+FontName: Bel
+FullName: Bel
+FamilyName: Bel
+Weight: Regular
+Copyright: Copyright (c) 2019, B
+UComments: "2019-1-28: Created with FontForge (http://fontforge.org)"
+Version: 001.000
+ItalicAngle: 0
+UnderlinePosition: -519
+UnderlineWidth: 98
+Ascent: 1638
+Descent: 410
+InvalidEm: 0
+LayerCount: 2
+Layer: 0 0 "Arri+AOgA-re" 1
+Layer: 1 0 "Avant" 0
+XUID: [1021 90 -1258502218 32764]
+FSType: 0
+OS2Version: 0
+OS2_WeightWidthSlopeOnly: 0
+OS2_UseTypoMetrics: 1
+CreationTime: 1548665833
+ModificationTime: 1552904097
+PfmFamily: 17
+TTFWeight: 400
+TTFWidth: 5
+LineGap: 184
+VLineGap: 0
+OS2TypoAscent: 0
+OS2TypoAOffset: 1
+OS2TypoDescent: 0
+OS2TypoDOffset: 1
+OS2TypoLinegap: 184
+OS2WinAscent: 0
+OS2WinAOffset: 1
+OS2WinDescent: 0
+OS2WinDOffset: 1
+HheadAscent: 0
+HheadAOffset: 1
+HheadDescent: 0
+HheadDOffset: 1
+OS2Vendor: 'PfEd'
+MarkAttachClasses: 2
+"" 0 
+DEI: 91125
+LangName: 1033 "" "" "" "" "" "" "" "" "" "" "" "" "" "Copyright (c) 2019, B (<URL|email>),+AAoA-with Reserved Font Name Untitled1.+AAoACgAA-This Font Software is licensed under the SIL Open Font License, Version 1.1.+AAoA-This license is copied below, and is also available with a FAQ at:+AAoA-http://scripts.sil.org/OFL+AAoACgAK------------------------------------------------------------+AAoA-SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007+AAoA------------------------------------------------------------+AAoACgAA-PREAMBLE+AAoA-The goals of the Open Font License (OFL) are to stimulate worldwide+AAoA-development of collaborative font projects, to support the font creation+AAoA-efforts of academic and linguistic communities, and to provide a free and+AAoA-open framework in which fonts may be shared and improved in partnership+AAoA-with others.+AAoACgAA-The OFL allows the licensed fonts to be used, studied, modified and+AAoA-redistributed freely as long as they are not sold by themselves. The+AAoA-fonts, including any derivative works, can be bundled, embedded, +AAoA-redistributed and/or sold with any software provided that any reserved+AAoA-names are not used by derivative works. The fonts and derivatives,+AAoA-however, cannot be released under any other type of license. The+AAoA-requirement for fonts to remain under this license does not apply+AAoA-to any document created using the fonts or their derivatives.+AAoACgAA-DEFINITIONS+AAoAIgAA-Font Software+ACIA refers to the set of files released by the Copyright+AAoA-Holder(s) under this license and clearly marked as such. This may+AAoA-include source files, build scripts and documentation.+AAoACgAi-Reserved Font Name+ACIA refers to any names specified as such after the+AAoA-copyright statement(s).+AAoACgAi-Original Version+ACIA refers to the collection of Font Software components as+AAoA-distributed by the Copyright Holder(s).+AAoACgAi-Modified Version+ACIA refers to any derivative made by adding to, deleting,+AAoA-or substituting -- in part or in whole -- any of the components of the+AAoA-Original Version, by changing formats or by porting the Font Software to a+AAoA-new environment.+AAoACgAi-Author+ACIA refers to any designer, engineer, programmer, technical+AAoA-writer or other person who contributed to the Font Software.+AAoACgAA-PERMISSION & CONDITIONS+AAoA-Permission is hereby granted, free of charge, to any person obtaining+AAoA-a copy of the Font Software, to use, study, copy, merge, embed, modify,+AAoA-redistribute, and sell modified and unmodified copies of the Font+AAoA-Software, subject to the following conditions:+AAoACgAA-1) Neither the Font Software nor any of its individual components,+AAoA-in Original or Modified Versions, may be sold by itself.+AAoACgAA-2) Original or Modified Versions of the Font Software may be bundled,+AAoA-redistributed and/or sold with any software, provided that each copy+AAoA-contains the above copyright notice and this license. These can be+AAoA-included either as stand-alone text files, human-readable headers or+AAoA-in the appropriate machine-readable metadata fields within text or+AAoA-binary files as long as those fields can be easily viewed by the user.+AAoACgAA-3) No Modified Version of the Font Software may use the Reserved Font+AAoA-Name(s) unless explicit written permission is granted by the corresponding+AAoA-Copyright Holder. This restriction only applies to the primary font name as+AAoA-presented to the users.+AAoACgAA-4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font+AAoA-Software shall not be used to promote, endorse or advertise any+AAoA-Modified Version, except to acknowledge the contribution(s) of the+AAoA-Copyright Holder(s) and the Author(s) or with their explicit written+AAoA-permission.+AAoACgAA-5) The Font Software, modified or unmodified, in part or in whole,+AAoA-must be distributed entirely under this license, and must not be+AAoA-distributed under any other license. The requirement for fonts to+AAoA-remain under this license does not apply to any document created+AAoA-using the Font Software.+AAoACgAA-TERMINATION+AAoA-This license becomes null and void if any of the above conditions are+AAoA-not met.+AAoACgAA-DISCLAIMER+AAoA-THE FONT SOFTWARE IS PROVIDED +ACIA-AS IS+ACIA, WITHOUT WARRANTY OF ANY KIND,+AAoA-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF+AAoA-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT+AAoA-OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE+AAoA-COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,+AAoA-INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL+AAoA-DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING+AAoA-FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM+AAoA-OTHER DEALINGS IN THE FONT SOFTWARE." "http://scripts.sil.org/OFL"
+Encoding: Custom
+UnicodeInterp: none
+NameList: AGL For New Fonts
+DisplaySize: -72
+AntiAlias: 1
+FitToEm: 0
+WinInfo: 0 26 10
+BeginPrivate: 0
+EndPrivate
+TeXData: 1 0 0 346030 173015 115343 0 -1048576 115343 783286 444596 497025 792723 393216 433062 380633 303038 157286 324010 404750 52429 2506097 1059062 262144
+BeginChars: 18 6
+
+StartChar: ltshade
+Encoding: 1 9617 0
+Width: 1229
+Flags: W
+HStem: -517 97<307 410 717 820 1127 1229> -324 97<102 205 512 615 922 1025> -130 96<307 410 717 820 1127 1229> 63 97<102 205 512 615 922 1025> 257 96<307 410 717 820 1127 1229> 450 96<102 205 512 615 922 1025> 643 97<307 410 717 820 1127 1229> 837 96<102 205 512 615 922 1025> 1030 96<307 410 717 820 1127 1229> 1223 97<102 205 512 615 922 1025> 1416 97<307 410 717 820 1127 1229> 1610 95<102 205 512 615 922 1025>
+VStem: 102 103<-324 -227 63 160 450 546 837 933 1223 1320 1610 1705> 307 103<-517 -420 -130 -34 257 353 643 740 1030 1126 1416 1513> 512 103<-324 -227 63 160 450 546 837 933 1223 1320 1610 1705> 717 103<-517 -420 -130 -34 257 353 643 740 1030 1126 1416 1513> 922 103<-324 -227 63 160 450 546 837 933 1223 1320 1610 1705> 1127 102<-517 -420 -130 -34 257 353 643 740 1030 1126 1416 1513>
+LayerCount: 2
+Fore
+SplineSet
+102 1705 m 1
+ 205 1705 l 1
+ 205 1610 l 1
+ 102 1610 l 1
+ 102 1705 l 1
+102 1320 m 1
+ 205 1320 l 1
+ 205 1223 l 1
+ 102 1223 l 1
+ 102 1320 l 1
+512 1320 m 1
+ 615 1320 l 1
+ 615 1223 l 1
+ 512 1223 l 1
+ 512 1320 l 1
+922 1320 m 1
+ 1025 1320 l 1
+ 1025 1223 l 1
+ 922 1223 l 1
+ 922 1320 l 1
+307 1126 m 1
+ 410 1126 l 1
+ 410 1030 l 1
+ 307 1030 l 1
+ 307 1126 l 1
+717 1126 m 1
+ 820 1126 l 1
+ 820 1030 l 1
+ 717 1030 l 1
+ 717 1126 l 1
+1127 1126 m 1
+ 1229 1126 l 1
+ 1229 1030 l 1
+ 1127 1030 l 1
+ 1127 1126 l 1
+922 933 m 1
+ 1025 933 l 1
+ 1025 837 l 1
+ 922 837 l 1
+ 922 933 l 1
+512 933 m 1
+ 615 933 l 1
+ 615 837 l 1
+ 512 837 l 1
+ 512 933 l 1
+102 933 m 1
+ 205 933 l 1
+ 205 837 l 1
+ 102 837 l 1
+ 102 933 l 1
+1127 740 m 1
+ 1229 740 l 1
+ 1229 643 l 1
+ 1127 643 l 1
+ 1127 740 l 1
+717 740 m 1
+ 820 740 l 1
+ 820 643 l 1
+ 717 643 l 1
+ 717 740 l 1
+307 740 m 1
+ 410 740 l 1
+ 410 643 l 1
+ 307 643 l 1
+ 307 740 l 1
+102 546 m 1
+ 205 546 l 1
+ 205 450 l 1
+ 102 450 l 1
+ 102 546 l 1
+512 546 m 1
+ 615 546 l 1
+ 615 450 l 1
+ 512 450 l 1
+ 512 546 l 1
+922 546 m 1
+ 1025 546 l 1
+ 1025 450 l 1
+ 922 450 l 1
+ 922 546 l 1
+1127 353 m 1
+ 1229 353 l 1
+ 1229 257 l 1
+ 1127 257 l 1
+ 1127 353 l 1
+717 353 m 1
+ 820 353 l 1
+ 820 257 l 1
+ 717 257 l 1
+ 717 353 l 1
+307 353 m 1
+ 410 353 l 1
+ 410 257 l 1
+ 307 257 l 1
+ 307 353 l 1
+102 160 m 1
+ 205 160 l 1
+ 205 63 l 1
+ 102 63 l 1
+ 102 160 l 1
+512 160 m 1
+ 615 160 l 1
+ 615 63 l 1
+ 512 63 l 1
+ 512 160 l 1
+922 160 m 1
+ 1025 160 l 1
+ 1025 63 l 1
+ 922 63 l 1
+ 922 160 l 1
+307 -34 m 1
+ 410 -34 l 1
+ 410 -130 l 1
+ 307 -130 l 1
+ 307 -34 l 1
+717 -34 m 1
+ 820 -34 l 1
+ 820 -130 l 1
+ 717 -130 l 1
+ 717 -34 l 1
+1127 -34 m 1
+ 1229 -34 l 1
+ 1229 -130 l 1
+ 1127 -130 l 1
+ 1127 -34 l 1
+922 -227 m 1
+ 1025 -227 l 1
+ 1025 -324 l 1
+ 922 -324 l 1
+ 922 -227 l 1
+512 -227 m 1
+ 615 -227 l 1
+ 615 -324 l 1
+ 512 -324 l 1
+ 512 -227 l 1
+102 -227 m 1
+ 205 -227 l 1
+ 205 -324 l 1
+ 102 -324 l 1
+ 102 -227 l 1
+307 -420 m 1
+ 410 -420 l 1
+ 410 -517 l 1
+ 307 -517 l 1
+ 307 -420 l 1
+717 -420 m 1
+ 820 -420 l 1
+ 820 -517 l 1
+ 717 -517 l 1
+ 717 -420 l 1
+1127 -420 m 1
+ 1229 -420 l 1
+ 1229 -517 l 1
+ 1127 -517 l 1
+ 1127 -420 l 1
+307 1513 m 1
+ 410 1513 l 1
+ 410 1416 l 1
+ 307 1416 l 1
+ 307 1513 l 1
+717 1513 m 1
+ 820 1513 l 1
+ 820 1416 l 1
+ 717 1416 l 1
+ 717 1513 l 1
+1127 1513 m 1
+ 1229 1513 l 1
+ 1229 1416 l 1
+ 1127 1416 l 1
+ 1127 1513 l 1
+512 1705 m 1
+ 615 1705 l 1
+ 615 1610 l 1
+ 512 1610 l 1
+ 512 1705 l 1
+922 1705 m 1
+ 1025 1705 l 1
+ 1025 1610 l 1
+ 922 1610 l 1
+ 922 1705 l 1
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: shade
+Encoding: 2 9618 1
+Width: 1229
+Flags: W
+HStem: -517 97<0 102 205 307 410 512 615 717 820 922 1025 1127> -324 97<102 205 307 410 512 615 717 820 922 1025 1127 1229> -130 96<0 102 205 307 410 512 615 717 820 922 1025 1127> 63 97<102 205 307 410 512 615 717 820 922 1025 1127 1229> 257 96<0 102 205 307 410 512 615 717 820 922 1025 1127> 450 96<102 205 307 410 512 615 717 820 922 1025 1127 1229> 643 97<0 102 205 307 410 512 615 717 820 922 1025 1127> 837 96<102 205 307 410 512 615 717 820 922 1025 1127 1229> 1030 96<0 102 205 307 410 512 615 717 820 922 1025 1127> 1223 97<102 205 307 410 512 615 717 820 922 1025 1127 1229> 1416 97<0 102 205 307 410 512 615 717 820 922 1025 1127> 1610 95<102 205 307 410 512 615 717 820 922 1025 1127 1229>
+VStem: 0 102<-517 -420 -130 -34 257 353 643 740 1030 1126 1416 1513> 102 103<-324 -227 63 160 450 546 837 933 1223 1320 1610 1705> 205 102<-517 -420 -130 -34 257 353 643 740 1030 1126 1416 1513> 307 103<-324 -227 63 160 450 546 837 933 1223 1320 1610 1705> 410 102<-517 -420 -130 -34 257 353 643 740 1030 1126 1416 1513> 512 103<-324 -227 63 160 450 546 837 933 1223 1320 1610 1705> 615 102<-517 -420 -130 -34 257 353 643 740 1030 1126 1416 1513> 717 103<-324 -227 63 160 450 546 837 933 1223 1320 1610 1705> 820 102<-517 -420 -130 -34 257 353 643 740 1030 1126 1416 1513> 922 103<-324 -227 63 160 450 546 837 933 1223 1320 1610 1705> 1025 102<-517 -420 -130 -34 257 353 643 740 1030 1126 1416 1513> 1127 102<-324 -227 63 160 450 546 837 933 1223 1320 1610 1705>
+LayerCount: 2
+Fore
+SplineSet
+102 1320 m 5xfff4
+ 205 1320 l 5
+ 205 1223 l 5
+ 102 1223 l 5
+ 102 1320 l 5xfff4
+307 1320 m 5xfff1
+ 410 1320 l 5
+ 410 1223 l 5
+ 307 1223 l 5
+ 307 1320 l 5xfff1
+512 1320 m 5xfff040
+ 615 1320 l 5
+ 615 1223 l 5
+ 512 1223 l 5
+ 512 1320 l 5xfff040
+717 1320 m 1xfff010
+ 820 1320 l 1
+ 820 1223 l 1
+ 717 1223 l 1
+ 717 1320 l 1xfff010
+922 1320 m 1xfff004
+ 1025 1320 l 1
+ 1025 1223 l 1
+ 922 1223 l 1
+ 922 1320 l 1xfff004
+1127 1320 m 1xfff001
+ 1229 1320 l 1
+ 1229 1223 l 1
+ 1127 1223 l 1
+ 1127 1320 l 1xfff001
+0 1126 m 5xfff8
+ 102 1126 l 5
+ 102 1030 l 5
+ 0 1030 l 5
+ 0 1126 l 5xfff8
+205 1126 m 5xfff2
+ 307 1126 l 5
+ 307 1030 l 5
+ 205 1030 l 5
+ 205 1126 l 5xfff2
+410 1126 m 5xfff080
+ 512 1126 l 5
+ 512 1030 l 5
+ 410 1030 l 5
+ 410 1126 l 5xfff080
+615 1126 m 5xfff020
+ 717 1126 l 1
+ 717 1030 l 1
+ 615 1030 l 5
+ 615 1126 l 5xfff020
+820 1126 m 1xfff008
+ 922 1126 l 1
+ 922 1030 l 1
+ 820 1030 l 1
+ 820 1126 l 1xfff008
+1025 1126 m 1xfff002
+ 1127 1126 l 1
+ 1127 1030 l 1
+ 1025 1030 l 1
+ 1025 1126 l 1xfff002
+102 933 m 5xfff4
+ 205 933 l 5
+ 205 837 l 5
+ 102 837 l 5
+ 102 933 l 5xfff4
+307 933 m 5xfff1
+ 410 933 l 5
+ 410 837 l 5
+ 307 837 l 5
+ 307 933 l 5xfff1
+512 933 m 5xfff040
+ 615 933 l 5
+ 615 837 l 5
+ 512 837 l 5
+ 512 933 l 5xfff040
+717 933 m 1xfff010
+ 820 933 l 1
+ 820 837 l 1
+ 717 837 l 1
+ 717 933 l 1xfff010
+922 933 m 1xfff004
+ 1025 933 l 1
+ 1025 837 l 1
+ 922 837 l 1
+ 922 933 l 1xfff004
+1127 933 m 1xfff001
+ 1229 933 l 1
+ 1229 837 l 1
+ 1127 837 l 1
+ 1127 933 l 1xfff001
+0 740 m 5xfff8
+ 102 740 l 5
+ 102 643 l 1
+ 0 643 l 1
+ 0 740 l 5xfff8
+205 740 m 5xfff2
+ 307 740 l 5
+ 307 643 l 1
+ 205 643 l 1
+ 205 740 l 5xfff2
+410 740 m 5xfff080
+ 512 740 l 5
+ 512 643 l 1
+ 410 643 l 1
+ 410 740 l 5xfff080
+615 740 m 5xfff020
+ 717 740 l 1
+ 717 643 l 1
+ 615 643 l 1
+ 615 740 l 5xfff020
+820 740 m 1xfff008
+ 922 740 l 1
+ 922 643 l 1
+ 820 643 l 1
+ 820 740 l 1xfff008
+1025 740 m 1xfff002
+ 1127 740 l 1
+ 1127 643 l 1
+ 1025 643 l 1
+ 1025 740 l 1xfff002
+102 546 m 1xfff4
+ 205 546 l 1
+ 205 450 l 1
+ 102 450 l 1
+ 102 546 l 1xfff4
+307 546 m 1xfff1
+ 410 546 l 1
+ 410 450 l 1
+ 307 450 l 1
+ 307 546 l 1xfff1
+512 546 m 1xfff040
+ 615 546 l 1
+ 615 450 l 1
+ 512 450 l 1
+ 512 546 l 1xfff040
+717 546 m 1xfff010
+ 820 546 l 1
+ 820 450 l 1
+ 717 450 l 1
+ 717 546 l 1xfff010
+922 546 m 1xfff004
+ 1025 546 l 1
+ 1025 450 l 1
+ 922 450 l 1
+ 922 546 l 1xfff004
+1127 546 m 1xfff001
+ 1229 546 l 1
+ 1229 450 l 1
+ 1127 450 l 1
+ 1127 546 l 1xfff001
+0 353 m 1xfff8
+ 102 353 l 1
+ 102 257 l 1
+ 0 257 l 1
+ 0 353 l 1xfff8
+410 353 m 1xfff080
+ 512 353 l 1
+ 512 257 l 1
+ 410 257 l 1
+ 410 353 l 1xfff080
+615 353 m 1xfff020
+ 717 353 l 1
+ 717 257 l 1
+ 615 257 l 1
+ 615 353 l 1xfff020
+820 353 m 1xfff008
+ 922 353 l 1
+ 922 257 l 1
+ 820 257 l 1
+ 820 353 l 1xfff008
+1025 353 m 1xfff002
+ 1127 353 l 1
+ 1127 257 l 1
+ 1025 257 l 1
+ 1025 353 l 1xfff002
+205 353 m 1xfff2
+ 307 353 l 1
+ 307 257 l 1
+ 205 257 l 1
+ 205 353 l 1xfff2
+1127 160 m 1xfff001
+ 1229 160 l 1
+ 1229 63 l 1
+ 1127 63 l 1
+ 1127 160 l 1xfff001
+922 160 m 1xfff004
+ 1025 160 l 1
+ 1025 63 l 1
+ 922 63 l 1
+ 922 160 l 1xfff004
+717 160 m 1xfff010
+ 820 160 l 1
+ 820 63 l 1
+ 717 63 l 1
+ 717 160 l 1xfff010
+512 160 m 1xfff040
+ 615 160 l 1
+ 615 63 l 1
+ 512 63 l 1
+ 512 160 l 1xfff040
+307 160 m 1xfff1
+ 410 160 l 1
+ 410 63 l 1
+ 307 63 l 1
+ 307 160 l 1xfff1
+102 160 m 1xfff4
+ 205 160 l 1
+ 205 63 l 1
+ 102 63 l 1
+ 102 160 l 1xfff4
+0 -34 m 1xfff8
+ 102 -34 l 1
+ 102 -130 l 1
+ 0 -130 l 1
+ 0 -34 l 1xfff8
+205 -34 m 1xfff2
+ 307 -34 l 1
+ 307 -130 l 1
+ 205 -130 l 1
+ 205 -34 l 1xfff2
+410 -34 m 1xfff080
+ 512 -34 l 1
+ 512 -130 l 1
+ 410 -130 l 1
+ 410 -34 l 1xfff080
+615 -34 m 1xfff020
+ 717 -34 l 1
+ 717 -130 l 1
+ 615 -130 l 1
+ 615 -34 l 1xfff020
+820 -34 m 1xfff008
+ 922 -34 l 1
+ 922 -130 l 1
+ 820 -130 l 1
+ 820 -34 l 1xfff008
+1025 -34 m 1xfff002
+ 1127 -34 l 1
+ 1127 -130 l 1
+ 1025 -130 l 1
+ 1025 -34 l 1xfff002
+1127 -227 m 1xfff001
+ 1229 -227 l 1
+ 1229 -324 l 1
+ 1127 -324 l 1
+ 1127 -227 l 1xfff001
+922 -227 m 1xfff004
+ 1025 -227 l 1
+ 1025 -324 l 1
+ 922 -324 l 1
+ 922 -227 l 1xfff004
+717 -227 m 1xfff010
+ 820 -227 l 1
+ 820 -324 l 1
+ 717 -324 l 1
+ 717 -227 l 1xfff010
+512 -227 m 1xfff040
+ 615 -227 l 1
+ 615 -324 l 1
+ 512 -324 l 1
+ 512 -227 l 1xfff040
+307 -227 m 1xfff1
+ 410 -227 l 1
+ 410 -324 l 1
+ 307 -324 l 1
+ 307 -227 l 1xfff1
+102 -227 m 1xfff4
+ 205 -227 l 1
+ 205 -324 l 1
+ 102 -324 l 1
+ 102 -227 l 1xfff4
+0 -420 m 1xfff8
+ 102 -420 l 1
+ 102 -517 l 1
+ 0 -517 l 1
+ 0 -420 l 1xfff8
+205 -420 m 1xfff2
+ 307 -420 l 1
+ 307 -517 l 1
+ 205 -517 l 1
+ 205 -420 l 1xfff2
+410 -420 m 1xfff080
+ 512 -420 l 1
+ 512 -517 l 1
+ 410 -517 l 1
+ 410 -420 l 1xfff080
+615 -420 m 1xfff020
+ 717 -420 l 1
+ 717 -517 l 1
+ 615 -517 l 1
+ 615 -420 l 1xfff020
+820 -420 m 1xfff008
+ 922 -420 l 1
+ 922 -517 l 1
+ 820 -517 l 1
+ 820 -420 l 1xfff008
+1025 -420 m 1xfff002
+ 1127 -420 l 1
+ 1127 -517 l 1
+ 1025 -517 l 1
+ 1025 -420 l 1xfff002
+0 -615 m 1024xfff8
+0 1513 m 5
+ 102 1513 l 5
+ 102 1416 l 5
+ 0 1416 l 5
+ 0 1513 l 5
+205 1513 m 5xfff2
+ 307 1513 l 5
+ 307 1416 l 5
+ 205 1416 l 5
+ 205 1513 l 5xfff2
+410 1513 m 5xfff080
+ 512 1513 l 5
+ 512 1416 l 5
+ 410 1416 l 5
+ 410 1513 l 5xfff080
+615 1513 m 5xfff020
+ 717 1513 l 1
+ 717 1416 l 1
+ 615 1416 l 5
+ 615 1513 l 5xfff020
+820 1513 m 1xfff008
+ 922 1513 l 1
+ 922 1416 l 1
+ 820 1416 l 1
+ 820 1513 l 1xfff008
+1025 1513 m 1xfff002
+ 1127 1513 l 1
+ 1127 1416 l 1
+ 1025 1416 l 1
+ 1025 1513 l 1xfff002
+102 1705 m 5xfff4
+ 205 1705 l 5
+ 205 1610 l 5
+ 102 1610 l 5
+ 102 1705 l 5xfff4
+307 1705 m 5xfff1
+ 410 1705 l 5
+ 410 1610 l 5
+ 307 1610 l 5
+ 307 1705 l 5xfff1
+512 1705 m 5xfff040
+ 615 1705 l 5
+ 615 1610 l 5
+ 512 1610 l 5
+ 512 1705 l 5xfff040
+717 1705 m 1xfff010
+ 820 1705 l 1
+ 820 1610 l 1
+ 717 1610 l 1
+ 717 1705 l 1xfff010
+922 1705 m 1xfff004
+ 1025 1705 l 1
+ 1025 1610 l 1
+ 922 1610 l 1
+ 922 1705 l 1xfff004
+1127 1705 m 1xfff001
+ 1229 1705 l 1
+ 1229 1610 l 1
+ 1127 1610 l 1
+ 1127 1705 l 1xfff001
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: dkshade
+Encoding: 3 9619 2
+Width: 1229
+Flags: W
+HStem: -615 291<0 102 205 307 410 512 615 717 820 922 1025 1127> -615 98<102 205 307 410 512 615 717 820 922 1025 1127 1229> -420 290<102 205 307 410 512 615 717 820 922 1025 1127 1229> -227 290<0 102 205 307 410 512 615 717 820 922 1025 1127> -34 290<102 205 307 410 512 615 717 820 922 1025 1127 1229> 160 290<0 102 205 307 410 512 615 717 820 922 1025 1127> 353 290<102 205 307 410 512 615 717 820 922 1025 1127 1229> 546 290<0 102 205 307 410 512 615 717 820 922 1025 1127> 740 290<102 205 307 410 512 615 717 820 922 1025 1127 1229> 933 290<0 102 205 307 410 512 615 717 820 922 1025 1127> 1126 290<102 205 307 410 512 615 717 820 922 1025 1127 1229> 1320 290<0 102 205 307 410 512 615 717 820 922 1025 1127> 1513 192<102 205 307 410 512 615 717 820 922 1025 1127 1229>
+VStem: 0 102<-517 -420 -130 -34 256 353 643 740 1030 1126 1416 1513> 102 103<-324 -227 63 160 450 546 836 933 1223 1320 1610 1705> 205 102<-517 -420 -130 -34 256 353 643 740 1030 1126 1416 1513> 307 103<-324 -227 63 160 450 546 836 933 1223 1320 1610 1705> 410 102<-517 -420 -130 -34 256 353 643 740 1030 1126 1416 1513> 512 103<-324 -227 63 160 450 546 836 933 1223 1320 1610 1705> 615 102<-517 -420 -130 -34 256 353 643 740 1030 1126 1416 1513> 717 103<-324 -227 63 160 450 546 836 933 1223 1320 1610 1705> 820 102<-517 -420 -130 -34 256 353 643 740 1030 1126 1416 1513> 922 103<-324 -227 63 160 450 546 836 933 1223 1320 1610 1705> 1025 102<-517 -420 -130 -34 256 353 643 740 1030 1126 1416 1513> 1127 102<-324 -227 63 160 450 546 836 933 1223 1320 1610 1705>
+LayerCount: 2
+Fore
+SplineSet
+205 1513 m 1x002d
+ 102 1513 l 1
+ 102 1416 l 1
+ 205 1416 l 1
+ 205 1513 l 1x002d
+410 1513 m 1x002940
+ 307 1513 l 1
+ 307 1416 l 1
+ 410 1416 l 1
+ 410 1513 l 1x002940
+615 1513 m 1x002850
+ 512 1513 l 1
+ 512 1416 l 1
+ 615 1416 l 1
+ 615 1513 l 1x002850
+820 1513 m 1x002814
+ 717 1513 l 1
+ 717 1416 l 1
+ 820 1416 l 1
+ 820 1513 l 1x002814
+1025 1513 m 1x002805
+ 922 1513 l 1
+ 922 1416 l 1
+ 1025 1416 l 1
+ 1025 1513 l 1x002805
+307 1320 m 1x005280
+ 205 1320 l 1
+ 205 1223 l 1
+ 307 1223 l 1
+ 307 1320 l 1x005280
+512 1320 m 1x0050a0
+ 410 1320 l 1
+ 410 1223 l 1
+ 512 1223 l 1
+ 512 1320 l 1x0050a0
+717 1320 m 1x005028
+ 615 1320 l 1
+ 615 1223 l 1
+ 717 1223 l 1
+ 717 1320 l 1x005028
+922 1320 m 1x00500a
+ 820 1320 l 1
+ 820 1223 l 1
+ 922 1223 l 1
+ 922 1320 l 1x00500a
+1127 1320 m 1x00500280
+ 1025 1320 l 1
+ 1025 1223 l 1
+ 1127 1223 l 1
+ 1127 1320 l 1x00500280
+307 -324 m 1x900280
+ 307 -227 l 1
+ 205 -227 l 1
+ 205 -324 l 1
+ 307 -324 l 1x900280
+512 -324 m 1x9000a0
+ 512 -227 l 1
+ 410 -227 l 1
+ 410 -324 l 1
+ 512 -324 l 1x9000a0
+717 -324 m 1x900028
+ 717 -227 l 1
+ 615 -227 l 1
+ 615 -324 l 1
+ 717 -324 l 1x900028
+922 -324 m 1x90000a
+ 922 -227 l 1
+ 820 -227 l 1
+ 820 -324 l 1
+ 922 -324 l 1x90000a
+1127 -324 m 1x90000280
+ 1127 -227 l 1
+ 1025 -227 l 1
+ 1025 -324 l 1
+ 1127 -324 l 1x90000280
+922 -34 m 1x280005
+ 922 -130 l 1
+ 1025 -130 l 1
+ 1025 -34 l 1
+ 922 -34 l 1x280005
+717 -34 m 1x280014
+ 717 -130 l 1
+ 820 -130 l 1
+ 820 -34 l 1
+ 717 -34 l 1x280014
+512 -34 m 1x280050
+ 512 -130 l 1
+ 615 -130 l 1
+ 615 -34 l 1
+ 512 -34 l 1x280050
+307 -34 m 1x280140
+ 307 -130 l 1
+ 410 -130 l 1
+ 410 -34 l 1
+ 307 -34 l 1x280140
+102 -34 m 1x2805
+ 102 -130 l 1
+ 205 -130 l 1
+ 205 -34 l 1
+ 102 -34 l 1x2805
+307 63 m 1x140280
+ 307 160 l 1
+ 205 160 l 1
+ 205 63 l 1
+ 307 63 l 1x140280
+512 63 m 1x1400a0
+ 512 160 l 1
+ 410 160 l 1
+ 410 63 l 1
+ 512 63 l 1x1400a0
+717 63 m 1x140028
+ 717 160 l 1
+ 615 160 l 1
+ 615 63 l 1
+ 717 63 l 1x140028
+922 63 m 1x14000a
+ 922 160 l 1
+ 820 160 l 1
+ 820 63 l 1
+ 922 63 l 1x14000a
+1127 63 m 1x14000280
+ 1127 160 l 1
+ 1025 160 l 1
+ 1025 63 l 1
+ 1127 63 l 1x14000280
+922 353 m 1x0a0005
+ 922 256 l 1
+ 1025 256 l 1
+ 1025 353 l 1
+ 922 353 l 1x0a0005
+717 353 m 1x0a0014
+ 717 256 l 1
+ 820 256 l 1
+ 820 353 l 1
+ 717 353 l 1x0a0014
+410 256 m 1x0a0140
+ 410 353 l 1
+ 307 353 l 1
+ 307 256 l 1
+ 410 256 l 1x0a0140
+512 353 m 1
+ 512 256 l 1
+ 615 256 l 1
+ 615 353 l 1x0a0050
+ 512 353 l 1
+102 353 m 1x0a05
+ 102 256 l 1
+ 205 256 l 1
+ 205 353 l 1
+ 102 353 l 1x0a05
+1025 546 m 1x05000280
+ 1025 450 l 1
+ 1127 450 l 1
+ 1127 546 l 1
+ 1025 546 l 1x05000280
+820 546 m 1x05000a
+ 820 450 l 1
+ 922 450 l 1
+ 922 546 l 1
+ 820 546 l 1x05000a
+615 546 m 1x050028
+ 615 450 l 1
+ 717 450 l 1
+ 717 546 l 1
+ 615 546 l 1x050028
+410 546 m 1x0500a0
+ 410 450 l 1
+ 512 450 l 1
+ 512 546 l 1
+ 410 546 l 1x0500a0
+307 546 m 1
+ 205 546 l 1
+ 205 450 l 1x050280
+ 307 450 l 1
+ 307 546 l 1
+922 740 m 1x028005
+ 922 643 l 1
+ 1025 643 l 1
+ 1025 740 l 1
+ 922 740 l 1x028005
+717 740 m 1x028014
+ 717 643 l 1
+ 820 643 l 1
+ 820 740 l 1
+ 717 740 l 1x028014
+512 740 m 1x028050
+ 512 643 l 1
+ 615 643 l 1
+ 615 740 l 1
+ 512 740 l 1x028050
+307 740 m 1x028140
+ 307 643 l 1
+ 410 643 l 1
+ 410 740 l 1
+ 307 740 l 1x028140
+102 740 m 1x0285
+ 102 643 l 1
+ 205 643 l 1
+ 205 740 l 1
+ 102 740 l 1x0285
+307 933 m 1x014280
+ 205 933 l 1
+ 205 836 l 1
+ 307 836 l 1
+ 307 933 l 1x014280
+512 933 m 1x0140a0
+ 410 933 l 1
+ 410 836 l 1
+ 512 836 l 1
+ 512 933 l 1x0140a0
+717 933 m 1x014028
+ 615 933 l 1
+ 615 836 l 1
+ 717 836 l 1
+ 717 933 l 1x014028
+922 933 m 1x01400a
+ 820 933 l 1
+ 820 836 l 1
+ 922 836 l 1
+ 922 933 l 1x01400a
+1127 933 m 1x01400280
+ 1025 933 l 1
+ 1025 836 l 1
+ 1127 836 l 1
+ 1127 933 l 1x01400280
+922 1126 m 1x00a005
+ 922 1030 l 1
+ 1025 1030 l 1
+ 1025 1126 l 1
+ 922 1126 l 1x00a005
+717 1126 m 1x00a014
+ 717 1030 l 1
+ 820 1030 l 1
+ 820 1126 l 1
+ 717 1126 l 1x00a014
+512 1126 m 1x00a050
+ 512 1030 l 1
+ 615 1030 l 1
+ 615 1126 l 1
+ 512 1126 l 1x00a050
+307 1126 m 1x00a140
+ 307 1030 l 1
+ 410 1030 l 1
+ 410 1126 l 1
+ 307 1126 l 1x00a140
+102 1126 m 1x00a5
+ 102 1030 l 1
+ 205 1030 l 1
+ 205 1126 l 1
+ 102 1126 l 1x00a5
+1229 1513 m 1x000aaa80
+ 1127 1513 l 1
+ 1127 1416 l 1x002801
+ 1229 1416 l 1
+ 1229 1126 l 1x00280080
+ 1127 1126 l 1
+ 1127 1030 l 1x00a801
+ 1229 1030 l 1
+ 1229 740 l 1x00a80080
+ 1127 740 l 1
+ 1127 643 l 1x02a801
+ 1229 643 l 1
+ 1229 353 l 1x02a80080
+ 1127 353 l 1
+ 1127 256 l 1x0aa801
+ 1229 256 l 1
+ 1229 -34 l 1x0aa80080
+ 1127 -34 l 1
+ 1127 -130 l 1x2aa801
+ 1229 -130 l 1
+ 1229 -420 l 1x2aa80080
+ 1127 -420 l 1
+ 1127 -517 l 1x6aa801
+ 1229 -517 l 1
+ 1229 -615 l 1x6aa80080
+ 0 -615 l 1x80040080
+ 0 -517 l 1x40040080
+ 0 -324 l 1x80040080
+ 102 -324 l 1
+ 102 -227 l 1x9002
+ 0 -227 l 1
+ 0 63 l 1x9004
+ 102 63 l 1
+ 102 160 l 1x9402
+ 0 160 l 1
+ 0 450 l 1x9404
+ 102 450 l 1
+ 102 546 l 1x9502
+ 0 546 l 1
+ 0 836 l 1x9504
+ 102 836 l 1
+ 102 933 l 1x9542
+ 0 933 l 1
+ 0 1223 l 1x9544
+ 102 1223 l 1
+ 102 1320 l 1x9552
+ 0 1320 l 1
+ 0 1610 l 1x9554
+ 102 1610 l 1x9552
+ 102 1705 l 1
+ 205 1705 l 1x000a
+ 205 1610 l 1
+ 307 1610 l 1x001280
+ 307 1705 l 1
+ 410 1705 l 1x000a80
+ 410 1610 l 1
+ 512 1610 l 1x0012a0
+ 512 1705 l 1
+ 615 1705 l 1x000aa0
+ 615 1610 l 1
+ 717 1610 l 1x0012a8
+ 717 1705 l 1
+ 820 1705 l 1x000aa8
+ 820 1610 l 1
+ 922 1610 l 1x0012aa
+ 922 1705 l 1
+ 1025 1705 l 1x000aaa
+ 1025 1610 l 1
+ 1127 1610 l 1x0012aa80
+ 1127 1705 l 1
+ 1229 1705 l 1
+ 1229 1513 l 1x000aaa80
+102 -517 m 1x6005
+ 205 -517 l 1
+ 205 -420 l 1
+ 102 -420 l 1
+ 102 -517 l 1x6005
+307 -517 m 1
+ 410 -517 l 1
+ 410 -420 l 1x600140
+ 307 -420 l 1
+ 307 -517 l 1
+512 -517 m 1
+ 615 -517 l 1
+ 615 -420 l 1x600050
+ 512 -420 l 1
+ 512 -517 l 1
+717 -517 m 1
+ 820 -517 l 1
+ 820 -420 l 1x600014
+ 717 -420 l 1
+ 717 -517 l 1
+922 -517 m 1
+ 1025 -517 l 1
+ 1025 -420 l 1x600005
+ 922 -420 l 1
+ 922 -517 l 1
+EndSplineSet
+Validated: 8388609
+EndChar
+
+StartChar: block
+Encoding: 4 9608 3
+Width: 1229
+Flags: WO
+VStem: 0 1229<-615 1705>
+LayerCount: 2
+Fore
+SplineSet
+0 -615 m 5
+ 0 1705 l 1
+ 1229 1705 l 1
+ 1229 -615 l 1
+ 0 -615 l 5
+EndSplineSet
+Validated: 1
+EndChar
+
+StartChar: uni00A0
+Encoding: 0 160 4
+Width: 1229
+Flags: W
+LayerCount: 2
+Fore
+Validated: 1
+EndChar
+
+StartChar: space
+Encoding: 5 32 5
+Width: 1229
+Flags: W
+LayerCount: 2
+Fore
+Validated: 1
+EndChar
+EndChars
+EndSplineFont

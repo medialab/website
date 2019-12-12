@@ -47,3 +47,30 @@
     margin-left: 15px;
   }  
 }
+
+/**
+ * SINGLE TOOL PAGE
+ */
+.tool-big-attachments
+{
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.tool-big-attachments li{
+  font-size: 27px;
+  /* line-height: 22.5px; */
+  font-weight: 100;
+  border-bottom: .5px solid #ebebeb;
+  border-bottom-color: rgb(235, 235, 235);
+  border-bottom-style: solid;
+  border-bottom-width: 0.5px;
+  padding: 15px;
+  padding-left: 25px;
+  /* min-width: 50%;
+  max-width: 50%; */
+}
+
+.tool-big-attachments li:hover{
+  color: #e6142d;
+}

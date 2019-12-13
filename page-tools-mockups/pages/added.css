@@ -23,14 +23,33 @@
   right: 15px;
 }
 
+.date-news{
+  position: absolute;
+  right: 80px!important;
+  border-right: .5px solid #ebebeb;
+  border-left: none!important;
+  padding-right: 15px;
+}
+
 .accroche,
 .liste_objet hgroup{
   margin-top: 30px!important;
   border-left: none!important;
 }
 
-@media screen and (max-width: 840px)  {
+@media screen and (max-width:1200px) {
   .tool-status{
+    right: 50px!important;
+  } 
+  .date-news{
+    right: 105px!important;
+  }
+}
+
+
+@media screen and (max-width: 840px)  {
+  .tool-status,
+  .date-news{
     display: none!important;
   } 
   .tool-title-container h1{

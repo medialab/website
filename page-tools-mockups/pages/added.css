@@ -74,23 +74,48 @@
 .tool-big-attachments
 {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: row nowrap;
+  max-width: 900px;
+  justify-content: space-between;
+  border-bottom: .5px solid #ebebeb;
 }
 
 .tool-big-attachments li{
-  font-size: 27px;
+  font-size: 16px;
   /* line-height: 22.5px; */
   font-weight: 100;
-  border-bottom: .5px solid #ebebeb;
-  border-bottom-color: rgb(235, 235, 235);
-  border-bottom-style: solid;
-  border-bottom-width: 0.5px;
-  padding: 15px;
-  padding-left: 0;
+  
+  /* padding: 15px; */
+  /* padding-left: 0; */
+  margin: 15px;
+  margin-right: 25px;
+  padding-right: 25px;
+  margin-left: 0;
+  flex: 1;
+}
+
+.tool-big-attachments li:not(:last-of-type)
+{
+  /* padding-left: 15px; */
+  border-right: .5px solid #ebebeb;
 }
 
 .tool-big-attachments li:hover{
   color: #e6142d;
+}
+
+.type-objet.important{
+  color: #e6142d;
+}
+
+.details.no-top-border{
+  border-top: none!important;
+}
+@media screen and (min-width: 900px)
+{
+  .details.no-top-border{
+    border-top: none!important;
+  } 
 }
 
 /**
@@ -111,8 +136,12 @@
   flex-flow: row nowrap;
 }
 
+:root{
+  --card-image-height: 200px;
+}
+
 .tool-portrait .left-column img{
-  max-height: 150px;
+  max-height: var(--card-image-height);
   filter: grayscale(1);
 }
 
@@ -123,9 +152,10 @@
 }
 .tool-portrait .right-column
 {
-  padding: 0 10px;
+  padding: 0 15px;
+  padding-top: 10px;
   position :relative;
-  height: 100%;
+  max-height: var(--card-image-height);
   display: flex;
   flex-flow: column nowrap;
   justify-content: stretch;
@@ -138,12 +168,15 @@
 .tool-portrait .header h1{
   margin: 0!important;
   padding: 0!important;
+  font-size: 36px!important;
+  padding-bottom: 25px!important;
 }
 .tool-portrait .header h2{
   font-size: 20px;
   font-weight: 300;
   line-height: 30px;
   margin: 0;
+  line-height: 1.2;
 }
 
 .tool-portrait .info-row{
@@ -166,4 +199,18 @@
 
 .tool-portrait .info-row p.important{
   color: #e6142d;
+}
+
+@media screen and (max-width:800px)  {
+  .tool-portrait .left-column{
+    display: none;
+  }
+  .tool-portrait{
+    margin-bottom: 0;
+
+  }
+  .tool-portrait .right-column{
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
 }

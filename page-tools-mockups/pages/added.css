@@ -8,6 +8,10 @@
   }
 }
 
+.subtype-production.subtype-origin{
+  color: inherit!important;
+}
+
 .liste_objet hgroup{
   display: flex;
 }

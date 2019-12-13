@@ -20,16 +20,13 @@
 }
 .tool-status{
   position: absolute;
-  left: 530px;
-}
-@media screen and (min-width:1200px) {
-  .tool-status{
-    left: 56%;
-  } 
+  right: 15px;
 }
 
-.accroche{
+.accroche,
+.liste_objet hgroup{
   margin-top: 30px!important;
+  border-left: none!important;
 }
 
 @media screen and (max-width: 840px)  {
@@ -42,7 +39,7 @@
   .authors{
     padding-left: 0!important;
   }
-  .accroche{
+  .accroche,.liste_objet hgroup{
     margin-top: unset!important;
     margin-left: 15px;
   }  
@@ -66,9 +63,7 @@
   border-bottom-style: solid;
   border-bottom-width: 0.5px;
   padding: 15px;
-  padding-left: 25px;
-  /* min-width: 50%;
-  max-width: 50%; */
+  padding-left: 0;
 }
 
 .tool-big-attachments li:hover{

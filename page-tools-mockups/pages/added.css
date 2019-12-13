@@ -130,26 +130,29 @@
   padding: 10px;
   margin-bottom: 30px;
   border-bottom: none!important;
+  height: 100%;
 }
 .tool-portrait > a{
   display: flex!important;
   flex-flow: row nowrap;
+  justify-content: stretch;
+  height: 100%;
 }
 
 :root{
-  --card-image-height: 200px;
+  --card-image-height: 180px;
 }
 
 .tool-portrait .left-column img{
   max-height: var(--card-image-height);
   filter: grayscale(1);
 }
-
+/* 
 .tool-portrait .left-column,
 .tool-portrait .right-column
 {
   flex: 1;
-}
+} */
 .tool-portrait .right-column
 {
   padding: 0 15px;
@@ -159,6 +162,7 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: stretch;
+  flex: 1;
 }
 
 .tool-portrait .header
@@ -169,7 +173,7 @@
   margin: 0!important;
   padding: 0!important;
   font-size: 36px!important;
-  padding-bottom: 25px!important;
+  padding-bottom: 15px!important;
 }
 .tool-portrait .header h2{
   font-size: 20px;
@@ -177,6 +181,7 @@
   line-height: 30px;
   margin: 0;
   line-height: 1.2;
+  padding-bottom: 10px!important;
 }
 
 .tool-portrait .info-row{
@@ -196,7 +201,9 @@
 .tool-portrait .info-row p:not(:first-of-type) {
   padding-left: 10px;
 }
-
+.tool-portrait .info-row:last-of-type {
+  border-bottom: .5px solid #ebebeb;
+}
 .tool-portrait .info-row p.important{
   color: #e6142d;
 }

@@ -31,8 +31,10 @@ class Preview extends EventEmitter {
     this.upgradeDatabase();
     this.watchDatabase();
 
-    if (this.devMode)
+    if (this.devMode) {
       this.watchSass();
+      this.watchTemplates();
+    }
 
     this.debouncedUpgradeDatabase = debounce(this.upgradeDatabase.bind(this), 500);
   }
@@ -83,6 +85,30 @@ class Preview extends EventEmitter {
       .on('unlink', compile);
   }
 
+  watchTemplates() {
+    console.log('wilson.preview: Watching templates...');
+
+    const sitePath = path.join(__dirname, '..', 'site');
+
+    const reloadTemplate = debounce(() => {
+      console.log('wilson.preview: Invalidating template cache');
+      this.invalidateTemplateRequireCache();
+      this.emit('templatesInvalidated');
+    }, 500);
+
+    chokidar
+      .watch(
+        [
+          path.join(sitePath, 'components', '**/*.js'),
+          path.join(sitePath, 'templates', '**/*.js')
+        ],
+        {awaitWriteFinish: true, ignoreInitial: true}
+      )
+      .on('change', reloadTemplate)
+      .on('add', reloadTemplate)
+      .on('unlink', reloadTemplate);
+  }
+
   processCovers(callback) {
     return this.db.processCovers(
       this.inputDir,
@@ -116,6 +142,16 @@ class Preview extends EventEmitter {
 
       return callback();
     });
+  }
+
+  invalidateTemplateRequireCache() {
+    for (const k in require.cache) {
+      if (
+        k.includes('/site/components/') ||
+        k.includes('/site/templates/')
+      )
+        delete require.cache[k];
+    }
   }
 
   upgradeDatabase() {

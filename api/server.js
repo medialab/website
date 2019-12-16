@@ -345,6 +345,7 @@ const triggerLivereload = debounce(() => {
 
 PREVIEW.on('upgraded', triggerLivereload);
 PREVIEW.on('sassCompiled', triggerLivereload);
+PREVIEW.on('templatesInvalidated', triggerLivereload);
 
 const LOCKS = {
   buildStatus: 'free',

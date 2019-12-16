@@ -22,6 +22,7 @@ class Preview extends EventEmitter {
     this.pathPrefix = pathPrefix;
     this.linkToAdmin = options.linkToAdmin || null;
     this.livereloadUrl = options.livereloadUrl || null;
+    this.devMode = options.devMode || false;
 
     this.stylesheet = null;
     this.coverBuffers = {};
@@ -29,6 +30,9 @@ class Preview extends EventEmitter {
 
     this.upgradeDatabase();
     this.watchDatabase();
+
+    if (this.devMode)
+      this.watchSass();
 
     this.debouncedUpgradeDatabase = debounce(this.upgradeDatabase.bind(this), 500);
   }
@@ -51,6 +55,32 @@ class Preview extends EventEmitter {
     chokidar
       .watch(path.join(this.inputDir, '*.json'), {awaitWriteFinish: true})
       .on('change', () => this.debouncedUpgradeDatabase());
+  }
+
+  watchSass() {
+    console.log('wilson.preview: Watching SASS...');
+
+    const compile = debounce(() => {
+      console.log('wilson.preview: Compiling SASS...');
+
+      this.compileAssets(err => {
+        if (err) {
+          console.error('wilson.preview: Error while compiling SASS:', err);
+          return;
+        }
+
+        this.emit('sassCompiled');
+      });
+    }, 500);
+
+    chokidar
+      .watch(
+        path.join(__dirname, '..', 'site', 'assets', 'scss', '**/*.scss'),
+        {awaitWriteFinish: true, ignoreInitial: true}
+      )
+      .on('change', compile)
+      .on('add', compile)
+      .on('unlink', compile);
   }
 
   processCovers(callback) {
@@ -135,7 +165,7 @@ class Preview extends EventEmitter {
     const only = new Set(itemsWithCover.map(item => item.id));
 
     if (only.size)
-      console.log('Recomputing preview covers for', only);
+      console.log('wilson.preview: Recomputing preview covers for', only);
 
     this.db.processCovers(
       this.inputDir,

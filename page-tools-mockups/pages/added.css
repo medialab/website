@@ -27,6 +27,11 @@
   right: 15px;
 }
 
+.startDate{
+  border-left: .5px solid #ebebeb;
+  padding-left:10px;
+}
+
 .date-news{
   position: absolute;
   right: 80px!important;

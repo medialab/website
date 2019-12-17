@@ -16,8 +16,24 @@
   display: flex;
 }
 
-.tool-title-container h1{
-  padding-left: 25px;
+
+
+hgroup h1 .label
+{
+  font-style: italic;
+  color: rgba(68,68,68,0.6);
+  font-size: 27px;
+  position: relative;
+  bottom: 2px;
+  left: 5px;
+}
+@media screen and (max-width: 840px)  {
+  hgroup h1 .label{
+    font-size: 20px;
+  }
+  .type-objet:last-of-type{
+    border-bottom: none!important;
+  }
 }
 .authors{
   padding-left: 25px!important;
@@ -81,22 +97,20 @@
   display: flex;
   flex-flow: row nowrap;
   max-width: 900px;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  justify-content: flex-start;
   border-bottom: .5px solid #ebebeb;
 }
 
 .tool-big-attachments li{
   font-size: 16px;
-  /* line-height: 22.5px; */
   font-weight: 100;
-  
-  /* padding: 15px; */
-  /* padding-left: 0; */
   margin: 15px;
   margin-right: 25px;
   padding-right: 25px;
   margin-left: 0;
-  flex: 1;
+  min-width: 166px;
+  /* flex: 1; */
 }
 
 .tool-big-attachments li:not(:last-of-type)
@@ -109,12 +123,20 @@
   color: #e6142d;
 }
 
+.tool-big-attachments li:first-of-type
+{
+  color: #e6142d;
+}
+
 .type-objet.important{
   color: #e6142d;
 }
 
 .details.no-top-border{
   border-top: none!important;
+}
+.details.margin-bottom{
+  margin-bottom: 25px;
 }
 @media screen and (min-width: 900px)
 {
@@ -180,6 +202,8 @@
   font-size: 36px!important;
   padding-bottom: 15px!important;
 }
+
+
 .tool-portrait .header h2{
   font-size: 20px;
   font-weight: 300;

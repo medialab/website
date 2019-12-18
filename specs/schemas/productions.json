@@ -247,6 +247,25 @@
           }
         }
       }
+    },
+    "usages": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["collect", "curation", "processing", "exploration", "writing"],
+        "enumId": "toolUsages"
+      }
+    },
+    "audience": {
+      "type": "string",
+      "enum": ["developers", "all"],
+      "enumId": "toolAudience"
+
+    },
+    "status": {
+      "type": "string",
+      "enum": ["usable", "experimental", "archived"],
+      "enumId": "toolStatus"
     }
   },
   "required":[

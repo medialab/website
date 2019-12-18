@@ -112,5 +112,43 @@
       }
     },
     "groupOrder": ["publications", "tools", "webEditions", "media", "situations"]
+  },
+  "toolAudience": {
+    "en": {
+      "developers": "developers",
+      "all": "all audiences"
+    },
+    "fr": {
+      "developers": "développeur.e.s",
+      "all": "tous publics"
+    }
+  },
+  "toolStatus": {
+    "en": {
+      "usable": "usable",
+      "experimental": "experimental",
+      "archived": "archived"
+    },
+    "fr": {
+      "usable": "utilisable",
+      "experimental": "expérimental",
+      "archived": "archivé"
+    }
+  },
+  "toolUsages": {
+    "en": {
+      "collect": "collect",
+      "curation": "curation",
+      "processing": "processing",
+      "exploration": "exploration",
+      "writing": "writing"
+    },
+    "fr": {
+      "collect": "collecte",
+      "curation": "curation",
+      "processing": "traitement",
+      "exploration": "exploration",
+      "writing": "écriture"
+    }
   }
 }

@@ -150,5 +150,15 @@
       "exploration": "exploration",
       "writing": "écriture"
     }
+  },
+  "language": {
+      "en": {
+          "fr": "french",
+          "en": "english"
+      },
+      "fr": {
+          "fr": "français",
+          "en": "english"
+      }
   }
 }

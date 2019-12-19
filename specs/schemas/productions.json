@@ -244,6 +244,11 @@
           },
           "value": {
             "type": "string"
+          },
+          "lang": {
+            "type": "string",
+            "enum": ["fr", "en"],
+            "enumId": "language"
           }
         }
       }

@@ -113,7 +113,7 @@
     },
     "groupOrder": ["publications", "tools", "webEditions", "media", "situations"]
   },
-  "toolAudience": {
+  "audience": {
     "en": {
       "developers": "developers",
       "all": "all audiences"
@@ -123,7 +123,7 @@
       "all": "tous publics"
     }
   },
-  "toolStatus": {
+  "status": {
     "en": {
       "usable": "usable",
       "experimental": "experimental",
@@ -135,7 +135,7 @@
       "archived": "archivé"
     }
   },
-  "toolUsages": {
+  "usages": {
     "en": {
       "collect": "collect",
       "curation": "curation",

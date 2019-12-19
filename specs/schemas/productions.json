@@ -258,19 +258,19 @@
       "items": {
         "type": "string",
         "enum": ["collect", "curation", "processing", "exploration", "writing"],
-        "enumId": "toolUsages"
+        "enumId": "usages"
       }
     },
     "audience": {
       "type": "string",
       "enum": ["developers", "all"],
-      "enumId": "toolAudience"
+      "enumId": "audience"
 
     },
     "status": {
       "type": "string",
       "enum": ["usable", "experimental", "archived"],
-      "enumId": "toolStatus"
+      "enumId": "status"
     }
   },
   "required":[

@@ -6,7 +6,7 @@ import {I18N_TYPE_LABELS, I18N_GROUP_LABELS} from '../../i18n.js';
 import ProductionFilter from './fragments/ProductionFilter.js';
 import DateNews from '../helpers/DateNews.js';
 import {compare, productionTypeToSchemaURL} from '../helpers/helpers.js';
-import {getYear, parseISO} from 'date-fns';
+import {getYear, parseISO, format} from 'date-fns';
 
 
 import PageMeta from '../helpers/PageMeta.js';
@@ -29,18 +29,15 @@ export default function ProductionListing({lang, list, group, types}) {
 
   list
     .map(p => {
-      if (!p.date)
-        p.date = '' + new Date().getFullYear();
+      if (!p.date) {
+        // if no date take the last modification one as a proxy
+        p.date = format(new Date(p.lastUpdated), 'yyyy-MM');
+      }
       return p;
     })
     .sort((a, b) => compare(b.date, a.date))
     .forEach(production => {
       let year = getYear(parseISO(production.date));
-
-      // TODO: this is a temporary workaround
-      if (Number.isNaN(year)) {
-        year = new Date().getFullYear();
-      }
 
       if (!yearGroups.has(year)) {
         yearGroups.set(year, []);

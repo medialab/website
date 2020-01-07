@@ -80,6 +80,6 @@ $height-filtres-actu: $baseline * 3.5;
     left: calc((100vw - 1600px) / 2);
   }
   .accroche-title-list {
-    left: calc((100vw - 1600px) / 2 + #{$logo-column});
+    left: calc((100vw - 1600px) / 2 + 250px); //250px a.k.a #{$logo-column}
   }
 }

@@ -119,6 +119,7 @@ module.exports = class Website {
       data: {
         facetedEnums,
         productions: db.getModel('productions')
+          .filter(item => !item.external)
       },
       scripts: ['search', 'production-listing'],
       itemsWithCover(data) {

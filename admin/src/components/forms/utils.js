@@ -21,9 +21,20 @@ export function createSlugRelatedHandler(scope, key, slugify) {
   };
 }
 
-export function createRawHandler(scope, key) {
+
+export function getResetState(spec, state) {
+  if (!spec.resetField) return state;
+  let newState = {...state};
+  for (const i in spec.resetField) {
+    newState = set(['data', spec.resetField[i]], undefined, newState);
+  }
+  return newState;
+}
+
+export function createRawHandler(scope, key, spec) {
   return v => {
-    scope.setState(set(key, v, scope.state));
+    const state = getResetState(spec, scope.state);
+    scope.setState(set(key, v, state));
   };
 }
 
@@ -77,12 +88,10 @@ export function createHandlers(scope, specs, root = 'data') {
 
     let handler;
 
-    if (spec.type === 'raw')
-      handler = createRawHandler(scope, field);
+    if (spec.type === 'raw' || spec.type === 'boolean')
+      handler = createRawHandler(scope, field, spec);
     else if (spec.type === 'slug')
       handler = createSlugRelatedHandler(scope, field, spec.slugify);
-    else if (spec.type === 'boolean')
-      handler = createRawHandler(scope, field);
     else if (spec.type === 'negative')
       handler = createNegativeHandler(scope, field);
     else if (spec.type === 'relation')

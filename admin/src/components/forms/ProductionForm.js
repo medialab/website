@@ -49,7 +49,20 @@ const HANDLERS = {
   },
   type: {
     type: 'raw',
-    field: 'type'
+    field: 'type',
+    resetField: ['usages', 'audience', 'status']
+  },
+  usages: {
+    type: 'raw',
+    field: 'usages'
+  },
+  audience: {
+    type: 'raw',
+    field: 'audience'
+  },
+  status: {
+    type: 'raw',
+    field: 'status'
   },
   activities: {
     type: 'relation',
@@ -267,6 +280,44 @@ function renderProductionForm(props) {
             </div>
           </div>
         </div>
+
+        { data.type && (data.type === 'code' || data.type === 'software') &&
+          <div className="columns">
+            <div className="column is-4">
+              <div className="field">
+                <label className="label">Usages</label>
+                <div className="control">
+                  <EnumSelector
+                    enumType="usages"
+                    value={data.usages}
+                    onChange={handlers.usages} />
+                </div>
+              </div>
+            </div>
+            <div className="column is-4">
+              <div className="field">
+                <label className="label">Audience</label>
+                <div className="control">
+                  <EnumSelector
+                    enumType="audience"
+                    value={data.audience}
+                    onChange={handlers.audience} />
+                </div>
+              </div>
+            </div>
+            <div className="column is-4">
+              <div className="field">
+                <label className="label">Status</label>
+                <div className="control">
+                  <EnumSelector
+                    enumType="status"
+                    value={data.status}
+                    onChange={handlers.status} />
+                </div>
+              </div>
+            </div>
+          </div>
+        }
 
         <div className="columns">
           <div className="column is-6">

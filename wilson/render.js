@@ -5,14 +5,20 @@ const {Helmet} = require('react-helmet');
 const {renderToStaticMarkup} = require('react-dom/server');
 const SiteContext = require('../site/context.js').default;
 const meta = require('./meta.js');
-const path = require('path');
-const fs = require('fs-extra');
 
 // Templates
-let GA_TEMPLATE = fs.readFileSync(
-  path.join(__dirname, '..', 'site', 'assets', 'js', 'ga.js'),
-  'utf-8'
-);
+let GA_TEMPLATE = `
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= GOOGLE_ANALYTICS_ID %>"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '<%= GOOGLE_ANALYTICS_ID %>');
+  </script>
+`;
+
 GA_TEMPLATE = compileTemplate(GA_TEMPLATE);
 
 // Helpers
@@ -93,6 +99,7 @@ function wrap(pathPrefix, content, helmet, options) {
     <link href="${pathPrefix}/font/Bel2/bel2.css" rel="stylesheet">
     <link href="${pathPrefix}/font/Symbol/symbol.css" rel="stylesheet">
     <link href="${pathPrefix}/medialab.css" rel="stylesheet">
+    ${ga ? templateGoogleAnalytics(ga) : ''}
   </head>
   <body>
     ${content}
@@ -102,9 +109,6 @@ function wrap(pathPrefix, content, helmet, options) {
         cancelable: true
       }));
       ${options.livereloadUrl ? `window.API_URL = '${options.livereloadUrl}';` : ''}
-    </script>
-    <script>
-      ${ga ? templateGoogleAnalytics(ga) : ''}
     </script>
     ${scriptTags}
   </body>

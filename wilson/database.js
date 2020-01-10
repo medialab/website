@@ -271,11 +271,23 @@ function loadFluxFromDisk(inputDir) {
   const githubPath = path.join(inputDir, 'github.json');
   const twitterPath = path.join(inputDir, 'twitter.json');
 
-  if (fs.existsSync(githubPath))
-    data.github = fs.readJSONSync(githubPath).map(reducers.github);
+  if (fs.existsSync(githubPath)) {
+    try {
+      data.github = fs.readJSONSync(githubPath).map(reducers.github);
+    }
+    catch {
+      console.error('Error while loading Github flux data!');
+    }
+  }
 
-  if (fs.existsSync(twitterPath))
-    data.twitter = fs.readJSONSync(twitterPath);
+  if (fs.existsSync(twitterPath)) {
+    try {
+      data.twitter = fs.readJSONSync(twitterPath);
+    }
+    catch {
+      console.error('Error while loading Twitter flux data!');
+    }
+  }
 
   return data;
 }

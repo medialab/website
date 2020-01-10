@@ -81,7 +81,7 @@ class Database {
       this.store[model] = this.store[model].map(item => {
 
         // Applying reducers
-        const data = reducers[model](pathPrefix, item);
+        item = reducers[model](pathPrefix, item);
 
         for (const k in forward) {
           if (!(k in item))
@@ -104,9 +104,9 @@ class Database {
           });
         }
 
-        this.graph.replaceNodeAttributes(item.id, data);
+        this.graph.replaceNodeAttributes(item.id, item);
 
-        return data;
+        return item;
       });
     });
 

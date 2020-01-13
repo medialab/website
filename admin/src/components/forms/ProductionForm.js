@@ -5,6 +5,7 @@ import {slugifyProduction} from '../../utils';
 import enums from '../../../../specs/enums.json';
 
 import RelationSelector, {MultiRelationSelector} from '../selectors/RelationSelector';
+import SortableKeyValueList from '../selectors/SortableKeyValueList';
 import Form from './Form';
 import Editor from '../Editor';
 import BooleanSelector from '../selectors/BooleanSelector';
@@ -50,7 +51,11 @@ const HANDLERS = {
   type: {
     type: 'raw',
     field: 'type',
-    resetField: ['usages', 'audience', 'status']
+    resetField: ['usages', 'audience', 'status', 'attachments']
+  },
+  attachments: {
+    type: 'relation',
+    field: 'attachments'
   },
   usages: {
     type: 'raw',
@@ -282,42 +287,61 @@ function renderProductionForm(props) {
         </div>
 
         { data.type && (data.type === 'code' || data.type === 'software') &&
-          <div className="columns">
-            <div className="column is-4">
-              <div className="field">
-                <label className="label">Usages</label>
-                <div className="control">
-                  <EnumSelector
-                    enumType="usages"
-                    value={data.usages}
-                    onChange={handlers.usages} />
+          (
+            <>
+              <div className="columns">
+                <div className="column is-3">
+                  <div className="field">
+                    <label className="label">Usages</label>
+                    <div className="control">
+                      <EnumSelector
+                        enumType="usages"
+                        value={data.usages}
+                        onChange={handlers.usages} />
+                    </div>
+                  </div>
+                </div>
+                <div className="column is-3">
+                  <div className="field">
+                    <label className="label">Audience</label>
+                    <div className="control">
+                      <EnumSelector
+                        enumType="audience"
+                        value={data.audience}
+                        onChange={handlers.audience} />
+                    </div>
+                  </div>
+                </div>
+                <div className="column is-3">
+                  <div className="field">
+                    <label className="label">Status</label>
+                    <div className="control">
+                      <EnumSelector
+                        enumType="status"
+                        value={data.status}
+                        onChange={handlers.status} />
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="column is-4">
-              <div className="field">
-                <label className="label">Audience</label>
-                <div className="control">
-                  <EnumSelector
-                    enumType="audience"
-                    value={data.audience}
-                    onChange={handlers.audience} />
+              <div className="columns">
+                <div className="column is-8">
+                  <div className="field">
+                    <label className="label">attachments</label>
+                    <div className="control">
+                      <SortableKeyValueList
+                        items={data.attachments}
+                        model="news"
+                        field="attachments.label"
+                        onAdd={handlers.attachments.add}
+                        onDrop={handlers.attachments.drop}
+                        onMove={handlers.attachments.move} />
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="column is-4">
-              <div className="field">
-                <label className="label">Status</label>
-                <div className="control">
-                  <EnumSelector
-                    enumType="status"
-                    value={data.status}
-                    onChange={handlers.status} />
-                </div>
-              </div>
-            </div>
-          </div>
-        }
+            </>
+          )}
 
         <div className="columns">
           <div className="column is-6">

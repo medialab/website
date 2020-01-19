@@ -259,7 +259,6 @@ function renderProductionForm(props) {
               <label className="label">Cover</label>
               <CoverSelector
                 cover={data.cover}
-                processing
                 ratio={4 / 3}
                 onChange={handlers.cover} />
             </div>

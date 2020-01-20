@@ -154,9 +154,9 @@ export default function Legal({lang}) {
             To learn about, get access to or ask for deletion of personal information we might have collected please contact:
               <br />
               <br />
-              par mail: <strong>médialab, 27 rue Saint Guillaume 75337 Paris Cedex 07</strong>
+              by mail: <strong>médialab, 27 rue Saint Guillaume 75337 Paris Cedex 07</strong>
               <br />
-              par email: <strong>medialab@sciencespo.fr</strong>
+              by e-mail: <strong>medialab@sciencespo.fr</strong>
             </p>
           </div>
           {/*  <aside id="inshort">

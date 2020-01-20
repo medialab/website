@@ -34,6 +34,7 @@ for (const k in enums) {
 export default React.memo(function EnumSelector(props) {
   const {
     value,
+    isMulti,
     enumType,
     onChange
   } = props;
@@ -43,13 +44,29 @@ export default React.memo(function EnumSelector(props) {
   let selected;
 
   const onChangeCallback = React.useCallback(option => onChange(option.value), []);
+  const onChangeMulti = (option) => {
+    const values = option.map((item) => item.value);
+    onChange(values);
+  };
 
   if (enums[enumType].groups) {
     selected = options.flatMap(g => g.options).find(o => o.value === value);
   }
+  else if (isMulti) {
+    selected = options.filter(o => value.indexOf(o.value) !== -1);
+  }
   else {
     selected = options.find(o => o.value === value);
   }
+
+  if (isMulti)
+    return (
+      <Select
+        value={selected}
+        isMulti={isMulti}
+        onChange={onChangeMulti}
+        options={options} />
+    );
 
   if (options.length < 4)
     return (

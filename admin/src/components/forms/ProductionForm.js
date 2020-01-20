@@ -295,6 +295,7 @@ function renderProductionForm(props) {
                     <div className="control">
                       <EnumSelector
                         enumType="usages"
+                        isMulti
                         value={data.usages}
                         onChange={handlers.usages} />
                     </div>

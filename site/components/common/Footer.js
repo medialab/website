@@ -34,7 +34,7 @@ export default function Footer({lang}) {
         <div className="logo" />
         <div className="mentions" >
           <p aria-label={i18n[lang].address}>
-            médialab Science Po<br />
+            médialab Sciences Po<br />
             27 rue St Guillaume, Paris VII
           </p>
           <p><Link to={permalink[lang]} aria-label={i18n[lang].legal}>Mentions legales</Link></p>
@@ -43,7 +43,7 @@ export default function Footer({lang}) {
           <li>
             <a
               itemProp="email"
-              href="mailto:contact@medialab.sciencespo.fr"
+              href="mailto:medialab@sciencespo.fr"
               aria-label={i18n[lang].mail}
               target="_blank"
               rel="noopener noreferrer">

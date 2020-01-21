@@ -68,7 +68,7 @@ export default function About({lang}) {
               <p>
                 Pour toute question, vous pouvez joindre l'équipe du médialab à l'adresse suivante:
                 <br />
-                <strong>medialab [at] sciences-po.fr</strong>
+                <strong>medialab [at] sciencespo.fr</strong>
               </p>
               <p>
                 Vous pouvez également nous joindre par téléphone au:
@@ -155,7 +155,7 @@ export default function About({lang}) {
               <p>
                 For any inquiries, please send an email to:
                 <br />
-                <strong>medialab [at] sciences-po.fr</strong>
+                <strong>medialab [at] sciencespo.fr</strong>
               </p>
               <p>
               You can also call us:

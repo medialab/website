@@ -14,6 +14,7 @@ const rimraf = require('rimraf');
 const simpleGit = require('simple-git');
 const CronJob = require('cron').CronJob;
 const mime = require('mime-types');
+const debounce = require('lodash/debounce');
 const get = require('lodash/fp/get');
 const set = require('lodash/fp/set');
 const fs = require('fs-extra');
@@ -111,7 +112,8 @@ const PREVIEW = new Preview(
   path.join(config.get('previewPrefix'), 'preview'),
   DBS, {
     linkToAdmin: config.get('adminUrl'),
-    livereloadUrl: LIVERELOAD_URL
+    livereloadUrl: LIVERELOAD_URL,
+    devMode: process.env.NODE_ENV !== 'production'
   }
 );
 
@@ -337,9 +339,13 @@ const server = http.Server(app);
 const ws = io(server, {path: '/sockets'});
 
 // Preview live reloading
-PREVIEW.on('upgraded', () => {
+const triggerLivereload = debounce(() => {
   ws.emit('previewUpgraded');
-});
+}, 500);
+
+PREVIEW.on('upgraded', triggerLivereload);
+PREVIEW.on('sassCompiled', triggerLivereload);
+PREVIEW.on('templatesInvalidated', triggerLivereload);
 
 const LOCKS = {
   buildStatus: 'free',

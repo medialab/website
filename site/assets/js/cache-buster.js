@@ -3,6 +3,6 @@ sessionStorage.clear();
 indexedDB.deleteDatabase('gatsby-plugin-offline-precache-https___medialab_sciencespo_fr_');
 indexedDB.deleteDatabase('keyval-store');
 
-navigator.serviceWorker.getRegistrations(workers => {
+navigator.serviceWorker.getRegistrations().then(workers => {
   workers.forEach(worker => worker.unregister());
 });

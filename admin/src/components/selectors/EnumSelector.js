@@ -52,7 +52,7 @@ export default React.memo(function EnumSelector(props) {
   if (enums[enumType].groups) {
     selected = options.flatMap(g => g.options).find(o => o.value === value);
   }
-  else if (isMulti) {
+  else if (isMulti && value && value.length > 0) {
     selected = options.filter(o => value.indexOf(o.value) !== -1);
   }
   else {

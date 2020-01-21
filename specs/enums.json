@@ -153,12 +153,12 @@
   },
   "language": {
       "en": {
-          "fr": "french",
-          "en": "english"
+        "fr": "french",
+        "en": "english"
       },
       "fr": {
-          "fr": "français",
-          "en": "english"
+        "fr": "français",
+        "en": "anglais"
       }
   }
 }

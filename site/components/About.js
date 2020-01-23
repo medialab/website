@@ -21,6 +21,7 @@ export default function About({lang}) {
               <li className="nav-inside-item"><a href="#team" title="Aller à la section" >Équipe</a></li>
               <li className="nav-inside-item"><a href="#activities" title="Aller à la section" >Activités</a></li>
               <li className="nav-inside-item"><a href="#productions" title="Aller à la section" >Productions</a></li>
+              <li className="nav-inside-item"><a href="#deontology" title="Aller à la section" >Éthique et déontologie</a></li>
               <li className="nav-inside-item"><a href="#contact" title="Aller à la section" >Contact</a></li>
             </ul>
           </nav>
@@ -64,6 +65,11 @@ export default function About({lang}) {
               <p><Link to="/productions" className="GoTo">Consulter la liste des productions</Link></p>
 
 
+              <h3 id="deontology">Éthique et déontologie</h3>
+              <p>Les travaux de recherche développés au médialab s'inscrivent dans le respect de la <a href="https://www.sciencespo.fr/recherche/sites/sciencespo.fr.recherche/files/DS_DEONTO_Reglement-interieur-comite_2018-05-04.pdf">politique de déontologie de la recherche de Sciences Po</a>.</p>
+              <p>Nous attachons notamment une importance particulière au respect de la vie privée. Le médialab est engagé dans une démarche de protection des données personnelles qu’il traite pour ses besoins d’activité. À ce titre, le laboratoire s’engage à respecter le Règlement général sur la protection des données 2016/679 du 27 avril 2016 (« RGPD ») et la loi Informatique et Libertés modifiée. Nos projets peuvent nous amener à collecter des données sur les réseaux sociaux mais aucune information n'est republiée autrement qu'anonymisée ou agrégée. Chacun·e peut exercer son droit d'accès, de modification, de rectification ou de suppression des données personnelles le·a concernant en nous écrivant à l'adresse suivante : medialab [at] sciencespo.fr.</p>
+              <p>En accord avec notre volonté d'ouverture et de transparence, les productions du laboratoire sont par ailleurs dans leur grande majorité diffusées librement, c'est-à-dire sous conditions d'Open Access pour les publications scientifiques (voir le médialab <a href="https://hal.archives-ouvertes.fr/search/index/?q=médialab&labStructName_t=Médialab+%28Sciences+Po%29">sur HAL</a> et <a href="https://spire.sciencespo.fr/centreDetail/publications/2441/53r60a8s3kup1vc9kf4j86q90">sur SPIRE</a>) et en logiciels libres Open Source pour les développements informatiques (voir le <a href="https://github.com/medialab">compte GitHub du laboratoire</a>). Dans cette dynamique, le médialab soutient également le développement de logiciels créés par la communauté Open Source.</p>
+
               <h3 id="contact">Contact</h3>
               <p>
                 Pour toute question, vous pouvez joindre l'équipe du médialab à l'adresse suivante:
@@ -103,12 +109,13 @@ export default function About({lang}) {
             description={'The médialab, an interdisciplinary research laboratory comprised of sociologists, engineers and designers, conducts thematic and methodological research to investigate the role of digital technology in our societies'} />
           <nav className="main-nav" id="nav-inside-article" role="navigation">
             <ul>
-              <li className="nav-inside-item" data-type="main"><a href="#main" title="Aller à la section" > Go to the Top</a></li>
-              <li className="nav-inside-item"><a href="#research" title="Aller à la section" >Research at the médialab</a></li>
-              <li className="nav-inside-item"><a href="#team" title="Aller à la section" >Team</a></li>
-              <li className="nav-inside-item"><a href="#activities" title="Aller à la section" >Activities</a></li>
-              <li className="nav-inside-item"><a href="#productions" title="Aller à la section" >Productions</a></li>
-              <li className="nav-inside-item"><a href="#contact" title="Aller à la section" >Contact</a></li>
+              <li className="nav-inside-item" data-type="main"><a href="#main" title="Go to section" > Go to the Top</a></li>
+              <li className="nav-inside-item"><a href="#research" title="Go to section" >Research at the médialab</a></li>
+              <li className="nav-inside-item"><a href="#team" title="Go to section" >Team</a></li>
+              <li className="nav-inside-item"><a href="#activities" title="Go to section" >Activities</a></li>
+              <li className="nav-inside-item"><a href="#productions" title="Go to section" >Productions</a></li>
+              <li className="nav-inside-item"><a href="#deontology" title="Go to section" >Ethics and deontology</a></li>
+              <li className="nav-inside-item"><a href="#contact" title="Go to section" >Contact</a></li>
             </ul>
           </nav>
           <article id="about-contenu" className="main-container">
@@ -150,6 +157,11 @@ export default function About({lang}) {
               <p>In addition to traditional academic publications, "Web publications" also disseminate the laboratory's activities through an interactive medium that opens up new ways of representing and visually exploring findings. Situations – exhibitions, workshops, simulations, etc. – allow for the public’s involvement in the research process and the testing of hypotheses against the reality on the ground.</p>
 
               <p><Link to="/en/productions" className="GoTo">Learn more about the médialab's productions</Link></p>
+
+              <h3 id="deontology">Ethics and deontology</h3>
+              <p>The research activities developed at médialab are in line with <a href="https://www.sciencespo.fr/recherche/sites/sciencespo.fr.recherche/files/DS_DEONTO_Reglement-interieur-comite_2018-05-04.pdf">Sciences Po's research ethics rules and policy</a>.</p>
+              <p>In particular, we take a strong stand to respect privacy issues. médialab is committed to the protection of personal data which it processes for its research needs. As such, the laboratory undertakes to comply with the General Data Protection Regulation 2016/679 of April 27, 2016 ("GDPR") and the amended Data Protection Act (Loi Informatique et Libertés). Our projects can lead us to collect data on social networks but no information is republished other than anonymized or aggregated. Everyone can exercise their rights to access, modify, rectify or delete personal data concerning them by writing to us at the following address: medialab [at] sciencespo.fr.</p>
+              <p>In accordance with our desire for openness and transparency, the laboratory's productions are also largely distributed freely and openly, that is to say under Open Access conditions for scientific publications (see the medialab <a href="https://hal.archives-ouvertes.fr/search/index/?q=médialab&labStructName_t=Médialab+%28Sciences+Po%29">on HAL</a> and <a href="https://spire.sciencespo.fr/centreDetail/publications/2441/53r60a8s3kup1vc9kf4j86q90">on SPIRE</a>) and as Free Libre Open Source Software for IT developments (see <a href="https://github.com/medialab">the laboratory's GitHub account</a>). In this dynamic, the medialab also supports the development of software created by the Open Source community.</p>
 
               <h3 id="contact">Contact</h3>
               <p>

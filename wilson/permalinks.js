@@ -26,5 +26,9 @@ module.exports = {
   productions: {
     fr: '/productions',
     en: '/en/productions'
+  },
+  tools: {
+    fr: '/outils',
+    en: '/en/tools'
   }
 };

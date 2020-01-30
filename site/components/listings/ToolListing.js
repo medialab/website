@@ -2,6 +2,7 @@ import React from 'react';
 import Link from '../helpers/Link';
 
 import {compare, productionTypeToSchemaURL} from '../helpers/helpers.js';
+import {I18N_TYPE_LABELS} from '../../i18n.js';
 
 // import ToolFilter from '../listings/fragments/ToolFilter';
 
@@ -20,18 +21,29 @@ const messagesMeta = {
   }
 };
 
+const i18n = {
+  fr: {
+    externalTool: 'external',
+    internalTool: 'fait par le médialab'
+  },
+  en: {
+    externalTool: 'external',
+    internalTool: 'made by médialab'
+  }
+};
 
 export default function ToolListing({lang, list}) {
 
   const nbItem = 0;
   const otherLang = lang === 'fr' ? 'en' : 'fr';
+  const joinText = lang === 'fr' ? ' et ' : ' and ';
 
-  const sorted = list.slice().sort((
+  const toolsSorted = list.slice().sort((
     {external: aEx, status: aStatus, title: aTitle},
     {external: bEx, status: bStatus, title: bTitle}
   ) => {
     const aTitleLower = (aTitle[lang] && aTitle[lang].toLowerCase()) || (aTitle[otherLang] && aTitle[otherLang].toLowerCase()),
-          bTitleLower = (bTitle[lang] && bTitle[lang].toLowerCase()) || (bTitle[lang] && bTitle[otherLang].toLowerCase());
+          bTitleLower = (bTitle[lang] && bTitle[lang].toLowerCase()) || (bTitle[otherLang] && bTitle[otherLang].toLowerCase());
     return compare(!!aEx, !!bEx) ||
       -compare(aStatus || '0', bStatus || '0') ||
       compare(aTitleLower, bTitleLower);
@@ -50,42 +62,49 @@ export default function ToolListing({lang, list}) {
         <section id="liste" className="main-container">
           <ul className="liste_objet list-grid-layout">
             {
-              sorted
-              .map((tool, index) => (
-                <li
-                  key={index}
-                  itemScope
-                  itemType={productionTypeToSchemaURL(tool.type)}
-                  data-item={nbItem}
-                  data-type={tool.type}
-                  className="tool-portrait">
-                  <Link to={tool.permalink[lang]}>
-                    <div className="left-column">
-                      {tool.coverImage ?
-                        <img
-                          itemProp="image"
-                          src={tool.coverImage.url} />
-                        : <PeoplePlaceholder />
-                      }
-                    </div>
-                    <div className="right-column">
-                      <hgroup className="header">
-                        <h1 itemProp="name" data-level-1="title">{tool.title[lang] || tool.title[otherLang]}</h1>
-                        <h2>{tool.description && (tool.description[lang] || tool.description[otherLang])}</h2>
-                      </hgroup>
-                      <div className="footer">
-                        <div className="info-row">
-                          <p className="important"><span>{tool.usages}|{tool.status}</span></p>
+              toolsSorted
+              .map((tool, index) => {
+                  let usagesText;
+                  if (tool.usages && tool.usages.length) {
+                    usagesText = tool.usages.map((usage) => I18N_TYPE_LABELS.toolsUsages[lang][usage]).join(joinText);
+                  }
+                  return (
+                    <li
+                      key={index}
+                      itemScope
+                      itemType={productionTypeToSchemaURL(tool.type)}
+                      data-item={nbItem}
+                      data-type={tool.type}
+                      className="tool-portrait">
+                      <Link to={tool.permalink[lang]}>
+                        <div className="left-column">
+                          {tool.coverImage ?
+                            <img
+                              itemProp="image"
+                              src={tool.coverImage.url} />
+                            : <PeoplePlaceholder />
+                          }
                         </div>
-                        <div className="info-row">
-                          <p className="subtype-production subtype-origin"><span>{tool.external ? 'external' : 'fait par le médialab'}</span></p>
-                          <DateNews startDateSchemaProp="datePublished" startDate={tool.date} lang={lang} />
+                        <div className="right-column">
+                          <hgroup className="header">
+                            <h1 itemProp="name" data-level-1="title">{tool.title[lang] || tool.title[otherLang]}</h1>
+                            <h2>{tool.description && (tool.description[lang] || tool.description[otherLang])}</h2>
+                          </hgroup>
+                          <div className="footer">
+                            <div className="info-row">
+                              {tool.usages && <p className="important"><span>{usagesText}</span></p>}
+                            </div>
+                            <div className="info-row">
+                              <p className="subtype-production subtype-origin"><span>{tool.external ? i18n[lang].externalTool : i18n[lang].internalTool}</span></p>
+                              <DateNews startDateSchemaProp="datePublished" startDate={tool.date} lang={lang} />
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  </Link>
-                </li>
-              ))
+                      </Link>
+                    </li>
+                  );
+                }
+              )
             }
           </ul>
         </section>

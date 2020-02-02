@@ -4,7 +4,7 @@ import Link from '../helpers/Link';
 import {compare, productionTypeToSchemaURL} from '../helpers/helpers.js';
 import {I18N_TYPE_LABELS} from '../../i18n.js';
 
-// import ToolFilter from '../listings/fragments/ToolFilter';
+import ToolFilter from '../listings/fragments/ToolFilter';
 
 import PeoplePlaceholder from '../helpers/PeoplePlaceholder';
 import DateNews from '../helpers/DateNews.js';
@@ -56,17 +56,25 @@ export default function ToolListing({lang, list}) {
         description={messagesMeta.description[lang]}
         lang={lang} />
       <main role="main" aria-describedby="aria-accroche">
-        {/* <ToolFilter lang={lang} /> */}
+        <ToolFilter lang={lang} />
         <section className="main-filters" />
 
         <section id="liste" className="main-container">
-          <ul className="liste_objet list-grid-layout">
+          <ul className="liste_objet list-grid-layout" id="liste-tools">
             {
               toolsSorted
               .map((tool, index) => {
                   let usagesText;
+                  let usagesClass;
                   if (tool.usages && tool.usages.length) {
-                    usagesText = tool.usages.map((usage) => I18N_TYPE_LABELS.toolsUsages[lang][usage]).join(joinText);
+                    if (tool.usages.length === 1)
+                      usagesText = I18N_TYPE_LABELS.toolsUsages[lang][tool.usages[0]];
+                    else {
+                      const usages = tool.usages.slice();
+                      const last = usages.pop();
+                      usagesText = usages.map((usage) => I18N_TYPE_LABELS.toolsUsages[lang][usage]).join(', ') + joinText + last;
+                    }
+                    usagesClass = tool.usages.join(' ');
                   }
                   return (
                     <li
@@ -75,7 +83,7 @@ export default function ToolListing({lang, list}) {
                       itemType={productionTypeToSchemaURL(tool.type)}
                       data-item={nbItem}
                       data-type={tool.type}
-                      className="tool-portrait">
+                      className={`tool-portrait list-item ${tool.audience} ${tool.status} ${usagesClass}`} >
                       <Link to={tool.permalink[lang]}>
                         <div className="left-column">
                           {tool.coverImage ?
@@ -86,13 +94,13 @@ export default function ToolListing({lang, list}) {
                           }
                         </div>
                         <div className="right-column">
-                          <hgroup className="header">
+                          <div className="header">
                             <h1 itemProp="name" data-level-1="title">{tool.title[lang] || tool.title[otherLang]}</h1>
                             <h2>{tool.description && (tool.description[lang] || tool.description[otherLang])}</h2>
-                          </hgroup>
+                          </div>
                           <div className="footer">
                             <div className="info-row">
-                              {tool.usages && <p className="important"><span>{usagesText}</span></p>}
+                              {tool.usages && <p className="important"><span>{usagesText}|{tool.audience}|{tool.status}</span></p>}
                             </div>
                             <div className="info-row">
                               <p className="subtype-production subtype-origin"><span>{tool.external ? i18n[lang].externalTool : i18n[lang].internalTool}</span></p>

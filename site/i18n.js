@@ -6,13 +6,15 @@ export const I18N_MODEL = {
     activities: 'Activités',
     news: 'Actualités',
     people: 'L\'équipe',
-    productions: 'Productions'
+    productions: 'Productions',
+    tools: 'Outils',
   },
   en: {
     activities: 'Activities',
     news: 'News',
     people: 'Team',
-    productions: 'Productions'
+    productions: 'Productions',
+    tools: 'tools'
   }
 };
 
@@ -33,6 +35,18 @@ export const I18N_TYPE_LABELS = {
   productions: {
     fr: enums.productionTypes.fr,
     en: enums.productionTypes.en
+  },
+  toolsUsages: {
+    fr: enums.usages.fr,
+    en: enums.usages.en
+  },
+  toolsAudiences: {
+    fr: enums.audience.fr,
+    en: enums.audience.en
+  },
+  toolsStatus: {
+    fr: enums.status.fr,
+    en: enums.status.en
   }
 };
 

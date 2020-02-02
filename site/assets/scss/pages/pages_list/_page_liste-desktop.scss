@@ -2,6 +2,7 @@ $width-image-pre-listing: 90px;
 
 @include for-size(desktop) {
   .page-production-list,
+  .page-tool-list,
   .page-activity-list,
   .page-news-list {
     #liste {

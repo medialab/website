@@ -100,7 +100,7 @@ export default function ToolListing({lang, list}) {
                           </div>
                           <div className="footer">
                             <div className="info-row">
-                              {tool.usages && <p className="important"><span>{usagesText}|{tool.audience}|{tool.status}</span></p>}
+                              {tool.usages && <p className="important"><span>{usagesText}</span></p>}
                             </div>
                             <div className="info-row">
                               <p className="subtype-production subtype-origin"><span>{tool.external ? i18n[lang].externalTool : i18n[lang].internalTool}</span></p>

@@ -19,6 +19,14 @@
         text-transform: capitalize;
       }
 
+      hgroup h1 .label {
+        font-style: italic;
+        color: $text-color-light;
+        position: relative;
+        bottom: 2px;
+        left: 5px;
+      }
+
       .details {
         width: 100%;
         color: $text-color-light;
@@ -36,6 +44,10 @@
           .spire {
             white-space: nowrap;
           }
+        }
+
+        .type-objet.important{
+          color: $redlab;
         }
 
         .type-news {

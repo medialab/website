@@ -47,6 +47,10 @@
         padding-bottom: $baseline * 2;
       }
 
+      hgroup h1 .label {
+        @include font-size-27;
+      }
+
       .details {
         padding-top: $baseline * 1;
         border-top: $border-very-light;
@@ -63,6 +67,11 @@
           width: 100%;
           // margin-top: $baseline * 1;
           padding-top: $baseline * 1;
+        }
+
+        .tool-attachments {
+          padding-top: $baseline * 1;
+          border-top: $border-very-light;
         }
 
         .type-objet,

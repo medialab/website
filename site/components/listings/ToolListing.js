@@ -23,11 +23,11 @@ const messagesMeta = {
 
 const i18n = {
   fr: {
-    externalTool: 'external',
+    externalTool: 'outil exterieure au médialab',
     internalTool: 'fait par le médialab'
   },
   en: {
-    externalTool: 'external',
+    externalTool: 'external tool',
     internalTool: 'made by médialab'
   }
 };

@@ -5,6 +5,9 @@
     main {
       #article-contenu {
         // Regles typo (communes à toutes les pges de contenu) transférées dans fragments/content-typo
+        hgroup h1 .label {
+          @include font-size-20-phone;
+        }
       }
 
       #img-article {

@@ -85,14 +85,14 @@ export default function ToolListing({lang, list}) {
                       data-type={tool.type}
                       className={`tool-portrait list-item ${tool.audience} ${tool.status} ${usagesClass}`} >
                       <Link to={tool.permalink[lang]}>
-                        <div className="left-column">
+                        <figure className="left-column">
                           {tool.coverImage ?
                             <img
                               itemProp="image"
                               src={tool.coverImage.url} />
                             : <ImagePlaceholder type="production" alt={tool.title[lang] || tool.title[otherLang]} />
                           }
-                        </div>
+                        </figure>
                         <div className="right-column">
                           <div className="header">
                             <h1 itemProp="name" data-level-1="title">{tool.title[lang] || tool.title[otherLang]}</h1>

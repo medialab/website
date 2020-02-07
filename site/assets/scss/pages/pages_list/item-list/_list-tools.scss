@@ -3,112 +3,107 @@
 $card-image-height: 180px;
 
 .page-tool-list #liste {
-  .list-grid-layout{
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(500px,1fr));
+
+  @include for-size(desktop) {
+    ul {
+      width: 100%;
+      display: inline-block;
+      @supports (display: grid) {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      }
+    }
   }
-  .tool-portrait{
+
+  li.tool-portrait {
     padding: 10px;
     margin-bottom: 30px;
     border-bottom: none!important;
     height: 100%!important;
-  }
-  .tool-portrait > a{
-    display: flex!important;
-    flex-flow: row nowrap;
-    justify-content: stretch;
-    height: 100%;
-  }
-  
-  
-  .tool-portrait .left-column img{
-    max-height: $card-image-height;
-    filter: grayscale(1);
-  }
-  /* 
-  .tool-portrait .left-column,
-  .tool-portrait .right-column
-  {
-    flex: 1;
-  } */
-  .tool-portrait .right-column
-  {
-    padding: 0 15px;
-    padding-top: 10px;
-    position :relative;
-    max-height: $card-image-height;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: stretch;
-    flex: 1;
-  }
-  
-  .tool-portrait .header
-  {
-    flex: 1;
-  }
-  .tool-portrait .header h1{
-    margin: 0!important;
-    padding: 0!important;
-    font-size: 36px!important;
-    padding-bottom: 15px!important;
-  }
-  
-  
-  .tool-portrait .header h2{
-    font-size: 20px;
-    font-weight: 300;
-    line-height: 30px;
-    margin-bottom: 10px;
-    line-height: 1.2;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    overflow: hidden;
-  }
-  
-  .tool-portrait .info-row{
-    border-top: .5px solid #ebebeb;
-    padding: 5px;
-    font-size: 13px;
-    line-height: 22.5px;
-    font-weight: 100;
-    width: 100%;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    display: flex;
-    flex-flow: row wrap;
-  }
-  
-  .tool-portrait .info-row p:not(:first-of-type) {
-    padding-left: 10px;
-  }
-  .tool-portrait .info-row:last-of-type {
-    border-bottom: .5px solid #ebebeb;
-  }
-  .tool-portrait .info-row p.important{
-    color: #e6142d;
-  }
 
-  .date-news {
-    margin-left: $baseline * 1;
-    padding-left: $baseline * 1;
-    border-left: $border-very-light;
-  }
-  
-  @media screen and (max-width:800px)  {
-    .tool-portrait .left-column{
-      display: none;
+    a {
+      display: flex!important;
+      flex-flow: row nowrap;
+      justify-content: stretch;
+      height: 100%;
     }
-    .tool-portrait{
+
+    .left-column img {
+      max-height: $card-image-height;
+      filter: grayscale(1);
+    }
+
+    .right-column {
+      padding: 10px 15px 0 15px;
+      position: relative;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: stretch;
+      flex: 1;
+
+      .header {
+        flex: 1;
+        h1 {
+          margin: 0!important;
+          padding: 0!important;
+          font-size: 36px!important;
+          padding-bottom: 15px!important;
+        }
+  
+        h2 {
+          @include font-size-20();
+          line-height: 1.2;
+          margin-bottom: 10px;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 3;
+          overflow: hidden;
+        }
+      }
+  
+      .info-row {
+        border-top: $border-very-light;
+        padding: 5px;
+        @include font-size-13();
+        width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        display: flex;
+        flex-flow: row wrap;
+  
+        &:last-of-type {
+          border-bottom: $border-very-light;
+        }
+
+        p.important{
+          color: $redlab;
+        }
+        p:not(:first-of-type) {
+          padding-left: 10px;
+        }
+  
+        .date-news {
+          margin-left: $baseline * 1;
+          padding-left: $baseline * 1;
+          border-left: $border-very-light;
+        }
+      }
+    }
+
+    /* Desktop grid */
+    @media screen and (min-width: 1300px) {
+      .right-column {
+        max-height: $card-image-height;
+      }
+    }
+
+    /* Phone */
+    @include for-size(phone)  {
       margin-bottom: 0;
-  
-    }
-    .tool-portrait .right-column{
-      padding-top: 15px;
-      padding-bottom: 15px;
+      .left-column {
+        display: none;
+      }
     }
   }
-  
 }

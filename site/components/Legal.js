@@ -14,7 +14,7 @@ export default function Legal({lang}) {
             <li className="nav-inside-item"><a href="#PI" title="Aller à la section">Propriété Industrielle et Intellectuelle</a></li>
             <li className="nav-inside-item"><a href="#hypertext" title="Aller à la section">Les liens hypertextes</a></li>
             <li className="nav-inside-item"><a href="#images" title="Aller à la section">Images</a></li>
-            <li className="nav-inside-item"><a href="#IL" title="Aller à la section">Informatique et liberté</a></li>
+            <li className="nav-inside-item"><a href="#IL" title="Aller à la section">Informatique et Libertés</a></li>
           </ul>
         </nav>
         <article id="about-contenu" className="main-container">
@@ -72,8 +72,7 @@ export default function Legal({lang}) {
             <p>Les images du site sont libres de droit, sauf mentions contraires.</p>
 
             <h3 id="IL">Informatique et Libertés</h3>
-            <p>
-              Droit d'accès, modification suppression des données personnelles vous concernant :
+            <p>Ce site ne collecte aucune information personnelle, à l'exception des formulaires d'inscription à différents évènements et notamment au séminaire du médialab. Vous pouvez exercer votre droit d'accès, de modification, de rectification ou de suppression des données personnelles vous concernant en nous écrivant :
               <br />
               <br />
               par courrier : <strong>médialab, 27 rue Saint Guillaume 75337 Paris Cedex 07</strong>
@@ -150,11 +149,10 @@ export default function Legal({lang}) {
               By accessing an outside site, through a hypertext link, you accept that this access is carried out at your own risk. Therefore, Sciences Po will in no way be held responsible for any direct or indirect damages resulting from your access to an outside site through a hypertext link.</p>
 
             <h3 id="IL">Personal information</h3>
-            <p>
-            To learn about, get access to or ask for deletion of personal information we might have collected please contact:
+            <p>This website does not collect any personal information, except the registration forms for different events including the médialab's seminar. To learn about, get access to or ask for access, modification, rectification or deletion of personal information we might have collected please contact:
               <br />
               <br />
-              by mail: <strong>médialab, 27 rue Saint Guillaume 75337 Paris Cedex 07</strong>
+              by mail: <strong>médialab, 27 rue Saint Guillaume 75337 Paris Cedex 07, France</strong>
               <br />
               by e-mail: <strong>medialab@sciencespo.fr</strong>
             </p>

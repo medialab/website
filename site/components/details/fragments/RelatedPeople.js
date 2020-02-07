@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from '../../helpers/Link';
 import {SECTIONS} from '../../helpers/sections';
-import PeoplePlaceholder from '../../helpers/PeoplePlaceholder';
+import ImagePlaceholder from '../../helpers/ImagePlaceholder';
 
 const i18n = {
   fr: {
@@ -57,7 +57,7 @@ const RelatedPeople = ({lang, people, schemaRelationProp = 'member'}) => {
                       src={p.coverImage.url}
                       alt={i18n[lang].profilePicture(p)} />
                   ) : (
-                    <PeoplePlaceholder alt={i18n[lang].profilePicture(p)} />
+                    <ImagePlaceholder type="people" alt={i18n[lang].profilePicture(p)} />
                   )}
                 </figure>
                 <div className="description">

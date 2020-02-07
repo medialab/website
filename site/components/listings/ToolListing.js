@@ -6,7 +6,7 @@ import {I18N_TYPE_LABELS} from '../../i18n.js';
 
 import ToolFilter from '../listings/fragments/ToolFilter';
 
-import PeoplePlaceholder from '../helpers/PeoplePlaceholder';
+import ImagePlaceholder from '../helpers/ImagePlaceholder';
 import DateNews from '../helpers/DateNews.js';
 import PageMeta from '../helpers/PageMeta.js';
 
@@ -90,7 +90,7 @@ export default function ToolListing({lang, list}) {
                             <img
                               itemProp="image"
                               src={tool.coverImage.url} />
-                            : <PeoplePlaceholder />
+                            : <ImagePlaceholder type="production" alt={tool.title[lang] || tool.title[otherLang]} />
                           }
                         </div>
                         <div className="right-column">

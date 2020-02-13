@@ -331,7 +331,7 @@ function renderProductionForm(props) {
                     <div className="control">
                       <SortableKeyValueList
                         items={data.attachments}
-                        model="news"
+                        model="productions"
                         field="attachments.label"
                         onAdd={handlers.attachments.add}
                         onDrop={handlers.attachments.drop}

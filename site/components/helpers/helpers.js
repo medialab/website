@@ -1,12 +1,10 @@
 import React from 'react';
 
 export function compare(a, b) {
-  if (a < b)
-    return -1;
-  if (a > b)
-    return 1;
-
-  return 0;
+  if (a === b)
+    return 0;
+  else
+    return a < b ? -1 : 1;
 }
 
 // ellipse function

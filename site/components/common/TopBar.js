@@ -13,7 +13,8 @@ const mainPermalinks = {
     activities: '/en/activities',
     news: '/en/news',
     people: '/en/people',
-    productions: '/en/productions'
+    productions: '/en/productions',
+    tools: '/en/tools'
   },
   fr: {
     home: '/',
@@ -22,7 +23,8 @@ const mainPermalinks = {
     activities: '/activites',
     news: '/actu',
     people: '/equipe',
-    productions: '/productions'
+    productions: '/productions',
+    tools: '/outils'
   }
 };
 
@@ -152,10 +154,13 @@ export default function TopBar({permalinks, lang}) {
           <ul id="nav-archive">
             {/*<li><Link to={`${relLang}/outils`}>{tool}</Link></li>*/}
             <li>
-              <a
+              <Link
+                to={mainPermalinks[lang].tools}
+                aria-label={ariaLabelI18n[lang].tools}>{tool}</Link>
+              {/* <a
                 href="http://tools.medialab.sciences-po.fr"
                 target="_blank" rel="noopener noreferrer"
-                aria-label={ariaLabelI18n[lang].tools}>{tool}</a>
+                aria-label={ariaLabelI18n[lang].tools}>{tool}</a> */}
             </li>
             <li><Link to={mainPermalinks[lang].seminar} aria-label={ariaLabelI18n[lang].seminar}>{seminar}</Link></li>
             {/* <li><Link to={`${relLang}/archive`}>{archive}</Link></li> */}

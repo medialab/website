@@ -20,7 +20,8 @@ const TEMPLATES = {
   peopleListing: 'people-list',
   peopleDetail: 'people',
   productionsDetail: 'production',
-  productionsListing: 'production-list'
+  productionsListing: 'production-list',
+  toolsListing: 'tool-list'
 };
 
 for (const k in TEMPLATES)
@@ -107,6 +108,19 @@ module.exports = class Website {
       scripts: ['search', 'news-listing'],
       itemsWithCover(data) {
         return data.news.filter(item => item.cover);
+      }
+    });
+
+    this.pages.push({
+      permalinks: PERMALINKS.tools,
+      template: TEMPLATES.toolsListing,
+      data: {
+        tools: db.getModel('productions')
+          .filter(item => item.type === 'code' || item.type === 'software')
+      },
+      scripts: ['search'],
+      itemsWithCover(data) {
+        return data.tools.filter(item => item.cover);
       }
     });
 

@@ -1,0 +1,95 @@
+
+.page-tool-list {
+  // CHEKED CHECKBOX ------------------------------------------------------------------------------------ //
+
+  #filtre-tool_collect:checked
+    ~ .aside-filters
+    #filtre-tool_collect_label,
+  #filtre-tool_curation:checked 
+    ~ .aside-filters
+    #filtre-tool_curation_label,
+  #filtre-tool_processing:checked
+    ~ .aside-filters
+    #filtre-tool_processing_label,
+  #filtre-tool_exploration:checked
+    ~ .aside-filters
+    #filtre-tool_exploration_label,
+  #filtre-tool_writing:checked
+    ~ .aside-filters
+    #filtre-tool_writing_label,
+  #filtre-tool_all:checked
+    ~ .aside-filters
+    #filtre-tool_all_label, 
+  #filtre-tool_developers:checked
+    ~ .aside-filters
+    #filtre-tool_developers_label,
+  #filtre-tool_usable:checked
+    ~ .aside-filters
+    #filtre-tool_usable_label,
+  #filtre-tool_experimental:checked
+    ~ .aside-filters
+    #filtre-tool_experimental_label,
+  #filtre-tool_archives:checked
+    ~ .aside-filters
+    #filtre-tool_archives_label{
+    font-weight: 600 !important;
+    &:before {
+      border: 5px solid $text-color;
+    }
+    @include for-size(desktop) {
+      &:hover:before {
+        border: 5px solid $text-color-light !important;
+      }
+    }
+  }
+
+
+  // FILTERS PATTERNS ------------------------------------------------------------------------------------ //
+
+  input#filtre-tool_collect:checked ~ #liste,
+  input#filtre-tool_curation:checked ~ #liste,
+  input#filtre-tool_processing:checked ~ #liste,
+  input#filtre-tool_exploration:checked ~ #liste,
+  input#filtre-tool_writing:checked ~ #liste,
+  input#filtre-tool_all:checked ~ #liste,
+  input#filtre-tool_developers:checked ~ #liste,
+  input#filtre-tool_usable:checked ~ #liste,
+  input#filtre-tool_experimental:checked ~ #liste,
+  input#filtre-tool_archived:checked ~ #liste {
+    #liste-tools .list-item {
+      display: none !important;
+    }
+  }
+
+  input#filtre-tool_collect:checked ~ #liste #liste-tools .collect {
+    display: block !important;
+  }
+
+  input#filtre-tool_curation:checked ~ #liste #liste-tools .curation {
+    display: block !important;
+  }
+
+  input#filtre-tool_processing:checked ~ #liste #liste-tools .processing {
+    display: block !important;
+  }
+
+  input#filtre-tool_exploration:checked ~ #liste #liste-tools .exploration {
+    display: block !important;
+  }
+
+  input#filtre-tool_writing:checked ~ #liste #liste-tools .writing {
+    display: block !important;
+  }
+  input#filtre-tool_developers:checked ~ #liste #liste-tools .developers {
+    display: block !important;
+  }
+  input#filtre-tool_usable:checked ~ #liste #liste-tools .usable {
+    display: block !important;
+  }
+  input#filtre-tool_experimental:checked ~ #liste #liste-tools .experimental {
+    display: block !important;
+  }
+  input#filtre-tool_archives:checked ~ #liste #liste-tools .archives {
+    display: block !important;
+  }
+}

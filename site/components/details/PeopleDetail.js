@@ -15,7 +15,7 @@ import Nav from '../common/Nav';
 import HtmlFallback from '../helpers/HtmlFallback';
 import {templateMembership} from '../helpers/helpers';
 import PageMeta from '../helpers/PageMeta';
-import PeoplePlaceholder from '../helpers/PeoplePlaceholder';
+import ImagePlaceholder from '../helpers/ImagePlaceholder';
 
 import {I18N_MODEL} from '../../i18n';
 
@@ -249,7 +249,7 @@ export default function PeopleDetail({lang, person, siteUrl}) {
                       src={person.coverImage.url}
                       alt={i18n[lang].profilePicture(person)} />
                   ) : (
-                    <PeoplePlaceholder alt={i18n[lang].profilePicture(person)} />
+                    <ImagePlaceholder type="people" alt={i18n[lang].profilePicture(person)} />
                   )}
                 </figure>
                 <hgroup>

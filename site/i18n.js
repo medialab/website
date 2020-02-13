@@ -14,7 +14,7 @@ export const I18N_MODEL = {
     news: 'News',
     people: 'Team',
     productions: 'Productions',
-    tools: 'tools'
+    tools: 'Tools'
   }
 };
 

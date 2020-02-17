@@ -1,196 +1,51 @@
+/**
+ * ===============================
+ * DIRTY MOCKUP-RELATED CSS FOR THE TOOLS LIST VIEW
+ * ===============================
+ */
 
+ /**
+  * Adding a card height css variable
+  */
+ :root{
+  --card-image-height: 180px;
+}
+
+/**
+ * Dirty fix to allow two-columns layout
+ */
 #liste{
   left: 250px;
 }
+/**
+ * This fix is not necessary for tablet layout
+ */
 @media screen and (max-width:700px)  {
   #liste{
     left: unset;
   }
 }
 
-.subtype-production.subtype-origin{
-  color: inherit!important;
-}
-
-.liste_objet hgroup{
-  display: flex;
-}
-
-
-
-hgroup h1 .label
-{
-  font-style: italic;
-  color: rgba(68,68,68,0.6);
-  font-size: 27px;
-  position: relative;
-  bottom: 2px;
-  left: 5px;
-}
-@media screen and (max-width: 840px)  {
-  hgroup h1 .label{
-    font-size: 20px;
-  }
-  .type-objet:last-of-type{
-    border-bottom: none!important;
-  }
-}
-.authors{
-  padding-left: 25px!important;
-}
-.tool-status{
-  position: absolute;
-  right: 15px;
-}
-
+/**
+ * Style for the date in cards
+ */
 .startDate{
   border-left: .5px solid #ebebeb;
   padding-left:10px;
 }
 
-.date-news{
-  position: absolute;
-  right: 80px!important;
-  border-right: .5px solid #ebebeb;
-  border-left: none!important;
-  padding-right: 15px;
-}
-
-.accroche,
-.liste_objet hgroup{
-  margin-top: 30px!important;
-  border-left: none!important;
-}
-
-@media screen and (max-width:1200px) {
-  .tool-status{
-    right: 50px!important;
-  } 
-  .date-news{
-    right: 105px!important;
-  }
-}
-
-
-@media screen and (max-width: 840px)  {
-  .tool-status,
-  .date-news{
-    display: none!important;
-  } 
-  .tool-title-container h1{
-    padding-left: 0;
-  }
-  .authors{
-    padding-left: 0!important;
-  }
-  .accroche,.liste_objet hgroup{
-    margin-top: unset!important;
-    margin-left: 15px;
-  }  
-}
-
 /**
- * SINGLE TOOL PAGE
+ * Using a grid layout to display the cards
  */
-.tool-big-attachments
-{
-  display: flex;
-  flex-flow: row nowrap;
-  max-width: 900px;
-  /* justify-content: space-between; */
-  justify-content: flex-start;
-  border-bottom: .5px solid #ebebeb;
-}
-
-.tool-big-attachments li{
-  font-size: 16px;
-  font-weight: 100;
-  margin: 15px;
-  margin-right: 25px;
-  padding-right: 25px;
-  margin-left: 0;
-  min-width: 166px;
-  /* flex: 1; */
-}
-
-.tool-big-attachments li:not(:last-of-type)
-{
-  /* padding-left: 15px; */
-  border-right: .5px solid #ebebeb;
-}
-
-.tool-big-attachments li:hover{
-  color: #e6142d;
-}
-
-.tool-big-attachments li:first-of-type
-{
-  color: #e6142d;
-}
-
-.type-objet.important{
-  color: #e6142d;
-}
-
-.details.no-top-border{
-  border-top: none!important;
-}
-.details.margin-bottom{
-  margin-bottom: 25px;
-
-  padding-top: 15px;
-}
-
-.details{
-  border-top: .5px solid#ebebeb;
-border-bottom: .5px solid#ebebeb;
-}
-.details.as-column .type-objet{
-  font-size: 16px;
-  line-height: 22.5px;
-  font-weight: 100;
-  margin-right: 25px;
-  padding: 10px;
-padding-right: 25px;
-padding-left: 35px;
-
-border-right: .5px solid#ebebeb;
-border-bottom: .5px solid#ebebeb;
-}
-
-.big-screen-only{
-  display: none;
-}
-
-.hide-in-big-screen{
-  display: block;
-}
-
-@media screen and (min-width: 900px)
-{
-  .big-screen-only{
-    display: block;
-  }
-  .hide-in-big-screen{
-    display: none;
-  }
-}
-
-@media screen and (min-width: 900px)
-{
-  .details.no-top-border{
-    border-top: none!important;
-  } 
-}
-
-/**
- * Design listing option 2
- */
- .list-grid-layout{
+.list-grid-layout{
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(500px,1fr));
 }
 
+/**
+ * .tool-portrait represents a tool in the list.
+ * Subsequent styles deal only with the content of the tools cards
+ */
 .tool-portrait{
   padding: 10px;
   margin-bottom: 30px;
@@ -204,20 +59,10 @@ border-bottom: .5px solid#ebebeb;
   height: 100%;
 }
 
-:root{
-  --card-image-height: 180px;
-}
-
 .tool-portrait .left-column img{
   max-height: var(--card-image-height);
   filter: grayscale(1);
 }
-/* 
-.tool-portrait .left-column,
-.tool-portrait .right-column
-{
-  flex: 1;
-} */
 .tool-portrait .right-column
 {
   padding: 0 15px;
@@ -287,4 +132,148 @@ border-bottom: .5px solid#ebebeb;
     padding-top: 15px;
     padding-bottom: 15px;
   }
+}
+
+
+/**
+ * ===============================
+ * DIRTY MOCKUP-RELATED CSS FOR THE TOOLS SINGLE PAGE VIEW
+ * ===============================
+ */
+
+/**
+ * Style for "fait par le médialab" part after the title
+ */
+hgroup h1 .label
+{
+  font-style: italic;
+  color: rgba(68,68,68,0.6);
+  font-size: 27px;
+  position: relative;
+  bottom: 2px;
+  left: 5px;
+}
+@media screen and (max-width: 840px)  {
+  hgroup h1 .label{
+    font-size: 20px;
+  }
+  .type-objet:last-of-type{
+    border-bottom: none!important;
+  }
+}
+
+/**
+ * Header attachments for tools
+ */
+.tool-big-attachments
+{
+  display: flex;
+  flex-flow: row nowrap;
+  max-width: 900px;
+  /* justify-content: space-between; */
+  justify-content: flex-start;
+  border-bottom: .5px solid #ebebeb;
+}
+
+/**
+ * Header attachments items for tools
+ */
+.tool-big-attachments li{
+  font-size: 16px;
+  font-weight: 100;
+  margin: 15px;
+  margin-right: 25px;
+  padding-right: 25px;
+  margin-left: 0;
+  min-width: 166px;
+  /* flex: 1; */
+}
+.tool-big-attachments li:not(:last-of-type)
+{
+  border-right: .5px solid #ebebeb;
+}
+.tool-big-attachments li:hover{
+  color: #e6142d;
+}
+/**
+ * First item of the list is always red
+ */
+.tool-big-attachments li:first-of-type
+{
+  color: #e6142d;
+}
+
+/**
+ * .type-objet is a site-wide class
+ * In the list of metadata we need to display some items in red
+ */
+.type-objet.important{
+  color: #e6142d;
+}
+
+/**
+ * .details is a site-wide class
+ */
+
+ /**
+  * For the purpose of the mockup we add borders to details (to specify for this specific view)
+  */
+.details{
+  border-top: .5px solid#ebebeb;
+  border-bottom: .5px solid#ebebeb;
+}
+ /*
+ * here .details is modulated for the needs of the page :
+ */
+/**
+ * Extended margin bottom modulation
+ */
+.details.margin-bottom{
+  margin-bottom: 25px;
+}
+
+/**
+ * "column" version of the details - I have removed inline-block positionning for the .type-object children
+ * (+ added related style because in the original css they are scoped)
+ */
+.details.as-column .type-objet{
+  font-size: 16px;
+  line-height: 22.5px;
+  font-weight: 100;
+  margin-right: 25px;
+  padding: 10px;
+padding-right: 25px;
+padding-left: 35px;
+
+border-right: .5px solid#ebebeb;
+border-bottom: .5px solid#ebebeb;
+}
+
+/**
+ * I have added .big-screen-only and .hide-in-big-screen classes
+ * as utils to show or hide items depending on media query.
+ * Here they are used for the metadata cartel, which is in after the tools description for
+ * small screens and in the aside for big screens
+ */
+.big-screen-only{
+  display: none;
+}
+@media screen and (min-width: 1620px)
+{
+  .big-screen-only{
+    display: block;
+  }
+  .hide-in-big-screen{
+    display: none;
+  }
+}
+
+/**
+ * Removing top border in screens
+ */
+@media screen and (min-width: 900px)
+{
+  .details.no-top-border{
+    border-top: none!important;
+  } 
 }

@@ -124,6 +124,9 @@ module.exports = class Website {
       }
     });
 
+    // Filter out external productions
+    const productions = db.getModel('productions').filter(item => !item.external);
+
     this.pages.push({
       permalinks: PERMALINKS.productions,
       template: TEMPLATES.productionsListing,
@@ -132,8 +135,7 @@ module.exports = class Website {
       },
       data: {
         facetedEnums,
-        productions: db.getModel('productions')
-          .filter(item => !item.external)
+        productions
       },
       scripts: ['search', 'production-listing'],
       itemsWithCover(data) {
@@ -153,8 +155,7 @@ module.exports = class Website {
         },
         data: {
           facetedEnums,
-          productions: db.getModel('productions')
-            .filter(p => p.group === group)
+          productions: productions.filter(p => p.group === group)
         },
         scripts: ['search', 'production-listing'],
         itemsWithCover(data) {

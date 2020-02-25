@@ -1,7 +1,7 @@
 // Mobile Breakpoints
 @mixin for-size($size) {
   @if $size == phone {
-    @media screen and (max-width: 700px) {
+    @media screen and (max-width: 699px) {
       @content;
     }
   } @else if $size == desktop {

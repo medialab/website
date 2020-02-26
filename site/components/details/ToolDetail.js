@@ -35,21 +35,9 @@ const mainPermalink = {
   en: '/en/productions'
 };
 
-const LangBlock = ({tool, lang}) => {
+const LangBlock = ({tool, lang, usagesText}) => {
 
   const otherLang = lang === 'fr' ? 'en' : 'fr';
-  const joinText = lang === 'fr' ? ' et ' : ' and ';
-
-  let usagesText;
-  if (tool.usages && tool.usages.length) {
-    if (tool.usages.length === 1)
-      usagesText = I18N_TYPE_LABELS.toolsUsages[lang][tool.usages[0]];
-    else {
-      const usages = tool.usages.slice();
-      const last = usages.pop();
-      usagesText = usages.map((usage) => I18N_TYPE_LABELS.toolsUsages[lang][usage]).join(', ') + joinText + last;
-    }
-  }
 
   const description = (
     tool.description && (
@@ -102,20 +90,22 @@ const LangBlock = ({tool, lang}) => {
         {tool.authors && <p>{tool.authors}</p>}
         <p />
         {/* {ref} */}
-        <div className="tool-attachments">
-          <Attachments attachments={tool.attachments} lang={lang} />
-        </div>
+        {tool.attachments && tool.attachments.length > 0 &&
+          <div className="tool-attachments">
+            <Attachments attachments={tool.attachments} lang={lang} />
+          </div>
+        }
       </div>
       <HtmlFallback
         lang={lang}
         content={tool.content}
         className="article-contenu"
         itemProp="headline" />
-      <div className="details margin-bottom">
-        <p className="type-objet important">{usagesText}</p>
-        <p className="type-objet">{I18N_TYPE_LABELS.toolsAudiences[lang][tool.audience]}</p>
-        <p className="type-objet">{I18N_TYPE_LABELS.toolsStatus[lang][tool.status]}</p>
-        <DateNews startDateSchemaProp="datePublished" startDate={tool.date} lang={lang} />
+      <div className="details as-main">
+        {tool.usages && <p className="type-objet important">{usagesText}</p>}
+        {tool.audience && <p className="type-objet">{I18N_TYPE_LABELS.toolsAudiences[lang][tool.audience]}</p>}
+        {tool.status && <p className="type-objet">{I18N_TYPE_LABELS.toolsStatus[lang][tool.status]}</p>}
+        {tool.date && <DateNews startDateSchemaProp="datePublished" startDate={tool.date} lang={lang} />}
       </div>
     </div>
   );
@@ -139,6 +129,18 @@ function createProductionTitle(lang, tool) {
 export default function ToolDetail({lang, tool, siteUrl}) {
 
   const otherLang = lang === 'fr' ? 'en' : 'fr';
+  const joinText = lang === 'fr' ? ' et ' : ' and ';
+
+  let usagesText;
+  if (tool.usages && tool.usages.length) {
+    if (tool.usages.length === 1)
+      usagesText = I18N_TYPE_LABELS.toolsUsages[lang][tool.usages[0]];
+    else {
+      const usages = tool.usages.slice();
+      const last = usages.pop();
+      usagesText = usages.map((usage) => I18N_TYPE_LABELS.toolsUsages[lang][usage]).join(', ') + joinText + last;
+    }
+  }
   return (
     <>
       <PageMeta
@@ -216,13 +218,19 @@ export default function ToolDetail({lang, tool, siteUrl}) {
         <article id="article-contenu">
 
           {/* FR */}
-          <LangBlock tool={tool} lang={lang} />
+          <LangBlock tool={tool} lang={lang} usagesText={usagesText} />
 
           {/* Toggle Langue */}
           <ToggleLang lang={lang} content={tool.content} to={tool.permalink} />
         </article>
 
         <aside id="all-aside">
+          <div className="details as-aside">
+            {tool.usages && <p className="type-objet important">{usagesText}</p>}
+            {tool.audience && <p className="type-objet">{I18N_TYPE_LABELS.toolsAudiences[lang][tool.audience]}</p>}
+            {tool.status && <p className="type-objet">{I18N_TYPE_LABELS.toolsStatus[lang][tool.status]}</p>}
+            {tool.date && <DateNews startDateSchemaProp="datePublished" startDate={tool.date} lang={lang} />}
+          </div>
           <RelatedPeople people={tool.people} schemaRelationProp="author" lang={lang} />
           <RelatedActivities activities={tool.activities} lang={lang} />
           <RelatedProductions productions={tool.productions} lang={lang} />

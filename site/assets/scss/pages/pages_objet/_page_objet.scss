@@ -27,53 +27,6 @@
         left: 5px;
       }
 
-      .details {
-        width: 100%;
-        color: $text-color-light;
-
-        .p-ref {
-          border-top: $border-very-light;
-          cursor: pointer;
-          &:hover {
-            color: $color-hover;
-          }
-          span,
-          div {
-            display: inline;
-          }
-          .spire {
-            white-space: nowrap;
-          }
-        }
-
-        .type-objet.important{
-          color: $redlab;
-        }
-
-        .type-news {
-          text-transform: uppercase;
-        }
-
-        [data-icon] {
-          padding-right: $unite/2;
-        }
-
-        .date-news,
-        .date {
-          white-space: nowrap;
-          &::first-letter {
-            text-transform: capitalize;
-          }
-        }
-        .hours-news {
-          white-space: nowrap;
-          color: $redlab;
-        }
-        .hours-news::before {
-          content: $time;
-        }
-      }
-
       .fichiers-associes,
       #attachments {
         .files.target:hover {
@@ -114,6 +67,60 @@
             text-decoration-color: $redlab;
           }
         }
+      }
+    }
+
+    .details {
+      width: 100%;
+      color: $text-color-light;
+
+      .p-ref {
+        border-top: $border-very-light;
+        cursor: pointer;
+        &:hover {
+          color: $color-hover;
+        }
+        span,
+        div {
+          display: inline;
+        }
+        .spire {
+          white-space: nowrap;
+        }
+      }
+
+      .type-objet.important{
+        color: $redlab;
+      }
+
+      .type-news {
+        text-transform: uppercase;
+      }
+
+      [data-icon] {
+        padding-right: $unite/2;
+      }
+
+      .date-news,
+      .date {
+        white-space: nowrap;
+        &::first-letter {
+          text-transform: capitalize;
+        }
+      }
+      .hours-news {
+        white-space: nowrap;
+        color: $redlab;
+      }
+      .hours-news::before {
+        content: $time;
+      }
+
+      &.as-main {
+        margin-bottom: $unite;
+      }
+      &.as-aside {
+        display: none;
       }
     }
   }

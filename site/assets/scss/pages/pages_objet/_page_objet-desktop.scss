@@ -119,6 +119,27 @@
   }
 }
 
+@media screen and (min-width: 1620px) {
+  .details {
+    &.as-aside {
+      display: block !important;
+      margin-bottom: $unite;
+      .type-objet,
+      .date-news {
+        @include font-size-16;
+        margin-right: $unite;
+        padding: 10px 25px 10px 35px;
+        
+        border-right: $border-very-light;
+        border-bottom: $border-very-light;
+      }
+    }
+    &.as-main {
+      display: none;
+    }
+  }
+}
+
 //////////////////
 /// image sur toute la hauteur (même si l'image est coupée)
 ////////////////

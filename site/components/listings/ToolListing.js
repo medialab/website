@@ -99,9 +99,11 @@ export default function ToolListing({lang, list}) {
                             <h2>{tool.description && (tool.description[lang] || tool.description[otherLang])}</h2>
                           </div>
                           <div className="footer">
-                            <div className="info-row">
-                              {tool.usages && <p className="important"><span>{usagesText}</span></p>}
-                            </div>
+                            {tool.usages &&
+                              <div className="info-row">
+                                <p className="important"><span>{usagesText}</span></p>
+                              </div>
+                            }
                             <div className="info-row">
                               <p className="subtype-production subtype-origin"><span>{tool.external ? i18n[lang].externalTool : i18n[lang].internalTool}</span></p>
                               <DateNews startDateSchemaProp="datePublished" startDate={tool.date} lang={lang} />

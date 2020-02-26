@@ -1,6 +1,6 @@
 /* Regles typographique de bases communes à toutes les pages de contenu */
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 901px) {
   .page-production,
   .page-news,
   .page-activity,
@@ -10,7 +10,7 @@
     #article-contenu,
     #biographie,
     #about-contenu {
-      @media screen and (min-width: 900px) {
+      @media screen and (min-width: 901px) {
         hgroup {
           h1 {
             @include font-size-40();
@@ -24,7 +24,7 @@
         }
       }
 
-      @media screen and (min-width: 1080px) {
+      @media screen and (min-width: 1081px) {
         hgroup {
           h1 {
             @include font-size-60();

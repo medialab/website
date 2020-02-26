@@ -1,35 +1,35 @@
 // Mobile Breakpoints
 @mixin for-size($size) {
   @if $size == phone {
-    @media screen and (max-width: 699px) {
+    @media screen and (max-width: 700px) {
       @content;
     }
   } @else if $size == desktop {
-    @media screen and (min-width: 700px) {
+    @media screen and (min-width: 701px) {
       @content;
     }
   } @else if $size == desktop-900 {
-    @media (min-width: 900px) {
+    @media (min-width: 901px) {
       @content;
     }
   } @else if $size == desktop-1000 {
-    @media (min-width: 1000px) {
+    @media (min-width: 1001px) {
       @content;
     }
   } @else if $size == desktop-1200 {
-    @media (min-width: 1200px) {
+    @media (min-width: 1201px) {
       @content;
     }
   } @else if $size == desktop-1300 {
-    @media (min-width: 1300px) {
+    @media (min-width: 1301px) {
       @content;
     }
   } @else if $size == desktop-1400 {
-    @media (min-width: 1400px) {
+    @media (min-width: 1401px) {
       @content;
     }
   } @else if $size == desktop-1800 {
-    @media (min-width: 1800px) {
+    @media (min-width: 1801px) {
       @content;
     }
   }

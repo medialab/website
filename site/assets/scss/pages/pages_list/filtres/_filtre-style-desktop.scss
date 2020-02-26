@@ -54,7 +54,7 @@ $height-filtres-actu: $baseline * 3.5;
   }
 }
 
-@media screen and (min-width: 700px) and (max-width: 1080px) {
+@media screen and (min-width: 701px) and (max-width: 1080px) {
   .type_title,
   .aside-filters {
     width: $logo-column-medium - $margins-desktop;
@@ -64,7 +64,7 @@ $height-filtres-actu: $baseline * 3.5;
   }
 }
 
-@media screen and (min-width: 1080px) {
+@media screen and (min-width: 1081px) {
   .type_title,
   .aside-filters {
     width: $logo-column - $margins-desktop;

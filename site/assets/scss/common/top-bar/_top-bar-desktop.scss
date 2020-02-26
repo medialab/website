@@ -2,7 +2,7 @@
 //////// Top bar desktop
 /////////////////////
 
-@media screen and (min-width: 700px) and (max-width: 1080px) {
+@media screen and (min-width: 701px) and (max-width: 1080px) {
   #topbar {
     #logo-medialab {
       width: $logo-column-medium + $margins-desktop;
@@ -19,7 +19,7 @@
   }
 }
 
-@media screen and (min-width: 1080px) {
+@media screen and (min-width: 1081px) {
   #topbar {
     #logo-medialab {
       width: $logo-column + $margins-desktop;

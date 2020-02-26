@@ -112,7 +112,7 @@ $top-filtre-phone-open: $height-top-bar-phone + $baseline * 3.5;
   }
 }
 
-@media screen and (min-width: 700px) and (max-width: 1080px) {
+@media screen and (min-width: 701px) and (max-width: 1080px) {
   .type_title {
     &::after {
       display: none !important;

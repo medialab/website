@@ -153,7 +153,7 @@
     & > h1 {
       @include font-size-27-phone();
       margin: 0 $margins-phone;
-      @media screen and (min-width: 700px) and (max-width: 900px) {
+      @media screen and (min-width: 701px) and (max-width: 900px) {
         margin: 0 $unite;
       }
     }
@@ -172,7 +172,7 @@
       padding-right: $margins-phone * 0.6;
       padding-left: $margins-phone * 0.6;
 
-      @media screen and (min-width: 700px) and (max-width: 900px) {
+      @media screen and (min-width: 701px) and (max-width: 900px) {
         padding-right: $unite * 0.8;
         padding-left: $unite * 0.8;
       }
@@ -201,7 +201,7 @@
       @include font-size-27-phone();
       // font-weight: 600;
       margin: 0 $margins-phone;
-      @media screen and (min-width: 700px) and (max-width: 900px) {
+      @media screen and (min-width: 701px) and (max-width: 900px) {
         margin: 0 $unite;
       }
 
@@ -212,7 +212,7 @@
 
     ul.liste_objet {
       padding: 0 $margins-phone;
-      @media screen and (min-width: 700px) and (max-width: 900px) {
+      @media screen and (min-width: 701px) and (max-width: 900px) {
         padding: 0 $unite;
       }
 
@@ -232,7 +232,7 @@
   }
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 901px) {
   #all-aside,
   #aside-seminar {
     margin-bottom: $height-footer;
@@ -423,7 +423,7 @@
   }
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 901px) {
   #aside-seminar li h1 {
     @include font-size-27;
   }

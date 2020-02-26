@@ -118,7 +118,7 @@ $hunit: 4vh;
   }
 }
 
-@media screen and (min-width: 1036px) {
+@media screen and (min-width: 1037px) {
   .page-home {
     #home {
       position: fixed;
@@ -136,7 +136,7 @@ $hunit: 4vh;
   }
 }
 
-@media screen and (min-width: 1036px) and (max-width: 1200px) {
+@media screen and (min-width: 1037px) and (max-width: 1200px) {
   .page-home {
     #home {
       width: 700px + $size-scrollbar;

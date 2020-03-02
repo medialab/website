@@ -99,10 +99,14 @@ $card-image-height: 180px;
     }
 
     /* Phone */
-    @include for-size(phone)  {
+    @media screen and (max-width:800px)  {
       margin-bottom: 0;
       .left-column {
         display: none;
+      }
+      .right-column {
+        padding-top: $baseline;
+        padding-bottom: $baseline;
       }
     }
   }

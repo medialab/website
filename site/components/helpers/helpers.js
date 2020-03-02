@@ -17,6 +17,16 @@ export function ellipse(text, maxSize = 175) {
   return text;
 }
 
+export function composeText(list, joinText, langMap) {
+  if (list.length === 1)
+   return langMap[list[0]];
+  else {
+    const newList = list.slice();
+    const last = newList.pop();
+    return newList.map((usage) => langMap[usage]).join(', ') + joinText + langMap[last];
+  }
+}
+
 export function join(children, string) {
   const result = new Array(children.length * 2 - 1);
 

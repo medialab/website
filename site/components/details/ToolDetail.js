@@ -4,7 +4,7 @@ import DateNews from '../helpers/DateNews.js';
 import Link from '../helpers/Link';
 
 import ToggleLang from './fragments/ToggleLang.js';
-import {productionTypeToSchemaURL, productionTypeToZoteroType} from '../helpers/helpers.js';
+import {composeText, productionTypeToSchemaURL, productionTypeToZoteroType} from '../helpers/helpers.js';
 import {I18N_TYPE_LABELS, I18N_GROUP_LABELS} from '../../i18n.js';
 import LogoSticky from './fragments/LogoSticky.js';
 import RelatedProductions from './fragments/RelatedProductions.js';
@@ -133,13 +133,7 @@ export default function ToolDetail({lang, tool, siteUrl}) {
 
   let usagesText;
   if (tool.usages && tool.usages.length) {
-    if (tool.usages.length === 1)
-      usagesText = I18N_TYPE_LABELS.toolsUsages[lang][tool.usages[0]];
-    else {
-      const usages = tool.usages.slice();
-      const last = usages.pop();
-      usagesText = usages.map((usage) => I18N_TYPE_LABELS.toolsUsages[lang][usage]).join(', ') + joinText + last;
-    }
+    usagesText = composeText(tool.usages, joinText, I18N_TYPE_LABELS.toolsUsages[lang]);
   }
   return (
     <>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from '../helpers/Link';
 
-import {compare, productionTypeToSchemaURL} from '../helpers/helpers.js';
+import {compare, composeText, productionTypeToSchemaURL} from '../helpers/helpers.js';
 import {I18N_TYPE_LABELS} from '../../i18n.js';
 
 import ToolFilter from '../listings/fragments/ToolFilter';
@@ -67,13 +67,7 @@ export default function ToolListing({lang, list}) {
                   let usagesText;
                   let usagesClass;
                   if (tool.usages && tool.usages.length) {
-                    if (tool.usages.length === 1)
-                      usagesText = I18N_TYPE_LABELS.toolsUsages[lang][tool.usages[0]];
-                    else {
-                      const usages = tool.usages.slice();
-                      const last = usages.pop();
-                      usagesText = usages.map((usage) => I18N_TYPE_LABELS.toolsUsages[lang][usage]).join(', ') + joinText + last;
-                    }
+                    usagesText = composeText(tool.usages, joinText, I18N_TYPE_LABELS.toolsUsages[lang]);
                     usagesClass = tool.usages.join(' ');
                   }
                   return (

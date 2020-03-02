@@ -39,38 +39,6 @@ const LangBlock = ({tool, lang, usagesText}) => {
 
   const otherLang = lang === 'fr' ? 'en' : 'fr';
 
-  const description = (
-    tool.description && (
-      tool.description[lang] ||
-      tool.description[otherLang]
-    )
-  ) || tool.url;
-
-  let ref = (
-    <span>
-      <span>
-        <RawHtml html={description} wrapper='span' />
-        {description ? ' ⤤' : ''}
-      </span>
-    </span>
-  );
-
-  if (tool.url) {
-    ref = (
-      <p
-        itemProp="description"
-        className="p-ref">
-        <a
-          itemProp="url"
-          href={tool.url}
-          target="_blank"
-          rel="noopener noreferrer">
-          <span>Page de l'outil ⤤</span>
-        </a>
-      </p>
-    );
-  }
-
   return (
     <div className={`block-lang ${lang}`} lang={lang}>
       <hgroup>

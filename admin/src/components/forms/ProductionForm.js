@@ -437,22 +437,24 @@ function renderProductionForm(props) {
           Publication presentation
         </h4>
 
-        <div className="columns">
-          <div className="column is-6">
-            <div className="field">
-              <label className="label">Url</label>
-              <div className="control">
-                <SpireGeneratedField
-                  spireValue={data.spire && data.spire.generatedFields.url}
-                  humanValue={data.url}
-                  init={() => handlers.url({target: {value: ''}})}
-                  cancel={() => handlers.url({target: {value: undefined}})}>
-                  <UrlInput value={data.url} onChange={handlers.url} />
-                </SpireGeneratedField>
+        { data.type && (data.type !== 'code' && data.type !== 'software') &&
+          <div className="columns">
+            <div className="column is-6">
+              <div className="field">
+                <label className="label">Url</label>
+                <div className="control">
+                  <SpireGeneratedField
+                    spireValue={data.spire && data.spire.generatedFields.url}
+                    humanValue={data.url}
+                    init={() => handlers.url({target: {value: ''}})}
+                    cancel={() => handlers.url({target: {value: undefined}})}>
+                    <UrlInput value={data.url} onChange={handlers.url} />
+                  </SpireGeneratedField>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        }
 
         <div className="columns">
 

@@ -1,44 +1,25 @@
 
+$filters_usages: "collect" "curation" "processing" "exploration" "writing";
+$filters_audience: "developers" "all";
+$filters_status: "usable" "experimental" "archived";
+$filters_groups: $filters_usages $filters_audience $filters_status;
+
 .page-tool-list {
   // CHEKED CHECKBOX ------------------------------------------------------------------------------------ //
-
-  #filtre-tool_collect:checked
-    ~ .aside-filters
-    #filtre-tool_collect_label,
-  #filtre-tool_curation:checked 
-    ~ .aside-filters
-    #filtre-tool_curation_label,
-  #filtre-tool_processing:checked
-    ~ .aside-filters
-    #filtre-tool_processing_label,
-  #filtre-tool_exploration:checked
-    ~ .aside-filters
-    #filtre-tool_exploration_label,
-  #filtre-tool_writing:checked
-    ~ .aside-filters
-    #filtre-tool_writing_label,
-  #filtre-tool_all:checked
-    ~ .aside-filters
-    #filtre-tool_all_label, 
-  #filtre-tool_developers:checked
-    ~ .aside-filters
-    #filtre-tool_developers_label,
-  #filtre-tool_usable:checked
-    ~ .aside-filters
-    #filtre-tool_usable_label,
-  #filtre-tool_experimental:checked
-    ~ .aside-filters
-    #filtre-tool_experimental_label,
-  #filtre-tool_archives:checked
-    ~ .aside-filters
-    #filtre-tool_archives_label{
-    font-weight: 600 !important;
-    &:before {
-      border: 5px solid $text-color;
-    }
-    @include for-size(desktop) {
-      &:hover:before {
-        border: 5px solid $text-color-light !important;
+  @each $filters_group in $filters_groups {
+    @each $filter in $filters_group {
+      #filtre-tool_#{$filter}:checked
+      ~ .aside-filters
+      #filtre-tool_#{$filter}_label {
+        font-weight: 600 !important;
+        &:before {
+          border: 5px solid $text-color;
+        }
+        @include for-size(desktop) {
+          &:hover:before {
+            border: 5px solid $text-color-light !important;
+          }
+        }
       }
     }
   }
@@ -46,50 +27,120 @@
 
   // FILTERS PATTERNS ------------------------------------------------------------------------------------ //
 
-  input#filtre-tool_collect:checked ~ #liste,
-  input#filtre-tool_curation:checked ~ #liste,
-  input#filtre-tool_processing:checked ~ #liste,
-  input#filtre-tool_exploration:checked ~ #liste,
-  input#filtre-tool_writing:checked ~ #liste,
-  input#filtre-tool_all:checked ~ #liste,
-  input#filtre-tool_developers:checked ~ #liste,
-  input#filtre-tool_usable:checked ~ #liste,
-  input#filtre-tool_experimental:checked ~ #liste,
-  input#filtre-tool_archived:checked ~ #liste {
+  input.input_usages:checked ~ #liste,
+  input.input_audience:checked ~ #liste,
+  input.input_status:checked ~ #liste {
+    #liste-tools .list-item {
+      display: none;
+    }
+  }
+
+  // one type of group filter only
+  @each $filters_group in $filters_groups {
+    @each $filter in $filters_group {
+      input#filtre-tool_#{$filter}:checked
+        ~ #liste #liste-tools {
+        .#{$filter} {
+          display: block;
+        }
+      }
+    }
+  }
+
+  // usages x audience
+  input.input_usages:checked
+  ~ input.input_audience:checked
+  ~ #liste {
     #liste-tools .list-item {
       display: none !important;
     }
   }
 
-  input#filtre-tool_collect:checked ~ #liste #liste-tools .collect {
-    display: block !important;
+  @each $filter_usages in $filters_usages {
+    @each $filter_audience in $filters_audience {
+      #filtre-tool_#{$filter_usages}:checked
+      ~ #filtre-tool_#{$filter_audience}:checked
+      ~ #liste #liste-tools {
+        .#{$filter_usages}.#{$filter_audience} {
+          display: block !important;
+        }
+      }
+    }
   }
 
-  input#filtre-tool_curation:checked ~ #liste #liste-tools .curation {
-    display: block !important;
+  // audience x status
+  input.input_audience:checked
+  ~ input.input_status:checked
+  ~ #liste {
+    #liste-tools .list-item {
+      display: none !important;
+    }
   }
 
-  input#filtre-tool_processing:checked ~ #liste #liste-tools .processing {
-    display: block !important;
+  @each $filter_audience in $filters_audience {
+    @each $filter_status in $filters_status {
+      #filtre-tool_#{$filter_audience}:checked
+      ~ #filtre-tool_#{$filter_status}:checked
+      ~ #liste #liste-tools {
+        .#{$filter_audience}.#{$filter_status} {
+          display: block !important;
+        }
+      }
+    }
   }
 
-  input#filtre-tool_exploration:checked ~ #liste #liste-tools .exploration {
-    display: block !important;
+  // usages x status
+  input.input_usages:checked
+  ~ input.input_status:checked
+  ~ #liste {
+    #liste-tools .list-item {
+      display: none !important;
+    }
   }
 
-  input#filtre-tool_writing:checked ~ #liste #liste-tools .writing {
-    display: block !important;
+  @each $filter_usages in $filters_usages {
+    @each $filter_status in $filters_status {
+      #filtre-tool_#{$filter_usages}:checked
+      ~ #filtre-tool_#{$filter_status}:checked
+      ~ #liste #liste-tools {
+        .#{$filter_usages}.#{$filter_status} {
+          display: block !important;
+        }
+      }
+    }
   }
-  input#filtre-tool_developers:checked ~ #liste #liste-tools .developers {
-    display: block !important;
+
+  // usages x audience x status
+  input.input_usages:checked
+  ~ input.input_audience:checked
+  ~ input.input_status:checked
+  ~ #liste {
+    ul#liste-tools li.list-item {
+      display: none !important;
+    }
   }
-  input#filtre-tool_usable:checked ~ #liste #liste-tools .usable {
-    display: block !important;
-  }
-  input#filtre-tool_experimental:checked ~ #liste #liste-tools .experimental {
-    display: block !important;
-  }
-  input#filtre-tool_archives:checked ~ #liste #liste-tools .archives {
-    display: block !important;
+
+  @each $filter_usages in $filters_usages {
+    @each $filter_audience in $filters_audience {
+      @each $filter_status in $filters_status {
+        #filtre-tool_#{$filter_usages}:checked
+        ~ #filtre-tool_#{$filter_audience}:checked
+        ~ #filtre-tool_#{$filter_status}:checked
+        ~ #liste #liste-tools {
+          .#{$filter_usages}.#{$filter_audience} {
+            display: none !important;
+          }
+          .#{$filter_audience}.#{$filter_status} {
+            display: none !important;
+          }
+          .#{$filter_usages}.#{$filter_status} {
+            display: none !important;
+          }
+          .#{$filter_usages}.#{$filter_audience}.#{$filter_status} {
+            display: block !important;
+          }
+        }
+      }
+    }
   }
 }

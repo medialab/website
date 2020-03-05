@@ -71,7 +71,7 @@ const ToolFilter = ({lang}) => {
         <input
           key={usage}
           type="checkbox" id={`filtre-tool_${usage}`} name={`filtre-tool_${usage}`}
-          className={`input_${usage}`}
+          className="input_usages"
           value={usage} hidden />
         );
     })}
@@ -81,7 +81,7 @@ const ToolFilter = ({lang}) => {
         <input
           key={audience}
           type="checkbox" id={`filtre-tool_${audience}`} name={`filtre-tool_${audience}`}
-          className={`input_${audience}`}
+          className="input_audience"
           value={audience} hidden />
         );
     })}
@@ -91,7 +91,7 @@ const ToolFilter = ({lang}) => {
         <input
           key={statu}
           type="checkbox" id={`filtre-tool_${statu}`} name={`filtre-tool_${statu}`}
-          className={`input_${statu}`}
+          className="input_status"
           value={statu} hidden />
         );
     })}

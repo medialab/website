@@ -5,7 +5,70 @@ $filters_status: "usable" "experimental" "archived";
 $filters_groups: $filters_usages $filters_audience $filters_status;
 
 .page-tool-list {
-  // CHEKED CHECKBOX ------------------------------------------------------------------------------------ //
+  // FILTER GROUPS ------------------------------------------------------------------------------------ //
+  .filter-container {
+    label.filter-group-label {
+      position: absolute;
+      width: 100%;
+      height: $baseline * 2.5;
+      z-index: 99;
+      cursor: pointer;
+
+      span {
+        display: block;
+        width: $baseline * 0.75;
+        height: $baseline * 0.75;
+        margin-top: $baseline/2;
+        position: absolute;
+        right: 0;
+        top: 6px;
+      }
+    }
+
+    p.filter-group-title {
+      @include font-size-13-uppercase;
+      width: 100%;
+      padding: $baseline/2 0;
+      border-bottom: $border-very-light;
+    }
+
+    .filter-group{
+      display: none;
+    }
+
+    input.filter-group-checkbox:hover {
+      & + label.filter-group-label {
+        svg {
+          transform: rotate(90deg);
+          transform-origin: center center;
+        }
+      }
+      & ~ p.filter-group-title {
+        color: $text-color;
+        font-weight: 600;
+      }
+    }
+
+    input.filter-group-checkbox:checked {
+      & + label.filter-group-label {
+        svg {
+          transform: rotate(90deg);
+          transform-origin: center center;
+        }
+      }
+      & ~ p.filter-group-title {
+        color: $text-color;
+        font-weight: 600;
+        border-bottom: none;
+      }
+      & ~ .filter-group {
+        display: block;
+        padding-top: 0;
+      }
+    }
+  }
+
+  // FILTERS CHECKBOXS ------------------------------------------------------------------------------------ //
   @each $filters_group in $filters_groups {
     @each $filter in $filters_group {
       #filtre-tool_#{$filter}:checked
@@ -23,7 +86,6 @@ $filters_groups: $filters_usages $filters_audience $filters_status;
       }
     }
   }
-
 
   // FILTERS PATTERNS ------------------------------------------------------------------------------------ //
 

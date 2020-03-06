@@ -12,7 +12,7 @@ const i18n = {
     closeAlt: 'Revenir à la liste des outils',
     filtresTitle: 'Filtres de l\'outils',
     usages: 'activité',
-    audiences: 'public',
+    audience: 'public',
     status: 'statut'
   },
   en: {
@@ -22,7 +22,7 @@ const i18n = {
     closeAlt: 'Back to the tool list',
     filtresTitle: 'filter of the tools',
     usages: 'activity',
-    audiences: 'public',
+    audience: 'public',
     status: 'status'
   }
 };
@@ -34,11 +34,23 @@ const ToolFilter = ({lang}) => {
     filtersAlt,
     infosAlt,
     closeAlt,
-    filtresTitle,
-    usages,
-    audiences,
-    status
+    filtresTitle
   } = i18n[lang];
+
+  const filterGroups = [
+    {
+      key: 'usages',
+      typeKey: 'toolsUsages'
+    },
+    {
+      key: 'audience',
+      typeKey: 'toolsAudience'
+    },
+    {
+      key: 'status',
+      typeKey: 'toolsStatus'
+    }
+  ];
 
 	return (
   <>
@@ -76,7 +88,7 @@ const ToolFilter = ({lang}) => {
         );
     })}
 
-    {Object.keys(I18N_TYPE_LABELS.toolsAudiences[lang]).map((audience) => {
+    {Object.keys(I18N_TYPE_LABELS.toolsAudience[lang]).map((audience) => {
       return (
         <input
           key={audience}
@@ -103,42 +115,28 @@ const ToolFilter = ({lang}) => {
       <SearchInput lang={lang} />
 
       <ul>
-        <li className="filter-group" aria-label={usages}>
-          <h1>{ usages }</h1>
-          {Object.keys(I18N_TYPE_LABELS.toolsUsages[lang]).map((usage) => {
-            return (
-              <label
-                key={usage}
-                id={`filtre-tool_${usage}_label`}
-                className="checkbox-medialab" htmlFor={`filtre-tool_${usage}`}
-                aria-label={usage}>{I18N_TYPE_LABELS.toolsUsages[lang][usage]}</label>
-              );
-          })}
-        </li>
-        <li className="filter-group" aria-label={audiences}>
-          <h1>{ audiences }</h1>
-          {Object.keys(I18N_TYPE_LABELS.toolsAudiences[lang]).map((audience) => {
-            return (
-              <label
-                key={audience}
-                id={`filtre-tool_${audience}_label`}
-                className="checkbox-medialab" htmlFor={`filtre-tool_${audience}`}
-                aria-label={audience}>{I18N_TYPE_LABELS.toolsAudiences[lang][audience]}</label>
-              );
-          })}
-        </li>
-        <li className="filter-group" aria-label={status}>
-          <h1>{ status }</h1>
-          {Object.keys(I18N_TYPE_LABELS.toolsStatus[lang]).map((statu) => {
-            return (
-              <label
-                key={statu}
-                id={`filtre-tool_${statu}_label`}
-                className="checkbox-medialab" htmlFor={`filtre-tool_${statu}`}
-                aria-label={statu}>{I18N_TYPE_LABELS.toolsStatus[lang][statu]}</label>
-              );
-          })}
-        </li>
+        {filterGroups.map((group, index) => {
+          return (
+            <li key={index} className="filter-container" aria-label={group.key}>
+              <input
+                className="filter-group-checkbox"
+                type="checkbox" id={`checkbox_filtre_${group.key}`}
+                hidden checked />
+              <label className="filter-group-label" htmlFor={`checkbox_filtre_${group.key}`}><span><Icons icon="arrow" /></span></label>
+              <p className="filter-group-title" aria-hidden="true">{i18n[lang][group.key]}</p>
+              <div className="filter-group">
+                {Object.keys(I18N_TYPE_LABELS[group.typeKey][lang]).map((usage) => {
+                  return (
+                    <label
+                      key={usage}
+                      id={`filtre-tool_${usage}_label`}
+                      className="checkbox-medialab" htmlFor={`filtre-tool_${usage}`}
+                      aria-label={usage}>{I18N_TYPE_LABELS[group.typeKey][lang][usage]}</label>
+                    );
+                })}
+              </div>
+            </li>);
+        })}
       </ul>
     </aside>
 

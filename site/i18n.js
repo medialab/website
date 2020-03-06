@@ -40,7 +40,7 @@ export const I18N_TYPE_LABELS = {
     fr: enums.usages.fr,
     en: enums.usages.en
   },
-  toolsAudiences: {
+  toolsAudience: {
     fr: enums.audience.fr,
     en: enums.audience.en
   },

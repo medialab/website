@@ -71,7 +71,7 @@ const LangBlock = ({tool, lang, usagesText}) => {
         itemProp="headline" />
       <div className="details as-main">
         {tool.usages && <p className="type-objet important">{usagesText}</p>}
-        {tool.audience && <p className="type-objet">{I18N_TYPE_LABELS.toolsAudiences[lang][tool.audience]}</p>}
+        {tool.audience && <p className="type-objet">{I18N_TYPE_LABELS.toolsAudience[lang][tool.audience]}</p>}
         {tool.status && <p className="type-objet">{I18N_TYPE_LABELS.toolsStatus[lang][tool.status]}</p>}
         {tool.date && <DateNews startDateSchemaProp="datePublished" startDate={tool.date} lang={lang} />}
       </div>
@@ -189,7 +189,7 @@ export default function ToolDetail({lang, tool, siteUrl}) {
         <aside id="all-aside">
           <div className="details as-aside">
             {tool.usages && <p className="type-objet important">{usagesText}</p>}
-            {tool.audience && <p className="type-objet">{I18N_TYPE_LABELS.toolsAudiences[lang][tool.audience]}</p>}
+            {tool.audience && <p className="type-objet">{I18N_TYPE_LABELS.toolsAudience[lang][tool.audience]}</p>}
             {tool.status && <p className="type-objet">{I18N_TYPE_LABELS.toolsStatus[lang][tool.status]}</p>}
             {tool.date && <DateNews startDateSchemaProp="datePublished" startDate={tool.date} lang={lang} />}
           </div>

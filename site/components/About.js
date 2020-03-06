@@ -55,7 +55,7 @@ export default function About({lang}) {
               <p><Link to="/equipe" className="GoTo">Découvrir les membres de l'équipe</Link></p>
 
               <h3 id="activities">Activités</h3>
-              <p>Les activités du médialab s’articulent entre recherche et enseignement. Elles approfondissent notamment l’usage des méthodes numériques pour répondre aux enjeux contemporains en sociologie et STS. Également mobilisées au coeur d’activités pédagogiques, par exemple en mettant les étudiants en situation d’enquête, elles bénéficient d’une réflexivité très enrichissante sur nos processus de recherche. Le médialab accompagne ponctuellement des projets de recherche extérieurs au laboratoire à la mise en œuvre de méthodes numériques sous la forme de prestations de services (<a href="/documents/20190211_medialab_grille_tarifs_prestations.pdf" target="_blank">grille tarifaire</a>) et après approbation du conseil de laboratoire.</p>
+              <p>Les activités du médialab s’articulent entre recherche et enseignement. Elles approfondissent notamment l’usage des méthodes numériques pour répondre aux enjeux contemporains en sociologie et STS. Également mobilisées au coeur d’activités pédagogiques, par exemple en mettant les étudiants en situation d’enquête, elles bénéficient d’une réflexivité très enrichissante sur nos processus de recherche. Le médialab accompagne ponctuellement des projets de recherche extérieurs au laboratoire à la mise en œuvre de méthodes numériques sous la forme de prestations de services (<Link to="/documents/20190211_medialab_grille_tarifs_prestations.pdf" target="_blank">grille tarifaire</Link>) et après approbation du conseil de laboratoire.</p>
 
               <p><Link to="/activites" className="GoTo">Consulter la liste des activités</Link></p>
 
@@ -148,7 +148,7 @@ export default function About({lang}) {
 
               <h3 id="activities">Activities</h3>
 
-              <p>The médialab’s activities articulate both research and teaching. In particular, they explore the use of digital methods to address contemporary issues in sociology and STS. These methods are also central to the laboratory’s teaching, for example by putting students in research situations. This fosters highly enriching reflection on our research processes. After approval of the laboratory council, the médialab can occasionnally provide external research projects with services to implement digital methods (<a href="/documents/20190211_medialab_grille_tarifs_prestations.pdf" target="_blank">price list</a>).</p>
+              <p>The médialab’s activities articulate both research and teaching. In particular, they explore the use of digital methods to address contemporary issues in sociology and STS. These methods are also central to the laboratory’s teaching, for example by putting students in research situations. This fosters highly enriching reflection on our research processes. After approval of the laboratory council, the médialab can occasionnally provide external research projects with services to implement digital methods (<Link to="/documents/20190211_medialab_grille_tarifs_prestations.pdf" target="_blank">price list</Link>).</p>
 
               <p><Link to="/en/activities" className="GoTo">Learn more about the médialab's activities</Link></p>
 

@@ -28,8 +28,8 @@ const Attachments = ({lang, attachments}) => {
 
   return (
     <ul className="fichiers-associes" id="attachments">
-      {(attachments || []).map(file => (
-        <li key={file.value} data-type="files" className={`files${['attachement', 'url'].includes(file.type) ? ' target' : ''}`}>
+      {(attachments || []).map((file, index) => (
+        <li key={file.value} data-type="files" className={`${index === 0 && 'important'} files${['attachement', 'url'].includes(file.type) ? ' target' : ''}`}>
 
           {file.type === 'attachment' && (
             <a

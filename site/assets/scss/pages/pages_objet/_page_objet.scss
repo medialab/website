@@ -29,6 +29,9 @@
 
       .fichiers-associes,
       #attachments {
+        .files.important {
+          color: $redlab-light;
+        }
         .files.target:hover {
           color: $redlab-light !important;
         }

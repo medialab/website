@@ -15,8 +15,6 @@ import Attachments from './fragments/Attachments';
 
 import PageMeta from '../helpers/PageMeta.js';
 
-import RawHtml from '../helpers/RawHtml.js';
-
 const i18n = {
   fr: {
     contentAriaLabel: 'Contenu de la page',

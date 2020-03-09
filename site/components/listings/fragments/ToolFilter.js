@@ -54,7 +54,7 @@ const ToolFilter = ({lang}) => {
 
 	return (
   <>
-    <h1 className="type_title" data-icon="production"><a href="#liste">{I18N_MODEL[lang].tools}</a></h1>
+    <h1 className="type_title"><a href="#liste">{I18N_MODEL[lang].tools}</a></h1>
 
 
     <input

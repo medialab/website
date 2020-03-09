@@ -18,13 +18,13 @@ import PageMeta from '../helpers/PageMeta.js';
 const i18n = {
   fr: {
     contentAriaLabel: 'Contenu de la page',
-    externalTool: 'outil exterieure au médialab',
+    externalTool: 'recommandé par le médialab',
     internalTool: 'fait par le médialab'
   },
   en: {
     contentAriaLabel: 'Page content',
-    externalTool: 'external tool',
-    internalTool: 'made by médialab'
+    externalTool: 'recommended by the médialab',
+    internalTool: 'made by the médialab'
   }
 };
 

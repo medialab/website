@@ -6,23 +6,23 @@ import {SearchInput} from '../../helpers/SearchInput.js';
 
 const i18n = {
   fr: {
-    accroche: 'Le médialab produit, mobilise et enseigne l\'usage de nombreux outils numériques libres dédiés à l\'enquête équipée numériquement. Retrouvez sur cette page un annuaire des outils qui pourraient vous être utiles. Chaque page d\'outil vous donne accès au code source, à la documentation et à des cas d\'usages quand ils sont disponibles.',
+    accroche: 'Le médialab produit, mobilise et enseigne l\'usage de nombreux outils numériques libres dédiés à l\'enquête. Chaque outil listé sur cette page donne accès au code source, à la documentation et à des cas d\'usages quand ils sont disponibles.',
     filtersAlt: 'Afficher les filtres de la page',
-    infosAlt: 'Informations à propos de l\'outils',
+    infosAlt: 'Informations à propos de l\'outil',
     closeAlt: 'Revenir à la liste des outils',
-    filtresTitle: 'Filtres de l\'outils',
-    usages: 'activité',
+    filtresTitle: 'Filtres des outils',
+    usages: 'pratiques',
     audience: 'public',
     status: 'statut'
   },
   en: {
-    accroche: 'The medialab\'s produces, mobilizes and teaches the use of numerous free digital tools dedicated to digitally equipped investigation. Find on this page a directory of tools that may be useful to you. Each tool page gives you access to source code, documentation and use cases when available.',
+    accroche: 'The medialab produces, mobilizes and teaches the use of numerous free digital tools dedicated to research. Each tool listed in this page gives access to its source code, documentation and use cases when available.',
     filtersAlt: 'Show page filters',
     infosAlt: 'Informations about the tool',
     closeAlt: 'Back to the tool list',
-    filtresTitle: 'filter of the tools',
-    usages: 'activity',
-    audience: 'public',
+    filtresTitle: 'Filters of the tools',
+    usages: 'usages',
+    audience: 'audience',
     status: 'status'
   }
 };

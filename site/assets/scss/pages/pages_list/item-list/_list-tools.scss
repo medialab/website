@@ -31,6 +31,9 @@ $card-image-height: 180px;
     .left-column img {
       max-height: $card-image-height;
       filter: grayscale(1);
+      &:hover{
+        filter: none;
+      }
     }
 
     .right-column {

@@ -111,6 +111,21 @@ function copyAssets(inputDir, outputDir, callback) {
       });
     },
 
+    documents(next) {
+      const docsDir = path.join(outputDir, 'documents');
+
+      fs.ensureDir(docsDir, err => {
+        if (err)
+          return next(err);
+
+        return fs.copy(
+          path.join(__dirname, '..', 'site', 'assets', 'documents'),
+          docsDir,
+          next
+        );
+      });
+    },
+
     js(next) {
       const jsDir = path.join(outputDir, 'js');
 

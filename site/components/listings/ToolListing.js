@@ -12,7 +12,7 @@ import PageMeta from '../helpers/PageMeta.js';
 
 const messagesMeta = {
   title: {
-    fr: 'OUTILS | médialab Sciences Po',
+    fr: 'Outils | médialab Sciences Po',
     en: 'Tools | médialab Sciences Po',
   },
   description: {

@@ -141,6 +141,7 @@
       "curation": "curation",
       "processing": "processing",
       "exploration": "exploration",
+      "visualization": "visualization",
       "writing": "writing"
     },
     "fr": {
@@ -148,6 +149,7 @@
       "curation": "curation",
       "processing": "traitement",
       "exploration": "exploration",
+      "visualization": "visualisation",
       "writing": "écriture"
     }
   },

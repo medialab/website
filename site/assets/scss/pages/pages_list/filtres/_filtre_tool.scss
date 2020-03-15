@@ -1,5 +1,5 @@
 
-$filters_usages: "collect" "curation" "processing" "exploration" "writing";
+$filters_usages: "collect" "curation" "processing" "exploration" "visualization" "writing";
 $filters_audience: "developers" "all";
 $filters_status: "usable" "experimental" "archived";
 $filters_groups: $filters_usages $filters_audience $filters_status;

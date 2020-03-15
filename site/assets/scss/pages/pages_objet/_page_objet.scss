@@ -15,16 +15,18 @@
       @include flex();
       @include flex-direction(column);
 
-      hgroup h1::first-letter {
-        text-transform: capitalize;
+      hgroup h1 {
+        @include flex();
+        @include flex-direction(column);
+
+        .label {
+          font-style: italic;
+          color: $text-color-light;
+        }
       }
 
-      hgroup h1 .label {
-        font-style: italic;
-        color: $text-color-light;
-        position: relative;
-        bottom: 2px;
-        left: 5px;
+      hgroup h1::first-letter {
+        text-transform: capitalize;
       }
 
       .fichiers-associes,

@@ -3,32 +3,21 @@
 $card-image-height: 180px;
 
 .page-tool-list #liste {
-
-  @include for-size(desktop) {
-    ul {
-      width: 100%;
-      display: inline-block;
-      @supports (display: grid) {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-      }
-    }
-  }
-
   li.tool-portrait {
     padding: 10px;
-    margin-bottom: 30px;
-    border-bottom: none!important;
-    height: 100%!important;
-
+    border-bottom: none !important;
     a {
-      display: flex!important;
+      @include flex();
+      @include justify-content(stretch);
       flex-flow: row nowrap;
-      justify-content: stretch;
       height: 100%;
+      &:hover {
+        background-color: $background-grey;
+        color: currentColor;
+      }
     }
 
-    .left-column img {
+    img {
       max-height: $card-image-height;
       filter: grayscale(1);
       &:hover{
@@ -36,81 +25,93 @@ $card-image-height: 180px;
       }
     }
 
-    .right-column {
-      padding: 10px 15px 0 15px;
-      position: relative;
-      display: flex;
-      flex-flow: column nowrap;
-      justify-content: stretch;
-      flex: 1;
-
-      .header {
-        flex: 1;
-        h1 {
-          margin: 0!important;
-          padding: 0!important;
-          font-size: 36px!important;
-          padding-bottom: 15px!important;
-        }
-  
-        h2 {
-          @include font-size-20();
-          line-height: 1.2;
-          margin-bottom: 10px;
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 3;
-          overflow: hidden;
-        }
+    .description {
+      padding: 10px 0 0 15px;
+      h1 {
+        font-size: 36px !important;
+        margin-bottom: $baseline;
       }
   
-      .info-row {
-        border-top: $border-very-light;
-        padding: 5px;
-        @include font-size-13();
-        width: 100%;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+      h2 {
+        @include font-size-20();
+        line-height: 1.2;
+        margin-bottom: 10px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
         overflow: hidden;
-        display: flex;
-        flex-flow: row wrap;
-  
-        &:last-of-type {
-          border-bottom: $border-very-light;
-        }
+      }
 
-        p.important{
-          color: $redlab;
-        }
-        p:not(:first-of-type) {
-          padding-left: 10px;
+      .details {
+        border-top: $border-very-light;
+        border-bottom: $border-very-light;
+        padding: $baseline/2 0;
+        @include font-size-13;
+        @include for-size(phone) {
+          @include font-size-13-phone;
         }
   
-        .date-news {
-          margin-left: $baseline * 1;
-          padding-left: $baseline * 1;
+        p.important {
+          color: $redlab;
+  
+        }
+        .detail-usages {
+          border-bottom: $border-very-light;
+          padding-bottom: $baseline/2;
+          margin-bottom: $baseline/2;
+        }
+        .detail-date {
+          display: inline-block;
+          padding-left: $unite/2;
           border-left: $border-very-light;
         }
+        .detail-external {
+          display: inline-block;
+          padding-right: $unite/2;
+        }
       }
     }
 
-    /* Desktop grid */
-    @media screen and (min-width: 1300px) {
-      .right-column {
-        max-height: $card-image-height;
+
+  }
+
+  /* Desktop */
+  @include for-size(desktop) {
+    ul {
+      @include flex();
+      flex-wrap: wrap;
+  
+      li.tool-portrait {
+        margin-bottom: $baseline * 2;
+        @include flex();
+        width: 50%;
+  
+        .description {
+          @include flex();
+          @include justify-content(stretch);
+          flex-flow: column nowrap;
+          .header {
+            flex: 1;
+          }
+          .details {
+            margin-top: $baseline;
+          }
+        }
       }
     }
+  
+  }
 
-    /* Phone */
-    @media screen and (max-width:800px)  {
-      margin-bottom: 0;
-      .left-column {
-        display: none;
-      }
-      .right-column {
-        padding-top: $baseline;
-        padding-bottom: $baseline;
-      }
+  /* Phone */
+  @media screen and (max-width:800px)  {
+    margin-bottom: 0;
+    figure {
+      display: none !important;
+    }
+    .description {
+      width: 100% !important;
+      padding-top: $baseline;
+      padding-bottom: $baseline;
     }
   }
 }

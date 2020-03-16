@@ -73,30 +73,27 @@ export default function ToolListing({lang, list}) {
                       data-type={tool.type}
                       className={`tool-portrait list-item ${tool.audience} ${tool.status} ${usagesClass}`} >
                       <Link to={tool.permalink[lang]}>
-                        <figure className="left-column">
-                          {tool.coverImage ?
+                        <figure>
+                          {tool.coverImage ? (
                             <img
                               itemProp="image"
                               src={tool.coverImage.url} />
-                            : <ImagePlaceholder type="production" alt={tool.title[lang] || tool.title[otherLang]} />
-                          }
+                          ) : (
+                            <ImagePlaceholder type="tool" alt={tool.title[lang] || tool.title[otherLang]} />
+                          )}
                         </figure>
-                        <div className="right-column">
+
+                        <div className="description">
                           <div className="header">
                             <h1 itemProp="name" data-level-1="title">{tool.title[lang] || tool.title[otherLang]}</h1>
-                            <h2>{tool.description && (tool.description[lang] || tool.description[otherLang])}</h2>
+                            <h2 itemProp="description">
+                              {tool.description && (tool.description[lang] || tool.description[otherLang])}
+                            </h2>
                           </div>
-                          <div className="footer">
-                            {tool.usages &&
-                              <div className="info-row">
-                                <p className="important"><span>{usagesText}</span></p>
-                              </div>
-                            }
-                            <div className="info-row">
-                              <p className="subtype-production subtype-origin"><span>{tool.external ? i18n[lang].externalTool : i18n[lang].internalTool}</span></p>
-                              <p>{dateYear}</p>
-                              {/* <DateNews startDateSchemaProp="datePublished" startDate={tool.date} lang={lang} /> */}
-                            </div>
+                          <div className="details">
+                            {tool.usages && <p className="detail-usages important">{usagesText}</p>}
+                            <p className="detail-external">{tool.external ? i18n[lang].externalTool : i18n[lang].internalTool}</p>
+                            <p className="detail-date">{dateYear}</p>
                           </div>
                         </div>
                       </Link>

@@ -1,13 +1,14 @@
 import React from 'react';
 import Link from '../helpers/Link';
 
+import {getYear, parseISO} from 'date-fns';
+
 import {compare, composeText, productionTypeToSchemaURL} from '../helpers/helpers.js';
 import {I18N_TYPE_LABELS} from '../../i18n.js';
 
 import ToolFilter from '../listings/fragments/ToolFilter';
 
 import ImagePlaceholder from '../helpers/ImagePlaceholder';
-import DateNews from '../helpers/DateNews.js';
 import PageMeta from '../helpers/PageMeta.js';
 
 const messagesMeta = {
@@ -38,16 +39,7 @@ export default function ToolListing({lang, list}) {
   const otherLang = lang === 'fr' ? 'en' : 'fr';
   const joinText = lang === 'fr' ? ' et ' : ' and ';
 
-  const toolsSorted = list.slice().sort((
-    {external: aEx, status: aStatus, title: aTitle},
-    {external: bEx, status: bStatus, title: bTitle}
-  ) => {
-    const aTitleLower = (aTitle[lang] && aTitle[lang].toLowerCase()) || (aTitle[otherLang] && aTitle[otherLang].toLowerCase()),
-          bTitleLower = (bTitle[lang] && bTitle[lang].toLowerCase()) || (bTitle[otherLang] && bTitle[otherLang].toLowerCase());
-    return compare(!!aEx, !!bEx) ||
-      -compare(aStatus || '0', bStatus || '0') ||
-      compare(aTitleLower, bTitleLower);
-  });
+  const toolsSorted = list.slice().sort((a, b) => compare(!!a.external, !!b.external) || compare(b.date || '0', a.date || '0'));
 
   return (
     <>
@@ -70,6 +62,8 @@ export default function ToolListing({lang, list}) {
                     usagesText = composeText(tool.usages, joinText, I18N_TYPE_LABELS.toolsUsages[lang]);
                     usagesClass = tool.usages.join(' ');
                   }
+                  const dateYear = tool.date && getYear(parseISO(tool.date));
+
                   return (
                     <li
                       key={index}
@@ -100,7 +94,8 @@ export default function ToolListing({lang, list}) {
                             }
                             <div className="info-row">
                               <p className="subtype-production subtype-origin"><span>{tool.external ? i18n[lang].externalTool : i18n[lang].internalTool}</span></p>
-                              <DateNews startDateSchemaProp="datePublished" startDate={tool.date} lang={lang} />
+                              <p>{dateYear}</p>
+                              {/* <DateNews startDateSchemaProp="datePublished" startDate={tool.date} lang={lang} /> */}
                             </div>
                           </div>
                         </div>

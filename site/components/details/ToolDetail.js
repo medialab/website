@@ -3,6 +3,8 @@ import HtmlFallback from '../helpers/HtmlFallback.js';
 import DateNews from '../helpers/DateNews.js';
 import Link from '../helpers/Link';
 
+import {getYear, parseISO} from 'date-fns';
+
 import ToggleLang from './fragments/ToggleLang.js';
 import {composeText, productionTypeToSchemaURL, productionTypeToZoteroType} from '../helpers/helpers.js';
 import {I18N_TYPE_LABELS, I18N_GROUP_LABELS} from '../../i18n.js';
@@ -33,7 +35,7 @@ const mainPermalink = {
   en: '/en/productions'
 };
 
-const LangBlock = ({tool, lang, usagesText}) => {
+const LangBlock = ({tool, lang, dateYear, usagesText}) => {
 
   const otherLang = lang === 'fr' ? 'en' : 'fr';
 
@@ -71,7 +73,7 @@ const LangBlock = ({tool, lang, usagesText}) => {
         {tool.usages && <p className="type-objet important">{usagesText}</p>}
         {tool.audience && <p className="type-objet">{I18N_TYPE_LABELS.toolsAudience[lang][tool.audience]}</p>}
         {tool.status && <p className="type-objet">{I18N_TYPE_LABELS.toolsStatus[lang][tool.status]}</p>}
-        {tool.date && <DateNews startDateSchemaProp="datePublished" startDate={tool.date} lang={lang} />}
+        {tool.date && <p>{dateYear}</p>}
       </div>
     </div>
   );
@@ -101,6 +103,8 @@ export default function ToolDetail({lang, tool, siteUrl}) {
   if (tool.usages && tool.usages.length) {
     usagesText = composeText(tool.usages, joinText, I18N_TYPE_LABELS.toolsUsages[lang]);
   }
+  const dateYear = tool.date && getYear(parseISO(tool.date));
+
   return (
     <>
       <PageMeta
@@ -178,7 +182,11 @@ export default function ToolDetail({lang, tool, siteUrl}) {
         <article id="article-contenu">
 
           {/* FR */}
-          <LangBlock tool={tool} lang={lang} usagesText={usagesText} />
+          <LangBlock
+            tool={tool}
+            lang={lang}
+            dateYear={dateYear}
+            usagesText={usagesText} />
 
           {/* Toggle Langue */}
           <ToggleLang lang={lang} content={tool.content} to={tool.permalink} />
@@ -189,7 +197,7 @@ export default function ToolDetail({lang, tool, siteUrl}) {
             {tool.usages && <p className="type-objet important">{usagesText}</p>}
             {tool.audience && <p className="type-objet">{I18N_TYPE_LABELS.toolsAudience[lang][tool.audience]}</p>}
             {tool.status && <p className="type-objet">{I18N_TYPE_LABELS.toolsStatus[lang][tool.status]}</p>}
-            {tool.date && <DateNews startDateSchemaProp="datePublished" startDate={tool.date} lang={lang} />}
+            {tool.date && <p className="type-objet">{dateYear}</p>}
           </div>
           <RelatedPeople people={tool.people} schemaRelationProp="author" lang={lang} />
           <RelatedActivities activities={tool.activities} lang={lang} />

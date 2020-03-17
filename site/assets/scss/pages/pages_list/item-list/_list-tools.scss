@@ -21,9 +21,6 @@ $card-image-height: 180px;
     img {
       max-height: $card-image-height;
       filter: grayscale(1);
-      &:hover{
-        filter: none;
-      }
     }
 
     .description {
@@ -77,9 +74,13 @@ $card-image-height: 180px;
       }
     }
 
-
+    &:hover{
+      img {
+          filter: none;
+      }
+    }
   }
-
+    
   /* Desktop */
   @include for-size(desktop) {
     ul {

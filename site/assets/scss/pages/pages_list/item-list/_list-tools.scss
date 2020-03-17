@@ -6,6 +6,7 @@ $card-image-height: 180px;
   li.tool-portrait {
     padding: 10px;
     border-bottom: none !important;
+    max-height: 200px;
     a {
       @include flex();
       @include justify-content(stretch);
@@ -28,16 +29,17 @@ $card-image-height: 180px;
     .description {
       padding: 0 0 0 15px;
       h1 {
-        font-size: 36px !important;
+        font-size: 27px !important;
         margin-bottom: 0;
         padding-top: 0;
         padding-bottom: $baseline / 2;
+        line-height: 1;
       }
   
       h2 {
-        @include font-size-20();
-        line-height: 1.2;
-        margin-bottom: 10px;
+        @include font-size-16();
+        line-height: 1.4;
+        margin-bottom: 0;
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 3;
@@ -48,6 +50,7 @@ $card-image-height: 180px;
         border-top: $border-very-light;
         border-bottom: $border-very-light;
         padding: $baseline/2 0;
+        padding-top: 0;
         @include font-size-13;
         @include for-size(phone) {
           @include font-size-13-phone;

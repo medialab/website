@@ -275,7 +275,7 @@ function loadFluxFromDisk(inputDir) {
     try {
       data.github = fs.readJSONSync(githubPath).map(reducers.github);
     }
-    catch {
+    catch (e) {
       console.error('Error while loading Github flux data!');
     }
   }
@@ -284,7 +284,7 @@ function loadFluxFromDisk(inputDir) {
     try {
       data.twitter = fs.readJSONSync(twitterPath);
     }
-    catch {
+    catch (e) {
       console.error('Error while loading Twitter flux data!');
     }
   }

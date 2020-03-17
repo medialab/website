@@ -26,10 +26,12 @@ $card-image-height: 180px;
     }
 
     .description {
-      padding: 10px 0 0 15px;
+      padding: 0 0 0 15px;
       h1 {
         font-size: 36px !important;
-        margin-bottom: $baseline;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: $baseline / 2;
       }
   
       h2 {

@@ -48,6 +48,7 @@ $card-image-height: 180px;
         border-bottom: $border-very-light;
         padding: $baseline/2 0;
         padding-top: 0;
+        margin-top: 0;
         @include font-size-13;
         @include for-size(phone) {
           @include font-size-13-phone;
@@ -60,6 +61,7 @@ $card-image-height: 180px;
         .detail-usages {
           border-bottom: $border-very-light;
           padding-bottom: $baseline/2;
+          padding-top: $baseline/2;
           margin-bottom: $baseline/2;
         }
         .detail-date {
@@ -100,7 +102,7 @@ $card-image-height: 180px;
             flex: 1;
           }
           .details {
-            margin-top: $baseline;
+            margin-top: 0;
           }
         }
       }

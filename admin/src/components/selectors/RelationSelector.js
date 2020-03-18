@@ -105,7 +105,14 @@ const RelationSelectorContainer = (BaseComponent) => {
       type: getKeyByValue(
         enums.productionTypes.groups,
         find(
-          group => group.values.includes(item.type || item.spire.generatedFields.type),
+          group => {
+            let matched = group.values.includes(item.type);
+
+            if (!matched && item.spire && item.spire.generatedFields.type)
+              matched = group.values.includes(item.spire.generatedFields.type);
+
+            return matched;
+          },
           enums.productionTypes.groups
         )
       ),

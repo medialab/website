@@ -31,7 +31,9 @@ function validate(data) {
 // TODO: authors, ref
 const HANDLERS = {
   englishTitle: {
-    field: ['title', 'en']
+    type: 'slug',
+    field: ['title', 'en'],
+    slugify: slugifyProduction
   },
   frenchTitle: {
     type: 'slug',

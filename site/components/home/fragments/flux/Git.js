@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from '../../../helpers/Link';
 
-import DateNews from '../../../helpers/DateNews.js';
-import {Icons} from '../../../helpers/Icons.js';
+import DateNews from '../../../helpers/DateNews';
+import {Icons} from '../../../helpers/Icons';
 
 const i18n = {
   fr: {

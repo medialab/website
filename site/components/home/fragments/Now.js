@@ -1,12 +1,12 @@
 import React from 'react';
 import Link from '../../helpers/Link';
 
-import {I18N_TYPE_LABELS} from '../../../i18n.js';
+import {I18N_TYPE_LABELS} from '../../../i18n';
 
-import DateNews from '../../helpers/DateNews.js';
-import TimeNews from '../../helpers/TimeNews.js';
-import ProcessedImage from '../../helpers/ProcessedImage.js';
-import LanguageFallback from '../../helpers/LanguageFallback.js';
+import DateNews from '../../helpers/DateNews';
+import TimeNews from '../../helpers/TimeNews';
+import ProcessedImage from '../../helpers/ProcessedImage';
+import LanguageFallback from '../../helpers/LanguageFallback';
 
 const i18n = {
   fr: {
@@ -48,8 +48,8 @@ export default function Now({now, lang}) {
                   <p className="authors">{item.authors}</p>
                 </div>
                 <hgroup>
-                  { item.title &&
-                  <h1 data-level-1="title"><LanguageFallback translatedAttribute={item.title} lang={lang} /></h1>
+                  {item.title &&
+                    <h1 data-level-1="title"><LanguageFallback translatedAttribute={item.title} lang={lang} /></h1>
                   }
                 </hgroup>
               </>

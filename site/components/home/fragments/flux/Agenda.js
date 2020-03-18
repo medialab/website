@@ -1,9 +1,10 @@
 import React from 'react';
 import Link from '../../../helpers/Link';
 
-import DateNews from '../../../helpers/DateNews.js';
-import TimeNews from '../../../helpers/TimeNews.js';
-import {Icons} from '../../../helpers/Icons.js';
+import DateNews from '../../../helpers/DateNews';
+import TimeNews from '../../../helpers/TimeNews';
+import {Icons} from '../../../helpers/Icons';
+import LanguageFallback from '../../../helpers/LanguageFallback';
 
 const i18n = {
   fr: {
@@ -48,7 +49,9 @@ export default function Agenda({rdv, lang}) {
                 {event.internal && <p className="internal" aria-label={i18n[lang].internal} title={i18n[lang].internal} >⌂</p>}
               </aside>
 
-              <h1 data-level-1="title">{event.title[lang]}</h1>
+              <h1 data-level-1="title">
+                <LanguageFallback translatedAttribute={event.title} lang={lang} />
+              </h1>
 
               <aside className="details">
                 <TimeNews startDate={event.startDate} endDate={event.endDate} />

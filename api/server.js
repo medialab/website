@@ -437,7 +437,7 @@ function retrieveFluxData(callback) {
       });
     }
   }, err => {
-    if (err) {
+    if (err) {
       console.error('Error thrown when retrieving flux data!');
       console.error(err);
     }

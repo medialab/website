@@ -5,8 +5,7 @@ import Button from './misc/Button';
 
 export default class Aspire extends Component {
   state = {
-    status: null,
-    messages: []
+    status: null
   };
 
   componentDidMount() {
@@ -15,14 +14,11 @@ export default class Aspire extends Component {
     this.socket = acquireSocket();
 
     client.admin((err, data) => {
-      this.setState({status: data.locks.spireStatus, messages: []});
+      this.setState({status: data.locks.spireStatus});
     });
 
     this.socket.on('spireStatusChanged', status => {
-      if (status !== 'free')
-        this.setState({status, messages: this.state.messages.concat(status)});
-      else
-        this.setState({status, messages: this.state.messages});
+      this.setState({status});
     });
   }
 
@@ -40,7 +36,13 @@ export default class Aspire extends Component {
   };
 
   render() {
-    const {status, messages} = this.state;
+    const {status} = this.state;
+
+    const loading = status !== null && status !== 'free';
+
+    const label = loading ?
+      'Mise à jour des productions...' :
+      'Mettre à jour les productions depuis Spire';
 
     return (
       <div className="level">
@@ -49,16 +51,10 @@ export default class Aspire extends Component {
             <Button
               disabled={status === null || status !== 'free'}
               onClick={this.handleAspire}>
-              Mettre à jour les productions depuis Spire
+              {label}
             </Button>
+            {loading && <Button kind="white" loading />}
           </div>
-          {messages &&
-            <div className="level-item, notification, content">
-              <ul>
-                {messages.map((s, i) => <li key={i}>{s}</li>)}
-              </ul>
-            </div>
-          }
         </div>
       </div>
     );

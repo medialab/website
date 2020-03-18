@@ -23,7 +23,7 @@ module.exports = function(req, dbs, next) {
   MODELS.forEach(m => {
       // Finding things to delete
     const [toDelete, toKeep] = partition(data[m], o => {
-      var title = (
+      const title = (
         (o.title && (o.title.fr + o.title.en)) +
         o.name
       );

@@ -37,6 +37,12 @@ function getImageClassName(format, width, height, even) {
   throw new Error('Unkown image format: ' + format);
 }
 
+var BR_REGEX = /<\/?\s*br>/g;
+
+function formatCreditAlt(credit) {
+  return credit.replace(BR_REGEX, ' ');
+}
+
 // TODO: iframe allowfullscreen & frameborder
 
 function processHtml(pathPrefix, html) {
@@ -191,7 +197,7 @@ function processHtml(pathPrefix, html) {
               <input type="checkbox" id="focus-figure-${i}" name="focus-figure" hidden />
               <label for="focus-figure-${i}" title="" arial-label=""></label>
               <figure class="${className}">
-                <img src="${withPrefix(src)}" alt="${credits}"/>${credits ? `<figcaption>${credits}</figcaption>` : ''}
+                <img src="${withPrefix(src)}" alt="${formatCreditAlt(credits)}"/>${credits ? `<figcaption>${credits}</figcaption>` : ''}
               </figure>
             </div>
           `.trim();
@@ -199,7 +205,7 @@ function processHtml(pathPrefix, html) {
         else {
           output += `
             <figure class="${className}">
-              <img src="${withPrefix(src)}" alt="${credits}"/>${credits ? `<figcaption>${credits}</figcaption>` : ''}
+              <img src="${withPrefix(src)}" alt="${formatCreditAlt(credits)}"/>${credits ? `<figcaption>${credits}</figcaption>` : ''}
             </figure>
           `.trim();
         }

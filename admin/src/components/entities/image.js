@@ -292,7 +292,7 @@ function ImageBlock(props) {
       <div>
         <img src={url} />
       </div>
-      {credits && <div><small><em>{credits}</em></small></div>}
+      {credits && <div><small><em>{credits.replace(/<br>/g, '\n')}</em></small></div>}
       <div>
         <small><em>format:</em> {formatLabel}</small>
       </div>

@@ -3,12 +3,12 @@ const partition = require('lodash/partition');
 const MODELS = [
   'activities',
   'news',
-  'people',
+  // 'people',
   'productions'
 ];
 
 module.exports = function(req, dbs, next) {
-  const dryRun = 'dryrun' in req.query;
+  const dryRun = 'dryrun' in req.query || 'dry-run' in req.query;
 
   const data = {};
   let deleted = [];
@@ -23,10 +23,20 @@ module.exports = function(req, dbs, next) {
   MODELS.forEach(m => {
       // Finding things to delete
     const [toDelete, toKeep] = partition(data[m], o => {
-      return (
+      var title = (
         (o.title && (o.title.fr + o.title.en)) +
         o.name
-      ).includes(' SUPPRIMER');
+      );
+
+      // NOTE: should only happen with spire items
+      if (!title) {
+        if (!o.spire)
+          console.error('Problematic item!', m, o);
+
+        return false;
+      }
+
+      return title.includes(' SUPPRIMER');
     });
 
     let error = null;

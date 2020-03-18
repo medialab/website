@@ -10,7 +10,7 @@ export default function Archive({lang, activities, news, productions}) {
     <main role="main">
       <section id="archive" className="main-container">
         <p className="introduction">
-        Cette page est une archive...
+          Cette page est une archive...
         </p>
         <section id="archive_news" className="type">
           <h1>{I18N_MODEL.news[lang]}</h1>

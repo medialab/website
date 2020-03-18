@@ -366,8 +366,12 @@ function renderProductionForm(props) {
       <div className="column is-12">
         <div className="field">
           <label className="label">Auteurs
-            <em>Liste des auteurs prénom nom séparés par des virgules.<br />
-          Iniquer la liste complète (médialab et non médialab) des auteurs dans l'ordre de la publication.</em></label>
+            <em>
+              Liste des auteurs prénom nom séparés par des virgules.
+              <br />
+              Indiquer la liste complète (médialab et non médialab) des auteurs dans l'ordre de la publication.
+            </em>
+          </label>
           <div className="control">
             <SpireGeneratedField
               spireValue={data.spire && data.spire.generatedFields.authors}
@@ -413,8 +417,11 @@ function renderProductionForm(props) {
       <div className="columns">
         <div className="column is-6">
           <label className="label">Publication pré-médialab ?
-            <em>Publications des membres du labo ayant été publiées avant leur arrivée.<br />
-          Permet de créer une publication et de la mettre en avant dans le profil d'un membre sans la faire apparaître dans la liste des publications du labo</em>
+            <em>
+              Publications des membres du labo ayant été publiées avant leur arrivée.
+              <br />
+              Permet de créer une publication et de la mettre en avant dans le profil d'un membre sans la faire apparaître dans la liste des publications du labo
+            </em>
           </label>
           <div className="control">
             <SpireGeneratedField

@@ -37,7 +37,7 @@ function getImageClassName(format, width, height, even) {
   throw new Error('Unkown image format: ' + format);
 }
 
-var BR_REGEX = /<\/?\s*br>/g;
+const BR_REGEX = /<\/?\s*br>/g;
 
 function formatCreditAlt(credit) {
   return credit.replace(BR_REGEX, ' ');

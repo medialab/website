@@ -40,20 +40,23 @@ export default function Home({lang, grid, slider, rdv, tweets, github}) {
         description={i18n[lang].description} />
       <main role="main" aria-label={i18n[lang].homepage}>
         <section id="home" aria-label={i18n[lang].content}>
-          <Slideshow slider={slider} lang={lang} />
-          <section id="introduction" aria-label={i18n[lang].presentation}>
-            <h1>Le médialab</h1>
-            <p>{i18n[lang].description}</p>
-            <p>
-              <Link
-                to={permalink[lang]}
-                aria-label={i18n[lang].goto}>
-                {i18n[lang].more}
-              </Link>
-            </p>
-          </section>
-          <Now now={grid} lang={lang} />
-          <Footer lang={lang} />
+          <div className="container">
+            <Slideshow slider={slider} lang={lang} />
+            <section id="introduction" aria-label={i18n[lang].presentation}>
+              <h1>Le médialab</h1>
+              <p>{i18n[lang].description}</p>
+              <p>
+                <Link
+                  to={permalink[lang]}
+                  aria-label={i18n[lang].goto}>
+                  {i18n[lang].more}
+                </Link>
+              </p>
+            </section>
+            <Now now={grid} lang={lang} />
+            <Footer lang={lang} />
+          </div>
+          
         </section>
         <Flux
           rdv={rdv} tweets={tweets} github={github}

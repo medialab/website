@@ -29,6 +29,8 @@
 
         hgroup h1 {
           @include font-size-40;
+          margin-bottom: 0;
+          padding-bottom: 0;
         }
 
         .status {

@@ -23,14 +23,16 @@ const i18n = {
       return 'Contenu de la page ' + activity.name;
     },
     futureSeminars: 'Séances à venir',
-    pastSeminars: 'Séances passées'
+    pastSeminars: 'Séances passées',
+    activityFinished: 'Activité terminée'
   },
   en: {
     content(activity) {
       return activity.name + ' page content';
     },
     futureSeminars: 'Upcoming sessions',
-    pastSeminars: 'Past sessions'
+    pastSeminars: 'Past sessions',
+    activityFinished: 'Finished activity'
   }
 };
 
@@ -113,6 +115,12 @@ export default function ActivityDetail({lang, activity, siteUrl}) {
         <div className={`"block-lang ${lang}`} lang={lang}>
           <hgroup>
             <h1 data-level-2="title" itemProp="name">{activity.name}</h1>
+            {
+              !activity.active &&
+              <div className="former-activity">
+                  {i18n[lang].activityFinished}
+              </div>
+            }
             <h2 data-level-2="baseline">{activity.baseline && <LanguageFallback lang={lang} translatedAttribute={activity.baseline} />}</h2>
             <HtmlFallback
               wrapper="h3"

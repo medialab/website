@@ -129,6 +129,17 @@
       }
     }
   }
+
+  /* FORMER MEMBER --------------------------------------------------------------- 
+		------------------------------------------------------------------------ */
+
+  .former-activity{
+    font-style: italic;
+    @include font-size-27;
+    color: rgba(68, 68, 68, 0.6);
+    font-weight: 100;
+    line-height: 37.5px;
+  }
 }
 
 /* ativity only */

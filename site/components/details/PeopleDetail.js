@@ -37,7 +37,8 @@ const i18n = {
     },
     occupationAriaLabel: 'Occupation actuelle',
     roleAriaLabel: 'Rôle au sein de l\'equipe',
-    membershipAriaLabel: 'Affiliation'
+    membershipAriaLabel: 'Affiliation',
+    formerMember: 'Ancien membre'
   },
   en: {
     titleLinkTeam: 'Go to the médialab team page',
@@ -54,7 +55,8 @@ const i18n = {
     },
     occupationAriaLabel: 'Present activities',
     roleAriaLabel: 'Role within the team',
-    membershipAriaLabel: 'Membership status'
+    membershipAriaLabel: 'Membership status',
+    formerMember: 'Former member'
   }
 };
 
@@ -256,6 +258,12 @@ export default function PeopleDetail({lang, person, siteUrl}) {
                   <h1 data-level-1="name" data-type="name">
                     {person.firstName} {person.lastName}
                   </h1>
+                  {
+                    !person.active &&
+                    <div className="former-member">
+                        {i18n[lang].formerMember}
+                    </div>
+                  }
                   {person.status && (
                     <p
                       className={`status ${lang}`}

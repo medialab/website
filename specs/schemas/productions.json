@@ -216,7 +216,7 @@
               "title": "liste des auteurs",
               "type": "string"
             }
-          } 
+          }
         },
         "lastUpdated": {
           "title": "Timestamp of last update",
@@ -257,7 +257,7 @@
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["collect", "curation", "processing", "exploration", "writing"],
+        "enum": ["collect", "curation", "processing", "exploration", "visualization", "writing"],
         "enumId": "usages"
       }
     },

@@ -6,7 +6,6 @@ $card-image-height: 180px;
   li.tool-portrait {
     padding: 10px;
     border-bottom: none !important;
-    max-height: 200px;
     a {
       @include flex();
       @include justify-content(stretch);

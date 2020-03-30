@@ -32,10 +32,10 @@
       .fichiers-associes,
       #attachments {
         .files.important {
-          color: $redlab-light;
+          color: $redlab;
         }
         .files.target:hover {
-          color: $redlab-light !important;
+          color: $redlab !important;
         }
 
         .files a {

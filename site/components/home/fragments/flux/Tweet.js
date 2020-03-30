@@ -59,19 +59,19 @@ return (
                   <p itemProp="creator" className="account">@medialab_ScPo</p>
                   <time itemProp="datePublished" className="date" dateTime={t.date}>{formatDateTime(t.date, lang)}</time>
                 </aside>
-                {t.type !== 'retweet' &&
-                  <p itemProp="articleBody" className="tweet-content" dangerouslySetInnerHTML={{__html: t.html}} />
-                }
-                {t.originalTweet &&
-                  <div className="original-tweet">
-                    <aside className="divers">
-                      <p className="label" data-icon="tweet">{i18n[lang][t.type]}</p>
-                      <p className="account">{t.originalTweet.name} (<a href={`https://twitter.com/${t.originalTweet.screenName}`} target="_blank" rel="noopener noreferrer">@{t.originalTweet.screenName}</a>)</p>
-                    </aside>
-                    <p className="tweet-content" dangerouslySetInnerHTML={{__html: t.originalTweet.html}} />
-                  </div>
-                }
               </a>
+              {t.type !== 'retweet' &&
+                <p itemProp="articleBody" className="tweet-content" dangerouslySetInnerHTML={{__html: t.html}} />
+              }
+              {t.originalTweet &&
+                <div className="original-tweet">
+                  <aside className="divers">
+                    <p className="label" data-icon="tweet">{i18n[lang][t.type]}</p>
+                    <p className="account">{t.originalTweet.name} (<a href={`https://twitter.com/${t.originalTweet.screenName}`} target="_blank" rel="noopener noreferrer">@{t.originalTweet.screenName}</a>)</p>
+                  </aside>
+                  <p className="tweet-content" dangerouslySetInnerHTML={{__html: t.originalTweet.html}} />
+                </div>
+              }
             </article>)
           )
         }

@@ -95,9 +95,10 @@ $hunit: 4vh;
 @include for-size(desktop) {
   .page-home {
     main {
-      max-width: $max-width-main + $margins-desktop * 2;
-      margin: 0 auto;
+      // max-width: $max-width-main + $margins-desktop * 2;
+      margin: 0;// auto;
       margin-top: $height-top-bar;
+      padding: 0;
     }
 
     #introduction {
@@ -124,8 +125,15 @@ $hunit: 4vh;
       position: fixed;
       top: $height-top-bar;
       height: calc(100vh - #{$height-top-bar});
+      
+      padding-left: auto;
       overflow-y: scroll;
+      padding-left: calc(100vw - 1760px);
+
       // padding-bottom: $height-footer;
+    }
+    #home .container{
+      max-width: 950px;
     }
     footer {
       display: none;
@@ -160,17 +168,12 @@ $hunit: 4vh;
 @media screen and (min-width: 1200px) and (max-width: 1350px) {
   .page-home {
     #home {
-      width: 800px + $size-scrollbar;
-    }
-    #slideshow,
-    #introduction,
-    #now,
-    footer {
-      width: 800px;
+      width: 900px;// 800px + $size-scrollbar;
     }
 
+
     #flux {
-      margin-left: 800px + $margins-desktop;
+      margin-left: 900px + $margins-desktop;
     }
     .flux_selection_container {
       width: calc(100vw - 800px - #{$margins-desktop * 3});
@@ -181,17 +184,20 @@ $hunit: 4vh;
 @media screen and (min-width: 1350px) {
   .page-home {
     #home {
-      width: $max-width-article + $size-scrollbar;
+      // width: $max-width-article + $size-scrollbar;
+      width: 940px;
+      padding-left: $margins-desktop;
     }
-    #slideshow,
-    #introduction,
-    #now,
-    footer {
-      width: $max-width-article;
-    }
+    // #slideshow,
+    // #introduction,
+    // #now,
+    // footer {
+    //   width: $max-width-article;
+    // }
 
     #flux {
-      margin-left: $max-width-article + $margins-desktop;
+      margin-left: $max-width-article + $margins-desktop * 2;
+      width: calc(100vw - #{$max-width-article} - #{$margins-desktop * 3});
     }
     .flux_selection_container {
       width: calc(100vw - #{$max-width-article} - #{$margins-desktop * 3});
@@ -200,10 +206,18 @@ $hunit: 4vh;
 }
 
 @media screen and (min-width: 1650px) {
+  #home {
+    // width: $max-width-article + $size-scrollbar;
+    width: 1200px;
+  }
   .page-home {
     #flux,
     .flux_selection_container {
       width: $max-width-main - $max-width-article - $margins-desktop;
+    }
+
+    #flux {
+      margin-left: $max-width-article + $margins-desktop * 7.5;
     }
   }
 }

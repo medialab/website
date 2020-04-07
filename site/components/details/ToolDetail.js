@@ -31,8 +31,8 @@ const i18n = {
 };
 
 const mainPermalink = {
-  fr: '/productions',
-  en: '/en/productions'
+  fr: '/outils',
+  en: '/en/tools'
 };
 
 const LangBlock = ({tool, lang, dateYear, usagesText}) => {

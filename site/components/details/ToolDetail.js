@@ -136,7 +136,7 @@ export default function ToolDetail({lang, tool, siteUrl}) {
             <meta itemProp="position" content="1" />
           </li>
           <li
-            usagesClassitemProp="itemListElement" itemScope
+            itemProp="itemListElement" itemScope
             itemType="https://schema.org/ListItem">
             <a
               itemType="https://schema.org/Thing"

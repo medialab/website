@@ -88,6 +88,9 @@
           margin-left:0;
           margin-top:0;
           min-height:40rem;
+          @media (orientation: portrait) {
+            height: 25vh;
+          }
         }
       }
     }

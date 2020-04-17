@@ -121,7 +121,7 @@ const ToolFilter = ({lang}) => {
               <input
                 className="filter-group-checkbox"
                 type="checkbox" id={`checkbox_filtre_${group.key}`}
-                hidden checked />
+                hidden defaultChecked />
               <label className="filter-group-label" htmlFor={`checkbox_filtre_${group.key}`}><span><Icons icon="arrow" /></span></label>
               <p className="filter-group-title" aria-hidden="true">{i18n[lang][group.key]}</p>
               <div className="filter-group">

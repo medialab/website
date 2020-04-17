@@ -110,13 +110,18 @@ exports.productions = function reduceProductions(pathPrefix, production) {
   const content = template(pathPrefix, production.content);
   const slug = last(production.slugs);
 
+  let permalinkBase = permalinks.productions;
+  if (['code', 'software'].includes(production.type)) {
+    permalinkBase = permalinks.tools;
+  }
+
   return {
     ...production,
     content,
     attachments: resolveAttachments(pathPrefix, production.attachments || []),
     permalink: {
-      fr: `${permalinks.productions.fr}/${slug}`,
-      en: `${permalinks.productions.en}/${slug}`
+      fr: `${permalinkBase.fr}/${slug}`,
+      en: `${permalinkBase.en}/${slug}`
     }
   };
 };

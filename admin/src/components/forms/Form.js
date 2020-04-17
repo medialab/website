@@ -38,6 +38,27 @@ const urlTranlsationMap = {
   productions: 'productions',
 };
 
+const urlMapper = {
+  en(model, item) {
+    if (
+      model === 'productions' &&
+      (item.type === 'code' || item.type === 'software')
+    )
+      return 'tools';
+
+    return urlTranlsationMap[model];
+  },
+  fr(model, item) {
+    if (
+      model === 'productions' &&
+      (item.type === 'code' || item.type === 'software')
+    )
+      return 'outils';
+
+    return urlTranlsationMap[model];
+  }
+}
+
 const condWithConstants = d => cond(
   map(
     ([condition, result]) => [condition, isFunction(result) ? result : constant(result)], d
@@ -398,8 +419,8 @@ class Form extends Component {
     const validationError = validate(data);
     const state = {...this.state, dirty, validationError};
     const urls = {
-      fr: `${urlTranlsationMap[model]}/${slug}`,
-      en: `en/${model}/${slug}`
+      fr: `${urlMapper.fr(model, data)}/${slug}`,
+      en: `en/${urlMapper.en(model, data)}/${slug}`
     };
     const previewPropsFilter = compareTo => ({
       kind: !validationError && !dirty ? 'success' : 'white',

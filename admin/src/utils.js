@@ -11,7 +11,8 @@ function entityStyleFn(entity) {
     const data = entity.getData();
 
     const attributes = {
-      src: data.src
+      src: data.src,
+      allowfullscreen: true
     };
 
     if (data.internal)

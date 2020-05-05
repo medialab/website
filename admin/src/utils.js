@@ -106,7 +106,6 @@ export function rawToHtml(rawContentState) {
     defaultBlockTag: null,
     entityStyleFn
   });
-  console.log(html)
 
   html = html.replace(/\n/g, '');
 

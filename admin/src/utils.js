@@ -11,8 +11,7 @@ function entityStyleFn(entity) {
     const data = entity.getData();
 
     const attributes = {
-      src: data.src,
-      allowfullscreen: true
+      src: data.src
     };
 
     if (data.internal)
@@ -107,6 +106,7 @@ export function rawToHtml(rawContentState) {
     defaultBlockTag: null,
     entityStyleFn
   });
+  console.log(html)
 
   html = html.replace(/\n/g, '');
 

@@ -57,7 +57,7 @@ const urlMapper = {
 
     return urlTranlsationMap[model];
   }
-}
+};
 
 const condWithConstants = d => cond(
   map(

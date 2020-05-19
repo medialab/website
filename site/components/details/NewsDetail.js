@@ -43,7 +43,7 @@ export default function NewsDetail({lang, news, siteUrl}) {
   return (
     <>
       <PageMeta
-        title={`${news.title[lang]} | médialab Sciences Po`}
+        title={`${news.title[lang] || news.title.fr || news.title.en} | médialab Sciences Po`}
         description={news.description && news.description[lang]}
         zoteroType={news.type === 'post' ? 'blogPost' : undefined}
         author={news.type === 'post' ? news.people.map(p => `${p.lastName} ${p.firstName}`).join(', ') : undefined}

@@ -30,11 +30,13 @@
     "default": "member",
     "fr": {
       "associate": "Associé.e",
-      "member": "Membre"
+      "member": "Membre",
+      "invited": "Invité.e"
     },
     "en": {
       "associate": "Associate",
-      "member": "Member"
+      "member": "Member",
+      "invited": "Invited"
     }
   },
   "newsTypes": {

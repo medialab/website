@@ -41,18 +41,21 @@ export function join(children, string) {
 }
 
 export function templateMembership(person) {
-  const isMember = person.membership === 'member';
-  // active = boolean
-
-  if (isMember) {
+  if (person.membership === 'member') {
     if (!person.active)
       return (<span>Ancien membre</span>);
   }
-  else {
+  else if (person.membership === 'associate') {
     if (person.active)
       return (<span>Membre associé</span>);
     else
       return (<span>Ancien membre associé</span>);
+  }
+  else {
+    if (person.active)
+      return (<span>Membre invité</span>);
+    else
+      return (<span>Ancien membre invité</span>);
   }
 
   return ''; // membre actif

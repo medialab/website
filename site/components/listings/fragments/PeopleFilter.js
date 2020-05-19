@@ -8,6 +8,7 @@ const i18n = {
   fr: {
     member: 'Membres',
     associate: 'Associés',
+    invited: 'Invités',
     filterDomain: 'Filtrer par domaine',
     filterMember: 'Filtrer par appartenance',
     accroche: 'Composée d’hommes et de femmes aux compétences complémentaires, l’équipe du médialab est plurielle. Membres ou associés au laboratoire, ces profils spécialisés en sciences sociales, en méthodes numériques ou encore en design se combinent et travaillent ensemble pour développer une recherche se nourrissant de cette diversité.',
@@ -19,6 +20,7 @@ const i18n = {
   en: {
     member: 'Members',
     associate: 'Associates',
+    invited: 'Invited',
     filterDomain: 'Filter by domain',
     filterMember: 'Filter by membership',
     accroche: 'The médialab is a diverse research team, comprised of men and women with complementary skills. As members or partners of the laboratory, these social sciences, digital methods and design experts join forces and work together to develop research that draws on this diversity.',
@@ -35,6 +37,7 @@ const PeopleFilter = ({lang}) => {
     title,
     member,
     associate,
+    invited,
     filterDomain,
     filterMember,
     accroche,
@@ -79,6 +82,10 @@ const PeopleFilter = ({lang}) => {
       type="checkbox" id="filtre_non_membre" name="filtre_non_membre"
       className="input_member"
       value="non_membre" hidden />
+    <input
+      type="checkbox" id="filtre_invite" name="filtre_invite"
+      className="input_member"
+      value="non_membre" hidden />
 
     <input
       type="checkbox" id="domaine_academique" name="domaine_academique"
@@ -112,6 +119,9 @@ const PeopleFilter = ({lang}) => {
         <label
           id="filtre_non_membre_label" className="checkbox-medialab" htmlFor="filtre_non_membre"
           aria-label={associate}>{associate}</label>
+        <label
+          id="filtre_invite_label" className="checkbox-medialab" htmlFor="filtre_invite"
+          aria-label={invited}>{invited}</label>
       </div>
 
       <div className="filter-group" aria-label={filterDomain}>

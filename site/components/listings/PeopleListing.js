@@ -16,7 +16,13 @@ const i18n = {
       return `Photo de profil de ${p.firstName} ${p.lastName}`;
     },
     membership(p) {
-      return p.membership === 'member' ? 'Membre' : 'Associé·e';
+      if (p.membership === 'member')
+        return 'Membre';
+
+      if (p.membership === 'associate')
+        return 'Associé·e';
+
+      return 'Invité·e';
     }
   },
   en: {
@@ -27,7 +33,13 @@ const i18n = {
       return `${p.firstName} ${p.lastName} profile picture`;
     },
     membership(p) {
-      return p.membership === 'member' ? 'Member' : 'Associate';
+      if (p.membership === 'member')
+        return 'Member';
+
+      if (p.membership === 'associate')
+        return 'Associate';
+
+      return 'Invited';
     }
   }
 };
@@ -35,7 +47,7 @@ const i18n = {
 function getPeopleClassName(people) {
   return (
     (people.active ? 'active' : 'past') + '-' +
-    (people.membership === 'member' ? 'member' : 'associate') + '-' +
+    people.membership + '-' +
     people.domain
   );
 }

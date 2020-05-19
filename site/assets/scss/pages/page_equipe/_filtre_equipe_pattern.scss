@@ -2,6 +2,7 @@
 
 #filtre_membre:checked ~ .aside-filters #filtre_membre_label,
 #filtre_non_membre:checked ~ .aside-filters #filtre_non_membre_label,
+#filtre_invite:checked ~ .aside-filters #filtre_invite_label,
 #domaine_academique:checked ~ .aside-filters #domaine_academique_label,
 #domaine_technique:checked ~ .aside-filters #domaine_technique_label,
 #domaine_design:checked ~ .aside-filters #domaine_design_label,
@@ -31,6 +32,12 @@
 
 #filtre_non_membre:checked ~ #liste_equipe .liste_equipe {
   [class*="associate"] {
+    display: block;
+  }
+}
+
+#filtre_invite:checked ~ #liste_equipe .liste_equipe {
+  [class*="invited"] {
     display: block;
   }
 }
@@ -176,6 +183,41 @@
   }
 }
 
+/* invited */
+
+#filtre_invite:checked
+  ~ #domaine_academique:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="invited-academic"] {
+    display: block !important;
+  }
+}
+
+#filtre_invite:checked
+  ~ #domaine_technique:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="invited-tech"] {
+    display: block !important;
+  }
+}
+
+#filtre_invite:checked ~ #domaine_design:checked ~ #liste_equipe .liste_equipe {
+  [class*="invited-design"] {
+    display: block !important;
+  }
+}
+
+#filtre_invite:checked
+  ~ #domaine_administratif:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="invited-admin"] {
+    display: block !important;
+  }
+}
+
 /* membre +associate */
 
 #filtre_membre:checked
@@ -239,6 +281,224 @@
     display: block !important;
   }
   [class*="associate-admin"] {
+    display: block !important;
+  }
+}
+
+/* membre +invited */
+
+#filtre_membre:checked
+  ~ #filtre_invite:checked
+  ~ .input_domaine:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  li {
+    display: none !important;
+  }
+  .hack-item-grid {
+    display: block !important;
+  }
+}
+
+#filtre_membre:checked
+  ~ #filtre_invite:checked
+  ~ #domaine_academique:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="member-academic"] {
+    display: block !important;
+  }
+  [class*="invited-academic"] {
+    display: block !important;
+  }
+}
+
+#filtre_membre:checked
+  ~ #filtre_invite:checked
+  ~ #domaine_technique:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="member-tech"] {
+    display: block !important;
+  }
+  [class*="invited-tech"] {
+    display: block !important;
+  }
+}
+
+#filtre_membre:checked
+  ~ #filtre_invite:checked
+  ~ #domaine_design:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="member-design"] {
+    display: block !important;
+  }
+  [class*="invited-design"] {
+    display: block !important;
+  }
+}
+
+#filtre_membre:checked
+  ~ #filtre_invite:checked
+  ~ #domaine_administratif:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="member-admin"] {
+    display: block !important;
+  }
+  [class*="invited-admin"] {
+    display: block !important;
+  }
+}
+
+/* associate +invited */
+
+#filtre_non_membre:checked
+  ~ #filtre_invite:checked
+  ~ .input_domaine:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  li {
+    display: none !important;
+  }
+  .hack-item-grid {
+    display: block !important;
+  }
+}
+
+#filtre_non_membre:checked
+  ~ #filtre_invite:checked
+  ~ #domaine_academique:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="invited-academic"] {
+    display: block !important;
+  }
+  [class*="associate-academic"] {
+    display: block !important;
+  }
+}
+
+#filtre_non_membre:checked
+  ~ #filtre_invite:checked
+  ~ #domaine_technique:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="invited-tech"] {
+    display: block !important;
+  }
+  [class*="associate-tech"] {
+    display: block !important;
+  }
+}
+
+#filtre_non_membre:checked
+  ~ #filtre_invite:checked
+  ~ #domaine_design:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="invited-design"] {
+    display: block !important;
+  }
+  [class*="associate-design"] {
+    display: block !important;
+  }
+}
+
+#filtre_non_membre:checked
+  ~ #filtre_invite:checked
+  ~ #domaine_administratif:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="invited-admin"] {
+    display: block !important;
+  }
+  [class*="associate-admin"] {
+    display: block !important;
+  }
+}
+
+/* membre +associate +invite */
+
+#filtre_membre:checked
+  ~ #filtre_non_membre:checked
+  ~ #filtre_invite:checked
+  ~ .input_domaine:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  li {
+    display: none !important;
+  }
+  .hack-item-grid {
+    display: block !important;
+  }
+}
+
+#filtre_membre:checked
+  ~ #filtre_non_membre:checked
+  ~ #filtre_invite:checked
+  ~ #domaine_academique:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="member-academic"] {
+    display: block !important;
+  }
+  [class*="associate-academic"] {
+    display: block !important;
+  }
+  [class*="invited-academic"] {
+    display: block !important;
+  }
+}
+
+#filtre_membre:checked
+  ~ #filtre_non_membre:checked
+  ~ #filtre_invite:checked
+  ~ #domaine_technique:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="member-tech"] {
+    display: block !important;
+  }
+  [class*="associate-tech"] {
+    display: block !important;
+  }
+  [class*="invited-tech"] {
+    display: block !important;
+  }
+}
+
+#filtre_membre:checked
+  ~ #filtre_non_membre:checked
+  ~ #filtre_invite:checked
+  ~ #domaine_design:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="member-design"] {
+    display: block !important;
+  }
+  [class*="associate-design"] {
+    display: block !important;
+  }
+  [class*="invited-design"] {
+    display: block !important;
+  }
+}
+
+#filtre_membre:checked
+  ~ #filtre_non_membre:checked
+  ~ #filtre_invite:checked
+  ~ #domaine_administratif:checked
+  ~ #liste_equipe
+  .liste_equipe {
+  [class*="member-admin"] {
+    display: block !important;
+  }
+  [class*="associate-admin"] {
+    display: block !important;
+  }
+  [class*="invited-admin"] {
     display: block !important;
   }
 }

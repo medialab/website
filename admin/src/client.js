@@ -53,9 +53,6 @@ const client = new Client({
     },
     aspire: {
       url: '/aspire'
-    },
-    rebootGatsby: {
-      url: '/reboot-gatsby'
     }
   }
 });

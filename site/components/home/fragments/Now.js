@@ -72,7 +72,7 @@ export default function Now({now, lang}) {
                 <div className="bandeau">
                   <p data-icon="news" className="type-news">
                     {I18N_TYPE_LABELS.news[lang][item.type]}
-                    <span>, {item.label[lang]}</span>
+                    {item.label && (<span>, {item.label[lang] || item.label.fr || item.label.en}</span>)}
                   </p>
                   <DateNews startDate={item.startDate} endDate={item.endDate} lang={lang} />
                   <TimeNews startDate={item.startDate} endDate={item.endDate} />

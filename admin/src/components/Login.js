@@ -7,7 +7,9 @@ export default function Login({authenticate}) {
   const [password, setPassword] = useState('');
   const [hasError, setHasError] = useState(false);
 
-  function onSubmit() {
+  function onSubmit(e) {
+    e.preventDefault();
+
     setHasError(false);
 
     client.login({data: {username, password}}, err => {

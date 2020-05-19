@@ -55,6 +55,12 @@ const lastUpdatedProperty = item => {
   return (new Date(item.lastUpdated)).toLocaleDateString('fr-FR');
 }
 
+const MEMBERSHIP_PRIORITY = {
+  member: 0,
+  associate: 1,
+  invited: 2
+};
+
 module.exports = {
   activities: {
     fields: [
@@ -244,6 +250,12 @@ module.exports = {
             else
               return 'Ancien membre';
           }
+          else if (p.membership === 'invited') {
+            if (p.active)
+              return 'Membre invité·e';
+            else
+              return 'Ancien membre invité·e';
+          }
           else {
             if (p.active)
               return 'Membre associé·e';
@@ -267,7 +279,7 @@ module.exports = {
     ]),
     defaultOrder: [
       p => -p.active,
-      p => p.membership !== 'member',
+      p => MEMBERSHIP_PRIORITY[p.membership],
       p => normalize(p.lastName),
       p => normalize(p.firstName)
     ],

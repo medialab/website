@@ -110,7 +110,7 @@
     "pandemonium": "^1.4.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-helmet": "^5.2.1",
+    "react-helmet": "^6.1.0",
     "request": "^2.88.2",
     "rimraf": "^3.0.2",
     "sharp": "^0.23.4",

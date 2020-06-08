@@ -237,6 +237,7 @@ function createRssFeed(db, resolve, lang, feed) {
     '  <channel>',
     `    <title>${safeXmlText(feed[lang].title)}</title>`,
     `    <description>${safeXmlText(feed[lang].title)}</description>`,
+    `    <link>${resolve(feed[lang].path)}</link>`,
     `    <lastBuildDate>${pubDate()}</lastBuildDate>`
   ];
 

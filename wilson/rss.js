@@ -84,7 +84,7 @@ function createRssRecord(item) {
 
   record.push(
     `      <link>${url}</link>`,
-    `      <guid isPermalink="false">${url}</guid>`
+    `      <guid isPermaLink="false">${url}</guid>`
   );
 
   if (date)

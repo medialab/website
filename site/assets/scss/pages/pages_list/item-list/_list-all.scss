@@ -462,15 +462,32 @@ $width-image-pre-listing-phone: ((100% / 120) * 1.1338 * 10);
   hgroup {
     width: 100%;
     color: $redlab;
+    @media screen and (max-width: 900px) {
+      margin-top: 0;
+    }
     h1{
       font-weight: 400;
       letter-spacing: normal;
       margin-top: 0;
+      padding-bottom: 0;
       padding-top: 0;
+      @media screen and (max-width: 900px) {
+        padding-bottom: 5px;
+        padding-top: 5px;
+      }
     }
   }
+  > a{
+    overflow: hidden;
+  }
   .image-pre {
+    @media screen and (max-width: 900px) {
+      display: none;
+    }
+
     max-width: calc( 100% - (100% - 9.44833%) / 2) !important;
+    transform: scaleX(1.9);
+    transform-origin: top left;
     pre {
       color: lightgrey;
     }

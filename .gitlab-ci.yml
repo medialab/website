@@ -8,6 +8,11 @@ variables:
   WEB_IMAGE_NAME: $CI_REGISTRY_IMAGE/website_web:$CI_COMMIT_REF_SLUG
   API_IMAGE_NAME: $CI_REGISTRY_IMAGE/website_api:$CI_COMMIT_REF_SLUG
   GIT_SUBMODULE_STRATEGY: recursive
+  DOCKER_HOST: tcp://127.0.0.1:2375
+  DOCKER_TLS_CERTDIR: ""
+
+services:
+    - docker:stable-dind
 
 build_web_image:
   stage: build
@@ -47,4 +52,3 @@ deploy:
   only:
     - staging
     - production
-

@@ -24,6 +24,7 @@ build_web_image:
     name: $CI_COMMIT_REF_SLUG
     url: $BASEURL
   only:
+    - master
     - staging
     - production
 
@@ -37,6 +38,7 @@ build_api_image:
     name: $CI_COMMIT_REF_SLUG
     url: $BASEURL
   only:
+    - master
     - staging
     - production
 

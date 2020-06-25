@@ -26,7 +26,7 @@ build_web_image:
   only:
     - master
     - staging
-    - production
+    - prod
 
 build_api_image:
   stage: build
@@ -40,7 +40,7 @@ build_api_image:
   only:
     - master
     - staging
-    - production
+    - prod
 
 deploy:
   stage: deploy
@@ -53,4 +53,4 @@ deploy:
     url: $STAGING_BASEURL
   only:
     - staging
-    - production
+    - prod

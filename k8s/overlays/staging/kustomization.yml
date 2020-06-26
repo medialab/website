@@ -16,6 +16,10 @@ patchesStrategicMerge:
 
 commonLabels:
   stage: staging
+  
+secretGenerator:
+- name: api
+  env: api.env
 
 images:
   - name: gitlab.sciences-po.fr:4567/medialab/website/website_api

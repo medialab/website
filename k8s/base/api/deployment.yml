@@ -34,8 +34,8 @@ spec:
             claimName: data-pvc
         - name: api-secrets
           secret:
-            secretName: admin
-            defaultMode: 511
+            secretName: api
+            defaultMode: 288
             items:
               - key: build_repo
                 path: BUILD_REPO

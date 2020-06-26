@@ -18,7 +18,7 @@ commonLabels:
   stage: development
 
 secretGenerator:
-- name: admin
+- name: api
   literals:
     - build_repo=https://gitlab.sciences-po.fr:443/medialab/website_data.git
     - twitter_access_token_secret=t-a-t-k_secret

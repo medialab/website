@@ -1,0 +1,36 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: website
+
+namePrefix: website-
+
+bases:
+  - ../../base/
+
+resources:
+  - ingress.yml
+
+patchesStrategicMerge:
+  - env.yml
+
+commonLabels:
+  stage: development
+
+secretGenerator:
+- name: api
+  literals:
+    - build_repo=https://gitlab.sciences-po.fr:443/medialab/website_data.git
+    - twitter_access_token_secret=t-a-t-k_secret
+    - twitter_access_token_key=t-a-t-k
+    - twitter_consumer_secret=t-c-k_secret
+    - twitter_consumer_key=t-c-k
+    - superuser_username=user
+    - superuser_password=top_secret
+    - rsync_password=very_secret
+    - rsync_target=medialab@localhost::medialab
+images:
+  - name: gitlab.sciences-po.fr:4567/medialab/website/website_api
+    newTag: 'master'
+  - name: gitlab.sciences-po.fr:4567/medialab/website/website_web
+    newTag: 'master'

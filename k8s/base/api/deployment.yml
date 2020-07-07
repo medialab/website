@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: api
+  template:
+    metadata:
+      labels:
+        component: api
+    spec:
+      imagePullSecrets:
+        - name: gitlab
+      securityContext:
+        fsGroup: 1000
+      containers:
+        - name: api
+          image: gitlab.sciences-po.fr:4567/medialab/website/website_api:latest
+          imagePullPolicy: Always
+          env:
+            - name: SECRET_PATH
+              value: '/etc/website-api/..data/'
+          volumeMounts:
+            - name: data-vol
+              mountPath: /website/data
+            - name: api-secrets
+              mountPath: /etc/website-api
+      volumes:
+        - name: data-vol
+          persistentVolumeClaim:
+            claimName: data-pvc
+        - name: api-secrets
+          secret:
+            secretName: api
+            defaultMode: 288
+            items:
+              - key: build_repo
+                path: BUILD_REPO
+              - key: twitter_access_token_secret
+                path: TWITTER_ACCESS_TOKEN_SECRET
+              - key: twitter_access_token_key
+                path: TWITTER_ACCESS_TOKEN_KEY
+              - key: twitter_consumer_secret
+                path: TWITTER_CONSUMER_SECRET
+              - key: twitter_consumer_key
+                path: TWITTER_CONSUMER_KEY
+              - key: superuser_username
+                path: SUPERUSER_USERNAME
+              - key: superuser_password
+                path: SUPERUSER_PASSWORD
+              - key: rsync_password
+                path: RSYNC_PASSWORD
+              - key: rsync_target
+                path: RSYNC_TARGET

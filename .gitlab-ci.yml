@@ -8,6 +8,11 @@ variables:
   WEB_IMAGE_NAME: $CI_REGISTRY_IMAGE/website_web:$CI_COMMIT_REF_SLUG
   API_IMAGE_NAME: $CI_REGISTRY_IMAGE/website_api:$CI_COMMIT_REF_SLUG
   GIT_SUBMODULE_STRATEGY: recursive
+  DOCKER_HOST: tcp://127.0.0.1:2375
+  DOCKER_TLS_CERTDIR: ""
+
+services:
+    - docker:stable-dind
 
 build_web_image:
   stage: build
@@ -19,8 +24,9 @@ build_web_image:
     name: $CI_COMMIT_REF_SLUG
     url: $BASEURL
   only:
+    - master
     - staging
-    - production
+    - prod
 
 build_api_image:
   stage: build
@@ -32,19 +38,31 @@ build_api_image:
     name: $CI_COMMIT_REF_SLUG
     url: $BASEURL
   only:
+    - master
     - staging
-    - production
+    - prod
 
 deploy:
+  image:
+    name: jrisp/kubehelper:latest
+    entrypoint: [""]
   stage: deploy
-  image: cdrx/rancher-gitlab-deploy
+  dependencies:
+    - build_web_image
+    - build_api_image
   script:
-    - upgrade --rancher-key $RANCHER_ACCESS_KEY --rancher-secret $RANCHER_SECRET_KEY --rancher-url $RANCHER_URL --environment $RANCHER_ENV --stack $RANCHER_STACK --service $RANCHER_WEBSITE_API_SERVICE --start-before-stopping
-    - upgrade --rancher-key $RANCHER_ACCESS_KEY --rancher-secret $RANCHER_SECRET_KEY --rancher-url $RANCHER_URL --environment $RANCHER_ENV --stack $RANCHER_STACK --service $RANCHER_WEBSITE_WEB_SERVICE --start-before-stopping
+    - NS=website
+    - kubectl config set-cluster k8s --server="$KUBE_URL" --certificate-authority="$KUBE_CA_PEM_FILE"
+    - kubectl config set-credentials gitlab-admin --token="$KUBE_TOKEN"
+    - kubectl config set-context default --cluster=k8s --user=gitlab-admin
+    - kubectl config use-context default
+    - kubectl apply -f k8s/namespace.yml
+    - cp ${API_SECRETS} k8s/overlays/$CI_COMMIT_REF_SLUG/api.env
+    - kubectl apply -k k8s/overlays/$CI_COMMIT_REF_SLUG
+    - kubectl -n ${NS} rollout restart deployment ${NS}-api
+    - kubectl -n ${NS} rollout restart deployment ${NS}-web
   environment:
     name: $CI_COMMIT_REF_SLUG
-    url: $STAGING_BASEURL
   only:
-    - staging
-    - production
-
+   - staging
+   - prod

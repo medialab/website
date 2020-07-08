@@ -9,6 +9,7 @@ import client from '../../client';
 import Button from '../misc/Button';
 import DocumentIcon from 'material-icons-svg/components/baseline/AttachFile';
 import ReorderIcon from 'material-icons-svg/components/baseline/Reorder';
+import {translateAttachmentLabel} from '../../../../specs/translations';
 
 function prettyName(name) {
   const ext = path.extname(name),
@@ -35,11 +36,17 @@ const SortableItem = SortableElement(({item, onDrop}) => {
   else
     body = item.value;
 
+  const translatedLabel = translateAttachmentLabel(item.label);
+
   return (
     <li>
       <span className="tag is-medium" style={{marginBottom: 3}}>
         <DragHandle />
-        <strong>{item.label}</strong>&nbsp;-&nbsp;<small><em>{body}</em></small>
+        <strong>
+          {item.label}
+          {!item.lang && translatedLabel !== item.label && (<small><small> (trad: {translatedLabel})</small></small>)}
+        </strong>
+        &nbsp;-&nbsp;<small><em>{body}</em></small>
         &nbsp;<button className="delete is-small" onClick={() => onDrop(item)} />
       </span>
     </li>

@@ -55,7 +55,7 @@
   "productionTypes": {
     "default": "conference",
     "fr": {
-      "article": "Article",
+      "article": "Article/chapitre",
       "communication": "Communication",
       "book": "Livre",
       "grey": "Littérature grise",
@@ -71,7 +71,7 @@
       "thesis": "Thèses"
     },
     "en": {
-      "article": "Article",
+      "article": "Article/chapter",
       "communication": "Communication",
       "book": "Book",
       "grey": "Grey literature",

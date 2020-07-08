@@ -153,8 +153,21 @@
           },
           "value": {
             "type": "string"
+          },
+          "lang": {
+            "type": "string",
+            "enum": [
+              "en",
+              "fr"
+            ],
+            "enumId": "language"
           }
-        }
+        },
+        "required": [
+          "type",
+          "label",
+          "value"
+        ]
       }
     },
     "membership": {

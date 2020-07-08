@@ -390,7 +390,7 @@ function renderNewsForm(props) {
         </h4>
 
         <div className="columns">
-          <div className="column is-8">
+          <div className="column is-10">
             <SortableKeyValueList
               items={data.attachments}
               model="news"

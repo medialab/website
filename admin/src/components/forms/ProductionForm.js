@@ -287,11 +287,11 @@ function renderProductionForm(props) {
           </div>
         </div>
 
-        { data.type && (data.type === 'code' || data.type === 'software') &&
+        {data.type && (data.type === 'code' || data.type === 'software') &&
           (
             <>
               <div className="columns">
-                <div className="column is-3">
+                <div className="column is-5">
                   <div className="field">
                     <label className="label">Usages</label>
                     <div className="control">
@@ -314,7 +314,7 @@ function renderProductionForm(props) {
                     </div>
                   </div>
                 </div>
-                <div className="column is-3">
+                <div className="column is-4">
                   <div className="field">
                     <label className="label">Status</label>
                     <div className="control">
@@ -327,7 +327,7 @@ function renderProductionForm(props) {
                 </div>
               </div>
               <div className="columns">
-                <div className="column is-8">
+                <div className="column is-10">
                   <div className="field">
                     <label className="label">attachments</label>
                     <div className="control">

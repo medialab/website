@@ -18,6 +18,7 @@ import PageMeta from '../helpers/PageMeta';
 import ImagePlaceholder from '../helpers/ImagePlaceholder';
 
 import {I18N_MODEL} from '../../i18n';
+import {translateAttachmentLabel} from '../../../specs/translations';
 
 import LanguageFallback from '../helpers/LanguageFallback';
 
@@ -83,6 +84,11 @@ const MAX_URL_LENGTH = 50;
 
 // TODO: we should probably sort contacts...
 function PeopleContactLabel({lang, data}) {
+  data = Object.assign({}, data);
+
+  if (!data.lang && lang === 'en')
+    data.label = translateAttachmentLabel(data.label);
+
   if (data.label === 'Mail') {
     const email = data.value.replace('@', '●');
     return <p proptype="email">{data.label}: {email}</p>;
@@ -143,6 +149,14 @@ function PeopleContactLabel({lang, data}) {
       </span>
     );
   }
+
+  if (data.type !== 'url')
+    return (
+      <span>
+        <span className="label-data">{data.label}:</span>
+        &nbsp;<span>{data.value}</span>
+      </span>
+    );
 
   return (
     <a
@@ -290,11 +304,15 @@ export default function PeopleDetail({lang, person, siteUrl}) {
                 {person.contacts && person.contacts.length > 0 && (
                   <div className="contact">
                     <ul>
-                      { person.contacts.map((contact, i) => (
-                        <li key={i} data-type={contact.label}>
-                          <PeopleContactLabel lang={lang} data={contact} />
-                        </li>
-                    ))}
+                      {
+                        person.contacts
+                          .filter((contact) => !contact.lang || contact.lang === lang)
+                          .map((contact, i) => (
+                            <li key={i} data-type={contact.label}>
+                              <PeopleContactLabel lang={lang} data={contact} />
+                            </li>
+                          ))
+                      }
                     </ul>
                   </div>
                 )}

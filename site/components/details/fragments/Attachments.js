@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from '../../helpers/Link';
 
 const i18n = {
   fr: {

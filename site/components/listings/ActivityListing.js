@@ -66,8 +66,14 @@ export default function ActivityListing({lang, list, topActivities}) {
                     <ProcessedImage size="medium" image={a.coverImage && a.coverImage.processed && a.coverImage.processed.medium} data={a} />
                   </div>
                   <div className="bandeau">
-                    <p data-icon="activite" className="type-activity">{a.pinned ? messagesMeta.pinnedActivity[lang] : I18N_TYPE_LABELS.activities[lang][a.type]}</p>
-                    {!a.pinned && <p className="title" itemProp="name" data-level-2="title">{a.name}</p>}
+                    <p data-icon="activite" className="type-activity">{
+                      // @todo put back for pinned activities a.pinned ? messagesMeta.pinnedActivity[lang] : I18N_TYPE_LABELS.activities[lang][a.type]
+                      I18N_TYPE_LABELS.activities[lang][a.type]
+                    }</p>
+                    {
+                      // @todo put back for pinned activities !a.pinned && 
+                    <p className="title" itemProp="name" data-level-2="title">{a.name}</p>
+                    }
                   </div>
                   <hgroup>
                     <h1 data-level-1="baseline" >
@@ -75,7 +81,7 @@ export default function ActivityListing({lang, list, topActivities}) {
                     </h1>
                   </hgroup>
                   {
-                    !a.pinned &&
+                    // @todo put back for pinned activities !a.pinned &&
                     <div className="accroche">
                       <p className="accroche-paragraphe">
                         <LanguageFallback lang={lang} translatedAttribute={a.description} />

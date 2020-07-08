@@ -247,10 +247,18 @@
           },
           "lang": {
             "type": "string",
-            "enum": ["fr", "en"],
+            "enum": [
+              "en",
+              "fr"
+            ],
             "enumId": "language"
           }
-        }
+        },
+        "required": [
+          "type",
+          "label",
+          "value"
+        ]
       }
     },
     "usages": {

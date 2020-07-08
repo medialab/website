@@ -3,7 +3,7 @@
     "article" : "article",
     "audiovisual" : "communication",
     "book" : "book",
-    "bookPart" : "book",
+    "bookPart" : "article",
     "bookReview" : "article",
     "conferenceContribution" : "communication",
     "conferencePaper" : "communication",

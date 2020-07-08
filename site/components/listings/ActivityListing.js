@@ -67,11 +67,11 @@ export default function ActivityListing({lang, list, topActivities}) {
                   </div>
                   <div className="bandeau">
                     <p data-icon="activite" className="type-activity">{
-                      // @todo put back for pinned activities a.pinned ? messagesMeta.pinnedActivity[lang] : I18N_TYPE_LABELS.activities[lang][a.type]
-                      I18N_TYPE_LABELS.activities[lang][a.type]
+                      a.pinned ? messagesMeta.pinnedActivity[lang] : I18N_TYPE_LABELS.activities[lang][a.type]
+                      // I18N_TYPE_LABELS.activities[lang][a.type]
                     }</p>
                     {
-                      // @todo put back for pinned activities !a.pinned && 
+                      !a.pinned && 
                     <p className="title" itemProp="name" data-level-2="title">{a.name}</p>
                     }
                   </div>
@@ -81,7 +81,7 @@ export default function ActivityListing({lang, list, topActivities}) {
                     </h1>
                   </hgroup>
                   {
-                    // @todo put back for pinned activities !a.pinned &&
+                    !a.pinned &&
                     <div className="accroche">
                       <p className="accroche-paragraphe">
                         <LanguageFallback lang={lang} translatedAttribute={a.description} />

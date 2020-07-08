@@ -175,7 +175,7 @@ function renderPeopleForm(props) {
         </div>
 
         <div className="columns">
-          <div className="column is-8">
+          <div className="column is-10">
             <label className="label">Contacts
               <em>
                 Choisissez le type de contact (email, site, CV...) et renseignez l'information adaptée.

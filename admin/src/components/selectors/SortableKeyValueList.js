@@ -5,6 +5,7 @@ import {SortableContainer, SortableElement, SortableHandle} from 'react-sortable
 import FileInput from 'react-simple-file-input';
 import path from 'path';
 import isUrl from 'is-url';
+import cls from 'classnames';
 import client from '../../client';
 import Button from '../misc/Button';
 import DocumentIcon from 'material-icons-svg/components/baseline/AttachFile';
@@ -42,6 +43,7 @@ const SortableItem = SortableElement(({item, onDrop}) => {
     <li>
       <span className="tag is-medium" style={{marginBottom: 3}}>
         <DragHandle />
+        {item.lang && <small>({item.lang})&nbsp;</small>}
         <strong>
           {item.label}
           {!item.lang && translatedLabel !== item.label && (<small><small> (trad: {translatedLabel})</small></small>)}
@@ -72,6 +74,7 @@ export default class SortableKeyValueList extends PureComponent {
     loading: true,
     options: null,
     uploading: false,
+    lang: null,
     value: ''
   };
 
@@ -131,6 +134,10 @@ export default class SortableKeyValueList extends PureComponent {
     this.setState({value: e.target.value});
   };
 
+  handleLang = lang => {
+    this.setState({lang});
+  };
+
   handleFile = file => {
     this.setState({file});
   };
@@ -142,6 +149,15 @@ export default class SortableKeyValueList extends PureComponent {
       (isUrl(value) ? 'url' : 'string') :
       'attachment';
 
+    const attachment = {
+      type,
+      label: this.state.label.value,
+      value
+    };
+
+    if (this.state.lang)
+      attachment.lang = this.state.lang;
+
     // Need to upload?
     if (type === 'attachment') {
       this.setState({upload: true});
@@ -149,11 +165,9 @@ export default class SortableKeyValueList extends PureComponent {
       client.upload(this.state.file, result => {
         this.setState({uploading: false});
 
-        this.props.onAdd({
-          type,
-          label: this.state.label.value,
-          value: result.name
-        });
+        attachment.value = result.name;
+
+        this.props.onAdd(attachment);
 
         this.handleReset();
       });
@@ -161,17 +175,13 @@ export default class SortableKeyValueList extends PureComponent {
       return;
     }
 
-    this.props.onAdd({
-      type,
-      label: this.state.label.value,
-      value
-    });
+    this.props.onAdd(attachment);
 
     this.handleReset();
   };
 
   handleReset = () => {
-    this.setState({file: null, label: null, value: ''});
+    this.setState({file: null, label: null, lang: null, value: ''});
   };
 
   handleDrop = item => {
@@ -183,6 +193,7 @@ export default class SortableKeyValueList extends PureComponent {
       file,
       label,
       loading,
+      lang,
       options,
       uploading,
       value
@@ -201,7 +212,7 @@ export default class SortableKeyValueList extends PureComponent {
 
         {/* Form to add a new item */}
         <div className="columns">
-          <div className="column is-5">
+          <div className="column is-4">
             <div className="field">
               <CreatableSelect
                 value={label}
@@ -215,7 +226,7 @@ export default class SortableKeyValueList extends PureComponent {
                 styles={{menu: provided => ({...provided, zIndex: 1000})}} />
             </div>
           </div>
-          <div className="column is-5">
+          <div className="column is-4">
             <div className="field has-addons">
               <div className="control">
                 <input
@@ -245,7 +256,28 @@ export default class SortableKeyValueList extends PureComponent {
               </div>
             </div>
           </div>
-          <div className="column is-3">
+
+          <div className="column is-2">
+            <span className="buttons has-addons">
+              <span
+                className={cls('button', !lang && 'is-info')}
+                onClick={() => this.handleLang(null)}>
+                both
+              </span>
+              <span
+                className={cls('button', lang === 'en' && 'is-info')}
+                onClick={() => this.handleLang('en')}>
+                en
+              </span>
+              <span
+                className={cls('button', lang === 'fr' && 'is-info')}
+                onClick={() => this.handleLang('fr')}>
+                fr
+              </span>
+            </span>
+          </div>
+
+          <div className="column is-1">
             <div className="field">
               <Button
                 kind="text"

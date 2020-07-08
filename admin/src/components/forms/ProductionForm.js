@@ -327,7 +327,7 @@ function renderProductionForm(props) {
                 </div>
               </div>
               <div className="columns">
-                <div className="column is-8">
+                <div className="column is-10">
                   <div className="field">
                     <label className="label">attachments</label>
                     <div className="control">

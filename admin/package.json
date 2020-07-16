@@ -71,7 +71,7 @@
     "hash.js": "^1.1.7",
     "history": "^4.10.1",
     "is-url": "^1.2.4",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "material-icons-svg": "^1.0.0",
     "prop-types": "^15.7.1",
     "rc-tooltip": "^3.7.3",

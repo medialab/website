@@ -1,6 +1,7 @@
 import React from 'react';
 
 const style = {
+  backgroundColor: 'white',
   position: 'fixed',
   top: '6px',
   border: '1px solid black',

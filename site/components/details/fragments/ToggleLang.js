@@ -4,9 +4,13 @@ import Link from '../../helpers/Link';
 export default function ToggleLang({lang, content, to}) {
   const otherLang = lang === 'fr' ? 'en' : 'fr';
 
-  if (!content[otherLang] || !content[otherLang].length || !content[lang] || !content[lang].length) {
+  if (
+    !content[otherLang] ||
+    !content[otherLang].length ||
+    !content[lang] ||
+    !content[lang].length
+  )
     return null;
-  }
 
   // const enoughContentLength = 1500;
 
@@ -25,14 +29,14 @@ export default function ToggleLang({lang, content, to}) {
   //   en: '⚐ This article is more substantial in french. '
   // };
 
-  const fr = '⚐ Cette page existe aussi en anglais. ';
-  const en = '⚐ This page exists also in french. ';
+  const fr = '⚐ Cette page existe aussi en français. ';
+  const en = '⚐ This page also exists in english. ';
 
   return (
     <label
       className="toggle-lang"
       aria-label={lang === 'fr' ? fr : en}>
-        <Link to={to[otherLang]}>{lang === 'fr' ? fr : en}</Link>
+        <Link to={to[otherLang]}>{lang === 'fr' ? en : fr}</Link>
     </label>);
 
   // old version when we tried to be clever...

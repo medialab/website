@@ -40,22 +40,43 @@ export function join(children, string) {
   return result;
 }
 
-export function templateMembership(person) {
-  if (person.membership === 'member') {
-    if (!person.active)
-      return (<span>Ancien membre</span>);
-  }
-  else if (person.membership === 'associate') {
-    if (person.active)
-      return (<span>Membre associé</span>);
-    else
-      return (<span>Ancien membre associé</span>);
+export function templateMembership(lang, person) {
+
+  if (lang === 'fr') {
+    if (person.membership === 'member') {
+      if (!person.active)
+        return (<span>Ancien membre</span>);
+    }
+    else if (person.membership === 'associate') {
+      if (person.active)
+        return (<span>Membre associé</span>);
+      else
+        return (<span>Ancien membre associé</span>);
+    }
+    else {
+      if (person.active)
+        return (<span>Membre invité</span>);
+      else
+        return (<span>Ancien membre invité</span>);
+    }
   }
   else {
-    if (person.active)
-      return (<span>Membre invité</span>);
-    else
-      return (<span>Ancien membre invité</span>);
+    if (person.membership === 'member') {
+      if (!person.active)
+        return (<span>Former member</span>);
+    }
+    else if (person.membership === 'associate') {
+      if (person.active)
+        return (<span>Associate member</span>);
+      else
+        return (<span>Former associate member</span>);
+    }
+    else {
+      if (person.active)
+        return (<span>Invited member</span>);
+      else
+        return (<span>Former invited member</span>);
+    }
   }
 
   return ''; // membre actif

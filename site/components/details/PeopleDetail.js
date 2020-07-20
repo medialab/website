@@ -297,7 +297,7 @@ export default function PeopleDetail({lang, person, siteUrl}) {
                   <p
                     data-type="membership"
                     aria-label={i18n[lang].membershipAriaLabel}>
-                    {templateMembership(person)}
+                    {templateMembership(lang, person)}
                   </p>
                 </div>
 

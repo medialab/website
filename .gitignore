@@ -11,3 +11,4 @@ rollback-dump
 site/package-lock.json
 package-lock.json
 admin/package-lock.json
+k8s/**/*.env

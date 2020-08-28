@@ -93,7 +93,7 @@ export default function Legal({lang}) {
                   <li>par courrier : <strong>médialab, 27 rue Saint Guillaume 75337 Paris Cedex 07</strong></li>
                   <li>par courrier électronique : <strong>medialab@sciencespo.fr</strong></li>
               </ul>
-              Le visiteur peut également contacter le Délégué à la Protection des Données de Sciences Po à l’adresse <a href="mailto:"cnil@sciencespo.fr">cnil@sciencespo.fr</a> en seconde intention, puis adresser <a href="https://www.cnil.fr/">une réclamation à la CNIL</a>, en cas de difficultés ou questions ultérieures concernant ses droits RGPD.
+              Le visiteur peut également contacter le Délégué à la Protection des Données de Sciences Po à l’adresse <a href=mailto:"cnil@sciencespo.fr">cnil@sciencespo.fr</a> en seconde intention, puis adresser <a href="https://www.cnil.fr/">une réclamation à la CNIL</a>, en cas de difficultés ou questions ultérieures concernant ses droits RGPD.
             </p>
           </div>
         </article>

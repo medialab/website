@@ -55,7 +55,7 @@
       "url": "https://github.com/mydu"
     }
   ],
-  "license": "MIT",
+  "license": "AGPL-3.0-only",
   "dependencies": {
     "async": "^2.6.3",
     "bulma": "^0.7.4",

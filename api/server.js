@@ -565,7 +565,7 @@ function buildStaticSite(callback) {
       return wilsonBuild(
         DATA_PATH,
         WBUILD_PATH,
-        {skipDrafts: true, minifyCss: true},
+        {skipDrafts: true, minifyCss: true, coverImageCache: PREVIEW.db.coverImageCache},
         next
       );
     },

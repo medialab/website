@@ -56,6 +56,7 @@ class Database {
 
     const draftIds = new Set();
 
+    this.options = options;
     this.store = store;
     this.graph = new Graph();
 
@@ -182,6 +183,8 @@ class Database {
   }
 
   processCovers(inputDir, outputDir, pathPrefix, options, callback) {
+    this.coverImageCache = {};
+
     const data = this.graph.nodes()
       .map(node => {
         return this.graph.getNodeAttributes(node);
@@ -198,11 +201,24 @@ class Database {
       });
 
     async.eachLimit(data, 10, (item, next) => {
+
+      // Using provided external cache (typically from long-running preview)
+      if (this.options.coverImageCache) {
+        const cache = this.options.coverImageCache[item.id];
+
+        if (cache.file === item.cover.file) {
+          item.coverImage = cache.data;
+
+          return next();
+        }
+      }
+
       return buildCover(inputDir, outputDir, pathPrefix, item, options, (err, coverImage) => {
         if (err)
           return next(err);
 
         item.coverImage = coverImage;
+        this.coverImageCache[item.id] = {file: item.cover.file, data: coverImage};
 
         return next();
       });

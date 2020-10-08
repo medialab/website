@@ -227,7 +227,7 @@ exports.build = function build(inputDir, outputDir, options, callback) {
   const linkToAdmin = options.linkToAdmin || null;
   const minifyCss = options.minifyCss || false;
 
-  const db = Database.fromDisk(inputDir, {pathPrefix, skipDrafts});
+  const db = Database.fromDisk(inputDir, {pathPrefix, skipDrafts, coverImageCache: options.coverImageCache});
   const website = new Website(db);
 
   let rssFeeds = null;

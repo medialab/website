@@ -43,7 +43,8 @@ const BACKWARD_LINKS = {
 
 const SELF_LINKS = {
   activities: 'activities',
-  productions: 'productions'
+  productions: 'productions',
+  news: 'news'
 };
 
 class Database {

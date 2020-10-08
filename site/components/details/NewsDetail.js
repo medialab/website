@@ -13,6 +13,7 @@ import ProcessedImage from '../helpers/ProcessedImage.js';
 import RelatedProductions from './fragments/RelatedProductions.js';
 import RelatedActivities from './fragments/RelatedActivities.js';
 import RelatedPeople from './fragments/RelatedPeople.js';
+import RelatedNews from './fragments/RelatedNews.js';
 import Attachments from './fragments/Attachments.js';
 
 import LanguageFallback from '../helpers/LanguageFallback';
@@ -164,6 +165,7 @@ export default function NewsDetail({lang, news, siteUrl}) {
           <RelatedPeople schemaRelationProp={news.type === 'post' ? 'author' : 'organizer'} people={news.people} lang={lang} />
           <RelatedActivities activities={news.activities} lang={lang} />
           <RelatedProductions productions={news.productions} lang={lang} />
+          <RelatedNews actu={news.news} lang={lang} />
         </aside>
       </main>
     </>

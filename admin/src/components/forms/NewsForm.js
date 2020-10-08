@@ -61,6 +61,10 @@ const HANDLERS = {
     type: 'raw',
     field: 'type'
   },
+  news: {
+    type: 'relation',
+    field: 'news'
+  },
   people: {
     type: 'relation',
     field: 'people'
@@ -347,6 +351,22 @@ function renderNewsForm(props) {
                   selected={data.activities}
                   onAdd={handlers.activities.add}
                   onDrop={handlers.activities.drop} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-12">
+            <div className="field">
+              <label className="label">Actualités liées</label>
+              <div className="control">
+                <RelationSelector
+                  model="news"
+                  self={data.id}
+                  selected={data.news}
+                  onAdd={handlers.news.add}
+                  onDrop={handlers.news.drop} />
               </div>
             </div>
           </div>

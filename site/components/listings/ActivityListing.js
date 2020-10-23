@@ -37,6 +37,7 @@ const sortActivities = (a, b) => {
 
 export default function ActivityListing({lang, list, topActivities}) {
   const activities = topActivities.map(ta => list.find(a => a.id === ta))
+  .filter(ta => !!ta)
   .map(ta => ({...ta, pinned: true}))
   .concat(list.sort(sortActivities).filter(a => topActivities.indexOf(a.id) === -1));
 
@@ -71,7 +72,7 @@ export default function ActivityListing({lang, list, topActivities}) {
                       // I18N_TYPE_LABELS.activities[lang][a.type]
                     }</p>
                     {
-                      !a.pinned && 
+                      !a.pinned &&
                       <p className="title" itemProp="name" data-level-2="title">{a.name}</p>
                     }
                   </div>

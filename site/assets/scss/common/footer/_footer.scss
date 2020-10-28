@@ -20,7 +20,7 @@ footer {
     li {
       display: inline-block;
       &:not(:last-of-type):after {
-        content: "/";
+        content: '/';
         padding: 0 $unite;
       }
     }

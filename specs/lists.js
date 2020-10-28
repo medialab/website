@@ -15,9 +15,7 @@ const deburr = string => {
 const normalize = string => deburr(string.toLowerCase());
 
 const get = (field, target) => {
-
-  if (typeof field === 'function')
-    return field(target);
+  if (typeof field === 'function') return field(target);
 
   const fields = field.split('.');
 
@@ -26,8 +24,7 @@ const get = (field, target) => {
 
     target = target[f];
 
-    if (typeof target === 'undefined')
-      return;
+    if (typeof target === 'undefined') return;
   }
 
   return target;
@@ -44,16 +41,17 @@ const createSearch = fields => (data, query) => {
   const q = query.toLowerCase();
 
   return data.filter(item => {
-    return fields.some(field => normalize(get(field, item) || '').includes(normalize(q)));
+    return fields.some(field =>
+      normalize(get(field, item) || '').includes(normalize(q))
+    );
   });
 };
 
 const lastUpdatedProperty = item => {
-  if (!item.lastUpdated)
-    return '-';
+  if (!item.lastUpdated) return '-';
 
-  return (new Date(item.lastUpdated)).toLocaleDateString('fr-FR');
-}
+  return new Date(item.lastUpdated).toLocaleDateString('fr-FR');
+};
 
 const MEMBERSHIP_PRIORITY = {
   member: 0,
@@ -66,45 +64,34 @@ module.exports = {
     fields: [
       {
         label: 'Name',
-        property: function(a) {
+        property: function (a) {
           return a.name.fr || a.name.en || '';
         },
         important: true,
-        order: [
-          a => a.name && normalize(a.name.fr || a.name.en)
-        ]
+        order: [a => a.name && normalize(a.name.fr || a.name.en)]
       },
       {
         label: 'Type',
-        property: function(a) {
+        property: function (a) {
           return enums.activityTypes.fr[a.type];
         }
       },
       {
         label: 'People',
-        property: function(a) {
-          if (!a.people)
-            return 0;
+        property: function (a) {
+          if (!a.people) return 0;
 
           return a.people.length;
         },
-        order: [
-          a => (a.people || []).length,
-          'name'
-        ]
+        order: [a => (a.people || []).length, 'name']
       },
       {
         label: 'Updated',
         property: lastUpdatedProperty,
-        order: [
-          a => a.lastUpdated ? +(new Date(a.lastUpdated)) : Infinity
-        ]
+        order: [a => (a.lastUpdated ? +new Date(a.lastUpdated) : Infinity)]
       }
     ],
-    search: createSearch([
-      'name',
-      a => enums.activityTypes.fr[a.type]
-    ]),
+    search: createSearch(['name', a => enums.activityTypes.fr[a.type]]),
     defaultOrder: a => normalize(a.name.fr || a.name.en || ''),
     filters: {
       active: {
@@ -129,13 +116,11 @@ module.exports = {
     fields: [
       {
         label: 'Title',
-        property: function(n) {
+        property: function (n) {
           return n.title.fr || n.title.en || '';
         },
         important: true,
-        order: [
-          n => n.title && normalize(n.title.fr || n.title.en)
-        ],
+        order: [n => n.title && normalize(n.title.fr || n.title.en)],
         icon: {
           type: 'newsTypes',
           property: n => n.type,
@@ -144,16 +129,19 @@ module.exports = {
       },
       {
         label: 'Label',
-        property: function(n) {
-          return (n.label && (n.label.fr || n.label.en)) || enums.newsTypes.fr[n.type] || enums.newsTypes.en[n.type] || '';
+        property: function (n) {
+          return (
+            (n.label && (n.label.fr || n.label.en)) ||
+            enums.newsTypes.fr[n.type] ||
+            enums.newsTypes.en[n.type] ||
+            ''
+          );
         },
-        order: [
-          n => n.label && normalize(n.label.fr || n.label.en)
-        ]
+        order: [n => n.label && normalize(n.label.fr || n.label.en)]
       },
       {
         label: 'Links',
-        property: function(n) {
+        property: function (n) {
           return (
             (n.activities || []).length +
             (n.people || []).length +
@@ -161,18 +149,16 @@ module.exports = {
           );
         },
         order: [
-          n => (
+          n =>
             (n.activities || []).length +
             (n.people || []).length +
             (n.productions || []).length
-          )
         ]
       },
       {
         label: 'Start Date',
-        property: function(n) {
-          if (!n.startDate)
-            return '';
+        property: function (n) {
+          if (!n.startDate) return '';
 
           const [date, time] = n.startDate.split('T');
 
@@ -181,30 +167,23 @@ module.exports = {
           if (time) {
             const [h, n] = time.split(':');
 
-            if (!n)
-              return `${d}/${m}/${y}, ${h}h`;
+            if (!n) return `${d}/${m}/${y}, ${h}h`;
 
-              return `${d}/${m}/${y}, ${h}h${n}`;
+            return `${d}/${m}/${y}, ${h}h${n}`;
           }
 
           return `${d}/${m}/${y}`;
         },
-        order: [
-          n => n.startDate && +datetime(n.startDate)
-        ]
+        order: [n => n.startDate && +datetime(n.startDate)]
       },
       {
         label: 'Updated',
         property: lastUpdatedProperty,
-        order: [
-          a => a.lastUpdated ? +(new Date(a.lastUpdated)) : Infinity
-        ]
+        order: [a => (a.lastUpdated ? +new Date(a.lastUpdated) : Infinity)]
       }
     ],
     search: createSearch(['title.fr', 'title.en']),
-    defaultOrder: [
-      n => -(new Date(n.startDate))
-    ],
+    defaultOrder: [n => -new Date(n.startDate)],
     filters: {
       draft: {
         type: 'boolean',
@@ -220,60 +199,44 @@ module.exports = {
       type: null
     }
   },
-  people: {
+  people: {
     fields: [
       {
         label: 'Name',
-        property: function(p) {
+        property: function (p) {
           return p.firstName + ' ' + p.lastName;
         },
         important: true,
-        order: [
-          p => normalize(p.lastName),
-          p => normalize(p.firstName)
-        ]
+        order: [p => normalize(p.lastName), p => normalize(p.firstName)]
       },
       {
         label: 'Role',
-        property: function(p) {
-          if (!p.role)
-            return '';
+        property: function (p) {
+          if (!p.role) return '';
 
           return p.role.fr || p.role.en || '';
         },
-        order: [
-          p => p.role && normalize(p.role.fr || p.role.en)
-        ]
+        order: [p => p.role && normalize(p.role.fr || p.role.en)]
       },
       {
         label: 'Membership',
-        property: function(p) {
+        property: function (p) {
           if (p.membership === 'member') {
-            if (p.active)
-              return 'Membre';
-            else
-              return 'Ancien membre';
-          }
-          else if (p.membership === 'invited') {
-            if (p.active)
-              return 'Membre invité·e';
-            else
-              return 'Ancien membre invité·e';
-          }
-          else {
-            if (p.active)
-              return 'Membre associé·e';
-            else
-              return 'Ancien membre associé·e';
+            if (p.active) return 'Membre';
+            else return 'Ancien membre';
+          } else if (p.membership === 'invited') {
+            if (p.active) return 'Membre invité·e';
+            else return 'Ancien membre invité·e';
+          } else {
+            if (p.active) return 'Membre associé·e';
+            else return 'Ancien membre associé·e';
           }
         }
       },
       {
         label: 'Updated',
         property: lastUpdatedProperty,
-        order: [
-          a => a.lastUpdated ? +(new Date(a.lastUpdated)) : Infinity
-        ]
+        order: [a => (a.lastUpdated ? +new Date(a.lastUpdated) : Infinity)]
       }
     ],
     search: createSearch([
@@ -305,25 +268,28 @@ module.exports = {
     fields: [
       {
         label: 'Title',
-        property: function(p) {
+        property: function (p) {
           return p.title.fr || p.title.en;
         },
         important: true,
         icon: {
           type: 'productionGroups',
-          property: p => productionTypeToGroup[p.type || enums.productionTypes.default],
-          label: p => enums.productionTypes.groups[productionTypeToGroup[p.type || enums.productionTypes.default]].fr
+          property: p =>
+            productionTypeToGroup[p.type || enums.productionTypes.default],
+          label: p =>
+            enums.productionTypes.groups[
+              productionTypeToGroup[p.type || enums.productionTypes.default]
+            ].fr
         }
       },
       {
         label: 'Related People',
-        property: function(p, {people}) {
-          if (!p.people)
-            return '';
+        property: function (p, {people}) {
+          if (!p.people) return '';
 
           const persons = p.people
             .map(id => people[id])
-            .map(person => person.lastName)
+            .map(person => person.lastName);
 
           // NOTE: this is bad but it gets shit done
           p.relations = persons.join(',');
@@ -333,7 +299,7 @@ module.exports = {
       },
       {
         label: 'Type',
-        property: function(p) {
+        property: function (p) {
           const type = p.type;
 
           return enums.productionTypes.fr[type];
@@ -341,9 +307,8 @@ module.exports = {
       },
       {
         label: 'Year',
-        property: function(p) {
-          if (!p.date)
-            return '';
+        property: function (p) {
+          if (!p.date) return '';
 
           return p.date.split('-')[0];
         }
@@ -351,14 +316,12 @@ module.exports = {
       {
         label: 'Updated',
         property: lastUpdatedProperty,
-        order: [
-          a => a.lastUpdated ? +(new Date(a.lastUpdated)) : Infinity
-        ]
+        order: [a => (a.lastUpdated ? +new Date(a.lastUpdated) : Infinity)]
       }
     ],
     search: createSearch(['title.fr', 'title.en', 'relations']),
     defaultOrder: [
-      p => !p.date ? Infinity : -(new Date(p.date)),
+      p => (!p.date ? Infinity : -new Date(p.date)),
       p => p.title.fr || p.title.en
     ],
     filters: {

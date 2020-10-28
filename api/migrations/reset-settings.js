@@ -1,4 +1,4 @@
-module.exports = function(req, dbs, next) {
+module.exports = function (req, dbs, next) {
   dbs.settings.setState({
     settings: {
       home: {

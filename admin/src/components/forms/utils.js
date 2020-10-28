@@ -21,7 +21,6 @@ export function createSlugRelatedHandler(scope, key, slugify) {
   };
 }
 
-
 export function getResetState(spec, state) {
   if (!spec.resetField) return state;
   let newState = {...state};
@@ -84,7 +83,7 @@ export function createHandlers(scope, specs, root = 'data') {
 
   for (const k in specs) {
     const spec = specs[k],
-          field = [root].concat(spec.field);
+      field = [root].concat(spec.field);
 
     let handler;
 
@@ -101,8 +100,7 @@ export function createHandlers(scope, specs, root = 'data') {
         move: createArrayMoveHandler(scope, field),
         empty: createEmptyRelationHandler(scope, field)
       };
-    else
-      handler = createHandler(scope, field);
+    else handler = createHandler(scope, field);
 
     handlers[k] = handler;
   }

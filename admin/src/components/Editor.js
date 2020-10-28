@@ -20,12 +20,7 @@ function FalseIcon({children}) {
       width="24"
       height="24"
       viewBox="0 0 24 24">
-      <text
-        fontSize={14}
-        stroke="black"
-        fill="black"
-        x={0}
-        y={20}>
+      <text fontSize={14} stroke="black" fill="black" x={0} y={20}>
         {children}
       </text>
     </svg>
@@ -36,7 +31,6 @@ export default class Editor extends PureComponent {
   firstSave = true;
 
   handleOnSave = content => {
-
     // We avoid first save not to have our forms be dirty when nothing happened
     if (this.firstSave) {
       this.firstSave = false;
@@ -53,28 +47,42 @@ export default class Editor extends PureComponent {
       <div className="content">
         <DraftailEditor
           placeholder="Type something..."
-          enableLineBreak={{icon: <KeyboardReturnIcon width={24} height={24} />}}
+          enableLineBreak={{
+            icon: <KeyboardReturnIcon width={24} height={24} />
+          }}
           rawContentState={content ? htmlToRaw(content) : null}
           stripPastedStyles={false}
           onSave={this.handleOnSave}
-          entityTypes={[
-            LINK,
-            IMAGE,
-            IFRAME
-          ]}
+          entityTypes={[LINK, IMAGE, IFRAME]}
           blockTypes={[
             {type: BLOCK_TYPE.HEADER_ONE, icon: <FalseIcon>h1</FalseIcon>},
             {type: BLOCK_TYPE.HEADER_TWO, icon: <FalseIcon>h2</FalseIcon>},
             {type: BLOCK_TYPE.HEADER_THREE, icon: <FalseIcon>h3</FalseIcon>},
-            {type: BLOCK_TYPE.BLOCKQUOTE, icon: <FormatQuoteIcon width={24} height={24} />},
-            {type: BLOCK_TYPE.UNORDERED_LIST_ITEM, icon: <UnorderedListIcon width={24} height={24} />},
-            {type: BLOCK_TYPE.ORDERED_LIST_ITEM, icon: <OrderedListIcon width={24} height={24} />},
-            {type: BLOCK_TYPE.CODE, icon: <CodeBlockIcon width={24} height={24} />}
+            {
+              type: BLOCK_TYPE.BLOCKQUOTE,
+              icon: <FormatQuoteIcon width={24} height={24} />
+            },
+            {
+              type: BLOCK_TYPE.UNORDERED_LIST_ITEM,
+              icon: <UnorderedListIcon width={24} height={24} />
+            },
+            {
+              type: BLOCK_TYPE.ORDERED_LIST_ITEM,
+              icon: <OrderedListIcon width={24} height={24} />
+            },
+            {
+              type: BLOCK_TYPE.CODE,
+              icon: <CodeBlockIcon width={24} height={24} />
+            }
           ]}
           inlineStyles={[
-            {type: INLINE_STYLE.ITALIC, icon: <ItalicIcon width={24} height={24} />},
+            {
+              type: INLINE_STYLE.ITALIC,
+              icon: <ItalicIcon width={24} height={24} />
+            },
             {type: INLINE_STYLE.BOLD, icon: <BoldIcon width={24} height={24} />}
-          ]} />
+          ]}
+        />
       </div>
     );
   }

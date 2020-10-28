@@ -24,17 +24,23 @@ const apply = async.apply;
 function writePermalinkToDisk(outputDir, html, permalink, callback) {
   const diskPath = permalinkToDiskPath(outputDir, permalink);
 
-  return async.series([
-    apply(fs.ensureDir, diskPath),
-    apply(fs.writeFile, path.join(diskPath, 'index.html'), html)
-  ], callback);
+  return async.series(
+    [
+      apply(fs.ensureDir, diskPath),
+      apply(fs.writeFile, path.join(diskPath, 'index.html'), html)
+    ],
+    callback
+  );
 }
 
 function writeI18nPermalinkToDisk(outputDir, versions, permalinks, callback) {
-  return async.parallel([
-    apply(writePermalinkToDisk, outputDir, versions.fr, permalinks.fr),
-    apply(writePermalinkToDisk, outputDir, versions.en, permalinks.en)
-  ], callback);
+  return async.parallel(
+    [
+      apply(writePermalinkToDisk, outputDir, versions.fr, permalinks.fr),
+      apply(writePermalinkToDisk, outputDir, versions.en, permalinks.en)
+    ],
+    callback
+  );
 }
 
 const FONT_PATH = path.join(__dirname, '..', 'site', 'assets', 'font');
@@ -44,103 +50,117 @@ const SYMBOL_FONT_PATH = path.join(FONT_PATH, 'Symbol');
 function buildSass(outputDir, minifyCss, callback) {
   const fontDir = path.join(outputDir, 'font');
 
-  return async.series({
-    ensureFontDir: apply(fs.ensureDir, fontDir),
-    copyFonts(next) {
-      return async.parallel([
-        apply(fs.copy, BEL2_FONT_PATH, path.join(fontDir, 'Bel2')),
-        apply(fs.copy, SYMBOL_FONT_PATH, path.join(fontDir, 'Symbol'))
-      ], next);
+  return async.series(
+    {
+      ensureFontDir: apply(fs.ensureDir, fontDir),
+      copyFonts(next) {
+        return async.parallel(
+          [
+            apply(fs.copy, BEL2_FONT_PATH, path.join(fontDir, 'Bel2')),
+            apply(fs.copy, SYMBOL_FONT_PATH, path.join(fontDir, 'Symbol'))
+          ],
+          next
+        );
+      },
+      renderSass(next) {
+        return sass.render(
+          {
+            file: path.join(
+              __dirname,
+              '..',
+              'site',
+              'assets',
+              'scss',
+              'global.scss'
+            )
+          },
+          (err, result) => {
+            if (err) return callback(err);
+
+            let css = result.css;
+
+            if (minifyCss) css = cssmin(css.toString());
+
+            fs.writeFile(path.join(outputDir, 'medialab.css'), css, next);
+          }
+        );
+      }
     },
-    renderSass(next) {
-      return sass.render({
-        file: path.join(__dirname, '..', 'site', 'assets', 'scss', 'global.scss')
-      }, (err, result) => {
-        if (err)
-          return callback(err);
-
-        let css = result.css;
-
-        if (minifyCss)
-          css = cssmin(css.toString());
-
-        fs.writeFile(path.join(outputDir, 'medialab.css'), css, next);
-      });
-    }
-  }, callback);
+    callback
+  );
 }
 
-const IMG = [
-  'people-placeholder.png',
-  'cover-twitter.png',
-  'cover-fb.png'
-];
+const IMG = ['people-placeholder.png', 'cover-twitter.png', 'cover-fb.png'];
 
 function copyAssets(inputDir, outputDir, callback) {
-  async.parallel({
-    assets(next) {
-      return fs.copy(
-        path.join(inputDir, 'assets'),
-        path.join(outputDir, 'static'),
-        next
-      );
-    },
+  async.parallel(
+    {
+      assets(next) {
+        return fs.copy(
+          path.join(inputDir, 'assets'),
+          path.join(outputDir, 'static'),
+          next
+        );
+      },
 
-    manifest(next) {
-      return fs.copy(
-        path.join(__dirname, '..', 'site', 'assets', 'manifest'),
-        outputDir,
-        next
-      );
-    },
+      manifest(next) {
+        return fs.copy(
+          path.join(__dirname, '..', 'site', 'assets', 'manifest'),
+          outputDir,
+          next
+        );
+      },
 
-    img(next) {
-      const imgDir = path.join(outputDir, 'img');
+      img(next) {
+        const imgDir = path.join(outputDir, 'img');
 
-      fs.ensureDir(imgDir, err => {
-        if (err)
-          return next(err);
+        fs.ensureDir(imgDir, err => {
+          if (err) return next(err);
 
-        return async.each(IMG, (img, n) => {
-          fs.copyFile(
-            path.join(__dirname, '..', 'site', 'assets', 'images', img),
-            path.join(imgDir, img),
-            n
+          return async.each(
+            IMG,
+            (img, n) => {
+              fs.copyFile(
+                path.join(__dirname, '..', 'site', 'assets', 'images', img),
+                path.join(imgDir, img),
+                n
+              );
+            },
+            next
           );
-        }, next);
-      });
+        });
+      },
+
+      documents(next) {
+        const docsDir = path.join(outputDir, 'documents');
+
+        fs.ensureDir(docsDir, err => {
+          if (err) return next(err);
+
+          return fs.copy(
+            path.join(__dirname, '..', 'site', 'assets', 'documents'),
+            docsDir,
+            next
+          );
+        });
+      },
+
+      js(next) {
+        const jsDir = path.join(outputDir, 'js');
+
+        fs.ensureDir(jsDir, err => {
+          if (err) return next(err);
+
+          return fs.copy(
+            path.join(__dirname, '..', 'site', 'assets', 'js'),
+            jsDir,
+            next
+          );
+        });
+      }
     },
-
-    documents(next) {
-      const docsDir = path.join(outputDir, 'documents');
-
-      fs.ensureDir(docsDir, err => {
-        if (err)
-          return next(err);
-
-        return fs.copy(
-          path.join(__dirname, '..', 'site', 'assets', 'documents'),
-          docsDir,
-          next
-        );
-      });
-    },
-
-    js(next) {
-      const jsDir = path.join(outputDir, 'js');
-
-      fs.ensureDir(jsDir, err => {
-        if (err)
-          return next(err);
-
-        return fs.copy(
-          path.join(__dirname, '..', 'site', 'assets', 'js'),
-          jsDir,
-          next
-        );
-      });
-    }
-  }, callback);
+    callback
+  );
 }
 
 function buildSitemap(outputDir, siteUrl, pathPrefix, pages, callback) {
@@ -149,14 +169,22 @@ function buildSitemap(outputDir, siteUrl, pathPrefix, pages, callback) {
 }
 
 function buildRssFeeds(outputDir, feeds, callback) {
-  async.eachLimit(feeds, 10, (feed, next) => {
-    const {fr, en} = feed;
+  async.eachLimit(
+    feeds,
+    10,
+    (feed, next) => {
+      const {fr, en} = feed;
 
-    async.parallel([
-      apply(fs.writeFile, permalinkToDiskPath(outputDir, en.path), en.rss),
-      apply(fs.writeFile, permalinkToDiskPath(outputDir, fr.path), fr.rss)
-    ], next);
-  }, callback);
+      async.parallel(
+        [
+          apply(fs.writeFile, permalinkToDiskPath(outputDir, en.path), en.rss),
+          apply(fs.writeFile, permalinkToDiskPath(outputDir, fr.path), fr.rss)
+        ],
+        next
+      );
+    },
+    callback
+  );
 }
 
 function build404Page(outputDir, pathPrefix, callback) {
@@ -227,75 +255,93 @@ exports.build = function build(inputDir, outputDir, options, callback) {
   const linkToAdmin = options.linkToAdmin || null;
   const minifyCss = options.minifyCss || false;
 
-  const db = Database.fromDisk(inputDir, {pathPrefix, skipDrafts, coverImageCache: options.coverImageCache});
+  const db = Database.fromDisk(inputDir, {
+    pathPrefix,
+    skipDrafts,
+    coverImageCache: options.coverImageCache
+  });
   const website = new Website(db);
 
   let rssFeeds = null;
 
   function buildAllAssets(nextStep) {
-    return async.parallel({
-      assets(next) {
-        return copyAssets(inputDir, outputDir, next);
+    return async.parallel(
+      {
+        assets(next) {
+          return copyAssets(inputDir, outputDir, next);
+        },
+
+        covers(next) {
+          return db.processCovers(
+            inputDir,
+            outputDir,
+            pathPrefix,
+            options,
+            next
+          );
+        },
+
+        sass(next) {
+          return buildSass(outputDir, minifyCss, next);
+        },
+
+        rss(next) {
+          rssFeeds = createRssFeeds(META.siteUrl, pathPrefix, db);
+
+          return buildRssFeeds(outputDir, rssFeeds, next);
+        },
+
+        page404(next) {
+          // Static error page
+          return build404Page(outputDir, pathPrefix, next);
+        },
+
+        sitemap(next) {
+          // Sitemap
+          return buildSitemap(
+            outputDir,
+            META.siteUrl,
+            pathPrefix,
+            website.getPagesToRender(),
+            next
+          );
+        }
       },
-
-      covers(next) {
-        return db.processCovers(inputDir, outputDir, pathPrefix, options, next);
-      },
-
-      sass(next) {
-        return buildSass(outputDir, minifyCss, next);
-      },
-
-      rss(next) {
-        rssFeeds = createRssFeeds(META.siteUrl, pathPrefix, db);
-
-        return buildRssFeeds(outputDir, rssFeeds, next);
-      },
-
-      page404(next) {
-
-        // Static error page
-        return build404Page(outputDir, pathPrefix, next);
-      },
-
-      sitemap(next) {
-
-        // Sitemap
-        return buildSitemap(
-          outputDir,
-          META.siteUrl,
-          pathPrefix,
-          website.getPagesToRender(),
-          next
-        );
-      }
-    }, nextStep);
+      nextStep
+    );
   }
 
   // TODO: Giving path to covers in reducers could enable to build pages while
   // processing assets
-  async.series({
-    cleanup: apply(rimraf, outputDir),
+  async.series(
+    {
+      cleanup: apply(rimraf, outputDir),
 
-    createDir: apply(fs.ensureDir, outputDir),
-    createStaticDir: apply(fs.ensureDir, path.join(outputDir, 'static')),
+      createDir: apply(fs.ensureDir, outputDir),
+      createStaticDir: apply(fs.ensureDir, path.join(outputDir, 'static')),
 
-    assets: buildAllAssets,
+      assets: buildAllAssets,
 
-    build(next) {
+      build(next) {
+        console.time('buildPages');
 
-      console.time('buildPages');
-
-      // Building pages
-      return async.eachLimit(website.getPagesToRender(), 10, (page, nextPage) => {
-        return buildI18nPage(
-          outputDir,
-          pathPrefix,
-          page,
-          {rssFeeds, linkToAdmin},
-          nextPage
+        // Building pages
+        return async.eachLimit(
+          website.getPagesToRender(),
+          10,
+          (page, nextPage) => {
+            return buildI18nPage(
+              outputDir,
+              pathPrefix,
+              page,
+              {rssFeeds, linkToAdmin},
+              nextPage
+            );
+          },
+          next
         );
-      }, next);
-    }
-  }, callback);
+      }
+    },
+    callback
+  );
 };

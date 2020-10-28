@@ -17,6 +17,7 @@ export default function Slider(props) {
       min={min}
       step={step}
       value={value}
-      onChange={onChange} />
+      onChange={onChange}
+    />
   );
 }

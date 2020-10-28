@@ -15,16 +15,21 @@ const MenuList = props => {
   let header;
   if (props.selectProps.selected) {
     header = (
-      <header className="multilevel-selector__menu-header" onClick={props.selectProps.onClickBack}>
+      <header
+        className="multilevel-selector__menu-header"
+        onClick={props.selectProps.onClickBack}>
         <Button className="multilevel-selector__menu-header-button">◀</Button>
-        <span className="multilevel-selector__menu-header-text">Search in {props.selectProps.selected}</span>
+        <span className="multilevel-selector__menu-header-text">
+          Search in {props.selectProps.selected}
+        </span>
       </header>
     );
-  }
-  else if (props.selectProps.inputValue.length) {
+  } else if (props.selectProps.inputValue.length) {
     header = (
       <header className="multilevel-selector__menu-header">
-        <span className="multilevel-selector__menu-header-text">Search in every productions</span>
+        <span className="multilevel-selector__menu-header-text">
+          Search in every productions
+        </span>
       </header>
     );
   }
@@ -37,7 +42,9 @@ const MenuList = props => {
           timeout={200}>
           <div
             className={`multilevel-selecto__animation ${
-              props.selectProps.selected ? 'multilevel-selecto__animation__second-level' : 'multilevel-selecto__animation__first-level'
+              props.selectProps.selected
+                ? 'multilevel-selecto__animation__second-level'
+                : 'multilevel-selecto__animation__first-level'
             }`}>
             {header}
             {props.children}
@@ -49,7 +56,9 @@ const MenuList = props => {
 };
 const Option = props => (
   <components.Option {...props}>
-    <span className="multilevel-selector__option-container">{props.children}</span>
+    <span className="multilevel-selector__option-container">
+      {props.children}
+    </span>
   </components.Option>
 );
 const Control = props => (
@@ -57,24 +66,24 @@ const Control = props => (
     <components.Control {...props} />
   </span>
 );
-const determineOptions = cond([[
-  property('selectedCategory'),
-  ({selectedCategory, options}) => filter(
-    d => d.type === selectedCategory,
-    options
-  )
-], [
-  property('textInInput'),
-  property('options')
-], [
-  stubTrue, pipe(
-    property('categories'),
-    mapObj((category, label) => ({
-      value: label,
-      label: category.fr,
-    })),
-  )
-]]);
+const determineOptions = cond([
+  [
+    property('selectedCategory'),
+    ({selectedCategory, options}) =>
+      filter(d => d.type === selectedCategory, options)
+  ],
+  [property('textInInput'), property('options')],
+  [
+    stubTrue,
+    pipe(
+      property('categories'),
+      mapObj((category, label) => ({
+        value: label,
+        label: category.fr
+      }))
+    )
+  ]
+]);
 
 const PopupSelector = props => {
   const [isPopupOpen, setPopupOpen] = useState(false);
@@ -89,41 +98,50 @@ const PopupSelector = props => {
     categories: props.categories
   });
 
-  const onSelectChange = useCallback(value => {
-    if (value.value in props.categories) {
-      setSelectedCategory(value.value);
-    }
-    else {
-      setPopupOpen(false);
-      props.onChange(value);
-    }
-  }, [props.categories, props.onChange]);
+  const onSelectChange = useCallback(
+    value => {
+      if (value.value in props.categories) {
+        setSelectedCategory(value.value);
+      } else {
+        setPopupOpen(false);
+        props.onChange(value);
+      }
+    },
+    [props.categories, props.onChange]
+  );
   const onClickBack = useCallback(() => setSelectedCategory(null));
   const toggleOpen = useCallback(() => setPopupOpen(true));
-  const inputReducer = useCallback((inputValue, {action}) => {
-    switch (action) {
-      case 'menu-close':
-        setTextInInput(false);
-        setSelectedCategory(null);
-        break;
-      case 'input-change':
-        const hasSearch = inputValue.length >= 1;
-        if (hasSearch !== textInInput) {
-          setTextInInput(hasSearch);
-          setPopupOpen(true);
-        }
-        break;
-      case 'input-blur':
-        setPopupOpen(false);
-        break;
-      default:
-        return;
-    }
-  }, [textInInput]);
+  const inputReducer = useCallback(
+    (inputValue, {action}) => {
+      switch (action) {
+        case 'menu-close':
+          setTextInInput(false);
+          setSelectedCategory(null);
+          break;
+        case 'input-change':
+          const hasSearch = inputValue.length >= 1;
+          if (hasSearch !== textInInput) {
+            setTextInInput(hasSearch);
+            setPopupOpen(true);
+          }
+          break;
+        case 'input-blur':
+          setPopupOpen(false);
+          break;
+        default:
+          return;
+      }
+    },
+    [textInInput]
+  );
   return (
     <Select
       onFocus={toggleOpen}
-      classNamePrefix={showSecondLevel ? 'multilevel-selector__second-level' : 'multilevel-selector__first-level'}
+      classNamePrefix={
+        showSecondLevel
+          ? 'multilevel-selector__second-level'
+          : 'multilevel-selector__first-level'
+      }
       {...props}
       onInputChange={inputReducer}
       onClickBack={onClickBack}
@@ -137,7 +155,8 @@ const PopupSelector = props => {
       controlShouldRenderValue={false}
       menuIsOpen={isPopupOpen}
       onChange={onSelectChange}
-      options={options} />
+      options={options}
+    />
   );
 };
 

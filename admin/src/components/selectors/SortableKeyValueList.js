@@ -1,7 +1,11 @@
 /* global API_URL */
 import React, {PureComponent} from 'react';
 import CreatableSelect from 'react-select/lib/Creatable';
-import {SortableContainer, SortableElement, SortableHandle} from 'react-sortable-hoc';
+import {
+  SortableContainer,
+  SortableElement,
+  SortableHandle
+} from 'react-sortable-hoc';
 import FileInput from 'react-simple-file-input';
 import path from 'path';
 import isUrl from 'is-url';
@@ -14,7 +18,7 @@ import {translateAttachmentLabel} from '../../../../specs/translations';
 
 function prettyName(name) {
   const ext = path.extname(name),
-        basename = path.basename(name, ext);
+    basename = path.basename(name, ext);
 
   const p = basename.split('_').slice(0, -1).join('_');
 
@@ -31,11 +35,21 @@ const SortableItem = SortableElement(({item, onDrop}) => {
   let body;
 
   if (item.type === 'url')
-    body = <a href={item.value} target="_blank" rel="noopener">{item.value}</a>;
+    body = (
+      <a href={item.value} target="_blank" rel="noopener">
+        {item.value}
+      </a>
+    );
   else if (item.type === 'attachment')
-    body = <a href={`${API_URL}/assets/${item.value}`} target="_blank" rel="noopener">{prettyName(item.value)}</a>;
-  else
-    body = item.value;
+    body = (
+      <a
+        href={`${API_URL}/assets/${item.value}`}
+        target="_blank"
+        rel="noopener">
+        {prettyName(item.value)}
+      </a>
+    );
+  else body = item.value;
 
   const translatedLabel = translateAttachmentLabel(item.label);
 
@@ -46,10 +60,18 @@ const SortableItem = SortableElement(({item, onDrop}) => {
         {item.lang && <small>({item.lang})&nbsp;</small>}
         <strong>
           {item.label}
-          {!item.lang && translatedLabel !== item.label && (<small><small> (trad: {translatedLabel})</small></small>)}
+          {!item.lang && translatedLabel !== item.label && (
+            <small>
+              <small> (trad: {translatedLabel})</small>
+            </small>
+          )}
         </strong>
-        &nbsp;-&nbsp;<small><em>{body}</em></small>
-        &nbsp;<button className="delete is-small" onClick={() => onDrop(item)} />
+        &nbsp;-&nbsp;
+        <small>
+          <em>{body}</em>
+        </small>
+        &nbsp;
+        <button className="delete is-small" onClick={() => onDrop(item)} />
       </span>
     </li>
   );
@@ -58,11 +80,7 @@ const SortableItem = SortableElement(({item, onDrop}) => {
 const SortableList = SortableContainer(({items, onDrop}) => (
   <ul className="sortable">
     {items.map((item, i) => (
-      <SortableItem
-        key={i}
-        index={i}
-        item={item}
-        onDrop={onDrop} />
+      <SortableItem key={i} index={i} item={item} onDrop={onDrop} />
     ))}
   </ul>
 ));
@@ -79,10 +97,7 @@ export default class SortableKeyValueList extends PureComponent {
   };
 
   componentDidMount() {
-    const {
-      field,
-      model
-    } = this.props;
+    const {field, model} = this.props;
 
     const payload = {
       params: {
@@ -106,8 +121,7 @@ export default class SortableKeyValueList extends PureComponent {
   handleLabelBlur = e => {
     const value = e.target.value;
 
-    if (!value)
-      return;
+    if (!value) return;
 
     const options = this.state.options;
 
@@ -122,10 +136,12 @@ export default class SortableKeyValueList extends PureComponent {
       };
 
     this.setState({
-      options: matchingOption ? options : options.concat({
-        label: value,
-        value
-      }),
+      options: matchingOption
+        ? options
+        : options.concat({
+            label: value,
+            value
+          }),
       label: option
     });
   };
@@ -145,9 +161,11 @@ export default class SortableKeyValueList extends PureComponent {
   handleAdd = () => {
     // clean extra space
     const value = this.state.value.trim();
-    const type = !this.state.file ?
-      (isUrl(value) ? 'url' : 'string') :
-      'attachment';
+    const type = !this.state.file
+      ? isUrl(value)
+        ? 'url'
+        : 'string'
+      : 'attachment';
 
     const attachment = {
       type,
@@ -155,8 +173,7 @@ export default class SortableKeyValueList extends PureComponent {
       value
     };
 
-    if (this.state.lang)
-      attachment.lang = this.state.lang;
+    if (this.state.lang) attachment.lang = this.state.lang;
 
     // Need to upload?
     if (type === 'attachment') {
@@ -189,27 +206,14 @@ export default class SortableKeyValueList extends PureComponent {
   };
 
   render() {
-    const {
-      file,
-      label,
-      loading,
-      lang,
-      options,
-      uploading,
-      value
-    } = this.state;
+    const {file, label, loading, lang, options, uploading, value} = this.state;
 
-    const {
-      items = [],
-      onMove
-    } = this.props;
+    const {items = [], onMove} = this.props;
 
     const canAdd = label && (value || file) && !uploading;
 
     return (
       <div>
-
-
         {/* Form to add a new item */}
         <div className="columns">
           <div className="column is-4">
@@ -223,7 +227,8 @@ export default class SortableKeyValueList extends PureComponent {
                 placeholder="Choisir un type"
                 onChange={this.handleLabel}
                 onBlur={this.handleLabelBlur}
-                styles={{menu: provided => ({...provided, zIndex: 1000})}} />
+                styles={{menu: provided => ({...provided, zIndex: 1000})}}
+              />
             </div>
           </div>
           <div className="column is-4">
@@ -235,16 +240,17 @@ export default class SortableKeyValueList extends PureComponent {
                   placeholder="Entrer un texte ou choisir un fichier"
                   disabled={!!file}
                   value={file ? file.name : value}
-                  onChange={this.handleValue} />
+                  onChange={this.handleValue}
+                />
               </div>
               <div className="control">
-
                 <div className="file has-name is-right">
                   <label className="file-label">
                     <FileInput
                       key={file ? file.name : ''}
                       className="file-input"
-                      onChange={this.handleFile} />
+                      onChange={this.handleFile}
+                    />
                     <span className="file-cta">
                       <span className="file-label">
                         <DocumentIcon width={24} height={24} />
@@ -252,7 +258,6 @@ export default class SortableKeyValueList extends PureComponent {
                     </span>
                   </label>
                 </div>
-
               </div>
             </div>
           </div>
@@ -287,9 +292,7 @@ export default class SortableKeyValueList extends PureComponent {
                 Créer
               </Button>
               {file && (
-                <Button
-                  kind="text"
-                  onClick={this.handleReset}>
+                <Button kind="text" onClick={this.handleReset}>
                   Reset
                 </Button>
               )}
@@ -300,15 +303,17 @@ export default class SortableKeyValueList extends PureComponent {
         {/* Existing items */}
         <div className="columns">
           <div className="column is-12">
-            {
-              items.length !== 0 &&
-                <label><em>Ces éléments peuvent être ordonnés.</em></label>
-            }
+            {items.length !== 0 && (
+              <label>
+                <em>Ces éléments peuvent être ordonnés.</em>
+              </label>
+            )}
             <SortableList
               useDragHandle
               items={items}
               onDrop={this.handleDrop}
-              onSortEnd={onMove} />
+              onSortEnd={onMove}
+            />
           </div>
         </div>
       </div>

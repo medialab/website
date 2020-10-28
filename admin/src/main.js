@@ -26,9 +26,7 @@ const MOUNT_NODE = document.getElementById('app');
 const STORE = createStore(
   createRootReducer(history),
   {},
-  compose(
-    applyMiddleware(routerMiddleware(history), thunk)
-  )
+  compose(applyMiddleware(routerMiddleware(history), thunk))
 );
 window.STORE = STORE;
 
@@ -55,7 +53,6 @@ client.isLogged((err, logged) => {
 
 // Handling HMR
 if (module.hot) {
-
   // Reloading components
   module.hot.accept('./components/Application', () => {
     const NextApplication = require('./components/Application').default;

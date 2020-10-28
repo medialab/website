@@ -6,7 +6,11 @@ import Link from '../helpers/Link';
 import {getYear, parseISO} from 'date-fns';
 
 import ToggleLang from './fragments/ToggleLang.js';
-import {composeText, productionTypeToSchemaURL, productionTypeToZoteroType} from '../helpers/helpers.js';
+import {
+  composeText,
+  productionTypeToSchemaURL,
+  productionTypeToZoteroType
+} from '../helpers/helpers.js';
 import {I18N_TYPE_LABELS, I18N_GROUP_LABELS} from '../../i18n.js';
 import LogoSticky from './fragments/LogoSticky.js';
 import RelatedProductions from './fragments/RelatedProductions.js';
@@ -36,7 +40,6 @@ const mainPermalink = {
 };
 
 const LangBlock = ({tool, lang, dateYear, usagesText}) => {
-
   const otherLang = lang === 'fr' ? 'en' : 'fr';
 
   return (
@@ -44,47 +47,61 @@ const LangBlock = ({tool, lang, dateYear, usagesText}) => {
       <hgroup>
         <h1 itemProp="name" data-level-1="title">
           {tool.title[lang] || tool.title[otherLang]}
-          {tool.external ?
-            <span className="label">{i18n[lang].externalTool}</span> :
+          {tool.external ? (
+            <span className="label">{i18n[lang].externalTool}</span>
+          ) : (
             <span className="label">{i18n[lang].internalTool}</span>
-          }
+          )}
         </h1>
-        {tool.description && <h2 data-level-2="description"><span>{tool.description[lang] || tool.description[otherLang]}</span></h2>}
+        {tool.description && (
+          <h2 data-level-2="description">
+            <span>{tool.description[lang] || tool.description[otherLang]}</span>
+          </h2>
+        )}
       </hgroup>
       <div className="details">
         <p className="type-objet">
-          <span data-icon="production" /> {I18N_GROUP_LABELS.productions[lang][tool.group]} – {I18N_TYPE_LABELS.productions[lang][tool.type]}
+          <span data-icon="production" />{' '}
+          {I18N_GROUP_LABELS.productions[lang][tool.group]} –{' '}
+          {I18N_TYPE_LABELS.productions[lang][tool.type]}
         </p>
         {tool.authors && <p>{tool.authors}</p>}
         <p />
         {/* {ref} */}
-        {tool.attachments && tool.attachments.length > 0 &&
+        {tool.attachments && tool.attachments.length > 0 && (
           <div className="tool-attachments">
             <Attachments attachments={tool.attachments} lang={lang} />
           </div>
-        }
+        )}
       </div>
       <HtmlFallback
         lang={lang}
         content={tool.content}
         className="article-contenu"
-        itemProp="headline" />
+        itemProp="headline"
+      />
       <div className="details as-main">
         {tool.usages && <p className="type-objet important">{usagesText}</p>}
-        {tool.audience && <p className="type-objet">{I18N_TYPE_LABELS.toolsAudience[lang][tool.audience]}</p>}
-        {tool.status && <p className="type-objet">{I18N_TYPE_LABELS.toolsStatus[lang][tool.status]}</p>}
+        {tool.audience && (
+          <p className="type-objet">
+            {I18N_TYPE_LABELS.toolsAudience[lang][tool.audience]}
+          </p>
+        )}
+        {tool.status && (
+          <p className="type-objet">
+            {I18N_TYPE_LABELS.toolsStatus[lang][tool.status]}
+          </p>
+        )}
         {tool.date && <p>{dateYear}</p>}
       </div>
     </div>
   );
-
 };
 
 function createProductionTitle(lang, tool) {
   let title = tool.title;
 
-  if (title)
-    title = title[lang] || title.fr || title.en;
+  if (title) title = title[lang] || title.fr || title.en;
 
   return (
     (title ? `${title}. ` : '') +
@@ -95,13 +112,16 @@ function createProductionTitle(lang, tool) {
 }
 
 export default function ToolDetail({lang, tool, siteUrl}) {
-
   const otherLang = lang === 'fr' ? 'en' : 'fr';
   const joinText = lang === 'fr' ? ' et ' : ' and ';
 
   let usagesText;
   if (tool.usages && tool.usages.length) {
-    usagesText = composeText(tool.usages, joinText, I18N_TYPE_LABELS.toolsUsages[lang]);
+    usagesText = composeText(
+      tool.usages,
+      joinText,
+      I18N_TYPE_LABELS.toolsUsages[lang]
+    );
   }
   const dateYear = tool.date && getYear(parseISO(tool.date));
 
@@ -116,37 +136,51 @@ export default function ToolDetail({lang, tool, siteUrl}) {
         author={tool.authors.split(', ')}
         lang={lang}
         type={tool.type}
-        imageData={tool.coverImage && tool.coverImage.processed && tool.coverImage.processed.raster}
+        imageData={
+          tool.coverImage &&
+          tool.coverImage.processed &&
+          tool.coverImage.processed.raster
+        }
         uri={`${siteUrl}${mainPermalink[lang]}`}
-        citation={tool.description && tool.description[lang]} />
+        citation={tool.description && tool.description[lang]}
+      />
       <main
         id="main-objet"
         itemScope
         itemType={productionTypeToSchemaURL(tool.type)}
         role="main"
         aria-label={i18n[lang].contentAriaLabel}>
-        <ol style={{display: 'none'}} itemScope itemType="https://schema.org/BreadcrumbList">
+        <ol
+          style={{display: 'none'}}
+          itemScope
+          itemType="https://schema.org/BreadcrumbList">
           <li
-            itemProp="itemListElement" itemScope
+            itemProp="itemListElement"
+            itemScope
             itemType="https://schema.org/ListItem">
             <a
               itemType="https://schema.org/Organization"
-              itemProp="item" href={siteUrl}>
-              <span itemProp="name">médialab Sciences Po</span></a>
+              itemProp="item"
+              href={siteUrl}>
+              <span itemProp="name">médialab Sciences Po</span>
+            </a>
             <meta itemProp="position" content="1" />
           </li>
           <li
-            itemProp="itemListElement" itemScope
+            itemProp="itemListElement"
+            itemScope
             itemType="https://schema.org/ListItem">
             <a
               itemType="https://schema.org/Thing"
               href={`${siteUrl}${mainPermalink[lang]}`}
               itemProp="item">
-              <span itemProp="name">Productions</span></a>
+              <span itemProp="name">Productions</span>
+            </a>
             <meta itemProp="position" content="2" />
           </li>
           <li
-            itemProp="itemListElement" itemScope
+            itemProp="itemListElement"
+            itemScope
             itemType="https://schema.org/ListItem">
             <a
               itemType="https://schema.org/Thing"
@@ -180,13 +214,13 @@ export default function ToolDetail({lang, tool, siteUrl}) {
         </div>
 
         <article id="article-contenu">
-
           {/* FR */}
           <LangBlock
             tool={tool}
             lang={lang}
             dateYear={dateYear}
-            usagesText={usagesText} />
+            usagesText={usagesText}
+          />
 
           {/* Toggle Langue */}
           <ToggleLang lang={lang} content={tool.content} to={tool.permalink} />
@@ -194,17 +228,30 @@ export default function ToolDetail({lang, tool, siteUrl}) {
 
         <aside id="all-aside">
           <div className="details as-aside">
-            {tool.usages && <p className="type-objet important">{usagesText}</p>}
-            {tool.audience && <p className="type-objet">{I18N_TYPE_LABELS.toolsAudience[lang][tool.audience]}</p>}
-            {tool.status && <p className="type-objet">{I18N_TYPE_LABELS.toolsStatus[lang][tool.status]}</p>}
+            {tool.usages && (
+              <p className="type-objet important">{usagesText}</p>
+            )}
+            {tool.audience && (
+              <p className="type-objet">
+                {I18N_TYPE_LABELS.toolsAudience[lang][tool.audience]}
+              </p>
+            )}
+            {tool.status && (
+              <p className="type-objet">
+                {I18N_TYPE_LABELS.toolsStatus[lang][tool.status]}
+              </p>
+            )}
             {tool.date && <p className="type-objet">{dateYear}</p>}
           </div>
-          <RelatedPeople people={tool.people} schemaRelationProp="author" lang={lang} />
+          <RelatedPeople
+            people={tool.people}
+            schemaRelationProp="author"
+            lang={lang}
+          />
           <RelatedActivities activities={tool.activities} lang={lang} />
           <RelatedProductions productions={tool.productions} lang={lang} />
           <RelatedNews actu={tool.news} lang={lang} />
         </aside>
-
       </main>
     </>
   );

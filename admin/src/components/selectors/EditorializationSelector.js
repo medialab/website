@@ -1,6 +1,10 @@
 import React, {PureComponent} from 'react';
 import Select from 'react-select';
-import {SortableContainer, SortableElement, SortableHandle} from 'react-sortable-hoc';
+import {
+  SortableContainer,
+  SortableElement,
+  SortableHandle
+} from 'react-sortable-hoc';
 import keyBy from 'lodash/keyBy';
 import flatten from 'lodash/flatten';
 import parallel from 'async/parallel';
@@ -52,8 +56,12 @@ const SortableItem = SortableElement(({id, label, model, onDrop}) => (
   <li key={id}>
     <span className="tag is-medium" style={{marginBottom: 3}}>
       <DragHandle />
-      <small><em>{TITLES[model]}</em></small>&nbsp;- {label}
-      &nbsp;<button className="delete is-small" onClick={onDrop} />
+      <small>
+        <em>{TITLES[model]}</em>
+      </small>
+      &nbsp;- {label}
+      &nbsp;
+      <button className="delete is-small" onClick={onDrop} />
     </span>
   </li>
 ));
@@ -67,7 +75,8 @@ const SortableList = SortableContainer(({items, index, onDrop}) => (
         id={item.id}
         model={item.model}
         label={index[item.id].label}
-        onDrop={() => onDrop(item)} />
+        onDrop={() => onDrop(item)}
+      />
     ))}
   </ul>
 ));
@@ -101,9 +110,8 @@ export default class EditorializationSelector extends PureComponent {
     });
   }
 
-  handleChange = (option) => {
-    if (!option || !option.value)
-      return;
+  handleChange = option => {
+    if (!option || !option.value) return;
 
     this.props.onAdd({
       model: option.model,
@@ -114,12 +122,7 @@ export default class EditorializationSelector extends PureComponent {
   render() {
     const {options, loading} = this.state;
 
-    const {
-      max = Infinity,
-      onDrop,
-      onMove,
-      selected = []
-    } = this.props;
+    const {max = Infinity, onDrop, onMove, selected = []} = this.props;
 
     const selectedSet = new Set(selected.map(item => item.id));
 
@@ -134,14 +137,15 @@ export default class EditorializationSelector extends PureComponent {
 
     return (
       <div>
-        {!loading &&
+        {!loading && (
           <SortableList
             items={selected}
             index={this.optionsIndex}
             useDragHandle
             onDrop={onDrop}
-            onSortEnd={onMove} />
-        }
+            onSortEnd={onMove}
+          />
+        )}
         <br />
         <Select
           isDisabled={full}
@@ -150,7 +154,8 @@ export default class EditorializationSelector extends PureComponent {
           options={filteredOptions}
           isLoading={loading}
           placeholder={full ? 'Already full' : 'Add...'}
-          noOptionsMessage={noOptionsMessage} />
+          noOptionsMessage={noOptionsMessage}
+        />
       </div>
     );
   }

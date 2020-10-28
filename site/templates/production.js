@@ -19,17 +19,22 @@ export default function ProductionTemplate({data, pageContext}) {
       lang={pageContext.lang}
       className="page-production body-page"
       permalinks={pageContext.permalinks}>
-      {pageContext.linkToAdmin && <EditInAdmin item={production} linkToAdmin={pageContext.linkToAdmin} />}
-      {production.type === 'code' || production.type === 'software' ?
+      {pageContext.linkToAdmin && (
+        <EditInAdmin item={production} linkToAdmin={pageContext.linkToAdmin} />
+      )}
+      {production.type === 'code' || production.type === 'software' ? (
         <ToolDetail
           lang={pageContext.lang}
           tool={production}
-          siteUrl={meta.siteUrl} /> :
+          siteUrl={meta.siteUrl}
+        />
+      ) : (
         <ProductionDetail
           lang={pageContext.lang}
           production={production}
-          siteUrl={meta.siteUrl} />
-      }
+          siteUrl={meta.siteUrl}
+        />
+      )}
     </Layout>
   );
 }

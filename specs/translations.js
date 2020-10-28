@@ -1,22 +1,21 @@
 const ATTACHMENT_LABELS = {
-
   // Tools
-  'catalogue': 'Catalog',
+  catalogue: 'Catalog',
   'outil en ligne': 'Online tool',
-  'démonstration': 'Demo',
+  démonstration: 'Demo',
   'site internet': 'Website',
   'code source': 'Source code',
-  'tutoriel': 'Tutorial',
-  'téléchargement': 'Download',
+  tutoriel: 'Tutorial',
+  téléchargement: 'Download',
 
   // People
-  'mail': 'E-mail',
-  'site': 'Website',
-  'cv': 'Resume',
+  mail: 'E-mail',
+  site: 'Website',
+  cv: 'Resume',
   'site personnel': 'Personal website',
 
   // News
-  's\'inscrire': 'Registration',
+  "s'inscrire": 'Registration',
   'article de presse': 'Press article',
   'fiche de poste': 'Job description',
   'cahier des charges': 'Specifications',

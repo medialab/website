@@ -4,8 +4,7 @@ const sharp = require('sharp');
 const path = require('path');
 const {sharpToString, imgToProcessedPng} = require('../specs/processing.js');
 
-if (process.env.DISABLE_SHARP_CACHE)
-  sharp.cache(false);
+if (process.env.DISABLE_SHARP_CACHE) sharp.cache(false);
 
 // Typical cover resize for people portraits
 const COVER_RESIZE = {
@@ -21,7 +20,10 @@ exports.buildCover = function buildCover(
   options,
   callback
 ) {
-  assert(!!item.cover, `wilson/images.buildCover: cannot build cover if item "${item.id}" has none.`);
+  assert(
+    !!item.cover,
+    `wilson/images.buildCover: cannot build cover if item "${item.id}" has none.`
+  );
 
   options = options || {};
 
@@ -30,7 +32,7 @@ exports.buildCover = function buildCover(
   const cover = item.cover;
 
   const ext = path.extname(cover.file),
-        name = path.basename(cover.file, ext);
+    name = path.basename(cover.file, ext);
 
   const output = `${name}.cover${ext}`;
   const socialOutput = `${name}.social.png`;
@@ -45,75 +47,87 @@ exports.buildCover = function buildCover(
 
   // Function returning a sharp object with correct cropping
   const img = () => {
-    return sharp(path.join(inputDir, 'assets', cover.file))
-      .extract({
-        left: crop.x,
-        top: crop.y,
-        width: crop.width,
-        height: crop.height
-      });
+    return sharp(path.join(inputDir, 'assets', cover.file)).extract({
+      left: crop.x,
+      top: crop.y,
+      width: crop.width,
+      height: crop.height
+    });
   };
 
   // Cover needs to be processed and rasterized
   if (cover.processed) {
-    return async.parallel({
-      small(next) {
-        return sharpToString(img(), cover.crop, {
-          rows: 60,
-          gamma: cover.gamma
-        }, next);
-      },
-      medium(next) {
-        return sharpToString(img(), cover.crop, {
-          rows: 120,
-          gamma: cover.gamma
-        }, next);
-      },
-      large(next) {
-        return sharpToString(img(), cover.crop, {
-          rows: 240,
-          gamma: cover.gamma
-        }, next);
-      },
-    }, (err, processed) => {
-      if (err)
-        return callback(err);
-
-      data.processed = processed;
-
-      if (options.skipRaster)
-        return callback(null, data);
-
-      return imgToProcessedPng(
-        processed.medium,
-        {
-          rows: 120,
-          output: path.join(publicPath, socialOutput)
+    return async.parallel(
+      {
+        small(next) {
+          return sharpToString(
+            img(),
+            cover.crop,
+            {
+              rows: 60,
+              gamma: cover.gamma
+            },
+            next
+          );
         },
-        sharp,
-        (rasterErr, raster) => {
-          if (rasterErr)
-            return callback(rasterErr);
-
-          data.processed.raster = {
-            ...raster,
-            url: socialUrl
-          };
-
-          return callback(null, data);
+        medium(next) {
+          return sharpToString(
+            img(),
+            cover.crop,
+            {
+              rows: 120,
+              gamma: cover.gamma
+            },
+            next
+          );
+        },
+        large(next) {
+          return sharpToString(
+            img(),
+            cover.crop,
+            {
+              rows: 240,
+              gamma: cover.gamma
+            },
+            next
+          );
         }
-      );
-    });
+      },
+      (err, processed) => {
+        if (err) return callback(err);
+
+        data.processed = processed;
+
+        if (options.skipRaster) return callback(null, data);
+
+        return imgToProcessedPng(
+          processed.medium,
+          {
+            rows: 120,
+            output: path.join(publicPath, socialOutput)
+          },
+          sharp,
+          (rasterErr, raster) => {
+            if (rasterErr) return callback(rasterErr);
+
+            data.processed.raster = {
+              ...raster,
+              url: socialUrl
+            };
+
+            return callback(null, data);
+          }
+        );
+      }
+    );
   }
 
   // Cover does not need to be processed (e.g. team portraits)
-  const portrait = img()
-    .resize(COVER_RESIZE);
+  const portrait = img().resize(COVER_RESIZE);
 
   if (options.outputBuffers)
     return portrait.toBuffer((err, buffer) => {
-      if (err)
-        return callback(err);
+      if (err) return callback(err);
 
       data.buffer = buffer;
 
@@ -121,8 +135,7 @@ exports.buildCover = function buildCover(
     });
 
   return portrait.toFile(path.join(publicPath, output), err => {
-    if (err)
-      return callback(err);
+    if (err) return callback(err);
 
     return callback(null, data);
   });

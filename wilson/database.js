@@ -81,18 +81,18 @@ class Database {
       const forward = FORWARD_LINKS[model];
 
       this.store[model] = this.store[model].map(item => {
-
         // Applying reducers
         item = reducers[model](pathPrefix, item);
 
         for (const k in forward) {
-          if (!(k in item))
-            continue;
+          if (!(k in item)) continue;
 
           item[k].forEach(target => {
             if (!this.graph.hasNode(target)) {
               if (!draftIds.has(target))
-                console.warn(`wilson/database: "${target}" - ${k} node not found (from "${item.id}" - ${item.model})!`);
+                console.warn(
+                  `wilson/database: "${target}" - ${k} node not found (from "${item.id}" - ${item.model})!`
+                );
               return;
             }
 
@@ -114,7 +114,6 @@ class Database {
 
     // Hydrating links
     this.graph.forEachNode((node, attr) => {
-
       // Forward
       if (attr.model in FORWARD_LINKS) {
         const forward = FORWARD_LINKS[attr.model];
@@ -141,19 +140,16 @@ class Database {
       }
 
       // Backwards
-      const backlinks = this.graph
-        .inNeighbors(node)
-        .map(neighbor => {
-          return this.graph.getNodeAttributes(neighbor);
-        });
+      const backlinks = this.graph.inNeighbors(node).map(neighbor => {
+        return this.graph.getNodeAttributes(neighbor);
+      });
 
       const groupedBacklinks = groupBy(backlinks, item => item.model);
 
       if (attr.model in BACKWARD_LINKS) {
         const backward = BACKWARD_LINKS[attr.model];
 
-        for (const k in backward)
-          attr[k] = groupedBacklinks[k] || [];
+        for (const k in backward) attr[k] = groupedBacklinks[k] || [];
       }
     });
 
@@ -185,56 +181,67 @@ class Database {
   processCovers(inputDir, outputDir, pathPrefix, options, callback) {
     this.coverImageCache = {};
 
-    const data = this.graph.nodes()
+    const data = this.graph
+      .nodes()
       .map(node => {
         return this.graph.getNodeAttributes(node);
       })
       .filter(item => {
-        if (!item.cover)
-          return false;
+        if (!item.cover) return false;
 
         // TODO: could be more efficient since we have the relevant ids
-        if (options.only && !options.only.has(item.id))
-          return false;
+        if (options.only && !options.only.has(item.id)) return false;
 
         return true;
       });
 
-    async.eachLimit(data, 10, (item, next) => {
+    async.eachLimit(
+      data,
+      10,
+      (item, next) => {
+        // Using provided external cache (typically from long-running preview)
+        if (this.options.coverImageCache) {
+          const cache = this.options.coverImageCache[item.id];
 
-      // Using provided external cache (typically from long-running preview)
-      if (this.options.coverImageCache) {
-        const cache = this.options.coverImageCache[item.id];
+          if (cache.file === item.cover.file) {
+            item.coverImage = cache.data;
 
-        if (cache.file === item.cover.file) {
-          item.coverImage = cache.data;
-
-          return next();
+            return next();
+          }
         }
+
+        return buildCover(
+          inputDir,
+          outputDir,
+          pathPrefix,
+          item,
+          options,
+          (err, coverImage) => {
+            if (err) return next(err);
+
+            item.coverImage = coverImage;
+            this.coverImageCache[item.id] = {
+              file: item.cover.file,
+              data: coverImage
+            };
+
+            return next();
+          }
+        );
+      },
+      err => {
+        if (err) return callback(err);
+
+        const bufferIndex = {};
+
+        data.forEach(item => {
+          if (item.coverImage.buffer)
+            bufferIndex[item.coverImage.url] = item.coverImage.buffer;
+        });
+
+        return callback(null, bufferIndex);
       }
-
-      return buildCover(inputDir, outputDir, pathPrefix, item, options, (err, coverImage) => {
-        if (err)
-          return next(err);
-
-        item.coverImage = coverImage;
-        this.coverImageCache[item.id] = {file: item.cover.file, data: coverImage};
-
-        return next();
-      });
-    }, err => {
-      if (err)
-        return callback(err);
-
-      const bufferIndex = {};
-
-      data.forEach(item => {
-        if (item.coverImage.buffer)
-          bufferIndex[item.coverImage.url] = item.coverImage.buffer;
-      });
-
-      return callback(null, bufferIndex);
-    });
+    );
   }
 
   get(id) {
@@ -260,7 +267,7 @@ class Database {
   }
 
   getRdv() {
-    const today = (+(new Date()) / 1000) | 0;
+    const today = (+new Date() / 1000) | 0;
 
     return this.getModel('news')
       .filter(news => {
@@ -291,8 +298,7 @@ function loadFluxFromDisk(inputDir) {
   if (fs.existsSync(githubPath)) {
     try {
       data.github = fs.readJSONSync(githubPath).map(reducers.github);
-    }
-    catch (e) {
+    } catch (e) {
       console.error('Error while loading Github flux data!');
     }
   }
@@ -300,8 +306,7 @@ function loadFluxFromDisk(inputDir) {
   if (fs.existsSync(twitterPath)) {
     try {
       data.twitter = fs.readJSONSync(twitterPath);
-    }
-    catch (e) {
+    } catch (e) {
       console.error('Error while loading Twitter flux data!');
     }
   }
@@ -309,7 +314,7 @@ function loadFluxFromDisk(inputDir) {
   return data;
 }
 
-Database.fromDisk = function(inputDir, options) {
+Database.fromDisk = function (inputDir, options) {
   const store = {};
 
   models.forEach(model => {
@@ -317,14 +322,16 @@ Database.fromDisk = function(inputDir, options) {
     store[model] = modelData[model];
   });
 
-  store.settings = fs.readJSONSync(path.join(inputDir, 'settings.json')).settings;
+  store.settings = fs.readJSONSync(
+    path.join(inputDir, 'settings.json')
+  ).settings;
 
   Object.assign(store, loadFluxFromDisk(inputDir));
 
   return new Database(store, options);
 };
 
-Database.fromLowDB = function(inputDir, lowdbs, options) {
+Database.fromLowDB = function (inputDir, lowdbs, options) {
   const store = {};
 
   models.forEach(model => {

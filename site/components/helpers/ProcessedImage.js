@@ -24,8 +24,7 @@ function makeid(length) {
 
 function findFirstColoredBlock(row) {
   for (let i = 0; i < row.length; i++) {
-    if (row[i] !== BLANK)
-      return i;
+    if (row[i] !== BLANK) return i;
   }
 
   return row.length;
@@ -37,49 +36,50 @@ function findAnchor(image, rows, b) {
   for (let i = 0; i < 10; i++) {
     const offset = i * rows;
 
-    firstColoredBlock[i] = findFirstColoredBlock(image.slice(offset, offset + rows));
+    firstColoredBlock[i] = findFirstColoredBlock(
+      image.slice(offset, offset + rows)
+    );
   }
 
   return Math.min.apply(null, firstColoredBlock);
 }
 
 function extractGenerativeParameters(rows, data) {
-  const string = (
-    (data.name &&
-      ((data.name.fr || '') + (data.name.en || ''))) ||
-    (data.title &&
-      ((data.title.fr || '') + (data.title.en || ''))) ||
-    'levenshtein is so cool'
-  );
+  const string =
+    (data.name && (data.name.fr || '') + (data.name.en || '')) ||
+    (data.title && (data.title.fr || '') + (data.title.en || '')) ||
+    'levenshtein is so cool';
 
-  const date = (data.startDate || data.date || data.endDate);
+  const date = data.startDate || data.date || data.endDate;
 
-  const number = date ?
-    +date.split('T')[0].replace(/-/g, '') :
-    string.charCodeAt(0);
+  const number = date
+    ? +date.split('T')[0].replace(/-/g, '')
+    : string.charCodeAt(0);
 
   // TODO: There is something fishy here...
-  let splitPoint = (number % string.length);
+  let splitPoint = number % string.length;
 
-  if (splitPoint === 1)
-    splitPoint = (string.length / 2) | 0;
+  if (splitPoint === 1) splitPoint = (string.length / 2) | 0;
 
   const A = string.slice(0, splitPoint);
   const B = string.slice(-splitPoint);
 
   const sparsity = number % 5;
 
-  return [A, B, {
-    rows,
-    sparsity,
-    rotate: number
-  }];
+  return [
+    A,
+    B,
+    {
+      rows,
+      sparsity,
+      rotate: number
+    }
+  ];
 }
 
 const PLACEHOLDER_CHARACTERS = makeid(12);
 
 export default function ProcessedImage({image, data, size}) {
-
   const rows = ROWS[size];
 
   if (!image && data) {
@@ -88,7 +88,7 @@ export default function ProcessedImage({image, data, size}) {
   }
   const needPlaceholder = !image;
 
-  const length = image ? image.length : ((rows * 3 / 4) | 0) * rows;
+  const length = image ? image.length : (((rows * 3) / 4) | 0) * rows;
 
   const b = (length / rows) | 0;
 
@@ -100,13 +100,11 @@ export default function ProcessedImage({image, data, size}) {
       {Array.from(new Array(b), (_, i) => {
         const offset = i * rows;
 
-        const row = needPlaceholder ?
-          PLACEHOLDER_CHARACTERS.repeat(rows / PLACEHOLDER_CHARACTERS.length) :
-          image.slice(offset + anchor, offset + rows);
+        const row = needPlaceholder
+          ? PLACEHOLDER_CHARACTERS.repeat(rows / PLACEHOLDER_CHARACTERS.length)
+          : image.slice(offset + anchor, offset + rows);
 
-        return (
-          <pre key={i}>{row}</pre>
-        );
+        return <pre key={i}>{row}</pre>;
       })}
     </>
   );

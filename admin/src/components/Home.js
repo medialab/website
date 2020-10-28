@@ -12,14 +12,22 @@ export default function Home() {
         <title>médialab CMS</title>
       </Helmet>
       <div className="content">
-        <h2 className="title is-4">Bienvenu·e sur le CMS du site du médialab!</h2>
+        <h2 className="title is-4">
+          Bienvenu·e sur le CMS du site du médialab!
+        </h2>
         <p>
-          <a href={API_URL + '/preview/'} target="_blank" rel="noopener noreferrer">
+          <a
+            href={API_URL + '/preview/'}
+            target="_blank"
+            rel="noopener noreferrer">
             Lien vers la preview du site (avec les changements du CMS en live)
           </a>
         </p>
         <p>
-          <a href="https://medialab.sciencespo.fr" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://medialab.sciencespo.fr"
+            target="_blank"
+            rel="noopener noreferrer">
             Lien vers le site web en production
           </a>
         </p>

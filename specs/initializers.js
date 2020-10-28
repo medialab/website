@@ -1,7 +1,7 @@
 const enums = require('./enums.json');
 
 module.exports = {
-  activity: function(uuid) {
+  activity: function (uuid) {
     return {
       id: uuid(),
       type: enums.activityTypes.default,
@@ -9,15 +9,15 @@ module.exports = {
       active: true
     };
   },
-  news: function(uuid) {
+  news: function (uuid) {
     return {
       id: uuid(),
-      startDate: (new Date()).toISOString().split('T')[0],
+      startDate: new Date().toISOString().split('T')[0],
       draft: true,
       internal: false
     };
   },
-  people: function(uuid) {
+  people: function (uuid) {
     return {
       id: uuid(),
       firstName: '',
@@ -27,7 +27,7 @@ module.exports = {
       active: true
     };
   },
-  production: function(uuid) {
+  production: function (uuid) {
     return {
       id: uuid(),
       draft: true,

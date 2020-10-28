@@ -5,9 +5,9 @@ export const I18N_MODEL = {
   fr: {
     activities: 'Activités',
     news: 'Actualités',
-    people: 'L\'équipe',
+    people: "L'équipe",
     productions: 'Productions',
-    tools: 'Outils',
+    tools: 'Outils'
   },
   en: {
     activities: 'Activities',
@@ -62,6 +62,4 @@ for (const k in enums.productionTypes.groups) {
   I18N_GROUP_LABELS.productions.en[k] = enums.productionTypes.groups[k].en;
 }
 
-export {
-  I18N_GROUP_LABELS
-};
+export {I18N_GROUP_LABELS};

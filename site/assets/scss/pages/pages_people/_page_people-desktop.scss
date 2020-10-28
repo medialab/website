@@ -45,14 +45,14 @@
             display: inline-block;
           }
 
-          [data-type="domaine"] {
+          [data-type='domaine'] {
             margin-right: $unite/2;
             display: inline-block;
             padding-left: $unite/2;
             margin-left: $unite/2;
             border-left: $border-very-light;
           }
-          [data-type="membership"] {
+          [data-type='membership'] {
             display: inline-block;
             border-left: $border-very-light;
             padding-left: $unite/2;
@@ -67,7 +67,7 @@
             display: inline-block;
 
             &:not(:last-of-type):after {
-              content: "";
+              content: '';
               width: 1px;
               height: calc(100% - #{$baseline});
               position: absolute;
@@ -158,6 +158,5 @@
       //margin-left: $unite*2;
       padding: $baseline * 2 0 $baseline * 2 $margins-desktop * 1.5;
     }
-
   }
 }

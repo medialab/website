@@ -28,55 +28,99 @@ const i18n = {
     reply: 'a response to',
     quote: 'retweet of',
     retweet: 'retweet of'
-  },
-
+  }
 };
 
 export default function tweet({lang, tweets}) {
-return (
-  <>
-    <section id="tweet">
-      <h1>{i18n[lang].on}<span data-icon="tweet"><a href="https://twitter.com/medialab_scpo" target="_blank" rel="noopener noreferrer">Twitter</a></span></h1>
-      <input
-        type="checkbox" name="checkbox_flux" id="checkbox_tweet"
-        hidden />
-      <label className="responsive-flux" htmlFor="checkbox_tweet">
-        <span><Icons icon="arrow" /></span>
-      </label>
+  return (
+    <>
+      <section id="tweet">
+        <h1>
+          {i18n[lang].on}
+          <span data-icon="tweet">
+            <a
+              href="https://twitter.com/medialab_scpo"
+              target="_blank"
+              rel="noopener noreferrer">
+              Twitter
+            </a>
+          </span>
+        </h1>
+        <input
+          type="checkbox"
+          name="checkbox_flux"
+          id="checkbox_tweet"
+          hidden
+        />
+        <label className="responsive-flux" htmlFor="checkbox_tweet">
+          <span>
+            <Icons icon="arrow" />
+          </span>
+        </label>
 
-      <div id="tweet-content">
-        { tweets.map(t =>
-            (<article
-              itemScope itemType="https://schema.org/SocialMediaPosting" className="tweet"
-              data-type="tweet" key={t.tweet.toString()} aria-label="Tweet" >
+        <div id="tweet-content">
+          {tweets.map(t => (
+            <article
+              itemScope
+              itemType="https://schema.org/SocialMediaPosting"
+              className="tweet"
+              data-type="tweet"
+              key={t.tweet.toString()}
+              aria-label="Tweet">
               <a
-                itemProp="url" href={`https://twitter.com/medialab_scpo/status/${t.tweet}`} target="_blank"
+                itemProp="url"
+                href={`https://twitter.com/medialab_scpo/status/${t.tweet}`}
+                target="_blank"
                 rel="noopener noreferrer">
                 <aside className="divers">
                   {
                     //<p className="label" data-icon="tweet">{t.type}</p>
                   }
-                  <p itemProp="creator" className="account">@medialab_ScPo</p>
-                  <time itemProp="datePublished" className="date" dateTime={t.date}>{formatDateTime(t.date, lang)}</time>
+                  <p itemProp="creator" className="account">
+                    @medialab_ScPo
+                  </p>
+                  <time
+                    itemProp="datePublished"
+                    className="date"
+                    dateTime={t.date}>
+                    {formatDateTime(t.date, lang)}
+                  </time>
                 </aside>
               </a>
-              {t.type !== 'retweet' &&
-                <p itemProp="articleBody" className="tweet-content" dangerouslySetInnerHTML={{__html: t.html}} />
-              }
-              {t.originalTweet &&
+              {t.type !== 'retweet' && (
+                <p
+                  itemProp="articleBody"
+                  className="tweet-content"
+                  dangerouslySetInnerHTML={{__html: t.html}}
+                />
+              )}
+              {t.originalTweet && (
                 <div className="original-tweet">
                   <aside className="divers">
-                    <p className="label" data-icon="tweet">{i18n[lang][t.type]}</p>
-                    <p className="account">{t.originalTweet.name} (<a href={`https://twitter.com/${t.originalTweet.screenName}`} target="_blank" rel="noopener noreferrer">@{t.originalTweet.screenName}</a>)</p>
+                    <p className="label" data-icon="tweet">
+                      {i18n[lang][t.type]}
+                    </p>
+                    <p className="account">
+                      {t.originalTweet.name} (
+                      <a
+                        href={`https://twitter.com/${t.originalTweet.screenName}`}
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        @{t.originalTweet.screenName}
+                      </a>
+                      )
+                    </p>
                   </aside>
-                  <p className="tweet-content" dangerouslySetInnerHTML={{__html: t.originalTweet.html}} />
+                  <p
+                    className="tweet-content"
+                    dangerouslySetInnerHTML={{__html: t.originalTweet.html}}
+                  />
                 </div>
-              }
-            </article>)
-          )
-        }
-      </div>
-    </section>
-  </>
-);
+              )}
+            </article>
+          ))}
+        </div>
+      </section>
+    </>
+  );
 }

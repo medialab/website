@@ -4,7 +4,9 @@ import initializers from '../../../../specs/initializers';
 import {slugifyProduction} from '../../utils';
 import enums from '../../../../specs/enums.json';
 
-import RelationSelector, {MultiRelationSelector} from '../selectors/RelationSelector';
+import RelationSelector, {
+  MultiRelationSelector
+} from '../selectors/RelationSelector';
 import SortableKeyValueList from '../selectors/SortableKeyValueList';
 import Form from './Form';
 import Editor from '../Editor';
@@ -21,8 +23,7 @@ import keyBy from 'lodash/keyBy';
 import {statusLabels} from './utils';
 
 function validate(data) {
-  if (data.spire)
-    return;
+  if (data.spire) return;
 
   if (!data.title || (!data.title.fr && !data.title.en))
     return 'Need at least a  title';
@@ -129,52 +130,47 @@ class SpireGeneratedField extends Component {
           this.setState({loading: false, peopleLabels: {}});
           return;
         }
-        const peopleLabels = keyBy(response.map(p => ({id: p.id, label: `${p.firstName} ${p.lastName}`})), p => p.id);
+        const peopleLabels = keyBy(
+          response.map(p => ({
+            id: p.id,
+            label: `${p.firstName} ${p.lastName}`
+          })),
+          p => p.id
+        );
         this.setState({loading: false, peopleLabels});
       });
-    }
-    else
-      this.setState({loading: false, peopleLabels: {}});
+    } else this.setState({loading: false, peopleLabels: {}});
   }
 
   render() {
-
     const {peopleLabels, loading} = this.state;
     const {humanValue, spireValue, children, init, cancel, label} = this.props;
 
     if (spireValue !== undefined) {
-
       let spireLabel = spireValue;
 
-      if (loading)
-        spireLabel = 'loading...';
+      if (loading) spireLabel = 'loading...';
       else if (this.props.model === 'people')
         spireLabel = spireValue.map(sv => peopleLabels[sv].label).join(', ');
-      else if (label)
-        spireLabel = label(spireValue);
+      else if (label) spireLabel = label(spireValue);
 
       return (
         <div>
           <div className="notification is-medium">{spireLabel}</div>
-          {(humanValue === undefined) && (
-            <Button
-              kind="text"
-              onClick={() => init()}>
+          {humanValue === undefined && (
+            <Button kind="text" onClick={() => init()}>
               Modifier la valeur générée depuis SPIRE
             </Button>
           )}
           {(humanValue !== undefined || humanValue === '') && children}
           {(humanValue !== undefined || humanValue === '') && (
-            <Button
-              kind="text"
-              onClick={() => cancel()}>
+            <Button kind="text" onClick={() => cancel()}>
               Annuler et restaurer la valeur générée depuis spire
             </Button>
           )}
         </div>
       );
-    }
-    else {
+    } else {
       return children;
     }
   }
@@ -191,33 +187,38 @@ function renderProductionForm(props) {
     dirty
   } = props;
 
-  const statusLabel = data.title ?
-    (data.title.fr || data.title.en) :
-    (data.spire && data.spire.generatedFields && data.spire.generatedFields.title) ?
-      (data.spire.generatedFields.title.fr || data.spire.generatedFields.title.en) :
-      'Publication';
+  const statusLabel = data.title
+    ? data.title.fr || data.title.en
+    : data.spire &&
+      data.spire.generatedFields &&
+      data.spire.generatedFields.title
+    ? data.spire.generatedFields.title.fr || data.spire.generatedFields.title.en
+    : 'Publication';
 
   return (
     <div className="container">
-
       <div className="form-group">
         <div className="columns">
-
           <div className="column is-6">
             <div className="field">
-              <label className="label">French Title <small>(requis en français ou anglais)</small></label>
+              <label className="label">
+                French Title <small>(requis en français ou anglais)</small>
+              </label>
               <div className="control">
                 <SpireGeneratedField
                   spireValue={data.spire && data.spire.generatedFields.title.fr}
                   humanValue={data.title && data.title.fr}
                   init={() => handlers.frenchTitle({target: {value: ''}})}
-                  cancel={() => handlers.frenchTitle({target: {value: undefined}})} >
+                  cancel={() =>
+                    handlers.frenchTitle({target: {value: undefined}})
+                  }>
                   <input
                     type="text"
                     className="input"
                     value={(data.title && data.title.fr) || ''}
                     onChange={handlers.frenchTitle}
-                    placeholder="French Title" />
+                    placeholder="French Title"
+                  />
                 </SpireGeneratedField>
               </div>
             </div>
@@ -225,31 +226,38 @@ function renderProductionForm(props) {
 
           <div className="column is-6">
             <div className="field">
-              <label className="label">English Title <small>(requis en français ou anglais)</small></label>
+              <label className="label">
+                English Title <small>(requis en français ou anglais)</small>
+              </label>
               <div className="control">
                 <SpireGeneratedField
                   spireValue={data.spire && data.spire.generatedFields.title.en}
                   humanValue={data.title && data.title.en}
                   init={() => handlers.englishTitle({target: {value: ''}})}
-                  cancel={() => handlers.englishTitle({target: {value: undefined}})}>
+                  cancel={() =>
+                    handlers.englishTitle({target: {value: undefined}})
+                  }>
                   <input
                     type="text"
                     className="input"
                     autoFocus
                     value={(data.title && data.title.en) || ''}
                     onChange={handlers.englishTitle}
-                    placeholder="English Title" />
+                    placeholder="English Title"
+                  />
                 </SpireGeneratedField>
               </div>
             </div>
           </div>
-
         </div>
 
         <div className="columns">
           <div className="column is-12">
             <div className="field">
-              <label className="label" style={{display: 'inline'}}>Slug:</label> {slug && <code>{slug}</code>}
+              <label className="label" style={{display: 'inline'}}>
+                Slug:
+              </label>{' '}
+              {slug && <code>{slug}</code>}
               {url && <PreviewLink url={url} disabled={dirty} />}
             </div>
           </div>
@@ -262,7 +270,8 @@ function renderProductionForm(props) {
               <CoverSelector
                 cover={data.cover}
                 ratio={4 / 3}
-                onChange={handlers.cover} />
+                onChange={handlers.cover}
+              />
             </div>
           </div>
         </div>
@@ -273,77 +282,84 @@ function renderProductionForm(props) {
               <label className="label">Type of production</label>
               <div className="control">
                 <SpireGeneratedField
-                  spireValue={data.spire && enums.productionTypes.fr[data.spire.generatedFields.type]}
+                  spireValue={
+                    data.spire &&
+                    enums.productionTypes.fr[data.spire.generatedFields.type]
+                  }
                   humanValue={data.type}
                   init={() => handlers.type('')}
                   cancel={() => handlers.type(undefined)}>
                   <EnumSelector
                     enumType="productionTypes"
                     value={data.type}
-                    onChange={handlers.type} />
+                    onChange={handlers.type}
+                  />
                 </SpireGeneratedField>
               </div>
             </div>
           </div>
         </div>
 
-        {data.type && (data.type === 'code' || data.type === 'software') &&
-          (
-            <>
-              <div className="columns">
-                <div className="column is-5">
-                  <div className="field">
-                    <label className="label">Usages</label>
-                    <div className="control">
-                      <EnumSelector
-                        enumType="usages"
-                        isMulti
-                        value={data.usages}
-                        onChange={handlers.usages} />
-                    </div>
-                  </div>
-                </div>
-                <div className="column is-3">
-                  <div className="field">
-                    <label className="label">Audience</label>
-                    <div className="control">
-                      <EnumSelector
-                        enumType="audience"
-                        value={data.audience}
-                        onChange={handlers.audience} />
-                    </div>
-                  </div>
-                </div>
-                <div className="column is-4">
-                  <div className="field">
-                    <label className="label">Status</label>
-                    <div className="control">
-                      <EnumSelector
-                        enumType="status"
-                        value={data.status}
-                        onChange={handlers.status} />
-                    </div>
+        {data.type && (data.type === 'code' || data.type === 'software') && (
+          <>
+            <div className="columns">
+              <div className="column is-5">
+                <div className="field">
+                  <label className="label">Usages</label>
+                  <div className="control">
+                    <EnumSelector
+                      enumType="usages"
+                      isMulti
+                      value={data.usages}
+                      onChange={handlers.usages}
+                    />
                   </div>
                 </div>
               </div>
-              <div className="columns">
-                <div className="column is-10">
-                  <div className="field">
-                    <label className="label">attachments</label>
-                    <div className="control">
-                      <SortableKeyValueList
-                        items={data.attachments}
-                        model="productions"
-                        field="attachments.label"
-                        onAdd={handlers.attachments.add}
-                        onDrop={handlers.attachments.drop}
-                        onMove={handlers.attachments.move} />
-                    </div>
+              <div className="column is-3">
+                <div className="field">
+                  <label className="label">Audience</label>
+                  <div className="control">
+                    <EnumSelector
+                      enumType="audience"
+                      value={data.audience}
+                      onChange={handlers.audience}
+                    />
                   </div>
                 </div>
               </div>
-            </>
-          )}
+              <div className="column is-4">
+                <div className="field">
+                  <label className="label">Status</label>
+                  <div className="control">
+                    <EnumSelector
+                      enumType="status"
+                      value={data.status}
+                      onChange={handlers.status}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="columns">
+              <div className="column is-10">
+                <div className="field">
+                  <label className="label">attachments</label>
+                  <div className="control">
+                    <SortableKeyValueList
+                      items={data.attachments}
+                      model="productions"
+                      field="attachments.label"
+                      onAdd={handlers.attachments.add}
+                      onDrop={handlers.attachments.drop}
+                      onMove={handlers.attachments.move}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
 
         <div className="columns">
           <div className="column is-6">
@@ -357,7 +373,8 @@ function renderProductionForm(props) {
                 <DateSelector
                   precision="year"
                   value={data.date}
-                  onChange={handlers.date} />
+                  onChange={handlers.date}
+                />
               </SpireGeneratedField>
             </div>
           </div>
@@ -367,11 +384,13 @@ function renderProductionForm(props) {
       <div className="columns">
         <div className="column is-12">
           <div className="field">
-            <label className="label">Auteurs
+            <label className="label">
+              Auteurs
               <em>
                 Liste des auteurs prénom nom séparés par des virgules.
                 <br />
-                Indiquer la liste complète (médialab et non médialab) des auteurs dans l'ordre de la publication.
+                Indiquer la liste complète (médialab et non médialab) des
+                auteurs dans l'ordre de la publication.
               </em>
             </label>
             <div className="control">
@@ -379,13 +398,14 @@ function renderProductionForm(props) {
                 spireValue={data.spire && data.spire.generatedFields.authors}
                 humanValue={data.authors}
                 init={() => handlers.authors({target: {value: ''}})}
-                cancel={() => handlers.authors({target: {value: undefined}})} >
+                cancel={() => handlers.authors({target: {value: undefined}})}>
                 <input
                   type="text"
                   className="input"
                   value={data.authors || ''}
                   onChange={handlers.authors}
-                  placeholder="prénom nom, prénom nom" />
+                  placeholder="prénom nom, prénom nom"
+                />
               </SpireGeneratedField>
             </div>
           </div>
@@ -395,8 +415,12 @@ function renderProductionForm(props) {
       <div className="columns">
         <div className="column is-12">
           <div className="field">
-            <label className="label">Auteurs médialab
-              <em>Indiquer quels sont les membres médialab parmi les auteurs.</em></label>
+            <label className="label">
+              Auteurs médialab
+              <em>
+                Indiquer quels sont les membres médialab parmi les auteurs.
+              </em>
+            </label>
             <div className="control">
               <SpireGeneratedField
                 spireValue={data.spire && data.spire.generatedFields.people}
@@ -408,45 +432,50 @@ function renderProductionForm(props) {
                   model="people"
                   selected={data.people}
                   onAdd={handlers.people.add}
-                  onDrop={handlers.people.drop} />
+                  onDrop={handlers.people.drop}
+                />
               </SpireGeneratedField>
             </div>
           </div>
         </div>
       </div>
 
-
       <div className="columns">
         <div className="column is-6">
-          <label className="label">Publication pré-médialab ?
+          <label className="label">
+            Publication pré-médialab ?
             <em>
-              Publications des membres du labo ayant été publiées avant leur arrivée.
+              Publications des membres du labo ayant été publiées avant leur
+              arrivée.
               <br />
-              Permet de créer une publication et de la mettre en avant dans le profil d'un membre sans la faire apparaître dans la liste des publications du labo
+              Permet de créer une publication et de la mettre en avant dans le
+              profil d'un membre sans la faire apparaître dans la liste des
+              publications du labo
             </em>
           </label>
           <div className="control">
             <SpireGeneratedField
               spireValue={data.spire && !data.spire.generatedFields.external}
               humanValue={data.external}
-              label={v => (v ? 'publication médialab' : 'publication hors médialab')}
+              label={v =>
+                v ? 'publication médialab' : 'publication hors médialab'
+              }
               init={() => handlers.external(true)}
               cancel={() => handlers.external(undefined)}>
               <BooleanSelector
                 value={!data.external}
                 labels={['publication médialab', 'publication hors médialab']}
-                onChange={v => handlers.external(!v)} />
+                onChange={v => handlers.external(!v)}
+              />
             </SpireGeneratedField>
           </div>
         </div>
       </div>
 
       <div className="form-group">
-        <h4 className="title is-4">
-          Publication presentation
-        </h4>
+        <h4 className="title is-4">Publication presentation</h4>
 
-        { data.type && (data.type !== 'code' && data.type !== 'software') &&
+        {data.type && data.type !== 'code' && data.type !== 'software' && (
           <div className="columns">
             <div className="column is-6">
               <div className="field">
@@ -463,25 +492,31 @@ function renderProductionForm(props) {
               </div>
             </div>
           </div>
-        }
+        )}
 
         <div className="columns">
-
           <div className="column is-6">
             <div className="field">
               <label className="label">French Description</label>
               <div className="control">
                 <SpireGeneratedField
-                  spireValue={data.spire && data.spire.generatedFields.description && data.spire.generatedFields.description.fr}
+                  spireValue={
+                    data.spire &&
+                    data.spire.generatedFields.description &&
+                    data.spire.generatedFields.description.fr
+                  }
                   humanValue={data.description && data.description.fr}
                   init={() => handlers.frenchDescription({target: {value: ''}})}
-                  cancel={() => handlers.frenchDescription({target: {value: undefined}})}>
+                  cancel={() =>
+                    handlers.frenchDescription({target: {value: undefined}})
+                  }>
                   <textarea
                     className="textarea"
-                    value={(data.description && data.description.fr)}
+                    value={data.description && data.description.fr}
                     onChange={handlers.frenchDescription}
                     placeholder="French Description"
-                    rows={2} />
+                    rows={2}
+                  />
                 </SpireGeneratedField>
               </div>
             </div>
@@ -492,25 +527,32 @@ function renderProductionForm(props) {
               <label className="label">English Description</label>
               <div className="control">
                 <SpireGeneratedField
-                  spireValue={data.spire && data.spire.generatedFields.description && data.spire.generatedFields.description.en}
+                  spireValue={
+                    data.spire &&
+                    data.spire.generatedFields.description &&
+                    data.spire.generatedFields.description.en
+                  }
                   humanValue={data.description && data.description.en}
-                  init={() => handlers.englishDescription({target: {value: ''}})}
-                  cancel={() => handlers.englishDescription({target: {value: undefined}})}>
+                  init={() =>
+                    handlers.englishDescription({target: {value: ''}})
+                  }
+                  cancel={() =>
+                    handlers.englishDescription({target: {value: undefined}})
+                  }>
                   <textarea
                     className="textarea"
-                    value={(data.description && data.description.en)}
+                    value={data.description && data.description.en}
                     onChange={handlers.englishDescription}
                     placeholder="English Description"
-                    rows={2} />
+                    rows={2}
+                  />
                 </SpireGeneratedField>
               </div>
             </div>
           </div>
-
         </div>
 
         <div className="columns">
-
           <div className="column is-6">
             <div className="field">
               <label className="label">French Content</label>
@@ -521,7 +563,8 @@ function renderProductionForm(props) {
                 cancel={() => handlers.frenchContent(undefined)}>
                 <Editor
                   content={frenchEditorContent}
-                  onSave={handlers.frenchContent} />
+                  onSave={handlers.frenchContent}
+                />
               </SpireGeneratedField>
             </div>
           </div>
@@ -536,18 +579,16 @@ function renderProductionForm(props) {
                 cancel={() => handlers.englishContent(undefined)}>
                 <Editor
                   content={englishEditorContent}
-                  onSave={handlers.englishContent} />
+                  onSave={handlers.englishContent}
+                />
               </SpireGeneratedField>
             </div>
           </div>
-
         </div>
       </div>
 
       <div className="form-group">
-        <h4 className="title is-4">
-          Publication's related objects
-        </h4>
+        <h4 className="title is-4">Publication's related objects</h4>
 
         <div className="columns">
           <div className="column is-12">
@@ -558,7 +599,8 @@ function renderProductionForm(props) {
                   model="activities"
                   selected={data.activities}
                   onAdd={handlers.activities.add}
-                  onDrop={handlers.activities.drop} />
+                  onDrop={handlers.activities.drop}
+                />
               </div>
             </div>
           </div>
@@ -575,26 +617,29 @@ function renderProductionForm(props) {
                   self={data.id}
                   selected={data.productions}
                   onAdd={handlers.productions.add}
-                  onDrop={handlers.productions.drop} />
+                  onDrop={handlers.productions.drop}
+                />
               </div>
             </div>
           </div>
         </div>
-
       </div>
-      {(data.title || data.spire) &&
+      {(data.title || data.spire) && (
         <div className="form-group is-important">
           <div className="field">
-            <label className="label title is-4">"{statusLabel}" page's production status</label>
+            <label className="label title is-4">
+              "{statusLabel}" page's production status
+            </label>
             <div className="control">
               <BooleanSelector
                 value={!data.draft}
                 labels={statusLabels}
-                onChange={handlers.published} />
+                onChange={handlers.published}
+              />
             </div>
           </div>
         </div>
-      }
+      )}
     </div>
   );
 }

@@ -7,11 +7,7 @@ export default function UrlInput({value, onChange}) {
   return (
     <div>
       <div className="control">
-        <input
-          type="url"
-          className="input"
-          value={value}
-          onChange={onChange} />
+        <input type="url" className="input" value={value} onChange={onChange} />
       </div>
       {!valid && <p className="help is-danger">The url is not valid!</p>}
     </div>

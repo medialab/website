@@ -8,21 +8,22 @@ export default ({data, pageContext}) => {
   // console.log(data, pageContext);
 
   // TODO: could be done in wilson
-  const list = data.news
-    .sort(({startDate: aStart, endDate: aEnd}, {startDate: bStart, endDate: bEnd}) => {
+  const list = data.news.sort(
+    (
+      {startDate: aStart, endDate: aEnd},
+      {startDate: bStart, endDate: bEnd}
+    ) => {
       if (bEnd && aEnd) {
         return compare(bEnd, aEnd);
-      }
-      else if (!bEnd && aEnd) {
+      } else if (!bEnd && aEnd) {
         return compare(bStart, aEnd);
-      }
-      else if (bEnd && !aEnd) {
+      } else if (bEnd && !aEnd) {
         return compare(bEnd, aStart);
-      }
-      else {
+      } else {
         return compare(bStart, aStart);
       }
-    });
+    }
+  );
 
   return (
     <Layout

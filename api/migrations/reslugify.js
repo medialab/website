@@ -24,8 +24,7 @@ function reslugifyModel(dbs, edits, plural, singular) {
 
     distinctSlugs.add(newSlug);
 
-    if (oldSlug !== newSlug)
-      edits[plural][oldSlug] = newSlug;
+    if (oldSlug !== newSlug) edits[plural][oldSlug] = newSlug;
 
     return {
       ...item,
@@ -34,7 +33,7 @@ function reslugifyModel(dbs, edits, plural, singular) {
   });
 }
 
-module.exports = function(req, dbs, next) {
+module.exports = function (req, dbs, next) {
   const edits = {};
 
   const dryRun = 'dryrun' in req.query;
@@ -47,12 +46,10 @@ module.exports = function(req, dbs, next) {
   ].forEach(([plural, singular]) => {
     const state = reslugifyModel(dbs, edits, plural, singular);
 
-    if (!dryRun)
-      dbs[plural].setState({[plural]: state});
+    if (!dryRun) dbs[plural].setState({[plural]: state});
   });
 
-  if (dryRun)
-    return next(null, edits);
+  if (dryRun) return next(null, edits);
 
   dbs.activities.write();
   dbs.news.write();

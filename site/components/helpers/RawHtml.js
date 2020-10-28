@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function RawHtml({html, wrapper='div'}) {
+export default function RawHtml({html, wrapper = 'div'}) {
   if (wrapper === 'div')
     return <div dangerouslySetInnerHTML={{__html: html}} />;
 

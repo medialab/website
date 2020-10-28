@@ -6,7 +6,6 @@ const {template, resolveAttachments} = require('./templating.js');
 const {frenchTypographyReplace} = require('./utils.js');
 
 exports.activities = function reduceActivity(pathPrefix, activity) {
-
   // Processing HTML
   const content = template(pathPrefix, activity.content);
   const slug = last(activity.slugs);
@@ -23,7 +22,6 @@ exports.activities = function reduceActivity(pathPrefix, activity) {
 };
 
 exports.news = function reduceNews(pathPrefix, news) {
-
   // Typography
   if (news.title && news.title.fr)
     news.title.fr = frenchTypographyReplace(news.title.fr);
@@ -35,11 +33,9 @@ exports.news = function reduceNews(pathPrefix, news) {
   // Computing expiry
   let expiry = news.startDate;
 
-  if (news.endDate)
-    expiry = news.endDate;
+  if (news.endDate) expiry = news.endDate;
 
-  if (expiry)
-    news.expiry = +(new Date(expiry)) / 1000;
+  if (expiry) news.expiry = +new Date(expiry) / 1000;
 
   return {
     ...news,
@@ -53,7 +49,6 @@ exports.news = function reduceNews(pathPrefix, news) {
 };
 
 exports.people = function reducePeople(pathPrefix, person) {
-
   // Processing HTML
   const content = template(pathPrefix, person.bio);
   const slug = last(person.slugs);
@@ -87,7 +82,6 @@ forEach(ENUMS.productionTypes.groups, (group, key) => {
 });
 
 exports.productions = function reduceProductions(pathPrefix, production) {
-
   // Spire fields
   if (production.spire) {
     // use spire.generatedFields for empty object fields
@@ -101,10 +95,10 @@ exports.productions = function reduceProductions(pathPrefix, production) {
   // Solving enums
   solveEnum(ENUMS.productionTypes, 'type', production);
 
-  production.group = PRODUCTION_TYPE_TO_GROUP[production.type || ENUMS.productionTypes.default];
+  production.group =
+    PRODUCTION_TYPE_TO_GROUP[production.type || ENUMS.productionTypes.default];
 
-  if (!production.authors)
-    production.authors = '';
+  if (!production.authors) production.authors = '';
 
   // Processing HTML
   const content = template(pathPrefix, production.content);
@@ -130,8 +124,7 @@ exports.github = function reduceGithub(record) {
   return {
     ...record,
     authors: record.authors.map(author => {
-      if (!author.slug)
-        return author;
+      if (!author.slug) return author;
 
       return {
         ...author,

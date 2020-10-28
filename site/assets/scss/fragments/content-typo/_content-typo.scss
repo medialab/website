@@ -15,11 +15,11 @@
       padding-left: $unite/2;
 
       &:lang(en):before {
-        content: "“";
+        content: '“';
       }
 
       &:lang(fr):before {
-        content: "«";
+        content: '«';
       }
 
       &:before {
@@ -108,7 +108,7 @@
         z-index: 8;
 
         &:after {
-          content: "\26f6\00FE0E";
+          content: '\26f6\00FE0E';
           font-family: $font-symbol;
           top: $baseline;
           left: calc(100% - 15px);
@@ -140,7 +140,7 @@
           opacity: 1;
 
           &:after {
-            content: "✕\00FE0E";
+            content: '✕\00FE0E';
             top: $baseline * 2;
             left: calc(100vw - #{$unite * 2});
             opacity: 1;
@@ -161,7 +161,7 @@
           transition: 0.25s ease-in-out;
 
           &::before {
-            content: "";
+            content: '';
             width: 100vw;
             height: 100vh;
             top: 0;
@@ -203,7 +203,7 @@
             @include text-overflow;
 
             &:before {
-              content: "\276D";
+              content: '\276D';
               position: absolute;
               top: 0;
               left: 50%;

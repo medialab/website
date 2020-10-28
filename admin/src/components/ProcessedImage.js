@@ -18,7 +18,6 @@ const preStyle = {
 };
 
 export default function ProcessedImage({img, crop, gamma, rows, zoom}) {
-
   const blocks = imageToBlocks(img, {
     rows,
     crop,

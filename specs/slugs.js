@@ -13,14 +13,12 @@ function slugify(slug, str) {
 
 module.exports = slug => ({
   activity(a) {
-    if (!a.name)
-      return '';
+    if (!a.name) return '';
 
     return slugify(slug, a.name.fr || a.name.en || '');
   },
   news(n) {
-    if (!n.title)
-      return '';
+    if (!n.title) return '';
 
     return slugify(slug, n.title.fr || n.title.en || '');
   },
@@ -28,13 +26,30 @@ module.exports = slug => ({
     return slugify(slug, p.firstName + ' ' + p.lastName);
   },
   production(p) {
-    const title = (p.title && (p.title.fr || p.title.en)) || (p.spire && p.spire.generatedFields && p.spire.generatedFields.title && (p.spire.generatedFields.title.fr || p.spire.generatedFields.title.en))
-    const date = (p.type !== 'software' && p.type !== 'code' && (p.date || p.spire && p.spire.generatedFields && p.spire.generatedFields.date));
-    const authors = (p.type !== 'software' && p.type !== 'code' && (p.authors || (p.spire && p.spire.generatedFields && p.spire.generatedFields.authors)));
+    const title =
+      (p.title && (p.title.fr || p.title.en)) ||
+      (p.spire &&
+        p.spire.generatedFields &&
+        p.spire.generatedFields.title &&
+        (p.spire.generatedFields.title.fr || p.spire.generatedFields.title.en));
+    const date =
+      p.type !== 'software' &&
+      p.type !== 'code' &&
+      (p.date ||
+        (p.spire && p.spire.generatedFields && p.spire.generatedFields.date));
+    const authors =
+      p.type !== 'software' &&
+      p.type !== 'code' &&
+      (p.authors ||
+        (p.spire &&
+          p.spire.generatedFields &&
+          p.spire.generatedFields.authors));
 
-    if (!title)
-      return '';
+    if (!title) return '';
 
-    return slugify(slug, (date ? date + ' ' : '') + (title || '') + (authors ? ' ' + authors : ''));
+    return slugify(
+      slug,
+      (date ? date + ' ' : '') + (title || '') + (authors ? ' ' + authors : '')
+    );
   }
 });

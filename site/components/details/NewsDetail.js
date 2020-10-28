@@ -40,50 +40,79 @@ const mainPermalink = {
 };
 
 export default function NewsDetail({lang, news, siteUrl}) {
-
   return (
     <>
       <PageMeta
-        title={`${news.title[lang] || news.title.fr || news.title.en} | médialab Sciences Po`}
+        title={`${
+          news.title[lang] || news.title.fr || news.title.en
+        } | médialab Sciences Po`}
         description={news.description && news.description[lang]}
         zoteroType={news.type === 'post' ? 'blogPost' : undefined}
-        author={news.type === 'post' ? news.people.map(p => `${p.lastName} ${p.firstName}`).join(', ') : undefined}
-        imageData={news.coverImage && news.coverImage.processed && news.coverImage.processed.raster}
+        author={
+          news.type === 'post'
+            ? news.people.map(p => `${p.lastName} ${p.firstName}`).join(', ')
+            : undefined
+        }
+        imageData={
+          news.coverImage &&
+          news.coverImage.processed &&
+          news.coverImage.processed.raster
+        }
         uri={news.permalink[lang]}
-        lang={lang} />
+        lang={lang}
+      />
       <main
-        itemScope itemProp={news.type !== 'post' ? 'event' : 'subjectOf'} itemType={news.type !== 'post' ? 'https://schema.org/Event' : 'https://schema.org/CreativeWork'}
-        id="main-objet" role="main" aria-label={i18n[lang].contentAriaLabel(news)}>
-
-        <ol style={{display: 'none'}} itemScope itemType="https://schema.org/BreadcrumbList">
+        itemScope
+        itemProp={news.type !== 'post' ? 'event' : 'subjectOf'}
+        itemType={
+          news.type !== 'post'
+            ? 'https://schema.org/Event'
+            : 'https://schema.org/CreativeWork'
+        }
+        id="main-objet"
+        role="main"
+        aria-label={i18n[lang].contentAriaLabel(news)}>
+        <ol
+          style={{display: 'none'}}
+          itemScope
+          itemType="https://schema.org/BreadcrumbList">
           <li
-            itemProp="itemListElement" itemScope
+            itemProp="itemListElement"
+            itemScope
             itemType="https://schema.org/ListItem">
             <a
               itemType="https://schema.org/Organization"
-              itemProp="item" href={siteUrl}>
-              <span itemProp="name">médialab Sciences Po</span></a>
+              itemProp="item"
+              href={siteUrl}>
+              <span itemProp="name">médialab Sciences Po</span>
+            </a>
             <meta itemProp="position" content="1" />
           </li>
           <li
-            itemProp="itemListElement" itemScope
+            itemProp="itemListElement"
+            itemScope
             itemType="https://schema.org/ListItem">
             <a
               itemType="https://schema.org/Thing"
               href={`${siteUrl}${mainPermalink[lang]}`}
               itemProp="item">
-              <span itemProp="name">{I18N_MODEL[lang].news}</span></a>
+              <span itemProp="name">{I18N_MODEL[lang].news}</span>
+            </a>
             <meta itemProp="position" content="2" />
           </li>
           <li
-            itemProp="itemListElement" itemScope
+            itemProp="itemListElement"
+            itemScope
             itemType="https://schema.org/ListItem">
             <a
               itemType="https://schema.org/Thing"
               href={`${siteUrl}${news.permalink[lang]}`}
               itemProp="item">
               <span itemProp="name">
-                <LanguageFallback lang={lang} translatedAttribute={news.title} />
+                <LanguageFallback
+                  lang={lang}
+                  translatedAttribute={news.title}
+                />
               </span>
             </a>
             <meta itemProp="position" content="3" />
@@ -99,7 +128,13 @@ export default function NewsDetail({lang, news, siteUrl}) {
               </Link>
               {news.title && (
                 <span className="title">
-                  <a href="#topbar" itemProp="name"> <LanguageFallback lang={lang} translatedAttribute={news.title} /></a>
+                  <a href="#topbar" itemProp="name">
+                    {' '}
+                    <LanguageFallback
+                      lang={lang}
+                      translatedAttribute={news.title}
+                    />
+                  </a>
                 </span>
               )}
             </p>
@@ -118,29 +153,59 @@ export default function NewsDetail({lang, news, siteUrl}) {
         <div id="img-article" aria-hidden="true">
           <div className="activator" />
           <div className="container">
-            <ProcessedImage size="large" image={news.coverImage && news.coverImage.processed && news.coverImage.processed.large} data={news} />
+            <ProcessedImage
+              size="large"
+              image={
+                news.coverImage &&
+                news.coverImage.processed &&
+                news.coverImage.processed.large
+              }
+              data={news}
+            />
           </div>
-
         </div>
 
         <article id="article-contenu">
-
           <div className={`block-lang ${lang}`} lang={lang}>
             <hgroup>
-              <h1 data-type="title"> <LanguageFallback lang={lang} translatedAttribute={news.title} /></h1>
+              <h1 data-type="title">
+                {' '}
+                <LanguageFallback
+                  lang={lang}
+                  translatedAttribute={news.title}
+                />
+              </h1>
               <HtmlFallback
-                wrapper="h2" data-type="description" content={news.description}
-                lang={lang} />
+                wrapper="h2"
+                data-type="description"
+                content={news.description}
+                lang={lang}
+              />
             </hgroup>
             <div className="details">
               <p className="type-objet">
                 <span data-icon="news" />
-                <span className="type-news">{I18N_TYPE_LABELS.news[lang][news.type]}</span>
-                {news.label && news.label[lang] ? <span>, {news.label[lang]}</span> : ''}
+                <span className="type-news">
+                  {I18N_TYPE_LABELS.news[lang][news.type]}
+                </span>
+                {news.label && news.label[lang] ? (
+                  <span>, {news.label[lang]}</span>
+                ) : (
+                  ''
+                )}
               </p>
               <DateNews
-                startDate={news.startDate} endDate={news.endDate} lang={lang}
-                prefix={(news.type === 'notice' && news.label && news.label.en === 'Job') ? {fr: 'Date limite : ', en: 'Deadline: '} : undefined} />
+                startDate={news.startDate}
+                endDate={news.endDate}
+                lang={lang}
+                prefix={
+                  news.type === 'notice' &&
+                  news.label &&
+                  news.label.en === 'Job'
+                    ? {fr: 'Date limite : ', en: 'Deadline: '}
+                    : undefined
+                }
+              />
               <TimeNews startDate={news.startDate} endDate={news.endDate} />
               {news.place && (
                 <p
@@ -154,15 +219,22 @@ export default function NewsDetail({lang, news, siteUrl}) {
               )}
               <Attachments attachments={news.attachments} lang={lang} />
             </div>
-            <HtmlFallback lang={lang} content={news.content} className="article-contenu" />
+            <HtmlFallback
+              lang={lang}
+              content={news.content}
+              className="article-contenu"
+            />
           </div>
-            {/* Toggle Langue */}
-            <ToggleLang lang={lang} content={news.content} to={news.permalink} />
-
+          {/* Toggle Langue */}
+          <ToggleLang lang={lang} content={news.content} to={news.permalink} />
         </article>
 
         <aside id="all-aside">
-          <RelatedPeople schemaRelationProp={news.type === 'post' ? 'author' : 'organizer'} people={news.people} lang={lang} />
+          <RelatedPeople
+            schemaRelationProp={news.type === 'post' ? 'author' : 'organizer'}
+            people={news.people}
+            lang={lang}
+          />
           <RelatedActivities activities={news.activities} lang={lang} />
           <RelatedProductions productions={news.productions} lang={lang} />
           <RelatedNews actu={news.news} lang={lang} />

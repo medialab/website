@@ -33,11 +33,10 @@ export default function ToggleLang({lang, content, to}) {
   const en = '⚐ This page also exists in english. ';
 
   return (
-    <label
-      className="toggle-lang"
-      aria-label={lang === 'fr' ? fr : en}>
-        <Link to={to[otherLang]}>{lang === 'fr' ? en : fr}</Link>
-    </label>);
+    <label className="toggle-lang" aria-label={lang === 'fr' ? fr : en}>
+      <Link to={to[otherLang]}>{lang === 'fr' ? en : fr}</Link>
+    </label>
+  );
 
   // old version when we tried to be clever...
   // broken by a regression and bad heuristics which didn't work in all cases...
@@ -55,7 +54,6 @@ export default function ToggleLang({lang, content, to}) {
   //       en = '⚐ This article could be more substantial in french. ';
   //     }
   // }
-
 
   // return (
   //   <>

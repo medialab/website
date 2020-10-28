@@ -453,7 +453,6 @@ $width-image-pre-listing-phone: ((100% / 120) * 1.1338 * 10);
   }
 }
 
-
 /**
  * @todo clean
  * Ajout de code pour les "research streams"
@@ -465,7 +464,7 @@ $width-image-pre-listing-phone: ((100% / 120) * 1.1338 * 10);
     @media screen and (max-width: 900px) {
       margin-top: 0;
     }
-    h1{
+    h1 {
       font-weight: 400;
       letter-spacing: normal;
       margin-top: 0;
@@ -477,7 +476,7 @@ $width-image-pre-listing-phone: ((100% / 120) * 1.1338 * 10);
       }
     }
   }
-  > a{
+  > a {
     overflow: hidden;
   }
   .image-pre {
@@ -485,12 +484,12 @@ $width-image-pre-listing-phone: ((100% / 120) * 1.1338 * 10);
       display: none;
     }
 
-    max-width: calc( 100% - (100% - 9.44833%) / 2) !important;
+    max-width: calc(100% - (100% - 9.44833%) / 2) !important;
     transform: scaleX(1.9);
     transform-origin: top left;
     pre {
       color: lightgrey;
     }
-    opacity: .5;
+    opacity: 0.5;
   }
 }

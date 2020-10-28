@@ -92,9 +92,8 @@ function isInternal(url) {
   return INTERNAL_URL_REGEX.test(url);
 }
 
-const buildUrl = _.memoize((current) => {
-  if (!isInternal(current))
-    return {newPath: current, oldPath: current};
+const buildUrl = _.memoize(current => {
+  if (!isInternal(current)) return {newPath: current, oldPath: current};
 
   const id = uuid();
 
@@ -113,15 +112,19 @@ function validateHtml(html) {
   if ($('ul ul, ul ol, ol ol, ol ul').length > 1)
     throw new Error('Found nested list!');
 
-  if ($('div').length)
-    throw new Error('Found div tag!');
+  if ($('div').length) throw new Error('Found div tag!');
 
-  $('img').each(function() {
+  $('img').each(function () {
     if ($(this).data('width') === 'undefined')
-      console.error('Error: missing image width!', $(this).parent().html().trim());
-
+      console.error(
+        'Error: missing image width!',
+        $(this).parent().html().trim()
+      );
     else if ($(this).data('height') === 'undefined')
-      console.error('Error: missing image height!', $(this).parent().html().trim())
+      console.error(
+        'Error: missing image height!',
+        $(this).parent().html().trim()
+      );
   });
 }
 
@@ -134,15 +137,15 @@ function convertWordpressHtml(wordpressHtml) {
 
   // Unwrapping divs
   $('div')
-    .filter(function() {
+    .filter(function () {
       return $(this).find('div').length === 0;
     })
-    .each(function() {
+    .each(function () {
       $(this).replaceWith(`<p>${$(this).html()}</p>`);
     });
 
   while ($('body > div').length) {
-    $('body > div').each(function() {
+    $('body > div').each(function () {
       $(this).replaceWith($(this).html());
     });
   }
@@ -150,7 +153,7 @@ function convertWordpressHtml(wordpressHtml) {
   // Dropping comments
   $('body')
     .contents()
-    .filter(function() {
+    .filter(function () {
       return this.type === 'comment';
     })
     .remove();
@@ -159,41 +162,35 @@ function convertWordpressHtml(wordpressHtml) {
   let open = false;
   let newBody = '';
 
-  $('body > span').each(function() {
+  $('body > span').each(function () {
     $(this).replaceWith(`<p>${$(this).html()}</p>`);
   });
 
-  $('body').contents().each(function() {
-    if (this.type === 'text') {
+  $('body')
+    .contents()
+    .each(function () {
+      if (this.type === 'text') {
+        if (!this.data.trim()) return;
 
-      if (!this.data.trim())
-        return;
+        if (!open) newBody += '<p>';
 
-      if (!open)
-        newBody += '<p>';
+        open = true;
+        newBody += this.data.replace(/([^\n\s<])\n(?=[^\n\s>])/g, '$1<br>');
+      } else if (INLINE_TAGS.has(this.name)) {
+        if (!open) newBody += '<p>';
 
-      open = true;
-      newBody += this.data.replace(/([^\n\s<])\n(?=[^\n\s>])/g, '$1<br>');
-    }
-    else if (INLINE_TAGS.has(this.name)) {
-      if (!open)
-        newBody += '<p>';
+        open = true;
+        newBody += $.html($(this));
+      } else {
+        if (open) newBody += '</p>';
 
-      open = true;
-      newBody += $.html($(this));
-    }
-    else {
-      if (open)
-        newBody += '</p>';
+        open = false;
 
-      open = false;
+        newBody += $.html($(this));
+      }
+    });
 
-      newBody += $.html($(this));
-    }
-  });
-
-  if (open)
-    newBody += '</p>';
+  if (open) newBody += '</p>';
 
   newBody = newBody
     .replace(/\n{2,}/g, '</p><p>')
@@ -203,7 +200,7 @@ function convertWordpressHtml(wordpressHtml) {
   $ = cheerio.load(newBody, {decodeEntities: false});
 
   // Dropping attributes
-  $('*').each(function() {
+  $('*').each(function () {
     $(this)
       .removeAttr('id')
       .removeAttr('style')
@@ -211,13 +208,11 @@ function convertWordpressHtml(wordpressHtml) {
       .removeAttr('name');
   });
 
-  $('p').each(function() {
-    $(this)
-      .removeAttr('align')
-      .removeAttr('lang');
+  $('p').each(function () {
+    $(this).removeAttr('align').removeAttr('lang');
   });
 
-  $('a').each(function() {
+  $('a').each(function () {
     $(this)
       .removeAttr('rel')
       .removeAttr('target')
@@ -238,11 +233,11 @@ function convertWordpressHtml(wordpressHtml) {
   });
 
   // Images
-  $('img').each(function() {
+  $('img').each(function () {
     const src = $(this).attr('src');
 
     let width = $(this).attr('width'),
-        height = $(this).attr('height');
+      height = $(this).attr('height');
 
     if (!src) {
       $(this).replaceWith('');
@@ -270,12 +265,12 @@ function convertWordpressHtml(wordpressHtml) {
   });
 
   // Fixing old-school tags
-  $('i').each(function() {
+  $('i').each(function () {
     $(this).replaceWith(`<em>${$(this).html()}</em>`);
   });
 
   while ($('b').length)
-    $('b').each(function() {
+    $('b').each(function () {
       $(this).replaceWith(`<strong>${$(this).html()}</strong>`);
     });
 
@@ -287,12 +282,12 @@ function convertWordpressHtml(wordpressHtml) {
   $('hr, wbr').remove();
 
   // Dropping weak titles
-  $('h4, h5, h6').each(function() {
+  $('h4, h5, h6').each(function () {
     $(this).replaceWith(`<p><strong>${$(this).html()}</strong></p>`);
   });
 
   // Handling iframes
-  $('iframe').each(function() {
+  $('iframe').each(function () {
     const src = $(this).attr('src');
 
     $(this).replaceWith(`
@@ -302,34 +297,32 @@ function convertWordpressHtml(wordpressHtml) {
     `);
   });
 
-  $('blockquote').each(function() {
+  $('blockquote').each(function () {
     $(this).replaceWith(`<p>${$(this).html()}</p>`);
   });
 
-  $('small').each(function() {
+  $('small').each(function () {
     $(this).replaceWith($(this).text());
   });
 
   // Dropping some irrelevant links
-  $('a').each(function() {
+  $('a').each(function () {
     const href = $(this).attr('href').trim();
 
-    if (!href || href.startsWith('#'))
-      $(this).replaceWith($(this).html());
+    if (!href || href.startsWith('#')) $(this).replaceWith($(this).html());
   });
 
   // Unwrapping some tags
   const unwrap = 'span, u, center, sup';
 
   while ($(unwrap).length) {
-    $(unwrap).each(function() {
+    $(unwrap).each(function () {
       $(this).replaceWith($(this).html());
     });
   }
 
-  $('p').each(function() {
-    if (!$(this).html().trim())
-      $(this).remove();
+  $('p').each(function () {
+    if (!$(this).html().trim()) $(this).remove();
   });
 
   html = $('body').html().trim();

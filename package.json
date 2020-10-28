@@ -15,14 +15,13 @@
     "flux": "node ./scripts/flux-github.js && node ./scripts/flux-twitter.js",
     "hydrate": "rm -rf data/* && mkdir -p data/assets && touch data/assets/dummy && cp specs/samples/*.json data",
     "install:admin": "cd admin && npm i",
-    "lint": "eslint api scripts site/**/*.js admin/src wilson",
     "load": "node ./scripts/load.js",
     "postinstall": "npm run install:admin",
+    "prettier": "prettier --write '**/*.js' && prettier --write --parser scss 'site/assets/scss/**/*.scss'",
     "reinstall": "rm -rf ./admin/node_modules && rm -rf ./node_modules && npm i",
     "serve": "npm run build && http-server -p 8000 ./wbuild -o",
     "start": "node api/server.js",
     "start:fast": "node api/server.js --bypass-auth --no-cron --no-precompute-covers",
-    "style:scss": "prettier --write --parser scss 'site/assets/scss/**/*.scss'",
     "upgrade:prod:checks": "npm run build",
     "upgrade:pprd": "git checkout staging && git pull && git merge master && git push && git checkout master",
     "upgrade:prod": "npm run upgrade:prod:checks && npm run upgrade:prod:force",
@@ -122,12 +121,9 @@
     "yargs": "^16.0.3"
   },
   "devDependencies": {
-    "@yomguithereal/eslint-config": "^4.0.0",
-    "babel-eslint": "^10.1.0",
+    "@yomguithereal/prettier-config": "^1.1.0",
     "concurrently": "^4.1.1",
     "csv-stringify": "^5.5.1",
-    "eslint": "^7.10.0",
-    "eslint-plugin-react": "^7.21.3",
     "http-server": "^0.12.1",
     "nodemon": "^1.19.4",
     "png-js": "^0.1.1",
@@ -141,19 +137,5 @@
       "site/*"
     ]
   },
-  "eslintConfig": {
-    "extends": [
-      "@yomguithereal/eslint-config/es7",
-      "@yomguithereal/eslint-config/react"
-    ],
-    "rules": {
-      "no-confusing-arrow": 0,
-      "no-nested-ternary": 0,
-      "react/jsx-no-bind": 0,
-      "react/no-danger": 0,
-      "react/no-set-state": 0,
-      "react/prefer-stateless-function": 0,
-      "react/require-optimization": 0
-    }
-  }
+  "prettier": "@yomguithereal/prettier-config"
 }

@@ -3,11 +3,9 @@ const config = require('config-secrets');
 
 const SUPERUSER = config.get('superuser');
 
-exports.authentication = function(req, res, next) {
-
+exports.authentication = function (req, res, next) {
   // Preview does not require auth
-  if (req.url.includes('/preview/'))
-    return next();
+  if (req.url.includes('/preview/')) return next();
 
   const user = auth(req);
 
@@ -25,13 +23,12 @@ exports.authentication = function(req, res, next) {
   return next();
 };
 
-exports.lastUpdated = function(req, res, next) {
-  if (req.method !== 'POST' && req.method !== 'PUT')
-    return next();
+exports.lastUpdated = function (req, res, next) {
+  if (req.method !== 'POST' && req.method !== 'PUT') return next();
 
   const payload = req.body;
 
-  payload.lastUpdated = +(new Date());
+  payload.lastUpdated = +new Date();
 
   return next();
 };

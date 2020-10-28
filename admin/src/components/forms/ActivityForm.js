@@ -105,18 +105,23 @@ function renderActivityForm(props) {
   return (
     <div className="container">
       <div className="form-group">
-        <label className="label title is-4">{(data.name && data.name.fr) ? data.name.fr : 'Nouvelle activité'}</label>
+        <label className="label title is-4">
+          {data.name && data.name.fr ? data.name.fr : 'Nouvelle activité'}
+        </label>
         <div className="columns">
           <div className="column is-6">
             <div className="field">
-              <label className="label">Nom <small>(requis)</small></label>
+              <label className="label">
+                Nom <small>(requis)</small>
+              </label>
               <div className="control">
                 <input
                   type="text"
                   className="input"
                   value={(data.name && data.name.fr) || ''}
                   onChange={handlers.frenchName}
-                  placeholder="nom en français" />
+                  placeholder="nom en français"
+                />
               </div>
             </div>
           </div>
@@ -131,17 +136,20 @@ function renderActivityForm(props) {
                   autoFocus
                   value={(data.name && data.name.en) || ''}
                   onChange={handlers.englishName}
-                  placeholder="name in english" />
+                  placeholder="name in english"
+                />
               </div>
             </div>
           </div>
-
         </div>
 
         <div className="columns">
           <div className="column is-12">
             <div className="field">
-              <label className="label" style={{display: 'inline'}}>Limace:</label> {slug && <code>{slug}</code>}
+              <label className="label" style={{display: 'inline'}}>
+                Limace:
+              </label>{' '}
+              {slug && <code>{slug}</code>}
               {url && <PreviewLink url={url} disabled={dirty} />}
             </div>
           </div>
@@ -150,12 +158,12 @@ function renderActivityForm(props) {
         <div className="columns">
           <div className="column is-6">
             <div className="field">
-
               <div className="control">
                 <EnumSelector
                   enumType="activityTypes"
                   value={data.type}
-                  onChange={handlers.type} />
+                  onChange={handlers.type}
+                />
               </div>
             </div>
           </div>
@@ -165,7 +173,8 @@ function renderActivityForm(props) {
                 <BooleanSelector
                   value={data.active}
                   labels={ACTIVITY_LABELS}
-                  onChange={handlers.active} />
+                  onChange={handlers.active}
+                />
               </div>
             </div>
           </div>
@@ -180,7 +189,8 @@ function renderActivityForm(props) {
                     model="people"
                     selected={data.people}
                     onAdd={handlers.people.add}
-                    onDrop={handlers.people.drop} />
+                    onDrop={handlers.people.drop}
+                  />
                 </div>
               </div>
             </div>
@@ -196,7 +206,8 @@ function renderActivityForm(props) {
                     self={data.id}
                     selected={data.activities}
                     onAdd={handlers.activities.add}
-                    onDrop={handlers.activities.drop} />
+                    onDrop={handlers.activities.drop}
+                  />
                 </div>
               </div>
             </div>
@@ -210,7 +221,8 @@ function renderActivityForm(props) {
                 cover={data.cover}
                 processing
                 ratio={4 / 3}
-                onChange={handlers.cover} />
+                onChange={handlers.cover}
+              />
             </div>
           </div>
         </div>
@@ -218,9 +230,11 @@ function renderActivityForm(props) {
         <div className="columns">
           <div className="column is-6">
             <div className="field">
-              <label className="label">Accroche
+              <label className="label">
+                Accroche
                 <em>
-                  Une question qui présente la problématique pour les projets de recherche.
+                  Une question qui présente la problématique pour les projets de
+                  recherche.
                   <br />
                   Une phrase qui présente les enjeux des enseignements.
                 </em>
@@ -231,7 +245,8 @@ function renderActivityForm(props) {
                   value={(data.baseline && data.baseline.fr) || ''}
                   onChange={handlers.frenchBaseline}
                   placeholder="Une question ou une phrase"
-                  rows={2} />
+                  rows={2}
+                />
               </div>
             </div>
           </div>
@@ -242,8 +257,8 @@ function renderActivityForm(props) {
                 Baseline
                 <em>
                   A question which underlines the research project problematic.
-                  <br />
-                  A sentence which introduces the main pedagogical objectives.
+                  <br />A sentence which introduces the main pedagogical
+                  objectives.
                 </em>
               </label>
               <div className="control">
@@ -252,7 +267,8 @@ function renderActivityForm(props) {
                   value={(data.baseline && data.baseline.en) || ''}
                   onChange={handlers.englishBaseline}
                   placeholder="A question or a sentence"
-                  rows={2} />
+                  rows={2}
+                />
               </div>
             </div>
           </div>
@@ -265,7 +281,8 @@ function renderActivityForm(props) {
               <DateSelector
                 precision="month"
                 value={data.startDate}
-                onChange={handlers.startDate} />
+                onChange={handlers.startDate}
+              />
             </div>
           </div>
 
@@ -275,39 +292,46 @@ function renderActivityForm(props) {
               <DateSelector
                 precision="month"
                 value={data.endDate}
-                onChange={handlers.endDate} />
+                onChange={handlers.endDate}
+              />
             </div>
           </div>
         </div>
       </div>
 
-
       <div className="form-group">
-        <h4 className="title is-4">
-          Présentation de l'activité
-        </h4>
+        <h4 className="title is-4">Présentation de l'activité</h4>
 
         <div className="columns">
-
           <div className="column is-6">
             <div className="field">
-              <label className="label">Résumé
-                <em>Un paragraphe court qui présente le contexte et les enjeux de l'activité.</em></label>
+              <label className="label">
+                Résumé
+                <em>
+                  Un paragraphe court qui présente le contexte et les enjeux de
+                  l'activité.
+                </em>
+              </label>
               <div className="control">
                 <textarea
                   className="textarea"
                   value={(data.description && data.description.fr) || ''}
                   onChange={handlers.frenchDescription}
                   placeholder="un paragraphe court"
-                  rows={4} />
+                  rows={4}
+                />
               </div>
             </div>
           </div>
 
           <div className="column is-6">
             <div className="field">
-              <label className="label">Summary
-                <em>One short paragraph which introduces the activity context and main issues.</em>
+              <label className="label">
+                Summary
+                <em>
+                  One short paragraph which introduces the activity context and
+                  main issues.
+                </em>
               </label>
               <div className="control">
                 <textarea
@@ -315,44 +339,50 @@ function renderActivityForm(props) {
                   value={(data.description && data.description.en) || ''}
                   onChange={handlers.englishDescription}
                   placeholder="A short paragraph"
-                  rows={4} />
+                  rows={4}
+                />
               </div>
             </div>
           </div>
-
         </div>
 
         <div className="columns">
-
           <div className="column is-6">
             <div className="field">
-              <label className="label">Description riche
-                <em>Présenter l'activité en précisant le contexte, les objectifs, la méthodologie et les partenaires.</em>
+              <label className="label">
+                Description riche
+                <em>
+                  Présenter l'activité en précisant le contexte, les objectifs,
+                  la méthodologie et les partenaires.
+                </em>
               </label>
               <Editor
                 content={frenchEditorContent}
-                onSave={handlers.frenchContent} />
+                onSave={handlers.frenchContent}
+              />
             </div>
           </div>
 
           <div className="column is-6">
             <div className="field">
-              <label className="label">Rich description
-                <em>Present the activity context, objectives, methodology and eventual partners.</em>
+              <label className="label">
+                Rich description
+                <em>
+                  Present the activity context, objectives, methodology and
+                  eventual partners.
+                </em>
               </label>
               <Editor
                 content={englishEditorContent}
-                onSave={handlers.englishContent} />
+                onSave={handlers.englishContent}
+              />
             </div>
           </div>
-
         </div>
       </div>
 
       <div className="form-group">
-        <h4 className="title is-4">
-          Ressources liées
-        </h4>
+        <h4 className="title is-4">Ressources liées</h4>
 
         <div className="columns">
           <div className="column is-10">
@@ -362,25 +392,27 @@ function renderActivityForm(props) {
               field="attachments.label"
               onAdd={handlers.attachments.add}
               onDrop={handlers.attachments.drop}
-              onMove={handlers.attachments.move} />
+              onMove={handlers.attachments.move}
+            />
           </div>
         </div>
-
       </div>
-      {data.name && data.name.fr &&
+      {data.name && data.name.fr && (
         <div className="form-group is-important">
           <div className="field">
-            <label className="label title is-4">État de la page {data.name.fr} :</label>
+            <label className="label title is-4">
+              État de la page {data.name.fr} :
+            </label>
             <div className="control">
               <BooleanSelector
                 value={!data.draft}
                 labels={statusLabels}
-                onChange={handlers.published} />
+                onChange={handlers.published}
+              />
             </div>
           </div>
         </div>
-      }
-
+      )}
     </div>
   );
 }

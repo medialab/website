@@ -26,7 +26,6 @@ export default class SettingsForm extends Component {
     super(props, context);
 
     this.state = {
-
       // Data
       settings: null,
 
@@ -46,14 +45,16 @@ export default class SettingsForm extends Component {
   }
 
   componentWillUnmount() {
-    if (this.timeout)
-      clearTimeout(this.timeout);
+    if (this.timeout) clearTimeout(this.timeout);
   }
 
   handleSubmit = () => {
     this.setState({saving: true});
 
-    client.post({params: {model: 'settings'}, data: this.state.settings}, Function.prototype);
+    client.post(
+      {params: {model: 'settings'}, data: this.state.settings},
+      Function.prototype
+    );
 
     // Animating the save button
     this.timeout = setTimeout(() => {
@@ -71,8 +72,7 @@ export default class SettingsForm extends Component {
       settings
     } = this.state;
 
-    if (!settings)
-      return <div>Loading...</div>;
+    if (!settings) return <div>Loading...</div>;
 
     return (
       <div>
@@ -89,7 +89,8 @@ export default class SettingsForm extends Component {
               selected={settings.home.slider}
               onAdd={this.handlers.slider.add}
               onDrop={this.handlers.slider.drop}
-              onMove={this.handlers.slider.move} />
+              onMove={this.handlers.slider.move}
+            />
             <hr />
             <h3 className="title is-5">À la une</h3>
             <EditorializationSelector
@@ -98,7 +99,8 @@ export default class SettingsForm extends Component {
               selected={settings.home.grid}
               onAdd={this.handlers.grid.add}
               onDrop={this.handlers.grid.drop}
-              onMove={this.handlers.grid.move} />
+              onMove={this.handlers.grid.move}
+            />
             <hr />
             <h2 className="title is-4">Activités</h2>
             <h3 className="title is-5">Mise en avant dans le listing</h3>
@@ -108,7 +110,8 @@ export default class SettingsForm extends Component {
               selected={settings.topActivities}
               onAdd={this.handlers.topActivities.add}
               onDrop={this.handlers.topActivities.drop}
-              onMove={this.handlers.topActivities.move} />
+              onMove={this.handlers.topActivities.move}
+            />
             <hr />
             <Button
               kind={signaling ? 'success' : 'info'}

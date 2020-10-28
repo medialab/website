@@ -6,7 +6,6 @@ const shuffle = require('pandemonium/shuffle');
 
 // Constants
 const TEMPLATES = {
-
   // Pages
   home: 'index',
   about: 'about',
@@ -29,7 +28,9 @@ for (const k in TEMPLATES)
 
 const MODEL_TO_DETAIL_TEMPLATE = {};
 
-models.forEach(model => (MODEL_TO_DETAIL_TEMPLATE[model] = TEMPLATES[`${model}Detail`]));
+models.forEach(
+  model => (MODEL_TO_DETAIL_TEMPLATE[model] = TEMPLATES[`${model}Detail`])
+);
 
 module.exports = class Website {
   constructor(db) {
@@ -52,9 +53,7 @@ module.exports = class Website {
         rdv: db.getRdv()
       },
       itemsWithCover(data) {
-        return data.grid
-          .concat(data.slider)
-          .filter(item => item.cover);
+        return data.grid.concat(data.slider).filter(item => item.cover);
       }
     });
 
@@ -77,8 +76,7 @@ module.exports = class Website {
         data: item,
         scripts: item.model === 'people' ? ['people'] : null,
         itemsWithCover(data) {
-          if (data.cover)
-            return [data];
+          if (data.cover) return [data];
 
           return [];
         }
@@ -115,7 +113,8 @@ module.exports = class Website {
       permalinks: PERMALINKS.tools,
       template: TEMPLATES.toolsListing,
       data: {
-        tools: db.getModel('productions')
+        tools: db
+          .getModel('productions')
           .filter(item => item.type === 'code' || item.type === 'software')
       },
       scripts: ['search'],
@@ -125,7 +124,9 @@ module.exports = class Website {
     });
 
     // Filter out external productions
-    const productions = db.getModel('productions').filter(item => !item.external);
+    const productions = db
+      .getModel('productions')
+      .filter(item => !item.external);
 
     this.pages.push({
       permalinks: PERMALINKS.productions,

@@ -16,12 +16,15 @@ export default function ActivityTemplate({data, pageContext}) {
       lang={pageContext.lang}
       className="page-activity body-page"
       permalinks={pageContext.permalinks}>
-      {pageContext.linkToAdmin && <EditInAdmin item={activity} linkToAdmin={pageContext.linkToAdmin} />}
+      {pageContext.linkToAdmin && (
+        <EditInAdmin item={activity} linkToAdmin={pageContext.linkToAdmin} />
+      )}
 
       <ActivityDetail
         lang={pageContext.lang}
         activity={activity}
-        siteUrl={meta.siteUrl} />
+        siteUrl={meta.siteUrl}
+      />
     </Layout>
   );
 }

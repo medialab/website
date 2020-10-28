@@ -306,7 +306,7 @@ const MIGRATION_SCHEMES = {
   'rollback': require('./migrations/rollback.js')(DATA_PATH, BUILD_CONF.rollbackRepository || BUILD_CONF.repository),
   'import-old-slug': require('./migrations/import-old-slug.js'),
   'fix-bad-url-attachments': require('./migrations/fix-bad-url-attachments.js'),
-  'upgrade-activities-names': require('./migrations/upgrade-activities-names.js')
+  // 'upgrade-activities-names': require('./migrations/upgrade-activities-names.js')
 };
 
 app.get('/migrate/:scheme', (req, res) => {

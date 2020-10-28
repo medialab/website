@@ -74,7 +74,7 @@ const Slideshow = ({slider, lang}) => {
                         <>
                           <aside className="bandeau">
                             <p data-icon="activities" className="type">{I18N_MODEL[lang][slide.model]}</p>
-                            <p className="title">{slide.name}</p>
+                            <p className="title">{(slide.name.fr || slide.name.en)}</p>
                           </aside>
                           <h1 data-level-1="baseline" >{ellipse(slide.baseline[lang] || slide.baseline[otherLang], 65)}</h1>
                           <p className="accroche">

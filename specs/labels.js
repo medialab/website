@@ -1,6 +1,6 @@
 module.exports = {
   activities: function(a) {
-    return a.name;
+    return a.name.fr || a.name.en;
   },
   people: function(p) {
     return p.firstName + ' ' + p.lastName;

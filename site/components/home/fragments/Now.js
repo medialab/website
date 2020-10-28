@@ -90,7 +90,7 @@ export default function Now({now, lang}) {
                 <>
                   <div className="bandeau">
                     <p className="type-activity" data-icon="activite">{I18N_TYPE_LABELS.activities[lang][item.type]}</p>
-                    <p className="title" data-level-2="title">{item.name}</p>
+                    <p className="title" data-level-2="title">{(item.name.fr || item.name.en)}</p>
                   </div>
                   <hgroup>
                     {item.baseline && <h1 data-level-1="baseline"><LanguageFallback translatedAttribute={item.baseline} lang={lang} /></h1>}

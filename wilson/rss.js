@@ -101,7 +101,7 @@ function createRssRecord(item) {
 const REDUCERS = {
   activities(resolve, lang, item) {
     return {
-      title: item.name,
+      title: (item.name.fr || item.name.en),
       description: languageFallback(lang, item.baseline),
       date: item.startDate ? new Date(item.startDate) : null,
       url: resolve(item.permalink[lang]),

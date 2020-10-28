@@ -66,9 +66,13 @@ module.exports = {
     fields: [
       {
         label: 'Name',
-        property: 'name',
+        property: function(a) {
+          return a.name.fr || a.name.en || '';
+        },
         important: true,
-        order: ['name']
+        order: [
+          a => a.name && normalize(a.name.fr || a.name.en)
+        ]
       },
       {
         label: 'Type',
@@ -101,7 +105,7 @@ module.exports = {
       'name',
       a => enums.activityTypes.fr[a.type]
     ]),
-    defaultOrder: a => normalize(a.name),
+    defaultOrder: a => normalize(a.name.fr || a.name.en || ''),
     filters: {
       active: {
         type: 'boolean'

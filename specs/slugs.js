@@ -13,7 +13,10 @@ function slugify(slug, str) {
 
 module.exports = slug => ({
   activity(a) {
-    return slugify(slug, a.name);
+    if (!a.name)
+      return '';
+
+    return slugify(slug, a.name.fr || a.name.en || '');
   },
   news(n) {
     if (!n.title)

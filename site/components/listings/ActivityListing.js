@@ -73,7 +73,7 @@ export default function ActivityListing({lang, list, topActivities}) {
                     }</p>
                     {
                       !a.pinned &&
-                      <p className="title" itemProp="name" data-level-2="title">{a.name}</p>
+                      <p className="title" itemProp="name" data-level-2="title">{(a.name.fr || a.name.en)}</p>
                     }
                   </div>
                   <hgroup>

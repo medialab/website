@@ -86,7 +86,7 @@ export default function Highlights({people, lang}) {
                   </div>
                   <div className="bandeau">
                     <p className="type-activity" data-icon="activite">{I18N_TYPE_LABELS.activities[lang][a.type]}</p>
-                    <p className="title" data-level-2="title">{a.name}</p>
+                    <p className="title" data-level-2="title">{(a.name.fr || a.name.en)}</p>
                   </div>
                   <hgroup>
                     <h1 data-level-1="baseline" >

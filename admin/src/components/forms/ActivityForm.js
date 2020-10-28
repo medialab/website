@@ -17,17 +17,20 @@ import {statusLabels} from './utils';
 const ACTIVITY_LABELS = ['activity is ongoing', 'activity is past/paused'];
 
 function validate(data) {
-  if (!data.name) {
-    return 'A name is required';
+  if (!data.name || !data.name.fr) {
+    return 'Need at least a French name';
   }
   if (!slugifyActivity(data).length)
     return 'A name with at least one valid characters is required';
 }
 
 const HANDLERS = {
-  name: {
+  englishName: {
+    field: ['name', 'en']
+  },
+  frenchName: {
     type: 'slug',
-    field: 'name',
+    field: ['name', 'fr'],
     slugify: slugifyActivity
   },
   cover: {
@@ -102,7 +105,7 @@ function renderActivityForm(props) {
   return (
     <div className="container">
       <div className="form-group">
-        <label className="label title is-4">{ data.name ? data.name : 'Nouvelle activité'}</label>
+        <label className="label title is-4">{(data.name && data.name.fr) ? data.name.fr : 'Nouvelle activité'}</label>
         <div className="columns">
           <div className="column is-6">
             <div className="field">
@@ -111,13 +114,28 @@ function renderActivityForm(props) {
                 <input
                   type="text"
                   className="input"
-                  autoFocus
-                  value={data.name}
-                  onChange={handlers.name}
-                  placeholder="Name" />
+                  value={(data.name && data.name.fr) || ''}
+                  onChange={handlers.frenchName}
+                  placeholder="nom en français" />
               </div>
             </div>
           </div>
+
+          <div className="column is-6">
+            <div className="field">
+              <label className="label">Name</label>
+              <div className="control">
+                <input
+                  type="text"
+                  className="input"
+                  autoFocus
+                  value={(data.name && data.name.en) || ''}
+                  onChange={handlers.englishName}
+                  placeholder="name in english" />
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div className="columns">
@@ -349,10 +367,10 @@ function renderActivityForm(props) {
         </div>
 
       </div>
-      { data.name &&
+      {data.name && data.name.fr &&
         <div className="form-group is-important">
           <div className="field">
-            <label className="label title is-4">État de la page {data.name} :</label>
+            <label className="label title is-4">État de la page {data.name.fr} :</label>
             <div className="control">
               <BooleanSelector
                 value={!data.draft}

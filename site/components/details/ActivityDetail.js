@@ -20,7 +20,7 @@ import PageMeta from '../helpers/PageMeta.js';
 const i18n = {
   fr: {
     content(activity) {
-      return 'Contenu de la page ' + activity.name;
+      return 'Contenu de la page ' + (activity.name.fr || activity.name.en);
     },
     futureSeminars: 'Séances à venir',
     pastSeminars: 'Séances passées',
@@ -28,7 +28,7 @@ const i18n = {
   },
   en: {
     content(activity) {
-      return activity.name + ' page content';
+      return (activity.name.fr || activity.name.en) + ' page content';
     },
     futureSeminars: 'Upcoming sessions',
     pastSeminars: 'Past sessions',
@@ -49,7 +49,7 @@ export default function ActivityDetail({lang, activity, siteUrl}) {
       id="main-objet" role="main" className={inSeminar ? 'main-seminar' : ''}
       aria-label={i18n[lang].content(activity)}>
       <PageMeta
-        title={`${activity.name} | médialab Sciences Po`}
+        title={`${(activity.name.fr || activity.name.en)} | médialab Sciences Po`}
         description={activity.baseline && activity.baseline[lang]}
         lang={lang}
         date={activity.startDate}
@@ -83,7 +83,7 @@ export default function ActivityDetail({lang, activity, siteUrl}) {
             itemProp="item"
             href={`${siteUrl}${activity.permalink[lang]}`}>
             <span itemProp="name">
-              {activity.name}
+              {(activity.name.fr || activity.name.en)}
             </span>
           </a>
           <meta itemProp="position" content="3" />
@@ -96,7 +96,7 @@ export default function ActivityDetail({lang, activity, siteUrl}) {
             <Link to={mainPermalink[lang]}>
               <span data-icon="activite">{I18N_MODEL[lang].activities} </span>
             </Link>
-            <span className="title"><a href="#topbar">{activity.name}</a></span>
+            <span className="title"><a href="#topbar">{(activity.name.fr || activity.name.en)}</a></span>
           </p>
         </div>
       </header>
@@ -114,7 +114,7 @@ export default function ActivityDetail({lang, activity, siteUrl}) {
 
         <div className={`"block-lang ${lang}`} lang={lang}>
           <hgroup>
-            <h1 data-level-2="title" itemProp="name">{activity.name}</h1>
+            <h1 data-level-2="title" itemProp="name">{(activity.name.fr || activity.name.en)}</h1>
             {
               !activity.active &&
               <div className="former-activity">

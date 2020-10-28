@@ -37,7 +37,7 @@ const RelatedActivities = ({lang, activities}) => {
               <Link to={a.permalink[lang]}>
                 <div className="bandeau">
                   <p className="type-activity" data-icon="activite">{I18N_TYPE_LABELS.activities[lang][a.type]}</p>
-                  <p className="title" data-level-2="title" itemProp="name">{a.name}</p>
+                  <p className="title" data-level-2="title" itemProp="name">{(a.name.fr || a.name.en)}</p>
                 </div>
                 <hgroup>
                   <h1 data-level-1="baseline" itemProp="description" >

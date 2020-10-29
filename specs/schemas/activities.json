@@ -116,7 +116,7 @@
       "enum": [
         "research",
         "teaching",
-        "method"
+        "seminar"
       ],
       "enumId": "activityTypes"
     },

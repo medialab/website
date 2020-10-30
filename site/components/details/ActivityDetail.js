@@ -42,7 +42,7 @@ const mainPermalink = {
 };
 
 export default function ActivityDetail({lang, activity, siteUrl}) {
-  const inSeminar = activity.slugs[0] === 'seminaire-du-medialab';
+  const inSeminar = activity.type === 'seminar';
 
   return (
     <main

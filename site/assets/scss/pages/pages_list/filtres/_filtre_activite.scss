@@ -56,215 +56,479 @@ $activity-attributes: 'active', 'past', 'research', 'teaching', 'seminar';
     }
   }
 
-  // #filtre-activity_active:checked ~ #liste #liste-activity {
-  //   .research-active, .teaching-active, .seminar-active {
-  //     display: block !important;
-  //   }
-  // }
-
-  // #filtre-activity_past:checked ~ #liste #liste-activity {
-  //   .research-active, .teaching-active, .seminar-active {
-  //     display: block !important;
-  //   }
-  // }
-
-  // #filtre-activity_research:checked {
-  //   #filtre-activity_active:not(:checked) ~ #filtre-activity_past:not(:checked){
-  //     .research-active, .research-past {
-  //       display: block !important;
-  //     }
-  //   }
-  //   #filtre-activity_active:checked {
-  //     .research-active {
-  //       display: : block !important;
-  //     }
-  //   }
-  //   #filtre-activity_past:checked {
-  //     .research-past {
-  //       display: block !important;
-  //     }
-  //   }
-  // }
-
-  // #filtre-activity_teaching:checked ~ #liste #liste-activity {
-  //   .teaching-active, .teaching-past {
-  //     display: block !important;
-  //   }
-  // }
-
-  // #filtre-activity_seminar:checked ~ #liste #liste-activity {
-  //   .seminar-active, .seminar-past {
-  //     display: block !important;
-  //   }
-  // }
-
   /* statut + type */
 
-  //   #filtre-activity_active:checked
-  //     ~ #filtre-activity_research:checked
-  //     ~ #liste
-  //     #liste-activity {
-  //     .research-active {
-  //       display: block !important;
-  //     }
-  //     .research-past {
-  //       display: none !important;
-  //     }
-  //     .teaching-active {
-  //       display: none !important;
-  //     }
-  //     .teaching-past {
-  //       display: none !important;
-  //     }
-  //   }
+  #filtre-activity_active:checked
+    ~ #filtre-activity_research:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: block !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
+  }
 
-  //   #filtre-activity_active:checked
-  //     ~ #filtre-activity_teaching:checked
-  //     ~ #liste
-  //     #liste-activity {
-  //     .research-active {
-  //       display: none !important;
-  //     }
-  //     .research-past {
-  //       display: none !important;
-  //     }
-  //     .teaching-active {
-  //       display: block !important;
-  //     }
-  //     .teaching-past {
-  //       display: none !important;
-  //     }
-  //   }
+  #filtre-activity_active:checked
+    ~ #filtre-activity_teaching:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: block !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
+  }
 
-  //   #filtre-activity_active:checked
-  //     ~ #filtre-activity_research:checked
-  //     ~ #filtre-activity_teaching:checked
-  //     ~ #liste
-  //     #liste-activity {
-  //     .research-active {
-  //       display: block !important;
-  //     }
-  //     .research-past {
-  //       display: none !important;
-  //     }
-  //     .teaching-active {
-  //       display: block !important;
-  //     }
-  //     .teaching-past {
-  //       display: none !important;
-  //     }
-  //   }
+  #filtre-activity_active:checked
+    ~ #filtre-activity_seminar:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+    .seminar-active {
+      display: block !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
+  }
 
-  //   #filtre-activity_past:checked
-  //     ~ #filtre-activity_research:checked
-  //     ~ #liste
-  //     #liste-activity {
-  //     .research-active {
-  //       display: none !important;
-  //     }
-  //     .research-past {
-  //       display: block !important;
-  //     }
-  //     .teaching-active {
-  //       display: none !important;
-  //     }
-  //     .teaching-past {
-  //       display: none !important;
-  //     }
-  //   }
+  #filtre-activity_active:checked
+    ~ #filtre-activity_research:checked
+    ~ #filtre-activity_teaching:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: block !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: block !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
+  }
 
-  //   #filtre-activity_past:checked
-  //     ~ #filtre-activity_teaching:checked
-  //     ~ #liste
-  //     #liste-activity {
-  //     .research-active {
-  //       display: none !important;
-  //     }
-  //     .research-past {
-  //       display: none !important;
-  //     }
-  //     .teaching-active {
-  //       display: none !important;
-  //     }
-  //     .teaching-past {
-  //       display: block !important;
-  //     }
-  //   }
+  #filtre-activity_active:checked
+    ~ #filtre-activity_research:checked
+    ~ #filtre-activity_seminar:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: block !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+    .seminar-active {
+      display: block !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
+  }
 
-  //   #filtre-activity_past:checked
-  //     ~ #filtre-activity_research:checked
-  //     ~ #filtre-activity_teaching:checked
-  //     ~ #liste
-  //     #liste-activity {
-  //     .research-active {
-  //       display: none !important;
-  //     }
-  //     .research-past {
-  //       display: block !important;
-  //     }
-  //     .teaching-active {
-  //       display: none !important;
-  //     }
-  //     .teaching-past {
-  //       display: block !important;
-  //     }
-  //   }
+  #filtre-activity_active:checked
+    ~ #filtre-activity_teaching:checked
+    ~ #filtre-activity_seminar:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: block !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+    .seminar-active {
+      display: block !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
+  }
 
-  //   #filtre-activity_active:checked
-  //     ~ #filtre-activity_past:checked
-  //     ~ #filtre-activity_research:checked
-  //     ~ #liste
-  //     #liste-activity {
-  //     .research-active {
-  //       display: block !important;
-  //     }
-  //     .research-past {
-  //       display: block !important;
-  //     }
-  //     .teaching-active {
-  //       display: none !important;
-  //     }
-  //     .teaching-past {
-  //       display: none !important;
-  //     }
-  //   }
+  #filtre-activity_past:checked
+    ~ #filtre-activity_research:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: block !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
+  }
 
-  //   #filtre-activity_active:checked
-  //     ~ #filtre-activity_past:checked
-  //     ~ #filtre-activity_teaching:checked
-  //     ~ #liste
-  //     #liste-activity {
-  //     .research-active {
-  //       display: none !important;
-  //     }
-  //     .research-past {
-  //       display: none !important;
-  //     }
-  //     .teaching-active {
-  //       display: block !important;
-  //     }
-  //     .teaching-past {
-  //       display: block !important;
-  //     }
-  //   }
+  #filtre-activity_past:checked
+    ~ #filtre-activity_teaching:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: block !important;
+    }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
+  }
 
-  //   #filtre-activity_active:checked
-  //     ~ #filtre-activity_past:checked
-  //     ~ #filtre-activity_research:checked
-  //     ~ #filtre-activity_teaching:checked
-  //     ~ #liste
-  //     #liste-activity {
-  //     .research-active {
-  //       display: block !important;
-  //     }
-  //     .research-past {
-  //       display: block !important;
-  //     }
-  //     .teaching-active {
-  //       display: block !important;
-  //     }
-  //     .teaching-past {
-  //       display: block !important;
-  //     }
-  //   }
+  #filtre-activity_past:checked
+    ~ #filtre-activity_seminar:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
+      display: block !important;
+    }
+  }
+
+  #filtre-activity_past:checked
+    ~ #filtre-activity_research:checked
+    ~ #filtre-activity_teaching:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: block !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: block !important;
+    }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
+  }
+
+  #filtre-activity_past:checked
+    ~ #filtre-activity_research:checked
+    ~ #filtre-activity_seminar:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: block !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
+      display: block !important;
+    }
+  }
+
+  #filtre-activity_past:checked
+    ~ #filtre-activity_teaching:checked
+    ~ #filtre-activity_seminar:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: block !important;
+    }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
+      display: block !important;
+    }
+  }
+
+  #filtre-activity_active:checked
+    ~ #filtre-activity_past:checked
+    ~ #filtre-activity_research:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: block !important;
+    }
+    .research-past {
+      display: block !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
+  }
+
+  #filtre-activity_active:checked
+    ~ #filtre-activity_past:checked
+    ~ #filtre-activity_teaching:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: block !important;
+    }
+    .teaching-past {
+      display: block !important;
+    }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
+  }
+
+  #filtre-activity_active:checked
+    ~ #filtre-activity_past:checked
+    ~ #filtre-activity_seminar:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+    .seminar-active {
+      display: block !important;
+    }
+    .seminar-past {
+      display: block !important;
+    }
+  }
+
+  #filtre-activity_active:checked
+    ~ #filtre-activity_past:checked
+    ~ #filtre-activity_research:checked
+    ~ #filtre-activity_teaching:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: block !important;
+    }
+    .research-past {
+      display: block !important;
+    }
+    .teaching-active {
+      display: block !important;
+    }
+    .teaching-past {
+      display: block !important;
+    }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
+  }
+
+  #filtre-activity_active:checked
+    ~ #filtre-activity_past:checked
+    ~ #filtre-activity_research:checked
+    ~ #filtre-activity_seminar:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: block !important;
+    }
+    .research-past {
+      display: block !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+    .seminar-active {
+      display: block !important;
+    }
+    .seminar-past {
+      display: block !important;
+    }
+  }
+
+  #filtre-activity_active:checked
+    ~ #filtre-activity_past:checked
+    ~ #filtre-activity_teaching:checked
+    ~ #filtre-activity_seminar:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: block !important;
+    }
+    .teaching-past {
+      display: block !important;
+    }
+    .seminar-active {
+      display: block !important;
+    }
+    .seminar-past {
+      display: block !important;
+    }
+  }
+
+  #filtre-activity_active:checked
+    ~ #filtre-activity_past:checked
+    ~ #filtre-activity_research:checked
+    ~ #filtre-activity_teaching:checked
+    ~ #filtre-activity_seminar:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: block !important;
+    }
+    .research-past {
+      display: block !important;
+    }
+    .teaching-active {
+      display: block !important;
+    }
+    .teaching-past {
+      display: block !important;
+    }
+    .seminar-active {
+      display: block !important;
+    }
+    .seminar-past {
+      display: block !important;
+    }
+  }
 }

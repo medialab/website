@@ -35,6 +35,7 @@ const sortActivities = (a, b) => {
 };
 
 export default function ActivityListing({lang, list, topActivities}) {
+  // TODO: this is quite shady
   const activities = topActivities
     .map(ta => list.find(a => a.id === ta))
     .filter(ta => !!ta)

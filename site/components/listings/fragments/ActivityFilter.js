@@ -131,6 +131,14 @@ const ActivityFilter = ({lang}) => {
         value="teaching"
         hidden
       />
+      <input
+        type="checkbox"
+        id="filtre-activity_seminar"
+        name="filtre-activity_seminar"
+        className="input_filtre-activity filtre-activity_type"
+        value="seminar"
+        hidden
+      />
 
       <aside className="aside-filters" aria-label={filtersTitle}>
         <h1 className="aside-title">{filtersTitle}</h1>
@@ -170,6 +178,13 @@ const ActivityFilter = ({lang}) => {
             htmlFor="filtre-activity_teaching"
             aria-label={I18N_TYPE_LABELS.activities[lang].teaching}>
             {I18N_TYPE_LABELS.activities[lang].teaching}
+          </label>
+          <label
+            id="filtre-activity_seminar_label"
+            className="filtre-activity checkbox-medialab"
+            htmlFor="filtre-activity_seminar"
+            aria-label={I18N_TYPE_LABELS.activities[lang].seminar}>
+            {I18N_TYPE_LABELS.activities[lang].seminar}
           </label>
         </div>
       </aside>

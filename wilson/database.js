@@ -203,7 +203,7 @@ class Database {
         if (this.options.coverImageCache) {
           const cache = this.options.coverImageCache[item.id];
 
-          if (cache.file === item.cover.file) {
+          if (cache && cache.file === item.cover.file) {
             item.coverImage = cache.data;
 
             return next();

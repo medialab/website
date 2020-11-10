@@ -91,7 +91,11 @@ module.exports = {
         order: [a => (a.lastUpdated ? +new Date(a.lastUpdated) : Infinity)]
       }
     ],
-    search: createSearch(['name.fr', 'name.en', a => enums.activityTypes.fr[a.type]]),
+    search: createSearch([
+      'name.fr',
+      'name.en',
+      a => enums.activityTypes.fr[a.type]
+    ]),
     defaultOrder: a => normalize(a.name.fr || a.name.en || ''),
     filters: {
       active: {

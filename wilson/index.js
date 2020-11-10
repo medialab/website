@@ -323,7 +323,6 @@ exports.build = function build(inputDir, outputDir, options, callback) {
       assets: buildAllAssets,
 
       build(next) {
-
         // Building pages
         return async.eachLimit(
           website.getPagesToRender(),

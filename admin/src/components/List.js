@@ -18,6 +18,7 @@ import WebEditionIcon from 'material-icons-svg/components/baseline/DesktopWindow
 import ToolsIcon from 'material-icons-svg/components/baseline/Build';
 import SituationIcon from 'material-icons-svg/components/baseline/Wallpaper';
 import MediaIcon from 'material-icons-svg/components/baseline/Mic';
+import UnknownIcon from 'material-icons-svg/components/baseline/Help';
 
 import ListFilterSelector from './selectors/ListFilterSelector';
 
@@ -128,8 +129,10 @@ const ListTable = React.memo(props => {
               let icon = null;
 
               if (item.icon) {
-                const IconComponent =
+                let IconComponent =
                   ICONS_MAPPING[item.icon.type][item.icon.property(d)];
+
+                if (!IconComponent) IconComponent = UnknownIcon;
 
                 icon = (
                   <span title={item.icon.label(d)}>

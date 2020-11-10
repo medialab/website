@@ -12,6 +12,7 @@ module.exports = {
   news: function (uuid) {
     return {
       id: uuid(),
+      type: enums.newsTypes.default,
       startDate: new Date().toISOString().split('T')[0],
       draft: true,
       internal: false
@@ -30,6 +31,7 @@ module.exports = {
   production: function (uuid) {
     return {
       id: uuid(),
+      type: enums.productionTypes.default,
       draft: true,
       active: true
     };

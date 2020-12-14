@@ -23,7 +23,11 @@ module.exports = function (req, dbs, next) {
   MODELS.forEach(m => {
     // Finding things to delete
     const [toDelete, toKeep] = partition(data[m], o => {
-      const title = (o.title && o.title.fr + o.title.en) + o.name;
+      let title = '';
+
+      if (o.title) title += (o.title.fr || '') + (o.title.en || '');
+
+      if (o.name) title += (o.name.fr || '') + (o.name.en || '');
 
       // NOTE: should only happen with spire items
       if (!title) {

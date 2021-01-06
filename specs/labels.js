@@ -11,6 +11,10 @@ module.exports = {
     return p.title.fr || p.title.en;
   },
   news: function (n) {
-    return n.title.fr + (n.title.fr && n.title.en ? ' | ' : '') + n.title.en;
+    if (n.title.fr && n.title.en) return n.title.fr + ' | ' + n.title.en;
+
+    if (n.title.fr) return n.title.fr;
+
+    if (n.title.en) return n.title.en;
   }
 };

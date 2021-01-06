@@ -169,13 +169,35 @@ class Database {
     // Hydrating home settings
     const homeSettings = this.store.settings.home;
 
-    homeSettings.grid = homeSettings.grid.map(item => {
-      return this.graph.getNodeAttributes(item.id);
-    });
+    homeSettings.grid = homeSettings.grid
+      .filter(item => {
+        if (draftIds.has(item.id)) {
+          console.warn(
+            `wilson/database: found draft ${item.model} "${item.id}" in home grid.`
+          );
+          return false;
+        }
 
-    homeSettings.slider = homeSettings.slider.map(item => {
-      return this.graph.getNodeAttributes(item.id);
-    });
+        return true;
+      })
+      .map(item => {
+        return this.graph.getNodeAttributes(item.id);
+      });
+
+    homeSettings.slider = homeSettings.slider
+      .filter(item => {
+        if (draftIds.has(item.id)) {
+          console.warn(
+            `wilson/database: found draft ${item.model} "${item.id}" in home slider.`
+          );
+          return false;
+        }
+
+        return true;
+      })
+      .map(item => {
+        return this.graph.getNodeAttributes(item.id);
+      });
   }
 
   processCovers(inputDir, outputDir, pathPrefix, options, callback) {

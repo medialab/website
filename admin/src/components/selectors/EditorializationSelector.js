@@ -37,12 +37,13 @@ const TASKS = {
 
 const noOptionsMessage = () => 'No matching item';
 
-const createOptions = (model, items) => ({
+const createOptions = disableDrafts => (model, items) => ({
   label: model,
   options: items.map(item => ({
     value: item.id,
     label: labels[model](item),
-    model
+    model,
+    isDisabled: disableDrafts && !!item.draft
   }))
 });
 
@@ -100,9 +101,11 @@ export default class EditorializationSelector extends PureComponent {
 
     models.forEach(model => (tasks[model] = TASKS[model]));
 
+    const create = createOptions(!!this.props.disableDrafts);
+
     parallel(tasks, (err, data) => {
       const options = models.reduce((acc, model) => {
-        return acc.concat(createOptions(model, data[model]));
+        return acc.concat(create(model, data[model]));
       }, []);
 
       this.optionsIndex = keyBy(flatten(options.map(g => g.options)), 'value');

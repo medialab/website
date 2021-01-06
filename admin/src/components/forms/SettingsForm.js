@@ -87,6 +87,7 @@ export default class SettingsForm extends Component {
               max={5}
               models={['activities', 'news', 'productions']}
               selected={settings.home.slider}
+              disableDrafts
               onAdd={this.handlers.slider.add}
               onDrop={this.handlers.slider.drop}
               onMove={this.handlers.slider.move}
@@ -97,6 +98,7 @@ export default class SettingsForm extends Component {
               max={8}
               models={['activities', 'news', 'productions']}
               selected={settings.home.grid}
+              disableDrafts
               onAdd={this.handlers.grid.add}
               onDrop={this.handlers.grid.drop}
               onMove={this.handlers.grid.move}
@@ -108,6 +110,7 @@ export default class SettingsForm extends Component {
               max={10}
               models={['activities']}
               selected={settings.topActivities}
+              disableDrafts
               onAdd={this.handlers.topActivities.add}
               onDrop={this.handlers.topActivities.drop}
               onMove={this.handlers.topActivities.move}

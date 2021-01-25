@@ -1,7 +1,7 @@
 const path = require('path'),
-      url = require('url'),
-      config = require('config'),
-      webpack = require('webpack');
+  url = require('url'),
+  config = require('config'),
+  webpack = require('webpack');
 
 module.exports = {
   mode: 'development',

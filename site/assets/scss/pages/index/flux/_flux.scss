@@ -19,7 +19,7 @@
       display: inline-block;
       cursor: pointer;
       &:after {
-        content: "/";
+        content: '/';
         margin-left: $unite * 0.75;
         margin-right: $unite * 0.75;
         @media screen and (max-width: 1070px) {

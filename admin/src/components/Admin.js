@@ -19,7 +19,7 @@ const localeDateStringOptions = {
 };
 
 function formatDate(date) {
-  return (new Date(date)).toLocaleDateString('fr-FR', localeDateStringOptions);
+  return new Date(date).toLocaleDateString('fr-FR', localeDateStringOptions);
 }
 
 const defaultAdminInfo = {
@@ -29,12 +29,11 @@ const defaultAdminInfo = {
 };
 
 function templateAdminInfo(info) {
-  if (!info || !info.lastBuildEnd)
-    return defaultAdminInfo;
+  if (!info || !info.lastBuildEnd) return defaultAdminInfo;
 
-  const lastCommitDate = info.lastCommits ?
-    info.lastCommits[0].date.split(' +')[0] :
-    null;
+  const lastCommitDate = info.lastCommits
+    ? info.lastCommits[0].date.split(' +')[0]
+    : null;
 
   return {
     lastBuildDate: formatDate(info.lastBuildEnd),
@@ -71,18 +70,15 @@ export default function Admin() {
 
   const templated = templateAdminInfo(adminInfo);
 
-  const canAct = (
-    !locks ||
-    (locks.deployStatus === 'free' && locks.buildStatus === 'free')
-  );
+  const canAct =
+    !locks || (locks.deployStatus === 'free' && locks.buildStatus === 'free');
 
   let label = 'Forcer le build du site statique';
 
   if (!canAct) {
-    if (locks.buildStatus !== 'free')
-      label = 'Le site est en train de builder';
+    if (locks.buildStatus !== 'free') label = 'Le site est en train de builder';
     else if (locks.deployStatus !== 'free' && locks.deployStatus !== 'build')
-      label = 'Le site est en train d\'être versionné';
+      label = "Le site est en train d'être versionné";
   }
 
   return (
@@ -94,7 +90,10 @@ export default function Admin() {
       <p>
         <strong>Dernière mise à jour des flux</strong>&nbsp;
         <em>
-          {templated.lastBuildDate} {templated.lastBuildDuration && <span>(en {templated.lastBuildDuration} secondes)</span>}
+          {templated.lastBuildDate}{' '}
+          {templated.lastBuildDuration && (
+            <span>(en {templated.lastBuildDuration} secondes)</span>
+          )}
         </em>
       </p>
       <p>
@@ -105,9 +104,7 @@ export default function Admin() {
       <div>
         {!canAct && (
           <>
-            <Button
-              disabled={!canAct}
-              onClick={() => client.build()}>
+            <Button disabled={!canAct} onClick={() => client.build()}>
               {label}
             </Button>
             <Button kind="white" loading />
@@ -117,7 +114,8 @@ export default function Admin() {
       {canAct && (
         <div style={{marginTop: '3px'}}>
           <Button onClick={() => client.deploy()}>
-            Envoyer les modifications dans le git pour mise à jour du site statique
+            Envoyer les modifications dans le git pour mise à jour du site
+            statique
           </Button>
         </div>
       )}

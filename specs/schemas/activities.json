@@ -26,7 +26,17 @@
     },
     "name": {
       "title": "Nom",
-      "type": "string"
+      "type": "object",
+      "properties": {
+        "en": {
+          "title": "English name",
+          "type": "string"
+        },
+        "fr": {
+          "title": "Nom français",
+          "type": "string"
+        }
+      }
     },
     "cover": {
       "title": "Image de couverture",
@@ -106,7 +116,7 @@
       "enum": [
         "research",
         "teaching",
-        "method"
+        "seminar"
       ],
       "enumId": "activityTypes"
     },

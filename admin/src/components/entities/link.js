@@ -12,8 +12,7 @@ import CardModal from '../misc/CardModal';
 import client from '../../client';
 // Source
 class LinkSource extends Component {
-
-  constructor (props, context) {
+  constructor(props, context) {
     super(props, context);
     this.state = {
       href: props.entity ? props.entity.get('data').href : '',
@@ -22,13 +21,13 @@ class LinkSource extends Component {
     };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     if (this.input) {
       this.input.focus();
     }
   }
 
-  addEntity = (option) => {
+  addEntity = option => {
     const {editorState, entityType, onComplete} = this.props;
     const content = editorState.getCurrentContent();
 
@@ -40,8 +39,7 @@ class LinkSource extends Component {
         option
       );
       entityKey = this.props.entityKey;
-    }
-    else {
+    } else {
       contentWithEntity = content.createEntity(
         entityType.type,
         'MUTABLE',
@@ -49,10 +47,9 @@ class LinkSource extends Component {
       );
       entityKey = contentWithEntity.getLastCreatedEntityKey();
     }
-    const newEditorState = EditorState.set(
-      editorState,
-      {currentContent: contentWithEntity}
-    );
+    const newEditorState = EditorState.set(editorState, {
+      currentContent: contentWithEntity
+    });
     const nextState = RichUtils.toggleLink(
       newEditorState,
       newEditorState.getSelection(),
@@ -74,8 +71,7 @@ class LinkSource extends Component {
   };
 
   handleSubmit = () => {
-    if (!this.state.file && !this.state.href)
-      return;
+    if (!this.state.file && !this.state.href) return;
     if (this.state.href)
       return this.addEntity({href: this.state.href, internal: false});
 
@@ -92,14 +88,14 @@ class LinkSource extends Component {
     return onClose();
   };
 
-  onKeyDown = (event) => {
+  onKeyDown = event => {
     if (event.key === 'Escape') {
       this.props.onClose();
     }
     if (event.key === 'Enter') {
       this.handleSubmit();
     }
-  }
+  };
 
   render() {
     const {href, file, loading} = this.state;
@@ -115,51 +111,49 @@ class LinkSource extends Component {
           // Title
           'Inserting a link',
           // Body
-          (
-            <div key="body">
-              <div className="columns">
-                <div className="column is-7">
-                  <div className="field">
-                    <label className="label">Using an external url:</label>
-                    <div className="control">
-                      <input
-                        onKeyUp={this.onKeyDown}
-                        type="text"
-                        className="input"
-                        disabled={!!file}
-                        ref={el => {
-                          this.input = el;
-                        }}
-                        value={href}
-                        onChange={this.handleHref} />
-                    </div>
+          <div key="body">
+            <div className="columns">
+              <div className="column is-7">
+                <div className="field">
+                  <label className="label">Using an external url:</label>
+                  <div className="control">
+                    <input
+                      onKeyUp={this.onKeyDown}
+                      type="text"
+                      className="input"
+                      disabled={!!file}
+                      ref={el => {
+                        this.input = el;
+                      }}
+                      value={href}
+                      onChange={this.handleHref}
+                    />
                   </div>
                 </div>
-                <div className="column is-5">
-                  <div className="field">
-                    <label className="label">Uploading an attachment:</label>
-                    <div className="control">
-                      {file ?
-                        <div>{file.name}</div> :
-                        <Dropzone onDrop={this.handleDrop} />}
-                    </div>
+              </div>
+              <div className="column is-5">
+                <div className="field">
+                  <label className="label">Uploading an attachment:</label>
+                  <div className="control">
+                    {file ? (
+                      <div>{file.name}</div>
+                    ) : (
+                      <Dropzone onDrop={this.handleDrop} />
+                    )}
                   </div>
                 </div>
               </div>
             </div>
-          ),
+          </div>,
           // Footer
-          (
-            <Button
-              key="footer"
-              disabled={!href && !file}
-              kind={loading ? 'loading' : 'success'}
-              onClick={this.handleSubmit}>
-              {buttonLabel}
-            </Button>
-          )
+          <Button
+            key="footer"
+            disabled={!href && !file}
+            kind={loading ? 'loading' : 'success'}
+            onClick={this.handleSubmit}>
+            {buttonLabel}
+          </Button>
         ]}
-
       </CardModal>
     );
   }
@@ -195,12 +189,16 @@ function LinkDecorator(props) {
                   type="button"
                   small
                   kind="warning"
-                  onClick={() => onEdit(entityKey)}>Edit</Button>
+                  onClick={() => onEdit(entityKey)}>
+                  Edit
+                </Button>
                 <Button
                   type="button"
                   small
                   kind="danger"
-                  onClick={() => onRemove(entityKey)}>Remove</Button>
+                  onClick={() => onRemove(entityKey)}>
+                  Remove
+                </Button>
               </div>
             </div>
           </div>

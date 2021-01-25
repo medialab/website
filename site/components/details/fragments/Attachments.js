@@ -22,25 +22,26 @@ const i18n = {
 };
 
 const Attachments = ({lang, attachments}) => {
-
   // Si aucun fichier lié, retourne null
-  if (!attachments || attachments.length === 0)
-    return null;
+  if (!attachments || attachments.length === 0) return null;
 
   attachments = attachments.filter(data => !data.lang || data.lang === lang);
 
   return (
     <ul className="fichiers-associes" id="attachments">
       {(attachments || []).map((data, index) => {
-
         data = Object.assign({}, data);
 
         if (!data.lang && lang === 'en')
           data.label = translateAttachmentLabel(data.label);
 
         return (
-          <li key={data.value} data-type="files" className={`${index === 0 ? 'important' : ''} files${['attachement', 'url'].includes(data.type) ? ' target' : ''}`}>
-
+          <li
+            key={data.value}
+            data-type="files"
+            className={`${index === 0 ? 'important' : ''} files${
+              ['attachement', 'url'].includes(data.type) ? ' target' : ''
+            }`}>
             {data.type === 'attachment' && (
               <a
                 href={data.value}
@@ -62,7 +63,9 @@ const Attachments = ({lang, attachments}) => {
               </a>
             )}
             {data.type === 'string' && (
-              <span>{data.label}: {data.value}</span>
+              <span>
+                {data.label}: {data.value}
+              </span>
             )}
           </li>
         );

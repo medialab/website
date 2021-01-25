@@ -9,8 +9,8 @@ export default ({data, pageContext}) => {
   // console.log(data, pageContext);
 
   const activities = data.allActivitiesJson.edges.map(getNode),
-        news = data.allNewsJson.edges.map(getNode),
-        productions = data.allProductionsJson.edges.map(getNode);
+    news = data.allNewsJson.edges.map(getNode),
+    productions = data.allProductionsJson.edges.map(getNode);
 
   return (
     <Layout
@@ -21,7 +21,8 @@ export default ({data, pageContext}) => {
         lang={pageContext.lang}
         activities={activities}
         news={news}
-        productions={productions} />
+        productions={productions}
+      />
     </Layout>
   );
 };

@@ -1,0 +1,16 @@
+admin/build
+admin/Dockerfile
+admin/node_modules
+build
+.cache
+docker-compose.yml
+Dockerfile
+docs
+.git
+.gitignore
+*.md
+node_modules/
+prototyping
+site/.cache
+site/node_modules
+site/public

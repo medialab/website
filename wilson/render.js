@@ -60,9 +60,7 @@ function wrap(pathPrefix, content, helmet, options) {
         ];
 
         if (feed.main)
-          lines.push(
-            templateRssFeedLink(feed.fr.title, pathPrefix + '/feed')
-          );
+          lines.push(templateRssFeedLink(feed.fr.title, pathPrefix + '/feed'));
 
         return lines.join('\n');
       })
@@ -108,7 +106,11 @@ function wrap(pathPrefix, content, helmet, options) {
         bubbles: true,
         cancelable: true
       }));
-      ${options.livereloadUrl ? `window.API_URL = '${options.livereloadUrl}';` : ''}
+      ${
+        options.livereloadUrl
+          ? `window.API_URL = '${options.livereloadUrl}';`
+          : ''
+      }
     </script>
     ${scriptTags}
   </body>
@@ -121,7 +123,14 @@ function wrap(pathPrefix, content, helmet, options) {
 // TODO: easter egg
 // TODO: use classnames for html fallback and such
 // TODO: get rid of HTMLFallback or improve it
-exports.renderPage = function(pathPrefix, permalink, template, pageContext, data, options) {
+exports.renderPage = function (
+  pathPrefix,
+  permalink,
+  template,
+  pageContext,
+  data,
+  options
+) {
   assert(typeof template === 'string', 'Template should be a string path.');
 
   options = options || {};
@@ -145,23 +154,17 @@ exports.renderPage = function(pathPrefix, permalink, template, pageContext, data
 
   const scripts = (options.scripts || []).slice();
 
-  if (options.livereloadUrl)
-    scripts.push('livereload');
+  if (options.livereloadUrl) scripts.push('livereload');
 
   // TEMP: cache busting Gatsby
   scripts.push('cache-buster');
 
-  content = wrap(
-    pathPrefix,
-    content,
-    helmet,
-    {
-      googleAnalyticsId: options.googleAnalyticsId,
-      rssFeeds: options.rssFeeds,
-      livereloadUrl: options.livereloadUrl,
-      scripts
-    }
-  );
+  content = wrap(pathPrefix, content, helmet, {
+    googleAnalyticsId: options.googleAnalyticsId,
+    rssFeeds: options.rssFeeds,
+    livereloadUrl: options.livereloadUrl,
+    scripts
+  });
 
   return content;
 };

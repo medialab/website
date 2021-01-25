@@ -94,18 +94,18 @@
   .filter-group {
     display: none !important;
   }
-  [data-list-open="publications"] [data-filter-group="publications"],
-  [data-list-open="tools"] [data-filter-group="tools"],
-  [data-list-open="webEditions"] [data-filter-group="webEditions"],
-  [data-list-open="situations"] [data-filter-group="situations"] {
+  [data-list-open='publications'] [data-filter-group='publications'],
+  [data-list-open='tools'] [data-filter-group='tools'],
+  [data-list-open='webEditions'] [data-filter-group='webEditions'],
+  [data-list-open='situations'] [data-filter-group='situations'] {
     display: block !important;
   }
 
-  [data-list-open="publications"] [data-link="publications"],
-  [data-list-open="tools"] [data-link="tools"],
-  [data-list-open="webEditions"] [data-link="webEditions"],
-  [data-list-open="media"] [data-link="media"],
-  [data-list-open="situations"] [data-link="situations"] {
+  [data-list-open='publications'] [data-link='publications'],
+  [data-list-open='tools'] [data-link='tools'],
+  [data-list-open='webEditions'] [data-link='webEditions'],
+  [data-list-open='media'] [data-link='media'],
+  [data-list-open='situations'] [data-link='situations'] {
     font-weight: 600 !important;
     color: $text-color !important;
     cursor: default;
@@ -118,7 +118,7 @@
     }
   }
 
-  [data-list-open="all"] li:first-of-type a {
+  [data-list-open='all'] li:first-of-type a {
     font-weight: 600 !important;
   }
 

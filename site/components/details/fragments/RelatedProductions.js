@@ -20,21 +20,28 @@ const i18n = {
 
 const ProductionCard = ({p, lang}) => (
   <>
-    <div className="bandeau" >
-      <p className="type-production" data-icon="production"> {I18N_GROUP_LABELS.productions[lang][p.group]}</p>
+    <div className="bandeau">
+      <p className="type-production" data-icon="production">
+        {' '}
+        {I18N_GROUP_LABELS.productions[lang][p.group]}
+      </p>
       {p.authors && <p className="authors">{p.authors}</p>}
-      <DateNews startDateSchemaProp="datePublished" startDate={p.date} lang={lang} />
+      <DateNews
+        startDateSchemaProp="datePublished"
+        startDate={p.date}
+        lang={lang}
+      />
       {p.external && p.url && (
         <p
           className="external"
           aria-label={i18n[lang].externalAriaLabel}
-          title={i18n[lang].externalProduction} >
+          title={i18n[lang].externalProduction}>
           ⤤
         </p>
       )}
     </div>
     <hgroup>
-      <h1 itemProp="name" data-level-1="title" >
+      <h1 itemProp="name" data-level-1="title">
         {p.title[lang] || p.title[lang === 'fr' ? 'en' : 'fr']}
       </h1>
     </hgroup>
@@ -44,29 +51,29 @@ const ProductionCard = ({p, lang}) => (
 export default function RelatedProductions({lang, productions}) {
   const related = SECTIONS.productions;
 
-	if (!productions || productions.length === 0)
-    return null;
+  if (!productions || productions.length === 0) return null;
 
   // sort
   const productionsSorted = productions.slice().sort((a, b) => {
     return -compare(a.date || '0', b.date || '0');
   });
 
-	let accroche;
-	if (lang === 'fr') {
+  let accroche;
+  if (lang === 'fr') {
     accroche = related.fr + String.fromCharCode(8239);
-  }
-  else {
+  } else {
     accroche = related.en;
   }
 
-	return (
+  return (
     <aside
       id="productions"
       className="container elements-associes-block"
       role="complementary"
       aria-label={related[lang]}>
-      <h1><span data-icon="production" /> {accroche}</h1>
+      <h1>
+        <span data-icon="production" /> {accroche}
+      </h1>
       <div className="contenu">
         <ul className="liste_objet">
           {productionsSorted.map(p => (
@@ -77,7 +84,9 @@ export default function RelatedProductions({lang, productions}) {
               data-type="production"
               className="item">
               {!p.external && (
-                <Link to={p.permalink[lang]} aria-label={i18n[lang].linkAriaLabel}>
+                <Link
+                  to={p.permalink[lang]}
+                  aria-label={i18n[lang].linkAriaLabel}>
                   <ProductionCard p={p} lang={lang} />
                 </Link>
               )}
@@ -86,13 +95,11 @@ export default function RelatedProductions({lang, productions}) {
                   <ProductionCard p={p} lang={lang} />
                 </a>
               )}
-              {p.external && !p.url && (
-                <ProductionCard p={p} lang={lang} />
-              )}
+              {p.external && !p.url && <ProductionCard p={p} lang={lang} />}
             </li>
           ))}
         </ul>
       </div>
     </aside>
-	);
+  );
 }

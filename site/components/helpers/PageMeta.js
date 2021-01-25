@@ -17,7 +17,7 @@ const typeToDublinCoreMapping = {
   simulation: 'Event',
   workshop: 'Event',
   conference: 'Event',
-  media: 'Event',
+  media: 'Event'
 };
 
 const buildOpenGraphAdditionalMeta = obj => {
@@ -33,7 +33,11 @@ const buildOpenGraphAdditionalMeta = obj => {
       return [
         <meta key="type" property="og:type" content="article" />,
         <meta key="author" property="og:article:author" content={obj.author} />,
-        <meta key="time" property="og:article:published_time" content={obj.date} />
+        <meta
+          key="time"
+          property="og:article:published_time"
+          content={obj.date}
+        />
       ];
     default:
       return <meta property="og:type" content="website" />;
@@ -62,9 +66,10 @@ export default function PageMeta(props) {
 
   const siteUrlWithPrefix = context.siteUrl + context.pathPrefix;
 
-  const imageSrc = imageData && imageData.url ?
-    siteUrlWithPrefix + imageData.url :
-    siteUrlWithPrefix + '/img/cover-twitter.png';
+  const imageSrc =
+    imageData && imageData.url
+      ? siteUrlWithPrefix + imageData.url
+      : siteUrlWithPrefix + '/img/cover-twitter.png';
 
   const imageWidth = imageData && imageData.width ? imageData.width : 2000;
   const imageHeight = imageData && imageData.height ? imageData.height : 1000;
@@ -92,14 +97,23 @@ export default function PageMeta(props) {
       {date && <meta name="DC.language" content={lang} />}
       {uri && <meta name="DCTERMS.uri" lang={lang} content={uri} />}
       <meta name="DCTERMS.description" lang={lang} content={description} />
-      {date && <meta name="DCTERMS.issued" scheme="DCTERMS.W3CDTF" content={date} />}
-      {author && (Array.isArray(author) ? (
-        author.map((a, i) => <meta name="DCTERMS.creator" key={i} content={a} />)
-      ) : (
-        <meta name="DCTERMS.creator" content={author} />
-      ))}
-      {citation && <meta name="DCTERMS.bibliographicCitation" content={citation} />}
-      {type && !zoteroType && typeToDublinCoreMapping[type] && <meta name="DCTERMS.type" content={typeToDublinCoreMapping[type]} />}
+      {date && (
+        <meta name="DCTERMS.issued" scheme="DCTERMS.W3CDTF" content={date} />
+      )}
+      {author &&
+        (Array.isArray(author) ? (
+          author.map((a, i) => (
+            <meta name="DCTERMS.creator" key={i} content={a} />
+          ))
+        ) : (
+          <meta name="DCTERMS.creator" content={author} />
+        ))}
+      {citation && (
+        <meta name="DCTERMS.bibliographicCitation" content={citation} />
+      )}
+      {type && !zoteroType && typeToDublinCoreMapping[type] && (
+        <meta name="DCTERMS.type" content={typeToDublinCoreMapping[type]} />
+      )}
       {/* END META DUBLIN CORE */}
 
       {/* META TWITTER */}

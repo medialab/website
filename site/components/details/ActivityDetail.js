@@ -20,7 +20,7 @@ import PageMeta from '../helpers/PageMeta.js';
 const i18n = {
   fr: {
     content(activity) {
-      return 'Contenu de la page ' + activity.name;
+      return 'Contenu de la page ' + (activity.name.fr || activity.name.en);
     },
     futureSeminars: 'Séances à venir',
     pastSeminars: 'Séances passées',
@@ -28,7 +28,7 @@ const i18n = {
   },
   en: {
     content(activity) {
-      return activity.name + ' page content';
+      return (activity.name.fr || activity.name.en) + ' page content';
     },
     futureSeminars: 'Upcoming sessions',
     pastSeminars: 'Past sessions',
@@ -42,49 +42,63 @@ const mainPermalink = {
 };
 
 export default function ActivityDetail({lang, activity, siteUrl}) {
-  const inSeminar = activity.slugs[0] === 'seminaire-du-medialab';
+  const inSeminar = activity.type === 'seminar';
 
   return (
     <main
-      id="main-objet" role="main" className={inSeminar ? 'main-seminar' : ''}
+      id="main-objet"
+      role="main"
+      className={inSeminar ? 'main-seminar' : ''}
       aria-label={i18n[lang].content(activity)}>
       <PageMeta
-        title={`${activity.name} | médialab Sciences Po`}
+        title={`${activity.name.fr || activity.name.en} | médialab Sciences Po`}
         description={activity.baseline && activity.baseline[lang]}
         lang={lang}
         date={activity.startDate}
-        imageData={activity.coverImage && activity.coverImage.processed && activity.coverImage.processed.raster}
-        uri={`${siteUrl}${activity.permalink[lang]}`} />
-      <ol style={{display: 'none'}} itemScope itemType="https://schema.org/BreadcrumbList">
+        imageData={
+          activity.coverImage &&
+          activity.coverImage.processed &&
+          activity.coverImage.processed.raster
+        }
+        uri={`${siteUrl}${activity.permalink[lang]}`}
+      />
+      <ol
+        style={{display: 'none'}}
+        itemScope
+        itemType="https://schema.org/BreadcrumbList">
         <li
-          itemProp="itemListElement" itemScope
+          itemProp="itemListElement"
+          itemScope
           itemType="https://schema.org/ListItem">
           <a
             itemType="https://schema.org/Organization"
-            itemProp="item" href={siteUrl}>
-            <span itemProp="name">médialab Sciences Po</span></a>
+            itemProp="item"
+            href={siteUrl}>
+            <span itemProp="name">médialab Sciences Po</span>
+          </a>
           <meta itemProp="position" content="1" />
         </li>
         <li
-          itemProp="itemListElement" itemScope
+          itemProp="itemListElement"
+          itemScope
           itemType="https://schema.org/ListItem">
           <a
             itemType="https://schema.org/Thing"
             itemProp="item"
             href={`${siteUrl}${mainPermalink[lang]}`}>
-            <span itemProp="name">{I18N_MODEL[lang].activities}</span></a>
+            <span itemProp="name">{I18N_MODEL[lang].activities}</span>
+          </a>
           <meta itemProp="position" content="2" />
         </li>
         <li
-          itemProp="itemListElement" itemScope
+          itemProp="itemListElement"
+          itemScope
           itemType="https://schema.org/ListItem">
           <a
             itemType="https://schema.org/Thing"
             itemProp="item"
             href={`${siteUrl}${activity.permalink[lang]}`}>
-            <span itemProp="name">
-              {activity.name}
-            </span>
+            <span itemProp="name">{activity.name.fr || activity.name.en}</span>
           </a>
           <meta itemProp="position" content="3" />
         </li>
@@ -96,76 +110,114 @@ export default function ActivityDetail({lang, activity, siteUrl}) {
             <Link to={mainPermalink[lang]}>
               <span data-icon="activite">{I18N_MODEL[lang].activities} </span>
             </Link>
-            <span className="title"><a href="#topbar">{activity.name}</a></span>
+            <span className="title">
+              <a href="#topbar">{activity.name.fr || activity.name.en}</a>
+            </span>
           </p>
         </div>
       </header>
 
-
-      <div id="img-article" >
+      <div id="img-article">
         <div className="activator" />
         <div className="container" aria-hidden="true">
-          <ProcessedImage size="large" image={activity.coverImage && activity.coverImage.processed && activity.coverImage.processed.large} data={activity} />
+          <ProcessedImage
+            size="large"
+            image={
+              activity.coverImage &&
+              activity.coverImage.processed &&
+              activity.coverImage.processed.large
+            }
+            data={activity}
+          />
         </div>
       </div>
 
-
       <article id="article-contenu">
-
         <div className={`"block-lang ${lang}`} lang={lang}>
           <hgroup>
-            <h1 data-level-2="title" itemProp="name">{activity.name}</h1>
-            {
-              !activity.active &&
+            <h1 data-level-2="title" itemProp="name">
+              {activity.name.fr || activity.name.en}
+            </h1>
+            {!activity.active && (
               <div className="former-activity">
-                  {i18n[lang].activityFinished}
+                {i18n[lang].activityFinished}
               </div>
-            }
-            <h2 data-level-2="baseline">{activity.baseline && <LanguageFallback lang={lang} translatedAttribute={activity.baseline} />}</h2>
+            )}
+            <h2 data-level-2="baseline">
+              {activity.baseline && (
+                <LanguageFallback
+                  lang={lang}
+                  translatedAttribute={activity.baseline}
+                />
+              )}
+            </h2>
             <HtmlFallback
               wrapper="h3"
               data-level-3="description"
               itemProp="description"
               content={activity.description}
-              lang={lang} />
+              lang={lang}
+            />
           </hgroup>
           <div className="details">
-            <p className="type-objet"><span data-icon="activite" /> {I18N_TYPE_LABELS.activities[lang][activity.type]}</p>
+            <p className="type-objet">
+              <span data-icon="activite" />{' '}
+              {I18N_TYPE_LABELS.activities[lang][activity.type]}
+            </p>
             <DateNews
               isTimeSpan
               startDateSchemaProp={'foundingDate'}
               endDateSchemaProp={'dissolutionDate'}
               startDate={activity.startDate}
               endDate={activity.endDate}
-              lang={lang} />
-            <TimeNews startDate={activity.startDate} endDate={activity.endDate} />
+              lang={lang}
+            />
+            <TimeNews
+              startDate={activity.startDate}
+              endDate={activity.endDate}
+            />
             <Attachments attachments={activity.attachments} lang={lang} />
           </div>
 
-          <HtmlFallback lang={lang} content={activity.content} className="article-contenu" />
+          <HtmlFallback
+            lang={lang}
+            content={activity.content}
+            className="article-contenu"
+          />
         </div>
         {/* Toggle Langue */}
-        <ToggleLang lang={lang} content={activity.content} to={activity.permalink} />
-
+        <ToggleLang
+          lang={lang}
+          content={activity.content}
+          to={activity.permalink}
+        />
       </article>
-      <aside id={inSeminar ? 'aside-seminar' : 'all-aside'} className={inSeminar ? 'in-seminar' : ''}>
+      <aside
+        id={inSeminar ? 'aside-seminar' : 'all-aside'}
+        className={inSeminar ? 'in-seminar' : ''}>
         <RelatedPeople people={activity.people} lang={lang} />
         <RelatedActivities activities={activity.activities} lang={lang} />
         <RelatedProductions productions={activity.productions} lang={lang} />
-        {
-          inSeminar ? (
-            <>
-              <RelatedNews
-                isSeminar filter={'future'} actu={activity.news}
-                lang={lang} titles={{fr: i18n.fr.futureSeminars, en: i18n.en.futureSeminars}} />
-              <RelatedNews
-                isSeminar filter={'past'} actu={activity.news}
-                lang={lang} titles={{fr: i18n.fr.pastSeminars, en: i18n.en.pastSeminars}} />
-            </>
-          ) : (
-            <RelatedNews isSeminar={inSeminar} actu={activity.news} lang={lang} />
-          )
-        }
+        {inSeminar ? (
+          <>
+            <RelatedNews
+              isSeminar
+              filter={'future'}
+              actu={activity.news}
+              lang={lang}
+              titles={{fr: i18n.fr.futureSeminars, en: i18n.en.futureSeminars}}
+            />
+            <RelatedNews
+              isSeminar
+              filter={'past'}
+              actu={activity.news}
+              lang={lang}
+              titles={{fr: i18n.fr.pastSeminars, en: i18n.en.pastSeminars}}
+            />
+          </>
+        ) : (
+          <RelatedNews isSeminar={inSeminar} actu={activity.news} lang={lang} />
+        )}
       </aside>
     </main>
   );

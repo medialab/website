@@ -1,19 +1,19 @@
 // variables and mixins
-@import "vars/colors";
-@import "vars/queries";
-@import "vars/typo";
-@import "vars/divers";
-@import "vars/cross-browser";
+@import 'vars/colors';
+@import 'vars/queries';
+@import 'vars/typo';
+@import 'vars/divers';
+@import 'vars/cross-browser';
 
 // common
-@import "common/normalize";
-@import "common/clean";
-@import "common/body";
-@import "common/top-bar/top-bar";
-@import "common/top-bar/top-bar-mobile";
-@import "common/top-bar/top-bar-desktop";
-@import "common/footer/footer";
-@import "common/main-structure";
+@import 'common/normalize';
+@import 'common/clean';
+@import 'common/body';
+@import 'common/top-bar/top-bar';
+@import 'common/top-bar/top-bar-mobile';
+@import 'common/top-bar/top-bar-desktop';
+@import 'common/footer/footer';
+@import 'common/main-structure';
 
 // print
-@import "common/print";
+@import 'common/print';

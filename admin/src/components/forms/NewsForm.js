@@ -10,18 +10,18 @@ import BooleanSelector from '../selectors/BooleanSelector';
 import CoverSelector from '../selectors/CoverSelector';
 import DateSelector from '../selectors/DateSelector';
 import EnumSelector from '../selectors/EnumSelector';
-import RelationSelector, {MultiRelationSelector} from '../selectors/RelationSelector';
+import RelationSelector, {
+  MultiRelationSelector
+} from '../selectors/RelationSelector';
 import SortableKeyValueList from '../selectors/SortableKeyValueList';
 import SuggestionSelector from '../selectors/SuggestionSelector';
 import PreviewLink from '../misc/PreviewLink';
 import {statusLabels} from './utils';
 
 function validate(data) {
-  if (!data.title || !data.title.fr)
-    return 'Need at least a French title';
+  if (!data.title || !data.title.fr) return 'Need at least a French title';
 
-  if (!data.startDate)
-    return 'Need a start date';
+  if (!data.startDate) return 'Need a start date';
 }
 
 const accessLabels = ['internal', 'external'];
@@ -61,6 +61,10 @@ const HANDLERS = {
     type: 'raw',
     field: 'type'
   },
+  news: {
+    type: 'relation',
+    field: 'news'
+  },
   people: {
     type: 'relation',
     field: 'people'
@@ -87,7 +91,7 @@ const HANDLERS = {
   },
   published: {
     type: 'negative',
-    field: ['draft'],
+    field: ['draft']
   },
   internal: {
     type: 'boolean',
@@ -116,21 +120,29 @@ function renderNewsForm(props) {
 
   return (
     <div className="container">
-
       <div className="form-group">
-        <label className="label title is-4">{ data.title ? (data.title.fr ? data.title.fr : data.title.en) : 'Nouvelle actualité'}</label>
+        <label className="label title is-4">
+          {data.title
+            ? data.title.fr
+              ? data.title.fr
+              : data.title.en
+            : 'Nouvelle actualité'}
+        </label>
 
         <div className="columns">
           <div className="column is-6">
             <div className="field">
-              <label className="label">Titre <small>(requis)</small></label>
+              <label className="label">
+                Titre <small>(requis)</small>
+              </label>
               <div className="control">
                 <input
                   type="text"
                   className="input"
                   value={(data.title && data.title.fr) || ''}
                   onChange={handlers.frenchTitle}
-                  placeholder="titre en français" />
+                  placeholder="titre en français"
+                />
               </div>
             </div>
           </div>
@@ -145,17 +157,20 @@ function renderNewsForm(props) {
                   autoFocus
                   value={(data.title && data.title.en) || ''}
                   onChange={handlers.englishTitle}
-                  placeholder="title in english" />
+                  placeholder="title in english"
+                />
               </div>
             </div>
           </div>
-
         </div>
 
         <div className="columns">
           <div className="column is-12">
             <div className="field">
-              <label className="label" style={{display: 'inline'}}>Limace :</label> {slug && <code>{slug}</code>}
+              <label className="label" style={{display: 'inline'}}>
+                Limace :
+              </label>{' '}
+              {slug && <code>{slug}</code>}
               {url && <PreviewLink url={url} disabled={dirty} />}
             </div>
           </div>
@@ -168,7 +183,8 @@ function renderNewsForm(props) {
                 <EnumSelector
                   enumType="newsTypes"
                   value={data.type}
-                  onChange={handlers.type} />
+                  onChange={handlers.type}
+                />
               </div>
             </div>
           </div>
@@ -179,42 +195,43 @@ function renderNewsForm(props) {
                 <BooleanSelector
                   labels={accessLabels}
                   value={data.internal}
-                  onChange={handlers.internal} />
+                  onChange={handlers.internal}
+                />
               </div>
             </div>
           </div>
         </div>
 
-        { data.type && data.type !== 'post' &&
+        {data.type && data.type !== 'post' && (
+          <div className="columns">
+            <div className="column is-6">
+              <div className="field">
+                <label className="label">Type de l'actualité</label>
+                <SuggestionSelector
+                  model="news"
+                  field={HANDLERS.frenchLabel.field}
+                  placeholder="French label..."
+                  onChange={handlers.frenchLabel}
+                  value={(data.label && data.label.fr) || null}
+                />
+              </div>
+            </div>
 
-        <div className="columns">
-
-          <div className="column is-6">
-            <div className="field">
-              <label className="label">Type de l'actualité</label>
-              <SuggestionSelector
-                model="news"
-                field={HANDLERS.frenchLabel.field}
-                placeholder="French label..."
-                onChange={handlers.frenchLabel}
-                value={(data.label && data.label.fr) || null} />
+            <div className="column is-6">
+              <div className="field">
+                <label className="label">News type</label>
+                <SuggestionSelector
+                  model="news"
+                  field={HANDLERS.englishLabel.field}
+                  placeholder="English label..."
+                  onChange={handlers.englishLabel}
+                  value={(data.label && data.label.en) || null}
+                />
+              </div>
             </div>
           </div>
-
-          <div className="column is-6">
-            <div className="field">
-              <label className="label">News type</label>
-              <SuggestionSelector
-                model="news"
-                field={HANDLERS.englishLabel.field}
-                placeholder="English label..."
-                onChange={handlers.englishLabel}
-                value={(data.label && data.label.en) || null} />
-            </div>
-          </div>
-        </div>
-        }
-        { data.type && data.type === 'event' &&
+        )}
+        {data.type && data.type === 'event' && (
           <div className="columns">
             <div className="column is-6">
               <div className="field">
@@ -225,12 +242,13 @@ function renderNewsForm(props) {
                     field="place"
                     placeholder="salle, adresse, ville, pays si étranger"
                     value={data.place}
-                    onChange={handlers.place} />
+                    onChange={handlers.place}
+                  />
                 </div>
               </div>
             </div>
           </div>
-        }
+        )}
 
         <div className="columns">
           <div className="column is-12">
@@ -240,41 +258,51 @@ function renderNewsForm(props) {
                 cover={data.cover}
                 processing
                 ratio={4 / 3}
-                onChange={handlers.cover} />
+                onChange={handlers.cover}
+              />
             </div>
           </div>
         </div>
 
         <div className="columns">
           <div className="column is-6">
-            <label className="label">Date <small>(requise)</small>
-              <em>Date de référence de l'actualité : date d'édition, date de début d'un événement...</em>
+            <label className="label">
+              Date <small>(requise)</small>
+              <em>
+                Date de référence de l'actualité : date d'édition, date de début
+                d'un événement...
+              </em>
             </label>
             <div className="control">
               <DateSelector
                 datetime
                 precision="day"
                 value={data.startDate}
-                onChange={handlers.startDate} />
+                onChange={handlers.startDate}
+              />
             </div>
           </div>
 
           <div className="column is-6">
-            <label className="label">Date de fin
-              <em>date optionnelle à ne renseigner que pour les événements sur plusieurs jours</em>
+            <label className="label">
+              Date de fin
+              <em>
+                date optionnelle à ne renseigner que pour les événements sur
+                plusieurs jours
+              </em>
             </label>
             <div className="control">
               <DateSelector
                 datetime
                 precision="day"
                 value={data.endDate}
-                onChange={handlers.endDate} />
+                onChange={handlers.endDate}
+              />
             </div>
           </div>
         </div>
 
         <div className="columns">
-
           <div className="column is-6">
             <div className="field">
               <label className="label">En une phrase :</label>
@@ -284,7 +312,8 @@ function renderNewsForm(props) {
                   value={(data.description && data.description.fr) || ''}
                   onChange={handlers.frenchDescription}
                   placeholder="Une phrase qui présente l'actualité"
-                  rows={2} />
+                  rows={2}
+                />
               </div>
             </div>
           </div>
@@ -298,41 +327,43 @@ function renderNewsForm(props) {
                   value={(data.description && data.description.en) || ''}
                   onChange={handlers.englishDescription}
                   placeholder="One sentence which present the event"
-                  rows={2} />
+                  rows={2}
+                />
               </div>
             </div>
           </div>
-
         </div>
-
-
       </div>
 
       <div className="form-group">
-
         <div className="columns">
-
           <div className="column is-6">
             <div className="field">
-              <label className="label">Contenu riche
-                <em>Présentation longue de l'événement ou texte de la chronique</em></label>
+              <label className="label">
+                Contenu riche
+                <em>
+                  Présentation longue de l'événement ou texte de la chronique
+                </em>
+              </label>
               <Editor
                 content={frenchEditorContent}
-                onSave={handlers.frenchContent} />
+                onSave={handlers.frenchContent}
+              />
             </div>
           </div>
 
           <div className="column is-6">
             <div className="field">
-              <label className="label">Rich content
+              <label className="label">
+                Rich content
                 <em>Event presentation or Post text content</em>
               </label>
               <Editor
                 content={englishEditorContent}
-                onSave={handlers.englishContent} />
+                onSave={handlers.englishContent}
+              />
             </div>
           </div>
-
         </div>
       </div>
 
@@ -346,7 +377,25 @@ function renderNewsForm(props) {
                   model="activities"
                   selected={data.activities}
                   onAdd={handlers.activities.add}
-                  onDrop={handlers.activities.drop} />
+                  onDrop={handlers.activities.drop}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="columns">
+          <div className="column is-12">
+            <div className="field">
+              <label className="label">Actualités liées</label>
+              <div className="control">
+                <RelationSelector
+                  model="news"
+                  self={data.id}
+                  selected={data.news}
+                  onAdd={handlers.news.add}
+                  onDrop={handlers.news.drop}
+                />
               </div>
             </div>
           </div>
@@ -361,7 +410,8 @@ function renderNewsForm(props) {
                   model="people"
                   selected={data.people}
                   onAdd={handlers.people.add}
-                  onDrop={handlers.people.drop} />
+                  onDrop={handlers.people.drop}
+                />
               </div>
             </div>
           </div>
@@ -377,7 +427,8 @@ function renderNewsForm(props) {
                   categories={enums.productionTypes.groups}
                   selected={data.productions}
                   onAdd={handlers.productions.add}
-                  onDrop={handlers.productions.drop} />
+                  onDrop={handlers.productions.drop}
+                />
               </div>
             </div>
           </div>
@@ -385,9 +436,7 @@ function renderNewsForm(props) {
       </div>
 
       <div className="form-group">
-        <h4 className="title is-4">
-          Ressources liées
-        </h4>
+        <h4 className="title is-4">Ressources liées</h4>
 
         <div className="columns">
           <div className="column is-10">
@@ -397,26 +446,28 @@ function renderNewsForm(props) {
               field="attachments.label"
               onAdd={handlers.attachments.add}
               onDrop={handlers.attachments.drop}
-              onMove={handlers.attachments.move} />
+              onMove={handlers.attachments.move}
+            />
           </div>
         </div>
-
       </div>
 
-      {
-        data.title &&
+      {data.title && (
         <div className="form-group is-important">
           <div className="field">
-            <label className="label title is-4">Status de la page "{data.title.fr || data.title.en}" :</label>
+            <label className="label title is-4">
+              Status de la page "{data.title.fr || data.title.en}" :
+            </label>
             <div className="control">
               <BooleanSelector
                 value={!data.draft}
                 labels={statusLabels}
-                onChange={handlers.published} />
+                onChange={handlers.published}
+              />
             </div>
           </div>
         </div>
-      }
+      )}
     </div>
   );
 }

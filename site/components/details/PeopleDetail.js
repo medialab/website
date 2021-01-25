@@ -37,7 +37,7 @@ const i18n = {
       return `Photo de profil de ${person.firstName} ${person.lastName}`;
     },
     occupationAriaLabel: 'Occupation actuelle',
-    roleAriaLabel: 'Rôle au sein de l\'equipe',
+    roleAriaLabel: "Rôle au sein de l'equipe",
     membershipAriaLabel: 'Affiliation',
     formerMember: 'Ancien membre'
   },
@@ -67,15 +67,14 @@ const mainPermalink = {
 };
 
 const TWITTER_LABEL_REGEX = /twitter/i,
-      GITHUB_LABEL_REGEX = /github/i,
-      TRAILING_SLASH_REGEX = /\/$/;
+  GITHUB_LABEL_REGEX = /github/i,
+  TRAILING_SLASH_REGEX = /\/$/;
 
 function extractHandle(value) {
   if (value.startsWith('http'))
     return value.replace(TRAILING_SLASH_REGEX, '').split('/').slice(-1)[0];
 
-  if (value.startsWith('@'))
-    return value.slice(1);
+  if (value.startsWith('@')) return value.slice(1);
 
   return value;
 }
@@ -91,7 +90,11 @@ function PeopleContactLabel({lang, data}) {
 
   if (data.label === 'Mail') {
     const email = data.value.replace('@', '●');
-    return <p proptype="email">{data.label}: {email}</p>;
+    return (
+      <p proptype="email">
+        {data.label}: {email}
+      </p>
+    );
   }
 
   if (TWITTER_LABEL_REGEX.test(data.label)) {
@@ -102,11 +105,7 @@ function PeopleContactLabel({lang, data}) {
       <span>
         <span className="label-data">Twitter:</span>
         &nbsp;
-        <a
-          proptype="url"
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer">
+        <a proptype="url" href={url} target="_blank" rel="noopener noreferrer">
           @{handle}
         </a>
       </span>
@@ -121,11 +120,7 @@ function PeopleContactLabel({lang, data}) {
       <span>
         <span className="label-data">Github:</span>
         &nbsp;
-        <a
-          proptype="url"
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer">
+        <a proptype="url" href={url} target="_blank" rel="noopener noreferrer">
           @{handle}
         </a>
       </span>
@@ -140,12 +135,15 @@ function PeopleContactLabel({lang, data}) {
     return (
       <span>
         <span className="label-data">{data.label}:</span>
-        &nbsp;<a
+        &nbsp;
+        <a
           proptype="url"
           href={data.value}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={i18n[lang].openLink(data)}>{data.value}</a>
+          aria-label={i18n[lang].openLink(data)}>
+          {data.value}
+        </a>
       </span>
     );
   }
@@ -170,11 +168,7 @@ function PeopleContactLabel({lang, data}) {
 }
 
 export default function PeopleDetail({lang, person, siteUrl}) {
-  const {
-    titleLinkTeam,
-    backTop,
-    toggleNav
-  } = i18n[lang];
+  const {titleLinkTeam, backTop, toggleNav} = i18n[lang];
 
   return (
     <>
@@ -182,7 +176,8 @@ export default function PeopleDetail({lang, person, siteUrl}) {
         title={`${person.firstName} ${person.lastName} | médialab Sciences Po`}
         description={person.status && person.status[lang]}
         uri={`${siteUrl}${person.permalink[lang]}`}
-        lang={lang} />
+        lang={lang}
+      />
       <main
         id="main"
         itemScope
@@ -190,29 +185,37 @@ export default function PeopleDetail({lang, person, siteUrl}) {
         itemProp="member"
         role="main"
         aria-label={i18n[lang].presentationAriaLabel}>
-
-        <ol style={{display: 'none'}} itemScope itemType="https://schema.org/BreadcrumbList">
+        <ol
+          style={{display: 'none'}}
+          itemScope
+          itemType="https://schema.org/BreadcrumbList">
           <li
-            itemProp="itemListElement" itemScope
+            itemProp="itemListElement"
+            itemScope
             itemType="https://schema.org/ListItem">
             <a
               itemType="https://schema.org/Organization"
-              itemProp="item" href={siteUrl}>
-              <span itemProp="name">médialab Sciences Po</span></a>
+              itemProp="item"
+              href={siteUrl}>
+              <span itemProp="name">médialab Sciences Po</span>
+            </a>
             <meta itemProp="position" content="1" />
           </li>
           <li
-            itemProp="itemListElement" itemScope
+            itemProp="itemListElement"
+            itemScope
             itemType="https://schema.org/ListItem">
             <a
               itemType="https://schema.org/Thing"
               href={`${siteUrl}${mainPermalink[lang]}`}
               itemProp="item">
-              <span itemProp="name">{I18N_MODEL[lang].people}</span></a>
+              <span itemProp="name">{I18N_MODEL[lang].people}</span>
+            </a>
             <meta itemProp="position" content="2" />
           </li>
           <li
-            itemProp="itemListElement" itemScope
+            itemProp="itemListElement"
+            itemScope
             itemType="https://schema.org/ListItem">
             <a
               itemType="https://schema.org/Thing"
@@ -227,26 +230,42 @@ export default function PeopleDetail({lang, person, siteUrl}) {
         </ol>
 
         <input
-          type="checkbox" id="toggle-nav" name="toggle-nav"
-          value="toggle-nav" hidden />
+          type="checkbox"
+          id="toggle-nav"
+          name="toggle-nav"
+          value="toggle-nav"
+          hidden
+        />
         <label
           id="toggle-nav_label"
           htmlFor="toggle-nav"
           title={toggleNav}
-          arial-label={toggleNav}><span><Icons icon="arrow" /></span></label>
+          arial-label={toggleNav}>
+          <span>
+            <Icons icon="arrow" />
+          </span>
+        </label>
 
-        <Nav lang={lang} data={person} order={['main', 'highlights', 'activities', 'productions', 'news']} />
+        <Nav
+          lang={lang}
+          data={person}
+          order={['main', 'highlights', 'activities', 'productions', 'news']}
+        />
 
         <header id="titre-sticky" aria-hidden="true">
           <div id="container-titre-sticky">
             <LogoSticky lang={lang} />
             <p>
-              <Link to={mainPermalink[lang]} className="link-page-team" title={titleLinkTeam}>
+              <Link
+                to={mainPermalink[lang]}
+                className="link-page-team"
+                title={titleLinkTeam}>
                 <span>{I18N_MODEL[lang].people} </span>
               </Link>
               <span className="personne">
                 <a href="#topbar" title={backTop}>
-                  <span itemProp="givenName">{person.firstName}</span> <span itemProp="familyName">{person.lastName}</span>
+                  <span itemProp="givenName">{person.firstName}</span>{' '}
+                  <span itemProp="familyName">{person.lastName}</span>
                 </a>
               </span>
             </p>
@@ -254,7 +273,6 @@ export default function PeopleDetail({lang, person, siteUrl}) {
         </header>
 
         <div className="main-container">
-
           <article id="biographie">
             <div id="container-biographie">
               <header>
@@ -263,27 +281,33 @@ export default function PeopleDetail({lang, person, siteUrl}) {
                     <img
                       itemProp="image"
                       src={person.coverImage.url}
-                      alt={i18n[lang].profilePicture(person)} />
+                      alt={i18n[lang].profilePicture(person)}
+                    />
                   ) : (
-                    <ImagePlaceholder type="people" alt={i18n[lang].profilePicture(person)} />
+                    <ImagePlaceholder
+                      type="people"
+                      alt={i18n[lang].profilePicture(person)}
+                    />
                   )}
                 </figure>
                 <hgroup>
                   <h1 data-level-1="name" data-type="name">
                     {person.firstName} {person.lastName}
                   </h1>
-                  {
-                    !person.active &&
+                  {!person.active && (
                     <div className="former-member">
-                        {i18n[lang].formerMember}
+                      {i18n[lang].formerMember}
                     </div>
-                  }
+                  )}
                   {person.status && (
                     <p
                       className={`status ${lang}`}
                       data-type="status"
                       aria-label={i18n[lang].occupationAriaLabel}>
-                      <LanguageFallback lang={lang} translatedAttribute={person.status} />
+                      <LanguageFallback
+                        lang={lang}
+                        translatedAttribute={person.status}
+                      />
                     </p>
                   )}
                 </hgroup>
@@ -304,15 +328,15 @@ export default function PeopleDetail({lang, person, siteUrl}) {
                 {person.contacts && person.contacts.length > 0 && (
                   <div className="contact">
                     <ul>
-                      {
-                        person.contacts
-                          .filter((contact) => !contact.lang || contact.lang === lang)
-                          .map((contact, i) => (
-                            <li key={i} data-type={contact.label}>
-                              <PeopleContactLabel lang={lang} data={contact} />
-                            </li>
-                          ))
-                      }
+                      {person.contacts
+                        .filter(
+                          contact => !contact.lang || contact.lang === lang
+                        )
+                        .map((contact, i) => (
+                          <li key={i} data-type={contact.label}>
+                            <PeopleContactLabel lang={lang} data={contact} />
+                          </li>
+                        ))}
                     </ul>
                   </div>
                 )}
@@ -326,8 +350,11 @@ export default function PeopleDetail({lang, person, siteUrl}) {
                 <HtmlFallback lang={lang} content={person.bio} />
               </div>
               {/* Toggle Langue */}
-              <ToggleLang lang={lang} content={person.bio} to={person.permalink} />
-
+              <ToggleLang
+                lang={lang}
+                content={person.bio}
+                to={person.permalink}
+              />
             </div>
 
             <Highlights people={person} lang={lang} />
@@ -338,9 +365,7 @@ export default function PeopleDetail({lang, person, siteUrl}) {
             <RelatedProductions productions={person.productions} lang={lang} />
             <RelatedNews actu={person.news} lang={lang} />
           </aside>
-
         </div>
-
       </main>
     </>
   );

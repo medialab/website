@@ -14,8 +14,7 @@ function entityStyleFn(entity) {
       src: data.src
     };
 
-    if (data.internal)
-      attributes['data-internal'] = 'true';
+    if (data.internal) attributes['data-internal'] = 'true';
 
     return {
       element: 'iframe',
@@ -27,16 +26,14 @@ function entityStyleFn(entity) {
     const data = entity.getData();
 
     const attributes = {
-      'src': data.src,
+      src: data.src,
       'data-width': data.width,
       'data-height': data.height
     };
 
-    if (data.credits)
-      attributes['data-credits'] = data.credits;
+    if (data.credits) attributes['data-credits'] = data.credits;
 
-    if (data.format)
-      attributes['data-format'] = data.format;
+    if (data.format) attributes['data-format'] = data.format;
 
     return {
       element: 'img',
@@ -51,8 +48,7 @@ function entityStyleFn(entity) {
       href: data.href
     };
 
-    if (data.internal)
-      attributes['data-internal'] = 'true';
+    if (data.internal) attributes['data-internal'] = 'true';
 
     return {
       element: 'a',
@@ -65,38 +61,44 @@ function customInlineFn(element, {Entity}) {
   if (element.tagName === 'IFRAME') {
     const internal = element.getAttribute('data-internal');
 
-    return Entity('IFRAME', {src: element.getAttribute('src'), internal: !!internal});
+    return Entity('IFRAME', {
+      src: element.getAttribute('src'),
+      internal: !!internal
+    });
   }
 
   if (element.tagName === 'A') {
     const internal = element.getAttribute('data-internal');
 
-    return Entity('LINK', {href: element.getAttribute('href'), internal: !!internal});
+    return Entity('LINK', {
+      href: element.getAttribute('href'),
+      internal: !!internal
+    });
   }
 
   if (element.tagName === 'IMG') {
     const width = +element.getAttribute('data-width'),
-          height = +element.getAttribute('data-height'),
-          src = element.getAttribute('src'),
-          credits = element.getAttribute('data-credits'),
-          format = element.getAttribute('data-format');
+      height = +element.getAttribute('data-height'),
+      src = element.getAttribute('src'),
+      credits = element.getAttribute('data-credits'),
+      format = element.getAttribute('data-format');
 
     const data = {src, width, height};
 
-    if (credits)
-      data.credits = credits;
+    if (credits) data.credits = credits;
 
-    if (format)
-      data.format = format;
+    if (format) data.format = format;
 
     return Entity('IMAGE', data);
   }
 }
 
 export function htmlToRaw(html) {
-  const raw = convertToRaw(stateFromHTML(html, {
-    customInlineFn
-  }));
+  const raw = convertToRaw(
+    stateFromHTML(html, {
+      customInlineFn
+    })
+  );
 
   return raw;
 }
@@ -117,7 +119,7 @@ export function getImageDimensions(src, callback) {
 
   img.onload = () => {
     const width = img.naturalWidth,
-          height = img.naturalHeight;
+      height = img.naturalHeight;
 
     callback(width, height);
   };
@@ -134,9 +136,4 @@ const {
   production: slugifyProduction
 } = slugFunctions;
 
-export {
-  slugifyActivity,
-  slugifyNews,
-  slugifyPeople,
-  slugifyProduction
-};
+export {slugifyActivity, slugifyNews, slugifyPeople, slugifyProduction};

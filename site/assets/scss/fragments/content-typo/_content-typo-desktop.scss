@@ -61,7 +61,7 @@
         margin-bottom: $baseline * 2;
       }
 
-      [data-style-level="1"] {
+      [data-style-level='1'] {
         @include font-size-20;
         font-weight: bold;
         text-transform: uppercase;
@@ -69,14 +69,14 @@
         margin-bottom: $baseline * 2;
       }
 
-      [data-style-level="2"] {
+      [data-style-level='2'] {
         @include font-size-20;
         font-weight: bold;
         margin-top: $baseline * 4;
         margin-bottom: $baseline * 2;
       }
 
-      [data-style-level="3"] {
+      [data-style-level='3'] {
         @include font-size-20;
         font-weight: 300;
         font-style: italic;
@@ -84,16 +84,16 @@
         margin-bottom: $baseline * 1;
       }
 
-      [data-style-level="1"] + p,
-      [data-style-level="2"] + p,
-      [data-style-level="3"] + p,
-      [data-style-level="1"] + ul,
-      [data-style-level="2"] + ul,
-      [data-style-level="3"] + ul,
-      [data-style-level="1"] + figure,
-      [data-style-level="2"] + figure,
-      [data-style-level="3"] + figure,
-      [data-style-level="1"] + [data-style-level="3"] {
+      [data-style-level='1'] + p,
+      [data-style-level='2'] + p,
+      [data-style-level='3'] + p,
+      [data-style-level='1'] + ul,
+      [data-style-level='2'] + ul,
+      [data-style-level='3'] + ul,
+      [data-style-level='1'] + figure,
+      [data-style-level='2'] + figure,
+      [data-style-level='3'] + figure,
+      [data-style-level='1'] + [data-style-level='3'] {
         margin-top: 0 !important;
       }
 
@@ -114,7 +114,7 @@
         width: -moz-calc(100% - #{$unite * 1.5});
         width: calc(100% - #{$unite * 1.5});
         &:before {
-          content: "⁘";
+          content: '⁘';
           left: -15px;
         }
       }
@@ -223,7 +223,7 @@
             max-height: 80vh;
 
             &:after {
-              content: "✕\00FE0E";
+              content: '✕\00FE0E';
               top: $baseline * 2;
               left: calc(100vw - #{$unite * 2});
               opacity: 1;

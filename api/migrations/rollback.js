@@ -6,28 +6,32 @@ const load = require('../load.js');
 const ROLLBACK_DUMP_PATH = 'rollback-dump';
 
 module.exports = (inputDir, repo) => {
-  return function(req, dbs, next) {
+  return function (req, dbs, next) {
+    return async.series(
+      [
+        // Cloning
+        nextStep => {
+          return simpleGit(process.cwd()).clone(
+            repo,
+            ROLLBACK_DUMP_PATH,
+            {'--depth': '1'},
+            nextStep
+          );
+        },
 
-    return async.series([
+        // Loading
+        nextStep => {
+          return load(ROLLBACK_DUMP_PATH, inputDir, nextStep);
+        },
 
-      // Cloning
-      nextStep => {
-        return simpleGit(process.cwd())
-          .clone(repo, ROLLBACK_DUMP_PATH, {'--depth': '1'}, nextStep);
-      },
+        // Refresh & Cleanup
+        nextStep => {
+          for (const model in dbs) dbs[model].read();
 
-      // Loading
-      nextStep => {
-        return load(ROLLBACK_DUMP_PATH, inputDir, nextStep);
-      },
-
-      // Refresh & Cleanup
-      nextStep => {
-        for (const model in dbs)
-          dbs[model].read();
-
-        return rimraf(ROLLBACK_DUMP_PATH, nextStep);
-      }
-    ], next);
+          return rimraf(ROLLBACK_DUMP_PATH, nextStep);
+        }
+      ],
+      next
+    );
   };
 };

@@ -5,7 +5,7 @@ const MAX_YEARS_TO_DISPLAY = 12;
 
 const i18n = {
   fr: {
-    label: 'Aller à l\'année…',
+    label: "Aller à l'année…",
     before: 'Aller aux années précédentes'
   },
   en: {
@@ -15,11 +15,7 @@ const i18n = {
 };
 
 export default function Years({lang, years}) {
-
-  years = years
-    .slice()
-    .sort()
-    .reverse();
+  years = years.slice().sort().reverse();
 
   let suppYears = false;
 
@@ -31,13 +27,27 @@ export default function Years({lang, years}) {
   return (
     <div className="go-to-year" aria-label={i18n[lang].label + '…'}>
       <input
-        type="checkbox" id="checkbox_filtre_year" name="radio_filtre-actu"
-        value="year" hidden />
-      <label htmlFor="checkbox_filtre_year"><span><Icons icon="arrow" /></span></label>
-      <p aria-hidden="true">{i18n[lang].label} <span className="current-year" /></p>
+        type="checkbox"
+        id="checkbox_filtre_year"
+        name="radio_filtre-actu"
+        value="year"
+        hidden
+      />
+      <label htmlFor="checkbox_filtre_year">
+        <span>
+          <Icons icon="arrow" />
+        </span>
+      </label>
+      <p aria-hidden="true">
+        {i18n[lang].label} <span className="current-year" />
+      </p>
       <ul id="list-years">
         {years.map(y => (
-          <li key={`year-${y}`} ><a href={`#year-${y}`} aria-label={i18n[lang].label + ' ' + y}>{y}</a></li>
+          <li key={`year-${y}`}>
+            <a href={`#year-${y}`} aria-label={i18n[lang].label + ' ' + y}>
+              {y}
+            </a>
+          </li>
         ))}
         {suppYears && (
           <li key={`filter-years-before-${suppYears}`}>

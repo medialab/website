@@ -18,6 +18,7 @@ import WebEditionIcon from 'material-icons-svg/components/baseline/DesktopWindow
 import ToolsIcon from 'material-icons-svg/components/baseline/Build';
 import SituationIcon from 'material-icons-svg/components/baseline/Wallpaper';
 import MediaIcon from 'material-icons-svg/components/baseline/Mic';
+import UnknownIcon from 'material-icons-svg/components/baseline/Help';
 
 import ListFilterSelector from './selectors/ListFilterSelector';
 
@@ -37,7 +38,6 @@ const ICONS_MAPPING = {
 };
 
 function ListFilterBar({filters, onChange, specs}) {
-
   return (
     <div className="columns">
       <div className="column is-12">
@@ -51,7 +51,8 @@ function ListFilterBar({filters, onChange, specs}) {
                     negate={selector.negate || false}
                     onChange={value => onChange(name, value)}
                     specs={selector}
-                    value={filters[name]} />
+                    value={filters[name]}
+                  />
                 </div>
               );
             })}
@@ -77,7 +78,6 @@ const ListTable = React.memo(props => {
       <thead>
         <tr>
           {specs.fields.map(({label, order}) => {
-
             let onClick;
 
             if (order) {
@@ -85,8 +85,7 @@ const ListTable = React.memo(props => {
                 if (ordering && ordering.keys !== order)
                   return handleOrdering({keys: order, reverse: false});
 
-                if (ordering && ordering.reverse)
-                  return handleOrdering(null);
+                if (ordering && ordering.reverse) return handleOrdering(null);
 
                 return handleOrdering({keys: order, reverse: !!ordering});
               };
@@ -95,12 +94,9 @@ const ListTable = React.memo(props => {
             let glyph = '';
 
             if (order) {
-              if (ordering === null || ordering.keys !== order)
-                glyph = '';
-              else if (ordering.reverse)
-                glyph = 'up--arrow';
-              else
-                glyph = 'down--arrow';
+              if (ordering === null || ordering.keys !== order) glyph = '';
+              else if (ordering.reverse) glyph = 'up--arrow';
+              else glyph = 'down--arrow';
             }
 
             return (
@@ -111,11 +107,10 @@ const ListTable = React.memo(props => {
                 style={{
                   cursor: order ? 'pointer' : 'default'
                 }}>
-                <div className={cls(
-                  'table--header--container',
-                  glyph
-                )}>
-                  <span style={{textDecoration: order ? 'underline' : 'none'}}>{label}</span>
+                <div className={cls('table--header--container', glyph)}>
+                  <span style={{textDecoration: order ? 'underline' : 'none'}}>
+                    {label}
+                  </span>
                 </div>
               </th>
             );
@@ -126,32 +121,44 @@ const ListTable = React.memo(props => {
         {filteredData.map(d => (
           <tr key={d.id} className={cls(d.draft && 'is-draft')}>
             {specs.fields.map(item => {
-              const value = typeof item.property === 'function' ?
-                item.property(d, relations) :
-                d[item.property];
+              const value =
+                typeof item.property === 'function'
+                  ? item.property(d, relations)
+                  : d[item.property];
 
               let icon = null;
 
               if (item.icon) {
-                const IconComponent = ICONS_MAPPING[item.icon.type][item.icon.property(d)];
+                let IconComponent =
+                  ICONS_MAPPING[item.icon.type][item.icon.property(d)];
+
+                if (!IconComponent) IconComponent = UnknownIcon;
 
                 icon = (
                   <span title={item.icon.label(d)}>
                     <IconComponent
-                      style={{display: 'inline-block', verticalAlign: 'middle'}} /> &middot;
+                      style={{display: 'inline-block', verticalAlign: 'middle'}}
+                    />{' '}
+                    &middot;
                   </span>
                 );
               }
 
               const link = (
-                <Link to={`${model}/${d.id}`} style={{display: 'inline-block', padding: '0.5em 0.75em', width: '100%'}}>
+                <Link
+                  to={`${model}/${d.id}`}
+                  style={{
+                    display: 'inline-block',
+                    padding: '0.5em 0.75em',
+                    width: '100%'
+                  }}>
                   {icon} {value}
                 </Link>
               );
 
               return (
                 <td key={item.label} style={{padding: '0'}}>
-                  {item.important ? (<strong>{link}</strong>) : link}
+                  {item.important ? <strong>{link}</strong> : link}
                 </td>
               );
             })}
@@ -167,7 +174,6 @@ export default class List extends Component {
     super(props, context);
 
     this.state = {
-
       // Fetched data
       data: null,
       relations: null,
@@ -199,10 +205,8 @@ export default class List extends Component {
       if (model === 'productions') {
         // fill the object with spire generatedFields when empty
         newState.data = data.map(p => {
-          if (p.spire)
-            return {...p.spire.generatedFields, ...p};
-          else
-            return p;
+          if (p.spire) return {...p.spire.generatedFields, ...p};
+          else return p;
         });
         newState.relations = {people: keyBy(people, 'id')};
       }
@@ -212,7 +216,6 @@ export default class List extends Component {
   }
 
   sort = (ordering, data) => {
-
     // Sorting
     const specs = this.props.specs;
 
@@ -220,40 +223,31 @@ export default class List extends Component {
 
     data = sortBy(data, keys);
 
-    if (ordering && ordering.reverse)
-      data.reverse();
+    if (ordering && ordering.reverse) data.reverse();
 
     return data;
   };
 
   filter = data => {
-    const {
-      query,
-      filters
-    } = this.state;
+    const {query, filters} = this.state;
 
     let filteredData;
 
     // Applying query
     if (query.length < 1) {
       filteredData = data;
-    }
-    else {
+    } else {
       filteredData = this.props.specs.search(data, query);
     }
 
     // Applying filters
     const filter = item => {
       for (const name in filters) {
-        if (filters[name] === null)
-          continue;
+        if (filters[name] === null) continue;
 
         if (typeof filters[name] === 'object') {
-          if (!filters[name].values.has(item[name]))
-            return false;
-        }
-
-        else if (item[name] !== filters[name]) {
+          if (!filters[name].values.has(item[name])) return false;
+        } else if (item[name] !== filters[name]) {
           return false;
         }
       }
@@ -309,8 +303,7 @@ export default class List extends Component {
 
     const {label, model, specs} = this.props;
 
-    if (!filteredData)
-      return <div>Loading...</div>;
+    if (!filteredData) return <div>Loading...</div>;
 
     return (
       <div>
@@ -325,13 +318,15 @@ export default class List extends Component {
               type="text"
               value={query}
               onChange={this.handleQuery}
-              placeholder="Filter..." />
+              placeholder="Filter..."
+            />
           </div>
           <div className="column is-8">
             <ListFilterBar
               filters={filters}
               onChange={this.handleFilter}
-              specs={specs} />
+              specs={specs}
+            />
           </div>
         </div>
 
@@ -341,7 +336,9 @@ export default class List extends Component {
           </div>
 
           <div className="column is-2">
-            <Link to={`${model}/new`} className="button is-primary is-fullwidth">
+            <Link
+              to={`${model}/new`}
+              className="button is-primary is-fullwidth">
               Add new {label}
             </Link>
           </div>
@@ -353,7 +350,8 @@ export default class List extends Component {
           ordering={ordering}
           relations={relations}
           specs={specs}
-          handleOrdering={this.handleOrdering} />
+          handleOrdering={this.handleOrdering}
+        />
 
         <div style={{alignItems: 'center'}} className="columns">
           <div className="column is-10">
@@ -361,7 +359,9 @@ export default class List extends Component {
           </div>
 
           <div className="column is-2">
-            <Link to={`${model}/new`} className="button is-primary is-fullwidth">
+            <Link
+              to={`${model}/new`}
+              className="button is-primary is-fullwidth">
               Add new {label}
             </Link>
           </div>

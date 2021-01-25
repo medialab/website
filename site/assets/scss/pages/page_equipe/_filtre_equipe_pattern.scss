@@ -25,19 +25,19 @@
 }
 
 #filtre_membre:checked ~ #liste_equipe .liste_equipe {
-  [class*="member"] {
+  [class*='member'] {
     display: block;
   }
 }
 
 #filtre_non_membre:checked ~ #liste_equipe .liste_equipe {
-  [class*="associate"] {
+  [class*='associate'] {
     display: block;
   }
 }
 
 #filtre_invite:checked ~ #liste_equipe .liste_equipe {
-  [class*="invited"] {
+  [class*='invited'] {
     display: block;
   }
 }
@@ -46,10 +46,10 @@
   ~ #filtre_non_membre:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="member"] {
+  [class*='member'] {
     display: block;
   }
-  [class*="associate"] {
+  [class*='associate'] {
     display: block;
   }
 }
@@ -63,25 +63,25 @@
 }
 
 #domaine_academique:checked ~ #liste_equipe .liste_equipe {
-  [class*="academic"] {
+  [class*='academic'] {
     display: block;
   }
 }
 
 #domaine_technique:checked ~ #liste_equipe .liste_equipe {
-  [class*="tech"] {
+  [class*='tech'] {
     display: block;
   }
 }
 
 #domaine_design:checked ~ #liste_equipe .liste_equipe {
-  [class*="design"] {
+  [class*='design'] {
     display: block;
   }
 }
 
 #domaine_administratif:checked ~ #liste_equipe .liste_equipe {
-  [class*="admin"] {
+  [class*='admin'] {
     display: block;
   }
 }
@@ -104,7 +104,7 @@
   ~ #domaine_academique:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="member-academic"] {
+  [class*='member-academic'] {
     display: block !important;
   }
 }
@@ -113,13 +113,13 @@
   ~ #domaine_technique:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="member-tech"] {
+  [class*='member-tech'] {
     display: block !important;
   }
 }
 
 #filtre_membre:checked ~ #domaine_design:checked ~ #liste_equipe .liste_equipe {
-  [class*="member-design"] {
+  [class*='member-design'] {
     display: block !important;
   }
 }
@@ -128,7 +128,7 @@
   ~ #domaine_administratif:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="member-admin"] {
+  [class*='member-admin'] {
     display: block !important;
   }
 }
@@ -151,7 +151,7 @@
   ~ #domaine_academique:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="associate-academic"] {
+  [class*='associate-academic'] {
     display: block !important;
   }
 }
@@ -160,7 +160,7 @@
   ~ #domaine_technique:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="associate-tech"] {
+  [class*='associate-tech'] {
     display: block !important;
   }
 }
@@ -169,7 +169,7 @@
   ~ #domaine_design:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="associate-design"] {
+  [class*='associate-design'] {
     display: block !important;
   }
 }
@@ -178,7 +178,7 @@
   ~ #domaine_administratif:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="associate-admin"] {
+  [class*='associate-admin'] {
     display: block !important;
   }
 }
@@ -189,7 +189,7 @@
   ~ #domaine_academique:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="invited-academic"] {
+  [class*='invited-academic'] {
     display: block !important;
   }
 }
@@ -198,13 +198,13 @@
   ~ #domaine_technique:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="invited-tech"] {
+  [class*='invited-tech'] {
     display: block !important;
   }
 }
 
 #filtre_invite:checked ~ #domaine_design:checked ~ #liste_equipe .liste_equipe {
-  [class*="invited-design"] {
+  [class*='invited-design'] {
     display: block !important;
   }
 }
@@ -213,7 +213,7 @@
   ~ #domaine_administratif:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="invited-admin"] {
+  [class*='invited-admin'] {
     display: block !important;
   }
 }
@@ -238,10 +238,10 @@
   ~ #domaine_academique:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="member-academic"] {
+  [class*='member-academic'] {
     display: block !important;
   }
-  [class*="associate-academic"] {
+  [class*='associate-academic'] {
     display: block !important;
   }
 }
@@ -251,10 +251,10 @@
   ~ #domaine_technique:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="member-tech"] {
+  [class*='member-tech'] {
     display: block !important;
   }
-  [class*="associate-tech"] {
+  [class*='associate-tech'] {
     display: block !important;
   }
 }
@@ -264,10 +264,10 @@
   ~ #domaine_design:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="member-design"] {
+  [class*='member-design'] {
     display: block !important;
   }
-  [class*="associate-design"] {
+  [class*='associate-design'] {
     display: block !important;
   }
 }
@@ -277,10 +277,10 @@
   ~ #domaine_administratif:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="member-admin"] {
+  [class*='member-admin'] {
     display: block !important;
   }
-  [class*="associate-admin"] {
+  [class*='associate-admin'] {
     display: block !important;
   }
 }
@@ -305,10 +305,10 @@
   ~ #domaine_academique:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="member-academic"] {
+  [class*='member-academic'] {
     display: block !important;
   }
-  [class*="invited-academic"] {
+  [class*='invited-academic'] {
     display: block !important;
   }
 }
@@ -318,10 +318,10 @@
   ~ #domaine_technique:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="member-tech"] {
+  [class*='member-tech'] {
     display: block !important;
   }
-  [class*="invited-tech"] {
+  [class*='invited-tech'] {
     display: block !important;
   }
 }
@@ -331,10 +331,10 @@
   ~ #domaine_design:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="member-design"] {
+  [class*='member-design'] {
     display: block !important;
   }
-  [class*="invited-design"] {
+  [class*='invited-design'] {
     display: block !important;
   }
 }
@@ -344,10 +344,10 @@
   ~ #domaine_administratif:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="member-admin"] {
+  [class*='member-admin'] {
     display: block !important;
   }
-  [class*="invited-admin"] {
+  [class*='invited-admin'] {
     display: block !important;
   }
 }
@@ -372,10 +372,10 @@
   ~ #domaine_academique:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="invited-academic"] {
+  [class*='invited-academic'] {
     display: block !important;
   }
-  [class*="associate-academic"] {
+  [class*='associate-academic'] {
     display: block !important;
   }
 }
@@ -385,10 +385,10 @@
   ~ #domaine_technique:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="invited-tech"] {
+  [class*='invited-tech'] {
     display: block !important;
   }
-  [class*="associate-tech"] {
+  [class*='associate-tech'] {
     display: block !important;
   }
 }
@@ -398,10 +398,10 @@
   ~ #domaine_design:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="invited-design"] {
+  [class*='invited-design'] {
     display: block !important;
   }
-  [class*="associate-design"] {
+  [class*='associate-design'] {
     display: block !important;
   }
 }
@@ -411,10 +411,10 @@
   ~ #domaine_administratif:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="invited-admin"] {
+  [class*='invited-admin'] {
     display: block !important;
   }
-  [class*="associate-admin"] {
+  [class*='associate-admin'] {
     display: block !important;
   }
 }
@@ -441,13 +441,13 @@
   ~ #domaine_academique:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="member-academic"] {
+  [class*='member-academic'] {
     display: block !important;
   }
-  [class*="associate-academic"] {
+  [class*='associate-academic'] {
     display: block !important;
   }
-  [class*="invited-academic"] {
+  [class*='invited-academic'] {
     display: block !important;
   }
 }
@@ -458,13 +458,13 @@
   ~ #domaine_technique:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="member-tech"] {
+  [class*='member-tech'] {
     display: block !important;
   }
-  [class*="associate-tech"] {
+  [class*='associate-tech'] {
     display: block !important;
   }
-  [class*="invited-tech"] {
+  [class*='invited-tech'] {
     display: block !important;
   }
 }
@@ -475,13 +475,13 @@
   ~ #domaine_design:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="member-design"] {
+  [class*='member-design'] {
     display: block !important;
   }
-  [class*="associate-design"] {
+  [class*='associate-design'] {
     display: block !important;
   }
-  [class*="invited-design"] {
+  [class*='invited-design'] {
     display: block !important;
   }
 }
@@ -492,13 +492,13 @@
   ~ #domaine_administratif:checked
   ~ #liste_equipe
   .liste_equipe {
-  [class*="member-admin"] {
+  [class*='member-admin'] {
     display: block !important;
   }
-  [class*="associate-admin"] {
+  [class*='associate-admin'] {
     display: block !important;
   }
-  [class*="invited-admin"] {
+  [class*='invited-admin'] {
     display: block !important;
   }
 }

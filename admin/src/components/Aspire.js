@@ -9,7 +9,6 @@ export default class Aspire extends Component {
   };
 
   componentDidMount() {
-
     // Connecting to socket
     this.socket = acquireSocket();
 
@@ -23,14 +22,12 @@ export default class Aspire extends Component {
   }
 
   componentWillUnmount() {
-
     // Closing the socket
     this.socket.close();
   }
 
   handleAspire = () => {
-    if (this.state.status !== 'free')
-      return;
+    if (this.state.status !== 'free') return;
     this.setState({status, messages: []});
     client.aspire();
   };
@@ -40,9 +37,9 @@ export default class Aspire extends Component {
 
     const loading = status !== null && status !== 'free';
 
-    const label = loading ?
-      'Mise à jour des productions...' :
-      'Mettre à jour les productions depuis Spire';
+    const label = loading
+      ? 'Mise à jour des productions...'
+      : 'Mettre à jour les productions depuis Spire';
 
     return (
       <div className="level">

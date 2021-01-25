@@ -1,6 +1,7 @@
 // Only applies to mobile version
 if (window.innerWidth < 700) {
-  document.querySelector('#nav-inside-article [data-type=topbar] a').href = '#main';
+  document.querySelector('#nav-inside-article [data-type=topbar] a').href =
+    '#main';
 
   const sticky = () => {
     const navPeople = document.getElementById('toggle-nav_label');
@@ -11,8 +12,7 @@ if (window.innerWidth < 700) {
       navPeople.style.top = '70px';
       stickyTitle.style.top = '70px';
       navArticle.style.top = '';
-    }
-    else {
+    } else {
       navPeople.style.top = '0px';
       stickyTitle.style.top = '0px';
       navArticle.style.top = '-250px';

@@ -14,7 +14,8 @@ export default ({data, pageContext}) => {
       <ActivityListing
         lang={pageContext.lang}
         list={data.activities}
-        topActivities={topActivities} />
+        topActivities={topActivities}
+      />
     </Layout>
   );
 };

@@ -1,23 +1,22 @@
+$activity-statuses: 'active', 'past';
+$activity-types: 'research', 'teaching', 'seminar';
+$activity-attributes: 'active', 'past', 'research', 'teaching', 'seminar';
+
 .page-activity-list {
   // CHEKED CHECKBOX ------------------------------------------------------------------------------------ //
 
-  #filtre-activity_active:checked
-    ~ .aside-filters
-    #filtre-activity_active_label,
-  #filtre-activity_past:checked ~ .aside-filters #filtre-activity_past_label,
-  #filtre-activity_research:checked
-    ~ .aside-filters
-    #filtre-activity_research_label,
-  #filtre-activity_teaching:checked
-    ~ .aside-filters
-    #filtre-activity_teaching_label {
-    font-weight: 600 !important;
-    &:before {
-      border: 5px solid $text-color;
-    }
-    @include for-size(desktop) {
-      &:hover:before {
-        border: 5px solid $text-color-light !important;
+  @each $attr in $activity-attributes {
+    #filtre-activity_#{$attr}:checked
+      ~ .aside-filters
+      #filtre-activity_#{$attr}_label {
+      font-weight: 600 !important;
+      &:before {
+        border: 5px solid $text-color;
+      }
+      @include for-size(desktop) {
+        &:hover:before {
+          border: 5px solid $text-color-light !important;
+        }
       }
     }
   }
@@ -30,21 +29,13 @@
     }
   }
 
-  #filtre-activity_active:checked ~ #liste #liste-activity {
-    .research-active {
-      display: block;
-    }
-    .teaching-active {
-      display: block;
-    }
-  }
-
-  #filtre-activity_past:checked ~ #liste #liste-activity {
-    .research-past {
-      display: block;
-    }
-    .teaching-past {
-      display: block;
+  @each $status in $activity-statuses {
+    #filtre-activity_#{$status}:checked ~ #liste #liste-activity {
+      @each $type in $activity-types {
+        .#{$type}-#{$status} {
+          display: block;
+        }
+      }
     }
   }
 
@@ -54,20 +45,14 @@
       display: none;
     }
   }
-  #filtre-activity_research:checked ~ #liste #liste-activity {
-    .research-active {
-      display: block;
-    }
-    .research-past {
-      display: block;
-    }
-  }
-  #filtre-activity_teaching:checked ~ #liste #liste-activity {
-    .teaching-active {
-      display: block;
-    }
-    .teaching-past {
-      display: block;
+
+  @each $type in $activity-types {
+    #filtre-activity_#{$type}:checked ~ #liste #liste-activity {
+      @each $status in $activity-statuses {
+        .#{$type}-#{$status} {
+          display: block;
+        }
+      }
     }
   }
 
@@ -89,27 +74,63 @@
     .teaching-past {
       display: none !important;
     }
-  }
-
-  #filtre-activity_active:checked
-    ~ #filtre-activity_teaching:checked
-    ~ #liste
-    #liste-activity {
-    .research-active {
+    .seminar-active {
       display: none !important;
     }
-    .research-past {
-      display: none !important;
-    }
-    .teaching-active {
-      display: block !important;
-    }
-    .teaching-past {
+    .seminar-past {
       display: none !important;
     }
   }
 
   #filtre-activity_active:checked
+    ~ #filtre-activity_teaching:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: block !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
+  }
+
+  #filtre-activity_active:checked
+    ~ #filtre-activity_seminar:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+    .seminar-active {
+      display: block !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
+  }
+
+  #filtre-activity_active:checked
     ~ #filtre-activity_research:checked
     ~ #filtre-activity_teaching:checked
     ~ #liste
@@ -124,6 +145,62 @@
       display: block !important;
     }
     .teaching-past {
+      display: none !important;
+    }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
+  }
+
+  #filtre-activity_active:checked
+    ~ #filtre-activity_research:checked
+    ~ #filtre-activity_seminar:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: block !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+    .seminar-active {
+      display: block !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
+  }
+
+  #filtre-activity_active:checked
+    ~ #filtre-activity_teaching:checked
+    ~ #filtre-activity_seminar:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: block !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+    .seminar-active {
+      display: block !important;
+    }
+    .seminar-past {
       display: none !important;
     }
   }
@@ -144,6 +221,12 @@
     .teaching-past {
       display: none !important;
     }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
   }
 
   #filtre-activity_past:checked
@@ -160,6 +243,36 @@
       display: none !important;
     }
     .teaching-past {
+      display: block !important;
+    }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
+  }
+
+  #filtre-activity_past:checked
+    ~ #filtre-activity_seminar:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
       display: block !important;
     }
   }
@@ -179,6 +292,62 @@
       display: none !important;
     }
     .teaching-past {
+      display: block !important;
+    }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
+  }
+
+  #filtre-activity_past:checked
+    ~ #filtre-activity_research:checked
+    ~ #filtre-activity_seminar:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: block !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
+      display: block !important;
+    }
+  }
+
+  #filtre-activity_past:checked
+    ~ #filtre-activity_teaching:checked
+    ~ #filtre-activity_seminar:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: block !important;
+    }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
       display: block !important;
     }
   }
@@ -200,6 +369,12 @@
     .teaching-past {
       display: none !important;
     }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
   }
 
   #filtre-activity_active:checked
@@ -217,6 +392,37 @@
       display: block !important;
     }
     .teaching-past {
+      display: block !important;
+    }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
+  }
+
+  #filtre-activity_active:checked
+    ~ #filtre-activity_past:checked
+    ~ #filtre-activity_seminar:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+    .seminar-active {
+      display: block !important;
+    }
+    .seminar-past {
       display: block !important;
     }
   }
@@ -237,6 +443,91 @@
       display: block !important;
     }
     .teaching-past {
+      display: block !important;
+    }
+    .seminar-active {
+      display: none !important;
+    }
+    .seminar-past {
+      display: none !important;
+    }
+  }
+
+  #filtre-activity_active:checked
+    ~ #filtre-activity_past:checked
+    ~ #filtre-activity_research:checked
+    ~ #filtre-activity_seminar:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: block !important;
+    }
+    .research-past {
+      display: block !important;
+    }
+    .teaching-active {
+      display: none !important;
+    }
+    .teaching-past {
+      display: none !important;
+    }
+    .seminar-active {
+      display: block !important;
+    }
+    .seminar-past {
+      display: block !important;
+    }
+  }
+
+  #filtre-activity_active:checked
+    ~ #filtre-activity_past:checked
+    ~ #filtre-activity_teaching:checked
+    ~ #filtre-activity_seminar:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: none !important;
+    }
+    .research-past {
+      display: none !important;
+    }
+    .teaching-active {
+      display: block !important;
+    }
+    .teaching-past {
+      display: block !important;
+    }
+    .seminar-active {
+      display: block !important;
+    }
+    .seminar-past {
+      display: block !important;
+    }
+  }
+
+  #filtre-activity_active:checked
+    ~ #filtre-activity_past:checked
+    ~ #filtre-activity_research:checked
+    ~ #filtre-activity_teaching:checked
+    ~ #filtre-activity_seminar:checked
+    ~ #liste
+    #liste-activity {
+    .research-active {
+      display: block !important;
+    }
+    .research-past {
+      display: block !important;
+    }
+    .teaching-active {
+      display: block !important;
+    }
+    .teaching-past {
+      display: block !important;
+    }
+    .seminar-active {
+      display: block !important;
+    }
+    .seminar-past {
       display: block !important;
     }
   }

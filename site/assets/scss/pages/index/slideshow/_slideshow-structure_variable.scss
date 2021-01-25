@@ -1,4 +1,4 @@
-#slideshow[data-nbr-item="2"] {
+#slideshow[data-nbr-item='2'] {
   ///////////////////
   // Slideshow Motion
   //////////////////
@@ -38,10 +38,10 @@
     }
   }
   #slide-bullet-0:checked ~ nav.bullets-slide {
-    [data-slide="1"] {
+    [data-slide='1'] {
       animation: bullet-A 10000ms infinite;
     }
-    [data-slide="2"] {
+    [data-slide='2'] {
       animation: bullet-A 10000ms infinite 5000ms;
     }
   }
@@ -90,7 +90,7 @@
   }
 }
 
-#slideshow[data-nbr-item="3"] {
+#slideshow[data-nbr-item='3'] {
   ///////////////////
   // Slideshow Motion
   //////////////////
@@ -134,13 +134,13 @@
     }
   }
   #slide-bullet-0:checked ~ nav.bullets-slide {
-    [data-slide="1"] {
+    [data-slide='1'] {
       animation: bullet-B 15s infinite;
     }
-    [data-slide="2"] {
+    [data-slide='2'] {
       animation: bullet-B 15s infinite 5s;
     }
-    [data-slide="3"] {
+    [data-slide='3'] {
       animation: bullet-B 15s infinite 10s;
     }
   }
@@ -200,7 +200,7 @@
   }
 }
 
-#slideshow[data-nbr-item="4"] {
+#slideshow[data-nbr-item='4'] {
   ///////////////////
   // Slideshow Motion
   //////////////////
@@ -248,16 +248,16 @@
     }
   }
   #slide-bullet-0:checked ~ nav.bullets-slide {
-    [data-slide="1"] {
+    [data-slide='1'] {
       animation: bullet-C 20s infinite 0s;
     }
-    [data-slide="2"] {
+    [data-slide='2'] {
       animation: bullet-C 20s infinite 5s;
     }
-    [data-slide="3"] {
+    [data-slide='3'] {
       animation: bullet-C 20s infinite 10s;
     }
-    [data-slide="4"] {
+    [data-slide='4'] {
       animation: bullet-C 20s infinite 15s;
     }
   }
@@ -328,7 +328,7 @@
   }
 }
 
-#slideshow[data-nbr-item="5"] {
+#slideshow[data-nbr-item='5'] {
   ///////////////////
   // Slideshow Motion
   //////////////////
@@ -380,19 +380,19 @@
     }
   }
   #slide-bullet-0:checked ~ nav.bullets-slide {
-    [data-slide="1"] {
+    [data-slide='1'] {
       animation: bullet-D 25s infinite;
     }
-    [data-slide="2"] {
+    [data-slide='2'] {
       animation: bullet-D 25s infinite 5s;
     }
-    [data-slide="3"] {
+    [data-slide='3'] {
       animation: bullet-D 25s infinite 10s;
     }
-    [data-slide="4"] {
+    [data-slide='4'] {
       animation: bullet-D 25s infinite 15s;
     }
-    [data-slide="5"] {
+    [data-slide='5'] {
       animation: bullet-D 25s infinite 20s;
     }
   }

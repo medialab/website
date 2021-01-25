@@ -4,7 +4,10 @@ module.exports = function (req, dbs, next) {
   const state = dbs.activities.getState();
 
   state.activities.forEach(n => {
-    delete n.important;
+    n.name = {
+      fr: n.name,
+      en: n.name
+    };
   });
 
   dbs.activities.setState(state);

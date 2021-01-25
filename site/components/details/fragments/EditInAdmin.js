@@ -1,6 +1,6 @@
 import React from 'react';
 
-const style = {
+const style = {
   backgroundColor: 'white',
   position: 'fixed',
   top: '6px',
@@ -11,15 +11,10 @@ const style = {
 };
 
 export default function EditInAdmin({item, linkToAdmin}) {
-
   const itemLink = `${linkToAdmin}/#/${item.model}/${item.id}`;
 
   return (
-    <a
-      href={itemLink}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={style}>
+    <a href={itemLink} target="_blank" rel="noopener noreferrer" style={style}>
       {item.draft ? <b>DRAFT</b> : <b>PUBLIC</b>} <br />
       éditer dans l'admin
     </a>

@@ -27,17 +27,17 @@ $border-redlab-very-light: 0.5px solid #fad5d8;
 
 /*  unicode catégories */
 // $actualites: "∾ ";
-$actualites: "◊ ";
-$productions: "☵ ";
-$activites: "⋇ ";
-$people: "= ";
-$files: "¤ ";
-$git: "⊶ ";
-$tweet: "⟐ ";
-$time: "◷ ";
-$place: "⦿ ";
-$scrolltop: "↑ ";
-$goto: " ⤤";
+$actualites: '◊ ';
+$productions: '☵ ';
+$activites: '⋇ ';
+$people: '= ';
+$files: '¤ ';
+$git: '⊶ ';
+$tweet: '⟐ ';
+$time: '◷ ';
+$place: '⦿ ';
+$scrolltop: '↑ ';
+$goto: ' ⤤';
 
 /*  autre */
 ::selection,
@@ -72,7 +72,7 @@ $goto: " ⤤";
     border: none;
     border-#{$placement}: 1px solid transparent;
     box-sizing: border-box;
-    content: "";
+    content: '';
     pointer-events: none;
     position: absolute;
     width: 0;

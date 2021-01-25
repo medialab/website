@@ -1,21 +1,21 @@
 #nav-inside-article {
   ul li {
-    &[data-type="main"] a::before {
+    &[data-type='main'] a::before {
       content: $scrolltop;
     }
-    &[data-type="productions"] a::before {
+    &[data-type='productions'] a::before {
       content: $productions;
     }
-    &[data-type="activities"] a::before {
+    &[data-type='activities'] a::before {
       content: $activites;
     }
-    &[data-type="attachments"] a::before {
+    &[data-type='attachments'] a::before {
       content: $files;
     }
-    &[data-type="people"] a::before {
+    &[data-type='people'] a::before {
       content: $people;
     }
-    &[data-type="news"] a::before {
+    &[data-type='news'] a::before {
       content: $actualites;
     }
 

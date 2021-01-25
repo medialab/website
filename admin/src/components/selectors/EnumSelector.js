@@ -22,8 +22,7 @@ for (const k in enums) {
         })
       };
     });
-  }
-  else {
+  } else {
     OPTIONS[k] = map(e.fr, (label, key) => ({
       value: key,
       label
@@ -32,30 +31,26 @@ for (const k in enums) {
 }
 
 export default React.memo(function EnumSelector(props) {
-  const {
-    value,
-    isMulti,
-    enumType,
-    onChange
-  } = props;
+  const {value, isMulti, enumType, onChange} = props;
 
   const options = OPTIONS[enumType];
 
   let selected;
 
-  const onChangeCallback = React.useCallback(option => onChange(option.value), []);
-  const onChangeMulti = (option) => {
-    const values = option.map((item) => item.value);
+  const onChangeCallback = React.useCallback(
+    option => onChange(option.value),
+    []
+  );
+  const onChangeMulti = option => {
+    const values = option.map(item => item.value);
     onChange(values);
   };
 
   if (enums[enumType].groups) {
     selected = options.flatMap(g => g.options).find(o => o.value === value);
-  }
-  else if (isMulti && value && value.length > 0) {
+  } else if (isMulti && value && value.length > 0) {
     selected = options.filter(o => value.indexOf(o.value) !== -1);
-  }
-  else {
+  } else {
     selected = options.find(o => o.value === value);
   }
 
@@ -65,7 +60,8 @@ export default React.memo(function EnumSelector(props) {
         value={selected}
         isMulti={isMulti}
         onChange={onChangeMulti}
-        options={options} />
+        options={options}
+      />
     );
 
   if (options.length < 4)
@@ -75,7 +71,10 @@ export default React.memo(function EnumSelector(props) {
           return (
             <span
               key={o.value}
-              className={cls('button', o === selected && ['is-info', 'is-selected'])}
+              className={cls(
+                'button',
+                o === selected && ['is-info', 'is-selected']
+              )}
               onClick={() => onChange(o.value)}>
               {o.label}
             </span>
@@ -84,9 +83,6 @@ export default React.memo(function EnumSelector(props) {
       </span>
     );
   return (
-    <Select
-      value={selected}
-      onChange={onChangeCallback}
-      options={options} />
+    <Select value={selected} onChange={onChangeCallback} options={options} />
   );
 });

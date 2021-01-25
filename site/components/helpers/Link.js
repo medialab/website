@@ -16,8 +16,7 @@ export default function Link(props) {
 
   let active = meta.permalink === to;
 
-  if (partiallyActive && meta.permalink.startsWith(to))
-    active = true;
+  if (partiallyActive && meta.permalink.startsWith(to)) active = true;
 
   const toWithPrefix = meta.pathPrefix + to;
 

@@ -1,7 +1,7 @@
-
-$filters_usages: "collect" "curation" "processing" "exploration" "visualization" "writing";
-$filters_audience: "developers" "all";
-$filters_status: "usable" "experimental" "archived";
+$filters_usages: 'collect' 'curation' 'processing' 'exploration' 'visualization'
+  'writing';
+$filters_audience: 'developers' 'all';
+$filters_status: 'usable' 'experimental' 'archived';
 $filters_groups: $filters_usages $filters_audience $filters_status;
 
 .page-tool-list {
@@ -32,7 +32,7 @@ $filters_groups: $filters_usages $filters_audience $filters_status;
       border-bottom: $border-very-light;
     }
 
-    .filter-group{
+    .filter-group {
       display: none;
     }
 
@@ -72,8 +72,8 @@ $filters_groups: $filters_usages $filters_audience $filters_status;
   @each $filters_group in $filters_groups {
     @each $filter in $filters_group {
       #filtre-tool_#{$filter}:checked
-      ~ .aside-filters
-      #filtre-tool_#{$filter}_label {
+        ~ .aside-filters
+        #filtre-tool_#{$filter}_label {
         font-weight: 600 !important;
         &:before {
           border: 5px solid $text-color;
@@ -100,8 +100,7 @@ $filters_groups: $filters_usages $filters_audience $filters_status;
   // one type of group filter only
   @each $filters_group in $filters_groups {
     @each $filter in $filters_group {
-      input#filtre-tool_#{$filter}:checked
-        ~ #liste #liste-tools {
+      input#filtre-tool_#{$filter}:checked ~ #liste #liste-tools {
         .#{$filter} {
           display: block;
         }
@@ -110,9 +109,7 @@ $filters_groups: $filters_usages $filters_audience $filters_status;
   }
 
   // usages x audience
-  input.input_usages:checked
-  ~ input.input_audience:checked
-  ~ #liste {
+  input.input_usages:checked ~ input.input_audience:checked ~ #liste {
     #liste-tools .list-item {
       display: none !important;
     }
@@ -121,8 +118,9 @@ $filters_groups: $filters_usages $filters_audience $filters_status;
   @each $filter_usages in $filters_usages {
     @each $filter_audience in $filters_audience {
       #filtre-tool_#{$filter_usages}:checked
-      ~ #filtre-tool_#{$filter_audience}:checked
-      ~ #liste #liste-tools {
+        ~ #filtre-tool_#{$filter_audience}:checked
+        ~ #liste
+        #liste-tools {
         .#{$filter_usages}.#{$filter_audience} {
           display: block !important;
         }
@@ -131,9 +129,7 @@ $filters_groups: $filters_usages $filters_audience $filters_status;
   }
 
   // audience x status
-  input.input_audience:checked
-  ~ input.input_status:checked
-  ~ #liste {
+  input.input_audience:checked ~ input.input_status:checked ~ #liste {
     #liste-tools .list-item {
       display: none !important;
     }
@@ -142,8 +138,9 @@ $filters_groups: $filters_usages $filters_audience $filters_status;
   @each $filter_audience in $filters_audience {
     @each $filter_status in $filters_status {
       #filtre-tool_#{$filter_audience}:checked
-      ~ #filtre-tool_#{$filter_status}:checked
-      ~ #liste #liste-tools {
+        ~ #filtre-tool_#{$filter_status}:checked
+        ~ #liste
+        #liste-tools {
         .#{$filter_audience}.#{$filter_status} {
           display: block !important;
         }
@@ -152,9 +149,7 @@ $filters_groups: $filters_usages $filters_audience $filters_status;
   }
 
   // usages x status
-  input.input_usages:checked
-  ~ input.input_status:checked
-  ~ #liste {
+  input.input_usages:checked ~ input.input_status:checked ~ #liste {
     #liste-tools .list-item {
       display: none !important;
     }
@@ -163,8 +158,9 @@ $filters_groups: $filters_usages $filters_audience $filters_status;
   @each $filter_usages in $filters_usages {
     @each $filter_status in $filters_status {
       #filtre-tool_#{$filter_usages}:checked
-      ~ #filtre-tool_#{$filter_status}:checked
-      ~ #liste #liste-tools {
+        ~ #filtre-tool_#{$filter_status}:checked
+        ~ #liste
+        #liste-tools {
         .#{$filter_usages}.#{$filter_status} {
           display: block !important;
         }
@@ -174,9 +170,9 @@ $filters_groups: $filters_usages $filters_audience $filters_status;
 
   // usages x audience x status
   input.input_usages:checked
-  ~ input.input_audience:checked
-  ~ input.input_status:checked
-  ~ #liste {
+    ~ input.input_audience:checked
+    ~ input.input_status:checked
+    ~ #liste {
     ul#liste-tools li.list-item {
       display: none !important;
     }
@@ -186,9 +182,10 @@ $filters_groups: $filters_usages $filters_audience $filters_status;
     @each $filter_audience in $filters_audience {
       @each $filter_status in $filters_status {
         #filtre-tool_#{$filter_usages}:checked
-        ~ #filtre-tool_#{$filter_audience}:checked
-        ~ #filtre-tool_#{$filter_status}:checked
-        ~ #liste #liste-tools {
+          ~ #filtre-tool_#{$filter_audience}:checked
+          ~ #filtre-tool_#{$filter_status}:checked
+          ~ #liste
+          #liste-tools {
           .#{$filter_usages}.#{$filter_audience} {
             display: none !important;
           }

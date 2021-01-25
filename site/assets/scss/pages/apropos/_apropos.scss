@@ -59,13 +59,13 @@
   .minify {
     & + label h3 {
       &:before {
-        content: "⋁";
+        content: '⋁';
         padding-right: 10px !important;
       }
     }
     &:checked + label h3 {
       &:before {
-        content: "⋀";
+        content: '⋀';
       }
     }
   }

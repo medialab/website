@@ -35,7 +35,7 @@ const urlTranlsationMap = {
   activities: 'activites',
   news: 'actu',
   people: 'equipe',
-  productions: 'productions',
+  productions: 'productions'
 };
 
 const urlMapper = {
@@ -59,14 +59,17 @@ const urlMapper = {
   }
 };
 
-const condWithConstants = d => cond(
-  map(
-    ([condition, result]) => [condition, isFunction(result) ? result : constant(result)], d
-  )
-);
-const isPage = page => props => isEqual(
-  property('view', props), page
-);
+const condWithConstants = d =>
+  cond(
+    map(
+      ([condition, result]) => [
+        condition,
+        isFunction(result) ? result : constant(result)
+      ],
+      d
+    )
+  );
+const isPage = page => props => isEqual(property('view', props), page);
 const isFrenchPage = isPage('preview-fr');
 const isEditPage = isPage('edit');
 const isNotEditPage = negate(isEditPage);
@@ -82,10 +85,7 @@ const fnButtonKind = condWithConstants([
   [isNotEditPage, 'danger'],
   [
     overSome([
-      overEvery([
-        isDirty,
-        negate(isThereErrors)
-      ]),
+      overEvery([isDirty, negate(isThereErrors)]),
       ({saving}) => saving
     ]),
     'info'
@@ -98,17 +98,19 @@ const fnDisabled = condWithConstants([
   [p => isNotDirty(p) || isThereErrors(p), true],
   [stubTrue, false]
 ]);
-const fnButtonText = pageLabel => condWithConstants([
-  [hasServerError, 'Server error! Nothing was saved.'],
-  [isNotEditPage, 'Back to editing ↲'],
-  [isItSignaling, `${pageLabel} saved!`],
-  [isNotDirty, 'Nothing yet to save'],
-  [isThereErrors, isThereErrors],
-  [isItNew, `Create this ${pageLabel}`],
-  [stubTrue, `Save this ${pageLabel}`],
-]);
+const fnButtonText = pageLabel =>
+  condWithConstants([
+    [hasServerError, 'Server error! Nothing was saved.'],
+    [isNotEditPage, 'Back to editing ↲'],
+    [isItSignaling, `${pageLabel} saved!`],
+    [isNotDirty, 'Nothing yet to save'],
+    [isThereErrors, isThereErrors],
+    [isItNew, `Create this ${pageLabel}`],
+    [stubTrue, `Save this ${pageLabel}`]
+  ]);
 
-const navigationPromptMessage = () => 'You have unsaved modifications. Sure you want to move?';
+const navigationPromptMessage = () =>
+  'You have unsaved modifications. Sure you want to move?';
 
 class SlugConfirm extends Component {
   state = {
@@ -120,60 +122,51 @@ class SlugConfirm extends Component {
   };
 
   render() {
-    const {
-      existingSlugs,
-      onClose,
-      onSubmit
-    } = this.props;
+    const {existingSlugs, onClose, onSubmit} = this.props;
 
-    const {
-      slug
-    } = this.state;
+    const {slug} = this.state;
 
     const collision = existingSlugs.has(slug);
 
     return (
       <CardModal onClose={onClose}>
-        {
-          [
-            'Slug collision!',
-            (
-              <div key="body" className="content">
-                <p>
-                  This slug is already taken! Please change it:
-                </p>
-                <div className="control">
-                  <input
-                    type="text"
-                    className={collision ? 'input is-danger' : 'input'}
-                    onChange={this.handleSlug}
-                    value={slug} />
-                </div>
-                {collision ?
-                  (<p className="help is-danger">This slug already exists!</p>) :
-                  (<p className="help is-success">This slug is ok!</p>)}
-              </div>
-            ),
-            close => (
-              <div key="footer">
-                <Button
-                  kind={collision ? 'white' : 'success'}
-                  disabled={collision}
-                  onClick={() => {
-                    onSubmit(slug);
-                    close();
-                  }}>
-                  {!collision ? 'Create with this slug' : 'Cannot create with this slug'}
-                </Button>
-                <Button
-                  kind="danger"
-                  onClick={close}>
-                  Cancel
-                </Button>
-              </div>
-            )
-          ]
-        }
+        {[
+          'Slug collision!',
+          <div key="body" className="content">
+            <p>This slug is already taken! Please change it:</p>
+            <div className="control">
+              <input
+                type="text"
+                className={collision ? 'input is-danger' : 'input'}
+                onChange={this.handleSlug}
+                value={slug}
+              />
+            </div>
+            {collision ? (
+              <p className="help is-danger">This slug already exists!</p>
+            ) : (
+              <p className="help is-success">This slug is ok!</p>
+            )}
+          </div>,
+          close => (
+            <div key="footer">
+              <Button
+                kind={collision ? 'white' : 'success'}
+                disabled={collision}
+                onClick={() => {
+                  onSubmit(slug);
+                  close();
+                }}>
+                {!collision
+                  ? 'Create with this slug'
+                  : 'Cannot create with this slug'}
+              </Button>
+              <Button kind="danger" onClick={close}>
+                Cancel
+              </Button>
+            </div>
+          )
+        ]}
       </CardModal>
     );
   }
@@ -204,11 +197,9 @@ class Form extends Component {
 
     let newData;
 
-    if (isNew)
-      newData = props.initializer(uuid);
+    if (isNew) newData = props.initializer(uuid);
 
     this.state = {
-
       // Important
       isNew,
 
@@ -235,8 +226,7 @@ class Form extends Component {
 
     // Listener not to lose work when closing page
     this.beforeunloadListener = e => {
-      if (hash(this.state.data) === this.state.lastHash)
-        return;
+      if (hash(this.state.data) === this.state.lastHash) return;
 
       const result = window.confirm(navigationPromptMessage());
 
@@ -257,17 +247,14 @@ class Form extends Component {
     const contentField = this.props.contentField;
 
     const englishContent = get([contentField, 'en'], data) || null,
-          frenchContent = get([contentField, 'fr'], data) || null;
+      frenchContent = get([contentField, 'fr'], data) || null;
 
     this.englishEditorContent = englishContent;
     this.frenchEditorContent = frenchContent;
   }
 
   componentDidMount() {
-    const {
-      id,
-      model,
-    } = this.props;
+    const {id, model} = this.props;
 
     // Window event listeners
     window.addEventListener('beforeunload', this.beforeunloadListener);
@@ -288,28 +275,24 @@ class Form extends Component {
   componentWillUnmount() {
     window.removeEventListener('beforeunload', this.beforeunloadListener);
 
-    if (this.timeout)
-      clearTimeout(this.timeout);
+    if (this.timeout) clearTimeout(this.timeout);
   }
 
   toggleEdit = () => {
-    if (this.state.view === 'edit')
-      return;
+    if (this.state.view === 'edit') return;
 
     this.refreshEditorStates(this.state.data);
     this.setState({view: 'edit'});
   };
 
   toggleFrenchPreview = () => {
-    if (this.state.view === 'preview-fr')
-      return;
+    if (this.state.view === 'preview-fr') return;
 
     this.setState({view: 'preview-fr'});
   };
 
   toggleEnglishPreview = () => {
-    if (this.state.view === 'preview-en')
-      return;
+    if (this.state.view === 'preview-en') return;
 
     this.setState({view: 'preview-en'});
   };
@@ -323,34 +306,24 @@ class Form extends Component {
   };
 
   handleSubmit = newSlug => {
+    const {data, isNew, confirming, existingSlugs} = this.state;
 
-    const {
-      data,
-      isNew,
-      confirming,
-      existingSlugs
-    } = this.state;
-
-    const {
-      model,
-      push
-    } = this.props;
+    const {model, push} = this.props;
 
     // If the item is new and the slug is colliding, we trigger a confirm
-    if (
-      isNew &&
-      !confirming &&
-      existingSlugs.has(data.slugs[0])
-    )
+    if (isNew && !confirming && existingSlugs.has(data.slugs[0]))
       return this.setState({confirming: true});
 
     // Do we need to update current slug?
     let currentData = data;
 
-    if (newSlug)
-      currentData = set('slugs', [newSlug], currentData);
+    if (newSlug) currentData = set('slugs', [newSlug], currentData);
 
-    this.setState({data: currentData, lastHash: hash(currentData), saving: true});
+    this.setState({
+      data: currentData,
+      lastHash: hash(currentData),
+      saving: true
+    });
 
     // Persisting
     if (isNew) {
@@ -367,16 +340,14 @@ class Form extends Component {
         push(`/${model}/${currentData.id}`);
         this.setState({isNew: false});
       });
-    }
-    else {
+    } else {
       const payload = {
         params: {model, id: currentData.id},
         data: currentData
       };
 
       client.put(payload, err => {
-        if (err)
-          return this.setState({serverError: true});
+        if (err) return this.setState({serverError: true});
       });
     }
 
@@ -384,7 +355,10 @@ class Form extends Component {
     this.timeout = setTimeout(() => {
       this.setState({saving: false, signaling: true});
 
-      this.timeout = setTimeout(() => this.setState({signaling: false, time: Date.now()}), 1500);
+      this.timeout = setTimeout(
+        () => this.setState({signaling: false, time: Date.now()}),
+        1500
+      );
     }, 1000);
   };
 
@@ -400,20 +374,11 @@ class Form extends Component {
       time
     } = this.state;
 
-    const {
-      children,
-      model,
-      label,
-      slugify,
-      validate
-    } = this.props;
+    const {children, model, label, slugify, validate} = this.props;
 
-    if (loading)
-      return <div>Loading...</div>;
+    if (loading) return <div>Loading...</div>;
 
-    const slug = isNew ?
-      slugify(data) :
-      data.slugs[data.slugs.length - 1];
+    const slug = isNew ? slugify(data) : data.slugs[data.slugs.length - 1];
     const pageLabel = label || model;
     const dirty = hash(data) !== lastHash;
     const validationError = validate(data);
@@ -428,29 +393,29 @@ class Form extends Component {
       loading: saving
     });
 
-    const titleLabel = isNew ?
-      'new' :
-      (data ? labels[model](data) : 'loading');
+    const titleLabel = isNew ? 'new' : data ? labels[model](data) : 'loading';
 
     return (
       <div>
         <Helmet>
-          <title>médialab CMS - {model} / {titleLabel}</title>
+          <title>
+            médialab CMS - {model} / {titleLabel}
+          </title>
         </Helmet>
         {confirming && (
           <SlugConfirm
             slug={slug}
             existingSlugs={existingSlugs}
             onClose={this.handleConfirmationModalClose}
-            onSubmit={this.handleSubmit} />
+            onSubmit={this.handleSubmit}
+          />
         )}
-        <Prompt
-          when={!saving && dirty}
-          message={navigationPromptMessage} />
+        <Prompt when={!saving && dirty} message={navigationPromptMessage} />
         <div>
-          {
-            condWithConstants([
-              [isEditPage, React.createElement(children, {
+          {condWithConstants([
+            [
+              isEditPage,
+              React.createElement(children, {
                 handlers: this.handlers,
                 englishEditorContent: this.englishEditorContent,
                 frenchEditorContent: this.frenchEditorContent,
@@ -458,11 +423,11 @@ class Form extends Component {
                 data,
                 url: !isNew && `${API_URL}/preview/${urls.fr}`,
                 dirty
-              })],
-              [isFrenchPage, <Preview key="preview" url={urls.fr} />],
-              [stubTrue, <Preview key="preview" url={urls.en} />]
-            ])(state)
-          }
+              })
+            ],
+            [isFrenchPage, <Preview key="preview" url={urls.fr} />],
+            [stubTrue, <Preview key="preview" url={urls.en} />]
+          ])(state)}
           <p style={{height: '70px'}} />
           <div className="container footer-container">
             <div className="level">
@@ -482,12 +447,18 @@ class Form extends Component {
                     </Button>
                   </div>
                   <div className="control">
-                    <Link to={`/${model}`} className="button is-text">Cancel</Link>
+                    <Link to={`/${model}`} className="button is-text">
+                      Cancel
+                    </Link>
                   </div>
 
                   {time && (
                     <div className="level-item">
-                      <small><em>Last saved <TimeAgo date={time} minPeriod={10} /></em></small>
+                      <small>
+                        <em>
+                          Last saved <TimeAgo date={time} minPeriod={10} />
+                        </em>
+                      </small>
                     </div>
                   )}
                 </div>
@@ -497,19 +468,25 @@ class Form extends Component {
                   {!isNew && (
                     <>
                       <div className="field-label is-normal">
-                        <p className={cls(validationError && 'has-text-grey')}>Preview {pageLabel} page:</p>
+                        <p className={cls(validationError && 'has-text-grey')}>
+                          Preview {pageLabel} page:
+                        </p>
                       </div>
                       <div className="control">
                         <Button
                           className="button__animated-color"
                           {...previewPropsFilter('preview-fr')}
-                          onClick={this.toggleFrenchPreview}>French</Button>
+                          onClick={this.toggleFrenchPreview}>
+                          French
+                        </Button>
                       </div>
                       <div className="control">
                         <Button
                           className="button__animated-color"
                           {...previewPropsFilter('preview-en')}
-                          onClick={this.toggleEnglishPreview}>English</Button>
+                          onClick={this.toggleEnglishPreview}>
+                          English
+                        </Button>
                       </div>
                     </>
                   )}
@@ -523,9 +500,6 @@ class Form extends Component {
   }
 }
 
-const ConnectedForm = connect(
-  null,
-  {push: pushAction}
-)(Form);
+const ConnectedForm = connect(null, {push: pushAction})(Form);
 
 export default ConnectedForm;

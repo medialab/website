@@ -16,7 +16,7 @@ class IframeSource extends Component {
     src: ''
   };
 
-  addEntity = (option) => {
+  addEntity = option => {
     const {editorState, entityType, onComplete} = this.props;
 
     const content = editorState.getCurrentContent();
@@ -45,8 +45,7 @@ class IframeSource extends Component {
   };
 
   handleSubmit = () => {
-    if (!this.state.file && !this.state.src)
-      return;
+    if (!this.state.file && !this.state.src) return;
 
     // Using a link
     if (this.state.src)
@@ -68,69 +67,58 @@ class IframeSource extends Component {
   };
 
   render() {
-    const {
-      src,
-      file
-    } = this.state;
+    const {src, file} = this.state;
 
-    const buttonLabel = file ?
-      'Upload & insert attachment' :
-      'Insert link';
+    const buttonLabel = file ? 'Upload & insert attachment' : 'Insert link';
 
     // TODO: UX toggle one side over the other when selecting
 
     return (
       <CardModal onClose={this.handleCancel}>
         {[
-
           // Title
           'Inserting an iframe',
 
           // Body
-          (
-            <div key="body">
-              <div className="columns">
-
-                <div className="column is-7">
-                  <div className="field">
-                    <label className="label">Using an external url:</label>
-                    <div className="control">
-                      <input
-                        type="text"
-                        className="input"
-                        disabled={!!file}
-                        value={src}
-                        onChange={this.handleSrc} />
-                    </div>
+          <div key="body">
+            <div className="columns">
+              <div className="column is-7">
+                <div className="field">
+                  <label className="label">Using an external url:</label>
+                  <div className="control">
+                    <input
+                      type="text"
+                      className="input"
+                      disabled={!!file}
+                      value={src}
+                      onChange={this.handleSrc}
+                    />
                   </div>
                 </div>
+              </div>
 
-                <div className="column is-5">
-                  <div className="field">
-                    <label className="label">Uploading an attachment:</label>
-                    <div className="control">
-                      {file ?
-                        <div>{file.name}</div> :
-                        <Dropzone disabled={!!src} onDrop={this.handleDrop} />}
-                    </div>
+              <div className="column is-5">
+                <div className="field">
+                  <label className="label">Uploading an attachment:</label>
+                  <div className="control">
+                    {file ? (
+                      <div>{file.name}</div>
+                    ) : (
+                      <Dropzone disabled={!!src} onDrop={this.handleDrop} />
+                    )}
                   </div>
                 </div>
-
               </div>
             </div>
-          ),
-
+          </div>,
           // Footer
-          (
-            <Button
-              key="footer"
-              disabled={!src && !file}
-              onClick={this.handleSubmit}>
-              {buttonLabel}
-            </Button>
-          )
+          <Button
+            key="footer"
+            disabled={!src && !file}
+            onClick={this.handleSubmit}>
+            {buttonLabel}
+          </Button>
         ]}
-
       </CardModal>
     );
   }
@@ -142,9 +130,7 @@ function IframeBlock(props) {
   const {src, internal} = blockProps.entity.getData();
 
   // NOTE: can access mutators here
-  const realSrc = internal ?
-    `${API_URL}/assets/${src}` :
-    src;
+  const realSrc = internal ? `${API_URL}/assets/${src}` : src;
 
   return <iframe src={realSrc} />;
 }

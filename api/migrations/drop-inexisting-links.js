@@ -1,13 +1,8 @@
 const DB = require('../../wilson/database.js');
 
-const MODELS = [
-  'activities',
-  'news',
-  'people',
-  'productions'
-];
+const MODELS = ['activities', 'news', 'people', 'productions'];
 
-module.exports = function(req, dbs, next) {
+module.exports = function (req, dbs, next) {
   const ids = new Set();
   const deleted = [];
 
@@ -30,8 +25,7 @@ module.exports = function(req, dbs, next) {
       for (const rel in forward) {
         const links = item[rel];
 
-        if (!links)
-          continue;
+        if (!links) continue;
 
         item[rel] = links.filter(id => {
           if (!ids.has(id)) {

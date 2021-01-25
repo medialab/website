@@ -3,11 +3,13 @@
     "default": "research",
     "fr": {
       "research": "Recherche",
-      "teaching": "Enseignement"
+      "teaching": "Enseignement",
+      "seminar": "Séminaire"
     },
     "en": {
       "research": "Research",
-      "teaching": "Teaching"
+      "teaching": "Teaching",
+      "seminar": "Seminar"
     }
   },
   "domains": {
@@ -53,7 +55,7 @@
     }
   },
   "productionTypes": {
-    "default": "conference",
+    "default": "article",
     "fr": {
       "article": "Article/chapitre",
       "communication": "Communication",
@@ -90,30 +92,55 @@
       "publications": {
         "fr": "Publications",
         "en": "Publications",
-        "values": ["article", "communication", "book", "thesis", "grey"]
+        "values": [
+          "article",
+          "communication",
+          "book",
+          "thesis",
+          "grey"
+        ]
       },
       "webEditions": {
         "fr": "Éditions web",
         "en": "Web editions",
-        "values": ["datascape", "website"]
+        "values": [
+          "datascape",
+          "website"
+        ]
       },
       "tools": {
         "fr": "Outils",
         "en": "Tools",
-        "values": ["software", "code"]
+        "values": [
+          "software",
+          "code"
+        ]
       },
       "situations": {
         "fr": "Situations",
         "en": "Situations",
-        "values": ["exhibition", "workshop", "simulation", "conference"]
+        "values": [
+          "exhibition",
+          "workshop",
+          "simulation",
+          "conference"
+        ]
       },
       "media": {
         "fr": "Médias",
         "en": "Media",
-        "values": ["media"]
+        "values": [
+          "media"
+        ]
       }
     },
-    "groupOrder": ["publications", "tools", "webEditions", "media", "situations"]
+    "groupOrder": [
+      "publications",
+      "tools",
+      "webEditions",
+      "media",
+      "situations"
+    ]
   },
   "audience": {
     "en": {
@@ -156,13 +183,13 @@
     }
   },
   "language": {
-      "en": {
-        "fr": "french",
-        "en": "english"
-      },
-      "fr": {
-        "fr": "français",
-        "en": "anglais"
-      }
+    "en": {
+      "fr": "french",
+      "en": "english"
+    },
+    "fr": {
+      "fr": "français",
+      "en": "anglais"
+    }
   }
 }

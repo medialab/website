@@ -6,27 +6,23 @@ const utils = require('../utils.js');
 const DATA_PATH = config.get('data');
 const ASSETS_PATH = path.join(DATA_PATH, 'assets');
 
-module.exports = function(req, dbs, next) {
-
+module.exports = function (req, dbs, next) {
   const assets = fs.readdirSync(ASSETS_PATH);
   const changed = [];
 
   assets.forEach(filename => {
     const cleaned = utils.cleanAssetName(filename);
 
-    if (cleaned === filename)
-      return;
+    if (cleaned === filename) return;
 
     changed.push([filename, cleaned]);
-    fs.moveSync(path.join(ASSETS_PATH, filename), path.join(ASSETS_PATH, cleaned));
+    fs.moveSync(
+      path.join(ASSETS_PATH, filename),
+      path.join(ASSETS_PATH, cleaned)
+    );
   });
 
-  [
-    'activities',
-    'news',
-    'people',
-    'productions'
-  ].forEach(plural => {
+  ['activities', 'news', 'people', 'productions'].forEach(plural => {
     dbs[plural].read();
 
     const state = dbs[plural].getState();

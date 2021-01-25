@@ -3,35 +3,31 @@ const get = require('lodash/fp/get');
 const FEED_MAX_NUMBER_OF_ITEMS = 50;
 
 function pubDate(date) {
-  if (typeof date === 'undefined')
-    date = new Date();
+  if (typeof date === 'undefined') date = new Date();
 
   const pieces = date.toString().split(' '),
-      offsetTime = pieces[5].match(/[-+]\d{4}/),
-      offset = (offsetTime) ? offsetTime : pieces[5],
-      parts = [
-        pieces[0] + ',',
-        pieces[2],
-        pieces[1],
-        pieces[3],
-        pieces[4],
-        offset
-      ];
+    offsetTime = pieces[5].match(/[-+]\d{4}/),
+    offset = offsetTime ? offsetTime : pieces[5],
+    parts = [
+      pieces[0] + ',',
+      pieces[2],
+      pieces[1],
+      pieces[3],
+      pieces[4],
+      offset
+    ];
 
   return parts.join(' ');
 }
 
 function languageFallback(lang, o) {
-  if (!o)
-    return '';
+  if (!o) return '';
 
-  if (o[lang])
-    return o[lang];
+  if (o[lang]) return o[lang];
 
   const otherLang = lang === 'fr' ? 'en' : 'fr';
 
-  if (o[otherLang])
-    return o[otherLang];
+  if (o[otherLang]) return o[otherLang];
 
   return '';
 }
@@ -40,17 +36,12 @@ const createComparator = prop => (a, b) => {
   a = get(prop, a);
   b = get(prop, b);
 
-  if (typeof a === 'undefined')
-    a = -Infinity;
+  if (typeof a === 'undefined') a = -Infinity;
 
-  if (typeof b === 'undefined')
-    b = -Infinity;
+  if (typeof b === 'undefined') b = -Infinity;
 
-  if (a > b)
-    return -1;
-
-  else if (a < b)
-    return 1;
+  if (a > b) return -1;
+  else if (a < b) return 1;
 
   return 0;
 };
@@ -66,18 +57,9 @@ function safeXmlText(string) {
 }
 
 function createRssRecord(item) {
-  const {
-    title,
-    description,
-    date,
-    url,
-    content
-  } = item;
+  const {title, description, date, url, content} = item;
 
-  const record = [
-    '    <item>',
-    `      <title>${safeXmlText(title)}</title>`,
-  ];
+  const record = ['    <item>', `      <title>${safeXmlText(title)}</title>`];
 
   if (description)
     record.push(`      <description>${safeXmlText(description)}</description>`);
@@ -87,8 +69,7 @@ function createRssRecord(item) {
     `      <guid isPermaLink="false">${url}</guid>`
   );
 
-  if (date)
-    record.push(`      <pubDate>${pubDate(date)}</pubDate>`);
+  if (date) record.push(`      <pubDate>${pubDate(date)}</pubDate>`);
 
   record.push(
     `      <content:encoded>${cdata(content)}</content:encoded>`,
@@ -101,7 +82,7 @@ function createRssRecord(item) {
 const REDUCERS = {
   activities(resolve, lang, item) {
     return {
-      title: item.name,
+      title: item.name.fr || item.name.en,
       description: languageFallback(lang, item.baseline),
       date: item.startDate ? new Date(item.startDate) : null,
       url: resolve(item.permalink[lang]),
@@ -140,7 +121,6 @@ const REDUCERS = {
 };
 
 const FEEDS = [
-
   // News feed
   {
     en: {
@@ -152,7 +132,8 @@ const FEEDS = [
       title: 'Actualités du médialab Sciences Po'
     },
     reduce(db, resolve, lang) {
-      return db.getModel('news')
+      return db
+        .getModel('news')
         .filter(item => !item.draft)
         .sort(createComparator('startDate'))
         .slice(0, FEED_MAX_NUMBER_OF_ITEMS)
@@ -164,14 +145,15 @@ const FEEDS = [
   {
     en: {
       path: '/seminar.feed.xml',
-      title: 'Program of the médialab SciencesPo\'s seminar'
+      title: "Program of the médialab SciencesPo's seminar"
     },
     fr: {
       path: '/seminaire.feed.xml',
       title: 'Programme du séminaire médialab Sciences Po'
     },
     reduce(db, resolve, lang) {
-      return db.getModel('news')
+      return db
+        .getModel('news')
         .filter(item => {
           return (
             !item.draft &&
@@ -196,7 +178,8 @@ const FEEDS = [
       title: 'Nouvelles productions du médialab Sciences Po'
     },
     reduce(db, resolve, lang) {
-      return db.getModel('productions')
+      return db
+        .getModel('productions')
         .filter(item => !item.draft)
         .sort(createComparator('date'))
         .slice(0, FEED_MAX_NUMBER_OF_ITEMS)
@@ -216,7 +199,8 @@ const FEEDS = [
     },
     main: true,
     reduce(db, resolve, lang) {
-      return db.getModel('activities')
+      return db
+        .getModel('activities')
         .concat(db.getModel('news'))
         .concat(db.getModel('people'))
         .concat(db.getModel('productions'))

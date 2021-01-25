@@ -13,8 +13,7 @@ export default function Login({authenticate}) {
     setHasError(false);
 
     client.login({data: {username, password}}, err => {
-      if (err)
-        return setHasError(true);
+      if (err) return setHasError(true);
 
       setHasError(false);
 
@@ -40,7 +39,8 @@ export default function Login({authenticate}) {
                 autoFocus
                 placeholder="Username..."
                 value={username}
-                onChange={e => setUsername(e.target.value)} />
+                onChange={e => setUsername(e.target.value)}
+              />
             </div>
           </div>
           <div className="field">
@@ -50,15 +50,23 @@ export default function Login({authenticate}) {
               className="input"
               placeholder="Password"
               value={password}
-              onChange={e => setPassword(e.target.value)} />
+              onChange={e => setPassword(e.target.value)}
+            />
           </div>
-          {hasError && <div><em>Invalid credentials.</em><br /><br /></div>}
+          {hasError && (
+            <div>
+              <em>Invalid credentials.</em>
+              <br />
+              <br />
+            </div>
+          )}
           <div>
             <input
               disabled={!username || !password}
               type="submit"
               value="Login"
-              className="button" />
+              className="button"
+            />
           </div>
         </div>
       </div>

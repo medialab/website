@@ -15,7 +15,7 @@
 }
 
 .body-page:not(.page-news-list) .type_title:after {
-  content: "ⓘ";
+  content: 'ⓘ';
   padding-left: $unite/3;
   color: $text-color-light;
   text-transform: lowercase;

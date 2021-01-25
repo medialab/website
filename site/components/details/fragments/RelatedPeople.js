@@ -2,6 +2,7 @@ import React from 'react';
 import Link from '../../helpers/Link';
 import {SECTIONS} from '../../helpers/sections';
 import ImagePlaceholder from '../../helpers/ImagePlaceholder';
+import sortBy from 'lodash/sortBy';
 
 const i18n = {
   fr: {
@@ -16,6 +17,17 @@ const i18n = {
   }
 };
 
+const MEMBERSHIP_PRIORITY = {
+  member: 0,
+  invited: 1,
+  associate: 2
+};
+
+const sorter = [
+  p => (p.active ? 0 : 1),
+  p => MEMBERSHIP_PRIORITY[p.membership] || Infinity
+];
+
 const RelatedPeople = ({lang, people, schemaRelationProp = 'member'}) => {
   const related = SECTIONS.people;
 
@@ -23,10 +35,7 @@ const RelatedPeople = ({lang, people, schemaRelationProp = 'member'}) => {
   if (!people || people.length === 0) return null;
 
   // sort active first
-  const peopleSorted = people
-    .filter(p => p.active && p.membership === 'member')
-    .concat(people.filter(p => p.active && p.membership === 'associate'))
-    .concat(people.filter(p => !p.active));
+  const peopleSorted = sortBy(people, sorter);
 
   // definissons une accroche
   let accroche;

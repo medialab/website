@@ -26,7 +26,7 @@ function dataUrlToScaledCanvas(url, rows, callback) {
     const ratio = image.width / image.height;
 
     canvas.width = rows;
-    canvas.height = rows * ASCII_WIDTH / ratio / ASCII_HEIGHT;
+    canvas.height = (rows * ASCII_WIDTH) / ratio / ASCII_HEIGHT;
 
     context.drawImage(image, 0, 0, canvas.width, canvas.height);
 
@@ -41,7 +41,7 @@ function imgToScaledCanvas(img, rows, crop) {
 
   const canvas = document.createElement('canvas');
   canvas.width = rows;
-  canvas.height = rows * ASCII_WIDTH / ratio / ASCII_HEIGHT;
+  canvas.height = (rows * ASCII_WIDTH) / ratio / ASCII_HEIGHT;
 
   const context = canvas.getContext('2d');
 
@@ -69,29 +69,20 @@ function canvasToPixels(canvas) {
 }
 
 function pixelsToBlocks(pixels, options) {
-  const {
-    gamma,
-  } = options;
+  const {gamma} = options;
 
   const offset = options.noAlpha ? 3 : 4;
 
   const blocks = new Uint8Array(pixels.length / offset);
 
   for (let px = 0, b = 0; px < pixels.length; px += offset) {
+    let block =
+      Math.floor(
+        (pixels[px] + pixels[px + 1] + pixels[px + 2] - gamma) / NUM_RATIO
+      ) - 1;
 
-    let block = Math.floor(
-      (
-        pixels[px] +
-        pixels[px + 1] +
-        pixels[px + 2] -
-        gamma
-      ) / NUM_RATIO
-    ) - 1;
-
-    if (block > CARDINALITY - 1)
-      block = CARDINALITY - 1;
-    else if (block < 0)
-      block = 0;
+    if (block > CARDINALITY - 1) block = CARDINALITY - 1;
+    else if (block < 0) block = 0;
 
     blocks[b] = block;
 
@@ -142,14 +133,16 @@ function sharpToString(img, crop, options, callback) {
   img
     .resize({
       width: options.rows,
-      height: (options.rows * ASCII_WIDTH / ratio / ASCII_HEIGHT) | 0
+      height: ((options.rows * ASCII_WIDTH) / ratio / ASCII_HEIGHT) | 0
     })
     .raw()
     .toBuffer((err, buffer, info) => {
-      if (err)
-        return callback(err);
+      if (err) return callback(err);
 
-      const data = pixelsToString(new Uint8ClampedArray(buffer), {...options, noAlpha: info.channels === 3});
+      const data = pixelsToString(new Uint8ClampedArray(buffer), {
+        ...options,
+        noAlpha: info.channels === 3
+      });
 
       callback(null, data);
     });
@@ -162,14 +155,16 @@ function sharpToEncodedBlocks(img, crop, options) {
     img
       .resize({
         width: options.rows,
-        height: (options.rows * ASCII_WIDTH / ratio / ASCII_HEIGHT) | 0
+        height: ((options.rows * ASCII_WIDTH) / ratio / ASCII_HEIGHT) | 0
       })
       .raw()
       .toBuffer((err, buffer, info) => {
-        if (err)
-          return reject(err);
+        if (err) return reject(err);
 
-        const blocks = pixelsToBlocks(new Uint8ClampedArray(buffer), {...options, noAlpha: info.channels === 3});
+        const blocks = pixelsToBlocks(new Uint8ClampedArray(buffer), {
+          ...options,
+          noAlpha: info.channels === 3
+        });
 
         resolve(encodeBlocks(blocks));
       });
@@ -181,7 +176,6 @@ function pixelsToString(pixels, options) {
 }
 
 function imageFileToBlocks(file, options, callback) {
-
   readImageFileAsDataUrl(file, url => {
     dataUrlToScaledCanvas(url, options.rows, canvas => {
       const blocks = canvasToBlocks(canvas, options);
@@ -206,20 +200,26 @@ function imageToBlocks(img, options) {
  */
 function getImagesAsPixels(mapOfImages, decodePNG) {
   let result = {};
-  return new Promise ((globalResolve, globalReject) => {
-    Object.keys(mapOfImages).reduce((cur, key) =>
-      cur.then(() => new Promise((resolve) => {
-        decodePNG(mapOfImages[key], (buffer) => {
-          // const pixels = new Uint8Array(toArrayBuffer(buffer));
-          const pixels = new Uint8Array(buffer);
-          result[key] = pixels;
-          resolve()
-        })
-      }))
-    , Promise.resolve())
-    .then(() => globalResolve(result))
-    .catch(globalReject)
-  })
+  return new Promise((globalResolve, globalReject) => {
+    Object.keys(mapOfImages)
+      .reduce(
+        (cur, key) =>
+          cur.then(
+            () =>
+              new Promise(resolve => {
+                decodePNG(mapOfImages[key], buffer => {
+                  // const pixels = new Uint8Array(toArrayBuffer(buffer));
+                  const pixels = new Uint8Array(buffer);
+                  result[key] = pixels;
+                  resolve();
+                });
+              })
+          ),
+        Promise.resolve()
+      )
+      .then(() => globalResolve(result))
+      .catch(globalReject);
+  });
 }
 
 /**
@@ -252,20 +252,25 @@ function imgToProcessedPng(data, options, sharp, callback) {
   let rowValues;
   let rowOffset;
   let tileValueOffset;
-  for (let x = 0 ; x < columnsNumber ; x++) {
-    for (let y = 0 ; y < rowsNumber ; y++) {
+  for (let x = 0; x < columnsNumber; x++) {
+    for (let y = 0; y < rowsNumber; y++) {
       // get proper index of relevant tile's pixel data in the concatenated tiles pixel values
       tileValueOffset = tilesIndexes[matrix[y][x]];
       tileOffsetXInPixels = tileWidth * x;
       tileOffsetYInPixels = tileHeight * y;
       // iterate in each row of the tile image to add its data to the buffer
-      for (let row = 0 ; row < tileHeight ; row ++) {
-
+      for (let row = 0; row < tileHeight; row++) {
         // get slice of 4-channels values corresponding to the tile row of pixels
-        rowValues = pixelValues
-        .slice(tileValueOffset + tileWidthInValues * row, tileValueOffset + tileWidthInValues * row + tileWidthInValues)
+        rowValues = pixelValues.slice(
+          tileValueOffset + tileWidthInValues * row,
+          tileValueOffset + tileWidthInValues * row + tileWidthInValues
+        );
         // compute 1-dimension offset in final image
-        rowOffset = (tileOffsetYInPixels * imageWidth + row * imageWidth + tileOffsetXInPixels) * 4;
+        rowOffset =
+          (tileOffsetYInPixels * imageWidth +
+            row * imageWidth +
+            tileOffsetXInPixels) *
+          4;
         // add values to buffer at correct position
         buffer.set(rowValues, rowOffset);
       }
@@ -279,21 +284,20 @@ function imgToProcessedPng(data, options, sharp, callback) {
       channels: 4
     }
   })
-  // following is necessary is tiles have a transparent background
-  // .flatten({background: {r: 255, g: 255, b: 255}})
-  .toFile(options.output)
-  .then(() => {
-    return callback(null, {
-      width: imageWidth,
-      height: imageHeight
-    });
-  }).catch(err => callback(err));
+    // following is necessary is tiles have a transparent background
+    // .flatten({background: {r: 255, g: 255, b: 255}})
+    .toFile(options.output)
+    .then(() => {
+      return callback(null, {
+        width: imageWidth,
+        height: imageHeight
+      });
+    })
+    .catch(err => callback(err));
 }
 
 function encodeBlocks(blocks) {
-
-  if (blocks.length % 2 !== 0)
-    throw new Error('Caught odd length blocks!');
+  if (blocks.length % 2 !== 0) throw new Error('Caught odd length blocks!');
 
   const n = (blocks.length / 2) | 0;
 
@@ -311,7 +315,7 @@ function decodeBlocks(buffer) {
 
   for (let i = 0, j = 0; i < buffer.length; i += 1, j += 2) {
     blocks[j] = buffer[i] >> 4;
-    blocks[j + 1] = buffer[i] & 0x0F;
+    blocks[j + 1] = buffer[i] & 0x0f;
   }
 
   return blocks;

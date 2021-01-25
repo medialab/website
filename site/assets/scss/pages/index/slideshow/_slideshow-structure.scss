@@ -66,26 +66,26 @@
         top: -4px;
         position: relative;
 
-        &[data-type="active"] {
+        &[data-type='active'] {
           opacity: 1;
         }
       }
     }
 
     // Bullet manual control
-    #slide-bullet-1:checked ~ nav.bullets-slide [data-slide="1"] {
+    #slide-bullet-1:checked ~ nav.bullets-slide [data-slide='1'] {
       background: $redlab;
     }
-    #slide-bullet-2:checked ~ nav.bullets-slide [data-slide="2"] {
+    #slide-bullet-2:checked ~ nav.bullets-slide [data-slide='2'] {
       background: $redlab;
     }
-    #slide-bullet-3:checked ~ nav.bullets-slide [data-slide="3"] {
+    #slide-bullet-3:checked ~ nav.bullets-slide [data-slide='3'] {
       background: $redlab;
     }
-    #slide-bullet-4:checked ~ nav.bullets-slide [data-slide="4"] {
+    #slide-bullet-4:checked ~ nav.bullets-slide [data-slide='4'] {
       background: $redlab;
     }
-    #slide-bullet-5:checked ~ nav.bullets-slide [data-slide="5"] {
+    #slide-bullet-5:checked ~ nav.bullets-slide [data-slide='5'] {
       background: $redlab;
     }
 
@@ -139,12 +139,12 @@
         }
 
         &:before {
-          content: "❬";
+          content: '❬';
           left: -1px;
         }
 
         &:after {
-          content: "❭";
+          content: '❭';
           right: -1px;
         }
       }

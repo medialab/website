@@ -3,11 +3,15 @@ const path = require('path');
 const fs = require('fs');
 const {retrieveGithubFluxData} = require('../api/flux.js');
 
-const people = require(path.join(__dirname, '..', config.get('data'), 'people.json')).people;
+const people = require(path.join(
+  __dirname,
+  '..',
+  config.get('data'),
+  'people.json'
+)).people;
 
 retrieveGithubFluxData(people, (err, data) => {
-  if (err)
-    return console.error(err);
+  if (err) return console.error(err);
 
   fs.writeFileSync(
     path.join(__dirname, '..', config.get('data'), 'github.json'),

@@ -26,14 +26,9 @@ const dump = require('./dump.js');
 const middlewares = require('./middlewares.js');
 const Preview = require('../wilson/preview.js');
 
-const {
-  retrieveGithubFluxData,
-  retrieveTwitterFluxData
-} = require('./flux.js');
+const {retrieveGithubFluxData, retrieveTwitterFluxData} = require('./flux.js');
 
-const {
-  findUnusedAssets
-} = require('./cleanup.js');
+const {findUnusedAssets} = require('./cleanup.js');
 
 const loadDump = require('./load.js');
 
@@ -47,8 +42,7 @@ const config = require('config-secrets');
 const ARGV = require('yargs')
   .option('--bypass-auth', {type: 'boolean', default: false})
   .option('--cron', {type: 'boolean', default: true})
-  .option('--precompute-covers', {type: 'boolean', default: true})
-  .argv;
+  .option('--precompute-covers', {type: 'boolean', default: true}).argv;
 
 const PORT = config.get('port');
 const DATA_PATH = config.get('data');
@@ -70,25 +64,26 @@ const settingsPath = path.join(DATA_PATH, 'settings.json');
 if (!fs.existsSync(settingsPath))
   fs.writeFileSync(
     settingsPath,
-    JSON.stringify({
-      settings: {
-        home: {
-          grid: [],
-          slider: [],
-          topActivities: []
+    JSON.stringify(
+      {
+        settings: {
+          home: {
+            grid: [],
+            slider: [],
+            topActivities: []
+          }
         }
-      }
-    }, null, 2)
+      },
+      null,
+      2
+    )
   );
 
 MODELS.forEach(model => {
   const p = path.join(DATA_PATH, `${model}.json`);
 
   if (!fs.existsSync(p))
-    fs.writeFileSync(
-      p,
-      JSON.stringify({[model]: []}, null, 2)
-    );
+    fs.writeFileSync(p, JSON.stringify({[model]: []}, null, 2));
 });
 
 // Creating routers
@@ -110,7 +105,8 @@ const LIVERELOAD_URL = path.join(
 const PREVIEW = new Preview(
   DATA_PATH,
   path.join(config.get('previewPrefix'), 'preview'),
-  DBS, {
+  DBS,
+  {
     linkToAdmin: config.get('adminUrl'),
     livereloadUrl: LIVERELOAD_URL,
     devMode: process.env.NODE_ENV !== 'production'
@@ -124,25 +120,24 @@ const jsonServerMiddlewares = jsonServer.defaults();
 app.use(jsonServerMiddlewares);
 app.use(jsonServer.bodyParser);
 
-app.use(session({
-  cookie: {
-    httpOnly: false
-  },
-  resave: false,
-  secret: 'medialab',
-  saveUninitialized: false
-}));
+app.use(
+  session({
+    cookie: {
+      httpOnly: false
+    },
+    resave: false,
+    secret: 'medialab',
+    saveUninitialized: false
+  })
+);
 
 const SUPERUSER = config.get('superuser');
 
 // Login route
-app.post('/login', function(req, res) {
+app.post('/login', function (req, res) {
   const {username, password} = req.body;
 
-  if (
-    username === SUPERUSER.username &&
-    password === SUPERUSER.password
-  ) {
+  if (username === SUPERUSER.username && password === SUPERUSER.password) {
     req.session.authenticated = true;
     return res.status(200).send('OK');
   }
@@ -150,7 +145,7 @@ app.post('/login', function(req, res) {
   return res.status(401).send('Unauthorized');
 });
 
-app.get('/is-logged', function(req, res) {
+app.get('/is-logged', function (req, res) {
   return res.json(!!(req.session && req.session.authenticated));
 });
 
@@ -158,14 +153,12 @@ app.get('/is-logged', function(req, res) {
 app.use('/assets', express.static(ASSETS_PATH));
 
 // From now on, routes are authenticated
-if (!ARGV.bypassAuth)
-  app.use(middlewares.authentication);
+if (!ARGV.bypassAuth) app.use(middlewares.authentication);
 
 // TODO: move this before /upload to avoid mishap?
 app.use(fileUpload());
 
 ROUTERS.forEach(({model, router}) => {
-
   // Adding fields projection
   router.render = (req, res) => {
     const parsed = url.parse(req.url);
@@ -176,18 +169,19 @@ ROUTERS.forEach(({model, router}) => {
     if (query._fields) {
       const fields = query._fields.split(',');
 
-      data = data.map(item => {
-        if (fields.length === 1)
-          return get(fields[0], item);
+      data = data
+        .map(item => {
+          if (fields.length === 1) return get(fields[0], item);
 
-        let result = {};
+          let result = {};
 
-        fields.forEach(field => {
-          result = set(field, get(field, item), result);
-        });
+          fields.forEach(field => {
+            result = set(field, get(field, item), result);
+          });
 
-        return result;
-      }).filter(x => x);
+          return result;
+        })
+        .filter(x => x);
     }
 
     if (query._suggest) {
@@ -200,13 +194,11 @@ ROUTERS.forEach(({model, router}) => {
         const target = field.split('.')[0];
 
         data.forEach(item => {
-          if (!item[target])
-            return;
+          if (!item[target]) return;
 
           item[target].forEach(contact => values.add(contact.label));
         });
-      }
-      else {
+      } else {
         data.forEach(item => {
           const value = get(field, item);
           [].concat(value).forEach(v => values.add(v));
@@ -226,17 +218,15 @@ ROUTERS.forEach(({model, router}) => {
 app.post('/upload', (req, res) => {
   const file = req.files.file;
 
-  if (!file)
-    return res.status(400).send('No file.');
+  if (!file) return res.status(400).send('No file.');
 
   const ext = path.extname(file.name),
-        filename = utils.cleanAssetName(path.basename(file.name, ext));
+    filename = utils.cleanAssetName(path.basename(file.name, ext));
 
   const name = `${filename}_${uuid()}${ext}`;
 
   file.mv(path.join(ASSETS_PATH, name), err => {
-    if (err)
-      return res.status(500).send(err);
+    if (err) return res.status(500).send(err);
 
     return res.status(200).json({name, originalName: file.name});
   });
@@ -247,27 +237,40 @@ const PREVIEW_PERMALINK_CLEANER = /^\/preview/;
 const LEADING_SLASH_CLEANER = /^\//;
 
 app.get('/preview/medialab.css', (req, res) => {
-  return res
-    .header('Content-Type', 'text/css')
-    .send(PREVIEW.getStylesheet());
+  return res.header('Content-Type', 'text/css').send(PREVIEW.getStylesheet());
 });
 
-app.use('/preview/font', express.static(path.join(SITE_SRC_PATH, 'assets', 'font')));
-app.use('/preview/js', express.static(path.join(SITE_SRC_PATH, 'assets', 'js')));
-app.use('/preview/img', express.static(path.join(SITE_SRC_PATH, 'assets', 'images')));
-app.use('/preview/documents', express.static(path.join(SITE_SRC_PATH, 'assets', 'documents')));
-app.use('/preview/', express.static(path.join(SITE_SRC_PATH, 'assets', 'manifest')));
+app.use(
+  '/preview/font',
+  express.static(path.join(SITE_SRC_PATH, 'assets', 'font'))
+);
+app.use(
+  '/preview/js',
+  express.static(path.join(SITE_SRC_PATH, 'assets', 'js'))
+);
+app.use(
+  '/preview/img',
+  express.static(path.join(SITE_SRC_PATH, 'assets', 'images'))
+);
+app.use(
+  '/preview/documents',
+  express.static(path.join(SITE_SRC_PATH, 'assets', 'documents'))
+);
+app.use(
+  '/preview/',
+  express.static(path.join(SITE_SRC_PATH, 'assets', 'manifest'))
+);
 
 app.get('/preview/static/*.cover.*', (req, res) => {
-  const coverUrl = path.join(config.get('previewPrefix'), req.url.replace(LEADING_SLASH_CLEANER, ''));
+  const coverUrl = path.join(
+    config.get('previewPrefix'),
+    req.url.replace(LEADING_SLASH_CLEANER, '')
+  );
   const buffer = PREVIEW.getCoverBuffer(coverUrl);
 
-  if (!buffer)
-    return res.status(404).send('Not Found.');
+  if (!buffer) return res.status(404).send('Not Found.');
 
-  return res
-    .header('Content-Type', mime.lookup(coverUrl))
-    .send(buffer);
+  return res.header('Content-Type', mime.lookup(coverUrl)).send(buffer);
 });
 
 app.use('/preview/static', express.static(ASSETS_PATH));
@@ -281,8 +284,7 @@ app.get('/preview/*', (req, res) => {
       return res.status(500).send(err);
     }
 
-    if (!result)
-      return res.status(404).send('Not Found.');
+    if (!result) return res.status(404).send('Not Found.');
 
     return res.send(result.html);
   });
@@ -290,8 +292,12 @@ app.get('/preview/*', (req, res) => {
 
 // Migration routes
 const MIGRATION_SCHEMES = {
-  'clean-html-metadata': require('./migrations/clean-html-metadata.js')(ASSETS_PATH),
-  'clean-unused-assets': require('./migrations/clean-unused-assets.js')(ASSETS_PATH),
+  'clean-html-metadata': require('./migrations/clean-html-metadata.js')(
+    ASSETS_PATH
+  ),
+  'clean-unused-assets': require('./migrations/clean-unused-assets.js')(
+    ASSETS_PATH
+  ),
   'drop-important': require('./migrations/drop-important.js'),
   'drop-inexisting-links': require('./migrations/drop-inexisting-links.js'),
   'drop-unpublished-spire-notices': require('./migrations/drop-unpublished-spire-notices.js'),
@@ -301,26 +307,27 @@ const MIGRATION_SCHEMES = {
   // 'fix-missing-processed': require('./migrations/fix-missing-processed.js'),
   'prod-cleanup': require('./migrations/prod-cleanup.js'),
   'reset-settings': require('./migrations/reset-settings.js'),
-  'reslugify': require('./migrations/reslugify.js'),
+  reslugify: require('./migrations/reslugify.js'),
   'refresh-generatedFields-productions': require('./migrations/refresh-generatedFields-productions.js'),
-  'rollback': require('./migrations/rollback.js')(DATA_PATH, BUILD_CONF.rollbackRepository || BUILD_CONF.repository),
+  rollback: require('./migrations/rollback.js')(
+    DATA_PATH,
+    BUILD_CONF.rollbackRepository || BUILD_CONF.repository
+  ),
   'import-old-slug': require('./migrations/import-old-slug.js'),
   'fix-bad-url-attachments': require('./migrations/fix-bad-url-attachments.js')
+  // 'upgrade-activities-names': require('./migrations/upgrade-activities-names.js')
 };
 
 app.get('/migrate/:scheme', (req, res) => {
   const scheme = req.params.scheme;
   const fn = MIGRATION_SCHEMES[scheme];
 
-  if (typeof fn !== 'function')
-    return res.status(404).send('Bad Scheme!');
+  if (typeof fn !== 'function') return res.status(404).send('Bad Scheme!');
 
   return fn(req, DBS, (err, result) => {
-    if (err)
-      return res.status(500).send('' + err);
+    if (err) return res.status(500).send('' + err);
 
-    if (!result)
-      return res.send('Success!');
+    if (!result) return res.send('Success!');
 
     return res.json(result);
   });
@@ -354,32 +361,30 @@ const LOCKS = {
   spireStatus: 'free'
 };
 
-app.get('/admin', function(req, res) {
+app.get('/admin', function (req, res) {
   return res.json({
     locks: LOCKS,
     info: TRANSIENT_DATA
   });
 });
 
-const changeBuildStatus = (newStatus) => {
+const changeBuildStatus = newStatus => {
   LOCKS.buildStatus = newStatus;
   ws.emit('buildStatusChanged', newStatus);
   ws.emit('locksChanged', LOCKS);
 
-  if (newStatus === 'free')
-    ws.emit('infoChanged', TRANSIENT_DATA);
+  if (newStatus === 'free') ws.emit('infoChanged', TRANSIENT_DATA);
 };
 
-const changeDeployStatus = (newStatus) => {
+const changeDeployStatus = newStatus => {
   LOCKS.deployStatus = newStatus;
   ws.emit('deployStatusChanged', newStatus);
   ws.emit('locksChanged', LOCKS);
 
-  if (newStatus === 'free')
-    ws.emit('infoChanged', TRANSIENT_DATA);
+  if (newStatus === 'free') ws.emit('infoChanged', TRANSIENT_DATA);
 };
 
-const changeSpireStatus = (newStatus) => {
+const changeSpireStatus = newStatus => {
   LOCKS.spireStatus = newStatus;
   ws.emit('spireStatusChanged', newStatus);
   ws.emit('locksChanged', LOCKS);
@@ -387,8 +392,7 @@ const changeSpireStatus = (newStatus) => {
 
 // Spire logic
 function updateSpire(callback) {
-  if (LOCKS.spireStatus !== 'free')
-    return false;
+  if (LOCKS.spireStatus !== 'free') return false;
 
   changeSpireStatus('working');
 
@@ -402,9 +406,7 @@ function updateSpire(callback) {
 app.get('/aspire', (req, res) => {
   const willPerform = updateSpire(err => console.error(err));
 
-  const payload = !willPerform ?
-    {result: 'Already doing.'} :
-    {result: 'Ok'};
+  const payload = !willPerform ? {result: 'Already doing.'} : {result: 'Ok'};
 
   return res.json(payload);
 });
@@ -413,40 +415,50 @@ app.get('/aspire', (req, res) => {
 const PEOPLE_DB = ROUTERS.find(({model}) => model === 'people').router.db;
 
 function retrieveFluxData(callback) {
-
   // Retrieving people data
   PEOPLE_DB.read();
 
   const people = PEOPLE_DB.getState().people;
 
-  return async.parallel({
-    github: next => {
-      return retrieveGithubFluxData(people, (err, data) => {
-        if (err)
-          return next(err);
+  return async.parallel(
+    {
+      github: next => {
+        return retrieveGithubFluxData(people, (err, data) => {
+          if (err) return next(err);
 
-        fs.writeJson(path.join(DATA_PATH, 'github.json'), data, {spaces: 2}, next);
-      });
+          fs.writeJson(
+            path.join(DATA_PATH, 'github.json'),
+            data,
+            {spaces: 2},
+            next
+          );
+        });
+      },
+      twitter: next => {
+        return retrieveTwitterFluxData((err, data) => {
+          if (err) return next(err);
+
+          fs.writeJson(
+            path.join(DATA_PATH, 'twitter.json'),
+            data,
+            {spaces: 2},
+            next
+          );
+        });
+      }
     },
-    twitter: next => {
-      return retrieveTwitterFluxData((err, data) => {
-        if (err)
-          return next(err);
+    err => {
+      if (err) {
+        console.error('Error thrown when retrieving flux data!');
+        console.error(err);
+      }
 
-        fs.writeJson(path.join(DATA_PATH, 'twitter.json'), data, {spaces: 2}, next);
-      });
+      // We don't errback here to avoid blocking deployment in case
+      // flux retrieval fails
+
+      return callback();
     }
-  }, err => {
-    if (err) {
-      console.error('Error thrown when retrieving flux data!');
-      console.error(err);
-    }
-
-    // We don't errback here to avoid blocking deployment in case
-    // flux retrieval fails
-
-    return callback();
-  });
+  );
 }
 
 // Build data preparation logic
@@ -475,8 +487,7 @@ function prepareDataForBuild(callback) {
     rimraf.sync(PUBLISH_DATA_PATH);
 
     return retrieveFluxData(err => {
-      if (err)
-        return callback(err);
+      if (err) return callback(err);
 
       fs.copySync(DATA_PATH, PUBLISH_DATA_PATH);
 
@@ -484,60 +495,55 @@ function prepareDataForBuild(callback) {
     });
   }
 
-  return async.series({
-
-    // First we need to check the repo
-    init(next) {
-      return git
-        .init()
-        .getRemotes((err, remotes) => {
-          if (err)
-            return next(err);
+  return async.series(
+    {
+      // First we need to check the repo
+      init(next) {
+        return git.init().getRemotes((err, remotes) => {
+          if (err) return next(err);
 
           if (!remotes || !remotes.length)
-            return git
-              .addRemote('origin', BUILD_CONF.repository, next);
+            return git.addRemote('origin', BUILD_CONF.repository, next);
 
           return next();
         });
+      },
+
+      // Let's pull data from git
+      pull(next) {
+        return git.pull('origin', 'master', {'--depth': '5'}, next);
+      },
+
+      // Record last commits
+      record(next) {
+        return git.log(['-5'], (err, commits) => {
+          if (err) return next(err);
+
+          TRANSIENT_DATA.lastCommits = commits.all;
+
+          return next();
+        });
+      },
+
+      // Refreshing flux data
+      flux(next) {
+        return retrieveFluxData(next);
+      },
+
+      // Building data into shape
+      load(next) {
+        loadDump(PUBLISH_DUMP_PATH, PUBLISH_DATA_PATH, err => {
+          if (err) return next(err);
+
+          // Copying flux data
+          copyFluxData();
+
+          return next();
+        });
+      }
     },
-
-    // Let's pull data from git
-    pull(next) {
-      return git.pull('origin', 'master', {'--depth': '5'}, next);
-    },
-
-    // Record last commits
-    record(next) {
-
-      return git.log(['-5'], (err, commits) => {
-        if (err)
-          return next(err);
-
-        TRANSIENT_DATA.lastCommits = commits.all;
-
-        return next();
-      });
-    },
-
-    // Refreshing flux data
-    flux(next) {
-      return retrieveFluxData(next);
-    },
-
-    // Building data into shape
-    load(next) {
-      loadDump(PUBLISH_DUMP_PATH, PUBLISH_DATA_PATH, err => {
-        if (err)
-          return next(err);
-
-        // Copying flux data
-        copyFluxData();
-
-        return next();
-      });
-    }
-  }, callback);
+    callback
+  );
 }
 
 // Build logic
@@ -549,59 +555,64 @@ function buildStaticSite(callback) {
 
   const lastBuildStart = Date.now();
 
-  return async.series({
+  return async.series(
+    {
+      // Preparing data
+      preparingData(next) {
+        changeBuildStatus('preparing');
 
-    // Preparing data
-    preparingData(next) {
-      changeBuildStatus('preparing');
+        return prepareDataForBuild(next);
+      },
 
-      return prepareDataForBuild(next);
-    },
+      // Building static site
+      building(next) {
+        changeBuildStatus('building');
 
-    // Building static site
-    building(next) {
-      changeBuildStatus('building');
+        return wilsonBuild(
+          DATA_PATH,
+          WBUILD_PATH,
+          {
+            skipDrafts: true,
+            minifyCss: true,
+            coverImageCache: PREVIEW.db.coverImageCache
+          },
+          next
+        );
+      },
 
-      return wilsonBuild(
-        DATA_PATH,
-        WBUILD_PATH,
-        {skipDrafts: true, minifyCss: true},
-        next
-      );
-    },
+      // Deploying using rsync
+      rsync(next) {
+        changeBuildStatus('rsync');
 
-    // Deploying using rsync
-    rsync(next) {
-      changeBuildStatus('rsync');
+        const rsyncConfig = config.get('rsync');
 
-      const rsyncConfig = config.get('rsync');
+        if (!rsyncConfig.target || !rsyncConfig.password) {
+          console.log('Skipping rsync...');
+          return next();
+        }
 
-      if (!rsyncConfig.target || !rsyncConfig.password) {
-        console.log('Skipping rsync...');
-        return next();
+        const built = path.join(WBUILD_PATH, '/');
+
+        const command = [
+          `RSYNC_PASSWORD=${rsyncConfig.password}`,
+          `rsync -az --del ${built} --exclude="/publications" ${rsyncConfig.target}`
+        ].join(' ');
+
+        return exec(command, next);
       }
-
-      const built = path.join(WBUILD_PATH, '/');
-
-      const command = [
-        `RSYNC_PASSWORD=${rsyncConfig.password}`,
-        `rsync -az --del ${built} --exclude="/publications" ${rsyncConfig.target}`
-      ].join(' ');
-
-      return exec(command, next);
+    },
+    err => {
+      TRANSIENT_DATA.lastBuildStart = lastBuildStart;
+      TRANSIENT_DATA.lastBuildEnd = Date.now();
+      changeBuildStatus('free');
+      console.timeEnd('build');
+      return callback(err);
     }
-  }, err => {
-    TRANSIENT_DATA.lastBuildStart = lastBuildStart;
-    TRANSIENT_DATA.lastBuildEnd = Date.now();
-    changeBuildStatus('free');
-    console.timeEnd('build');
-    return callback(err);
-  });
+  );
 }
 
 // Building every 15 minutes
 function buildTask() {
-
   // We can't run several build at once!
   if (
     LOCKS.buildStatus !== 'free' ||
@@ -610,10 +621,8 @@ function buildTask() {
     return false;
 
   buildStaticSite(err => {
-    if (err)
-      console.error(err);
-    else
-      console.log('Done building site.');
+    if (err) console.error(err);
+    else console.log('Done building site.');
   });
 
   return true;
@@ -621,122 +630,118 @@ function buildTask() {
 
 const cron = new CronJob(BUILD_CONF.cron, buildTask);
 
-if (ARGV.cron)
-  cron.start();
+if (ARGV.cron) cron.start();
 
 // Need to update build
 app.get('/build', (req, res) => {
   const willBuild = buildTask();
 
-  const payload = !willBuild ?
-    {result: 'Already building.'} :
-    {result: 'Ok'};
+  const payload = !willBuild ? {result: 'Already building.'} : {result: 'Ok'};
 
   return res.json(payload);
 });
 
 // Deployment logic
 function deploy(callback) {
-
   // In local, with no linked repo, we skip this
-  if (!BUILD_CONF.repository)
-    return false;
+  if (!BUILD_CONF.repository) return false;
 
   // Don't deploy if already doing it
-  if (LOCKS.deployStatus !== 'free')
-    return false;
+  if (LOCKS.deployStatus !== 'free') return false;
 
   // Git handle
   let git;
 
-  async.series({
+  async.series(
+    {
+      // 1) Cleanup
+      cleanup(next) {
+        changeDeployStatus('cleaning');
 
-    // 1) Cleanup
-    cleanup(next) {
-      changeDeployStatus('cleaning');
+        rimraf(DUMP_PATH, next);
+      },
 
-      rimraf(DUMP_PATH, next);
+      // 2) Removing unused assets
+      removingUnusedAssets(next) {
+        const unused = findUnusedAssets(DBS, ASSETS_PATH);
+
+        return async.each(
+          Array.from(unused),
+          (asset, n) => {
+            console.log(`Dropping unused asset "${asset}"`);
+            return fs.unlink(path.join(ASSETS_PATH, asset), n);
+          },
+          next
+        );
+      },
+
+      // 3) Pulling
+      pull(next) {
+        changeDeployStatus('pulling');
+
+        fs.ensureDirSync(DUMP_PATH);
+
+        git = simpleGit(DUMP_PATH);
+
+        git
+          .cwd(DUMP_PATH)
+          .init()
+          .addRemote('origin', BUILD_CONF.repository)
+          .pull('origin', 'master', next);
+      },
+
+      // 4) Wiping files
+      wiping(next) {
+        const toDelete = MODELS.map(m => path.join(DUMP_PATH, m, '*.json'));
+
+        toDelete.push(path.join(DUMP_PATH, 'assets', '*'));
+        toDelete.push(path.join(DUMP_PATH, 'settings.json'));
+
+        async.each(toDelete, rimraf, next);
+      },
+
+      // 5) Dumping the files
+      dump(next) {
+        changeDeployStatus('dumping');
+        return dump(DATA_PATH, DUMP_PATH, next);
+      },
+
+      // 6) Committing the dump
+      commit(next) {
+        changeDeployStatus('committing');
+
+        git
+          .cwd(DUMP_PATH)
+          .add('./*')
+          .commit('New dump')
+          .push('origin', 'master', next);
+      },
+
+      // 7) Building the site
+      build(next) {
+        changeDeployStatus('building');
+
+        if (LOCKS.buildStatus !== 'free') process.nextTick(next);
+
+        return buildStaticSite(next);
+      }
     },
+    err => {
+      return setTimeout(() => {
+        changeDeployStatus('free');
 
-    // 2) Removing unused assets
-    removingUnusedAssets(next) {
-      const unused = findUnusedAssets(DBS, ASSETS_PATH);
-
-      return async.each(Array.from(unused), (asset, n) => {
-        console.log(`Dropping unused asset "${asset}"`);
-        return fs.unlink(path.join(ASSETS_PATH, asset), n);
-      }, next);
-    },
-
-    // 3) Pulling
-    pull(next) {
-      changeDeployStatus('pulling');
-
-      fs.ensureDirSync(DUMP_PATH);
-
-      git = simpleGit(DUMP_PATH);
-
-      git
-        .cwd(DUMP_PATH)
-        .init()
-        .addRemote('origin', BUILD_CONF.repository)
-        .pull('origin', 'master', next);
-    },
-
-    // 4) Wiping files
-    wiping(next) {
-      const toDelete = MODELS.map(m => path.join(DUMP_PATH, m, '*.json'));
-
-      toDelete.push(path.join(DUMP_PATH, 'assets', '*'));
-      toDelete.push(path.join(DUMP_PATH, 'settings.json'));
-
-      async.each(toDelete, rimraf, next);
-    },
-
-    // 5) Dumping the files
-    dump(next) {
-
-      changeDeployStatus('dumping');
-      return dump(DATA_PATH, DUMP_PATH, next);
-    },
-
-    // 6) Committing the dump
-    commit(next) {
-      changeDeployStatus('committing');
-
-      git
-        .cwd(DUMP_PATH)
-        .add('./*')
-        .commit('New dump')
-        .push('origin', 'master', next);
-    },
-
-    // 7) Building the site
-    build(next) {
-      changeDeployStatus('building');
-
-      if (LOCKS.buildStatus !== 'free')
-        process.nextTick(next);
-
-      return buildStaticSite(next);
+        return callback(err);
+      }, 1000);
     }
-  }, err => {
-    return setTimeout(() => {
-      changeDeployStatus('free');
-
-      return callback(err);
-    }, 1000);
-  });
+  );
 
   return true;
 }
 
-app.get('/deploy', function(req, res) {
+app.get('/deploy', function (req, res) {
   const willDeploy = deploy(err => console.error(err));
 
-  const payload = !willDeploy ?
-    {result: 'Already deploying.'} :
-    {result: 'Ok'};
+  const payload = !willDeploy ? {result: 'Already deploying.'} : {result: 'Ok'};
 
   return res.json(payload);
 });
@@ -744,10 +749,8 @@ app.get('/deploy', function(req, res) {
 // Redirections
 app.get('/redirects.nginx.conf', (req, res) => {
   oldSlugRedirections((err, redirections) => {
-    if (err)
-      return res.status(500).send(err);
-    else
-      return res.type('txt/*').send(redirections);
+    if (err) return res.status(500).send(err);
+    else return res.type('txt/*').send(redirections);
   });
 });
 
@@ -755,36 +758,36 @@ app.get('/redirects.nginx.conf', (req, res) => {
 function startServer(callback) {
   console.log('Spawning preview...');
 
-  return async.parallel([
-    next => {
-      console.log('Compiling assets...');
-      console.time('assets');
-      PREVIEW.compileAssets(err => {
-        console.timeEnd('assets');
-        return next(err);
-      });
-    },
-    next => {
+  return async.parallel(
+    [
+      next => {
+        console.log('Compiling assets...');
+        console.time('assets');
+        PREVIEW.compileAssets(err => {
+          console.timeEnd('assets');
+          return next(err);
+        });
+      },
+      next => {
+        if (!ARGV.precomputeCovers) return process.nextTick(next);
 
-      if (!ARGV.precomputeCovers)
-        return process.nextTick(next);
+        console.log('Precomputing covers...');
+        console.time('covers');
+        PREVIEW.processCovers(err => {
+          console.timeEnd('covers');
+          return next(err);
+        });
+      }
+    ],
+    err => {
+      if (err) return callback(err);
 
-      console.log('Precomputing covers...');
-      console.time('covers');
-      PREVIEW.processCovers(err => {
-        console.timeEnd('covers');
-        return next(err);
-      });
+      console.log(`Listening on port ${PORT}...`);
+      server.listen(PORT);
+
+      return process.nextTick(callback);
     }
-  ], err => {
-    if (err)
-      return callback(err);
-
-    console.log(`Listening on port ${PORT}...`);
-    server.listen(PORT);
-
-    return process.nextTick(callback);
-  });
+  );
 }
 
 startServer(err => {

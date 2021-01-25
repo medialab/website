@@ -9,15 +9,17 @@ import PageMeta from '../helpers/PageMeta.js';
 
 const i18n = {
   fr: {
-    description: 'Laboratoire interdisciplinaire, le médialab mène des recherches thématiques et méthodologiques qui interrogent les relations entre le numérique et nos sociétés.',
-    home: 'Page d\'accueil',
-    content: 'Contenu de la page d\'accueil',
+    description:
+      'Laboratoire interdisciplinaire, le médialab mène des recherches thématiques et méthodologiques qui interrogent les relations entre le numérique et nos sociétés.',
+    home: "Page d'accueil",
+    content: "Contenu de la page d'accueil",
     presentation: 'Présentation du médialab',
     goto: 'Aller à la page de présentation du médialab',
     more: 'En savoir plus'
   },
   en: {
-    description: 'The médialab is an interdisciplinary research laboratory which conducts thematic and methodological research to investigate the role of digital technology in our societies.',
+    description:
+      'The médialab is an interdisciplinary research laboratory which conducts thematic and methodological research to investigate the role of digital technology in our societies.',
     home: 'Homepage',
     content: 'Homepage content',
     presentation: 'médialab presentation',
@@ -32,12 +34,9 @@ const permalink = {
 };
 
 export default function Home({lang, grid, slider, rdv, tweets, github}) {
-
   return (
     <>
-      <PageMeta
-        lang={lang}
-        description={i18n[lang].description} />
+      <PageMeta lang={lang} description={i18n[lang].description} />
       <main role="main" aria-label={i18n[lang].homepage}>
         <section id="home" aria-label={i18n[lang].content}>
           <Slideshow slider={slider} lang={lang} />
@@ -45,9 +44,7 @@ export default function Home({lang, grid, slider, rdv, tweets, github}) {
             <h1>Le médialab</h1>
             <p>{i18n[lang].description}</p>
             <p>
-              <Link
-                to={permalink[lang]}
-                aria-label={i18n[lang].goto}>
+              <Link to={permalink[lang]} aria-label={i18n[lang].goto}>
                 {i18n[lang].more}
               </Link>
             </p>
@@ -55,9 +52,7 @@ export default function Home({lang, grid, slider, rdv, tweets, github}) {
           <Now now={grid} lang={lang} />
           <Footer lang={lang} />
         </section>
-        <Flux
-          rdv={rdv} tweets={tweets} github={github}
-          lang={lang} />
+        <Flux rdv={rdv} tweets={tweets} github={github} lang={lang} />
       </main>
     </>
   );

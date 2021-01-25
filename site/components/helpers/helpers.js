@@ -1,10 +1,8 @@
 import React from 'react';
 
 export function compare(a, b) {
-  if (a === b)
-    return 0;
-  else
-    return a < b ? -1 : 1;
+  if (a === b) return 0;
+  else return a < b ? -1 : 1;
 }
 
 // ellipse function
@@ -18,12 +16,13 @@ export function ellipse(text, maxSize = 175) {
 }
 
 export function composeText(list, joinText, langMap) {
-  if (list.length === 1)
-   return langMap[list[0]];
+  if (list.length === 1) return langMap[list[0]];
   else {
     const newList = list.slice();
     const last = newList.pop();
-    return newList.map((usage) => langMap[usage]).join(', ') + joinText + langMap[last];
+    return (
+      newList.map(usage => langMap[usage]).join(', ') + joinText + langMap[last]
+    );
   }
 }
 
@@ -33,49 +32,32 @@ export function join(children, string) {
   for (let i = 0; i < children.length; i++) {
     result[i * 2] = children[i];
 
-    if (i < children.length - 1)
-      result[i * 2 + 1] = string;
+    if (i < children.length - 1) result[i * 2 + 1] = string;
   }
 
   return result;
 }
 
 export function templateMembership(lang, person) {
-
   if (lang === 'fr') {
     if (person.membership === 'member') {
-      if (!person.active)
-        return (<span>Ancien membre</span>);
+      if (!person.active) return <span>Ancien membre</span>;
+    } else if (person.membership === 'associate') {
+      if (person.active) return <span>Membre associé</span>;
+      else return <span>Ancien membre associé</span>;
+    } else {
+      if (person.active) return <span>Membre invité</span>;
+      else return <span>Ancien membre invité</span>;
     }
-    else if (person.membership === 'associate') {
-      if (person.active)
-        return (<span>Membre associé</span>);
-      else
-        return (<span>Ancien membre associé</span>);
-    }
-    else {
-      if (person.active)
-        return (<span>Membre invité</span>);
-      else
-        return (<span>Ancien membre invité</span>);
-    }
-  }
-  else {
+  } else {
     if (person.membership === 'member') {
-      if (!person.active)
-        return (<span>Former member</span>);
-    }
-    else if (person.membership === 'associate') {
-      if (person.active)
-        return (<span>Associate member</span>);
-      else
-        return (<span>Former associate member</span>);
-    }
-    else {
-      if (person.active)
-        return (<span>Invited member</span>);
-      else
-        return (<span>Former invited member</span>);
+      if (!person.active) return <span>Former member</span>;
+    } else if (person.membership === 'associate') {
+      if (person.active) return <span>Associate member</span>;
+      else return <span>Former associate member</span>;
+    } else {
+      if (person.active) return <span>Invited member</span>;
+      else return <span>Former invited member</span>;
     }
   }
 
@@ -100,7 +82,9 @@ const PRODUCTION_TYPE_TO_SCHEMA_URL = {
 };
 
 export const productionTypeToSchemaURL = type => {
-  return PRODUCTION_TYPE_TO_SCHEMA_URL[type] || 'https://schema.org/CreativeWork';
+  return (
+    PRODUCTION_TYPE_TO_SCHEMA_URL[type] || 'https://schema.org/CreativeWork'
+  );
 };
 
 const PRODUCTION_TYPE_TO_ZOTERO_TYPE = {

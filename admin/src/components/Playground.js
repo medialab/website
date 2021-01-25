@@ -65,10 +65,7 @@ export default class Playground extends Component {
   };
 
   updateBlocks = file => {
-    const {
-      gamma,
-      rows
-    } = this.state;
+    const {gamma, rows} = this.state;
 
     imageFileToBlocks(file, {gamma, rows}, (err, blocks) => {
       this.setState({blocks});
@@ -78,13 +75,7 @@ export default class Playground extends Component {
   debouncedUpdateBlocks = debounce(this.updateBlocks, 0);
 
   render() {
-    const {
-      blocks,
-      gamma,
-      file,
-      rows,
-      zoom
-    } = this.state;
+    const {blocks, gamma, file, rows, zoom} = this.state;
 
     return (
       <div>
@@ -97,9 +88,7 @@ export default class Playground extends Component {
             <div className="columns">
               <div className="column is-2">
                 <label className="label">Gamma ({gamma})</label>
-                <Slider
-                  value={gamma}
-                  onChange={this.handleGamma} />
+                <Slider value={gamma} onChange={this.handleGamma} />
               </div>
               <div className="column is-2">
                 <label className="label">Rows ({rows})</label>
@@ -108,7 +97,8 @@ export default class Playground extends Component {
                   onChange={this.handleRows}
                   min={20}
                   max={320}
-                  step={10} />
+                  step={10}
+                />
               </div>
               <div className="column is-2">
                 <label className="label">Zoom ({zoom})</label>
@@ -117,7 +107,8 @@ export default class Playground extends Component {
                   onChange={this.handleZoom}
                   min={0.1}
                   max={5}
-                  step={0.1} />
+                  step={0.1}
+                />
               </div>
             </div>
             <BlocksPreview blocks={blocks} zoom={zoom} />

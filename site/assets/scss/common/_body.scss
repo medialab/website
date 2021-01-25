@@ -24,57 +24,57 @@ body {
     //overflow-x: hidden;
   }
 }
-[data-type="news"] .type::before,
-[data-icon="news"]::before,
-[data-type="actualite"] .type::before,
-[data-icon="actualite"]::before,
-[data-type="actualités"] .type::before,
-[data-icon="actualités"]::before {
+[data-type='news'] .type::before,
+[data-icon='news']::before,
+[data-type='actualite'] .type::before,
+[data-icon='actualite']::before,
+[data-type='actualités'] .type::before,
+[data-icon='actualités']::before {
   content: $actualites;
   font-family: $font-symbol;
 }
-[data-type="production"] .type::before,
-[data-icon="production"]::before,
-[data-type="productions"] .type::before,
-[data-icon="productions"]::before {
+[data-type='production'] .type::before,
+[data-icon='production']::before,
+[data-type='productions'] .type::before,
+[data-icon='productions']::before {
   content: $productions;
   font-family: $font-symbol;
 }
 
-[data-type="activities"] .type::before,
-[data-icon="activities"]::before,
-[data-type="activite"] .type::before,
-[data-icon="activite"]::before {
+[data-type='activities'] .type::before,
+[data-icon='activities']::before,
+[data-type='activite'] .type::before,
+[data-icon='activite']::before {
   content: $activites;
   font-family: $font-symbol;
 }
 
-[data-type="file"] .type::before,
-[data-icon="file"]::before,
-[data-type="file"] .type::before,
-[data-icon="file"]::before {
+[data-type='file'] .type::before,
+[data-icon='file']::before,
+[data-type='file'] .type::before,
+[data-icon='file']::before {
   content: $files;
   font-family: $font-symbol;
 }
 
-[data-icon="people"]::before {
+[data-icon='people']::before {
   content: $people;
   font-family: $font-symbol;
 }
 
-[data-type="git"] .type::before {
+[data-type='git'] .type::before {
   content: $git;
   font-family: $font-symbol;
 }
-[data-icon="git"]::before {
+[data-icon='git']::before {
   content: $git;
   font-family: $font-symbol;
 }
-[data-type="tweet"] .type::before {
+[data-type='tweet'] .type::before {
   content: $tweet;
   font-family: $font-symbol;
 }
-[data-icon="tweet"]::before {
+[data-icon='tweet']::before {
   content: $tweet;
   font-family: $font-symbol;
 }
@@ -93,10 +93,10 @@ body {
 .author span {
   white-space: nowrap;
   &:after {
-    content: ", ";
+    content: ', ';
   }
   &:last-of-type:after {
-    content: "";
+    content: '';
   }
 }
 
@@ -110,7 +110,7 @@ body {
 }
 
 .checkbox-medialab:before {
-  content: "";
+  content: '';
   margin-right: 10px;
   display: inline-block;
   width: $baseline;

@@ -17,11 +17,14 @@ export default function PeopleTemplate({data, pageContext}) {
       lang={pageContext.lang}
       className="page-people body-page"
       permalinks={pageContext.permalinks}>
-      {pageContext.linkToAdmin && <EditInAdmin item={person} linkToAdmin={pageContext.linkToAdmin} />}
+      {pageContext.linkToAdmin && (
+        <EditInAdmin item={person} linkToAdmin={pageContext.linkToAdmin} />
+      )}
       <PeopleDetail
         lang={pageContext.lang}
         person={person}
-        siteUrl={meta.siteUrl} />
+        siteUrl={meta.siteUrl}
+      />
     </Layout>
   );
 }

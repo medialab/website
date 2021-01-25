@@ -20,41 +20,71 @@ const i18n = {
 };
 
 const NewsFilter = ({lang, years}) => {
-
-  const {
-    filterType,
-    filtersAlt,
-    filtresTitle,
-    closeAlt
-  } = i18n[lang];
+  const {filterType, filtersAlt, filtresTitle, closeAlt} = i18n[lang];
 
   return (
     <>
-      <h1 className="type_title" data-icon="actualite"><a href="#liste">{I18N_MODEL[lang].news}</a></h1>
+      <h1 className="type_title" data-icon="actualite">
+        <a href="#liste">{I18N_MODEL[lang].news}</a>
+      </h1>
 
       <input
-        type="radio" id="radio-phone-filters" name="radio-phone"
-        value="filters" hidden />
-      <label htmlFor="radio-phone-filters" title={filtersAlt} arial-label={filtersAlt}><Icons icon="search-filter" /></label>
+        type="radio"
+        id="radio-phone-filters"
+        name="radio-phone"
+        value="filters"
+        hidden
+      />
+      <label
+        htmlFor="radio-phone-filters"
+        title={filtersAlt}
+        arial-label={filtersAlt}>
+        <Icons icon="search-filter" />
+      </label>
 
       <input
-        type="radio" id="radio-phone-close" name="radio-phone"
-        value="close" hidden />
-      <label htmlFor="radio-phone-close" title={closeAlt} arial-label={closeAlt}>✕</label>
-
+        type="radio"
+        id="radio-phone-close"
+        name="radio-phone"
+        value="close"
+        hidden
+      />
+      <label
+        htmlFor="radio-phone-close"
+        title={closeAlt}
+        arial-label={closeAlt}>
+        ✕
+      </label>
 
       <input
-        type="checkbox" id="filtre-actu_event" name="filtre-actu_event"
-        className="input_filtre-actu" value="event" hidden />
+        type="checkbox"
+        id="filtre-actu_event"
+        name="filtre-actu_event"
+        className="input_filtre-actu"
+        value="event"
+        hidden
+      />
       <input
-        type="checkbox" id="filtre-actu_post" name="filtre-actu_post"
-        className="input_filtre-actu" value="post" hidden />
+        type="checkbox"
+        id="filtre-actu_post"
+        name="filtre-actu_post"
+        className="input_filtre-actu"
+        value="post"
+        hidden
+      />
       <input
-        type="checkbox" id="filtre-actu_notice" name="filtre-actu_notice"
-        className="input_filtre-actu" value="notice" hidden />
+        type="checkbox"
+        id="filtre-actu_notice"
+        name="filtre-actu_notice"
+        className="input_filtre-actu"
+        value="notice"
+        hidden
+      />
 
-      <aside className="aside-filters" role="navigation" aria-label={filtresTitle}>
-
+      <aside
+        className="aside-filters"
+        role="navigation"
+        aria-label={filtresTitle}>
         <h1 className="aside-title">{filtresTitle}</h1>
 
         <SearchInput lang={lang} />
@@ -63,21 +93,30 @@ const NewsFilter = ({lang, years}) => {
         <div className="filter-group" aria-label={filterType}>
           <h1>{filterType}</h1>
           <label
-            id="filtre-actu_event_label" className="filtre-actu checkbox-medialab" htmlFor="filtre-actu_event"
-            aria-label={I18N_TYPE_LABELS.news[lang].event}>{I18N_TYPE_LABELS.news[lang].event}</label>
+            id="filtre-actu_event_label"
+            className="filtre-actu checkbox-medialab"
+            htmlFor="filtre-actu_event"
+            aria-label={I18N_TYPE_LABELS.news[lang].event}>
+            {I18N_TYPE_LABELS.news[lang].event}
+          </label>
           <label
-            id="filtre-actu_post_label" className="filtre-actu checkbox-medialab" htmlFor="filtre-actu_post"
-            aria-label={I18N_TYPE_LABELS.news[lang].post}>{I18N_TYPE_LABELS.news[lang].post}</label>
+            id="filtre-actu_post_label"
+            className="filtre-actu checkbox-medialab"
+            htmlFor="filtre-actu_post"
+            aria-label={I18N_TYPE_LABELS.news[lang].post}>
+            {I18N_TYPE_LABELS.news[lang].post}
+          </label>
           <label
-            id="filtre-actu_notice_label" className="filtre-actu checkbox-medialab" htmlFor="filtre-actu_notice"
-            aria-label={I18N_TYPE_LABELS.news[lang].notice}>{I18N_TYPE_LABELS.news[lang].notice}</label>
+            id="filtre-actu_notice_label"
+            className="filtre-actu checkbox-medialab"
+            htmlFor="filtre-actu_notice"
+            aria-label={I18N_TYPE_LABELS.news[lang].notice}>
+            {I18N_TYPE_LABELS.news[lang].notice}
+          </label>
         </div>
-
       </aside>
-
     </>
   );
 };
 
 export default NewsFilter;
-

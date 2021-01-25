@@ -152,6 +152,15 @@
       "formType": "ref",
       "model": "activities"
     },
+    "news": {
+      "title": "Actualités liées",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "formType": "ref",
+      "model": "news"
+    },
     "people": {
       "title": "Gens impliqués",
       "type": "array",

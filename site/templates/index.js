@@ -12,10 +12,13 @@ const IndexPage = ({data, pageContext}) => {
       className="page-home body-page"
       permalinks={pageContext.permalinks}>
       <Home
-        lang={pageContext.lang} grid={data.grid} slider={data.slider}
+        lang={pageContext.lang}
+        grid={data.grid}
+        slider={data.slider}
         rdv={data.rdv}
         tweets={data.twitter}
-        github={data.github} />
+        github={data.github}
+      />
     </Layout>
   );
 };

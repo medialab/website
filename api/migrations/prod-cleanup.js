@@ -7,7 +7,7 @@ const MODELS = [
   'productions'
 ];
 
-module.exports = function(req, dbs, next) {
+module.exports = function (req, dbs, next) {
   const dryRun = 'dryrun' in req.query || 'dry-run' in req.query;
 
   const data = {};
@@ -21,17 +21,17 @@ module.exports = function(req, dbs, next) {
   });
 
   MODELS.forEach(m => {
-      // Finding things to delete
+    // Finding things to delete
     const [toDelete, toKeep] = partition(data[m], o => {
-      const title = (
-        (o.title && (o.title.fr + o.title.en)) +
-        o.name
-      );
+      let title = '';
+
+      if (o.title) title += (o.title.fr || '') + (o.title.en || '');
+
+      if (o.name) title += (o.name.fr || '') + (o.name.en || '');
 
       // NOTE: should only happen with spire items
       if (!title) {
-        if (!o.spire)
-          console.error('Problematic item!', m, o);
+        if (!o.spire) console.error('Problematic item!', m, o);
 
         return false;
       }
@@ -44,14 +44,12 @@ module.exports = function(req, dbs, next) {
     toDelete.some(o => {
       const match = stringifiedData.match(o.id);
 
-      if (match && match.length > 1)
-        error = `${o.id} is still linked!`;
+      if (match && match.length > 1) error = `${o.id} is still linked!`;
 
       return error;
     });
 
-    if (error)
-      return next(error);
+    if (error) return next(error);
 
     deleted = deleted.concat(toDelete);
 

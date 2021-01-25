@@ -30,19 +30,19 @@
 
         &.en:not(:empty) {
           &::before {
-            content: "“";
+            content: '“';
           }
           &::after {
-            content: "”";
+            content: '”';
           }
         }
 
         &.fr:not(:empty) {
           &::before {
-            content: "« ";
+            content: '« ';
           }
           &::after {
-            content: " »";
+            content: ' »';
           }
         }
       }
@@ -59,7 +59,7 @@
           color: $text-color-light;
           @include font-size-16();
         }
-        [data-type="role"] {
+        [data-type='role'] {
           color: $redlab;
         }
       }
@@ -78,7 +78,7 @@
             }
           }
 
-          &[data-type="Mail"] p {
+          &[data-type='Mail'] p {
             font-family: $font-symbol;
           }
         }
@@ -123,7 +123,7 @@
   /* FORMER MEMBER --------------------------------------------------------------- 
 		------------------------------------------------------------------------ */
 
-  .former-member{
+  .former-member {
     font-style: italic;
     @include font-size-27;
     color: rgba(68, 68, 68, 0.6);

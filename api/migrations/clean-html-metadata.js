@@ -2,12 +2,7 @@ const cheerio = require('cheerio');
 const path = require('path');
 const getImageSize = require('image-size');
 
-const MODELS = [
-  'activities',
-  'news',
-  'people',
-  'productions'
-];
+const MODELS = ['activities', 'news', 'people', 'productions'];
 
 const uuidv4 = /[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}/i;
 const nbsp = /&nbsp;/g;
@@ -15,18 +10,21 @@ const reverseNbsp = /%%NBSP%%/g;
 const badBr = /<br\s*\/>|<\/\s*br>/g;
 
 function cleanupHtml(assetsPath, html) {
-  const $ = cheerio.load(`<div id="main">${html.replace(nbsp, '%%NBSP%%')}</div>`, {
-    normalizeWhitespace: true,
-    xmlMode: true,
-    decodeEntities: false
-  });
+  const $ = cheerio.load(
+    `<div id="main">${html.replace(nbsp, '%%NBSP%%')}</div>`,
+    {
+      normalizeWhitespace: true,
+      xmlMode: true,
+      decodeEntities: false
+    }
+  );
 
   // Finding missing data-internal=true & issues with urls
-  $('[href], [src]:not(img)').each(function() {
+  $('[href], [src]:not(img)').each(function () {
     const src = $(this).attr('src');
     const href = $(this).attr('href');
 
-    const originalUrl = (src || href);
+    const originalUrl = src || href;
     let url = originalUrl.trim();
 
     if (
@@ -58,7 +56,7 @@ function cleanupHtml(assetsPath, html) {
   });
 
   // Finding images lacking dimensions
-  $('img:not([width]), img:not([height])').each(function() {
+  $('img:not([width]), img:not([height])').each(function () {
     const url = $(this).attr('src');
 
     const dimensions = getImageSize(path.join(assetsPath, url));
@@ -68,7 +66,7 @@ function cleanupHtml(assetsPath, html) {
   });
 
   // Putting img attributes back in order
-  $('img').each(function() {
+  $('img').each(function () {
     const $img = $(this);
     const width = $img.attr('data-width');
     const height = $img.attr('data-height');
@@ -85,17 +83,13 @@ function cleanupHtml(assetsPath, html) {
 
     $img.attr('src', src);
 
-    if (width)
-      $img.attr('data-width', width);
+    if (width) $img.attr('data-width', width);
 
-    if (height)
-      $img.attr('data-height', height);
+    if (height) $img.attr('data-height', height);
 
-    if (credits)
-      $img.attr('data-credits', credits);
+    if (credits) $img.attr('data-credits', credits);
 
-    if (format)
-      $img.attr('data-format', format);
+    if (format) $img.attr('data-format', format);
   });
 
   html = $('#main').html().replace(reverseNbsp, '&nbsp;');
@@ -105,7 +99,7 @@ function cleanupHtml(assetsPath, html) {
 }
 
 module.exports = assetsPath => {
-  return function(req, dbs, next) {
+  return function (req, dbs, next) {
     MODELS.forEach(model => {
       dbs[model].read();
 
@@ -114,14 +108,11 @@ module.exports = assetsPath => {
       data[model].forEach(item => {
         const htmlRoot = model === 'people' ? item.bio : item.content;
 
-        if (!htmlRoot)
-          return;
+        if (!htmlRoot) return;
 
-        if (htmlRoot.en)
-          htmlRoot.en = cleanupHtml(assetsPath, htmlRoot.en);
+        if (htmlRoot.en) htmlRoot.en = cleanupHtml(assetsPath, htmlRoot.en);
 
-        if (htmlRoot.fr)
-          htmlRoot.fr = cleanupHtml(assetsPath, htmlRoot.fr);
+        if (htmlRoot.fr) htmlRoot.fr = cleanupHtml(assetsPath, htmlRoot.fr);
       });
 
       dbs[model].setState(data);

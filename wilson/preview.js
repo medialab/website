@@ -36,7 +36,10 @@ class Preview extends EventEmitter {
       this.watchTemplates();
     }
 
-    this.debouncedUpgradeDatabase = debounce(this.upgradeDatabase.bind(this), 500);
+    this.debouncedUpgradeDatabase = debounce(
+      this.upgradeDatabase.bind(this),
+      500
+    );
   }
 
   testCoverCache(item) {
@@ -45,8 +48,7 @@ class Preview extends EventEmitter {
     if (item.id in this.coverCache) {
       const currentHash = this.coverCache[item.id];
 
-      if (hash === currentHash)
-        return true;
+      if (hash === currentHash) return true;
     }
 
     this.coverCache[item.id] = hash;
@@ -116,14 +118,12 @@ class Preview extends EventEmitter {
       this.pathPrefix,
       {outputBuffers: true, skipRaster: true},
       (err, bufferIndex) => {
-        if (err)
-          return callback(err);
+        if (err) return callback(err);
 
         Object.assign(this.coverBuffers, bufferIndex);
 
         this.db.forEach(item => {
-          if (item.cover)
-            this.testCoverCache(item);
+          if (item.cover) this.testCoverCache(item);
         });
 
         return callback();
@@ -132,11 +132,17 @@ class Preview extends EventEmitter {
   }
 
   compileAssets(callback) {
-    const stylesheetPath = path.join(__dirname, '..', 'site', 'assets', 'scss', 'global.scss');
+    const stylesheetPath = path.join(
+      __dirname,
+      '..',
+      'site',
+      'assets',
+      'scss',
+      'global.scss'
+    );
 
     return sass.render({file: stylesheetPath}, (err, result) => {
-      if (err)
-        return callback(err);
+      if (err) return callback(err);
 
       this.stylesheet = result.css;
 
@@ -146,10 +152,7 @@ class Preview extends EventEmitter {
 
   invalidateTemplateRequireCache() {
     for (const k in require.cache) {
-      if (
-        k.includes('/site/components/') ||
-        k.includes('/site/templates/')
-      )
+      if (k.includes('/site/components/') || k.includes('/site/templates/'))
         delete require.cache[k];
     }
   }
@@ -160,11 +163,9 @@ class Preview extends EventEmitter {
     for (const id in this.coverCache)
       alreadyComputedCovers[id] = this.db.get(id).coverImage;
 
-    this.db = Database.fromLowDB(
-      this.inputDir,
-      this.lowdbs,
-      {pathPrefix: this.pathPrefix}
-    );
+    this.db = Database.fromLowDB(this.inputDir, this.lowdbs, {
+      pathPrefix: this.pathPrefix
+    });
     this.website = new Website(this.db);
 
     for (const id in alreadyComputedCovers)
@@ -184,15 +185,13 @@ class Preview extends EventEmitter {
   renderPageForPermalink(permalink, callback) {
     const result = this.website.get(permalink);
 
-    if (!result)
-      return callback(null, null);
+    if (!result) return callback(null, null);
 
     const {lang, page} = result;
 
     let itemsWithCover = [];
 
-    if (page.itemsWithCover)
-      itemsWithCover = page.itemsWithCover(page.data);
+    if (page.itemsWithCover) itemsWithCover = page.itemsWithCover(page.data);
 
     itemsWithCover = itemsWithCover.filter(item => {
       return !this.testCoverCache(item);
@@ -209,8 +208,7 @@ class Preview extends EventEmitter {
       this.pathPrefix,
       {outputBuffers: true, only, skipRaster: true},
       (err, bufferIndex) => {
-        if (err)
-          return callback(err);
+        if (err) return callback(err);
 
         const html = renderPage(
           this.pathPrefix,

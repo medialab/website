@@ -102,8 +102,8 @@
           width: 100%;
           padding-top: $baseline * 1;
           &:before {
-            content: "\29BF ";
-            font-family: "Symbol", sans-serif;
+            content: '\29BF ';
+            font-family: 'Symbol', sans-serif;
             padding-right: 5px;
           }
         }
@@ -129,7 +129,7 @@
         @include font-size-16;
         margin-right: $unite;
         padding: 10px 25px 10px 35px;
-        
+
         border-right: $border-very-light;
         border-bottom: $border-very-light;
       }

@@ -12,11 +12,11 @@ const i18n = {
   },
   en: {
     ariaLabel: 'Footer',
-    address: 'médialab\'s adress',
+    address: "médialab's adress",
     legal: 'Link to legal notice',
     mail: 'Write to médialab',
-    twitter: 'Link to médialab\'s Twitter',
-    github: 'Link to médialab\'s Github'
+    twitter: "Link to médialab's Twitter",
+    github: "Link to médialab's Github"
   }
 };
 
@@ -26,18 +26,21 @@ const permalink = {
 };
 
 export default function Footer({lang}) {
-
-	return (
-    <footer
-      role="contentinfo" aria-label={i18n[lang].ariaLabel}>
-      <div id="container-footer" >
+  return (
+    <footer role="contentinfo" aria-label={i18n[lang].ariaLabel}>
+      <div id="container-footer">
         <div className="logo" />
-        <div className="mentions" >
+        <div className="mentions">
           <p aria-label={i18n[lang].address}>
-            médialab Sciences Po<br />
+            médialab Sciences Po
+            <br />
             27 rue St Guillaume, Paris VII
           </p>
-          <p><Link to={permalink[lang]} aria-label={i18n[lang].legal}>Mentions legales</Link></p>
+          <p>
+            <Link to={permalink[lang]} aria-label={i18n[lang].legal}>
+              Mentions legales
+            </Link>
+          </p>
         </div>
         <ul className="contact">
           <li>
@@ -81,7 +84,7 @@ export default function Footer({lang}) {
             </a>
           </li>
         </ul>
-        <div className="mentions" >
+        <div className="mentions">
           <p>
             <small>
               design par&nbsp;
@@ -112,4 +115,4 @@ export default function Footer({lang}) {
       </div>
     </footer>
   );
-};
+}

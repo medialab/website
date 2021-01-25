@@ -2,7 +2,6 @@
 import Client from 'djax-client';
 
 const client = new Client({
-
   // Client's settings
   settings: {
     baseUrl: API_URL
@@ -57,7 +56,7 @@ const client = new Client({
   }
 });
 
-client.upload = function(file, callback) {
+client.upload = function (file, callback) {
   const formData = new FormData();
   formData.append('file', file);
 
@@ -65,9 +64,11 @@ client.upload = function(file, callback) {
     method: 'POST',
     body: formData,
     credentials: 'include'
-  }).then(response => {
-    return response.json();
-  }).then(callback);
+  })
+    .then(response => {
+      return response.json();
+    })
+    .then(callback);
 };
 
 window.client = client;

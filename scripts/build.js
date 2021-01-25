@@ -1,8 +1,9 @@
 const {build} = require('../wilson');
 
-const ARGV = require('yargs')
-  .option('--cssmin', {type: 'boolean', default: false})
-  .argv;
+const ARGV = require('yargs').option('--cssmin', {
+  type: 'boolean',
+  default: false
+}).argv;
 
 console.log('Building website...');
 console.time('build');

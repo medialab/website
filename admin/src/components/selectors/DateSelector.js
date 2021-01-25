@@ -28,16 +28,16 @@ const MONTH_OPTIONS = [
   {label: 'September', value: '09'},
   {label: 'October', value: '10'},
   {label: 'November', value: '11'},
-  {label: 'December', value: '12'},
+  {label: 'December', value: '12'}
 ];
 
 const DAY_OPTIONS = range(1, 31 + 1).map(day => ({
   label: '' + day,
-  value: day < 10 ? ('0' + day) : ('' + day)
+  value: day < 10 ? '0' + day : '' + day
 }));
 
 const HOUR_OPTIONS = range(0, 24 + 1).map(hour => {
-  const value = hour < 10 ? ('0' + hour) : ('' + hour);
+  const value = hour < 10 ? '0' + hour : '' + hour;
 
   return {
     label: value,
@@ -46,7 +46,7 @@ const HOUR_OPTIONS = range(0, 24 + 1).map(hour => {
 });
 
 const MINUTE_OPTIONS = range(0, 60 + 1).map(min => {
-  const value = min < 10 ? ('0' + min) : ('' + min);
+  const value = min < 10 ? '0' + min : '' + min;
 
   return {
     label: value,
@@ -102,14 +102,10 @@ function isYear(string) {
 }
 
 function validate(precision, year, month, day) {
-  if (!year && !month && !day)
-    return null;
+  if (!year && !month && !day) return null;
 
-  if (precision === 'month' && !month)
-    return 'A month is required';
-
-  else if (precision === 'day' && !day)
-    return 'A month and a day is required';
+  if (precision === 'month' && !month) return 'A month is required';
+  else if (precision === 'day' && !day) return 'A month and a day is required';
 
   return null;
 }
@@ -119,11 +115,9 @@ function format(year, month, day) {
 }
 
 function formatTime(hour, minute) {
-  if (!hour)
-    return '';
+  if (!hour) return '';
 
-  if (!minute)
-    return hour + ':00';
+  if (!minute) return hour + ':00';
 
   return hour + ':' + minute;
 }
@@ -182,8 +176,7 @@ export default class DateSelector extends PureComponent {
     this.setState({year: o}, () => {
       this.handleChange();
 
-      if (!this.state.month)
-        this.monthRef.current.focus();
+      if (!this.state.month) this.monthRef.current.focus();
     });
   };
 
@@ -191,8 +184,7 @@ export default class DateSelector extends PureComponent {
     this.setState({month: o}, () => {
       this.handleChange();
 
-      if (!this.state.day)
-        this.dayRef.current.focus();
+      if (!this.state.day) this.dayRef.current.focus();
     });
   };
 
@@ -215,49 +207,39 @@ export default class DateSelector extends PureComponent {
   };
 
   handleChange = () => {
-    const {
-      year,
-      month,
-      day,
-      hour,
-      minute
-    } = this.state;
+    const {year, month, day, hour, minute} = this.state;
 
     const validationError = validate(this.props.precision, year, month, day);
 
     if (!validationError) {
       if (year) {
-
-        let formatted = format(year.value, month && month.value, day && day.value);
+        let formatted = format(
+          year.value,
+          month && month.value,
+          day && day.value
+        );
 
         if (this.props.datetime && hour)
           formatted += 'T' + formatTime(hour.value, minute && minute.value);
 
         this.props.onChange(formatted);
-      }
-      else {
+      } else {
         this.props.onChange();
       }
     }
   };
 
   handleErase = () => {
-    this.setState({year: null, month: null, day: null, hour: null, minute: null}, this.handleChange);
+    this.setState(
+      {year: null, month: null, day: null, hour: null, minute: null},
+      this.handleChange
+    );
   };
 
   render() {
-    const {
-      precision = 'year',
-      datetime = false
-    } = this.props;
+    const {precision = 'year', datetime = false} = this.props;
 
-    const {
-      year,
-      month,
-      day,
-      hour,
-      minute
-    } = this.state;
+    const {year, month, day, hour, minute} = this.state;
 
     const validationError = validate(precision, year, month, day);
 
@@ -275,7 +257,8 @@ export default class DateSelector extends PureComponent {
                   value={year}
                   onChange={this.handleYear}
                   styles={customStyles.year}
-                  options={YEAR_OPTIONS} />
+                  options={YEAR_OPTIONS}
+                />
               </div>
               <div className="level-item">
                 <Select
@@ -287,7 +270,8 @@ export default class DateSelector extends PureComponent {
                   onChange={this.handleMonth}
                   styles={customStyles.month}
                   options={MONTH_OPTIONS}
-                  ref={this.monthRef} />
+                  ref={this.monthRef}
+                />
               </div>
               <div className="level-item">
                 <Select
@@ -299,10 +283,15 @@ export default class DateSelector extends PureComponent {
                   onChange={this.handleDay}
                   styles={customStyles.day}
                   options={DAY_OPTIONS}
-                  ref={this.dayRef} />
+                  ref={this.dayRef}
+                />
               </div>
               <div className="level-item">
-                {year && <Button kind="text" onClick={this.handleErase}>Erase</Button>}
+                {year && (
+                  <Button kind="text" onClick={this.handleErase}>
+                    Erase
+                  </Button>
+                )}
               </div>
             </div>
           </div>
@@ -322,7 +311,8 @@ export default class DateSelector extends PureComponent {
                     onChange={this.handleHour}
                     styles={customStyles.hour}
                     options={HOUR_OPTIONS}
-                    ref={this.hourRef} />
+                    ref={this.hourRef}
+                  />
                 </div>
                 <div className="level-item">
                   <Select
@@ -334,7 +324,8 @@ export default class DateSelector extends PureComponent {
                     onChange={this.handleMinute}
                     styles={customStyles.minutes}
                     options={MINUTE_OPTIONS}
-                    ref={this.minuteRef} />
+                    ref={this.minuteRef}
+                  />
                 </div>
               </div>
             </div>

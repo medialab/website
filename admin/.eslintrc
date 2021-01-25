@@ -1,9 +1,0 @@
-{
-  "rules": {
-    "no-console": 0,
-    "no-nested-ternary": 0,
-    "react/jsx-no-target-blank": 0,
-    "react/no-did-mount-set-state": 0,
-    "react/sort-comp": 0
-  }
-}

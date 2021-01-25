@@ -21,23 +21,19 @@ export default class SuggestionSelector extends PureComponent {
     };
 
     client.suggest(payload, (err, data) => {
-
-      const options = data
-        .map(value => {
-
-          return {
-            value,
-            label: value
-          };
-        });
+      const options = data.map(value => {
+        return {
+          value,
+          label: value
+        };
+      });
 
       this.setState({options, loading: false});
     });
   }
 
   handleChange = o => {
-    if (!o)
-      return this.props.onChange('');
+    if (!o) return this.props.onChange('');
 
     return this.props.onChange(o.value);
   };
@@ -45,19 +41,23 @@ export default class SuggestionSelector extends PureComponent {
   handleBlur = e => {
     const value = e.target.value;
 
-    if (!value)
-      return;
+    if (!value) return;
 
     const options = this.state.options;
 
     const alreadyHasOption = options.some(o => o.value === value);
 
-    this.setState({
-      options: alreadyHasOption ? options : options.concat({
-        label: value,
-        value
-      }),
-    }, () => this.props.onChange(value));
+    this.setState(
+      {
+        options: alreadyHasOption
+          ? options
+          : options.concat({
+              label: value,
+              value
+            })
+      },
+      () => this.props.onChange(value)
+    );
   };
 
   render() {
@@ -77,7 +77,8 @@ export default class SuggestionSelector extends PureComponent {
         placeholder={placeholder}
         onChange={this.handleChange}
         onBlur={this.handleBlur}
-        styles={{menu: provided => ({...provided, zIndex: 1000})}} />
+        styles={{menu: provided => ({...provided, zIndex: 1000})}}
+      />
     );
   }
 }

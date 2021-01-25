@@ -7,9 +7,6 @@ const siteDirectory = path.resolve(__dirname, '..', 'site');
 
 require('@babel/register')({
   cache: NODE_ENV === 'production' ? false : true,
-  only: [
-    new RegExp(siteDirectory.replace(/\//g, '\/')),
-    /wilson\/render\.js/
-  ],
+  only: [new RegExp(siteDirectory.replace(/\//g, '/')), /wilson\/render\.js/],
   presets: ['@babel/preset-env', '@babel/preset-react']
 });

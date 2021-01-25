@@ -4,7 +4,6 @@ const BLOCKS = ['\u2591', '\u2592', '\u2593', '\u2588'];
 const RATIO = 9 / (4 / 3) / 19;
 
 export function levenshteinGenerativePattern(a, b, options = {}) {
-
   // NOTE: could also play on this
   if (a.length < b.length) {
     [a, b] = [b, a];
@@ -14,11 +13,9 @@ export function levenshteinGenerativePattern(a, b, options = {}) {
   const height = (width * RATIO) | 0;
 
   // Clamping?
-  if (a.length > width)
-    a = a.slice(0, width);
+  if (a.length > width) a = a.slice(0, width);
 
-  if (b.length > height)
-    b = b.slice(0, height);
+  if (b.length > height) b = b.slice(0, height);
 
   const matrix = [];
 
@@ -37,8 +34,7 @@ export function levenshteinGenerativePattern(a, b, options = {}) {
 
       if (b.charAt(i - 1) === a.charAt(j - 1)) {
         value = matrix[i - 1][j - 1];
-      }
-      else {
+      } else {
         value = Math.min(
           matrix[i - 1][j - 1] + 1,
           matrix[i][j - 1] + 1,
@@ -53,21 +49,20 @@ export function levenshteinGenerativePattern(a, b, options = {}) {
   const r = options.rotate || 1;
   const scheme = 'rotationScheme' in options ? options.rotationScheme : 1;
   const sparsity = 'sparsity' in options ? options.sparsity : 1;
-  const map = (new Array(sparsity)).fill('\u00A0').concat(BLOCKS);
+  const map = new Array(sparsity).fill('\u00A0').concat(BLOCKS);
 
   const blocks = matrix.map((row, i) => {
-    let chars = row.map((_, j) => {
+    let chars = row
+      .map((_, j) => {
+        // Rotating
+        let t;
 
-      // Rotating
-      let t;
+        if (scheme) t = row[(i * r + j) % row.length];
+        else t = row[i * ((r + j) % row.length)];
 
-      if (scheme)
-        t = row[(i * r + j) % row.length];
-      else
-        t = row[i * ((r + j) % row.length)];
-
-      return map[t % map.length];
-    }).join('');
+        return map[t % map.length];
+      })
+      .join('');
 
     // Horizontal padding
     if (chars.length < width) {

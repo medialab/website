@@ -55,7 +55,8 @@ function CroppedImage({blackAndWhite, img, pixelCrop}) {
     <img
       className={cls(blackAndWhite && 'black-and-white', 'checkered')}
       src={getCroppedDataUrl(img, pixelCrop)}
-      style={{maxHeight: '200px'}} />
+      style={{maxHeight: '200px'}}
+    />
   );
 }
 
@@ -73,24 +74,20 @@ export default class CoverSelector extends PureComponent {
   };
 
   componentDidMount() {
-    if (this.props.cover)
-      this.handleUpdateCover();
+    if (this.props.cover) this.handleUpdateCover();
   }
 
   componentDidUpdate(previousProps) {
-    if (!previousProps.cover && this.props.cover)
-      this.handleUpdateCover();
+    if (!previousProps.cover && this.props.cover) this.handleUpdateCover();
   }
 
   handleDrop = files => {
-
     readImageFileAsDataUrl(files[0], url => {
-
       getDimensions(url, (img, dimensions) => {
         const ratio = this.props.ratio;
 
         const w = dimensions.width / ratio,
-              h = dimensions.height / ratio;
+          h = dimensions.height / ratio;
 
         // These are in percentages
         const crop = {
@@ -108,8 +105,7 @@ export default class CoverSelector extends PureComponent {
 
   handleCrop = (crop, pixelCrop) => {
     this.setState({crop, pixelCrop}, () => {
-      if (this.props.cover)
-        this.handleChange(this.props.cover.file);
+      if (this.props.cover) this.handleChange(this.props.cover.file);
     });
   };
 
@@ -118,7 +114,6 @@ export default class CoverSelector extends PureComponent {
   };
 
   handleUpload = () => {
-
     this.setState({uploading: true});
 
     client.upload(this.state.file, result => {
@@ -152,15 +147,15 @@ export default class CoverSelector extends PureComponent {
       const ratio = this.props.ratio;
 
       const w = dimensions.width,
-            h = dimensions.height;
+        h = dimensions.height;
 
       // These are in percentages
       const crop = {
-        x: cover.crop.x * 100 / w,
-        y: cover.crop.y * 100 / h,
+        x: (cover.crop.x * 100) / w,
+        y: (cover.crop.y * 100) / h,
         aspect: ratio,
-        width: cover.crop.width * 100 / w,
-        height: cover.crop.height * 100 / h
+        width: (cover.crop.width * 100) / w,
+        height: (cover.crop.height * 100) / h
       };
 
       this.setState({
@@ -186,8 +181,7 @@ export default class CoverSelector extends PureComponent {
     const credits = e.target.value;
 
     // Same credits
-    if (credits === this.props.cover.credits)
-      return;
+    if (credits === this.props.cover.credits) return;
 
     // Deleting credits
     if (!credits) {
@@ -214,19 +208,9 @@ export default class CoverSelector extends PureComponent {
   };
 
   render() {
-    const {
-      cover,
-      processing
-    } = this.props;
+    const {cover, processing} = this.props;
 
-    const {
-      blackAndWhite,
-      crop,
-      pixelCrop,
-      file,
-      img,
-      uploading
-    } = this.state;
+    const {blackAndWhite, crop, pixelCrop, file, img, uploading} = this.state;
 
     return (
       <>
@@ -234,61 +218,65 @@ export default class CoverSelector extends PureComponent {
           <div className="column is-6">
             {!cover && !file && (
               <>
-                <div><small>Sélectionner l'image :</small></div>
+                <div>
+                  <small>Sélectionner l'image :</small>
+                </div>
                 <Dropzone onDrop={this.handleDrop} />
               </>
             )}
             {file && (
               <>
-                <div><small>Image originale à recadrer :</small></div>
+                <div>
+                  <small>Image originale à recadrer :</small>
+                </div>
                 <Crop
                   keepSelection
                   crop={crop}
                   src={img.src}
                   onChange={this.handleCrop}
-                  style={{maxHeight: '200px'}} />
+                  style={{maxHeight: '200px'}}
+                />
               </>
             )}
-            {!cover ?
-              (
-                <div>
-                  <br />
-                  <Button
-                    disabled={!file}
-                    loading={uploading}
-                    kind={file ? 'primary' : 'raw'}
-                    onClick={() => {
-                      this.handleUpload();
-                    }}>
-                    {file ? 'Charger cette image' : 'Sélectionner une image'}
-                  </Button>
-                </div>
-              ) : (
-                <div>
-                  <Button
-                    small
-                    kind="text"
-                    onClick={this.handleClear}>
-                    Choisir une autre image
-                  </Button>
-                </div>
-              )
-            }
+            {!cover ? (
+              <div>
+                <br />
+                <Button
+                  disabled={!file}
+                  loading={uploading}
+                  kind={file ? 'primary' : 'raw'}
+                  onClick={() => {
+                    this.handleUpload();
+                  }}>
+                  {file ? 'Charger cette image' : 'Sélectionner une image'}
+                </Button>
+              </div>
+            ) : (
+              <div>
+                <Button small kind="text" onClick={this.handleClear}>
+                  Choisir une autre image
+                </Button>
+              </div>
+            )}
           </div>
           <div className="column is-6">
             {pixelCrop && (
               <div>
-                <div><small>Image recadrée :</small></div>
+                <div>
+                  <small>Image recadrée :</small>
+                </div>
                 <DebouncedCroppedImage
                   blackAndWhite={blackAndWhite}
                   img={img}
-                  pixelCrop={pixelCrop} />
+                  pixelCrop={pixelCrop}
+                />
                 <div>
                   <label className="checkbox">
                     <input
                       type="checkbox"
                       checked={blackAndWhite}
-                      onChange={this.toggleBlackAndWhite} />
+                      onChange={this.toggleBlackAndWhite}
+                    />
                     <small>&nbsp;en Noir &amp; blanc ?</small>
                   </label>
                 </div>
@@ -300,14 +288,17 @@ export default class CoverSelector extends PureComponent {
           <div className="columns">
             <div className="column is-6">
               <div className="field">
-                <div><small>Crédits :</small></div>
+                <div>
+                  <small>Crédits :</small>
+                </div>
                 <div className="control">
                   <input
                     type="text"
                     className="input is-small"
                     value={cover.credits || ''}
                     onChange={this.handleCredits}
-                    placeholder="..." />
+                    placeholder="..."
+                  />
                 </div>
               </div>
             </div>
@@ -317,46 +308,63 @@ export default class CoverSelector extends PureComponent {
           <>
             <div className="columns">
               <div className="column is-5">
-                <div><small>Image traitée (grande) :</small></div>
+                <div>
+                  <small>Image traitée (grande) :</small>
+                </div>
                 <div>
                   <DebouncedProcessedImage
                     img={img}
                     crop={pixelCrop}
                     gamma={cover.gamma}
                     rows={150}
-                    zoom={0.3} />
+                    zoom={0.3}
+                  />
                 </div>
               </div>
               <div className="column is-5">
-                <div><small>Image traitée (moyenne) :</small></div>
+                <div>
+                  <small>Image traitée (moyenne) :</small>
+                </div>
                 <div>
                   <DebouncedProcessedImage
                     img={img}
                     crop={pixelCrop}
                     gamma={cover.gamma}
                     rows={75}
-                    zoom={0.5} />
+                    zoom={0.5}
+                  />
                 </div>
               </div>
               <div className="column is-4">
-                <div><small>Image traitée(petite) :</small></div>
+                <div>
+                  <small>Image traitée(petite) :</small>
+                </div>
                 <div>
                   <DebouncedProcessedImage
                     img={img}
                     crop={pixelCrop}
                     gamma={cover.gamma}
                     rows={25}
-                    zoom={0.6} />
+                    zoom={0.6}
+                  />
                 </div>
               </div>
             </div>
             <div className="columns">
               <div className="column">
                 <div className="field">
-                  <div><small>Paramètre gamma pour le traitement de l'image : ({cover.gamma})</small></div>
+                  <div>
+                    <small>
+                      Paramètre gamma pour le traitement de l'image : (
+                      {cover.gamma})
+                    </small>
+                  </div>
                   <Slider
-                    value={cover.gamma} onChange={this.handleGamma} min={-255 * 3}
-                    max={255 * 3} />
+                    value={cover.gamma}
+                    onChange={this.handleGamma}
+                    min={-255 * 3}
+                    max={255 * 3}
+                  />
                 </div>
               </div>
             </div>

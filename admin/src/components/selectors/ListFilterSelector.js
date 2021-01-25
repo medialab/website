@@ -10,17 +10,11 @@ const BOOLEAN_LABELS = {
 };
 
 export default function ListFilterSelector(props) {
-  const {
-    name,
-    negate = false,
-    onChange,
-    specs
-  } = props;
+  const {name, negate = false, onChange, specs} = props;
 
   let value = props.value;
 
-  if (negate && value !== null)
-    value = !value;
+  if (negate && value !== null) value = !value;
 
   if (specs.type === 'boolean') {
     const labels = BOOLEAN_LABELS[name];
@@ -28,20 +22,34 @@ export default function ListFilterSelector(props) {
     return (
       <div className="buttons has-addons">
         <span
-          className={cls('button', value === null && ['is-selected', 'is-info'])}
-          onClick={() => onChange(null)}>All</span>
+          className={cls(
+            'button',
+            value === null && ['is-selected', 'is-info']
+          )}
+          onClick={() => onChange(null)}>
+          All
+        </span>
         <span
-          className={cls('button', value === true && ['is-selected', 'is-success'])}
-          onClick={() => onChange(negate ? false : true)}>{labels[0]}</span>
+          className={cls(
+            'button',
+            value === true && ['is-selected', 'is-success']
+          )}
+          onClick={() => onChange(negate ? false : true)}>
+          {labels[0]}
+        </span>
         <span
-          className={cls('button', value === false && ['is-selected', 'is-success'])}
-          onClick={() => onChange(negate ? true : false)}>{labels[1]}</span>
+          className={cls(
+            'button',
+            value === false && ['is-selected', 'is-success']
+          )}
+          onClick={() => onChange(negate ? true : false)}>
+          {labels[1]}
+        </span>
       </div>
     );
   }
 
   if (specs.type === 'enum') {
-
     let options;
 
     if (specs.grouped) {
@@ -49,18 +57,29 @@ export default function ListFilterSelector(props) {
         return (
           <span
             key={key}
-            className={cls('button', value && value.group === key && ['is-selected', 'is-info'])}
-            onClick={() => onChange({group: key, values: new Set(group.values)})}>{group.fr}</span>
+            className={cls(
+              'button',
+              value && value.group === key && ['is-selected', 'is-info']
+            )}
+            onClick={() =>
+              onChange({group: key, values: new Set(group.values)})
+            }>
+            {group.fr}
+          </span>
         );
       });
-    }
-    else {
+    } else {
       options = map(enums[specs.enum].fr, (label, key) => {
         return (
           <span
             key={key}
-            className={cls('button', value === key && ['is-selected', 'is-success'])}
-            onClick={() => onChange(key)}>{label}</span>
+            className={cls(
+              'button',
+              value === key && ['is-selected', 'is-success']
+            )}
+            onClick={() => onChange(key)}>
+            {label}
+          </span>
         );
       });
     }
@@ -68,8 +87,13 @@ export default function ListFilterSelector(props) {
     return (
       <div className="buttons has-addons">
         <span
-          className={cls('button', value === null && ['is-selected', 'is-info'])}
-          onClick={() => onChange(null)}>All</span>
+          className={cls(
+            'button',
+            value === null && ['is-selected', 'is-info']
+          )}
+          onClick={() => onChange(null)}>
+          All
+        </span>
         {options}
       </div>
     );

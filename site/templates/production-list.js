@@ -15,7 +15,8 @@ export default ({data, pageContext}) => {
         lang={pageContext.lang}
         list={data.productions}
         group={pageContext.group}
-        types={data.facetedEnums.productionTypes} />
+        types={data.facetedEnums.productionTypes}
+      />
     </Layout>
   );
 };

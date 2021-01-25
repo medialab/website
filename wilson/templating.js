@@ -8,9 +8,7 @@ const POINTLESS_P = /<p><br><\/p>/g;
 const RAW_IFRAME = /<iframe.+src="([^"]*)"[^>]*>[^<]*<\/iframe>/g;
 
 function getImageOrientation(width, height) {
-
-  if (!width || !height)
-    return 'paysage';
+  if (!width || !height) return 'paysage';
 
   // TODO: What about squares?
   // TODO: keep with and height to help with browser rendering
@@ -31,8 +29,7 @@ function getImageClassName(format, width, height, even) {
   )
     return format;
 
-  if (format === 'serie')
-    return even ? 'serie-pair' : 'serie-impair';
+  if (format === 'serie') return even ? 'serie-pair' : 'serie-impair';
 
   throw new Error('Unkown image format: ' + format);
 }
@@ -53,7 +50,7 @@ function processHtml(pathPrefix, html) {
   });
 
   // Processing internal links
-  $('a[data-internal=true]').each(function() {
+  $('a[data-internal=true]').each(function () {
     const $a = $(this);
 
     $a.removeAttr('data-internal');
@@ -63,7 +60,7 @@ function processHtml(pathPrefix, html) {
     $a.attr('href', withPrefix(href));
   });
 
-  $('a').each(function() {
+  $('a').each(function () {
     const $a = $(this);
 
     $a.attr('target', '_blank');
@@ -76,14 +73,11 @@ function processHtml(pathPrefix, html) {
   const titleMap = {
     h1: 3,
     h2: h2level,
-    h3: $('h2').length ? (h2level + 1) : ($('h1').length ? 4 : 3)
+    h3: $('h2').length ? h2level + 1 : $('h1').length ? 4 : 3
   };
 
-  const onlyOneTitleLevel = (
-    !!$('h1').length +
-    !!$('h2').length +
-    !!$('h3').length
-  ) === 1;
+  const onlyOneTitleLevel =
+    !!$('h1').length + !!$('h2').length + !!$('h3').length === 1;
 
   // Building custom output
   let output = '';
@@ -91,143 +85,143 @@ function processHtml(pathPrefix, html) {
   let evenImage = true;
   let previousImageIndex = 0;
 
-  $('body').contents().each(function(i) {
-
-    // Raw text
-    if (this.type === 'text') {
-      if (!inRawText) {
-        inRawText = true;
-        output += '<p>';
-      }
-
-      output += this.data;
-      return;
-    }
-
-    if (this.type !== 'tag')
-      return;
-
-    const $this = $(this);
-    const tag = $this.prop('tagName');
-
-    // Root links
-    if (tag === 'A') {
-      output += `<a href="${$this.attr('href')}" target="_blank" rel="noopener noreferrer">${$this.text()}</a>`;
-      return;
-    }
-    else if (inRawText) {
-      inRawText = false;
-      output += '</p>';
-    }
-
-    // Paragraphs
-    if (tag === 'P') {
-      output += `<p>${$this.html()}</p>`;
-    }
-
-    // Blockquotes
-    else if (tag === 'BLOCKQUOTE') {
-      output += `<blockquote>${$this.html()}</blockquote>`;
-    }
-
-    // Titles
-    else if (TITLE.test(tag)) {
-      const h = tag.toLowerCase();
-
-      const level = titleMap[h];
-
-      output += `<h${level} data-style-level="${onlyOneTitleLevel ? 2 : level - 2}">${$this.html()}</h${level}>`;
-    }
-
-    // Lists
-    else if (tag === 'UL') {
-      output += `<ul>${$this.html()}</ul>`;
-    }
-    else if (tag === 'OL') {
-      output += `<ol>${$this.html()}</ol>`;
-    }
-
-    // Raw blocks
-    else if (tag === 'PRE') {
-      let injection = entities.decode($this.text().replace(/^\s+/g, ''));
-
-      injection = injection.replace(RAW_IFRAME, '$&<p class="print"><span>Iframe</span> $1</p>');
-
-      output += injection;
-    }
-
-    // Atomics
-    else if (tag === 'FIGURE') {
-
-      // Images
-      if ($this.has('img').length) {
-        const $img = $this.find('img');
-
-        const src = $img.attr('src'),
-              width = $img.data('width'),
-              height = $img.data('height'),
-              format = $img.data('format'),
-              credits = $img.data('credits') || '';
-
-        if (previousImageIndex !== i - 1) {
-          evenImage = true;
+  $('body')
+    .contents()
+    .each(function (i) {
+      // Raw text
+      if (this.type === 'text') {
+        if (!inRawText) {
+          inRawText = true;
+          output += '<p>';
         }
 
-        const className = getImageClassName(
-          format,
-          width,
-          height,
-          evenImage
+        output += this.data;
+        return;
+      }
+
+      if (this.type !== 'tag') return;
+
+      const $this = $(this);
+      const tag = $this.prop('tagName');
+
+      // Root links
+      if (tag === 'A') {
+        output += `<a href="${$this.attr(
+          'href'
+        )}" target="_blank" rel="noopener noreferrer">${$this.text()}</a>`;
+        return;
+      } else if (inRawText) {
+        inRawText = false;
+        output += '</p>';
+      }
+
+      // Paragraphs
+      if (tag === 'P') {
+        output += `<p>${$this.html()}</p>`;
+      }
+
+      // Blockquotes
+      else if (tag === 'BLOCKQUOTE') {
+        output += `<blockquote>${$this.html()}</blockquote>`;
+      }
+
+      // Titles
+      else if (TITLE.test(tag)) {
+        const h = tag.toLowerCase();
+
+        const level = titleMap[h];
+
+        output += `<h${level} data-style-level="${
+          onlyOneTitleLevel ? 2 : level - 2
+        }">${$this.html()}</h${level}>`;
+      }
+
+      // Lists
+      else if (tag === 'UL') {
+        output += `<ul>${$this.html()}</ul>`;
+      } else if (tag === 'OL') {
+        output += `<ol>${$this.html()}</ol>`;
+      }
+
+      // Raw blocks
+      else if (tag === 'PRE') {
+        let injection = entities.decode($this.text().replace(/^\s+/g, ''));
+
+        injection = injection.replace(
+          RAW_IFRAME,
+          '$&<p class="print"><span>Iframe</span> $1</p>'
         );
 
-        evenImage = !evenImage;
-        previousImageIndex = i;
+        output += injection;
+      }
 
-        if (
-          format === 'vignette-block' ||
-          format === 'vignette-inline-paysage' ||
-          format === 'vignette-inline-portrait' ||
-          format === 'vignette-inline' ||
-          format === 'serie' ||
-          format === 'serie-impair' ||
-          format === 'serie-pair'
-        ) {
-          output += `
+      // Atomics
+      else if (tag === 'FIGURE') {
+        // Images
+        if ($this.has('img').length) {
+          const $img = $this.find('img');
+
+          const src = $img.attr('src'),
+            width = $img.data('width'),
+            height = $img.data('height'),
+            format = $img.data('format'),
+            credits = $img.data('credits') || '';
+
+          if (previousImageIndex !== i - 1) {
+            evenImage = true;
+          }
+
+          const className = getImageClassName(format, width, height, evenImage);
+
+          evenImage = !evenImage;
+          previousImageIndex = i;
+
+          if (
+            format === 'vignette-block' ||
+            format === 'vignette-inline-paysage' ||
+            format === 'vignette-inline-portrait' ||
+            format === 'vignette-inline' ||
+            format === 'serie' ||
+            format === 'serie-impair' ||
+            format === 'serie-pair'
+          ) {
+            output += `
             <div class="vignette container_${format}">
               <input type="checkbox" id="focus-figure-${i}" name="focus-figure" hidden />
               <label for="focus-figure-${i}" title="" arial-label=""></label>
               <figure class="${className}">
-                <img src="${withPrefix(src)}" alt="${formatCreditAlt(credits)}"/>${credits ? `<figcaption>${credits}</figcaption>` : ''}
+                <img src="${withPrefix(src)}" alt="${formatCreditAlt(
+              credits
+            )}"/>${credits ? `<figcaption>${credits}</figcaption>` : ''}
               </figure>
             </div>
           `.trim();
-        }
-        else {
-          output += `
+          } else {
+            output += `
             <figure class="${className}">
-              <img src="${withPrefix(src)}" alt="${formatCreditAlt(credits)}"/>${credits ? `<figcaption>${credits}</figcaption>` : ''}
+              <img src="${withPrefix(src)}" alt="${formatCreditAlt(
+              credits
+            )}"/>${credits ? `<figcaption>${credits}</figcaption>` : ''}
             </figure>
           `.trim();
+          }
+        }
+
+        // Iframes
+        else {
+          const $iframe = $this.find('iframe');
+          const internal = !!$iframe.data('internal');
+
+          let src = $iframe.attr('src');
+
+          if (internal) src = withPrefix(src);
+
+          output += `<iframe allowfullscreen src="${src}"></iframe><p class="print"><span>Iframe</span> ${src}</p>`;
         }
       }
+    });
 
-      // Iframes
-      else {
-        const $iframe = $this.find('iframe');
-        const internal = !!$iframe.data('internal');
-
-        let src = $iframe.attr('src');
-
-        if (internal)
-          src = withPrefix(src);
-
-        output += `<iframe allowfullscreen src="${src}"></iframe><p class="print"><span>Iframe</span> ${src}</p>`;
-      }
-    }
-  });
-
-  if (inRawText)
-    output += '</p>';
+  if (inRawText) output += '</p>';
 
   return output.trim();
 }
@@ -235,11 +229,9 @@ function processHtml(pathPrefix, html) {
 exports.template = function template(pathPrefix, content) {
   let fr, en;
 
-  if (content && content.fr)
-    fr = processHtml(pathPrefix, content.fr);
+  if (content && content.fr) fr = processHtml(pathPrefix, content.fr);
 
-  if (content && content.en)
-    en = processHtml(pathPrefix, content.en);
+  if (content && content.en) en = processHtml(pathPrefix, content.en);
 
   return {
     fr: fr ? fr : '',
@@ -247,7 +239,10 @@ exports.template = function template(pathPrefix, content) {
   };
 };
 
-exports.resolveAttachments = function resolveAttachments(pathPrefix, attachments) {
+exports.resolveAttachments = function resolveAttachments(
+  pathPrefix,
+  attachments
+) {
   return attachments.map(a => {
     if (a.type === 'attachment')
       return {

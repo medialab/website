@@ -50,7 +50,6 @@ const FORMAT_OPTIONS = [
 
 // Format selector
 function FormatSelector({selected, onChange}) {
-
   return (
     <div>
       {FORMAT_OPTIONS.map(o => {
@@ -61,7 +60,10 @@ function FormatSelector({selected, onChange}) {
             key={o.value}
             title={o.label}
             onClick={() => onChange(o.value)}
-            style={{display: 'inline-block', border: `1px solid ${borderColor}`}}>
+            style={{
+              display: 'inline-block',
+              border: `1px solid ${borderColor}`
+            }}>
             <img alt={o.label} style={{cursor: 'pointer'}} src={o.img} />
           </div>
         );
@@ -85,13 +87,12 @@ class ImageSource extends Component {
     };
   }
 
-  addEntity = (option) => {
+  addEntity = option => {
     const {editorState, entityType, onComplete} = this.props;
 
     const resolvedSrc = `${API_URL}/assets/${option.src}`;
 
     getImageDimensions(resolvedSrc, (width, height) => {
-
       const content = editorState.getCurrentContent();
 
       const data = {
@@ -101,8 +102,7 @@ class ImageSource extends Component {
         height
       };
 
-      if (option.credits)
-        data.credits = option.credits;
+      if (option.credits) data.credits = option.credits;
 
       const contentWithEntity = content.createEntity(
         entityType.type,
@@ -128,17 +128,12 @@ class ImageSource extends Component {
 
     const data = {...entity.get('data')};
 
-    if (this.state.credits)
-      data.credits = this.state.credits;
-    else
-      delete data.credits;
+    if (this.state.credits) data.credits = this.state.credits;
+    else delete data.credits;
 
     data.format = this.state.format;
 
-    const nextContent = content.replaceEntityData(
-      entityKey,
-      data
-    );
+    const nextContent = content.replaceEntityData(entityKey, data);
 
     let nextState = EditorState.push(
       editorState,
@@ -159,10 +154,7 @@ class ImageSource extends Component {
       hasFocus: true
     });
 
-    nextState = EditorState.forceSelection(
-      nextState,
-      selection
-    );
+    nextState = EditorState.forceSelection(nextState, selection);
 
     return onComplete(nextState);
   };
@@ -176,8 +168,7 @@ class ImageSource extends Component {
       return this.updateEntity();
     }
 
-    if (!this.state.file)
-      return;
+    if (!this.state.file) return;
 
     this.setState({loading: true});
 
@@ -186,8 +177,7 @@ class ImageSource extends Component {
 
       const options = {src: result.name, format: this.state.format};
 
-      if (this.state.credits)
-        options.credits = this.state.credits;
+      if (this.state.credits) options.credits = this.state.credits;
 
       this.addEntity(options);
     });
@@ -208,12 +198,7 @@ class ImageSource extends Component {
   };
 
   render() {
-    const {
-      loading,
-      file,
-      credits,
-      format
-    } = this.state;
+    const {loading, file, credits, format} = this.state;
 
     const entityKey = this.props.entityKey;
 
@@ -225,20 +210,22 @@ class ImageSource extends Component {
     return (
       <CardModal large onClose={this.handleCancel}>
         {[
-
           // Title
           entityKey ? 'Editing an image' : 'Importing an image',
 
           // Body
           <div key="body" className="columns">
             <div className="column is-4">
-              {(!file && !entityKey) ?
-                <Dropzone onDrop={this.handleDrop} /> :
-                (
-                  <div>
-                    <img src={entityKey ? src : URL.createObjectURL(file)} style={{height: '200px'}} />
-                  </div>
-                )}
+              {!file && !entityKey ? (
+                <Dropzone onDrop={this.handleDrop} />
+              ) : (
+                <div>
+                  <img
+                    src={entityKey ? src : URL.createObjectURL(file)}
+                    style={{height: '200px'}}
+                  />
+                </div>
+              )}
             </div>
             <div className="column is-8">
               <div className="field">
@@ -249,28 +236,29 @@ class ImageSource extends Component {
                     className="input"
                     value={credits}
                     onChange={this.handleCredits}
-                    placeholder="..." />
+                    placeholder="..."
+                  />
                 </div>
               </div>
               <div className="field">
                 <label className="label">Gabarit d'image</label>
-                <FormatSelector selected={format} onChange={this.handleFormat} />
+                <FormatSelector
+                  selected={format}
+                  onChange={this.handleFormat}
+                />
               </div>
             </div>
           </div>,
 
           // Footer
-          (
-            <Button
-              key="footer"
-              disabled={!file && !entityKey}
-              loading={loading}
-              onClick={this.handleSubmit}>
-              {entityKey ? 'Update' : 'Upload & Insert'}
-            </Button>
-          )
+          <Button
+            key="footer"
+            disabled={!file && !entityKey}
+            loading={loading}
+            onClick={this.handleSubmit}>
+            {entityKey ? 'Update' : 'Upload & Insert'}
+          </Button>
         ]}
-
       </CardModal>
     );
   }
@@ -292,9 +280,17 @@ function ImageBlock(props) {
       <div>
         <img src={url} />
       </div>
-      {credits && <div><small><em>{credits.replace(/<br>/g, '\n')}</em></small></div>}
+      {credits && (
+        <div>
+          <small>
+            <em>{credits.replace(/<br>/g, '\n')}</em>
+          </small>
+        </div>
+      )}
       <div>
-        <small><em>format:</em> {formatLabel}</small>
+        <small>
+          <em>format:</em> {formatLabel}
+        </small>
       </div>
       <div>
         <small
@@ -313,13 +309,7 @@ const IMAGE = {
   icon: <ImageIcon width={24} height={24} />,
   source: ImageSource,
   block: ImageBlock,
-  attributes: [
-    'credits',
-    'format',
-    'height',
-    'width',
-    'src'
-  ]
+  attributes: ['credits', 'format', 'height', 'width', 'src']
 };
 
 export default IMAGE;

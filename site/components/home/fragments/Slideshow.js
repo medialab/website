@@ -180,13 +180,15 @@ const Slideshow = ({slider, lang}) => {
                             )}
                           </h1>
 
-                          <p className="accroche">
-                            {ellipse(
-                              slide.description[lang] ||
-                                slide.description[otherLang],
-                              170
-                            )}
-                          </p>
+                          {slide.description && (
+                            <p className="accroche">
+                              {ellipse(
+                                slide.description[lang] ||
+                                  slide.description[otherLang],
+                                170
+                              )}
+                            </p>
+                          )}
                         </>
                       )}
 

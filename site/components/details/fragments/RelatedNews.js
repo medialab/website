@@ -28,6 +28,7 @@ const RelatedNews = ({lang, actu, isSeminar, filter, titles}) => {
       sorted = sorted.filter(a => new Date(a.startDate).getTime() < now);
     }
   }
+  if (!sorted.length) return null;
 
   let accroche;
   if (titles) {

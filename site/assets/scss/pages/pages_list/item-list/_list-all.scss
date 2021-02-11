@@ -93,8 +93,7 @@ $width-image-pre-listing-phone: ((100% / 120) * 1.1338 * 10);
   .page-production-list #liste .liste_objet,
   .page-tool-list #liste .liste_objet,
   .page-activity-list #liste .liste_objet,
-  .page-news-list #liste .liste_objet,
-  .liste_seminaire {
+  .page-news-list #liste .liste_objet {
     margin-bottom: $height-footer;
     min-height: calc(100vh - #{$height-footer} - #{$height-top-bar});
 
@@ -297,11 +296,16 @@ $width-image-pre-listing-phone: ((100% / 120) * 1.1338 * 10);
   .page-production-list #liste .liste_objet,
   .page-tool-list #liste .liste_objet,
   .page-activity-list #liste .liste_objet,
-  .page-news-list #liste .liste_objet,
-  .liste_seminaire {
+  .page-news-list #liste .liste_objet {
     margin-bottom: $height-footer;
     min-height: calc(100vh - #{$height-footer} - #{$height-top-bar-phone});
+  }
 
+  .page-production-list #liste .liste_objet,
+  .page-tool-list #liste .liste_objet,
+  .page-activity-list #liste .liste_objet,
+  .page-news-list #liste .liste_objet,
+  .liste_seminaire {
     li {
       width: 100% !important;
       .image-pre {

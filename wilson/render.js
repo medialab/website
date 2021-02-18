@@ -156,9 +156,6 @@ exports.renderPage = function (
 
   if (options.livereloadUrl) scripts.push('livereload');
 
-  // TEMP: cache busting Gatsby
-  scripts.push('cache-buster');
-
   content = wrap(pathPrefix, content, helmet, {
     googleAnalyticsId: options.googleAnalyticsId,
     rssFeeds: options.rssFeeds,

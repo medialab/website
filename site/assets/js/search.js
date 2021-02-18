@@ -1,22 +1,33 @@
 function debounce(func, wait, immediate) {
-  var timeout;
+  let timeout;
   return function () {
-    var context = this,
+    const context = this,
       args = arguments;
-    var later = function () {
+    const later = function () {
       timeout = null;
       if (!immediate) func.apply(context, args);
     };
-    var callNow = immediate && !timeout;
+    const callNow = immediate && !timeout;
     clearTimeout(timeout);
     timeout = setTimeout(later, wait);
     if (callNow) func.apply(context, args);
   };
 }
 
-// TODO: improve, but avoid loading lodash pretty please...
-function deburr(string) {
-  return string.normalize('NFKD');
+const FRENCH_DIACRITIC_CLASSES = [
+  /[aàâä]/g,
+  /[eéèëê]/g,
+  /[iïî]/g,
+  /[oôö]/g,
+  /[uùü]/g,
+  /[yÿ]/g,
+  /[cç]/g
+];
+
+function improvePatternRegardingDiacritics(pattern) {
+  return FRENCH_DIACRITIC_CLASSES.reduce(function (current, diacritic) {
+    return current.replace(diacritic, diacritic.source);
+  }, pattern);
 }
 
 // Hilitor class used by search
@@ -77,7 +88,7 @@ function Hilitor(id, tag) {
     input = input.replace(/\| *\|/, '|');
     input = input.replace(/^\||\|$/g, '');
     if (input) {
-      let re = '(' + input + ')';
+      let re = '(' + improvePatternRegardingDiacritics(input) + ')';
       if (!this.openLeft) re = '\\b' + re;
       if (!this.openRight) re = re + '\\b';
       matchRegExp = new RegExp(re, 'i');
@@ -136,7 +147,8 @@ function Hilitor(id, tag) {
       // NODE_TEXT
       const nv = node.nodeValue;
       if (nv) {
-        const regs = matchRegExp.exec(deburr(nv));
+        const regs = matchRegExp.exec(nv);
+
         if (regs) {
           // if(!wordColor[regs[0].toLowerCase()]) {
           // wordColor[regs[0].toLowerCase()] = colors[colorIdx++ % colors.length];
@@ -177,7 +189,7 @@ function Hilitor(id, tag) {
   this.apply = function (input) {
     this.remove();
     if (input === undefined || !input) return;
-    if (this.setRegex(deburr(input))) {
+    if (this.setRegex(input)) {
       this.hiliteWords(targetNode);
     }
     return matchRegExp;

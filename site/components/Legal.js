@@ -81,9 +81,7 @@ export default function Legal({lang}) {
 
             <h3 id="directeur">Directeur de la publication</h3>
             <p>
-              Frédéric Mion, administrateur de la Fondation Nationale des
-              Sciences Politiques et directeur de l’Institut d’Études Politiques
-              de Paris.
+              Bénédicte Durand, administratrice provisoire de l’Institut d’études politiques de Paris et de la Fondation nationale des sciences politiques.
             </p>
 
             <h3 id="host">Hébergement</h3>
@@ -334,9 +332,7 @@ export default function Legal({lang}) {
 
             <h3 id="publisher">Publications Director</h3>
             <p>
-              Frédéric Mion, Administrator of the Fondation Nationale des
-              Sciences Politiques and Director of the Institut d'Études
-              Politiques de Paris.
+              Bénédicte Durand, Interim Administrator of the Institut d’études politiques de Paris and the Fondation nationale des sciences politiques.
             </p>
 
             <h3 id="host">Web Hosting</h3>

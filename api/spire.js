@@ -230,7 +230,7 @@ module.exports.aSPIRE = function aSPIRE(
               } else apiPageDone(null, r);
             });
           },
-          response => {
+          (response, areWeDone) => {
             // store result
             spireRecords = spireRecords.concat(response.body.result.records);
             // pagination control
@@ -239,11 +239,11 @@ module.exports.aSPIRE = function aSPIRE(
             // test if a new page is needed
             if (r.result_batch_size < resultPerPage) {
               // we are done
-              return true;
+              return areWeDone(null, true);
             }
             // need more results
             resultOffset += resultPerPage;
-            return false;
+            return areWeDone(null, false);
           },
           // manage Spire result
           err => {
@@ -263,26 +263,8 @@ module.exports.aSPIRE = function aSPIRE(
               } unpublished documents (state_spire ≠ 3)`
             );
             // common queue to process the writing requests
-            const websiteApiQueue = async.queue(
-              ({method, model, object}, cb) => {
-                if (!VALIDATORS[model](object)) {
-                  console.error(model, object, VALIDATORS[model].errors);
-                  cb(new Error(VALIDATORS[model].errors));
-                }
-                const url =
-                  method === 'PUT'
-                    ? `http://${AUTH}@localhost:${config.port}/${model}/${model}/${object.id}`
-                    : `http://${AUTH}@localhost:${config.port}/${model}/${model}/`;
-                console.debug(`API CALL ${model} ${method} ${object.id}`);
-                request({url, method, body: object, json: true}, reqErr => {
-                  if (reqErr) {
-                    console.error(`error ${method} ${model} ${object.id}`, err);
-                    cb(reqErr);
-                  } else cb(null);
-                });
-              },
-              2
-            );
+            const apiRequestsToMake = [];
+
             const existingSlugs = new Set(
               _.values(indeces.productions).reduce(
                 (slugs, p) => slugs.concat(p.slugs),
@@ -313,16 +295,11 @@ module.exports.aSPIRE = function aSPIRE(
                   );
                   if (!match.spire)
                     // this test is to prevent uneeded update when the match already have a spire ID : duplicated authors in spire
-                    websiteApiQueue.push(
-                      {
-                        method: 'PUT',
-                        model: 'people',
-                        object: {spire: {id: idSpire}, ...match}
-                      },
-                      e => {
-                        if (e) console.error(e);
-                      }
-                    );
+                    apiRequestsToMake.push({
+                      method: 'PUT',
+                      model: 'people',
+                      object: {spire: {id: idSpire}, ...match}
+                    });
                 } else {
                   peopleToResolve.push(aut);
                 }
@@ -363,16 +340,11 @@ module.exports.aSPIRE = function aSPIRE(
                   p.spire.meta.rec_modified_date !== record.rec_modified_date
                 ) {
                   // flash the data from spire.
-                  websiteApiQueue.push(
-                    {
-                      method: 'PUT',
-                      model: 'productions',
-                      object: {...p, ...{spire}}
-                    },
-                    e => {
-                      if (e) console.error(e);
-                    }
-                  );
+                  apiRequestsToMake.push({
+                    method: 'PUT',
+                    model: 'productions',
+                    object: {...p, ...{spire}}
+                  });
                   modifiedProductionIds.push(p.id);
                 } else {
                   // if new publication + if type is not translated to null
@@ -394,16 +366,11 @@ module.exports.aSPIRE = function aSPIRE(
                       spire
                       // lastUpdated
                     };
-                    websiteApiQueue.push(
-                      {
-                        method: 'POST',
-                        model: 'productions',
-                        object: newProduction
-                      },
-                      e => {
-                        if (e) console.error(e);
-                      }
-                    );
+                    apiRequestsToMake.push({
+                      method: 'POST',
+                      model: 'productions',
+                      object: newProduction
+                    });
                     nbNewProductions += 1;
                   }
                   // else, nothing change, nothing to do
@@ -412,19 +379,34 @@ module.exports.aSPIRE = function aSPIRE(
                 d(null);
               },
               r => {
-                if (r) doneAPISpire(r);
-                if (websiteApiQueue.idle()) {
-                  emitCallback(
-                    `importation des données spire terminée : ${nbNewProductions} nouvelle.s production.s, ${modifiedProductionIds.length} modifiée.s, ${nbUnchangedProductions} inchangée.s`
-                  );
-                  doneAPISpire(null, {
-                    nbNewProductions,
-                    modifiedProductionIds,
-                    nbUnchangedProductions,
-                    peopleToResolve
-                  });
-                } else {
-                  websiteApiQueue.drain = () => {
+                if (r) return doneAPISpire(r);
+
+                return async.eachLimit(
+                  apiRequestsToMake,
+                  2,
+                  ({method, model, object}, cb) => {
+                    if (!VALIDATORS[model](object)) {
+                      console.error(model, object, VALIDATORS[model].errors);
+                      return cb(new Error(VALIDATORS[model].errors));
+                    }
+                    const url =
+                      method === 'PUT'
+                        ? `http://${AUTH}@localhost:${config.port}/${model}/${model}/${object.id}`
+                        : `http://${AUTH}@localhost:${config.port}/${model}/${model}/`;
+                    console.debug(`API CALL ${model} ${method} ${object.id}`);
+                    request({url, method, body: object, json: true}, reqErr => {
+                      if (reqErr) {
+                        console.error(
+                          `error ${method} ${model} ${object.id}`,
+                          err
+                        );
+                        cb(reqErr);
+                      } else cb(null);
+                    });
+                  },
+                  apiRequestError => {
+                    if (apiRequestError) return doneAPISpire(apiRequestError);
+
                     emitCallback(
                       `importation des données spire terminée : ${nbNewProductions} nouvelle.s production.s, ${modifiedProductionIds.length} modifiée.s, ${nbUnchangedProductions} inchangée.s`
                     );
@@ -434,8 +416,8 @@ module.exports.aSPIRE = function aSPIRE(
                       nbUnchangedProductions,
                       peopleToResolve
                     });
-                  };
-                }
+                  }
+                );
               }
             );
           }
@@ -472,17 +454,17 @@ module.exports.aspireAuthors = function aspireAuthors(callback) {
       console.debug('request to spire', resultOffset);
       request.post(config.spire.api, {body, json: true}, done);
     },
-    response => {
+    (response, areWeDone) => {
       const r = response.body.result;
       console.debug(`got ${r.result_batch_size}`);
       // test if a new page is needed
       if (r.result_batch_size < resultPerPage) {
         // we are done
-        return true;
+        return areWeDone(null, true);
       }
       // need more results
       resultOffset += resultPerPage;
-      return false;
+      return areWeDone(null, false);
     },
     (err, response) => {
       const spirePeople = {};

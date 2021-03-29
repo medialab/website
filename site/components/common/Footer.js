@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from '../helpers/Link';
+import {Icons} from '../helpers/Icons.js';
 
 const i18n = {
   fr: {
@@ -8,7 +9,10 @@ const i18n = {
     legal: 'Liens vers les mentions légales',
     mail: 'Ecrire au médialab',
     twitter: 'Lien vers le compte Twitter du médialab',
-    github: 'Lien vers le Github du médialab'
+    github: 'Lien vers le Github du médialab',
+    search: 'Chercher dans le site',
+    searchPlaceholder: 'Rechercher',
+    searchAriaLabel: 'Rechercher dans la page'
   },
   en: {
     ariaLabel: 'Footer',
@@ -16,7 +20,10 @@ const i18n = {
     legal: 'Link to legal notice',
     mail: 'Write to médialab',
     twitter: "Link to médialab's Twitter",
-    github: "Link to médialab's Github"
+    github: "Link to médialab's Github",
+    search: 'Search in website',
+    searchPlaceholder: 'Search',
+    searchAriaLabel: 'Search through page content'
   }
 };
 
@@ -84,6 +91,23 @@ export default function Footer({lang}) {
             </a>
           </li>
         </ul>
+        <div className="search-container">
+          <div id="search">
+            <input
+              type="search"
+              id="search-input"
+              name="q"
+              arial-label={i18n[lang].searchAriaLabel}
+              placeholder={i18n[lang].searchPlaceholder}
+            />
+            <label htmlFor="search-input">
+              <Icons icon="search" />
+            </label>
+          </div>
+          <div className="closed-placeholder">
+            {i18n[lang].search}
+          </div>
+        </div>
         <div className="mentions">
           <p>
             <small>

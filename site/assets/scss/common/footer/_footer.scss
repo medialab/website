@@ -25,7 +25,7 @@ footer {
       }
     }
   }
-  .search-container{
+  .search-container {
     padding-top: $baseline;
     color: $text-color-light;
     display: flex;
@@ -40,7 +40,8 @@ footer {
     #search {
       border-bottom: none;
     }
-    .closed-placeholder, #search-svg {
+    .closed-placeholder,
+    #search-svg {
       cursor: pointer;
     }
   }

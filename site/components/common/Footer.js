@@ -21,7 +21,7 @@ const i18n = {
     mail: 'Write to médialab',
     twitter: "Link to médialab's Twitter",
     github: "Link to médialab's Github",
-    search: 'Search in website',
+    search: 'Search the website',
     searchPlaceholder: 'Search',
     searchAriaLabel: 'Search through page content'
   }
@@ -104,9 +104,7 @@ export default function Footer({lang}) {
               <Icons icon="search" />
             </label>
           </div>
-          <div className="closed-placeholder">
-            {i18n[lang].search}
-          </div>
+          <div className="closed-placeholder">{i18n[lang].search}</div>
         </div>
         <div className="mentions">
           <p>

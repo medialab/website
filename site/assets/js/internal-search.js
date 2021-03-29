@@ -1,7 +1,9 @@
 const searchInput = document.querySelector('#search');
 const searchSvg = document.querySelector('#search #search-svg');
 const searchInputInput = document.querySelector('#search input');
-const searchPlaceholder = document.querySelector('.search-container .closed-placeholder');
+const searchPlaceholder = document.querySelector(
+  '.search-container .closed-placeholder'
+);
 
 searchInput.style.display = 'block';
 searchInputInput.style.display = 'none';
@@ -25,10 +27,10 @@ const onEnter = function (evt) {
     const query = evt.target.value + ' site:https://medialab.sciencespo.fr/';
     const url = 'https://duckduckgo.com/?q=' + encodeURIComponent(query);
     console.log('search', url);
-    window.open(url,'_blank').focus();
+    window.open(url, '_blank').focus();
   }
 };
 
 searchInput.addEventListener('keyup', onEnter);
-searchPlaceholder.addEventListener('click', toggleSearch)
-searchSvg.addEventListener('click', toggleSearch)
+searchPlaceholder.addEventListener('click', toggleSearch);
+searchSvg.addEventListener('click', toggleSearch);

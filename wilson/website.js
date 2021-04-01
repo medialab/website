@@ -52,7 +52,6 @@ module.exports = class Website {
         github: db.getGithub(),
         rdv: db.getRdv()
       },
-      scripts: ['internal-search'],
       itemsWithCover(data) {
         return data.grid.concat(data.slider).filter(item => item.cover);
       }

@@ -156,6 +156,9 @@ exports.renderPage = function (
 
   if (options.livereloadUrl) scripts.push('livereload');
 
+  // Internal search should be activated on every page
+  scripts.push('internal-search');
+
   content = wrap(pathPrefix, content, helmet, {
     googleAnalyticsId: options.googleAnalyticsId,
     rssFeeds: options.rssFeeds,

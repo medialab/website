@@ -25,7 +25,7 @@ footer {
       }
     }
   }
-  .search-container {
+  .internal-search-container {
     padding-top: $baseline;
     color: $text-color-light;
     display: flex;
@@ -37,7 +37,7 @@ footer {
       max-width: 100%;
       font-weight: inherit;
     }
-    #search {
+    #internal-search {
       border-bottom: none;
     }
     .closed-placeholder,

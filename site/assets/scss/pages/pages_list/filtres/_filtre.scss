@@ -63,7 +63,8 @@
 
 /* Search input */
 
-#search {
+#search,
+#internal-search {
   border-bottom: $border-very-light;
   height: $baseline * 2.5;
   display: none;

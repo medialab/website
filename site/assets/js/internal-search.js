@@ -1,36 +1,36 @@
-const searchInput = document.querySelector('#search');
-const searchSvg = document.querySelector('#search #search-svg');
-const searchInputInput = document.querySelector('#search input');
-const searchPlaceholder = document.querySelector(
-  '.search-container .closed-placeholder'
+const internalSearchInput = document.querySelector('#internal-search');
+const internalSearchSvg = document.querySelector('#internal-search #search-svg');
+const internalSearchInputInput = document.querySelector('#internal-search input');
+const internalSearchPlaceholder = document.querySelector(
+  '.internal-search-container .closed-placeholder'
 );
 
-searchInput.style.display = 'block';
-searchInputInput.style.display = 'none';
-searchPlaceholder.style.marginLeft = '40px';
+internalSearchInput.style.display = 'block';
+internalSearchInputInput.style.display = 'none';
+internalSearchPlaceholder.style.marginLeft = '40px';
 
 function toggleSearch() {
-  const isOpen = searchInputInput.style.display === 'block';
+  const isOpen = internalSearchInputInput.style.display === 'block';
   if (isOpen) {
-    searchInputInput.style.display = 'none';
-    searchPlaceholder.style.display = 'block';
-    searchInputInput.value = '';
+    internalSearchInputInput.style.display = 'none';
+    internalSearchPlaceholder.style.display = 'block';
+    internalSearchInputInput.value = '';
   } else {
-    searchInputInput.style.display = 'block';
-    searchPlaceholder.style.display = 'none';
-    searchInputInput.focus();
+    internalSearchInputInput.style.display = 'block';
+    internalSearchPlaceholder.style.display = 'none';
+    internalSearchInputInput.focus();
   }
 }
 
-const onEnter = function (evt) {
+const onInternalInputEnter = function (evt) {
   if (evt.keyCode === 13) {
     const query = evt.target.value + ' site:https://medialab.sciencespo.fr/';
     const url = 'https://duckduckgo.com/?q=' + encodeURIComponent(query);
-    console.log('search', url);
+    // console.log('search', url);
     window.open(url, '_blank').focus();
   }
 };
 
-searchInput.addEventListener('keyup', onEnter);
-searchPlaceholder.addEventListener('click', toggleSearch);
-searchSvg.addEventListener('click', toggleSearch);
+internalSearchInput.addEventListener('keyup', onInternalInputEnter);
+internalSearchPlaceholder.addEventListener('click', toggleSearch);
+internalSearchSvg.addEventListener('click', toggleSearch);

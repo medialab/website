@@ -91,16 +91,16 @@ export default function Footer({lang}) {
             </a>
           </li>
         </ul>
-        <div className="search-container">
-          <div id="search">
+        <div className="internal-search-container">
+          <div id="internal-search">
             <input
               type="search"
-              id="search-input"
+              id="internal-search-input"
               name="q"
               arial-label={i18n[lang].searchAriaLabel}
               placeholder={i18n[lang].searchPlaceholder}
             />
-            <label htmlFor="search-input">
+            <label htmlFor="internal-search-input">
               <Icons icon="search" />
             </label>
           </div>

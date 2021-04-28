@@ -21,6 +21,29 @@ let GA_TEMPLATE = `
 
 GA_TEMPLATE = compileTemplate(GA_TEMPLATE);
 
+let MATOMO_TEMPLATE = `
+  <!-- Matomo -->
+  <script type="text/javascript">
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(["setDoNotTrack", true]);
+    _paq.push(["disableCookies"]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//ws.sciences-po.fr/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '13']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <noscript><p><img src="//ws.sciences-po.fr/matomo.php?idsite=13&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+  <!-- End Matomo Code -->
+`;
+
+MATOMO_TEMPLATE = compileTemplate(MATOMO_TEMPLATE);
+
 // Helpers
 const HELMET_CLEANER = / data-react-helmet="true"/g;
 
@@ -30,6 +53,10 @@ function cleanHelmetOutput(output) {
 
 function templateGoogleAnalytics(id) {
   return GA_TEMPLATE({GOOGLE_ANALYTICS_ID: id});
+}
+
+function templateMatomo() {
+  return MATOMO_TEMPLATE({});
 }
 
 function templateRssFeedLink(title, href) {
@@ -98,6 +125,7 @@ function wrap(pathPrefix, content, helmet, options) {
     <link href="${pathPrefix}/font/Symbol/symbol.css" rel="stylesheet">
     <link href="${pathPrefix}/medialab.css" rel="stylesheet">
     ${ga ? templateGoogleAnalytics(ga) : ''}
+    ${templateMatomo()}
   </head>
   <body>
     ${content}

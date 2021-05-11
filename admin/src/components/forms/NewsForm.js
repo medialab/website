@@ -19,7 +19,8 @@ import PreviewLink from '../misc/PreviewLink';
 import {statusLabels} from './utils';
 
 function validate(data) {
-  if (!data.title || !data.title.fr) return 'Need at least a French title';
+  if (!data.title || (!data.title.fr && !data.title.en))
+    return 'Need at least a  title';
 
   if (!data.startDate) return 'Need a start date';
 }
@@ -28,7 +29,9 @@ const accessLabels = ['internal', 'external'];
 
 const HANDLERS = {
   englishTitle: {
-    field: ['title', 'en']
+    type: 'slug',
+    field: ['title', 'en'],
+    slugify: slugifyNews
   },
   frenchTitle: {
     type: 'slug',

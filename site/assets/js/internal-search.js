@@ -1,6 +1,10 @@
 const internalSearchInput = document.querySelector('#internal-search');
-const internalSearchSvg = document.querySelector('#internal-search #search-svg');
-const internalSearchInputInput = document.querySelector('#internal-search input');
+const internalSearchSvg = document.querySelector(
+  '#internal-search #search-svg'
+);
+const internalSearchInputInput = document.querySelector(
+  '#internal-search input'
+);
 const internalSearchPlaceholder = document.querySelector(
   '.internal-search-container .closed-placeholder'
 );

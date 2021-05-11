@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "build": "node ./scripts/build.js",
-    "clean": "rm -rf build && rm -rf .cache",
+    "clean": "rm -rf build && rm -rf wbuild && rm -rf .cache",
     "dev": "concurrently --names api,admin -c blue,green \"npm run dev:api\" \"npm run dev:admin\"",
     "dev:api": "nodemon api/server.js",
     "dev:admin": "cd admin && npm run dev",

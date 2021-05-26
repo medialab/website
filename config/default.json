@@ -21,7 +21,10 @@
     "accessTokenKey": "TWITTER_ACCESS_TOKEN_KEY",
     "accessTokenSecret": "TWITTER_ACCESS_TOKEN_SECRET"
   },
-  "googleAnalyticsId": "UA-XXXXXXXX-Y",
+  "matomo": {
+    "domain": "ws.sciences-po.fr",
+    "siteId": null
+  },
   "adminUrl": "http://localhost:7000",
   "previewBase": "http://localhost:3000",
   "previewPrefix": "/",

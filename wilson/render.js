@@ -7,20 +7,6 @@ const SiteContext = require('../site/context.js').default;
 const meta = require('./meta.js');
 
 // Templates
-let GA_TEMPLATE = `
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= GOOGLE_ANALYTICS_ID %>"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', '<%= GOOGLE_ANALYTICS_ID %>');
-  </script>
-`;
-
-GA_TEMPLATE = compileTemplate(GA_TEMPLATE);
-
 let MATOMO_TEMPLATE = `
   <!-- Matomo -->
   <script type="text/javascript">
@@ -31,14 +17,14 @@ let MATOMO_TEMPLATE = `
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
     (function() {
-      var u='//ws.sciences-po.fr/';
+      var u='//<%= MATOMO_DOMAIN %>/';
       _paq.push(['setTrackerUrl', u+'matomo.php']);
-      _paq.push(['setSiteId', '13']);
+      _paq.push(['setSiteId', '<%= MATOMO_SITE_ID %>']);
       var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
       g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
     })();
   </script>
-  <noscript><p><img src="//ws.sciences-po.fr/matomo.php?idsite=13&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+  <noscript><p><img src="//<%= MATOMO_DOMAIN %>/matomo.php?idsite=13&amp;rec=1" style="border:0;" alt="" /></p></noscript>
   <!-- End Matomo Code -->
 `;
 
@@ -51,12 +37,8 @@ function cleanHelmetOutput(output) {
   return output.replace(HELMET_CLEANER, '');
 }
 
-function templateGoogleAnalytics(id) {
-  return GA_TEMPLATE({GOOGLE_ANALYTICS_ID: id});
-}
-
-function templateMatomo() {
-  return MATOMO_TEMPLATE({});
+function templateMatomo(domain, id) {
+  return MATOMO_TEMPLATE({MATOMO_DOMAIN: domain, MATOMO_SITE_ID: id});
 }
 
 function templateRssFeedLink(title, href) {
@@ -66,7 +48,8 @@ function templateRssFeedLink(title, href) {
 function wrap(pathPrefix, content, helmet, options) {
   options = options || {};
 
-  const ga = options.googleAnalyticsId;
+  const matomoDomain = options.matomoDomain;
+  const matomoSiteId = options.matomoSiteId;
 
   // Javascript
   let scriptTags = '';
@@ -124,8 +107,7 @@ function wrap(pathPrefix, content, helmet, options) {
     <link href="${pathPrefix}/font/Bel2/bel2.css" rel="stylesheet">
     <link href="${pathPrefix}/font/Symbol/symbol.css" rel="stylesheet">
     <link href="${pathPrefix}/medialab.css" rel="stylesheet">
-    ${ga ? templateGoogleAnalytics(ga) : ''}
-    ${templateMatomo()}
+    ${matomoSiteId ? templateMatomo(matomoDomain, matomoSiteId) : ''}
   </head>
   <body>
     ${content}
@@ -146,7 +128,6 @@ function wrap(pathPrefix, content, helmet, options) {
   `.trim();
 }
 
-// TODO: solve Helmet warnings
 // TODO: factorize `mainPermalink` in components
 // TODO: easter egg
 // TODO: use classnames for html fallback and such
@@ -187,8 +168,12 @@ exports.renderPage = function (
   // Internal search should be activated on every page
   scripts.push('internal-search');
 
+  // tmp: cookie busting script to make sure people get rid of GA cookie
+  scripts.push('cookie-buster');
+
   content = wrap(pathPrefix, content, helmet, {
-    googleAnalyticsId: options.googleAnalyticsId,
+    matomoDomain: options.matomoDomain,
+    matomoSiteId: options.matomoSiteId,
     rssFeeds: options.rssFeeds,
     livereloadUrl: options.livereloadUrl,
     scripts

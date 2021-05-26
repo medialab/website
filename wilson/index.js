@@ -218,7 +218,8 @@ function buildI18nPage(
 
   const commonOptions = {
     rssFeeds: options.rssFeeds || null,
-    googleAnalyticsId: config.get('googleAnalyticsId')
+    matomoDomain: config.get('matomo.domain'),
+    matomoSiteId: config.get('matomo.siteId')
   };
 
   versions.fr = renderPage(

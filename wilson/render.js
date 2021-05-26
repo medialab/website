@@ -26,12 +26,12 @@ let MATOMO_TEMPLATE = `
   <script type="text/javascript">
     var _paq = window._paq = window._paq || [];
     /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-    _paq.push(["setDoNotTrack", true]);
-    _paq.push(["disableCookies"]);
+    _paq.push(['setDoNotTrack', true]);
+    _paq.push(['disableCookies']);
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
     (function() {
-      var u="//ws.sciences-po.fr/";
+      var u='//ws.sciences-po.fr/';
       _paq.push(['setTrackerUrl', u+'matomo.php']);
       _paq.push(['setSiteId', '13']);
       var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];

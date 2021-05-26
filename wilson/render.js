@@ -149,7 +149,8 @@ exports.renderPage = function (
   const renderingContext = {
     ...meta,
     permalink,
-    pathPrefix
+    pathPrefix,
+    matomoDomain: options.matomoDomain
   };
 
   const page = (

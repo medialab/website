@@ -1,6 +1,25 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import SiteContext from '../context';
+
+function MatomoOptOutIframe({url}) {
+  return (
+    <iframe
+      style={{
+        border: '1px solid #444',
+        height: '200px',
+        width: '70%',
+        padding: '10px'
+      }}
+      src={url}></iframe>
+  );
+}
 
 export default function Legal({lang}) {
+  const context = useContext(SiteContext);
+  const matomoDomain = context.matomoDomain;
+
+  const optOutUrl = `https://${matomoDomain}/index.php?module=CoreAdminHome&action=optOut&language=${lang}&backgroundColor=&fontColor=444&fontSize=&fontFamily=sans-serif`;
+
   // console.log(lang);
   if (lang === 'fr')
     // ***************************    french VERSION
@@ -212,9 +231,26 @@ export default function Legal({lang}) {
             </p>
             <p>
               Ce site ne collecte aucune information personnelle, à l'exception
-              des formulaires d'inscription à différents évènements et notamment
-              au séminaire du médialab.
+              des formulaires d'inscription à différents évènements comme le
+              séminaire du médialab ainsi que des données brutes anonymisées de
+              visites et d'actions collectées par{' '}
+              <a href="https://matomo.org/gdpr-analytics/">Matomo</a>, un
+              traceur d'audience hébergé à SciencesPo pour la production de
+              statistiques de consultation du site web.
             </p>
+            <p>
+              Cette collecte se fait sans utiliser de cookies et respecte les
+              paramètres de votre navigateur en matière de confidentialité. Les
+              données brutes anonymisées de visites sont uniquement consultées
+              par le médialab à des fins d'amélioration de l'expérience
+              utilisateur.
+            </p>
+            <p>
+              Vous pouvez en outre utiliser le formulaire ci-après pour éviter
+              explicitement que vos données de visite ne soient collectées si
+              cela n'est pas déjà le cas:
+            </p>
+            <MatomoOptOutIframe url={optOutUrl} />
             <p>
               Sciences Po invite les visiteurs à informer ses services dans les
               plus brefs délais en cas de violation des données personnelles.
@@ -459,11 +495,24 @@ export default function Legal({lang}) {
             </p>
 
             <p>
-              This website does not collect any personal data, with the
-              exception of registration forms for events and for the medialab
-              seminar in particular.
+              This website does not collect any personal data, with the notable
+              exception of registration forms for events such as the medialab
+              seminar as well as anonymized data about visits on the website,
+              collected by
+              <a href="https://matomo.org/gdpr-analytics/">Matomo</a>, an
+              analytics software hosted by SciencesPo.
             </p>
-
+            <p>
+              This data collection does not require cookies and respect your
+              browser's privacy settings. Collected data can only be accessed
+              and analyzed by médialab in order to improve the website's user
+              experience.
+            </p>
+            <p>
+              Furthermore, you can use the form hereafter to completely opt-out
+              of this data collection if it is not already the case:
+            </p>
+            <MatomoOptOutIframe url={optOutUrl} />
             <p>
               Sciences Po invites visitors to inform its services immediately in
               the event of a violation of personal data regulations. For this

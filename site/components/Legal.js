@@ -490,7 +490,7 @@ export default function Legal({lang}) {
               In accordance with the European General Data Protection Regulation
               2016/679 (GDPR), the legal basis for the processing of personal
               data on the website is its necessity for the execution of Sciences
-              Po's public service mission (as per Article 6.1.e of the GDPR).
+              Po's public service mission (as per Article 6.1.e).
             </p>
 
             <p>

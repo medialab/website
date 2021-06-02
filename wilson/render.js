@@ -24,7 +24,7 @@ let MATOMO_TEMPLATE = `
       g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
     })();
   </script>
-  <noscript><p><img src="//<%= MATOMO_DOMAIN %>/matomo.php?idsite=13&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+  <noscript><p><img src="//<%= MATOMO_DOMAIN %>/matomo.php?idsite=<%= MATOMO_SITE_ID %>&amp;rec=1" style="border:0;" alt="" /></p></noscript>
   <!-- End Matomo Code -->
 `;
 

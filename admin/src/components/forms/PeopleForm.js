@@ -20,6 +20,9 @@ import {statusLabels} from './utils';
 function validate(data) {
   if (!data.firstName || !data.lastName)
     return 'Need at least a first name & a last name';
+
+  if (!data.role || (!data.role.fr && !data.role.en))
+    return 'Need to have a role';
 }
 
 const MEMBERS_LABELS = ['membre actif', 'ancien membre'];

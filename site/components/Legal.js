@@ -100,8 +100,8 @@ export default function Legal({lang}) {
 
             <h3 id="directeur">Directeur de la publication</h3>
             <p>
-              Mathias Vicherat, Administrateur de la Fondation Nationale des
-              Sciences Politiques et Directeur de l’Institut d’Études
+              Mathias Vicherat, Administrateur de la Fondation Nationale
+              des Sciences Politiques et Directeur de l’Institut d’Études
               Politiques de Paris.
             </p>
 
@@ -369,9 +369,9 @@ export default function Legal({lang}) {
 
             <h3 id="publisher">Publications Director</h3>
             <p>
-              Bénédicte Durand, Interim Administrator of the Institut d’études
-              politiques de Paris and the Fondation nationale des sciences
-              politiques.
+              Mathias Vicherat, Administrator of the Fondation Nationale
+              des Sciences Politiques and Director of the Institut d’Études
+              Politiques de Paris.
             </p>
 
             <h3 id="host">Web Hosting</h3>

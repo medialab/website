@@ -90,6 +90,7 @@
     "config-secrets": "^1.0.6",
     "cron": "^1.8.2",
     "cssmin": "^0.4.3",
+    "csv-write-stream": "^2.0.0",
     "date-fns": "^2.16.1",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.0",

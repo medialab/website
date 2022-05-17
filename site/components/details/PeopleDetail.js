@@ -127,11 +127,7 @@ function PeopleContactLabel({lang, data}) {
     );
   }
 
-  if (
-    data.type === 'url' &&
-    data.label !== 'CV' &&
-    data.value.length <= MAX_URL_LENGTH
-  ) {
+  if (data.type === 'url' && data.value.length <= MAX_URL_LENGTH) {
     return (
       <span>
         <span className="label-data">{data.label}:</span>
@@ -148,7 +144,7 @@ function PeopleContactLabel({lang, data}) {
     );
   }
 
-  if (data.type !== 'url')
+  if (data.type !== 'url' && data.type !== 'attachment')
     return (
       <span>
         <span className="label-data">{data.label}:</span>

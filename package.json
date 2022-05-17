@@ -13,7 +13,6 @@
     "docker:start": "npm run clean && npm start",
     "dump": "node ./scripts/dump.js",
     "flux": "node ./scripts/flux-github.js && node ./scripts/flux-twitter.js",
-    "hydrate": "rm -rf data/* && mkdir -p data/assets && touch data/assets/dummy && cp specs/samples/*.json data",
     "install:admin": "cd admin && npm i",
     "load": "node ./scripts/load.js",
     "postinstall": "npm run install:admin",

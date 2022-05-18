@@ -5,6 +5,9 @@ const BASE_URL = 'https://api.archives-ouvertes.fr';
 const PAGINATION_COUNT = 100;
 const MEDIALAB_STRUCT_ID = 394361;
 
+// TODO: use as a mask
+const USEFUL_FIELDS = ['sciencespoId_s', 'halId_s', 'label_xml'];
+
 module.exports = class HALClient {
   searchDocs(query, perItemCallback, doneCallback) {
     let counter = 0;

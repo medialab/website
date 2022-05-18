@@ -6,12 +6,16 @@ const makeSlugFunctions = require('../../specs/slugs');
 const HALClient = require('./client');
 const {extractMetadataFromXml} = require('./helpers');
 
+const HAL_SCPO_BASE_URL = 'https://hal-sciencespo.archives-ouvertes.fr';
+
 const {production: slugifyProduction} = makeSlugFunctions(slugLib);
 
 function translateDocument(doc) {
   const xmlMetadata = extractMetadataFromXml(doc.label_xml);
 
-  return {};
+  return {
+    url: `${HAL_SCPO_BASE_URL}/${doc.halId_s}`
+  };
 }
 
 // TODO...
@@ -26,7 +30,7 @@ function findSlugForNewProduction(existingSlugs, generatedFields) {
       slugifyProduction(generatedFields) +
       (increment === 1 ? '' : `-${increment}`);
     increment++;
-  } while (!existingSlugs.has(slug));
+  } while (existingSlugs.has(slug));
 
   return slug;
 }
@@ -66,6 +70,7 @@ module.exports = function syncHAL(
 
   const client = new HALClient();
 
+  let seen = 0;
   let spireMatches = 0;
   let halMatches = 0;
   let newProductions = 0;
@@ -74,12 +79,16 @@ module.exports = function syncHAL(
 
   client.searchMedialabDocs(
     doc => {
+      seen++;
+
+      if (seen % 100 === 0) emitCallback(`Processed ${seen} HAL documents`);
+
       // Matching with spire id, then hal
       let match = undefined;
       let production;
 
       const spireId = doc.sciencespoId_s;
-      const halId = doc.docid;
+      const halId = doc.halId_s;
 
       if (spireId) {
         match = productionsBySpireId[spireId];
@@ -94,7 +103,7 @@ module.exports = function syncHAL(
       }
 
       const halAddendum = {
-        id: doc.docid,
+        id: doc.halId_s,
         lastUpdated: Date.now(),
         meta: doc, // TODO: mask, to avoid keeping too much cruft
         generatedFields: translateDocument(doc)
@@ -136,7 +145,7 @@ module.exports = function syncHAL(
     err => {
       if (err) return doneCallback(err);
 
-      emitCallback('Finished synchronizing HAL documents');
+      emitCallback(`Finished synchronizing ${seen} HAL documents`);
       emitCallback(`Matched ${spireMatches} through a spire id`);
       emitCallback(`Matched ${halMatches} through a hal id`);
       emitCallback(`Created ${newProductions} new productions`);

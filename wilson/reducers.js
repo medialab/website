@@ -88,6 +88,12 @@ exports.productions = function reduceProductions(pathPrefix, production) {
     production = {...production.spire.generatedFields, ...production};
   }
 
+  // HAL fields (HAL takes precedence over Spire)
+  if (production.hal) {
+    // use hal.generatedFields for empty object fields
+    production = {...production.hal.generatedFields, ...production};
+  }
+
   // Typography
   if (production.title && production.title.fr)
     production.title.fr = frenchTypographyReplace(production.title.fr);

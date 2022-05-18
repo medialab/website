@@ -8,6 +8,29 @@ const {extractMetadataFromXml} = require('./helpers');
 
 const {production: slugifyProduction} = makeSlugFunctions(slugLib);
 
+function translateDocument(doc) {
+  const xmlMetadata = extractMetadataFromXml(doc.label_xml);
+
+  return {};
+}
+
+// TODO...
+function resolveMedialabAuthors() {}
+
+function findSlugForNewProduction(existingSlugs, generatedFields) {
+  let increment = 1;
+  let slug;
+
+  do {
+    slug =
+      slugifyProduction(generatedFields) +
+      (increment === 1 ? '' : `-${increment}`);
+    increment++;
+  } while (!existingSlugs.has(slug));
+
+  return slug;
+}
+
 module.exports = function syncHAL(
   dbs,
   doneCallback,
@@ -35,6 +58,12 @@ module.exports = function syncHAL(
     p => p.hal.id
   );
 
+  const existingSlugs = new Set();
+
+  productionData.forEach(p => {
+    p.slugs.forEach(s => existingSlugs.add(s));
+  });
+
   const client = new HALClient();
 
   let spireMatches = 0;
@@ -45,8 +74,6 @@ module.exports = function syncHAL(
 
   client.searchMedialabDocs(
     doc => {
-      const xmlMetadata = extractMetadataFromXml(doc.label_xml);
-
       // Matching with spire id, then hal
       let match = undefined;
       let production;
@@ -66,20 +93,38 @@ module.exports = function syncHAL(
         if (match) halMatches++;
       }
 
+      const halAddendum = {
+        id: doc.docid,
+        lastUpdated: Date.now(),
+        meta: doc, // TODO: mask, to avoid keeping too much cruft
+        generatedFields: translateDocument(doc)
+      };
+
       // Here the production already exist, we only update it
       if (match) {
+        match.hal = halAddendum;
       }
 
       // Here the production does not yet exist, we create it from scratch
       else {
         newProductions++;
 
-        const halAddendum = {
-          id: doc.docid,
+        const slug = findSlugForNewProduction(
+          existingSlugs,
+          halAddendum.generatedFields
+        );
+
+        existingSlugs.add(slug);
+
+        production = {
+          id: uuid(),
+          slugs: [slug],
+          draft: true,
           lastUpdated: Date.now(),
-          meta: doc, // TODO: mask, to avoid keeping too much cruft
-          generatedFields: {}
+          hal: halAddendum
         };
+
+        productionData.push(production);
       }
 
       // TODO: don't forget to bump lastUpdated

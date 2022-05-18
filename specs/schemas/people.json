@@ -94,14 +94,8 @@
     "domain": {
       "title": "Domaine",
       "type": "string",
-      "enum": [
-        "academic",
-        "tech",
-        "design",
-        "pedagogy",
-        "admin"
-      ],
-      "enumId" : "domains"
+      "enum": ["academic", "tech", "design", "pedagogy", "admin"],
+      "enumId": "domains"
     },
     "status": {
       "title": "Occupation actuelle",
@@ -142,11 +136,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "attachment",
-              "string",
-              "url"
-            ]
+            "enum": ["attachment", "string", "url"]
           },
           "label": {
             "type": "string"
@@ -156,28 +146,17 @@
           },
           "lang": {
             "type": "string",
-            "enum": [
-              "en",
-              "fr"
-            ],
+            "enum": ["en", "fr"],
             "enumId": "language"
           }
         },
-        "required": [
-          "type",
-          "label",
-          "value"
-        ]
+        "required": ["type", "label", "value"]
       }
     },
     "membership": {
       "title": "Type de membre",
       "type": "string",
-      "enum": [
-        "associate",
-        "member",
-        "invited"
-      ],
+      "enum": ["associate", "member", "invited"],
       "enumId": "membershipTypes"
     },
     "mainActivities": {
@@ -216,14 +195,10 @@
         }
       }
     },
-    "ldap":{
+    "ldap": {
       "title": "Identifiant LDAP",
       "type": "string"
     }
   },
-  "required": [
-    "firstName",
-    "lastName",
-    "slugs"
-  ]
+  "required": ["firstName", "lastName", "slugs"]
 }

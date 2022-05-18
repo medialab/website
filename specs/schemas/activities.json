@@ -113,11 +113,7 @@
     "type": {
       "title": "Type de l'activité",
       "type": "string",
-      "enum": [
-        "research",
-        "teaching",
-        "seminar"
-      ],
+      "enum": ["research", "teaching", "seminar"],
       "enumId": "activityTypes"
     },
     "content": {
@@ -163,11 +159,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "attachment",
-              "string",
-              "url"
-            ]
+            "enum": ["attachment", "string", "url"]
           },
           "label": {
             "type": "string"
@@ -177,18 +169,11 @@
           },
           "lang": {
             "type": "string",
-            "enum": [
-              "en",
-              "fr"
-            ],
+            "enum": ["en", "fr"],
             "enumId": "language"
           }
         },
-        "required": [
-          "type",
-          "label",
-          "value"
-        ]
+        "required": ["type", "label", "value"]
       }
     },
     "active": {
@@ -212,8 +197,5 @@
       "type": "boolean"
     }
   },
-  "required": [
-    "name",
-    "slugs"
-  ]
+  "required": ["name", "slugs"]
 }

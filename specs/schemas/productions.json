@@ -191,7 +191,7 @@
       "type": "boolean"
     },
     "spire": {
-      "title": "Information SPIRE",
+      "title": "Informations SPIRE",
       "type": "object",
       "properties": {
         "id": {
@@ -202,17 +202,45 @@
           "title": "Metadonnées SPIRE",
           "type": "object",
           "properties": {
-            "rec_id" : {
+            "rec_id": {
               "title": "Identifiant SPIRE",
               "type": "string"
             }
           }
         },
         "generatedFields": {
-          "title": "champs de générés depuis SPIRE",
+          "title": "Champs de générés depuis SPIRE",
           "type": "object",
           "properties": {
-            "authors" : {
+            "authors": {
+              "title": "liste des auteurs",
+              "type": "string"
+            }
+          }
+        },
+        "lastUpdated": {
+          "title": "Timestamp of last update",
+          "type": "number"
+        }
+      }
+    },
+    "hal": {
+      "title": "Informations HAL",
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Identifiant HAL",
+          "type": "string"
+        },
+        "meta": {
+          "title": "Metadonnées HAL",
+          "type": "object"
+        },
+        "generatedFields": {
+          "title": "Champs de générés depuis HAL",
+          "type": "object",
+          "properties": {
+            "authors": {
               "title": "liste des auteurs",
               "type": "string"
             }
@@ -233,11 +261,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "attachment",
-              "string",
-              "url"
-            ]
+            "enum": ["attachment", "string", "url"]
           },
           "label": {
             "type": "string"
@@ -247,25 +271,25 @@
           },
           "lang": {
             "type": "string",
-            "enum": [
-              "en",
-              "fr"
-            ],
+            "enum": ["en", "fr"],
             "enumId": "language"
           }
         },
-        "required": [
-          "type",
-          "label",
-          "value"
-        ]
+        "required": ["type", "label", "value"]
       }
     },
     "usages": {
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["collect", "curation", "processing", "exploration", "visualization", "writing"],
+        "enum": [
+          "collect",
+          "curation",
+          "processing",
+          "exploration",
+          "visualization",
+          "writing"
+        ],
         "enumId": "usages"
       }
     },
@@ -273,7 +297,6 @@
       "type": "string",
       "enum": ["developers", "all"],
       "enumId": "audience"
-
     },
     "status": {
       "type": "string",
@@ -281,7 +304,5 @@
       "enumId": "status"
     }
   },
-  "required":[
-    "slugs"
-  ]
+  "required": ["slugs"]
 }

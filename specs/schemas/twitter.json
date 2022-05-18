@@ -32,15 +32,10 @@
     "type": {
       "title": "Type de tweet",
       "type": "string",
-      "enum": [
-        "normal",
-        "retweet",
-        "quote",
-        "reply"
-      ]
+      "enum": ["normal", "retweet", "quote", "reply"]
     },
-    "originalTweet":{
-      "title" : "Tweet retweeté ou origine de la réponse",
+    "originalTweet": {
+      "title": "Tweet retweeté ou origine de la réponse",
       "type": "object",
       "properties": {
         "tweet": {
@@ -66,12 +61,7 @@
         "type": {
           "title": "Type de tweet",
           "type": "string",
-          "enum": [
-            "normal",
-            "retweet",
-            "quote",
-            "reply"
-          ]
+          "enum": ["normal", "retweet", "quote", "reply"]
         }
       }
     }

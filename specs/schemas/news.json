@@ -27,11 +27,7 @@
     "type": {
       "title": "Type",
       "type": "string",
-      "enum": [
-        "event",
-        "post",
-        "notice"
-      ],
+      "enum": ["event", "post", "notice"],
       "enumId": "newsTypes"
     },
     "title": {
@@ -188,11 +184,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "attachment",
-              "string",
-              "url"
-            ]
+            "enum": ["attachment", "string", "url"]
           },
           "label": {
             "type": "string"
@@ -202,18 +194,11 @@
           },
           "lang": {
             "type": "string",
-            "enum": [
-              "en",
-              "fr"
-            ],
+            "enum": ["en", "fr"],
             "enumId": "language"
           }
         },
-        "required": [
-          "type",
-          "label",
-          "value"
-        ]
+        "required": ["type", "label", "value"]
       }
     },
     "startDate": {
@@ -237,8 +222,5 @@
       "type": "boolean"
     }
   },
-  "required": [
-    "title",
-    "slugs"
-  ]
+  "required": ["title", "slugs"]
 }

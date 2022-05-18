@@ -431,7 +431,7 @@ app.get('/aspire', (req, res) => {
 });
 
 app.get('/sync-hal', (req, res) => {
-  const willPerform = updateSpire(err => {
+  const willPerform = updateHAL(err => {
     if (err) console.error(err);
   });
 

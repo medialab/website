@@ -21,10 +21,8 @@ const messagesMeta = {
     en: 'Tools | médialab Sciences Po'
   },
   description: {
-    fr:
-      "Le médialab produit, mobilise et enseigne l'usage de nombreux outils numériques libres dédiés à l'enquête. Chaque outil listé sur cette page donne accès au code source, à la documentation et à des cas d'usages quand ils sont disponibles.",
-    en:
-      'The medialab produces, mobilizes and teaches the use of numerous free digital tools dedicated to research. Each tool listed in this page gives access to its source code, documentation and use cases when available.'
+    fr: "Le médialab produit, mobilise et enseigne l'usage de nombreux outils numériques libres dédiés à l'enquête. Chaque outil listé sur cette page donne accès au code source, à la documentation et à des cas d'usages quand ils sont disponibles.",
+    en: 'The medialab produces, mobilizes and teaches the use of numerous free digital tools dedicated to research. Each tool listed in this page gives access to its source code, documentation and use cases when available.'
   }
 };
 

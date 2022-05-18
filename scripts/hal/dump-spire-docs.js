@@ -2,6 +2,7 @@ const csvWriter = require('csv-write-stream');
 
 const reducers = require('../../wilson/reducers');
 const HALClient = require('../../api/hal/client');
+const helpers = require('../../api/hal/helpers');
 const DATA = require('../../data/productions.json');
 
 const spireDocsInSite = new Map();
@@ -16,7 +17,17 @@ const spireIdsInHAL = new Set();
 console.error(`We have ${spireDocsInSite.size} known spire ids.`);
 
 const writer = csvWriter({
-  headers: ['spireId', 'inHAL', 'inSite', 'type', 'group', 'refSpire', 'refHAL']
+  headers: [
+    'spireId',
+    'inHAL',
+    'inSite',
+    'type',
+    'group',
+    'refSpire',
+    'refHAL',
+    'typologyLabelHAL',
+    'typologyCodeHAL'
+  ]
 });
 writer.pipe(process.stdout);
 
@@ -49,6 +60,8 @@ client.searchMedialabDocs(
       inSite = spireDocsInSite.get(docId);
     }
 
+    const halMeta = helpers.extractMetadataFromXml(doc.label_xml);
+
     if (inSite) {
       found++;
       writer.write({
@@ -58,7 +71,9 @@ client.searchMedialabDocs(
         type: inSite.type,
         group: inSite.group,
         refSpire: inSite.ref.trim(),
-        refHAL: doc.label_s.trim()
+        refHAL: doc.label_s.trim(),
+        typologyLabelHAL: halMeta.typologyLabel || '',
+        typologyCodeHAL: halMeta.typologyCode || ''
       });
     } else {
       writer.write({
@@ -66,7 +81,9 @@ client.searchMedialabDocs(
         inHAL: 'yes',
         inSite: 'no',
         refSpire: docId ? doc.label_s.trim() : '',
-        refHAL: doc.label_s.trim()
+        refHAL: doc.label_s.trim(),
+        typologyLabelHAL: halMeta.typologyLabel || '',
+        typologyCodeHAL: halMeta.typologyCode || ''
       });
     }
   },

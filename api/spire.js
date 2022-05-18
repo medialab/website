@@ -11,10 +11,8 @@ const config = require('config-secrets'),
 const SUPERUSER = config.get('superuser');
 const AUTH = `${SUPERUSER.username}:${SUPERUSER.password}`;
 
-const {
-  production: slugifyProduction,
-  people: slugifyPeople
-} = makeSlugFunctions(slugLib);
+const {production: slugifyProduction, people: slugifyPeople} =
+  makeSlugFunctions(slugLib);
 
 const models = require('../specs/models.json');
 

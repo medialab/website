@@ -1,7 +1,7 @@
-const async = require('async'),
-  stableJson = require('json-stable-stringify'),
-  path = require('path'),
-  fs = require('fs-extra');
+const async = require('async');
+const stableJson = require('json-stable-stringify');
+const path = require('path');
+const fs = require('fs-extra');
 
 const apply = async.apply;
 

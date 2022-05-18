@@ -4,7 +4,8 @@ const getImageSize = require('image-size');
 
 const MODELS = ['activities', 'news', 'people', 'productions'];
 
-const uuidv4 = /[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}/i;
+const uuidv4 =
+  /[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}/i;
 const nbsp = /&nbsp;/g;
 const reverseNbsp = /%%NBSP%%/g;
 const badBr = /<br\s*\/>|<\/\s*br>/g;

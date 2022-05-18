@@ -100,9 +100,9 @@ export default function Legal({lang}) {
 
             <h3 id="directeur">Directeur de la publication</h3>
             <p>
-              Mathias Vicherat, Administrateur de la Fondation Nationale
-              des Sciences Politiques et Directeur de l’Institut d’Études
-              Politiques de Paris.
+              Mathias Vicherat, Administrateur de la Fondation Nationale des
+              Sciences Politiques et Directeur de l’Institut d’Études Politiques
+              de Paris.
             </p>
 
             <h3 id="host">Hébergement</h3>
@@ -222,8 +222,8 @@ export default function Legal({lang}) {
 
             <h3 id="IL">Informatique et Libertés</h3>
             <p>
-              En vertu de l'article 6.1.e du Règlement général européen
-              sur la protection des données 2016/679 (dit “RGPD”), les données
+              En vertu de l'article 6.1.e du Règlement général européen sur la
+              protection des données 2016/679 (dit “RGPD”), les données
               personnelles traitées sur le site web sont, selon les finalités de
               traitement, nécessaires à l’exécution de la mission de service
               public de Sciences Po.
@@ -369,8 +369,8 @@ export default function Legal({lang}) {
 
             <h3 id="publisher">Publications Director</h3>
             <p>
-              Mathias Vicherat, Administrator of the Fondation Nationale
-              des Sciences Politiques and Director of the Institut d’Études
+              Mathias Vicherat, Administrator of the Fondation Nationale des
+              Sciences Politiques and Director of the Institut d’Études
               Politiques de Paris.
             </p>
 

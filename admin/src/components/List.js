@@ -64,14 +64,8 @@ function ListFilterBar({filters, onChange, specs}) {
 }
 
 const ListTable = React.memo(props => {
-  const {
-    filteredData,
-    model,
-    ordering,
-    relations,
-    specs,
-    handleOrdering
-  } = props;
+  const {filteredData, model, ordering, relations, specs, handleOrdering} =
+    props;
 
   return (
     <table className="listing table is-bordered is-hoverable">
@@ -292,14 +286,8 @@ export default class List extends Component {
   };
 
   render() {
-    const {
-      data,
-      filters,
-      filteredData,
-      query,
-      ordering,
-      relations
-    } = this.state;
+    const {data, filters, filteredData, query, ordering, relations} =
+      this.state;
 
     const {label, model, specs} = this.props;
 

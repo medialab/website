@@ -102,7 +102,8 @@
       t.exports = n;
     },
     function (t, e) {
-      var r = /^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/,
+      var r =
+          /^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/,
         n = [
           'source',
           'protocol',
@@ -320,38 +321,43 @@
         return t;
       }
       (t.exports = n),
-        (n.prototype.on = n.prototype.addEventListener = function (t, e) {
-          return (
-            (this._callbacks = this._callbacks || {}),
-            (this._callbacks['$' + t] = this._callbacks['$' + t] || []).push(e),
-            this
-          );
-        }),
+        (n.prototype.on = n.prototype.addEventListener =
+          function (t, e) {
+            return (
+              (this._callbacks = this._callbacks || {}),
+              (this._callbacks['$' + t] = this._callbacks['$' + t] || []).push(
+                e
+              ),
+              this
+            );
+          }),
         (n.prototype.once = function (t, e) {
           function r() {
             this.off(t, r), e.apply(this, arguments);
           }
           return (r.fn = e), this.on(t, r), this;
         }),
-        (n.prototype.off = n.prototype.removeListener = n.prototype.removeAllListeners = n.prototype.removeEventListener = function (
-          t,
-          e
-        ) {
-          if (
-            ((this._callbacks = this._callbacks || {}), 0 == arguments.length)
-          )
-            return (this._callbacks = {}), this;
-          var r = this._callbacks['$' + t];
-          if (!r) return this;
-          if (1 == arguments.length)
-            return delete this._callbacks['$' + t], this;
-          for (var n, o = 0; o < r.length; o++)
-            if (((n = r[o]), n === e || n.fn === e)) {
-              r.splice(o, 1);
-              break;
-            }
-          return this;
-        }),
+        (n.prototype.off =
+          n.prototype.removeListener =
+          n.prototype.removeAllListeners =
+          n.prototype.removeEventListener =
+            function (t, e) {
+              if (
+                ((this._callbacks = this._callbacks || {}),
+                0 == arguments.length)
+              )
+                return (this._callbacks = {}), this;
+              var r = this._callbacks['$' + t];
+              if (!r) return this;
+              if (1 == arguments.length)
+                return delete this._callbacks['$' + t], this;
+              for (var n, o = 0; o < r.length; o++)
+                if (((n = r[o]), n === e || n.fn === e)) {
+                  r.splice(o, 1);
+                  break;
+                }
+              return this;
+            }),
         (n.prototype.emit = function (t) {
           this._callbacks = this._callbacks || {};
           var e = [].slice.call(arguments, 1),
@@ -577,42 +583,43 @@
             0 === this.backoff.attempts &&
             this.reconnect();
         }),
-        (n.prototype.open = n.prototype.connect = function (t, e) {
-          if (~this.readyState.indexOf('open')) return this;
-          this.engine = i(this.uri, this.opts);
-          var r = this.engine,
-            n = this;
-          (this.readyState = 'opening'), (this.skipReconnect = !1);
-          var o = p(r, 'open', function () {
-              n.onopen(), t && t();
-            }),
-            s = p(r, 'error', function (e) {
-              if (
-                (n.cleanup(),
-                (n.readyState = 'closed'),
-                n.emitAll('connect_error', e),
-                t)
-              ) {
-                var r = new Error('Connection error');
-                (r.data = e), t(r);
-              } else n.maybeReconnectOnOpen();
-            });
-          if (!1 !== this._timeout) {
-            var a = this._timeout,
-              c = setTimeout(function () {
-                o.destroy(),
-                  r.close(),
-                  r.emit('error', 'timeout'),
-                  n.emitAll('connect_timeout', a);
-              }, a);
-            this.subs.push({
-              destroy: function () {
-                clearTimeout(c);
-              }
-            });
-          }
-          return this.subs.push(o), this.subs.push(s), this;
-        }),
+        (n.prototype.open = n.prototype.connect =
+          function (t, e) {
+            if (~this.readyState.indexOf('open')) return this;
+            this.engine = i(this.uri, this.opts);
+            var r = this.engine,
+              n = this;
+            (this.readyState = 'opening'), (this.skipReconnect = !1);
+            var o = p(r, 'open', function () {
+                n.onopen(), t && t();
+              }),
+              s = p(r, 'error', function (e) {
+                if (
+                  (n.cleanup(),
+                  (n.readyState = 'closed'),
+                  n.emitAll('connect_error', e),
+                  t)
+                ) {
+                  var r = new Error('Connection error');
+                  (r.data = e), t(r);
+                } else n.maybeReconnectOnOpen();
+              });
+            if (!1 !== this._timeout) {
+              var a = this._timeout,
+                c = setTimeout(function () {
+                  o.destroy(),
+                    r.close(),
+                    r.emit('error', 'timeout'),
+                    n.emitAll('connect_timeout', a);
+                }, a);
+              this.subs.push({
+                destroy: function () {
+                  clearTimeout(c);
+                }
+              });
+            }
+            return this.subs.push(o), this.subs.push(s), this;
+          }),
         (n.prototype.onopen = function () {
           this.cleanup(), (this.readyState = 'open'), this.emit('open');
           var t = this.engine;
@@ -687,14 +694,15 @@
             (this.lastPing = null),
             this.decoder.destroy();
         }),
-        (n.prototype.close = n.prototype.disconnect = function () {
-          (this.skipReconnect = !0),
-            (this.reconnecting = !1),
-            'opening' === this.readyState && this.cleanup(),
-            this.backoff.reset(),
-            (this.readyState = 'closed'),
-            this.engine && this.engine.close();
-        }),
+        (n.prototype.close = n.prototype.disconnect =
+          function () {
+            (this.skipReconnect = !0),
+              (this.reconnecting = !1),
+              'opening' === this.readyState && this.cleanup(),
+              this.backoff.reset(),
+              (this.readyState = 'closed'),
+              this.engine && this.engine.close();
+          }),
         (n.prototype.onclose = function (t) {
           this.cleanup(),
             this.backoff.reset(),
@@ -1072,9 +1080,10 @@
             (this.prevBufferLen = this.writeBuffer.length),
             this.emit('flush'));
         }),
-        (n.prototype.write = n.prototype.send = function (t, e, r) {
-          return this.sendPacket('message', t, e, r), this;
-        }),
+        (n.prototype.write = n.prototype.send =
+          function (t, e, r) {
+            return this.sendPacket('message', t, e, r), this;
+          }),
         (n.prototype.sendPacket = function (t, e, r, n) {
           if (
             ('function' == typeof e && ((n = e), (e = void 0)),
@@ -2252,9 +2261,10 @@
       }
       for (
         var i,
-          s = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_'.split(
-            ''
-          ),
+          s =
+            '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_'.split(
+              ''
+            ),
           a = 64,
           c = {},
           p = 0,
@@ -2621,15 +2631,16 @@
             ];
           }
         }),
-        (n.prototype.open = n.prototype.connect = function () {
-          return this.connected
-            ? this
-            : (this.subEvents(),
-              this.io.open(),
-              'open' === this.io.readyState && this.onopen(),
-              this.emit('connecting'),
-              this);
-        }),
+        (n.prototype.open = n.prototype.connect =
+          function () {
+            return this.connected
+              ? this
+              : (this.subEvents(),
+                this.io.open(),
+                'open' === this.io.readyState && this.onopen(),
+                this.emit('connecting'),
+                this);
+          }),
         (n.prototype.send = function () {
           var t = a(arguments);
           return t.unshift('message'), this.emit.apply(this, t), this;
@@ -2742,14 +2753,15 @@
           }
           this.io.destroy(this);
         }),
-        (n.prototype.close = n.prototype.disconnect = function () {
-          return (
-            this.connected && this.packet({type: i.DISCONNECT}),
-            this.destroy(),
-            this.connected && this.onclose('io client disconnect'),
-            this
-          );
-        }),
+        (n.prototype.close = n.prototype.disconnect =
+          function () {
+            return (
+              this.connected && this.packet({type: i.DISCONNECT}),
+              this.destroy(),
+              this.connected && this.onclose('io client disconnect'),
+              this
+            );
+          }),
         (n.prototype.compress = function (t) {
           return (this.flags.compress = t), this;
         }),

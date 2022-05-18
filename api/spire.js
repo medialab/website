@@ -152,7 +152,7 @@ module.exports.aSPIRE = function aSPIRE(
 ) {
   async.waterfall(
     [
-      // load indeces of existing prod and authors
+      // load indices of existing prod and authors
       getRefDone => {
         async.parallel(
           {
@@ -188,13 +188,13 @@ module.exports.aSPIRE = function aSPIRE(
               );
             }
           },
-          (err, indeces) => {
+          (err, indices) => {
             if (err) throw err;
-            getRefDone(null, indeces);
+            getRefDone(null, indices);
           }
         );
       },
-      (indeces, doneAPISpire) => {
+      (indices, doneAPISpire) => {
         let resultOffset = 0;
         let spireRecords = [];
         async.doUntil(
@@ -264,13 +264,13 @@ module.exports.aSPIRE = function aSPIRE(
             const apiRequestsToMake = [];
 
             const existingSlugs = new Set(
-              _.values(indeces.productions).reduce(
+              _.values(indices.productions).reduce(
                 (slugs, p) => slugs.concat(p.slugs),
                 []
               )
             );
             const spireAuthors = _.keyBy(
-              _.values(indeces.people).filter(p => !!p.spire),
+              _.values(indices.people).filter(p => !!p.spire),
               p => p.spire.id
             );
             // let's try to reconcile with slugs
@@ -280,7 +280,7 @@ module.exports.aSPIRE = function aSPIRE(
               (aut, idSpire) => {
                 // simple true match on slug
                 const match =
-                  indeces.people[
+                  indices.people[
                     slugifyPeople({
                       firstName: aut.name_given,
                       lastName: aut.name_family
@@ -331,7 +331,7 @@ module.exports.aSPIRE = function aSPIRE(
                   generatedFields: translateRecord(record, spireAuthors)
                 };
 
-                const p = indeces.productions[record.rec_id];
+                const p = indices.productions[record.rec_id];
                 // do we already have this one ? and has spire content changed
                 if (
                   p &&

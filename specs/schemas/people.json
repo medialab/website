@@ -195,6 +195,16 @@
         }
       }
     },
+    "hal": {
+      "title": "Informations HAL",
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Identifiant HAL",
+          "type": "string"
+        }
+      }
+    },
     "ldap": {
       "title": "Identifiant LDAP",
       "type": "string"

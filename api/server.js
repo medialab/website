@@ -34,6 +34,7 @@ const loadDump = require('./load.js');
 
 const MODELS = require('../specs/models.json');
 const spire = require('./spire.js');
+const syncHAL = require('./hal/sync.js');
 const oldSlugRedirections = require('./oldSlugRedirections.js');
 
 const config = require('config-secrets');
@@ -396,15 +397,43 @@ function updateSpire(callback) {
 
   changeSpireStatus('working');
 
-  return spire.aSPIRE(err => {
+  spire.aSPIRE(err => {
     changeSpireStatus('free');
 
     return callback(err);
   });
+
+  return true;
+}
+
+function updateHAL(callback) {
+  if (LOCKS.spireStatus !== 'free') return false;
+
+  changeSpireStatus('working');
+
+  syncHAL(DBS, err => {
+    changeSpireStatus('free');
+
+    return callback(err);
+  });
+
+  return true;
 }
 
 app.get('/aspire', (req, res) => {
-  const willPerform = updateSpire(err => console.error(err));
+  const willPerform = updateSpire(err => {
+    if (err) console.error(err);
+  });
+
+  const payload = !willPerform ? {result: 'Already doing.'} : {result: 'Ok'};
+
+  return res.json(payload);
+});
+
+app.get('/sync-hal', (req, res) => {
+  const willPerform = updateSpire(err => {
+    if (err) console.error(err);
+  });
 
   const payload = !willPerform ? {result: 'Already doing.'} : {result: 'Ok'};
 

@@ -3,16 +3,16 @@ const {doWhilst} = require('async');
 
 const BASE_URL = 'https://api.archives-ouvertes.fr';
 const PAGINATION_COUNT = 100;
+const MEDIALAB_STRUCT_ID = 394361;
 
 module.exports = class HALClient {
-  searchDocsWithSpireId(perItemCallback, doneCallback) {
+  searchDocs(query, perItemCallback, doneCallback) {
     let counter = 0;
 
     return doWhilst(
       next => {
         return request.get(
-          BASE_URL +
-            `/search/index/?q=sciencespoId_s:*&wt=json&fl=*&rows=${PAGINATION_COUNT}&start=${counter}`,
+          `${BASE_URL}/search/index/?q=${query}&wt=json&fl=*&rows=${PAGINATION_COUNT}&start=${counter}`,
           {json: true},
           (err, response) => {
             if (err) return next(err);
@@ -30,6 +30,18 @@ module.exports = class HALClient {
 
         return test(null, true);
       },
+      doneCallback
+    );
+  }
+
+  searchDocsWithSpireId(perItemCallback, doneCallback) {
+    return this.searchDocs('sciencespoId_s:*', perItemCallback, doneCallback);
+  }
+
+  searchMedialabDocs(perItemCallback, doneCallback) {
+    return this.searchDocs(
+      `labStructId_i:${MEDIALAB_STRUCT_ID}`,
+      perItemCallback,
       doneCallback
     );
   }

@@ -39,12 +39,15 @@ function dumpDocsNotInHAL() {
   });
 }
 
-client.searchDocsWithSpireId(
+client.searchMedialabDocs(
   doc => {
     const docId = doc.sciencespoId_s;
-    spireIdsInHAL.add(docId);
+    let inSite = null;
 
-    const inSite = spireDocsInSite.get(docId);
+    if (docId) {
+      spireIdsInHAL.add(docId);
+      inSite = spireDocsInSite.get(docId);
+    }
 
     if (inSite) {
       found++;
@@ -59,10 +62,11 @@ client.searchDocsWithSpireId(
       });
     } else {
       writer.write({
-        spireId: docId,
+        spireId: docId || '',
         inHAL: 'yes',
         inSite: 'no',
-        refSpire: doc.label_s.trim()
+        refSpire: docId ? doc.label_s.trim() : '',
+        refHAL: doc.label_s.trim()
       });
     }
   },

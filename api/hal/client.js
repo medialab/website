@@ -5,7 +5,6 @@ const BASE_URL = 'https://api.archives-ouvertes.fr';
 const PAGINATION_COUNT = 100;
 const MEDIALAB_STRUCT_ID = 394361;
 
-// TODO: use as a mask
 const USEFUL_FIELDS = [
   'sciencespoId_s',
   'halId_s',
@@ -29,11 +28,14 @@ const USEFUL_FIELDS = [
   'releasedDate_s',
   'producedDate_s',
   'publicationDate_s',
-  'authorFirstName_s',
-  'authorLastName_s',
+  'authFirstName_s',
+  'authLastName_s',
   'authIdHal_s',
+  'authId_i',
   'citationFull_s'
 ];
+
+const FL_PARAM = USEFUL_FIELDS.join(',');
 
 module.exports = class HALClient {
   searchDocs(query, perItemCallback, doneCallback) {
@@ -42,7 +44,7 @@ module.exports = class HALClient {
     return doWhilst(
       next => {
         return request.get(
-          `${BASE_URL}/search/index/?q=${query}&wt=json&fl=*&rows=${PAGINATION_COUNT}&start=${counter}`,
+          `${BASE_URL}/search/index/?q=${query}&wt=json&fl=${FL_PARAM}&rows=${PAGINATION_COUNT}&start=${counter}`,
           {json: true},
           (err, response) => {
             if (err) return next(err);

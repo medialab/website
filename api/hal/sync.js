@@ -2,7 +2,7 @@ const _ = require('lodash');
 const uuid = require('uuid/v4');
 const slugLib = require('slug');
 const makeSlugFunctions = require('../../specs/slugs');
-const halDocTypeToLabel = require('../../specs/halDocTypeToLabel.json');
+const halDocTypeToLabel = require('../../specs/halProductionsTypes.json');
 
 const HALClient = require('./client');
 const helpers = require('./helpers');
@@ -16,12 +16,32 @@ function isValidDoc(doc) {
   });
 }
 
+function restructureAuthors(doc) {
+  if (
+    doc.authFirstName_s.length !== doc.authLastName_s.length ||
+    doc.authFirstName_s.length !== doc.authId_i.length
+  )
+    throw new Error(
+      `Invalid HAL document having no irregular authors: ${helpers.forgeAPIUrlForDoc(
+        doc.halId_s
+      )}`
+    );
+
+  return doc.authFirstName_s.map((firstName, i) => {
+    return {
+      firstName,
+      lastName: doc.authLastName_s[i],
+      id: doc.authId_i[i]
+    };
+  });
+}
+
 function extractTitle(doc) {
   const mainLang = doc.language_s[0];
 
   const englishTitle =
     mainLang === 'en' ? doc.title_s || doc.en_title_s : doc.en_title_s;
-  const englishSubtitle =
+  const englishDescription =
     mainLang === 'en' ? doc.subtitle_s || doc.en_subtitle_s : doc.en_subtitle_s;
 
   const frenchTitle =
@@ -34,7 +54,7 @@ function extractTitle(doc) {
   if (englishTitle) {
     result.en = englishTitle;
 
-    if (englishSubtitle) result.en += ' — ' + englishSubtitle;
+    if (englishDescription) result.en += ' — ' + englishDescription;
   }
 
   if (frenchTitle) {
@@ -50,6 +70,44 @@ function extractTitle(doc) {
       )}`
     );
   }
+
+  return result;
+}
+
+function extractContent(doc) {
+  // NOTE: asbtract and description are sometimes the same and sometimes include each
+  // other. The rationale here is to keep the longer text and pray...
+  const mainLang = doc.language_s[0];
+
+  const englishAbstract =
+    mainLang === 'en' ? doc.abstract_s || doc.en_abstract_s : doc.en_abstract_s;
+  const englishDescription =
+    mainLang === 'en'
+      ? doc.description_s || doc.en_description_s
+      : doc.en_description_s;
+
+  const frenchAbstract =
+    mainLang === 'fr' ? doc.abstract_s || doc.fr_abstract_s : doc.fr_abstract_s;
+  const frenchDescription =
+    mainLang === 'fr'
+      ? doc.description_s || doc.fr_description_s
+      : doc.fr_description_s;
+
+  const result = {en: '', fr: ''};
+
+  if (englishAbstract) result.en = englishAbstract;
+  if (englishDescription && englishDescription.length > result.en)
+    result.en = englishDescription;
+
+  if (!result.en) delete result.en;
+
+  if (frenchAbstract) result.fr = frenchAbstract;
+  if (frenchDescription && frenchDescription.length > result.fr)
+    result.fr = frenchDescription;
+
+  if (!result.fr) delete result.fr;
+
+  if (!result.en && !result.fr) return;
 
   return result;
 }
@@ -82,15 +140,38 @@ function extractDate(doc) {
   return date.slice(0, 10);
 }
 
-function translateDocument(doc) {
+function extractRef(doc) {
+  return (
+    doc.citationFull_s
+      .split(/<a\s*(?:target|href)=/)[0]
+      .replace(/<(?:strong|em|[bi])\\?>/g, '') +
+    ' ' +
+    doc.uri_s
+  );
+}
+
+function translateDocument(doc, authors) {
   // docType_s: https://api.archives-ouvertes.fr/search/?q=*%3A*&rows=0&wt=xml&indent=true&facet=true&facet.field=docType_s
 
-  return {
+  const date = extractDate(doc);
+
+  const translated = {
     url: doc.uri_s,
     type: halDocTypeToLabel[doc.docType_s] || 'article',
     title: extractTitle(doc),
-    date: extractDate(doc)
+    date,
+    ref: extractRef(doc),
+    external: date < '2009',
+    authors: authors
+      .map(author => `${author.firstName} ${author.lastName}`)
+      .join(', ')
   };
+
+  const content = extractContent(doc);
+
+  if (content) translated.content = content;
+
+  return translated;
 }
 
 // TODO...
@@ -153,10 +234,12 @@ module.exports = function syncHAL(
   emitCallback('Starting to fetch documents from HAL attached to the lab');
 
   client.searchMedialabDocs(
-    doc => {
+    originalDoc => {
       seen++;
 
       if (seen % 100 === 0) emitCallback(`Processed ${seen} HAL documents`);
+
+      const doc = helpers.reformatHALDoc(originalDoc);
 
       if (!isValidDoc(doc)) return;
 
@@ -179,11 +262,13 @@ module.exports = function syncHAL(
         if (match) halMatches++;
       }
 
+      const authors = restructureAuthors(doc);
+
       const halAddendum = {
         id: doc.halId_s,
         lastUpdated: Date.now(),
-        meta: doc, // TODO: mask, to avoid keeping too much cruft
-        generatedFields: translateDocument(doc)
+        meta: originalDoc, // TODO: mask, to avoid keeping too much cruft
+        generatedFields: translateDocument(doc, authors)
       };
 
       // Here the production already exist, we only update it

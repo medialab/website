@@ -12,3 +12,7 @@ exports.extractMetadataFromXml = function extractMetadataFromXml(xml) {
 
   return meta;
 };
+
+exports.forgeAPIUrlForDoc = function forgeAPIUrlForDoc(halId) {
+  return `https://api.archives-ouvertes.fr/search/index/?q=halId_s:${halId}&wt=json&fl=*&rows=1&start=0`;
+};

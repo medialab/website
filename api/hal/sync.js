@@ -2,19 +2,94 @@ const _ = require('lodash');
 const uuid = require('uuid/v4');
 const slugLib = require('slug');
 const makeSlugFunctions = require('../../specs/slugs');
+const halDocTypeToLabel = require('../../specs/halDocTypeToLabel.json');
 
 const HALClient = require('./client');
-const {extractMetadataFromXml} = require('./helpers');
-
-const HAL_SCPO_BASE_URL = 'https://hal-sciencespo.archives-ouvertes.fr';
+const helpers = require('./helpers');
 
 const {production: slugifyProduction} = makeSlugFunctions(slugLib);
 
+// TODO: make a decision
+function isValidDoc(doc) {
+  return doc.language_s.some(lang => {
+    return lang === 'fr' || lang === 'en';
+  });
+}
+
+function extractTitle(doc) {
+  const mainLang = doc.language_s[0];
+
+  const englishTitle =
+    mainLang === 'en' ? doc.title_s || doc.en_title_s : doc.en_title_s;
+  const englishSubtitle =
+    mainLang === 'en' ? doc.subtitle_s || doc.en_subtitle_s : doc.en_subtitle_s;
+
+  const frenchTitle =
+    mainLang === 'fr' ? doc.title_s || doc.fr_title_s : doc.fr_title_s;
+  const frenchSubtitle =
+    mainLang === 'fr' ? doc.subtitle_s || doc.fr_subtitle_s : doc.fr_subtitle_s;
+
+  const result = {};
+
+  if (englishTitle) {
+    result.en = englishTitle;
+
+    if (englishSubtitle) result.en += ' — ' + englishSubtitle;
+  }
+
+  if (frenchTitle) {
+    result.fr = frenchTitle;
+
+    if (frenchSubtitle) result.fr += ' — ' + frenchSubtitle;
+  }
+
+  if (!result.en && !result.fr) {
+    throw new Error(
+      `Invalid HAL document having no relevant title information: ${helpers.forgeAPIUrlForDoc(
+        doc.halId_s
+      )}`
+    );
+  }
+
+  return result;
+}
+
+// We chose date using this precedence:
+const DATE_PRECEDENCE = [
+  'publicationDate_s',
+  'submittedDate_s',
+  'modifiedDate_s',
+  'releasedDate_s',
+  'producedDate_s'
+];
+
+function extractDate(doc) {
+  let date = undefined;
+
+  for (let i = 0; i < DATE_PRECEDENCE.length; i++) {
+    date = doc[DATE_PRECEDENCE[i]];
+
+    if (date) break;
+  }
+
+  if (!date)
+    throw new Error(
+      `Invalid HAL document having no relevant date information: ${helpers.forgeAPIUrlForDoc(
+        doc.halId_s
+      )}`
+    );
+
+  return date.slice(0, 10);
+}
+
 function translateDocument(doc) {
-  const xmlMetadata = extractMetadataFromXml(doc.label_xml);
+  // docType_s: https://api.archives-ouvertes.fr/search/?q=*%3A*&rows=0&wt=xml&indent=true&facet=true&facet.field=docType_s
 
   return {
-    url: `${HAL_SCPO_BASE_URL}/${doc.halId_s}`
+    url: doc.uri_s,
+    type: halDocTypeToLabel[doc.docType_s] || 'article',
+    title: extractTitle(doc),
+    date: extractDate(doc)
   };
 }
 
@@ -82,6 +157,8 @@ module.exports = function syncHAL(
       seen++;
 
       if (seen % 100 === 0) emitCallback(`Processed ${seen} HAL documents`);
+
+      if (!isValidDoc(doc)) return;
 
       // Matching with spire id, then hal
       let match = undefined;

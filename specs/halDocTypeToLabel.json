@@ -1,0 +1,11 @@
+{
+  "ART": "Journal articles",
+  "COMM": "Conference papers",
+  "COUV": "Book sections",
+  "OTHER": "Other publications",
+  "OUV": "Books",
+  "UNDEFINED": "Preprints, Working Papers, ...",
+  "DOUV": "Directions of work or proceedings",
+  "REPORT": "Reports",
+  "POSTER": "Poster communications"
+}

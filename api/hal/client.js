@@ -6,7 +6,34 @@ const PAGINATION_COUNT = 100;
 const MEDIALAB_STRUCT_ID = 394361;
 
 // TODO: use as a mask
-const USEFUL_FIELDS = ['sciencespoId_s', 'halId_s', 'label_xml'];
+const USEFUL_FIELDS = [
+  'sciencespoId_s',
+  'halId_s',
+  'uri_s',
+  'docType_s',
+  'language_s',
+  'title_s',
+  'subtitle_s',
+  'abstract_s',
+  'description_s',
+  'en_title_s',
+  'en_subTitle_s',
+  'en_abstract_s',
+  'en_description_s',
+  'fr_title_s',
+  'fr_subTitle_s',
+  'fr_abstract_s',
+  'fr_description_s',
+  'modifiedDate_s',
+  'submittedDate_s',
+  'releasedDate_s',
+  'producedDate_s',
+  'publicationDate_s',
+  'authorFirstName_s',
+  'authorLastName_s',
+  'authIdHal_s',
+  'citationFull_s'
+];
 
 module.exports = class HALClient {
   searchDocs(query, perItemCallback, doneCallback) {

@@ -1,6 +1,10 @@
 const _ = require('lodash');
 const uuid = require('uuid/v4');
 const slugLib = require('slug');
+const powerSet = require('obliterator/power-set');
+const take = require('obliterator/take');
+const map = require('obliterator/map');
+
 const makeSlugFunctions = require('../../specs/slugs');
 const halDocTypeToLabel = require('../../specs/halProductionsTypes.json');
 
@@ -14,6 +18,43 @@ function isValidDoc(doc) {
   return doc.language_s.some(lang => {
     return lang === 'fr' || lang === 'en';
   });
+}
+
+function fingerprintName(name) {
+  return _.deburr(
+    name
+      .toLowerCase()
+      .replace(/(?:\b(?:de|la|le)\b|[’'.])/g, '')
+      .replace(/-/g, ' ')
+      .split(' ')
+      .sort()
+      .join(' ')
+      .trim()
+  );
+}
+
+function authorFuzzyKeys(author) {
+  const firstNameFingerprint = fingerprintName(author.firstName).split(' ');
+  const lastNameFingerprint = fingerprintName(author.lastName).split(' ');
+
+  const firstNamePowerSet = take(
+    map(set => set.slice(), powerSet(firstNameFingerprint))
+  ).filter(set => set.length);
+  const lastNamePowerSet = take(
+    map(set => set.slice(), powerSet(lastNameFingerprint))
+  ).filter(set => set.length);
+
+  const candidates = [];
+
+  for (let i = 0; i < firstNamePowerSet.length; i++) {
+    for (let j = 0; j < lastNamePowerSet.length; j++) {
+      candidates.push(
+        firstNamePowerSet[i].join(' ') + '§' + lastNamePowerSet[j].join(' ')
+      );
+    }
+  }
+
+  return candidates;
 }
 
 function restructureAuthors(doc) {
@@ -174,9 +215,6 @@ function translateDocument(doc, authors) {
   return translated;
 }
 
-// TODO...
-function resolveMedialabAuthors() {}
-
 function findSlugForNewProduction(existingSlugs, generatedFields) {
   let increment = 1;
   let slug;
@@ -222,6 +260,21 @@ module.exports = function syncHAL(
 
   productionData.forEach(p => {
     p.slugs.forEach(s => existingSlugs.add(s));
+  });
+
+  const peopleByHALId = _.keyBy(
+    peopleData.filter(p => p.hal),
+    p => p.hal.id
+  );
+
+  const peopleByFuzzyKey = {};
+
+  peopleData.forEach(people => {
+    const keys = authorFuzzyKeys(people);
+
+    keys.forEach(k => {
+      peopleByFuzzyKey[k] = people;
+    });
   });
 
   const client = new HALClient();
@@ -271,6 +324,41 @@ module.exports = function syncHAL(
         generatedFields: translateDocument(doc, authors)
       };
 
+      let relatedPeople = [];
+
+      authors.forEach(author => {
+        let match = peopleByHALId[author.id];
+
+        if (match) {
+          relatedPeople.push(match.id);
+          return;
+        }
+
+        const keys = authorFuzzyKeys(author);
+
+        for (let i = 0; i < keys.length; i++) {
+          const key = keys[i];
+
+          match = peopleByFuzzyKey[key];
+
+          if (match) {
+            // Updating people as well
+            // TODO: decide whether to keep this or not
+            match.hal = {id: author.id};
+            relatedPeople.push(match.id);
+
+            break;
+          }
+        }
+      });
+
+      // Issue #551: deduplicating authors
+      relatedPeople = Array.from(new Set(relatedPeople));
+
+      // TODO: if related people is empty we should probably skip the doc
+
+      halAddendum.people = relatedPeople;
+
       // Here the production already exist, we only update it
       if (match) {
         match.hal = halAddendum;
@@ -297,12 +385,6 @@ module.exports = function syncHAL(
 
         productionData.push(production);
       }
-
-      // TODO: don't forget to bump lastUpdated
-
-      // TODO: update people, match by hal id then fuzzy with special cases (boogheta notably)
-
-      // throw new Error('hammertime');
     },
     err => {
       if (err) return doneCallback(err);

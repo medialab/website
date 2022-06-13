@@ -2,10 +2,19 @@
   "ART": "Journal articles",
   "COMM": "Conference papers",
   "COUV": "Book sections",
+  "DOUV": "Directions of work or proceedings",
+  "HDR": "Habilitation à diriger des recherches",
+  "IMG": "Photos",
+  "LECTURE": "Lectures",
+  "MAP": "Maps",
   "OTHER": "Other publications",
   "OUV": "Books",
-  "UNDEFINED": "Preprints, Working Papers, ...",
-  "DOUV": "Directions of work or proceedings",
+  "PATENTS": "Patents",
+  "POSTER": "Poster communications",
   "REPORT": "Reports",
-  "POSTER": "Poster communications"
+  "SOFTWARE": "Software",
+  "SON": "Audios",
+  "THESE": "Theses",
+  "UNDEFINED": "Preprints, Working Papers, ...",
+  "VIDEO": "Videos"
 }

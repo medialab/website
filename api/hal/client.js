@@ -4,6 +4,7 @@ const {doWhilst} = require('async');
 const BASE_URL = 'https://api.archives-ouvertes.fr';
 const PAGINATION_COUNT = 100;
 const MEDIALAB_STRUCT_ID = 394361;
+const MEDIALAB_COLLECTION_ID = 9252;
 
 const USEFUL_FIELDS = [
   'sciencespoId_s',
@@ -28,6 +29,11 @@ const USEFUL_FIELDS = [
   'releasedDate_s',
   'producedDate_s',
   'publicationDate_s',
+  'ePublicationDate_s',
+  'conferenceStartDate_s',
+  'conferenceEndDate_s',
+  'writingDate_s',
+  'defenseDate_s',
   'authFirstName_s',
   'authLastName_s',
   'authIdHal_s',
@@ -44,7 +50,9 @@ module.exports = class HALClient {
     return doWhilst(
       next => {
         return request.get(
-          `${BASE_URL}/search/index/?q=${query}&wt=json&fl=${FL_PARAM}&rows=${PAGINATION_COUNT}&start=${counter}`,
+          `${BASE_URL}/search/index/?q=${encodeURIComponent(
+            query
+          )}&wt=json&fl=${FL_PARAM}&rows=${PAGINATION_COUNT}&start=${counter}`,
           {json: true},
           (err, response) => {
             if (err) return next(err);
@@ -72,7 +80,7 @@ module.exports = class HALClient {
 
   searchMedialabDocs(perItemCallback, doneCallback) {
     return this.searchDocs(
-      `labStructId_i:${MEDIALAB_STRUCT_ID}`,
+      `labStructId_i:${MEDIALAB_STRUCT_ID} OR collId_i:${MEDIALAB_COLLECTION_ID}`,
       perItemCallback,
       doneCallback
     );

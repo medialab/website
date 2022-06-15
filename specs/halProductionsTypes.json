@@ -4,17 +4,17 @@
   "COUV": "article",
   "DOUV": "communication",
   "HDR": "thesis",
-  "IMG": "",
+  "#IMG": "",
   "LECTURE": "communication",
-  "MAP": "",
+  "#MAP": "",
   "OTHER": "grey",
   "OUV": "book",
-  "PATENTS": "",
+  "#PATENTS": "",
   "POSTER": "communication",
   "REPORT": "grey",
   "SOFTWARE": "software",
-  "SON": "",
+  "#SON": "",
   "THESE": "thesis",
   "UNDEFINED": "grey",
-  "VIDEO": ""
+  "#VIDEO": ""
 }

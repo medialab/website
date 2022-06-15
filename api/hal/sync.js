@@ -13,11 +13,8 @@ const helpers = require('./helpers');
 
 const {production: slugifyProduction} = makeSlugFunctions(slugLib);
 
-// TODO: make a decision
 function isValidDoc(doc) {
-  return doc.language_s.some(lang => {
-    return lang === 'fr' || lang === 'en';
-  });
+  return doc.docType_s !== 'PATENTS';
 }
 
 function fingerprintName(name) {
@@ -78,7 +75,10 @@ function restructureAuthors(doc) {
 }
 
 function extractTitle(doc) {
-  const mainLang = doc.language_s[0];
+  let mainLang = doc.language_s[0];
+
+  // If we don't have English nor French, we fallback to weird English
+  if (mainLang !== 'en' && mainLang !== 'fr') mainLang = 'en';
 
   const englishTitle =
     mainLang === 'en' ? doc.title_s || doc.en_title_s : doc.en_title_s;
@@ -116,9 +116,10 @@ function extractTitle(doc) {
 }
 
 function extractContent(doc) {
-  // NOTE: asbtract and description are sometimes the same and sometimes include each
-  // other. The rationale here is to keep the longer text and pray...
-  const mainLang = doc.language_s[0];
+  let mainLang = doc.language_s[0];
+
+  // If we don't have English nor French, we fallback to weird English
+  if (mainLang !== 'en' && mainLang !== 'fr') mainLang = 'en';
 
   const englishAbstract =
     mainLang === 'en' ? doc.abstract_s || doc.en_abstract_s : doc.en_abstract_s;
@@ -136,6 +137,8 @@ function extractContent(doc) {
 
   const result = {en: '', fr: ''};
 
+  // NOTE: asbtract and description are sometimes the same and sometimes include each
+  // other. The rationale here is to keep the longer text and pray...
   if (englishAbstract) result.en = englishAbstract;
   if (englishDescription && englishDescription.length > result.en)
     result.en = englishDescription;
@@ -156,10 +159,15 @@ function extractContent(doc) {
 // We chose date using this precedence:
 const DATE_PRECEDENCE = [
   'publicationDate_s',
-  'submittedDate_s',
-  'modifiedDate_s',
   'releasedDate_s',
-  'producedDate_s'
+  'producedDate_s',
+  'writingDate_s',
+  'defenseDate_s',
+  'conferenceStartDate_s',
+  'conferenceEndDate_s',
+  'ePublicationDate_s',
+  'submittedDate_s',
+  'modifiedDate_s'
 ];
 
 function extractDate(doc) {

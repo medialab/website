@@ -189,7 +189,7 @@ function extractRef(doc) {
   return (
     doc.citationFull_s
       .split(/<a\s*(?:target|href)=/)[0]
-      .replace(/<(?:strong|em|[bi])\\?>/g, '') +
+      .replace(/<\/?(?:strong|em|[bi])\\?>/g, '') +
     ' ' +
     doc.uri_s
   );

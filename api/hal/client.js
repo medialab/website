@@ -45,26 +45,33 @@ module.exports = class HALClient {
   searchDocs(query, perItemCallback, doneCallback) {
     let counter = 0;
 
+    const alreadySeen = new Set();
+
     return doWhilst(
       next => {
-        return request.get(
-          `${BASE_URL}/search/index/?q=${encodeURIComponent(
-            query
-          )}&wt=json&fl=${FL_PARAM}&rows=${PAGINATION_COUNT}&start=${counter}`,
-          {json: true},
-          (err, response) => {
-            if (err) return next(err);
+        const url = `${BASE_URL}/search/index/?q=${encodeURIComponent(
+          query
+        )}&wt=json&fl=${FL_PARAM}&rows=${PAGINATION_COUNT}&start=${counter}`;
 
-            return next(null, response.body.response.docs);
-          }
-        );
+        return request.get(url, {json: true}, (err, response) => {
+          if (err) return next(err);
+
+          return next(null, response.body.response.docs);
+        });
       },
       (docs, test) => {
         if (!docs || !docs.length) return test(null, false);
 
-        counter += PAGINATION_COUNT;
+        counter += docs.length;
 
-        docs.forEach(perItemCallback);
+        docs.forEach(doc => {
+          if (alreadySeen.has(doc.halId_s)) {
+            return;
+          }
+
+          alreadySeen.add(doc.halId_s);
+          perItemCallback(doc);
+        });
 
         return test(null, true);
       },

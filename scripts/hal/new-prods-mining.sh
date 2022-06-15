@@ -1,0 +1,1 @@
+jq -c '.productions | map(select(. | has("hal"))) | map(.hal.generatedFields as $hal | {title_en: $hal.title.en, title_fr: $hal.title.fr, ref: $hal.ref, url: $hal.url, type: $hal.type, authors: $hal.authors, wasInSpire: has("spire")}) | .[]' data/productions.json | xsv jsonl > hal.csv

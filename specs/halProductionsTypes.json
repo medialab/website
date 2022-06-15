@@ -1,3 +1,20 @@
 {
-  "THESE": "thesis"
+  "ART": "article",
+  "COMM": "communication",
+  "COUV": "article",
+  "DOUV": "communication",
+  "HDR": "thesis",
+  "IMG": "",
+  "LECTURE": "communication",
+  "MAP": "",
+  "OTHER": "grey",
+  "OUV": "book",
+  "PATENTS": "",
+  "POSTER": "communication",
+  "REPORT": "grey",
+  "SOFTWARE": "software",
+  "SON": "",
+  "THESE": "thesis",
+  "UNDEFINED": "grey",
+  "VIDEO": ""
 }

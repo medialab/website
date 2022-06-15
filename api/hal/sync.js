@@ -82,7 +82,7 @@ function extractTitle(doc) {
 
   const englishTitle =
     mainLang === 'en' ? doc.title_s || doc.en_title_s : doc.en_title_s;
-  const englishDescription =
+  const englishSubtitle =
     mainLang === 'en' ? doc.subtitle_s || doc.en_subtitle_s : doc.en_subtitle_s;
 
   const frenchTitle =
@@ -95,7 +95,7 @@ function extractTitle(doc) {
   if (englishTitle) {
     result.en = englishTitle;
 
-    if (englishDescription) result.en += ' — ' + englishDescription;
+    if (englishSubtitle) result.en += ' — ' + englishSubtitle;
   }
 
   if (frenchTitle) {

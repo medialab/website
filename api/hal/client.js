@@ -43,29 +43,34 @@ const FL_PARAM = USEFUL_FIELDS.join(',');
 
 module.exports = class HALClient {
   searchDocs(query, perItemCallback, doneCallback) {
-    let counter = 0;
+    let cursor = '*';
 
     const alreadySeen = new Set();
 
     return doWhilst(
       next => {
-        const url = `${BASE_URL}/search/index/?q=${encodeURIComponent(
-          query
-        )}&wt=json&fl=${FL_PARAM}&rows=${PAGINATION_COUNT}&start=${counter}`;
+        const url = `${BASE_URL}/search/index/?q=${query}&wt=json&fl=${FL_PARAM}&rows=${PAGINATION_COUNT}&cursorMark=${cursor}&sort=docid asc`;
 
         return request.get(url, {json: true}, (err, response) => {
           if (err) return next(err);
 
-          return next(null, response.body.response.docs);
+          return next(null, {
+            docs: response.body.response.docs,
+            nextCursor: response.body.nextCursorMark
+          });
         });
       },
-      (docs, test) => {
-        if (!docs || !docs.length) return test(null, false);
+      ({docs, nextCursor}, test) => {
+        if (!nextCursor || nextCursor === cursor || !docs || !docs.length)
+          return test(null, false);
 
-        counter += docs.length;
+        cursor = nextCursor;
 
         docs.forEach(doc => {
           if (alreadySeen.has(doc.halId_s)) {
+            console.error(
+              `Seeing inconsistent duplication in HAL API responses (with id "${doc.halId_s}")`
+            );
             return;
           }
 

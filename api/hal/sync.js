@@ -4,6 +4,7 @@ const slugLib = require('slug');
 const powerSet = require('obliterator/power-set');
 const take = require('obliterator/take');
 const map = require('obliterator/map');
+const createFingerprint = require('talisman/keyers/fingerprint').createKeyer;
 
 const makeSlugFunctions = require('../../specs/slugs');
 const halDocTypeToLabel = require('../../specs/halProductionsTypes.json');
@@ -52,6 +53,49 @@ function authorFuzzyKeys(author) {
   }
 
   return candidates;
+}
+
+const fingerprintProductionName = createFingerprint({
+  split: ['’', "'", '-', '.']
+});
+
+const HYPHEN_SPLITTER = /[\-—]/g;
+
+function productionTitleFuzzyKeys(production) {
+  const keys = [];
+  let s;
+
+  let enTitle = production.title ? production.title.en : undefined;
+
+  if (!enTitle && production.spire)
+    enTitle = production.spire.generatedFields.title.en;
+
+  let frTitle = production.title ? production.title.fr : undefined;
+
+  if (!frTitle && production.spire)
+    frTitle = production.spire.generatedFields.title.fr;
+
+  if (enTitle) {
+    s = enTitle.split(HYPHEN_SPLITTER);
+
+    if (s.length > 1) {
+      keys.push(fingerprintProductionName(s[0]));
+    }
+
+    keys.push(fingerprintProductionName(enTitle));
+  }
+
+  if (frTitle) {
+    s = frTitle.split(HYPHEN_SPLITTER);
+
+    if (s.length > 1) {
+      keys.push(fingerprintProductionName(s[0]));
+    }
+
+    keys.push(fingerprintProductionName(frTitle));
+  }
+
+  return keys;
 }
 
 function restructureAuthors(doc) {
@@ -192,7 +236,7 @@ function extractRef(doc) {
       .replace(/<\/?(?:strong|em|[bi])\\?>/g, '') +
     ' ' +
     doc.uri_s
-  );
+  ).trim();
 }
 
 function translateDocument(doc, authors) {
@@ -276,11 +320,25 @@ module.exports = function syncHAL(
     });
   });
 
+  const productionByFuzzyKey = {};
+
+  productionData.forEach(p => {
+    const keys = productionTitleFuzzyKeys(p);
+
+    keys.forEach(k => {
+      // Avoiding titles too short to prevent false negatives
+      if (k.length < 5) return;
+
+      productionByFuzzyKey[k] = p;
+    });
+  });
+
   const client = new HALClient();
 
   let seen = 0;
-  let spireMatches = 0;
   let halMatches = 0;
+  let spireMatches = 0;
+  let fuzzyMatches = 0;
   let newProductions = 0;
 
   emitCallback('Starting to fetch documents from HAL attached to the lab');
@@ -296,24 +354,11 @@ module.exports = function syncHAL(
       if (!isValidDoc(doc)) return;
 
       // Matching with spire id, then hal
-      let match = undefined;
+      let productionMatch = undefined;
       let production;
 
       const spireId = doc.sciencespoId_s;
       const halId = doc.halId_s;
-
-      // NOTE: we match by HAL, then by Spire
-      if (halId) {
-        match = productionsByHALId[halId];
-
-        if (match) halMatches++;
-      }
-
-      if (!match && spireId) {
-        match = productionsBySpireId[spireId];
-
-        if (match) spireMatches++;
-      }
 
       const authors = restructureAuthors(doc);
 
@@ -327,18 +372,18 @@ module.exports = function syncHAL(
       let relatedPeople = [];
 
       authors.forEach(author => {
-        let match = undefined;
+        let authorMatch = undefined;
 
         const keys = authorFuzzyKeys(author);
 
         for (let i = 0; i < keys.length; i++) {
           const key = keys[i];
 
-          match = peopleByFuzzyKey[key];
+          authorMatch = peopleByFuzzyKey[key];
 
-          if (match) {
+          if (authorMatch) {
             // TODO: maybe keep a HAL id for later?
-            relatedPeople.push(match.id);
+            relatedPeople.push(authorMatch.id);
             break;
           }
         }
@@ -351,9 +396,46 @@ module.exports = function syncHAL(
 
       halAddendum.people = relatedPeople;
 
+      // NOTE: we match by HAL, then by Spire, then by fuzzy matching
+      if (halId) {
+        productionMatch = productionsByHALId[halId];
+
+        if (productionMatch) halMatches++;
+      }
+
+      if (!productionMatch && spireId) {
+        productionMatch = productionsBySpireId[spireId];
+
+        if (productionMatch) spireMatches++;
+      }
+
+      if (!productionMatch) {
+        const keys = productionTitleFuzzyKeys(halAddendum.generatedFields);
+
+        for (let i = 0; i < keys.length; i++) {
+          const key = keys[i];
+
+          productionMatch = productionByFuzzyKey[key];
+
+          if (productionMatch) {
+            fuzzyMatches++;
+            halAddendum.fuzzyMatch = true;
+            emitCallback(
+              `Fuzzy match:\n  - "${(
+                productionMatch.ref ||
+                (productionMatch.spire
+                  ? productionMatch.spire.generatedFields.ref
+                  : productionMatch.title.en || productionMatch.title.fr)
+              ).trim()}"\n  - "${halAddendum.generatedFields.ref}"\n`
+            );
+            break;
+          }
+        }
+      }
+
       // Here the production already exist, we only update it
-      if (match) {
-        match.hal = halAddendum;
+      if (productionMatch) {
+        productionMatch.hal = halAddendum;
       }
 
       // Here the production does not yet exist, we create it from scratch
@@ -382,8 +464,9 @@ module.exports = function syncHAL(
       if (err) return doneCallback(err);
 
       emitCallback(`Finished synchronizing ${seen} HAL documents`);
-      emitCallback(`Matched ${spireMatches} through a spire id`);
       emitCallback(`Matched ${halMatches} through a hal id`);
+      emitCallback(`Matched ${spireMatches} through a spire id`);
+      emitCallback(`Matched ${fuzzyMatches} through fuzzy matching`);
       emitCallback(`Created ${newProductions} new productions`);
 
       // Writing results to database

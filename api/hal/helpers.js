@@ -5,9 +5,27 @@ exports.extractMetadataFromXml = function extractMetadataFromXml(xml) {
 
   const $halTypology = $('classCode[scheme=halTypology]');
 
+  const authors = [];
+
+  $('author[role=aut]').each(function () {
+    const $author = $(this);
+
+    const author = {
+      firsName: $author.find('persName > forename[type=first]').text().trim(),
+      lastName: $author.find('persName > surname').text().trim()
+    };
+
+    const $idHal = $author.find('idno[type=idhal][notation=string]');
+
+    if ($idHal.length) author.idHal = $idHal.text().trim();
+
+    authors.push(author);
+  });
+
   const meta = {
     typologyLabel: $halTypology.length ? $halTypology.text().trim() : null,
-    typologyCode: $halTypology.length ? $halTypology.attr('n').trim() : null
+    typologyCode: $halTypology.length ? $halTypology.attr('n').trim() : null,
+    authors: authors
   };
 
   return meta;

@@ -55,10 +55,7 @@ function authorFuzzyKeys(author) {
 }
 
 function restructureAuthors(doc) {
-  if (
-    doc.authFirstName_s.length !== doc.authLastName_s.length ||
-    doc.authFirstName_s.length !== doc.authId_i.length
-  )
+  if (doc.authFirstName_s.length !== doc.authLastName_s.length)
     throw new Error(
       `Invalid HAL document having no irregular authors: ${helpers.forgeAPIUrlForDoc(
         doc.halId_s
@@ -68,8 +65,7 @@ function restructureAuthors(doc) {
   return doc.authFirstName_s.map((firstName, i) => {
     return {
       firstName,
-      lastName: doc.authLastName_s[i],
-      id: doc.authId_i[i]
+      lastName: doc.authLastName_s[i]
     };
   });
 }
@@ -270,11 +266,6 @@ module.exports = function syncHAL(
     p.slugs.forEach(s => existingSlugs.add(s));
   });
 
-  const peopleByHALId = _.keyBy(
-    peopleData.filter(p => p.hal),
-    p => p.hal.id
-  );
-
   const peopleByFuzzyKey = {};
 
   peopleData.forEach(people => {
@@ -311,16 +302,17 @@ module.exports = function syncHAL(
       const spireId = doc.sciencespoId_s;
       const halId = doc.halId_s;
 
-      if (spireId) {
-        match = productionsBySpireId[spireId];
-
-        if (match) spireMatches++;
-      }
-
-      if (!match && halId) {
+      // NOTE: we match by HAL, then by Spire
+      if (halId) {
         match = productionsByHALId[halId];
 
         if (match) halMatches++;
+      }
+
+      if (!match && spireId) {
+        match = productionsBySpireId[spireId];
+
+        if (match) spireMatches++;
       }
 
       const authors = restructureAuthors(doc);
@@ -335,12 +327,7 @@ module.exports = function syncHAL(
       let relatedPeople = [];
 
       authors.forEach(author => {
-        let match = peopleByHALId[author.id];
-
-        if (match) {
-          relatedPeople.push(match.id);
-          return;
-        }
+        let match = undefined;
 
         const keys = authorFuzzyKeys(author);
 
@@ -350,11 +337,8 @@ module.exports = function syncHAL(
           match = peopleByFuzzyKey[key];
 
           if (match) {
-            // Updating people as well
-            // TODO: decide whether to keep this or not
-            match.hal = {id: author.id};
+            // TODO: maybe keep a HAL id for later?
             relatedPeople.push(match.id);
-
             break;
           }
         }
@@ -363,7 +347,7 @@ module.exports = function syncHAL(
       // Issue #551: deduplicating authors
       relatedPeople = Array.from(new Set(relatedPeople));
 
-      // TODO: if related people is empty we should probably skip the doc
+      // TODO: if related people is empty we should probably skip the doc?
 
       halAddendum.people = relatedPeople;
 

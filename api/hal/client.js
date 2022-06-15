@@ -36,8 +36,6 @@ const USEFUL_FIELDS = [
   'defenseDate_s',
   'authFirstName_s',
   'authLastName_s',
-  'authIdHal_s',
-  'authId_i',
   'citationFull_s'
 ];
 

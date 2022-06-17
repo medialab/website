@@ -197,14 +197,20 @@ export default class List extends Component {
       const newState = {data};
 
       if (model === 'productions') {
-        // fill the object with spire generatedFields when empty
+        // Merge data with generated fields
         newState.data = data.map(p => {
-          if (p.spire) return {...p.spire.generatedFields, ...p};
-          else return p;
+          return {
+            ...(p.spire ? p.spire.generatedFields : {}),
+            ...(p.hal ? p.hal.generatedFields : {}),
+            ...p
+          };
         });
+
         newState.relations = {people: keyBy(people, 'id')};
       }
+
       newState.filteredData = this.filter(newState.data);
+
       this.setState(newState);
     });
   }

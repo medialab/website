@@ -14,6 +14,20 @@ const helpers = require('./helpers');
 
 const {production: slugifyProduction} = makeSlugFunctions(slugLib);
 
+function multiMatch(keys, index) {
+  let match = undefined;
+
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i];
+
+    match = index[key];
+
+    if (match) {
+      return match;
+    }
+  }
+}
+
 function isValidDoc(doc) {
   return doc.docType_s !== 'PATENTS';
 }
@@ -372,20 +386,14 @@ exports.syncHAL = function syncHAL(
       let relatedPeople = [];
 
       authors.forEach(author => {
-        let authorMatch = undefined;
+        const authorMatch = multiMatch(
+          authorFuzzyKeys(author),
+          peopleByFuzzyKey
+        );
 
-        const keys = authorFuzzyKeys(author);
-
-        for (let i = 0; i < keys.length; i++) {
-          const key = keys[i];
-
-          authorMatch = peopleByFuzzyKey[key];
-
-          if (authorMatch) {
-            // TODO: maybe keep a HAL id for later?
-            relatedPeople.push(authorMatch.id);
-            break;
-          }
+        if (authorMatch) {
+          // TODO: maybe keep a HAL id for later?
+          relatedPeople.push(authorMatch.id);
         }
       });
 
@@ -394,7 +402,7 @@ exports.syncHAL = function syncHAL(
 
       // TODO: if related people is empty we should probably skip the doc?
 
-      halAddendum.people = relatedPeople;
+      halAddendum.generatedFields.people = relatedPeople;
 
       // NOTE: we match by HAL, then by Spire, then by fuzzy matching
       if (halId) {
@@ -410,26 +418,22 @@ exports.syncHAL = function syncHAL(
       }
 
       if (!productionMatch) {
-        const keys = productionTitleFuzzyKeys(halAddendum.generatedFields);
+        productionMatch = multiMatch(
+          productionTitleFuzzyKeys(halAddendum.generatedFields),
+          productionByFuzzyKey
+        );
 
-        for (let i = 0; i < keys.length; i++) {
-          const key = keys[i];
-
-          productionMatch = productionByFuzzyKey[key];
-
-          if (productionMatch) {
-            fuzzyMatches++;
-            halAddendum.fuzzyMatch = true;
-            emitCallback(
-              `Fuzzy match:\n  - "${(
-                productionMatch.ref ||
-                (productionMatch.spire
-                  ? productionMatch.spire.generatedFields.ref
-                  : productionMatch.title.en || productionMatch.title.fr)
-              ).trim()}"\n  - "${halAddendum.generatedFields.ref}"\n`
-            );
-            break;
-          }
+        if (productionMatch) {
+          fuzzyMatches++;
+          halAddendum.fuzzyMatch = true;
+          emitCallback(
+            `Fuzzy match:\n  - "${(
+              productionMatch.ref ||
+              (productionMatch.spire
+                ? productionMatch.spire.generatedFields.ref
+                : productionMatch.title.en || productionMatch.title.fr)
+            ).trim()}"\n  - "${halAddendum.generatedFields.ref}"\n`
+          );
         }
       }
 

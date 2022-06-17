@@ -391,7 +391,7 @@ exports.syncHAL = function syncHAL(
       const authors = restructureAuthors(doc);
 
       const halAddendum = {
-        id: doc.halId_s,
+        id: halId,
         lastUpdated: Date.now(),
         meta: originalDoc, // TODO: mask, to avoid keeping too much cruft
         generatedFields: translateDocument(doc, authors)

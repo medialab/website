@@ -99,11 +99,17 @@ const translators = {
   },
   // link to author people
   people: (record, spireAuthors) =>
-    record.creators
-      // filter authors who are person
-      .filter(c => c.agent && c.agent.rec_class === 'Person')
-      .map(c => spireAuthors[c.agent.rec_id] && spireAuthors[c.agent.rec_id].id)
-      .filter(c => !!c)
+    Array.from(
+      new Set(
+        record.creators
+          // filter authors who are person
+          .filter(c => c.agent && c.agent.rec_class === 'Person')
+          .map(
+            c => spireAuthors[c.agent.rec_id] && spireAuthors[c.agent.rec_id].id
+          )
+          .filter(c => !!c)
+      )
+    )
 };
 
 function translateRecord(record, spireAuthors) {

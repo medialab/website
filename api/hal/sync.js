@@ -415,7 +415,6 @@ exports.syncHAL = function syncHAL(
       relatedPeople = Array.from(new Set(relatedPeople));
 
       // TODO: if related people is empty we should probably skip the doc?
-
       halAddendum.generatedFields.people = relatedPeople;
 
       // NOTE: we match by HAL, then by Spire, then by fuzzy matching

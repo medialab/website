@@ -33,8 +33,8 @@ const {findUnusedAssets} = require('./cleanup.js');
 const loadDump = require('./load.js');
 
 const MODELS = require('../specs/models.json');
-const spire = require('./spire.js');
-const syncHAL = require('./hal/sync.js');
+const {syncSpire} = require('./spire/sync.js');
+const {syncHAL} = require('./hal/sync.js');
 const oldSlugRedirections = require('./oldSlugRedirections.js');
 
 const config = require('config-secrets');
@@ -359,7 +359,7 @@ PREVIEW.on('templatesInvalidated', triggerLivereload);
 const LOCKS = {
   buildStatus: 'free',
   deployStatus: 'free',
-  spireStatus: 'free'
+  syncStatus: 'free'
 };
 
 app.get('/admin', function (req, res) {
@@ -385,20 +385,20 @@ const changeDeployStatus = newStatus => {
   if (newStatus === 'free') ws.emit('infoChanged', TRANSIENT_DATA);
 };
 
-const changeSpireStatus = newStatus => {
-  LOCKS.spireStatus = newStatus;
-  ws.emit('spireStatusChanged', newStatus);
+const changeSyncStatus = newStatus => {
+  LOCKS.syncStatus = newStatus;
+  ws.emit('syncStatusChanged', newStatus);
   ws.emit('locksChanged', LOCKS);
 };
 
 // Spire logic
 function updateSpire(callback) {
-  if (LOCKS.spireStatus !== 'free') return false;
+  if (LOCKS.syncStatus !== 'free') return false;
 
-  changeSpireStatus('working');
+  changeSyncStatus('working');
 
-  spire.aSPIRE(err => {
-    changeSpireStatus('free');
+  syncSpire(err => {
+    changeSyncStatus('free');
 
     return callback(err);
   });
@@ -407,12 +407,12 @@ function updateSpire(callback) {
 }
 
 function updateHAL(callback) {
-  if (LOCKS.spireStatus !== 'free') return false;
+  if (LOCKS.syncStatus !== 'free') return false;
 
-  changeSpireStatus('working');
+  changeSyncStatus('working');
 
   syncHAL(DBS, err => {
-    changeSpireStatus('free');
+    changeSyncStatus('free');
 
     return callback(err);
   });
@@ -420,7 +420,7 @@ function updateHAL(callback) {
   return true;
 }
 
-app.get('/aspire', (req, res) => {
+app.get('/sync-spire', (req, res) => {
   const willPerform = updateSpire(err => {
     if (err) console.error(err);
   });

@@ -1,11 +1,11 @@
-const async = require('async'),
-  fs = require('fs-extra'),
-  path = require('path'),
-  uuid = require('uuid/v4'),
-  domains = require('./wordpress_scraping/domains.json'),
-  slug = require('slug'),
-  spire = require('../api/spire'),
-  convertWordpressHtml = require('../specs/html').convertWordpressHtml;
+const async = require('async');
+const fs = require('fs-extra');
+const path = require('path');
+const uuid = require('uuid/v4');
+const domains = require('./wordpress_scraping/domains.json');
+const slug = require('slug');
+const {syncSpireAuthors} = require('../api/spire/sync.js');
+const convertWordpressHtml = require('../specs/html').convertWordpressHtml;
 
 const DEFAULT_MAX_SLUG_TOKENS = 6;
 function slugify(str) {
@@ -378,7 +378,7 @@ async.waterfall([
   // first people
   done => {
     // add spire id
-    spire.aspireAuthors(spireAuthors => {
+    syncSpireAuthors(spireAuthors => {
       done(null, {spireAuthors});
     });
   },

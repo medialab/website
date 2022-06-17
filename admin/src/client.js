@@ -50,8 +50,11 @@ const client = new Client({
     deploy: {
       url: '/deploy'
     },
-    aspire: {
-      url: '/aspire'
+    syncSpire: {
+      url: '/sync-spire'
+    },
+    syncHal: {
+      url: '/sync-hal'
     }
   }
 });

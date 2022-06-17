@@ -1,4 +1,4 @@
-const spire = require('../spire');
+const {translateRecord} = require('../spire/sync.js');
 const _ = require('lodash');
 
 module.exports = function (req, dbs, next) {
@@ -14,10 +14,7 @@ module.exports = function (req, dbs, next) {
   prodState.productions
     .filter(p => p.spire && p.spire.meta)
     .forEach(p => {
-      p.spire.generatedFields = spire.translateRecord(
-        p.spire.meta,
-        spireAuthors
-      );
+      p.spire.generatedFields = translateRecord(p.spire.meta, spireAuthors);
     });
 
   dbs.productions.setState(prodState);

@@ -6,7 +6,7 @@ const config = require('config-secrets'),
   _ = require('lodash'),
   uuid = require('uuid/v4'),
   slugLib = require('slug'),
-  makeSlugFunctions = require('../specs/slugs.js');
+  makeSlugFunctions = require('../../specs/slugs.js');
 
 const SUPERUSER = config.get('superuser');
 const AUTH = `${SUPERUSER.username}:${SUPERUSER.password}`;
@@ -14,16 +14,16 @@ const AUTH = `${SUPERUSER.username}:${SUPERUSER.password}`;
 const {production: slugifyProduction, people: slugifyPeople} =
   makeSlugFunctions(slugLib);
 
-const models = require('../specs/models.json');
+const models = require('../../specs/models.json');
 
 const VALIDATORS = {};
 
 models.forEach(model => {
   const ajv = new Ajv();
-  VALIDATORS[model] = ajv.compile(require(`../specs/schemas/${model}.json`));
+  VALIDATORS[model] = ajv.compile(require(`../../specs/schemas/${model}.json`));
 });
 
-const spireTypes = require('../specs/spireProductionsTypes.json');
+const spireTypes = require('../../specs/spireProductionsTypes.json');
 
 const resultPerPage = 2000;
 const labIdSpire = '2441/53r60a8s3kup1vc9kf4j86q90';
@@ -115,7 +115,7 @@ function translateRecord(record, spireAuthors) {
   return newO;
 }
 
-module.exports.translateRecord = translateRecord;
+exports.translateRecord = translateRecord;
 
 // finds Authors which should be attached to a people object
 // tries to resolve through firstname.name slug
@@ -144,9 +144,9 @@ function missingLabAuthors(spireRecords, existingSpireAuthors) {
   );
 }
 
-module.exports.missingLabAuthors = missingLabAuthors;
+exports.missingLabAuthors = missingLabAuthors;
 
-module.exports.aSPIRE = function aSPIRE(
+exports.syncSpire = function syncSpire(
   doneCallback,
   emitCallback = console.debug
 ) {
@@ -426,7 +426,7 @@ module.exports.aSPIRE = function aSPIRE(
   );
 };
 
-module.exports.aspireAuthors = function aspireAuthors(callback) {
+exports.syncSpireAuthors = function syncSpireAuthors(callback) {
   let resultOffset = 0;
   async.doUntil(
     done => {

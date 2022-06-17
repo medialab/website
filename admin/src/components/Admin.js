@@ -4,9 +4,8 @@ import {Helmet} from 'react-helmet';
 import client from '../client';
 import {acquireSocket} from '../sockets';
 
-// TODO: integrate aspire into here
 // TODO: add contextual info about build & deployment
-import Aspire from './Aspire';
+import Sync from './Sync';
 import Button from './misc/Button';
 
 const localeDateStringOptions = {
@@ -120,8 +119,9 @@ export default function Admin() {
         </div>
       )}
       <hr />
-      <h2 className="title is-4">Spire</h2>
-      <Aspire />
+      <h2 className="title is-4">Synchronisation</h2>
+      <Sync target="spire" />
+      <Sync target="hal" />
     </div>
   );
 }

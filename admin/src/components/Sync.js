@@ -3,7 +3,7 @@ import {acquireSocket} from '../sockets';
 import client from '../client';
 import Button from './misc/Button';
 
-export default class Aspire extends Component {
+export default class Sync extends Component {
   state = {
     status: null
   };
@@ -13,10 +13,10 @@ export default class Aspire extends Component {
     this.socket = acquireSocket();
 
     client.admin((err, data) => {
-      this.setState({status: data.locks.spireStatus});
+      this.setState({status: data.locks.syncStatus});
     });
 
-    this.socket.on('spireStatusChanged', status => {
+    this.socket.on('syncStatusChanged', status => {
       this.setState({status});
     });
   }
@@ -26,10 +26,10 @@ export default class Aspire extends Component {
     this.socket.close();
   }
 
-  handleAspire = () => {
+  handleSync = () => {
     if (this.state.status !== 'free') return;
-    this.setState({status, messages: []});
-    client.aspire();
+    if (this.props.target === 'spire') client.syncSpire();
+    else client.syncHal();
   };
 
   render() {
@@ -39,7 +39,9 @@ export default class Aspire extends Component {
 
     const label = loading
       ? 'Mise à jour des productions...'
-      : 'Mettre à jour les productions depuis Spire';
+      : `Mettre à jour les productions depuis ${
+          this.props.target === 'spire' ? 'Spire' : 'HAL'
+        }`;
 
     return (
       <div className="level">
@@ -47,7 +49,7 @@ export default class Aspire extends Component {
           <div className="level-item">
             <Button
               disabled={status === null || status !== 'free'}
-              onClick={this.handleAspire}>
+              onClick={this.handleSync}>
               {label}
             </Button>
             {loading && <Button kind="white" loading />}

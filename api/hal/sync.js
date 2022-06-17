@@ -277,7 +277,7 @@ function findSlugForNewProduction(existingSlugs, generatedFields) {
   return slug;
 }
 
-module.exports = function syncHAL(
+exports.syncHAL = function syncHAL(
   dbs,
   doneCallback,
   emitCallback = console.debug

@@ -1,12 +1,19 @@
 import get from 'lodash/fp/get';
 import set from 'lodash/fp/set';
+import unset from 'lodash/fp/unset';
 import sha1 from 'hash.js/lib/hash/sha/1';
 import {arrayMove} from 'react-sortable-hoc';
 
-// TODO: delete property when empty
 export function createHandler(scope, key) {
   return e => {
-    scope.setState(set(key, e.target.value, scope.state));
+    const value = e.target.value;
+
+    const newState =
+      value === undefined || value === null || value === ''
+        ? unset(key, scope.state)
+        : set(key, value, scope.state);
+
+    scope.setState(newState);
   };
 }
 

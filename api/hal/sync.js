@@ -45,6 +45,10 @@ function fingerprintName(name) {
   );
 }
 
+function abbreviateName(tokens, ellisionChar = '.') {
+  return tokens.map(t => t[0] + ellisionChar);
+}
+
 function authorFuzzyKeys(author) {
   const firstNameFingerprint = fingerprintName(author.firstName).split(' ');
   const lastNameFingerprint = fingerprintName(author.lastName).split(' ');
@@ -56,17 +60,27 @@ function authorFuzzyKeys(author) {
     map(set => set.slice(), powerSet(lastNameFingerprint))
   ).filter(set => set.length);
 
-  const candidates = [];
+  const candidates = new Set();
 
   for (let i = 0; i < firstNamePowerSet.length; i++) {
     for (let j = 0; j < lastNamePowerSet.length; j++) {
-      candidates.push(
+      candidates.add(
         firstNamePowerSet[i].join(' ') + '§' + lastNamePowerSet[j].join(' ')
+      );
+      candidates.add(
+        abbreviateName(firstNamePowerSet[i]).join(' ') +
+          '§' +
+          lastNamePowerSet[j].join(' ')
+      );
+      candidates.add(
+        abbreviateName(firstNamePowerSet[i], '').join(' ') +
+          '§' +
+          lastNamePowerSet[j].join(' ')
       );
     }
   }
 
-  return candidates;
+  return Array.from(candidates);
 }
 
 const fingerprintProductionName = createFingerprint({

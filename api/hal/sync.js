@@ -278,11 +278,12 @@ function translateDocument(doc, authors) {
     title: extractTitle(doc),
     date,
     ref: extractRef(doc),
-    external: date < '2009',
     authors: authors
       .map(author => `${author.firstName} ${author.lastName}`)
       .join(', ')
   };
+
+  if (date < '2009') translated.external = true;
 
   const content = extractContent(doc);
 

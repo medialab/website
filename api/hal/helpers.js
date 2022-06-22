@@ -76,3 +76,9 @@ exports.reformatHALDoc = function reformatHALDoc(doc) {
 
   return reformatted;
 };
+
+if (require.main === module) {
+  if (process.argv.length < 3) throw new Error('expecting a HAL id');
+
+  console.log(exports.forgeAPIUrlForDoc(process.argv[2]));
+}

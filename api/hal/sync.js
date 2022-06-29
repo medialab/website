@@ -5,6 +5,7 @@ const powerSet = require('obliterator/power-set');
 const take = require('obliterator/take');
 const map = require('obliterator/map');
 const createFingerprint = require('talisman/keyers/fingerprint').createKeyer;
+const cleanReference = require('../utils').cleanReference;
 
 const makeSlugFunctions = require('../../specs/slugs');
 const halDocTypeToLabel = require('../../specs/halProductionsTypes.json');
@@ -259,9 +260,7 @@ function extractDate(doc) {
 
 function extractRef(doc) {
   return (
-    doc.citationFull_s
-      .split(/<a\s*(?:target|href)=/)[0]
-      .replace(/<\/?(?:strong|em|[bi])\\?>/g, '') +
+    cleanReference(doc.citationFull_s.split(/<a\s*(?:target|href)=/)[0]) +
     ' ' +
     doc.uri_s
   ).trim();

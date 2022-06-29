@@ -1,12 +1,13 @@
 /* eslint no-console: 0 */
-const config = require('config-secrets'),
-  Ajv = require('ajv'),
-  async = require('async'),
-  request = require('request'),
-  _ = require('lodash'),
-  uuid = require('uuid/v4'),
-  slugLib = require('slug'),
-  makeSlugFunctions = require('../../specs/slugs.js');
+const config = require('config-secrets');
+const Ajv = require('ajv');
+const async = require('async');
+const request = require('request');
+const _ = require('lodash');
+const uuid = require('uuid/v4');
+const slugLib = require('slug');
+const makeSlugFunctions = require('../../specs/slugs.js');
+const cleanReference = require('../utils').cleanReference;
 
 const SUPERUSER = config.get('superuser');
 const AUTH = `${SUPERUSER.username}:${SUPERUSER.password}`;
@@ -47,7 +48,9 @@ const title = (record, lang) => {
 const ref = record => {
   // removing the <a> tag
   return record.citations
-    ? record.citations.html.chicago.replace(/<a.*?>(.*?)<\/a>/g, '$1')
+    ? cleanReference(
+        record.citations.html.chicago.replace(/<a.*?>(.*?)<\/a>/g, '$1')
+      )
     : false;
 };
 const getDate = record => {

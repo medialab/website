@@ -296,6 +296,7 @@ const MIGRATION_SCHEMES = {
   'clean-html-metadata': require('./migrations/clean-html-metadata.js')(
     ASSETS_PATH
   ),
+  'clean-spire-refs': require('./migrations/clean-spire-refs.js'),
   'clean-unused-assets': require('./migrations/clean-unused-assets.js')(
     ASSETS_PATH
   ),

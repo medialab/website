@@ -97,13 +97,12 @@ const RelationSelectorContainer = BaseComponent => {
     });
 
     const extractProductionData = item => {
-      if (item.spire)
-        return {
-          ...item.spire.generatedFields,
-          ...item
-        };
-
-      return item;
+      return assignDeep(
+        {},
+        item.spire && item.spire.generatedFields,
+        item.hal && item.hal.generatedFields,
+        item
+      );
     };
 
     const mapForProductions = item => ({
@@ -112,6 +111,9 @@ const RelationSelectorContainer = BaseComponent => {
         enums.productionTypes.groups,
         find(group => {
           let matched = group.values.includes(item.type);
+
+          if (!matched && item.hal && item.hal.generatedFields.type)
+            matched = group.values.includes(item.hal.generatedFields.type);
 
           if (!matched && item.spire && item.spire.generatedFields.type)
             matched = group.values.includes(item.spire.generatedFields.type);

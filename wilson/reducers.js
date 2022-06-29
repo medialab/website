@@ -1,6 +1,7 @@
 const ENUMS = require('../specs/enums.json');
 const last = require('lodash/last');
 const forEach = require('lodash/forEach');
+const assignDeep = require('assign-deep');
 const permalinks = require('./permalinks.js');
 const {template, resolveAttachments} = require('./templating.js');
 const {frenchTypographyReplace} = require('./utils.js');
@@ -82,17 +83,13 @@ forEach(ENUMS.productionTypes.groups, (group, key) => {
 });
 
 exports.productions = function reduceProductions(pathPrefix, production) {
-  // Spire fields
-  if (production.spire) {
-    // use spire.generatedFields for empty object fields
-    production = {...production.spire.generatedFields, ...production};
-  }
-
-  // HAL fields (HAL takes precedence over Spire)
-  if (production.hal) {
-    // use hal.generatedFields for empty object fields
-    production = {...production.hal.generatedFields, ...production};
-  }
+  // Override > Spire > HAL
+  production = assignDeep(
+    {},
+    production.spire && production.spire.generatedFields,
+    production.hal && production.hal.generatedFields,
+    production
+  );
 
   // Typography
   if (production.title && production.title.fr)

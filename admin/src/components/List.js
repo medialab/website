@@ -6,6 +6,7 @@ import keyBy from 'lodash/keyBy';
 import map from 'lodash/map';
 import sortBy from 'lodash/sortBy';
 import cls from 'classnames';
+import assignDeep from 'assign-deep';
 import parallel from 'async/parallel';
 import client from '../client';
 
@@ -199,11 +200,12 @@ export default class List extends Component {
       if (model === 'productions') {
         // Merge data with generated fields
         newState.data = data.map(p => {
-          return {
-            ...(p.spire ? p.spire.generatedFields : {}),
-            ...(p.hal ? p.hal.generatedFields : {}),
-            ...p
-          };
+          return assignDeep(
+            {},
+            p.spire && p.spire.generatedFields,
+            p.hal && p.hal.generatedFields,
+            p
+          );
         });
 
         newState.relations = {people: keyBy(people, 'id')};

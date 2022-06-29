@@ -143,11 +143,17 @@ function restructureAuthors(doc) {
   });
 }
 
-function extractTitle(doc) {
+function getMainLang(doc) {
   let mainLang = doc.language_s[0];
 
   // If we don't have English nor French, we fallback to weird English
   if (mainLang !== 'en' && mainLang !== 'fr') mainLang = 'en';
+
+  return mainLang;
+}
+
+function extractTitle(doc) {
+  let mainLang = getMainLang(doc);
 
   const englishTitle =
     mainLang === 'en' ? doc.title_s || doc.en_title_s : doc.en_title_s;
@@ -185,10 +191,7 @@ function extractTitle(doc) {
 }
 
 function extractContent(doc) {
-  let mainLang = doc.language_s[0];
-
-  // If we don't have English nor French, we fallback to weird English
-  if (mainLang !== 'en' && mainLang !== 'fr') mainLang = 'en';
+  let mainLang = getMainLang(doc);
 
   const englishAbstract =
     mainLang === 'en' ? doc.abstract_s || doc.en_abstract_s : doc.en_abstract_s;
@@ -269,14 +272,16 @@ function extractRef(doc) {
 function translateDocument(doc, authors) {
   // docType_s: https://api.archives-ouvertes.fr/search/?q=*%3A*&rows=0&wt=xml&indent=true&facet=true&facet.field=docType_s
 
+  const mainLang = getMainLang(doc);
   const date = extractDate(doc);
+  const ref = extractRef(doc);
 
   const translated = {
     url: doc.uri_s,
     type: halDocTypeToLabel[doc.docType_s] || 'article',
     title: extractTitle(doc),
     date,
-    ref: extractRef(doc),
+    ref,
     authors: authors
       .map(author => `${author.firstName} ${author.lastName}`)
       .join(', ')
@@ -287,6 +292,16 @@ function translateDocument(doc, authors) {
   const content = extractContent(doc);
 
   if (content) translated.content = content;
+
+  const description = {};
+
+  if (mainLang === 'fr') {
+    description.fr = ref;
+  } else {
+    description.en = ref;
+  }
+
+  translated.description = description;
 
   return translated;
 }

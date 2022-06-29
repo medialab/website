@@ -269,6 +269,19 @@ function extractRef(doc) {
   ).trim();
 }
 
+const WEBSITE_PATTERN = /(?:contribution (?:à un|au) )?site web/i;
+
+function extractType(doc) {
+  let type = halDocTypeToLabel[doc.docType_s] || 'article';
+
+  // Website type is quite elusive
+  if (doc.docType_s === 'OTHER' && WEBSITE_PATTERN.test(doc.description_s)) {
+    type = 'website';
+  }
+
+  return type;
+}
+
 function translateDocument(doc, authors) {
   // docType_s: https://api.archives-ouvertes.fr/search/?q=*%3A*&rows=0&wt=xml&indent=true&facet=true&facet.field=docType_s
 
@@ -278,7 +291,7 @@ function translateDocument(doc, authors) {
 
   const translated = {
     url: doc.uri_s,
-    type: halDocTypeToLabel[doc.docType_s] || 'article',
+    type: extractType(doc),
     title: extractTitle(doc),
     date,
     ref,

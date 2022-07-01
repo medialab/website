@@ -499,6 +499,11 @@ exports.syncHAL = function syncHAL(
         };
 
         productionData.push(production);
+        multiIndex(
+          productionTitleFuzzyKeys(production),
+          production,
+          productionByFuzzyKey
+        );
       }
     },
     err => {

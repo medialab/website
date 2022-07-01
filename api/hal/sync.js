@@ -466,7 +466,6 @@ exports.syncHAL = function syncHAL(
 
         if (productionMatch) {
           fuzzyMatches++;
-          halAddendum.fuzzyMatch = true;
           emitCallback(
             `Fuzzy match:\n  - "${(
               productionMatch.ref ||

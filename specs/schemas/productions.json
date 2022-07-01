@@ -249,10 +249,6 @@
         "lastUpdated": {
           "title": "Timestamp of last update",
           "type": "number"
-        },
-        "fuzzyMatch": {
-          "title": "Whether the document was fuzzy matched",
-          "type": "boolean"
         }
       }
     },

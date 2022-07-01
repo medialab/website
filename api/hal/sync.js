@@ -363,10 +363,13 @@ exports.syncHAL = function syncHAL(
     p => p.spire.id
   );
 
-  const productionsByHALId = _.keyBy(
-    productionData.filter(p => p.hal),
-    p => p.hal.id
-  );
+  const productionsByHALId = {};
+
+  productionData
+    .filter(p => p.hal)
+    .forEach(p => {
+      multiIndex(p.hal.ids, p, productionsByHALId);
+    });
 
   const existingSlugs = new Set();
 
@@ -416,7 +419,7 @@ exports.syncHAL = function syncHAL(
       const authors = restructureAuthors(doc);
 
       const halAddendum = {
-        id: halId,
+        ids: [halId],
         lastUpdated: Date.now(),
         meta: originalDoc, // TODO: mask, to avoid keeping too much cruft
         generatedFields: translateDocument(doc, authors)
@@ -476,6 +479,13 @@ exports.syncHAL = function syncHAL(
 
       // Here the production already exist, we only update it
       if (productionMatch) {
+        // Merging hal ids if required
+        if (productionMatch.hal) {
+          let ids = new Set(productionMatch.hal.ids);
+          ids.add(halId);
+          halAddendum.ids = Array.from(ids);
+        }
+
         productionMatch.hal = halAddendum;
       }
 
@@ -499,11 +509,16 @@ exports.syncHAL = function syncHAL(
         };
 
         productionData.push(production);
+
+        // Adding new production to fuzzy index
         multiIndex(
           productionTitleFuzzyKeys(production),
           production,
           productionByFuzzyKey
         );
+
+        // NOTE: we don't need to update the productionsByHALId here, as this
+        // is pointless (else it means HAL has a big issue)
       }
     },
     err => {

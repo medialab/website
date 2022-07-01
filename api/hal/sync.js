@@ -15,6 +15,14 @@ const helpers = require('./helpers');
 
 const {production: slugifyProduction} = makeSlugFunctions(slugLib);
 
+function multiIndex(keys, item, index) {
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i];
+
+    index[key] = item;
+  }
+}
+
 function multiMatch(keys, index) {
   let match = undefined;
 
@@ -124,7 +132,7 @@ function productionTitleFuzzyKeys(production) {
     keys.push(fingerprintProductionName(frTitle));
   }
 
-  return keys;
+  return keys.filter(k => k.length);
 }
 
 function restructureAuthors(doc) {
@@ -369,24 +377,13 @@ exports.syncHAL = function syncHAL(
   const peopleByFuzzyKey = {};
 
   peopleData.forEach(people => {
-    const keys = authorFuzzyKeys(people);
-
-    keys.forEach(k => {
-      peopleByFuzzyKey[k] = people;
-    });
+    multiIndex(authorFuzzyKeys(people), people, peopleByFuzzyKey);
   });
 
   const productionByFuzzyKey = {};
 
   productionData.forEach(p => {
-    const keys = productionTitleFuzzyKeys(p);
-
-    keys.forEach(k => {
-      // Avoiding titles too short to prevent false negatives
-      if (k.length < 5) return;
-
-      productionByFuzzyKey[k] = p;
-    });
+    multiIndex(productionTitleFuzzyKeys(p), p, productionByFuzzyKey);
   });
 
   const client = new HALClient();

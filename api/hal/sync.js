@@ -486,6 +486,15 @@ exports.syncHAL = function syncHAL(
           halAddendum.ids = Array.from(ids);
         }
 
+        // Fixing the type if we already have a better one in spire
+        if (
+          productionMatch.spire &&
+          productionMatch.spire.generatedFields.type
+        ) {
+          halAddendum.generatedFields.type =
+            productionMatch.spire.generatedFields.type;
+        }
+
         productionMatch.hal = halAddendum;
       }
 

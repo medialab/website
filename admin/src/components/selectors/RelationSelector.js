@@ -8,6 +8,7 @@ import Select from 'react-select';
 import keyBy from 'lodash/keyBy';
 import find from 'lodash/fp/find';
 import truncate from 'lodash/truncate';
+import assignDeep from 'assign-deep';
 import client from '../../client';
 import ReorderIcon from 'material-icons-svg/components/baseline/Reorder';
 import PopoutSelector from './PopoutSelector';

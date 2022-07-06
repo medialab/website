@@ -4,14 +4,40 @@ import unset from 'lodash/fp/unset';
 import sha1 from 'hash.js/lib/hash/sha/1';
 import {arrayMove} from 'react-sortable-hoc';
 
+function isEmptyValue(value) {
+  return value === undefined || value === null || value === '';
+}
+
+function isEmptyOject(object) {
+  for (const _ in object) {
+    return false;
+  }
+
+  return true;
+}
+
+function isParentEmpty(path, state) {
+  if (Array.isArray(path) && path.length > 1) {
+    return isEmptyOject(get(path.slice(0, -1), state));
+  }
+
+  return false;
+}
+
+function cleanupParent(path, state) {
+  if (isParentEmpty(path, state)) return unset(path.slice(0, -1), state);
+  return state;
+}
+
 export function createHandler(scope, key) {
   return e => {
     const value = e.target.value;
 
-    const newState =
-      value === undefined || value === null || value === ''
-        ? unset(key, scope.state)
-        : set(key, value, scope.state);
+    let newState = isEmptyValue(value)
+      ? unset(key, scope.state)
+      : set(key, value, scope.state);
+
+    newState = cleanupParent(key, newState);
 
     scope.setState(newState);
   };
@@ -19,7 +45,13 @@ export function createHandler(scope, key) {
 
 export function createSlugRelatedHandler(scope, key, slugify) {
   return e => {
-    let newState = set(key, e.target.value, scope.state);
+    const value = e.target.value;
+
+    let newState = isEmptyValue(value)
+      ? unset(key, scope.state)
+      : set(key, value, scope.state);
+
+    newState = cleanupParent(key, newState);
 
     if (scope.state.isNew)
       newState = set(['data', 'slugs'], [slugify(newState.data)], newState);
@@ -39,8 +71,17 @@ export function getResetState(spec, state) {
 
 export function createRawHandler(scope, key, spec) {
   return v => {
-    const state = getResetState(spec, scope.state);
-    scope.setState(set(key, v, state));
+    let state = getResetState(spec, scope.state);
+
+    if (isEmptyValue(v)) {
+      state = unset(key, state);
+    } else {
+      state = set(key, v, state);
+    }
+
+    state = cleanupParent(key, state);
+
+    scope.setState(state);
   };
 }
 

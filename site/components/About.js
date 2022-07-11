@@ -243,7 +243,12 @@ export default function About({lang}) {
                   compte GitHub du laboratoire
                 </a>
                 ). Dans cette dynamique, le médialab soutient également le
-                développement de logiciels créés par la communauté Open Source.
+                développement de logiciels créés par la communauté Open Source
+                et est{' '}
+                <a href="https://april.org/adherents-personnes-morales#organismes%20du%20secteur%20%C3%A9ducatif/de%20la%20recherches">
+                  membre de l'APRIL
+                </a>
+                , association de promotion et de défense du logiciel libre.
               </p>
 
               <h3 id="contact">Contact</h3>
@@ -505,7 +510,11 @@ export default function About({lang}) {
                   the laboratory's GitHub account
                 </a>
                 ). In this dynamic, médialab also supports the development of
-                software created by the Open Source community.
+                software created by the Open Source community, and is a{' '}
+                <a href="https://april.org/adherents-personnes-morales#organismes%20du%20secteur%20%C3%A9ducatif/de%20la%20recherches">
+                  member of APRIL
+                </a>
+                , association for the promotion and defense of free software.
               </p>
 
               <h3 id="contact">Contact</h3>

@@ -580,7 +580,7 @@ function renderProductionForm(props) {
               <label className="label">English Content</label>
               <GeneratedField
                 data={data}
-                path={['description', 'en']}
+                path={['content', 'en']}
                 init={() => handlers.englishContent('')}
                 cancel={() => handlers.englishContent(undefined)}>
                 <Editor

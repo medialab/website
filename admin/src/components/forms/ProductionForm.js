@@ -133,13 +133,12 @@ class GeneratedField extends Component {
       ['data'].concat(props.path),
       {}
     );
-    this.cancel = this.cancel.bind(this);
   }
 
-  cancel() {
+  cancel = () => {
     this.overrideHandler(undefined);
     this.setState({overriding: false});
-  }
+  };
 
   componentDidMount() {
     if (this.props.model) {
@@ -292,8 +291,8 @@ function renderProductionForm(props) {
             <div className="column is-12">
               <div className="field">
                 <label className="label">
-                  Production non pertinente (dans le cas d'une production Spire
-                  ou HAL)?
+                  Pertinence de la production (dans le cas d'une production
+                  Spire ou HAL)?
                 </label>
                 <div className="control">
                   <BooleanSelector

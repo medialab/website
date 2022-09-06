@@ -98,6 +98,10 @@ const HANDLERS = {
     type: 'negative',
     field: ['draft']
   },
+  irrelevant: {
+    type: 'raw',
+    field: ['irrelevant']
+  },
   date: {
     type: 'raw',
     field: 'date'
@@ -282,6 +286,31 @@ function renderProductionForm(props) {
             </div>
           </div>
         </div>
+
+        {(data.spire || data.hal) && (
+          <div className="columns">
+            <div className="column is-12">
+              <div className="field">
+                <label className="label">
+                  Production non pertinente (dans le cas d'une production Spire
+                  ou HAL)?
+                </label>
+                <div className="control">
+                  <BooleanSelector
+                    value={!!data.irrelevant}
+                    labels={['non pertinente', 'pertinente']}
+                    statuses={['danger', 'success']}
+                    onChange={v =>
+                      v
+                        ? handlers.irrelevant(v)
+                        : handlers.irrelevant(undefined)
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="columns">
           <div className="column is-12">
@@ -594,7 +623,8 @@ function renderProductionForm(props) {
           </div>
         </div>
       </div>
-      {(data.title || data.spire) && (
+
+      {(data.title || data.spire || data.hal) && (
         <div className="form-group is-important">
           <div className="field">
             <label className="label title is-4">

@@ -55,6 +55,7 @@ class Database {
     const skipDrafts = options.skipDrafts || false;
 
     const draftIds = new Set();
+    const irrelevantIds = new Set();
 
     this.options = options;
     this.store = store;
@@ -63,6 +64,11 @@ class Database {
     // Hydrating graph & filtering drafts
     models.forEach(model => {
       store[model] = store[model].filter(item => {
+        if (item.irrelevant) {
+          irrelevantIds.add(item.id);
+          return false;
+        }
+
         if (skipDrafts && item.draft) {
           draftIds.add(item.id);
           return false;
@@ -89,7 +95,7 @@ class Database {
 
           item[k].forEach(target => {
             if (!this.graph.hasNode(target)) {
-              if (!draftIds.has(target))
+              if (!draftIds.has(target) && !irrelevantIds.has(target))
                 console.warn(
                   `wilson/database: "${target}" - ${k} node not found (from "${item.id}" - ${item.model})!`
                 );
@@ -171,9 +177,9 @@ class Database {
 
     homeSettings.grid = homeSettings.grid
       .filter(item => {
-        if (draftIds.has(item.id)) {
+        if (draftIds.has(item.id) || irrelevantIds.has(item.id)) {
           console.warn(
-            `wilson/database: found draft ${item.model} "${item.id}" in home grid.`
+            `wilson/database: found draft or irrelevant ${item.model} "${item.id}" in home grid.`
           );
           return false;
         }
@@ -186,9 +192,9 @@ class Database {
 
     homeSettings.slider = homeSettings.slider
       .filter(item => {
-        if (draftIds.has(item.id)) {
+        if (draftIds.has(item.id) || irrelevantIds.has(item.id)) {
           console.warn(
-            `wilson/database: found draft ${item.model} "${item.id}" in home slider.`
+            `wilson/database: found draft or irrelevant ${item.model} "${item.id}" in home slider.`
           );
           return false;
         }

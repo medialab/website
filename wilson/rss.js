@@ -134,7 +134,7 @@ const FEEDS = [
     reduce(db, resolve, lang) {
       return db
         .getModel('news')
-        .filter(item => !item.draft)
+        .filter(item => !item.draft && !item.irrelevant)
         .sort(createComparator('startDate'))
         .slice(0, FEED_MAX_NUMBER_OF_ITEMS)
         .map(item => REDUCERS.news(resolve, lang, item));

@@ -393,6 +393,7 @@ exports.syncHAL = function syncHAL(
 
   let seen = 0;
   let halMatches = 0;
+  let irrelevantHalMatches = 0;
   let spireMatches = 0;
   let fuzzyMatches = 0;
   let newProductions = 0;
@@ -449,7 +450,14 @@ exports.syncHAL = function syncHAL(
       if (halId) {
         productionMatch = productionsByHALId[halId];
 
-        if (productionMatch) halMatches++;
+        if (productionMatch) {
+          halMatches++;
+
+          if (productionMatch.irrelevant) {
+            irrelevantHalMatches++;
+            return;
+          }
+        }
       }
 
       if (!productionMatch && spireId) {
@@ -537,6 +545,7 @@ exports.syncHAL = function syncHAL(
       emitCallback(`Matched ${halMatches} through a hal id`);
       emitCallback(`Matched ${spireMatches} through a spire id`);
       emitCallback(`Matched ${fuzzyMatches} through fuzzy matching`);
+      emitCallback(`Skipped ${irrelevantHalMatches} irrelevant HAL documents`);
       emitCallback(`Created ${newProductions} new productions`);
 
       // Writing results to database

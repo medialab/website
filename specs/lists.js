@@ -337,11 +337,17 @@ module.exports = {
         type: 'enum',
         enum: 'productionTypes',
         grouped: true
+      },
+      irrelevant: {
+        type: 'boolean',
+        all: false,
+        falseValue: undefined
       }
     },
     defaultFilters: {
       draft: null,
-      type: null
+      type: null,
+      irrelevant: undefined
     }
   }
 };

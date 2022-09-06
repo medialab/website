@@ -6,7 +6,8 @@ import enums from '../../../../specs/enums.json';
 
 const BOOLEAN_LABELS = {
   active: ['Active', 'Inactive'],
-  draft: ['Published', 'Draft']
+  draft: ['Published', 'Draft'],
+  irrelevant: ['Irrelevant', '.']
 };
 
 export default function ListFilterSelector(props) {
@@ -16,33 +17,37 @@ export default function ListFilterSelector(props) {
 
   if (negate && value !== null) value = !value;
 
+  const falseValue = 'falseValue' in specs ? specs.falseValue : false;
+
   if (specs.type === 'boolean') {
     const labels = BOOLEAN_LABELS[name];
 
     return (
       <div className="buttons has-addons">
-        <span
-          className={cls(
-            'button',
-            value === null && ['is-selected', 'is-info']
-          )}
-          onClick={() => onChange(null)}>
-          All
-        </span>
+        {specs.all !== false && (
+          <span
+            className={cls(
+              'button',
+              value === null && ['is-selected', 'is-info']
+            )}
+            onClick={() => onChange(null)}>
+            All
+          </span>
+        )}
         <span
           className={cls(
             'button',
             value === true && ['is-selected', 'is-success']
           )}
-          onClick={() => onChange(negate ? false : true)}>
+          onClick={() => onChange(negate ? falseValue : true)}>
           {labels[0]}
         </span>
         <span
           className={cls(
             'button',
-            value === false && ['is-selected', 'is-success']
+            value === falseValue && ['is-selected', 'is-success']
           )}
-          onClick={() => onChange(negate ? true : false)}>
+          onClick={() => onChange(negate ? true : falseValue)}>
           {labels[1]}
         </span>
       </div>

@@ -22,7 +22,7 @@ import client from '../../client';
 import Button from '../misc/Button';
 import keyBy from 'lodash/keyBy';
 import get from 'lodash/fp/get';
-import {statusLabels} from './utils';
+import {statusLabels, createRawHandler} from './utils';
 
 function validate(data) {
   if (data.spire || data.hal) return;
@@ -120,8 +120,21 @@ class GeneratedField extends Component {
 
     this.state = {
       loading: true,
+      overriding: !!get(props.path, props.scope.state.data),
       peopleLabels: []
     };
+
+    this.overrideHandler = createRawHandler(
+      props.scope,
+      ['data'].concat(props.path),
+      {}
+    );
+    this.cancel = this.cancel.bind(this);
+  }
+
+  cancel() {
+    this.overrideHandler(undefined);
+    this.setState({overriding: false});
   }
 
   componentDidMount() {
@@ -145,23 +158,23 @@ class GeneratedField extends Component {
   }
 
   render() {
-    const {peopleLabels, loading} = this.state;
-    const {children, init, cancel, label, path, data} = this.props;
+    const {peopleLabels, loading, overriding} = this.state;
+    const {children, label, path, scope} = this.props;
 
-    let overrideValue = get(path, data);
+    const data = scope.state.data;
+
     let externalValue = undefined;
-    let source = 'None';
+    let source = undefined;
 
     if (data.hal) {
       externalValue = get(path, data.hal.generatedFields);
       source = 'HAL';
-    }
-    if (externalValue === undefined && data.spire) {
+    } else if (data.spire) {
       externalValue = get(path, data.spire.generatedFields);
       source = 'Spire';
     }
 
-    if (externalValue !== undefined) {
+    if (externalValue) {
       let externalLabel = externalValue;
 
       if (loading) externalLabel = 'loading...';
@@ -174,14 +187,16 @@ class GeneratedField extends Component {
       return (
         <div>
           <div className="notification is-medium">{externalLabel}</div>
-          {overrideValue === undefined && (
-            <Button kind="text" onClick={() => init()}>
+          {!overriding && (
+            <Button
+              kind="text"
+              onClick={() => this.setState({overriding: true})}>
               Modifier la valeur générée depuis {source}
             </Button>
           )}
-          {(overrideValue !== undefined || overrideValue === '') && children}
-          {(overrideValue !== undefined || overrideValue === '') && (
-            <Button kind="text" onClick={() => cancel()}>
+          {overriding && children}
+          {overriding && (
+            <Button kind="text" onClick={this.cancel}>
               Annuler et restaurer la valeur générée depuis {source}
             </Button>
           )}
@@ -195,6 +210,7 @@ class GeneratedField extends Component {
 
 function renderProductionForm(props) {
   const {
+    scope: formScope,
     data,
     handlers,
     slug,
@@ -221,13 +237,7 @@ function renderProductionForm(props) {
                 French Title <small>(requis en français ou anglais)</small>
               </label>
               <div className="control">
-                <GeneratedField
-                  data={data}
-                  path={['title', 'fr']}
-                  init={() => handlers.frenchTitle({target: {value: ''}})}
-                  cancel={() =>
-                    handlers.frenchTitle({target: {value: undefined}})
-                  }>
+                <GeneratedField path={['title', 'fr']} scope={formScope}>
                   <input
                     type="text"
                     className="input"
@@ -246,13 +256,7 @@ function renderProductionForm(props) {
                 English Title <small>(requis en français ou anglais)</small>
               </label>
               <div className="control">
-                <GeneratedField
-                  data={data}
-                  path={['title', 'en']}
-                  init={() => handlers.englishTitle({target: {value: ''}})}
-                  cancel={() =>
-                    handlers.englishTitle({target: {value: undefined}})
-                  }>
+                <GeneratedField path={['title', 'en']} scope={formScope}>
                   <input
                     type="text"
                     className="input"
@@ -298,11 +302,9 @@ function renderProductionForm(props) {
               <label className="label">Type of production</label>
               <div className="control">
                 <GeneratedField
-                  data={data}
                   path={['type']}
                   label={v => enums.productionTypes.fr[v]}
-                  init={() => handlers.type('')}
-                  cancel={() => handlers.type(undefined)}>
+                  scope={formScope}>
                   <EnumSelector
                     enumType="productionTypes"
                     value={data.type}
@@ -379,11 +381,7 @@ function renderProductionForm(props) {
           <div className="column is-6">
             <label className="label">Date</label>
             <div className="control">
-              <GeneratedField
-                data={data}
-                path={['date']}
-                init={() => handlers.date('')}
-                cancel={() => handlers.date(undefined)}>
+              <GeneratedField path={['date']} scope={formScope}>
                 <DateSelector
                   precision="year"
                   value={data.date}
@@ -408,11 +406,7 @@ function renderProductionForm(props) {
               </em>
             </label>
             <div className="control">
-              <GeneratedField
-                data={data}
-                path={['authors']}
-                init={() => handlers.authors({target: {value: ''}})}
-                cancel={() => handlers.authors({target: {value: undefined}})}>
+              <GeneratedField path={['authors']} scope={formScope}>
                 <input
                   type="text"
                   className="input"
@@ -437,10 +431,8 @@ function renderProductionForm(props) {
             </label>
             <div className="control">
               <GeneratedField
-                data={data}
                 path={['people']}
-                init={() => handlers.people.add([])}
-                cancel={() => handlers.people.empty()}
+                scope={formScope}
                 model="people">
                 <RelationSelector
                   model="people"
@@ -469,13 +461,11 @@ function renderProductionForm(props) {
           </label>
           <div className="control">
             <GeneratedField
-              data={data}
               path={['external']}
               label={v =>
                 v ? 'publication médialab' : 'publication hors médialab'
               }
-              init={() => handlers.external(true)}
-              cancel={() => handlers.external(undefined)}>
+              scope={formScope}>
               <BooleanSelector
                 value={!data.external}
                 labels={['publication médialab', 'publication hors médialab']}
@@ -495,11 +485,7 @@ function renderProductionForm(props) {
               <div className="field">
                 <label className="label">Url</label>
                 <div className="control">
-                  <GeneratedField
-                    data={data}
-                    path={['url']}
-                    init={() => handlers.url({target: {value: ''}})}
-                    cancel={() => handlers.url({target: {value: undefined}})}>
+                  <GeneratedField path={['url']} scope={formScope}>
                     <UrlInput value={data.url} onChange={handlers.url} />
                   </GeneratedField>
                 </div>
@@ -513,13 +499,7 @@ function renderProductionForm(props) {
             <div className="field">
               <label className="label">French Description</label>
               <div className="control">
-                <GeneratedField
-                  data={data}
-                  path={['description', 'fr']}
-                  init={() => handlers.frenchDescription({target: {value: ''}})}
-                  cancel={() =>
-                    handlers.frenchDescription({target: {value: undefined}})
-                  }>
+                <GeneratedField path={['description', 'fr']} scope={formScope}>
                   <textarea
                     className="textarea"
                     value={data.description && data.description.fr}
@@ -536,15 +516,7 @@ function renderProductionForm(props) {
             <div className="field">
               <label className="label">English Description</label>
               <div className="control">
-                <GeneratedField
-                  data={data}
-                  path={['description', 'en']}
-                  init={() =>
-                    handlers.englishDescription({target: {value: ''}})
-                  }
-                  cancel={() =>
-                    handlers.englishDescription({target: {value: undefined}})
-                  }>
+                <GeneratedField path={['description', 'en']} scope={formScope}>
                   <textarea
                     className="textarea"
                     value={data.description && data.description.en}
@@ -562,11 +534,7 @@ function renderProductionForm(props) {
           <div className="column is-6">
             <div className="field">
               <label className="label">French Content</label>
-              <GeneratedField
-                data={data}
-                path={['content', 'fr']}
-                init={() => handlers.frenchContent('')}
-                cancel={() => handlers.frenchContent(undefined)}>
+              <GeneratedField path={['content', 'fr']} scope={formScope}>
                 <Editor
                   content={frenchEditorContent}
                   onSave={handlers.frenchContent}
@@ -578,11 +546,7 @@ function renderProductionForm(props) {
           <div className="column is-6">
             <div className="field">
               <label className="label">English Content</label>
-              <GeneratedField
-                data={data}
-                path={['content', 'en']}
-                init={() => handlers.englishContent('')}
-                cancel={() => handlers.englishContent(undefined)}>
+              <GeneratedField path={['content', 'en']} scope={formScope}>
                 <Editor
                   content={englishEditorContent}
                   onSave={handlers.englishContent}

@@ -416,6 +416,7 @@ class Form extends Component {
             [
               isEditPage,
               React.createElement(children, {
+                scope: this,
                 handlers: this.handlers,
                 englishEditorContent: this.englishEditorContent,
                 frenchEditorContent: this.frenchEditorContent,

@@ -186,6 +186,10 @@
       "title": "Draft?",
       "type": "boolean"
     },
+    "irrelevant": {
+      "title": "Production non-pertinente (souvent récupérée d'une source externe dont HAL et Spire).",
+      "type": "boolean"
+    },
     "active": {
       "title": "Actif?",
       "type": "boolean"

@@ -11,8 +11,6 @@ variables:
 
 build_web_image:
   stage: build
-  tags:
-    - proxy
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
     - docker build --force-rm --build-arg "API_URL=$CI_ENVIRONMENT_URL/api" -t $WEB_IMAGE_NAME -f ./admin/Dockerfile .
@@ -27,8 +25,6 @@ build_web_image:
 
 build_api_image:
   stage: build
-  tags:
-    - proxy
   script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
     - docker build --force-rm -t $API_IMAGE_NAME -f Dockerfile .
@@ -46,8 +42,6 @@ deploy:
     name: jrisp/kubehelper:latest
     entrypoint: [""]
   stage: deploy
-  tags:
-    - proxy
   dependencies:
     - build_web_image
     - build_api_image

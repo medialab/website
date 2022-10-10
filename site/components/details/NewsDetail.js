@@ -42,6 +42,7 @@ const mainPermalink = {
 export default function NewsDetail({lang, news, siteUrl}) {
   return (
     <>
+      {news.slugs.includes('merci-bruno') && <style>{'html {filter: grayscale(1);}'}</style>}
       <PageMeta
         title={`${
           news.title[lang] || news.title.fr || news.title.en

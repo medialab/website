@@ -78,7 +78,12 @@ export default function NewsListing({lang, list}) {
                       }
                       data-item={nbNews}
                       data-type={news.type}
-                      className={`list-item ${news.type}`}>
+                      className={`list-item ${news.type}`}
+                      style={
+                        news.slugs.includes('merci-bruno')
+                          ? {filter: 'grayscale(1)'}
+                          : {}
+                      }>
                       <Link to={news.permalink[lang]}>
                         <div className="image-pre" aria-hidden="true">
                           <ProcessedImage

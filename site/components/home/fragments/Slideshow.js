@@ -32,6 +32,9 @@ const Slideshow = ({slider, lang}) => {
   // limiting number of slide to 5 maximum
   if (slider.length > 5) slides = slider.slice(0, 5);
 
+  const grayscaleStyle = slide =>
+    slide.slugs.includes('merci-bruno') ? {filter: 'grayscale(1)'} : {};
+
   return (
     <section className="slideshow" id="slideshow" data-nbr-item={slides.length}>
       <div className="slideshow-container">
@@ -70,7 +73,10 @@ const Slideshow = ({slider, lang}) => {
                 aria-label={i18n[lang].label}>
                 <article data-type={slide.model}>
                   <Link to={slide.permalink[lang]}>
-                    <div className="image-pre" aria-hidden="true">
+                    <div
+                      className="image-pre"
+                      aria-hidden="true"
+                      style={grayscaleStyle(slide)}>
                       <ProcessedImage
                         size="large"
                         image={
@@ -79,7 +85,10 @@ const Slideshow = ({slider, lang}) => {
                         data={slide}
                       />
                     </div>
-                    <div className="image-pre-phone" aria-hidden="true">
+                    <div
+                      className="image-pre-phone"
+                      aria-hidden="true"
+                      style={grayscaleStyle(slide)}>
                       <ProcessedImage
                         size="medium"
                         image={
@@ -91,7 +100,12 @@ const Slideshow = ({slider, lang}) => {
                   </Link>
                   <div
                     className="contenu-slide"
-                    aria-label={i18n[lang].content}>
+                    aria-label={i18n[lang].content}
+                    style={
+                      slide.slugs.includes('merci-bruno')
+                        ? {filter: 'grayscale(1)'}
+                        : {}
+                    }>
                     <Link to={slide.permalink[lang]}>
                       {/* if Activité */}
                       {slide.model === 'activities' && (
@@ -215,6 +229,7 @@ const Slideshow = ({slider, lang}) => {
                   data-slide={index + 1}
                   htmlFor={`slide-bullet-${index + 1}`}
                   aria-label={`slide ${index + 1}`}
+                  style={grayscaleStyle(slide)}
                 />
               );
             })}

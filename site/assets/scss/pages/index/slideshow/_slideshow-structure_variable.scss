@@ -15,7 +15,7 @@
     }
   }
   #slide-bullet-0:checked ~ .slideshow-inner {
-    animation: slide-A 10000ms infinite;
+    animation: slide-A ($slideshow-duration * 2) infinite;
     will-change: auto;
   }
 
@@ -39,10 +39,10 @@
   }
   #slide-bullet-0:checked ~ nav.bullets-slide {
     [data-slide='1'] {
-      animation: bullet-A 10000ms infinite;
+      animation: bullet-A ($slideshow-duration * 2) infinite;
     }
     [data-slide='2'] {
-      animation: bullet-A 10000ms infinite 5000ms;
+      animation: bullet-A ($slideshow-duration * 2) infinite $slideshow-duration;
     }
   }
 
@@ -66,11 +66,13 @@
     display: block;
     &:nth-of-type(1),
     &:nth-of-type(2) {
-      animation: slideshow-controls-animation-A 10s infinite 0ms;
+      animation: slideshow-controls-animation-A ($slideshow-duration * 2)
+        infinite 0ms;
     }
     &:nth-of-type(3),
     &:nth-of-type(4) {
-      animation: slideshow-controls-animation-A 10s infinite 5s;
+      animation: slideshow-controls-animation-A ($slideshow-duration * 2)
+        infinite $slideshow-duration;
     }
   }
 
@@ -111,7 +113,7 @@
     }
   }
   #slide-bullet-0:checked ~ .slideshow-inner {
-    animation: slide-B 15000ms infinite;
+    animation: slide-B ($slideshow-duration * 3) infinite;
     will-change: auto;
   }
 
@@ -135,13 +137,14 @@
   }
   #slide-bullet-0:checked ~ nav.bullets-slide {
     [data-slide='1'] {
-      animation: bullet-B 15s infinite;
+      animation: bullet-B ($slideshow-duration * 3) infinite;
     }
     [data-slide='2'] {
-      animation: bullet-B 15s infinite 5s;
+      animation: bullet-B ($slideshow-duration * 3) infinite $slideshow-duration;
     }
     [data-slide='3'] {
-      animation: bullet-B 15s infinite 10s;
+      animation: bullet-B ($slideshow-duration * 3) infinite
+        ($slideshow-duration * 2);
     }
   }
 
@@ -165,15 +168,18 @@
     display: block;
     &:nth-of-type(1),
     &:nth-of-type(2) {
-      animation: slideshow-controls-animation-B 15s infinite 0s;
+      animation: slideshow-controls-animation-B ($slideshow-duration * 3)
+        infinite 0s;
     }
     &:nth-of-type(3),
     &:nth-of-type(4) {
-      animation: slideshow-controls-animation-B 15s infinite 5s;
+      animation: slideshow-controls-animation-B ($slideshow-duration * 3)
+        infinite $slideshow-duration;
     }
     &:nth-of-type(5),
     &:nth-of-type(6) {
-      animation: slideshow-controls-animation-B 15s infinite 10s;
+      animation: slideshow-controls-animation-B ($slideshow-duration * 3)
+        infinite ($slideshow-duration * 2);
     }
   }
 
@@ -225,7 +231,7 @@
     }
   }
   #slide-bullet-0:checked ~ .slideshow-inner {
-    animation: slide-C 20s infinite;
+    animation: slide-C ($slideshow-duration * 4) infinite;
     will-change: auto;
   }
 
@@ -249,16 +255,18 @@
   }
   #slide-bullet-0:checked ~ nav.bullets-slide {
     [data-slide='1'] {
-      animation: bullet-C 20s infinite 0s;
+      animation: bullet-C ($slideshow-duration * 4) infinite 0s;
     }
     [data-slide='2'] {
-      animation: bullet-C 20s infinite 5s;
+      animation: bullet-C ($slideshow-duration * 4) infinite $slideshow-duration;
     }
     [data-slide='3'] {
-      animation: bullet-C 20s infinite 10s;
+      animation: bullet-C ($slideshow-duration * 4) infinite
+        ($slideshow-duration * 2);
     }
     [data-slide='4'] {
-      animation: bullet-C 20s infinite 15s;
+      animation: bullet-C ($slideshow-duration * 4) infinite
+        ($slideshow-duration * 3);
     }
   }
 
@@ -282,19 +290,23 @@
     display: block;
     &:nth-of-type(1),
     &:nth-of-type(2) {
-      animation: slideshow-controls-animation-C 20s infinite 0s;
+      animation: slideshow-controls-animation-C ($slideshow-duration * 4)
+        infinite 0s;
     }
     &:nth-of-type(3),
     &:nth-of-type(4) {
-      animation: slideshow-controls-animation-C 20s infinite 5s;
+      animation: slideshow-controls-animation-C ($slideshow-duration * 4)
+        infinite $slideshow-duration;
     }
     &:nth-of-type(5),
     &:nth-of-type(6) {
-      animation: slideshow-controls-animation-C 20s infinite 10s;
+      animation: slideshow-controls-animation-C ($slideshow-duration * 4)
+        infinite ($slideshow-duration * 2);
     }
     &:nth-of-type(7),
     &:nth-of-type(8) {
-      animation: slideshow-controls-animation-C 20s infinite 15s;
+      animation: slideshow-controls-animation-C ($slideshow-duration * 4)
+        infinite ($slideshow-duration * 3);
     }
   }
 
@@ -357,7 +369,7 @@
     }
   }
   #slide-bullet-0:checked ~ .slideshow-inner {
-    animation: slide-D 25s infinite;
+    animation: slide-D ($slideshow-duration * 5) infinite;
     will-change: auto;
   }
 
@@ -381,19 +393,22 @@
   }
   #slide-bullet-0:checked ~ nav.bullets-slide {
     [data-slide='1'] {
-      animation: bullet-D 25s infinite;
+      animation: bullet-D ($slideshow-duration * 5) infinite;
     }
     [data-slide='2'] {
-      animation: bullet-D 25s infinite 5s;
+      animation: bullet-D ($slideshow-duration * 5) infinite $slideshow-duration;
     }
     [data-slide='3'] {
-      animation: bullet-D 25s infinite 10s;
+      animation: bullet-D ($slideshow-duration * 5) infinite
+        ($slideshow-duration * 2);
     }
     [data-slide='4'] {
-      animation: bullet-D 25s infinite 15s;
+      animation: bullet-D ($slideshow-duration * 5) infinite
+        ($slideshow-duration * 3);
     }
     [data-slide='5'] {
-      animation: bullet-D 25s infinite 20s;
+      animation: bullet-D ($slideshow-duration * 5) infinite
+        ($slideshow-duration * 4);
     }
   }
 
@@ -417,23 +432,28 @@
     display: block;
     &:nth-of-type(1),
     &:nth-of-type(2) {
-      animation: slideshow-controls-animation-D 25s infinite 0s;
+      animation: slideshow-controls-animation-D ($slideshow-duration * 5)
+        infinite 0s;
     }
     &:nth-of-type(3),
     &:nth-of-type(4) {
-      animation: slideshow-controls-animation-D 25s infinite 5s;
+      animation: slideshow-controls-animation-D ($slideshow-duration * 5)
+        infinite $slideshow-duration;
     }
     &:nth-of-type(5),
     &:nth-of-type(6) {
-      animation: slideshow-controls-animation-D 25s infinite 10s;
+      animation: slideshow-controls-animation-D ($slideshow-duration * 5)
+        infinite ($slideshow-duration * 2);
     }
     &:nth-of-type(7),
     &:nth-of-type(8) {
-      animation: slideshow-controls-animation-D 25s infinite 15s;
+      animation: slideshow-controls-animation-D ($slideshow-duration * 5)
+        infinite ($slideshow-duration * 3);
     }
     &:nth-of-type(9),
     &:nth-of-type(10) {
-      animation: slideshow-controls-animation-D 25s infinite 20s;
+      animation: slideshow-controls-animation-D ($slideshow-duration * 5)
+        infinite ($slideshow-duration * 4);
     }
   }
 

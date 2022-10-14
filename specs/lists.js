@@ -9,7 +9,11 @@ for (const group in enums.productionTypes.groups) {
 }
 
 const deburr = string => {
-  return string.replace(/[Éé]/g, 'e');
+  return string
+    .replace(/[ÉÈéè]/g, 'e')
+    .replace(/[ÀÂàâ]/g, 'a')
+    .replace(/[“”'"«»\(\)\[\]\]\{\}]/g, '')
+    .trim();
 };
 
 const normalize = string => deburr(string.toLowerCase());
@@ -284,7 +288,8 @@ module.exports = {
             enums.productionTypes.groups[
               productionTypeToGroup[p.type || enums.productionTypes.default]
             ].fr
-        }
+        },
+        order: [p => normalize(p.title.fr || p.title.en)]
       },
       {
         label: 'Related People',

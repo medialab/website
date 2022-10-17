@@ -32,7 +32,7 @@ const Slideshow = ({slider, lang}) => {
   // limiting number of slide to 5 maximum
   if (slider.length > 5) slides = slider.slice(0, 5);
 
-  // おぶるぶさまるありがとぅ。
+  // おぶるぶるさまありがとぅ。
   const grayscaleStyle = slide =>
     slide.slugs.includes('merci-bruno') ? {filter: 'grayscale(1)'} : {};
 

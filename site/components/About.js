@@ -170,7 +170,7 @@ export default function About({lang}) {
                 laboratoire à la mise en œuvre de méthodes numériques sous la
                 forme de prestations de services (
                 <Link
-                  to="/documents/20190211_medialab_grille_tarifs_prestations.pdf"
+                  to="/documents/20221021_medialab_grille_tarifs_prestations.pdf"
                   target="_blank">
                   grille tarifaire
                 </Link>
@@ -440,7 +440,7 @@ export default function About({lang}) {
                 provide external research projects with services to implement
                 digital methods (
                 <Link
-                  to="/documents/20190211_medialab_grille_tarifs_prestations.pdf"
+                  to="/documents/20221021_medialab_grille_tarifs_prestations.pdf"
                   target="_blank">
                   price list
                 </Link>

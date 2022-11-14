@@ -67,16 +67,24 @@ const mainPermalink = {
 };
 
 const TWITTER_LABEL_REGEX = /twitter/i,
+  MASTODON_LABEL_REGEX = /mastodon/i,
   GITHUB_LABEL_REGEX = /github/i,
   TRAILING_SLASH_REGEX = /\/$/;
 
 function extractHandle(value) {
   if (value.startsWith('http'))
-    return value.replace(TRAILING_SLASH_REGEX, '').split('/').slice(-1)[0];
+    value = value.replace(TRAILING_SLASH_REGEX, '').split('/').slice(-1)[0];
 
   if (value.startsWith('@')) return value.slice(1);
 
   return value;
+}
+
+function extractDomain(value) {
+  if (value.startsWith('http'))
+    return value.replace(TRAILING_SLASH_REGEX, '').split('/').slice(2)[0];
+
+  return value.split('@').slice(-1)[0];
 }
 
 const MAX_URL_LENGTH = 50;
@@ -97,6 +105,27 @@ function PeopleContactLabel({lang, data}) {
     );
   }
 
+  if (MASTODON_LABEL_REGEX.test(data.label)) {
+    const handle = extractHandle(data.value).split('@')[0];
+    const domain = extractDomain(data.value);
+    const url = `https://${domain}/@${handle}`;
+
+    return (
+      <span>
+        <span className="label-data">Mastodon:</span>
+        &nbsp;
+        <a
+          proptype="url"
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer me">
+          @{handle}@{domain}
+        </a>
+      </span>
+    );
+  }
+
+
   if (TWITTER_LABEL_REGEX.test(data.label)) {
     const handle = extractHandle(data.value);
     const url = `https://twitter.com/${handle}`;
@@ -105,7 +134,11 @@ function PeopleContactLabel({lang, data}) {
       <span>
         <span className="label-data">Twitter:</span>
         &nbsp;
-        <a proptype="url" href={url} target="_blank" rel="noopener noreferrer">
+        <a
+          proptype="url"
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer">
           @{handle}
         </a>
       </span>
@@ -120,7 +153,11 @@ function PeopleContactLabel({lang, data}) {
       <span>
         <span className="label-data">Github:</span>
         &nbsp;
-        <a proptype="url" href={url} target="_blank" rel="noopener noreferrer">
+        <a
+          proptype="url"
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer">
           @{handle}
         </a>
       </span>

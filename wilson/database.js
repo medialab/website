@@ -108,6 +108,14 @@ class Database {
 
         if (model in SELF_LINKS && SELF_LINKS[model] in item) {
           item[SELF_LINKS[model]].forEach(target => {
+            if (!this.graph.hasNode(target)) {
+              if (!draftIds.has(target) && !irrelevantIds.has(target))
+                console.warn(
+                  `wilson/database: "${target}" - ${k} node not found (from "${item.id}" - ${item.model})!`
+                );
+              return;
+            }
+
             this.graph.mergeUndirectedEdge(item.id, target);
           });
         }

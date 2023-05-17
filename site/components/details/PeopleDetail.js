@@ -125,7 +125,6 @@ function PeopleContactLabel({lang, data}) {
     );
   }
 
-
   if (TWITTER_LABEL_REGEX.test(data.label)) {
     const handle = extractHandle(data.value);
     const url = `https://twitter.com/${handle}`;
@@ -134,11 +133,7 @@ function PeopleContactLabel({lang, data}) {
       <span>
         <span className="label-data">Twitter:</span>
         &nbsp;
-        <a
-          proptype="url"
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer">
+        <a proptype="url" href={url} target="_blank" rel="noopener noreferrer">
           @{handle}
         </a>
       </span>
@@ -153,11 +148,7 @@ function PeopleContactLabel({lang, data}) {
       <span>
         <span className="label-data">Github:</span>
         &nbsp;
-        <a
-          proptype="url"
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer">
+        <a proptype="url" href={url} target="_blank" rel="noopener noreferrer">
           @{handle}
         </a>
       </span>

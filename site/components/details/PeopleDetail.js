@@ -34,7 +34,13 @@ const i18n = {
       return `Présentation de ${person.firstName} ${person.lastName}`;
     },
     profilePicture(person) {
-      return `Photo de profil de ${person.firstName} ${person.lastName}`;
+      let alt = `Photo de profil de ${person.firstName} ${person.lastName}`;
+
+      if (person.cover && person.cover.credits) {
+        alt += `. Crédits: ${person.cover.credits}`;
+      }
+
+      return alt;
     },
     occupationAriaLabel: 'Occupation actuelle',
     roleAriaLabel: "Rôle au sein de l'equipe",
@@ -52,7 +58,13 @@ const i18n = {
       return `${person.firstName} ${person.lastName}'s presentation`;
     },
     profilePicture(person) {
-      return `${person.firstName} ${person.lastName} profile picture`;
+      let alt = `${person.firstName} ${person.lastName} profile picture`;
+
+      if (person.cover && person.cover.credits) {
+        alt += `. Credits: ${person.cover.credits}`;
+      }
+
+      return alt;
     },
     occupationAriaLabel: 'Present activities',
     roleAriaLabel: 'Role within the team',
@@ -306,11 +318,13 @@ export default function PeopleDetail({lang, person, siteUrl}) {
                       itemProp="image"
                       src={person.coverImage.url}
                       alt={i18n[lang].profilePicture(person)}
+                      title={i18n[lang].profilePicture(person)}
                     />
                   ) : (
                     <ImagePlaceholder
                       type="people"
                       alt={i18n[lang].profilePicture(person)}
+                      title={i18n[lang].profilePicture(person)}
                     />
                   )}
                 </figure>

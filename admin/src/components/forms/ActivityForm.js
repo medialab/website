@@ -397,11 +397,11 @@ function renderActivityForm(props) {
           </div>
         </div>
       </div>
-      {data.name && data.name.fr && (
+      {data.name && (data.name.fr || data.name.en) && (
         <div className="form-group is-important">
           <div className="field">
             <label className="label title is-4">
-              État de la page {data.name.fr} :
+              État de la page {data.name.fr || data.name.en} :
             </label>
             <div className="control">
               <BooleanSelector

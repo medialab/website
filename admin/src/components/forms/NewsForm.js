@@ -455,11 +455,11 @@ function renderNewsForm(props) {
         </div>
       </div>
 
-      {data.title && (
+      {data.title && (data.title.fr || data.title.en) && (
         <div className="form-group is-important">
           <div className="field">
             <label className="label title is-4">
-              Status de la page "{data.title.fr || data.title.en}" :
+              État de la page "{data.title.fr || data.title.en}" :
             </label>
             <div className="control">
               <BooleanSelector

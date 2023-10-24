@@ -223,8 +223,6 @@ function renderProductionForm(props) {
     dirty
   } = props;
 
-  let statusLabel = labels.productions(data);
-
   const productionType =
     (data.spire && data.spire.generatedFields.type) ||
     (data.hal && data.hal.generatedFields.type) ||
@@ -627,7 +625,7 @@ function renderProductionForm(props) {
         <div className="form-group is-important">
           <div className="field">
             <label className="label title is-4">
-              "{statusLabel}" page's production status
+              État de la page {labels.productions(data)}
             </label>
             <div className="control">
               <BooleanSelector

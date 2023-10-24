@@ -409,7 +409,7 @@ function renderPeopleForm(props) {
         </div>
       </div>
 
-      {data.lastName && (
+      {data.lastName && data.firstName && (
         <div className="form-group is-important">
           <div className="field">
             <label className="label title is-4">

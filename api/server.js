@@ -603,8 +603,8 @@ function buildStaticSite(callback) {
           WBUILD_PATH,
           {
             skipDrafts: true,
-            minifyCss: true,
-            coverImageCache: PREVIEW.db.coverImageCache
+            minifyCss: true
+            // coverImageCache: PREVIEW.db.coverImageCache
           },
           next
         );

@@ -48,6 +48,11 @@ const FORMAT_OPTIONS = [
   }
 ];
 
+const FORMATS_ALLOWING_CLICKABLE_IMAGE_URL = new Set([
+  'illustration',
+  'figure-logo'
+]);
+
 // Format selector
 function FormatSelector({selected, onChange}) {
   return (
@@ -214,7 +219,13 @@ class ImageSource extends Component {
   };
 
   handleFormat = format => {
-    this.setState({format});
+    const newState = {format};
+
+    if (!FORMATS_ALLOWING_CLICKABLE_IMAGE_URL.has(format)) {
+      newState.clickableImageUrl = '';
+    }
+
+    this.setState(newState);
   };
 
   handleCancel = () => {
@@ -287,20 +298,22 @@ class ImageSource extends Component {
                   />
                 </div>
               </div>
-              <div className="field">
-                <label className="label">
-                  Url à ouvrir quand on clique sur l'image
-                </label>
-                <div className="control">
-                  <input
-                    type="text"
-                    className="input"
-                    value={clickableImageUrl}
-                    onChange={this.handleClickableImageUrl}
-                    placeholder="https://..."
-                  />
+              {FORMATS_ALLOWING_CLICKABLE_IMAGE_URL.has(format) && (
+                <div className="field">
+                  <label className="label">
+                    Url à ouvrir quand on clique sur l'image
+                  </label>
+                  <div className="control">
+                    <input
+                      type="text"
+                      className="input"
+                      value={clickableImageUrl}
+                      onChange={this.handleClickableImageUrl}
+                      placeholder="https://..."
+                    />
+                  </div>
                 </div>
-              </div>
+              )}
               <div className="field">
                 <label className="label">Gabarit d'image</label>
                 <FormatSelector

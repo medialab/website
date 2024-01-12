@@ -35,8 +35,15 @@
     /////////////////////////
 
     figure {
-      a:focus {
-        outline: none;
+      &.illustration,
+      &.figure-logo {
+        & > a:focus,
+        & > a:active {
+          outline: none;
+          border: none;
+          outline-style: none;
+          -moz-outline-style: none;
+        }
       }
 
       // default

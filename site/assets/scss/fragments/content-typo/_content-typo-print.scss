@@ -255,8 +255,15 @@
             margin-top: $baseline * 1;
           }
 
-          a:focus {
-            outline: none;
+          &.illustration,
+          &.figure-logo {
+            & > a:focus,
+            & > a:active {
+              outline: none;
+              border: none;
+              outline-style: none;
+              -moz-outline-style: none;
+            }
           }
 
           &.figure-logo {

@@ -151,6 +151,10 @@
       /////////////////////////
 
       figure {
+        a:focus {
+          outline: none;
+        }
+
         img {
         }
         figcaption {
@@ -193,7 +197,7 @@
 						width: 33%;
 						width: -moz-calc( 33% - #{$unite*2});
 						width: -webkit-calc( 33% - #{$unite*2});
-						width: calc( 33% - #{$unite*2});						
+						width: calc( 33% - #{$unite*2});
 					}*/
         }
 

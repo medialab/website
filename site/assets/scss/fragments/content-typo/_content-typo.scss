@@ -35,6 +35,10 @@
     /////////////////////////
 
     figure {
+      a:focus {
+        outline: none;
+      }
+
       // default
       img {
         height: auto;

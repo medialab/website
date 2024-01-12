@@ -255,6 +255,10 @@
             margin-top: $baseline * 1;
           }
 
+          a:focus {
+            outline: none;
+          }
+
           &.figure-logo {
             display: inline-block;
             max-width: 20mm !important;

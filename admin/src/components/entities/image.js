@@ -83,6 +83,8 @@ class ImageSource extends Component {
       loading: false,
       file: null,
       credits: data ? data.credits : '',
+      clickableCreditsUrl: data ? data.clickableCreditsUrl : '',
+      clickableImageUrl: data ? data.clickableImageUrl : '',
       format: data && data.format ? data.format : DEFAULT_FORMAT
     };
   }
@@ -103,6 +105,10 @@ class ImageSource extends Component {
       };
 
       if (option.credits) data.credits = option.credits;
+      if (option.clickableCreditsUrl)
+        data.clickableCreditsUrl = option.clickableCreditsUrl;
+      if (option.clickableImageUrl)
+        data.clickableImageUrl = option.clickableImageUrl;
 
       const contentWithEntity = content.createEntity(
         entityType.type,
@@ -130,6 +136,14 @@ class ImageSource extends Component {
 
     if (this.state.credits) data.credits = this.state.credits;
     else delete data.credits;
+
+    if (this.state.clickableCreditsUrl)
+      data.clickableCreditsUrl = this.state.clickableCreditsUrl;
+    else delete data.clickableCreditsUrl;
+
+    if (this.state.clickableImageUrl)
+      data.clickableImageUrl = this.state.clickableImageUrl;
+    else delete data.clickableImageUrl;
 
     data.format = this.state.format;
 
@@ -178,6 +192,10 @@ class ImageSource extends Component {
       const options = {src: result.name, format: this.state.format};
 
       if (this.state.credits) options.credits = this.state.credits;
+      if (this.state.clickableCreditsUrl)
+        options.clickableCreditsUrl = this.state.clickableCreditsUrl;
+      if (this.state.clickableImageUrl)
+        options.clickableImageUrl = this.state.clickableImageUrl;
 
       this.addEntity(options);
     });
@@ -185,6 +203,14 @@ class ImageSource extends Component {
 
   handleCredits = e => {
     this.setState({credits: e.target.value});
+  };
+
+  handleClickableCreditsUrl = e => {
+    this.setState({clickableCreditsUrl: e.target.value});
+  };
+
+  handleClickableImageUrl = e => {
+    this.setState({clickableImageUrl: e.target.value});
   };
 
   handleFormat = format => {
@@ -198,7 +224,14 @@ class ImageSource extends Component {
   };
 
   render() {
-    const {loading, file, credits, format} = this.state;
+    const {
+      loading,
+      file,
+      credits,
+      clickableCreditsUrl,
+      clickableImageUrl,
+      format
+    } = this.state;
 
     const entityKey = this.props.entityKey;
 
@@ -241,6 +274,34 @@ class ImageSource extends Component {
                 </div>
               </div>
               <div className="field">
+                <label className="label">
+                  Url à ouvrir quand on clique sur les crédits
+                </label>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    value={clickableCreditsUrl}
+                    onChange={this.handleClickableCreditsUrl}
+                    placeholder="https://..."
+                  />
+                </div>
+              </div>
+              <div className="field">
+                <label className="label">
+                  Url à ouvrir quand on clique sur l'image
+                </label>
+                <div className="control">
+                  <input
+                    type="text"
+                    className="input"
+                    value={clickableImageUrl}
+                    onChange={this.handleClickableImageUrl}
+                    placeholder="https://..."
+                  />
+                </div>
+              </div>
+              <div className="field">
                 <label className="label">Gabarit d'image</label>
                 <FormatSelector
                   selected={format}
@@ -267,7 +328,13 @@ class ImageSource extends Component {
 // Block
 function ImageBlock(props) {
   const blockProps = props.blockProps;
-  const {credits, src, format = DEFAULT_FORMAT} = blockProps.entity.getData();
+  const {
+    credits,
+    src,
+    format = DEFAULT_FORMAT,
+    clickableCreditsUrl,
+    clickableImageUrl
+  } = blockProps.entity.getData();
 
   const formatLabel = FORMAT_OPTIONS.find(o => o.value === format).label;
 
@@ -284,6 +351,26 @@ function ImageBlock(props) {
         <div>
           <small>
             <em>{credits.replace(/<br>/g, '\n')}</em>
+          </small>
+        </div>
+      )}
+      {clickableImageUrl && (
+        <div>
+          <small>
+            <em>Url au clic sur l'image:</em>{' '}
+            <a target="_blank" href={clickableImageUrl}>
+              {clickableImageUrl}
+            </a>
+          </small>
+        </div>
+      )}
+      {clickableCreditsUrl && (
+        <div>
+          <small>
+            <em>Url au clic sur les crédits:</em>{' '}
+            <a target="_blank" href={clickableCreditsUrl}>
+              {clickableCreditsUrl}
+            </a>
           </small>
         </div>
       )}

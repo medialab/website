@@ -40,6 +40,16 @@ function formatCreditAlt(credit) {
   return credit.replace(BR_REGEX, ' ');
 }
 
+function templateCreditsCaption(credits, clickableCreditsUrl) {
+  if (!credits) return '';
+
+  if (clickableCreditsUrl) {
+    credits = `<a target="_blank" rel="noopener noreferrer" href="${clickableCreditsUrl}">${credits}</a>`;
+  }
+
+  return `<figcaption>${credits}</figcaption>`;
+}
+
 // TODO: iframe allowfullscreen & frameborder
 
 function processHtml(pathPrefix, html) {
@@ -161,11 +171,13 @@ function processHtml(pathPrefix, html) {
         if ($this.has('img').length) {
           const $img = $this.find('img');
 
-          const src = $img.attr('src'),
-            width = $img.data('width'),
-            height = $img.data('height'),
-            format = $img.data('format'),
-            credits = $img.data('credits') || '';
+          const src = $img.attr('src');
+          const width = $img.data('width');
+          const height = $img.data('height');
+          const format = $img.data('format');
+          const credits = $img.data('credits') || '';
+          const clickableCreditsUrl = $img.data('clickable-credits-url');
+          const clickableImageUrl = $img.data('clickable-image-url');
 
           if (previousImageIndex !== i - 1) {
             evenImage = true;
@@ -175,6 +187,10 @@ function processHtml(pathPrefix, html) {
 
           evenImage = !evenImage;
           previousImageIndex = i;
+
+          let imgTag = `<img src="${withPrefix(src)}" alt="${formatCreditAlt(
+            credits
+          )}"/>`;
 
           if (
             format === 'vignette-block' ||
@@ -190,18 +206,19 @@ function processHtml(pathPrefix, html) {
               <input type="checkbox" id="focus-figure-${i}" name="focus-figure" hidden />
               <label for="focus-figure-${i}" title="" arial-label=""></label>
               <figure class="${className}">
-                <img src="${withPrefix(src)}" alt="${formatCreditAlt(
-              credits
-            )}"/>${credits ? `<figcaption>${credits}</figcaption>` : ''}
+                ${imgTag}${templateCreditsCaption(credits, clickableCreditsUrl)}
               </figure>
             </div>
           `.trim();
           } else {
+            // NOTE: clickable image only applies if it does not open a focused view for now
+            if (clickableImageUrl) {
+              imgTag = `<a target="_blank" rel="noopener noreferrer" href="${clickableImageUrl}">${imgTag}</a>`;
+            }
+
             output += `
             <figure class="${className}">
-              <img src="${withPrefix(src)}" alt="${formatCreditAlt(
-              credits
-            )}"/>${credits ? `<figcaption>${credits}</figcaption>` : ''}
+              ${imgTag}${templateCreditsCaption(credits, clickableCreditsUrl)}
             </figure>
           `.trim();
           }

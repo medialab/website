@@ -32,7 +32,10 @@ function entityStyleFn(entity) {
     };
 
     if (data.credits) attributes['data-credits'] = data.credits;
-
+    if (data.clickableCreditsUrl)
+      attributes['data-clickable-credits-url'] = data.clickableCreditsUrl;
+    if (data.clickableImageUrl)
+      attributes['data-clickable-image-url'] = data.clickableImageUrl;
     if (data.format) attributes['data-format'] = data.format;
 
     return {
@@ -77,16 +80,21 @@ function customInlineFn(element, {Entity}) {
   }
 
   if (element.tagName === 'IMG') {
-    const width = +element.getAttribute('data-width'),
-      height = +element.getAttribute('data-height'),
-      src = element.getAttribute('src'),
-      credits = element.getAttribute('data-credits'),
-      format = element.getAttribute('data-format');
+    const width = +element.getAttribute('data-width');
+    const height = +element.getAttribute('data-height');
+    const src = element.getAttribute('src');
+    const credits = element.getAttribute('data-credits');
+    const clickableCreditsUrl = element.getAttribute(
+      'data-clickable-credits-url'
+    );
+    const clickableImageUrl = element.getAttribute('data-clickable-image-url');
+    const format = element.getAttribute('data-format');
 
     const data = {src, width, height};
 
     if (credits) data.credits = credits;
-
+    if (clickableCreditsUrl) data.clickableCreditsUrl = clickableCreditsUrl;
+    if (clickableImageUrl) data.clickableImageUrl = clickableImageUrl;
     if (format) data.format = format;
 
     return Entity('IMAGE', data);

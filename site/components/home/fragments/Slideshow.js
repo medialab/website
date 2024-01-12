@@ -120,10 +120,7 @@ const Slideshow = ({slider, lang}) => {
                             </p>
                           </aside>
                           <h1 data-level-1="baseline">
-                            {ellipse(
-                              slide.baseline[lang] || slide.baseline[otherLang],
-                              65
-                            )}
+                            {slide.baseline[lang] || slide.baseline[otherLang]}
                           </h1>
                           <p className="accroche">
                             {slide.description &&

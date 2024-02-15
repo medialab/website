@@ -339,6 +339,22 @@ exports.build = function build(inputDir, outputDir, options, callback) {
           },
           next
         );
+      },
+
+      rewire(next) {
+        // Copying pages for old slug redirections
+        return async.eachLimit(
+          website.getRedirections(),
+          5,
+          (redirection, nextRedir) => {
+            fs.copy(
+              path.join(outputDir, redirection[0]),
+              path.join(outputDir, redirection[1]),
+              nextRedir
+            );
+          },
+          next
+        );
       }
     },
     callback

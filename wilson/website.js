@@ -32,9 +32,14 @@ models.forEach(
   model => (MODEL_TO_DETAIL_TEMPLATE[model] = TEMPLATES[`${model}Detail`])
 );
 
+function replaceSlugInPermalink(permalink, slug) {
+  return permalink.split('/').slice(0, -1).concat(slug).join('/');
+}
+
 module.exports = class Website {
   constructor(db) {
     this.pages = [];
+    this.redirections = [];
     this.index = {fr: {}, en: {}};
 
     const settings = db.getSettings();
@@ -70,6 +75,19 @@ module.exports = class Website {
 
     // Detail pages
     db.forEach(item => {
+      if (Array.isArray(item.slugs) && item.slugs.length > 1) {
+        item.slugs.slice(0, -1).forEach(slug => {
+          this.redirections.push([
+            item.permalink.fr,
+            replaceSlugInPermalink(item.permalink.fr, slug)
+          ]);
+          this.redirections.push([
+            item.permalink.en,
+            replaceSlugInPermalink(item.permalink.en, slug)
+          ]);
+        });
+      }
+
       this.pages.push({
         permalinks: item.permalink,
         template: MODEL_TO_DETAIL_TEMPLATE[item.model],
@@ -185,6 +203,10 @@ module.exports = class Website {
 
   getPagesToRender() {
     return this.pages;
+  }
+
+  getRedirections() {
+    return this.redirections;
   }
 
   get(permalink) {

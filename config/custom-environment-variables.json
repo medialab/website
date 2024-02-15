@@ -14,12 +14,6 @@
     "__name": "PORT",
     "__format": "json"
   },
-  "twitter": {
-    "consumerKey": "TWITTER_CONSUMER_KEY",
-    "consumerSecret": "TWITTER_CONSUMER_SECRET",
-    "accessTokenKey": "TWITTER_ACCESS_TOKEN_KEY",
-    "accessTokenSecret": "TWITTER_ACCESS_TOKEN_SECRET"
-  },
   "matomo": {
     "domain": "MATOMO_DOMAIN",
     "siteId": "MATOMO_SITE_ID"

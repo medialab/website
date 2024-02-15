@@ -15,12 +15,6 @@
     "password": null
   },
   "port": 3000,
-  "twitter": {
-    "consumerKey": "TWITTER_CONSUMER_KEY",
-    "consumerSecret": "TWITTER_CONSUMER_SECRET",
-    "accessTokenKey": "TWITTER_ACCESS_TOKEN_KEY",
-    "accessTokenSecret": "TWITTER_ACCESS_TOKEN_SECRET"
-  },
   "matomo": {
     "domain": "ws.sciences-po.fr",
     "siteId": null

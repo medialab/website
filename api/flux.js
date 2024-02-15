@@ -1,8 +1,7 @@
 /* eslint camelcase: 0 */
 const async = require('async');
-const Twitter = require('twitter');
-const config = require('config-secrets');
 let request = require('request');
+const parseCsv = require('csv-parse/lib/sync');
 const cachedRequest = require('cached-request');
 const range = require('lodash/range');
 const maxBy = require('lodash/maxBy');
@@ -156,64 +155,51 @@ exports.retrieveGithubFluxData = function (people, callback) {
 /**
  * Twitter.
  */
-const TWITTER_CONFIG = config.get('twitter');
+const TWITTER_DATA_URL =
+  'https://raw.githubusercontent.com/medialab/website-medialab-tweets/main/data/medialab_tweets.csv';
 
-const TWITTER_CLIENT = new Twitter({
-  consumer_key: TWITTER_CONFIG.consumerKey,
-  consumer_secret: TWITTER_CONFIG.consumerSecret,
-  access_token_key: TWITTER_CONFIG.accessTokenKey,
-  access_token_secret: TWITTER_CONFIG.accessTokenSecret
-});
+const TWITTER_MEDIA_URL_PATTERN =
+  /https:\/\/twitter.com\/[a-zA-Z_0-9]+\/status\/\d+\/(?:photo|video)\/\d+/g;
 
 // Helpers
 function resolveTweetUrls(tweet, html = false) {
   const ahref = (url, text) =>
     `<a href="${url}" target="_blank" rel="noopener">${text}</a>`;
 
-  let fullText = tweet.full_text;
+  let text = tweet.text;
 
-  if (tweet.entities && tweet.entities.urls) {
-    tweet.entities.urls.forEach(({url, expanded_url, display_url}) => {
-      fullText = fullText.replace(
-        url,
-        html ? ahref(expanded_url, display_url) : display_url
-      );
+  if (tweet.links) {
+    tweet.links.split('|').forEach(url => {
+      text = text.replace(url, html ? ahref(url, url) : url);
     });
   }
 
-  if (tweet.extended_entities && tweet.extended_entities.media) {
-    tweet.extended_entities.media.forEach(
-      ({url, expanded_url, display_url}) => {
-        fullText = fullText.replace(
-          url,
-          html ? ahref(expanded_url, display_url) : display_url
-        );
-      }
-    );
+  if (tweet.media_urls) {
+    const urls = tweet.media_urls.split('|');
+    let i = 0;
+
+    text = text.replace(TWITTER_MEDIA_URL_PATTERN, () => {
+      const url = urls[i++];
+
+      return html ? ahref(url, 'media') : url;
+    });
   }
-  return fullText;
+
+  return text;
 }
 
 function convertTweetTextToHtml(tweet) {
   let tweetText = resolveTweetUrls(tweet, true);
 
-  if (tweet.entities.user_mentions.length)
+  if (tweet.mentioned_names)
     tweetText = tweetText.replace(
-      new RegExp(
-        `(?:@(${tweet.entities.user_mentions
-          .map(m => m.screen_name)
-          .join('|')}))`,
-        'gi'
-      ),
+      new RegExp(`(?:@(${tweet.mentioned_names}))\\b`, 'gi'),
       '<a href="https://twitter.com/$1" class="mention" target="_blank" rel="noopener">$&</a>'
     );
 
-  if (tweet.entities.hashtags.length)
+  if (tweet.hashtags)
     tweetText = tweetText.replace(
-      new RegExp(
-        `(?:#(${tweet.entities.hashtags.map(h => h.text).join('|')}))`,
-        'gi'
-      ),
+      new RegExp(`(?:#(${tweet.hashtags}))\\b`, 'gi'),
       '<a href="https://twitter.com/hashtag/$1" class="hashtag" target="_blank" rel="noopener">$&</a>'
     );
 
@@ -222,91 +208,86 @@ function convertTweetTextToHtml(tweet) {
 
 // Function retrieving Twitter events and formatting them into our flux
 exports.retrieveTwitterFluxData = function (callback) {
-  const params = {
-    include_entities: true,
-    screen_name: 'medialab_ScPo',
-    tweet_mode: 'extended'
-  };
-
-  TWITTER_CLIENT.get('statuses/user_timeline', params, (err, tweets) => {
+  return request.get({url: TWITTER_DATA_URL}, (err, response, body) => {
     if (err) return callback(err);
+    if (response.statusCode !== 200)
+      return callback(
+        new Error(
+          `invalid status for twitter flux data: ${response.statusCode}`
+        )
+      );
 
-    // Aggregating replying tweets
-    const repliedTweetIds = tweets
-      .filter(t => t.in_reply_to_status_id_str)
-      .map(t => t.in_reply_to_status_id_str);
+    const tweets = parseCsv(body.toString(), {
+      columns: true,
+      skip_empty_lines: true
+    })
+      .filter(t => !t.to_tweetid)
+      .slice(0, 20);
 
-    const repliedParams = {
-      id: repliedTweetIds.join(','),
-      include_entities: true,
-      tweet_mode: 'extended'
-    };
+    const result = tweets.map(t => {
+      const item = {
+        tweet: t.id,
+        text: resolveTweetUrls(t),
+        html: convertTweetTextToHtml(t),
+        date: t.local_time,
+        retweets: +t.retweet_count,
+        favorites: +t.like_count,
+        type: 'tweet'
+      };
 
-    return TWITTER_CLIENT.get(
-      'statuses/lookup',
-      repliedParams,
-      (e, repliedTweets) => {
-        const repliedTweetIndex = {};
+      // Replies
+      // NOTE: we don't have enough scraped metadata to deal with replies (code below was not upgraded, beware!)
+      // if (t.to_tweetid) {
+      //   item.originalTweet = {
+      //     tweet: repliedTweet.to_tweetid,
+      //     text: resolveTweetUrls(repliedTweet),
+      //     html: convertTweetTextToHtml(repliedTweet),
+      //     screenName: repliedTweet.user.screen_name,
+      //     name: repliedTweet.user.name,
+      //     type: 'tweet'
+      //   };
+      //   item.type = 'reply';
+      // }
 
-        repliedTweets.forEach(t => (repliedTweetIndex[t.id_str] = t));
+      // Retweets
+      // NOTE: we cannot scrape retweets (code below was not upgraded, beware!)
+      // if (t.retweeted_status) {
+      //   item.originalTweet = {
+      //     tweet: t.retweeted_status.id_str,
+      //     text: resolveTweetUrls(t.retweeted_status),
+      //     html: convertTweetTextToHtml(t.retweeted_status),
+      //     screenName: t.retweeted_status.user.screen_name,
+      //     name: t.retweeted_status.user.name,
+      //     type: 'tweet'
+      //   };
+      //   item.type = 'retweet';
+      // }
 
-        const result = tweets.map(t => {
-          const item = {
-            tweet: t.id_str,
-            text: resolveTweetUrls(t),
-            html: convertTweetTextToHtml(t),
-            date: new Date(t.created_at).toISOString(),
-            retweets: t.retweet_count,
-            favorites: t.favorite_count,
-            type: 'tweet'
-          };
+      // Quotes
+      if (t.quoted_id) {
+        item.text = item.text.split('«')[0].trim();
+        item.html = item.html.split('«')[0].trim();
 
-          // Replies
-          if (t.in_reply_to_status_id_str) {
-            const repliedTweet = repliedTweetIndex[t.in_reply_to_status_id_str];
+        t.text = t.text
+          .split('«')[1]
+          .replace('»', '')
+          .split(' — https://')[0]
+          .trim();
 
-            item.originalTweet = {
-              tweet: repliedTweet.id_str,
-              text: resolveTweetUrls(repliedTweet),
-              html: convertTweetTextToHtml(repliedTweet),
-              screenName: repliedTweet.user.screen_name,
-              name: repliedTweet.user.name,
-              type: 'tweet'
-            };
-            item.type = 'reply';
-          }
-
-          // Retweets
-          if (t.retweeted_status) {
-            item.originalTweet = {
-              tweet: t.retweeted_status.id_str,
-              text: resolveTweetUrls(t.retweeted_status),
-              html: convertTweetTextToHtml(t.retweeted_status),
-              screenName: t.retweeted_status.user.screen_name,
-              name: t.retweeted_status.user.name,
-              type: 'tweet'
-            };
-            item.type = 'retweet';
-          }
-
-          // Quotes
-          if (t.quoted_status) {
-            item.originalTweet = {
-              tweet: t.quoted_status.id_str,
-              text: resolveTweetUrls(t.quoted_status),
-              html: convertTweetTextToHtml(t.quoted_status),
-              screenName: t.quoted_status.user.screen_name,
-              name: t.quoted_status.user.name,
-              type: 'tweet'
-            };
-            item.type = 'quote';
-          }
-
-          return item;
-        });
-
-        return callback(null, result);
+        item.originalTweet = {
+          tweet: t.quoted_id,
+          text: resolveTweetUrls(t),
+          html: convertTweetTextToHtml(t),
+          screenName: t.quoted_user,
+          name: t.quoted_user,
+          type: 'tweet'
+        };
+        item.type = 'quote';
       }
-    );
+
+      return item;
+    });
+
+    return callback(null, result);
   });
 };

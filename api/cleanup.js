@@ -57,7 +57,7 @@ exports.findUnusedAssets = function (dbs, assetsPath) {
   const unusedAssets = difference(allAssets, usedAssets);
   const missingAssets = difference(usedAssets, allAssets);
 
-  if (missingAssets.size) console.warning('Missing assets!', missingAssets);
+  if (missingAssets.size) console.warn('Missing assets!', missingAssets);
 
   return unusedAssets;
 };

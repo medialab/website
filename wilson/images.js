@@ -46,6 +46,9 @@ exports.buildCover = function buildCover(
   const socialUrl = `${pathPrefix}/static/${socialOutput}`;
 
   // Function returning a sharp object with correct cropping
+  // FUN FACT: sharp does not handle images with orientation=6
+  // correctly. This can be seen with this image from the assets:
+  //   - DSC_0792_ce5f0b33-306f-45de-ae0d-b61ba28f9add.JPG
   const img = () => {
     return sharp(path.join(inputDir, 'assets', cover.file)).extract({
       left: crop.x,

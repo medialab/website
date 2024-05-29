@@ -393,7 +393,17 @@ class Form extends Component {
       loading: saving
     });
 
-    const titleLabel = isNew ? 'new' : data ? labels[model](data) : 'loading';
+    let titleLabel = '...';
+
+    if (isNew) {
+      titleLabel = 'new';
+    } else if (!data) {
+      titleLabel = 'loading';
+    } else {
+      try {
+        titleLabel = labels[model](data);
+      } catch {}
+    }
 
     return (
       <div>

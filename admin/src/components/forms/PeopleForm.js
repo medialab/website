@@ -109,7 +109,7 @@ function renderPeopleForm(props) {
     <div className="container">
       <div className="form-group">
         <label className="label title is-4">
-          {data.lastName
+          {data.firstName && data.lastName
             ? `${data.firstName} ${data.lastName}`
             : 'Infos personnelles'}{' '}
         </label>

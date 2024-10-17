@@ -20,6 +20,8 @@ const META = require('./meta.js');
 
 const apply = async.apply;
 
+const CSS_MIN_FIX = /([\d)])([+-])(\d)/g;
+
 // Helpers
 function writePermalinkToDisk(outputDir, html, permalink, callback) {
   const diskPath = permalinkToDiskPath(outputDir, permalink);
@@ -79,7 +81,10 @@ function buildSass(outputDir, minifyCss, callback) {
 
             let css = result.css;
 
-            if (minifyCss) css = cssmin(css.toString());
+            if (minifyCss) {
+              css = cssmin(css.toString());
+              css = css.replace(CSS_MIN_FIX, '$1 $2 $3');
+            }
 
             fs.writeFile(path.join(outputDir, 'medialab.css'), css, next);
           }

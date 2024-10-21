@@ -100,9 +100,9 @@ export default function Legal({lang}) {
 
             <h3 id="directeur">Directeur de la publication</h3>
             <p>
-              Jean Bassères, Administrateur provisoire de la Fondation
-              Nationale des Sciences Politiques et Directeur de l’Institut
-              d’Études Politiques de Paris.
+              Luis Vassy, Administrateur de la Fondation Nationale des Sciences
+              Politiques et Directeur de l’Institut d’Études Politiques de
+              Paris.
             </p>
 
             <h3 id="host">Hébergement</h3>
@@ -369,9 +369,9 @@ export default function Legal({lang}) {
 
             <h3 id="publisher">Publications Director</h3>
             <p>
-              Jean Bassères, Provisional Administrator of the Fondation
-              Nationale des Sciences Politiques and Director of the Institut
-              d’Études Politiques de Paris.
+              Luis Vassy, Administrator of the Fondation Nationale des Sciences
+              Politiques and Director of the Institut d’Études Politiques de
+              Paris.
             </p>
 
             <h3 id="host">Web Hosting</h3>

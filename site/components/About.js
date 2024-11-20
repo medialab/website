@@ -94,7 +94,7 @@ export default function About({lang}) {
                     <b>l’espace public numérique</b> où sont cartographiées les
                     transformations des espaces journalistiques et politiques
                     sous l’effet du numérique. Les recherches qui s’y rapportent
-                    s’intéressent au nouveaux circuits de l’information, à la
+                    s’intéressent aux nouveaux circuits de l’information, à la
                     construction de l’agenda public et aux activités
                     parlementaires.
                   </li>

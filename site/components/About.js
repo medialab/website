@@ -80,14 +80,14 @@ export default function About({lang}) {
                 parallèle, elle offre des instruments d’investigation favorisant
                 de nouveaux modes de production des savoirs à travers la
                 modélisation, la visualisation et l’exploration interactive des
-                corpus. Enfin elle insiste à expérimenter avec les publics et
+                corpus. Enfin elle invite à expérimenter avec les publics et
                 les étudiants en encourageant de nouvelles formes de réflexivité
                 et de partage des résultats de la recherche.
               </p>
 
               <p>
                 Ces approches sont développées conjointement au sein de quatre
-                axes thématiques&thinsp;: <br />
+                courants thématiques&thinsp;: <br />
                 <br />
                 <ul>
                   <li>

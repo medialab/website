@@ -120,8 +120,7 @@ function PeopleContactLabel({lang, data}) {
 
   if (BLUESKY_LABEL_REGEX.test(data.label)) {
     const handle = extractHandle(data.value);
-    const domain = extractDomain(data.value);
-    const url = `https://${domain}/profile/${handle}`;
+    const url = `https://bsky.app/profile/${handle}`;
 
     return (
       <span>

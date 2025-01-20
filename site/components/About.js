@@ -194,7 +194,7 @@ export default function About({lang}) {
                 La formation doctorale est essentielle à la mission
                 scientifique du médialab. Son principal objectif est de former
                 des chercheurs pour des postes académiques et non académiques.
-                En s'appuyant sur de solides bases en sciences sociales
+                En s’appuyant sur de solides bases en sciences sociales
                 interdisciplinaires, les doctorants deviennent des chercheurs
                 indépendants et équipés en collaborant activement avec le
                 corps enseignant, les ingénieurs et les designers du médialab
@@ -202,25 +202,24 @@ export default function About({lang}) {
               </p>
 
               <p>
-                Le programme doctoral s'adresse aux étudiants désireux de
-                contribuer à l'élaboration de nouvelles méthodes de recherche
+                Le programme doctoral s’adresse aux étudiants désireux de
+                contribuer à l’élaboration de nouvelles méthodes de recherche
                 en phase avec les domaines thématiques du médialab. Les
                 étudiants qui rejoignent le médialab sont issus de disciplines
-                d'études variées telles que les sciences sociales,
-                l'informatique et des domaines connexes. À Sciences Po, le
-                médialab est l'un des laboratoires d'accueil des doctorants du
+                d’études variées telles que les sciences sociales,
+                l’informatique et des domaines connexes. À Sciences Po, le
+                médialab est l’un des laboratoires d’accueil des doctorants du
                 département de sociologie. Le programme doctoral accueille
-                également des étudiants inscrits dans d'autres établissements
-                et dans d'autres disciplines qui sont suivis en co-direction
+                également des étudiants inscrits dans d’autres établissements
+                et dans d’autres disciplines qui sont suivis en co-direction
                 par un membre du médialab.
               </p>
 
               <p>
                 Les questions relatives au programme doctoral peuvent être
-                adressées à
-                <Link to="/equipe/alex-kindel/" className="GoTo">
-                  Alex Kindel (responsable du programme doctoral du médialab)
-                </Link>.
+                adressées à{' '}
+                <Link to="/equipe/alex-kindel/">Alex Kindel</Link>{' '}
+                (responsable du programme doctoral du médialab).
               </p>
 
               <h3 id="productions">Productions</h3>
@@ -524,10 +523,9 @@ export default function About({lang}) {
               </p>
 
               <p>
-                Questions about the doctoral program may be directed to
-                <Link to="/en/people/alex-kindel/" className="GoTo">
-                  Alex Kindel (médialab’s head of doctoral program)
-                </Link>.
+                Questions about the doctoral program may be directed to{' '}
+                <Link to="/en/people/alex-kindel/">Alex Kindel</Link>{' '}
+                (médialab’s head of doctoral program).
               </p>
 
               <h3 id="productions">Productions</h3>

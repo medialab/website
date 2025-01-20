@@ -136,12 +136,16 @@ export default function PageMeta(props) {
       <meta property="og:site_name" content="médialab Sciences Po" />
       <meta property="og:url" content={uri ? uri : siteUrl} />
       <meta property="og:description" content={description} />
+      <meta property="og:locale" content={lang === "fr" ? "fr_FR" : "en_US"} />
+      <meta property="og:image" content={imageSrc} />
       <meta property="og:image:url" content={imageSrc} />
       <meta property="og:image:secure_url" content={imageSrc} />
       <meta property="og:image:type" content="image/png" />
       <meta property="og:image:alt" content="médialab website image" />
       <meta property="og:image:width" content={imageWidth} />
+      <meta property="og:width" content={imageWidth} />
       <meta property="og:image:height" content={imageHeight} />
+      <meta property="og:height" content={imageHeight} />
       {buildOpenGraphAdditionalMeta(props)}
       {/* END META OPEN GRAPH / FACEBOOK*/}
     </Helmet>

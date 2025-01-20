@@ -80,6 +80,7 @@ const mainPermalink = {
 
 const TWITTER_LABEL_REGEX = /twitter/i,
   MASTODON_LABEL_REGEX = /mastodon/i,
+  BLUESKY_LABEL_REGEX = /bluesky/i,
   GITHUB_LABEL_REGEX = /github/i,
   TRAILING_SLASH_REGEX = /\/$/;
 
@@ -114,6 +115,26 @@ function PeopleContactLabel({lang, data}) {
       <p proptype="email">
         {data.label}: {email}
       </p>
+    );
+  }
+
+  if (BLUESKY_LABEL_REGEX.test(data.label)) {
+    const handle = extractHandle(data.value);
+    const domain = extractDomain(data.value);
+    const url = `https://${domain}/profile/${handle}`;
+
+    return (
+      <span>
+        <span className="label-data">Bluesky:</span>
+        &nbsp;
+        <a
+          proptype="url"
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer me">
+          @{handle}
+        </a>
+      </span>
     );
   }
 

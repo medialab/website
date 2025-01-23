@@ -196,30 +196,37 @@ export default function About({lang}) {
                 des chercheurs pour des postes académiques et non académiques.
                 En s’appuyant sur de solides bases en sciences sociales
                 interdisciplinaires, les doctorants deviennent des chercheurs
-                indépendants et équipés en collaborant activement avec le
-                corps enseignant, les ingénieurs et les designers du médialab
-                sur des projets communs.
+                indépendants en collaborant activement avec le corps
+                enseignant, les ingénieurs et les designers du médialab sur
+                des projets communs.
               </p>
 
               <p>
                 Le programme doctoral s’adresse aux étudiants désireux de
                 contribuer à l’élaboration de nouvelles méthodes de recherche
-                en phase avec les domaines thématiques du médialab. Les
-                étudiants qui rejoignent le médialab sont issus de disciplines
-                d’études variées telles que les sciences sociales,
-                l’informatique et des domaines connexes. À Sciences Po, le
-                médialab est l’un des laboratoires d’accueil des doctorants du
-                département de sociologie. Le programme doctoral accueille
-                également des étudiants inscrits dans d’autres établissements
-                et dans d’autres disciplines qui sont suivis en co-direction
-                par un membre du médialab.
+                en phase avec les{' '}
+                <Link to="https://medialab.sciencespo.fr/activites/">
+                  courants de recherche
+                </Link>{' '}
+                du médialab. Les étudiants qui rejoignent le médialab sont
+                issus de disciplines d’études variées telles que les sciences
+                sociales, l’informatique et des domaines connexes. À Sciences
+                Po, le médialab est l’un des laboratoires d’accueil des
+                doctorants du département de sociologie. Le programme doctoral
+                accueille également des étudiants inscrits dans d’autres
+                établissements et dans d’autres disciplines qui sont suivis en
+                co-direction par un membre du médialab.
               </p>
 
               <p>
                 Les questions relatives au programme doctoral peuvent être
                 adressées à{' '}
                 <Link to="/equipe/alex-kindel/">Alex Kindel</Link>{' '}
-                (responsable du programme doctoral du médialab).
+                (responsable du programme doctoral du médialab). Les
+                candidatures doivent être soumises via l’
+                <Link to="https://www.sciencespo.fr/ecole-recherche/fr/admissions/doctoralate-formet/">
+                  École doctorale
+                </Link>.
               </p>
 
               <h3 id="productions">Productions</h3>
@@ -513,19 +520,26 @@ export default function About({lang}) {
               <p>
                 The doctoral program is geared toward students with an interest
                 in contributing to new methods for research along the
-                médialab’s thematic streams. Students join the médialab from
-                degree programs in the social sciences, as well as computer
-                science and related fields. At Sciences Po, the médialab is one
-                of the host laboratories for doctoral students in the Department
-                of Sociology. The doctoral program also hosts students enrolled
-                at other institutions and in other disciplines who are advised
-                jointly by a member of the médialab.
+                médialab’s{' '}
+                <Link to="https://medialab.sciencespo.fr/en/activities/">
+                  research streams
+                </Link>. Students join the médialab from degree programs in the
+                social sciences, as well as computer science and related fields.
+                At Sciences Po, the médialab is one of the host laboratories for
+                doctoral students in the Department of Sociology. The doctoral
+                program also hosts students enrolled at other institutions and
+                in other disciplines who are advised jointly by a member of the
+                médialab.
               </p>
 
               <p>
                 Questions about the doctoral program may be directed to{' '}
                 <Link to="/en/people/alex-kindel/">Alex Kindel</Link>{' '}
-                (médialab’s head of doctoral program).
+                (médialab’s head of doctoral program). Applications may be
+                submitted through the{' '}
+                <Link to="https://www.sciencespo.fr/admissions/en/phd/">
+                  School of Research
+                </Link>.
               </p>
 
               <h3 id="productions">Productions</h3>

@@ -85,9 +85,9 @@ export default function About({lang}) {
                 parallèle, elle offre des instruments d’investigation favorisant
                 de nouveaux modes de production des savoirs à travers la
                 modélisation, la visualisation et l’exploration interactive des
-                corpus. Enfin elle invite à expérimenter avec les publics et
-                les étudiants en encourageant de nouvelles formes de réflexivité
-                et de partage des résultats de la recherche.
+                corpus. Enfin elle invite à expérimenter avec les publics et les
+                étudiants en encourageant de nouvelles formes de réflexivité et
+                de partage des résultats de la recherche.
               </p>
 
               <p>
@@ -191,25 +191,24 @@ export default function About({lang}) {
               <h3 id="doctoral">Formation doctorale</h3>
 
               <p>
-                La formation doctorale est essentielle à la mission
-                scientifique du médialab. Son principal objectif est de former
-                des chercheurs pour des postes académiques et non académiques.
-                En s’appuyant sur de solides bases en sciences sociales
-                interdisciplinaires, les doctorants deviennent des chercheurs
-                indépendants en collaborant activement avec le corps
-                enseignant, les ingénieurs et les designers du médialab sur
-                des projets communs.
+                La formation doctorale est essentielle à la mission scientifique
+                du médialab. Son principal objectif est de former des chercheurs
+                pour des postes académiques et non académiques. En s’appuyant
+                sur de solides bases en sciences sociales interdisciplinaires,
+                les doctorants deviennent des chercheurs indépendants en
+                collaborant activement avec le corps enseignant, les ingénieurs
+                et les designers du médialab sur des projets communs.
               </p>
 
               <p>
                 Le programme doctoral s’adresse aux étudiants désireux de
-                contribuer à l’élaboration de nouvelles méthodes de recherche
-                en phase avec les{' '}
+                contribuer à l’élaboration de nouvelles méthodes de recherche en
+                phase avec les{' '}
                 <Link to="https://medialab.sciencespo.fr/activites/">
                   courants de recherche
                 </Link>{' '}
-                du médialab. Les étudiants qui rejoignent le médialab sont
-                issus de disciplines d’études variées telles que les sciences
+                du médialab. Les étudiants qui rejoignent le médialab sont issus
+                de disciplines d’études variées telles que les sciences
                 sociales, l’informatique et des domaines connexes. À Sciences
                 Po, le médialab est l’un des laboratoires d’accueil des
                 doctorants du département de sociologie. Le programme doctoral
@@ -220,13 +219,13 @@ export default function About({lang}) {
 
               <p>
                 Les questions relatives au programme doctoral peuvent être
-                adressées à{' '}
-                <Link to="/equipe/alex-kindel/">Alex Kindel</Link>{' '}
+                adressées à <Link to="/equipe/alex-kindel/">Alex Kindel</Link>{' '}
                 (responsable du programme doctoral du médialab). Les
                 candidatures doivent être soumises via l’
                 <Link to="https://www.sciencespo.fr/ecole-recherche/fr/admissions/doctoralate-formet/">
                   École doctorale
-                </Link>.
+                </Link>
+                .
               </p>
 
               <h3 id="productions">Productions</h3>
@@ -508,24 +507,23 @@ export default function About({lang}) {
 
               <p>
                 Doctoral training is essential to the scientific mission of the
-                médialab. The principal goal of the doctoral program is to
-                train researchers for academic as well as non-academic
-                positions. Building from a strong foundation in
-                interdisciplinary social science, doctoral students develop
-                into skilled and independent researchers through active
-                collaboration with médialab faculty, engineers, and designers
-                on projects of mutual interest.
+                médialab. The principal goal of the doctoral program is to train
+                researchers for academic as well as non-academic positions.
+                Building from a strong foundation in interdisciplinary social
+                science, doctoral students develop into skilled and independent
+                researchers through active collaboration with médialab faculty,
+                engineers, and designers on projects of mutual interest.
               </p>
 
               <p>
                 The doctoral program is geared toward students with an interest
-                in contributing to new methods for research along the
-                médialab’s{' '}
+                in contributing to new methods for research along the médialab’s{' '}
                 <Link to="https://medialab.sciencespo.fr/en/activities/">
                   research streams
-                </Link>. Students join the médialab from degree programs in the
-                social sciences, as well as computer science and related fields.
-                At Sciences Po, the médialab is one of the host laboratories for
+                </Link>
+                . Students join the médialab from degree programs in the social
+                sciences, as well as computer science and related fields. At
+                Sciences Po, the médialab is one of the host laboratories for
                 doctoral students in the Department of Sociology. The doctoral
                 program also hosts students enrolled at other institutions and
                 in other disciplines who are advised jointly by a member of the
@@ -539,7 +537,8 @@ export default function About({lang}) {
                 submitted through the{' '}
                 <Link to="https://www.sciencespo.fr/admissions/en/phd/">
                   School of Research
-                </Link>.
+                </Link>
+                .
               </p>
 
               <h3 id="productions">Productions</h3>

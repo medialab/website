@@ -34,15 +34,24 @@ const i18n = {
 export default function tweet({lang, tweets}) {
   return (
     <>
-      <section id="tweet">
+      <section id="social">
         <h1>
           {i18n[lang].on}
           <span data-icon="tweet">
             <a
-              href="https://twitter.com/medialab_scpo"
+              href="https://mastodon.social/@medialab_scpo"
               target="_blank"
               rel="noopener noreferrer">
-              Twitter
+              Mastodon
+            </a>
+          </span>
+          &
+          <span data-icon="tweet">
+            <a
+              href="https://bsky.app/profile/medialab-scpo.bsky.social"
+              target="_blank"
+              rel="noopener noreferrer">
+              Bluesky
             </a>
           </span>
         </h1>
@@ -59,7 +68,7 @@ export default function tweet({lang, tweets}) {
         </label>
 
         <div id="tweet-content">
-          {tweets.map(t => (
+          {[].map(t => (    // was tweets.map, to reuse when bluesky posts incorporated
             <article
               itemScope
               itemType="https://schema.org/SocialMediaPosting"

@@ -8,7 +8,8 @@ const i18n = {
     address: 'Adresse du médialab',
     legal: 'Liens vers les mentions légales',
     mail: 'Ecrire au médialab',
-    twitter: 'Lien vers le compte Twitter du médialab',
+    mastodon: 'Lien vers le compte Mastodon du médialab',
+    bluesky: 'Lien vers le compte Bluesky du médialab',
     github: 'Lien vers le Github du médialab',
     search: 'Chercher dans le site',
     searchPlaceholder: 'Rechercher',
@@ -19,7 +20,8 @@ const i18n = {
     address: "médialab's adress",
     legal: 'Link to legal notice',
     mail: 'Write to médialab',
-    twitter: "Link to médialab's Twitter",
+    mastodon: "Link to médialab's Mastodon",
+    bluesky: "Link to médialab's Bluesky",
     github: "Link to médialab's Github",
     search: 'Search the website',
     searchPlaceholder: 'Search',
@@ -63,11 +65,21 @@ export default function Footer({lang}) {
           <li>
             <a
               itemProp="sameAs"
-              href="https://twitter.com/medialab_scpo"
-              aria-label={i18n[lang].twitter}
+              href="https://mastodon.social/@medialab_scpo"
+              aria-label={i18n[lang].mastodon}
               target="_blank"
               rel="noopener noreferrer">
-              Twitter
+              Mastodon
+            </a>
+          </li>
+          <li>
+            <a
+              itemProp="sameAs"
+              href="https://bsky.app/profile/medialab-scpo.bsky.social"
+              aria-label={i18n[lang].bluesky}
+              target="_blank"
+              rel="noopener noreferrer">
+              Bluesky
             </a>
           </li>
           <li>

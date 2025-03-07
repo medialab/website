@@ -11,7 +11,8 @@ const i18n = {
     rdv: 'Rendez-vous',
     git: 'Atteindre les derniers projets Git',
     gitProject: 'Projets Git',
-    tweets: 'Atteindre les derniers tweets'
+    social: 'Réseaux sociaux',
+    socialposts: 'Atteindre les derniers messages'
   },
   en: {
     status: "médialab's hourly status",
@@ -19,7 +20,8 @@ const i18n = {
     rdv: 'Meetings',
     git: 'Reach lastest git projects',
     gitProject: 'Git projects',
-    tweets: 'Reach lastest tweet'
+    social: 'Social networks',
+    socialposts: 'Reach latest posts'
   }
 };
 
@@ -34,8 +36,8 @@ export default function flux({rdv, lang, tweets, github}) {
             </a>
           </li>
           <li>
-            <a href="#tweet" aria-label={i18n[lang].tweets}>
-              Tweets
+            <a href="#social" aria-label={i18n[lang].socialposts}>
+              {i18n[lang].social}
             </a>
           </li>
           <li>

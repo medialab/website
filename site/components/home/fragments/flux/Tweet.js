@@ -45,7 +45,7 @@ export default function tweet({lang, tweets}) {
               Mastodon
             </a>
           </span>
-          &
+          {' '}&{' '}
           <span data-icon="tweet">
             <a
               href="https://bsky.app/profile/medialab-scpo.bsky.social"

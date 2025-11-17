@@ -26,7 +26,7 @@ const dump = require('./dump.js');
 const middlewares = require('./middlewares.js');
 const Preview = require('../wilson/preview.js');
 
-const {retrieveGithubFluxData, retrieveTwitterFluxData} = require('./flux.js');
+const {retrieveGithubFluxData, retrieveBlueskyFluxData} = require('./flux.js');
 
 const {findUnusedAssets} = require('./cleanup.js');
 
@@ -464,12 +464,12 @@ function retrieveFluxData(callback) {
           );
         });
       },
-      twitter: next => {
-        return retrieveTwitterFluxData((err, data) => {
+      bluesky: next => {
+        return retrieveBlueskyFluxData((err, data) => {
           if (err) return next(err);
 
           fs.writeJson(
-            path.join(DATA_PATH, 'twitter.json'),
+            path.join(DATA_PATH, 'bluesky.json'),
             data,
             {spaces: 2},
             next
@@ -505,8 +505,8 @@ function prepareDataForBuild(callback) {
     );
 
     fs.copySync(
-      path.join(DATA_PATH, 'twitter.json'),
-      path.join(PUBLISH_DATA_PATH, 'twitter.json')
+      path.join(DATA_PATH, 'bluesky.json'),
+      path.join(PUBLISH_DATA_PATH, 'bluesky.json')
     );
   }
 

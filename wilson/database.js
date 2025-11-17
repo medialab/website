@@ -298,6 +298,10 @@ class Database {
     return this.store.twitter;
   }
 
+  getBluesky() {
+    return this.store.bluesky;
+  }
+
   getGithub() {
     return this.store.github;
   }
@@ -325,10 +329,11 @@ class Database {
 function loadFluxFromDisk(inputDir) {
   const data = {
     github: [],
-    twitter: []
+    bluesky: []
   };
 
   const githubPath = path.join(inputDir, 'github.json');
+  const blueskyPath = path.join(inputDir, 'bluesky.json');
   const twitterPath = path.join(inputDir, 'twitter.json');
 
   if (fs.existsSync(githubPath)) {
@@ -339,11 +344,11 @@ function loadFluxFromDisk(inputDir) {
     }
   }
 
-  if (fs.existsSync(twitterPath)) {
+  if (fs.existsSync(blueskyPath)) {
     try {
-      data.twitter = fs.readJSONSync(twitterPath);
+      data.bluesky = fs.readJSONSync(blueskyPath);
     } catch (e) {
-      console.error('Error while loading Twitter flux data!');
+      console.error('Error while loading Bluesky flux data!');
     }
   }
 

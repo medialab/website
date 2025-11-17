@@ -33,7 +33,7 @@ const permalink = {
   fr: '/a-propos'
 };
 
-export default function Home({lang, grid, slider, rdv, tweets, github}) {
+export default function Home({lang, grid, slider, rdv, bskyposts, github}) {
   return (
     <>
       <PageMeta lang={lang} description={i18n[lang].description} />
@@ -52,7 +52,7 @@ export default function Home({lang, grid, slider, rdv, tweets, github}) {
           <Now now={grid} lang={lang} />
           <Footer lang={lang} />
         </section>
-        <Flux rdv={rdv} tweets={tweets} github={github} lang={lang} />
+        <Flux rdv={rdv} bskyposts={bskyposts} github={github} lang={lang} />
       </main>
     </>
   );

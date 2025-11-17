@@ -2,7 +2,7 @@ import React from 'react';
 
 import Agenda from './flux/Agenda.js';
 import Git from './flux/Git.js';
-import Tweet from './flux/Tweet.js';
+import Bluesky from './flux/Bluesky.js';
 
 const i18n = {
   fr: {
@@ -25,7 +25,7 @@ const i18n = {
   }
 };
 
-export default function flux({rdv, lang, tweets, github}) {
+export default function flux({rdv, lang, bskyposts, github}) {
   return (
     <section id="flux" aria-label={i18n[lang].status}>
       <div className="container">
@@ -48,7 +48,7 @@ export default function flux({rdv, lang, tweets, github}) {
         </ul>
 
         <Agenda rdv={rdv} lang={lang} />
-        <Tweet lang={lang} tweets={tweets} />
+        <Bluesky lang={lang} bskyposts={bskyposts} />
         <Git lang={lang} github={github} />
       </div>
     </section>

@@ -16,7 +16,7 @@ const IndexPage = ({data, pageContext}) => {
         grid={data.grid}
         slider={data.slider}
         rdv={data.rdv}
-        tweets={data.twitter}
+        bskyposts={data.bluesky}
         github={data.github}
       />
     </Layout>

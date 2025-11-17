@@ -1,0 +1,115 @@
+/////////////////////
+//////// bluesky-post style
+/////////////////////
+
+// all queries
+
+#bluesky-post {
+  .divers {
+    .date {
+      padding-left: $unite/2;
+      margin-left: $unite/2;
+      border-left: $border-very-light;
+    }
+  }
+
+  .bluesky-post-content {
+    a {
+      color: $redlab;
+
+      /*&:last-of-type:not(.mention):not(.hashtag){
+
+                color: $text-color-light;
+                font-size: 0;
+
+
+                &:after{
+
+                    content: "🔗\00FE0E";
+                    @include font-size-20();
+                    color: $text-color-light;
+
+                }
+            }*/
+    }
+    a.hashtag,
+    a.mention {
+      color: $redlab;
+    }
+
+    .link-external-tweet {
+      color: $text-color-light;
+    }
+  }
+
+  .account a {
+    color: $redlab;
+  }
+
+  .bluesky-post-content + .original-bluesky-post aside.divers {
+    border-top: $border-very-light;
+  }
+
+  .original-bluesky-post {
+    margin-left: $unite * 1.5;
+
+    aside.divers {
+      letter-spacing: 0.15px; // Much text, so few letter spacing
+
+      p.label {
+        border: none;
+        margin-right: 0;
+        padding-right: 3px;
+      }
+    }
+
+    &:before {
+      content: '↳';
+      position: absolute;
+      left: $unite * -1.5;
+      top: $baseline * 1.5;
+      font-size: 18px;
+      line-height: 0;
+      color: $text-color-light;
+    }
+  }
+  .bluesky-post-content + .original-bluesky-post {
+    border-top: $border-very-light;
+  } // Exclude simple RT
+}
+
+@include for-size(desktop) {
+  #bluesky-post article {
+    .bluesky-post-content {
+      @include font-size-20();
+      padding-top: $baseline;
+      padding-bottom: $baseline * 1.5;
+      &::first-letter {
+        text-transform: capitalize;
+      }
+    }
+
+    aside.details {
+      border-top: $border-very-light;
+      padding: $baseline/2 0;
+    }
+  }
+}
+
+@include for-size(phone) {
+  #bluesky-post article {
+    .bluesky-post-content {
+      @include font-size-20();
+      padding-top: $baseline;
+      padding-bottom: $baseline * 1.5;
+      &::first-letter {
+        text-transform: capitalize;
+      }
+    }
+
+    aside.details {
+      border-top: $border-very-light;
+      padding: $baseline/2 0;
+    }
+  }
+} /* end phone*/

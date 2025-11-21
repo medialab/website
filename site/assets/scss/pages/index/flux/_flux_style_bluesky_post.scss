@@ -1,10 +1,10 @@
 /////////////////////
-//////// bluesky-post style
+//////// social media posts style
 /////////////////////
 
 // all queries
 
-#bluesky-post {
+#social {
   .divers {
     .date {
       padding-left: $unite/2;
@@ -13,7 +13,7 @@
     }
   }
 
-  .bluesky-post-content {
+  .social-content {
     a {
       color: $redlab;
 
@@ -46,11 +46,11 @@
     color: $redlab;
   }
 
-  .bluesky-post-content + .original-bluesky-post aside.divers {
+  .social-content + .original-social aside.divers {
     border-top: $border-very-light;
   }
 
-  .original-bluesky-post {
+  .original-social {
     margin-left: $unite * 1.5;
 
     aside.divers {
@@ -73,14 +73,14 @@
       color: $text-color-light;
     }
   }
-  .bluesky-post-content + .original-bluesky-post {
+  .social-content + .original-social {
     border-top: $border-very-light;
   } // Exclude simple RT
 }
 
 @include for-size(desktop) {
-  #bluesky-post article {
-    .bluesky-post-content {
+  #social article {
+    .social-content {
       @include font-size-20();
       padding-top: $baseline;
       padding-bottom: $baseline * 1.5;
@@ -89,7 +89,8 @@
       }
     }
 
-    aside.details {
+    // aside.details {
+    aside.divers {
       border-top: $border-very-light;
       padding: $baseline/2 0;
     }
@@ -97,8 +98,8 @@
 }
 
 @include for-size(phone) {
-  #bluesky-post article {
-    .bluesky-post-content {
+  #social article {
+    .social-content {
       @include font-size-20();
       padding-top: $baseline;
       padding-bottom: $baseline * 1.5;
@@ -107,7 +108,8 @@
       }
     }
 
-    aside.details {
+    // aside.details {
+    aside.divers {
       border-top: $border-very-light;
       padding: $baseline/2 0;
     }

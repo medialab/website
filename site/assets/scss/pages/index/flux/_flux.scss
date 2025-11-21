@@ -49,11 +49,15 @@
   #tweet:target {
     padding-top: $height-top-bar + $baseline * 3.5;
   }
+  #social:target {
+    padding-top: $height-top-bar + $baseline * 3.5;
+  }
 }
 
 #agenda,
 #git,
-#tweet {
+#tweet,
+#social {
   width: 100%;
 
   article {
@@ -100,19 +104,22 @@
 // all queries
 #agenda .date-news::before,
 #git .date-news::before,
-#tweet .date-news::before {
+#tweet .date-news::before,
+#social .date-news::before {
   content: none;
 }
 
 #agenda article:not(:last-of-type) > a,
 #tweet article:not(:last-of-type) > a,
+#social article:not(:last-of-type) > a,
 #git article:not(:last-of-type) > aside:last-of-type {
   border-bottom: $border;
 }
 
 #agenda article:hover,
 #git article:hover,
-#tweet article:hover {
+#tweet article:hover,
+#social article:hover {
   background-color: $background-grey;
 }
 
@@ -131,7 +138,8 @@
 
     #agenda,
     #git,
-    #tweet {
+    #tweet,
+    #social {
       > h1 {
         position: sticky;
         top: $height-top-bar + $baseline * 3.5;
@@ -165,7 +173,8 @@
 
     #agenda-content,
     #git-content,
-    #tweet-content {
+    #tweet-content,
+    #social-content {
       display: none;
     }
 
@@ -179,18 +188,23 @@
     #checkbox_tweet:checked ~ #tweet-content {
       display: block !important;
     }
+    #checkbox_social:checked ~ #social-content {
+      display: block !important;
+    }
 
     #agenda > h1 {
       border-top: $border;
     }
     #agenda,
     #git,
-    #tweet {
+    #tweet,
+    #social {
       margin: 0;
 
       #agenda-content,
       #git-content,
-      #tweet-content {
+      #tweet-content,
+      #social-content {
         border-bottom: $border;
       }
 
@@ -233,7 +247,8 @@
   }
   #agenda,
   #git,
-  #tweet {
+  #tweet,
+  #social {
     article {
       padding-left: $unite-phone;
       padding-right: $unite-phone;
@@ -244,7 +259,8 @@
 @media screen and (min-width: 701px) and (max-width: 900px) {
   #agenda,
   #git,
-  #tweet {
+  #tweet,
+  #social {
     article {
       padding-left: $unite;
       padding-right: $unite;

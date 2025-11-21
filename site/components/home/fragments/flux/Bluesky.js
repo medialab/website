@@ -34,7 +34,7 @@ const i18n = {
 export default function Bluesky({lang, bskyposts}) {
   return (
     <>
-      <section id="bluesky-post">
+      <section id="social">
         <h1>
           {i18n[lang].on}
           <span data-icon="tweet">
@@ -67,15 +67,15 @@ export default function Bluesky({lang, bskyposts}) {
           </span>
         </label>
 
-        <div id="tweet-content">
+        <div id="social-content">
           {bskyposts.map(p => (    // was tweets.map, to reuse when bluesky posts incorporated
             <article
               itemScope
               itemType="https://schema.org/SocialMediaPosting"
-              className="bluesky-post"
-              data-type="bluesky-post"
+              className="social"
+              data-type="social"
               key={p.post.toString()}
-              aria-label="Bluesky post">
+              aria-label="Social Media Post">
               <a
                 itemProp="url"
                 href={`https://bsky.app/profile/${p.author_handle}/post/${p.post_did}`}
@@ -86,7 +86,7 @@ export default function Bluesky({lang, bskyposts}) {
                     //<p className="label" data-icon="bluesky-post">{p.type}</p>
                   }
                   <p itemProp="creator" className="account">
-                    {'@'}{p.author_handle}
+                    @{p.author_handle}
                   </p>
                   <time
                     itemProp="datePublished"
@@ -99,12 +99,12 @@ export default function Bluesky({lang, bskyposts}) {
               {p.type !== 'quote' && (
                 <p
                   itemProp="articleBody"
-                  className="bluesky-post-content"
+                  className="social-content"
                   dangerouslySetInnerHTML={{__html: p.html}}
                 />
               )}
               {p.originalPost && (
-                <div className="original-bluesky-post">
+                <div className="original-social">
                   <aside className="divers">
                     <p className="label" data-icon="tweet">
                       {i18n[lang][p.type]}
@@ -112,7 +112,7 @@ export default function Bluesky({lang, bskyposts}) {
                     <p className="account">
                       {p.originalPost.name} (
                       <a
-                        href={`https://bsky.app/profile/${p.originalPost.screenName}/post/${p.originalPost.post}`}
+                        href={`https://bsky.app/profile/${p.originalPost.screenName}/post/${p.originalPost.post_did}`}
                         target="_blank"
                         rel="noopener noreferrer">
                         @{p.originalPost.screenName}
@@ -121,7 +121,7 @@ export default function Bluesky({lang, bskyposts}) {
                     </p>
                   </aside>
                   <p
-                    className="bluesky-post-content"
+                    className="social-content"
                     dangerouslySetInnerHTML={{__html: p.originalPost.html}}
                   />
                 </div>

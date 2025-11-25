@@ -48,7 +48,7 @@ export default function flux({rdv, lang, bskyposts, github}) {
         </ul>
 
         <Agenda rdv={rdv} lang={lang} />
-        <Bluesky lang={lang} bskyposts={bskyposts} />
+        <Bluesky lang={lang} posts={bskyposts} />
         <Git lang={lang} github={github} />
       </div>
     </section>

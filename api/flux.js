@@ -292,7 +292,6 @@ exports.retrieveTwitterFluxData = function (callback) {
   });
 };
 
-
 /**
  * Bluesky.
  */

@@ -19,7 +19,7 @@ if (DEV) {
 /**
  * GitHub.
  */
-const GITHUB_EVENTS_URL = 'https://api.github.com/users/medialab/events';
+const GITHUB_EVENTS_URL = 'https://api.github.com/orgs/medialab/events';
 const GITHUB_REPO_URL = 'https://api.github.com/repos/';
 const GITHUB_URL = 'https://github.com/';
 const GITHUB_EVENTS_PAGES_TO_FETCH = 2;

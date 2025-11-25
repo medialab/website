@@ -53,7 +53,7 @@ module.exports = class Website {
       data: {
         grid: settings.home.grid,
         slider: settings.home.slider,
-        twitter: db.getTwitter(),
+        bluesky: db.getBluesky(),
         github: db.getGithub(),
         rdv: db.getRdv()
       },

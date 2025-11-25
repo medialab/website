@@ -291,3 +291,108 @@ exports.retrieveTwitterFluxData = function (callback) {
     return callback(null, result);
   });
 };
+
+
+/**
+ * Bluesky.
+ */
+const BLUESKY_DATA_URL =
+  'https://raw.githubusercontent.com/medialab/website-medialab-bsky-posts/main/data/medialab_bsky_posts.csv';
+
+// Helpers
+function resolveBlueskyPostsUrls(post, html = false) {
+  const ahref = (url, text) =>
+    `<a href="${url}" target="_blank" rel="noopener">${text}</a>`;
+
+  let text = post.text;
+
+  if (post.links) {
+    post.links.split('|').forEach(url => {
+      text = text.replace(url, html ? ahref(url, url) : url);
+    });
+  }
+
+  return text;
+}
+
+function convertBlueskyPostTextToHtml(post) {
+  let postText = resolveBlueskyPostsUrls(post, true);
+
+  if (post.mentioned_user_handles)
+    for (const handle of post.mentioned_user_handles.split('|')) {
+      postText = postText.replace(
+        new RegExp(`(?:@(${handle}))\\b`, 'gi'),
+        '<a href="https://bsky.app/profile/$1" class="mention" target="_blank" rel="noopener">$&</a>'
+      );
+    }
+
+  if (post.hashtags)
+    for (const hashtag of post.hashtags.split('|'))
+      postText = postText.replace(
+        new RegExp(`(?:#(${hashtag}))\\b`, 'gi'),
+        '<a href="https://bsky.app/hashtag/$1" class="hashtag" target="_blank" rel="noopener">$&</a>'
+      );
+
+  return postText;
+}
+
+// Function retrieving Bsky events and formatting them into our flux
+exports.retrieveBlueskyFluxData = function (callback) {
+  return request.get({url: BLUESKY_DATA_URL}, (err, response, body) => {
+    if (err) return callback(err);
+    if (response.statusCode !== 200)
+      return callback(
+        new Error(
+          `invalid status for bluesky flux data: ${response.statusCode}`
+        )
+      );
+
+    const posts = parseCsv(body.toString(), {
+      columns: true,
+      skip_empty_lines: true
+    })
+      .filter(p => !p.to_postsid)
+      .slice(0, 20);
+
+    const result = posts.map(p => {
+      const item = {
+        post: p.uri,
+        post_did: p.did,
+        author_handle: p.user_handle,
+        text: resolveBlueskyPostsUrls(p),
+        html: convertBlueskyPostTextToHtml(p),
+        date: p.local_time,
+        reposts: +p.repost_count,
+        favorites: +p.like_count,
+        type: 'post'
+      };
+
+      // Quotes
+      if (p.quoted_uri) {
+        item.text = item.text.split('«')[0].trim();
+        item.html = item.html.split('«')[0].trim();
+
+        p.text = p.text
+          .split('«')[1]
+          .replace('»', '')
+          .split(' — https://')[0]
+          .trim();
+
+        item.originalPost = {
+          post: p.quoted_uri,
+          post_did: p.quoted_did,
+          text: resolveBlueskyPostsUrls(p),
+          html: convertBlueskyPostTextToHtml(p),
+          screenName: p.quoted_user_handle,
+          name: p.quoted_user_handle,
+          type: 'post'
+        };
+        item.type = 'quote';
+      }
+
+      return item;
+    });
+
+    return callback(null, result);
+  });
+};

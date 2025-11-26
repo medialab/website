@@ -131,6 +131,14 @@
                 -webkit-box-orient: vertical;
               }
 
+              .accroche {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 4;
+                -webkit-box-orient: vertical;
+              }
+
               .more {
                 @include font-size-13();
                 color: $redlab;

@@ -25,7 +25,8 @@ const noOptionsMessages = {
 const labelSearchModel = {
   activities: 'activités',
   people: 'membres',
-  productions: 'productions'
+  productions: 'productions',
+  news: 'actualités'
 };
 
 const DragHandle = SortableHandle(() => (

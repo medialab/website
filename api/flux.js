@@ -352,14 +352,6 @@ function convertBlueskyPostTextToHtml(post) {
   return postText;
 }
 
-function arraysEqual(a, b) {
-  if (a.length !== b.length) return false;
-  for (let i = 0; i < a.length; i++) {
-    if (a[i] !== b[i]) return false;
-  }
-  return true;
-}
-
 // Function retrieving Bsky events and formatting them into our flux
 exports.retrieveBlueskyFluxData = function (callback) {
   return request.get({url: BLUESKY_DATA_URL}, (err, response, body) => {
@@ -378,14 +370,11 @@ exports.retrieveBlueskyFluxData = function (callback) {
       .filter(p => !p.to_postsid)
       .slice(0, 20);
 
-    const result = posts.map(p => {
-      // Filtering posts only mentioning other users
-      if (arraysEqual(
-        p.text.split('@').map(mention => mention.trim()).filter(s => s !== ''),
-        p.mentioned_user_handles.split('|')))
-        { return null; }
-
-
+    // Filtering posts only mentioning other users
+    const regex = /@[^\s]+/g;
+    const result = posts
+    .filter(p => p.text && p.text.replace(regex, '').trim() !== '')
+    .map(p => {
       const item = {
         post: p.uri,
         post_did: p.did,
@@ -422,7 +411,7 @@ exports.retrieveBlueskyFluxData = function (callback) {
       }
 
       return item;
-    }).filter(i => i !== null);
+    });
 
     return callback(null, result);
   });

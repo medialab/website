@@ -293,6 +293,7 @@ app.get('/preview/*', (req, res) => {
 
 // Migration routes
 const MIGRATION_SCHEMES = {
+  'add-slug': require('./migrations/add-slug.js'),
   'clean-html-metadata': require('./migrations/clean-html-metadata.js')(
     ASSETS_PATH
   ),

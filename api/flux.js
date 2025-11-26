@@ -19,7 +19,7 @@ if (DEV) {
 /**
  * GitHub.
  */
-const GITHUB_EVENTS_URL = 'https://api.github.com/users/medialab/events';
+const GITHUB_EVENTS_URL = 'https://api.github.com/orgs/medialab/events';
 const GITHUB_REPO_URL = 'https://api.github.com/repos/';
 const GITHUB_URL = 'https://github.com/';
 const GITHUB_EVENTS_PAGES_TO_FETCH = 2;
@@ -292,7 +292,6 @@ exports.retrieveTwitterFluxData = function (callback) {
   });
 };
 
-
 /**
  * Bluesky.
  */
@@ -309,14 +308,6 @@ function resolveBlueskyPostsUrls(post, html = false) {
   if (post.links) {
     post.links.split('|').forEach(url => {
       text = text.replace(url, html ? ahref(url, url) : url);
-    });
-  }
-
-  if (post.card_link) {
-    post.card_link.split('|').forEach(url => {
-      if (!post.links || !post.links.split('|').includes(url)) {
-        text = text.replace(url, html ? ahref(url, url) : url);
-      }
     });
   }
 
@@ -341,24 +332,7 @@ function convertBlueskyPostTextToHtml(post) {
         '<a href="https://bsky.app/hashtag/$1" class="hashtag" target="_blank" rel="noopener">$&</a>'
       );
 
-  if (post.media_urls) {
-    post.media_urls.split('|').forEach(url => {
-      if (url.startsWith('https://cdn.bsky.app/img/')) {
-        postText = postText.replace(url, '');
-      }
-    });
-    postText = postText.trim();
-  }
-
   return postText;
-}
-
-function arraysEqual(a, b) {
-  if (a.length !== b.length) return false;
-  for (let i = 0; i < a.length; i++) {
-    if (a[i] !== b[i]) return false;
-  }
-  return true;
 }
 
 // Function retrieving Bsky events and formatting them into our flux
@@ -380,13 +354,6 @@ exports.retrieveBlueskyFluxData = function (callback) {
       .slice(0, 20);
 
     const result = posts.map(p => {
-      // Filtering posts only mentioning other users
-      if (arraysEqual(
-        p.text.split('@').map(mention => mention.trim()).filter(s => s !== ''),
-        p.mentioned_user_handles.split('|')))
-        { return null; }
-
-
       const item = {
         post: p.uri,
         post_did: p.did,
@@ -423,7 +390,7 @@ exports.retrieveBlueskyFluxData = function (callback) {
       }
 
       return item;
-    }).filter(i => i !== null);
+    });
 
     return callback(null, result);
   });

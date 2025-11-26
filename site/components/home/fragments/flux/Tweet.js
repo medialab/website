@@ -44,8 +44,8 @@ export default function tweet({lang, tweets}) {
               rel="noopener noreferrer">
               Mastodon
             </a>
-          </span>
-          {' '}&{' '}
+          </span>{' '}
+          &{' '}
           <span data-icon="tweet">
             <a
               href="https://bsky.app/profile/medialab-scpo.bsky.social"
@@ -68,66 +68,70 @@ export default function tweet({lang, tweets}) {
         </label>
 
         <div id="tweet-content">
-          {[].map(t => (    // was tweets.map, to reuse when bluesky posts incorporated
-            <article
-              itemScope
-              itemType="https://schema.org/SocialMediaPosting"
-              className="tweet"
-              data-type="tweet"
-              key={t.tweet.toString()}
-              aria-label="Tweet">
-              <a
-                itemProp="url"
-                href={`https://twitter.com/medialab_scpo/status/${t.tweet}`}
-                target="_blank"
-                rel="noopener noreferrer">
-                <aside className="divers">
-                  {
-                    //<p className="label" data-icon="tweet">{t.type}</p>
-                  }
-                  <p itemProp="creator" className="account">
-                    @medialab_ScPo
-                  </p>
-                  <time
-                    itemProp="datePublished"
-                    className="date"
-                    dateTime={t.date}>
-                    {formatDateTime(t.date, lang)}
-                  </time>
-                </aside>
-              </a>
-              {t.type !== 'retweet' && (
-                <p
-                  itemProp="articleBody"
-                  className="tweet-content"
-                  dangerouslySetInnerHTML={{__html: t.html}}
-                />
-              )}
-              {t.originalTweet && (
-                <div className="original-tweet">
+          {[].map(
+            (
+              t // was tweets.map, to reuse when bluesky posts incorporated
+            ) => (
+              <article
+                itemScope
+                itemType="https://schema.org/SocialMediaPosting"
+                className="tweet"
+                data-type="tweet"
+                key={t.tweet.toString()}
+                aria-label="Tweet">
+                <a
+                  itemProp="url"
+                  href={`https://twitter.com/medialab_scpo/status/${t.tweet}`}
+                  target="_blank"
+                  rel="noopener noreferrer">
                   <aside className="divers">
-                    <p className="label" data-icon="tweet">
-                      {i18n[lang][t.type]}
+                    {
+                      //<p className="label" data-icon="tweet">{t.type}</p>
+                    }
+                    <p itemProp="creator" className="account">
+                      @medialab_ScPo
                     </p>
-                    <p className="account">
-                      {t.originalTweet.name} (
-                      <a
-                        href={`https://twitter.com/${t.originalTweet.screenName}`}
-                        target="_blank"
-                        rel="noopener noreferrer">
-                        @{t.originalTweet.screenName}
-                      </a>
-                      )
-                    </p>
+                    <time
+                      itemProp="datePublished"
+                      className="date"
+                      dateTime={t.date}>
+                      {formatDateTime(t.date, lang)}
+                    </time>
                   </aside>
+                </a>
+                {t.type !== 'retweet' && (
                   <p
+                    itemProp="articleBody"
                     className="tweet-content"
-                    dangerouslySetInnerHTML={{__html: t.originalTweet.html}}
+                    dangerouslySetInnerHTML={{__html: t.html}}
                   />
-                </div>
-              )}
-            </article>
-          ))}
+                )}
+                {t.originalTweet && (
+                  <div className="original-tweet">
+                    <aside className="divers">
+                      <p className="label" data-icon="tweet">
+                        {i18n[lang][t.type]}
+                      </p>
+                      <p className="account">
+                        {t.originalTweet.name} (
+                        <a
+                          href={`https://twitter.com/${t.originalTweet.screenName}`}
+                          target="_blank"
+                          rel="noopener noreferrer">
+                          @{t.originalTweet.screenName}
+                        </a>
+                        )
+                      </p>
+                    </aside>
+                    <p
+                      className="tweet-content"
+                      dangerouslySetInnerHTML={{__html: t.originalTweet.html}}
+                    />
+                  </div>
+                )}
+              </article>
+            )
+          )}
         </div>
       </section>
     </>

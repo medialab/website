@@ -78,7 +78,14 @@ exports.retrieveGithubFluxData = function (people, callback) {
 
       const groups = new MultiMap();
 
-      data.forEach(item => groups.set(item.repo.name, item));
+      data
+        .filter(item => {
+          return (
+            (item.type === 'PushEvent' || item.type === 'CreateEvent') &&
+            item.actor.login !== 'github-actions[bot]'
+          );
+        })
+        .forEach(item => groups.set(item.repo.name, item));
 
       // 2) Retrieving repo data
       const repoData = {};

@@ -1,11 +1,6 @@
 const partition = require('lodash/partition');
 
-const MODELS = [
-  'activities',
-  'news',
-  // 'people',
-  'productions'
-];
+const MODELS = ['activities', 'news', 'people', 'productions'];
 
 module.exports = function (req, dbs, next) {
   const dryRun = 'dryrun' in req.query || 'dry-run' in req.query;

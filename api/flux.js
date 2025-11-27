@@ -373,45 +373,45 @@ exports.retrieveBlueskyFluxData = function (callback) {
     // Filtering posts only mentioning other users
     const regex = /@[^\s]+/g;
     const result = posts
-    .filter(p => p.text && p.text.replace(regex, '').trim() !== '')
-    .map(p => {
-      const item = {
-        post: p.uri,
-        post_did: p.did,
-        author_handle: p.user_handle,
-        text: resolveBlueskyPostsUrls(p),
-        html: convertBlueskyPostTextToHtml(p),
-        date: p.local_time,
-        reposts: +p.repost_count,
-        favorites: +p.like_count,
-        type: 'post'
-      };
-
-      // Quotes
-      if (p.quoted_uri) {
-        item.text = item.text.split('«')[0].trim();
-        item.html = item.html.split('«')[0].trim();
-
-        p.text = p.text
-          .split('«')[1]
-          .replace('»', '')
-          .split(' — https://')[0]
-          .trim();
-
-        item.originalPost = {
-          post: p.quoted_uri,
-          post_did: p.quoted_did,
+      .filter(p => p.text && p.text.replace(regex, '').trim() !== '')
+      .map(p => {
+        const item = {
+          post: p.uri,
+          post_did: p.did,
+          author_handle: p.user_handle,
           text: resolveBlueskyPostsUrls(p),
           html: convertBlueskyPostTextToHtml(p),
-          screenName: p.quoted_user_handle,
-          name: p.quoted_user_handle,
+          date: p.local_time,
+          reposts: +p.repost_count,
+          favorites: +p.like_count,
           type: 'post'
         };
-        item.type = 'quote';
-      }
 
-      return item;
-    });
+        // Quotes
+        if (p.quoted_uri) {
+          item.text = item.text.split('«')[0].trim();
+          item.html = item.html.split('«')[0].trim();
+
+          p.text = p.text
+            .split('«')[1]
+            .replace('»', '')
+            .split(' — https://')[0]
+            .trim();
+
+          item.originalPost = {
+            post: p.quoted_uri,
+            post_did: p.quoted_did,
+            text: resolveBlueskyPostsUrls(p),
+            html: convertBlueskyPostTextToHtml(p),
+            screenName: p.quoted_user_handle,
+            name: p.quoted_user_handle,
+            type: 'post'
+          };
+          item.type = 'quote';
+        }
+
+        return item;
+      });
 
     return callback(null, result);
   });

@@ -311,6 +311,14 @@ function resolveBlueskyPostsUrls(post, html = false) {
     });
   }
 
+  if (post.card_link) {
+    post.card_link.split('|').forEach(url => {
+      if (!post.links || !post.links.split('|').includes(url)) {
+        text = text.replace(url, html ? ahref(url, url) : url);
+      }
+    });
+  }
+
   return text;
 }
 
@@ -331,6 +339,15 @@ function convertBlueskyPostTextToHtml(post) {
         new RegExp(`(?:#(${hashtag}))\\b`, 'gi'),
         '<a href="https://bsky.app/hashtag/$1" class="hashtag" target="_blank" rel="noopener">$&</a>'
       );
+
+  if (post.media_urls) {
+    post.media_urls.split('|').forEach(url => {
+      if (url.startsWith('https://cdn.bsky.app/img/')) {
+        postText = postText.replace(url, '');
+      }
+    });
+    postText = postText.trim();
+  }
 
   return postText;
 }
@@ -353,7 +370,11 @@ exports.retrieveBlueskyFluxData = function (callback) {
       .filter(p => !p.to_postsid)
       .slice(0, 20);
 
-    const result = posts.map(p => {
+    // Filtering posts only mentioning other users
+    const regex = /@[^\s]+/g;
+    const result = posts
+    .filter(p => p.text && p.text.replace(regex, '').trim() !== '')
+    .map(p => {
       const item = {
         post: p.uri,
         post_did: p.did,

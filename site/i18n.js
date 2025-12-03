@@ -7,14 +7,16 @@ export const I18N_MODEL = {
     news: 'Actualités',
     people: "L'équipe",
     productions: 'Productions',
-    tools: 'Outils'
+    tools: 'Outils',
+    jobs: 'Recrutement'
   },
   en: {
     activities: 'Activities',
     news: 'News',
     people: 'Team',
     productions: 'Productions',
-    tools: 'Tools'
+    tools: 'Tools',
+    jobs: 'Jobs'
   }
 };
 

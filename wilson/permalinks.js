@@ -19,6 +19,10 @@ module.exports = {
     fr: '/actu',
     en: '/en/news'
   },
+  jobs: {
+    fr: '/recrutement',
+    en: '/en/jobs'
+  },
   people: {
     fr: '/equipe',
     en: '/en/people'

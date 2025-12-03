@@ -3,6 +3,7 @@ const enums = require('../specs/enums.json');
 const {facetedEnums} = require('./facets.js');
 const models = require('../specs/models.json');
 const shuffle = require('pandemonium/shuffle');
+const permalinks = require('./permalinks.js');
 
 // Constants
 const TEMPLATES = {
@@ -16,6 +17,7 @@ const TEMPLATES = {
   activitiesListing: 'activity-list',
   newsDetail: 'news',
   newsListing: 'news-list',
+  jobListing: 'job-list',
   peopleListing: 'people-list',
   peopleDetail: 'people',
   productionsDetail: 'production',
@@ -118,6 +120,18 @@ module.exports = class Website {
     this.pages.push({
       permalinks: PERMALINKS.news,
       template: TEMPLATES.newsListing,
+      data: {
+        news: db.getModel('news')
+      },
+      scripts: ['search', 'news-listing'],
+      itemsWithCover(data) {
+        return data.news.filter(item => item.cover);
+      }
+    });
+
+    this.pages.push({
+      permalinks: PERMALINKS.jobs,
+      template: TEMPLATES.jobListing,
       data: {
         news: db.getModel('news')
       },

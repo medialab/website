@@ -51,14 +51,18 @@ module.exports = class HALClient {
       next => {
         const url = `${BASE_URL}/search/index/?q=${query}&wt=json&fl=${FL_PARAM}&rows=${PAGINATION_COUNT}&cursorMark=${cursor}&sort=docid asc`;
 
-        return request.get(url, {json: true, strictSSL: false}, (err, response) => {
-          if (err) return next(err);
+        return request.get(
+          url,
+          {json: true, strictSSL: false},
+          (err, response) => {
+            if (err) return next(err);
 
-          return next(null, {
-            docs: response.body.response.docs,
-            nextCursor: response.body.nextCursorMark
-          });
-        });
+            return next(null, {
+              docs: response.body.response.docs,
+              nextCursor: response.body.nextCursorMark
+            });
+          }
+        );
       },
       ({docs, nextCursor}, test) => {
         if (!nextCursor || nextCursor === cursor || !docs || !docs.length)

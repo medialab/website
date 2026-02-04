@@ -14,7 +14,8 @@ const mainPermalinks = {
     news: '/en/news',
     people: '/en/people',
     productions: '/en/productions',
-    tools: '/en/tools'
+    tools: '/en/tools',
+    jobs: '/en/jobs'
   },
   fr: {
     home: '/',
@@ -24,7 +25,8 @@ const mainPermalinks = {
     news: '/actu',
     people: '/equipe',
     productions: '/productions',
-    tools: '/outils'
+    tools: '/outils',
+    jobs: '/recrutement'
   }
 };
 
@@ -36,7 +38,8 @@ const i18n = {
     medialab: 'Le médialab',
     team: "L'équipe",
     seminar: 'Séminaire',
-    tool: 'Outils'
+    tool: 'Outils',
+    jobs: 'Recrutement'
   },
   en: {
     news: 'News',
@@ -45,7 +48,8 @@ const i18n = {
     medialab: 'The médialab',
     team: 'Team',
     seminar: 'Seminar',
-    tool: 'Tools'
+    tool: 'Tools',
+    jobs: 'Jobs'
   }
 };
 
@@ -62,6 +66,7 @@ const ariaLabelI18n = {
     presentation: 'Aller à la page de présentation du médialab',
     tools:
       'Aller à la liste des outils numériques créés ou utilisé par le médialab',
+    jobs: 'Aller à la liste des recrutements en cours',
     seminar: 'Assister à notre séminaire',
     lang: 'Choix de la langue',
     fr: 'Contenu en langue française',
@@ -78,6 +83,7 @@ const ariaLabelI18n = {
     people: 'Discover médialab members',
     presentation: 'Go to médialab presentation page',
     tools: 'Go to a listing of digital tools created or used by médialab',
+    jobs: 'Go to a listing of open positions at médialab',
     seminar: 'Join us for our seminar',
     lang: 'Language selection',
     fr: 'French version content',
@@ -90,7 +96,8 @@ const Link = props => (
 );
 
 export default function TopBar({permalinks, lang}) {
-  const {news, prod, activite, medialab, team, seminar, tool} = i18n[lang];
+  const {news, prod, activite, medialab, team, seminar, tool, jobs} =
+    i18n[lang];
 
   return (
     <header id="topbar" role="banner" aria-label={ariaLabelI18n[lang].header}>
@@ -157,22 +164,6 @@ export default function TopBar({permalinks, lang}) {
               </Link>
             </li>
           </ul>
-          <ul id="nav-institution">
-            <li>
-              <Link
-                to={mainPermalinks[lang].people}
-                aria-label={ariaLabelI18n[lang].people}>
-                {team}
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={mainPermalinks[lang].about}
-                aria-label={ariaLabelI18n[lang].presentation}>
-                {medialab}
-              </Link>
-            </li>
-          </ul>
           <ul id="nav-archive">
             {/*<li><Link to={`${relLang}/outils`}>{tool}</Link></li>*/}
             <li>
@@ -193,7 +184,30 @@ export default function TopBar({permalinks, lang}) {
                 {seminar}
               </Link>
             </li>
+            <li>
+              <Link
+                to={mainPermalinks[lang].jobs}
+                aria-label={ariaLabelI18n[lang].jobs}>
+                {jobs}
+              </Link>
+            </li>
             {/* <li><Link to={`${relLang}/archive`}>{archive}</Link></li> */}
+          </ul>
+          <ul id="nav-institution">
+            <li>
+              <Link
+                to={mainPermalinks[lang].people}
+                aria-label={ariaLabelI18n[lang].people}>
+                {team}
+              </Link>
+            </li>
+            <li>
+              <Link
+                to={mainPermalinks[lang].about}
+                aria-label={ariaLabelI18n[lang].presentation}>
+                {medialab}
+              </Link>
+            </li>
           </ul>
         </nav>
 

@@ -24,14 +24,14 @@ spec:
             - name: SECRET_PATH
               value: '/etc/website-api/..data/'
           volumeMounts:
-            - name: data-vol
-              mountPath: /website/data
+            - name: website-vol
+              mountPath: /website
             - name: api-secrets
               mountPath: /etc/website-api
       volumes:
-        - name: data-vol
+        - name: website-vol
           persistentVolumeClaim:
-            claimName: data-pvc
+            claimName: website-pvc
         - name: api-secrets
           secret:
             secretName: api

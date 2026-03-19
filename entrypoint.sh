@@ -1,6 +1,6 @@
 #!/bin/sh
-echo "chown volume /website/data..."
-chown -R node:node /website/data
+echo "chown volume /website..."
+chown -R node:node /website
 # echo "First gatsby build..."
 # cd /website/site/ && su-exec node:node /website/site/node_modules/.bin/gatsby build
 cd /website

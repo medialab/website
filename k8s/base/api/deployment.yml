@@ -26,12 +26,17 @@ spec:
           volumeMounts:
             - name: data-vol
               mountPath: /website/data
+            - name: build-vol
+              mountPath: /website/build
             - name: api-secrets
               mountPath: /etc/website-api
       volumes:
         - name: data-vol
           persistentVolumeClaim:
             claimName: data-pvc
+        - name: build-vol
+          persistentVolumeClaim:
+            claimName: build-pvc
         - name: api-secrets
           secret:
             secretName: api

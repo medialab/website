@@ -9,7 +9,6 @@ services:
       - "3000:3000"
     volumes:
       - ./data:/website/data
-      - ./build:/website/build
   admin:
     build:
       context: ./

@@ -36,7 +36,6 @@ RUN apk add vips fftw --no-cache \
     && rm -fr /root/.npm /root/.node-gyp /root/.config /usr/lib/node_modules
 
 VOLUME /website/data
-VOLUME /website/build
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh

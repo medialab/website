@@ -222,7 +222,7 @@ export default function About({lang}) {
                 adressées à <Link to="/equipe/alex-kindel/">Alex Kindel</Link>{' '}
                 (responsable du programme doctoral du médialab). Les
                 candidatures doivent être soumises via l’
-                <Link to="https://www.sciencespo.fr/ecole-recherche/fr/admissions/doctoralate-formet/">
+                <Link to="https://www.sciencespo.fr/admissions/fr/doctorat/">
                   École doctorale
                 </Link>
                 .

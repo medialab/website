@@ -29,7 +29,8 @@ export default ({data, pageContext}) => {
     return (
       item.label &&
       (item.label.fr === 'Emploi' || item.label.en === 'Job') &&
-      !item.endDate &&
+      (!item.endDate ||
+        item.endDate > new Date().toISOString().split('T')[0]) &&
       !(item.title.fr || '').toLowerCase().includes('pourvu')
     );
   });

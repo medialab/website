@@ -95,7 +95,12 @@ function buildSass(outputDir, minifyCss, callback) {
   );
 }
 
-const IMG = ['people-placeholder.png', 'cover-twitter.png', 'cover-fb.png'];
+const IMG = [
+  'image-placeholder.png',
+  'people-placeholder.png',
+  'cover-twitter.png',
+  'cover-fb.png'
+];
 
 function copyAssets(inputDir, outputDir, callback) {
   async.parallel(
